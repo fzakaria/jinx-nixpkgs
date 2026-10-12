@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["changelog", 86, 5], ["description", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["maintainers", 90, 5]], [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["__structuredAttrs", 34, 3], ["src", 36, 3], ["build-system", 43, 3], ["pythonRemoveDeps", 50, 3], ["dependencies", 55, 3], ["pythonImportsCheck", 77, 3], ["doCheck", 83, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "absl-py": false, mujoco: false, pyparsing: false, setuptools: false, "dm-env": false, "dm-tree": false, fsspec: false, glfw: false, h5py: false, lxml: false, mock: false, numpy: false, pillow: false, protobuf: false, pyopengl: false, requests: false, scipy: false, tqdm: false, etils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 86, 5], ["description", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["maintainers", 90, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["__structuredAttrs", 34, 3], ["src", 36, 3], ["build-system", 43, 3], ["pythonRemoveDeps", 50, 3], ["dependencies", 55, 3], ["pythonImportsCheck", 77, 3], ["doCheck", 83, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,13 +30,13 @@ export default nix.lambda((args) => (() => {
   const tqdm = nix.arg($, "tqdm");
   const etils = nix.arg($, "etils");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dm-control",
       version: "1.0.48",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "google-deepmind",
           repo: "dm_control",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -69,7 +67,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["dm_control"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/google-deepmind/dm_control/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Google DeepMind's software stack for physics-based simulation and Reinforcement Learning environments, using MuJoCo",
         homepage: "https://github.com/google-deepmind/dm_control",

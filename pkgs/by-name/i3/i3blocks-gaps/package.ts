@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 39, 5], ["repo", 40, 5], ["rev", 41, 5], ["hash", 42, 5]], [["description", 77, 5], ["mainProgram", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["platforms", 82, 5]], [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["makeFlags", 45, 3], ["installFlags", 46, 3], ["buildInputs", 51, 3], ["nativeBuildInputs", 52, 3], ["postFixup", 54, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, stdenv: false, perl: false, makeWrapper: false, iproute2: false, acpi: false, sysstat: false, "alsa-utils": false, scripts: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 39, 5], ["repo", 40, 5], ["rev", 41, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 77, 5], ["mainProgram", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["platforms", 82, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["makeFlags", 45, 3], ["installFlags", 46, 3], ["buildInputs", 51, 3], ["nativeBuildInputs", 52, 3], ["postFixup", 54, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const perlscripts = nix.thunk(() => ["battery", "cpu_usage", "openvpn", "temperature"]);
   const contains_any = (l1) => (l2) => nix.lt(0n, nix.app(nix.sel(lib, "length"), nix.thunk(() => nix.app(nix.sel(lib, "intersectLists"), l1, l2))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "i3blocks-gaps",
       version: "1.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Airblader",
           repo: "i3blocks-gaps",
           rev: "4cfdf93c75f729a2c96d471004d31734e923812f",
@@ -61,7 +59,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [alsa_utils]))}
 `)))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Flexible scheduler for your i3bar blocks -- this is a fork to use with i3-gaps",
         mainProgram: "i3blocks",
         homepage: "https://github.com/Airblader/i3blocks-gaps",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["gtkSupport", 45, 44]], [["updateScript", 55, 5]], [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["platforms", 62, 5], ["teams", 63, 5], ["mainProgram", 64, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 38, 3], ["passthru", 54, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, "nix-update-script": false, meson: false, ninja: false, "pkg-config": false, vala: false, wrapGAppsHook4: false, "gdk-pixbuf": false, granite7: false, gst_all_1: false, gtk4: false, libadwaita: false, libgee: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["gtkSupport", 45, 44]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 55, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["platforms", 62, 5], ["teams", 63, 5], ["mainProgram", 64, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 38, 3], ["passthru", 54, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "elementary-videos";
       const version = "8.0.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "elementary",
           repo: "videos",
           rev: version,
@@ -43,7 +39,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(gst_all_1, "gst-libav")),
         nix.thunk(() => nix.sel(gst_all_1, "gst-plugins-bad")),
         nix.thunk(() => nix.sel(gst_all_1, "gst-plugins-base")),
-        nix.thunk(() => nix.app(nix.sel(gst_all_1, "gst-plugins-good", "override"), nix.thunk(() => ({ [nix.POS]: pos$2, gtkSupport: true })))),
+        nix.thunk(() => nix.app(nix.sel(gst_all_1, "gst-plugins-good", "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], gtkSupport: true })))),
         nix.thunk(() => nix.sel(gst_all_1, "gst-plugins-rs")),
         nix.thunk(() => nix.sel(gst_all_1, "gst-plugins-ugly")),
         nix.thunk(() => nix.sel(gst_all_1, "gstreamer")),
@@ -52,11 +48,11 @@ export default nix.lambda((args) => (() => {
         libgee,
       ]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Video player and library app designed for elementary OS",
         homepage: "https://github.com/elementary/videos",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -65,7 +61,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "io.elementary.videos",
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

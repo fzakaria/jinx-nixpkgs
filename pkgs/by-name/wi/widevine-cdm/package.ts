@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["stdenv", 14, 89]]]);
 const formals$1 = { args: { lib: false, stdenv: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["stdenv", 14, 89]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -11,6 +11,6 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const callPackage = nix.arg($, "callPackage");
   const targets = nix.thunk(() => nix.app(nix.sel(lib, "genAttrs"), nix.thunk(() => ["aarch64-linux", "x86_64-linux"]), (name) => nix.add(nix.path(here, "./."), nix.str`/${name}.nix`)));
-  return nix.app(callPackage, nix.thunk(() => nix.selOr(targets, () => nix.sel(targets, "x86_64-linux"), nix.key(nix.str`${nix.sel(stdenv, "hostPlatform", "system")}`))), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: stdenv })));
+  return nix.app(callPackage, nix.thunk(() => nix.selOr(targets, () => nix.sel(targets, "x86_64-linux"), nix.key(nix.str`${nix.sel(stdenv, "hostPlatform", "system")}`))), nix.thunk(() => ({ [nix.POS]: $pos[0], stdenv: stdenv })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 29, 5], ["rev", 30, 5], ["sha256", 31, 5]], [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["platforms", 72, 5], ["maintainers", 73, 5]], [["pname", 18, 3], ["version", 19, 3], ["outputs", 21, 3], ["src", 28, 3], ["patches", 34, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 50, 3], ["propagatedBuildInputs", 55, 3], ["preConfigure", 60, 3], ["configureFlags", 64, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, "pkg-config": false, glib: false, vala: false, dee: false, "gobject-introspection": false, libdbusmenu: false, gtk3: false, intltool: false, python3: false, autoreconfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 29, 5], ["rev", 30, 5], ["sha256", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["platforms", 72, 5], ["maintainers", 73, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["outputs", 21, 3], ["src", 28, 3], ["patches", 34, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 50, 3], ["propagatedBuildInputs", 55, 3], ["preConfigure", 60, 3], ["configureFlags", 64, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libunity",
       version: "7.1.4-unstable-2021-02-01",
       outputs: nix.thunk(() => ["out", "dev", "py"]),
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.launchpad.net/ubuntu/+source/libunity",
           rev: "import/7.1.4+19.04.20190319-5",
           sha256: "LHUs6kl1srS6Xektx+jmm4SXLR47VuQ9IhYbBxf2Wc8=",
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--with-pygi-overrides-dir=${nix.builtins.placeholder("py")}/${nix.sel(python3, "sitePackages")}/gi/overrides`),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library for instrumenting and integrating with all aspects of the Unity shell",
         homepage: "https://launchpad.net/libunity",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),

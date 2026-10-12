@@ -2,69 +2,49 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/spiped.nix", [[["maintainers", 8, 5]], [["body", 24, 23], ["handler", 25, 23], ["status_code", 26, 23]], [["handle", 22, 19]], [["listen", 19, 15], ["routes", 20, 15]], [["default", 18, 31]], [["servers", 18, 23]], [["http", 18, 18]], [["apps", 18, 13]], [["enable", 16, 11], ["settings", 17, 11]], [["source", 47, 15], ["target", 48, 15], ["keyfile", 49, 15], ["decrypt", 50, 15]], [["source", 53, 15], ["target", 54, 15], ["keyfile", 55, 15], ["encrypt", 56, 15]], [["server", 46, 13], ["client", 52, 13]], [["enable", 44, 11], ["config", 45, 11]], [["caddy", 15, 18], ["spiped", 43, 18]], [["wantedBy", 36, 11], ["overrideStrategy", 37, 11]], [["wantedBy", 40, 11], ["overrideStrategy", 41, 11]], [["spiped@server", 35, 26], ["spiped@client", 39, 26]], [["services", 35, 17]], [["services", 15, 9], ["systemd", 35, 9]], [["server", 12, 5]], [["name", 6, 3], ["meta", 7, 3], ["nodes", 11, 3], ["testScript", 63, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/spiped.nix", [["maintainers", 8, 5]]);
 const formals$2 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/spiped.nix", [["body", 24, 23], ["handler", 25, 23], ["status_code", 26, 23]]);
-const pos$3 = nix.positions(here + "/spiped.nix", [["handle", 22, 19]]);
-const pos$4 = nix.positions(here + "/spiped.nix", [["listen", 19, 15], ["routes", 20, 15]]);
-const pos$5 = nix.positions(here + "/spiped.nix", [["default", 18, 31]]);
-const pos$6 = nix.positions(here + "/spiped.nix", [["servers", 18, 23]]);
-const pos$7 = nix.positions(here + "/spiped.nix", [["http", 18, 18]]);
-const pos$8 = nix.positions(here + "/spiped.nix", [["apps", 18, 13]]);
-const pos$9 = nix.positions(here + "/spiped.nix", [["enable", 16, 11], ["settings", 17, 11]]);
-const pos$10 = nix.positions(here + "/spiped.nix", [["source", 47, 15], ["target", 48, 15], ["keyfile", 49, 15], ["decrypt", 50, 15]]);
-const pos$11 = nix.positions(here + "/spiped.nix", [["source", 53, 15], ["target", 54, 15], ["keyfile", 55, 15], ["encrypt", 56, 15]]);
-const pos$12 = nix.positions(here + "/spiped.nix", [["server", 46, 13], ["client", 52, 13]]);
-const pos$13 = nix.positions(here + "/spiped.nix", [["enable", 44, 11], ["config", 45, 11]]);
-const pos$14 = nix.positions(here + "/spiped.nix", [["caddy", 15, 18], ["spiped", 43, 18]]);
-const pos$15 = nix.positions(here + "/spiped.nix", [["wantedBy", 36, 11], ["overrideStrategy", 37, 11]]);
-const pos$16 = nix.positions(here + "/spiped.nix", [["wantedBy", 40, 11], ["overrideStrategy", 41, 11]]);
-const pos$17 = nix.positions(here + "/spiped.nix", [["spiped@server", 35, 26], ["spiped@client", 39, 26]]);
-const pos$18 = nix.positions(here + "/spiped.nix", [["services", 35, 17]]);
-const pos$19 = nix.positions(here + "/spiped.nix", [["services", 15, 9], ["systemd", 35, 9]]);
-const pos$20 = nix.positions(here + "/spiped.nix", [["server", 12, 5]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$21 = nix.positions(here + "/spiped.nix", [["name", 6, 3], ["meta", 7, 3], ["nodes", 11, 3], ["testScript", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const key = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "key", nix.thunk(() => ({})), nix.thunk(() => nix.str`${nix.sel(pkgs, "openssl")}/bin/openssl rand 32 > $out`)));
   return {
-    [nix.POS]: pos$21,
+    [nix.POS]: $pos[20],
     name: "spiped",
-    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: $pos[0], maintainers: [] })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$20,
+      [nix.POS]: $pos[19],
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         const lib = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$19,
+          [nix.POS]: $pos[18],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             caddy: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 apps: nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   http: nix.thunk(() => ({
-                    [nix.POS]: pos$6,
+                    [nix.POS]: $pos[5],
                     servers: nix.thunk(() => ({
-                      [nix.POS]: pos$5,
+                      [nix.POS]: $pos[4],
                       default: nix.thunk(() => ({
-                        [nix.POS]: pos$4,
+                        [nix.POS]: $pos[3],
                         listen: nix.thunk(() => [":80"]),
                         routes: nix.thunk(() => [
                           nix.thunk(() => ({
-                            [nix.POS]: pos$3,
+                            [nix.POS]: $pos[2],
                             handle: nix.thunk(() => [
                               nix.thunk(() => ({
-                                [nix.POS]: pos$2,
+                                [nix.POS]: $pos[1],
                                 body: "hello world",
                                 handler: "static_response",
                                 status_code: 200n,
@@ -79,19 +59,19 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             spiped: nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               enable: true,
               config: nix.thunk(() => ({
-                [nix.POS]: pos$12,
+                [nix.POS]: $pos[11],
                 server: nix.thunk(() => ({
-                  [nix.POS]: pos$10,
+                  [nix.POS]: $pos[9],
                   source: "localhost:8080",
                   target: "localhost:80",
                   keyfile: key,
                   decrypt: true,
                 })),
                 client: nix.thunk(() => ({
-                  [nix.POS]: pos$11,
+                  [nix.POS]: $pos[10],
                   source: "localhost:8081",
                   target: "localhost:8080",
                   keyfile: key,
@@ -101,16 +81,16 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$18,
+            [nix.POS]: $pos[17],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$17,
+              [nix.POS]: $pos[16],
               "spiped@server": nix.thunk(() => ({
-                [nix.POS]: pos$15,
+                [nix.POS]: $pos[14],
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 overrideStrategy: "asDropin",
               })),
               "spiped@client": nix.thunk(() => ({
-                [nix.POS]: pos$16,
+                [nix.POS]: $pos[15],
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 overrideStrategy: "asDropin",
               })),

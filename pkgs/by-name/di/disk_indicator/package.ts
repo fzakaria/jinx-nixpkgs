@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["homepage", 50, 5], ["description", 51, 5], ["mainProgram", 52, 5], ["longDescription", 53, 5], ["license", 57, 5], ["platforms", 58, 5]], [["pname", 10, 3], ["version", 11, 3], ["strictDeps", 13, 3], ["__structuredAttrs", 14, 3], ["src", 16, 3], ["buildInputs", 23, 3], ["nativeBuildInputs", 25, 3], ["postPatch", 27, 3], ["configureScript", 36, 3], ["makeFlags", 38, 3], ["installPhase", 42, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, libx11: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 50, 5], ["description", 51, 5], ["mainProgram", 52, 5], ["longDescription", 53, 5], ["license", 57, 5], ["platforms", 58, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["strictDeps", 13, 3], ["__structuredAttrs", 14, 3], ["src", 16, 3], ["buildInputs", 23, 3], ["nativeBuildInputs", 25, 3], ["postPatch", 27, 3], ["configureScript", 36, 3], ["makeFlags", 38, 3], ["installPhase", 42, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "disk-indicator",
       version: "0.2.1-unstable-2018-12-18",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "MeanEYE",
           repo: "Disk-Indicator",
           rev: "ec2d2f6833f038f07a72d15e2d52625c23e10b12",
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\nmkdir -p $out/bin\ninstallBin disk_indicator\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/MeanEYE/Disk-Indicator",
         description: "Program that will turn a LED into a hard disk indicator",
         mainProgram: "disk_indicator",

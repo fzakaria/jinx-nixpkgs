@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]], [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["sha256", 28, 5]], [["pname", 48, 13], ["version", 49, 13], ["debianRevision", 50, 13]], [["patch", 64, 9], ["hash", 65, 9]], [["patch", 71, 9], ["hash", 72, 9]], [["sudo", 97, 18]], [["tests", 97, 12]], [["homepage", 100, 5], ["description", 101, 5], ["maintainers", 102, 5], ["platforms", 103, 5], ["license", 104, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["ed25519-donna", 24, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 36, 3], ["patches", 42, 3], ["configureFlags", 76, 3], ["makeFlags", 91, 3], ["prePatch", 93, 3], ["enableParallelBuilding", 95, 3], ["passthru", 97, 3], ["meta", 99, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, nixosTests: false, fetchFromGitHub: false, fetchDebianPatch: false, pam: false, openssl: false, perl: false, autoreconfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["sha256", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 48, 13], ["version", 49, 13], ["debianRevision", 50, 13]]);
-const pos$4 = nix.positions(here + "/package.nix", [["patch", 64, 9], ["hash", 65, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["patch", 71, 9], ["hash", 72, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["sudo", 97, 18]]);
-const pos$7 = nix.positions(here + "/package.nix", [["tests", 97, 12]]);
-const pos$8 = nix.positions(here + "/package.nix", [["homepage", 100, 5], ["description", 101, 5], ["maintainers", 102, 5], ["platforms", 103, 5], ["license", 104, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["ed25519-donna", 24, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 36, 3], ["patches", 42, 3], ["configureFlags", 76, 3], ["makeFlags", 91, 3], ["prePatch", 93, 3], ["enableParallelBuilding", 95, 3], ["passthru", 97, 3], ["meta", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,14 +20,14 @@ export default nix.lambda((args) => (() => {
       const pname = "pam_ssh_agent_auth";
       const version = "0.10.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jbeverly",
           repo: "pam_ssh_agent_auth",
           rev: nix.thunk(() => nix.str`pam_ssh_agent_auth-${version}`),
           sha256: "YD1R8Cox0UoNiuWleKGzWSzxJ5lhDRCB2mZPp9OM6Cs=",
         }))));
       const ed25519_donna = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "floodyberry",
           repo: "ed25519-donna",
           rev: "8757bd4cd209cb032853ece0ce413f122eef212c",
@@ -45,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [pam, openssl, perl]);
       const patches = nix.thunk(() => (() => {
         const fetchDebianPatch$ = (args_1) => nix.app(fetchDebianPatch, nix.thunk(() => nix.update({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             pname: "pam-ssh-agent-auth",
             version: "0.10.3",
             debianRevision: "11",
@@ -54,12 +46,12 @@ export default nix.lambda((args) => (() => {
           nix.path(here, "./multiple-key-files.patch"),
           nix.path(here, "./edcsa-crash-fix.patch"),
           nix.thunk(() => nix.app(fetchDebianPatch$, nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               patch: "fix-configure.patch",
               hash: "sha256-ymXv2o/NpFeVQ6r0hvJEeMpvs5Ht9jq4RSw8ssv43FY=",
             })))),
           nix.thunk(() => nix.app(fetchDebianPatch$, nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               patch: "1000-gcc-14.patch",
               hash: "sha256-EvdaIhrfKZ1mB7qvNiGx/hYdthStgnhK7xvJEhhAFDQ=",
             })))),
@@ -70,14 +62,14 @@ export default nix.lambda((args) => (() => {
       const prePatch = nix.thunk(() => nix.str`cp -r ${ed25519_donna}/. ed25519-donna/.`);
       const enableParallelBuilding = true;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           sudo: nix.thunk(() => nix.sel(nixosTests, "ssh-agent-auth")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         homepage: "https://github.com/jbeverly/pam_ssh_agent_auth",
         description: "PAM module for authentication through the SSH agent",
         maintainers: [],
@@ -91,7 +83,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         pname,
         version,
         src,

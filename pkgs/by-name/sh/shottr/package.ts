@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["hash", 19, 5]], [["name", 39, 5], ["runtimeInputs", 40, 5], ["text", 46, 5]], [["updateScript", 38, 12]], [["changelog", 56, 5], ["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["mainProgram", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5], ["sourceProvenance", 63, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["sourceRoot", 24, 3], ["installPhase", 26, 3], ["passthru", 38, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, writeShellApplication: false, cacert: false, curl: false, "common-updater-scripts": false, pup: false, undmg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 39, 5], ["runtimeInputs", 40, 5], ["text", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 38, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 56, 5], ["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["mainProgram", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5], ["sourceProvenance", 63, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["sourceRoot", 24, 3], ["installPhase", 26, 3], ["passthru", 38, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const pup = nix.arg($, "pup");
   const undmg = nix.arg($, "undmg");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "shottr",
       version: "1.9.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://shottr.cc/dl/Shottr-${nix.sel(finalAttrs, "version")}.dmg`),
           hash: "sha256-iaZMZhXNOVUzYijpT/rx10zGne+IxwAW5X35tI2sI6U=",
         })))),
@@ -33,16 +29,16 @@ export default nix.lambda((args) => (() => {
       sourceRoot: ".",
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/Applications\"\ncp -R Shottr.app \"$out/Applications\"\n\nmkdir -p \"$out/bin\"\nln -s \"$out/Applications/Shottr.app/Contents/MacOS/Shottr\" \"$out/bin/shottr\"\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               name: "shottr-update-script",
               runtimeInputs: nix.thunk(() => [cacert, common_updater_scripts, curl, pup]),
               text: "version=\"$(curl -s https://shottr.cc/newversion.html \\\n  | pup 'a[href*=\"Shottr-\"] attr{href}' \\\n  | sed -E 's|/dl/Shottr-||' \\\n  | sed -E 's|\\.dmg||')\"\nupdate-source-version shottr \"$version\"\n",
             })))))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: "https://shottr.cc/newversion.html",
         description: "MacOS screenshot app with scrolling screenshots, OCR, annotation and measurement instruments",
         homepage: "https://shottr.cc/",

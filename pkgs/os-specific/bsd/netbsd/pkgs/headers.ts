@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/headers.nix", [[["platforms", 16, 8]], [["name", 10, 3], ["paths", 11, 3], ["meta", 16, 3]]]);
 const formals$1 = { args: { lib: false, symlinkJoin: false, include: false, "sys-headers": false, "libpthread-headers": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/headers.nix", [["platforms", 16, 8]]);
-const pos$2 = nix.positions(here + "/headers.nix", [["name", 10, 3], ["paths", 11, 3], ["meta", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const sys_headers = nix.arg($, "sys-headers");
   const libpthread_headers = nix.arg($, "libpthread-headers");
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "netbsd-headers-9.2",
       paths: nix.thunk(() => [include, sys_headers, libpthread_headers]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "netbsd")),
       })),
     })));

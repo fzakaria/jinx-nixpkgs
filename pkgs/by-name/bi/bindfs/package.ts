@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 18, 5]], [["url", 27, 7], ["hash", 28, 7], ["revert", 29, 7]], [["changelog", 47, 5], ["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 54, 5]], [["version", 13, 3], ["pname", 14, 3], ["src", 16, 3], ["patches", 21, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["configureFlags", 40, 3], ["postFixup", 42, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, autoreconfHook: false, "pkg-config": false, fuse3: false, "macfuse-stubs": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 27, 7], ["hash", 28, 7], ["revert", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 47, 5], ["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 54, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 13, 3], ["pname", 14, 3], ["src", 16, 3], ["patches", 21, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["configureFlags", 40, 3], ["postFixup", 42, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,17 +16,17 @@ export default nix.lambda((args) => (() => {
   const fuse3 = nix.arg($, "fuse3");
   const macfuse_stubs = nix.arg($, "macfuse-stubs");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "1.18.1",
       pname: "bindfs",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://bindfs.org/downloads/bindfs-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-KnBk2ZOl8lXFLXI4XvFONJwTG8RBlXZuIXNCjgbSef0=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/mpartel/bindfs/commit/3293dc98e37eed0fb0cbfcbd40434d3c37c69480.patch",
             hash: "sha256-dtjvSJTS81R+sksl7n1QiyssseMQXPlm+LJYZ8/CESQ=",
             revert: true,
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "--disable-macos-fs-link")),
       postFixup: "ln -s $out/bin/bindfs $out/bin/mount.fuse.bindfs\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/mpartel/bindfs/raw/${nix.sel(finalAttrs, "version")}/ChangeLog`),
         description: "FUSE filesystem for mounting a directory to another location",
         homepage: "https://bindfs.org",

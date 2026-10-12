@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 7], ["repo", 27, 7], ["tag", 28, 7], ["hash", 29, 7]], [["doCheck", 60, 9]], [["check", 59, 7]], [["tests", 58, 14]], [["homepage", 65, 7], ["description", 66, 7], ["mainProgram", 67, 7], ["license", 68, 7], ["maintainers", 69, 7]], [["pname", 21, 5], ["version", 22, 5], ["pyproject", 23, 5], ["src", 25, 5], ["build-system", 32, 5], ["dependencies", 34, 5], ["doCheck", 42, 5], ["nativeCheckInputs", 44, 5], ["preCheck", 54, 5], ["passthru", 58, 5], ["meta", 64, 5]]]);
 const formals$1 = { args: { buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, ipykernel: false, ipywidgets: false, "jupyter-client": false, "jupyter-core": false, lib: false, nbconvert: false, nbformat: false, "pytest-asyncio": false, pytestCheckHook: false, testpath: false, traitlets: false, xmltodict: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 7], ["repo", 27, 7], ["tag", 28, 7], ["hash", 29, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["doCheck", 60, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["check", 59, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 58, 14]]);
-const pos$5 = nix.positions(here + "/default.nix", [["homepage", 65, 7], ["description", 66, 7], ["mainProgram", 67, 7], ["license", 68, 7], ["maintainers", 69, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 21, 5], ["version", 22, 5], ["pyproject", 23, 5], ["src", 25, 5], ["build-system", 32, 5], ["dependencies", 34, 5], ["doCheck", 42, 5], ["nativeCheckInputs", 44, 5], ["preCheck", 54, 5], ["passthru", 58, 5], ["meta", 64, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.10.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jupyter",
           repo: "nbclient",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -52,14 +47,14 @@ export default nix.lambda((args) => (() => {
       ]);
       const preCheck = "export HOME=$(mktemp -d)\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          check: nix.thunk(() => nix.app(nix.sel(nbclient, "overridePythonAttrs"), (_) => ({ [nix.POS]: pos$2, doCheck: true }))),
+          [nix.POS]: $pos[2],
+          check: nix.thunk(() => nix.app(nix.sel(nbclient, "overridePythonAttrs"), (_) => ({ [nix.POS]: $pos[1], doCheck: true }))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/jupyter/nbclient",
         description: "Client library for executing notebooks",
         mainProgram: "jupyter-execute",
@@ -67,7 +62,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         pyproject,

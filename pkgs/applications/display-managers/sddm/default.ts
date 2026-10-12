@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["unwrapped", 20, 7], ["tests", 21, 41]], [["pname", 11, 5], ["version", 12, 30], ["outputs", 12, 38], ["buildInputs", 14, 5], ["nativeBuildInputs", 15, 5], ["strictDeps", 17, 5], ["passthru", 19, 5], ["meta", 24, 5]]]);
 const formals$1 = { args: { lib: false, callPackage: false, runCommand: false, wrapQtAppsHook: false, "sddm-unwrapped": false, extraPackages: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["unwrapped", 20, 7], ["tests", 21, 41]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 11, 5], ["version", 12, 30], ["outputs", 12, 38], ["buildInputs", 14, 5], ["nativeBuildInputs", 15, 5], ["strictDeps", 17, 5], ["passthru", 19, 5], ["meta", 24, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const sddm_unwrapped = nix.arg($, "sddm-unwrapped");
   const extraPackages = nix.argOr($, "extraPackages", () => []);
   return nix.app(runCommand, "sddm-wrapped", nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "sddm",
       version: nix.thunk(() => nix.attr(sddm_unwrapped, "version")),
       outputs: nix.thunk(() => nix.attr(sddm_unwrapped, "outputs")),
@@ -25,7 +24,7 @@ export default nix.lambda((args) => (() => {
       passthru: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(sddm_unwrapped, "passthru"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         unwrapped: sddm_unwrapped,
         tests: nix.thunk(() => nix.attr(from, "tests")),
       };

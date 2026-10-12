@@ -2,56 +2,46 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/magnetico.nix", [[["maintainers", 9, 5]], [["allowedTCPPorts", 17, 27]], [["firewall", 17, 18]], [["port", 21, 17]], [["user", 23, 25]], [["port", 22, 13], ["credentials", 23, 13]], [["enable", 20, 9], ["crawler", 21, 9], ["web", 22, 9]], [["magnetico", 19, 16]], [["imports", 15, 7], ["networking", 17, 7], ["services", 19, 7]], [["machine", 12, 9]], [["name", 7, 3], ["meta", 8, 3], ["nodes", 12, 3], ["testScript", 27, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/magnetico.nix", [["maintainers", 9, 5]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/magnetico.nix", [["allowedTCPPorts", 17, 27]]);
-const pos$3 = nix.positions(here + "/magnetico.nix", [["firewall", 17, 18]]);
-const pos$4 = nix.positions(here + "/magnetico.nix", [["port", 21, 17]]);
-const pos$5 = nix.positions(here + "/magnetico.nix", [["user", 23, 25]]);
-const pos$6 = nix.positions(here + "/magnetico.nix", [["port", 22, 13], ["credentials", 23, 13]]);
-const pos$7 = nix.positions(here + "/magnetico.nix", [["enable", 20, 9], ["crawler", 21, 9], ["web", 22, 9]]);
-const pos$8 = nix.positions(here + "/magnetico.nix", [["magnetico", 19, 16]]);
-const pos$9 = nix.positions(here + "/magnetico.nix", [["imports", 15, 7], ["networking", 17, 7], ["services", 19, 7]]);
-const pos$10 = nix.positions(here + "/magnetico.nix", [["machine", 12, 9]]);
-const pos$11 = nix.positions(here + "/magnetico.nix", [["name", 7, 3], ["meta", 8, 3], ["nodes", 12, 3], ["testScript", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const port = 8081n;
   return {
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     name: "magnetico",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "rnhmjoj"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           imports: nix.thunk(() => [nix.path(here, "../modules/profiles/minimal.nix")]),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$2, allowedTCPPorts: nix.thunk(() => [9000n]) })),
+            [nix.POS]: $pos[2],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[1], allowedTCPPorts: nix.thunk(() => [9000n]) })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             magnetico: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               enable: true,
-              crawler: nix.thunk(() => ({ [nix.POS]: pos$4, port: 9000n })),
+              crawler: nix.thunk(() => ({ [nix.POS]: $pos[3], port: 9000n })),
               web: nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 port: port,
                 credentials: nix.thunk(() => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   user: "$2y$12$P88ZF6soFthiiAeXnz64aOWDsY3Dw7Yw8fZ6GtiqFNjknD70zDmNe",
                 })),
               })),

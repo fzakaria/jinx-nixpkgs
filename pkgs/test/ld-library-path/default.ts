@@ -2,31 +2,27 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 8, 5], ["code", 10, 5], ["unpackPhase", 14, 5], ["installPhase", 18, 5]], [["name", 27, 5], ["code", 28, 5]], [["name", 35, 5], ["buildInputs", 37, 5], ["code", 39, 5], ["unpackPhase", 49, 5], ["installPhase", 53, 5]], [["platforms", 88, 8]], [["name", 75, 3], ["nativeBuildInputs", 76, 3], ["buildCommand", 78, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 8, 5], ["code", 10, 5], ["unpackPhase", 14, 5], ["installPhase", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 27, 5], ["code", 28, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 35, 5], ["buildInputs", 37, 5], ["code", 39, 5], ["unpackPhase", 49, 5], ["installPhase", 53, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["platforms", 88, 8]]);
-const pos$5 = nix.positions(here + "/default.nix", [["name", 75, 3], ["nativeBuildInputs", 76, 3], ["buildCommand", 78, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   const libgreeting = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "libgreeting",
       code: "const char* getGreeting() { return \"Hello, world!\"; }\n",
       unpackPhase: "echo \"$code\" > libgreeting.c\n",
       installPhase: "mkdir -p $out/lib\n$CC -c -fpic libgreeting.c\n$CC -shared libgreeting.o -o $out/lib/libgreeting.so\n",
     }))));
   const libgoodbye = nix.thunk(() => nix.app(nix.sel(libgreeting, "overrideAttrs"), (_) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "libgoodbye",
       code: "const char* getGreeting() { return \"Goodbye, world!\"; }\n",
     })));
   const testProgram = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "greeting-test",
       buildInputs: nix.thunk(() => [libgreeting]),
       code: "#include <stdio.h>\n\nextern const char* getGreeting(void);\n\nint main() {\n  puts(getGreeting());\n}\n",
@@ -50,7 +46,7 @@ $CC greeting-test.o -lgreeting -o $out/bin/greeting-test
 `),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       name: "test-LD_LIBRARY_PATH",
       nativeBuildInputs: nix.thunk(() => [testProgram]),
       buildCommand: nix.thunk(() => nix.str`# And for good measure, repeat the tests again from a separate derivation,
@@ -62,7 +58,7 @@ $CC greeting-test.o -lgreeting -o $out/bin/greeting-test
 touch $out
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       })),
     })));

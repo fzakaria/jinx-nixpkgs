@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]], [["asrc", 72, 5], ["server", 77, 5], ["source", 82, 5]], [["skipBulkUpdate", 102, 5], ["tests", 103, 5]], [["changelog", 107, 5], ["description", 108, 5], ["homepage", 109, 5], ["license", 110, 5], ["maintainers", 111, 36]], [["pname", 36, 3], ["version", 37, 3], ["pyproject", 38, 3], ["src", 40, 3], ["postPatch", 47, 3], ["build-system", 52, 3], ["nativeBuildInputs", 56, 3], ["dependencies", 61, 3], ["optional-dependencies", 71, 3], ["nativeCheckInputs", 88, 3], ["pythonImportsCheck", 96, 3], ["passthru", 100, 3], ["meta", 106, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pyprojectVersionPatchHook: false, setuptools: false, aiohttp: false, av: false, cpace: false, cryptography: false, mashumaro: false, noiseprotocol: false, numpy: false, orjson: false, pillow: false, soxr: false, zeroconf: false, "pytest-aiohttp": false, "pytest-cov-stub": false, "pytest-xdist": false, pytestCheckHook: false, "music-assistant": false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["asrc", 72, 5], ["server", 77, 5], ["source", 82, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["skipBulkUpdate", 102, 5], ["tests", 103, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["changelog", 107, 5], ["description", 108, 5], ["homepage", 109, 5], ["license", 110, 5], ["maintainers", 111, 36]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 36, 3], ["version", 37, 3], ["pyproject", 38, 3], ["src", 40, 3], ["postPatch", 47, 3], ["build-system", 52, 3], ["nativeBuildInputs", 56, 3], ["dependencies", 61, 3], ["optional-dependencies", 71, 3], ["nativeCheckInputs", 88, 3], ["pythonImportsCheck", 96, 3], ["passthru", 100, 3], ["meta", 106, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const music_assistant = nix.arg($, "music-assistant");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "aiosendspin",
       version: "9.1.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Sendspin",
           repo: "aiosendspin",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -50,7 +46,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pyprojectVersionPatchHook]),
       dependencies: nix.thunk(() => [aiohttp, cpace, cryptography, mashumaro, noiseprotocol, orjson, zeroconf]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         asrc: nix.thunk(() => [av, numpy, soxr]),
         server: nix.thunk(() => [av, numpy, pillow]),
         source: nix.thunk(() => [av, numpy]),
@@ -58,14 +54,14 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => nix.concat([pytest_aiohttp, pytest_cov_stub, pytest_xdist, pytestCheckHook], nix.sel(finalAttrs, "passthru", "optional-dependencies", "server"))),
       pythonImportsCheck: nix.thunk(() => ["aiosendspin"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         skipBulkUpdate: true,
         tests: nix.thunk(() => nix.sel(nixosTests, "music-assistant")),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(music_assistant, "meta"));
         return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/Sendspin/aiosendspin/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Async Python library implementing the Sendspin Protocol",
         homepage: "https://github.com/Sendspin/aiosendspin",

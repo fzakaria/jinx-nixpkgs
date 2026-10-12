@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["dontBuild", 18, 7], ["postPatch", 19, 7]], [["ronin-code-asm", 17, 5]], [["package", 35, 5], ["command", 36, 5], ["version", 37, 5]], [["version", 34, 18]], [["updateScript", 32, 12], ["tests", 34, 12]], [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5]], [["pname", 12, 3], ["version", 13, 3], ["gemdir", 14, 3], ["gemConfig", 16, 3], ["postBuild", 27, 3], ["passthru", 32, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, bundlerEnv: false, bundlerUpdateScript: false, defaultGemConfig: false, ronin: false, testers: false, yasm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["dontBuild", 18, 7], ["postPatch", 19, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ronin-code-asm", 17, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 35, 5], ["command", 36, 5], ["version", 37, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 34, 18]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 32, 12], ["tests", 34, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["gemdir", 14, 3], ["gemConfig", 16, 3], ["postBuild", 27, 3], ["passthru", 32, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,9 +19,9 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.1";
       const gemdir = nix.path(here, "./.");
       const gemConfig = nix.thunk(() => nix.update(defaultGemConfig, {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         "ronin-code-asm": (attrs) => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           dontBuild: false,
           postPatch: nix.thunk(() => nix.str`substituteInPlace lib/ronin/code/asm/program.rb \\
   --replace "YASM::Command.run(" "YASM::Command.run(
@@ -37,12 +31,12 @@ export default nix.lambda((args) => (() => {
       }));
       const postBuild = "shopt -s extglob\nrm -f $out/bin/!(ronin*)\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "ronin")),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: ronin,
               command: "ronin --version",
               version: nix.thunk(() => nix.str`ronin ${version}`),
@@ -50,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Free and Open Source Ruby toolkit for security research and development",
         homepage: "https://ronin-rb.dev",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -60,7 +54,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         gemdir,

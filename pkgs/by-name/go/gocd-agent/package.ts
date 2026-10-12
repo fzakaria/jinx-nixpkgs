@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["gocd-agent", 19, 43]], [["tests", 19, 12]], [["description", 22, 5], ["homepage", 23, 5], ["license", 24, 5], ["platforms", 25, 5], ["sourceProvenance", 26, 5], ["maintainers", 30, 5]], [["pname", 10, 3], ["version", 11, 3], ["rev", 12, 3], ["src", 14, 3], ["passthru", 19, 3], ["meta", 21, 3], ["nativeBuildInputs", 35, 3], ["buildCommand", 37, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, unzip: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["gocd-agent", 19, 43]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 19, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 22, 5], ["homepage", 23, 5], ["license", 24, 5], ["platforms", 25, 5], ["sourceProvenance", 26, 5], ["maintainers", 30, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["rev", 12, 3], ["src", 14, 3], ["passthru", 19, 3], ["meta", 21, 3], ["nativeBuildInputs", 35, 3], ["buildCommand", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,19 +17,19 @@ export default nix.lambda((args) => (() => {
       const version = "23.1.0";
       const rev = "16079";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.go.cd/binaries/${version}-${rev}/generic/go-agent-${version}-${rev}.zip`),
           sha256: "sha256-L2MOkbVHoQu99lKrbnsNkhuU0SZ8VANSK72GZrGLbiQ=",
         }))));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "gocd-agent": nix.thunk(() => nix.attr(nixosTests, "gocd-agent")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Continuous delivery server specializing in advanced workflow modeling and visualization",
         homepage: "http://www.go.cd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -56,7 +52,7 @@ export default nix.lambda((args) => (() => {
     mv $out/go-agent-${version} $out/go-agent
   `);
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         rev,

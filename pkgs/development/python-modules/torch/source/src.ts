@@ -2,78 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/src.nix", [[["owner", 10, 5], ["repo", 11, 5], ["rev", 12, 5], ["hash", 13, 5]], [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]], [["owner", 34, 5], ["repo", 35, 5], ["rev", 36, 5], ["hash", 37, 5]], [["owner", 40, 5], ["repo", 41, 5], ["rev", 42, 5], ["hash", 43, 5]], [["owner", 46, 5], ["repo", 47, 5], ["rev", 48, 5], ["hash", 49, 5]], [["owner", 52, 5], ["repo", 53, 5], ["rev", 54, 5], ["hash", 55, 5]], [["owner", 58, 5], ["repo", 59, 5], ["rev", 60, 5], ["hash", 61, 5]], [["owner", 64, 5], ["repo", 65, 5], ["rev", 66, 5], ["hash", 67, 5]], [["owner", 70, 5], ["repo", 71, 5], ["rev", 72, 5], ["hash", 73, 5]], [["owner", 76, 5], ["repo", 77, 5], ["rev", 78, 5], ["hash", 79, 5]], [["owner", 82, 5], ["repo", 83, 5], ["rev", 84, 5], ["hash", 85, 5]], [["owner", 88, 5], ["repo", 89, 5], ["rev", 90, 5], ["hash", 91, 5]], [["owner", 94, 5], ["repo", 95, 5], ["rev", 96, 5], ["hash", 97, 5]], [["owner", 100, 5], ["repo", 101, 5], ["rev", 102, 5], ["hash", 103, 5]], [["owner", 106, 5], ["repo", 107, 5], ["rev", 108, 5], ["hash", 109, 5]], [["owner", 112, 5], ["repo", 113, 5], ["rev", 114, 5], ["hash", 115, 5]], [["owner", 118, 5], ["repo", 119, 5], ["rev", 120, 5], ["hash", 121, 5]], [["owner", 124, 5], ["repo", 125, 5], ["rev", 126, 5], ["hash", 127, 5]], [["owner", 130, 5], ["repo", 131, 5], ["rev", 132, 5], ["hash", 133, 5]], [["owner", 136, 5], ["repo", 137, 5], ["rev", 138, 5], ["hash", 139, 5]], [["owner", 142, 5], ["repo", 143, 5], ["rev", 144, 5], ["hash", 145, 5]], [["owner", 148, 5], ["repo", 149, 5], ["rev", 150, 5], ["hash", 151, 5]], [["owner", 154, 5], ["repo", 155, 5], ["rev", 156, 5], ["hash", 157, 5]], [["owner", 160, 5], ["repo", 161, 5], ["rev", 162, 5], ["hash", 163, 5]], [["owner", 166, 5], ["repo", 167, 5], ["rev", 168, 5], ["hash", 169, 5]], [["owner", 172, 5], ["repo", 173, 5], ["rev", 174, 5], ["hash", 175, 5]], [["owner", 178, 5], ["repo", 179, 5], ["rev", 180, 5], ["hash", 181, 5]], [["owner", 184, 5], ["repo", 185, 5], ["rev", 186, 5], ["hash", 187, 5]], [["owner", 190, 5], ["repo", 191, 5], ["rev", 192, 5], ["hash", 193, 5]], [["owner", 196, 5], ["repo", 197, 5], ["rev", 198, 5], ["hash", 199, 5]], [["owner", 202, 5], ["repo", 203, 5], ["rev", 204, 5], ["hash", 205, 5]], [["owner", 208, 5], ["repo", 209, 5], ["rev", 210, 5], ["hash", 211, 5]], [["owner", 214, 5], ["repo", 215, 5], ["rev", 216, 5], ["hash", 217, 5]], [["owner", 220, 5], ["repo", 221, 5], ["rev", 222, 5], ["hash", 223, 5]], [["owner", 226, 5], ["repo", 227, 5], ["rev", 228, 5], ["hash", 229, 5]], [["owner", 232, 5], ["repo", 233, 5], ["rev", 234, 5], ["hash", 235, 5]], [["owner", 238, 5], ["repo", 239, 5], ["rev", 240, 5], ["hash", 241, 5]], [["owner", 244, 5], ["repo", 245, 5], ["rev", 246, 5], ["hash", 247, 5]], [["owner", 250, 5], ["repo", 251, 5], ["rev", 252, 5], ["hash", 253, 5]], [["owner", 256, 5], ["repo", 257, 5], ["rev", 258, 5], ["hash", 259, 5]], [["owner", 262, 5], ["repo", 263, 5], ["rev", 264, 5], ["hash", 265, 5]], [["owner", 268, 5], ["repo", 269, 5], ["rev", 270, 5], ["hash", 271, 5]], [["owner", 274, 5], ["repo", 275, 5], ["rev", 276, 5], ["hash", 277, 5]], [["owner", 280, 5], ["repo", 281, 5], ["rev", 282, 5], ["hash", 283, 5]], [["owner", 286, 5], ["repo", 287, 5], ["rev", 288, 5], ["hash", 289, 5]], [["owner", 292, 5], ["repo", 293, 5], ["rev", 294, 5], ["hash", 295, 5]], [["owner", 298, 5], ["repo", 299, 5], ["rev", 300, 5], ["hash", 301, 5]], [["owner", 304, 5], ["repo", 305, 5], ["rev", 306, 5], ["hash", 307, 5]], [["owner", 310, 5], ["repo", 311, 5], ["rev", 312, 5], ["hash", 313, 5]], [["owner", 316, 5], ["repo", 317, 5], ["rev", 318, 5], ["hash", 319, 5]], [["owner", 322, 5], ["repo", 323, 5], ["rev", 324, 5], ["hash", 325, 5]], [["owner", 328, 5], ["repo", 329, 5], ["rev", 330, 5], ["hash", 331, 5]], [["owner", 334, 5], ["repo", 335, 5], ["rev", 336, 5], ["hash", 337, 5]], [["owner", 340, 5], ["repo", 341, 5], ["rev", 342, 5], ["hash", 343, 5]], [["owner", 346, 5], ["repo", 347, 5], ["rev", 348, 5], ["hash", 349, 5]], [["owner", 352, 5], ["repo", 353, 5], ["rev", 354, 5], ["hash", 355, 5]], [["owner", 358, 5], ["repo", 359, 5], ["rev", 360, 5], ["hash", 361, 5]], [["owner", 364, 5], ["repo", 365, 5], ["rev", 366, 5], ["hash", 367, 5]], [["owner", 370, 5], ["repo", 371, 5], ["rev", 372, 5], ["hash", 373, 5]], [["owner", 376, 5], ["repo", 377, 5], ["rev", 378, 5], ["hash", 379, 5]], [["owner", 382, 5], ["repo", 383, 5], ["rev", 384, 5], ["hash", 385, 5]], [["owner", 388, 5], ["repo", 389, 5], ["rev", 390, 5], ["hash", 391, 5]], [["owner", 394, 5], ["repo", 395, 5], ["rev", 396, 5], ["hash", 397, 5]], [["owner", 400, 5], ["repo", 401, 5], ["rev", 402, 5], ["hash", 403, 5]], [["owner", 406, 5], ["repo", 407, 5], ["rev", 408, 5], ["hash", 409, 5]], [["owner", 412, 5], ["repo", 413, 5], ["rev", 414, 5], ["hash", 415, 5]], [["owner", 418, 5], ["repo", 419, 5], ["rev", 420, 5], ["hash", 421, 5]], [["owner", 424, 5], ["repo", 425, 5], ["rev", 426, 5], ["hash", 427, 5]], [["src_aiter", 9, 3], ["src_aiter_flash-attention", 15, 3], ["src_asmjit", 21, 3], ["src_benchmark", 27, 3], ["src_benchmark_protobuf", 33, 3], ["src_civetweb", 39, 3], ["src_clang-cindex-python3", 45, 3], ["src_composable_kernel", 51, 3], ["src_composable_kernel_aiter", 57, 3], ["src_composable_kernel_aiter_flash-attention", 63, 3], ["src_composable_kernel_fbgemm_MSLK", 69, 3], ["src_composable_kernel_flash-attention", 75, 3], ["src_cpp-httplib", 81, 3], ["src_cpr", 87, 3], ["src_cpuinfo", 93, 3], ["src_cpuinfo_fbgemm", 99, 3], ["src_cudnn-frontend", 105, 3], ["src_cutlass", 111, 3], ["src_cutlass_fbgemm_MSLK", 117, 3], ["src_cutlass_flash-attention", 123, 3], ["src_DCGM", 129, 3], ["src_dynolog", 135, 3], ["src_fbgemm", 141, 3], ["src_fbjni", 147, 3], ["src_flash-attention", 153, 3], ["src_flatbuffers", 159, 3], ["src_fmt", 165, 3], ["src_fmt_dynolog", 171, 3], ["src_fmt_kineto", 177, 3], ["src_FP16", 183, 3], ["src_FXdiv", 189, 3], ["src_gemmlowp", 195, 3], ["src_gflags", 201, 3], ["src_gflags_gflags", 207, 3], ["src_glog", 213, 3], ["src_gloo", 219, 3], ["src_googletest", 225, 3], ["src_googletest_prometheus-cpp", 231, 3], ["src_googletest_protobuf", 237, 3], ["src_googletest_tensorpipe", 243, 3], ["src_hipify_torch", 249, 3], ["src_ideep", 255, 3], ["src_ittapi", 261, 3], ["src_json", 267, 3], ["src_json_dynolog", 273, 3], ["src_kineto", 279, 3], ["src_kleidiai", 285, 3], ["src_libnop", 291, 3], ["src_libuv", 297, 3], ["src_mimalloc", 303, 3], ["src_mkl-dnn", 309, 3], ["src_MSLK", 315, 3], ["src_NNPACK", 321, 3], ["src_NVTX", 327, 3], ["src_onnx", 333, 3], ["src_PeachPy", 339, 3], ["src_pfs", 345, 3], ["src_pocketfft", 351, 3], ["src_prometheus-cpp", 357, 3], ["src_protobuf", 363, 3], ["src_psimd", 369, 3], ["src_pthreadpool", 375, 3], ["src_pybind11", 381, 3], ["src_pybind11_onnx", 387, 3], ["src_pybind11_tensorpipe", 393, 3], ["src_pytorch", 399, 3], ["src_sleef", 405, 3], ["src_tensorpipe", 411, 3], ["src_VulkanMemoryAllocator", 417, 3], ["src_XNNPACK", 423, 3], ["src_aiter_recursive", 429, 3], ["src_aiter_flash-attention_recursive", 434, 3], ["src_asmjit_recursive", 439, 3], ["src_benchmark_recursive", 440, 3], ["src_benchmark_protobuf_recursive", 441, 3], ["src_civetweb_recursive", 442, 3], ["src_clang-cindex-python3_recursive", 443, 3], ["src_composable_kernel_recursive", 444, 3], ["src_composable_kernel_aiter_recursive", 445, 3], ["src_composable_kernel_aiter_flash-attention_recursive", 446, 3], ["src_composable_kernel_fbgemm_MSLK_recursive", 447, 3], ["src_composable_kernel_flash-attention_recursive", 448, 3], ["src_cpp-httplib_recursive", 449, 3], ["src_cpr_recursive", 450, 3], ["src_cpuinfo_recursive", 451, 3], ["src_cpuinfo_fbgemm_recursive", 452, 3], ["src_cudnn-frontend_recursive", 453, 3], ["src_cutlass_recursive", 454, 3], ["src_cutlass_fbgemm_MSLK_recursive", 455, 3], ["src_cutlass_flash-attention_recursive", 456, 3], ["src_DCGM_recursive", 457, 3], ["src_dynolog_recursive", 458, 3], ["src_fbgemm_recursive", 479, 3], ["src_fbjni_recursive", 496, 3], ["src_flash-attention_recursive", 497, 3], ["src_flatbuffers_recursive", 506, 3], ["src_fmt_recursive", 507, 3], ["src_fmt_dynolog_recursive", 508, 3], ["src_fmt_kineto_recursive", 509, 3], ["src_FP16_recursive", 510, 3], ["src_FXdiv_recursive", 511, 3], ["src_gemmlowp_recursive", 512, 3], ["src_gflags_recursive", 513, 3], ["src_gflags_gflags_recursive", 518, 3], ["src_glog_recursive", 519, 3], ["src_gloo_recursive", 520, 3], ["src_googletest_recursive", 521, 3], ["src_googletest_prometheus-cpp_recursive", 522, 3], ["src_googletest_protobuf_recursive", 523, 3], ["src_googletest_tensorpipe_recursive", 524, 3], ["src_hipify_torch_recursive", 525, 3], ["src_ideep_recursive", 526, 3], ["src_ittapi_recursive", 531, 3], ["src_json_recursive", 532, 3], ["src_json_dynolog_recursive", 533, 3], ["src_kineto_recursive", 534, 3], ["src_kleidiai_recursive", 545, 3], ["src_libnop_recursive", 546, 3], ["src_libuv_recursive", 547, 3], ["src_mimalloc_recursive", 548, 3], ["src_mkl-dnn_recursive", 549, 3], ["src_MSLK_recursive", 550, 3], ["src_NNPACK_recursive", 561, 3], ["src_NVTX_recursive", 562, 3], ["src_onnx_recursive", 563, 3], ["src_PeachPy_recursive", 568, 3], ["src_pfs_recursive", 569, 3], ["src_pocketfft_recursive", 570, 3], ["src_prometheus-cpp_recursive", 571, 3], ["src_protobuf_recursive", 578, 3], ["src_psimd_recursive", 585, 3], ["src_pthreadpool_recursive", 586, 3], ["src_pybind11_recursive", 587, 3], ["src_pybind11_onnx_recursive", 588, 3], ["src_pybind11_tensorpipe_recursive", 589, 3], ["src_pytorch_recursive", 594, 3], ["src_sleef_recursive", 671, 3], ["src_tensorpipe_recursive", 672, 3], ["src_VulkanMemoryAllocator_recursive", 683, 3], ["src_XNNPACK_recursive", 684, 3]]]);
 const formals$1 = { args: { version: false, fetchFromGitLab: false, fetchFromGitHub: false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/src.nix", [["owner", 10, 5], ["repo", 11, 5], ["rev", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/src.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$3 = nix.positions(here + "/src.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$4 = nix.positions(here + "/src.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]]);
-const pos$5 = nix.positions(here + "/src.nix", [["owner", 34, 5], ["repo", 35, 5], ["rev", 36, 5], ["hash", 37, 5]]);
-const pos$6 = nix.positions(here + "/src.nix", [["owner", 40, 5], ["repo", 41, 5], ["rev", 42, 5], ["hash", 43, 5]]);
-const pos$7 = nix.positions(here + "/src.nix", [["owner", 46, 5], ["repo", 47, 5], ["rev", 48, 5], ["hash", 49, 5]]);
-const pos$8 = nix.positions(here + "/src.nix", [["owner", 52, 5], ["repo", 53, 5], ["rev", 54, 5], ["hash", 55, 5]]);
-const pos$9 = nix.positions(here + "/src.nix", [["owner", 58, 5], ["repo", 59, 5], ["rev", 60, 5], ["hash", 61, 5]]);
-const pos$10 = nix.positions(here + "/src.nix", [["owner", 64, 5], ["repo", 65, 5], ["rev", 66, 5], ["hash", 67, 5]]);
-const pos$11 = nix.positions(here + "/src.nix", [["owner", 70, 5], ["repo", 71, 5], ["rev", 72, 5], ["hash", 73, 5]]);
-const pos$12 = nix.positions(here + "/src.nix", [["owner", 76, 5], ["repo", 77, 5], ["rev", 78, 5], ["hash", 79, 5]]);
-const pos$13 = nix.positions(here + "/src.nix", [["owner", 82, 5], ["repo", 83, 5], ["rev", 84, 5], ["hash", 85, 5]]);
-const pos$14 = nix.positions(here + "/src.nix", [["owner", 88, 5], ["repo", 89, 5], ["rev", 90, 5], ["hash", 91, 5]]);
-const pos$15 = nix.positions(here + "/src.nix", [["owner", 94, 5], ["repo", 95, 5], ["rev", 96, 5], ["hash", 97, 5]]);
-const pos$16 = nix.positions(here + "/src.nix", [["owner", 100, 5], ["repo", 101, 5], ["rev", 102, 5], ["hash", 103, 5]]);
-const pos$17 = nix.positions(here + "/src.nix", [["owner", 106, 5], ["repo", 107, 5], ["rev", 108, 5], ["hash", 109, 5]]);
-const pos$18 = nix.positions(here + "/src.nix", [["owner", 112, 5], ["repo", 113, 5], ["rev", 114, 5], ["hash", 115, 5]]);
-const pos$19 = nix.positions(here + "/src.nix", [["owner", 118, 5], ["repo", 119, 5], ["rev", 120, 5], ["hash", 121, 5]]);
-const pos$20 = nix.positions(here + "/src.nix", [["owner", 124, 5], ["repo", 125, 5], ["rev", 126, 5], ["hash", 127, 5]]);
-const pos$21 = nix.positions(here + "/src.nix", [["owner", 130, 5], ["repo", 131, 5], ["rev", 132, 5], ["hash", 133, 5]]);
-const pos$22 = nix.positions(here + "/src.nix", [["owner", 136, 5], ["repo", 137, 5], ["rev", 138, 5], ["hash", 139, 5]]);
-const pos$23 = nix.positions(here + "/src.nix", [["owner", 142, 5], ["repo", 143, 5], ["rev", 144, 5], ["hash", 145, 5]]);
-const pos$24 = nix.positions(here + "/src.nix", [["owner", 148, 5], ["repo", 149, 5], ["rev", 150, 5], ["hash", 151, 5]]);
-const pos$25 = nix.positions(here + "/src.nix", [["owner", 154, 5], ["repo", 155, 5], ["rev", 156, 5], ["hash", 157, 5]]);
-const pos$26 = nix.positions(here + "/src.nix", [["owner", 160, 5], ["repo", 161, 5], ["rev", 162, 5], ["hash", 163, 5]]);
-const pos$27 = nix.positions(here + "/src.nix", [["owner", 166, 5], ["repo", 167, 5], ["rev", 168, 5], ["hash", 169, 5]]);
-const pos$28 = nix.positions(here + "/src.nix", [["owner", 172, 5], ["repo", 173, 5], ["rev", 174, 5], ["hash", 175, 5]]);
-const pos$29 = nix.positions(here + "/src.nix", [["owner", 178, 5], ["repo", 179, 5], ["rev", 180, 5], ["hash", 181, 5]]);
-const pos$30 = nix.positions(here + "/src.nix", [["owner", 184, 5], ["repo", 185, 5], ["rev", 186, 5], ["hash", 187, 5]]);
-const pos$31 = nix.positions(here + "/src.nix", [["owner", 190, 5], ["repo", 191, 5], ["rev", 192, 5], ["hash", 193, 5]]);
-const pos$32 = nix.positions(here + "/src.nix", [["owner", 196, 5], ["repo", 197, 5], ["rev", 198, 5], ["hash", 199, 5]]);
-const pos$33 = nix.positions(here + "/src.nix", [["owner", 202, 5], ["repo", 203, 5], ["rev", 204, 5], ["hash", 205, 5]]);
-const pos$34 = nix.positions(here + "/src.nix", [["owner", 208, 5], ["repo", 209, 5], ["rev", 210, 5], ["hash", 211, 5]]);
-const pos$35 = nix.positions(here + "/src.nix", [["owner", 214, 5], ["repo", 215, 5], ["rev", 216, 5], ["hash", 217, 5]]);
-const pos$36 = nix.positions(here + "/src.nix", [["owner", 220, 5], ["repo", 221, 5], ["rev", 222, 5], ["hash", 223, 5]]);
-const pos$37 = nix.positions(here + "/src.nix", [["owner", 226, 5], ["repo", 227, 5], ["rev", 228, 5], ["hash", 229, 5]]);
-const pos$38 = nix.positions(here + "/src.nix", [["owner", 232, 5], ["repo", 233, 5], ["rev", 234, 5], ["hash", 235, 5]]);
-const pos$39 = nix.positions(here + "/src.nix", [["owner", 238, 5], ["repo", 239, 5], ["rev", 240, 5], ["hash", 241, 5]]);
-const pos$40 = nix.positions(here + "/src.nix", [["owner", 244, 5], ["repo", 245, 5], ["rev", 246, 5], ["hash", 247, 5]]);
-const pos$41 = nix.positions(here + "/src.nix", [["owner", 250, 5], ["repo", 251, 5], ["rev", 252, 5], ["hash", 253, 5]]);
-const pos$42 = nix.positions(here + "/src.nix", [["owner", 256, 5], ["repo", 257, 5], ["rev", 258, 5], ["hash", 259, 5]]);
-const pos$43 = nix.positions(here + "/src.nix", [["owner", 262, 5], ["repo", 263, 5], ["rev", 264, 5], ["hash", 265, 5]]);
-const pos$44 = nix.positions(here + "/src.nix", [["owner", 268, 5], ["repo", 269, 5], ["rev", 270, 5], ["hash", 271, 5]]);
-const pos$45 = nix.positions(here + "/src.nix", [["owner", 274, 5], ["repo", 275, 5], ["rev", 276, 5], ["hash", 277, 5]]);
-const pos$46 = nix.positions(here + "/src.nix", [["owner", 280, 5], ["repo", 281, 5], ["rev", 282, 5], ["hash", 283, 5]]);
-const pos$47 = nix.positions(here + "/src.nix", [["owner", 286, 5], ["repo", 287, 5], ["rev", 288, 5], ["hash", 289, 5]]);
-const pos$48 = nix.positions(here + "/src.nix", [["owner", 292, 5], ["repo", 293, 5], ["rev", 294, 5], ["hash", 295, 5]]);
-const pos$49 = nix.positions(here + "/src.nix", [["owner", 298, 5], ["repo", 299, 5], ["rev", 300, 5], ["hash", 301, 5]]);
-const pos$50 = nix.positions(here + "/src.nix", [["owner", 304, 5], ["repo", 305, 5], ["rev", 306, 5], ["hash", 307, 5]]);
-const pos$51 = nix.positions(here + "/src.nix", [["owner", 310, 5], ["repo", 311, 5], ["rev", 312, 5], ["hash", 313, 5]]);
-const pos$52 = nix.positions(here + "/src.nix", [["owner", 316, 5], ["repo", 317, 5], ["rev", 318, 5], ["hash", 319, 5]]);
-const pos$53 = nix.positions(here + "/src.nix", [["owner", 322, 5], ["repo", 323, 5], ["rev", 324, 5], ["hash", 325, 5]]);
-const pos$54 = nix.positions(here + "/src.nix", [["owner", 328, 5], ["repo", 329, 5], ["rev", 330, 5], ["hash", 331, 5]]);
-const pos$55 = nix.positions(here + "/src.nix", [["owner", 334, 5], ["repo", 335, 5], ["rev", 336, 5], ["hash", 337, 5]]);
-const pos$56 = nix.positions(here + "/src.nix", [["owner", 340, 5], ["repo", 341, 5], ["rev", 342, 5], ["hash", 343, 5]]);
-const pos$57 = nix.positions(here + "/src.nix", [["owner", 346, 5], ["repo", 347, 5], ["rev", 348, 5], ["hash", 349, 5]]);
-const pos$58 = nix.positions(here + "/src.nix", [["owner", 352, 5], ["repo", 353, 5], ["rev", 354, 5], ["hash", 355, 5]]);
-const pos$59 = nix.positions(here + "/src.nix", [["owner", 358, 5], ["repo", 359, 5], ["rev", 360, 5], ["hash", 361, 5]]);
-const pos$60 = nix.positions(here + "/src.nix", [["owner", 364, 5], ["repo", 365, 5], ["rev", 366, 5], ["hash", 367, 5]]);
-const pos$61 = nix.positions(here + "/src.nix", [["owner", 370, 5], ["repo", 371, 5], ["rev", 372, 5], ["hash", 373, 5]]);
-const pos$62 = nix.positions(here + "/src.nix", [["owner", 376, 5], ["repo", 377, 5], ["rev", 378, 5], ["hash", 379, 5]]);
-const pos$63 = nix.positions(here + "/src.nix", [["owner", 382, 5], ["repo", 383, 5], ["rev", 384, 5], ["hash", 385, 5]]);
-const pos$64 = nix.positions(here + "/src.nix", [["owner", 388, 5], ["repo", 389, 5], ["rev", 390, 5], ["hash", 391, 5]]);
-const pos$65 = nix.positions(here + "/src.nix", [["owner", 394, 5], ["repo", 395, 5], ["rev", 396, 5], ["hash", 397, 5]]);
-const pos$66 = nix.positions(here + "/src.nix", [["owner", 400, 5], ["repo", 401, 5], ["rev", 402, 5], ["hash", 403, 5]]);
-const pos$67 = nix.positions(here + "/src.nix", [["owner", 406, 5], ["repo", 407, 5], ["rev", 408, 5], ["hash", 409, 5]]);
-const pos$68 = nix.positions(here + "/src.nix", [["owner", 412, 5], ["repo", 413, 5], ["rev", 414, 5], ["hash", 415, 5]]);
-const pos$69 = nix.positions(here + "/src.nix", [["owner", 418, 5], ["repo", 419, 5], ["rev", 420, 5], ["hash", 421, 5]]);
-const pos$70 = nix.positions(here + "/src.nix", [["owner", 424, 5], ["repo", 425, 5], ["rev", 426, 5], ["hash", 427, 5]]);
-const pos$71 = nix.positions(here + "/src.nix", [["src_aiter", 9, 3], ["src_aiter_flash-attention", 15, 3], ["src_asmjit", 21, 3], ["src_benchmark", 27, 3], ["src_benchmark_protobuf", 33, 3], ["src_civetweb", 39, 3], ["src_clang-cindex-python3", 45, 3], ["src_composable_kernel", 51, 3], ["src_composable_kernel_aiter", 57, 3], ["src_composable_kernel_aiter_flash-attention", 63, 3], ["src_composable_kernel_fbgemm_MSLK", 69, 3], ["src_composable_kernel_flash-attention", 75, 3], ["src_cpp-httplib", 81, 3], ["src_cpr", 87, 3], ["src_cpuinfo", 93, 3], ["src_cpuinfo_fbgemm", 99, 3], ["src_cudnn-frontend", 105, 3], ["src_cutlass", 111, 3], ["src_cutlass_fbgemm_MSLK", 117, 3], ["src_cutlass_flash-attention", 123, 3], ["src_DCGM", 129, 3], ["src_dynolog", 135, 3], ["src_fbgemm", 141, 3], ["src_fbjni", 147, 3], ["src_flash-attention", 153, 3], ["src_flatbuffers", 159, 3], ["src_fmt", 165, 3], ["src_fmt_dynolog", 171, 3], ["src_fmt_kineto", 177, 3], ["src_FP16", 183, 3], ["src_FXdiv", 189, 3], ["src_gemmlowp", 195, 3], ["src_gflags", 201, 3], ["src_gflags_gflags", 207, 3], ["src_glog", 213, 3], ["src_gloo", 219, 3], ["src_googletest", 225, 3], ["src_googletest_prometheus-cpp", 231, 3], ["src_googletest_protobuf", 237, 3], ["src_googletest_tensorpipe", 243, 3], ["src_hipify_torch", 249, 3], ["src_ideep", 255, 3], ["src_ittapi", 261, 3], ["src_json", 267, 3], ["src_json_dynolog", 273, 3], ["src_kineto", 279, 3], ["src_kleidiai", 285, 3], ["src_libnop", 291, 3], ["src_libuv", 297, 3], ["src_mimalloc", 303, 3], ["src_mkl-dnn", 309, 3], ["src_MSLK", 315, 3], ["src_NNPACK", 321, 3], ["src_NVTX", 327, 3], ["src_onnx", 333, 3], ["src_PeachPy", 339, 3], ["src_pfs", 345, 3], ["src_pocketfft", 351, 3], ["src_prometheus-cpp", 357, 3], ["src_protobuf", 363, 3], ["src_psimd", 369, 3], ["src_pthreadpool", 375, 3], ["src_pybind11", 381, 3], ["src_pybind11_onnx", 387, 3], ["src_pybind11_tensorpipe", 393, 3], ["src_pytorch", 399, 3], ["src_sleef", 405, 3], ["src_tensorpipe", 411, 3], ["src_VulkanMemoryAllocator", 417, 3], ["src_XNNPACK", 423, 3], ["src_aiter_recursive", 429, 3], ["src_aiter_flash-attention_recursive", 434, 3], ["src_asmjit_recursive", 439, 3], ["src_benchmark_recursive", 440, 3], ["src_benchmark_protobuf_recursive", 441, 3], ["src_civetweb_recursive", 442, 3], ["src_clang-cindex-python3_recursive", 443, 3], ["src_composable_kernel_recursive", 444, 3], ["src_composable_kernel_aiter_recursive", 445, 3], ["src_composable_kernel_aiter_flash-attention_recursive", 446, 3], ["src_composable_kernel_fbgemm_MSLK_recursive", 447, 3], ["src_composable_kernel_flash-attention_recursive", 448, 3], ["src_cpp-httplib_recursive", 449, 3], ["src_cpr_recursive", 450, 3], ["src_cpuinfo_recursive", 451, 3], ["src_cpuinfo_fbgemm_recursive", 452, 3], ["src_cudnn-frontend_recursive", 453, 3], ["src_cutlass_recursive", 454, 3], ["src_cutlass_fbgemm_MSLK_recursive", 455, 3], ["src_cutlass_flash-attention_recursive", 456, 3], ["src_DCGM_recursive", 457, 3], ["src_dynolog_recursive", 458, 3], ["src_fbgemm_recursive", 479, 3], ["src_fbjni_recursive", 496, 3], ["src_flash-attention_recursive", 497, 3], ["src_flatbuffers_recursive", 506, 3], ["src_fmt_recursive", 507, 3], ["src_fmt_dynolog_recursive", 508, 3], ["src_fmt_kineto_recursive", 509, 3], ["src_FP16_recursive", 510, 3], ["src_FXdiv_recursive", 511, 3], ["src_gemmlowp_recursive", 512, 3], ["src_gflags_recursive", 513, 3], ["src_gflags_gflags_recursive", 518, 3], ["src_glog_recursive", 519, 3], ["src_gloo_recursive", 520, 3], ["src_googletest_recursive", 521, 3], ["src_googletest_prometheus-cpp_recursive", 522, 3], ["src_googletest_protobuf_recursive", 523, 3], ["src_googletest_tensorpipe_recursive", 524, 3], ["src_hipify_torch_recursive", 525, 3], ["src_ideep_recursive", 526, 3], ["src_ittapi_recursive", 531, 3], ["src_json_recursive", 532, 3], ["src_json_dynolog_recursive", 533, 3], ["src_kineto_recursive", 534, 3], ["src_kleidiai_recursive", 545, 3], ["src_libnop_recursive", 546, 3], ["src_libuv_recursive", 547, 3], ["src_mimalloc_recursive", 548, 3], ["src_mkl-dnn_recursive", 549, 3], ["src_MSLK_recursive", 550, 3], ["src_NNPACK_recursive", 561, 3], ["src_NVTX_recursive", 562, 3], ["src_onnx_recursive", 563, 3], ["src_PeachPy_recursive", 568, 3], ["src_pfs_recursive", 569, 3], ["src_pocketfft_recursive", 570, 3], ["src_prometheus-cpp_recursive", 571, 3], ["src_protobuf_recursive", 578, 3], ["src_psimd_recursive", 585, 3], ["src_pthreadpool_recursive", 586, 3], ["src_pybind11_recursive", 587, 3], ["src_pybind11_onnx_recursive", 588, 3], ["src_pybind11_tensorpipe_recursive", 589, 3], ["src_pytorch_recursive", 594, 3], ["src_sleef_recursive", 671, 3], ["src_tensorpipe_recursive", 672, 3], ["src_VulkanMemoryAllocator_recursive", 683, 3], ["src_XNNPACK_recursive", 684, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -84,490 +14,490 @@ export default nix.lambda((args) => (() => {
   nix.assert_(nix.eq(version, "2.13.0"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/python-modules/torch/source/src.nix:7:1");
   return nix.sel((() => {
     const src_aiter = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         owner: "ROCm",
         repo: "aiter",
         rev: "9a469a608b2c10b7157df573a38d31e5bf4038b4",
         hash: "sha256-kaX3uAkgE99puYu+ODdKjvsN+LLl1Jt95vtd5Xh0Mg8=",
       }))));
     const src_aiter_flash_attention = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         owner: "ROCm",
         repo: "aiter",
         rev: "b4b75165fbd2456dfd0f074c5b2ef91bc87d97e5",
         hash: "sha256-Q3nTakD9XbeHe5myYUrv51Iwh6Ifg46hKfn0CK9izhc=",
       }))));
     const src_asmjit = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         owner: "asmjit",
         repo: "asmjit",
         rev: "a3199e8857792cd10b7589ff5d58343d2c9008ea",
         hash: "sha256-qb0lM1N1FIvoADNsZZdlg8HAheePv/LvSDvRhOAqZc0=",
       }))));
     const src_benchmark = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         owner: "google",
         repo: "benchmark",
         rev: "299e5928955cc62af9968370293b916f5130916f",
         hash: "sha256-iPK3qLrZL2L08XW1a7SGl7GAt5InQ5nY+Dn8hBuxSOg=",
       }))));
     const src_benchmark_protobuf = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         owner: "google",
         repo: "benchmark",
         rev: "5b7683f49e1e9223cf9927b24f6fd3d6bd82e3f8",
         hash: "sha256-iFRgjLkftuszAqBnmS9GXU8BwYnabmwMAQyw19sfjb4=",
       }))));
     const src_civetweb = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         owner: "civetweb",
         repo: "civetweb",
         rev: "d7ba35bbb649209c66e582d5a0244ba988a15159",
         hash: "sha256-eXb5f2jhtfxDORG+JniSy17kzB7A4vM0UnUQAfKTquU=",
       }))));
     const src_clang_cindex_python3 = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         owner: "wjakob",
         repo: "clang-cindex-python3",
         rev: "6a00cbc4a9b8e68b71caf7f774b3f9c753ae84d5",
         hash: "sha256-IDUIuAvgCzWaHoTJUZrH15bqoVcP8bZk+Gs1Ae6/CpY=",
       }))));
     const src_composable_kernel = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         owner: "ROCm",
         repo: "composable_kernel",
         rev: "f1746955fdaf80a3414de814bf32437686dac347",
         hash: "sha256-B/xNuBPUdjL1b+0IzRnaSXT2FKUo5cYwYcKqfKqJ8Eg=",
       }))));
     const src_composable_kernel_aiter = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         owner: "ROCm",
         repo: "composable_kernel",
         rev: "fcc9372c009c8e0a23fece77b582da83b04a654f",
         hash: "sha256-Xwj48Ftwqlea5ZIP7q7cRh2U2tlHTd1cdW4TYf5J0Dg=",
       }))));
     const src_composable_kernel_aiter_flash_attention = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         owner: "ROCm",
         repo: "composable_kernel",
         rev: "eb033ef2089e00f821930c04ef7c589da073f1c8",
         hash: "sha256-43he+hJYdu++a8zIg2A4eycMeU/KyzoiWFxeti96eEA=",
       }))));
     const src_composable_kernel_fbgemm_MSLK = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         owner: "ROCm",
         repo: "composable_kernel",
         rev: "7fe50dc3da2069d6645d9deb8c017a876472a977",
         hash: "sha256-OxA0ekcaRxAmBFlXkvS7XAX40kcWCwyytHWV6vROWjo=",
       }))));
     const src_composable_kernel_flash_attention = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         owner: "ROCm",
         repo: "composable_kernel",
         rev: "791afc64655301487cac6e5361c677a0a4b82059",
         hash: "sha256-at/UrMSQP+6f9AeTmw2/UmBbNog8OQNQFZvbGkmGAtQ=",
       }))));
     const src_cpp_httplib = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         owner: "yhirose",
         repo: "cpp-httplib",
         rev: "811dd0b6f2382f50f801f3cfdb5ba349d08bb575",
         hash: "sha256-+tJPA2yUT4irfEBRv2LHxc70xYY6+gWJWtSRtMGF3sw=",
       }))));
     const src_cpr = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         owner: "libcpr",
         repo: "cpr",
         rev: "871ed52d350214a034f6ef8a3b8f51c5ce1bd400",
         hash: "sha256-TxoDCIa7pS+nfI8hNiGIRQKpYNrKSd1yCXPfVXPcRW8=",
       }))));
     const src_cpuinfo = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         owner: "pytorch",
         repo: "cpuinfo",
         rev: "bc3c01e230c6974283e4b89421cfb0e232435589",
         hash: "sha256-nm1ifv/ASJwCWoz+9HeuCi+bcCNTh/swvkxJolItgyU=",
       }))));
     const src_cpuinfo_fbgemm = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         owner: "pytorch",
         repo: "cpuinfo",
         rev: "161a9ec374884f4b3e85725cb22e05f9458fdc93",
         hash: "sha256-uzo6QpNfzTcqOpDse14e2OoxNyKDU8jSx+/wPLxmpJg=",
       }))));
     const src_cudnn_frontend = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         owner: "NVIDIA",
         repo: "cudnn-frontend",
         rev: "c4a97621eca52fa0c3a1862a411a16be580b25c6",
         hash: "sha256-I6el8e6Jo1l/S5eqxWiH2KksNxw4hJ+av5qj/yqJjI8=",
       }))));
     const src_cutlass = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$18,
+        [nix.POS]: $pos[17],
         owner: "NVIDIA",
         repo: "cutlass",
         rev: "da5e086dab31d63815acafdac9a9c5893b1c69e2",
         hash: "sha256-0q9Ad0Z6E/rO2PdM4uQc8H0E0qs9uKc3reHepiHhjEc=",
       }))));
     const src_cutlass_fbgemm_MSLK = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$19,
+        [nix.POS]: $pos[18],
         owner: "jwfromm",
         repo: "cutlass",
         rev: "571edeb2d0ac872a8392fc49285b156b07884b4e",
         hash: "sha256-EnEtWPJqJBLGOk93HdUL45NFqIVG5qetJX6vnc7K6pE=",
       }))));
     const src_cutlass_flash_attention = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$20,
+        [nix.POS]: $pos[19],
         owner: "NVIDIA",
         repo: "cutlass",
         rev: "7127592069c2fe01b041e174ba4345ef9b279671",
         hash: "sha256-/fEfuriQbrjjLP+yRjeo88SgW3IurdlU+6rR9+w5woQ=",
       }))));
     const src_DCGM = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$21,
+        [nix.POS]: $pos[20],
         owner: "NVIDIA",
         repo: "DCGM",
         rev: "ffde4e54bc7249a6039a5e6b45b395141e1217f9",
         hash: "sha256-jlnq25byEep7wRF3luOIGaiaYjqSVaTBx02N6gE/ox8=",
       }))));
     const src_dynolog = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$22,
+        [nix.POS]: $pos[21],
         owner: "facebookincubator",
         repo: "dynolog",
         rev: "d2ffe0a4e3acace628db49974246b66fc3e85fb1",
         hash: "sha256-AebAZeDE9mXvg1XsgDm/4DIAMDIkbd+HGgcTmxV+HX0=",
       }))));
     const src_fbgemm = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$23,
+        [nix.POS]: $pos[22],
         owner: "pytorch",
         repo: "fbgemm",
         rev: "d08742c6602efedc6a3c9fca124b96ad555316e4",
         hash: "sha256-lPZFwSjr1yd3lXhyYA6UrYr+kVHo0IA5QJvQpPtNiU8=",
       }))));
     const src_fbjni = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$24,
+        [nix.POS]: $pos[23],
         owner: "facebookincubator",
         repo: "fbjni",
         rev: "7e1e1fe3858c63c251c637ae41a20de425dde96f",
         hash: "sha256-PsgUHtCE3dNR2QdUnRjrXb0ZKZNGwFkA8RWYkZEklEY=",
       }))));
     const src_flash_attention = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$25,
+        [nix.POS]: $pos[24],
         owner: "Dao-AILab",
         repo: "flash-attention",
         rev: "6c4f74fb338e0c3cdb07ac6f5eab5f54fc367c15",
         hash: "sha256-k6158mEJocKIRS4MQIM+Ih4VMHnXCKJGcykZFi91J2w=",
       }))));
     const src_flatbuffers = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$26,
+        [nix.POS]: $pos[25],
         owner: "google",
         repo: "flatbuffers",
         rev: "a2cd1ea3b6d3fee220106b5fed3f7ce8da9eb757",
         hash: "sha256-6L6Eb+2xGXEqLYITWsNNPW4FTvfPFSmChK4hLusk5gU=",
       }))));
     const src_fmt = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$27,
+        [nix.POS]: $pos[26],
         owner: "fmtlib",
         repo: "fmt",
         rev: "407c905e45ad75fc29bf0f9bb7c5c2fd3475976f",
         hash: "sha256-ZmI1Dv0ZabPlxa02OpERI47jp7zFfjpeWCy1WyuPYZ0=",
       }))));
     const src_fmt_dynolog = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$28,
+        [nix.POS]: $pos[27],
         owner: "fmtlib",
         repo: "fmt",
         rev: "cd4af11efc9c622896a3e4cb599fa28668ca3d05",
         hash: "sha256-Ks3UG3V0Pz6qkKYFhy71ZYlZ9CPijO6GBrfMqX5zAp8=",
       }))));
     const src_fmt_kineto = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$29,
+        [nix.POS]: $pos[28],
         owner: "fmtlib",
         repo: "fmt",
         rev: "40626af88bd7df9a5fb80be7b25ac85b122d6c21",
         hash: "sha256-sAlU5L/olxQUYcv8euVYWTTB8TrVeQgXLHtXy8IMEnU=",
       }))));
     const src_FP16 = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$30,
+        [nix.POS]: $pos[29],
         owner: "Maratyszcza",
         repo: "FP16",
         rev: "4dfe081cf6bcd15db339cf2680b9281b8451eeb3",
         hash: "sha256-B27LtVnL52niaFgPW0pp5Uulub/Q3NvtSDkJNahrSBk=",
       }))));
     const src_FXdiv = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$31,
+        [nix.POS]: $pos[30],
         owner: "Maratyszcza",
         repo: "FXdiv",
         rev: "b408327ac2a15ec3e43352421954f5b1967701d1",
         hash: "sha256-BEjscsejYVhRxDAmah5DT3+bglp8G5wUTTYL7+HjWds=",
       }))));
     const src_gemmlowp = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$32,
+        [nix.POS]: $pos[31],
         owner: "google",
         repo: "gemmlowp",
         rev: "3fb5c176c17c765a3492cd2f0321b0dab712f350",
         hash: "sha256-G3PAf9j7Tb4dUoaV9Tmxkkfu3v+w0uFbZ+MWS68tlRw=",
       }))));
     const src_gflags = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$33,
+        [nix.POS]: $pos[32],
         owner: "gflags",
         repo: "gflags",
         rev: "e171aa2d15ed9eb17054558e0b3a6a413bb01067",
         hash: "sha256-4NLd/p72H7ZiFCCVjTfM/rDvZ8CVPMxYpnJ2O1od8ZA=",
       }))));
     const src_gflags_gflags = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$34,
+        [nix.POS]: $pos[33],
         owner: "gflags",
         repo: "gflags",
         rev: "8411df715cf522606e3b1aca386ddfc0b63d34b4",
         hash: "sha256-Bb4g64u5a0QRWwDl1ryNXmht6NKFWPW9bAF07yYRJ6I=",
       }))));
     const src_glog = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$35,
+        [nix.POS]: $pos[34],
         owner: "google",
         repo: "glog",
         rev: "b33e3bad4c46c8a6345525fd822af355e5ef9446",
         hash: "sha256-xqRp9vaauBkKz2CXbh/Z4TWqhaUtqfbsSlbYZR/kW9s=",
       }))));
     const src_gloo = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$36,
+        [nix.POS]: $pos[35],
         owner: "pytorch",
         repo: "gloo",
         rev: "bcd1672ee07538123ea8f4fac76832efc58fb8ef",
         hash: "sha256-taZFCV6+4hXL63P+coJHEuOuyoGfDEr2BrSGOMdFprk=",
       }))));
     const src_googletest = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$37,
+        [nix.POS]: $pos[36],
         owner: "google",
         repo: "googletest",
         rev: "52eb8108c5bdec04579160ae17225d66034bd723",
         hash: "sha256-HIHMxAUR4bjmFLoltJeIAVSulVQ6kVuIT2Ku+lwAx/4=",
       }))));
     const src_googletest_prometheus_cpp = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$38,
+        [nix.POS]: $pos[37],
         owner: "google",
         repo: "googletest",
         rev: "e2239ee6043f73722e7aa812a459f54a28552929",
         hash: "sha256-SjlJxushfry13RGA7BCjYC9oZqV4z6x8dOiHfl/wpF0=",
       }))));
     const src_googletest_protobuf = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$39,
+        [nix.POS]: $pos[38],
         owner: "google",
         repo: "googletest",
         rev: "5ec7f0c4a113e2f18ac2c6cc7df51ad6afc24081",
         hash: "sha256-Zh7t6kOabEZxIuTwREerNSgbZLPnGWv78h0wQQAIuT4=",
       }))));
     const src_googletest_tensorpipe = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$40,
+        [nix.POS]: $pos[39],
         owner: "google",
         repo: "googletest",
         rev: "aee0f9d9b5b87796ee8a0ab26b7587ec30e8858e",
         hash: "sha256-L2HR+QTQmagk92JiuW3TRx47so33xQvewdeYL1ipUPs=",
       }))));
     const src_hipify_torch = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$41,
+        [nix.POS]: $pos[40],
         owner: "ROCmSoftwarePlatform",
         repo: "hipify_torch",
         rev: "63b6a7b541fa7f08f8475ca7d74054db36ff2691",
         hash: "sha256-TH9fyprP21sRsxGs4VrahhFSIXDhnLvV09c+ZCE27u0=",
       }))));
     const src_ideep = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$42,
+        [nix.POS]: $pos[41],
         owner: "intel",
         repo: "ideep",
         rev: "e087b6e4b32a7ba684db82231d1558123968ac1d",
         hash: "sha256-AVSsugGYiQ4QOWMVaHj1hzlPTZmg65yrGMmrWytvUuM=",
       }))));
     const src_ittapi = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$43,
+        [nix.POS]: $pos[42],
         owner: "intel",
         repo: "ittapi",
         rev: "0c57540822deb5dae43bef6c1cc9b3be4772a033",
         hash: "sha256-v6efQEMW1r5fsjOIpJQQPoau6sina/iKxAY1cfEUZQc=",
       }))));
     const src_json = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$44,
+        [nix.POS]: $pos[43],
         owner: "nlohmann",
         repo: "json",
         rev: "55f93686c01528224f448c19128836e7df245f72",
         hash: "sha256-cECvDOLxgX7Q9R3IE86Hj9JJUxraDQvhoyPDF03B2CY=",
       }))));
     const src_json_dynolog = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$45,
+        [nix.POS]: $pos[44],
         owner: "nlohmann",
         repo: "json",
         rev: "4f8fba14066156b73f1189a2b8bd568bde5284c5",
         hash: "sha256-DTsZrdB9GcaNkx7ZKxcgCA3A9ShM5icSF0xyGguJNbk=",
       }))));
     const src_kineto = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$46,
+        [nix.POS]: $pos[45],
         owner: "pytorch",
         repo: "kineto",
         rev: "094d3c1d072362d0a919a77299459eee94f97931",
         hash: "sha256-KFP2wrFj3Tgv1U5b4YJr2mWq+xo1mZzVUejFxGhv9z4=",
       }))));
     const src_kleidiai = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$47,
+        [nix.POS]: $pos[46],
         owner: "ARM-software",
         repo: "kleidiai",
         rev: "d7770c89632329a9914ef1a90289917597639cbe",
         hash: "sha256-5/LkO8ihQCeA6nok68OrzurOcIgjFgXntO1C3By5HUw=",
       }))));
     const src_libnop = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$48,
+        [nix.POS]: $pos[47],
         owner: "google",
         repo: "libnop",
         rev: "910b55815be16109f04f4180e9adee14fb4ce281",
         hash: "sha256-AsPZt+ylfdGpytQ1RoQljKeXE2uGkGONCaWzLK2sZhA=",
       }))));
     const src_libuv = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$49,
+        [nix.POS]: $pos[48],
         owner: "libuv",
         repo: "libuv",
         rev: "5152db2cbfeb5582e9c27c5ea1dba2cd9e10759b",
         hash: "sha256-ayTk3qkeeAjrGj5ab7wF7vpWI8XWS1EeKKUqzaD/LY0=",
       }))));
     const src_mimalloc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$50,
+        [nix.POS]: $pos[49],
         owner: "microsoft",
         repo: "mimalloc",
         rev: "02a2f5df9d7d46d30263b83832eebeeab62dc5fe",
         hash: "sha256-7wJ6IE6WXuIFmuuM1W5TawC4LYjhc18aYlaujnOXyx4=",
       }))));
     const src_mkl_dnn = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$51,
+        [nix.POS]: $pos[50],
         owner: "intel",
         repo: "mkl-dnn",
         rev: "80afa71049cd69a3df32adcccb623b12cd7baa22",
         hash: "sha256-t5+DF4/qgEYQpTY8Qox0BTfpykfs5kFqYy6HrEJaVu0=",
       }))));
     const src_MSLK = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$52,
+        [nix.POS]: $pos[51],
         owner: "meta-pytorch",
         repo: "MSLK",
         rev: "3d332d1c0c0ac7765852c97b3979c9ef913e037f",
         hash: "sha256-iuwAI8ko4yzifjoqKLxtz6UFOAOoWhsw4+3Unkiv6aE=",
       }))));
     const src_NNPACK = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$53,
+        [nix.POS]: $pos[52],
         owner: "Maratyszcza",
         repo: "NNPACK",
         rev: "c07e3a0400713d546e0dea2d5466dd22ea389c73",
         hash: "sha256-GzF53u1ELtmEH3WbBzGBemlQhjj3EIKB+37wMtSYE2g=",
       }))));
     const src_NVTX = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$54,
+        [nix.POS]: $pos[53],
         owner: "NVIDIA",
         repo: "NVTX",
         rev: "3ebbc93ded7285963bff932c678fa367eb393ba6",
         hash: "sha256-F1TD1lK0sE6UWMhelF1q147T5Jk3xFUHwsmKoE+WnXY=",
       }))));
     const src_onnx = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$55,
+        [nix.POS]: $pos[54],
         owner: "onnx",
         repo: "onnx",
         rev: "e709452ef2bbc1d113faf678c24e6d3467696e83",
         hash: "sha256-UhtF+CWuyv5/Pq/5agLL4Y95YNP63W2BraprhRqJOag=",
       }))));
     const src_PeachPy = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$56,
+        [nix.POS]: $pos[55],
         owner: "malfet",
         repo: "PeachPy",
         rev: "f45429b087dd7d5bc78bb40dc7cf06425c252d67",
         hash: "sha256-eyhfnOOZPtsJwjkF6ybv3F77fyjaV6wzgu+LxadZVw0=",
       }))));
     const src_pfs = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$57,
+        [nix.POS]: $pos[56],
         owner: "dtrugman",
         repo: "pfs",
         rev: "f68a2fa8ea36c783bdd760371411fcb495aa3150",
         hash: "sha256-VB7/7hi4vZKgpjpgir+CyWIMwoNLHGRIXPJvVOn8Pq4=",
       }))));
     const src_pocketfft = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$58,
+        [nix.POS]: $pos[57],
         owner: "mreineck",
         repo: "pocketfft",
         rev: "0fa0ef591e38c2758e3184c6c23e497b9f732ffa",
         hash: "sha256-Fu786IHiU6Bl66gZ/UJmqOROjlya3viLyzOxwdZVi9c=",
       }))));
     const src_prometheus_cpp = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$59,
+        [nix.POS]: $pos[58],
         owner: "jupp0r",
         repo: "prometheus-cpp",
         rev: "b1234816facfdda29845c46696a02998a4af115a",
         hash: "sha256-Dj+adszXnWHOcZJ/QTOX214N86pjy71tLuPU6bHcMPg=",
       }))));
     const src_protobuf = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$60,
+        [nix.POS]: $pos[59],
         owner: "protocolbuffers",
         repo: "protobuf",
         rev: "d1eca4e4b421cd2997495c4b4e65cea6be4e9b8a",
         hash: "sha256-InCW/Sb4E7dQeg3VHgpCtm91qqfh0Qpmu4ZzKffacOQ=",
       }))));
     const src_psimd = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$61,
+        [nix.POS]: $pos[60],
         owner: "Maratyszcza",
         repo: "psimd",
         rev: "072586a71b55b7f8c584153d223e95687148a900",
         hash: "sha256-lV+VZi2b4SQlRYrhKx9Dxc6HlDEFz3newvcBjTekupo=",
       }))));
     const src_pthreadpool = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$62,
+        [nix.POS]: $pos[61],
         owner: "google",
         repo: "pthreadpool",
         rev: "a56dcd79c699366e7ac6466792c3025883ff7704",
         hash: "sha256-WfyuPfII4eSmLskZV0TAcu4K6OyW38TjkDHm+VUx5eY=",
       }))));
     const src_pybind11 = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$63,
+        [nix.POS]: $pos[62],
         owner: "pybind",
         repo: "pybind11",
         rev: "d03662f0984f652b60e7ddce53d3868002275197",
         hash: "sha256-QZKnIOopEDsiRFkc1qQ+DaDHoTNuEEgQVeiAL0sQqak=",
       }))));
     const src_pybind11_onnx = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$64,
+        [nix.POS]: $pos[63],
         owner: "pybind",
         repo: "pybind11",
         rev: "a2e59f0e7065404b44dfe92a28aca47ba1378dc4",
         hash: "sha256-SNLdtrOjaC3lGHN9MAqTf51U9EzNKQLyTMNPe0GcdrU=",
       }))));
     const src_pybind11_tensorpipe = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$65,
+        [nix.POS]: $pos[64],
         owner: "pybind",
         repo: "pybind11",
         rev: "a23996fce38ff6ccfbcdc09f1e63f2c4be5ea2ef",
         hash: "sha256-3TALLHJAeWCSf88oBgLyyUoI/HyWGasAcAy4fGOQt04=",
       }))));
     const src_pytorch = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$66,
+        [nix.POS]: $pos[65],
         owner: "pytorch",
         repo: "pytorch",
         rev: "v2.13.0",
         hash: "sha256-ho3L7gDflBkJ+i47rpTc7/AaHWgXe1U00wFaRLLH8W8=",
       }))));
     const src_sleef = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$67,
+        [nix.POS]: $pos[66],
         owner: "shibatch",
         repo: "sleef",
         rev: "5a1d179df9cf652951b59010a2d2075372d67f68",
         hash: "sha256-bjT+F7/nyiB4f0T06/flbpIWFZbUxjf1TjWMe3112Ig=",
       }))));
     const src_tensorpipe = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$68,
+        [nix.POS]: $pos[67],
         owner: "pytorch",
         repo: "tensorpipe",
         rev: "2b4cd91092d335a697416b2a3cb398283246849d",
         hash: "sha256-ZidonG6q621rbdRrlW6ad7WdH0os81GNBBuPE5kQEsU=",
       }))));
     const src_VulkanMemoryAllocator = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$69,
+        [nix.POS]: $pos[68],
         owner: "GPUOpen-LibrariesAndSDKs",
         repo: "VulkanMemoryAllocator",
         rev: "1d8f600fd424278486eade7ed3e877c99f0846b1",
         hash: "sha256-TPEqV8uHbnyphLG0A+b2tgLDQ6K7a2dOuDHlaFPzTeE=",
       }))));
     const src_XNNPACK = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$70,
+        [nix.POS]: $pos[69],
         owner: "google",
         repo: "XNNPACK",
         rev: "51a0103656eff6fc9bfd39a4597923c4b542c883",
@@ -815,7 +745,7 @@ cp -r ${src_pybind11_tensorpipe_recursive}/* $out/third_party/pybind11
     const src_VulkanMemoryAllocator_recursive = src_VulkanMemoryAllocator;
     const src_XNNPACK_recursive = src_XNNPACK;
     return {
-      [nix.POS]: pos$71,
+      [nix.POS]: $pos[70],
       src_aiter,
       "src_aiter_flash-attention": src_aiter_flash_attention,
       src_asmjit,

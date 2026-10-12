@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 29, 5], ["hash", 30, 5]], [["description", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["homepage", 65, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["minimalOCamlVersion", 33, 3], ["propagatedBuildInputs", 35, 3], ["doCheck", 48, 3], ["checkInputs", 49, 3], ["__darwinAllowLocalNetworking", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, lib: false, fetchurl: false, h1: false, h2: false, "tls-mirage": false, mimic: false, ke: false, bigstringaf: false, faraday: false, tls: false, lwt: false, logs: false, fmt: false, "mirage-crypto-rng": false, tcpip: false, ptime: false, uri: false, "alcotest-lwt": false, cstruct: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["homepage", 65, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["minimalOCamlVersion", 33, 3], ["propagatedBuildInputs", 35, 3], ["doCheck", 48, 3], ["checkInputs", 49, 3], ["__darwinAllowLocalNetworking", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const alcotest_lwt = nix.arg($, "alcotest-lwt");
   const cstruct = nix.arg($, "cstruct");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "paf",
       version: "0.8.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/dinosaure/paf-le-chien/releases/download/${nix.sel(finalAttrs, "version")}/paf-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-0q07gZpzUyDoWlA4m/P+EGSvvVKAZ7RwVkpOziqzG2M=",
         })))),
@@ -44,7 +42,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [lwt, logs, fmt, mirage_crypto_rng, ptime, uri, alcotest_lwt]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "HTTP/AF and MirageOS",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "sternenseemann"))]),

@@ -2,16 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/stage0.nix", [[["installable", 33, 9]], [["name", 29, 5], ["paths", 30, 5]], [["baseName", 41, 9], ["releaseManifestFile", 42, 9], ["tarballHash", 43, 9], ["bootstrapSdk", 44, 9], ["hasRuntime", 46, 7]], [["name", 50, 11], ["sourceFile", 51, 11], ["installable", 52, 11]], [["nativeBuildInputs", 108, 17], ["postPatch", 114, 17], ["buildFlags", 160, 17], ["prebuiltPackages", 168, 17]], [["multiline", 199, 64]], [["fetch-drv", 174, 15], ["fetch-deps", 175, 15]], [["prebuiltPackages", 49, 9], ["nativeBuildInputs", 55, 9], ["postPatch", 60, 9], ["postConfigure", 68, 9], ["buildFlags", 77, 9], ["passthru", 98, 9]], [["baseName", 210, 22], ["vmr", 210, 31]]]);
 const formals$1 = { args: { stdenv: false, callPackage: false, lib: false, writeShellScript: false, mkNugetDeps: false, nix: false, cacert: false, "nuget-to-json": false, jq: false, dotnetCorePackages: false, xmlstarlet: false, patchNupkgs: false, symlinkJoin: false, openssl: false, baseName: true, releaseManifestFile: false, tarballHash: false, depsFile: false, bootstrapSdk: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/stage0.nix", [["installable", 33, 9]]);
-const pos$2 = nix.positions(here + "/stage0.nix", [["name", 29, 5], ["paths", 30, 5]]);
-const pos$3 = nix.positions(here + "/stage0.nix", [["baseName", 41, 9], ["releaseManifestFile", 42, 9], ["tarballHash", 43, 9], ["bootstrapSdk", 44, 9], ["hasRuntime", 46, 7]]);
-const pos$4 = nix.positions(here + "/stage0.nix", [["name", 50, 11], ["sourceFile", 51, 11], ["installable", 52, 11]]);
-const pos$5 = nix.positions(here + "/stage0.nix", [["nativeBuildInputs", 108, 17], ["postPatch", 114, 17], ["buildFlags", 160, 17], ["prebuiltPackages", 168, 17]]);
-const pos$6 = nix.positions(here + "/stage0.nix", [["multiline", 199, 64]]);
-const pos$7 = nix.positions(here + "/stage0.nix", [["fetch-drv", 174, 15], ["fetch-deps", 175, 15]]);
-const pos$8 = nix.positions(here + "/stage0.nix", [["prebuiltPackages", 49, 9], ["nativeBuildInputs", 55, 9], ["postPatch", 60, 9], ["postConfigure", 68, 9], ["buildFlags", 77, 9], ["passthru", 98, 9]]);
-const pos$9 = nix.positions(here + "/stage0.nix", [["baseName", 210, 22], ["vmr", 210, 31]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const mkPackages = nix.thunk(() => nix.app(callPackage, nix.path(here, "./packages.nix")));
   const mkVMR = nix.thunk(() => nix.app(callPackage, nix.path(here, "./vmr.nix")));
   const sdkPackages = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: nix.thunk(() => nix.str`${nix.sel(bootstrapSdk, "name")}-packages`),
-      paths: nix.thunk(() => nix.builtins.map((p) => nix.app(nix.sel(p, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, installable: true }))), nix.thunk(() => nix.sel(bootstrapSdk, "packages")))),
+      paths: nix.thunk(() => nix.builtins.map((p) => nix.app(nix.sel(p, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], installable: true }))), nix.thunk(() => nix.sel(bootstrapSdk, "packages")))),
     }))));
   const vmr = nix.thunk(() => nix.app(nix.sel(nix.app(mkVMR, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       baseName: baseName,
       releaseManifestFile: releaseManifestFile,
       tarballHash: tarballHash,
@@ -50,7 +42,7 @@ export default nix.lambda((args) => (() => {
       hasRuntime: true,
     }))), "overrideAttrs"), (old) => (() => {
       const prebuiltPackages = nix.thunk(() => nix.app(mkNugetDeps, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           name: "dotnet-vmr-deps",
           sourceFile: depsFile,
           installable: true,
@@ -75,7 +67,7 @@ export default nix.lambda((args) => (() => {
         const updateScript = nix.thunk(() => nix.attr(vmr, "updateScript"));
         const otherRids = nix.thunk(() => nix.app(nix.sel(lib, "remove"), hostRid, nix.thunk(() => nix.builtins.map((system) => nix.app(nix.sel(dotnetCorePackages, "systemToDotnetRid"), system), nix.thunk(() => nix.sel(vmr, "meta", "platforms"))))));
         const pkg = nix.thunk(() => nix.app(nix.sel(vmr, "overrideAttrs"), (old_1) => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(old_1, "nativeBuildInputs"), [nix$, cacert, nuget_to_json, jq])),
             postPatch: nix.thunk(() => nix.add(nix.selOr(old_1, () => "", "postPatch"), nix.str`xmlstarlet ed \\
   --inplace \\
@@ -127,7 +119,7 @@ substituteInPlace build.proj \\
           })));
         const drv = nix.thunk(() => nix.builtins.unsafeDiscardOutputDependency(nix.thunk(() => nix.sel(pkg, "drvPath"))));
         return {
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           "fetch-drv": drv,
           "fetch-deps": nix.thunk(() => nix.app(writeShellScript, "fetch-dotnet-sdk-deps", nix.thunk(() => nix.str`${nix$}/bin/nix-shell --pure --run 'source /dev/stdin' "${drv}" << 'EOF'
 set -e
@@ -152,7 +144,7 @@ depsFiles=(./src/*/deps.json)
 combined=$(nix-build ${nix.builtins.toString(nix.path(here, "./combine-deps.nix"))} \\
   --arg list "[ \${depsFiles[*]} ]" \\
   --argstr baseRid ${hostRid} \\
-  --arg otherRids '${nix.app(nix.sel(lib, "generators", "toPretty"), nix.thunk(() => ({ [nix.POS]: pos$6, multiline: false })), otherRids)}')
+  --arg otherRids '${nix.app(nix.sel(lib, "generators", "toPretty"), nix.thunk(() => ({ [nix.POS]: $pos[5], multiline: false })), otherRids)}')
 
 jq . "$combined" > deps.json
 
@@ -162,7 +154,7 @@ EOF
         };
       })()));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         prebuiltPackages,
         nativeBuildInputs,
         postPatch,
@@ -171,6 +163,6 @@ EOF
         passthru,
       };
     })()));
-  return nix.app(mkPackages, nix.thunk(() => ({ [nix.POS]: pos$9, baseName: baseName, vmr: vmr })));
+  return nix.app(mkPackages, nix.thunk(() => ({ [nix.POS]: $pos[8], baseName: baseName, vmr: vmr })));
 })(), formals$1);
 //# sourceMappingURL=stage0.ts.map

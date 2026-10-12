@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5]], [["GOGC", 31, 7]], [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["mainProgram", 46, 5]], [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["vendorHash", 17, 3], ["postPatch", 19, 3], ["ldflags", 25, 3], ["env", 31, 3], ["buildFlags", 33, 3], ["subPackages", 36, 3], ["doCheck", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["GOGC", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["mainProgram", 46, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["vendorHash", 17, 3], ["postPatch", 19, 3], ["ldflags", 25, 3], ["env", 31, 3], ["buildFlags", 33, 3], ["subPackages", 36, 3], ["doCheck", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "tdl",
       version: "0.20.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "iyear",
           repo: "tdl",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,12 +28,12 @@ export default nix.lambda((args) => (() => {
         "-w",
         nix.thunk(() => nix.str`-X=github.com/iyear/tdl/pkg/consts.Version=${nix.sel(finalAttrs, "version")}`),
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, GOGC: "50" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], GOGC: "50" })),
       buildFlags: nix.thunk(() => ["-p=1"]),
       subPackages: nix.thunk(() => ["."]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Telegram downloader/tools written in Golang",
         homepage: "https://github.com/iyear/tdl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

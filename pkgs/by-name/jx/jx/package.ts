@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["CGO_ENABLED", 25, 7]], [["updateScript", 40, 12]], [["broken", 43, 5], ["description", 44, 5], ["mainProgram", 45, 5], ["homepage", 46, 5], ["changelog", 47, 5], ["longDescription", 48, 5], ["license", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["subPackages", 23, 3], ["env", 25, 3], ["ldflags", 27, 3], ["postInstall", 36, 3], ["passthru", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { stdenv: false, buildGoModule: false, fetchFromGitHub: false, lib: false, "nix-update-script": false, go: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 25, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 40, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["broken", 43, 5], ["description", 44, 5], ["mainProgram", 45, 5], ["homepage", 46, 5], ["changelog", 47, 5], ["longDescription", 48, 5], ["license", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["subPackages", 23, 3], ["env", 25, 3], ["ldflags", 27, 3], ["postInstall", 36, 3], ["passthru", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "jx";
       const version = "3.17.80";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jenkins-x",
           repo: "jx",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -29,7 +25,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const vendorHash = "sha256-Rupnzj1kw0den6O0RZ5Fg5pZWRsfLuor3ntAiQjfIn8=";
       const subPackages = nix.thunk(() => ["cmd"]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_ENABLED: 0n }));
       const ldflags = nix.thunk(() => [
         "-s",
         nix.thunk(() => nix.str`-X github.com/jenkins-x/jx/pkg/cmd/version.Version=${version}`),
@@ -40,11 +36,11 @@ export default nix.lambda((args) => (() => {
       ]);
       const postInstall = "mv $out/bin/cmd $out/bin/jx\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Command line tool for installing and using Jenkins X",
         mainProgram: "jx",
@@ -59,7 +55,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

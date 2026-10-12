@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["flask", 30, 5]], [["description", 59, 5], ["homepage", 60, 5], ["changelog", 61, 5], ["license", 62, 5], ["maintainers", 63, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 25, 3], ["dependencies", 27, 3], ["optional-dependencies", 29, 3], ["pythonImportsCheck", 36, 3], ["nativeCheckInputs", 38, 3], ["disabledTestPaths", 43, 3], ["__darwinAllowLocalNetworking", 56, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, blinker: false, buildPythonPackage: false, fetchFromGitHub: false, flask: false, setuptools: false, webob: false, pytestCheckHook: false, "pytest-cov-stub": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["flask", 30, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 59, 5], ["homepage", 60, 5], ["changelog", 61, 5], ["license", 62, 5], ["maintainers", 63, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 25, 3], ["dependencies", 27, 3], ["optional-dependencies", 29, 3], ["pythonImportsCheck", 36, 3], ["nativeCheckInputs", 38, 3], ["disabledTestPaths", 43, 3], ["__darwinAllowLocalNetworking", 56, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.9.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bugsnag",
           repo: "bugsnag-python",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [webob]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, flask: nix.thunk(() => [blinker, flask]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], flask: nix.thunk(() => [blinker, flask]) }));
       const pythonImportsCheck = nix.thunk(() => ["bugsnag"]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pytest_cov_stub]);
       const disabledTestPaths = nix.thunk(() => [
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Automatic error monitoring for Python applications",
         homepage: "https://github.com/bugsnag/bugsnag-python",
         changelog: nix.thunk(() => nix.str`https://github.com/bugsnag/bugsnag-python/blob/v${version}/CHANGELOG.md`),
@@ -52,7 +49,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

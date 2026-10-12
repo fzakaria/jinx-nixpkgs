@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["description", 51, 5], ["mainProgram", 52, 5], ["license", 53, 5], ["homepage", 54, 5], ["maintainers", 55, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["postPatch", 23, 3], ["nativeBuildInputs", 29, 3], ["tags", 33, 3], ["ldflags", 38, 3], ["postInstall", 43, 3], ["doCheck", 48, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { buildGoModule: false, fetchFromGitHub: false, lib: false, makeWrapper: false, runc: false, wrapperDir: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 51, 5], ["mainProgram", 52, 5], ["license", 53, 5], ["homepage", 54, 5], ["maintainers", 55, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["postPatch", 23, 3], ["nativeBuildInputs", 29, 3], ["tags", 33, 3], ["ldflags", 38, 3], ["postInstall", 43, 3], ["doCheck", 48, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const runc = nix.arg($, "runc");
   const wrapperDir = nix.argOr($, "wrapperDir", () => "/run/wrappers/bin");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "img",
       version: "0.5.11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "genuinetools",
           repo: "img",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
 `),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Standalone, daemon-less, unprivileged Dockerfile and OCI compatible container image builder",
         mainProgram: "img",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

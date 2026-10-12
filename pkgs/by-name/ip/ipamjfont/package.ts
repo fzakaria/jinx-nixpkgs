@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 7], ["hash", 22, 7], ["stripRoot", 23, 7]], [["name", 30, 7], ["runtimeInputs", 32, 7], ["text", 38, 7]], [["updateScript", 29, 5]], [["description", 50, 5], ["downloadPage", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 26, 3], ["passthru", 28, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false, installFonts: false, writeShellApplication: false, curl: false, gnugrep: false, "common-updater-scripts": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 7], ["hash", 22, 7], ["stripRoot", 23, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 30, 7], ["runtimeInputs", 32, 7], ["text", 38, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 29, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 50, 5], ["downloadPage", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 26, 3], ["passthru", 28, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const gnugrep = nix.arg($, "gnugrep");
   const common_updater_scripts = nix.arg($, "common-updater-scripts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ipamjfont",
       version: "006.01",
       src: nix.thunk(() => (() => {
         const suffix = nix.thunk(() => nix.app(nix.sel(lib, "strings", "replaceString"), ".", "", nix.thunk(() => nix.sel(finalAttrs, "version"))));
         return nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`https://dforest.watch.impress.co.jp/library/i/ipamjfont/10750/ipamjm${suffix}.zip`),
             hash: "sha256-Rft8hmxm3D4hOaLaSYDfD14oarDIHUQkMZX+/ZDD4m0=",
             stripRoot: false,
@@ -34,9 +30,9 @@ export default nix.lambda((args) => (() => {
       })()),
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-updater`),
               runtimeInputs: nix.thunk(() => [curl, gnugrep, common_updater_scripts]),
               text: nix.thunk(() => nix.str`suffix="$(
@@ -49,7 +45,7 @@ update-source-version '${nix.sel(finalAttrs, "pname")}' "$version" --ignore-same
             })))))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Japanese Mincho font implementing IVS compliant with Hanyo-Denshi collection",
         downloadPage: "https://forest.watch.impress.co.jp/library/software/ipamjfont/",
         homepage: "https://moji.or.jp/mojikiban/font/",

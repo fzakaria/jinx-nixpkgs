@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["case", 20, 9], ["out", 21, 9]], [["hash", 25, 18]], [["2.1.1+8.18", 25, 5]], [["description", 35, 5], ["license", 36, 5]], [["pname", 10, 3], ["owner", 11, 3], ["repo", 12, 3], ["version", 13, 11], ["defaultVersion", 14, 3], ["release", 24, 3], ["propagatedBuildInputs", 28, 3], ["mlPlugin", 30, 3], ["useDune", 32, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, mkCoqDerivation: false, coq: false, stdlib: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["case", 20, 9], ["out", 21, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["hash", 25, 18]]);
-const pos$3 = nix.positions(here + "/default.nix", [["2.1.1+8.18", 25, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 35, 5], ["license", 36, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["owner", 11, 3], ["repo", 12, 3], ["version", 13, 11], ["defaultVersion", 14, 3], ["release", 24, 3], ["propagatedBuildInputs", 28, 3], ["mlPlugin", 30, 3], ["useDune", 32, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const stdlib = nix.arg($, "stdlib");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "waterproof",
       owner: "impermeable",
       repo: "coq-waterproof",
@@ -27,16 +23,16 @@ export default nix.lambda((args) => (() => {
         const range = nix.thunk(() => nix.attr(from, "range"));
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "coq-version")), nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               case: nix.thunk(() => nix.app(range, "8.18", "8.18")),
               out: "2.1.1+8.18",
             })),
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         "2.1.1+8.18": nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           hash: "sha256-jYuQ9SPFRefNCUfn6+jEaJ4399EnU0gXPPkEDCpJYOI=",
         })),
       })),
@@ -44,7 +40,7 @@ export default nix.lambda((args) => (() => {
       mlPlugin: true,
       useDune: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Coq proofs in a style that resembles non-mechanized mathematical proofs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),
       })),

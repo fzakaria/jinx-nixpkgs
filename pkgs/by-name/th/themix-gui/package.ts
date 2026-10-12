@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5], ["fetchSubmodules", 30, 5]], [["description", 64, 5], ["longDescription", 65, 5], ["homepage", 73, 5], ["license", 74, 5], ["mainProgram", 75, 5], ["maintainers", 76, 5], ["platforms", 77, 5]], [["pname", 23, 11], ["version", 23, 17], ["src", 25, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 40, 3], ["postPatch", 48, 3], ["dontBuild", 52, 3], ["installPhase", 54, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, sassc: false, "gdk-pixbuf": false, glib: false, "gobject-introspection": false, librsvg: false, gtk3: false, python3: false, fetchFromGitHub: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5], ["fetchSubmodules", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 64, 5], ["longDescription", 65, 5], ["homepage", 73, 5], ["license", 74, 5], ["mainProgram", 75, 5], ["maintainers", 76, 5], ["platforms", 77, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 23, 11], ["version", 23, 17], ["src", 25, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 40, 3], ["postPatch", 48, 3], ["dontBuild", 52, 3], ["installPhase", 54, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const pname = "themix-gui";
   const version = "1.15.1";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "themix-project",
           repo: "themix-gui",
           tag: version,
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\nmake DESTDIR=/ APPDIR=$out/opt/oomox PREFIX=$out install_gui install_import_xresources install_export_xresources\npython -O -m compileall $out/opt/oomox/oomox_gui -d /opt/oomox/oomox_gui\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Graphical application for designing themes and exporting them using plugins",
         longDescription: "Graphical application for generating different color variations of\nOomox (Numix-based) and Materia (ex-Flat-Plat) themes (GTK2, GTK3,\nCinnamon, GNOME, Openbox, Xfwm), Archdroid, Gnome-Color, Numix, Papirus\nand Suru++ icon themes. Have a hack for HiDPI in gtk2. Its Base16 plugin\nalso allowing a lot of app themes support like Alacritty, Emacs, GTK4,\nKDE, VIM and many more.\n",
         homepage: "https://github.com/themix-project/themix-gui",

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["ipu7x", 26, 7], ["ipu75xa", 27, 7]], [["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["hash", 39, 5]], [["NIX_CFLAGS_COMPILE", 62, 7]], [["ipuVersion", 96, 13], ["ipuTarget", 96, 24]], [["description", 100, 5], ["homepage", 101, 5], ["license", 102, 5], ["maintainers", 103, 5], ["platforms", 107, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["__structuredAttrs", 42, 3], ["strictDeps", 43, 3], ["nativeBuildInputs", 45, 3], ["cmakeFlags", 50, 3], ["env", 62, 3], ["enableParallelBuilding", 64, 3], ["buildInputs", 66, 3], ["postPatch", 76, 3], ["postInstall", 84, 3], ["postFixup", 89, 3], ["passthru", 95, 3], ["meta", 99, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, expat: false, "ipu7-camera-bins": false, jsoncpp: false, libtool: false, gst_all_1: false, libdrm: false, ipuVersion: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["ipu7x", 26, 7], ["ipu75xa", 27, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["hash", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 62, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["ipuVersion", 96, 13], ["ipuTarget", 96, 24]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 100, 5], ["homepage", 101, 5], ["license", 102, 5], ["maintainers", 103, 5], ["platforms", 107, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["__structuredAttrs", 42, 3], ["strictDeps", 43, 3], ["nativeBuildInputs", 45, 3], ["cmakeFlags", 50, 3], ["env", 62, 3], ["enableParallelBuilding", 64, 3], ["buildInputs", 66, 3], ["postPatch", 76, 3], ["postInstall", 84, 3], ["postFixup", 89, 3], ["passthru", 95, 3], ["meta", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const gst_all_1 = nix.arg($, "gst_all_1");
   const libdrm = nix.arg($, "libdrm");
   const ipuVersion = nix.argOr($, "ipuVersion", () => "ipu7x");
-  const ipuTarget = nix.thunk(() => nix.sel({ [nix.POS]: pos$1, ipu7x: "ipu_lnl", ipu75xa: "ipu_lnl" }, nix.key(nix.force(ipuVersion))));
+  const ipuTarget = nix.thunk(() => nix.sel({ [nix.POS]: $pos[0], ipu7x: "ipu_lnl", ipu75xa: "ipu_lnl" }, nix.key(nix.force(ipuVersion))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: nix.thunk(() => nix.str`${ipuVersion}-camera-hal`),
       version: "20260629_1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "intel",
           repo: "ipu7-camera-hal",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -50,7 +45,7 @@ export default nix.lambda((args) => (() => {
         "-DUSE_STATIC_GRAPH=ON",
         "-DUSE_STATIC_GRAPH_AUTOGEN=ON",
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-Wno-error" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_CFLAGS_COMPILE: "-Wno-error" })),
       enableParallelBuilding: true,
       buildInputs: nix.thunk(() => [
         expat,
@@ -69,9 +64,9 @@ cp -r $src/include $out/include/${ipuTarget}/libcamhal
   patchelf --add-rpath "${ipu7_camera_bins}/lib" $lib
 done
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, ipuVersion: ipuVersion, ipuTarget: ipuTarget })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], ipuVersion: ipuVersion, ipuTarget: ipuTarget })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "HAL for processing of images in userspace",
         homepage: "https://github.com/intel/ipu7-camera-hal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

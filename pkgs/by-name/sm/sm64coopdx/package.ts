@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 25, 5], ["text", 27, 5], ["destination", 32, 5]], [["region", 36, 7], ["showRegionMessage", 37, 7]], [["owner", 46, 5], ["repo", 47, 5], ["tag", 48, 5], ["hash", 49, 5]], [["name", 73, 7], ["desktopName", 74, 7], ["exec", 75, 7], ["icon", 76, 7], ["categories", 77, 7]], [["description", 128, 5], ["longDescription", 129, 5], ["license", 140, 5], ["platforms", 141, 5], ["maintainers", 142, 5], ["mainProgram", 143, 5], ["homepage", 144, 5], ["changelog", 145, 5], ["sourceProvenance", 146, 5]], [["pname", 42, 3], ["version", 43, 3], ["src", 45, 3], ["patches", 52, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 60, 3], ["icon", 70, 3], ["desktopItems", 71, 3], ["enableParallelBuilding", 81, 3], ["makeFlags", 83, 3], ["preBuild", 90, 3], ["installPhase", 98, 3], ["meta", 127, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, makeWrapper: false, writeTextFile: false, copyDesktopItems: false, makeDesktopItem: false, imagemagick: false, curl: false, hexdump: false, python3: false, SDL2: false, stdenv: false, zlib: false, libGL: false, sm64baserom: false, enableCoopNet: true, enableDiscord: true, enableTextureFix: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 25, 5], ["text", 27, 5], ["destination", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["region", 36, 7], ["showRegionMessage", 37, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 46, 5], ["repo", 47, 5], ["tag", 48, 5], ["hash", 49, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 73, 7], ["desktopName", 74, 7], ["exec", 75, 7], ["icon", 76, 7], ["categories", 77, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 128, 5], ["longDescription", 129, 5], ["license", 140, 5], ["platforms", 141, 5], ["maintainers", 142, 5], ["mainProgram", 143, 5], ["homepage", 144, 5], ["changelog", 145, 5], ["sourceProvenance", 146, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 42, 3], ["version", 43, 3], ["src", 45, 3], ["patches", 52, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 60, 3], ["icon", 70, 3], ["desktopItems", 71, 3], ["enableParallelBuilding", 81, 3], ["makeFlags", 83, 3], ["preBuild", 90, 3], ["installPhase", 98, 3], ["meta", 127, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,18 +26,18 @@ export default nix.lambda((args) => (() => {
   const enableDiscord = nix.argOr($, "enableDiscord", () => true);
   const enableTextureFix = nix.argOr($, "enableTextureFix", () => true);
   const libc_hack = nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "libc-hack",
       text: "#include <unistd.h>\n#include <string.h>\n#include <pthread.h>\n",
       destination: "/include/libc.h",
     }))));
-  const baserom = nix.thunk(() => nix.sel(nix.app(nix.sel(sm64baserom, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, region: "us", showRegionMessage: false }))), "romPath"));
+  const baserom = nix.thunk(() => nix.sel(nix.app(nix.sel(sm64baserom, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], region: "us", showRegionMessage: false }))), "romPath"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "sm64coopdx",
       version: "1.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "coop-deluxe",
           repo: "sm64coopdx",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +49,7 @@ export default nix.lambda((args) => (() => {
       icon: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/res/icon.ico`),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: nix.thunk(() => nix.sel(finalAttrs, "pname")),
             desktopName: "sm64coopdx",
             exec: "sm64coopdx",
@@ -101,7 +96,7 @@ makeWrapper $share/sm64coopdx $out/bin/sm64coopdx \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Multiplayer fork of the Super Mario 64 decompilation",
         longDescription: "This is a fork of sm64ex-coop, which was itself a fork of sm64ex, which was a fork of the sm64 decompilation project.\n\nIt allows multiple people to play within and across levels, has multiple character models, and mods in the form of lua scripts.\n\nArguments:\n\n- `enableTextureFix`: (default: `true`) whether to enable texture fixes. Upstream describes disabling this as \"for purists\"\n- `enableDiscord`: (default: `true`) whether to enable discord integration, which allows showing status and connecting to games over discord\n- `enableCoopNet`: (default: `true`) whether to enable Co-op Net integration, a server made specifically for multiplayer sm64\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

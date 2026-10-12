@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 24, 5], ["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["description", 51, 5], ["homepage", 52, 5], ["maintainers", 53, 5], ["platforms", 54, 5], ["license", 55, 5]], [["pname", 15, 3], ["version", 16, 3], ["outputs", 18, 3], ["src", 23, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 38, 3], ["mesonFlags", 45, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, docutils: false, fetchFromGitLab: false, meson: false, ninja: false, "pkg-config": false, gupnp_1_6: false, "gupnp-av": false, "gupnp-dlna": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 24, 5], ["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 51, 5], ["homepage", 52, 5], ["maintainers", 53, 5], ["platforms", 54, 5], ["license", 55, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["outputs", 18, 3], ["src", 23, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 38, 3], ["mesonFlags", 45, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const gupnp_av = nix.arg($, "gupnp-av");
   const gupnp_dlna = nix.arg($, "gupnp-dlna");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dleyna",
       version: "0.8.3",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           owner: "World",
           repo: "dLeyna",
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gupnp_1_6, gupnp_dlna, gupnp_av, gupnp_dlna]),
       mesonFlags: nix.thunk(() => ["-Ddocs=false"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library of utility functions that are used by the higher level dLeyna",
         homepage: "https://gitlab.gnome.org/World/dLeyna",
         maintainers: nix.thunk(() => (() => {

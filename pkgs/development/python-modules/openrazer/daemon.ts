@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/daemon.nix", [[["lib", 20, 42], ["fetchFromGitHub", 20, 46]], [["description", 77, 7], ["mainProgram", 78, 7]], [["pname", 25, 5], ["outputs", 27, 5], ["sourceRoot", 32, 5], ["postPatch", 34, 5], ["nativeBuildInputs", 42, 5], ["buildInputs", 48, 5], ["dependencies", 53, 5], ["postInstall", 63, 5], ["doCheck", 68, 5], ["dontWrapGApps", 70, 5], ["preFixup", 72, 5], ["meta", 76, 5]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, daemonize: false, "dbus-python": false, fetchFromGitHub: false, "gobject-introspection": false, gtk3: false, pygobject3: false, pyudev: false, setproctitle: false, setuptools: false, wrapGAppsNoGuiHook: false, notify2: false, glib: false, libnotify: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/daemon.nix", [["lib", 20, 42], ["fetchFromGitHub", 20, 46]]);
-const pos$2 = nix.positions(here + "/daemon.nix", [["description", 77, 7], ["mainProgram", 78, 7]]);
-const pos$3 = nix.positions(here + "/daemon.nix", [["pname", 25, 5], ["outputs", 27, 5], ["sourceRoot", 32, 5], ["postPatch", 34, 5], ["nativeBuildInputs", 42, 5], ["buildInputs", 48, 5], ["dependencies", 53, 5], ["postInstall", 63, 5], ["doCheck", 68, 5], ["dontWrapGApps", 70, 5], ["preFixup", 72, 5], ["meta", 76, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,9 +22,9 @@ export default nix.lambda((args) => (() => {
   const notify2 = nix.arg($, "notify2");
   const glib = nix.arg($, "glib");
   const libnotify = nix.arg($, "libnotify");
-  const common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib, fetchFromGitHub: fetchFromGitHub }))));
+  const common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib, fetchFromGitHub: fetchFromGitHub }))));
   return nix.app(buildPythonPackage, nix.thunk(() => nix.update(common, {
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "openrazer-daemon",
       outputs: nix.thunk(() => ["out", "man"]),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(common, "src", "name")}/daemon`),
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       meta: nix.thunk(() => nix.update(nix.sel(common, "meta"), {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Entirely open source user-space daemon that allows you to manage your Razer peripherals on GNU/Linux",
         mainProgram: "openrazer-daemon",
       })),

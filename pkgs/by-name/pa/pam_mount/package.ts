@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["tag", 23, 5], ["owner", 24, 5], ["repo", 25, 5], ["hash", 26, 5]], [["updateScript", 65, 12]], [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 76, 5], ["platforms", 80, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["postPatch", 34, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 45, 3], ["enableParallelBuilding", 55, 3], ["configureFlags", 57, 3], ["passthru", 65, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromCodeberg: false, autoreconfHook: false, perl: false, "pkg-config": false, pam: false, libhx: false, libxml2: false, pcre2: false, openssl: false, cryptsetup: false, "util-linux": false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["tag", 23, 5], ["owner", 24, 5], ["repo", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 65, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 76, 5], ["platforms", 80, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["postPatch", 34, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 45, 3], ["enableParallelBuilding", 55, 3], ["configureFlags", 57, 3], ["passthru", 65, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const util_linux = nix.arg($, "util-linux");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pam_mount",
       version: "2.22",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           owner: "jengelh",
           repo: "pam_mount",
@@ -53,11 +50,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--with-slibdir=${nix.builtins.placeholder("out")}/lib`),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "PAM module to mount volumes for a user session",
         homepage: "https://inai.de/projects/pam_mount/",
         license: nix.thunk(() => (() => {

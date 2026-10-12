@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5], ["fetchSubmodules", 25, 5]], [["homepage", 48, 5], ["description", 49, 5], ["changelog", 50, 5], ["platforms", 51, 5], ["license", 52, 5], ["mainProgram", 57, 5], ["maintainers", 58, 5]], [["pname", 12, 3], ["version", 13, 3], ["outputs", 15, 3], ["src", 20, 3], ["cargoHash", 28, 3], ["cargoPatches", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 35, 3], ["doCheck", 41, 3], ["postInstall", 43, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, libpng: false, zlib: false, lcms2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5], ["fetchSubmodules", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 48, 5], ["description", 49, 5], ["changelog", 50, 5], ["platforms", 51, 5], ["license", 52, 5], ["mainProgram", 57, 5], ["maintainers", 58, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["outputs", 15, 3], ["src", 20, 3], ["cargoHash", 28, 3], ["cargoPatches", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 35, 3], ["doCheck", 41, 3], ["postInstall", 43, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const lcms2 = nix.arg($, "lcms2");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pngquant",
       version: "3.0.3",
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kornelski",
           repo: "pngquant",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       postInstall: "install -Dpm0444 pngquant.1 $man/share/man/man1/pngquant.1\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://pngquant.org/",
         description: "Tool to convert 24/32-bit RGBA PNGs to 8-bit palette with alpha channel preserved",
         changelog: nix.thunk(() => nix.str`https://github.com/kornelski/pngquant/raw/${nix.sel(finalAttrs, "version")}/CHANGELOG`),

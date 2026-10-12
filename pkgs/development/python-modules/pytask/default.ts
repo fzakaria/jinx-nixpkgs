@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["dag", 57, 5]], [["description", 91, 5], ["homepage", 92, 5], ["changelog", 93, 5], ["license", 94, 5], ["maintainers", 95, 5]], [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["build-system", 38, 3], ["dependencies", 43, 3], ["optional-dependencies", 56, 3], ["nativeCheckInputs", 60, 3], ["pytestFlags", 71, 3], ["preCheck", 74, 3], ["disabledTests", 78, 3], ["pythonImportsCheck", 88, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, "hatch-vcs": false, click: false, "click-default-group": false, cloudpickle: false, git: false, msgspec: false, nbmake: false, networkx: false, optree: false, packaging: false, pexpect: false, pluggy: false, "pytest-xdist": false, pytestCheckHook: false, rich: false, sqlalchemy: false, syrupy: false, "universal-pathlib": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["dag", 57, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 91, 5], ["homepage", 92, 5], ["changelog", 93, 5], ["license", 94, 5], ["maintainers", 95, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["build-system", 38, 3], ["dependencies", 43, 3], ["optional-dependencies", 56, 3], ["nativeCheckInputs", 60, 3], ["pytestFlags", 71, 3], ["preCheck", 74, 3], ["disabledTests", 78, 3], ["pythonImportsCheck", 88, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pytask-dev",
           repo: "pytask",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -55,7 +52,7 @@ export default nix.lambda((args) => (() => {
         sqlalchemy,
         universal_pathlib,
       ], nix.sel(msgspec, "optional-dependencies", "toml")));
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, dag: nix.thunk(() => [networkx]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], dag: nix.thunk(() => [networkx]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([cloudpickle, git, nbmake, pexpect, pytest_xdist, pytestCheckHook, syrupy], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const pytestFlags = nix.thunk(() => ["--snapshot-warn-unused"]);
       const preCheck = "export PATH=\"$PATH:$out/bin\";\n";
@@ -67,7 +64,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["pytask"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Workflow management system that facilitates reproducible data analyses",
         homepage: "https://github.com/pytask-dev/pytask",
         changelog: nix.thunk(() => nix.str`https://github.com/pytask-dev/pytask/releases/tag/${nix.sel(src, "tag")}`),
@@ -78,7 +75,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

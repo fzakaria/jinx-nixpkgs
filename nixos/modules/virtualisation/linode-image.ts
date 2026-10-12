@@ -2,21 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/linode-image.nix", [[["sinceRelease", 25, 7], ["from", 26, 7], ["to", 31, 7]], [["type", 41, 7], ["default", 42, 7], ["description", 43, 7]], [["type", 52, 7], ["default", 53, 7], ["description", 54, 7]], [["configFile", 40, 32], ["compressionLevel", 51, 32]], [["linodeImage", 40, 20]], [["virtualisation", 40, 5]], [["tags", 61, 18]], [["name", 65, 7], ["baseName", 66, 7], ["postVM", 69, 7], ["format", 74, 7], ["partitionTableType", 75, 7], ["configFile", 76, 7], ["diskSize", 77, 39], ["config", 78, 15], ["lib", 78, 22], ["pkgs", 78, 26]], [["image", 63, 18], ["linodeImage", 64, 18]], [["nixos", 61, 12], ["build", 63, 12]], [["extension", 62, 11]], [["system", 61, 5], ["image", 62, 5]], [["maintainers", 82, 8]], [["imports", 20, 3], ["options", 38, 3], ["config", 60, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { config: false, lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/linode-image.nix", [["sinceRelease", 25, 7], ["from", 26, 7], ["to", 31, 7]]);
-const pos$2 = nix.positions(here + "/linode-image.nix", [["type", 41, 7], ["default", 42, 7], ["description", 43, 7]]);
-const pos$3 = nix.positions(here + "/linode-image.nix", [["type", 52, 7], ["default", 53, 7], ["description", 54, 7]]);
-const pos$4 = nix.positions(here + "/linode-image.nix", [["configFile", 40, 32], ["compressionLevel", 51, 32]]);
-const pos$5 = nix.positions(here + "/linode-image.nix", [["linodeImage", 40, 20]]);
-const pos$6 = nix.positions(here + "/linode-image.nix", [["virtualisation", 40, 5]]);
-const pos$7 = nix.positions(here + "/linode-image.nix", [["tags", 61, 18]]);
-const pos$8 = nix.positions(here + "/linode-image.nix", [["name", 65, 7], ["baseName", 66, 7], ["postVM", 69, 7], ["format", 74, 7], ["partitionTableType", 75, 7], ["configFile", 76, 7], ["diskSize", 77, 39], ["config", 78, 15], ["lib", 78, 22], ["pkgs", 78, 26]]);
-const pos$9 = nix.positions(here + "/linode-image.nix", [["image", 63, 18], ["linodeImage", 64, 18]]);
-const pos$10 = nix.positions(here + "/linode-image.nix", [["nixos", 61, 12], ["build", 63, 12]]);
-const pos$11 = nix.positions(here + "/linode-image.nix", [["extension", 62, 11]]);
-const pos$12 = nix.positions(here + "/linode-image.nix", [["system", 61, 5], ["image", 62, 5]]);
-const pos$13 = nix.positions(here + "/linode-image.nix", [["maintainers", 82, 8]]);
-const pos$14 = nix.positions(here + "/linode-image.nix", [["imports", 20, 3], ["options", 38, 3], ["config", 60, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,26 +14,26 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "virtualisation", "linodeImage"));
   const defaultConfigFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "configuration.nix", "_: {\n  imports = [\n    <nixpkgs/nixos/modules/virtualisation/linode-image.nix>\n  ];\n}\n"));
   return {
-    [nix.POS]: pos$14,
+    [nix.POS]: $pos[13],
     imports: nix.thunk(() => [
       nix.path(here, "./linode-config.nix"),
       nix.path(here, "./disk-size-option.nix"),
       nix.path(here, "../image/file-options.nix"),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModuleWith"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           sinceRelease: 2411n,
           from: nix.thunk(() => ["virtualisation", "linodeImage", "diskSize"]),
           to: nix.thunk(() => ["virtualisation", "diskSize"]),
         })))),
     ]),
     options: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       virtualisation: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         linodeImage: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           configFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -55,7 +42,7 @@ export default nix.lambda((args) => (() => {
               description: "A path to a configuration file which will be placed at `/etc/nixos/configuration.nix`\nand be used when switching to a new configuration.\nIf set to `null`, a default configuration is used, where the only import is\n`<nixpkgs/nixos/modules/virtualisation/linode-image.nix>`\n",
             })))),
           compressionLevel: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "ints", "between"), 1n, 9n)),
               default: 6n,
               description: "GZIP compression level of the resulting disk image (1-9).\n",
@@ -64,17 +51,17 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       system: nix.thunk(() => ({
-        [nix.POS]: pos$10,
-        nixos: nix.thunk(() => ({ [nix.POS]: pos$7, tags: nix.thunk(() => ["linode"]) })),
+        [nix.POS]: $pos[9],
+        nixos: nix.thunk(() => ({ [nix.POS]: $pos[6], tags: nix.thunk(() => ["linode"]) })),
         build: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           image: nix.thunk(() => nix.sel(config, "system", "build", "linodeImage")),
           linodeImage: nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "../../lib/make-disk-image.nix"), nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(config, "virtualisation"));
               return {
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               name: "linode-image",
               baseName: nix.thunk(() => nix.sel(config, "image", "baseName")),
               postVM: nix.thunk(() => nix.str`${nix.sel(pkgs, "gzip")}/bin/gzip -${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "compressionLevel")))} -c -- $diskImage > \\
@@ -92,10 +79,10 @@ rm $diskImage
             })()))),
         })),
       })),
-      image: nix.thunk(() => ({ [nix.POS]: pos$11, extension: "img.gz" })),
+      image: nix.thunk(() => ({ [nix.POS]: $pos[10], extension: "img.gz" })),
     })),
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "maintainers")), w);
         return [nix.thunk(() => nix.lookup(w_1, "cyntheticfox"))];

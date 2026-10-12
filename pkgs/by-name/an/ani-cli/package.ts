@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["homepage", 67, 5], ["description", 68, 5], ["license", 69, 5], ["maintainers", 70, 5], ["platforms", 71, 5], ["mainProgram", 72, 5], ["sourceProvenance", 73, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 39, 3], ["runtimeInputs", 40, 3], ["strictDeps", 51, 3], ["__structuredAttrs", 52, 3], ["installPhase", 54, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, makeWrapper: false, stdenvNoCC: false, lib: false, gnugrep: false, gnused: false, "curl-impersonate": false, catt: false, syncplay: false, ffmpeg: false, fzf: false, "yt-dlp": false, mpv: false, vlc: false, iina: false, withMpv: true, withVlc: true, withIina: true, chromecastSupport: true, syncSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 67, 5], ["description", 68, 5], ["license", 69, 5], ["maintainers", 70, 5], ["platforms", 71, 5], ["mainProgram", 72, 5], ["sourceProvenance", 73, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 39, 3], ["runtimeInputs", 40, 3], ["strictDeps", 51, 3], ["__structuredAttrs", 52, 3], ["installPhase", 54, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const syncSupport = nix.argOr($, "syncSupport", () => false);
   const players = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), withMpv, mpv), nix.concat(nix.app(nix.sel(lib, "optional"), withVlc, vlc), nix.app(nix.sel(lib, "optional"), withIina, iina))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ani-cli",
       version: "5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pystardust",
           repo: "ani-cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,7 +54,7 @@ wrapProgram $out/bin/ani-cli \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/pystardust/ani-cli",
         description: "Cli tool to browse and play anime",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

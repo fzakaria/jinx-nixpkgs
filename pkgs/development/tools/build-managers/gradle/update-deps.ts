@@ -2,13 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/update-deps.nix", [[["mitmCache", 57, 9], ["gradleInitScript", 58, 9], ["stdenv", 60, 9]], [["supportedFeatures", 71, 7]], [["attrPath", 73, 55]], [["passthru", 70, 20]], [["name", 67, 5], ["executable", 68, 5], ["derivationArgs", 70, 5], ["text", 74, 5]]]);
 const formals$1 = { args: { lib: false, runtimeShell: false, srcOnly: false, stdenvNoCC: false, writeTextFile: false, writeShellScript: false, path: false, bubblewrap: false, coreutils: false, curl: false, jq: false, "mitm-cache": false, nix: false, openssl: false, procps: false, python3: false }, ellipsis: false };
 const formals$2 = { args: { pkg: false, pname: false, attrPath: false, bwrapFlags: false, data: false, silent: false, useBwrap: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/update-deps.nix", [["mitmCache", 57, 9], ["gradleInitScript", 58, 9], ["stdenv", 60, 9]]);
-const pos$2 = nix.positions(here + "/update-deps.nix", [["supportedFeatures", 71, 7]]);
-const pos$3 = nix.positions(here + "/update-deps.nix", [["attrPath", 73, 55]]);
-const pos$4 = nix.positions(here + "/update-deps.nix", [["passthru", 70, 20]]);
-const pos$5 = nix.positions(here + "/update-deps.nix", [["name", 67, 5], ["executable", 68, 5], ["derivationArgs", 70, 5], ["text", 74, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -61,7 +57,7 @@ source "$stdenv/setup"
 phases="\${prePhases[*]:-} unpackPhase patchPhase \${preConfigurePhases[*]:-} configurePhase gradleUpdateScript" genericBuild
 `)));
       const source = nix.thunk(() => nix.app(srcOnly, nix.thunk(() => nix.app(nix.sel(pkg, "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             mitmCache: "",
             gradleInitScript: nix.path(here, "./init-deps.gradle"),
             stdenv: nix.thunk(() => nix.selOr(old, () => nix.force(stdenvNoCC), "stdenv")),
@@ -69,15 +65,15 @@ phases="\${prePhases[*]:-} unpackPhase patchPhase \${preConfigurePhases[*]:-} co
       const sourceDrvPath = nix.thunk(() => nix.builtins.unsafeDiscardOutputDependency(nix.thunk(() => nix.sel(source, "drvPath"))));
       const nixShellKeep = nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), " ", (x) => nix.str`--keep ${x}`, keep));
       return nix.app(writeTextFile, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           name: "fetch-deps.sh",
           executable: true,
           derivationArgs: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             passthru: nix.thunk(() => nix.update({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               supportedFeatures: nix.thunk(() => nix.app(nix.sel(lib, "optional"), silent, "silent")),
-            }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(attrPath, null)), nix.thunk(() => ({ [nix.POS]: pos$3, attrPath: attrPath }))))),
+            }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(attrPath, null)), nix.thunk(() => ({ [nix.POS]: $pos[2], attrPath: attrPath }))))),
           })),
           text: nix.thunk(() => nix.str`#!${runtimeShell}
 set -eo pipefail

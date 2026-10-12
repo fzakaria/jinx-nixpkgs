@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["mainProgram", 15, 8]], [["pname", 7, 3], ["postPatch", 9, 3], ["extraBuildInputs", 14, 3], ["meta", 15, 3]]]);
 const formals$1 = { args: { mkKdeDerivation: false, breeze: false, qtsvg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["mainProgram", 15, 8]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 7, 3], ["postPatch", 9, 3], ["extraBuildInputs", 14, 3], ["meta", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,13 +11,13 @@ export default nix.lambda((args) => (() => {
   const breeze = nix.arg($, "breeze");
   const qtsvg = nix.arg($, "qtsvg");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "plasma-welcome",
       postPatch: nix.thunk(() => nix.str`substituteInPlace src/qml/mock/Mock{Activities,Card,Overview}.qml \\
   --replace-fail 'file:" + Private.App.installPrefix + "/share/wallpapers/Next/contents/images' "file://${breeze}/share/wallpapers/Next/contents/images"
 `),
       extraBuildInputs: nix.thunk(() => [qtsvg]),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "plasma-welcome" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], mainProgram: "plasma-welcome" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

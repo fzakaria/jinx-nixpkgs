@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["description", 64, 5], ["homepage", 65, 5], ["mainProgram", 66, 5], ["downloadPage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["postPatch", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 42, 3], ["installPhase", 51, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, protobuf: false, qt5: false, libsForQt5: false, "pkg-config": false, installShellFiles: false, ghostscript: false, "poppler-utils": false, exempi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["mainProgram", 66, 5], ["downloadPage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["postPatch", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 42, 3], ["installPhase", 51, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const poppler_utils = nix.arg($, "poppler-utils");
   const exempi = nix.arg($, "exempi");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "equalx",
       version: "0.7.1-unstable-2020-02-26",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "q-quark",
           repo: "equalx",
           rev: "b7175a574379d86c43cabbdb6071f0b6d40d8e79",
@@ -51,7 +49,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\n\ninstallBin equalx\ninstallManPage equalx.1\ninstall -Dm644 equalx.appdata.xml $out/share/metainfo/eqaulx.appdata.xml\ninstall -Dm644 resources/equalx.ico $out/share/icons/hicolor/256x256/apps/equalx.ico\ninstall -Dm644 resources/equalx.desktop $out/share/applications/equalx.desktop\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Graphical interface to latex and a bunch of conversion programs",
         homepage: "https://equalx.sourceforge.io/",
         mainProgram: "equalx",

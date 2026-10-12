@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["updateScript", 74, 12]], [["description", 77, 5], ["homepage", 78, 5], ["changelog", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["mainProgram", 86, 5]], [["pname", 17, 3], ["version", 18, 3], ["__structuredAttrs", 20, 3], ["src", 22, 3], ["cargoHash", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["nativeCheckInputs", 43, 3], ["checkFlags", 46, 3], ["cargoBuildFlags", 57, 3], ["cargoTestFlags", 62, 3], ["doInstallCheck", 64, 3], ["nativeInstallCheckInputs", 65, 3], ["postInstall", 67, 3], ["passthru", 74, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, installShellFiles: false, versionCheckHook: false, "nix-update-script": false, "pkg-config": false, libgit2: false, openssl: false, usage: false, gitMinimal: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 74, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 77, 5], ["homepage", 78, 5], ["changelog", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["mainProgram", 86, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["__structuredAttrs", 20, 3], ["src", 22, 3], ["cargoHash", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["nativeCheckInputs", 43, 3], ["checkFlags", 46, 3], ["cargoBuildFlags", 57, 3], ["cargoTestFlags", 62, 3], ["doInstallCheck", 64, 3], ["nativeInstallCheckInputs", 65, 3], ["postInstall", 67, 3], ["passthru", 74, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const usage = nix.arg($, "usage");
   const gitMinimal = nix.arg($, "gitMinimal");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "hk",
       version: "2.0.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jdx",
           repo: "hk",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,11 +51,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd hk \\\n  --bash <($out/bin/hk completion bash) \\\n  --fish <($out/bin/hk completion fish) \\\n  --zsh <($out/bin/hk completion zsh)\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Tool for managing git hooks",
         homepage: "https://hk.jdx.dev",
         changelog: nix.thunk(() => nix.str`https://github.com/jdx/hk/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

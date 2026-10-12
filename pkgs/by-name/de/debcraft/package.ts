@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 12, 5], ["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5], ["mainProgram", 50, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["strictDeps", 19, 3], ["__structuredAttrs", 20, 3], ["nativeBuildInputs", 22, 3], ["makeFlags", 23, 3], ["dontPatchShebangs", 27, 3], ["postPatch", 29, 3], ["preBuild", 38, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, help2man: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 12, 5], ["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5], ["mainProgram", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["strictDeps", 19, 3], ["__structuredAttrs", 20, 3], ["nativeBuildInputs", 22, 3], ["makeFlags", 23, 3], ["dontPatchShebangs", 27, 3], ["postPatch", 29, 3], ["preBuild", 38, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const help2man = nix.arg($, "help2man");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "debcraft",
       version: "0.9.5",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "salsa.debian.org",
           owner: "debian",
           repo: "debcraft",
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace debcraft.sh --replace-fail \\\n  'DEBCRAFT_LIB_DIR=\"/usr/share/debcraft\"' \\\n  \"DEBCRAFT_LIB_DIR=\\\"$out/share/debcraft\\\"\"\n\n# their Makefile installs in DESTDIR/usr for some reason\nsubstituteInPlace Makefile --replace-fail '$(DESTDIR)/usr' '$(DESTDIR)'\n",
       preBuild: "# the makefile runs help2man on the script, which needs it to be executable\n# (and the shebang would need to be patched later anyways)\npatchShebangs debcraft.sh\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Easy, fast and secure way to build Debian packages",
         homepage: "https://salsa.debian.org/debian/debcraft",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

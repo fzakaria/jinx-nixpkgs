@@ -2,12 +2,12 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["withSpiro", 4, 3], ["withGTK", 5, 3]]]);
 const formals$1 = { args: { fontforge: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["withSpiro", 4, 3], ["withGTK", 5, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const fontforge = nix.arg($, "fontforge");
-  return nix.app(nix.sel(fontforge, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withSpiro: true, withGTK: true })));
+  return nix.app(nix.sel(fontforge, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], withSpiro: true, withGTK: true })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

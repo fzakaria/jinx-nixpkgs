@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 37, 5], ["sha256", 38, 5]], [["NIX_CFLAGS_COMPILE", 71, 7]], [["url", 76, 5], ["odd-unstable", 77, 5], ["rev-prefix", 78, 5]], [["updateScript", 75, 12]], [["description", 82, 5], ["mainProgram", 83, 5], ["homepage", 84, 5], ["license", 85, 5], ["platforms", 89, 5], ["teams", 90, 5]], [["pname", 29, 3], ["version", 30, 3], ["outputs", 31, 3], ["src", 36, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 48, 3], ["configureFlags", 66, 3], ["env", 71, 3], ["enableParallelBuilding", 73, 3], ["passthru", 75, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, gettext: false, itstool: false, "dbus-glib": false, glib: false, gtk3: false, gucharmap: false, libmateweather: false, libnl: false, libwnck: false, libgtop: false, libxml2: false, libnotify: false, "mate-desktop": false, "mate-panel": false, polkit: false, upower: false, wirelesstools: false, "hicolor-icon-theme": false, wrapGAppsHook3: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 37, 5], ["sha256", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 71, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 76, 5], ["odd-unstable", 77, 5], ["rev-prefix", 78, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 75, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 82, 5], ["mainProgram", 83, 5], ["homepage", 84, 5], ["license", 85, 5], ["platforms", 89, 5], ["teams", 90, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["outputs", 31, 3], ["src", 36, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 48, 3], ["configureFlags", 66, 3], ["env", 71, 3], ["enableParallelBuilding", 73, 3], ["passthru", 75, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,12 +32,12 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "mate-applets",
       version: "1.28.1",
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://pub.mate-desktop.org/releases/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/mate-applets-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "pZZxQVJ9xbFy0yKmADwjruwlMWD2ULs2QwoG3a76fi4=",
         })))),
@@ -66,21 +61,21 @@ export default nix.lambda((args) => (() => {
       ]),
       configureFlags: nix.thunk(() => ["--enable-suid=no", "--enable-in-process"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.sel(glib, "dev")}/include/gio-unix-2.0`),
       })),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://git.mate-desktop.org/mate-applets",
             "odd-unstable": true,
             "rev-prefix": "v",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Applets for use with the MATE panel",
         mainProgram: "mate-cpufreq-selector",
         homepage: "https://mate-desktop.org",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["hash", 13, 5]], [["homepage", 30, 5], ["description", 31, 5], ["longDescription", 32, 5], ["license", 37, 5], ["platforms", 38, 5], ["maintainers", 39, 5], ["priority", 44, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 16, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 30, 5], ["description", 31, 5], ["longDescription", 32, 5], ["license", 37, 5], ["platforms", 38, 5], ["maintainers", 39, 5], ["priority", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 16, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +14,7 @@ export default nix.lambda((args) => (() => {
       const pname = "caladea";
       const version = "20130214";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://commondatastorage.googleapis.com/chromeos-localmirror/distfiles/crosextrafonts-${version}.tar.gz`),
           hash: "sha256-xI0cL9YTycBslZw02nuDiAWeJAjSuxmEXcPtNfduTQk=",
         }))));
@@ -30,7 +28,7 @@ cp -v ${nix.path(here, "./cambria-alias.conf")} $out/etc/fonts/conf.d/30-cambria
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://openfontlibrary.org/en/font/caladea",
         description: "Serif font metric-compatible with Microsoft Cambria",
         longDescription: "Caladea is a free font that is metric-compatible with the\nMicrosoft Cambria font. Developed by Carolina Giovagnoli and\nAndrés Torresi at Huerta Tipográfica foundry.\n",
@@ -39,7 +37,7 @@ runHook postInstall
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "rycee"))]),
         priority: 10n,
       }));
-      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

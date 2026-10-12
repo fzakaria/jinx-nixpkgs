@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 10, 5], ["version", 11, 22], ["src", 11, 30], ["sourceRoot", 13, 5], ["vendorHash", 15, 5], ["ldflags", 17, 5]], [["unwrapped", 34, 13]], [["homepage", 38, 5], ["description", 39, 5], ["license", 40, 5], ["mainProgram", 41, 5], ["maintainers", 42, 5], ["teams", 46, 5]], [["pname", 25, 3], ["version", 26, 20], ["paths", 28, 3], ["passthru", 33, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, symlinkJoin: false, pulumi: false, "pulumi-nodejs": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 10, 5], ["version", 11, 22], ["src", 11, 30], ["sourceRoot", 13, 5], ["vendorHash", 15, 5], ["ldflags", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["unwrapped", 34, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 38, 5], ["description", 39, 5], ["license", 40, 5], ["mainProgram", 41, 5], ["maintainers", 42, 5], ["teams", 46, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 20], ["paths", 28, 3], ["passthru", 33, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const pulumi = nix.arg($, "pulumi");
   const pulumi_nodejs = nix.arg($, "pulumi-nodejs");
   const unwrapped = nix.thunk(() => nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "pulumi-bun-unwrapped",
       version: nix.thunk(() => nix.attr(pulumi, "version")),
       src: nix.thunk(() => nix.attr(pulumi, "src")),
@@ -29,13 +26,13 @@ export default nix.lambda((args) => (() => {
       ]),
     })));
   return nix.app(symlinkJoin, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pulumi-bun",
       version: nix.thunk(() => nix.attr(pulumi, "version")),
       paths: nix.thunk(() => [unwrapped, pulumi_nodejs]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, unwrapped: unwrapped })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], unwrapped: unwrapped })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.pulumi.com/docs/iac/languages-sdks/javascript/",
         description: "Language host for Pulumi programs written in TypeScript & JavaScript (Bun)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

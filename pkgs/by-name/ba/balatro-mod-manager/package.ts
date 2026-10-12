@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["x86_64-linux", 55, 9], ["aarch64-linux", 56, 9]], [["pname", 28, 5], ["version", 29, 26], ["src", 29, 34], ["nativeBuildInputs", 31, 5], ["dontConfigure", 36, 5], ["buildPhase", 38, 5], ["installPhase", 44, 5], ["outputHashMode", 51, 5], ["outputHashAlgo", 52, 5], ["outputHash", 53, 5]], [["description", 100, 5], ["homepage", 101, 5], ["license", 102, 5], ["platforms", 103, 5], ["maintainers", 104, 5], ["mainProgram", 108, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nodeModules", 27, 3], ["cargoHash", 61, 3], ["dontUseCargoParallelTests", 63, 3], ["checkFlags", 64, 3], ["nativeBuildInputs", 73, 3], ["buildInputs", 81, 3], ["postPatch", 87, 3], ["postInstall", 93, 3], ["meta", 99, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rustPlatform: false, "pkg-config": false, glib: false, gtk3: false, webkitgtk_4_1: false, bun: false, "cargo-tauri": false, writableTmpDirAsHomeHook: false, nodejs: false, wrapGAppsHook4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["x86_64-linux", 55, 9], ["aarch64-linux", 56, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 28, 5], ["version", 29, 26], ["src", 29, 34], ["nativeBuildInputs", 31, 5], ["dontConfigure", 36, 5], ["buildPhase", 38, 5], ["installPhase", 44, 5], ["outputHashMode", 51, 5], ["outputHashAlgo", 52, 5], ["outputHash", 53, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 100, 5], ["homepage", 101, 5], ["license", 102, 5], ["platforms", 103, 5], ["maintainers", 104, 5], ["mainProgram", 108, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nodeModules", 27, 3], ["cargoHash", 61, 3], ["dontUseCargoParallelTests", 63, 3], ["checkFlags", 64, 3], ["nativeBuildInputs", 73, 3], ["buildInputs", 81, 3], ["postPatch", 87, 3], ["postInstall", 93, 3], ["meta", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,18 +21,18 @@ export default nix.lambda((args) => (() => {
   const nodejs = nix.arg($, "nodejs");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "balatro-mod-manager",
       version: "0.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "skyline69",
           repo: "balatro-mod-manager",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-cazd6Cns87cjwBORQIsAD5rBes7eTGCAz7bytZO+TsQ=",
         })))),
       nodeModules: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-node_modules`),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -47,7 +43,7 @@ export default nix.lambda((args) => (() => {
           outputHashMode: "recursive",
           outputHashAlgo: "sha256",
           outputHash: nix.thunk(() => nix.selOr({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             "x86_64-linux": "sha256-SQCF05uuJg16Il7SvCXlzkm64wJyPfNzVqfgDj7YldI=",
             "aarch64-linux": "sha256-YobKPWe+0StlyJkYEeUmNzYAinGwR042HWpdwWOCt6Q=",
           }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
@@ -74,7 +70,7 @@ patchShebangs --build node_modules
 `),
       postInstall: "for size in 32 128 512; do\n  install -Dm644 src-tauri/icons/\"$size\"x\"$size\".png $out/share/icons/hicolor/\"$size\"x\"$size\"/apps/balatro-mod-manager.png\ndone\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "A mod manager for the game Balatro",
         homepage: "https://balatro-mod-manager.dasguney.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

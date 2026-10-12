@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 28, 5], ["version", 29, 13], ["hash", 30, 5]], [["all", 51, 5], ["cli", 52, 5], ["readme", 57, 5]], [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["maintainers", 68, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["build-system", 33, 3], ["dependencies", 38, 3], ["optional-dependencies", 50, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, fetchPypi: false, lib: false, "apeye-core": false, attrs: false, click: false, consolekit: false, docutils: false, "dom-toml": false, "domdf-python-tools": false, hatchling: false, "hatch-requirements-txt": false, "license-expression": false, natsort: false, packaging: false, "readme-renderer": false, sdjson: false, shippinglabel: false, "typing-extensions": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 28, 5], ["version", 29, 13], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["all", 51, 5], ["cli", 52, 5], ["readme", 57, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["maintainers", 68, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["build-system", 33, 3], ["dependencies", 38, 3], ["optional-dependencies", 50, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.14.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "pyproject_parser",
           version: version,
           hash: "sha256-QEe9miURXkABmeZyzZ2Pi6QF2BSNZadsvzr7z3fpZuI=",
@@ -52,13 +49,13 @@ export default nix.lambda((args) => (() => {
         typing_extensions,
       ]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         all: nix.thunk(() => nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.app(nix.sel(lib, "removeAttrs"), optional_dependencies, nix.thunk(() => ["all"]))))),
         cli: nix.thunk(() => [click, consolekit, sdjson]),
         readme: nix.thunk(() => nix.concat([docutils, readme_renderer], nix.sel(readme_renderer, "optional-dependencies", "md"))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Parser for ‘pyproject.toml’",
         homepage: "https://github.com/repo-helper/pyproject-parser",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -68,7 +65,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 26, 5], ["hash", 27, 5]], [["name", 37, 7], ["url", 38, 7], ["hash", 39, 7]], [["NIX_CFLAGS_COMPILE", 87, 5]], [["homepage", 94, 5], ["description", 95, 5], ["mainProgram", 96, 5], ["license", 97, 5], ["platforms", 98, 5], ["maintainers", 99, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["outputs", 30, 3], ["patches", 35, 3], ["postPatch", 43, 3], ["preAutoreconf", 48, 3], ["configureFlags", 53, 3], ["nativeBuildInputs", 59, 3], ["buildInputs", 71, 3], ["propagatedBuildInputs", 78, 3], ["doInstallCheck", 84, 3], ["env", 86, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, fetchpatch: false, perlPackages: false, "gtk-doc": false, intltool: false, autoreconfHook: false, "pkg-config": false, glib: false, libxml2: false, sqlite: false, sg3_utils: false, "gdk-pixbuf": false, taglib: false, libimobiledevice: false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 37, 7], ["url", 38, 7], ["hash", 39, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 87, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 94, 5], ["description", 95, 5], ["mainProgram", 96, 5], ["license", 97, 5], ["platforms", 98, 5], ["maintainers", 99, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["outputs", 30, 3], ["patches", 35, 3], ["postPatch", 43, 3], ["preAutoreconf", 48, 3], ["configureFlags", 53, 3], ["nativeBuildInputs", 59, 3], ["buildInputs", 71, 3], ["propagatedBuildInputs", 78, 3], ["doInstallCheck", 84, 3], ["env", 86, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,18 +25,18 @@ export default nix.lambda((args) => (() => {
   const libimobiledevice = nix.arg($, "libimobiledevice");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "libgpod",
       version: "0.8.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/gtkpod/libgpod-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-Y4p5WdBOlfHmKrrQK9M3AuTo3++YSFrH2dUDlcN+lV0=",
         })))),
       outputs: nix.thunk(() => ["out", "dev"]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "libplist-2.3.0-compatibility.patch",
             url: "https://sourceforge.net/p/gtkpod/patches/48/attachment/libplist-2.3.0-compatibility.patch",
             hash: "sha256-aVkuYE1N/jdEhVhiXEVhApvOC+8csIMMpP20rAJwEVQ=",
@@ -64,11 +60,11 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [gdk_pixbuf, glib, libimobiledevice]),
       doInstallCheck: true,
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=implicit-int", "-Wno-error=incompatible-pointer-types"]))),
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://sourceforge.net/projects/gtkpod/",
         description: "Library used by gtkpod to access the contents of an ipod",
         mainProgram: "ipod-read-sysinfo-extended",

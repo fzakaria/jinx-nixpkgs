@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/type-calendar.nix", [[["description", 17, 5]], [["pname", 8, 3], ["src", 9, 19], ["version", 9, 23], ["propagatedBuildInputs", 11, 3], ["meta", 16, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, calendar: false, caqti: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/type-calendar.nix", [["description", 17, 5]]);
-const pos$2 = nix.positions(here + "/type-calendar.nix", [["pname", 8, 3], ["src", 9, 19], ["version", 9, 23], ["propagatedBuildInputs", 11, 3], ["meta", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,13 +11,13 @@ export default nix.lambda((args) => (() => {
   const calendar = nix.arg($, "calendar");
   const caqti = nix.arg($, "caqti");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "caqti-type-calendar",
       src: nix.thunk(() => nix.attr(caqti, "src")),
       version: nix.thunk(() => nix.attr(caqti, "version")),
       propagatedBuildInputs: nix.thunk(() => [calendar, caqti]),
       meta: nix.thunk(() => nix.update(nix.sel(caqti, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Date and time field types using the calendar library",
       })),
     })));

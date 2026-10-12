@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 32, 5], ["repo", 33, 5], ["rev", 34, 5], ["fetchSubmodules", 35, 5], ["hash", 36, 5]], [["pname", 42, 26], ["version", 42, 32], ["src", 42, 40], ["pnpm", 43, 13], ["fetcherVersion", 44, 5], ["hash", 45, 5]], [["VERSION_INFO_GIT_REF", 85, 5]], [["broken", 93, 5], ["description", 94, 5], ["homepage", 95, 5], ["license", 96, 5], ["mainProgram", 97, 5], ["maintainers", 98, 5], ["platforms", 99, 5]], [["pname", 27, 3], ["version", 28, 3], ["__structuredAttrs", 29, 3], ["src", 31, 3], ["cargoHash", 39, 3], ["pnpmDeps", 41, 3], ["postPatch", 48, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 69, 3], ["env", 84, 3], ["postInstall", 88, 3], ["meta", 92, 3]]]);
 const formals$1 = { args: { "apple-sdk_14": false, "cargo-tauri": false, darwin: false, fetchFromGitHub: false, fetchPnpmDeps: false, gst_all_1: false, lib: false, "libayatana-appindicator": false, nodejs: false, openssl: false, perl: false, "pkg-config": false, pnpm_10: false, pnpmConfigHook: false, python3: false, rustPlatform: false, stdenv: false, webkitgtk_4_1: false, wrapGAppsHook4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 32, 5], ["repo", 33, 5], ["rev", 34, 5], ["fetchSubmodules", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 42, 26], ["version", 42, 32], ["src", 42, 40], ["pnpm", 43, 13], ["fetcherVersion", 44, 5], ["hash", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["VERSION_INFO_GIT_REF", 85, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["broken", 93, 5], ["description", 94, 5], ["homepage", 95, 5], ["license", 96, 5], ["mainProgram", 97, 5], ["maintainers", 98, 5], ["platforms", 99, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["__structuredAttrs", 29, 3], ["src", 31, 3], ["cargoHash", 39, 3], ["pnpmDeps", 41, 3], ["postPatch", 48, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 69, 3], ["env", 84, 3], ["postInstall", 88, 3], ["meta", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   const pnpm = pnpm_10;
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "deltachat-tauri",
       version: "2.59.0-unstable-2026-08-15",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "deltachat",
           repo: "deltachat-tauri",
           rev: "ea854b4799578d7291e4dc9d6b76ddb5a001d2f0",
@@ -46,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-Z3uZ+IARmCZbJiIotYjdQRzYZFplRwE3xO0Yb0tLbcE=",
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -75,12 +71,12 @@ export default nix.lambda((args) => (() => {
           webkitgtk_4_1,
         ])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [apple_sdk_14])))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         VERSION_INFO_GIT_REF: nix.thunk(() => nix.sel(finalAttrs, "src", "rev")),
       })),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "install -Dm 444 images/tray/deltachat.svg \"$out/share/icons/hicolor/scalable/apps/deltachat-tauri.svg\"\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         broken: true,
         description: "Email-based instant messaging for Desktop",
         homepage: "https://github.com/deltachat/deltachat-tauri",

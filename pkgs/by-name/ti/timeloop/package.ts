@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["description", 95, 5], ["homepage", 96, 5], ["license", 97, 5], ["platforms", 98, 5], ["maintainers", 99, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 30, 3], ["preConfigure", 40, 3], ["enableParallelBuilding", 44, 3], ["postPatch", 46, 3], ["sconsFlags", 79, 3], ["installPhase", 86, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, scons: false, libconfig: false, boost: false, libyaml: false, "yaml-cpp": false, ncurses: false, gpm: false, enableAccelergy: true, enableISL: true, accelergy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 95, 5], ["homepage", 96, 5], ["license", 97, 5], ["platforms", 98, 5], ["maintainers", 99, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 30, 3], ["preConfigure", 40, 3], ["enableParallelBuilding", 44, 3], ["postPatch", 46, 3], ["sconsFlags", 79, 3], ["installPhase", 86, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const enableISL = nix.argOr($, "enableISL", () => false);
   const accelergy = nix.arg($, "accelergy");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "timeloop",
       version: "3.0.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "NVlabs",
           repo: "timeloop",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,7 +59,7 @@ substituteInPlace ./src/SConscript --replace ", 'gpm'" ""
       sconsFlags: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "--static"), nix.concat(nix.app(nix.sel(lib, "optional"), enableAccelergy, "--accelergy"), nix.app(nix.sel(lib, "optional"), enableISL, "--with-isl")))),
       installPhase: "cp -r ./bin ./lib $out\nmkdir -p $out/share\ncp -r ./doc $out/share\nmkdir -p $out/data\ncp -r ./problem-shapes ./configs $out/data\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Chip modeling/mapping benchmarking framework",
         homepage: "https://timeloop.csail.mit.edu",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

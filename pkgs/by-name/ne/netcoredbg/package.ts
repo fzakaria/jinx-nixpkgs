@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5], ["name", 28, 5]], [["owner", 34, 5], ["repo", 35, 5], ["rev", 36, 5], ["name", 37, 5], ["hash", 38, 13]], [["pname", 42, 13], ["version", 42, 19], ["srcs", 44, 5], ["sourceRoot", 49, 5], ["nativeBuildInputs", 51, 5], ["hardeningDisable", 56, 5], ["preConfigure", 58, 5]], [["pname", 72, 7], ["version", 73, 7], ["src", 74, 7], ["dotnet-sdk", 75, 7], ["dotnet-runtime", 77, 5], ["projectFile", 79, 5], ["nugetDeps", 80, 5], ["dotnetFlags", 83, 5], ["executables", 84, 5], ["selfContainedBuild", 88, 5]], [["package", 121, 7], ["command", 122, 7], ["version", 123, 7]], [["version", 120, 11]], [["fetch-deps", 118, 23], ["updateScript", 119, 5], ["tests", 120, 5]], [["description", 128, 5], ["homepage", 129, 5], ["license", 130, 5], ["platforms", 131, 5], ["mainProgram", 132, 5], ["maintainers", 133, 5]], [["pname", 92, 11], ["version", 92, 17], ["src", 95, 3], ["nativeBuildInputs", 97, 3], ["buildInputs", 101, 3], ["installPhase", 102, 3], ["passthru", 117, 3], ["meta", 127, 3]]]);
 const formals$1 = { args: { lib: false, clangStdenv: false, stdenv: false, cmake: false, autoPatchelfHook: false, fetchFromGitHub: false, dotnetCorePackages: false, buildDotnetModule: false, makeWrapper: false, netcoredbg: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5], ["name", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["rev", 36, 5], ["name", 37, 5], ["hash", 38, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 42, 13], ["version", 42, 19], ["srcs", 44, 5], ["sourceRoot", 49, 5], ["nativeBuildInputs", 51, 5], ["hardeningDisable", 56, 5], ["preConfigure", 58, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 72, 7], ["version", 73, 7], ["src", 74, 7], ["dotnet-sdk", 75, 7], ["dotnet-runtime", 77, 5], ["projectFile", 79, 5], ["nugetDeps", 80, 5], ["dotnetFlags", 83, 5], ["executables", 84, 5], ["selfContainedBuild", 88, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["package", 121, 7], ["command", 122, 7], ["version", 123, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["version", 120, 11]]);
-const pos$7 = nix.positions(here + "/package.nix", [["fetch-deps", 118, 23], ["updateScript", 119, 5], ["tests", 120, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 128, 5], ["homepage", 129, 5], ["license", 130, 5], ["platforms", 131, 5], ["mainProgram", 132, 5], ["maintainers", 133, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 92, 11], ["version", 92, 17], ["src", 95, 3], ["nativeBuildInputs", 97, 3], ["buildInputs", 101, 3], ["installPhase", 102, 3], ["passthru", 117, 3], ["meta", 127, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const coreclr_version = "v10.0.1";
   const coreclr_hash = "sha256-pVcLvew3THRqXgKMVO6jTZyPP06R46KZPMpYdiM3yXU=";
   const coreclr_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "dotnet",
       repo: "runtime",
       rev: coreclr_version,
@@ -43,7 +35,7 @@ export default nix.lambda((args) => (() => {
     }))));
   const dotnet_sdk = nix.thunk(() => nix.sel(dotnetCorePackages, "sdk_10_0"));
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       owner: "Samsung",
       repo: "netcoredbg",
       rev: version,
@@ -51,7 +43,7 @@ export default nix.lambda((args) => (() => {
       hash: hash,
     }))));
   const unmanaged = nix.thunk(() => nix.app(nix.sel(clangStdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: version,
       srcs: nix.thunk(() => [src, coreclr_src]),
@@ -69,7 +61,7 @@ cmakeFlagsArray+=(
 `),
     }))));
   const managed = nix.thunk(() => nix.app(buildDotnetModule, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       src: src,
@@ -82,7 +74,7 @@ cmakeFlagsArray+=(
       selfContainedBuild: true,
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: pname,
       version: version,
       src: managed,
@@ -104,13 +96,13 @@ makeWrapper $out/libexec/netcoredbg/netcoredbg $out/bin/netcoredbg
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         "fetch-deps": nix.thunk(() => nix.attr(managed, "fetch-deps")),
         updateScript: nix.path(here, "./update.sh"),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               package: netcoredbg,
               command: "netcoredbg --version",
               version: nix.thunk(() => nix.str`NET Core debugger ${release}`),
@@ -118,7 +110,7 @@ runHook postInstall
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Managed code debugger with MI interface for CoreCLR",
         homepage: "https://github.com/Samsung/netcoredbg",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

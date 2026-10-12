@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5], ["curlOpts", 17, 5]], [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["platforms", 47, 5], ["sourceProvenance", 48, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 25, 3], ["dontConfigure", 29, 3], ["dontBuild", 30, 3], ["installPhase", 32, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { autoPatchelfHook: false, cups: false, dpkg: false, fetchurl: false, lib: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5], ["curlOpts", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["platforms", 47, 5], ["sourceProvenance", 48, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 25, 3], ["dontConfigure", 29, 3], ["dontBuild", 30, 3], ["installPhase", 32, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "fflinuxprint",
       version: "1.1.4-3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://support-fb.fujifilm.com/driver_downloads/fflinuxprint_${nix.sel(finalAttrs, "version")}_amd64.deb`),
           hash: "sha256-oi6p4e9Uigz0TbEcmloDhv3qU98Ou1qqdorGY3942uM=",
           curlOpts: "--user-agent Mozilla/5.0",
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/cups/model\nmv usr/lib $out\nmv usr/share/ppd/fujifilm/* $out/share/cups/model\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "FujiFILM Linux Printer Driver",
         homepage: "https://support-fb.fujifilm.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

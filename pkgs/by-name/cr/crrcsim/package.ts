@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["sha256", 21, 5]], [["description", 38, 5], ["mainProgram", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 5], ["license", 45, 5]], [["pname", 16, 3], ["version", 17, 11], ["src", 19, 3], ["buildInputs", 24, 3], ["patches", 33, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libGLU: false, libGL: false, SDL: false, SDL_mixer: false, plib: false, libjpeg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 38, 5], ["mainProgram", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 5], ["license", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 11], ["src", 19, 3], ["buildInputs", 24, 3], ["patches", 33, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,18 +18,18 @@ export default nix.lambda((args) => (() => {
   const libjpeg = nix.arg($, "libjpeg");
   const version = "0.9.13";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "crrcsim",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/crrcsim/crrcsim-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "abe59b35ebb4322f3c48e6aca57dbf27074282d4928d66c0caa40d7a97391698",
         })))),
       buildInputs: nix.thunk(() => [libGLU, libGL, SDL, SDL_mixer, plib, libjpeg]),
       patches: nix.thunk(() => [nix.path(here, "./gcc6.patch")]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Model-airplane flight simulator",
         mainProgram: "crrcsim",
         maintainers: nix.thunk(() => (() => {

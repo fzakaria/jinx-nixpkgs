@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["license", 50, 5], ["homepage", 51, 5], ["platforms", 52, 5], ["description", 53, 5], ["maintainers", 54, 5], ["mainProgram", 55, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["propagatedBuildInputs", 27, 3], ["postPatch", 36, 3], ["installPhase", 40, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { wrapGAppsHook3: false, lib: false, python3Packages: false, fetchFromGitHub: false, rofi: false, "gobject-introspection": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["license", 50, 5], ["homepage", 51, 5], ["platforms", 52, 5], ["description", 53, 5], ["maintainers", 54, 5], ["mainProgram", 55, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["propagatedBuildInputs", 27, 3], ["postPatch", 36, 3], ["installPhase", 40, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const rofi = nix.arg($, "rofi");
   const gobject_introspection = nix.arg($, "gobject-introspection");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "plasma-hud",
       version: "22.01.0",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Zren",
           repo: "plasma-hud",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "sed -i \"s:/usr/lib/plasma-hud:$out/bin:\" etc/xdg/autostart/plasma-hud.desktop\n",
       installPhase: "runHook preInstall\n\ninstall -Dm555 usr/lib/plasma-hud/plasma-hud -t $out/bin\ncp -r etc -t $out\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         homepage: "https://github.com/Zren/plasma-hud",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

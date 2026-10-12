@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 40, 5], ["repo", 41, 5], ["rev", 43, 5], ["hash", 44, 5]], [["providedSessions", 102, 5], ["updateScript", 103, 5]], [["description", 107, 5], ["homepage", 108, 5], ["license", 109, 5], ["platforms", 110, 5], ["mainProgram", 111, 5], ["maintainers", 112, 5]], [["pname", 33, 3], ["version", 34, 3], ["strictDeps", 36, 3], ["__structuredAttrs", 37, 3], ["src", 39, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 55, 3], ["mesonBuildType", 77, 3], ["mesonInstallFlags", 79, 3], ["postInstall", 81, 3], ["doCheck", 90, 3], ["doInstallCheck", 94, 3], ["nativeInstallCheckInputs", 96, 3], ["versionCheckProgramArg", 99, 3], ["passthru", 101, 3], ["meta", 106, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, meson: false, ninja: false, "pkg-config": false, "wayland-scanner": false, wayland: false, "wayland-protocols": false, wlroots_0_20: false, libxkbcommon: false, libinput: false, "libdisplay-info": false, pixman: false, cairo: false, pango: false, libGL: false, libdrm: false, libgbm: false, libxcb: false, "libxcb-wm": false, lcms2: false, jemalloc: false, tomlplusplus: false, nlohmann_json: false, "xwayland-satellite": false, makeBinaryWrapper: false, versionCheckHook: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 40, 5], ["repo", 41, 5], ["rev", 43, 5], ["hash", 44, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["providedSessions", 102, 5], ["updateScript", 103, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 107, 5], ["homepage", 108, 5], ["license", 109, 5], ["platforms", 110, 5], ["mainProgram", 111, 5], ["maintainers", 112, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["strictDeps", 36, 3], ["__structuredAttrs", 37, 3], ["src", 39, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 55, 3], ["mesonBuildType", 77, 3], ["mesonInstallFlags", 79, 3], ["postInstall", 81, 3], ["doCheck", 90, 3], ["doInstallCheck", 94, 3], ["nativeInstallCheckInputs", 96, 3], ["versionCheckProgramArg", 99, 3], ["passthru", 101, 3], ["meta", 106, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,13 +37,13 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "umbriel",
       version: "0-unstable-2026-10-06",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "noctalia-dev",
           repo: "umbriel",
           rev: "9091e3feb75473f38a6cc300ea99f03ad0b2b6e8",
@@ -88,12 +85,12 @@ wrapProgram $out/bin/umbriel \\
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "--version",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         providedSessions: nix.thunk(() => ["umbriel"]),
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Wayland compositor built on wlroots and SceneFX",
         homepage: "https://docs.noctalia.dev/umbriel/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

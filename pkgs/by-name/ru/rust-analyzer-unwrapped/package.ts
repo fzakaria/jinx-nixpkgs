@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["CFG_RELEASE", 52, 7]], [["updateScript", 65, 5]], [["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["maintainers", 79, 5], ["mainProgram", 83, 5]], [["pname", 15, 3], ["version", 16, 3], ["cargoHash", 18, 3], ["src", 20, 3], ["cargoBuildFlags", 27, 3], ["cargoTestFlags", 33, 3], ["checkFlags", 42, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 46, 3], ["buildFeatures", 50, 3], ["env", 52, 3], ["doCheck", 54, 11], ["preCheck", 55, 3], ["nativeInstallCheckInputs", 59, 3], ["doInstallCheck", 62, 3], ["passthru", 64, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rustPlatform: false, cmake: false, libiconv: false, useMimalloc: true, doCheck: true, "nix-update-script": false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CFG_RELEASE", 52, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 65, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["maintainers", 79, 5], ["mainProgram", 83, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["cargoHash", 18, 3], ["src", 20, 3], ["cargoBuildFlags", 27, 3], ["cargoTestFlags", 33, 3], ["checkFlags", 42, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 46, 3], ["buildFeatures", 50, 3], ["env", 52, 3], ["doCheck", 54, 11], ["preCheck", 55, 3], ["nativeInstallCheckInputs", 59, 3], ["doInstallCheck", 62, 3], ["passthru", 64, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "rust-analyzer-unwrapped",
       version: "2026-09-28",
       cargoHash: "sha256-pCbofUTBCIRID5icso1SKdMNjO8Eowy2c/pVBJplaqY=",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rust-lang",
           repo: "rust-analyzer",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +36,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv]))),
       buildFeatures: nix.thunk(() => nix.app(nix.sel(lib, "optional"), useMimalloc, "mimalloc")),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         CFG_RELEASE: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       doCheck: doCheck,
@@ -49,11 +45,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Language server for the Rust language",
         homepage: "https://rust-analyzer.github.io",
         license: nix.thunk(() => (() => {

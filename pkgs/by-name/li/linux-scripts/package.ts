@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5]], [["version", 39, 26], ["pname", 40, 3], ["src", 45, 3], ["nativeBuildInputs", 47, 3], ["dontConfigure", 49, 3], ["dontBuild", 50, 3], ["installPhase", 52, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, linuxHeaders: false, makeWrapper: false, stdenvNoCC: false, binutils: false, coreutils: false, gnugrep: false, bzip2: false, gzip: false, lz4: false, lzop: false, xz: false, zstd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 39, 26], ["pname", 40, 3], ["src", 45, 3], ["nativeBuildInputs", 47, 3], ["dontConfigure", 49, 3], ["dontBuild", 50, 3], ["installPhase", 52, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +25,7 @@ export default nix.lambda((args) => (() => {
 wrapProgram $out/bin/${scriptName} --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), commonDeps)}
 `;
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: nix.thunk(() => nix.attr(linuxHeaders, "version")),
       pname: "linux-scripts",
       src: nix.thunk(() => nix.sel(linuxHeaders, "src")),
@@ -37,7 +36,7 @@ wrapProgram $out/bin/${scriptName} --prefix PATH : ${nix.app(nix.sel(lib, "makeB
 ${nix.app(toWrapScriptLines, "extract-vmlinux")}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Standalone scripts from <linux>/scripts",
         homepage: "https://www.kernel.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

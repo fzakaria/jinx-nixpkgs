@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]], [["bigquery", 61, 5], ["duckdb", 66, 5], ["openai", 70, 5], ["pandas", 71, 5], ["postgres", 72, 5], ["spark", 73, 5], ["databricks", 74, 5]], [["description", 105, 5], ["homepage", 106, 5], ["changelog", 107, 5], ["license", 108, 5], ["maintainers", 109, 5]], [["pname", 40, 3], ["version", 41, 3], ["pyproject", 42, 3], ["src", 44, 3], ["build-system", 51, 3], ["dependencies", 53, 3], ["optional-dependencies", 60, 3], ["pythonImportsCheck", 77, 3], ["nativeCheckInputs", 79, 3], ["disabledTests", 88, 3], ["disabledTestPaths", 96, 3], ["meta", 104, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "setuptools-scm": false, "more-itertools": false, prettytable: false, sqlglot: false, "typing-extensions": false, "google-cloud-bigquery": false, "google-cloud-bigquery-storage": false, duckdb: false, pandas: false, openai: false, psycopg2: false, pyspark: false, "databricks-sql-connector": false, findspark: false, "pytest-forked": false, "pytest-postgresql": false, "pytest-xdist": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["bigquery", 61, 5], ["duckdb", 66, 5], ["openai", 70, 5], ["pandas", 71, 5], ["postgres", 72, 5], ["spark", 73, 5], ["databricks", 74, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 105, 5], ["homepage", 106, 5], ["changelog", 107, 5], ["license", 108, 5], ["maintainers", 109, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 40, 3], ["version", 41, 3], ["pyproject", 42, 3], ["src", 44, 3], ["build-system", 51, 3], ["dependencies", 53, 3], ["optional-dependencies", 60, 3], ["pythonImportsCheck", 77, 3], ["nativeCheckInputs", 79, 3], ["disabledTests", 88, 3], ["disabledTestPaths", 96, 3], ["meta", 104, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.46.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "eakmanrq",
           repo: "sqlframe",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools_scm]);
       const dependencies = nix.thunk(() => [more_itertools, prettytable, sqlglot, typing_extensions]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         bigquery: nix.thunk(() => nix.concat([google_cloud_bigquery, google_cloud_bigquery_storage], nix.sel(google_cloud_bigquery, "optional-dependencies", "pandas"))),
         duckdb: nix.thunk(() => [duckdb, pandas]),
         openai: nix.thunk(() => [openai]),
@@ -59,7 +56,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_activate_bigquery_default_dataset", "test_unquoted_identifiers"]);
       const disabledTestPaths = nix.thunk(() => ["tests/integration/", "tests/unit/*/test_activate.py"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Turning PySpark Into a Universal DataFrame API",
         homepage: "https://github.com/eakmanrq/sqlframe",
         changelog: nix.thunk(() => nix.str`https://github.com/eakmanrq/sqlframe/releases/tag/${nix.sel(src, "tag")}`),
@@ -70,7 +67,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

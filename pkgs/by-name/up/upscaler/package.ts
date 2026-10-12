@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 26, 5], ["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]], [["updateScript", 33, 12]], [["description", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["mainProgram", 87, 5], ["platforms", 88, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 23, 3], ["src", 25, 3], ["passthru", 33, 3], ["postPatch", 35, 3], ["nativeBuildInputs", 40, 3], ["dependencies", 52, 3], ["buildInputs", 58, 3], ["mesonFlags", 63, 3], ["postInstallCheck", 70, 3], ["dontWrapGApps", 74, 3], ["makeWrapperArgs", 76, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitLab: false, glib: false, gtk4: false, meson: false, ninja: false, gitUpdater: false, "desktop-file-utils": false, appstream: false, "blueprint-compiler": false, python3Packages: false, "pkg-config": false, libadwaita: false, wrapGAppsHook4: false, "upscayl-ncnn": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 26, 5], ["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 33, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["mainProgram", 87, 5], ["platforms", 88, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 23, 3], ["src", 25, 3], ["passthru", 33, 3], ["postPatch", 35, 3], ["nativeBuildInputs", 40, 3], ["dependencies", 52, 3], ["buildInputs", 58, 3], ["mesonFlags", 63, 3], ["postInstallCheck", 70, 3], ["dontWrapGApps", 74, 3], ["makeWrapperArgs", 76, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   const upscayl_ncnn = nix.arg($, "upscayl-ncnn");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "upscaler",
       version: "1.6.5",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           owner: "World",
           repo: "Upscaler",
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-+u17fUdYMCuDS4vgayZCpj9KO5o/x5PaUYT2jbNmMUw=",
         })))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       postPatch: nix.thunk(() => nix.str`substituteInPlace upscaler/window.py \\
@@ -70,7 +67,7 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       makeWrapperArgs: nix.thunk(() => ["${gappsWrapperArgs[@]}"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Upscale and enhance images",
         homepage: "https://tesk.page/upscaler",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

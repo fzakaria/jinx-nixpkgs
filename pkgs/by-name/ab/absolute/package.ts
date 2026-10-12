@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 16, 5]], [["pname", 8, 3], ["src", 9, 25], ["version", 9, 29], ["__structuredAttrs", 11, 3], ["buildInputs", 13, 3], ["meta", 15, 3]]]);
 const formals$1 = { args: { lib: false, ocamlPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["src", 9, 25], ["version", 9, 29], ["__structuredAttrs", 11, 3], ["buildInputs", 13, 3], ["meta", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,14 +12,14 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.thunk(() => nix.attr(ocamlPackages, "buildDunePackage"));
   const libabsolute = nix.thunk(() => nix.attr(ocamlPackages, "libabsolute"));
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "absolute",
       src: nix.thunk(() => nix.attr(libabsolute, "src")),
       version: nix.thunk(() => nix.attr(libabsolute, "version")),
       __structuredAttrs: true,
       buildInputs: nix.thunk(() => [libabsolute]),
       meta: nix.thunk(() => nix.update(nix.sel(libabsolute, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "A constraint solver based on abstract domains from the theory of abstract interpretation",
       })),
     })));

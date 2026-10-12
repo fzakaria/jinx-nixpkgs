@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 46, 5], ["hash", 47, 5]], [["CMAKE_CXX_FLAGS", 120, 5], ["CXXFLAGS", 126, 5]], [["description", 141, 5], ["homepage", 142, 5], ["license", 143, 5], ["sourceProvenance", 144, 5], ["maintainers", 147, 5], ["platforms", 151, 5]], [["pname", 40, 3], ["version", 41, 3], ["src", 43, 3], ["postPatch", 50, 3], ["nativeBuildInputs", 64, 3], ["buildInputs", 73, 3], ["cmakeFlags", 108, 3], ["env", 119, 3], ["postInstall", 132, 3], ["meta", 140, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, cmake: false, "pkg-config": false, "util-linux": false, libselinux: false, libsepol: false, lerc: false, libthai: false, libdatrie: false, libxkbcommon: false, libepoxy: false, libxtst: false, wrapGAppsHook3: false, makeWrapper: false, pixman: false, "libpthread-stubs": false, gtkmm3: false, libxau: false, libxdmcp: false, lcms2: false, libiptcdata: false, fftwSinglePrec: false, expat: false, pcre2: false, libsigcxx_2_0: false, lensfun: false, librsvg: false, "libcanberra-gtk3": false, "gtk-mac-integration": false, exiv2: false, libraw: false, libjxl: false, fmt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 46, 5], ["hash", 47, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CMAKE_CXX_FLAGS", 120, 5], ["CXXFLAGS", 126, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 141, 5], ["homepage", 142, 5], ["license", 143, 5], ["sourceProvenance", 144, 5], ["maintainers", 147, 5], ["platforms", 151, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 40, 3], ["version", 41, 3], ["src", 43, 3], ["postPatch", 50, 3], ["nativeBuildInputs", 64, 3], ["buildInputs", 73, 3], ["cmakeFlags", 108, 3], ["env", 119, 3], ["postInstall", 132, 3], ["meta", 140, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -46,11 +43,11 @@ export default nix.lambda((args) => (() => {
   const libjxl = nix.arg($, "libjxl");
   const fmt = nix.arg($, "fmt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "rawtherapee",
       version: "5.13",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/RawTherapee/RawTherapee/releases/download/${nix.sel(finalAttrs, "version")}/rawtherapee-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-I73/SxgX4SdMEalLEdIcrFnpwbHSCXldMZRxDuc+d78=",
         })))),
@@ -105,13 +102,13 @@ substituteInPlace tools/osx/Info.plist.in rtgui/config.h.in \\
           nix.thunk(() => nix.str`-DCMAKE_OSX_DEPLOYMENT_TARGET=${nix.sel(stdenv, "hostPlatform", "darwinMinVersion")}`),
         ])))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         CMAKE_CXX_FLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-std=c++11", "-Wno-deprecated-declarations", "-Wno-unused-result"]))),
         CXXFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-include", "cstdint"]))),
       })),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/Applications/RawTherapee.app $out/bin\ncp -R Release $out/Applications/RawTherapee.app/Contents\nfor f in $out/Applications/RawTherapee.app/Contents/MacOS/*; do\n  makeWrapper $f $out/bin/$(basename $f)\ndone\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "RAW converter and digital photo processing software",
         homepage: "http://www.rawtherapee.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

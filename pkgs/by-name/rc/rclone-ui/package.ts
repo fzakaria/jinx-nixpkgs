@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["name", 33, 5], ["src", 34, 26], ["forceGitDeps", 35, 5], ["hash", 36, 5]], [["updateScript", 84, 12]], [["description", 87, 5], ["homepage", 88, 5], ["downloadPage", 89, 5], ["changelog", 90, 5], ["license", 91, 5], ["maintainers", 92, 5], ["mainProgram", 93, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["npmDeps", 32, 3], ["cargoRoot", 39, 3], ["buildAndTestSubdir", 40, 3], ["cargoHash", 42, 3], ["patches", 45, 3], ["postPatch", 47, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 64, 3], ["dontWrapGApps", 71, 3], ["postInstall", 73, 3], ["checkFlags", 78, 3], ["passthru", 84, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, rustPlatform: false, "cargo-tauri": false, nodejs: false, npmHooks: false, fetchNpmDeps: false, "pkg-config": false, wrapGAppsHook3: false, openssl: false, webkitgtk_4_1: false, "glib-networking": false, libappindicator: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 33, 5], ["src", 34, 26], ["forceGitDeps", 35, 5], ["hash", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 84, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 87, 5], ["homepage", 88, 5], ["downloadPage", 89, 5], ["changelog", 90, 5], ["license", 91, 5], ["maintainers", 92, 5], ["mainProgram", 93, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["npmDeps", 32, 3], ["cargoRoot", 39, 3], ["buildAndTestSubdir", 40, 3], ["cargoHash", 42, 3], ["patches", 45, 3], ["postPatch", 47, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 64, 3], ["dontWrapGApps", 71, 3], ["postInstall", 73, 3], ["checkFlags", 78, 3], ["passthru", 84, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,18 +22,18 @@ export default nix.lambda((args) => (() => {
   const libappindicator = nix.arg($, "libappindicator");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "rclone-ui",
       version: "3.7.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rclone-ui",
           repo: "rclone-ui",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-7rNFJDx1Gsr9EywnRaToOdbZOhL4Yyz6Xpv+0Qhh638=",
         })))),
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}-npm-deps`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           forceGitDeps: true,
@@ -69,11 +65,11 @@ substituteInPlace src-tauri/Cargo.toml \\
         "--skip=notifications::webhooks::tests::dispatch_records_last_error_on_unreachable_endpoint",
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Cross-platform desktop GUI for rclone & S3",
         homepage: "https://github.com/rclone-ui/rclone-ui",
         downloadPage: "https://github.com/rclone-ui/rclone-ui",

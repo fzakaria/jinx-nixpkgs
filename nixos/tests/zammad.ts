@@ -2,24 +2,18 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/zammad.nix", [[["maintainers", 6, 8]], [["memorySize", 13, 7]], [["enable", 16, 21], ["secretKeyBaseFile", 17, 21]], [["zammad", 16, 14]], [["virtualisation", 12, 5], ["services", 16, 5]], [["machine", 11, 9]], [["name", 4, 3], ["meta", 6, 3], ["nodes", 11, 3], ["testScript", 22, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/zammad.nix", [["maintainers", 6, 8]]);
-const pos$2 = nix.positions(here + "/zammad.nix", [["memorySize", 13, 7]]);
-const pos$3 = nix.positions(here + "/zammad.nix", [["enable", 16, 21], ["secretKeyBaseFile", 17, 21]]);
-const pos$4 = nix.positions(here + "/zammad.nix", [["zammad", 16, 14]]);
-const pos$5 = nix.positions(here + "/zammad.nix", [["virtualisation", 12, 5], ["services", 16, 5]]);
-const pos$6 = nix.positions(here + "/zammad.nix", [["machine", 11, 9]]);
-const pos$7 = nix.positions(here + "/zammad.nix", [["name", 4, 3], ["meta", 6, 3], ["nodes", 11, 3], ["testScript", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     name: "zammad",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -29,14 +23,14 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, memorySize: 2048n })),
+        [nix.POS]: $pos[4],
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[1], memorySize: 2048n })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           zammad: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             enable: true,
             secretKeyBaseFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "secret", "52882ef142066e09ab99ce816ba72522e789505caba224a52d750ec7dc872c2c371b2fd19f16b25dfbdd435a4dd46cb3df9f82eb63fafad715056bdfe25740d6\n")),
           })),

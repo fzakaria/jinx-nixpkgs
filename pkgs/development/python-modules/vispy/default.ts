@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 27, 13], ["version", 27, 19], ["hash", 28, 5]], [["fontconfig", 33, 7], ["gl", 34, 7]], [["description", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["maintainers", 76, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["patches", 31, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 46, 3], ["propagatedBuildInputs", 48, 3], ["doCheck", 56, 3], ["pythonImportsCheck", 58, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, replaceVars: false, fetchPypi: false, cython: false, fontconfig: false, "freetype-py": false, hsluv: false, kiwisolver: false, libGL: false, numpy: false, "oldest-supported-numpy": false, packaging: false, setuptools: false, "setuptools-scm": false, wheel: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 27, 13], ["version", 27, 19], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["fontconfig", 33, 7], ["gl", 34, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["maintainers", 76, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["patches", 31, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 46, 3], ["propagatedBuildInputs", 48, 3], ["doCheck", 56, 3], ["pythonImportsCheck", 58, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,14 +29,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.16.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-CUUavoeBM2/WhCIHzZXOXoYJ2Z8TvN6JhBJTgSXDUIg=",
         }))));
       const patches = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [
           nix.thunk(() => nix.app(replaceVars, nix.path(here, "./library-paths.patch"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               fontconfig: nix.thunk(() => nix.str`${nix.sel(fontconfig, "lib")}/lib/libfontconfig${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
               gl: nix.thunk(() => nix.str`${nix.sel(libGL, "out")}/lib/libGL${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
             })))),
@@ -61,7 +58,7 @@ export default nix.lambda((args) => (() => {
         "vispy.visuals",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Interactive scientific visualization in Python",
         homepage: "https://vispy.org/index.html",
         changelog: nix.thunk(() => nix.str`https://github.com/vispy/vispy/blob/v${version}/CHANGELOG.md`),
@@ -72,7 +69,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

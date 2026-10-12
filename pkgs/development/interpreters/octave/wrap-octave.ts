@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wrap-octave.nix", [[["executable", 15, 17], ["octave", 16, 17]], [["license", 17, 8]], [["name", 13, 3], ["propagatedBuildInputs", 14, 3], ["substitutions", 15, 3], ["meta", 17, 3]]]);
 const formals$1 = { args: { lib: false, octave: false, makeSetupHook: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/wrap-octave.nix", [["executable", 15, 17], ["octave", 16, 17]]);
-const pos$2 = nix.positions(here + "/wrap-octave.nix", [["license", 17, 8]]);
-const pos$3 = nix.positions(here + "/wrap-octave.nix", [["name", 13, 3], ["propagatedBuildInputs", 14, 3], ["substitutions", 15, 3], ["meta", 17, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,15 +12,18 @@ export default nix.lambda((args) => (() => {
   const makeSetupHook = nix.arg($, "makeSetupHook");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: nix.thunk(() => nix.str`${nix.sel(octave, "name")}-pkgs-setup-hook`),
       propagatedBuildInputs: nix.thunk(() => [makeWrapper]),
       substitutions: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         executable: nix.thunk(() => nix.sel(octave, "interpreter")),
         octave: octave,
       })),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({
+        [nix.POS]: $pos[1],
+        license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+      })),
     })), nix.path(here, "./wrap.sh"));
 })(), formals$1);
 //# sourceMappingURL=wrap-octave.ts.map

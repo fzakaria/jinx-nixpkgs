@@ -2,13 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]], [["url", 38, 7], ["hash", 39, 7]], [["NIX_CFLAGS_COMPILE", 88, 7]], [["updateScript", 103, 12]], [["homepage", 106, 5], ["description", 107, 5], ["longDescription", 108, 5], ["license", 115, 5], ["maintainers", 119, 5], ["platforms", 124, 5]], [["version", 25, 3], ["pname", 26, 3], ["src", 28, 3], ["patches", 35, 3], ["postPatch", 43, 3], ["preConfigure", 56, 3], ["strictDeps", 60, 3], ["nativeBuildInputs", 62, 3], ["buildInputs", 71, 3], ["cmakeFlags", 82, 3], ["env", 88, 3], ["hardeningDisable", 90, 3], ["doCheck", 93, 3], ["preCheck", 95, 3], ["preFixup", 98, 3], ["passthru", 103, 3], ["meta", 105, 3]]]);
 const formals$1 = { args: { lib: false, gccMultiStdenv: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, bash: false, capnproto: false, cmake: false, gdb: false, libpfm: false, makeWrapper: false, "nix-update-script": false, "pkg-config": false, procps: false, python3: false, which: false, zlib: false, zstd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 38, 7], ["hash", 39, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 88, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["updateScript", 103, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["homepage", 106, 5], ["description", 107, 5], ["longDescription", 108, 5], ["license", 115, 5], ["maintainers", 119, 5], ["platforms", 124, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["version", 25, 3], ["pname", 26, 3], ["src", 28, 3], ["patches", 35, 3], ["postPatch", 43, 3], ["preConfigure", 56, 3], ["strictDeps", 60, 3], ["nativeBuildInputs", 62, 3], ["buildInputs", 71, 3], ["cmakeFlags", 82, 3], ["env", 88, 3], ["hardeningDisable", 90, 3], ["doCheck", 93, 3], ["preCheck", 95, 3], ["preFixup", 98, 3], ["passthru", 103, 3], ["meta", 105, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const zstd = nix.arg($, "zstd");
   const stdenv$ = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")) ? nix.force(gccMultiStdenv) : nix.force(stdenv)));
   return nix.app(nix.sel(stdenv$, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       version: "5.9.0",
       pname: "rr",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rr-debugger",
           repo: "rr",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -44,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/rr-debugger/rr/commit/6251648873b9e1ed23536beebbaa5d6fead3d5be.patch",
             hash: "sha256-k+jeGUJyybYq3GF2zIhpDF8NT66Buq6nztUbh28qVD8=",
           })))),
@@ -65,7 +60,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "disable32bit", nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64"))))),
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "BUILD_TESTS", nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "doCheck")))),
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-Wno-error" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_CFLAGS_COMPILE: "-Wno-error" })),
       hardeningDisable: nix.thunk(() => ["fortify"]),
       doCheck: false,
       preCheck: "export HOME=$TMPDIR",
@@ -73,11 +68,11 @@ export default nix.lambda((args) => (() => {
   --prefix PATH ":" "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [gdb]))}";
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://rr-project.org/",
         description: "Records nondeterministic executions and debugs them deterministically",
         longDescription: "rr aspires to be your primary debugging tool, replacing -- well,\nenhancing -- gdb. You record a failure once, then debug the\nrecording, deterministically, as many times as you want. Every\ntime the same execution is replayed.\n",

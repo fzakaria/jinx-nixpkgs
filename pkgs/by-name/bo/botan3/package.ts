@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["nativeBuildInputs", 55, 9]], [["owner", 82, 5], ["repo", 83, 5], ["tag", 84, 5], ["hash", 85, 5]], [["static", 185, 5]], [["tests", 184, 12]], [["description", 189, 5], ["homepage", 190, 5], ["mainProgram", 191, 5], ["maintainers", 192, 5], ["platforms", 197, 5], ["license", 198, 5]], [["version", 63, 3], ["pname", 64, 3], ["__structuredAttrs", 66, 3], ["enableParallelBuilding", 67, 3], ["strictDeps", 68, 3], ["outputs", 70, 3], ["src", 81, 3], ["nativeBuildInputs", 88, 3], ["buildInputs", 93, 3], ["propagatedBuildInputs", 110, 3], ["buildTargets", 112, 3], ["botanConfigureFlags", 119, 3], ["configurePhase", 154, 3], ["preInstall", 160, 3], ["postInstall", 166, 3], ["doCheck", 182, 3], ["passthru", 184, 3], ["meta", 188, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, libcxxStdenv: false, fetchFromGitHub: false, pkgsStatic: false, runCommandLocal: false, binutils: false, python3: false, docutils: false, bzip2: false, zlib: false, jitterentropy: false, esdm: false, "tpm2-tss": false, static: true, windows: false, withEsdm: true, withJitterentropy: true, withTpm2: true, policy: true, exposeSelftests: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 55, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 82, 5], ["repo", 83, 5], ["tag", 84, 5], ["hash", 85, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["static", 185, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 184, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 189, 5], ["homepage", 190, 5], ["mainProgram", 191, 5], ["maintainers", 192, 5], ["platforms", 197, 5], ["license", 198, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["version", 63, 3], ["pname", 64, 3], ["__structuredAttrs", 66, 3], ["enableParallelBuilding", 67, 3], ["strictDeps", 68, 3], ["outputs", 70, 3], ["src", 81, 3], ["nativeBuildInputs", 88, 3], ["buildInputs", 93, 3], ["propagatedBuildInputs", 110, 3], ["buildTargets", 112, 3], ["botanConfigureFlags", 119, 3], ["configurePhase", 154, 3], ["preInstall", 160, 3], ["postInstall", 166, 3], ["doCheck", 182, 3], ["passthru", 184, 3], ["meta", 188, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const exposeSelftests = nix.argOr($, "exposeSelftests", () => false);
   nix.assert_(nix.app(nix.sel(lib, "assertOneOf"), "policy", policy, nix.thunk(() => [null, "bsi", "fips140", "modern"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/bo/botan3/package.nix:34:1");
   const stdenv_1 = nix.thunk(() => (nix.asBool(static$) ? nix.force(libcxxStdenv) : nix.sel(args_1, "stdenv")));
-  const empty_libgcc_eh = nix.thunk(() => nix.app(runCommandLocal, "empty-libgcc_eh", nix.thunk(() => ({ [nix.POS]: pos$1, nativeBuildInputs: nix.thunk(() => [binutils]) })), nix.thunk(() => nix.str`mkdir -p "$out"/lib
+  const empty_libgcc_eh = nix.thunk(() => nix.app(runCommandLocal, "empty-libgcc_eh", nix.thunk(() => ({ [nix.POS]: $pos[0], nativeBuildInputs: nix.thunk(() => [binutils]) })), nix.thunk(() => nix.str`mkdir -p "$out"/lib
 ${nix.sel(stdenv_1, "cc", "targetPrefix")}ar r "$out"/lib/libgcc_eh.a
 `)));
   return nix.app(nix.sel(stdenv_1, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       version: "3.13.0",
       pname: "botan",
       __structuredAttrs: true,
@@ -48,7 +43,7 @@ ${nix.sel(stdenv_1, "cc", "targetPrefix")}ar r "$out"/lib/libgcc_eh.a
       strictDeps: true,
       outputs: nix.thunk(() => nix.concat(["bin", "out", "dev", "doc", "man"], nix.app(nix.sel(lib, "optionals"), exposeSelftests, nix.thunk(() => ["selftests"])))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "randombit",
           repo: "botan",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -75,11 +70,11 @@ ${nix.sel(stdenv_1, "cc", "targetPrefix")}ar r "$out"/lib/libgcc_eh.a
       postInstall: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), exposeSelftests, "mkdir -p $selftests/bin\ninstall -Dpm755 -D botan-test $selftests/bin/botan-test\n\n# don't copy leading source folder structure\npushd src/tests/data &> /dev/null\nfind . -type d -exec install -d $selftests/test-data/{} \\;\nfind . -type f -exec install -Dpm644 {} $selftests/test-data/{} \\;\npopd &> /dev/null\n"), "cd \"$out\"/lib/pkgconfig\nln -s botan-*.pc botan.pc || true\n")),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, static: nix.thunk(() => nix.sel(pkgsStatic, "botan3")) })),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], static: nix.thunk(() => nix.sel(pkgsStatic, "botan3")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Cryptographic algorithms library",
         homepage: "https://botan.randombit.net",
         mainProgram: "botan",

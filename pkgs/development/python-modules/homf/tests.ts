@@ -2,12 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["name", 21, 7], ["script", 22, 7], ["nativeBuildInputs", 23, 7], ["hash", 27, 15]], [["pkgName", 33, 5], ["version", 34, 5], ["hash", 35, 5]], [["pkgName", 39, 5], ["version", 40, 5], ["hash", 41, 5]], [["pypi", 32, 3], ["github", 38, 3]]]);
 const formals$1 = { args: { lib: false, runCommand: false, testers: false, cacert: false, homf: false }, ellipsis: false };
 const formals$2 = { args: { pkgName: false, version: false, hash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tests.nix", [["name", 21, 7], ["script", 22, 7], ["nativeBuildInputs", 23, 7], ["hash", 27, 15]]);
-const pos$2 = nix.positions(here + "/tests.nix", [["pkgName", 33, 5], ["version", 34, 5], ["hash", 35, 5]]);
-const pos$3 = nix.positions(here + "/tests.nix", [["pkgName", 39, 5], ["version", 40, 5], ["hash", 41, 5]]);
-const pos$4 = nix.positions(here + "/tests.nix", [["pypi", 32, 3], ["github", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +19,7 @@ export default nix.lambda((args) => (() => {
     const version = nix.arg($_1, "version");
     const hash = nix.arg($_1, "hash");
     return nix.app(nix.sel(testers, "runCommand"), nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: nix.thunk(() => nix.str`homf-${subcommand}-${pkgName}`),
         script: nix.thunk(() => nix.str`homf ${subcommand} --directory $out ${pkgName} ${version}`),
         nativeBuildInputs: nix.thunk(() => [cacert, homf]),
@@ -30,15 +27,15 @@ export default nix.lambda((args) => (() => {
       })));
   })(), formals$2);
   return nix.app(nix.sel(lib, "mapAttrs"), Homf, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pypi: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pkgName: "homf",
         version: "1.1.1",
         hash: "sha256-zpdt7+zTaGkLG6xYoTZVw/kUek0/MrCqvljfLxNB94A=",
       })),
       github: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pkgName: "duckinator/homf",
         version: "v1.1.1",
         hash: "sha256-NeEz8wZqDWYUnrgsknXWHzhWdk8cPW8mknKS3+/dngQ=",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 17, 5], ["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["description", 52, 5], ["homepage", 53, 5], ["mainProgram", 54, 5], ["longDescription", 55, 5], ["license", 62, 5], ["platforms", 63, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["cmakeFlags", 24, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 41, 3], ["propagatedBuildInputs", 49, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, cmake: false, doxygen: false, graphviz: false, mpir: false, kdePackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 17, 5], ["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 52, 5], ["homepage", 53, 5], ["mainProgram", 54, 5], ["longDescription", 55, 5], ["license", 62, 5], ["platforms", 63, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["cmakeFlags", 24, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 41, 3], ["propagatedBuildInputs", 49, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const mpir = nix.arg($, "mpir");
   const kdePackages = nix.arg($, "kdePackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "alkimia",
       version: "8.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "invent.kde.org",
           owner: "office",
           repo: "alkimia",
@@ -49,7 +47,7 @@ export default nix.lambda((args) => (() => {
       })()),
       propagatedBuildInputs: nix.thunk(() => [mpir]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library used by KDE finance applications",
         homepage: "https://invent.kde.org/office/alkimia",
         mainProgram: "onlinequoteseditor5",

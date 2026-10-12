@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["hash", 24, 5]], [["url", 32, 5], ["hash", 35, 5]], [["type", 39, 7], ["name", 40, 7], ["desktopName", 41, 7], ["comment", 42, 7], ["icon", 43, 7], ["exec", 44, 7], ["categories", 45, 7]], [["description", 101, 5], ["homepage", 102, 5], ["sourceProvenance", 103, 5], ["license", 104, 5], ["platforms", 105, 5], ["maintainers", 106, 5], ["mainProgram", 110, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["desktopItems", 37, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 59, 3], ["dontBuild", 70, 3], ["installPhase", 72, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, fetchurl: false, autoPatchelfHook: false, makeBinaryWrapper: false, "alsa-lib": false, libjack2: false, curl: false, libx11: false, libsm: false, libice: false, libGL: false, freetype: false, zenity: false, makeDesktopItem: false, copyDesktopItems: false, imagemagick: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 32, 5], ["hash", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["type", 39, 7], ["name", 40, 7], ["desktopName", 41, 7], ["comment", 42, 7], ["icon", 43, 7], ["exec", 44, 7], ["categories", 45, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 101, 5], ["homepage", 102, 5], ["sourceProvenance", 103, 5], ["license", 104, 5], ["platforms", 105, 5], ["maintainers", 106, 5], ["mainProgram", 110, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["desktopItems", 37, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 59, 3], ["dontBuild", 70, 3], ["installPhase", 72, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,22 +26,22 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const imagemagick = nix.arg($, "imagemagick");
   const icon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://vital.audio/images/apple_touch_icon.png",
       hash: "sha256-NZ/AQ2gjBXUPUj3ITbowD7HuxRmEDuATOWidLqLNrww=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "vital",
       version: "1.5.5",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://builds.vital.audio/VitalAudio/vital/${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}/VitalInstaller.zip`),
           hash: "sha256-hCwXSUiBB0YpQ1oN6adLprwAoel6f72tBG5fEb61OCI=",
         })))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             type: "Application",
             name: "vital",
             desktopName: "Vital",
@@ -85,7 +81,7 @@ wrapProgram $out/bin/Vital \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Spectral warping wavetable synth",
         homepage: "https://vital.audio/",
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryNativeCode"))]),

@@ -2,49 +2,38 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/env.nix", [[["kernelPackages", 9, 14]], [["text", 10, 35]], [["text", 13, 44]], [["plainFile", 10, 25], ["folder/with/file", 13, 25]], [["TERMINFO_DIRS", 18, 11], ["NIXCON", 19, 11], ["SHOULD_NOT_BE_SET", 20, 11]], [["etc", 10, 21], ["sessionVariables", 17, 21]], [["boot", 9, 9], ["environment", 10, 9]], [["SHOULD_NOT_BE_SET", 25, 11]], [["sessionVariables", 24, 21]], [["environment", 24, 9]], [["machine", 5, 9]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 30, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/env.nix", [["kernelPackages", 9, 14]]);
-const pos$2 = nix.positions(here + "/env.nix", [["text", 10, 35]]);
-const pos$3 = nix.positions(here + "/env.nix", [["text", 13, 44]]);
-const pos$4 = nix.positions(here + "/env.nix", [["plainFile", 10, 25], ["folder/with/file", 13, 25]]);
-const pos$5 = nix.positions(here + "/env.nix", [["TERMINFO_DIRS", 18, 11], ["NIXCON", 19, 11], ["SHOULD_NOT_BE_SET", 20, 11]]);
-const pos$6 = nix.positions(here + "/env.nix", [["etc", 10, 21], ["sessionVariables", 17, 21]]);
-const pos$7 = nix.positions(here + "/env.nix", [["boot", 9, 9], ["environment", 10, 9]]);
-const pos$8 = nix.positions(here + "/env.nix", [["SHOULD_NOT_BE_SET", 25, 11]]);
-const pos$9 = nix.positions(here + "/env.nix", [["sessionVariables", 24, 21]]);
-const pos$10 = nix.positions(here + "/env.nix", [["environment", 24, 9]]);
-const pos$11 = nix.positions(here + "/env.nix", [["machine", 5, 9]]);
-const pos$12 = nix.positions(here + "/env.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     name: "environment",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         const lib = nix.arg($_1, "lib");
         return nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               boot: nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 kernelPackages: nix.thunk(() => nix.sel(pkgs_1, "linuxPackages")),
               })),
               environment: nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 etc: nix.thunk(() => ({
-                  [nix.POS]: pos$4,
-                  plainFile: nix.thunk(() => ({ [nix.POS]: pos$2, text: "Hello World\n" })),
-                  "folder/with/file": nix.thunk(() => ({ [nix.POS]: pos$3, text: "Foo Bar!\n" })),
+                  [nix.POS]: $pos[3],
+                  plainFile: nix.thunk(() => ({ [nix.POS]: $pos[1], text: "Hello World\n" })),
+                  "folder/with/file": nix.thunk(() => ({ [nix.POS]: $pos[2], text: "Foo Bar!\n" })),
                 })),
                 sessionVariables: nix.thunk(() => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   TERMINFO_DIRS: "/run/current-system/sw/share/terminfo",
                   NIXCON: "awesome",
                   SHOULD_NOT_BE_SET: "oops",
@@ -52,11 +41,11 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               environment: nix.thunk(() => ({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 sessionVariables: nix.thunk(() => ({
-                  [nix.POS]: pos$8,
+                  [nix.POS]: $pos[7],
                   SHOULD_NOT_BE_SET: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), null)),
                 })),
               })),

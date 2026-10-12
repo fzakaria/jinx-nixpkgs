@@ -2,14 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["callPackage", 17, 57]], [["callPackage", 18, 45]], [["callPackage", 19, 49]], [["url", 33, 23], ["hash", 33, 27]], [["version", 36, 23]], [["sources", 48, 11], ["frameworks", 49, 11], ["gear", 50, 11], ["plasma", 51, 11], ["mkKdeDerivation", 54, 9], ["cmark", 58, 11], ["taglib", 59, 11], ["wayland", 60, 11], ["wayland-protocols", 61, 11], ["zxing-cpp", 62, 11], ["kquickimageeditor", 66, 9], ["selenium-webdriver-at-spi", 68, 9], ["alpaka", 70, 9], ["cxx-rust-cssparser", 71, 9], ["glaxnimate", 72, 9], ["kdiagram", 73, 9], ["kdevelop-pg-qt", 74, 9], ["kdsoap-ws-discovery-client", 75, 9], ["kirigami-addons", 76, 9], ["kirigami-app-components", 77, 9], ["kio-extras-kf5", 78, 9], ["kio-fuse", 79, 9], ["kio-s3", 80, 9], ["kio-snapshot", 81, 9], ["klevernotes", 82, 9], ["ktextaddons", 83, 9], ["kup", 84, 9], ["marknote", 85, 9], ["mpvqt", 86, 9], ["phonon", 87, 9], ["phonon-vlc", 88, 9], ["plasma-pass", 89, 9], ["plasma-wayland-protocols", 90, 9], ["polkit-qt-1", 91, 9], ["pulseaudio-qt", 92, 9], ["applet-window-buttons6", 94, 9], ["dynamic-workspaces", 95, 9], ["karousel", 96, 9], ["koi", 97, 9], ["krohnkite", 98, 9], ["kzones", 99, 9], ["wallpaper-engine-plugin", 100, 9]], [["otherSplices", 105, 3], ["f", 106, 3]]]);
 const formals$1 = { args: { lib: false, generateSplicesForMkScope: false, "makeScopeWithSplicing'": false, fetchurl: false, qt6Packages: false, cmark: false, taglib: false, "wayland-protocols": false, wayland: false, "zxing-cpp": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["callPackage", 17, 57]]);
-const pos$2 = nix.positions(here + "/default.nix", [["callPackage", 18, 45]]);
-const pos$3 = nix.positions(here + "/default.nix", [["callPackage", 19, 49]]);
-const pos$4 = nix.positions(here + "/default.nix", [["url", 33, 23], ["hash", 33, 27]]);
-const pos$5 = nix.positions(here + "/default.nix", [["version", 36, 23]]);
-const pos$6 = nix.positions(here + "/default.nix", [["sources", 48, 11], ["frameworks", 49, 11], ["gear", 50, 11], ["plasma", 51, 11], ["mkKdeDerivation", 54, 9], ["cmark", 58, 11], ["taglib", 59, 11], ["wayland", 60, 11], ["wayland-protocols", 61, 11], ["zxing-cpp", 62, 11], ["kquickimageeditor", 66, 9], ["selenium-webdriver-at-spi", 68, 9], ["alpaka", 70, 9], ["cxx-rust-cssparser", 71, 9], ["glaxnimate", 72, 9], ["kdiagram", 73, 9], ["kdevelop-pg-qt", 74, 9], ["kdsoap-ws-discovery-client", 75, 9], ["kirigami-addons", 76, 9], ["kirigami-app-components", 77, 9], ["kio-extras-kf5", 78, 9], ["kio-fuse", 79, 9], ["kio-s3", 80, 9], ["kio-snapshot", 81, 9], ["klevernotes", 82, 9], ["ktextaddons", 83, 9], ["kup", 84, 9], ["marknote", 85, 9], ["mpvqt", 86, 9], ["phonon", 87, 9], ["phonon-vlc", 88, 9], ["plasma-pass", 89, 9], ["plasma-wayland-protocols", 90, 9], ["polkit-qt-1", 91, 9], ["pulseaudio-qt", 92, 9], ["applet-window-buttons6", 94, 9], ["dynamic-workspaces", 95, 9], ["karousel", 96, 9], ["koi", 97, 9], ["krohnkite", 98, 9], ["kzones", 99, 9], ["wallpaper-engine-plugin", 100, 9]]);
-const pos$7 = nix.positions(here + "/default.nix", [["otherSplices", 105, 3], ["f", 106, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,27 +19,27 @@ export default nix.lambda((args) => (() => {
   const zxing_cpp = nix.arg($, "zxing-cpp");
   const allPackages = (self) => (() => {
     const frameworks = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./frameworks")), nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         callPackage: nix.thunk(() => nix.attr(self, "callPackage")),
       }))));
     const gear = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./gear")), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         callPackage: nix.thunk(() => nix.attr(self, "callPackage")),
       }))));
     const plasma = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./plasma")), nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         callPackage: nix.thunk(() => nix.attr(self, "callPackage")),
       }))));
     const sets = nix.thunk(() => ["frameworks", "gear", "plasma"]);
     const loadUrls = (set) => nix.app(nix.sel(lib, "importJSON"), nix.thunk(() => nix.add(nix.path(here, "./generated/sources"), nix.str`/${set}.json`)));
     const allUrls = nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "mergeAttrsList"), nix.thunk(() => nix.builtins.map(loadUrls, sets))));
     const sources = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => (v) => nix.update(nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           url: nix.thunk(() => nix.attr(v, "url")),
           hash: nix.thunk(() => nix.attr(v, "hash")),
-        }))), { [nix.POS]: pos$5, version: nix.thunk(() => nix.attr(v, "version")) }), allUrls));
+        }))), { [nix.POS]: $pos[4], version: nix.thunk(() => nix.attr(v, "version")) }), allUrls));
     return nix.update(qt6Packages, nix.update(frameworks, nix.update(gear, nix.update(plasma, {
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       sources: sources,
       frameworks: frameworks,
       gear: gear,
@@ -91,7 +85,7 @@ export default nix.lambda((args) => (() => {
     }))));
   })();
   return nix.app(makeScopeWithSplicing$, nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       otherSplices: nix.thunk(() => nix.app(generateSplicesForMkScope, "kdePackages")),
       f: allPackages,
     })));

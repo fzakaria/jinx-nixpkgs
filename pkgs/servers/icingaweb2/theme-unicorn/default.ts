@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 14, 7], ["repo", 15, 7], ["rev", 16, 7], ["sha256", 17, 7]], [["url", 20, 7], ["sha256", 21, 7]], [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["platforms", 49, 5], ["maintainers", 50, 5]], [["pname", 9, 3], ["version", 10, 3], ["srcs", 12, 3], ["unpackPhase", 25, 3], ["installPhase", 38, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 14, 7], ["repo", 15, 7], ["rev", 16, 7], ["sha256", 17, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 20, 7], ["sha256", 21, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["platforms", 49, 5], ["maintainers", 50, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["srcs", 12, 3], ["unpackPhase", 25, 3], ["installPhase", 38, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,14 +16,14 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.2";
       const srcs = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: "Mikesch-mp",
             repo: pname,
             rev: nix.thunk(() => nix.str`v${version}`),
             sha256: "1qmcajdf0g70vp2avqa50lfrfigq22k91kggbgn5ablwyg9dki05",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "http://i.imgur.com/SCfMd.png",
             sha256: "1y6wqm1z6mn0a6jankd7pzqgi7zm5320kk6knvbv3qhzx2b74ypp",
           })))),
@@ -34,14 +31,14 @@ export default nix.lambda((args) => (() => {
       const unpackPhase = "for src in $srcs; do\n  case $src in\n    *.png)\n      cp $src unicorn.png\n      ;;\n    *)\n      cp -r $src/* .\n      ;;\n  esac\ndone\n";
       const installPhase = "mkdir -p \"$out\"\ncp -r * \"$out\"\nchmod 755 $out/public/img\ncp unicorn.png \"$out/public/img/unicorn.png\"\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Unicorn theme for IcingaWeb 2",
         homepage: "https://github.com/Mikesch-mp/icingaweb2-theme-unicorn",
         license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         maintainers: [],
       }));
-      return { [nix.POS]: pos$4, pname, version, srcs, unpackPhase, installPhase, meta };
+      return { [nix.POS]: $pos[3], pname, version, srcs, unpackPhase, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

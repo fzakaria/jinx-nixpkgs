@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/stage1.nix", [[["pname", 15, 5], ["patches", 16, 5], ["makeFlags", 22, 5], ["installTargets", 23, 5], ["buildPhase", 28, 5]]]);
 const formals$1 = { args: { lib: false, args: false, "microhs-boot": false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/stage1.nix", [["pname", 15, 5], ["patches", 16, 5], ["makeFlags", 22, 5], ["installTargets", 23, 5], ["buildPhase", 28, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => (() => {
       const args$ = nix.thunk(() => nix.app(args_1, finalAttrs));
       return nix.update(args$, {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         pname: "microhs-stage1",
         patches: nix.thunk(() => nix.concat(nix.selOr(args$, () => [], "patches"), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(microhs_boot, "usesHugs")), nix.thunk(() => [nix.path(here, "patches/simple-unicode.patch")])))),
         makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`)]),

@@ -2,20 +2,18 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/sources.nix", [["url", 6, 5], ["hash", 7, 5]]);
-const pos$2 = nix.positions(here + "/sources.nix", [["url", 10, 5], ["hash", 11, 5]]);
-const pos$3 = nix.positions(here + "/sources.nix", [["version", 4, 3], ["x86_64-linux", 5, 3], ["aarch64-linux", 9, 3]]);
+const $pos = nix.positions(here + "/sources.nix", [[["url", 6, 5], ["hash", 7, 5]], [["url", 10, 5], ["hash", 11, 5]], [["version", 4, 3], ["x86_64-linux", 5, 3], ["aarch64-linux", 9, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$3,
+  [nix.POS]: $pos[2],
   version: "9.20.0",
   "x86_64-linux": nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     url: "https://electron-dl.todoist.net/linux/Todoist-linux-9.20.0-x86_64-latest.AppImage",
     hash: "sha256-Rpn7cobgYQt06d+t5XDYUZTOc/pnpRJIEXZeDAiJIH8=",
   })),
   "aarch64-linux": nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     url: "https://electron-dl.todoist.net/linux/Todoist-linux-9.20.0-arm64-latest.AppImage",
     hash: "sha256-0oyJXgu7BYjnKak3Gxo8XtI0kmGvPvAfNAB4fRnZsoE=",
   })),

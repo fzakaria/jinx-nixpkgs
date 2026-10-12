@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["branchName", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]], [["updateScript", 44, 12]], [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["platforms", 50, 5], ["maintainers", 51, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["strictDeps", 22, 3], ["configurePlatforms", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 33, 3], ["doCheck", 40, 3], ["enableParallelBuilding", 42, 3], ["passthru", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchgit: false, autoreconfHook: false, libelf: false, libiberty: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["branchName", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 44, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["platforms", 50, 5], ["maintainers", 51, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["strictDeps", 22, 3], ["configurePlatforms", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 33, 3], ["doCheck", 40, 3], ["enableParallelBuilding", 42, 3], ["passthru", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const libiberty = nix.arg($, "libiberty");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "prelink",
       version: "20151030-unstable-2024-07-02",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.yoctoproject.org/prelink-cross",
           branchName: "cross_prelink",
           rev: "ff2561c02ade96c5d4d56ddd4e27ff064840a176",
@@ -35,11 +32,11 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "ELF prelinking utility to speed up dynamic linking",
         homepage: "https://wiki.yoctoproject.org/wiki/Cross-Prelink",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

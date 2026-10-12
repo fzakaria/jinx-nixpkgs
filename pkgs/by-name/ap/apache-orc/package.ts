@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["cxxStandard", 20, 70]], [["abseil-cpp", 20, 35]], [["name", 29, 7], ["url", 30, 7], ["hash", 31, 7]], [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]], [["GTEST_HOME", 81, 5], ["LZ4_HOME", 82, 5], ["ORC_FORMAT_URL", 83, 5], ["PROTOBUF_HOME", 84, 5], ["SNAPPY_HOME", 85, 5], ["ZLIB_HOME", 86, 5], ["ZSTD_HOME", 87, 5]], [["changelog", 91, 5], ["description", 92, 5], ["homepage", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["platforms", 96, 5]], [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["patches", 45, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 58, 3], ["cmakeFlags", 67, 3], ["env", 80, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchurl: false, cmake: false, "abseil-cpp": false, gtest: false, lz4: false, protobuf: false, snappy: false, zlib: false, zstd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["cxxStandard", 20, 70]]);
-const pos$2 = nix.positions(here + "/package.nix", [["abseil-cpp", 20, 35]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 29, 7], ["url", 30, 7], ["hash", 31, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["GTEST_HOME", 81, 5], ["LZ4_HOME", 82, 5], ["ORC_FORMAT_URL", 83, 5], ["PROTOBUF_HOME", 84, 5], ["SNAPPY_HOME", 85, 5], ["ZLIB_HOME", 86, 5], ["ZSTD_HOME", 87, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["changelog", 91, 5], ["description", 92, 5], ["homepage", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["platforms", 96, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["patches", 45, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 58, 3], ["cmakeFlags", 67, 3], ["env", 80, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,26 +20,26 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const zstd = nix.arg($, "zstd");
   const protobuf$ = nix.thunk(() => nix.app(nix.sel(protobuf, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
-      "abseil-cpp": nix.thunk(() => nix.app(nix.sel(abseil_cpp, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, cxxStandard: "17" })))),
+      [nix.POS]: $pos[1],
+      "abseil-cpp": nix.thunk(() => nix.app(nix.sel(abseil_cpp, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], cxxStandard: "17" })))),
     }))));
   const orc_format = nix.thunk(() => (() => {
     const version = "1.1.1";
     const name = nix.thunk(() => nix.str`orc-format-${version}`);
     const archiveName = nix.thunk(() => nix.str`${name}.tar.gz`);
     return nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         name: archiveName,
         url: nix.thunk(() => nix.str`https://www.apache.org/dyn/closer.lua/orc/${name}/${archiveName}?action=download`),
         hash: "sha256-WE3+KkIClGF4/Y/H0SOb54BbntRZarIELe5znniAmSs=",
       })));
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "apache-orc",
       version: "2.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "apache",
           repo: "orc",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -64,7 +58,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CMAKE_CXX_FLAGS", "-Wno-unused-parameter")),
         ])))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         GTEST_HOME: nix.thunk(() => nix.sel(gtest, "dev")),
         LZ4_HOME: lz4,
         ORC_FORMAT_URL: orc_format,
@@ -74,7 +68,7 @@ export default nix.lambda((args) => (() => {
         ZSTD_HOME: nix.thunk(() => nix.sel(zstd, "dev")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         changelog: nix.thunk(() => nix.str`https://github.com/apache/orc/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Smallest, fastest columnar storage for Hadoop workloads",
         homepage: "https://github.com/apache/orc/",

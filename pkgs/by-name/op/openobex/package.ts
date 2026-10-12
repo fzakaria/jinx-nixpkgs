@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["sha256", 18, 5]], [["homepage", 48, 5], ["description", 49, 5], ["platforms", 50, 5], ["license", 51, 5], ["mainProgram", 52, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 26, 3], ["doInstallCheck", 31, 3], ["patchPhase", 33, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, bluez: false, "libusb-compat-0_1": false, cmake: false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 48, 5], ["description", 49, 5], ["platforms", 50, 5], ["license", 51, 5], ["mainProgram", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 26, 3], ["doInstallCheck", 31, 3], ["patchPhase", 33, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "openobex",
       version: "1.7.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/openobex/openobex-${nix.sel(finalAttrs, "version")}-Source.tar.gz`),
           sha256: "1z6l7pbwgs5pjx3861cyd3r6vq5av984bdp4r3hgrw2jxam6120m",
         })))),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       patchPhase: "sed -i \"s!/lib/udev!$out/lib/udev!\" udev/CMakeLists.txt\nsed -i \"/if ( PKGCONFIG_UDEV_FOUND )/,/endif ( PKGCONFIG_UDEV_FOUND )/d\" udev/CMakeLists.txt\n\n# cmake 4 compatibility, upstream is dead\nsubstituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required ( VERSION 3.1 FATAL_ERROR )\" \"cmake_minimum_required ( VERSION 3.10 FATAL_ERROR )\"\n\n# https://sourceforge.net/p/openobex/bugs/66/\nsubstituteInPlace CMakeLists.txt \\\n  --replace-fail '\\$'{prefix}/'$'{CMAKE_INSTALL_LIBDIR} '$'{CMAKE_INSTALL_FULL_LIBDIR} \\\n  --replace-fail '\\$'{prefix}/'$'{CMAKE_INSTALL_INCLUDEDIR} '$'{CMAKE_INSTALL_FULL_INCLUDEDIR}\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://dev.zuckschwerdt.org/openobex/",
         description: "Open source implementation of the Object Exchange (OBEX) protocol",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

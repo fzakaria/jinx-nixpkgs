@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["PREFIX", 31, 7]], [["description", 36, 5], ["longDescription", 37, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["mainProgram", 44, 5], ["platforms", 45, 29], ["badPlatforms", 45, 39]], [["pname", 10, 3], ["version", 11, 3], ["outputs", 13, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["env", 31, 3], ["dontConfigure", 33, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { fetchFromSourcehut: false, hareHook: false, haredo: false, lib: false, scdoc: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["PREFIX", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 36, 5], ["longDescription", 37, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["mainProgram", 44, 5], ["platforms", 45, 29], ["badPlatforms", 45, 39]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["outputs", 13, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["env", 31, 3], ["dontConfigure", 33, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,24 +14,24 @@ export default nix.lambda((args) => (() => {
   const scdoc = nix.arg($, "scdoc");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "treecat",
       version: "1.0.3",
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "~autumnull",
           repo: "treecat",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-UCGx1v+AP9BeAktrniTXctkPp5mprf77fkapdhPWrqg=",
         })))),
       nativeBuildInputs: nix.thunk(() => [hareHook, haredo, scdoc]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, PREFIX: nix.thunk(() => nix.builtins.placeholder("out")) })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], PREFIX: nix.thunk(() => nix.builtins.placeholder("out")) })),
       dontConfigure: true,
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(hareHook, "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Serialize a directory to a tree diagram, and vice versa",
         longDescription: "Treecat is an amalgamation of `tree(1)` and `cat(1)`, with the added\nbonus that it can reconstruct its output back into the original filetree.\n",
         homepage: "https://sr.ht/~autumnull/treecat/",

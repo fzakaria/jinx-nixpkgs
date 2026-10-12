@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/quakec.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["platforms", 61, 5], ["maintainers", 62, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["outputs", 19, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 26, 3], ["buildPhase", 33, 3], ["installPhase", 47, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, python3: false, nzportable: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/quakec.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/quakec.nix", [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["platforms", 61, 5], ["maintainers", 62, 5]]);
-const pos$3 = nix.positions(here + "/quakec.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["outputs", 19, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 26, 3], ["buildPhase", 33, 3], ["installPhase", 47, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const nzportable = nix.arg($, "nzportable");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "nzp-quakec",
       version: "0-unstable-2025-11-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nzp-team",
           repo: "quakec",
           rev: "b1d7fec5a536b088283578866ade2c596f7928d0",
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\npython3 bin/qc_hash_generator.py -i tools/asset_conversion_table.csv -o source/server/hash_table.qc\n\nmkdir -p build/{fte,standard}\n\nfteqcc -srcfile progs/csqc.src\nfteqcc -O3 -DFTE -srcfile progs/ssqc.src\nfteqcc -O3 -srcfile progs/ssqc.src\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out $fte\ncp -r build/standard/* $out\ncp -r build/fte/* $fte\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "QuakeC repository for Nazi Zombies: Portable",
         homepage: "https://github.com/nzp-team/quakec",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

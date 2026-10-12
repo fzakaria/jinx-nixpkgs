@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["fetchSubmodules", 33, 5], ["hash", 34, 5]], [["cpp", 58, 5]], [["description", 73, 5], ["changelog", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["maintainers", 77, 5]], [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["__structuredAttrs", 27, 3], ["src", 29, 3], ["postPatch", 37, 3], ["build-system", 44, 3], ["dontUseCmakeConfigure", 51, 3], ["dependencies", 53, 3], ["optional-dependencies", 57, 3], ["pythonImportsCheck", 63, 3], ["nativeCheckInputs", 65, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, cmake: false, cython: false, ninja: false, "scikit-build-core": false, "setuptools-scm": false, "typing-extensions": false, numpy: false, "pytest-xdist": false, pytestCheckHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["fetchSubmodules", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["cpp", 58, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 73, 5], ["changelog", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["maintainers", 77, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["__structuredAttrs", 27, 3], ["src", 29, 3], ["postPatch", 37, 3], ["build-system", 44, 3], ["dontUseCmakeConfigure", 51, 3], ["dependencies", 53, 3], ["optional-dependencies", 57, 3], ["pythonImportsCheck", 63, 3], ["nativeCheckInputs", 65, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "apache-tvm-ffi",
       version: "0.1.14-post1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "apache",
           repo: "tvm-ffi",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,11 +38,11 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [cmake, cython, ninja, scikit_build_core, setuptools_scm]),
       dontUseCmakeConfigure: true,
       dependencies: nix.thunk(() => [typing_extensions]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, cpp: nix.thunk(() => [ninja]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], cpp: nix.thunk(() => [ninja]) })),
       pythonImportsCheck: nix.thunk(() => ["tvm_ffi"]),
       nativeCheckInputs: nix.thunk(() => [numpy, pytest_xdist, pytestCheckHook, writableTmpDirAsHomeHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Open ABI and FFI for Machine Learning Systems",
         changelog: nix.thunk(() => nix.str`https://github.com/apache/tvm-ffi/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         homepage: "https://github.com/apache/tvm-ffi",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/vodozemac-wasm.nix", [[["name", 35, 5], ["paths", 36, 5], ["postBuild", 39, 5]], [["sysroot", 44, 60]], [["name", 71, 5], ["paths", 72, 5], ["postBuild", 75, 5]], [["RUSTC_BOOTSTRAP", 127, 5]], [["pname", 49, 3], ["version", 50, 34], ["unpackPhase", 53, 3], ["postPatch", 64, 3], ["cargoRoot", 68, 3], ["cargoDeps", 70, 3], ["nativeBuildInputs", 80, 3], ["buildPhase", 95, 3], ["installPhase", 111, 3], ["preFixup", 122, 3], ["env", 126, 3], ["meta", 130, 28]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "fluffychat-web": false, symlinkJoin: false, buildPackages: false, rustc: false, rustPlatform: false, cargo: false, flutter: false, flutter_rust_bridge_codegen: false, which: false, "wasm-pack": false, "wasm-bindgen-cli_0_2_100": false, binaryen: false, writableTmpDirAsHomeHook: false, runCommand: false, removeReferencesTo: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/vodozemac-wasm.nix", [["name", 35, 5], ["paths", 36, 5], ["postBuild", 39, 5]]);
-const pos$2 = nix.positions(here + "/vodozemac-wasm.nix", [["sysroot", 44, 60]]);
-const pos$3 = nix.positions(here + "/vodozemac-wasm.nix", [["name", 71, 5], ["paths", 72, 5], ["postBuild", 75, 5]]);
-const pos$4 = nix.positions(here + "/vodozemac-wasm.nix", [["RUSTC_BOOTSTRAP", 127, 5]]);
-const pos$5 = nix.positions(here + "/vodozemac-wasm.nix", [["pname", 49, 3], ["version", 50, 34], ["unpackPhase", 53, 3], ["postPatch", 64, 3], ["cargoRoot", 68, 3], ["cargoDeps", 70, 3], ["nativeBuildInputs", 80, 3], ["buildPhase", 95, 3], ["installPhase", 111, 3], ["preFixup", 122, 3], ["env", 126, 3], ["meta", 130, 28]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,18 +31,18 @@ pushd $out/hosted/pub.dev
 popd
 `)));
   const sysroot = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "rustc_unwrapped_with_libsrc",
       paths: nix.thunk(() => [nix.thunk(() => nix.sel(buildPackages, "rustc", "unwrapped"))]),
       postBuild: nix.thunk(() => nix.str`mkdir -p $out/lib/rustlib/src/rust
 ln -s ${nix.sel(rustPlatform, "rustLibSrc")} $out/lib/rustlib/src/rust/library
 `),
     }))));
-  const rustcWithLibSrc = nix.thunk(() => nix.app(nix.sel(buildPackages, "rustc", "override"), nix.thunk(() => ({ [nix.POS]: pos$2, sysroot: sysroot }))));
+  const rustcWithLibSrc = nix.thunk(() => nix.app(nix.sel(buildPackages, "rustc", "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], sysroot: sysroot }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(pubSources, "vodozemac"));
       return {
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "vodozemac-wasm",
       version: nix.thunk(() => nix.attr(from, "version")),
       unpackPhase: nix.thunk(() => nix.str`runHook preUnpack
@@ -60,7 +56,7 @@ runHook postUnpack
       postPatch: "sed -i '/^dev_dependencies:/,/^$/d' dart/pubspec.yaml\n",
       cargoRoot: "rust",
       cargoDeps: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           name: "vodozemac-wasm-cargodeps",
           paths: nix.thunk(() => [
             nix.thunk(() => nix.sel(pubSources, "flutter_vodozemac", "passthru", "cargoDeps")),
@@ -99,7 +95,7 @@ runHook postBuild
       installPhase: "runHook preInstall\n\nmkdir -p $out\ncp -r dart/web/pkg/vodozemac_bindings_dart* $out/\n\nrunHook postInstall\n",
       preFixup: nix.thunk(() => nix.str`find $out -name "*.wasm" -exec remove-references-to -t ${sysroot} {} +
 `),
-      env: nix.thunk(() => ({ [nix.POS]: pos$4, RUSTC_BOOTSTRAP: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[3], RUSTC_BOOTSTRAP: 1n })),
       meta: nix.thunk(() => nix.attr(fluffychat_web, "meta")),
     };
     })()));

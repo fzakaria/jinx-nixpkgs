@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 31, 5], ["hash", 32, 5]], [["NIX_CFLAGS_COMPILE", 38, 7]], [["description", 41, 5], ["mainProgram", 42, 5], ["homepage", 43, 5], ["maintainers", 44, 5], ["license", 45, 5]], [["pname", 15, 3], ["version", 16, 3], ["nativeBuildInputs", 18, 3], ["buildInputs", 22, 3], ["prePatch", 24, 3], ["src", 30, 3], ["env", 38, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoconf: false, automake: false, allegro4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 38, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 41, 5], ["mainProgram", 42, 5], ["homepage", 43, 5], ["maintainers", 44, 5], ["license", 45, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["nativeBuildInputs", 18, 3], ["buildInputs", 22, 3], ["prePatch", 24, 3], ["src", 30, 3], ["env", 38, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,20 +15,20 @@ export default nix.lambda((args) => (() => {
   const allegro4 = nix.arg($, "allegro4");
   const allegro = allegro4;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "garden-of-coloured-lights",
       version: "1.0.9",
       nativeBuildInputs: nix.thunk(() => [autoconf, automake]),
       buildInputs: nix.thunk(() => [allegro]),
       prePatch: "noInline='s/inline //'\nsed -e \"$noInline\" -i src/stuff.c\nsed -e \"$noInline\" -i src/stuff.h\n",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/garden/${nix.sel(finalAttrs, "version")}/garden-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-2vhzLCKaTMBPRgUUv/G6BRcfqtqeGVdccqUKkU8jUuM=",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-fcommon" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-fcommon" })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Old-school vertical shoot-em-up / bullet hell",
         mainProgram: "garden",
         homepage: "https://sourceforge.net/projects/garden/",

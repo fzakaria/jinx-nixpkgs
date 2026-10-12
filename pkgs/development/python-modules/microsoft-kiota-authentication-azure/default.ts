@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["rev-prefix", 50, 5]], [["updateScript", 49, 12]], [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["sourceRoot", 29, 3], ["build-system", 31, 3], ["dependencies", 33, 3], ["nativeCheckInputs", 41, 3], ["pythonImportsCheck", 47, 3], ["passthru", 49, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, aiohttp: false, "azure-core": false, buildPythonPackage: false, fetchFromGitHub: false, "flit-core": false, "microsoft-kiota-abstractions": false, "opentelemetry-api": false, "opentelemetry-sdk": false, "pytest-asyncio": false, "pytest-mock": false, pytestCheckHook: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["rev-prefix", 50, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 49, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["sourceRoot", 29, 3], ["build-system", 31, 3], ["dependencies", 33, 3], ["nativeCheckInputs", 41, 3], ["pythonImportsCheck", 47, 3], ["passthru", 49, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "microsoft-kiota-authentication-azure",
       version: "1.14.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "microsoft",
           repo: "kiota-python",
           tag: nix.thunk(() => nix.str`microsoft-kiota-authentication-azure-v${nix.sel(finalAttrs, "version")}`),
@@ -48,11 +44,11 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest_asyncio, pytest_mock, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["kiota_authentication_azure"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "microsoft-kiota-authentication-azure-v" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "microsoft-kiota-authentication-azure-v" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Kiota Azure authentication provider",
         homepage: "https://github.com/microsoft/kiota-python/tree/main/packages/authentication/azure",
         changelog: nix.thunk(() => nix.str`https://github.com/microsoft/kiota-python/releases/tag/microsoft-kiota-authentication-azure-${nix.sel(finalAttrs, "src", "tag")}`),

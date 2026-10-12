@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/frontend.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["url", 25, 5], ["hash", 26, 5], ["stripRoot", 27, 5]], [["pname", 41, 26], ["version", 41, 32], ["src", 41, 40], ["pnpm", 42, 5], ["fetcherVersion", 43, 5], ["hash", 44, 5]], [["owner", 76, 9], ["repo", 77, 9], ["rev", 78, 9], ["hash", 79, 9]], [["license", 84, 12]], [["pname", 72, 7], ["version", 73, 7], ["src", 75, 7], ["npmDepsHash", 82, 7], ["meta", 84, 7]], [["mpegts-js", 71, 5]], [["description", 89, 5], ["homepage", 90, 5], ["license", 91, 5], ["maintainers", 92, 5], ["platforms", 93, 27]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["i18n", 24, 3], ["postPatch", 30, 3], ["nativeBuildInputs", 34, 3], ["npmDeps", 39, 3], ["pnpmDeps", 40, 3], ["npmConfigHook", 47, 3], ["__darwinAllowLocalNetworking", 51, 3], ["preBuild", 53, 3], ["installPhase", 60, 3], ["passthru", 69, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, fetchPnpmDeps: false, fetchzip: false, nodejs: false, openlistPnpm: true, pnpmConfigHook: false, pnpm_11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/frontend.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/frontend.nix", [["url", 25, 5], ["hash", 26, 5], ["stripRoot", 27, 5]]);
-const pos$3 = nix.positions(here + "/frontend.nix", [["pname", 41, 26], ["version", 41, 32], ["src", 41, 40], ["pnpm", 42, 5], ["fetcherVersion", 43, 5], ["hash", 44, 5]]);
-const pos$4 = nix.positions(here + "/frontend.nix", [["owner", 76, 9], ["repo", 77, 9], ["rev", 78, 9], ["hash", 79, 9]]);
-const pos$5 = nix.positions(here + "/frontend.nix", [["license", 84, 12]]);
-const pos$6 = nix.positions(here + "/frontend.nix", [["pname", 72, 7], ["version", 73, 7], ["src", 75, 7], ["npmDepsHash", 82, 7], ["meta", 84, 7]]);
-const pos$7 = nix.positions(here + "/frontend.nix", [["mpegts-js", 71, 5]]);
-const pos$8 = nix.positions(here + "/frontend.nix", [["description", 89, 5], ["homepage", 90, 5], ["license", 91, 5], ["maintainers", 92, 5], ["platforms", 93, 27]]);
-const pos$9 = nix.positions(here + "/frontend.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["i18n", 24, 3], ["postPatch", 30, 3], ["nativeBuildInputs", 34, 3], ["npmDeps", 39, 3], ["pnpmDeps", 40, 3], ["npmConfigHook", 47, 3], ["__darwinAllowLocalNetworking", 51, 3], ["preBuild", 53, 3], ["installPhase", 60, 3], ["passthru", 69, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,18 +17,18 @@ export default nix.lambda((args) => (() => {
   const pnpmConfigHook = nix.arg($, "pnpmConfigHook");
   const pnpm_11 = nix.arg($, "pnpm_11");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "openlist-frontend",
       version: "4.2.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "OpenListTeam",
           repo: "OpenList-Frontend",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-m/5DoGnmOAVv8PGWwUWEUntiQNAzUbJ5pIhP4JsRt+s=",
         })))),
       i18n: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://github.com/OpenListTeam/OpenList-Frontend/releases/download/v${nix.sel(finalAttrs, "version")}/i18n.tar.gz`),
           hash: "sha256-0+y4/stjTMek65Poq8Qfxadta0UrLefdFHxk6S9MGbM=",
           stripRoot: false,
@@ -46,7 +38,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [nodejs, openlistPnpm]),
       npmDeps: null,
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -69,13 +61,13 @@ echo -n "v${nix.sel(finalAttrs, "version")}" > $out/VERSION
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         "mpegts-js": nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             pname: "mpegts-js-openlist",
             version: "1.8.1-unstable-2026-05-16",
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 owner: "OpenListTeam",
                 repo: "mpegts.js",
                 rev: "1e51e0f6f918cf08e05dfae9c7bfcf658d6b4ac2",
@@ -83,7 +75,7 @@ runHook postInstall
               })))),
             npmDepsHash: "sha256-UDI0iPK/ouVgpzscGrQXNnVUseLWYmR0W9THpBm4WqA=",
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
             })),
           })))),
@@ -91,7 +83,7 @@ runHook postInstall
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(nodejs, "meta"));
         return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Frontend of OpenList",
         homepage: "https://github.com/OpenListTeam/OpenList-Frontend",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

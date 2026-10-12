@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 9], ["hash", 18, 9]], [["url", 22, 9], ["hash", 23, 9]], [["updateScript", 44, 24]], [["description", 47, 5], ["homepage", 48, 5], ["sourceProvenance", 49, 5], ["license", 50, 5], ["platforms", 51, 5], ["mainProgram", 54, 5], ["maintainers", 55, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 26, 3], ["sourceRoot", 28, 3], ["strictDeps", 30, 3], ["__structuredAttrs", 31, 3], ["dontStrip", 33, 3], ["installPhase", 35, 3], ["passthru", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, undmg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 9], ["hash", 18, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 22, 9], ["hash", 23, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 44, 24]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 47, 5], ["homepage", 48, 5], ["sourceProvenance", 49, 5], ["license", 50, 5], ["platforms", 51, 5], ["mainProgram", 54, 5], ["maintainers", 55, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 26, 3], ["sourceRoot", 28, 3], ["strictDeps", 30, 3], ["__structuredAttrs", 31, 3], ["dontStrip", 33, 3], ["installPhase", 35, 3], ["passthru", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,15 +13,15 @@ export default nix.lambda((args) => (() => {
   const undmg = nix.arg($, "undmg");
   const updateScript = nix.path(here, "./update.sh");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "tidal",
       version: "2.41.3",
       src: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) ? nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://web.archive.org/web/20260314112555/https://download.tidal.com/desktop/TIDAL.arm64.dmg",
           hash: "sha256-18RjsLHhpUSAyITfwu3efokUbezE1b3GpFiafWHW/qo=",
         }))) : nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "https://web.archive.org/web/20260314112436/https://download.tidal.com/desktop/TIDAL.x64.dmg",
           hash: "sha256-5nUU8TOSph1v1C0+/KR/F5Y7m5TitbYH/ujsiZ/n6LU=",
         }))))),
@@ -35,9 +31,9 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       dontStrip: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/Applications\ncp -r *.app $out/Applications\n\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: updateScript })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], updateScript: updateScript })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Play music from the Tidal streaming service",
         homepage: "https://tidal.com/",
         sourceProvenance: nix.thunk(() => (() => {

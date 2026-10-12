@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["src", 37, 26], ["cargoRoot", 37, 30], ["hash", 38, 5]], [["GODOT", 56, 7], ["GODOT_VERSION", 57, 7], ["GODOT_RELEASE", 58, 7], ["EXPORT_TEMPLATE", 59, 7], ["BUILD_TYPE", 60, 7]], [["updateScript", 91, 12]], [["description", 94, 5], ["homepage", 95, 5], ["license", 96, 5], ["platforms", 97, 5], ["changelog", 98, 5], ["maintainers", 99, 5], ["mainProgram", 100, 5]], [["pname", 24, 3], ["version", 25, 3], ["buildType", 27, 3], ["src", 29, 3], ["cargoDeps", 36, 3], ["cargoRoot", 40, 3], ["nativeBuildInputs", 42, 3], ["dontStrip", 49, 3], ["env", 51, 3], ["makeFlags", 63, 3], ["buildFlags", 65, 3], ["preBuild", 67, 3], ["postInstall", 74, 3], ["passthru", 91, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { "alsa-lib": false, cargo: false, dbus: false, fetchFromGitHub: false, gamescope: false, godot_4_6: false, hwdata: false, lib: false, libGL: false, libpulseaudio: false, "mesa-demos": false, "nix-update-script": false, "pkg-config": false, rustPlatform: false, stdenv: false, udev: false, upower: false, "vulkan-loader": false, withDebug: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 37, 26], ["cargoRoot", 37, 30], ["hash", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["GODOT", 56, 7], ["GODOT_VERSION", 57, 7], ["GODOT_RELEASE", 58, 7], ["EXPORT_TEMPLATE", 59, 7], ["BUILD_TYPE", 60, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 91, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 94, 5], ["homepage", 95, 5], ["license", 96, 5], ["platforms", 97, 5], ["changelog", 98, 5], ["maintainers", 99, 5], ["mainProgram", 100, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["buildType", 27, 3], ["src", 29, 3], ["cargoDeps", 36, 3], ["cargoRoot", 40, 3], ["nativeBuildInputs", 42, 3], ["dontStrip", 49, 3], ["env", 51, 3], ["makeFlags", 63, 3], ["buildFlags", 65, 3], ["preBuild", 67, 3], ["postInstall", 74, 3], ["passthru", 91, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,19 +27,19 @@ export default nix.lambda((args) => (() => {
   const vulkan_loader = nix.arg($, "vulkan-loader");
   const withDebug = nix.argOr($, "withDebug", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "opengamepadui",
       version: "0.46.0",
       buildType: nix.thunk(() => (nix.asBool(withDebug) ? "debug" : "release")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ShadowBlip",
           repo: "OpenGamepadUI",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-4WRaf5PLgeVBoaO3YmEOSuZqP2S8uMLomwTiNRT9Weg=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           cargoRoot: nix.thunk(() => nix.attr(finalAttrs, "cargoRoot")),
           hash: "sha256-aykBD6cyhLL3I2oCrxXEFotmULrhOlte9zNON9liQx4=",
@@ -60,7 +55,7 @@ export default nix.lambda((args) => (() => {
       env: nix.thunk(() => (() => {
         const versionAndRelease = nix.thunk(() => nix.app(nix.sel(lib, "splitString"), "-", nix.thunk(() => nix.sel(godot_4_6, "version"))));
         return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           GODOT: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), godot_4_6)),
           GODOT_VERSION: nix.thunk(() => nix.app(nix.sel(lib, "elemAt"), versionAndRelease, 0n)),
           GODOT_RELEASE: nix.thunk(() => nix.app(nix.sel(lib, "elemAt"), versionAndRelease, 1n)),
@@ -80,11 +75,11 @@ patchelf --add-rpath ${nix.app(nix.sel(lib, "makeLibraryPath"), runtimeDependenc
 `;
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Open source gamepad-native game launcher and overlay",
         homepage: "https://github.com/ShadowBlip/OpenGamepadUI",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]], [["pname", 32, 26], ["version", 32, 32], ["src", 32, 40], ["hash", 33, 5]], [["updateScript", 76, 12]], [["description", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["maintainers", 82, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["__structuredAttrs", 20, 3], ["__darwinAllowLocalNetworking", 22, 3], ["src", 24, 3], ["cargoDeps", 31, 3], ["build-system", 36, 3], ["dependencies", 43, 3], ["nativeCheckInputs", 48, 3], ["preCheck", 55, 3], ["pytestFlags", 60, 3], ["disabledTests", 65, 3], ["pythonImportsCheck", 74, 3], ["passthru", 76, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, cargo: false, fetchFromGitHub: false, "nix-update-script": false, orjson: false, pydantic: false, "pytest-asyncio": false, pytestCheckHook: false, rustc: false, rustPlatform: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 32, 26], ["version", 32, 32], ["src", 32, 40], ["hash", 33, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 76, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["maintainers", 82, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["__structuredAttrs", 20, 3], ["__darwinAllowLocalNetworking", 22, 3], ["src", 24, 3], ["cargoDeps", 31, 3], ["build-system", 36, 3], ["dependencies", 43, 3], ["nativeCheckInputs", 48, 3], ["preCheck", 55, 3], ["pytestFlags", 60, 3], ["disabledTests", 65, 3], ["pythonImportsCheck", 74, 3], ["passthru", 76, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,21 +19,21 @@ export default nix.lambda((args) => (() => {
   const rustc = nix.arg($, "rustc");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "blastdns",
       version: "1.9.1-unstable-2026-04-15",
       pyproject: true,
       __structuredAttrs: true,
       __darwinAllowLocalNetworking: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "blacklanternsecurity",
           repo: "blastdns",
           rev: "a35704b0ec2f6d800da8f85505bfff1893172869",
           hash: "sha256-N0IbnKz/JdZogJhRHMNaZhhMt2LM9Vhs1ETLqeksE2k=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -62,11 +58,11 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["blastdns"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Ultra-fast DNS resolver",
         homepage: "https://github.com/blacklanternsecurity/blastdns",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

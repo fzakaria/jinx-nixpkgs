@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["updateScript", 43, 12]], [["description", 90, 5], ["homepage", 91, 5], ["license", 92, 5], ["platforms", 93, 5], ["mainProgram", 94, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patchPhase", 24, 3], ["installPhase", 39, 3], ["passthru", 43, 3], ["doCheck", 45, 3], ["checkPhase", 47, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, ruby: false, gnugrep: false, diffutils: false, git: false, darcs: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 43, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 90, 5], ["homepage", 91, 5], ["license", 92, 5], ["platforms", 93, 5], ["mainProgram", 94, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patchPhase", 24, 3], ["installPhase", 39, 3], ["passthru", 43, 3], ["doCheck", 45, 3], ["checkPhase", 47, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const darcs = nix.arg($, "darcs");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "darcs-to-git",
       version: "0-unstable-2024-11-07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "purcell",
           repo: "darcs-to-git",
           rev: "7b7bbc653c953772edffc2378cc0b2fe7632e1fa",
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
       })()),
       installPhase: "install -vD darcs-to-git \"$out/bin/darcs-to-git\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       doCheck: true,
@@ -89,7 +86,7 @@ cd "$orig_dir"
 rm -rf "$darcs_repos" "$git_repos" "$test_home"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Converts a Darcs repository into a Git repository",
         homepage: "http://www.sanityinc.com/articles/converting-darcs-repositories-to-git",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

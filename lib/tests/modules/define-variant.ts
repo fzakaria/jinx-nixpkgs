@@ -2,22 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/define-variant.nix", [[["type", 7, 24]], [["attrs", 7, 5], ["result", 8, 5], ["resultFoo", 9, 5], ["resultFooBar", 10, 5], ["resultFooFoo", 11, 5]], [["a", 14, 11]], [["b", 15, 24]], [["z", 17, 37]], [["attrs", 17, 31]], [["c", 18, 37]], [["attrs", 18, 31]], [["bar", 17, 27], ["foo", 18, 27]], [["attrs", 15, 18], ["variants", 17, 18]], [["y", 16, 24]], [["attrs", 16, 18]], [["foo", 15, 14], ["bar", 16, 14]], [["attrs", 14, 5], ["variants", 15, 5], ["resultFoo", 19, 5], ["resultFooBar", 20, 5], ["resultFooFoo", 23, 5]], [["options", 6, 3], ["config", 13, 3]]]);
 const formals$1 = { args: { config: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/define-variant.nix", [["type", 7, 24]]);
-const pos$2 = nix.positions(here + "/define-variant.nix", [["attrs", 7, 5], ["result", 8, 5], ["resultFoo", 9, 5], ["resultFooBar", 10, 5], ["resultFooFoo", 11, 5]]);
-const pos$3 = nix.positions(here + "/define-variant.nix", [["a", 14, 11]]);
-const pos$4 = nix.positions(here + "/define-variant.nix", [["b", 15, 24]]);
-const pos$5 = nix.positions(here + "/define-variant.nix", [["z", 17, 37]]);
-const pos$6 = nix.positions(here + "/define-variant.nix", [["attrs", 17, 31]]);
-const pos$7 = nix.positions(here + "/define-variant.nix", [["c", 18, 37]]);
-const pos$8 = nix.positions(here + "/define-variant.nix", [["attrs", 18, 31]]);
-const pos$9 = nix.positions(here + "/define-variant.nix", [["bar", 17, 27], ["foo", 18, 27]]);
-const pos$10 = nix.positions(here + "/define-variant.nix", [["attrs", 15, 18], ["variants", 17, 18]]);
-const pos$11 = nix.positions(here + "/define-variant.nix", [["y", 16, 24]]);
-const pos$12 = nix.positions(here + "/define-variant.nix", [["attrs", 16, 18]]);
-const pos$13 = nix.positions(here + "/define-variant.nix", [["foo", 15, 14], ["bar", 16, 14]]);
-const pos$14 = nix.positions(here + "/define-variant.nix", [["attrs", 14, 5], ["variants", 15, 5], ["resultFoo", 19, 5], ["resultFooBar", 20, 5], ["resultFooFoo", 23, 5]]);
-const pos$15 = nix.positions(here + "/define-variant.nix", [["options", 6, 3], ["config", 13, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   const attrNames = nix.thunk(() => nix.attr(lib, "attrNames"));
   return {
-    [nix.POS]: pos$15,
+    [nix.POS]: $pos[14],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       attrs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "int")))),
         })))),
       result: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({})))),
@@ -40,20 +26,23 @@ export default nix.lambda((args) => (() => {
       resultFooFoo: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({})))),
     })),
     config: nix.thunk(() => ({
-      [nix.POS]: pos$14,
-      attrs: nix.thunk(() => ({ [nix.POS]: pos$3, a: 1n })),
+      [nix.POS]: $pos[13],
+      attrs: nix.thunk(() => ({ [nix.POS]: $pos[2], a: 1n })),
       variants: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         foo: nix.thunk(() => ({
-          [nix.POS]: pos$10,
-          attrs: nix.thunk(() => ({ [nix.POS]: pos$4, b: 1n })),
+          [nix.POS]: $pos[9],
+          attrs: nix.thunk(() => ({ [nix.POS]: $pos[3], b: 1n })),
           variants: nix.thunk(() => ({
-            [nix.POS]: pos$9,
-            bar: nix.thunk(() => ({ [nix.POS]: pos$6, attrs: nix.thunk(() => ({ [nix.POS]: pos$5, z: 1n })) })),
-            foo: nix.thunk(() => ({ [nix.POS]: pos$8, attrs: nix.thunk(() => ({ [nix.POS]: pos$7, c: 3n })) })),
+            [nix.POS]: $pos[8],
+            bar: nix.thunk(() => ({ [nix.POS]: $pos[5], attrs: nix.thunk(() => ({ [nix.POS]: $pos[4], z: 1n })) })),
+            foo: nix.thunk(() => ({ [nix.POS]: $pos[7], attrs: nix.thunk(() => ({ [nix.POS]: $pos[6], c: 3n })) })),
           })),
         })),
-        bar: nix.thunk(() => ({ [nix.POS]: pos$12, attrs: nix.thunk(() => ({ [nix.POS]: pos$11, y: 1n })) })),
+        bar: nix.thunk(() => ({
+          [nix.POS]: $pos[11],
+          attrs: nix.thunk(() => ({ [nix.POS]: $pos[10], y: 1n })),
+        })),
       })),
       resultFoo: nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), " ", nix.builtins.toString, nix.thunk(() => nix.app(attrNames, nix.thunk(() => nix.sel(config, "variants", "foo", "attrs")))))),
       resultFooBar: nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), " ", nix.builtins.toString, nix.thunk(() => nix.app(attrNames, nix.thunk(() => nix.sel(config, "variants", "foo", "variants", "bar", "attrs")))))),

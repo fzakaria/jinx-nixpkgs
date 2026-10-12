@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["CXXFLAGS", 38, 7]], [["homepage", 54, 5], ["description", 55, 5], ["mainProgram", 56, 5], ["maintainers", 57, 5], ["platforms", 58, 5], ["license", 59, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 28, 3], ["postPatch", 32, 3], ["env", 38, 3], ["preConfigure", 41, 3], ["configureFlags", 45, 3], ["postInstall", 49, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, stdenv: false, autoconf: false, automake: false, libtool: false, tre: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CXXFLAGS", 38, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 54, 5], ["description", 55, 5], ["mainProgram", 56, 5], ["maintainers", 57, 5], ["platforms", 58, 5], ["license", 59, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 28, 3], ["postPatch", 32, 3], ["env", 38, 3], ["preConfigure", 41, 3], ["configureFlags", 45, 3], ["postInstall", 49, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const libtool = nix.arg($, "libtool");
   const tre = nix.arg($, "tre");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "scalpel",
       version: "2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sleuthkit",
           repo: "scalpel",
           rev: "35e1367ef2232c0f4883c92ec2839273c821dd39",
@@ -35,14 +32,14 @@ export default nix.lambda((args) => (() => {
   src/scalpel.h
 `),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         CXXFLAGS: nix.thunk(() => nix.add("-std=c++14", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), " -Wno-error=reserved-user-defined-literal"))),
       })),
       preConfigure: "./bootstrap\n",
       configureFlags: nix.thunk(() => ["--with-pic"]),
       postInstall: "install -Dm644 scalpel.conf -t $out/share/scalpel/\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/sleuthkit/scalpel",
         description: "Recover files based on their headers, footers and internal data structures, based on Foremost",
         mainProgram: "scalpel",

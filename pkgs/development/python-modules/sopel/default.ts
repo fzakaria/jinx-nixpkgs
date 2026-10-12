@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 28, 13], ["version", 28, 19], ["hash", 29, 5]], [["description", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["mainProgram", 85, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["disabled", 25, 3], ["src", 27, 3], ["build-system", 32, 3], ["postPatch", 34, 3], ["dependencies", 39, 3], ["pythonRemoveDeps", 52, 3], ["pythonRelaxDeps", 54, 3], ["nativeCheckInputs", 59, 3], ["disabledTests", 61, 3], ["pythonImportsCheck", 78, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, dnspython: false, fetchPypi: false, geoip2: false, ipython: false, isPyPy: false, setuptools: false, praw: false, pyenchant: false, pytestCheckHook: false, pytz: false, sqlalchemy: false, xmltodict: false, "importlib-metadata": false, packaging: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 28, 13], ["version", 28, 19], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["mainProgram", 85, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["disabled", 25, 3], ["src", 27, 3], ["build-system", 32, 3], ["postPatch", 34, 3], ["dependencies", 39, 3], ["pythonRemoveDeps", 52, 3], ["pythonRelaxDeps", 54, 3], ["nativeCheckInputs", 59, 3], ["disabledTests", 61, 3], ["pythonImportsCheck", 78, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = isPyPy;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-16QDzsZCquAPH3FPyBjxeXGcvSdjYLZFTXN0ASneROU=",
@@ -70,7 +68,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["sopel"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Simple and extensible IRC bot",
         homepage: "https://sopel.chat",
         license: nix.thunk(() => nix.sel(lib, "licenses", "efl20")),
@@ -81,7 +79,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "sopel",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

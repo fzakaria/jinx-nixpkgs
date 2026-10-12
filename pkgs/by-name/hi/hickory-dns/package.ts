@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["LIBSQLITE3_SYS_USE_PKG_CONFIG", 99, 7]], [["hickory-dns", 103, 28]], [["tests", 102, 5], ["updateScript", 105, 5]], [["description", 109, 5], ["homepage", 110, 5], ["changelog", 111, 5], ["maintainers", 112, 5], ["platforms", 117, 5], ["license", 118, 5], ["mainProgram", 122, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["cargoHash", 23, 3], ["buildFeatures", 25, 3], ["buildInputs", 36, 3], ["checkFlags", 39, 3], ["nativeCheckInputs", 74, 3], ["nativeInstallCheckInputs", 76, 3], ["doInstallCheck", 79, 3], ["preCheck", 81, 3], ["env", 99, 3], ["passthru", 101, 3], ["meta", 108, 3]]]);
 const formals$1 = { args: { cacert: false, fetchFromGitHub: false, sqlite: false, openssl: false, lib: false, "nix-update-script": false, nixosTests: false, rustPlatform: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["LIBSQLITE3_SYS_USE_PKG_CONFIG", 99, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["hickory-dns", 103, 28]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 102, 5], ["updateScript", 105, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 109, 5], ["homepage", 110, 5], ["changelog", 111, 5], ["maintainers", 112, 5], ["platforms", 117, 5], ["license", 118, 5], ["mainProgram", 122, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["cargoHash", 23, 3], ["buildFeatures", 25, 3], ["buildInputs", 36, 3], ["checkFlags", 39, 3], ["nativeCheckInputs", 74, 3], ["nativeInstallCheckInputs", 76, 3], ["doInstallCheck", 79, 3], ["preCheck", 81, 3], ["env", 99, 3], ["passthru", 101, 3], ["meta", 108, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "hickory-dns",
       version: "0.26.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hickory-dns",
           repo: "hickory-dns",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -97,17 +92,17 @@ export SSL_CERT_FILE="${cacert}/etc/ssl/certs/ca-bundle.crt";
 # skip some doctests that need network
 substituteInPlace crates/resolver/src/lib.rs --replace-fail '//! \`\`\`rust' '//! \`\`\`rust,no_run'
 `),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, LIBSQLITE3_SYS_USE_PKG_CONFIG: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], LIBSQLITE3_SYS_USE_PKG_CONFIG: 1n })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "hickory-dns": nix.thunk(() => nix.attr(nixosTests, "hickory-dns")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Rust based DNS client, server, and resolver",
         homepage: "https://hickory-dns.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/hickory-dns/hickory-dns/releases/tag/v${nix.sel(finalAttrs, "version")}`),

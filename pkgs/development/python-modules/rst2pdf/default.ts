@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 29, 13], ["version", 29, 19], ["hash", 30, 5]], [["description", 79, 5], ["mainProgram", 80, 5], ["homepage", 81, 5], ["changelog", 82, 5], ["license", 83, 5], ["maintainers", 84, 5]], [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["pythonRelaxDeps", 33, 3], ["outputs", 38, 3], ["nativeBuildInputs", 43, 3], ["propagatedBuildInputs", 50, 3], ["pythonImportsCheck", 62, 3], ["nativeCheckInputs", 64, 3], ["doCheck", 71, 3], ["postInstall", 73, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, installShellFiles: false, setuptools: false, "setuptools-scm": false, wheel: false, docutils: false, "importlib-metadata": false, jinja2: false, packaging: false, pygments: false, pyyaml: false, reportlab: false, smartypants: false, pillow: false, pytestCheckHook: false, pymupdf: false, sphinx: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 29, 13], ["version", 29, 19], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 79, 5], ["mainProgram", 80, 5], ["homepage", 81, 5], ["changelog", 82, 5], ["license", 83, 5], ["maintainers", 84, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["pythonRelaxDeps", 33, 3], ["outputs", 38, 3], ["nativeBuildInputs", 43, 3], ["propagatedBuildInputs", 50, 3], ["pythonImportsCheck", 62, 3], ["nativeCheckInputs", 64, 3], ["doCheck", 71, 3], ["postInstall", 73, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.105";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-hX6HQQFOxQFfegCq+13Mu1Y3jvTB2lWoKNRLz1/zrNs=",
@@ -59,7 +57,7 @@ export default nix.lambda((args) => (() => {
 installManPage rst2pdf.1
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Convert reStructured Text to PDF via ReportLab",
         mainProgram: "rst2pdf",
         homepage: "https://rst2pdf.org/",
@@ -68,7 +66,7 @@ installManPage rst2pdf.1
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

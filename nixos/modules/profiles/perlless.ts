@@ -2,85 +2,69 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/perlless.nix", [[["enable", 5, 22]], [["overlay", 5, 14]], [["enable", 9, 38]], [["nixos-generate-config", 9, 16]], [["etc", 5, 10], ["tools", 9, 10], ["forbiddenDependenciesRegexes", 18, 10]], [["enable", 6, 21]], [["userborn", 6, 12]], [["enable", 10, 20]], [["grub", 10, 15]], [["loader", 10, 8]], [["defaultPackages", 11, 15]], [["enable", 12, 22]], [["enable", 13, 23]], [["info", 12, 17], ["nixos", 13, 17]], [["enable", 14, 30]], [["command-not-found", 14, 12]], [["system", 5, 3], ["services", 6, 3], ["boot", 10, 3], ["environment", 11, 3], ["documentation", 12, 3], ["programs", 14, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/perlless.nix", [["enable", 5, 22]]);
-const pos$2 = nix.positions(here + "/perlless.nix", [["overlay", 5, 14]]);
-const pos$3 = nix.positions(here + "/perlless.nix", [["enable", 9, 38]]);
-const pos$4 = nix.positions(here + "/perlless.nix", [["nixos-generate-config", 9, 16]]);
-const pos$5 = nix.positions(here + "/perlless.nix", [["etc", 5, 10], ["tools", 9, 10], ["forbiddenDependenciesRegexes", 18, 10]]);
-const pos$6 = nix.positions(here + "/perlless.nix", [["enable", 6, 21]]);
-const pos$7 = nix.positions(here + "/perlless.nix", [["userborn", 6, 12]]);
-const pos$8 = nix.positions(here + "/perlless.nix", [["enable", 10, 20]]);
-const pos$9 = nix.positions(here + "/perlless.nix", [["grub", 10, 15]]);
-const pos$10 = nix.positions(here + "/perlless.nix", [["loader", 10, 8]]);
-const pos$11 = nix.positions(here + "/perlless.nix", [["defaultPackages", 11, 15]]);
-const pos$12 = nix.positions(here + "/perlless.nix", [["enable", 12, 22]]);
-const pos$13 = nix.positions(here + "/perlless.nix", [["enable", 13, 23]]);
-const pos$14 = nix.positions(here + "/perlless.nix", [["info", 12, 17], ["nixos", 13, 17]]);
-const pos$15 = nix.positions(here + "/perlless.nix", [["enable", 14, 30]]);
-const pos$16 = nix.positions(here + "/perlless.nix", [["command-not-found", 14, 12]]);
-const pos$17 = nix.positions(here + "/perlless.nix", [["system", 5, 3], ["services", 6, 3], ["boot", 10, 3], ["environment", 11, 3], ["documentation", 12, 3], ["programs", 14, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$17,
+    [nix.POS]: $pos[16],
     system: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       etc: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         overlay: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
         })),
       })),
       tools: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         "nixos-generate-config": nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
         })),
       })),
       forbiddenDependenciesRegexes: nix.thunk(() => ["perl"]),
     })),
     services: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       userborn: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
       })),
     })),
     boot: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       loader: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         grub: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
         })),
       })),
     })),
     environment: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       defaultPackages: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), [])),
     })),
     documentation: nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       info: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
       })),
       nixos: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
       })),
     })),
     programs: nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       "command-not-found": nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
       })),
     })),

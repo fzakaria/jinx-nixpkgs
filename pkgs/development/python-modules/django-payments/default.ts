@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["braintree", 48, 5], ["cybersource", 49, 5], ["mercadopago", 50, 5], ["sagepay", 51, 5], ["sofort", 52, 5], ["stripe", 53, 5]], [["description", 57, 5], ["homepage", 58, 5], ["changelog", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["dependencies", 35, 3], ["doCheck", 43, 3], ["pythonImportsCheck", 45, 3], ["optional-dependencies", 47, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, braintree: false, cryptography: false, django: false, "django-phonenumber-field": false, fetchFromGitHub: false, mercadopago: false, requests: false, setuptools: false, "setuptools-scm": false, stripe: false, "suds-community": false, xmltodict: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["braintree", 48, 5], ["cybersource", 49, 5], ["mercadopago", 50, 5], ["sagepay", 51, 5], ["sofort", 52, 5], ["stripe", 53, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 57, 5], ["homepage", 58, 5], ["changelog", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["dependencies", 35, 3], ["doCheck", 43, 3], ["pythonImportsCheck", 45, 3], ["optional-dependencies", 47, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jazzband",
           repo: "django-payments",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["payments"]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         braintree: nix.thunk(() => [braintree]),
         cybersource: nix.thunk(() => [suds_community]),
         mercadopago: nix.thunk(() => [mercadopago]),
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
         stripe: nix.thunk(() => [stripe]),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Universal payment handling for Django",
         homepage: "https://github.com/jazzband/django-payments/",
         changelog: nix.thunk(() => nix.str`https://github.com/jazzband/django-payments/blob/${nix.sel(src, "rev")}/CHANGELOG.rst`),
@@ -60,7 +57,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/qtsystems.nix", [[["maintainers", 55, 5]], [["pname", 15, 3], ["outputs", 17, 3], ["propagatedBuildInputs", 25, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["qmakeFlags", 41, 3], ["postFixup", 50, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { qtModule: false, stdenv: false, lib: false, bluez: false, libevdev: false, libx11: false, "pkg-config": false, qtbase: false, udev: false, wrapQtAppsHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/qtsystems.nix", [["maintainers", 55, 5]]);
-const pos$2 = nix.positions(here + "/qtsystems.nix", [["pname", 15, 3], ["outputs", 17, 3], ["propagatedBuildInputs", 25, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["qmakeFlags", 41, 3], ["postFixup", 50, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const udev = nix.arg($, "udev");
   const wrapQtAppsHook = nix.arg($, "wrapQtAppsHook");
   return nix.app(qtModule, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "qtsystems",
       outputs: nix.thunk(() => nix.concat(["out", "dev"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ["bin"])))),
       propagatedBuildInputs: nix.thunk(() => [qtbase]),
@@ -28,7 +27,7 @@ export default nix.lambda((args) => (() => {
       qmakeFlags: nix.thunk(() => nix.concat(["CONFIG+=git_build"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ["CONFIG+=ofono", "CONFIG+=udisks", "CONFIG+=upower"])))),
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "wrapQtApp $bin/bin/servicefw\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "OPNA2608"))];

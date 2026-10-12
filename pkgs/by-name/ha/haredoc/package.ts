@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["homepage", 46, 5], ["description", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["mainProgram", 50, 5], ["platforms", 51, 29], ["badPlatforms", 51, 39]], [["pname", 9, 3], ["outputs", 10, 3], ["version", 14, 18], ["src", 14, 26], ["nativeBuildInputs", 16, 3], ["strictDeps", 21, 3], ["enableParallelBuilding", 23, 3], ["buildPhase", 25, 3], ["installPhase", 35, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, scdoc: false, hare: false, hareHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["homepage", 46, 5], ["description", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["mainProgram", 50, 5], ["platforms", 51, 29], ["badPlatforms", 51, 39]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["outputs", 10, 3], ["version", 14, 18], ["src", 14, 26], ["nativeBuildInputs", 16, 3], ["strictDeps", 21, 3], ["enableParallelBuilding", 23, 3], ["buildPhase", 25, 3], ["installPhase", 35, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const hare = nix.arg($, "hare");
   const hareHook = nix.arg($, "hareHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "haredoc",
       outputs: nix.thunk(() => ["out", "man"]),
       version: nix.thunk(() => nix.attr(hare, "version")),
@@ -27,7 +26,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(hareHook, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: "https://harelang.org/",
         description: "Hare's documentation tool",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

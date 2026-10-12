@@ -2,37 +2,29 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/test.nix", [["github", 11, 5], ["githubId", 12, 5], ["name", 13, 5]]);
-const pos$2 = nix.positions(here + "/test.nix", [["ghost", 21, 17]]);
-const pos$3 = nix.positions(here + "/test.nix", [["maintainers", 20, 7]]);
-const pos$4 = nix.positions(here + "/test.nix", [["lib", 27, 17]]);
-const pos$5 = nix.positions(here + "/test.nix", [["maintainers", 32, 14]]);
-const pos$6 = nix.positions(here + "/test.nix", [["_file", 31, 9], ["meta", 32, 9]]);
-const pos$7 = nix.positions(here + "/test.nix", [["specialArgs", 27, 5], ["modules", 28, 5]]);
-const pos$8 = nix.positions(here + "/test.nix", [["ghost.nix", 44, 9]]);
-const pos$9 = nix.positions(here + "/test.nix", [["lib", 18, 3], ["example", 26, 3], ["test", 37, 3]]);
+const $pos = nix.positions(here + "/test.nix", [[["github", 11, 5], ["githubId", 12, 5], ["name", 13, 5]], [["ghost", 21, 17]], [["maintainers", 20, 7]], [["lib", 27, 17]], [["maintainers", 32, 14]], [["_file", 31, 9], ["meta", 32, 9]], [["specialArgs", 27, 5], ["modules", 28, 5]], [["ghost.nix", 44, 9]], [["lib", 18, 3], ["example", 26, 3], ["test", 37, 3]]]);
 
 export default nix.thunk(() => (() => {
-  const ghost = nix.thunk(() => ({ [nix.POS]: pos$1, github: "ghost", githubId: 0n, name: "ghost" }));
+  const ghost = nix.thunk(() => ({ [nix.POS]: $pos[0], github: "ghost", githubId: 0n, name: "ghost" }));
   return nix.sel((() => {
     const lib = nix.thunk(() => nix.app(nix.sel(nix.builtins.import(nix.path(here, "../../../lib")), "extend"), (final) => (prev) => ({
-        [nix.POS]: pos$3,
-        maintainers: nix.thunk(() => nix.update(nix.sel(prev, "maintainers"), { [nix.POS]: pos$2, ghost: ghost })),
+        [nix.POS]: $pos[2],
+        maintainers: nix.thunk(() => nix.update(nix.sel(prev, "maintainers"), { [nix.POS]: $pos[1], ghost: ghost })),
       })));
     const example = nix.thunk(() => nix.app(nix.sel(lib, "evalModules"), nix.thunk(() => ({
-        [nix.POS]: pos$7,
-        specialArgs: nix.thunk(() => ({ [nix.POS]: pos$4, lib: lib })),
+        [nix.POS]: $pos[6],
+        specialArgs: nix.thunk(() => ({ [nix.POS]: $pos[3], lib: lib })),
         modules: nix.thunk(() => [
           nix.path(here, "../meta-maintainers.nix"),
           nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             _file: "ghost.nix",
-            meta: nix.thunk(() => ({ [nix.POS]: pos$5, maintainers: nix.thunk(() => [ghost]) })),
+            meta: nix.thunk(() => ({ [nix.POS]: $pos[4], maintainers: nix.thunk(() => [ghost]) })),
           })),
         ]),
       }))));
     const test = nix.thunk(() => (() => {
-      nix.assert_(nix.eq(nix.sel(example, "config", "meta", "maintainers"), nix.attrsDyn({ [nix.POS]: pos$8, "ghost.nix": nix.thunk(() => [ghost]) }, [
+      nix.assert_(nix.eq(nix.sel(example, "config", "meta", "maintainers"), nix.attrsDyn({ [nix.POS]: $pos[7], "ghost.nix": nix.thunk(() => [ghost]) }, [
         [nix.builtins.toString(nix.path(here, "../../../lib/modules/generic/meta-maintainers.nix")), nix.thunk(() => [
           nix.thunk(() => nix.sel(lib, "maintainers", "pierron")),
           nix.thunk(() => nix.sel(lib, "maintainers", "roberth")),
@@ -40,7 +32,7 @@ export default nix.thunk(() => (() => {
       ])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/modules/generic/meta-maintainers/test.nix:38:5");
       return {};
     })());
-    return { [nix.POS]: pos$9, lib, example, test };
+    return { [nix.POS]: $pos[8], lib, example, test };
   })(), "test");
 })());
 //# sourceMappingURL=test.ts.map

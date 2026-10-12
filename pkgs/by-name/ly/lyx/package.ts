@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["hash", 20, 5]], [["changelog", 56, 5], ["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["platforms", 61, 5]], [["version", 15, 3], ["pname", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 31, 3], ["configureFlags", 39, 3], ["enableParallelBuilding", 49, 3], ["doCheck", 50, 3], ["qtWrapperArgs", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { fetchurl: false, lib: false, stdenv: false, "pkg-config": false, python3: false, file: false, bc: false, libsForQt5: false, hunspell: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 56, 5], ["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["platforms", 61, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 15, 3], ["pname", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 31, 3], ["configureFlags", 39, 3], ["enableParallelBuilding", 49, 3], ["doCheck", 50, 3], ["qtWrapperArgs", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.5.1";
       const pname = "lyx";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`ftp://ftp.lyx.org/pub/lyx/stable/2.5.x/lyx-${version}.tar.xz`),
           hash: "sha256-8qI4e8s/L1RsH8E+THTLT4qmSHBs5XiO9wXdUTRNLP0=",
         }))));
@@ -46,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = true;
       const qtWrapperArgs = nix.thunk(() => [nix.thunk(() => nix.str` --prefix PATH : ${python3}/bin`)]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://www.lyx.org/announce/${nix.app(nix.sel(lib, "replaceString"), ".", "_", version)}.txt`),
         description: "WYSIWYM frontend for LaTeX, DocBook",
         homepage: "https://www.lyx.org",
@@ -55,7 +53,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         version,
         pname,
         src,

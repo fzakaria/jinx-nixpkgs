@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/run.nix", [[["pname", 26, 3], ["version", 27, 19], ["paths", 29, 3]]]);
 const formals$1 = { args: { runtimeShell: false, symlinkJoin: false, writeShellScriptBin: false, npush: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/run.nix", [["pname", 26, 3], ["version", 27, 19], ["paths", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +26,7 @@ echo "Now calling npush"
 exec "${npush}/bin/npush"
 `)));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "run-npush",
       version: nix.thunk(() => nix.attr(npush, "version")),
       paths: nix.thunk(() => [npush, runScript]),

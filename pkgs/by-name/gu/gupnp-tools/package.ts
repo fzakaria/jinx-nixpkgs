@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 5], ["sha256", 25, 5]], [["packageName", 52, 7], ["versionPolicy", 53, 7]], [["updateScript", 51, 5]], [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["teams", 61, 5], ["platforms", 62, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 36, 3], ["mesonFlags", 45, 3], ["passthru", 50, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, meson: false, ninja: false, gupnp_1_6: false, libsoup_3: false, gssdp_1_6: false, "pkg-config": false, gtk3: false, gettext: false, "gupnp-av": false, gtksourceview4: false, gnome: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 5], ["sha256", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 52, 7], ["versionPolicy", 53, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 51, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["teams", 61, 5], ["platforms", 62, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 36, 3], ["mesonFlags", 45, 3], ["passthru", 50, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const gnome = nix.arg($, "gnome");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gupnp-tools",
       version: "0.12.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gupnp-tools/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gupnp-tools-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "TJLy0aPUVOwfX7Be8IyjTfnHQ69kyLWWXDWITUbLAFw=",
         })))),
@@ -39,11 +35,15 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gupnp_1_6, libsoup_3, gssdp_1_6, gtk3, gupnp_av, gtksourceview4]),
       mesonFlags: nix.thunk(() => ["-Dc_args=-Wno-error=deprecated-declarations"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "gupnp-tools", versionPolicy: "odd-unstable" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
+            [nix.POS]: $pos[1],
+            packageName: "gupnp-tools",
+            versionPolicy: "odd-unstable",
+          })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Set of utilities and demos to work with UPnP",
         homepage: "https://gitlab.gnome.org/GNOME/gupnp-tools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

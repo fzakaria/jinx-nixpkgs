@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["pname", 16, 3], ["version", 17, 17], ["src", 17, 25], ["pyproject", 18, 3], ["postPatch", 20, 3], ["dontBuild", 26, 3], ["dontInstall", 27, 3], ["preConfigure", 28, 3], ["nativeCheckInputs", 32, 3], ["checkPhase", 45, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, build: false, git: false, gnupg: false, pbr: false, sphinx: false, stestr: false, testresources: false, testscenarios: false, virtualenv: false, wheel: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tests.nix", [["pname", 16, 3], ["version", 17, 17], ["src", 17, 25], ["pyproject", 18, 3], ["postPatch", 20, 3], ["dontBuild", 26, 3], ["dontInstall", 27, 3], ["preConfigure", 28, 3], ["nativeCheckInputs", 32, 3], ["checkPhase", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const virtualenv = nix.arg($, "virtualenv");
   const wheel = nix.arg($, "wheel");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "pbr",
       version: nix.thunk(() => nix.attr(pbr, "version")),
       src: nix.thunk(() => nix.attr(pbr, "src")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["homepage", 98, 5], ["changelog", 99, 5], ["description", 100, 5], ["longDescription", 101, 5], ["license", 111, 5], ["platforms", 112, 5], ["maintainers", 113, 5], ["mainProgram", 114, 5], ["timeout", 117, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 35, 3], ["patches", 42, 3], ["postPatch", 46, 3], ["configureFlags", 51, 3], ["enableParallelBuilding", 62, 3], ["doCheck", 64, 3], ["checkPhase", 65, 3], ["postInstall", 82, 3], ["requiredSystemFeatures", 95, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, gettext: false, "pkg-config": false, which: false, "util-linux": false, glib: false, gtk3: false, wrapGAppsHook3: false, withGui: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 98, 5], ["changelog", 99, 5], ["description", 100, 5], ["longDescription", 101, 5], ["license", 111, 5], ["platforms", 112, 5], ["maintainers", 113, 5], ["mainProgram", 114, 5], ["timeout", 117, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 35, 3], ["patches", 42, 3], ["postPatch", 46, 3], ["configureFlags", 51, 3], ["enableParallelBuilding", 62, 3], ["doCheck", 64, 3], ["checkPhase", 65, 3], ["postInstall", 82, 3], ["requiredSystemFeatures", 95, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const withGui = nix.argOr($, "withGui", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dvdisaster",
       version: "0.79.10-pl6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "speed47",
           repo: "dvdisaster",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "rm -f $out/bin/dvdisaster-uninstall.sh\nmkdir -pv $out/share/applications\ncp contrib/dvdisaster.desktop $out/share/applications/\n\nfor size in 16 24 32 48 64; do\n  mkdir -pv $out/share/icons/hicolor/\"$size\"x\"$size\"/apps/\n  cp contrib/dvdisaster\"$size\".png \\\n    $out/share/icons/hicolor/\"$size\"x\"$size\"/apps/dvdisaster.png\ndone\n")),
       requiredSystemFeatures: nix.thunk(() => ["big-parallel"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/speed47/dvdisaster",
         changelog: nix.thunk(() => nix.str`https://github.com/speed47/dvdisaster/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG`),
         description: "Data loss/scratch/aging protection for CD/DVD media (unofficial version)",

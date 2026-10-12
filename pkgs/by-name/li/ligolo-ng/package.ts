@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["CGO_ENABLED", 23, 7]], [["win", 50, 7], ["linux64", 51, 7]], [["tests", 49, 5], ["updateScript", 53, 5]], [["description", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["env", 23, 3], ["subPackages", 25, 3], ["ldflags", 30, 3], ["postInstall", 38, 3], ["nativeInstallCheckInputs", 44, 3], ["versionCheckProgram", 45, 3], ["doInstallCheck", 46, 3], ["passthru", 48, 3], ["doCheck", 57, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, "nix-update-script": false, pkgsCross: true, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 23, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["win", 50, 7], ["linux64", 51, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 49, 5], ["updateScript", 53, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["env", 23, 3], ["subPackages", 25, 3], ["ldflags", 30, 3], ["postInstall", 38, 3], ["nativeInstallCheckInputs", 44, 3], ["versionCheckProgram", 45, 3], ["doInstallCheck", 46, 3], ["passthru", 48, 3], ["doCheck", 57, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const pkgsCross = nix.argOr($, "pkgsCross", () => ({}));
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "ligolo-ng",
       version: "0.9.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nicocha30",
           repo: "ligolo-ng",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-y7q4XhZpmzxQM/fKd3ReRxjMGtda9GUJPsT5az6G784=",
         })))),
       vendorHash: "sha256-trHlhuVT76Q13WvOgVQo5VmD4ouUR5BQRY7JF1wiY+U=",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_ENABLED: 0n })),
       subPackages: nix.thunk(() => ["cmd/agent", "cmd/proxy"]),
       ldflags: nix.thunk(() => [
         "-s",
@@ -43,9 +38,9 @@ export default nix.lambda((args) => (() => {
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/ligolo-agent`),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           win: nix.thunk(() => nix.selOr(pkgsCross, () => null, "mingwW64", "ligolo-ng")),
           linux64: nix.thunk(() => nix.selOr(pkgsCross, () => null, "gnu64", "ligolo-ng")),
         })),
@@ -53,7 +48,7 @@ export default nix.lambda((args) => (() => {
       })),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Advanced TUN-based tunneling/pivoting tool",
         homepage: "https://github.com/nicocha30/ligolo-ng",
         changelog: nix.thunk(() => nix.str`https://github.com/nicocha30/ligolo-ng/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

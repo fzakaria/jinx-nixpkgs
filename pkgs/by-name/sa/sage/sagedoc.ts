@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/sagedoc.nix", [[["version", 9, 3], ["pname", 10, 3], ["src", 11, 3], ["strictDeps", 13, 3], ["nativeBuildInputs", 15, 3], ["unpackPhase", 21, 3], ["preConfigure", 35, 3], ["buildPhase", 39, 3], ["enableParallelBuilding", 57, 3], ["installPhase", 59, 3], ["doCheck", 75, 3], ["checkPhase", 76, 3]]]);
 const formals$1 = { args: { stdenv: false, "sage-with-env": false, python3: false, "jupyter-kernel-specs": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/sagedoc.nix", [["version", 9, 3], ["pname", 10, 3], ["src", 11, 3], ["strictDeps", 13, 3], ["nativeBuildInputs", 15, 3], ["unpackPhase", 21, 3], ["preConfigure", 35, 3], ["buildPhase", 39, 3], ["enableParallelBuilding", 57, 3], ["installPhase", 59, 3], ["doCheck", 75, 3], ["checkPhase", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -63,7 +63,7 @@ grep -PRl "#.*(optional|needs).*sagemath_doc_html" ${src}/src/sage{,_docbuild} |
   xargs ${sage_with_env}/bin/sage -t --optional=sage,sagemath_doc_html
 `);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         version,
         pname,
         src,

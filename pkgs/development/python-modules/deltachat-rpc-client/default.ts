@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["changelog", 35, 41], ["license", 35, 51], ["maintainers", 35, 59], ["description", 36, 5], ["homepage", 37, 5]], [["pname", 11, 3], ["version", 12, 34], ["src", 12, 42], ["pyproject", 13, 3], ["sourceRoot", 15, 3], ["postPatch", 17, 3], ["build-system", 22, 3], ["pythonImportsCheck", 24, 3], ["nativeCheckInputs", 26, 3], ["doCheck", 32, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, "deltachat-rpc-server": false, "imap-tools": false, lib: false, pytestCheckHook: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["changelog", 35, 41], ["license", 35, 51], ["maintainers", 35, 59], ["description", 36, 5], ["homepage", 37, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 34], ["src", 12, 42], ["pyproject", 13, 3], ["sourceRoot", 15, 3], ["postPatch", 17, 3], ["build-system", 22, 3], ["pythonImportsCheck", 24, 3], ["nativeCheckInputs", 26, 3], ["doCheck", 32, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(deltachat_rpc_server, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         changelog: nix.thunk(() => nix.attr(from, "changelog")),
         license: nix.thunk(() => nix.attr(from, "license")),
         maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
@@ -39,7 +38,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname,
         version,
         src,

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["rev-prefix", 53, 7], ["ignoredVersions", 54, 7]], [["skipBulkUpdate", 51, 5], ["updateScript", 52, 5]], [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["sourceRoot", 28, 3], ["build-system", 30, 3], ["pythonRelaxDeps", 34, 3], ["dependencies", 38, 3], ["enabledTestPaths", 44, 3], ["doCheck", 47, 3], ["passthru", 49, 3], ["pythonImportsCheck", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, gitUpdater: false, hatchling: false, "langgraph-checkpoint": false, "langchain-mongodb": false, pymongo: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["rev-prefix", 53, 7], ["ignoredVersions", 54, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["skipBulkUpdate", 51, 5], ["updateScript", 52, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["sourceRoot", 28, 3], ["build-system", 30, 3], ["pythonRelaxDeps", 34, 3], ["dependencies", 38, 3], ["enabledTestPaths", 44, 3], ["doCheck", 47, 3], ["passthru", 49, 3], ["pythonImportsCheck", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const langchain_mongodb = nix.arg($, "langchain-mongodb");
   const pymongo = nix.arg($, "pymongo");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "langgraph-checkpoint-mongodb",
       version: "0.5.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "langchain-ai",
           repo: "langchain-mongodb",
           tag: nix.thunk(() => nix.str`libs/langgraph-checkpoint-mongodb/v${nix.sel(finalAttrs, "version")}`),
@@ -38,17 +34,17 @@ export default nix.lambda((args) => (() => {
       enabledTestPaths: nix.thunk(() => ["tests/unit_tests"]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         skipBulkUpdate: true,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             "rev-prefix": "libs/langgraph-checkpoint-mongodb/v",
             ignoredVersions: "a|b|dev|rc",
           })))),
       })),
       pythonImportsCheck: nix.thunk(() => ["langgraph.checkpoint.mongodb"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Integrations between MongoDB, Atlas, LangChain, and LangGraph",
         homepage: "https://github.com/langchain-ai/langchain-mongodb/tree/main/libs/langgraph-checkpoint-mongodb",
         changelog: nix.thunk(() => nix.str`https://github.com/langchain-ai/langchain-mongodb/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

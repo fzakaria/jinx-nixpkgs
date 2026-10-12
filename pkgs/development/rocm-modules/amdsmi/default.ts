@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["sparseCheckout", 29, 5], ["hash", 33, 5]], [["finalAttrs", 85, 54]], [["updateScript", 85, 12]], [["description", 88, 5], ["homepage", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["teams", 92, 5], ["platforms", 93, 5], ["mainProgram", 94, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 25, 3], ["sourceRoot", 35, 3], ["postPatch", 37, 3], ["patches", 50, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 63, 3], ["cmakeFlags", 67, 3], ["postInstall", 75, 3], ["passthru", 85, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rocmUpdateScript: false, cmake: false, "pkg-config": false, libdrm: false, python: false, wrapPython: false, autoPatchelfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["sparseCheckout", 29, 5], ["hash", 33, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["finalAttrs", 85, 54]]);
-const pos$4 = nix.positions(here + "/default.nix", [["updateScript", 85, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 88, 5], ["homepage", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["teams", 92, 5], ["platforms", 93, 5], ["mainProgram", 94, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 25, 3], ["sourceRoot", 35, 3], ["postPatch", 37, 3], ["patches", 50, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 63, 3], ["cmakeFlags", 67, 3], ["postInstall", 75, 3], ["passthru", 85, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,18 +18,18 @@ export default nix.lambda((args) => (() => {
   const wrapPython = nix.arg($, "wrapPython");
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   const esmi_ib_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "amd",
       repo: "esmi_ib_library",
       tag: "esmi_pkg_ver-4.2",
       hash: "sha256-czF9ezkAO0PuDkXh8y639AcOZH+KVcWiXPX74H5W/nw=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "amdsmi",
       version: "7.2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "ROCm",
           repo: "rocm-systems",
           tag: nix.thunk(() => nix.str`rocm-${nix.sel(finalAttrs, "version")}`),
@@ -70,11 +65,11 @@ rm $out/bin/amd-smi
 ln -sf $out/libexec/amdsmi_cli/amdsmi_cli.py $out/bin/amd-smi
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: pos$3, finalAttrs: finalAttrs })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: $pos[2], finalAttrs: finalAttrs })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "System management interface for AMD GPUs supported by ROCm",
         homepage: "https://github.com/ROCm/rocm-systems/tree/develop/projects/amdsmi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

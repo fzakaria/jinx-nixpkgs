@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["sourceRoot", 9, 5]], [["description", 33, 5]], [["version", 13, 23], ["pname", 14, 3], ["paths", 16, 3], ["pathsToLink", 21, 3], ["nativeBuildInputs", 23, 3], ["postBuild", 26, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { buildEnv: false, makeWrapper: false, iortcw_sp: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["sourceRoot", 9, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 13, 23], ["pname", 14, 3], ["paths", 16, 3], ["pathsToLink", 21, 3], ["nativeBuildInputs", 23, 3], ["postBuild", 26, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const iortcw_sp = nix.arg($, "iortcw_sp");
   const mp = nix.thunk(() => nix.app(nix.sel(iortcw_sp, "overrideAttrs"), (oldAttrs) => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(oldAttrs, "src", "name")}/MP`),
     })));
   return nix.app(buildEnv, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: nix.thunk(() => nix.attr(iortcw_sp, "version")),
       pname: "iortcw",
       paths: nix.thunk(() => [iortcw_sp, mp]),
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       postBuild: "for i in `find -L $out/opt/iortcw -maxdepth 1 -type f -executable`; do\n  makeWrapper $i $out/bin/`basename $i` --chdir \"$out/opt/iortcw\"\ndone\n",
       meta: nix.thunk(() => nix.update(nix.sel(iortcw_sp, "meta"), {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Game engine for Return to Castle Wolfenstein",
       })),
     })));

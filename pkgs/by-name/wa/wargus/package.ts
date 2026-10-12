@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 28, 5], ["sha256", 29, 5]], [["license", 40, 14]], [["buildInputs", 35, 9], ["meta", 40, 9]], [["owner", 57, 5], ["repo", 58, 5], ["tag", 59, 5], ["sha256", 60, 5]], [["url", 65, 7], ["sha256", 66, 7]], [["description", 96, 5], ["homepage", 97, 5], ["license", 98, 5], ["maintainers", 99, 5], ["platforms", 100, 5]], [["pname", 53, 3], ["version", 54, 23], ["src", 56, 3], ["patches", 62, 3], ["nativeBuildInputs", 70, 3], ["buildInputs", 76, 3], ["cmakeFlags", 81, 3], ["postInstall", 85, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, callPackage: false, fetchFromGitHub: false, fetchurl: false, fetchpatch: false, runCommand: false, unzip: false, bchunk: false, p7zip: false, cmake: false, "pkg-config": false, makeWrapper: false, zlib: false, bzip2: false, libpng: false, dialog: false, python3: false, cdparanoia: false, ffmpeg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 28, 5], ["sha256", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["license", 40, 14]]);
-const pos$3 = nix.positions(here + "/package.nix", [["buildInputs", 35, 9], ["meta", 40, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 57, 5], ["repo", 58, 5], ["tag", 59, 5], ["sha256", 60, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 65, 7], ["sha256", 66, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 96, 5], ["homepage", 97, 5], ["license", 98, 5], ["maintainers", 99, 5], ["platforms", 100, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 53, 3], ["version", 54, 23], ["src", 56, 3], ["patches", 62, 3], ["nativeBuildInputs", 70, 3], ["buildInputs", 76, 3], ["cmakeFlags", 81, 3], ["postInstall", 85, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,15 +29,15 @@ export default nix.lambda((args) => (() => {
   const ffmpeg = nix.arg($, "ffmpeg");
   const stratagus = nix.thunk(() => nix.app(callPackage, nix.path(here, "./stratagus.nix"), nix.thunk(() => ({}))));
   const dataDownload = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://archive.org/download/warcraft-ii-tides-of-darkness_202105/Warcess.zip",
       sha256: "0yxgvf8xpv1w2bjmny4a38pa3xcdgqckk9abj21ilkc5zqzqmm9b",
     }))));
   const data = nix.thunk(() => nix.app(runCommand, "warcraft2", nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       buildInputs: nix.thunk(() => [unzip, bchunk, p7zip]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
       })),
     })), nix.thunk(() => nix.str`unzip ${dataDownload} "Warcraft.II.Tides.of.Darkness/Warcraft II - Tides of Darkness (1995)/games/WarcrafD/cd/"{WC2BTDP.img,WC2BTDP.cue}
@@ -57,7 +51,7 @@ cp -r DATA $out
       const pname = "wargus";
       const version = nix.thunk(() => nix.attr(stratagus, "version"));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "wargus",
           repo: "wargus",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -65,7 +59,7 @@ cp -r DATA $out
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: "https://github.com/Wargus/wargus/commit/e89e121edadaf3ab365263c68b5baec305a5c65f.patch",
             sha256: "sha256-9FgflNyqZUrBY1prOahicnjslMxxUrK2bLspfGeZ6Os=",
           })))),
@@ -85,7 +79,7 @@ $out/bin/wartool -v -r ${data} $out/share/games/stratagus/wargus
 ln -s $out/share/games/stratagus/wargus/{contrib/black_title.png,graphics/ui/black_title.png}
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Importer and scripts for Warcraft II: Tides of Darkness, the expansion Beyond the Dark Portal, and Aleonas Tales",
         homepage: "https://wargus.github.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -93,7 +87,7 @@ ln -s $out/share/games/stratagus/wargus/{contrib/black_title.png,graphics/ui/bla
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         src,

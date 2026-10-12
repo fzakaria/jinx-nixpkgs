@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["slepc", 21, 7], ["adios2", 22, 7], ["kahip", 23, 7]], [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["pname", 77, 7], ["version", 78, 28], ["src", 78, 36], ["cmakeDir", 80, 7], ["nativeBuildInputs", 82, 7], ["buildInputs", 87, 7], ["nativeCheckInputs", 89, 7], ["doCheck", 91, 7], ["installPhase", 93, 7]], [["unittests", 76, 5]], [["tests", 75, 12]], [["homepage", 100, 5], ["downloadPage", 101, 5], ["description", 102, 5], ["changelog", 103, 5], ["license", 104, 5], ["platforms", 108, 5], ["maintainers", 109, 5]], [["version", 28, 3], ["pname", 29, 3], ["src", 31, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 43, 3], ["propagatedBuildInputs", 49, 3], ["cmakeDir", 61, 3], ["cmakeFlags", 63, 3], ["passthru", 75, 3], ["meta", 99, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, spdlog: false, pugixml: false, boost: false, petsc: false, slepc: false, kahip: false, adios2: false, python3Packages: false, catch2_3: false, withParmetis: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["slepc", 21, 7], ["adios2", 22, 7], ["kahip", 23, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 77, 7], ["version", 78, 28], ["src", 78, 36], ["cmakeDir", 80, 7], ["nativeBuildInputs", 82, 7], ["buildInputs", 87, 7], ["nativeCheckInputs", 89, 7], ["doCheck", 91, 7], ["installPhase", 93, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["unittests", 76, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 75, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 100, 5], ["downloadPage", 101, 5], ["description", 102, 5], ["changelog", 103, 5], ["license", 104, 5], ["platforms", 108, 5], ["maintainers", 109, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["version", 28, 3], ["pname", 29, 3], ["src", 31, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 43, 3], ["propagatedBuildInputs", 49, 3], ["cmakeDir", 61, 3], ["cmakeFlags", 63, 3], ["passthru", 75, 3], ["meta", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,17 +23,17 @@ export default nix.lambda((args) => (() => {
   const catch2_3 = nix.arg($, "catch2_3");
   const withParmetis = nix.argOr($, "withParmetis", () => false);
   const dolfinxPackages = nix.thunk(() => nix.app(nix.sel(petsc, "petscPackages", "overrideScope"), (final) => (prev) => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       slepc: nix.thunk(() => nix.app(nix.sel(final, "callPackage"), nix.thunk(() => nix.sel(slepc, "override")), nix.thunk(() => ({})))),
       adios2: nix.thunk(() => nix.app(nix.sel(final, "callPackage"), nix.thunk(() => nix.sel(adios2, "override")), nix.thunk(() => ({})))),
       kahip: nix.thunk(() => nix.app(nix.sel(final, "callPackage"), nix.thunk(() => nix.sel(kahip, "override")), nix.thunk(() => ({})))),
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       version: "0.11.0.post0",
       pname: "dolfinx",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "fenics",
           repo: "dolfinx",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -74,11 +68,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CMAKE_INSTALL_INCLUDEDIR", "include")),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           unittests: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-unittests`),
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -92,7 +86,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://fenicsproject.org",
         downloadPage: "https://github.com/fenics/dolfinx",
         description: "Computational environment of FEniCSx and implements the FEniCS Problem Solving Environment in C++ and Python",

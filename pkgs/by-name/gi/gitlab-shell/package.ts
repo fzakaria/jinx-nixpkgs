@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["description", 46, 5], ["homepage", 47, 5], ["platforms", 48, 5], ["teams", 49, 5], ["license", 50, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 14, 3], ["buildInputs", 21, 3], ["patches", 26, 3], ["vendorHash", 30, 3], ["subPackages", 32, 3], ["postInstall", 40, 3], ["doCheck", 43, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitLab: false, buildGoModule: false, ruby: false, libkrb5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 46, 5], ["homepage", 47, 5], ["platforms", 48, 5], ["teams", 49, 5], ["license", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 14, 3], ["buildInputs", 21, 3], ["patches", 26, 3], ["vendorHash", 30, 3], ["subPackages", 32, 3], ["postInstall", 40, 3], ["doCheck", 43, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const ruby = nix.arg($, "ruby");
   const libkrb5 = nix.arg($, "libkrb5");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gitlab-shell",
       version: "14.57.3",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gitlab-org",
           repo: "gitlab-shell",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "cp -r \"$NIX_BUILD_TOP/source\"/{support,VERSION} $out/\n",
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "SSH access and repository management app for GitLab",
         homepage: "http://www.gitlab.com/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

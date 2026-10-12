@@ -2,42 +2,27 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/systemd-timesyncd-nscd-dnssec.nix", [[["enable", 28, 9], ["ip", 29, 9], ["data", 30, 9]], [["DNSSEC", 38, 42]], [["Resolve", 38, 34]], [["enable", 37, 25], ["settings", 38, 25]], [["FallbackNTP", 44, 40]], [["Time", 44, 35]], [["enable", 42, 26], ["servers", 43, 26], ["settings", 44, 26]], [["tinydns", 27, 16], ["resolved", 37, 16], ["timesyncd", 42, 16]], [["nameservers", 39, 18]], [["SYSTEMD_LOG_LEVEL", 47, 54]], [["environment", 47, 42]], [["systemd-timesyncd", 47, 24]], [["services", 47, 15]], [["services", 27, 7], ["networking", 39, 7], ["systemd", 47, 7]], [["machine", 23, 9]], [["name", 22, 3], ["nodes", 23, 3], ["testScript", 50, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/systemd-timesyncd-nscd-dnssec.nix", [["enable", 28, 9], ["ip", 29, 9], ["data", 30, 9]]);
-const pos$2 = nix.positions(here + "/systemd-timesyncd-nscd-dnssec.nix", [["DNSSEC", 38, 42]]);
-const pos$3 = nix.positions(here + "/systemd-timesyncd-nscd-dnssec.nix", [["Resolve", 38, 34]]);
-const pos$4 = nix.positions(here + "/systemd-timesyncd-nscd-dnssec.nix", [["enable", 37, 25], ["settings", 38, 25]]);
-const pos$5 = nix.positions(here + "/systemd-timesyncd-nscd-dnssec.nix", [["FallbackNTP", 44, 40]]);
-const pos$6 = nix.positions(here + "/systemd-timesyncd-nscd-dnssec.nix", [["Time", 44, 35]]);
-const pos$7 = nix.positions(here + "/systemd-timesyncd-nscd-dnssec.nix", [["enable", 42, 26], ["servers", 43, 26], ["settings", 44, 26]]);
-const pos$8 = nix.positions(here + "/systemd-timesyncd-nscd-dnssec.nix", [["tinydns", 27, 16], ["resolved", 37, 16], ["timesyncd", 42, 16]]);
-const pos$9 = nix.positions(here + "/systemd-timesyncd-nscd-dnssec.nix", [["nameservers", 39, 18]]);
-const pos$10 = nix.positions(here + "/systemd-timesyncd-nscd-dnssec.nix", [["SYSTEMD_LOG_LEVEL", 47, 54]]);
-const pos$11 = nix.positions(here + "/systemd-timesyncd-nscd-dnssec.nix", [["environment", 47, 42]]);
-const pos$12 = nix.positions(here + "/systemd-timesyncd-nscd-dnssec.nix", [["systemd-timesyncd", 47, 24]]);
-const pos$13 = nix.positions(here + "/systemd-timesyncd-nscd-dnssec.nix", [["services", 47, 15]]);
-const pos$14 = nix.positions(here + "/systemd-timesyncd-nscd-dnssec.nix", [["services", 27, 7], ["networking", 39, 7], ["systemd", 47, 7]]);
-const pos$15 = nix.positions(here + "/systemd-timesyncd-nscd-dnssec.nix", [["machine", 23, 9]]);
-const pos$16 = nix.positions(here + "/systemd-timesyncd-nscd-dnssec.nix", [["name", 22, 3], ["nodes", 23, 3], ["testScript", 50, 3]]);
 
 export default nix.thunk(() => (() => {
   const ntpHostname = "fake.ntp";
   const ntpIP = "192.0.2.1";
   const dnsIP = "127.0.0.1";
   return {
-    [nix.POS]: pos$16,
+    [nix.POS]: $pos[15],
     name: "systemd-timesyncd-nscd-dnssec",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       machine: nix.lambda((args) => (() => {
         const $ = nix.formals(args, formals$1);
         const lib = nix.arg($, "lib");
         return {
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             tinydns: nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               enable: true,
               ip: dnsIP,
               data: nix.thunk(() => nix.str`.ntp:${dnsIP}
@@ -45,31 +30,31 @@ export default nix.thunk(() => (() => {
 `),
             })),
             resolved: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$3,
-                Resolve: nix.thunk(() => ({ [nix.POS]: pos$2, DNSSEC: true })),
+                [nix.POS]: $pos[2],
+                Resolve: nix.thunk(() => ({ [nix.POS]: $pos[1], DNSSEC: true })),
               })),
             })),
             timesyncd: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), true)),
               servers: nix.thunk(() => [ntpHostname]),
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$6,
-                Time: nix.thunk(() => ({ [nix.POS]: pos$5, FallbackNTP: ntpHostname })),
+                [nix.POS]: $pos[5],
+                Time: nix.thunk(() => ({ [nix.POS]: $pos[4], FallbackNTP: ntpHostname })),
               })),
             })),
           })),
-          networking: nix.thunk(() => ({ [nix.POS]: pos$9, nameservers: nix.thunk(() => [dnsIP]) })),
+          networking: nix.thunk(() => ({ [nix.POS]: $pos[8], nameservers: nix.thunk(() => [dnsIP]) })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               "systemd-timesyncd": nix.thunk(() => ({
-                [nix.POS]: pos$11,
-                environment: nix.thunk(() => ({ [nix.POS]: pos$10, SYSTEMD_LOG_LEVEL: "debug" })),
+                [nix.POS]: $pos[10],
+                environment: nix.thunk(() => ({ [nix.POS]: $pos[9], SYSTEMD_LOG_LEVEL: "debug" })),
               })),
             })),
           })),

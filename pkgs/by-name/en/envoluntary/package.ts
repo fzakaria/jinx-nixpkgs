@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["description", 26, 5], ["longDescription", 27, 5], ["homepage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5], ["mainProgram", 35, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["cargoHash", 19, 3], ["preCheck", 21, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, bash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 26, 5], ["longDescription", 27, 5], ["homepage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5], ["mainProgram", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["cargoHash", 19, 3], ["preCheck", 21, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "envoluntary";
       const version = "0.1.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dfrankland",
           repo: "envoluntary",
           tag: nix.thunk(() => nix.str`envoluntary-v${version}`),
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = nix.thunk(() => nix.str`export NIX_BIN_BASH="${bash}/bin/bash"
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Automatic Nix development environments for your shell",
         longDescription: "Envoluntary seamlessly loads and unloads Nix development environments based on directory\npatterns, eliminating the need for per-project .envrc / flake.nix files while giving you\ncentralized control over your development tooling.\n",
         homepage: "https://github.com/dfrankland/envoluntary",
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })()),
         mainProgram: "envoluntary",
       }));
-      return { [nix.POS]: pos$3, pname, version, src, cargoHash, preCheck, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, cargoHash, preCheck, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

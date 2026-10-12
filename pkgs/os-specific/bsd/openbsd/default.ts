@@ -2,21 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["callPackage", 19, 7], ["directory", 20, 7]], [["libc", 30, 13], ["noLibc", 31, 13], ["sharedLibraryLoader", 32, 13]], [["libc", 27, 11], ["noLibc", 28, 11], ["bintools", 29, 11]], [["cc", 26, 9]], [["make-rules", 37, 80]], [["makeMinimal", 43, 32], ["install", 44, 40], ["rpcgen", 44, 48], ["mtree", 44, 55]], [["include", 48, 24], ["makeMinimal", 49, 32], ["install", 50, 40]], [["csu", 54, 24], ["include", 54, 28], ["makeMinimal", 55, 32], ["install", 57, 11], ["gencat", 58, 11], ["tsort", 59, 11], ["rpcgen", 60, 11]], [["openbsdSetupHook", 65, 32], ["makeMinimal", 65, 49], ["lorder", 65, 61], ["install", 67, 11], ["tsort", 68, 11], ["statHook", 69, 11], ["rpcgen", 70, 11]], [["libcMinimal", 75, 24], ["openbsdSetupHook", 76, 32], ["makeMinimal", 76, 49], ["lorder", 76, 61], ["install", 77, 40], ["tsort", 77, 48], ["statHook", 77, 54]], [["install", 80, 84]], [["install", 85, 40], ["tsort", 85, 48], ["rsync", 86, 47]], [["version", 23, 7], ["stdenvLibcMinimal", 25, 7], ["makeMinimal", 37, 7], ["include", 42, 7], ["csu", 47, 7], ["libcMinimal", 53, 7], ["librpcsvc", 64, 7], ["libutil", 74, 7], ["lorder", 80, 7], ["make-rules", 82, 7], ["mkDerivation", 84, 7]], [["otherSplices", 15, 11], ["f", 16, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoLibc: false, "makeScopeWithSplicing'": false, generateSplicesForMkScope: false, buildPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["callPackage", 19, 7], ["directory", 20, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["libc", 30, 13], ["noLibc", 31, 13], ["sharedLibraryLoader", 32, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["libc", 27, 11], ["noLibc", 28, 11], ["bintools", 29, 11]]);
-const pos$4 = nix.positions(here + "/default.nix", [["cc", 26, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["make-rules", 37, 80]]);
-const pos$6 = nix.positions(here + "/default.nix", [["makeMinimal", 43, 32], ["install", 44, 40], ["rpcgen", 44, 48], ["mtree", 44, 55]]);
-const pos$7 = nix.positions(here + "/default.nix", [["include", 48, 24], ["makeMinimal", 49, 32], ["install", 50, 40]]);
-const pos$8 = nix.positions(here + "/default.nix", [["csu", 54, 24], ["include", 54, 28], ["makeMinimal", 55, 32], ["install", 57, 11], ["gencat", 58, 11], ["tsort", 59, 11], ["rpcgen", 60, 11]]);
-const pos$9 = nix.positions(here + "/default.nix", [["openbsdSetupHook", 65, 32], ["makeMinimal", 65, 49], ["lorder", 65, 61], ["install", 67, 11], ["tsort", 68, 11], ["statHook", 69, 11], ["rpcgen", 70, 11]]);
-const pos$10 = nix.positions(here + "/default.nix", [["libcMinimal", 75, 24], ["openbsdSetupHook", 76, 32], ["makeMinimal", 76, 49], ["lorder", 76, 61], ["install", 77, 40], ["tsort", 77, 48], ["statHook", 77, 54]]);
-const pos$11 = nix.positions(here + "/default.nix", [["install", 80, 84]]);
-const pos$12 = nix.positions(here + "/default.nix", [["install", 85, 40], ["tsort", 85, 48], ["rsync", 86, 47]]);
-const pos$13 = nix.positions(here + "/default.nix", [["version", 23, 7], ["stdenvLibcMinimal", 25, 7], ["makeMinimal", 37, 7], ["include", 42, 7], ["csu", 47, 7], ["libcMinimal", 53, 7], ["librpcsvc", 64, 7], ["libutil", 74, 7], ["lorder", 80, 7], ["make-rules", 82, 7], ["mkDerivation", 84, 7]]);
-const pos$14 = nix.positions(here + "/default.nix", [["otherSplices", 15, 11], ["f", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,23 +15,23 @@ export default nix.lambda((args) => (() => {
   const otherSplices = nix.thunk(() => nix.app(generateSplicesForMkScope, "openbsd"));
   const buildOpenbsd = nix.thunk(() => nix.sel(otherSplices, "selfBuildHost"));
   return nix.app(makeScopeWithSplicing$, nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       otherSplices: otherSplices,
       f: (self) => nix.update(nix.app(nix.sel(lib, "packagesFromDirectoryRecursive"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           callPackage: nix.thunk(() => nix.sel(self, "callPackage")),
           directory: nix.path(here, "./pkgs"),
         }))), {
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         version: "7.9",
         stdenvLibcMinimal: nix.thunk(() => nix.app(nix.sel(stdenvNoLibc, "override"), (old) => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             cc: nix.thunk(() => nix.app(nix.sel(old, "cc", "override"), nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 libc: nix.thunk(() => nix.sel(self, "libcMinimal")),
                 noLibc: false,
                 bintools: nix.thunk(() => nix.app(nix.sel(old, "cc", "bintools", "override"), nix.thunk(() => ({
-                    [nix.POS]: pos$2,
+                    [nix.POS]: $pos[1],
                     libc: nix.thunk(() => nix.sel(self, "libcMinimal")),
                     noLibc: false,
                     sharedLibraryLoader: null,
@@ -52,13 +39,13 @@ export default nix.lambda((args) => (() => {
               })))),
           }))),
         makeMinimal: nix.thunk(() => nix.app(nix.sel(buildPackages, "netbsd", "makeMinimal", "override"), nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             "make-rules": nix.thunk(() => nix.attr(self, "make-rules")),
           })))),
         include: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./pkgs/include/package.nix"), nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(buildPackages, "netbsd"));
             return {
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             makeMinimal: nix.thunk(() => nix.attr(buildOpenbsd, "makeMinimal")),
             install: nix.thunk(() => nix.attr(from, "install")),
             rpcgen: nix.thunk(() => nix.attr(from, "rpcgen")),
@@ -68,7 +55,7 @@ export default nix.lambda((args) => (() => {
         csu: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./pkgs/csu.nix"), nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(buildPackages, "netbsd"));
             return {
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             include: nix.thunk(() => nix.attr(self, "include")),
             makeMinimal: nix.thunk(() => nix.attr(buildOpenbsd, "makeMinimal")),
             install: nix.thunk(() => nix.attr(from, "install")),
@@ -77,7 +64,7 @@ export default nix.lambda((args) => (() => {
         libcMinimal: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./pkgs/libcMinimal/package.nix"), nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(buildPackages, "netbsd"));
             return {
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             csu: nix.thunk(() => nix.attr(self, "csu")),
             include: nix.thunk(() => nix.attr(self, "include")),
             makeMinimal: nix.thunk(() => nix.attr(buildOpenbsd, "makeMinimal")),
@@ -90,7 +77,7 @@ export default nix.lambda((args) => (() => {
         librpcsvc: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./pkgs/librpcsvc.nix"), nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(buildPackages, "netbsd"));
             return {
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             openbsdSetupHook: nix.thunk(() => nix.attr(buildOpenbsd, "openbsdSetupHook")),
             makeMinimal: nix.thunk(() => nix.attr(buildOpenbsd, "makeMinimal")),
             lorder: nix.thunk(() => nix.attr(buildOpenbsd, "lorder")),
@@ -103,7 +90,7 @@ export default nix.lambda((args) => (() => {
         libutil: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./pkgs/libutil.nix"), nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(buildPackages, "netbsd"));
             return {
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             libcMinimal: nix.thunk(() => nix.attr(self, "libcMinimal")),
             openbsdSetupHook: nix.thunk(() => nix.attr(buildOpenbsd, "openbsdSetupHook")),
             makeMinimal: nix.thunk(() => nix.attr(buildOpenbsd, "makeMinimal")),
@@ -115,14 +102,14 @@ export default nix.lambda((args) => (() => {
           })()))),
         lorder: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./pkgs/lorder.nix"), nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(buildPackages, "netbsd"));
-            return { [nix.POS]: pos$11, install: nix.thunk(() => nix.attr(from, "install")) };
+            return { [nix.POS]: $pos[10], install: nix.thunk(() => nix.attr(from, "install")) };
           })()))),
         "make-rules": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./pkgs/make-rules/package.nix"), nix.thunk(() => ({})))),
         mkDerivation: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./pkgs/mkDerivation.nix"), nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(buildPackages, "netbsd"));
             const from_1 = nix.thunk(() => nix.sel(buildPackages, "buildPackages"));
             return {
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             install: nix.thunk(() => nix.attr(from, "install")),
             tsort: nix.thunk(() => nix.attr(from, "tsort")),
             rsync: nix.thunk(() => nix.attr(from_1, "rsync")),

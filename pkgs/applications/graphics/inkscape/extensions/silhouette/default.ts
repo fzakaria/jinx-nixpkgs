@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["sha256", 34, 5]], [["description", 88, 5], ["homepage", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["platforms", 92, 5]], [["pname", 26, 3], ["version", 27, 3], ["format", 28, 3], ["src", 30, 3], ["patches", 37, 3], ["propagatedBuildInputs", 42, 3], ["nativeBuildInputs", 51, 3], ["nativeCheckInputs", 55, 3], ["enabledTestPaths", 61, 3], ["doCheck", 65, 3], ["doInstallCheck", 66, 3], ["installPhase", 68, 3], ["postInstall", 74, 3], ["postFixup", 83, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, gettext: false, python3: false, udevCheckHook: false, umockdev: false, writeScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["sha256", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 88, 5], ["homepage", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["platforms", 92, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 3], ["format", 28, 3], ["src", 30, 3], ["patches", 37, 3], ["propagatedBuildInputs", 42, 3], ["nativeBuildInputs", 51, 3], ["nativeCheckInputs", 55, 3], ["enabledTestPaths", 61, 3], ["doCheck", 65, 3], ["doInstallCheck", 66, 3], ["installPhase", 68, 3], ["postInstall", 74, 3], ["postFixup", 83, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const launch_sendto_silhouette = nix.thunk(() => nix.app(writeScript, "sendto_silhouette.sh", "cd $(dirname $0)\n./sendto_silhouette.py \"$@\"\n"));
   const launch_silhouette_multi = nix.thunk(() => nix.app(writeScript, "silhouette_multi.sh", "cd $(dirname $0)\n./silhouette_multi.py \"$@\"\n"));
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "inkscape-silhouette",
       version: "1.29",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fablabnbg",
           repo: "inkscape-silhouette",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,7 +59,7 @@ cp ${launch_silhouette_multi} $out/share/inkscape/extensions/silhouette_multi.sh
 `),
       postFixup: "wrapPythonProgramsIn \"$out/share/inkscape/extensions/\" \"$out ${pythonPath[*]}\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Extension to drive Silhouette vinyl cutters (e.g. Cameo, Portrait, Curio series) from within Inkscape",
         homepage: "https://github.com/fablabnbg/inkscape-silhouette",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

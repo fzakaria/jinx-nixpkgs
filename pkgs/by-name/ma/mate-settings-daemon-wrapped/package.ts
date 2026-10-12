@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["priority", 43, 5]], [["pname", 10, 3], ["version", 11, 34], ["outputs", 11, 42], ["nativeBuildInputs", 13, 3], ["buildInputs", 17, 3], ["dontWrapGApps", 22, 3], ["dontUnpack", 24, 3], ["installPhase", 26, 3], ["postFixup", 34, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { stdenv: false, "mate-control-center": false, "mate-settings-daemon": false, glib: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["priority", 43, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 34], ["outputs", 11, 42], ["nativeBuildInputs", 13, 3], ["buildInputs", 17, 3], ["dontWrapGApps", 22, 3], ["dontUnpack", 24, 3], ["installPhase", 26, 3], ["postFixup", 34, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: nix.thunk(() => nix.str`${nix.sel(mate_settings_daemon, "pname")}-wrapped`),
       version: nix.thunk(() => nix.attr(mate_settings_daemon, "version")),
       outputs: nix.thunk(() => nix.attr(mate_settings_daemon, "outputs")),
@@ -34,7 +33,7 @@ makeWrapper ${mate_settings_daemon}/libexec/mate-settings-daemon $out/libexec/ma
 substituteInPlace $out/etc/xdg/autostart/mate-settings-daemon.desktop \\
   --replace-fail "${mate_settings_daemon}/libexec/mate-settings-daemon" "$out/libexec/mate-settings-daemon"
 `),
-      meta: nix.thunk(() => nix.update(nix.sel(mate_settings_daemon, "meta"), { [nix.POS]: pos$1, priority: nix.thunk(() => nix.neg(10n)) })),
+      meta: nix.thunk(() => nix.update(nix.sel(mate_settings_daemon, "meta"), { [nix.POS]: $pos[0], priority: nix.thunk(() => nix.neg(10n)) })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

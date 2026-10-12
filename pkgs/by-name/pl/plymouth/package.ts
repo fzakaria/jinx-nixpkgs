@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 37, 5], ["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]], [["fcmatch", 51, 7]], [["DESTDIR", 132, 7]], [["homepage", 135, 5], ["description", 136, 5], ["license", 137, 5], ["teams", 138, 5], ["platforms", 139, 5]], [["pname", 28, 3], ["version", 29, 3], ["outputs", 31, 3], ["src", 36, 3], ["patches", 44, 3], ["strictDeps", 55, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 66, 3], ["mesonFlags", 80, 3], ["postPatch", 105, 3], ["postInstall", 113, 3], ["env", 132, 3], ["meta", 134, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, fetchpatch: false, writeText: false, replaceVars: false, meson: false, "pkg-config": false, ninja: false, "docbook-xsl-nons": false, gettext: false, libxslt: false, gtk3: false, libdrm: false, libevdev: false, libpng: false, libxkbcommon: false, pango: false, systemd: false, "xkeyboard-config": false, fontconfig: false, bashNonInteractive: false, systemdSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 37, 5], ["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["fcmatch", 51, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["DESTDIR", 132, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 135, 5], ["description", 136, 5], ["license", 137, 5], ["teams", 138, 5], ["platforms", 139, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["outputs", 31, 3], ["src", 36, 3], ["patches", 44, 3], ["strictDeps", 55, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 66, 3], ["mesonFlags", 80, 3], ["postPatch", 105, 3], ["postInstall", 113, 3], ["env", 132, 3], ["meta", 134, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,12 +31,12 @@ export default nix.lambda((args) => (() => {
   const bashNonInteractive = nix.arg($, "bashNonInteractive");
   const systemdSupport = nix.argOr($, "systemdSupport", () => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), systemd));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "plymouth",
       version: "26.134.222",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.freedesktop.org",
           owner: "plymouth",
           repo: "plymouth",
@@ -51,7 +47,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./dont-create-broken-symlink.patch"),
         nix.path(here, "./add-runtime-plugin-path.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             fcmatch: nix.thunk(() => nix.str`${fontconfig}/bin/fc-match`),
           })))),
       ]),
@@ -103,11 +99,11 @@ done
 rmdir "$DESTDIR/${nix.builtins.storeDir}" "$DESTDIR/${nix.builtins.dirOf(nix.thunk(() => nix.builtins.storeDir))}" "$DESTDIR"
 `),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         DESTDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/dest`),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://www.freedesktop.org/wiki/Software/Plymouth/",
         description: "Boot splash and boot logger",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

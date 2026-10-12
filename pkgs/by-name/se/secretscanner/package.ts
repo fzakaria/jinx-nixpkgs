@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["fetchSubmodules", 20, 5], ["hash", 21, 5]], [["description", 51, 5], ["mainProgram", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["platforms", 55, 5], ["license", 59, 5], ["maintainers", 60, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["vendorHash", 24, 3], ["excludedPackages", 26, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 37, 3], ["preBuild", 41, 3], ["postInstall", 46, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, "pkg-config": false, protobuf: false, "protoc-gen-go": false, "protoc-gen-go-grpc": false, vectorscan: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["fetchSubmodules", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 51, 5], ["mainProgram", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["platforms", 55, 5], ["license", 59, 5], ["maintainers", 60, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["vendorHash", 24, 3], ["excludedPackages", 26, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 37, 3], ["preBuild", 41, 3], ["postInstall", 46, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const protoc_gen_go_grpc = nix.arg($, "protoc-gen-go-grpc");
   const vectorscan = nix.arg($, "vectorscan");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "secretscanner",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "deepfence",
           repo: "SecretScanner",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "# Compile proto files\nmake -C agent-plugins-grpc go\n",
       postInstall: "mv $out/bin/SecretScanner $out/bin/$pname\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tool to find secrets and passwords in container images and file systems",
         mainProgram: "secretscanner",
         homepage: "https://github.com/deepfence/SecretScanner",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]], [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["platforms", 36, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["strictDeps", 18, 3], ["dontConfigure", 19, 3], ["dontBuild", 20, 3], ["installPhase", 22, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["platforms", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["strictDeps", 18, 3], ["dontConfigure", 19, 3], ["dontBuild", 20, 3], ["installPhase", 22, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +14,7 @@ export default nix.lambda((args) => (() => {
       const pname = "zsh-history-search-multi-word";
       const version = "0-unstable-2021-11-13";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "zdharma-continuum",
           repo: "history-search-multi-word",
           rev: "5b44d8cea12351d91fbdc3697916556f59f14b8c",
@@ -31,7 +29,7 @@ mkdir -p "$plugindir"
 cp -r -- history-* hsmw-* "$plugindir"/
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Multi-word, syntax highlighted history searching for Zsh",
         homepage: "https://github.com/zdharma-continuum/history-search-multi-word",
         license: nix.thunk(() => (() => {
@@ -44,7 +42,7 @@ cp -r -- history-* hsmw-* "$plugindir"/
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

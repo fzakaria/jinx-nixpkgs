@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["sha256", 13, 5]], [["description", 28, 5], ["longDescription", 29, 5], ["license", 35, 5], ["homepage", 36, 5], ["platforms", 37, 5], ["mainProgram", 38, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["preConfigure", 16, 3], ["postInstall", 22, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { fetchurl: false, lib: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 28, 5], ["longDescription", 29, 5], ["license", 35, 5], ["homepage", 36, 5], ["platforms", 37, 5], ["mainProgram", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["preConfigure", 16, 3], ["postInstall", 22, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,18 +11,18 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "actkbd",
       version: "0.2.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://users.softlab.ece.ntua.gr/~thkala/projects/actkbd/files/actkbd-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "1ipb7k5q7k7p54is96ij2n74jfa6xc0llb9lpjwxhsqviqxn9slm",
         })))),
       preConfigure: "substituteInPlace Makefile \\\n  --replace-fail /usr/local $out \\\n  --replace-fail /etc $out/etc\n",
       postInstall: "mkdir -p $out/share/doc/actkbd\ncp -r README samples $out/share/doc/actkbd\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Keyboard shortcut daemon",
         longDescription: "actkbd is a simple daemon that binds actions to keyboard events\ndirectly on evdev interface (that is, no X11 required). It\nrecognises key combinations and can handle press, repeat and\nrelease events.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

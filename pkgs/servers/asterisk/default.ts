@@ -2,20 +2,10 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 96, 9], ["sha256", 97, 17]], [["description", 154, 9], ["homepage", 155, 9], ["license", 156, 9], ["mainProgram", 157, 9], ["maintainers", 158, 9]], [["version", 47, 15], ["pname", 48, 7], ["buildInputs", 50, 7], ["nativeBuildInputs", 74, 7], ["patches", 82, 7], ["postPatch", 91, 7], ["src", 95, 7], ["preConfigure", 107, 7], ["configureFlags", 128, 7], ["preBuild", 135, 7], ["postInstall", 147, 7], ["meta", 153, 7]], [["url", 167, 5], ["hash", 168, 5]], [["url", 172, 5], ["rev", 173, 5], ["hash", 174, 5]], [["owner", 178, 5], ["repo", 179, 5], ["rev", 181, 5], ["hash", 182, 5]], [["addons/mp3", 193, 9]], [["version", 190, 15], ["sha256", 190, 23], ["externals", 191, 7]], [["updateScript", 227, 15]], [["passthru", 226, 5]], [["asterisk-lts", 223, 3], ["asterisk-stable", 224, 3], ["asterisk", 225, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, fetchsvn: false, fetchFromGitHub: false, jansson: false, libedit: false, libxml2: false, libxslt: false, ncurses: false, openssl: false, sqlite: false, "util-linux": false, dmidecode: false, libuuid: false, newt: false, lua: false, speex: false, libopus: false, opusfile: false, libogg: false, srtp: false, wget: false, curl: false, iksemel: false, "pkg-config": false, autoconf: false, libtool: false, automake: false, python3: false, writeScript: false, withOpus: true, ldapSupport: true, openldap: false }, ellipsis: false };
 const formals$2 = { args: { version: false, sha256: false, externals: false, pjsip_patches: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 96, 9], ["sha256", 97, 17]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 154, 9], ["homepage", 155, 9], ["license", 156, 9], ["mainProgram", 157, 9], ["maintainers", 158, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 47, 15], ["pname", 48, 7], ["buildInputs", 50, 7], ["nativeBuildInputs", 74, 7], ["patches", 82, 7], ["postPatch", 91, 7], ["src", 95, 7], ["preConfigure", 107, 7], ["configureFlags", 128, 7], ["preBuild", 135, 7], ["postInstall", 147, 7], ["meta", 153, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["url", 167, 5], ["hash", 168, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["url", 172, 5], ["rev", 173, 5], ["hash", 174, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["owner", 178, 5], ["repo", 179, 5], ["rev", 181, 5], ["hash", 182, 5]]);
 const formals$3 = { args: { version: false, sha256: false }, ellipsis: false };
-const pos$7 = nix.positions(here + "/default.nix", [["addons/mp3", 193, 9]]);
-const pos$8 = nix.positions(here + "/default.nix", [["version", 190, 15], ["sha256", 190, 23], ["externals", 191, 7]]);
-const pos$9 = nix.positions(here + "/default.nix", [["updateScript", 227, 15]]);
-const pos$10 = nix.positions(here + "/default.nix", [["passthru", 226, 5]]);
-const pos$11 = nix.positions(here + "/default.nix", [["asterisk-lts", 223, 3], ["asterisk-stable", 224, 3], ["asterisk", 225, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -60,7 +50,7 @@ export default nix.lambda((args) => (() => {
     const externals = nix.arg($_1, "externals");
     const pjsip_patches = nix.argOr($_1, "pjsip_patches", () => []);
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         version: version,
         pname: nix.thunk(() => nix.add("asterisk", nix.app(nix.sel(lib, "optionalString"), ldapSupport, "-ldap"))),
         buildInputs: nix.thunk(() => nix.concat([
@@ -85,7 +75,7 @@ export default nix.lambda((args) => (() => {
         patches: nix.thunk(() => nix.concat([nix.path(here, "./runtime-vardirs.patch")], nix.app(nix.sel(lib, "optional"), withOpus, nix.thunk(() => nix.str`${asterisk_opus}/asterisk.patch`)))),
         postPatch: "echo \"PJPROJECT_CONFIG_OPTS += --prefix=$out\" >> third-party/pjproject/Makefile.rules\n",
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`https://downloads.asterisk.org/pub/telephony/asterisk/old-releases/asterisk-${version}.tar.gz`),
             sha256: sha256,
           })))),
@@ -117,7 +107,7 @@ ${nix.app(nix.sel(lib, "optionalString"), withOpus, "substituteInPlace menuselec
 `),
         postInstall: "# Install sample configuration files for this version of Asterisk\nmake samples\nmake install-headers\n",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           description: "Software implementation of a telephone private branch exchange (PBX)",
           homepage: "https://www.asterisk.org/",
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -134,18 +124,18 @@ ${nix.app(nix.sel(lib, "optionalString"), withOpus, "substituteInPlace menuselec
       })));
   })(), formals$2);
   const pjproject = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       url: "https://raw.githubusercontent.com/asterisk/third-party/master/pjproject/2.15.1/pjproject-2.15.1.tar.bz2",
       hash: "sha256-WLuDzsTUMfSNAG5FXYIWaEUPjPa2yV8JDe9HBi+jpgw=",
     }))));
   const mp3_204 = nix.thunk(() => nix.app(fetchsvn, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       url: "http://svn.digium.com/svn/thirdparty/mp3/trunk",
       rev: "204",
       hash: "sha256-Viec0LwFPfR7ewy+2hc/LIUR1LiDZfYos3RUbc+tyNk=",
     }))));
   const asterisk_opus = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       owner: "traud",
       repo: "asterisk-opus",
       rev: "a959f072d3f364be983dd27e6e250b038aaef747",
@@ -156,10 +146,10 @@ ${nix.app(nix.sel(lib, "optionalString"), withOpus, "substituteInPlace menuselec
       const version = nix.arg($_1, "version");
       const sha256 = nix.arg($_1, "sha256");
       return nix.app(common, nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           version: version,
           sha256: sha256,
-          externals: nix.thunk(() => nix.attrsDyn({ [nix.POS]: pos$7, "addons/mp3": mp3_204 }, [[nix.str`externals_cache/${nix.sel(pjproject, "name")}`, pjproject]])),
+          externals: nix.thunk(() => nix.attrsDyn({ [nix.POS]: $pos[6], "addons/mp3": mp3_204 }, [[nix.str`externals_cache/${nix.sel(pjproject, "name")}`, pjproject]])),
         })));
     })(), formals$3), nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./versions.json")))));
   const updateScript_python = nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (p) => (() => {
@@ -174,12 +164,12 @@ ${nix.app(nix.sel(lib, "optionalString"), withOpus, "substituteInPlace menuselec
 exec ${updateScript_python}/bin/python ${nix.builtins.toString(nix.path(here, "./update.py"))}
 `)));
   return nix.update({
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     "asterisk-lts": nix.thunk(() => nix.sel(versions, "asterisk_22")),
     "asterisk-stable": nix.thunk(() => nix.sel(versions, "asterisk_20")),
     asterisk: nix.thunk(() => nix.app(nix.sel(versions, "asterisk_22", "overrideAttrs"), (o) => ({
-        [nix.POS]: pos$10,
-        passthru: nix.thunk(() => nix.update(nix.selOr(o, () => ({}), "passthru"), { [nix.POS]: pos$9, updateScript: updateScript })),
+        [nix.POS]: $pos[9],
+        passthru: nix.thunk(() => nix.update(nix.selOr(o, () => ({}), "passthru"), { [nix.POS]: $pos[8], updateScript: updateScript })),
       }))),
   }, versions);
 })(), formals$1);

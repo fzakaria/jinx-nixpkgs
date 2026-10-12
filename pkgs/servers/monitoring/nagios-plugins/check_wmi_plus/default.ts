@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["sha256", 22, 5]], [["description", 100, 5], ["homepage", 101, 5], ["license", 102, 5], ["mainProgram", 103, 5], ["maintainers", 104, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 18, 3], ["patches", 25, 3], ["propagatedBuildInputs", 27, 3], ["nativeBuildInputs", 56, 3], ["dontConfigure", 61, 3], ["dontBuild", 62, 3], ["doCheck", 63, 3], ["postPatch", 65, 3], ["installPhase", 78, 3], ["postFixup", 90, 3], ["meta", 99, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, makeWrapper: false, "monitoring-plugins": false, perlPackages: false, stdenv: false, txt2man: false, "wmic-bin": true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 100, 5], ["homepage", 101, 5], ["license", 102, 5], ["mainProgram", 103, 5], ["maintainers", 104, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 18, 3], ["patches", 25, 3], ["propagatedBuildInputs", 27, 3], ["nativeBuildInputs", 56, 3], ["dontConfigure", 61, 3], ["dontBuild", 62, 3], ["doCheck", 63, 3], ["postPatch", 65, 3], ["installPhase", 78, 3], ["postFixup", 90, 3], ["meta", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "check-wmi-plus";
       const version = "1.65";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "speartail",
           repo: "checkwmiplus",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -90,7 +88,7 @@ $out/bin/check_wmi_plus.pl --help | txt2man -d 1970-01-01 -s 1 -t check_wmi_plus
 gzip $out/share/man/man1/check_wmi_plus.1
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Sensu/nagios plugin using WMI to query Windows hosts",
         homepage: "https://edcint.co.nz/checkwmiplus/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -101,7 +99,7 @@ gzip $out/share/man/man1/check_wmi_plus.1
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

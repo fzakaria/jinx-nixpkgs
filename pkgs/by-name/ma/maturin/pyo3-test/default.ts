@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["lockFile", 26, 46]], [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5]], [["pname", 15, 3], ["version", 17, 3], ["src", 19, 3], ["cargoDeps", 26, 3], ["postPatch", 28, 3], ["buildAndTestSubdir", 33, 5], ["pyproject", 34, 5], ["nativeBuildInputs", 35, 5], ["preConfigure", 36, 5], ["pythonImportsCheck", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildPythonPackage: false, rustPlatform: false, nativeBuildInputs: false, buildAndTestSubdir: false, pyproject: false, preConfigure: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["lockFile", 26, 46]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 17, 3], ["src", 19, 3], ["cargoDeps", 26, 3], ["postPatch", 28, 3], ["buildAndTestSubdir", 33, 5], ["pyproject", 34, 5], ["nativeBuildInputs", 35, 5], ["preConfigure", 36, 5], ["pythonImportsCheck", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,17 +16,17 @@ export default nix.lambda((args) => (() => {
   const pyproject = nix.arg($, "pyproject");
   const preConfigure = nix.arg($, "preConfigure");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "word-count",
       version: "0.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "PyO3",
           repo: "pyo3",
           tag: "v0.28.2",
           hash: "sha256-Jg+eni7I0jVUFViWbgj5F094ksvyuvF4mdgGzh0PMaQ=",
         })))),
-      cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "importCargoLock"), nix.thunk(() => ({ [nix.POS]: pos$2, lockFile: nix.path(here, "./Cargo.lock") })))),
+      cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "importCargoLock"), nix.thunk(() => ({ [nix.POS]: $pos[1], lockFile: nix.path(here, "./Cargo.lock") })))),
       postPatch: nix.thunk(() => nix.str`ln -s ${nix.path(here, "./Cargo.lock")} Cargo.lock
 `),
       buildAndTestSubdir: buildAndTestSubdir,
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: preConfigure,
       pythonImportsCheck: nix.thunk(() => ["word_count"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "PyO3 word count example",
         homepage: "https://github.com/PyO3/pyo3",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

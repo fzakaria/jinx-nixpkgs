@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["full", 33, 5]], [["NIX_CFLAGS_COMPILE", 56, 9], ["NIX_LDFLAGS", 57, 9]], [["name", 43, 7], ["version", 44, 15], ["src", 44, 23], ["sourceRoot", 46, 7], ["nativeBuildInputs", 48, 7], ["env", 53, 7]], [["BEZIER_IGNORE_VERSION_CHECK", 41, 5], ["BEZIER_INSTALL_PREFIX", 42, 5], ["NIX_CFLAGS_COMPILE", 60, 5]], [["updateScript", 67, 12]], [["description", 70, 5], ["changelog", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 74, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 20, 3], ["pyproject", 27, 3], ["build-system", 29, 3], ["dependencies", 31, 3], ["optional-dependencies", 32, 3], ["env", 40, 3], ["pythonImportsCheck", 65, 3], ["passthru", 67, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, buildPythonPackage: false, setuptools: false, numpy: false, matplotlib: false, scipy: false, sympy: false, cmake: false, gfortran: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["full", 33, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 56, 9], ["NIX_LDFLAGS", 57, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["name", 43, 7], ["version", 44, 15], ["src", 44, 23], ["sourceRoot", 46, 7], ["nativeBuildInputs", 48, 7], ["env", 53, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["BEZIER_IGNORE_VERSION_CHECK", 41, 5], ["BEZIER_INSTALL_PREFIX", 42, 5], ["NIX_CFLAGS_COMPILE", 60, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["updateScript", 67, 12]]);
-const pos$7 = nix.positions(here + "/default.nix", [["description", 70, 5], ["changelog", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 74, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 20, 3], ["pyproject", 27, 3], ["build-system", 29, 3], ["dependencies", 31, 3], ["optional-dependencies", 32, 3], ["env", 40, 3], ["pythonImportsCheck", 65, 3], ["passthru", 67, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "bezier";
       const version = "2024.6.20";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dhermes",
           repo: "bezier",
           tag: version,
@@ -39,19 +32,19 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [numpy]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, full: nix.thunk(() => [matplotlib, scipy, sympy]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], full: nix.thunk(() => [matplotlib, scipy, sympy]) }));
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         BEZIER_IGNORE_VERSION_CHECK: 1n,
         BEZIER_INSTALL_PREFIX: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "bezier-fortran-extension",
             version: version,
             src: src,
             sourceRoot: nix.thunk(() => nix.str`${nix.sel(src, "name")}/src/fortran`),
             nativeBuildInputs: nix.thunk(() => [cmake, gfortran]),
             env: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-Wno-complain-wrong-lang")),
               NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "-z,noexecstack")),
             })),
@@ -60,11 +53,11 @@ export default nix.lambda((args) => (() => {
       }));
       const pythonImportsCheck = nix.thunk(() => ["bezier"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Helper for Bézier Curves, Triangles, and Higher Order Objects",
         changelog: "https://bezier.readthedocs.io/en/latest/releases/latest.html",
         homepage: "https://github.com/dhermes/bezier",
@@ -75,7 +68,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname,
         version,
         src,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]], [["uv", 72, 5]], [["description", 158, 5], ["mainProgram", 159, 5], ["homepage", 160, 5], ["changelog", 161, 5], ["license", 162, 5], ["maintainers", 163, 5]], [["pname", 39, 3], ["version", 40, 3], ["pyproject", 41, 3], ["__structuredAttrs", 42, 3], ["src", 44, 3], ["patches", 51, 3], ["build-system", 56, 3], ["dependencies", 62, 3], ["optional-dependencies", 71, 3], ["nativeBuildInputs", 77, 3], ["nativeCheckInputs", 82, 3], ["pytestFlags", 94, 3], ["disabledTests", 99, 3], ["preCheck", 144, 3], ["postInstall", 148, 3], ["pythonImportsCheck", 155, 3], ["meta", 157, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, docutils: false, "hatch-vcs": false, hatchling: false, installShellFiles: false, argcomplete: false, colorama: false, filelock: false, packaging: false, platformdirs: false, userpath: false, uv: false, gitMinimal: false, pypiserver: false, "pytest-cov-stub": false, "pytest-mock": false, "pytest-subprocess": false, "pytest-xdist": false, pytestCheckHook: false, watchdog: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["uv", 72, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 158, 5], ["mainProgram", 159, 5], ["homepage", 160, 5], ["changelog", 161, 5], ["license", 162, 5], ["maintainers", 163, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 39, 3], ["version", 40, 3], ["pyproject", 41, 3], ["__structuredAttrs", 42, 3], ["src", 44, 3], ["patches", 51, 3], ["build-system", 56, 3], ["dependencies", 62, 3], ["optional-dependencies", 71, 3], ["nativeBuildInputs", 77, 3], ["nativeCheckInputs", 82, 3], ["pytestFlags", 94, 3], ["disabledTests", 99, 3], ["preCheck", 144, 3], ["postInstall", 148, 3], ["pythonImportsCheck", 155, 3], ["meta", 157, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,13 +32,13 @@ export default nix.lambda((args) => (() => {
   const watchdog = nix.arg($, "watchdog");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pipx",
       version: "1.16.6",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pypa",
           repo: "pipx",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -50,7 +47,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./preserve-pythonpath-in-import-test.patch")]),
       "build-system": nix.thunk(() => [docutils, hatchling, hatch_vcs]),
       dependencies: nix.thunk(() => [argcomplete, colorama, filelock, packaging, platformdirs, userpath]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, uv: nix.thunk(() => [uv]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], uv: nix.thunk(() => [uv]) })),
       nativeBuildInputs: nix.thunk(() => [argcomplete, installShellFiles]),
       nativeCheckInputs: nix.thunk(() => [
         gitMinimal,
@@ -110,7 +107,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "installShellCompletion --cmd pipx \\\n  --bash <(register-python-argcomplete pipx --shell bash) \\\n  --zsh <(register-python-argcomplete pipx --shell zsh) \\\n  --fish <(register-python-argcomplete pipx --shell fish)\n",
       pythonImportsCheck: nix.thunk(() => ["pipx"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Install and run Python applications in isolated environments",
         mainProgram: "pipx",
         homepage: "https://github.com/pypa/pipx",

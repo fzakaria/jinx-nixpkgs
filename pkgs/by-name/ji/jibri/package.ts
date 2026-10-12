@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 29, 5], ["hash", 30, 5]], [["jibri", 55, 43]], [["updateScript", 53, 12], ["tests", 55, 12]], [["description", 58, 5], ["mainProgram", 59, 5], ["longDescription", 60, 5], ["homepage", 67, 5], ["sourceProvenance", 68, 5], ["license", 69, 5], ["teams", 70, 5], ["platforms", 71, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 28, 3], ["dontBuild", 33, 3], ["nativeBuildInputs", 34, 3], ["installPhase", 39, 3], ["passthru", 53, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, dpkg: false, jdk17_headless: false, makeWrapper: false, writeText: false, "xorg-server": false, "xf86-video-dummy": false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["jibri", 55, 43]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 53, 12], ["tests", 55, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 58, 5], ["mainProgram", 59, 5], ["longDescription", 60, 5], ["homepage", 67, 5], ["sourceProvenance", 68, 5], ["license", 69, 5], ["teams", 70, 5], ["platforms", 71, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 28, 3], ["dontBuild", 33, 3], ["nativeBuildInputs", 34, 3], ["installPhase", 39, 3], ["passthru", 53, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +25,11 @@ export default nix.lambda((args) => (() => {
 EndSection
 `)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "jibri",
       version: "8.0-205-g206e038",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.jitsi.org/stable/jibri_${nix.sel(finalAttrs, "version")}-1_all.deb`),
           hash: "sha256-DJyBNjCgesg0P1SSU8mi3vVN9TK5sU/eLS1PLzEsIRE=",
         })))),
@@ -52,12 +48,12 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), jdk17_headless)} $out/bin/jibri --
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.path(here, "./update.sh"),
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, jibri: nix.thunk(() => nix.attr(nixosTests, "jibri")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], jibri: nix.thunk(() => nix.attr(nixosTests, "jibri")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "JItsi BRoadcasting Infrastructure",
         mainProgram: "jibri",
         longDescription: "Jibri provides services for recording or streaming a Jitsi Meet conference.\nIt works by launching a Chrome instance rendered in a virtual framebuffer and capturing and\nencoding the output with ffmpeg. It is intended to be run on a separate machine (or a VM), with\nno other applications using the display or audio devices. Only one recording at a time is\nsupported on a single jibri.\n",

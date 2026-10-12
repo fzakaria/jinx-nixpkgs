@@ -2,23 +2,14 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/option-usages.nix", [[["modules", 55, 7], ["specialArgs", 56, 15]], [["name", 107, 18]], [["name", 117, 9], ["path", 118, 9], ["config", 119, 9]], [["config", 138, 13]], [["specialArgs", 137, 11]], [["option", 132, 5], ["usedBy", 133, 5]], [["name", 174, 5], ["text", 175, 5]], [["dotGraph", 179, 5]], [["name", 184, 5], ["text", 185, 5]], [["dotContent", 172, 3], ["dot", 173, 3], ["pdf", 178, 3], ["txtContent", 182, 3], ["txt", 183, 3]]]);
 const formals$1 = { args: { configuration: true, testOption: true, testOptions: true }, ellipsis: false };
 const formals$2 = { args: { specialArgs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/option-usages.nix", [["modules", 55, 7], ["specialArgs", 56, 15]]);
 const formals$3 = { args: { fst: false, snd: false }, ellipsis: false };
 const formals$4 = { args: { fst: false, snd: false }, ellipsis: false };
-const pos$2 = nix.positions(here + "/option-usages.nix", [["name", 107, 18]]);
-const pos$3 = nix.positions(here + "/option-usages.nix", [["name", 117, 9], ["path", 118, 9], ["config", 119, 9]]);
-const pos$4 = nix.positions(here + "/option-usages.nix", [["config", 138, 13]]);
-const pos$5 = nix.positions(here + "/option-usages.nix", [["specialArgs", 137, 11]]);
-const pos$6 = nix.positions(here + "/option-usages.nix", [["option", 132, 5], ["usedBy", 133, 5]]);
 const formals$5 = { args: { option: false }, ellipsis: true };
 const formals$6 = { args: { option: false, usedBy: false }, ellipsis: false };
 const formals$7 = { args: { usedBy: false }, ellipsis: true };
-const pos$7 = nix.positions(here + "/option-usages.nix", [["name", 174, 5], ["text", 175, 5]]);
-const pos$8 = nix.positions(here + "/option-usages.nix", [["dotGraph", 179, 5]]);
-const pos$9 = nix.positions(here + "/option-usages.nix", [["name", 184, 5], ["text", 185, 5]]);
-const pos$10 = nix.positions(here + "/option-usages.nix", [["dotContent", 172, 3], ["dot", 173, 3], ["pdf", 178, 3], ["txtContent", 182, 3], ["txt", 183, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +21,7 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const specialArgs = nix.argOr($_1, "specialArgs", () => ({}));
     return nix.app(nix.builtins.import, nix.path(here, "../lib/eval-config.nix"), nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         modules: nix.thunk(() => [configuration]),
         specialArgs: specialArgs,
       })));
@@ -63,7 +54,7 @@ export default nix.lambda((args) => (() => {
         return nix.sel(snd, "name");
       })(), formals$4)));
     const tryCollectOptions = (moduleResult) => nix.app(nix.lookup(w, "forEach"), nix.thunk(() => nix.app(excludeOptions, nix.thunk(() => nix.app(nix.lookup(w, "collect"), nix.thunk(() => nix.lookup(w, "isOption")), moduleResult)))), (opt) => nix.update({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name: nix.thunk(() => nix.app(nix.lookup(w, "showOption"), nix.thunk(() => nix.sel(opt, "loc")))),
       }, nix.app(nix.sel(nix.builtins, "tryEval"), nix.thunk(() => nix.app(nix.lookup(w, "strict"), nix.thunk(() => nix.sel(opt, "value")))))));
     return nix.app(keepNames, nix.thunk(() => nix.app(filterChanges, nix.thunk(() => nix.app(nix.lookup(w, "zipLists"), nix.thunk(() => nix.app(tryCollectOptions, old)), nix.thunk(() => nix.app(tryCollectOptions, new$)))))));
@@ -73,19 +64,22 @@ export default nix.lambda((args) => (() => {
       const name = nix.thunk(() => nix.app(nix.lookup(w, "showOption"), nix.thunk(() => nix.sel(opt, "loc"))));
       const path = nix.thunk(() => nix.sel(opt, "loc"));
       const config = nix.thunk(() => nix.app(nix.lookup(w, "setAttrByPath"), path, nix.thunk(() => nix.app(nix.builtins.throw, nix.thunk(() => nix.str`Usage introspection of '${name}' by forced failure.`)))));
-      return { [nix.POS]: pos$3, name, path, config };
+      return { [nix.POS]: $pos[2], name, path, config };
     })();
     return nix.app(nix.builtins.map, setIntrospection, nix.thunk(() => nix.app(nix.lookup(w, "collect"), nix.thunk(() => nix.lookup(w, "isOption")), nix.thunk(() => nix.sel(eval$, "options")))));
   })());
   const overrideConfig = (thrower) => nix.app(nix.lookup(w, "recursiveUpdateUntil"), (path) => (old) => (new$) => nix.eq(path, nix.sel(thrower, "path")), nix.thunk(() => nix.sel(eval$, "config")), nix.thunk(() => nix.sel(thrower, "config")));
   const graph = nix.thunk(() => nix.app(nix.builtins.map, (thrower) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       option: nix.thunk(() => nix.sel(thrower, "name")),
       usedBy: nix.thunk(() => (() => {
         nix.assert_(nix.app(nix.builtins.trace, nix.thunk(() => nix.str`Investigate ${nix.sel(thrower, "name")}`), true), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/maintainers/option-usages.nix:134:7");
         return nix.app(reportNewFailures, nix.thunk(() => nix.sel(eval$, "options")), nix.thunk(() => nix.sel(nix.app(evalFun, nix.thunk(() => ({
-              [nix.POS]: pos$5,
-              specialArgs: nix.thunk(() => ({ [nix.POS]: pos$4, config: nix.thunk(() => nix.app(overrideConfig, thrower)) })),
+              [nix.POS]: $pos[4],
+              specialArgs: nix.thunk(() => ({
+                [nix.POS]: $pos[3],
+                config: nix.thunk(() => nix.app(overrideConfig, thrower)),
+              })),
             }))), "options")));
       })()),
     }), introspectionModules));
@@ -115,11 +109,11 @@ export default nix.lambda((args) => (() => {
     })(), formals$7), displayOptionsGraph);
   return (() => {
     const dotContent = nix.thunk(() => nix.app(graphToDot, graph));
-    const dot = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({ [nix.POS]: pos$7, name: "option_usages.dot", text: dotContent }))));
-    const pdf = nix.thunk(() => nix.app(nix.sel(pkgs, "texFunctions", "dot2pdf"), nix.thunk(() => ({ [nix.POS]: pos$8, dotGraph: dot }))));
+    const dot = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({ [nix.POS]: $pos[6], name: "option_usages.dot", text: dotContent }))));
+    const pdf = nix.thunk(() => nix.app(nix.sel(pkgs, "texFunctions", "dot2pdf"), nix.thunk(() => ({ [nix.POS]: $pos[7], dotGraph: dot }))));
     const txtContent = nix.thunk(() => nix.app(graphToText, graph));
-    const txt = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({ [nix.POS]: pos$9, name: "option_usages.txt", text: txtContent }))));
-    return { [nix.POS]: pos$10, dotContent, dot, pdf, txtContent, txt };
+    const txt = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({ [nix.POS]: $pos[8], name: "option_usages.txt", text: txtContent }))));
+    return { [nix.POS]: $pos[9], dotContent, dot, pdf, txtContent, txt };
   })();
 })(), formals$1);
 //# sourceMappingURL=option-usages.ts.map

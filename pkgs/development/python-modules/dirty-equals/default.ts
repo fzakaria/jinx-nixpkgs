@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 7], ["repo", 20, 7], ["tag", 21, 7], ["hash", 22, 7]], [["doCheck", 37, 64]], [["pytest", 37, 20]], [["tests", 37, 14]], [["description", 50, 7], ["homepage", 51, 7], ["changelog", 52, 7], ["license", 53, 7], ["maintainers", 54, 7]], [["pname", 14, 5], ["version", 15, 5], ["pyproject", 16, 5], ["src", 18, 5], ["postPatch", 25, 5], ["build-system", 31, 5], ["dependencies", 33, 5], ["doCheck", 35, 5], ["passthru", 37, 5], ["nativeCheckInputs", 39, 5], ["pythonImportsCheck", 45, 5], ["__structuredAttrs", 47, 5], ["meta", 49, 5]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, pydantic: false, "pytest-examples": false, pytestCheckHook: false, pytz: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 7], ["repo", 20, 7], ["tag", 21, 7], ["hash", 22, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["doCheck", 37, 64]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pytest", 37, 20]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 37, 14]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 50, 7], ["homepage", 51, 7], ["changelog", 52, 7], ["license", 53, 7], ["maintainers", 54, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 14, 5], ["version", 15, 5], ["pyproject", 16, 5], ["src", 18, 5], ["postPatch", 25, 5], ["build-system", 31, 5], ["dependencies", 33, 5], ["doCheck", 35, 5], ["passthru", 37, 5], ["nativeCheckInputs", 39, 5], ["pythonImportsCheck", 45, 5], ["__structuredAttrs", 47, 5], ["meta", 49, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pytz = nix.arg($, "pytz");
   const dirty_equals = nix.thunk(() => nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "dirty-equals",
       version: "0.11.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "samuelcolvin",
           repo: "dirty-equals",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,17 +32,17 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [pytz]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          pytest: nix.thunk(() => nix.app(nix.sel(dirty_equals, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$2, doCheck: true })))),
+          [nix.POS]: $pos[2],
+          pytest: nix.thunk(() => nix.app(nix.sel(dirty_equals, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[1], doCheck: true })))),
         })),
       })),
       nativeCheckInputs: nix.thunk(() => [pydantic, pytest_examples, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["dirty_equals"]),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Module for doing dirty (but extremely useful) things with equals",
         homepage: "https://github.com/samuelcolvin/dirty-equals",
         changelog: nix.thunk(() => nix.str`https://github.com/samuelcolvin/dirty-equals/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

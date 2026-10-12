@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 24, 5], ["sha256", 25, 5]], [["homepage", 73, 5], ["description", 74, 5], ["mainProgram", 75, 5], ["license", 76, 5], ["platforms", 77, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 36, 3], ["postPatch", 50, 3], ["installPhase", 63, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, ocamlPackages: false, makeWrapper: false, libGLU: false, libGL: false, libglut: false, mpfr: false, gmp: false, pkgsHostTarget: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 24, 5], ["sha256", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 73, 5], ["description", 74, 5], ["mainProgram", 75, 5], ["license", 76, 5], ["platforms", 77, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 36, 3], ["postPatch", 50, 3], ["installPhase", 63, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "glsurf";
       const version = "3.3.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://raffalli.eu/~christophe/glsurf/glsurf-${version}.tar.gz`),
           sha256: "0w8xxfnw2snflz8wdr2ca9f5g91w5vbyp1hwlx1v7vg83d4bwqs7",
         }))));
@@ -65,7 +63,7 @@ cp -r ./examples $out/share/doc/glsurf
 wrapProgram "$out/bin/glsurf" --set CC "${cc}/bin/${nix.sel(cc, "targetPrefix")}cc"
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://raffalli.eu/~christophe/glsurf/",
         description: "Program to draw implicit surfaces and curves",
         mainProgram: "glsurf",
@@ -73,7 +71,7 @@ wrapProgram "$out/bin/glsurf" --set CC "${cc}/bin/${nix.sel(cc, "targetPrefix")}
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

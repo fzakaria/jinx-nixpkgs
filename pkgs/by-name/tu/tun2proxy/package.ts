@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 14, 5], ["version", 15, 26], ["hash", 16, 5]], [["GIT_HASH", 21, 7]], [["homepage", 50, 5], ["description", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["mainProgram", 54, 5], ["maintainers", 55, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoHash", 19, 3], ["env", 21, 3], ["nativeBuildInputs", 23, 3], ["outputs", 25, 3], ["postBuild", 31, 3], ["installPhase", 35, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchCrate: false, "rust-cbindgen": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 14, 5], ["version", 15, 26], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["GIT_HASH", 21, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 50, 5], ["description", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["mainProgram", 54, 5], ["maintainers", 55, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoHash", 19, 3], ["env", 21, 3], ["nativeBuildInputs", 23, 3], ["outputs", 25, 3], ["postBuild", 31, 3], ["installPhase", 35, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const fetchCrate = nix.arg($, "fetchCrate");
   const rust_cbindgen = nix.arg($, "rust-cbindgen");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "tun2proxy",
       version: "0.8.4",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "tun2proxy",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-NlmVgE4gQm/CZa92/UBD+kOrKCnYNalsGpGIMx0hcQM=",
         })))),
       cargoHash: "sha256-tbp67p3sqdg+qDmVTWIsPsd+igvLJnNb8WCyupFEikg=",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         GIT_HASH: "000000000000000000000000000000000000000000000000000",
       })),
       nativeBuildInputs: nix.thunk(() => [rust_cbindgen]),
@@ -46,7 +43,7 @@ install -D target/${nix.sel(stdenv, "hostPlatform", "rust", "rustcTarget")}/rele
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/tun2proxy/tun2proxy",
         description: "Tunnel (TUN) interface for SOCKS and HTTP proxies",
         changelog: nix.thunk(() => nix.str`https://github.com/tun2proxy/tun2proxy/releases/tag/v${nix.sel(finalAttrs, "version")}`),

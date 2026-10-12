@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["NIX_LDFLAGS", 75, 7]], [["description", 78, 5], ["license", 79, 5], ["platforms", 80, 5]], [["pname", 24, 3], ["dontWrapQtApps", 26, 3], ["patches", 28, 3], ["nativeBuildInputs", 37, 3], ["propagatedBuildInputs", 43, 3], ["strictDeps", 66, 3], ["cmakeFlags", 68, 3], ["env", 75, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { bctoolbox: false, bzrtp: false, ffmpeg_4: false, glew: false, gsm: false, lib: false, libsm: false, libx11: false, libxext: false, libopus: false, libpulseaudio: false, qt6Packages: false, libv4l: false, libvpx: false, mkLinphoneDerivation: false, ortp: false, python3: false, speex: false, sqlite: false, srtp: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["NIX_LDFLAGS", 75, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 78, 5], ["license", 79, 5], ["platforms", 80, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["dontWrapQtApps", 26, 3], ["patches", 28, 3], ["nativeBuildInputs", 37, 3], ["propagatedBuildInputs", 43, 3], ["strictDeps", 66, 3], ["cmakeFlags", 68, 3], ["env", 75, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const srtp = nix.arg($, "srtp");
   return nix.app(mkLinphoneDerivation, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mediastreamer2",
       dontWrapQtApps: true,
       patches: nix.thunk(() => [nix.path(here, "./plugins_dir.patch")]),
@@ -64,9 +62,9 @@ export default nix.lambda((args) => (() => {
         "-DENABLE_STRICT=NO",
         "-DENABLE_UNIT_TESTS=NO",
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$1, NIX_LDFLAGS: "-lXext" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[0], NIX_LDFLAGS: "-lXext" })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Powerful and lightweight streaming engine specialized for voice/video telephony applications. Part of the Linphone project",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

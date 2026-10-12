@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 39, 5], ["repo", 40, 5], ["rev", 41, 5], ["sha256", 42, 5]], [["owner", 50, 7], ["repo", 51, 7], ["rev", 52, 7], ["sha256", 53, 7]], [["CPPFLAGS", 97, 9]], [["description", 107, 7], ["mainProgram", 108, 7], ["homepage", 109, 7], ["license", 110, 7], ["maintainers", 114, 7], ["platforms", 115, 7]], [["pname", 46, 5], ["version", 47, 13], ["src", 49, 5], ["preConfigure", 56, 5], ["nativeBuildInputs", 69, 5], ["buildInputs", 74, 5], ["strictDeps", 80, 5], ["cmakeBuildType", 82, 5], ["cmakeFlags", 84, 5], ["env", 97, 5], ["postInstall", 99, 5], ["dontStrip", 104, 5], ["meta", 106, 5]], [["pname", 174, 3], ["version", 175, 3], ["nativeBuildInputs", 177, 3], ["unwrapped", 178, 11], ["flags", 178, 21], ["meta", 179, 23], ["dontUnpack", 181, 3], ["dontConfigure", 182, 3], ["buildPhase", 184, 3], ["doCheck", 193, 3], ["checkPhase", 194, 3], ["dontInstall", 209, 3]]]);
 const formals$1 = { args: { "apple-sdk": false, cmake: false, fetchFromGitHub: false, git: false, lib: false, libffi: false, llvmPackages_20: false, makeWrapper: false, ncurses: false, python3: false, zlib: false, clangStdenv: false, "gcc-unwrapped": false, debug: true, useLLVMLibcxx: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 39, 5], ["repo", 40, 5], ["rev", 41, 5], ["sha256", 42, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 50, 7], ["repo", 51, 7], ["rev", 52, 7], ["sha256", 53, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["CPPFLAGS", 97, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 107, 7], ["mainProgram", 108, 7], ["homepage", 109, 7], ["license", 110, 7], ["maintainers", 114, 7], ["platforms", 115, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 46, 5], ["version", 47, 13], ["src", 49, 5], ["preConfigure", 56, 5], ["nativeBuildInputs", 69, 5], ["buildInputs", 74, 5], ["strictDeps", 80, 5], ["cmakeBuildType", 82, 5], ["cmakeFlags", 84, 5], ["env", 97, 5], ["postInstall", 99, 5], ["dontStrip", 104, 5], ["meta", 106, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 174, 3], ["version", 175, 3], ["nativeBuildInputs", 177, 3], ["unwrapped", 178, 11], ["flags", 178, 21], ["meta", 179, 23], ["dontUnpack", 181, 3], ["dontConfigure", 182, 3], ["buildPhase", 184, 3], ["doCheck", 193, 3], ["checkPhase", 194, 3], ["dontInstall", 209, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,18 +25,18 @@ export default nix.lambda((args) => (() => {
   const stdenv = clangStdenv;
   const version = "1.3";
   const clingSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "root-project",
       repo: "cling",
       rev: nix.thunk(() => nix.str`v${version}`),
       sha256: "sha256-/qCHd9KfPW4dMjktaSdnJG+VDD1lLSI4ZFllTcxWsmc=",
     }))));
   const unwrapped = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "cling-unwrapped",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "root-project",
           repo: "llvm-project",
           rev: "cling-llvm20-20260119-01",
@@ -71,13 +66,13 @@ cd llvm
         "-DLLVM_ENABLE_RTTI=ON",
       ], nix.app(nix.sel(lib, "optionals"), useLLVMLibcxx, nix.thunk(() => ["-DLLVM_ENABLE_LIBCXX=ON", "-DLLVM_ENABLE_LIBCXXABI=ON"])))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         CPPFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), useLLVMLibcxx, "-stdlib=libc++")),
       })),
       postInstall: "mkdir -p $out/share/Jupyter\ncp -r ../../cling-source/tools/Jupyter/kernel $out/share/Jupyter\n",
       dontStrip: debug,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Interactive C++ Interpreter",
         mainProgram: "cling",
         homepage: "https://root.cern/cling/",
@@ -124,7 +119,7 @@ cd llvm
       nix.thunk(() => nix.str`${apple_sdk}/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include`),
     ])))))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "cling",
       version: nix.thunk(() => nix.sel(unwrapped, "version")),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),

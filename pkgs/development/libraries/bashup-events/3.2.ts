@@ -2,31 +2,28 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/3.2.nix", [[["owner", 8, 5], ["repo", 9, 5], ["rev", 10, 5], ["hash", 11, 5]], [["function", 17, 5]], [["eval", 21, 5], ["$f", 28, 5], ["$n", 29, 5]], [["variant", 4, 3], ["version", 5, 3], ["branch", 6, 3], ["src", 7, 3], ["fake", 13, 3], ["keep", 19, 3]]]);
 const formals$1 = { args: { callPackage: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/3.2.nix", [["owner", 8, 5], ["repo", 9, 5], ["rev", 10, 5], ["hash", 11, 5]]);
-const pos$2 = nix.positions(here + "/3.2.nix", [["function", 17, 5]]);
-const pos$3 = nix.positions(here + "/3.2.nix", [["eval", 21, 5], ["$f", 28, 5], ["$n", 29, 5]]);
-const pos$4 = nix.positions(here + "/3.2.nix", [["variant", 4, 3], ["version", 5, 3], ["branch", 6, 3], ["src", 7, 3], ["fake", 13, 3], ["keep", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const callPackage = nix.arg($, "callPackage");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(callPackage, nix.path(here, "./generic.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       variant: "3.2",
       version: "2019-07-27",
       branch: "master",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bashup",
           repo: "events",
           rev: "83744c21bf720afb8325343674c62ab46a8f3d94",
           hash: "sha256-0VDjd+1T1JBmSDGovWOOecUZmNztlwG32UcstfdigbI=",
         })))),
-      fake: nix.thunk(() => ({ [nix.POS]: pos$2, function: nix.thunk(() => ["__ev.encode"]) })),
+      fake: nix.thunk(() => ({ [nix.POS]: $pos[1], function: nix.thunk(() => ["__ev.encode"]) })),
       keep: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         eval: nix.thunk(() => ["e", "f", "q", "r"]),
         $f: true,
         $n: true,

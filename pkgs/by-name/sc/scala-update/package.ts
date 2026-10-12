@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 39, 5], ["buildCommand", 40, 5], ["outputHashMode", 46, 5], ["outputHashAlgo", 47, 5], ["outputHash", 48, 5]], [["deps", 38, 12]], [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["mainProgram", 56, 5]], [["pname", 9, 3], ["version", 10, 3], ["buildInputs", 12, 3], ["src", 14, 3], ["extraNativeImageBuildArgs", 16, 3], ["buildPhase", 22, 3], ["installCheckPhase", 30, 3], ["passthru", 38, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, coursier: false, buildGraalvmNativeImage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 39, 5], ["buildCommand", 40, 5], ["outputHashMode", 46, 5], ["outputHashAlgo", 47, 5], ["outputHash", 48, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["deps", 38, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["mainProgram", 56, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["buildInputs", 12, 3], ["src", 14, 3], ["extraNativeImageBuildArgs", 16, 3], ["buildPhase", 22, 3], ["installCheckPhase", 30, 3], ["passthru", 38, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const coursier = nix.arg($, "coursier");
   const buildGraalvmNativeImage = nix.arg($, "buildGraalvmNativeImage");
   return nix.app(buildGraalvmNativeImage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "scala-update",
       version: "0.2.2",
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "passthru", "deps"))]),
@@ -34,9 +31,9 @@ $out/bin/scala-update --version | grep -q "${nix.sel(finalAttrs, "version")}"
 runHook postInstallCheck
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         deps: nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             name: nix.thunk(() => nix.str`scala-update-deps-${nix.sel(finalAttrs, "version")}`),
             buildCommand: nix.thunk(() => nix.str`export COURSIER_CACHE=$(pwd)
 ${nix.app(nix.sel(lib, "getExe"), coursier)} fetch io.github.kitlangton:scala-update_2.13:${nix.sel(finalAttrs, "version")} > deps
@@ -49,7 +46,7 @@ cp $(< deps) $out/share/java/
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Update your Scala dependencies interactively",
         homepage: "https://github.com/kitlangton/scala-update",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

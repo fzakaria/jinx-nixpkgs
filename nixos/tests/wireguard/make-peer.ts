@@ -2,19 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/make-peer.nix", [[["net.ipv6.conf.all.forwarding", 10, 9], ["net.ipv6.conf.default.forwarding", 11, 9], ["net.ipv4.ip_forward", 12, 9]], [["sysctl", 9, 19]], [["kernel", 9, 12]], [["address", 19, 13], ["prefixLength", 20, 13]], [["addresses", 17, 14]], [["address", 25, 13], ["prefixLength", 26, 13]], [["addresses", 23, 14]], [["ipv4", 17, 9], ["ipv6", 23, 9]], [["eth1", 16, 29]], [["useDHCP", 15, 18], ["interfaces", 16, 18]], [["boot", 9, 7], ["networking", 15, 7]], [["imports", 7, 3]]]);
 const formals$1 = { args: { ip4: false, ip6: false, extraConfig: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/make-peer.nix", [["net.ipv6.conf.all.forwarding", 10, 9], ["net.ipv6.conf.default.forwarding", 11, 9], ["net.ipv4.ip_forward", 12, 9]]);
-const pos$2 = nix.positions(here + "/make-peer.nix", [["sysctl", 9, 19]]);
-const pos$3 = nix.positions(here + "/make-peer.nix", [["kernel", 9, 12]]);
-const pos$4 = nix.positions(here + "/make-peer.nix", [["address", 19, 13], ["prefixLength", 20, 13]]);
-const pos$5 = nix.positions(here + "/make-peer.nix", [["addresses", 17, 14]]);
-const pos$6 = nix.positions(here + "/make-peer.nix", [["address", 25, 13], ["prefixLength", 26, 13]]);
-const pos$7 = nix.positions(here + "/make-peer.nix", [["addresses", 23, 14]]);
-const pos$8 = nix.positions(here + "/make-peer.nix", [["ipv4", 17, 9], ["ipv6", 23, 9]]);
-const pos$9 = nix.positions(here + "/make-peer.nix", [["eth1", 16, 29]]);
-const pos$10 = nix.positions(here + "/make-peer.nix", [["useDHCP", 15, 18], ["interfaces", 16, 18]]);
-const pos$11 = nix.positions(here + "/make-peer.nix", [["boot", 9, 7], ["networking", 15, 7]]);
-const pos$12 = nix.positions(here + "/make-peer.nix", [["imports", 7, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,16 +11,16 @@ export default nix.lambda((args) => (() => {
   const ip6 = nix.arg($, "ip6");
   const extraConfig = nix.arg($, "extraConfig");
   return {
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     imports: nix.thunk(() => [
       nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         boot: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           kernel: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             sysctl: nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               "net.ipv6.conf.all.forwarding": "1",
               "net.ipv6.conf.default.forwarding": "1",
               "net.ipv4.ip_forward": "1",
@@ -39,19 +28,19 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           useDHCP: false,
           interfaces: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             eth1: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               ipv4: nix.thunk(() => ({
-                [nix.POS]: pos$5,
-                addresses: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$4, address: ip4, prefixLength: 24n }))]),
+                [nix.POS]: $pos[4],
+                addresses: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[3], address: ip4, prefixLength: 24n }))]),
               })),
               ipv6: nix.thunk(() => ({
-                [nix.POS]: pos$7,
-                addresses: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$6, address: ip6, prefixLength: 64n }))]),
+                [nix.POS]: $pos[6],
+                addresses: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[5], address: ip6, prefixLength: 64n }))]),
               })),
             })),
           })),

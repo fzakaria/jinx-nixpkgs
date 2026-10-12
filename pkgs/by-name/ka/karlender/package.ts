@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["updateScript", 68, 12]], [["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["mainProgram", 74, 5], ["maintainers", 75, 5], ["platforms", 79, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["cargoHash", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 36, 3], ["checkFlags", 42, 3], ["preBuild", 46, 3], ["postPatch", 50, 3], ["postInstall", 54, 3], ["passthru", 68, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitLab: false, "pkg-config": false, gtk4: false, libadwaita: false, wrapGAppsHook4: false, glib: false, tzdata: false, "nix-update-script": false, dbus: false, "cargo-gra": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 68, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["mainProgram", 74, 5], ["maintainers", 75, 5], ["platforms", 79, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["cargoHash", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 36, 3], ["checkFlags", 42, 3], ["preBuild", 46, 3], ["postPatch", 50, 3], ["postInstall", 54, 3], ["passthru", 68, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const dbus = nix.arg($, "dbus");
   const cargo_gra = nix.arg($, "cargo-gra");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "karlender",
       version: "0.10.11",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "floers",
           repo: "karlender",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,11 +39,11 @@ export default nix.lambda((args) => (() => {
 `),
       postInstall: "substituteInPlace target/gra-gen/data/codes.loers.Karlender.desktop \\\n  --replace-fail \"Exec=codes.loers.Karlender\" \"Exec=karlender\"\nsubstituteInPlace target/gra-gen/data/codes.loers.Karlender.appdata.xml \\\n  --replace-fail \"<binary>codes.loers.Karlender</binary>\" \"<binary>karlender</binary>\"\ninstall -Dm444 target/gra-gen/codes.loers.Karlender.gschema.xml -t $out/share/gsettings-schemas/$name/glib-2.0/schemas/\nglib-compile-schemas $out/share/gsettings-schemas/$name/glib-2.0/schemas/\ninstall -Dm444 target/gra-gen/data/codes.loers.Karlender.svg -t $out/share/icons/hicolor/scalable/apps/\ninstall -Dm444 target/gra-gen/data/codes.loers.Karlender.64.png -T $out/share/icons/hicolor/64x64/apps/codes.loers.Karlender.png\ninstall -Dm444 target/gra-gen/data/codes.loers.Karlender.128.png -T $out/share/icons/hicolor/128x128/apps/codes.loers.Karlender.png\ninstall -Dm444 target/gra-gen/data/codes.loers.Karlender.desktop -t $out/share/applications/\ninstall -Dm444 target/gra-gen/data/codes.loers.Karlender.appdata.xml -t $out/share/metainfo/\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Mobile-friendly GTK calendar application",
         homepage: "https://gitlab.com/floers/karlender",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

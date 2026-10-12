@@ -2,11 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 15, 7], ["tag", 16, 7], ["hash", 17, 7]], [["description", 29, 7], ["changelog", 30, 7], ["homepage", 31, 7], ["license", 32, 7], ["mainProgram", 33, 7], ["teams", 34, 7]], [["pname", 10, 5], ["version", 11, 5], ["src", 14, 5], ["vendorHash", 20, 5], ["nativeInstallCheckInputs", 22, 5], ["versionCheckProgramArg", 25, 5], ["doInstallCheck", 26, 5], ["meta", 28, 5]]]);
 const formals$1 = { args: { lib: false, fetchgit: false, php: false, versionCheckHook: false }, ellipsis: false };
 const formals$2 = { args: { enabled: false, all: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 15, 7], ["tag", 16, 7], ["hash", 17, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 29, 7], ["changelog", 30, 7], ["homepage", 31, 7], ["license", 32, 7], ["mainProgram", 33, 7], ["teams", 34, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 5], ["version", 11, 5], ["src", 14, 5], ["vendorHash", 20, 5], ["nativeInstallCheckInputs", 22, 5], ["versionCheckProgramArg", 25, 5], ["doInstallCheck", 26, 5], ["meta", 28, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
         return [nix.thunk(() => nix.lookup(w, "xsl"))];
       })());
     })(), formals$2)), "buildComposerProject2"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "phing",
       version: "3.1.2",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://github.com/phingofficial/phing",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-cMKHJT0Ylo+8QXBVCcoj1ImSAOOMkV/KqgomXA7vHK0=",
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "-version",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "PHing Is Not GNU make; it's a PHP project build system or build tool based on Apache Ant",
         changelog: nix.thunk(() => nix.str`https://github.com/phingofficial/phing/releases/tag/${nix.sel(finalAttrs, "version")}`),
         homepage: "https://github.com/phingofficial/phing",

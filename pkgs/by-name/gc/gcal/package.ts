@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 18, 5]], [["NIX_CFLAGS_COMPILE", 27, 5], ["NIX_LDFLAGS", 29, 5]], [["description", 47, 5], ["longDescription", 48, 5], ["homepage", 54, 5], ["license", 55, 5], ["platforms", 56, 5], ["maintainers", 57, 5], ["mainProgram", 58, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 21, 3], ["env", 26, 3], ["enableParallelBuilding", 32, 3], ["buildInputs", 34, 3], ["nativeBuildInputs", 36, 3], ["doCheck", 41, 3], ["nativeInstallCheckInputs", 43, 3], ["doInstallCheck", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, ncurses: false, gettext: false, "pkg-config": false, check: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 27, 5], ["NIX_LDFLAGS", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 47, 5], ["longDescription", 48, 5], ["homepage", 54, 5], ["license", 55, 5], ["platforms", 56, 5], ["maintainers", 57, 5], ["mainProgram", 58, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 21, 3], ["env", 26, 3], ["enableParallelBuilding", 32, 3], ["buildInputs", 34, 3], ["nativeBuildInputs", 36, 3], ["doCheck", 41, 3], ["nativeInstallCheckInputs", 43, 3], ["doInstallCheck", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const check = nix.arg($, "check");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gcal",
       version: "4.2.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.alteholz.dev/gnu/gcal-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-2L0tdBHnglHWcGSqDxymClI7+FbuPm2J0H2FoSM0eNw=",
         })))),
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./fix-gnulib-link.patch"),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-Wno-implicit-function-declaration")),
         NIX_LDFLAGS: "-lm",
       })),
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Program for calculating and printing calendars",
         longDescription: "Gcal is the GNU version of the trusty old cal(1). Gcal is a\nprogram for calculating and printing calendars. Gcal displays\nhybrid and proleptic Julian and Gregorian calendar sheets.  It\nalso displays holiday lists for many countries around the globe.\n",
         homepage: "https://www.gnu.org/software/gcal/",

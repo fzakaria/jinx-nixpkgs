@@ -2,16 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 34, 7], ["repo", 35, 7], ["rev", 36, 7], ["hash", 37, 7]], [["version", 32, 5], ["src", 33, 5], ["postPatch", 41, 5]], [["owner", 55, 5], ["repo", 56, 5], ["rev", 57, 5], ["hash", 58, 5]], [["name", 64, 7], ["url", 65, 7], ["hash", 66, 7]], [["rev-prefix", 127, 33]], [["vm", 128, 11]], [["tdlib", 125, 5], ["updateScript", 127, 5], ["tests", 128, 5]], [["description", 132, 5], ["homepage", 133, 5], ["license", 134, 5], ["mainProgram", 141, 5], ["teams", 142, 5], ["platforms", 143, 5]], [["pname", 51, 3], ["version", 52, 3], ["src", 54, 3], ["patches", 61, 3], ["postPatch", 73, 3], ["strictDeps", 87, 3], ["nativeBuildInputs", 89, 3], ["buildInputs", 96, 3], ["postInstall", 114, 3], ["passthru", 124, 3], ["meta", 131, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, fetchFromGitLab: false, fetchpatch: false, gitUpdater: false, nixosTests: false, cmake: false, intltool: false, "lomiri-content-hub": false, "lomiri-indicator-network": false, "lomiri-push-qml": false, "lomiri-thumbnailer": false, "lomiri-ui-toolkit": false, "pkg-config": false, "qqc2-suru-style": false, qtbase: false, qtmultimedia: false, qtpositioning: false, qtquickcontrols2: false, quazip: false, quickflux: false, rlottie: false, "rlottie-qml": false, tdlib: false, wrapQtAppsHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 34, 7], ["repo", 35, 7], ["rev", 36, 7], ["hash", 37, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 32, 5], ["src", 33, 5], ["postPatch", 41, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["owner", 55, 5], ["repo", 56, 5], ["rev", 57, 5], ["hash", 58, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["name", 64, 7], ["url", 65, 7], ["hash", 66, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["rev-prefix", 127, 33]]);
-const pos$6 = nix.positions(here + "/default.nix", [["vm", 128, 11]]);
-const pos$7 = nix.positions(here + "/default.nix", [["tdlib", 125, 5], ["updateScript", 127, 5], ["tests", 128, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["description", 132, 5], ["homepage", 133, 5], ["license", 134, 5], ["mainProgram", 141, 5], ["teams", 142, 5], ["platforms", 143, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["pname", 51, 3], ["version", 52, 3], ["src", 54, 3], ["patches", 61, 3], ["postPatch", 73, 3], ["strictDeps", 87, 3], ["nativeBuildInputs", 89, 3], ["buildInputs", 96, 3], ["postInstall", 114, 3], ["passthru", 124, 3], ["meta", 131, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,10 +34,10 @@ export default nix.lambda((args) => (() => {
   const tdlib = nix.arg($, "tdlib");
   const wrapQtAppsHook = nix.arg($, "wrapQtAppsHook");
   const tdlib_1811 = nix.thunk(() => nix.app(nix.sel(tdlib, "overrideAttrs"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: "1.8.11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tdlib",
           repo: "td",
           rev: "3179d35694a28267a0b6273fc9b5bdce3b6b1235",
@@ -54,11 +46,11 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail 'cmake_minimum_required(VERSION 3.0.2 FATAL_ERROR)' 'cmake_minimum_required(VERSION 3.10 FATAL_ERROR)'\n\nsubstituteInPlace td/generate/tl-parser/CMakeLists.txt \\\n  --replace-fail 'cmake_minimum_required(VERSION 3.0 FATAL_ERROR)' 'cmake_minimum_required(VERSION 3.10 FATAL_ERROR)'\n",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "teleports",
       version: "1.22",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "ubports",
           repo: "development/apps/teleports",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -66,7 +58,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "0001-teleports-Call-i18n.bindtextdomain.patch",
             url: "https://gitlab.com/ubports/development/apps/teleports/-/commit/dd537c08453be9bfcdb2ee1eb692514c7e867e41.patch",
             hash: "sha256-zxxFvoj6jluGPCA9GQsxuYYweaSOVrkD01hZwCtq52U=",
@@ -106,13 +98,13 @@ substituteInPlace teleports.desktop.in \\
       ]),
       postInstall: "mkdir -p $out/share/{applications,lomiri-content-hub/peers,icons/hicolor/scalable/apps,lomiri-app-launch/splash,lomiri-url-dispatcher/urls}\n\nln -s $out/share/teleports/teleports.desktop $out/share/applications/teleports.desktop\nln -s $out/share/teleports/teleports.content-hub $out/share/lomiri-content-hub/peers/teleports\nln -s $out/share/teleports/assets/icon.svg $out/share/icons/hicolor/scalable/apps/teleports.svg\nln -s $out/share/teleports/assets/splash.svg $out/share/lomiri-app-launch/splash/teleports.svg\nln -s $out/share/teleports/teleports.url-dispatcher $out/share/lomiri-url-dispatcher/urls/teleports.url-dispatcher\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         tdlib: tdlib_1811,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$5, "rev-prefix": "v" })))),
-        tests: nix.thunk(() => ({ [nix.POS]: pos$6, vm: nix.thunk(() => nix.sel(nixosTests, "teleports")) })),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[4], "rev-prefix": "v" })))),
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[5], vm: nix.thunk(() => nix.sel(nixosTests, "teleports")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Ubuntu Touch Telegram client",
         homepage: "https://gitlab.com/ubports/development/apps/teleports",
         license: nix.thunk(() => (() => {

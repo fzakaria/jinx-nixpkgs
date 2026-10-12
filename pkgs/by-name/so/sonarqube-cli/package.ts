@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 9], ["hash", 21, 9]], [["url", 24, 9], ["hash", 25, 9]], [["url", 28, 9], ["hash", 29, 9]], [["x86_64-linux", 19, 7], ["aarch64-linux", 23, 7], ["aarch64-darwin", 27, 7]], [["updateScript", 68, 12]], [["description", 71, 5], ["longDescription", 72, 5], ["homepage", 78, 5], ["license", 82, 5], ["sourceProvenance", 83, 5], ["maintainers", 84, 5], ["mainProgram", 88, 5], ["platforms", 89, 5]], [["__structuredAttrs", 9, 3], ["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["strictDeps", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 40, 3], ["dontUnpack", 44, 3], ["dontConfigure", 45, 3], ["dontBuild", 46, 3], ["dontStrip", 52, 3], ["installPhase", 54, 3], ["doInstallCheck", 60, 3], ["installCheckPhase", 61, 3], ["passthru", 68, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoPatchelfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 9], ["hash", 21, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 24, 9], ["hash", 25, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 28, 9], ["hash", 29, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["x86_64-linux", 19, 7], ["aarch64-linux", 23, 7], ["aarch64-darwin", 27, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 68, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 71, 5], ["longDescription", 72, 5], ["homepage", 78, 5], ["license", 82, 5], ["sourceProvenance", 83, 5], ["maintainers", 84, 5], ["mainProgram", 88, 5], ["platforms", 89, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["__structuredAttrs", 9, 3], ["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["strictDeps", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 40, 3], ["dontUnpack", 44, 3], ["dontConfigure", 45, 3], ["dontBuild", 46, 3], ["dontStrip", 52, 3], ["installPhase", 54, 3], ["doInstallCheck", 60, 3], ["installCheckPhase", 61, 3], ["passthru", 68, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,26 +12,26 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       __structuredAttrs: true,
       pname: "sonarqube-cli",
       version: "1.9.0.15656",
       src: nix.thunk(() => (() => {
         const baseUrl = nix.thunk(() => nix.str`https://binaries.sonarsource.com/Distribution/sonarqube-cli/${nix.sel(finalAttrs, "version")}`);
         return nix.selOr({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               url: nix.thunk(() => nix.str`${baseUrl}/linux/sonarqube-cli-${nix.sel(finalAttrs, "version")}-linux-x86-64.bin`),
               hash: "sha256-QuyBXvgBWSGna3bIZZMhMNdWxcWpd9gryp+oHQm/zNg=",
             })))),
           "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               url: nix.thunk(() => nix.str`${baseUrl}/linux/sonarqube-cli-${nix.sel(finalAttrs, "version")}-linux-arm64.bin`),
               hash: "sha256-ZGcnxAMcY/ExyilDt/xrt/e9+hqQsZu88tck0DwpWww=",
             })))),
           "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               url: nix.thunk(() => nix.str`${baseUrl}/macos/sonarqube-cli-${nix.sel(finalAttrs, "version")}-macos-arm64.bin`),
               hash: "sha256-jejsYsNhSpq7cFMRT9qFuUYLbr28p7thLG5Y3IirIBU=",
             })))),
@@ -53,9 +47,9 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\ninstall -Dm755 $src $out/bin/sonar\nrunHook postInstall\n",
       doInstallCheck: true,
       installCheckPhase: "runHook preInstallCheck\nexport HOME=$(mktemp -d)\n$out/bin/sonar --help 2>&1 | grep -qF \"SonarQube CLI\"\nrunHook postInstallCheck\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[4], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Command-line companion for SonarQube Cloud and SonarQube Server",
         longDescription: "The SonarQube CLI (sonar) is a command-line companion for SonarQube Cloud\nand SonarQube Server. It lets you scan for secrets, analyze local changes,\nquery projects and issues, and wire SonarQube into AI coding assistants,\nall from your terminal.\n",
         homepage: "https://www.sonarsource.com/sonarqube/cli",

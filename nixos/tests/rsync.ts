@@ -2,57 +2,43 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/rsync.nix", [["isNormalUser", 5, 22]]);
-const pos$2 = nix.positions(here + "/rsync.nix", [["test", 5, 17]]);
-const pos$3 = nix.positions(here + "/rsync.nix", [["users", 5, 11]]);
-const pos$4 = nix.positions(here + "/rsync.nix", [["archive", 14, 13], ["delete", 15, 13], ["mkpath", 16, 13]]);
-const pos$5 = nix.positions(here + "/rsync.nix", [["OnCalendar", 19, 13], ["Persistent", 20, 13]]);
-const pos$6 = nix.positions(here + "/rsync.nix", [["sources", 11, 11], ["destination", 12, 11], ["settings", 13, 11], ["timerConfig", 18, 11], ["inhibit", 22, 11]]);
-const pos$7 = nix.positions(here + "/rsync.nix", [["archive", 28, 13], ["delete", 29, 13], ["mkpath", 30, 13]]);
-const pos$8 = nix.positions(here + "/rsync.nix", [["OnCalendar", 33, 13], ["Persistent", 34, 13]]);
-const pos$9 = nix.positions(here + "/rsync.nix", [["sources", 25, 11], ["destination", 26, 11], ["settings", 27, 11], ["timerConfig", 32, 11], ["user", 36, 11], ["group", 37, 11]]);
-const pos$10 = nix.positions(here + "/rsync.nix", [["root", 10, 9], ["user", 24, 9]]);
-const pos$11 = nix.positions(here + "/rsync.nix", [["enable", 8, 7], ["jobs", 9, 7]]);
-const pos$12 = nix.positions(here + "/rsync.nix", [["rsync", 7, 14]]);
-const pos$13 = nix.positions(here + "/rsync.nix", [["users", 5, 5], ["services", 7, 5]]);
-const pos$14 = nix.positions(here + "/rsync.nix", [["machine", 4, 9]]);
-const pos$15 = nix.positions(here + "/rsync.nix", [["name", 2, 3], ["nodes", 4, 3], ["testScript", 43, 3]]);
+const $pos = nix.positions(here + "/rsync.nix", [[["isNormalUser", 5, 22]], [["test", 5, 17]], [["users", 5, 11]], [["archive", 14, 13], ["delete", 15, 13], ["mkpath", 16, 13]], [["OnCalendar", 19, 13], ["Persistent", 20, 13]], [["sources", 11, 11], ["destination", 12, 11], ["settings", 13, 11], ["timerConfig", 18, 11], ["inhibit", 22, 11]], [["archive", 28, 13], ["delete", 29, 13], ["mkpath", 30, 13]], [["OnCalendar", 33, 13], ["Persistent", 34, 13]], [["sources", 25, 11], ["destination", 26, 11], ["settings", 27, 11], ["timerConfig", 32, 11], ["user", 36, 11], ["group", 37, 11]], [["root", 10, 9], ["user", 24, 9]], [["enable", 8, 7], ["jobs", 9, 7]], [["rsync", 7, 14]], [["users", 5, 5], ["services", 7, 5]], [["machine", 4, 9]], [["name", 2, 3], ["nodes", 4, 3], ["testScript", 43, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$15,
+  [nix.POS]: $pos[14],
   name: "rsync",
   nodes: nix.thunk(() => ({
-    [nix.POS]: pos$14,
+    [nix.POS]: $pos[13],
     machine: nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       users: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         users: nix.thunk(() => ({
-          [nix.POS]: pos$2,
-          test: nix.thunk(() => ({ [nix.POS]: pos$1, isNormalUser: true })),
+          [nix.POS]: $pos[1],
+          test: nix.thunk(() => ({ [nix.POS]: $pos[0], isNormalUser: true })),
         })),
       })),
       services: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         rsync: nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           enable: true,
           jobs: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             root: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               sources: nix.thunk(() => ["/root/src/"]),
               destination: "/root/dst",
-              settings: nix.thunk(() => ({ [nix.POS]: pos$4, archive: true, delete: true, mkpath: true })),
-              timerConfig: nix.thunk(() => ({ [nix.POS]: pos$5, OnCalendar: "daily", Persistent: false })),
+              settings: nix.thunk(() => ({ [nix.POS]: $pos[3], archive: true, delete: true, mkpath: true })),
+              timerConfig: nix.thunk(() => ({ [nix.POS]: $pos[4], OnCalendar: "daily", Persistent: false })),
               inhibit: nix.thunk(() => ["sleep"]),
             })),
             user: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               sources: nix.thunk(() => ["/home/test/src/"]),
               destination: "/home/test/dst",
-              settings: nix.thunk(() => ({ [nix.POS]: pos$7, archive: true, delete: true, mkpath: true })),
-              timerConfig: nix.thunk(() => ({ [nix.POS]: pos$8, OnCalendar: "daily", Persistent: false })),
+              settings: nix.thunk(() => ({ [nix.POS]: $pos[6], archive: true, delete: true, mkpath: true })),
+              timerConfig: nix.thunk(() => ({ [nix.POS]: $pos[7], OnCalendar: "daily", Persistent: false })),
               user: "test",
               group: "users",
             })),

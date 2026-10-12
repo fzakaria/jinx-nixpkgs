@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 18, 5], ["homepage", 19, 5], ["license", 20, 5], ["platforms", 21, 5]], [["pname", 9, 3], ["version", 10, 23], ["paths", 12, 3], ["meta", 17, 3]]]);
 const formals$1 = { args: { lib: false, symlinkJoin: false, "fira-mono": false, "fira-sans": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 18, 5], ["homepage", 19, 5], ["license", 20, 5], ["platforms", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 23], ["paths", 12, 3], ["meta", 17, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const fira_mono = nix.arg($, "fira-mono");
   const fira_sans = nix.arg($, "fira-sans");
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "fira",
       version: nix.thunk(() => nix.attr(fira_sans, "version")),
       paths: nix.thunk(() => [fira_mono, fira_sans]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Font family including Fira Sans and Fira Mono",
         homepage: "https://carrois.com/fira/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

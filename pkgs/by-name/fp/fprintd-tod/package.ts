@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["libfprint", 14, 21]], [["domain", 20, 7], ["owner", 21, 7], ["repo", 22, 7], ["rev", 23, 7], ["sha256", 24, 7]], [["name", 42, 9], ["url", 43, 9], ["sha256", 44, 9]], [["name", 47, 9], ["url", 48, 9], ["sha256", 49, 9]], [["name", 52, 9], ["url", 53, 9], ["sha256", 54, 9]], [["name", 57, 9], ["url", 58, 9], ["sha256", 59, 9]], [["homepage", 70, 7], ["description", 71, 7], ["license", 72, 7], ["platforms", 73, 7], ["maintainers", 74, 7]], [["pname", 16, 5], ["version", 17, 5], ["src", 19, 5], ["nativeBuildInputs", 27, 5], ["patches", 40, 5], ["postPatch", 63, 5], ["meta", 69, 5]]]);
 const formals$1 = { args: { lib: false, fetchFromGitLab: false, fetchpatch: false, libxml2: false, fprintd: false, "libfprint-tod": false, python3Packages: false, "libpam-wrapper": false, gusb: false, "gobject-introspection": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["libfprint", 14, 21]]);
-const pos$2 = nix.positions(here + "/package.nix", [["domain", 20, 7], ["owner", 21, 7], ["repo", 22, 7], ["rev", 23, 7], ["sha256", 24, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 42, 9], ["url", 43, 9], ["sha256", 44, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 47, 9], ["url", 48, 9], ["sha256", 49, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 52, 9], ["url", 53, 9], ["sha256", 54, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 57, 9], ["url", 58, 9], ["sha256", 59, 9]]);
-const pos$7 = nix.positions(here + "/package.nix", [["homepage", 70, 7], ["description", 71, 7], ["license", 72, 7], ["platforms", 73, 7], ["maintainers", 74, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 16, 5], ["version", 17, 5], ["src", 19, 5], ["nativeBuildInputs", 27, 5], ["patches", 40, 5], ["postPatch", 63, 5], ["meta", 69, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const libpam_wrapper = nix.arg($, "libpam-wrapper");
   const gusb = nix.arg($, "gusb");
   const gobject_introspection = nix.arg($, "gobject-introspection");
-  return nix.app(nix.sel(nix.app(nix.sel(fprintd, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, libfprint: libfprint_tod }))), "overrideAttrs"), (finalAttrs) => (previousAttrs) => ({
-      [nix.POS]: pos$8,
+  return nix.app(nix.sel(nix.app(nix.sel(fprintd, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], libfprint: libfprint_tod }))), "overrideAttrs"), (finalAttrs) => (previousAttrs) => ({
+      [nix.POS]: $pos[7],
       pname: "fprintd-tod",
       version: "1.90.9",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           domain: "gitlab.freedesktop.org",
           owner: "libfprint",
           repo: "fprintd",
@@ -50,25 +43,25 @@ export default nix.lambda((args) => (() => {
       ])),
       patches: nix.thunk(() => nix.concat(nix.selOr(previousAttrs, () => [], "patches"), [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "use-more-idiomatic-correct-embedded-shell-scripting",
             url: "https://gitlab.freedesktop.org/libfprint/fprintd/-/commit/f4256533d1ffdc203c3f8c6ee42e8dcde470a93f.patch",
             sha256: "sha256-4uPrYEgJyXU4zx2V3gwKKLaD6ty0wylSriHlvKvOhek=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "remove-pointless-copying-of-files-into-build-directory",
             url: "https://gitlab.freedesktop.org/libfprint/fprintd/-/commit/2c34cef5ef2004d8479475db5523c572eb409a6b.patch",
             sha256: "sha256-2pZBbMF1xjoDKn/jCAIldbeR2JNEVduXB8bqUrj2Ih4=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "build-Do-not-use-positional-arguments-in-i18n.merge_file",
             url: "https://gitlab.freedesktop.org/libfprint/fprintd/-/commit/50943b1bd4f18d103c35233f0446ce7a31d1817e.patch",
             sha256: "sha256-ANkAq6fr0VRjkS0ckvf/ddVB2mH4b2uJRTI4H8vPPes=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             name: "tests-Fix-dbusmock-AddDevice-calls-to-include-option",
             url: "https://gitlab.freedesktop.org/libfprint/fprintd/-/commit/ae04fa989720279e5558c3b8ff9ebe1959b1cf36.patch",
             sha256: "sha256-jW5vlzrbZQ1gUDLBf7G50GnZfZxhlnL2Eu+9Bghdwdw=",
@@ -76,7 +69,7 @@ export default nix.lambda((args) => (() => {
       ])),
       postPatch: nix.thunk(() => nix.add(nix.selOr(previousAttrs, () => "", "postPatch"), "# part of \"remove-pointless-copying-of-files-into-build-directory\" but git-apply doesn't handle renaming\nmv src/device.xml src/net.reactivated.Fprint.Device.xml\nmv src/manager.xml src/net.reactivated.Fprint.Manager.xml\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         homepage: "https://fprint.freedesktop.org/",
         description: "fprintd built with libfprint-tod to support Touch OEM Drivers",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

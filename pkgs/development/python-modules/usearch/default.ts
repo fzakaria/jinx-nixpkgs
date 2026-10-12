@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 71, 7], ["homepage", 72, 7], ["changelog", 73, 7], ["license", 74, 7], ["maintainers", 75, 7]], [["pname", 20, 26], ["version", 20, 32], ["src", 20, 40], ["pyproject", 21, 3], ["__structuredAttrs", 22, 3], ["postPatch", 24, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 36, 3], ["build-system", 40, 3], ["dependencies", 46, 3], ["dontUseCmakeConfigure", 52, 3], ["pythonImportsCheck", 54, 3], ["nativeCheckInputs", 56, 3], ["disabledTests", 63, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, cmake: false, numba: false, numpy: false, numkong: false, "py-cpuinfo": false, pybind11: false, pytestCheckHook: false, setuptools: false, tqdm: false, pkgs: false, stdenv: false, which: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 71, 7], ["homepage", 72, 7], ["changelog", 73, 7], ["license", 74, 7], ["maintainers", 75, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 20, 26], ["version", 20, 32], ["src", 20, 40], ["pyproject", 21, 3], ["__structuredAttrs", 22, 3], ["postPatch", 24, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 36, 3], ["build-system", 40, 3], ["dependencies", 46, 3], ["dontUseCmakeConfigure", 52, 3], ["pythonImportsCheck", 54, 3], ["nativeCheckInputs", 56, 3], ["disabledTests", 63, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +25,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(buildPythonPackage, nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(pkgs, "usearch"));
       return {
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: nix.thunk(() => nix.attr(from, "pname")),
       version: nix.thunk(() => nix.attr(from, "version")),
       src: nix.thunk(() => nix.attr(from, "src")),
@@ -47,7 +46,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from_1 = nix.thunk(() => nix.sel(pkgs, "usearch", "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: nix.thunk(() => nix.attr(from_1, "description")),
         homepage: nix.thunk(() => nix.attr(from_1, "homepage")),
         changelog: nix.thunk(() => nix.attr(from_1, "changelog")),

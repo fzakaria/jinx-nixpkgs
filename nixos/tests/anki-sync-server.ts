@@ -2,15 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/anki-sync-server.nix", [[["maintainers", 51, 5]], [["username", 59, 11], ["password", 60, 11]], [["username", 63, 11], ["passwordFile", 64, 11]], [["enable", 56, 7], ["users", 57, 7]], [["anki-sync-server", 55, 14]], [["services", 55, 5]], [["machine", 54, 9]], [["name", 49, 3], ["meta", 50, 3], ["nodes", 54, 3], ["testScript", 70, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/anki-sync-server.nix", [["maintainers", 51, 5]]);
-const pos$2 = nix.positions(here + "/anki-sync-server.nix", [["username", 59, 11], ["password", 60, 11]]);
-const pos$3 = nix.positions(here + "/anki-sync-server.nix", [["username", 63, 11], ["passwordFile", 64, 11]]);
-const pos$4 = nix.positions(here + "/anki-sync-server.nix", [["enable", 56, 7], ["users", 57, 7]]);
-const pos$5 = nix.positions(here + "/anki-sync-server.nix", [["anki-sync-server", 55, 14]]);
-const pos$6 = nix.positions(here + "/anki-sync-server.nix", [["services", 55, 5]]);
-const pos$7 = nix.positions(here + "/anki-sync-server.nix", [["machine", 54, 9]]);
-const pos$8 = nix.positions(here + "/anki-sync-server.nix", [["name", 49, 3], ["meta", 50, 3], ["nodes", 54, 3], ["testScript", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -59,27 +52,27 @@ assert sync.required == sync.NO_CHANGES
 `)));
   const testPasswordFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "anki-password", "passfilepassword"));
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     name: "anki-sync-server",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "martinetd"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           "anki-sync-server": nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             enable: true,
             users: nix.thunk(() => [
-              nix.thunk(() => ({ [nix.POS]: pos$2, username: "user", password: "password" })),
-              nix.thunk(() => ({ [nix.POS]: pos$3, username: "passfileuser", passwordFile: testPasswordFile })),
+              nix.thunk(() => ({ [nix.POS]: $pos[1], username: "user", password: "password" })),
+              nix.thunk(() => ({ [nix.POS]: $pos[2], username: "passfileuser", passwordFile: testPasswordFile })),
             ]),
           })),
         })),

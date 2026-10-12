@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 12, 5], ["gemdir", 13, 5]], [["reproducible-html-manpage", 38, 18]], [["updateScript", 36, 12], ["tests", 38, 12]], [["description", 41, 5], ["mainProgram", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["platforms", 49, 5]], [["pname", 17, 3], ["version", 18, 3], ["dontUnpack", 20, 3], ["nativeBuildInputs", 22, 3], ["installPhase", 26, 3], ["passthru", 36, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, bundlerEnv: false, bundlerUpdateScript: false, makeWrapper: false, groff: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 12, 5], ["gemdir", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["reproducible-html-manpage", 38, 18]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 36, 12], ["tests", 38, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 41, 5], ["mainProgram", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["platforms", 49, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["dontUnpack", 20, 3], ["nativeBuildInputs", 22, 3], ["installPhase", 26, 3], ["passthru", 36, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,9 +14,9 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const groff = nix.arg($, "groff");
   const callPackage = nix.arg($, "callPackage");
-  const rubyEnv = nix.thunk(() => nix.app(bundlerEnv, nix.thunk(() => ({ [nix.POS]: pos$1, name: "ronn-gems", gemdir: nix.path(here, "./.") }))));
+  const rubyEnv = nix.thunk(() => nix.app(bundlerEnv, nix.thunk(() => ({ [nix.POS]: $pos[0], name: "ronn-gems", gemdir: nix.path(here, "./.") }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ronn",
       version: nix.thunk(() => nix.sel(rubyEnv, "gems", "ronn-ng", "version")),
       dontUnpack: true,
@@ -34,15 +30,15 @@ makeWrapper ${rubyEnv}/bin/ronn $out/bin/ronn \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "ronn")),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "reproducible-html-manpage": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-reproducible-html.nix"), nix.thunk(() => ({})))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Markdown-based tool for building manpages",
         mainProgram: "ronn",
         homepage: "https://github.com/apjanke/ronn-ng",

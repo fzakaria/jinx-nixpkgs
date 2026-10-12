@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["url", 42, 7], ["hash", 43, 7]], [["url", 47, 5], ["hash", 48, 5]], [["NIX_LDFLAGS", 85, 7]], [["doCheck", 140, 59]], [["redis", 139, 7], ["unitTests", 140, 7]], [["tests", 138, 5], ["serverBin", 142, 5], ["updateScript", 143, 5]], [["homepage", 147, 5], ["description", 148, 5], ["license", 149, 5], ["platforms", 150, 5], ["changelog", 151, 5], ["mainProgram", 152, 5], ["teams", 153, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["patches", 39, 3], ["postPatch", 51, 3], ["nativeBuildInputs", 59, 3], ["buildInputs", 65, 3], ["makeFlags", 73, 3], ["enableParallelBuilding", 83, 3], ["env", 85, 3], ["doCheck", 88, 3], ["nativeCheckInputs", 90, 3], ["checkPhase", 96, 3], ["doInstallCheck", 133, 3], ["nativeInstallCheckInputs", 134, 3], ["versionCheckProgram", 135, 3], ["passthru", 137, 3], ["meta", 146, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch2: false, "apple-sdk": false, lua: false, jemalloc: false, "pkg-config": false, nixosTests: false, tcl: false, which: false, ps: false, getconf: false, systemd: false, openssl: false, python3: false, "nix-update-script": false, versionCheckHook: false, withSystemd: true, tlsSupport: true, useSystemJemalloc: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 42, 7], ["hash", 43, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 47, 5], ["hash", 48, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 85, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["doCheck", 140, 59]]);
-const pos$6 = nix.positions(here + "/package.nix", [["redis", 139, 7], ["unitTests", 140, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["tests", 138, 5], ["serverBin", 142, 5], ["updateScript", 143, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["homepage", 147, 5], ["description", 148, 5], ["license", 149, 5], ["platforms", 150, 5], ["changelog", 151, 5], ["mainProgram", 152, 5], ["teams", 153, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["patches", 39, 3], ["postPatch", 51, 3], ["nativeBuildInputs", 59, 3], ["buildInputs", 65, 3], ["makeFlags", 73, 3], ["enableParallelBuilding", 83, 3], ["env", 85, 3], ["doCheck", 88, 3], ["nativeCheckInputs", 90, 3], ["checkPhase", 96, 3], ["doInstallCheck", 133, 3], ["nativeInstallCheckInputs", 134, 3], ["versionCheckProgram", 135, 3], ["passthru", 137, 3], ["meta", 146, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const tlsSupport = nix.argOr($, "tlsSupport", () => true);
   const useSystemJemalloc = nix.argOr($, "useSystemJemalloc", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "redis",
       version: "8.10.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "redis",
           repo: "redis",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -49,12 +41,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/redis/redis/commit/c027c8effe13564bcbc903741305acd929cc23da.patch",
             hash: "sha256-MynmKLQ04JjyHMVbfeSIEnKaj4jvjS1FjQNpfvQz3Pw=",
           })))),
       ], nix.app(nix.sel(lib, "optional"), useSystemJemalloc, nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://gitlab.archlinux.org/archlinux/packaging/packages/redis/-/raw/102cc861713c796756abd541bf341a4512eb06e6/redis-5.0-use-system-jemalloc.patch",
             hash: "sha256-A9qp+PWQRuNy/xmv9KLM7/XAyL7Tzkyn0scpVCGngcc=",
           }))))))),
@@ -72,7 +64,7 @@ substituteInPlace src/modules/Makefile modules/vector-sets/Makefile tests/module
         ])), nix.concat(nix.app(nix.sel(lib, "optionals"), withSystemd, nix.thunk(() => ["USE_SYSTEMD=yes"])), nix.app(nix.sel(lib, "optionals"), tlsSupport, nix.thunk(() => ["BUILD_TLS=yes"])))))),
       enableParallelBuilding: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isFreeBSD")), "-lexecinfo")),
       })),
       doCheck: false,
@@ -82,17 +74,17 @@ substituteInPlace src/modules/Makefile modules/vector-sets/Makefile tests/module
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/redis-server`),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           redis: nix.thunk(() => nix.sel(nixosTests, "redis")),
-          unitTests: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$5, doCheck: true })))),
+          unitTests: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[4], doCheck: true })))),
         })),
         serverBin: "redis-server",
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         homepage: "https://redis.io",
         description: "Open source, advanced key-value store",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

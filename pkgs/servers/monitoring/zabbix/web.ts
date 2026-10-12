@@ -2,11 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/web.nix", [[["url", 15, 7], ["hash", 16, 15]], [["description", 32, 7], ["homepage", 33, 7], ["license", 34, 7], ["maintainers", 36, 7], ["platforms", 40, 7]], [["pname", 11, 5], ["version", 12, 13], ["src", 14, 5], ["phpConfig", 19, 5], ["installPhase", 25, 5], ["meta", 31, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, writeText: false }, ellipsis: false };
 const formals$2 = { args: { version: false, hash: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/web.nix", [["url", 15, 7], ["hash", 16, 15]]);
-const pos$2 = nix.positions(here + "/web.nix", [["description", 32, 7], ["homepage", 33, 7], ["license", 34, 7], ["maintainers", 36, 7], ["platforms", 40, 7]]);
-const pos$3 = nix.positions(here + "/web.nix", [["pname", 11, 5], ["version", 12, 13], ["src", 14, 5], ["phpConfig", 19, 5], ["installPhase", 25, 5], ["meta", 31, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
           const pname = "zabbix-web";
           const version_1 = version;
           const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               url: nix.thunk(() => nix.str`https://cdn.zabbix.com/zabbix/sources/stable/${nix.app(nix.sel(lib, "versions", "majorMinor"), version_1)}/zabbix-${version_1}.tar.gz`),
               hash: hash,
             }))));
@@ -32,7 +30,7 @@ cp -a ui/. $out/share/zabbix/
 cp ${phpConfig} $out/share/zabbix/conf/zabbix.conf.php
 `);
           const meta = nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             description: "Enterprise-class open source distributed monitoring solution (web frontend)",
             homepage: "https://www.zabbix.com/",
             license: nix.thunk(() => (nix.asBool(nix.ge(nix.app(nix.sel(lib, "versions", "major"), version_1), "7")) ? nix.sel(lib, "licenses", "agpl3Only") : nix.sel(lib, "licenses", "gpl2Plus"))),
@@ -46,7 +44,7 @@ cp ${phpConfig} $out/share/zabbix/conf/zabbix.conf.php
             platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
           }));
           return {
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             pname,
             version: version_1,
             src,

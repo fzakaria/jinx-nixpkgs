@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["package", 24, 7], ["version", 25, 7]], [["version", 23, 11]], [["tests", 23, 5], ["updateScript", 27, 5]], [["changelog", 31, 5], ["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["mainProgram", 35, 5], ["maintainers", 36, 5]], [["pname", 12, 3], ["gemdir", 13, 3], ["exes", 14, 3], ["nativeBuildInputs", 16, 3], ["postBuild", 18, 3], ["passthru", 22, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { bundlerApp: false, bundlerUpdateScript: false, gnumake: false, lib: false, makeWrapper: false, pdk: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["package", 24, 7], ["version", 25, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 23, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 23, 5], ["updateScript", 27, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 31, 5], ["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["mainProgram", 35, 5], ["maintainers", 36, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["gemdir", 13, 3], ["exes", 14, 3], ["nativeBuildInputs", 16, 3], ["postBuild", 18, 3], ["passthru", 22, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const pdk = nix.arg($, "pdk");
   const testers = nix.arg($, "testers");
   return nix.app(bundlerApp, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "pdk",
       gemdir: nix.path(here, "./."),
       exes: nix.thunk(() => ["pdk"]),
@@ -27,11 +23,11 @@ export default nix.lambda((args) => (() => {
       postBuild: nix.thunk(() => nix.str`wrapProgram $out/bin/pdk --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [gnumake]))}
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               package: pdk,
               version: nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./gemset.nix")), "pdk", "version")),
             })))),
@@ -39,7 +35,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "pdk")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: "https://github.com/puppetlabs/pdk/blob/main/CHANGELOG.md",
         description: "Puppet Development Kit",
         homepage: "https://github.com/puppetlabs/pdk",

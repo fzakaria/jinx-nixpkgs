@@ -2,12 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["sha256", 34, 5]], [["libgnomekbd", 48, 15]], [["updateScript", 75, 5]], [["description", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["platforms", 82, 5], ["teams", 83, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["patches", 37, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 61, 3], ["passthru", 74, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "nix-update-script": false, replaceVars: false, meson: false, ninja: false, "pkg-config": false, vala: false, "elementary-settings-daemon": false, libadwaita: false, libgee: false, gettext: false, "gnome-settings-daemon": false, granite7: false, "gsettings-desktop-schemas": false, gtk4: false, libxml2: false, libgnomekbd: false, libxklavier: false, ibus: false, switchboard: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["sha256", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["libgnomekbd", 48, 15]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 75, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["platforms", 82, 5], ["teams", 83, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["patches", 37, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 61, 3], ["passthru", 74, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const pname = "switchboard-plug-keyboard";
       const version = "8.1.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "elementary",
           repo: "settings-keyboard",
           rev: version,
@@ -46,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => [
         nix.path(here, "./hide-install-unlisted-engines-button.patch"),
         nix.path(here, "./hide-onscreen-keyboard-settings.patch"),
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, libgnomekbd: libgnomekbd })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ [nix.POS]: $pos[1], libgnomekbd: libgnomekbd })))),
       ]);
       const nativeBuildInputs = nix.thunk(() => [gettext, libxml2, meson, ninja, pkg_config, vala]);
       const buildInputs = nix.thunk(() => [
@@ -62,11 +58,11 @@ export default nix.lambda((args) => (() => {
         switchboard,
       ]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Switchboard Keyboard Plug",
         homepage: "https://github.com/elementary/settings-keyboard",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -74,7 +70,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "pantheon"))]),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

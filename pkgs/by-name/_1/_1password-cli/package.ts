@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 9], ["hash", 20, 17]], [["stripRoot", 22, 51]], [["aarch64-linux", 29, 5], ["i686-linux", 30, 5], ["x86_64-linux", 31, 5], ["aarch64-darwin", 32, 5]], [["updateScript", 84, 5]], [["description", 88, 5], ["homepage", 89, 5], ["downloadPage", 90, 5], ["maintainers", 91, 5], ["sourceProvenance", 96, 5], ["license", 97, 5], ["mainProgram", 98, 13], ["platforms", 98, 25]], [["pname", 41, 11], ["version", 41, 17], ["src", 42, 3], ["nativeBuildInputs", 48, 3], ["unpackPhase", 58, 3], ["installPhase", 63, 3], ["postInstall", 69, 3], ["dontStrip", 77, 3], ["doInstallCheck", 79, 3], ["versionCheckProgram", 81, 3], ["passthru", 83, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchzip: false, autoPatchelfHook: false, installShellFiles: false, cpio: false, xar: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 9], ["hash", 20, 17]]);
-const pos$2 = nix.positions(here + "/package.nix", [["stripRoot", 22, 51]]);
-const pos$3 = nix.positions(here + "/package.nix", [["aarch64-linux", 29, 5], ["i686-linux", 30, 5], ["x86_64-linux", 31, 5], ["aarch64-darwin", 32, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 84, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 88, 5], ["homepage", 89, 5], ["downloadPage", 90, 5], ["maintainers", 91, 5], ["sourceProvenance", 96, 5], ["license", 97, 5], ["mainProgram", 98, 13], ["platforms", 98, 25]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 41, 11], ["version", 41, 17], ["src", 42, 3], ["nativeBuildInputs", 48, 3], ["unpackPhase", 58, 3], ["installPhase", 63, 3], ["postInstall", 69, 3], ["dontStrip", 77, 3], ["doInstallCheck", 79, 3], ["versionCheckProgram", 81, 3], ["passthru", 83, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,16 +20,16 @@ export default nix.lambda((args) => (() => {
   const system = nix.thunk(() => nix.attr(from, "system"));
   const fetch = (srcPlatform) => (hash) => (extension) => (() => {
     const args_1 = nix.thunk(() => nix.update({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://cache.agilebits.com/dist/1P/op2/pkg/v${version}/op_${srcPlatform}_v${version}.${extension}`),
       hash: hash,
-    }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(extension, "zip")), nix.thunk(() => ({ [nix.POS]: pos$2, stripRoot: false })))));
+    }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(extension, "zip")), nix.thunk(() => ({ [nix.POS]: $pos[1], stripRoot: false })))));
     return (nix.asBool(nix.eq(extension, "zip")) ? nix.app(fetchzip, args_1) : nix.app(fetchurl, args_1));
   })();
   const pname = "1password-cli";
   const version = "2.39.0";
   const sources = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     "aarch64-linux": nix.thunk(() => nix.app(fetch, "linux_arm64", "sha256-2/Nb2EGgzOcOfDGQ6Znfxynql3sGVZFYWhcE/51/kBY=", "zip")),
     "i686-linux": nix.thunk(() => nix.app(fetch, "linux_386", "sha256-6mmjsWsSDR8Ta+KJGXGcaIfUXUlspElIwBUpfLtDTsk=", "zip")),
     "x86_64-linux": nix.thunk(() => nix.app(fetch, "linux_amd64", "sha256-i2lzaEoJP/Re3DJvTgHNwZ9UXXxHKd6UIF3CmASt2N8=", "zip")),
@@ -43,7 +38,7 @@ export default nix.lambda((args) => (() => {
   const platforms = nix.thunk(() => nix.builtins.attrNames(sources));
   const mainProgram = "op";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: pname,
       version: version,
       src: nix.thunk(() => (nix.asBool(nix.builtins.elem(system, platforms)) ? nix.sel(sources, nix.key(nix.force(system))) : nix.builtins.throw(nix.thunk(() => nix.str`Source for 1password-cli is not available for ${system}`)))),
@@ -54,9 +49,9 @@ export default nix.lambda((args) => (() => {
       dontStrip: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       doInstallCheck: true,
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/op`),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "1Password command-line tool",
         homepage: "https://developer.1password.com/docs/cli/",
         downloadPage: "https://app-updates.agilebits.com/product_history/CLI2",

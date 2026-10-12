@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["name", 194, 7], ["desktopName", 195, 7], ["genericName", 196, 7], ["comment", 197, 7], ["exec", 198, 7], ["icon", 199, 7], ["terminal", 200, 7], ["categories", 201, 7], ["keywords", 205, 7]], [["description", 214, 5], ["homepage", 215, 5], ["changelog", 216, 5], ["license", 217, 5], ["maintainers", 218, 5], ["mainProgram", 222, 5]], [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["src", 35, 3], ["pythonRemoveDeps", 42, 3], ["pythonRelaxDeps", 46, 3], ["build-system", 52, 3], ["nativeBuildInputs", 60, 3], ["dependencies", 64, 3], ["preFixup", 71, 3], ["postInstall", 100, 3], ["nativeCheckInputs", 105, 3], ["preCheck", 118, 3], ["postCheck", 128, 3], ["disabledTests", 134, 3], ["disabledTestPaths", 167, 3], ["desktopItems", 192, 3], ["meta", 213, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, python3: false, fetchFromGitHub: false, tesseract4: false, leptonica: false, "wl-clipboard": false, libnotify: false, xvfb: false, makeDesktopItem: false, copyDesktopItems: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 194, 7], ["desktopName", 195, 7], ["genericName", 196, 7], ["comment", 197, 7], ["exec", 198, 7], ["icon", 199, 7], ["terminal", 200, 7], ["categories", 201, 7], ["keywords", 205, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 214, 5], ["homepage", 215, 5], ["changelog", 216, 5], ["license", 217, 5], ["maintainers", 218, 5], ["mainProgram", 222, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["src", 35, 3], ["pythonRemoveDeps", 42, 3], ["pythonRelaxDeps", 46, 3], ["build-system", 52, 3], ["nativeBuildInputs", 60, 3], ["dependencies", 64, 3], ["preFixup", 71, 3], ["postInstall", 100, 3], ["nativeCheckInputs", 105, 3], ["preCheck", 118, 3], ["postCheck", 128, 3], ["disabledTests", 134, 3], ["disabledTestPaths", 167, 3], ["desktopItems", 192, 3], ["meta", 213, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const ps = nix.thunk(() => nix.sel(python3, "pkgs"));
   const wrapperDeps = nix.thunk(() => nix.concat([leptonica, tesseract4, libnotify], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [wl_clipboard]))));
   return nix.app(nix.sel(ps, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "normcap",
       version: "0.6.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dynobo",
           repo: "normcap",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -123,7 +120,7 @@ ln -s $out/${nix.sel(python3, "sitePackages")}/normcap/resources/icons/normcap.p
         ])))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "com.github.dynobo.normcap",
             desktopName: "NormCap",
             genericName: "OCR powered screen-capture tool",
@@ -136,7 +133,7 @@ ln -s $out/${nix.sel(python3, "sitePackages")}/normcap/resources/icons/normcap.p
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "OCR powered screen-capture tool to capture information instead of images",
         homepage: "https://dynobo.github.io/normcap/",
         changelog: nix.thunk(() => nix.str`https://github.com/dynobo/normcap/releases/tag/v${nix.sel(finalAttrs, "version")}`),

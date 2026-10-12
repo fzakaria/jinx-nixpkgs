@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["homepage", 55, 5], ["changelog", 56, 5], ["description", 57, 5], ["mainProgram", 58, 5], ["longDescription", 59, 5], ["license", 65, 5], ["maintainers", 66, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["subPackages", 22, 3], ["ldflags", 24, 3], ["nativeBuildInputs", 36, 3], ["doInstallCheck", 41, 3], ["installCheckPhase", 42, 3], ["postInstall", 46, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 55, 5], ["changelog", 56, 5], ["description", 57, 5], ["mainProgram", 58, 5], ["longDescription", 59, 5], ["license", 65, 5], ["maintainers", 66, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["subPackages", 22, 3], ["ldflags", 24, 3], ["nativeBuildInputs", 36, 3], ["doInstallCheck", 41, 3], ["installCheckPhase", 42, 3], ["postInstall", 46, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "skaffold",
       version: "2.24.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "GoogleContainerTools",
           repo: "skaffold",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
 `),
       postInstall: "wrapProgram $out/bin/skaffold --set SKAFFOLD_UPDATE_CHECK false\n\ninstallShellCompletion --cmd skaffold \\\n  --bash <($out/bin/skaffold completion bash) \\\n  --zsh <($out/bin/skaffold completion zsh)\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://skaffold.dev/",
         changelog: nix.thunk(() => nix.str`https://github.com/GoogleContainerTools/skaffold/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Easy and Repeatable Kubernetes Development",

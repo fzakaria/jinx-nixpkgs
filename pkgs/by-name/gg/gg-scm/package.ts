@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["mainProgram", 68, 5], ["description", 69, 5], ["longDescription", 70, 5], ["homepage", 75, 5], ["changelog", 76, 5], ["license", 77, 5]], [["pname", 18, 3], ["version", 19, 11], ["src", 21, 3], ["postPatch", 27, 3], ["subPackages", 31, 3], ["ldflags", 32, 3], ["vendorHash", 41, 3], ["nativeBuildInputs", 43, 3], ["nativeCheckInputs", 48, 3], ["buildInputs", 53, 3], ["postInstall", 58, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, makeWrapper: false, bash: false, coreutils: false, git: false, pandoc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["mainProgram", 68, 5], ["description", 69, 5], ["longDescription", 70, 5], ["homepage", 75, 5], ["changelog", 76, 5], ["license", 77, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 11], ["src", 21, 3], ["postPatch", 27, 3], ["subPackages", 31, 3], ["ldflags", 32, 3], ["vendorHash", 41, 3], ["nativeBuildInputs", 43, 3], ["nativeCheckInputs", 48, 3], ["buildInputs", 53, 3], ["postInstall", 58, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const version = "1.3.1";
   const commit = "b6be8bac78605c21a9670db0e44faf5e1eafe0d4";
   return nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gg-scm",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gg-scm",
           repo: "gg",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -55,7 +53,7 @@ installShellCompletion --cmd gg \\
   --zsh misc/_gg.zsh
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         mainProgram: "gg",
         description: "Git with less typing",
         longDescription: "gg is an alternative command-line interface for Git heavily inspired by Mercurial.\nIt's designed for less typing in common workflows,\nmaking Git easier to use for both novices and advanced users alike.\n",

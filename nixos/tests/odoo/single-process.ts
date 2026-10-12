@@ -2,24 +2,18 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/single-process.nix", [[["maintainers", 8, 8]], [["enable", 15, 7], ["recommendedProxySettings", 16, 7]], [["enable", 20, 7], ["package", 21, 7], ["autoInit", 22, 7], ["autoInitExtraFlags", 23, 7], ["domain", 24, 7]], [["nginx", 14, 14], ["odoo", 19, 14]], [["services", 14, 5]], [["server", 13, 9]], [["name", 7, 3], ["meta", 8, 3], ["nodes", 13, 3], ["testScript", 28, 3]]]);
 const formals$1 = { args: { package: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/single-process.nix", [["maintainers", 8, 8]]);
-const pos$2 = nix.positions(here + "/single-process.nix", [["enable", 15, 7], ["recommendedProxySettings", 16, 7]]);
-const pos$3 = nix.positions(here + "/single-process.nix", [["enable", 20, 7], ["package", 21, 7], ["autoInit", 22, 7], ["autoInitExtraFlags", 23, 7], ["domain", 24, 7]]);
-const pos$4 = nix.positions(here + "/single-process.nix", [["nginx", 14, 14], ["odoo", 19, 14]]);
-const pos$5 = nix.positions(here + "/single-process.nix", [["services", 14, 5]]);
-const pos$6 = nix.positions(here + "/single-process.nix", [["server", 13, 9]]);
-const pos$7 = nix.positions(here + "/single-process.nix", [["name", 7, 3], ["meta", 8, 3], ["nodes", 13, 3], ["testScript", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const package$ = nix.arg($, "package");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     name: nix.thunk(() => nix.str`odoo-single-process-${nix.sel(package$, "version")}`),
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -29,14 +23,14 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       server: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          nginx: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true, recommendedProxySettings: true })),
+          [nix.POS]: $pos[3],
+          nginx: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true, recommendedProxySettings: true })),
           odoo: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             enable: true,
             package: package$,
             autoInit: true,

@@ -2,33 +2,17 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/gemset.nix", [["remotes", 7, 7], ["sha256", 8, 7], ["type", 9, 7]]);
-const pos$2 = nix.positions(here + "/gemset.nix", [["dependencies", 3, 5], ["groups", 4, 5], ["platforms", 5, 5], ["source", 6, 5], ["version", 11, 5]]);
-const pos$3 = nix.positions(here + "/gemset.nix", [["remotes", 18, 7], ["sha256", 19, 7], ["type", 20, 7]]);
-const pos$4 = nix.positions(here + "/gemset.nix", [["dependencies", 14, 5], ["groups", 15, 5], ["platforms", 16, 5], ["source", 17, 5], ["version", 22, 5]]);
-const pos$5 = nix.positions(here + "/gemset.nix", [["remotes", 28, 7], ["sha256", 29, 7], ["type", 30, 7]]);
-const pos$6 = nix.positions(here + "/gemset.nix", [["groups", 25, 5], ["platforms", 26, 5], ["source", 27, 5], ["version", 32, 5]]);
-const pos$7 = nix.positions(here + "/gemset.nix", [["remotes", 38, 7], ["sha256", 39, 7], ["type", 40, 7]]);
-const pos$8 = nix.positions(here + "/gemset.nix", [["groups", 35, 5], ["platforms", 36, 5], ["source", 37, 5], ["version", 42, 5]]);
-const pos$9 = nix.positions(here + "/gemset.nix", [["remotes", 52, 7], ["sha256", 53, 7], ["type", 54, 7]]);
-const pos$10 = nix.positions(here + "/gemset.nix", [["dependencies", 45, 5], ["groups", 49, 5], ["platforms", 50, 5], ["source", 51, 5], ["version", 56, 5]]);
-const pos$11 = nix.positions(here + "/gemset.nix", [["remotes", 62, 7], ["sha256", 63, 7], ["type", 64, 7]]);
-const pos$12 = nix.positions(here + "/gemset.nix", [["groups", 59, 5], ["platforms", 60, 5], ["source", 61, 5], ["version", 66, 5]]);
-const pos$13 = nix.positions(here + "/gemset.nix", [["remotes", 72, 7], ["sha256", 73, 7], ["type", 74, 7]]);
-const pos$14 = nix.positions(here + "/gemset.nix", [["groups", 69, 5], ["platforms", 70, 5], ["source", 71, 5], ["version", 76, 5]]);
-const pos$15 = nix.positions(here + "/gemset.nix", [["remotes", 88, 7], ["sha256", 89, 7], ["type", 90, 7]]);
-const pos$16 = nix.positions(here + "/gemset.nix", [["dependencies", 79, 5], ["groups", 85, 5], ["platforms", 86, 5], ["source", 87, 5], ["version", 92, 5]]);
-const pos$17 = nix.positions(here + "/gemset.nix", [["kramdown", 2, 3], ["kramdown-parser-gfm", 13, 3], ["mini_portile2", 24, 3], ["mustache", 34, 3], ["nokogiri", 44, 3], ["racc", 58, 3], ["rexml", 68, 3], ["ronn-ng", 78, 3]]);
+const $pos = nix.positions(here + "/gemset.nix", [[["remotes", 7, 7], ["sha256", 8, 7], ["type", 9, 7]], [["dependencies", 3, 5], ["groups", 4, 5], ["platforms", 5, 5], ["source", 6, 5], ["version", 11, 5]], [["remotes", 18, 7], ["sha256", 19, 7], ["type", 20, 7]], [["dependencies", 14, 5], ["groups", 15, 5], ["platforms", 16, 5], ["source", 17, 5], ["version", 22, 5]], [["remotes", 28, 7], ["sha256", 29, 7], ["type", 30, 7]], [["groups", 25, 5], ["platforms", 26, 5], ["source", 27, 5], ["version", 32, 5]], [["remotes", 38, 7], ["sha256", 39, 7], ["type", 40, 7]], [["groups", 35, 5], ["platforms", 36, 5], ["source", 37, 5], ["version", 42, 5]], [["remotes", 52, 7], ["sha256", 53, 7], ["type", 54, 7]], [["dependencies", 45, 5], ["groups", 49, 5], ["platforms", 50, 5], ["source", 51, 5], ["version", 56, 5]], [["remotes", 62, 7], ["sha256", 63, 7], ["type", 64, 7]], [["groups", 59, 5], ["platforms", 60, 5], ["source", 61, 5], ["version", 66, 5]], [["remotes", 72, 7], ["sha256", 73, 7], ["type", 74, 7]], [["groups", 69, 5], ["platforms", 70, 5], ["source", 71, 5], ["version", 76, 5]], [["remotes", 88, 7], ["sha256", 89, 7], ["type", 90, 7]], [["dependencies", 79, 5], ["groups", 85, 5], ["platforms", 86, 5], ["source", 87, 5], ["version", 92, 5]], [["kramdown", 2, 3], ["kramdown-parser-gfm", 13, 3], ["mini_portile2", 24, 3], ["mustache", 34, 3], ["nokogiri", 44, 3], ["racc", 58, 3], ["rexml", 68, 3], ["ronn-ng", 78, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$17,
+  [nix.POS]: $pos[16],
   kramdown: nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     dependencies: nix.thunk(() => ["rexml"]),
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "1ic14hdcqxn821dvzki99zhmcy130yhv5fqfffkcf87asv5mnbmn",
       type: "gem",
@@ -36,12 +20,12 @@ export default nix.thunk(() => ({
     version: "2.4.0",
   })),
   "kramdown-parser-gfm": nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     dependencies: nix.thunk(() => ["kramdown"]),
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "0a8pb3v951f4x7h968rqfsa19c8arz21zw1vaj42jza22rap8fgv",
       type: "gem",
@@ -49,11 +33,11 @@ export default nix.thunk(() => ({
     version: "1.1.0",
   })),
   mini_portile2: nix.thunk(() => ({
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "1kl9c3kdchjabrihdqfmcplk3lq4cw1rr9f378y6q22qwy5dndvs",
       type: "gem",
@@ -61,11 +45,11 @@ export default nix.thunk(() => ({
     version: "2.8.5",
   })),
   mustache: nix.thunk(() => ({
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "1l0p4wx15mi3wnamfv92ipkia4nsx8qi132c6g51jfdma3fiz2ch",
       type: "gem",
@@ -73,12 +57,12 @@ export default nix.thunk(() => ({
     version: "1.1.1",
   })),
   nokogiri: nix.thunk(() => ({
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     dependencies: nix.thunk(() => ["mini_portile2", "racc"]),
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "1l8b0i24h4irivyhwy9xmkjbggw86cxkzkiqdqg0jpcp9qc8h4rl",
       type: "gem",
@@ -86,11 +70,11 @@ export default nix.thunk(() => ({
     version: "1.16.0",
   })),
   racc: nix.thunk(() => ({
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "01b9662zd2x9bp4rdjfid07h09zxj7kvn7f5fghbqhzc625ap1dp",
       type: "gem",
@@ -98,11 +82,11 @@ export default nix.thunk(() => ({
     version: "1.7.3",
   })),
   rexml: nix.thunk(() => ({
-    [nix.POS]: pos$14,
+    [nix.POS]: $pos[13],
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "05i8518ay14kjbma550mv0jm8a6di8yp5phzrd8rj44z9qnrlrp0",
       type: "gem",
@@ -110,12 +94,12 @@ export default nix.thunk(() => ({
     version: "3.2.6",
   })),
   "ronn-ng": nix.thunk(() => ({
-    [nix.POS]: pos$16,
+    [nix.POS]: $pos[15],
     dependencies: nix.thunk(() => ["kramdown", "kramdown-parser-gfm", "mustache", "nokogiri"]),
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "1h2y2v3wkl5c710wfanqwxlxi74l1ssva8yrzsg8iypvq22h3ssf",
       type: "gem",

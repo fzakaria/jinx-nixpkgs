@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/i18n.nix", [[["path", 8, 3], ["noLibc", 10, 3], ["extraNativeBuildInputs", 12, 3], ["preBuild", 17, 3]]]);
 const formals$1 = { args: { mkDerivation: false, mkcsmapper: false, mkesdb: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/i18n.nix", [["path", 8, 3], ["noLibc", 10, 3], ["extraNativeBuildInputs", 12, 3], ["preBuild", 17, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const mkcsmapper = nix.arg($, "mkcsmapper");
   const mkesdb = nix.arg($, "mkesdb");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       path: "share/i18n",
       noLibc: true,
       extraNativeBuildInputs: nix.thunk(() => [mkcsmapper, mkesdb]),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["fetchSubmodules", 32, 5], ["hash", 33, 5]], [["NIX_CFLAGS_COMPILE", 71, 7]], [["description", 101, 5], ["homepage", 102, 5], ["changelog", 103, 5], ["license", 104, 5], ["maintainers", 105, 5], ["platforms", 109, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 42, 3], ["enableParallelBuilding", 58, 3], ["cmakeFlags", 60, 3], ["env", 71, 3], ["installPhase", 82, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, "alsa-lib": false, fontconfig: false, freetype: false, libx11: false, libxcomposite: false, libxcursor: false, libxdmcp: false, libxext: false, libxinerama: false, libxrandr: false, libxtst: false, writableTmpDirAsHomeHook: false, buildVST3: true, buildLV2: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["fetchSubmodules", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 71, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 101, 5], ["homepage", 102, 5], ["changelog", 103, 5], ["license", 104, 5], ["maintainers", 105, 5], ["platforms", 109, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 42, 3], ["enableParallelBuilding", 58, 3], ["cmakeFlags", 60, 3], ["env", 71, 3], ["installPhase", 82, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const buildVST3 = nix.argOr($, "buildVST3", () => true);
   const buildLV2 = nix.argOr($, "buildLV2", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "qdelay",
       version: "1.2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tiagolr",
           repo: "qdelay",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -63,7 +60,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.str`-DCMAKE_OSX_ARCHITECTURES=${nix.sel(stdenv, "hostPlatform", "darwinArch")}`),
         ])))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-ffat-lto-objects"]))))),
       })),
       installPhase: nix.thunk(() => nix.str`runHook preInstall
@@ -77,7 +74,7 @@ popd
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Dual delay with more features than it should",
         homepage: "https://github.com/tiagolr/qdelay",
         changelog: nix.thunk(() => nix.str`https://github.com/tiagolr/qdelay/releases/tag/v${nix.sel(finalAttrs, "version")}`),

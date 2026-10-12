@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["sha256", 24, 5]], [["name", 42, 7], ["exec", 43, 7], ["icon", 44, 7], ["comment", 45, 7], ["genericName", 46, 7], ["desktopName", 47, 7], ["categories", 48, 7]], [["updateScript", 94, 12]], [["description", 103, 5], ["homepage", 104, 5], ["sourceProvenance", 105, 5], ["license", 106, 5], ["maintainers", 107, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 32, 3], ["dontBuild", 38, 3], ["desktopItems", 40, 3], ["installPhase", 53, 3], ["postPatch", 85, 3], ["passthru", 94, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, fetchzip: false, libGL: false, makeWrapper: false, openal: false, openjdk17: false, stdenv: false, libxxf86vm: false, xrandr: false, copyDesktopItems: false, makeDesktopItem: false, writeScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["sha256", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 42, 7], ["exec", 43, 7], ["icon", 44, 7], ["comment", 45, 7], ["genericName", 46, 7], ["desktopName", 47, 7], ["categories", 48, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 94, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 103, 5], ["homepage", 104, 5], ["sourceProvenance", 105, 5], ["license", 106, 5], ["maintainers", 107, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 32, 3], ["dontBuild", 38, 3], ["desktopItems", 40, 3], ["installPhase", 53, 3], ["postPatch", 85, 3], ["passthru", 94, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "starsector";
       const version = "0.98a-RC8";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://f005.backblazeb2.com/file/fractalsoftworks/release/starsector_linux-${version}.zip`),
           sha256: "sha256-W/6QpgKbUJC+jWOlAOEEGStee5KJuLi020kRtPQXK3U=",
         }))));
@@ -37,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const dontBuild = true;
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "starsector",
             exec: "starsector",
             icon: "starsector",
@@ -75,7 +71,7 @@ runHook postInstall
   --replace-fail "com.fs.starfarer.StarfarerLauncher" "\\"\\$@\\" com.fs.starfarer.StarfarerLauncher"
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(writeScript, "starsector-update-script", nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p curl gnugrep common-updater-scripts
 set -eou pipefail;
@@ -84,7 +80,7 @@ update-source-version ${pname} "$version" --file=./pkgs/by-name/st/starsector/pa
 `))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Open-world single-player space-combat, roleplaying, exploration, and economic game",
         homepage: "https://fractalsoftworks.com",
         sourceProvenance: nix.thunk(() => (() => {
@@ -102,7 +98,7 @@ update-source-version ${pname} "$version" --file=./pkgs/by-name/st/starsector/pa
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

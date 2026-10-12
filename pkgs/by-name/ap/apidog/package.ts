@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["pname", 18, 13], ["version", 18, 19], ["src", 18, 27]], [["name", 22, 5], ["exec", 23, 5], ["icon", 24, 5], ["desktopName", 25, 5], ["comment", 26, 5], ["categories", 27, 5], ["mimeTypes", 31, 5]], [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["sourceProvenance", 63, 5], ["platforms", 64, 5], ["mainProgram", 65, 5], ["maintainers", 66, 5]], [["pname", 35, 11], ["version", 35, 17], ["src", 35, 25], ["extraPkgs", 37, 3], ["extraInstallCommands", 52, 3], ["desktopItems", 57, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, appimageTools: false, fetchurl: false, makeDesktopItem: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 18, 13], ["version", 18, 19], ["src", 18, 27]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 22, 5], ["exec", 23, 5], ["icon", 24, 5], ["desktopName", 25, 5], ["comment", 26, 5], ["categories", 27, 5], ["mimeTypes", 31, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["sourceProvenance", 63, 5], ["platforms", 64, 5], ["mainProgram", 65, 5], ["maintainers", 66, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 35, 11], ["version", 35, 17], ["src", 35, 25], ["extraPkgs", 37, 3], ["extraInstallCommands", 52, 3], ["desktopItems", 57, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const pname = "apidog";
   const version = "2.8.49";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://file-assets.apidog.com/download/${version}/Apidog-${version}.AppImage`),
       hash: "sha256-FLngkXkwo3oiDNbB0wVJFoJKs60wWCNB5wVjieq3tgQ=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[1], pname: pname, version: version, src: src }))));
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "apidog",
       exec: "apidog %U",
       icon: "apidog",
@@ -34,7 +30,7 @@ export default nix.lambda((args) => (() => {
       mimeTypes: nix.thunk(() => ["x-scheme-handler/apidog"]),
     }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: pname,
       version: version,
       src: src,
@@ -59,7 +55,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const w = nix.withScope(lib, null);
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           description: "All-in-one API design, test, mock and documentation platform",
           homepage: "https://apidog.com",
           license: nix.thunk(() => nix.sel(nix.lookup(w, "licenses"), "unfree")),

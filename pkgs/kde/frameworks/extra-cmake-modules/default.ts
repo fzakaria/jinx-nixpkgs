@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["platforms", 24, 8]], [["pname", 7, 3], ["outputs", 9, 3], ["patches", 11, 3], ["propagatedNativeBuildInputs", 17, 3], ["setupHook", 21, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, mkKdeDerivation: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["platforms", 24, 8]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 7, 3], ["outputs", 9, 3], ["patches", 11, 3], ["propagatedNativeBuildInputs", 17, 3], ["setupHook", 21, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,14 +11,14 @@ export default nix.lambda((args) => (() => {
   const mkKdeDerivation = nix.arg($, "mkKdeDerivation");
   const python3 = nix.arg($, "python3");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "extra-cmake-modules",
       outputs: nix.thunk(() => ["out"]),
       patches: nix.thunk(() => [nix.path(here, "./search-qml.patch")]),
       propagatedNativeBuildInputs: nix.thunk(() => [python3]),
       setupHook: nix.path(here, "./ecm-hook.sh"),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       })),
     })));

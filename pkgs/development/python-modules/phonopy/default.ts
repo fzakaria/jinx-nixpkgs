@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]], [["MPLBACKEND", 71, 5]], [["description", 82, 5], ["homepage", 83, 5], ["changelog", 84, 5], ["license", 85, 5], ["maintainers", 86, 5]], [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["__structuredAttrs", 32, 3], ["src", 34, 3], ["postPatch", 41, 3], ["build-system", 46, 3], ["dontUseCmakeConfigure", 54, 3], ["dependencies", 56, 3], ["nativeCheckInputs", 67, 3], ["env", 69, 3], ["preCheck", 75, 3], ["pythonImportsCheck", 79, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, cmake: false, nanobind: false, ninja: false, numpy: false, "scikit-build-core": false, "setuptools-scm": false, h5py: false, matplotlib: false, phonors: false, pyyaml: false, scipy: false, spglib: false, symfc: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["MPLBACKEND", 71, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 82, 5], ["homepage", 83, 5], ["changelog", 84, 5], ["license", 85, 5], ["maintainers", 86, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["__structuredAttrs", 32, 3], ["src", 34, 3], ["postPatch", 41, 3], ["build-system", 46, 3], ["dontUseCmakeConfigure", 54, 3], ["dependencies", 56, 3], ["nativeCheckInputs", 67, 3], ["env", 69, 3], ["preCheck", 75, 3], ["pythonImportsCheck", 79, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,13 +26,13 @@ export default nix.lambda((args) => (() => {
   const symfc = nix.arg($, "symfc");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "phonopy",
       version: "4.7.2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "phonopy",
           repo: "phonopy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,11 +43,11 @@ export default nix.lambda((args) => (() => {
       dontUseCmakeConfigure: true,
       dependencies: nix.thunk(() => [h5py, matplotlib, numpy, pyyaml, phonors, scipy, spglib, symfc]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$2, MPLBACKEND: "Agg" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: $pos[1], MPLBACKEND: "Agg" })))),
       preCheck: "rm -r phonopy\n",
       pythonImportsCheck: nix.thunk(() => ["phonopy"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Modulefor phonon calculations at harmonic and quasi-harmonic levels",
         homepage: "https://phonopy.github.io/phonopy/",
         changelog: "http://phonopy.github.io/phonopy/changelog.html",

@@ -2,33 +2,30 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 13, 5], ["hash", 14, 5]], [["version", 5, 5], ["hash", 6, 5]], [["version", 9, 5], ["hash", 10, 5]], [["wordpress", 3, 3], ["wordpress_6_9", 4, 3], ["wordpress_7_0", 8, 3], ["wordpress_7_1", 12, 3]]]);
 const formals$1 = { args: { callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 5, 5], ["hash", 6, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 9, 5], ["hash", 10, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["wordpress", 3, 3], ["wordpress_6_9", 4, 3], ["wordpress_7_0", 8, 3], ["wordpress_7_1", 12, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const callPackage = nix.arg($, "callPackage");
   return nix.builtins.mapAttrs((_) => nix.app(callPackage, nix.path(here, "./generic.nix")), nix.thunk(() => (() => {
       const wordpress_7_1 = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         version: "7.1.2",
         hash: "sha256-wMZmaJ1muHDYglUAu45ALtBN5SYCxhpvUWxiNrjJrGc=",
       }));
       const wordpress = wordpress_7_1;
       const wordpress_6_9 = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         version: "6.9.9",
         hash: "sha256-MiMbmsvnY6hhOOi7t7XE8/EjvsnWX8OJi8s7ZFBqc1g=",
       }));
       const wordpress_7_0 = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         version: "7.0.6",
         hash: "sha256-W+/iSslL8f8YKSoaHzD9DHEbAJ+Rz9ytqo/rbgr6dc0=",
       }));
-      return { [nix.POS]: pos$4, wordpress, wordpress_6_9, wordpress_7_0, wordpress_7_1 };
+      return { [nix.POS]: $pos[3], wordpress, wordpress_6_9, wordpress_7_0, wordpress_7_1 };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

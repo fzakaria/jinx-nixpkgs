@@ -2,24 +2,10 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["defaultConfig", 9, 39]], [["buildPlatform", 107, 7], ["hostPlatform", 108, 7], ["targetPlatform", 109, 7], ["preHook", 111, 7], ["extraNativeBuildInputs", 127, 7], ["initialPath", 138, 7], ["fetchurlBoot", 140, 7], ["shell", 143, 9], ["cc", 144, 9], ["overrides", 145, 9]], [["cc", 159, 9], ["fetchurl", 160, 9]], [["i686-solaris", 169, 15], ["x86_64-solaris", 170, 15]], [["name", 182, 13], ["lib", 183, 21], ["stdenvNoCC", 183, 25], ["nativePrefix", 183, 36], ["nativeTools", 184, 13], ["nativeLibc", 185, 13], ["expand-response-params", 186, 13], ["runtimeShell", 187, 13]], [["name", 175, 11], ["nativeTools", 176, 11], ["nativeLibc", 177, 11], ["expand-response-params", 178, 11], ["lib", 179, 19], ["nativePrefix", 179, 23], ["runtimeShell", 180, 11], ["bintools", 181, 11], ["stdenvNoCC", 189, 19]], [["lib", 193, 17], ["stdenvNoCC", 193, 21], ["curl", 195, 9], ["hashedMirrors", 196, 26], ["rewriteURL", 196, 40]], [["__raw", 156, 7], ["stdenv", 158, 7], ["stdenvNoCC", 162, 7], ["cc", 164, 7], ["fetchurl", 192, 7]], [["fetchurl", 208, 56]], [["cc", 207, 29], ["fetchurl", 207, 32], ["overrides", 208, 9]], [["fetchurl", 211, 29]], [["config", 204, 13], ["overlays", 204, 20], ["stdenv", 205, 5]], [["fetchurl", 222, 54], ["xz", 222, 63]], [["cc", 220, 34], ["fetchurl", 220, 37], ["extraPath", 221, 7], ["overrides", 222, 7], ["extraNativeBuildInputs", 223, 7]], [["config", 218, 13], ["overlays", 218, 20], ["stdenv", 219, 5]]]);
 const formals$1 = { args: { lib: false, localSystem: false, config: false, overlays: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["defaultConfig", 9, 39]]);
 const formals$2 = { args: { cc: false, fetchurl: false, extraPath: true, overrides: true, extraNativeBuildInputs: true }, ellipsis: false };
-const pos$2 = nix.positions(here + "/default.nix", [["buildPlatform", 107, 7], ["hostPlatform", 108, 7], ["targetPlatform", 109, 7], ["preHook", 111, 7], ["extraNativeBuildInputs", 127, 7], ["initialPath", 138, 7], ["fetchurlBoot", 140, 7], ["shell", 143, 9], ["cc", 144, 9], ["overrides", 145, 9]]);
 const formals$3 = { args: {  }, ellipsis: false };
-const pos$3 = nix.positions(here + "/default.nix", [["cc", 159, 9], ["fetchurl", 160, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["i686-solaris", 169, 15], ["x86_64-solaris", 170, 15]]);
-const pos$5 = nix.positions(here + "/default.nix", [["name", 182, 13], ["lib", 183, 21], ["stdenvNoCC", 183, 25], ["nativePrefix", 183, 36], ["nativeTools", 184, 13], ["nativeLibc", 185, 13], ["expand-response-params", 186, 13], ["runtimeShell", 187, 13]]);
-const pos$6 = nix.positions(here + "/default.nix", [["name", 175, 11], ["nativeTools", 176, 11], ["nativeLibc", 177, 11], ["expand-response-params", 178, 11], ["lib", 179, 19], ["nativePrefix", 179, 23], ["runtimeShell", 180, 11], ["bintools", 181, 11], ["stdenvNoCC", 189, 19]]);
-const pos$7 = nix.positions(here + "/default.nix", [["lib", 193, 17], ["stdenvNoCC", 193, 21], ["curl", 195, 9], ["hashedMirrors", 196, 26], ["rewriteURL", 196, 40]]);
-const pos$8 = nix.positions(here + "/default.nix", [["__raw", 156, 7], ["stdenv", 158, 7], ["stdenvNoCC", 162, 7], ["cc", 164, 7], ["fetchurl", 192, 7]]);
-const pos$9 = nix.positions(here + "/default.nix", [["fetchurl", 208, 56]]);
-const pos$10 = nix.positions(here + "/default.nix", [["cc", 207, 29], ["fetchurl", 207, 32], ["overrides", 208, 9]]);
-const pos$11 = nix.positions(here + "/default.nix", [["fetchurl", 211, 29]]);
-const pos$12 = nix.positions(here + "/default.nix", [["config", 204, 13], ["overlays", 204, 20], ["stdenv", 205, 5]]);
-const pos$13 = nix.positions(here + "/default.nix", [["fetchurl", 222, 54], ["xz", 222, 63]]);
-const pos$14 = nix.positions(here + "/default.nix", [["cc", 220, 34], ["fetchurl", 220, 37], ["extraPath", 221, 7], ["overrides", 222, 7], ["extraNativeBuildInputs", 223, 7]]);
-const pos$15 = nix.positions(here + "/default.nix", [["config", 218, 13], ["overlays", 218, 20], ["stdenv", 219, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const localSystem = nix.arg($, "localSystem");
   const config = nix.arg($, "config");
   const overlays = nix.arg($, "overlays");
-  const genericStdenv = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../generic")), nix.thunk(() => ({ [nix.POS]: pos$1, defaultConfig: config }))));
+  const genericStdenv = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../generic")), nix.thunk(() => ({ [nix.POS]: $pos[0], defaultConfig: config }))));
   const system = nix.thunk(() => nix.attr(localSystem, "system"));
   const shell = nix.thunk(() => (nix.asBool((nix.asBool(nix.eq(system, "i686-freebsd")) || nix.asBool(nix.eq(system, "x86_64-freebsd")))) ? "/usr/local/bin/bash" : "/bin/bash"));
   const path = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(system, "i686-solaris")), nix.thunk(() => ["/usr/gnu"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(system, "i686-netbsd")), nix.thunk(() => ["/usr/pkg"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(system, "x86_64-solaris")), nix.thunk(() => ["/opt/local/gnu"])), ["/", "/usr", "/usr/local"]))));
@@ -77,7 +63,7 @@ export lt_cv_deplibs_check_method=pass_all
     const overrides = nix.argOr($_1, "overrides", () => (self) => (super$) => ({}));
     const extraNativeBuildInputs = nix.argOr($_1, "extraNativeBuildInputs", () => []);
     return nix.app(genericStdenv, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         buildPlatform: localSystem,
         hostPlatform: localSystem,
         targetPlatform: localSystem,
@@ -95,16 +81,16 @@ export lt_cv_deplibs_check_method=pass_all
       const $_1 = nix.formals(args_1, formals$3);
       return (() => {
         const __raw = true;
-        const stdenv = nix.thunk(() => nix.app(makeStdenv, nix.thunk(() => ({ [nix.POS]: pos$3, cc: null, fetchurl: null }))));
+        const stdenv = nix.thunk(() => nix.app(makeStdenv, nix.thunk(() => ({ [nix.POS]: $pos[2], cc: null, fetchurl: null }))));
         const stdenvNoCC = stdenv;
         const cc = nix.thunk(() => (() => {
           const nativePrefix = nix.thunk(() => nix.selOr({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             "i686-solaris": "/usr/gnu",
             "x86_64-solaris": "/opt/local/gcc47",
           }, () => "/usr", nix.key(nix.force(system))));
           return nix.app(nix.builtins.import(nix.path(here, "../../build-support/cc-wrapper")), nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               name: "cc-native",
               nativeTools: true,
               nativeLibc: true,
@@ -113,7 +99,7 @@ export lt_cv_deplibs_check_method=pass_all
               nativePrefix: nativePrefix,
               runtimeShell: shell,
               bintools: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../build-support/bintools-wrapper")), nix.thunk(() => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   name: "bintools",
                   lib: lib,
                   stdenvNoCC: stdenvNoCC,
@@ -127,43 +113,46 @@ export lt_cv_deplibs_check_method=pass_all
             })));
         })());
         const fetchurl = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../build-support/fetchurl")), nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             lib: lib,
             stdenvNoCC: stdenvNoCC,
             curl: null,
             hashedMirrors: nix.thunk(() => nix.attr(config, "hashedMirrors")),
             rewriteURL: nix.thunk(() => nix.attr(config, "rewriteURL")),
           }))));
-        return { [nix.POS]: pos$8, __raw, stdenv, stdenvNoCC, cc, fetchurl };
+        return { [nix.POS]: $pos[7], __raw, stdenv, stdenvNoCC, cc, fetchurl };
       })();
     })(), formals$3),
     (prevStage) => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       config: config,
       overlays: overlays,
       stdenv: nix.thunk(() => nix.update(nix.app(makeStdenv, nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           cc: nix.thunk(() => nix.attr(prevStage, "cc")),
           fetchurl: nix.thunk(() => nix.attr(prevStage, "fetchurl")),
-          overrides: (self) => (super$) => ({ [nix.POS]: pos$9, fetchurl: nix.thunk(() => nix.attr(prevStage, "fetchurl")) }),
+          overrides: (self) => (super$) => ({
+            [nix.POS]: $pos[8],
+            fetchurl: nix.thunk(() => nix.attr(prevStage, "fetchurl")),
+          }),
         }))), {
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         fetchurl: nix.thunk(() => nix.attr(prevStage, "fetchurl")),
       })),
     }),
     (prevStage) => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       config: config,
       overlays: overlays,
       stdenv: nix.thunk(() => nix.app(makeStdenv, nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(prevStage, "stdenv"));
           return {
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           cc: nix.thunk(() => nix.attr(from, "cc")),
           fetchurl: nix.thunk(() => nix.attr(from, "fetchurl")),
           extraPath: nix.thunk(() => [nix.thunk(() => nix.sel(prevStage, "xz"))]),
           overrides: (self) => (super$) => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             fetchurl: nix.thunk(() => nix.attr(prevStage, "fetchurl")),
             xz: nix.thunk(() => nix.attr(prevStage, "xz")),
           }),

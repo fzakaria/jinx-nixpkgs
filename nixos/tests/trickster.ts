@@ -2,57 +2,47 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/trickster.nix", [[["maintainers", 5, 5]], [["enable", 12, 29]], [["prometheus", 12, 18]], [["allowedTCPPorts", 13, 29]], [["firewall", 13, 20]], [["services", 12, 9], ["networking", 13, 9]], [["enable", 18, 28]], [["trickster", 18, 18]], [["services", 18, 9]], [["prometheus", 9, 5], ["trickster", 15, 5]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 22, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/trickster.nix", [["maintainers", 5, 5]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/trickster.nix", [["enable", 12, 29]]);
-const pos$3 = nix.positions(here + "/trickster.nix", [["prometheus", 12, 18]]);
-const pos$4 = nix.positions(here + "/trickster.nix", [["allowedTCPPorts", 13, 29]]);
-const pos$5 = nix.positions(here + "/trickster.nix", [["firewall", 13, 20]]);
-const pos$6 = nix.positions(here + "/trickster.nix", [["services", 12, 9], ["networking", 13, 9]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$7 = nix.positions(here + "/trickster.nix", [["enable", 18, 28]]);
-const pos$8 = nix.positions(here + "/trickster.nix", [["trickster", 18, 18]]);
-const pos$9 = nix.positions(here + "/trickster.nix", [["services", 18, 9]]);
-const pos$10 = nix.positions(here + "/trickster.nix", [["prometheus", 9, 5], ["trickster", 15, 5]]);
-const pos$11 = nix.positions(here + "/trickster.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     name: "trickster",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "_1000101"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       prometheus: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            prometheus: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+            [nix.POS]: $pos[2],
+            prometheus: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$5,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$4, allowedTCPPorts: nix.thunk(() => [9090n]) })),
+            [nix.POS]: $pos[4],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[3], allowedTCPPorts: nix.thunk(() => [9090n]) })),
           })),
         };
       })(), formals$2),
       trickster: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return {
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$8,
-            trickster: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
+            [nix.POS]: $pos[7],
+            trickster: nix.thunk(() => ({ [nix.POS]: $pos[6], enable: true })),
           })),
         };
       })(), formals$3),

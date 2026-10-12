@@ -2,18 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generic.nix", [[["enableMail", 67, 51]], [["owner", 97, 9], ["repo", 98, 9], ["rev", 99, 17], ["hash", 99, 21]], [["enablePython", 119, 15]], [["NIX_CFLAGS_LINK", 189, 11]], [["configFile", 311, 13]], [["kernel", 302, 17], ["enableMail", 303, 17], ["kernelModuleAttribute", 303, 28], ["latestCompatibleLinuxPackages", 304, 9], ["userspaceTools", 308, 9], ["tests", 315, 17]], [["extraArgs", 319, 11]], [["updateScript", 318, 9]], [["description", 327, 9], ["longDescription", 328, 9], ["homepage", 338, 9], ["changelog", 339, 9], ["license", 340, 9], ["platforms", 348, 9], ["maintainers", 361, 17], ["mainProgram", 362, 9], ["broken", 363, 9]], [["name", 92, 7], ["pname", 93, 7], ["version", 94, 15], ["src", 96, 7], ["patches", 102, 7], ["postPatch", 104, 7], ["nativeBuildInputs", 167, 7], ["buildInputs", 176, 7], ["env", 189, 7], ["hardeningDisable", 191, 7], ["configureFlags", 197, 7], ["enableParallelBuilding", 224, 7], ["doInstallCheck", 226, 7], ["installFlags", 228, 7], ["preConfigure", 234, 7], ["postBuild", 245, 7], ["postInstall", 249, 7], ["postFixup", 271, 7], ["outputs", 291, 7], ["passthru", 301, 7], ["meta", 326, 7]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook269: false, "util-linux": false, nukeReferences: false, coreutils: false, linuxPackages: false, perl: false, udevCheckHook: false, configFile: true, zlib: false, libuuid: false, python3: false, attr: false, openssl: false, libtirpc: false, "nfs-utils": false, gawk: false, gnugrep: false, gnused: false, systemdMinimal: false, smartmontools: false, enableMail: true, sysstat: false, "pkg-config": false, curl: false, pam: false, "nix-update-script": false, kernel: true, kernelModuleMakeFlags: true, enablePython: true }, ellipsis: true };
 const formals$2 = { args: { version: false, hash: false, kernelModuleAttribute: false, extraLongDescription: true, extraPatches: true, rev: true, kernelMinSupportedMajorMinor: false, kernelMaxSupportedMajorMinor: false, enableUnsupportedExperimentalKernel: true, maintainers: true, tests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/generic.nix", [["enableMail", 67, 51]]);
-const pos$2 = nix.positions(here + "/generic.nix", [["owner", 97, 9], ["repo", 98, 9], ["rev", 99, 17], ["hash", 99, 21]]);
-const pos$3 = nix.positions(here + "/generic.nix", [["enablePython", 119, 15]]);
-const pos$4 = nix.positions(here + "/generic.nix", [["NIX_CFLAGS_LINK", 189, 11]]);
-const pos$5 = nix.positions(here + "/generic.nix", [["configFile", 311, 13]]);
-const pos$6 = nix.positions(here + "/generic.nix", [["kernel", 302, 17], ["enableMail", 303, 17], ["kernelModuleAttribute", 303, 28], ["latestCompatibleLinuxPackages", 304, 9], ["userspaceTools", 308, 9], ["tests", 315, 17]]);
-const pos$7 = nix.positions(here + "/generic.nix", [["extraArgs", 319, 11]]);
-const pos$8 = nix.positions(here + "/generic.nix", [["updateScript", 318, 9]]);
-const pos$9 = nix.positions(here + "/generic.nix", [["description", 327, 9], ["longDescription", 328, 9], ["homepage", 338, 9], ["changelog", 339, 9], ["license", 340, 9], ["platforms", 348, 9], ["maintainers", 361, 17], ["mainProgram", 362, 9], ["broken", 363, 9]]);
-const pos$10 = nix.positions(here + "/generic.nix", [["name", 92, 7], ["pname", 93, 7], ["version", 94, 15], ["src", 96, 7], ["patches", 102, 7], ["postPatch", 104, 7], ["nativeBuildInputs", 167, 7], ["buildInputs", 176, 7], ["env", 189, 7], ["hardeningDisable", 191, 7], ["configureFlags", 197, 7], ["enableParallelBuilding", 224, 7], ["doInstallCheck", 226, 7], ["installFlags", 228, 7], ["preConfigure", 234, 7], ["postBuild", 245, 7], ["postInstall", 249, 7], ["postFixup", 271, 7], ["outputs", 291, 7], ["passthru", 301, 7], ["meta", 326, 7]]);
 
 export default nix.thunk(() => (() => {
   const genericBuild = nix.lambda((args) => (() => {
@@ -74,17 +65,17 @@ export default nix.thunk(() => (() => {
       const optionals = nix.thunk(() => nix.attr(lib, "optionals"));
       const optional = nix.thunk(() => nix.attr(lib, "optional"));
       const makeBinPath = nix.thunk(() => nix.attr(lib, "makeBinPath"));
-      const smartmon = nix.thunk(() => nix.app(nix.sel(smartmontools, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableMail: enableMail }))));
+      const smartmon = nix.thunk(() => nix.app(nix.sel(smartmontools, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], enableMail: enableMail }))));
       const buildKernel = nix.thunk(() => nix.app(elem, configFile, nix.thunk(() => ["kernel", "all"])));
       const buildUser = nix.thunk(() => nix.app(elem, configFile, nix.thunk(() => ["user", "all"])));
       const kernelIsCompatible = (kernel_1) => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(kernel_1, "version")), kernelMinSupportedMajorMinor)) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), kernelMaxSupportedMajorMinor, nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(kernel_1, "version")))))));
       const stdenv$ = nix.thunk(() => (nix.asBool(nix.eq(kernel, null)) ? nix.force(stdenv) : nix.sel(kernel, "stdenv")));
       return nix.app(nix.sel(stdenv$, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           name: nix.thunk(() => nix.str`zfs-${configFile}-${version}${nix.app(optionalString, buildKernel, nix.thunk(() => nix.str`-${nix.sel(kernel, "version")}`))}`),
           pname: "zfs",
           version: version,
-          src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({ [nix.POS]: pos$2, owner: "openzfs", repo: "zfs", rev: rev, hash: hash })))),
+          src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({ [nix.POS]: $pos[1], owner: "openzfs", repo: "zfs", rev: rev, hash: hash })))),
           patches: extraPatches,
           postPatch: nix.thunk(() => nix.add(nix.add(nix.add(nix.add(nix.app(optionalString, buildKernel, nix.thunk(() => nix.str`patchShebangs scripts
 # The arrays must remain the same length, so we repeat a flag that is
@@ -93,7 +84,7 @@ substituteInPlace ./module/os/linux/zfs/zfs_ctldir.c \\
   --replace-fail '"/usr/bin/env", "umount"' '"${util_linux}/bin/umount", "-n"' \\
   --replace-fail '"/usr/bin/env", "mount"'  '"${util_linux}/bin/mount", "-n"'
 `)), nix.app(optionalString, buildUser, nix.thunk(() => nix.str`substituteInPlace ./lib/libshare/os/linux/nfs.c --replace-fail "/usr/sbin/exportfs" "${nix.app(nix.sel(nfs_utils, "override"), (old) => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 enablePython: nix.thunk(() => (nix.asBool(nix.selOr(old, () => true, "enablePython")) && nix.asBool(enablePython))),
               }))}/bin/exportfs"
 substituteInPlace ./lib/libshare/smb.h        --replace-fail "/usr/bin/net"            "/run/current-system/sw/bin/net"
@@ -126,7 +117,7 @@ grep --quiet '^Linux-Maximum: *${nix.app(nix.sel(lib, "escapeRegex"), kernelMaxS
 `)),
           nativeBuildInputs: nix.thunk(() => nix.concat([autoreconfHook269, nukeReferences], nix.concat(nix.app(optionals, buildKernel, nix.thunk(() => nix.concat(nix.sel(kernel, "moduleBuildDependencies"), [perl]))), nix.app(optionals, buildUser, nix.thunk(() => [pkg_config, udevCheckHook]))))),
           buildInputs: nix.thunk(() => nix.concat(nix.app(optionals, buildUser, nix.thunk(() => [zlib, libuuid, attr, libtirpc, pam])), nix.concat(nix.app(optional, buildUser, openssl), nix.concat(nix.app(optional, buildUser, curl), nix.app(optional, nix.thunk(() => (nix.asBool(buildUser) && nix.asBool(enablePython))), python3))))),
-          env: nix.thunk(() => ({ [nix.POS]: pos$4, NIX_CFLAGS_LINK: "-lgcc_s" })),
+          env: nix.thunk(() => ({ [nix.POS]: $pos[3], NIX_CFLAGS_LINK: "-lgcc_s" })),
           hardeningDisable: nix.thunk(() => ["fortify", "stackprotector", "pic"]),
           configureFlags: nix.thunk(() => nix.concat([
             nix.thunk(() => nix.str`--with-config=${configFile}`),
@@ -171,17 +162,17 @@ done
           })()),
           outputs: nix.thunk(() => nix.concat(["out"], nix.concat(nix.app(optionals, buildUser, nix.thunk(() => ["dev"])), nix.app(optionals, nix.thunk(() => !nix.asBool(buildKernel)), nix.thunk(() => ["man"]))))),
           passthru: nix.thunk(() => nix.update({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             kernel: kernel,
             enableMail: enableMail,
             kernelModuleAttribute: kernelModuleAttribute,
             latestCompatibleLinuxPackages: nix.thunk(() => nix.app(nix.sel(lib, "warn"), "zfs.latestCompatibleLinuxPackages is deprecated and is now pointing at the default kernel. If using the stable LTS kernel (default `linuxPackages` is not possible then you must explicitly pin a specific kernel release. For example, `boot.kernelPackages = pkgs.linuxPackages_6_6`. Please be aware that non-LTS kernels are likely to go EOL before ZFS supports the latest supported non-LTS release, requiring manual intervention.", linuxPackages)),
-            userspaceTools: nix.thunk(() => nix.app(genericBuild, nix.thunk(() => nix.update(outerArgs, { [nix.POS]: pos$5, configFile: "user" })), innerArgs)),
+            userspaceTools: nix.thunk(() => nix.app(genericBuild, nix.thunk(() => nix.update(outerArgs, { [nix.POS]: $pos[4], configFile: "user" })), innerArgs)),
             tests: tests,
           }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(kernelModuleAttribute, "zfs_unstable")), nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   extraArgs: nix.thunk(() => [
                     nix.thunk(() => nix.str`--version-regex=^zfs-(${nix.app(nix.sel(lib, "versions", "major"), version)}\\.${nix.app(nix.sel(lib, "versions", "minor"), version)}\\.[0-9]+)`),
                     nix.thunk(() => nix.str`--override-filename=pkgs/os-specific/linux/zfs/${nix.app(nix.sel(lib, "versions", "major"), version)}_${nix.app(nix.sel(lib, "versions", "minor"), version)}.nix`),
@@ -189,7 +180,7 @@ done
                 })))),
             }))))),
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             description: nix.thunk(() => nix.add("ZFS Filesystem Linux", (nix.asBool(buildUser) ? " Userspace Tools" : " Kernel Module"))),
             longDescription: nix.thunk(() => nix.add(nix.str`ZFS is a filesystem that combines a logical volume manager with a
 Copy-On-Write filesystem with data integrity detection and repair,

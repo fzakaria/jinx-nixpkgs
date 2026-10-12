@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/novacomd.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]], [["url", 26, 7], ["sha256", 27, 7]], [["url", 30, 7], ["sha256", 31, 7]], [["NIX_CFLAGS_COMPILE", 46, 7]], [["novacomd", 50, 43]], [["tests", 50, 12]], [["description", 63, 5], ["homepage", 64, 5], ["mainProgram", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 41, 3], ["env", 46, 3], ["cmakeFlags", 48, 3], ["passthru", 50, 3], ["postPatch", 52, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, webos: false, cmake: false, "pkg-config": false, nixosTests: false, "libusb-compat-0_1": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/novacomd.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/novacomd.nix", [["url", 26, 7], ["sha256", 27, 7]]);
-const pos$3 = nix.positions(here + "/novacomd.nix", [["url", 30, 7], ["sha256", 31, 7]]);
-const pos$4 = nix.positions(here + "/novacomd.nix", [["NIX_CFLAGS_COMPILE", 46, 7]]);
-const pos$5 = nix.positions(here + "/novacomd.nix", [["novacomd", 50, 43]]);
-const pos$6 = nix.positions(here + "/novacomd.nix", [["tests", 50, 12]]);
-const pos$7 = nix.positions(here + "/novacomd.nix", [["description", 63, 5], ["homepage", 64, 5], ["mainProgram", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5]]);
-const pos$8 = nix.positions(here + "/novacomd.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 41, 3], ["env", 46, 3], ["cmakeFlags", 48, 3], ["passthru", 50, 3], ["postPatch", 52, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "novacomd";
       const version = "127";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "openwebos",
           repo: "novacomd",
           rev: nix.thunk(() => nix.str`submissions/${version}`),
@@ -35,30 +28,30 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://aur.archlinux.org/cgit/aur.git/plain/0001-Use-usb_bulk_-read-write-instead-of-homemade-handler.patch?h=palm-novacom-git",
             sha256: "116r6p4l767fqxfvq03sy6v7vxja8pkxlrc5hqby351a40b5dkiv",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://raw.githubusercontent.com/feniksa/webos-overlay/40e2c113fc9426d50bdf37779da57ce4ff06ee6e/net-misc/novacomd/files/0011-Remove-verbose-output.patch",
             sha256: "09lmv06ziwkfg19b1h3jsmkm6g1f0nxxq1717dircjx8m45ypjq9",
           })))),
       ]);
       const nativeBuildInputs = nix.thunk(() => [cmake, pkg_config, nix.thunk(() => nix.sel(webos, "cmake-modules"))]);
       const buildInputs = nix.thunk(() => [libusb_compat_0_1]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$4, NIX_CFLAGS_COMPILE: "-fcommon" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[3], NIX_CFLAGS_COMPILE: "-fcommon" }));
       const cmakeFlags = nix.thunk(() => ["-DWEBOS_TARGET_MACHINE_IMPL=host"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           novacomd: nix.thunk(() => nix.attr(nixosTests, "novacomd")),
         })),
       }));
       const postPatch = "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 2.8.7)\" \"cmake_minimum_required(VERSION 3.10)\"\n\n# Fix build with newer C standards\nsubstituteInPlace include/platform.h \\\n  --replace-fail \"typedef int bool;\" \"\"\n\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Daemon for communicating with WebOS devices",
         homepage: "https://github.com/openwebos/novacomd",
         mainProgram: "novacomd",
@@ -67,7 +60,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname,
         version,
         src,

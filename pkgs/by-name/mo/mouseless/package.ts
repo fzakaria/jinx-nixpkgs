@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["description", 21, 5], ["longDescription", 22, 5], ["homepage", 27, 5], ["changelog", 28, 5], ["maintainers", 29, 5], ["license", 30, 5], ["platforms", 31, 5], ["mainProgram", 32, 5]], [["pname", 8, 3], ["version", 9, 3], ["vendorHash", 11, 3], ["src", 13, 3], ["meta", 20, 3]]]);
 const formals$1 = { args: { buildGoModule: false, fetchFromGitHub: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 21, 5], ["longDescription", 22, 5], ["homepage", 27, 5], ["changelog", 28, 5], ["maintainers", 29, 5], ["license", 30, 5], ["platforms", 31, 5], ["mainProgram", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["vendorHash", 11, 3], ["src", 13, 3], ["meta", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,19 +11,19 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lib = nix.arg($, "lib");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mouseless",
       version: "0.2.0",
       vendorHash: "sha256-2q7L9BVcAaT4h/vUcNjVc5nOAFnb4J3WabcEGxI+hsA=",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jbensmann",
           repo: "mouseless",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-iDSTV2ugvHoBuQWmMg2ILXP/Mlt7eq5B2dVaB0jwJOE=",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Replacement for the mouse in Linux",
         longDescription: "This program allows you to control the mouse pointer in Linux\nwith the keyboard. It works in all Linux distributions, even those\nrunning with Wayland.\n",
         homepage: "https://github.com/jbensmann/mouseless",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]], [["all", 63, 5]], [["description", 87, 5], ["homepage", 88, 5], ["changelog", 89, 5], ["license", 90, 5], ["maintainers", 91, 5]], [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["__structuredAttrs", 32, 3], ["src", 34, 3], ["build-system", 41, 3], ["dependencies", 48, 3], ["optional-dependencies", 62, 3], ["pythonImportsCheck", 73, 3], ["nativeCheckInputs", 77, 3], ["preCheck", 81, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, cython: false, numpy: false, setuptools: false, wheel: false, imagecodecs: false, matplotlib: false, pandas: false, pynrrd: false, scipy: false, sdflit: false, seaborn: false, tifffile: false, tqdm: false, "typing-extensions": false, beautifulsoup4: false, certifi: false, chardet: false, lmdb: false, requests: false, urllib3: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["all", 63, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 87, 5], ["homepage", 88, 5], ["changelog", 89, 5], ["license", 90, 5], ["maintainers", 91, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["__structuredAttrs", 32, 3], ["src", 34, 3], ["build-system", 41, 3], ["dependencies", 48, 3], ["optional-dependencies", 62, 3], ["pythonImportsCheck", 73, 3], ["nativeCheckInputs", 77, 3], ["preCheck", 81, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,13 +32,13 @@ export default nix.lambda((args) => (() => {
   const urllib3 = nix.arg($, "urllib3");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "swcgeom",
       version: "0.21.6",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "yzx9",
           repo: "swcgeom",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -62,14 +59,14 @@ export default nix.lambda((args) => (() => {
         typing_extensions,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         all: nix.thunk(() => [beautifulsoup4, certifi, chardet, lmdb, requests, urllib3]),
       })),
       pythonImportsCheck: nix.thunk(() => ["swcgeom"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       preCheck: "# make sure import the built version, not the source one\nrm -r swcgeom\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Neuron geometry library for swc format",
         homepage: "https://github.com/yzx9/swcgeom",
         changelog: nix.thunk(() => nix.str`https://github.com/yzx9/swcgeom/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

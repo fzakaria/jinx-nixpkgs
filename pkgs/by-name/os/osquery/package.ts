@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["stdenv", 29, 7], ["lib", 30, 7], ["fetchzip", 31, 7], ["autoPatchelfHook", 32, 7]], [["osquery", 88, 28]], [["makeWrapperArgs", 91, 7]], [["opensslSrc", 86, 13], ["toolchain", 86, 24], ["tests", 87, 5], ["updateScript", 90, 5]], [["description", 96, 5], ["homepage", 97, 5], ["license", 98, 5], ["platforms", 102, 5], ["sourceProvenance", 103, 5], ["maintainers", 104, 5]], [["pname", 40, 3], ["version", 42, 3], ["src", 44, 3], ["patches", 46, 3], ["nativeBuildInputs", 50, 3], ["postPatch", 61, 3], ["configurePhase", 65, 3], ["disallowedReferences", 78, 3], ["postInstall", 80, 3], ["passthru", 85, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { lib: false, cmake: false, fetchFromGitHub: false, fetchzip: false, fetchurl: false, git: false, perl: false, python3: false, stdenv: false, stdenvNoCC: false, ninja: false, "nix-prefetch-git": false, autoPatchelfHook: false, jq: false, removeReferencesTo: false, nixosTests: false, writers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["stdenv", 29, 7], ["lib", 30, 7], ["fetchzip", 31, 7], ["autoPatchelfHook", 32, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["osquery", 88, 28]]);
-const pos$3 = nix.positions(here + "/package.nix", [["makeWrapperArgs", 91, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["opensslSrc", 86, 13], ["toolchain", 86, 24], ["tests", 87, 5], ["updateScript", 90, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 96, 5], ["homepage", 97, 5], ["license", 98, 5], ["platforms", 102, 5], ["sourceProvenance", 103, 5], ["maintainers", 104, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 40, 3], ["version", 42, 3], ["src", 44, 3], ["patches", 46, 3], ["nativeBuildInputs", 50, 3], ["postPatch", 61, 3], ["configurePhase", 65, 3], ["disallowedReferences", 78, 3], ["postInstall", 80, 3], ["passthru", 85, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +27,7 @@ export default nix.lambda((args) => (() => {
   const info = nix.thunk(() => nix.builtins.fromJSON(nix.thunk(() => nix.builtins.readFile(nix.path(here, "./info.json")))));
   const opensslSrc = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.sel(info, "openssl"))));
   const toolchain = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./toolchain-bin.nix")), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       stdenv: stdenv,
       lib: lib,
       fetchzip: fetchzip,
@@ -61,17 +56,20 @@ cmake .. \\
 remove-references-to -t ${toolchain} $out/bin/osqueryd
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         opensslSrc: opensslSrc,
         toolchain: toolchain,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, osquery: nix.thunk(() => nix.attr(nixosTests, "osquery")) })),
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[1],
+          osquery: nix.thunk(() => nix.attr(nixosTests, "osquery")),
+        })),
         updateScript: nix.thunk(() => nix.app(nix.sel(writers, "writePython3"), "osquery-update", nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             makeWrapperArgs: nix.thunk(() => nix.str`--prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [nix_prefetch_git]))}`),
           })), nix.thunk(() => nix.builtins.readFile(nix.path(here, "./update.py"))))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "SQL powered operating system instrumentation, monitoring, and analytics",
         homepage: "https://osquery.io",
         license: nix.thunk(() => (() => {
@@ -96,7 +94,7 @@ remove-references-to -t ${toolchain} $out/bin/osqueryd
         })()),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

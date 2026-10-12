@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/kbdmap.nix", [[["mainProgram", 19, 8]], [["path", 7, 3], ["outputs", 9, 3], ["buildInputs", 15, 3], ["meta", 19, 3]]]);
 const formals$1 = { args: { lib: false, mkDerivation: false, libbsddialog: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/kbdmap.nix", [["mainProgram", 19, 8]]);
-const pos$2 = nix.positions(here + "/kbdmap.nix", [["path", 7, 3], ["outputs", 9, 3], ["buildInputs", 15, 3], ["meta", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const mkDerivation = nix.arg($, "mkDerivation");
   const libbsddialog = nix.arg($, "libbsddialog");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       path: "usr.sbin/kbdmap",
       outputs: nix.thunk(() => ["out", "man", "debug"]),
       buildInputs: nix.thunk(() => [libbsddialog]),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "kbdmap" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], mainProgram: "kbdmap" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=kbdmap.ts.map

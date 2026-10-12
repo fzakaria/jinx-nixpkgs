@@ -2,13 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 46, 9], ["repo", 47, 9], ["rev", 48, 9], ["fetchSubmodules", 49, 9], ["hash", 50, 17]], [["description", 117, 9], ["homepage", 118, 9], ["license", 119, 9], ["maintainers", 123, 9], ["platforms", 128, 9]], [["pname", 33, 7], ["version", 34, 15], ["buildInputs", 36, 7], ["src", 45, 7], ["prePatch", 53, 7], ["buildFlags", 58, 7], ["installPhase", 63, 7], ["setupHook", 94, 7], ["dontStrip", 96, 7], ["doInstallCheck", 100, 7], ["installCheckPhase", 101, 7], ["meta", 116, 7]], [["version", 134, 5], ["hash", 135, 5]], [["haxe_4_3", 133, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, coreutils: false, "ocaml-ng": false, dune: false, zlib: false, pcre2: false, neko: false, mbedtls: false }, ellipsis: false };
 const formals$2 = { args: { hash: false, version: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 46, 9], ["repo", 47, 9], ["rev", 48, 9], ["fetchSubmodules", 49, 9], ["hash", 50, 17]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 117, 9], ["homepage", 118, 9], ["license", 119, 9], ["maintainers", 123, 9], ["platforms", 128, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 33, 7], ["version", 34, 15], ["buildInputs", 36, 7], ["src", 45, 7], ["prePatch", 53, 7], ["buildFlags", 58, 7], ["installPhase", 63, 7], ["setupHook", 94, 7], ["dontStrip", 96, 7], ["doInstallCheck", 100, 7], ["installCheckPhase", 101, 7], ["meta", 116, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["version", 134, 5], ["hash", 135, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["haxe_4_3", 133, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,12 +37,12 @@ export default nix.lambda((args) => (() => {
     const hash = nix.arg($_1, "hash");
     const version = nix.arg($_1, "version");
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname: "haxe",
         version: version,
         buildInputs: nix.thunk(() => nix.concat([zlib, neko, dune, pcre2, mbedtls], nix.app(ocamlDependencies, version))),
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: "HaxeFoundation",
             repo: "haxe",
             rev: version,
@@ -91,7 +87,7 @@ done
         doInstallCheck: true,
         installCheckPhase: "# Get out of the source directory to make sure the stdlib from the\n# sources doesn't interfere with the installed one.\nmkdir installcheck\npushd installcheck > /dev/null\ncat >> InstallCheck.hx <<EOF\nclass InstallCheck {\n  public static function main() trace(\"test\");\n}\nEOF\n\"$out/bin/haxe\" -js installcheck.js -main InstallCheck\ngrep -q 'console\\.log.*test' installcheck.js\npopd > /dev/null\n",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           description: "Programming language targeting JavaScript, Flash, NekoVM, PHP, C++",
           homepage: "https://haxe.org",
           license: nix.thunk(() => (() => {
@@ -111,9 +107,9 @@ done
       })));
   })(), formals$2);
   return {
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     haxe_4_3: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         version: "4.3.7",
         hash: "sha256-sQb7MCoH2dZOvNmDQ9P0yFYrSXYOMn4FS/jlyjth39Y=",
       })))),

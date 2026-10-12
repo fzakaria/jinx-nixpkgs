@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["sha256", 13, 5]], [["description", 29, 5], ["license", 30, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 16, 3], ["outputHashAlgo", 24, 3], ["outputHashMode", 25, 3], ["outputHash", 26, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 29, 5], ["license", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 16, 3], ["outputHashAlgo", 24, 3], ["outputHashMode", 25, 3], ["outputHash", 26, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tipa",
       version: "1.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://debian/pool/main/t/tipa/tipa_${nix.sel(finalAttrs, "version")}.orig.tar.gz`),
           sha256: "1q1sisxdcd2zd9b7mnagr2mxf9v3n1r4s5892zx5ly4r0niyya9m",
         })))),
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       outputHashMode: "recursive",
       outputHash: "1g2cclykr6ax584rlcri8w2h385n624sgfx2fm45r0cwkg1p77h2",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Phonetic font for TeX",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lppl13c")),
       })),

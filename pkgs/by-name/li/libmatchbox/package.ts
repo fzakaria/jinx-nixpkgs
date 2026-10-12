@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 35, 5], ["sha256", 36, 5]], [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["platforms", 46, 5]], [["pname", 17, 3], ["version", 18, 3], ["nativeBuildInputs", 20, 3], ["propagatedBuildInputs", 24, 3], ["src", 34, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoreconfHook: false, libice: false, libjpeg: false, libpng: false, libx11: false, libxext: false, libxft: false, pango: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 35, 5], ["sha256", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["platforms", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["nativeBuildInputs", 20, 3], ["propagatedBuildInputs", 24, 3], ["src", 34, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,18 +20,18 @@ export default nix.lambda((args) => (() => {
   const pango = nix.arg($, "pango");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libmatchbox",
       version: "1.14",
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       propagatedBuildInputs: nix.thunk(() => [libice, libjpeg, libpng, libx11, libxext, libxft, pango]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://git.yoctoproject.org/libmatchbox/snapshot/libmatchbox-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1b66jl178pkwmswf1gqcyrpy15rll1znz38n07l9b3ybga13w31d",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library of the matchbox X window manager",
         homepage: "http://matchbox-project.org/",
         license: nix.thunk(() => (() => {

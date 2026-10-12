@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["src", 32, 13], ["sourceRoot", 33, 5], ["hash", 34, 5]], [["nativeBuildInputs", 48, 5], ["preBuild", 51, 5]], [["description", 73, 5], ["longDescription", 74, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["license", 84, 5], ["maintainers", 85, 5], ["mainProgram", 89, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["postPatch", 22, 3], ["vendorHash", 28, 3], ["proxyVendor", 29, 3], ["npmDeps", 31, 3], ["npmRoot", 37, 3], ["nativeBuildInputs", 39, 3], ["overrideModAttrs", 47, 3], ["preBuild", 58, 3], ["ldflags", 63, 3], ["doCheck", 70, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, buildGo127Module: false, fetchFromGitHub: false, nodejs: false, fetchNpmDeps: false, npmHooks: false, "go-task": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 32, 13], ["sourceRoot", 33, 5], ["hash", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 48, 5], ["preBuild", 51, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 73, 5], ["longDescription", 74, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["license", 84, 5], ["maintainers", 85, 5], ["mainProgram", 89, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["postPatch", 22, 3], ["vendorHash", 28, 3], ["proxyVendor", 29, 3], ["npmDeps", 31, 3], ["npmRoot", 37, 3], ["nativeBuildInputs", 39, 3], ["overrideModAttrs", 47, 3], ["preBuild", 58, 3], ["ldflags", 63, 3], ["doCheck", 70, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "immich-kiosk";
       const version = "0.44.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "damongolding",
           repo: "immich-kiosk",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const vendorHash = "sha256-2N5tk4xEW45cBQbdrGAdFJ9ovLBSCP1wx9z9R5OGQVQ=";
       const proxyVendor = true;
       const npmDeps = nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: src,
           sourceRoot: nix.thunk(() => nix.str`${nix.sel(src, "name")}/frontend`),
           hash: "sha256-eKKguY1nlStG86Iap4aSz2hi0LgXkInp8YDGyypYmlI=",
@@ -40,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const npmRoot = "frontend";
       const nativeBuildInputs = nix.thunk(() => [nodejs, go_task, nix.thunk(() => nix.sel(npmHooks, "npmConfigHook"))]);
       const overrideModAttrs = (oldAttrs) => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         nativeBuildInputs: nix.thunk(() => nix.builtins.filter((drv) => !nix.eq(drv, nix.sel(npmHooks, "npmConfigHook")), nix.thunk(() => nix.selOr(oldAttrs, () => [], "nativeBuildInputs")))),
         preBuild: "go tool templ generate\n",
       });
@@ -48,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const ldflags = nix.thunk(() => ["-s", "-w", nix.thunk(() => nix.str`-X main.version=${version}`)]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Lightweight slideshow for running on kiosk devices and browsers that uses Immich as a data source",
         longDescription: "Immich Kiosk is a lightweight slideshow for running on kiosk devices and\nbrowsers that uses Immich as a data source. It displays photos and videos\nfrom your Immich server in a configurable slideshow format, perfect for\ndigital photo frames and kiosk displays.\n\nThis is not an official Immich project and is not affiliated with Immich.\n",
         homepage: "https://github.com/damongolding/immich-kiosk",
@@ -64,7 +60,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "immich-kiosk",
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

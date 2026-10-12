@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 16, 26], ["version", 16, 32], ["hash", 17, 5]], [["description", 40, 5], ["longDescription", 41, 5], ["license", 54, 5], ["homepage", 55, 5], ["maintainers", 56, 5], ["platforms", 60, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["buildInputs", 20, 3], ["build-system", 26, 3], ["dependencies", 30, 3], ["doCheck", 35, 3], ["pythonImportsCheck", 37, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchPypi: false, fftw: false, "alsa-lib": false, pulseaudio: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 16, 26], ["version", 16, 32], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 40, 5], ["longDescription", 41, 5], ["license", 54, 5], ["homepage", 55, 5], ["maintainers", 56, 5], ["platforms", 60, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["buildInputs", 20, 3], ["build-system", 26, 3], ["dependencies", 30, 3], ["doCheck", 35, 3], ["pythonImportsCheck", 37, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const alsa_lib = nix.arg($, "alsa-lib");
   const pulseaudio = nix.arg($, "pulseaudio");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "quisk",
       version: "4.2.51",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-BUS9LW64AmOseedjxEA03MT9Sz9dLmOCVE2IXGovXxo=",
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["quisk"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "SDR transceiver for radios that use the Hermes protocol",
         longDescription: "QUISK is a Software Defined Radio (SDR) transceiver. You supply radio\nhardware that converts signals at the antenna to complex (I/Q) data at an\nintermediate frequency (IF). Data can come from a sound card, Ethernet or\nUSB. Quisk then filters and demodulates the data and sends the audio to\nyour speakers or headphones. For transmit, Quisk takes the microphone\nsignal, converts it to I/Q data and sends it to the hardware.\n\nQuisk can be used with SoftRock, Hermes Lite 2, HiQSDR, Odyssey and many\nradios that use the Hermes protocol. Quisk can connect to digital\nprograms like Fldigi and WSJT-X. Quisk can be connected to other software\nlike N1MM+ and software that uses Hamlib.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

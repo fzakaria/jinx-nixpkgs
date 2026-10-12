@@ -2,20 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/pumpkin.nix", [[["systemPackages", 11, 17]], [["rules", 13, 22]], [["tmpfiles", 13, 13]], [["enabled", 21, 17]], [["enabled", 23, 11], ["address", 24, 11], ["passwordFile", 25, 11]], [["rcon", 22, 20]], [["seed", 20, 17], ["bedrock", 21, 9], ["networking", 22, 9]], [["enable", 18, 7], ["settings", 19, 7]], [["pumpkin", 17, 14]], [["environment", 11, 5], ["systemd", 13, 5], ["services", 17, 5]], [["machine", 10, 14]], [["maintainers", 42, 8]], [["name", 8, 3], ["containers", 10, 3], ["testScript", 31, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/pumpkin.nix", [["systemPackages", 11, 17]]);
-const pos$2 = nix.positions(here + "/pumpkin.nix", [["rules", 13, 22]]);
-const pos$3 = nix.positions(here + "/pumpkin.nix", [["tmpfiles", 13, 13]]);
-const pos$4 = nix.positions(here + "/pumpkin.nix", [["enabled", 21, 17]]);
-const pos$5 = nix.positions(here + "/pumpkin.nix", [["enabled", 23, 11], ["address", 24, 11], ["passwordFile", 25, 11]]);
-const pos$6 = nix.positions(here + "/pumpkin.nix", [["rcon", 22, 20]]);
-const pos$7 = nix.positions(here + "/pumpkin.nix", [["seed", 20, 17], ["bedrock", 21, 9], ["networking", 22, 9]]);
-const pos$8 = nix.positions(here + "/pumpkin.nix", [["enable", 18, 7], ["settings", 19, 7]]);
-const pos$9 = nix.positions(here + "/pumpkin.nix", [["pumpkin", 17, 14]]);
-const pos$10 = nix.positions(here + "/pumpkin.nix", [["environment", 11, 5], ["systemd", 13, 5], ["services", 17, 5]]);
-const pos$11 = nix.positions(here + "/pumpkin.nix", [["machine", 10, 14]]);
-const pos$12 = nix.positions(here + "/pumpkin.nix", [["maintainers", 42, 8]]);
-const pos$13 = nix.positions(here + "/pumpkin.nix", [["name", 8, 3], ["containers", 10, 3], ["testScript", 31, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,38 +13,38 @@ export default nix.lambda((args) => (() => {
   const rcon_pass = "foobar";
   const rcon_port = 25575n;
   return {
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     name: "pumpkin",
     containers: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "mcrcon"))]),
         })),
         systemd: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           tmpfiles: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             rules: nix.thunk(() => [
               nix.thunk(() => nix.str`f /root/rcon-password 0400 root root - ${rcon_pass}`),
             ]),
           })),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           pumpkin: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             enable: true,
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               seed: seed,
-              bedrock: nix.thunk(() => ({ [nix.POS]: pos$4, enabled: false })),
+              bedrock: nix.thunk(() => ({ [nix.POS]: $pos[3], enabled: false })),
               networking: nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 rcon: nix.thunk(() => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   enabled: true,
                   address: nix.thunk(() => nix.str`0.0.0.0:${nix.builtins.toString(rcon_port)}`),
                   passwordFile: "/root/rcon-password",
@@ -77,7 +65,7 @@ machine.systemctl("stop pumpkin")
 machine.wait_until_fails("systemctl is-active --quiet pumpkin")
 `),
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

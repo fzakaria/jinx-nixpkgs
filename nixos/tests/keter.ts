@@ -2,52 +2,44 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/keter.nix", [[["maintainers", 8, 5]], [["host", 21, 15], ["port", 22, 23]], [["cli-port", 18, 11], ["listeners", 19, 11]], [["appName", 27, 11], ["domain", 28, 11], ["executable", 29, 11]], [["enable", 15, 9], ["globalKeterConfig", 17, 9], ["bundle", 26, 9]], [["keter", 14, 16]], [["services", 14, 7]], [["machine", 11, 9]], [["name", 6, 3], ["meta", 7, 3], ["nodes", 11, 3], ["testScript", 36, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/keter.nix", [["maintainers", 8, 5]]);
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/keter.nix", [["host", 21, 15], ["port", 22, 23]]);
-const pos$3 = nix.positions(here + "/keter.nix", [["cli-port", 18, 11], ["listeners", 19, 11]]);
-const pos$4 = nix.positions(here + "/keter.nix", [["appName", 27, 11], ["domain", 28, 11], ["executable", 29, 11]]);
-const pos$5 = nix.positions(here + "/keter.nix", [["enable", 15, 9], ["globalKeterConfig", 17, 9], ["bundle", 26, 9]]);
-const pos$6 = nix.positions(here + "/keter.nix", [["keter", 14, 16]]);
-const pos$7 = nix.positions(here + "/keter.nix", [["services", 14, 7]]);
-const pos$8 = nix.positions(here + "/keter.nix", [["machine", 11, 9]]);
-const pos$9 = nix.positions(here + "/keter.nix", [["name", 6, 3], ["meta", 7, 3], ["nodes", 11, 3], ["testScript", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const port = 81n;
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     name: "keter",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "jappie"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             keter: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               enable: true,
               globalKeterConfig: nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 "cli-port": 123n,
-                listeners: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$2, host: "*4", port: port }))]),
+                listeners: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[1], host: "*4", port: port }))]),
               })),
               bundle: nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 appName: "test-bundle",
                 domain: "localhost",
                 executable: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeShellScript"), "run", nix.thunk(() => nix.str`${nix.sel(pkgs_1, "python3")}/bin/python -m http.server $PORT

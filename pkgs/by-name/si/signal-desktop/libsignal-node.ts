@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libsignal-node.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["name", 31, 5], ["version", 32, 26], ["src", 32, 34], ["sourceRoot", 33, 5], ["hash", 34, 5]], [["BORING_BSSL_INCLUDE_PATH", 49, 5], ["BORING_BSSL_PATH", 50, 5], ["NIX_LDFLAGS", 51, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["cargoHash", 27, 3], ["npmRoot", 29, 3], ["npmDeps", 30, 3], ["nativeBuildInputs", 37, 3], ["env", 48, 3], ["patches", 54, 3], ["postPatch", 59, 3], ["buildPhase", 71, 3], ["dontCargoInstall", 81, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchNpmDeps: false, npmHooks: false, protobuf: false, clang: false, gitMinimal: false, cmake: false, boringssl: false, fetchFromGitHub: false, python3: false, nodejs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libsignal-node.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/libsignal-node.nix", [["name", 31, 5], ["version", 32, 26], ["src", 32, 34], ["sourceRoot", 33, 5], ["hash", 34, 5]]);
-const pos$3 = nix.positions(here + "/libsignal-node.nix", [["BORING_BSSL_INCLUDE_PATH", 49, 5], ["BORING_BSSL_PATH", 50, 5], ["NIX_LDFLAGS", 51, 5]]);
-const pos$4 = nix.positions(here + "/libsignal-node.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["cargoHash", 27, 3], ["npmRoot", 29, 3], ["npmDeps", 30, 3], ["nativeBuildInputs", 37, 3], ["env", 48, 3], ["patches", 54, 3], ["postPatch", 59, 3], ["buildPhase", 71, 3], ["dontCargoInstall", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const nodejs = nix.arg($, "nodejs");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libsignal-node",
       version: "0.101.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "signalapp",
           repo: "libsignal",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-LJx0g6WOP0U/YcEKaH1VCzO8shb83MH3ZbFTOpDU2dU=",
       npmRoot: "node",
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-npm-deps`),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -55,7 +52,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(rustPlatform, "bindgenHook")),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         BORING_BSSL_INCLUDE_PATH: nix.thunk(() => nix.str`${nix.sel(boringssl, "dev")}/include`),
         BORING_BSSL_PATH: boringssl,
         NIX_LDFLAGS: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "-lc++" : "-lstdc++")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["description", 90, 5], ["homepage", 91, 5], ["license", 92, 5], ["mainProgram", 93, 5], ["maintainers", 94, 5], ["platforms", 97, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["cargoHash", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 44, 3], ["buildFeatures", 53, 3], ["prePatch", 61, 3], ["postBuild", 66, 3], ["postInstall", 70, 3], ["postFixup", 76, 3], ["doCheck", 87, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, makeWrapper: false, installShellFiles: false, dbus: false, libpulseaudio: false, notmuch: false, openssl: false, ethtool: false, lm_sensors: false, iw: false, iproute2: false, pandoc: false, pipewire: false, withICUCalendar: true, withPipewire: true, withNotmuch: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 90, 5], ["homepage", 91, 5], ["license", 92, 5], ["mainProgram", 93, 5], ["maintainers", 94, 5], ["platforms", 97, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["cargoHash", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 44, 3], ["buildFeatures", 53, 3], ["prePatch", 61, 3], ["postBuild", 66, 3], ["postInstall", 70, 3], ["postFixup", 76, 3], ["doCheck", 87, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const withPipewire = nix.argOr($, "withPipewire", () => true);
   const withNotmuch = nix.argOr($, "withNotmuch", () => false);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "i3status-rust",
       version: "0.36.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "greshake",
           repo: "i3status-rust",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +48,7 @@ export default nix.lambda((args) => (() => {
 `),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Very resource-friendly and feature-rich replacement for i3status",
         homepage: "https://github.com/greshake/i3status-rust",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

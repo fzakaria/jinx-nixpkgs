@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["NIX_CFLAGS_COMPILE", 32, 7]], [["homepage", 62, 5], ["description", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["platforms", 66, 5], ["broken", 67, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["env", 32, 3], ["configureFlags", 34, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 49, 3], ["strictDeps", 55, 3], ["preInstall", 57, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, doxygen: false, libxslt: false, "pkg-config": false, pcsclite: false, libtool: false, "libusb-compat-0_1": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 62, 5], ["description", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["platforms", 66, 5], ["broken", 67, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["env", 32, 3], ["configureFlags", 34, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 49, 3], ["strictDeps", 55, 3], ["preInstall", 57, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libtool = nix.arg($, "libtool");
   const libusb_compat_0_1 = nix.arg($, "libusb-compat-0_1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "openct",
       version: "0.6.20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "OpenSC",
           repo: "openct",
           rev: nix.thunk(() => nix.str`openct-${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       postPatch: "substituteInPlace etc/Makefile.am \\\n  --replace-fail \"DESTDIR\" \"out\"\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       })),
       configureFlags: nix.thunk(() => [
@@ -48,7 +45,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       preInstall: "mkdir -p $out/etc\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/OpenSC/openct/",
         description: "Drivers for several smart card readers",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

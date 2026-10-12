@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["description", 39, 5], ["homepage", 40, 5], ["license", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 20, 3], ["postPatch", 23, 3], ["enableParallelBuilding", 28, 3], ["preBuild", 31, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchurl: false, lib: false, openssl: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 39, 5], ["homepage", 40, 5], ["license", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 20, 3], ["postPatch", 23, 3], ["enableParallelBuilding", 28, 3], ["preBuild", 31, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "yate",
       version: "6.4.0-1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://voip.null.ro/tarballs/yate${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/yate-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-jCPca/+/jUeNs6hZZLUBl3HI9sms9SIPNGVRanSKA7A=",
         })))),
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: false,
       preBuild: "export NIX_LDFLAGS=\"-L$TMP/yate $NIX_LDFLAGS\"\nfind . -type f -iname Makefile | xargs sed -i \\\n  -e 's@-Wl,--unresolved-symbols=ignore-in-shared-libs@@' \\\n  -e 's@-Wl,--retain-symbols-file@@'\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Yet another telephony engine",
         homepage: "https://yate.ro/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

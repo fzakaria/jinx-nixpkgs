@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]], [["pyqt6", 89, 9], ["qt6", 90, 9]], [["pyqt6", 93, 9], ["qt6", 94, 9]], [["withPyQt6", 88, 7], ["withPyQt5", 92, 7]], [["pyqt6", 104, 9], ["qt6", 105, 9]], [["pyqt6", 111, 9], ["qt6", 112, 9]], [["withPySide2", 103, 7], ["withPySide6", 110, 7]], [["tests", 87, 5], ["knownFailingTests", 99, 5]], [["description", 118, 5], ["homepage", 119, 5], ["changelog", 120, 5], ["license", 126, 5], ["maintainers", 127, 5]], [["pname", 34, 3], ["version", 35, 3], ["pyproject", 36, 3], ["src", 38, 3], ["build-system", 45, 3], ["dependencies", 50, 3], ["nativeCheckInputs", 60, 3], ["preCheck", 67, 3], ["disabledTests", 74, 3], ["pythonImportsCheck", 81, 3], ["passthru", 86, 3], ["meta", 117, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, cython: false, setuptools: false, guidata: false, numpy: false, pillow: false, pythonqwt: false, "scikit-image": false, scipy: false, tifffile: false, pytestCheckHook: false, qt6: false, pyqt6: false, plotpy: false, pyside6: false, qt5: false, pyqt5: false, pyside2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pyqt6", 89, 9], ["qt6", 90, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pyqt6", 93, 9], ["qt6", 94, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["withPyQt6", 88, 7], ["withPyQt5", 92, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pyqt6", 104, 9], ["qt6", 105, 9]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pyqt6", 111, 9], ["qt6", 112, 9]]);
-const pos$7 = nix.positions(here + "/default.nix", [["withPySide2", 103, 7], ["withPySide6", 110, 7]]);
-const pos$8 = nix.positions(here + "/default.nix", [["tests", 87, 5], ["knownFailingTests", 99, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["description", 118, 5], ["homepage", 119, 5], ["changelog", 120, 5], ["license", 126, 5], ["maintainers", 127, 5]]);
-const pos$10 = nix.positions(here + "/default.nix", [["pname", 34, 3], ["version", 35, 3], ["pyproject", 36, 3], ["src", 38, 3], ["build-system", 45, 3], ["dependencies", 50, 3], ["nativeCheckInputs", 60, 3], ["preCheck", 67, 3], ["disabledTests", 74, 3], ["pythonImportsCheck", 81, 3], ["passthru", 86, 3], ["meta", 117, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.9.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "PlotPyStack",
           repo: "PlotPy",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -59,20 +50,20 @@ cd $out
       const disabledTests = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_resize_dialog", "test_tool"])));
       const pythonImportsCheck = nix.thunk(() => ["plotpy", "plotpy.tests"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          withPyQt6: nix.thunk(() => nix.app(nix.sel(plotpy, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, pyqt6: pyqt6, qt6: qt6 })))),
-          withPyQt5: nix.thunk(() => nix.app(nix.sel(plotpy, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, pyqt6: pyqt5, qt6: qt5 })))),
+          [nix.POS]: $pos[3],
+          withPyQt6: nix.thunk(() => nix.app(nix.sel(plotpy, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], pyqt6: pyqt6, qt6: qt6 })))),
+          withPyQt5: nix.thunk(() => nix.app(nix.sel(plotpy, "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], pyqt6: pyqt5, qt6: qt5 })))),
         })),
         knownFailingTests: nix.thunk(() => ({
-          [nix.POS]: pos$7,
-          withPySide2: nix.thunk(() => nix.app(nix.sel(plotpy, "override"), nix.thunk(() => ({ [nix.POS]: pos$5, pyqt6: pyside2, qt6: qt5 })))),
-          withPySide6: nix.thunk(() => nix.app(nix.sel(plotpy, "override"), nix.thunk(() => ({ [nix.POS]: pos$6, pyqt6: pyside6, qt6: qt6 })))),
+          [nix.POS]: $pos[6],
+          withPySide2: nix.thunk(() => nix.app(nix.sel(plotpy, "override"), nix.thunk(() => ({ [nix.POS]: $pos[4], pyqt6: pyside2, qt6: qt5 })))),
+          withPySide6: nix.thunk(() => nix.app(nix.sel(plotpy, "override"), nix.thunk(() => ({ [nix.POS]: $pos[5], pyqt6: pyside6, qt6: qt6 })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Curve and image plotting tools for Python/Qt applications",
         homepage: "https://github.com/PlotPyStack/PlotPy",
         changelog: nix.thunk(() => nix.str`https://github.com/PlotPyStack/PlotPy/blob/master/doc/release_notes/release_${nix.app(nix.sel(lib, "versions", "major"), version)}.${nix.app(nix.sel(lib, "pipe"), version, nix.thunk(() => [
@@ -86,7 +77,7 @@ cd $out
         })()),
       }));
       return {
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         pname,
         version,
         pyproject,

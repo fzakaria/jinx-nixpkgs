@@ -2,33 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/systemd-ssh-proxy.nix", [[["maintainers", 18, 8]], [["systemPackages", 22, 19]], [["PermitRootLogin", 25, 18]], [["enable", 24, 9], ["settings", 25, 9]], [["openssh", 23, 16]], [["keys", 28, 37]], [["authorizedKeys", 28, 22]], [["openssh", 28, 14]], [["isNormalUser", 30, 11]], [["root", 28, 9], ["nixos", 29, 9]], [["users", 27, 13]], [["keys", 36, 51]], [["authorizedKeys", 36, 36]], [["openssh", 36, 28]], [["root", 36, 23]], [["users", 36, 17]], [["PermitRootLogin", 39, 22]], [["enable", 38, 13], ["settings", 39, 13]], [["openssh", 37, 20]], [["stateVersion", 41, 18]], [["users", 36, 11], ["services", 37, 11], ["system", 41, 11]], [["autoStart", 34, 9], ["config", 35, 9]], [["guest", 33, 18]], [["environment", 22, 7], ["services", 23, 7], ["users", 27, 7], ["containers", 33, 7]], [["virthost", 21, 5]], [["name", 17, 3], ["meta", 18, 3], ["nodes", 20, 3], ["testScript", 47, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false, config: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/systemd-ssh-proxy.nix", [["maintainers", 18, 8]]);
-const pos$2 = nix.positions(here + "/systemd-ssh-proxy.nix", [["systemPackages", 22, 19]]);
-const pos$3 = nix.positions(here + "/systemd-ssh-proxy.nix", [["PermitRootLogin", 25, 18]]);
-const pos$4 = nix.positions(here + "/systemd-ssh-proxy.nix", [["enable", 24, 9], ["settings", 25, 9]]);
-const pos$5 = nix.positions(here + "/systemd-ssh-proxy.nix", [["openssh", 23, 16]]);
-const pos$6 = nix.positions(here + "/systemd-ssh-proxy.nix", [["keys", 28, 37]]);
-const pos$7 = nix.positions(here + "/systemd-ssh-proxy.nix", [["authorizedKeys", 28, 22]]);
-const pos$8 = nix.positions(here + "/systemd-ssh-proxy.nix", [["openssh", 28, 14]]);
-const pos$9 = nix.positions(here + "/systemd-ssh-proxy.nix", [["isNormalUser", 30, 11]]);
-const pos$10 = nix.positions(here + "/systemd-ssh-proxy.nix", [["root", 28, 9], ["nixos", 29, 9]]);
-const pos$11 = nix.positions(here + "/systemd-ssh-proxy.nix", [["users", 27, 13]]);
-const pos$12 = nix.positions(here + "/systemd-ssh-proxy.nix", [["keys", 36, 51]]);
-const pos$13 = nix.positions(here + "/systemd-ssh-proxy.nix", [["authorizedKeys", 36, 36]]);
-const pos$14 = nix.positions(here + "/systemd-ssh-proxy.nix", [["openssh", 36, 28]]);
-const pos$15 = nix.positions(here + "/systemd-ssh-proxy.nix", [["root", 36, 23]]);
-const pos$16 = nix.positions(here + "/systemd-ssh-proxy.nix", [["users", 36, 17]]);
-const pos$17 = nix.positions(here + "/systemd-ssh-proxy.nix", [["PermitRootLogin", 39, 22]]);
-const pos$18 = nix.positions(here + "/systemd-ssh-proxy.nix", [["enable", 38, 13], ["settings", 39, 13]]);
-const pos$19 = nix.positions(here + "/systemd-ssh-proxy.nix", [["openssh", 37, 20]]);
-const pos$20 = nix.positions(here + "/systemd-ssh-proxy.nix", [["stateVersion", 41, 18]]);
-const pos$21 = nix.positions(here + "/systemd-ssh-proxy.nix", [["users", 36, 11], ["services", 37, 11], ["system", 41, 11]]);
-const pos$22 = nix.positions(here + "/systemd-ssh-proxy.nix", [["autoStart", 34, 9], ["config", 35, 9]]);
-const pos$23 = nix.positions(here + "/systemd-ssh-proxy.nix", [["guest", 33, 18]]);
-const pos$24 = nix.positions(here + "/systemd-ssh-proxy.nix", [["environment", 22, 7], ["services", 23, 7], ["users", 27, 7], ["containers", 33, 7]]);
-const pos$25 = nix.positions(here + "/systemd-ssh-proxy.nix", [["virthost", 21, 5]]);
-const pos$26 = nix.positions(here + "/systemd-ssh-proxy.nix", [["name", 17, 3], ["meta", 18, 3], ["nodes", 20, 3], ["testScript", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,75 +14,75 @@ export default nix.lambda((args) => (() => {
   const snakeOilEd25519PrivateKey = nix.thunk(() => nix.attr(from, "snakeOilEd25519PrivateKey"));
   const snakeOilEd25519PublicKey = nix.thunk(() => nix.attr(from, "snakeOilEd25519PublicKey"));
   return {
-    [nix.POS]: pos$26,
+    [nix.POS]: $pos[25],
     name: "systemd-ssh-proxy",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "marie"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$25,
+      [nix.POS]: $pos[24],
       virthost: nix.thunk(() => ({
-        [nix.POS]: pos$24,
+        [nix.POS]: $pos[23],
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "jq"))]),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           openssh: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             enable: true,
-            settings: nix.thunk(() => ({ [nix.POS]: pos$3, PermitRootLogin: "prohibit-password" })),
+            settings: nix.thunk(() => ({ [nix.POS]: $pos[2], PermitRootLogin: "prohibit-password" })),
           })),
         })),
         users: nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           users: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             root: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               openssh: nix.thunk(() => ({
-                [nix.POS]: pos$7,
-                authorizedKeys: nix.thunk(() => ({ [nix.POS]: pos$6, keys: nix.thunk(() => [snakeOilEd25519PublicKey]) })),
+                [nix.POS]: $pos[6],
+                authorizedKeys: nix.thunk(() => ({ [nix.POS]: $pos[5], keys: nix.thunk(() => [snakeOilEd25519PublicKey]) })),
               })),
             })),
-            nixos: nix.thunk(() => ({ [nix.POS]: pos$9, isNormalUser: true })),
+            nixos: nix.thunk(() => ({ [nix.POS]: $pos[8], isNormalUser: true })),
           })),
         })),
         containers: nix.thunk(() => ({
-          [nix.POS]: pos$23,
+          [nix.POS]: $pos[22],
           guest: nix.thunk(() => ({
-            [nix.POS]: pos$22,
+            [nix.POS]: $pos[21],
             autoStart: true,
             config: nix.thunk(() => ({
-              [nix.POS]: pos$21,
+              [nix.POS]: $pos[20],
               users: nix.thunk(() => ({
-                [nix.POS]: pos$16,
+                [nix.POS]: $pos[15],
                 users: nix.thunk(() => ({
-                  [nix.POS]: pos$15,
+                  [nix.POS]: $pos[14],
                   root: nix.thunk(() => ({
-                    [nix.POS]: pos$14,
+                    [nix.POS]: $pos[13],
                     openssh: nix.thunk(() => ({
-                      [nix.POS]: pos$13,
-                      authorizedKeys: nix.thunk(() => ({ [nix.POS]: pos$12, keys: nix.thunk(() => [snakeOilEd25519PublicKey]) })),
+                      [nix.POS]: $pos[12],
+                      authorizedKeys: nix.thunk(() => ({ [nix.POS]: $pos[11], keys: nix.thunk(() => [snakeOilEd25519PublicKey]) })),
                     })),
                   })),
                 })),
               })),
               services: nix.thunk(() => ({
-                [nix.POS]: pos$19,
+                [nix.POS]: $pos[18],
                 openssh: nix.thunk(() => ({
-                  [nix.POS]: pos$18,
+                  [nix.POS]: $pos[17],
                   enable: true,
-                  settings: nix.thunk(() => ({ [nix.POS]: pos$17, PermitRootLogin: "prohibit-password" })),
+                  settings: nix.thunk(() => ({ [nix.POS]: $pos[16], PermitRootLogin: "prohibit-password" })),
                 })),
               })),
               system: nix.thunk(() => ({
-                [nix.POS]: pos$20,
+                [nix.POS]: $pos[19],
                 stateVersion: nix.thunk(() => nix.sel(lib, "trivial", "release")),
               })),
             })),

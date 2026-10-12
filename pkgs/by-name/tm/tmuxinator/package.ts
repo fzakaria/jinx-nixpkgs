@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["sha256", 17, 10]], [["sha256", 24, 12]], [["ruby", 20, 13], ["name", 21, 5], ["gemName", 22, 5], ["version", 23, 5], ["source", 24, 5]], [["sha256", 32, 12]], [["ruby", 28, 13], ["name", 29, 5], ["gemName", 30, 5], ["version", 31, 5], ["source", 32, 5]], [["sha256", 40, 12]], [["ruby", 36, 13], ["name", 37, 5], ["gemName", 38, 5], ["version", 39, 5], ["source", 40, 5]], [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 62, 5], ["mainProgram", 63, 5]], [["ruby", 13, 11], ["name", 14, 3], ["gemName", 15, 3], ["version", 16, 3], ["source", 17, 3], ["erubi", 19, 3], ["thor", 27, 3], ["xdg", 35, 3], ["propagatedBuildInputs", 43, 3], ["nativeBuildInputs", 49, 3], ["postInstall", 51, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, buildRubyGem: false, ruby: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["sha256", 17, 10]]);
-const pos$2 = nix.positions(here + "/package.nix", [["sha256", 24, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["ruby", 20, 13], ["name", 21, 5], ["gemName", 22, 5], ["version", 23, 5], ["source", 24, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["sha256", 32, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["ruby", 28, 13], ["name", 29, 5], ["gemName", 30, 5], ["version", 31, 5], ["source", 32, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["sha256", 40, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["ruby", 36, 13], ["name", 37, 5], ["gemName", 38, 5], ["version", 39, 5], ["source", 40, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 62, 5], ["mainProgram", 63, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["ruby", 13, 11], ["name", 14, 3], ["gemName", 15, 3], ["version", 16, 3], ["source", 17, 3], ["erubi", 19, 3], ["thor", 27, 3], ["xdg", 35, 3], ["propagatedBuildInputs", 43, 3], ["nativeBuildInputs", 49, 3], ["postInstall", 51, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const gemName = "tmuxinator";
       const version = "3.4.1";
       const source = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         sha256: "sha256-2BZgu3vybhpoScScq42yr80DYI343vqlQVQv2AOG48I=",
       }));
       const erubi = nix.thunk(() => nix.app(buildRubyGem, nix.thunk(() => (() => {
@@ -34,11 +26,11 @@ export default nix.lambda((args) => (() => {
           const gemName_1 = "erubi";
           const version_1 = "1.13.0";
           const source_1 = nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             sha256: "fca61b47daefd865d0fb50d168634f27ad40181867445badf6427c459c33cd62",
           }));
           return {
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             ruby: ruby_2,
             name: name_1,
             gemName: gemName_1,
@@ -52,11 +44,11 @@ export default nix.lambda((args) => (() => {
           const gemName_1 = "thor";
           const version_1 = "1.4.0";
           const source_1 = nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             sha256: "sha256-h2PoIsyw8de+6IzeExsZplYGZXuEfMe3tLgudyvNij0=",
           }));
           return {
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             ruby: ruby_2,
             name: name_1,
             gemName: gemName_1,
@@ -70,11 +62,11 @@ export default nix.lambda((args) => (() => {
           const gemName_1 = "xdg";
           const version_1 = "2.2.5";
           const source_1 = nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             sha256: "04xr4cavnzxlk926pkji7b5yiqy4qsd3gdvv8mg6jliq6sczg9gk",
           }));
           return {
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             ruby: ruby_2,
             name: name_1,
             gemName: gemName_1,
@@ -87,7 +79,7 @@ export default nix.lambda((args) => (() => {
       const postInstall = nix.thunk(() => nix.str`installShellCompletion $GEM_HOME/gems/${gemName}-${version}/completion/tmuxinator.{bash,zsh,fish}
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Manage complex tmux sessions easily",
         homepage: "https://github.com/tmuxinator/tmuxinator",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -99,7 +91,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "tmuxinator",
       }));
       return {
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         ruby: ruby_1,
         name,
         gemName,

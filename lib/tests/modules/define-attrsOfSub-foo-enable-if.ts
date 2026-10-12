@@ -2,21 +2,19 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/define-attrsOfSub-foo-enable-if.nix", [[["enable", 4, 18]], [["foo", 4, 14]], [["attrsOfSub", 4, 3]]]);
 const formals$1 = { args: { config: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/define-attrsOfSub-foo-enable-if.nix", [["enable", 4, 18]]);
-const pos$2 = nix.positions(here + "/define-attrsOfSub-foo-enable-if.nix", [["foo", 4, 14]]);
-const pos$3 = nix.positions(here + "/define-attrsOfSub-foo-enable-if.nix", [["attrsOfSub", 4, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const config = nix.arg($, "config");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     attrsOfSub: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       foo: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         enable: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "enable")), true)),
       })),
     })),

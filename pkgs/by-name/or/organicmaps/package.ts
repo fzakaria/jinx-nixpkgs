@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5], ["fetchSubmodules", 39, 5]], [["NIX_CFLAGS_COMPILE", 86, 7]], [["extraArgs", 90, 7]], [["updateScript", 89, 5]], [["broken", 99, 5], ["homepage", 100, 5], ["description", 101, 5], ["license", 102, 5], ["maintainers", 103, 5], ["platforms", 104, 5], ["mainProgram", 105, 5]], [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["patches", 42, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 58, 3], ["cmakeFlags", 80, 3], ["env", 86, 3], ["passthru", 88, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, ninja: false, "pkg-config": false, which: false, python3: false, rsync: false, qt6: false, libGLU: false, libGL: false, zlib: false, icu: false, freetype: false, pugixml: false, libxrandr: false, libxinerama: false, libxcursor: false, gflags: false, expat: false, jansson: false, boost: false, "fast-float": false, utf8cpp: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5], ["fetchSubmodules", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 86, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 90, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 89, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["broken", 99, 5], ["homepage", 100, 5], ["description", 101, 5], ["license", 102, 5], ["maintainers", 103, 5], ["platforms", 104, 5], ["mainProgram", 105, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["patches", 42, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 58, 3], ["cmakeFlags", 80, 3], ["env", 86, 3], ["passthru", 88, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const utf8cpp = nix.arg($, "utf8cpp");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "organicmaps",
       version: "2026.05.27-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "organicmaps",
           repo: "organicmaps",
           tag: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}-android`),
@@ -87,15 +82,15 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "SKIP_TOOLS", true)),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getDev"), utf8cpp)}/include/utf8cpp`),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["-vr", "(.*)-android"]) })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[2], extraArgs: nix.thunk(() => ["-vr", "(.*)-android"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         homepage: "https://organicmaps.app/",
         description: "Detailed Offline Maps for Travellers, Tourists, Hikers and Cyclists",

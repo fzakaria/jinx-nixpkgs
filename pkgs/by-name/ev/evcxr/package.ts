@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["sha256", 28, 5]], [["RUST_SRC_PATH", 33, 7]], [["updateScript", 91, 12]], [["description", 94, 5], ["homepage", 95, 5], ["license", 96, 5], ["maintainers", 97, 5], ["mainProgram", 101, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["cargoHash", 31, 3], ["env", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 40, 3], ["checkFlags", 44, 3], ["postConfigure", 57, 3], ["postInstall", 67, 3], ["passthru", 91, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, makeWrapper: false, "pkg-config": false, cmake: false, libiconv: false, cargo: false, gcc: false, "mold-unwrapped": false, rustc: false, "nix-update-script": false, withMold: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["sha256", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["RUST_SRC_PATH", 33, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 91, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 94, 5], ["homepage", 95, 5], ["license", 96, 5], ["maintainers", 97, 5], ["mainProgram", 101, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["cargoHash", 31, 3], ["env", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 40, 3], ["checkFlags", 44, 3], ["postConfigure", 57, 3], ["postInstall", 67, 3], ["passthru", 91, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +25,11 @@ export default nix.lambda((args) => (() => {
     return (nix.asBool(nix.lookup(w, "isUnix")) && nix.asBool(!nix.asBool(nix.lookup(w, "isDarwin"))));
   })());
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "evcxr",
       version: "0.22.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "evcxr",
           repo: "evcxr",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-aZDoYB0qbXyASGT6uj48DAxJRHkZg66hD/Qy3UjcjJo=",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         RUST_SRC_PATH: nix.thunk(() => nix.str`${nix.sel(rustPlatform, "rustLibSrc")}`),
       })),
       nativeBuildInputs: nix.thunk(() => [pkg_config, makeWrapper, cmake]),
@@ -64,11 +60,11 @@ rm $out/bin/print_performance_info
 `;
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Evaluation context for Rust",
         homepage: "https://github.com/evcxr/evcxr",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

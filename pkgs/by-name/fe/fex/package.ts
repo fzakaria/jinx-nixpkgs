@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 52, 5], ["paths", 53, 5], ["ignoreCollisions", 60, 5], ["pathsToLink", 61, 5], ["postBuild", 66, 5]], [["owner", 105, 5], ["repo", 106, 5], ["tag", 107, 5], ["hash", 108, 5], ["leaveDotGit", 110, 5], ["postFetch", 111, 5]], [["updateScript", 260, 5]], [["description", 264, 5], ["homepage", 265, 5], ["changelog", 266, 5], ["platforms", 267, 5], ["license", 268, 5], ["maintainers", 269, 5], ["mainProgram", 270, 5]], [["pname", 101, 3], ["version", 102, 3], ["src", 104, 3], ["postPatch", 134, 3], ["nativeBuildInputs", 181, 3], ["buildInputs", 195, 3], ["cmakeFlags", 212, 3], ["strictDeps", 222, 3], ["doCheck", 228, 3], ["preConfigure", 229, 3], ["nativeCheckInputs", 240, 3], ["checkInputs", 241, 3], ["checkTarget", 245, 3], ["dontWrapQtApps", 254, 3], ["preFixup", 255, 3], ["passthru", 259, 3], ["meta", 263, 3]]]);
 const formals$1 = { args: { lib: false, llvmPackages: false, fetchFromGitHub: false, cmake: false, ninja: false, "pkg-config": false, python3: false, "nix-update-script": false, xxhash: false, fmt: false, libxml2: false, openssl: false, "range-v3": false, catch2_3: false, nasm: false, buildEnv: false, writeText: false, pkgsCross: false, libclang: false, libllvm: false, "alsa-lib": false, libdrm: false, libGL: false, wayland: false, libxrender: false, libxrandr: false, libx11: false, xorgproto: false, libxcb: false, withQt: true, qt6: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 52, 5], ["paths", 53, 5], ["ignoreCollisions", 60, 5], ["pathsToLink", 61, 5], ["postBuild", 66, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 105, 5], ["repo", 106, 5], ["tag", 107, 5], ["hash", 108, 5], ["leaveDotGit", 110, 5], ["postFetch", 111, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 260, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 264, 5], ["homepage", 265, 5], ["changelog", 266, 5], ["platforms", 267, 5], ["license", 268, 5], ["maintainers", 269, 5], ["mainProgram", 270, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 101, 3], ["version", 102, 3], ["src", 104, 3], ["postPatch", 134, 3], ["nativeBuildInputs", 181, 3], ["buildInputs", 195, 3], ["cmakeFlags", 212, 3], ["strictDeps", 222, 3], ["doCheck", 228, 3], ["preConfigure", 229, 3], ["nativeCheckInputs", 240, 3], ["checkInputs", 241, 3], ["checkTarget", 245, 3], ["dontWrapQtApps", 254, 3], ["preFixup", 255, 3], ["passthru", 259, 3], ["meta", 263, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -56,7 +52,7 @@ export default nix.lambda((args) => (() => {
   const pkgsCross32 = nix.thunk(() => nix.sel(pkgsCross, "gnu32"));
   const pkgsCross64 = nix.thunk(() => nix.sel(pkgsCross, "gnu64"));
   const devRootFS = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "fex-dev-rootfs",
       paths: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.sel(pkgsCross64, "stdenv", "cc", "libc_dev")),
@@ -93,11 +89,11 @@ set(CMAKE_C_FLAGS "\${CMAKE_C_FLAGS} \${CLANG_FLAGS}")
 set(CMAKE_CXX_FLAGS "\${CMAKE_CXX_FLAGS} \${CLANG_FLAGS}")
 `)));
   return nix.app(nix.sel(llvmPackages, "stdenv", "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "fex",
       version: "2608",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "FEX-Emu",
           repo: "FEX",
           tag: nix.thunk(() => nix.str`FEX-${nix.sel(finalAttrs, "version")}`),
@@ -198,11 +194,11 @@ fi
       dontWrapQtApps: true,
       preFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withQt, "wrapQtApp $out/bin/FEXConfig\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Fast usermode x86 and x86-64 emulator for Arm64 Linux",
         homepage: "https://fex-emu.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/FEX-Emu/FEX/releases/tag/FEX-${nix.sel(finalAttrs, "version")}`),

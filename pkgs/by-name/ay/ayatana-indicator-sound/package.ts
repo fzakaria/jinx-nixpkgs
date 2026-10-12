@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["ayatana-indicator-sound", 121, 7]], [["startup", 127, 7], ["lomiri", 128, 7]], [["ayatana-indicators", 120, 5], ["tests", 126, 5], ["updateScript", 130, 5]], [["description", 134, 5], ["longDescription", 135, 5], ["homepage", 139, 5], ["changelog", 140, 5], ["license", 141, 5], ["maintainers", 142, 5], ["platforms", 143, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["postPatch", 40, 3], ["strictDeps", 62, 3], ["nativeBuildInputs", 64, 3], ["buildInputs", 74, 3], ["nativeCheckInputs", 91, 3], ["checkInputs", 96, 3], ["cmakeFlags", 105, 3], ["dontWrapQtApps", 112, 3], ["doCheck", 114, 3], ["enableParallelChecking", 117, 3], ["passthru", 119, 3], ["meta", 133, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, gitUpdater: false, fetchFromGitHub: false, nixosTests: false, accountsservice: false, cmake: false, dbus: false, "dbus-test-runner": false, glib: false, "gobject-introspection": false, gtest: false, intltool: false, "libayatana-common": false, libgee: false, libnotify: false, libpulseaudio: false, libsForQt5: false, libxml2: false, lomiri: false, "pkg-config": false, python3: false, systemdLibs: false, vala: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ayatana-indicator-sound", 121, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["startup", 127, 7], ["lomiri", 128, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["ayatana-indicators", 120, 5], ["tests", 126, 5], ["updateScript", 130, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 134, 5], ["longDescription", 135, 5], ["homepage", 139, 5], ["changelog", 140, 5], ["license", 141, 5], ["maintainers", 142, 5], ["platforms", 143, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["postPatch", 40, 3], ["strictDeps", 62, 3], ["nativeBuildInputs", 64, 3], ["buildInputs", 74, 3], ["nativeCheckInputs", 91, 3], ["checkInputs", 96, 3], ["cmakeFlags", 105, 3], ["dontWrapQtApps", 112, 3], ["doCheck", 114, 3], ["enableParallelChecking", 117, 3], ["passthru", 119, 3], ["meta", 133, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const vala = nix.arg($, "vala");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "ayatana-indicator-sound",
       version: "24.5.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "AyatanaIndicators",
           repo: "ayatana-indicator-sound",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -121,20 +116,20 @@ substituteInPlace \\
       doCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
       enableParallelChecking: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         "ayatana-indicators": nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "ayatana-indicator-sound": nix.thunk(() => ["ayatana", "lomiri"]),
         })),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           startup: nix.thunk(() => nix.sel(nixosTests, "ayatana-indicators")),
           lomiri: nix.thunk(() => nix.sel(nixosTests, "lomiri", "desktop-ayatana-indicator-sound")),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Ayatana Indicator for managing system sound",
         longDescription: "Ayatana Indicator Sound that provides easy control of the PulseAudio\nsound daemon.\n",
         homepage: "https://github.com/AyatanaIndicators/ayatana-indicator-sound",

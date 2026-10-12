@@ -2,41 +2,34 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/release.nix", [[["system", 5, 33]], [["lib", 6, 5]], [["pkgs", 15, 51]], [["lib", 23, 15], ["nix", 23, 19], ["pkgs", 24, 7]], [["pkgs", 32, 15]], [["pkgs", 35, 15], ["lib", 36, 7]], [["pkgs", 39, 15], ["lib", 40, 7]], [["name", 29, 3], ["paths", 30, 3]]]);
 const formals$1 = { args: { system: true, pkgs: true, pkgsBB: true, nix: true, nixVersions: true, "pkgs-nixVersions": true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/release.nix", [["system", 5, 33]]);
-const pos$2 = nix.positions(here + "/release.nix", [["lib", 6, 5]]);
-const pos$3 = nix.positions(here + "/release.nix", [["pkgs", 15, 51]]);
-const pos$4 = nix.positions(here + "/release.nix", [["lib", 23, 15], ["nix", 23, 19], ["pkgs", 24, 7]]);
-const pos$5 = nix.positions(here + "/release.nix", [["pkgs", 32, 15]]);
-const pos$6 = nix.positions(here + "/release.nix", [["pkgs", 35, 15], ["lib", 36, 7]]);
-const pos$7 = nix.positions(here + "/release.nix", [["pkgs", 39, 15], ["lib", 40, 7]]);
-const pos$8 = nix.positions(here + "/release.nix", [["name", 29, 3], ["paths", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
-  const pkgs = nix.argOr($, "pkgs", () => nix.update(nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system }))), {
-    [nix.POS]: pos$2,
+  const pkgs = nix.argOr($, "pkgs", () => nix.update(nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: $pos[0], system: system }))), {
+    [nix.POS]: $pos[1],
     lib: nix.thunk(() => nix.builtins.throw("pkgs.lib accessed, but the lib tests should use nixpkgs' lib path directly!")),
   }));
   const pkgsBB = nix.argOr($, "pkgsBB", () => nix.sel(pkgs, "pkgsBuildBuild"));
   const nix$ = nix.argOr($, "nix", () => nix.sel(pkgs_nixVersions, "stable"));
   const nixVersions = nix.argOr($, "nixVersions", () => [nix$, nix.thunk(() => nix.sel(pkgs_nixVersions, "latest"))]);
-  const pkgs_nixVersions = nix.argOr($, "pkgs-nixVersions", () => nix.app(nix.builtins.import(nix.path(here, "./nix-for-tests.nix")), nix.thunk(() => ({ [nix.POS]: pos$3, pkgs: pkgsBB }))));
+  const pkgs_nixVersions = nix.argOr($, "pkgs-nixVersions", () => nix.app(nix.builtins.import(nix.path(here, "./nix-for-tests.nix")), nix.thunk(() => ({ [nix.POS]: $pos[2], pkgs: pkgsBB }))));
   const lib = nix.thunk(() => nix.builtins.import(nix.path(here, "../.")));
-  const testWithNix = (nix$_1) => nix.app(nix.builtins.import(nix.path(here, "./test-with-nix.nix")), nix.thunk(() => ({ [nix.POS]: pos$4, lib: lib, nix: nix$_1, pkgs: pkgsBB })));
+  const testWithNix = (nix$_1) => nix.app(nix.builtins.import(nix.path(here, "./test-with-nix.nix")), nix.thunk(() => ({ [nix.POS]: $pos[3], lib: lib, nix: nix$_1, pkgs: pkgsBB })));
   return nix.app(nix.sel(pkgsBB, "symlinkJoin"), nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       name: "nixpkgs-lib-tests",
       paths: nix.thunk(() => nix.concat(nix.builtins.map(testWithNix, nixVersions), [
-        nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./nix-unit.nix")), nix.thunk(() => ({ [nix.POS]: pos$5, pkgs: pkgs })))),
+        nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./nix-unit.nix")), nix.thunk(() => ({ [nix.POS]: $pos[4], pkgs: pkgs })))),
         nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./maintainers.nix")), nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             pkgs: pkgs,
             lib: nix.thunk(() => nix.builtins.import(nix.path(here, "../."))),
           })))),
         nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./teams.nix")), nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             pkgs: pkgs,
             lib: nix.thunk(() => nix.builtins.import(nix.path(here, "../."))),
           })))),

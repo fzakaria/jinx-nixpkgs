@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["fetchSubmodules", 23, 5], ["leaveDotGit", 24, 5], ["postFetch", 25, 5], ["hash", 33, 5]], [["description", 71, 5], ["homepage", 72, 5], ["changelog", 73, 5], ["sourceProvenance", 74, 5], ["license", 78, 5], ["maintainers", 79, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["postPatch", 36, 3], ["build-system", 45, 3], ["dependencies", 49, 3], ["nativeCheckInputs", 53, 3], ["disabledTestPaths", 60, 3], ["pythonImportsCheck", 65, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, cbor2: false, docopt: false, fetchFromGitHub: false, jsonconversion: false, "py-build-cmake": false, pytestCheckHook: false, tabulate: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["fetchSubmodules", 23, 5], ["leaveDotGit", 24, 5], ["postFetch", 25, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 71, 5], ["homepage", 72, 5], ["changelog", 73, 5], ["sourceProvenance", 74, 5], ["license", 78, 5], ["maintainers", 79, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["postPatch", 36, 3], ["build-system", 45, 3], ["dependencies", 49, 3], ["nativeCheckInputs", 53, 3], ["disabledTestPaths", 60, 3], ["pythonImportsCheck", 65, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const tabulate = nix.arg($, "tabulate");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "amazon-ion",
       version: "0.14.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "amazon-ion",
           repo: "ion-python",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["tests/test_benchmark*.py"]),
       pythonImportsCheck: nix.thunk(() => ["amazon.ion", "amazon._ioncmodule"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python implementation of Amazon Ion",
         homepage: "https://github.com/amazon-ion/ion-python",
         changelog: nix.thunk(() => nix.str`https://github.com/amazon-ion/ion-python/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

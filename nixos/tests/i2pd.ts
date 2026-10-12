@@ -2,142 +2,57 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/i2pd.nix", [[["maintainers", 4, 8]], [["vlans", 10, 24]], [["useDHCP", 13, 27]], [["eth1", 13, 22]], [["allowedTCPPorts", 14, 20], ["allowedUDPPorts", 15, 20]], [["useDHCP", 12, 11], ["interfaces", 13, 11], ["firewall", 14, 11]], [["ExecStart", 22, 13], ["DynamicUser", 28, 13]], [["wantedBy", 19, 11], ["before", 20, 11], ["serviceConfig", 21, 11]], [["test-web-server", 18, 26]], [["services", 18, 17]], [["urls", 45, 20], ["yggurls", 46, 20]], [["length", 50, 32]], [["length", 51, 33]], [["inbound", 50, 24], ["outbound", 51, 24]], [["length", 52, 33]], [["length", 53, 34]], [["inbound", 52, 25], ["outbound", 53, 25]], [["loglevel", 36, 13], ["netid", 39, 13], ["host", 40, 13], ["port", 41, 13], ["reservedrange", 43, 13], ["reseed", 45, 13], ["shareddest", 50, 13], ["exploratory", 52, 13]], [["length", 60, 21]], [["length", 61, 22]], [["host", 57, 13], ["port", 58, 13], ["keys", 59, 13], ["inbound", 60, 13], ["outbound", 61, 13]], [["testserver", 56, 25]], [["enable", 33, 11], ["settings", 34, 11], ["serverTunnels", 56, 11]], [["i2pd", 32, 18]], [["virtualisation", 10, 9], ["networking", 11, 9], ["systemd", 18, 9], ["services", 32, 9]], [["vlans", 69, 24]], [["useDHCP", 72, 27]], [["eth1", 72, 22]], [["allowedTCPPorts", 73, 20], ["allowedUDPPorts", 74, 20]], [["useDHCP", 71, 11], ["interfaces", 72, 11], ["firewall", 73, 11]], [["urls", 85, 20], ["yggurls", 86, 20]], [["length", 90, 32]], [["length", 91, 33]], [["inbound", 90, 24], ["outbound", 91, 24]], [["length", 92, 33]], [["length", 93, 34]], [["inbound", 92, 25], ["outbound", 93, 25]], [["loglevel", 80, 13], ["netid", 81, 13], ["host", 82, 13], ["port", 83, 13], ["reservedrange", 84, 13], ["reseed", 85, 13], ["floodfill", 87, 13], ["shareddest", 90, 13], ["exploratory", 92, 13]], [["enable", 78, 11], ["settings", 79, 11]], [["i2pd", 77, 18]], [["virtualisation", 69, 9], ["networking", 70, 9], ["services", 77, 9]], [["vlans", 101, 24]], [["useDHCP", 104, 27]], [["eth1", 104, 22]], [["useDHCP", 103, 11], ["interfaces", 104, 11]], [["rules", 109, 26]], [["tmpfiles", 109, 17]], [["urls", 120, 20], ["yggurls", 121, 20]], [["length", 123, 31]], [["length", 124, 32]], [["inbound", 123, 23], ["outbound", 124, 23]], [["length", 125, 32]], [["length", 126, 33]], [["inbound", 125, 24], ["outbound", 126, 24]], [["length", 127, 33]], [["length", 128, 34]], [["inbound", 127, 25], ["outbound", 128, 25]], [["loglevel", 116, 13], ["netid", 117, 13], ["host", 118, 13], ["reservedrange", 119, 13], ["reseed", 120, 13], ["httpproxy", 123, 13], ["shareddest", 125, 13], ["exploratory", 127, 13]], [["_secret", 133, 25]], [["length", 134, 21]], [["length", 135, 22]], [["port", 132, 13], ["destination", 133, 13], ["inbound", 134, 13], ["outbound", 135, 13]], [["toServer", 131, 25]], [["enable", 114, 11], ["settings", 115, 11], ["clientTunnels", 131, 11]], [["i2pd", 113, 18]], [["virtualisation", 101, 9], ["networking", 102, 9], ["systemd", 109, 9], ["services", 113, 9]], [["MulticastInterfaces", 144, 20]], [["enable", 143, 11], ["settings", 144, 11]], [["urls", 152, 20], ["yggurls", 153, 20]], [["enabled", 154, 23]], [["enabled", 155, 24]], [["enabled", 159, 19]], [["enabled", 160, 18]], [["yggdrasil", 161, 22]], [["length", 163, 32]], [["length", 164, 33]], [["inbound", 163, 24], ["outbound", 164, 24]], [["length", 165, 33]], [["length", 166, 34]], [["inbound", 165, 25], ["outbound", 166, 25]], [["loglevel", 150, 13], ["netid", 151, 13], ["reseed", 152, 13], ["httpproxy", 154, 13], ["socksproxy", 155, 13], ["ipv4", 157, 13], ["ipv6", 158, 13], ["ntcp2", 159, 13], ["ssu2", 160, 13], ["meshnets", 161, 13], ["shareddest", 163, 13], ["exploratory", 165, 13]], [["enable", 148, 11], ["settings", 149, 11]], [["yggdrasil", 142, 9], ["i2pd", 147, 9]], [["services", 141, 7]], [["server", 7, 5], ["router", 66, 5], ["client", 98, 5], ["yggdrasilCheck", 140, 5]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 173, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/i2pd.nix", [["maintainers", 4, 8]]);
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/i2pd.nix", [["vlans", 10, 24]]);
-const pos$3 = nix.positions(here + "/i2pd.nix", [["useDHCP", 13, 27]]);
-const pos$4 = nix.positions(here + "/i2pd.nix", [["eth1", 13, 22]]);
-const pos$5 = nix.positions(here + "/i2pd.nix", [["allowedTCPPorts", 14, 20], ["allowedUDPPorts", 15, 20]]);
-const pos$6 = nix.positions(here + "/i2pd.nix", [["useDHCP", 12, 11], ["interfaces", 13, 11], ["firewall", 14, 11]]);
-const pos$7 = nix.positions(here + "/i2pd.nix", [["ExecStart", 22, 13], ["DynamicUser", 28, 13]]);
-const pos$8 = nix.positions(here + "/i2pd.nix", [["wantedBy", 19, 11], ["before", 20, 11], ["serviceConfig", 21, 11]]);
-const pos$9 = nix.positions(here + "/i2pd.nix", [["test-web-server", 18, 26]]);
-const pos$10 = nix.positions(here + "/i2pd.nix", [["services", 18, 17]]);
-const pos$11 = nix.positions(here + "/i2pd.nix", [["urls", 45, 20], ["yggurls", 46, 20]]);
-const pos$12 = nix.positions(here + "/i2pd.nix", [["length", 50, 32]]);
-const pos$13 = nix.positions(here + "/i2pd.nix", [["length", 51, 33]]);
-const pos$14 = nix.positions(here + "/i2pd.nix", [["inbound", 50, 24], ["outbound", 51, 24]]);
-const pos$15 = nix.positions(here + "/i2pd.nix", [["length", 52, 33]]);
-const pos$16 = nix.positions(here + "/i2pd.nix", [["length", 53, 34]]);
-const pos$17 = nix.positions(here + "/i2pd.nix", [["inbound", 52, 25], ["outbound", 53, 25]]);
-const pos$18 = nix.positions(here + "/i2pd.nix", [["loglevel", 36, 13], ["netid", 39, 13], ["host", 40, 13], ["port", 41, 13], ["reservedrange", 43, 13], ["reseed", 45, 13], ["shareddest", 50, 13], ["exploratory", 52, 13]]);
-const pos$19 = nix.positions(here + "/i2pd.nix", [["length", 60, 21]]);
-const pos$20 = nix.positions(here + "/i2pd.nix", [["length", 61, 22]]);
-const pos$21 = nix.positions(here + "/i2pd.nix", [["host", 57, 13], ["port", 58, 13], ["keys", 59, 13], ["inbound", 60, 13], ["outbound", 61, 13]]);
-const pos$22 = nix.positions(here + "/i2pd.nix", [["testserver", 56, 25]]);
-const pos$23 = nix.positions(here + "/i2pd.nix", [["enable", 33, 11], ["settings", 34, 11], ["serverTunnels", 56, 11]]);
-const pos$24 = nix.positions(here + "/i2pd.nix", [["i2pd", 32, 18]]);
-const pos$25 = nix.positions(here + "/i2pd.nix", [["virtualisation", 10, 9], ["networking", 11, 9], ["systemd", 18, 9], ["services", 32, 9]]);
 const formals$3 = { args: { config: false }, ellipsis: true };
-const pos$26 = nix.positions(here + "/i2pd.nix", [["vlans", 69, 24]]);
-const pos$27 = nix.positions(here + "/i2pd.nix", [["useDHCP", 72, 27]]);
-const pos$28 = nix.positions(here + "/i2pd.nix", [["eth1", 72, 22]]);
-const pos$29 = nix.positions(here + "/i2pd.nix", [["allowedTCPPorts", 73, 20], ["allowedUDPPorts", 74, 20]]);
-const pos$30 = nix.positions(here + "/i2pd.nix", [["useDHCP", 71, 11], ["interfaces", 72, 11], ["firewall", 73, 11]]);
-const pos$31 = nix.positions(here + "/i2pd.nix", [["urls", 85, 20], ["yggurls", 86, 20]]);
-const pos$32 = nix.positions(here + "/i2pd.nix", [["length", 90, 32]]);
-const pos$33 = nix.positions(here + "/i2pd.nix", [["length", 91, 33]]);
-const pos$34 = nix.positions(here + "/i2pd.nix", [["inbound", 90, 24], ["outbound", 91, 24]]);
-const pos$35 = nix.positions(here + "/i2pd.nix", [["length", 92, 33]]);
-const pos$36 = nix.positions(here + "/i2pd.nix", [["length", 93, 34]]);
-const pos$37 = nix.positions(here + "/i2pd.nix", [["inbound", 92, 25], ["outbound", 93, 25]]);
-const pos$38 = nix.positions(here + "/i2pd.nix", [["loglevel", 80, 13], ["netid", 81, 13], ["host", 82, 13], ["port", 83, 13], ["reservedrange", 84, 13], ["reseed", 85, 13], ["floodfill", 87, 13], ["shareddest", 90, 13], ["exploratory", 92, 13]]);
-const pos$39 = nix.positions(here + "/i2pd.nix", [["enable", 78, 11], ["settings", 79, 11]]);
-const pos$40 = nix.positions(here + "/i2pd.nix", [["i2pd", 77, 18]]);
-const pos$41 = nix.positions(here + "/i2pd.nix", [["virtualisation", 69, 9], ["networking", 70, 9], ["services", 77, 9]]);
 const formals$4 = { args: { config: false }, ellipsis: true };
-const pos$42 = nix.positions(here + "/i2pd.nix", [["vlans", 101, 24]]);
-const pos$43 = nix.positions(here + "/i2pd.nix", [["useDHCP", 104, 27]]);
-const pos$44 = nix.positions(here + "/i2pd.nix", [["eth1", 104, 22]]);
-const pos$45 = nix.positions(here + "/i2pd.nix", [["useDHCP", 103, 11], ["interfaces", 104, 11]]);
-const pos$46 = nix.positions(here + "/i2pd.nix", [["rules", 109, 26]]);
-const pos$47 = nix.positions(here + "/i2pd.nix", [["tmpfiles", 109, 17]]);
-const pos$48 = nix.positions(here + "/i2pd.nix", [["urls", 120, 20], ["yggurls", 121, 20]]);
-const pos$49 = nix.positions(here + "/i2pd.nix", [["length", 123, 31]]);
-const pos$50 = nix.positions(here + "/i2pd.nix", [["length", 124, 32]]);
-const pos$51 = nix.positions(here + "/i2pd.nix", [["inbound", 123, 23], ["outbound", 124, 23]]);
-const pos$52 = nix.positions(here + "/i2pd.nix", [["length", 125, 32]]);
-const pos$53 = nix.positions(here + "/i2pd.nix", [["length", 126, 33]]);
-const pos$54 = nix.positions(here + "/i2pd.nix", [["inbound", 125, 24], ["outbound", 126, 24]]);
-const pos$55 = nix.positions(here + "/i2pd.nix", [["length", 127, 33]]);
-const pos$56 = nix.positions(here + "/i2pd.nix", [["length", 128, 34]]);
-const pos$57 = nix.positions(here + "/i2pd.nix", [["inbound", 127, 25], ["outbound", 128, 25]]);
-const pos$58 = nix.positions(here + "/i2pd.nix", [["loglevel", 116, 13], ["netid", 117, 13], ["host", 118, 13], ["reservedrange", 119, 13], ["reseed", 120, 13], ["httpproxy", 123, 13], ["shareddest", 125, 13], ["exploratory", 127, 13]]);
-const pos$59 = nix.positions(here + "/i2pd.nix", [["_secret", 133, 25]]);
-const pos$60 = nix.positions(here + "/i2pd.nix", [["length", 134, 21]]);
-const pos$61 = nix.positions(here + "/i2pd.nix", [["length", 135, 22]]);
-const pos$62 = nix.positions(here + "/i2pd.nix", [["port", 132, 13], ["destination", 133, 13], ["inbound", 134, 13], ["outbound", 135, 13]]);
-const pos$63 = nix.positions(here + "/i2pd.nix", [["toServer", 131, 25]]);
-const pos$64 = nix.positions(here + "/i2pd.nix", [["enable", 114, 11], ["settings", 115, 11], ["clientTunnels", 131, 11]]);
-const pos$65 = nix.positions(here + "/i2pd.nix", [["i2pd", 113, 18]]);
-const pos$66 = nix.positions(here + "/i2pd.nix", [["virtualisation", 101, 9], ["networking", 102, 9], ["systemd", 109, 9], ["services", 113, 9]]);
-const pos$67 = nix.positions(here + "/i2pd.nix", [["MulticastInterfaces", 144, 20]]);
-const pos$68 = nix.positions(here + "/i2pd.nix", [["enable", 143, 11], ["settings", 144, 11]]);
-const pos$69 = nix.positions(here + "/i2pd.nix", [["urls", 152, 20], ["yggurls", 153, 20]]);
-const pos$70 = nix.positions(here + "/i2pd.nix", [["enabled", 154, 23]]);
-const pos$71 = nix.positions(here + "/i2pd.nix", [["enabled", 155, 24]]);
-const pos$72 = nix.positions(here + "/i2pd.nix", [["enabled", 159, 19]]);
-const pos$73 = nix.positions(here + "/i2pd.nix", [["enabled", 160, 18]]);
-const pos$74 = nix.positions(here + "/i2pd.nix", [["yggdrasil", 161, 22]]);
-const pos$75 = nix.positions(here + "/i2pd.nix", [["length", 163, 32]]);
-const pos$76 = nix.positions(here + "/i2pd.nix", [["length", 164, 33]]);
-const pos$77 = nix.positions(here + "/i2pd.nix", [["inbound", 163, 24], ["outbound", 164, 24]]);
-const pos$78 = nix.positions(here + "/i2pd.nix", [["length", 165, 33]]);
-const pos$79 = nix.positions(here + "/i2pd.nix", [["length", 166, 34]]);
-const pos$80 = nix.positions(here + "/i2pd.nix", [["inbound", 165, 25], ["outbound", 166, 25]]);
-const pos$81 = nix.positions(here + "/i2pd.nix", [["loglevel", 150, 13], ["netid", 151, 13], ["reseed", 152, 13], ["httpproxy", 154, 13], ["socksproxy", 155, 13], ["ipv4", 157, 13], ["ipv6", 158, 13], ["ntcp2", 159, 13], ["ssu2", 160, 13], ["meshnets", 161, 13], ["shareddest", 163, 13], ["exploratory", 165, 13]]);
-const pos$82 = nix.positions(here + "/i2pd.nix", [["enable", 148, 11], ["settings", 149, 11]]);
-const pos$83 = nix.positions(here + "/i2pd.nix", [["yggdrasil", 142, 9], ["i2pd", 147, 9]]);
-const pos$84 = nix.positions(here + "/i2pd.nix", [["services", 141, 7]]);
-const pos$85 = nix.positions(here + "/i2pd.nix", [["server", 7, 5], ["router", 66, 5], ["client", 98, 5], ["yggdrasilCheck", 140, 5]]);
-const pos$86 = nix.positions(here + "/i2pd.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 173, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$86,
+    [nix.POS]: $pos[85],
     name: "i2pd",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "h7x4"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$85,
+      [nix.POS]: $pos[84],
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$25,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, vlans: nix.thunk(() => [1n]) })),
+          [nix.POS]: $pos[24],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[1], vlans: nix.thunk(() => [1n]) })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             useDHCP: false,
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$4,
-              eth1: nix.thunk(() => ({ [nix.POS]: pos$3, useDHCP: false })),
+              [nix.POS]: $pos[3],
+              eth1: nix.thunk(() => ({ [nix.POS]: $pos[2], useDHCP: false })),
             })),
             firewall: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               allowedTCPPorts: nix.thunk(() => [12345n]),
               allowedUDPPorts: nix.thunk(() => [12345n]),
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               "test-web-server": nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 before: nix.thunk(() => ["i2pd.service"]),
                 serviceConfig: nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "python3")), "python3")} \\
   -m http.server 8080 \\
   --bind 127.0.0.1 \\
@@ -149,38 +64,38 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$24,
+            [nix.POS]: $pos[23],
             i2pd: nix.thunk(() => ({
-              [nix.POS]: pos$23,
+              [nix.POS]: $pos[22],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$18,
+                [nix.POS]: $pos[17],
                 loglevel: "info",
                 netid: 77n,
                 host: nix.thunk(() => nix.sel(config, "networking", "primaryIPAddress")),
                 port: 12345n,
                 reservedrange: false,
-                reseed: nix.thunk(() => ({ [nix.POS]: pos$11, urls: "", yggurls: "" })),
+                reseed: nix.thunk(() => ({ [nix.POS]: $pos[10], urls: "", yggurls: "" })),
                 shareddest: nix.thunk(() => ({
-                  [nix.POS]: pos$14,
-                  inbound: nix.thunk(() => ({ [nix.POS]: pos$12, length: 1n })),
-                  outbound: nix.thunk(() => ({ [nix.POS]: pos$13, length: 1n })),
+                  [nix.POS]: $pos[13],
+                  inbound: nix.thunk(() => ({ [nix.POS]: $pos[11], length: 1n })),
+                  outbound: nix.thunk(() => ({ [nix.POS]: $pos[12], length: 1n })),
                 })),
                 exploratory: nix.thunk(() => ({
-                  [nix.POS]: pos$17,
-                  inbound: nix.thunk(() => ({ [nix.POS]: pos$15, length: 1n })),
-                  outbound: nix.thunk(() => ({ [nix.POS]: pos$16, length: 1n })),
+                  [nix.POS]: $pos[16],
+                  inbound: nix.thunk(() => ({ [nix.POS]: $pos[14], length: 1n })),
+                  outbound: nix.thunk(() => ({ [nix.POS]: $pos[15], length: 1n })),
                 })),
               })),
               serverTunnels: nix.thunk(() => ({
-                [nix.POS]: pos$22,
+                [nix.POS]: $pos[21],
                 testserver: nix.thunk(() => ({
-                  [nix.POS]: pos$21,
+                  [nix.POS]: $pos[20],
                   host: "127.0.0.1",
                   port: 8080n,
                   keys: "testserver-keys.dat",
-                  inbound: nix.thunk(() => ({ [nix.POS]: pos$19, length: 1n })),
-                  outbound: nix.thunk(() => ({ [nix.POS]: pos$20, length: 1n })),
+                  inbound: nix.thunk(() => ({ [nix.POS]: $pos[18], length: 1n })),
+                  outbound: nix.thunk(() => ({ [nix.POS]: $pos[19], length: 1n })),
                 })),
               })),
             })),
@@ -191,44 +106,44 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const config = nix.arg($_1, "config");
         return {
-          [nix.POS]: pos$41,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$26, vlans: nix.thunk(() => [1n]) })),
+          [nix.POS]: $pos[40],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[25], vlans: nix.thunk(() => [1n]) })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$30,
+            [nix.POS]: $pos[29],
             useDHCP: false,
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$28,
-              eth1: nix.thunk(() => ({ [nix.POS]: pos$27, useDHCP: false })),
+              [nix.POS]: $pos[27],
+              eth1: nix.thunk(() => ({ [nix.POS]: $pos[26], useDHCP: false })),
             })),
             firewall: nix.thunk(() => ({
-              [nix.POS]: pos$29,
+              [nix.POS]: $pos[28],
               allowedTCPPorts: nix.thunk(() => [12345n]),
               allowedUDPPorts: nix.thunk(() => [12345n]),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$40,
+            [nix.POS]: $pos[39],
             i2pd: nix.thunk(() => ({
-              [nix.POS]: pos$39,
+              [nix.POS]: $pos[38],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$38,
+                [nix.POS]: $pos[37],
                 loglevel: "info",
                 netid: 77n,
                 host: nix.thunk(() => nix.sel(config, "networking", "primaryIPAddress")),
                 port: 12345n,
                 reservedrange: false,
-                reseed: nix.thunk(() => ({ [nix.POS]: pos$31, urls: "", yggurls: "" })),
+                reseed: nix.thunk(() => ({ [nix.POS]: $pos[30], urls: "", yggurls: "" })),
                 floodfill: true,
                 shareddest: nix.thunk(() => ({
-                  [nix.POS]: pos$34,
-                  inbound: nix.thunk(() => ({ [nix.POS]: pos$32, length: 0n })),
-                  outbound: nix.thunk(() => ({ [nix.POS]: pos$33, length: 0n })),
+                  [nix.POS]: $pos[33],
+                  inbound: nix.thunk(() => ({ [nix.POS]: $pos[31], length: 0n })),
+                  outbound: nix.thunk(() => ({ [nix.POS]: $pos[32], length: 0n })),
                 })),
                 exploratory: nix.thunk(() => ({
-                  [nix.POS]: pos$37,
-                  inbound: nix.thunk(() => ({ [nix.POS]: pos$35, length: 0n })),
-                  outbound: nix.thunk(() => ({ [nix.POS]: pos$36, length: 0n })),
+                  [nix.POS]: $pos[36],
+                  inbound: nix.thunk(() => ({ [nix.POS]: $pos[34], length: 0n })),
+                  outbound: nix.thunk(() => ({ [nix.POS]: $pos[35], length: 0n })),
                 })),
               })),
             })),
@@ -239,59 +154,59 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$4);
         const config = nix.arg($_1, "config");
         return {
-          [nix.POS]: pos$66,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$42, vlans: nix.thunk(() => [1n]) })),
+          [nix.POS]: $pos[65],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[41], vlans: nix.thunk(() => [1n]) })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$45,
+            [nix.POS]: $pos[44],
             useDHCP: false,
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$44,
-              eth1: nix.thunk(() => ({ [nix.POS]: pos$43, useDHCP: false })),
+              [nix.POS]: $pos[43],
+              eth1: nix.thunk(() => ({ [nix.POS]: $pos[42], useDHCP: false })),
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$47,
+            [nix.POS]: $pos[46],
             tmpfiles: nix.thunk(() => ({
-              [nix.POS]: pos$46,
+              [nix.POS]: $pos[45],
               rules: nix.thunk(() => ["f /run/i2pd-secrets/server-destination 0400 root root - unknown.b32.i2p"]),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$65,
+            [nix.POS]: $pos[64],
             i2pd: nix.thunk(() => ({
-              [nix.POS]: pos$64,
+              [nix.POS]: $pos[63],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$58,
+                [nix.POS]: $pos[57],
                 loglevel: "info",
                 netid: 77n,
                 host: nix.thunk(() => nix.sel(config, "networking", "primaryIPAddress")),
                 reservedrange: false,
-                reseed: nix.thunk(() => ({ [nix.POS]: pos$48, urls: "", yggurls: "" })),
+                reseed: nix.thunk(() => ({ [nix.POS]: $pos[47], urls: "", yggurls: "" })),
                 httpproxy: nix.thunk(() => ({
-                  [nix.POS]: pos$51,
-                  inbound: nix.thunk(() => ({ [nix.POS]: pos$49, length: 1n })),
-                  outbound: nix.thunk(() => ({ [nix.POS]: pos$50, length: 1n })),
+                  [nix.POS]: $pos[50],
+                  inbound: nix.thunk(() => ({ [nix.POS]: $pos[48], length: 1n })),
+                  outbound: nix.thunk(() => ({ [nix.POS]: $pos[49], length: 1n })),
                 })),
                 shareddest: nix.thunk(() => ({
-                  [nix.POS]: pos$54,
-                  inbound: nix.thunk(() => ({ [nix.POS]: pos$52, length: 1n })),
-                  outbound: nix.thunk(() => ({ [nix.POS]: pos$53, length: 1n })),
+                  [nix.POS]: $pos[53],
+                  inbound: nix.thunk(() => ({ [nix.POS]: $pos[51], length: 1n })),
+                  outbound: nix.thunk(() => ({ [nix.POS]: $pos[52], length: 1n })),
                 })),
                 exploratory: nix.thunk(() => ({
-                  [nix.POS]: pos$57,
-                  inbound: nix.thunk(() => ({ [nix.POS]: pos$55, length: 1n })),
-                  outbound: nix.thunk(() => ({ [nix.POS]: pos$56, length: 1n })),
+                  [nix.POS]: $pos[56],
+                  inbound: nix.thunk(() => ({ [nix.POS]: $pos[54], length: 1n })),
+                  outbound: nix.thunk(() => ({ [nix.POS]: $pos[55], length: 1n })),
                 })),
               })),
               clientTunnels: nix.thunk(() => ({
-                [nix.POS]: pos$63,
+                [nix.POS]: $pos[62],
                 toServer: nix.thunk(() => ({
-                  [nix.POS]: pos$62,
+                  [nix.POS]: $pos[61],
                   port: 10800n,
-                  destination: nix.thunk(() => ({ [nix.POS]: pos$59, _secret: "/run/i2pd-secrets/server-destination" })),
-                  inbound: nix.thunk(() => ({ [nix.POS]: pos$60, length: 1n })),
-                  outbound: nix.thunk(() => ({ [nix.POS]: pos$61, length: 1n })),
+                  destination: nix.thunk(() => ({ [nix.POS]: $pos[58], _secret: "/run/i2pd-secrets/server-destination" })),
+                  inbound: nix.thunk(() => ({ [nix.POS]: $pos[59], length: 1n })),
+                  outbound: nix.thunk(() => ({ [nix.POS]: $pos[60], length: 1n })),
                 })),
               })),
             })),
@@ -299,38 +214,38 @@ export default nix.lambda((args) => (() => {
         };
       })(), formals$4),
       yggdrasilCheck: nix.thunk(() => ({
-        [nix.POS]: pos$84,
+        [nix.POS]: $pos[83],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$83,
+          [nix.POS]: $pos[82],
           yggdrasil: nix.thunk(() => ({
-            [nix.POS]: pos$68,
+            [nix.POS]: $pos[67],
             enable: true,
-            settings: nix.thunk(() => ({ [nix.POS]: pos$67, MulticastInterfaces: [] })),
+            settings: nix.thunk(() => ({ [nix.POS]: $pos[66], MulticastInterfaces: [] })),
           })),
           i2pd: nix.thunk(() => ({
-            [nix.POS]: pos$82,
+            [nix.POS]: $pos[81],
             enable: true,
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$81,
+              [nix.POS]: $pos[80],
               loglevel: "info",
               netid: 77n,
-              reseed: nix.thunk(() => ({ [nix.POS]: pos$69, urls: "", yggurls: "" })),
-              httpproxy: nix.thunk(() => ({ [nix.POS]: pos$70, enabled: false })),
-              socksproxy: nix.thunk(() => ({ [nix.POS]: pos$71, enabled: false })),
+              reseed: nix.thunk(() => ({ [nix.POS]: $pos[68], urls: "", yggurls: "" })),
+              httpproxy: nix.thunk(() => ({ [nix.POS]: $pos[69], enabled: false })),
+              socksproxy: nix.thunk(() => ({ [nix.POS]: $pos[70], enabled: false })),
               ipv4: false,
               ipv6: false,
-              ntcp2: nix.thunk(() => ({ [nix.POS]: pos$72, enabled: false })),
-              ssu2: nix.thunk(() => ({ [nix.POS]: pos$73, enabled: false })),
-              meshnets: nix.thunk(() => ({ [nix.POS]: pos$74, yggdrasil: true })),
+              ntcp2: nix.thunk(() => ({ [nix.POS]: $pos[71], enabled: false })),
+              ssu2: nix.thunk(() => ({ [nix.POS]: $pos[72], enabled: false })),
+              meshnets: nix.thunk(() => ({ [nix.POS]: $pos[73], yggdrasil: true })),
               shareddest: nix.thunk(() => ({
-                [nix.POS]: pos$77,
-                inbound: nix.thunk(() => ({ [nix.POS]: pos$75, length: 0n })),
-                outbound: nix.thunk(() => ({ [nix.POS]: pos$76, length: 0n })),
+                [nix.POS]: $pos[76],
+                inbound: nix.thunk(() => ({ [nix.POS]: $pos[74], length: 0n })),
+                outbound: nix.thunk(() => ({ [nix.POS]: $pos[75], length: 0n })),
               })),
               exploratory: nix.thunk(() => ({
-                [nix.POS]: pos$80,
-                inbound: nix.thunk(() => ({ [nix.POS]: pos$78, length: 0n })),
-                outbound: nix.thunk(() => ({ [nix.POS]: pos$79, length: 0n })),
+                [nix.POS]: $pos[79],
+                inbound: nix.thunk(() => ({ [nix.POS]: $pos[77], length: 0n })),
+                outbound: nix.thunk(() => ({ [nix.POS]: $pos[78], length: 0n })),
               })),
             })),
           })),

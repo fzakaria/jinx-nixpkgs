@@ -2,49 +2,33 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/turbovnc-headless-server.nix", [[["maintainers", 5, 5]], [["systemPackages", 12, 19]], [["ensureHeadlessSoftwareOpenGL", 19, 25]], [["turbovnc", 19, 16]], [["rejectPackets", 23, 9], ["allowedTCPPorts", 24, 9]], [["firewall", 21, 18]], [["PermitRootLogin", 35, 33], ["PermitEmptyPasswords", 36, 33]], [["enable", 31, 24], ["settings", 35, 24]], [["openssh", 31, 16]], [["mutableUsers", 32, 13]], [["allowNullPassword", 37, 34]], [["sshd", 37, 29]], [["services", 37, 20]], [["pam", 37, 16]], [["environment", 12, 7], ["programs", 19, 7], ["networking", 21, 7], ["services", 31, 7], ["users", 32, 7], ["security", 37, 7]], [["machine", 8, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 40, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/turbovnc-headless-server.nix", [["maintainers", 5, 5]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/turbovnc-headless-server.nix", [["systemPackages", 12, 19]]);
-const pos$3 = nix.positions(here + "/turbovnc-headless-server.nix", [["ensureHeadlessSoftwareOpenGL", 19, 25]]);
-const pos$4 = nix.positions(here + "/turbovnc-headless-server.nix", [["turbovnc", 19, 16]]);
-const pos$5 = nix.positions(here + "/turbovnc-headless-server.nix", [["rejectPackets", 23, 9], ["allowedTCPPorts", 24, 9]]);
-const pos$6 = nix.positions(here + "/turbovnc-headless-server.nix", [["firewall", 21, 18]]);
-const pos$7 = nix.positions(here + "/turbovnc-headless-server.nix", [["PermitRootLogin", 35, 33], ["PermitEmptyPasswords", 36, 33]]);
-const pos$8 = nix.positions(here + "/turbovnc-headless-server.nix", [["enable", 31, 24], ["settings", 35, 24]]);
-const pos$9 = nix.positions(here + "/turbovnc-headless-server.nix", [["openssh", 31, 16]]);
-const pos$10 = nix.positions(here + "/turbovnc-headless-server.nix", [["mutableUsers", 32, 13]]);
-const pos$11 = nix.positions(here + "/turbovnc-headless-server.nix", [["allowNullPassword", 37, 34]]);
-const pos$12 = nix.positions(here + "/turbovnc-headless-server.nix", [["sshd", 37, 29]]);
-const pos$13 = nix.positions(here + "/turbovnc-headless-server.nix", [["services", 37, 20]]);
-const pos$14 = nix.positions(here + "/turbovnc-headless-server.nix", [["pam", 37, 16]]);
-const pos$15 = nix.positions(here + "/turbovnc-headless-server.nix", [["environment", 12, 7], ["programs", 19, 7], ["networking", 21, 7], ["services", 31, 7], ["users", 32, 7], ["security", 37, 7]]);
-const pos$16 = nix.positions(here + "/turbovnc-headless-server.nix", [["machine", 8, 9]]);
-const pos$17 = nix.positions(here + "/turbovnc-headless-server.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$17,
+    [nix.POS]: $pos[16],
     name: "turbovnc-headless-server",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "nh2"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs_1, null);
               return [
@@ -56,33 +40,33 @@ export default nix.lambda((args) => (() => {
             })()),
           })),
           programs: nix.thunk(() => ({
-            [nix.POS]: pos$4,
-            turbovnc: nix.thunk(() => ({ [nix.POS]: pos$3, ensureHeadlessSoftwareOpenGL: true })),
+            [nix.POS]: $pos[3],
+            turbovnc: nix.thunk(() => ({ [nix.POS]: $pos[2], ensureHeadlessSoftwareOpenGL: true })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             firewall: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               rejectPackets: true,
               allowedTCPPorts: nix.thunk(() => [5900n]),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             openssh: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               enable: true,
-              settings: nix.thunk(() => ({ [nix.POS]: pos$7, PermitRootLogin: "yes", PermitEmptyPasswords: "yes" })),
+              settings: nix.thunk(() => ({ [nix.POS]: $pos[6], PermitRootLogin: "yes", PermitEmptyPasswords: "yes" })),
             })),
           })),
-          users: nix.thunk(() => ({ [nix.POS]: pos$10, mutableUsers: false })),
+          users: nix.thunk(() => ({ [nix.POS]: $pos[9], mutableUsers: false })),
           security: nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             pam: nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$12,
-                sshd: nix.thunk(() => ({ [nix.POS]: pos$11, allowNullPassword: true })),
+                [nix.POS]: $pos[11],
+                sshd: nix.thunk(() => ({ [nix.POS]: $pos[10], allowNullPassword: true })),
               })),
             })),
           })),

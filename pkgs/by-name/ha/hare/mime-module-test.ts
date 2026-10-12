@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mime-module-test.nix", [[["nativeBuildInputs", 21, 33]]]);
 const formals$1 = { args: { hare: false, runCommand: false, writeText: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/mime-module-test.nix", [["nativeBuildInputs", 21, 33]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const writeText = nix.arg($, "writeText");
   const mainDotHare = nix.thunk(() => nix.app(writeText, "main.ha", "use fmt;\nuse mime;\nexport fn main() void = {\n    const ext = \"json\";\n    match(mime::lookup_ext(ext)) {\n    case let mime: const *mime::mimetype =>\n      fmt::printfln(\"Found mimetype for extension `{}`: {}\", ext, mime.mime)!;\n    case null =>\n      fmt::fatalf(\"Could not find mimetype for `{}`\", ext);\n    };\n  };\n"));
-  return nix.app(runCommand, "mime-module-test", nix.thunk(() => ({ [nix.POS]: pos$1, nativeBuildInputs: nix.thunk(() => [hare]) })), nix.thunk(() => nix.str`HARECACHE="$(mktemp -d)"
+  return nix.app(runCommand, "mime-module-test", nix.thunk(() => ({ [nix.POS]: $pos[0], nativeBuildInputs: nix.thunk(() => [hare]) })), nix.thunk(() => nix.str`HARECACHE="$(mktemp -d)"
 export HARECACHE
 readonly binout="test-bin"
 hare build -qRo "$binout" ${mainDotHare}

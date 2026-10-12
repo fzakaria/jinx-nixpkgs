@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["name", 24, 7], ["url", 25, 7], ["hash", 26, 7]], [["description", 31, 5], ["homepage", 32, 5], ["changelog", 33, 5], ["license", 34, 5], ["maintainers", 35, 5], ["mainProgram", 36, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["npmDepsHash", 19, 3], ["patches", 21, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 24, 7], ["url", 25, 7], ["hash", 26, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 31, 5], ["homepage", 32, 5], ["changelog", 33, 5], ["license", 34, 5], ["maintainers", 35, 5], ["mainProgram", 36, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["npmDepsHash", 19, 3], ["patches", 21, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "emmet-ls";
       const version = "0.4.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "aca",
           repo: "emmet-ls",
           rev: version,
@@ -27,14 +24,14 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-Boaxkad7S6H+eTW5AHwBa/zj/f1oAGGSsmW1QrzuFWc=";
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix-lock-file-to-match-package-json.patch",
             url: "https://github.com/aca/emmet-ls/commit/111111a2c2113f751fa12a716ccfbeae61c32079.patch",
             hash: "sha256-/3ZbOBxScnfhL1F66cnIoD2flVeYTJ2sLxNHQ9Yrgjw=",
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Emmet support based on LSP",
         homepage: "https://github.com/aca/emmet-ls",
         changelog: nix.thunk(() => nix.str`https://github.com/aca/emmet-ls/releases/tag/${version}`),
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
         mainProgram: "emmet-ls",
       }));
-      return { [nix.POS]: pos$4, pname, version, src, npmDepsHash, patches, meta };
+      return { [nix.POS]: $pos[3], pname, version, src, npmDepsHash, patches, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

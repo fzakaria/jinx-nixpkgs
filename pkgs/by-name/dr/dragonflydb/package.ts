@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 61, 5], ["repo", 62, 5], ["tag", 63, 5], ["hash", 64, 5], ["fetchSubmodules", 65, 5]], [["owner", 72, 5], ["repo", 73, 5], ["tag", 74, 5], ["hash", 75, 5]], [["owner", 79, 5], ["repo", 80, 5], ["tag", 81, 5], ["hash", 82, 5], ["fetchSubmodules", 83, 5]], [["owner", 87, 5], ["repo", 88, 5], ["rev", 89, 5], ["hash", 90, 5]], [["owner", 94, 5], ["repo", 95, 5], ["rev", 96, 5], ["hash", 97, 5]], [["owner", 103, 5], ["repo", 104, 5], ["rev", 105, 5], ["hash", 106, 5]], [["owner", 110, 5], ["repo", 111, 5], ["rev", 112, 5], ["hash", 113, 5]], [["owner", 117, 5], ["repo", 118, 5], ["tag", 119, 5], ["hash", 120, 5]], [["owner", 126, 5], ["repo", 127, 5], ["tag", 128, 5], ["hash", 129, 5]], [["description", 273, 5], ["homepage", 274, 5], ["license", 275, 5], ["platforms", 276, 5], ["maintainers", 277, 5]], [["pname", 135, 11], ["version", 135, 17], ["src", 135, 25], ["patches", 137, 3], ["postPatch", 142, 3], ["preConfigure", 146, 3], ["nativeBuildInputs", 223, 3], ["buildInputs", 233, 3], ["cmakeFlags", 243, 3], ["ninjaFlags", 255, 3], ["doCheck", 260, 3], ["dontUseNinjaInstall", 262, 3], ["installPhase", 263, 3], ["meta", 272, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, stdenv: false, "c-ares": false, croncpp: false, "double-conversion": false, "expected-lite": false, "fast-float": false, flatbuffers_23: false, gbenchmark: false, gperftools: false, gtest: false, hdrhistogram_c: false, liburing: false, lz4: false, pcre2: false, pugixml: false, rapidjson: false, re2: false, "re-flex": false, "uni-algo": false, xxhash: false, zstd: false, autoconf: false, "autoconf-archive": false, automake: false, bison: false, cmake: false, "gcc-unwrapped": false, ninja: false, perl: false, boost: false, libtool: false, libunwind: false, openssl: false, zlib: false, withAws: true, withGcp: true, withGperf: true, withPcre: true, withRe2: true, withSearch: true, withAsan: true, withUsan: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 61, 5], ["repo", 62, 5], ["tag", 63, 5], ["hash", 64, 5], ["fetchSubmodules", 65, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 72, 5], ["repo", 73, 5], ["tag", 74, 5], ["hash", 75, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 79, 5], ["repo", 80, 5], ["tag", 81, 5], ["hash", 82, 5], ["fetchSubmodules", 83, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 87, 5], ["repo", 88, 5], ["rev", 89, 5], ["hash", 90, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 94, 5], ["repo", 95, 5], ["rev", 96, 5], ["hash", 97, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["owner", 103, 5], ["repo", 104, 5], ["rev", 105, 5], ["hash", 106, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["owner", 110, 5], ["repo", 111, 5], ["rev", 112, 5], ["hash", 113, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["owner", 117, 5], ["repo", 118, 5], ["tag", 119, 5], ["hash", 120, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["owner", 126, 5], ["repo", 127, 5], ["tag", 128, 5], ["hash", 129, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["description", 273, 5], ["homepage", 274, 5], ["license", 275, 5], ["platforms", 276, 5], ["maintainers", 277, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["pname", 135, 11], ["version", 135, 17], ["src", 135, 25], ["patches", 137, 3], ["postPatch", 142, 3], ["preConfigure", 146, 3], ["nativeBuildInputs", 223, 3], ["buildInputs", 233, 3], ["cmakeFlags", 243, 3], ["ninjaFlags", 255, 3], ["doCheck", 260, 3], ["dontUseNinjaInstall", 262, 3], ["installPhase", 263, 3], ["meta", 272, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -64,7 +54,7 @@ export default nix.lambda((args) => (() => {
   const pname = "dragonflydb";
   const version = "1.39.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "dragonflydb",
       repo: "dragonfly",
       tag: nix.thunk(() => nix.str`v${version}`),
@@ -72,14 +62,14 @@ export default nix.lambda((args) => (() => {
       fetchSubmodules: true,
     }))));
   const abseil_cpp_20250512 = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       owner: "abseil",
       repo: "abseil-cpp",
       tag: "20250512.1",
       hash: "sha256-eB7OqTO9Vwts9nYQ/Mdq0Ds4T1KgmmpYdzU09VPWOhk=",
     }))));
   const aws_sdk_cpp_1_11_717 = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       owner: "aws",
       repo: "aws-sdk-cpp",
       tag: "1.11.717",
@@ -87,42 +77,42 @@ export default nix.lambda((args) => (() => {
       fetchSubmodules: true,
     }))));
   const glog_absl = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       owner: "romange",
       repo: "glog",
       rev: "Absl",
       hash: "sha256-68Hx3kIPgyMSdHCUpYr68Cw8V4Umtyd+4VLZc3zUb1s=",
     }))));
   const jsoncons_dragonfly = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       owner: "dragonflydb",
       repo: "jsoncons",
       rev: "Dragonfly1.5.0",
       hash: "sha256-9W9GJpzKuqolXoz5iYiE1EbVWr7HiFqpMgZO1BQdi0s=",
     }))));
   const hnswlib_dragonfly = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       owner: "dragonflydb",
       repo: "hnswlib",
       rev: "d07dd1da2bf48b85d2f03b8396193ad7120f75c2",
       hash: "sha256-GFBjKzDauznGGfkXZqSFgbvBKxDXbx2rETqY5BnCIiw=",
     }))));
   const lua_dragonfly = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       owner: "dragonflydb",
       repo: "lua",
       rev: "Dragonfly-5.4.6a",
       hash: "sha256-uLNe+hLihu4wMW/wstGnYdPa2bGPC5UiNE+VyNIYY2c=",
     }))));
   const mimalloc224 = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       owner: "microsoft",
       repo: "mimalloc",
       tag: "v2.2.4",
       hash: "sha256-+8xZT+mVEqlqabQc+1buVH/X6FZxvCd0rWMyjPu9i4o=",
     }))));
   const snowball_stemmer = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       owner: "snowballstem",
       repo: "snowball",
       tag: "v3.0.1",
@@ -130,7 +120,7 @@ export default nix.lambda((args) => (() => {
     }))));
   const withUnwind = nix.thunk(() => !nix.asBool(nix.sel(stdenv, "targetPlatform", "isAarch64")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       pname: pname,
       version: version,
       src: src,
@@ -214,7 +204,7 @@ fi
       dontUseNinjaInstall: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\ninstall -Dm755 ./dragonfly $out/bin/dragonfly\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         description: "Modern replacement for Redis and Memcached",
         homepage: "https://dragonflydb.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsl11")),

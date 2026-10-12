@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["sha256", 21, 5]], [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["platforms", 56, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 29, 3], ["strictDeps", 39, 3], ["wafFlags", 40, 3], ["postPatch", 42, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "alsa-lib": false, fftw: false, libjack2: false, libsamplerate: false, libsndfile: false, "pkg-config": false, python311: false, wafHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["platforms", 56, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 29, 3], ["strictDeps", 39, 3], ["wafFlags", 40, 3], ["postPatch", 42, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const python311 = nix.arg($, "python311");
   const wafHook = nix.arg($, "wafHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "aubio",
       version: "0.4.9",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://aubio.org/pub/aubio-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "1npks71ljc48w6858l9bq30kaf5nph8z0v61jkfb70xb9np850nl",
         })))),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       wafFlags: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))), "--disable-tests")),
       postPatch: "# U was removed in python 3.11 because it had no effect\nsubstituteInPlace waflib/*.py \\\n  --replace \"m='rU\" \"m='r\" \\\n  --replace \"'rU'\" \"'r'\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library for audio labelling",
         homepage: "https://aubio.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

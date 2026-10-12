@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 38, 5], ["repo", 39, 5], ["rev", 40, 5], ["hash", 41, 5]], [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["platforms", 64, 5], ["maintainers", 65, 5], ["mainProgram", 66, 13]], [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["postPatch", 44, 3], ["strictDeps", 49, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 51, 3], ["makeFlags", 53, 3], ["postInstall", 55, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, coreutils: false, grim: false, gawk: false, jq: false, swaylock: false, imagemagick: false, getopt: false, fontconfig: false, wmctrl: false, makeWrapper: false, bash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 38, 5], ["repo", 39, 5], ["rev", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["platforms", 64, 5], ["maintainers", 65, 5], ["mainProgram", 66, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["postPatch", 44, 3], ["strictDeps", 49, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 51, 3], ["makeFlags", 53, 3], ["postInstall", 55, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const depsPath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutils, grim, gawk, jq, swaylock, imagemagick, getopt, fontconfig, wmctrl])));
   const mainProgram = "swaylock-fancy";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "swaylock-fancy",
       version: "unstable-2023-12-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Big-B",
           repo: "swaylock-fancy",
           rev: "0b93740e1dfc39883c125c212a1adc16b01c14f1",
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : "${depsPath}"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "swaylock bash script that takes a screenshot of the desktop, blurs the background and adds a lock icon and text",
         homepage: "https://github.com/Big-B/swaylock-fancy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

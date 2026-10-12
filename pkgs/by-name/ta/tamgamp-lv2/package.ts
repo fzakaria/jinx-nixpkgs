@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["homepage", 33, 5], ["description", 34, 5], ["longDescription", 35, 5], ["maintainers", 59, 5], ["platforms", 60, 5], ["license", 61, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 23, 3], ["makeFlags", 28, 3], ["enableParallelBuilding", 30, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, lv2: false, "zita-resampler": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 33, 5], ["description", 34, 5], ["longDescription", 35, 5], ["maintainers", 59, 5], ["platforms", 60, 5], ["license", 61, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 23, 3], ["makeFlags", 28, 3], ["enableParallelBuilding", 30, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const lv2 = nix.arg($, "lv2");
   const zita_resampler = nix.arg($, "zita-resampler");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tamgamp.lv2",
       version: "0-unstable-2020-06-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sadko4u",
           repo: "tamgamp.lv2",
           rev: "426da74142fcb6b7687a35b2b1dda3392e171b92",
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/sadko4u/tamgamp.lv2",
         description: "Guitar amplifier simulator",
         longDescription: "Tamgamp (Pronouncement: \"Damage Amp\") is an LV2 guitar amp simulator that provides two plugins:\n\n - Tamgamp - a plugin based on Guitarix DK Builder simulated chains.\n - TamgampGX - a plugin based on tuned Guitarix internal amplifiers implementation.\n\nThe reference to the original Guitarix project: https://guitarix.org/\n\nIt simulates the set of the following guitar amplifiers:\n\n- Fender Princeton Reverb-amp AA1164 (without reverb module)\n- Fender Twin Reverb-Amp AA769 (Normal channel, bright off)\n- Fender Twin Reverb-Amp AA769 (Vibrato channel, bright on)\n- Marshall JCM-800 High-gain input\n- Marshall JCM-800 Low-gain input\n- Mesa/Boogie DC3 preamplifier (lead channel)\n- Mesa/Boogie DC3 preamplifier (rhythm channel)\n- Mesa Dual Rectifier preamplifier (orange channel, less gain)\n- Mesa Dual Rectifier preamplifier (red channel, more gain)\n- Peavey 5150II crunch channel\n- Peavey 5150II lead channel\n- VOX AC-30 Brilliant channel\n- VOX AC-30 normal channel\n",

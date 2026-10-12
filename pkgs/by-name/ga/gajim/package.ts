@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 48, 5], ["repo", 49, 5], ["tag", 50, 5], ["hash", 51, 5]], [["gtkSupport", 67, 34]], [["cpeParts", 145, 17]], [["homepage", 130, 5], ["description", 131, 5], ["longDescription", 132, 5], ["changelog", 133, 5], ["license", 134, 5], ["maintainers", 135, 5], ["donationPage", 141, 5], ["downloadPage", 142, 5], ["platforms", 143, 5], ["mainProgram", 144, 5], ["identifiers", 145, 5]], [["pname", 44, 3], ["version", 45, 3], ["src", 47, 3], ["pyproject", 54, 3], ["buildInputs", 56, 3], ["nativeBuildInputs", 76, 3], ["dontWrapGApps", 83, 3], ["preBuild", 85, 3], ["postInstall", 89, 3], ["preFixup", 93, 3], ["propagatedBuildInputs", 97, 3], ["nativeCheckInputs", 122, 3], ["strictDeps", 127, 3], ["meta", 129, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitLab: false, gettext: false, wrapGAppsHook3: false, python3: false, gtk4: false, "gobject-introspection": false, "adwaita-icon-theme": false, gtksourceview5: false, "glib-networking": false, libadwaita: false, enableJingle: true, farstream: false, gst_all_1: false, libnice: false, enableSecrets: true, libsecret: false, enableRST: true, docutils: false, enableSpelling: true, libspelling: false, enableUPnP: true, "gupnp-igd": false, enableAppIndicator: true, libappindicator: false, enableSoundNotifications: true, gsound: false, extraPythonPackages: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 48, 5], ["repo", 49, 5], ["tag", 50, 5], ["hash", 51, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["gtkSupport", 67, 34]]);
-const pos$3 = nix.positions(here + "/package.nix", [["cpeParts", 145, 17]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 130, 5], ["description", 131, 5], ["longDescription", 132, 5], ["changelog", 133, 5], ["license", 134, 5], ["maintainers", 135, 5], ["donationPage", 141, 5], ["downloadPage", 142, 5], ["platforms", 143, 5], ["mainProgram", 144, 5], ["identifiers", 145, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 44, 3], ["version", 45, 3], ["src", 47, 3], ["pyproject", 54, 3], ["buildInputs", 56, 3], ["nativeBuildInputs", 76, 3], ["dontWrapGApps", 83, 3], ["preBuild", 85, 3], ["postInstall", 89, 3], ["preFixup", 93, 3], ["propagatedBuildInputs", 97, 3], ["nativeCheckInputs", 122, 3], ["strictDeps", 127, 3], ["meta", 129, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,11 +40,11 @@ export default nix.lambda((args) => (() => {
   const gst_libav = nix.thunk(() => nix.attr(gst_all_1, "gst-libav"));
   const gst_plugins_good = nix.thunk(() => nix.attr(gst_all_1, "gst-plugins-good"));
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gajim",
       version: "2.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gajim",
           repo: "gajim",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -65,7 +61,7 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), enableJingle, nix.thunk(() => [
           farstream,
           gst_libav,
-          nix.thunk(() => nix.app(nix.sel(gst_plugins_good, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, gtkSupport: true })))),
+          nix.thunk(() => nix.app(nix.sel(gst_plugins_good, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], gtkSupport: true })))),
           libnice,
         ])), nix.concat(nix.app(nix.sel(lib, "optional"), enableSecrets, libsecret), nix.concat(nix.app(nix.sel(lib, "optional"), enableSpelling, libspelling), nix.concat(nix.app(nix.sel(lib, "optional"), enableUPnP, gupnp_igd), nix.concat(nix.app(nix.sel(lib, "optional"), enableAppIndicator, libappindicator), nix.app(nix.sel(lib, "optional"), enableSoundNotifications, gsound)))))))),
       nativeBuildInputs: nix.thunk(() => [gettext, wrapGAppsHook3, gobject_introspection, libadwaita]),
@@ -98,7 +94,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [nix.thunk(() => nix.sel(python3, "pkgs", "pytestCheckHook"))]),
       strictDeps: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "http://gajim.org/",
         description: "XMPP chat client",
         longDescription: "Gajim aims to be an easy to use and fully-featured XMPP client. Just chat with your friends or family, easily share pictures and thoughts or discuss the news with your groups.",
@@ -118,7 +114,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         mainProgram: "gajim",
         identifiers: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "gajim", nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
       })),

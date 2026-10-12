@@ -2,8 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package-to-nix.nix", [[["name", 18, 5], ["buildCommand", 20, 5], ["nativeBuildInputs", 31, 5]]]);
 const formals$1 = { args: { stdenv: false, "dhall-nix": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package-to-nix.nix", [["name", 18, 5], ["buildCommand", 20, 5], ["nativeBuildInputs", 31, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const dhall_nix = nix.arg($, "dhall-nix");
   return (dhallPackage) => (() => {
     const drv = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: "dhall-compiled-package.nix",
         buildCommand: nix.thunk(() => nix.str`# Dhall requires that the cache is writable, even if it is never written to.
 # We copy the cache from the input package to the current directory and

@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["pname", 9, 3], ["version", 10, 30], ["src", 10, 38], ["sourceRoot", 12, 3], ["nativeBuildInputs", 14, 3], ["preBuild", 20, 3], ["buildPhase", 24, 3]]]);
 const formals$1 = { args: { stdenv: false, "gst-thumbnailers": false, "shared-mime-info": false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tests.nix", [["pname", 9, 3], ["version", 10, 30], ["src", 10, 38], ["sourceRoot", 12, 3], ["nativeBuildInputs", 14, 3], ["preBuild", 20, 3], ["buildPhase", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const shared_mime_info = nix.arg($, "shared-mime-info");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "gst-thumbnailers-test",
       version: nix.thunk(() => nix.attr(gst_thumbnailers, "version")),
       src: nix.thunk(() => nix.attr(gst_thumbnailers, "src")),

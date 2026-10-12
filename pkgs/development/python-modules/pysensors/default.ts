@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["maintainers", 35, 5], ["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["platforms", 39, 5]], [["version", 9, 3], ["format", 10, 3], ["pname", 11, 3], ["src", 14, 3], ["buildInputs", 21, 3], ["doCheck", 25, 3], ["nativeCheckInputs", 27, 3], ["unittestFlagsArray", 29, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, unittestCheckHook: false, fetchFromGitHub: false, lm_sensors: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["maintainers", 35, 5], ["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["platforms", 39, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 9, 3], ["format", 10, 3], ["pname", 11, 3], ["src", 14, 3], ["buildInputs", 21, 3], ["doCheck", 25, 3], ["nativeCheckInputs", 27, 3], ["unittestFlagsArray", 29, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lm_sensors = nix.arg($, "lm_sensors");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "2017-07-13",
       format: "setuptools",
       pname: "pysensors",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bastienleonard",
           repo: "pysensors",
           rev: "ef46fc8eb181ecb8ad09b3d80bc002d23d9e26b3",
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [unittestCheckHook]),
       unittestFlagsArray: nix.thunk(() => ["-s", "tests"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "guibou"))];

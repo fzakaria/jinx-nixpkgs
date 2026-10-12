@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/3.0.nix", [[["url", 33, 5], ["sha256", 34, 5]], [["url", 94, 5], ["sha256", 95, 5]], [["NIX_CFLAGS_COMPILE", 100, 5]], [["LDFLAGS", 106, 5]], [["static", 160, 11]], [["tests", 160, 5], ["effectiveVersion", 162, 5], ["siteCcacheDir", 163, 5], ["siteDir", 164, 5], ["updateScript", 166, 5]], [["homepage", 180, 5], ["description", 181, 5], ["longDescription", 182, 5], ["broken", 190, 5], ["license", 191, 5], ["maintainers", 192, 5], ["platforms", 193, 5], ["mainProgram", 194, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["outputs", 37, 3], ["setOutputFlags", 42, 3], ["depsBuildBuild", 44, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 57, 3], ["propagatedBuildInputs", 66, 3], ["strictDeps", 81, 3], ["enableParallelBuilding", 87, 3], ["patches", 89, 3], ["env", 98, 3], ["configureFlags", 109, 3], ["postInstall", 129, 3], ["doCheck", 147, 3], ["doInstallCheck", 148, 3], ["dontStrip", 155, 3], ["setupHook", 157, 3], ["passthru", 159, 3], ["meta", 179, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, boehmgc: false, buildPackages: false, coverageAnalysis: true, gawk: false, gmp: false, libffi: false, libtool: false, libunistring: false, libxcrypt: false, makeWrapper: false, "pkg-config": false, autoreconfHook: false, pkgsBuildBuild: false, readline: false, writeScript: false, pkgsStatic: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/3.0.nix", [["url", 33, 5], ["sha256", 34, 5]]);
-const pos$2 = nix.positions(here + "/3.0.nix", [["url", 94, 5], ["sha256", 95, 5]]);
-const pos$3 = nix.positions(here + "/3.0.nix", [["NIX_CFLAGS_COMPILE", 100, 5]]);
-const pos$4 = nix.positions(here + "/3.0.nix", [["LDFLAGS", 106, 5]]);
-const pos$5 = nix.positions(here + "/3.0.nix", [["static", 160, 11]]);
-const pos$6 = nix.positions(here + "/3.0.nix", [["tests", 160, 5], ["effectiveVersion", 162, 5], ["siteCcacheDir", 163, 5], ["siteDir", 164, 5], ["updateScript", 166, 5]]);
-const pos$7 = nix.positions(here + "/3.0.nix", [["homepage", 180, 5], ["description", 181, 5], ["longDescription", 182, 5], ["broken", 190, 5], ["license", 191, 5], ["maintainers", 192, 5], ["platforms", 193, 5], ["mainProgram", 194, 5]]);
-const pos$8 = nix.positions(here + "/3.0.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["outputs", 37, 3], ["setOutputFlags", 42, 3], ["depsBuildBuild", 44, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 57, 3], ["propagatedBuildInputs", 66, 3], ["strictDeps", 81, 3], ["enableParallelBuilding", 87, 3], ["patches", 89, 3], ["env", 98, 3], ["configureFlags", 109, 3], ["postInstall", 129, 3], ["doCheck", 147, 3], ["doInstallCheck", 148, 3], ["dontStrip", 155, 3], ["setupHook", 157, 3], ["passthru", 159, 3], ["meta", 179, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const pname = "guile";
       const version = "3.0.11";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnu/${pname}/${pname}-${version}.tar.xz`),
           sha256: "sha256-gYx50jZlen+pb7NkE3zHtBs73uDWXGF0ygN2lVlXlGA=",
         }))));
@@ -52,14 +45,14 @@ export default nix.lambda((args) => (() => {
       const strictDeps = true;
       const enableParallelBuilding = nix.thunk(() => nix.app(nix.sel(lib, "systems", "equals"), nix.thunk(() => nix.sel(stdenv, "buildPlatform")), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))));
       const patches = nix.thunk(() => nix.concat([nix.path(here, "./eai_system.patch")], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(coverageAnalysis, null)), nix.path(here, "./gcov-file-name.patch")), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitlab.gnome.org/GNOME/gtk-osx/raw/52898977f165777ad9ef169f7d4818f2d4c9b731/patches/guile-clocktime.patch",
             sha256: "12wvwdna9j8795x59ldryv9d84c1j3qdk2iskw09306idfsis207",
           }))))))));
       const env = nix.thunk(() => nix.update({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-std=gnu17"]))),
-      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isGNU")) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic"))))), nix.thunk(() => ({ [nix.POS]: pos$4, LDFLAGS: "-lgcc_s" })))));
+      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isGNU")) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic"))))), nix.thunk(() => ({ [nix.POS]: $pos[3], LDFLAGS: "-lgcc_s" })))));
       const configureFlags = nix.thunk(() => nix.concat([
         nix.thunk(() => nix.str`--with-libreadline-prefix=${nix.app(nix.sel(lib, "getDev"), readline)}`),
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isSunOS")), nix.thunk(() => [
@@ -81,13 +74,13 @@ export default nix.lambda((args) => (() => {
       const dontStrip = true;
       const setupHook = nix.path(here, "./setup-hook-3.0.sh");
       const passthru = nix.thunk(() => (() => {
-        const tests = nix.thunk(() => ({ [nix.POS]: pos$5, static: nix.thunk(() => nix.sel(pkgsStatic, "guile")) }));
+        const tests = nix.thunk(() => ({ [nix.POS]: $pos[4], static: nix.thunk(() => nix.sel(pkgsStatic, "guile")) }));
         const effectiveVersion = nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), version));
         const siteCcacheDir = nix.thunk(() => nix.str`lib/guile/${effectiveVersion}/site-ccache`);
         const siteDir = nix.thunk(() => nix.str`share/guile/site/${effectiveVersion}`);
         const updateScript = nix.thunk(() => nix.app(writeScript, "update-guile-3", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p curl pcre2 common-updater-scripts\n\nset -eu -o pipefail\n\n# Expect the text in format of '\"https://ftp.gnu.org/gnu/guile/guile-3.0.8.tar.gz\"'\nnew_version=\"$(curl -s https://www.gnu.org/software/guile/download/ |\n    pcre2grep -o1 '\"https://ftp.gnu.org/gnu/guile/guile-(3[.0-9]+).tar.gz\"')\"\nupdate-source-version guile_3_0 \"$new_version\"\n"));
         return {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           tests,
           effectiveVersion,
           siteCcacheDir,
@@ -96,7 +89,7 @@ export default nix.lambda((args) => (() => {
         };
       })());
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         homepage: "https://www.gnu.org/software/guile/",
         description: "Embeddable Scheme implementation",
         longDescription: "GNU Guile is an implementation of the Scheme programming language, with\nsupport for many SRFIs, packaged for use in a wide variety of\nenvironments.  In addition to implementing the R5RS Scheme standard and a\nlarge subset of R6RS, Guile includes a module system, full access to POSIX\nsystem calls, networking support, multiple threads, dynamic linking, a\nforeign function call interface, and powerful string processing.\n",
@@ -107,7 +100,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "guile",
       }));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname,
         version,
         src,

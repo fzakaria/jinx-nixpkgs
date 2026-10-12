@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/batwatch.nix", [[["description", 17, 8]], [["name", 11, 3], ["dependencies", 12, 3], ["meta", 17, 3]]]);
 const formals$1 = { args: { lib: false, buildBatExtrasPkg: false, less: false, coreutils: false, entr: false, withEntr: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/batwatch.nix", [["description", 17, 8]]);
-const pos$2 = nix.positions(here + "/batwatch.nix", [["name", 11, 3], ["dependencies", 12, 3], ["meta", 17, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const entr = nix.arg($, "entr");
   const withEntr = nix.argOr($, "withEntr", () => true);
   return nix.app(buildBatExtrasPkg, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "batwatch",
       dependencies: nix.thunk(() => nix.concat([less, coreutils], nix.app(nix.sel(lib, "optional"), withEntr, entr))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Watch for changes in one or more files, and print them with bat",
       })),
     })));

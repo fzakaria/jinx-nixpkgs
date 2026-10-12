@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["validation", 53, 5], ["json-validation", 57, 5], ["xml-validation", 58, 5]], [["description", 90, 5], ["homepage", 91, 5], ["changelog", 92, 5], ["license", 93, 5], ["maintainers", 94, 5]], [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["pythonRelaxDeps", 35, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["optional-dependencies", 52, 3], ["nativeCheckInputs", 61, 3], ["pythonImportsCheck", 68, 3], ["preCheck", 70, 3], ["enabledTestPaths", 74, 3], ["disabledTests", 76, 3], ["disabledTestPaths", 84, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, ddt: false, fetchFromGitHub: false, "importlib-metadata": false, jsonschema: false, "license-expression": false, lxml: false, "packageurl-python": false, "py-serializable": false, "poetry-core": false, pytestCheckHook: false, "requirements-parser": false, sortedcontainers: false, setuptools: false, toml: false, "types-setuptools": false, "types-toml": false, xmldiff: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["validation", 53, 5], ["json-validation", 57, 5], ["xml-validation", 58, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 90, 5], ["homepage", 91, 5], ["changelog", 92, 5], ["license", 93, 5], ["maintainers", 94, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["pythonRelaxDeps", 35, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["optional-dependencies", 52, 3], ["nativeCheckInputs", 61, 3], ["pythonImportsCheck", 68, 3], ["preCheck", 70, 3], ["enabledTestPaths", 74, 3], ["disabledTests", 76, 3], ["disabledTestPaths", 84, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const types_toml = nix.arg($, "types-toml");
   const xmldiff = nix.arg($, "xmldiff");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cyclonedx-python-lib",
       version: "11.12.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "CycloneDX",
           repo: "cyclonedx-python-lib",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,7 +53,7 @@ export default nix.lambda((args) => (() => {
         types_toml,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         validation: nix.thunk(() => [jsonschema, lxml]),
         "json-validation": nix.thunk(() => [jsonschema]),
         "xml-validation": nix.thunk(() => [lxml]),
@@ -72,7 +69,7 @@ export default nix.lambda((args) => (() => {
       ]),
       disabledTestPaths: nix.thunk(() => ["tests/test_output_xml.py"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python library for generating CycloneDX SBOMs",
         homepage: "https://github.com/CycloneDX/cyclonedx-python-lib",
         changelog: nix.thunk(() => nix.str`https://github.com/CycloneDX/cyclonedx-python-lib/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

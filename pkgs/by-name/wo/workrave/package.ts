@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["repo", 39, 5], ["owner", 40, 5], ["rev", 41, 5], ["sha256", 42, 5]], [["description", 85, 5], ["mainProgram", 86, 5], ["longDescription", 87, 5], ["homepage", 92, 5], ["downloadPage", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["platforms", 96, 5]], [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 58, 3], ["preConfigure", 80, 3], ["enableParallelBuilding", 82, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, wrapGAppsHook3: false, autoconf: false, "autoconf-archive": false, automake: false, gettext: false, intltool: false, libtool: false, "pkg-config": false, libice: false, libsm: false, libxscrnsaver: false, libxtst: false, "gobject-introspection": false, glib: false, glibmm_2_4: false, gtkmm3: false, atk: false, pango: false, pangomm_1_4: false, cairo: false, cairomm_1_0: false, dbus: false, "dbus-glib": false, gst_all_1: false, libsigcxx_2_0: false, boost: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["repo", 39, 5], ["owner", 40, 5], ["rev", 41, 5], ["sha256", 42, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 85, 5], ["mainProgram", 86, 5], ["longDescription", 87, 5], ["homepage", 92, 5], ["downloadPage", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["platforms", 96, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 58, 3], ["preConfigure", 80, 3], ["enableParallelBuilding", 82, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,11 +38,11 @@ export default nix.lambda((args) => (() => {
   const boost = nix.arg($, "boost");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "workrave",
       version: "1.10.54",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "workrave",
           owner: "rcaelers",
           rev: nix.thunk(() => nix.add("v", nix.app(nix.sel(lib, "concatStringsSep"), "_", nix.thunk(() => nix.app(nix.sel(lib, "splitVersion"), nix.thunk(() => nix.sel(finalAttrs, "version"))))))),
@@ -86,7 +84,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "./autogen.sh",
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Program to help prevent Repetitive Strain Injury",
         mainProgram: "workrave",
         longDescription: "Workrave is a program that assists in the recovery and prevention of\nRepetitive Strain Injury (RSI). The program frequently alerts you to\ntake micro-pauses, rest breaks and restricts you to your daily limit.\n",

@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["yarnLock", 28, 5], ["hash", 29, 5]], [["dashy", 33, 11]], [["tests", 33, 5], ["updateScript", 34, 5]], [["nodejs-slim", 59, 9]], [["nodejs-slim", 62, 9]], [["nodejs", 65, 9]], [["fixup-yarn-lock", 58, 7], ["prefetch-yarn-deps", 61, 7], ["yarn", 64, 7]], [["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["maintainers", 78, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 21, 3], ["yarnOfflineCache", 27, 3], ["passthru", 32, 3], ["preBuild", 43, 3], ["installPhase", 48, 3], ["nativeBuildInputs", 53, 3], ["doDist", 73, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchYarnDeps: false, yarnConfigHook: false, yarnBuildHook: false, yarn: false, "fixup-yarn-lock": false, "prefetch-yarn-deps": false, nixosTests: false, nodejs_24: false, "nodejs-slim_24": false, remarshal: false, "nix-update-script": false, settings: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["yarnLock", 28, 5], ["hash", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["dashy", 33, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 33, 5], ["updateScript", 34, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["nodejs-slim", 59, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["nodejs-slim", 62, 9]]);
-const pos$7 = nix.positions(here + "/package.nix", [["nodejs", 65, 9]]);
-const pos$8 = nix.positions(here + "/package.nix", [["fixup-yarn-lock", 58, 7], ["prefetch-yarn-deps", 61, 7], ["yarn", 64, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["maintainers", 78, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 21, 3], ["yarnOfflineCache", 27, 3], ["passthru", 32, 3], ["preBuild", 43, 3], ["installPhase", 48, 3], ["nativeBuildInputs", 53, 3], ["doDist", 73, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,24 +23,24 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const settings = nix.argOr($, "settings", () => ({}));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "dashy-ui",
       version: "4.6.14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lissy93",
           repo: "dashy",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-/1B4aswxso8dPuu+YjVo8Qbor3dDQBjK943b2ySX74c=",
         })))),
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           yarnLock: nix.thunk(() => nix.add(nix.sel(finalAttrs, "src"), "/yarn.lock")),
           hash: "sha256-FxSGlP12hyF4d0VeSfc3MeJNDTpSDvAStua6Q21Hoag=",
         })))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, dashy: nix.thunk(() => nix.sel(nixosTests, "dashy")) })),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], dashy: nix.thunk(() => nix.sel(nixosTests, "dashy")) })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       preBuild: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(settings, {})), nix.thunk(() => nix.str`echo "Writing settings override..."
@@ -59,10 +50,10 @@ yarn validate-config --offline
       installPhase: "mkdir $out\ncp -R dist/* $out\n",
       nativeBuildInputs: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(yarnConfigHook, "override"), nix.thunk(() => ({
-            [nix.POS]: pos$8,
-            "fixup-yarn-lock": nix.thunk(() => nix.app(nix.sel(fixup_yarn_lock, "override"), nix.thunk(() => ({ [nix.POS]: pos$5, "nodejs-slim": nodejs_slim_24 })))),
-            "prefetch-yarn-deps": nix.thunk(() => nix.app(nix.sel(prefetch_yarn_deps, "override"), nix.thunk(() => ({ [nix.POS]: pos$6, "nodejs-slim": nodejs_slim_24 })))),
-            yarn: nix.thunk(() => nix.app(nix.sel(yarn, "override"), nix.thunk(() => ({ [nix.POS]: pos$7, nodejs: nodejs_24 })))),
+            [nix.POS]: $pos[7],
+            "fixup-yarn-lock": nix.thunk(() => nix.app(nix.sel(fixup_yarn_lock, "override"), nix.thunk(() => ({ [nix.POS]: $pos[4], "nodejs-slim": nodejs_slim_24 })))),
+            "prefetch-yarn-deps": nix.thunk(() => nix.app(nix.sel(prefetch_yarn_deps, "override"), nix.thunk(() => ({ [nix.POS]: $pos[5], "nodejs-slim": nodejs_slim_24 })))),
+            yarn: nix.thunk(() => nix.app(nix.sel(yarn, "override"), nix.thunk(() => ({ [nix.POS]: $pos[6], nodejs: nodejs_24 })))),
           })))),
         yarnBuildHook,
         nodejs_24,
@@ -70,7 +61,7 @@ yarn validate-config --offline
       ]),
       doDist: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Open source, highly customizable, easy-to-use, privacy-respecting dashboard app",
         homepage: "https://dashy.to",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["arviz", 48, 5], ["docs", 52, 5], ["test", 61, 5]], [["description", 113, 5], ["homepage", 114, 5], ["changelog", 115, 5], ["license", 116, 5], ["maintainers", 117, 5]], [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["build-system", 40, 3], ["dependencies", 45, 3], ["optional-dependencies", 47, 3], ["pythonImportsCheck", 68, 3], ["nativeCheckInputs", 70, 3], ["disabledTests", 76, 3], ["meta", 112, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "hatch-vcs": false, hatchling: false, matplotlib: false, arviz: false, "arviz-base": false, ipython: false, "myst-nb": false, pandoc: false, sphinx: false, "sphinx-book-theme": false, pytest: false, scipy: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["arviz", 48, 5], ["docs", 52, 5], ["test", 61, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 113, 5], ["homepage", 114, 5], ["changelog", 115, 5], ["license", 116, 5], ["maintainers", 117, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["build-system", 40, 3], ["dependencies", 45, 3], ["optional-dependencies", 47, 3], ["pythonImportsCheck", 68, 3], ["nativeCheckInputs", 70, 3], ["disabledTests", 76, 3], ["meta", 112, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const scipy = nix.arg($, "scipy");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "corner",
       version: "2.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dfm",
           repo: "corner.py",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatch_vcs, hatchling]),
       dependencies: nix.thunk(() => [matplotlib]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         arviz: nix.thunk(() => [arviz, arviz_base]),
         docs: nix.thunk(() => [arviz, arviz_base, ipython, myst_nb, pandoc, sphinx, sphinx_book_theme]),
         test: nix.thunk(() => [arviz, pytest, scipy]),
@@ -83,7 +80,7 @@ export default nix.lambda((args) => (() => {
         "test_truths",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Make some beautiful corner plots",
         homepage: "https://github.com/dfm/corner.py",
         changelog: nix.thunk(() => nix.str`https://github.com/dfm/corner.py/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

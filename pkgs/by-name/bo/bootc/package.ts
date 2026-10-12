@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["url", 31, 7], ["hash", 32, 7]], [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["mainProgram", 69, 5], ["maintainers", 70, 5], ["platforms", 71, 5]], [["pname", 16, 3], ["version", 17, 3], ["cargoHash", 19, 3], ["doInstallCheck", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 38, 3], ["checkFlags", 46, 3], ["cargoBuildFlags", 59, 3], ["nativeInstallCheckInputs", 61, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, fetchpatch2: false, libz: false, zstd: false, "pkg-config": false, openssl: false, glib: false, "ostree-full": false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 31, 7], ["hash", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["mainProgram", 69, 5], ["maintainers", 70, 5], ["platforms", 71, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["cargoHash", 19, 3], ["doInstallCheck", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 38, 3], ["checkFlags", 46, 3], ["cargoBuildFlags", 59, 3], ["nativeInstallCheckInputs", 61, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const ostree_full = nix.arg($, "ostree-full");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "bootc",
       version: "1.6.0",
       cargoHash: "sha256-KGwXQ6+/w3uHuPqSADsqJSip+SMdC104dfW7tNxGwnc=",
       doInstallCheck: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bootc-dev",
           repo: "bootc",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/bootc-dev/bootc/commit/ff8b1b411270275c49ee512d54b27ed7a2fca112.patch",
             hash: "sha256-7UKquq6ZargQUDGZk22X9Co92v8e995bL+tuAjvh/7c=",
           })))),
@@ -57,7 +54,7 @@ export default nix.lambda((args) => (() => {
       cargoBuildFlags: nix.thunk(() => ["-p bootc"]),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Boot and upgrade via container images",
         homepage: "https://bootc-dev.github.io/bootc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

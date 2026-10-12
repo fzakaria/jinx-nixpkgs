@@ -2,53 +2,44 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/hockeypuck.nix", [[["buildInputs", 4, 37]], [["maintainers", 28, 8]], [["systemPackages", 34, 19]], [["enable", 36, 27]], [["name", 43, 13], ["ensureDBOwnership", 44, 13]], [["enable", 39, 9], ["ensureDatabases", 40, 9], ["ensureUsers", 41, 9]], [["hockeypuck", 36, 16], ["postgresql", 38, 16]], [["environment", 34, 7], ["services", 36, 7]], [["machine", 30, 9]], [["name", 27, 3], ["meta", 28, 3], ["nodes", 30, 3], ["testScript", 50, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/hockeypuck.nix", [["buildInputs", 4, 37]]);
-const pos$2 = nix.positions(here + "/hockeypuck.nix", [["maintainers", 28, 8]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$3 = nix.positions(here + "/hockeypuck.nix", [["systemPackages", 34, 19]]);
-const pos$4 = nix.positions(here + "/hockeypuck.nix", [["enable", 36, 27]]);
-const pos$5 = nix.positions(here + "/hockeypuck.nix", [["name", 43, 13], ["ensureDBOwnership", 44, 13]]);
-const pos$6 = nix.positions(here + "/hockeypuck.nix", [["enable", 39, 9], ["ensureDatabases", 40, 9], ["ensureUsers", 41, 9]]);
-const pos$7 = nix.positions(here + "/hockeypuck.nix", [["hockeypuck", 36, 16], ["postgresql", 38, 16]]);
-const pos$8 = nix.positions(here + "/hockeypuck.nix", [["environment", 34, 7], ["services", 36, 7]]);
-const pos$9 = nix.positions(here + "/hockeypuck.nix", [["machine", 30, 9]]);
-const pos$10 = nix.positions(here + "/hockeypuck.nix", [["name", 27, 3], ["meta", 28, 3], ["nodes", 30, 3], ["testScript", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   const gpgKeyring = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "gpg-keyring", nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gnupg"))]),
     })), "mkdir -p $out\nexport GNUPGHOME=$out\ncat > foo <<EOF\n  %echo Generating a basic OpenPGP key\n  %no-protection\n  Key-Type: DSA\n  Key-Length: 1024\n  Subkey-Type: ELG-E\n  Subkey-Length: 1024\n  Name-Real: Foo Example\n  Name-Email: foo@example.org\n  Expire-Date: 0\n  # Do a commit here, so that we can later print \"done\"\n  %commit\n  %echo done\nEOF\ngpg --batch --generate-key foo\nrm $out/S.gpg-agent $out/S.gpg-agent.*\n"));
   return {
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     name: "hockeypuck",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       maintainers: nix.thunk(() => nix.sel(lib, "teams", "ngi", "members")),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gnupg"))]),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$7,
-            hockeypuck: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
+            [nix.POS]: $pos[6],
+            hockeypuck: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: true })),
             postgresql: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               enable: true,
               ensureDatabases: nix.thunk(() => ["hockeypuck"]),
               ensureUsers: nix.thunk(() => [
-                nix.thunk(() => ({ [nix.POS]: pos$5, name: "hockeypuck", ensureDBOwnership: true })),
+                nix.thunk(() => ({ [nix.POS]: $pos[4], name: "hockeypuck", ensureDBOwnership: true })),
               ]),
             })),
           })),

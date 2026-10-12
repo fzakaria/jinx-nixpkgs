@@ -2,78 +2,13 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["structuredAttrsByDefault", 26, 7]], [["config", 25, 5], ["system", 28, 35]], [["name", 47, 19], ["postFixup", 49, 11]], [["string", 77, 11]], [["name", 75, 17], ["env", 76, 9], ["passAsFile", 80, 9], ["buildCommand", 81, 9]], [["string", 102, 11]], [["name", 100, 17], ["env", 101, 9], ["passAsFile", 105, 9], ["buildCommand", 106, 9]], [["name", 146, 17], ["string", 148, 9], ["list", 149, 9], ["passAsFile", 154, 9], ["buildCommand", 155, 9]], [["name", 195, 15], ["passAsFile", 200, 7], ["buildCommand", 201, 7]], [["name", 226, 5], ["buildCommand", 227, 5]], [["buildInputs", 234, 9]], [["meta", 238, 7]], [["stdenv", 246, 7], ["pkgs", 247, 7], ["initialPath", 248, 15], ["initialBash", 248, 27], ["lib", 248, 39]], [["NIX_DEBUG", 264, 13], ["name", 265, 13], ["outputs", 266, 13], ["buildPhase", 267, 13], ["installPhase", 268, 13]], [["result", 262, 9], ["expectedMsg", 276, 9]], [["name", 284, 5], ["stdenv'", 285, 5]], [["outputHash", 293, 11]], [["md5", 290, 5]], [["name", 305, 13], ["builder", 306, 13], ["args", 307, 13], ["system", 311, 44]], [["name", 314, 13], ["builder", 315, 13], ["args", 316, 13], ["system", 320, 44]], [["dep1", 304, 11], ["dep2", 313, 11], ["passAsFile", 322, 11]], [["exportReferencesGraph", 329, 9]], [["name", 345, 13], ["builder", 346, 13], ["args", 347, 13], ["system", 351, 44]], [["name", 354, 13], ["builder", 355, 13], ["args", 356, 13], ["system", 360, 44]], [["dep1", 344, 11], ["dep2", 353, 11], ["name", 362, 11], ["outputHash", 363, 11], ["outputHashMode", 364, 11], ["outputHashAlgo", 365, 11], ["buildCommand", 366, 11], ["passAsFile", 369, 11]], [["exportReferencesGraph", 376, 9]], [["name", 388, 5], ["__structuredAttrs", 389, 5]], [["name", 393, 5], ["allowedReferences", 394, 5]], [["name", 398, 5], ["disallowedReferences", 399, 5]], [["name", 403, 5], ["allowedRequisites", 404, 5]], [["name", 408, 5], ["disallowedRequisites", 409, 5]], [["allowedReferences", 415, 22]], [["out", 415, 18]], [["name", 413, 5], ["__structuredAttrs", 414, 5], ["outputChecks", 415, 5]], [["disallowedReferences", 421, 22]], [["out", 421, 18]], [["name", 419, 5], ["__structuredAttrs", 420, 5], ["outputChecks", 421, 5]], [["allowedRequisites", 427, 22]], [["out", 427, 18]], [["name", 425, 5], ["__structuredAttrs", 426, 5], ["outputChecks", 427, 5]], [["disallowedRequisites", 433, 22]], [["out", 433, 18]], [["name", 431, 5], ["__structuredAttrs", 432, 5], ["outputChecks", 433, 5]], [["name", 437, 5], ["stdenv'", 438, 5]], [["name", 442, 5], ["stdenv'", 443, 5]], [["name", 447, 5], ["stdenv'", 448, 5]], [["__structuredAttrs", 455, 7]], [["name", 452, 5], ["stdenv'", 453, 5], ["extraAttrs", 454, 5]], [["name", 460, 5], ["stdenv'", 461, 5]], [["name", 468, 7], ["system", 469, 37], ["builder", 470, 7], ["PATH", 471, 7], ["initialPath", 472, 7], ["args", 475, 7]], [["meta", 506, 7]], [["stdenv", 513, 9], ["pkgs", 514, 9], ["initialBash", 515, 17], ["initialPath", 515, 29], ["lib", 515, 41]], [["name", 520, 7], ["stdenv'", 521, 7]], [["name", 525, 7], ["stdenv'", 526, 7]], [["a", 546, 11], ["b", 547, 11]], [["list", 537, 9], ["array", 545, 9], ["extraTest", 549, 9]], [["name", 530, 7], ["stdenv'", 531, 7], ["extraAttrs", 532, 7]], [["listWithSpaces", 574, 9], ["extraTest", 578, 9]], [["name", 570, 7], ["stdenv'", 571, 7], ["extraAttrs", 572, 7]], [["name", 591, 7], ["stdenv'", 592, 7]], [["foo", 658, 11]], [["bar", 661, 15]], [["foo", 661, 11]], [["name", 638, 9], ["nativeBuildInputs", 639, 9], ["EXAMPLE_BOOL_TRUE", 641, 9], ["EXAMPLE_BOOL_FALSE", 642, 9], ["EXAMPLE_INT", 643, 9], ["EXAMPLE_INT_NEG", 644, 9], ["EXAMPLE_STR", 645, 9], ["EXAMPLE_LIST", 646, 9], ["EXAMPLE_NESTED_LIST", 650, 9], ["EXAMPLE_ATTRS", 657, 9], ["EXAMPLE_NESTED_ATTRS", 660, 9], ["goldenSh", 664, 17], ["goldenJson", 665, 17], ["buildCommand", 667, 9]], [["hooks", 511, 5], ["test-cc-wrapper-substitutions", 519, 5], ["test-structured-env-attrset", 524, 5], ["test-prepend-append-to-var", 529, 5], ["test-concat-to", 569, 5], ["test-concat-strings-sep", 590, 5], ["test-golden-example-structuredAttrs", 595, 5]], [["hooks", 244, 3], ["darwin-libiconv-alias", 255, 3], ["outputs-no-out", 259, 3], ["test-env-attrset", 283, 3], ["rejectedHashes", 289, 3], ["test-inputDerivation", 300, 3], ["test-inputDerivation-fixed-output", 340, 3], ["test-inputDerivation-structured", 387, 3], ["test-inputDerivation-allowedReferences", 392, 3], ["test-inputDerivation-disallowedReferences", 397, 3], ["test-inputDerivation-allowedRequisites", 402, 3], ["test-inputDerivation-disallowedRequisites", 407, 3], ["test-inputDerivation-structured-allowedReferences", 412, 3], ["test-inputDerivation-structured-disallowedReferences", 418, 3], ["test-inputDerivation-structured-allowedRequisites", 424, 3], ["test-inputDerivation-structured-disallowedRequisites", 430, 3], ["test-prepend-append-to-var", 436, 3], ["test-concat-to", 441, 3], ["test-concat-strings-sep", 446, 3], ["test-structured-env-attrset", 451, 3], ["test-cc-wrapper-substitutions", 459, 3], ["tests-stdenv-gcc-stageCompare", 464, 3], ["ensure-no-execve-in-setup-sh", 466, 3], ["structuredAttrsByDefault", 509, 3]]]);
 const formals$1 = { args: { stdenv: false, pkgs: false, lib: false, config: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["structuredAttrsByDefault", 26, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["config", 25, 5], ["system", 28, 35]]);
 const formals$2 = { args: { name: false, "stdenv'": false, extraAttrs: true }, ellipsis: false };
-const pos$3 = nix.positions(here + "/default.nix", [["name", 47, 19], ["postFixup", 49, 11]]);
 const formals$3 = { args: { name: false, "stdenv'": false, extraAttrs: true }, ellipsis: false };
-const pos$4 = nix.positions(here + "/default.nix", [["string", 77, 11]]);
-const pos$5 = nix.positions(here + "/default.nix", [["name", 75, 17], ["env", 76, 9], ["passAsFile", 80, 9], ["buildCommand", 81, 9]]);
 const formals$4 = { args: { name: false, "stdenv'": false, extraAttrs: true }, ellipsis: false };
-const pos$6 = nix.positions(here + "/default.nix", [["string", 102, 11]]);
-const pos$7 = nix.positions(here + "/default.nix", [["name", 100, 17], ["env", 101, 9], ["passAsFile", 105, 9], ["buildCommand", 106, 9]]);
 const formals$5 = { args: { name: false, "stdenv'": false, extraAttrs: true }, ellipsis: false };
-const pos$8 = nix.positions(here + "/default.nix", [["name", 146, 17], ["string", 148, 9], ["list", 149, 9], ["passAsFile", 154, 9], ["buildCommand", 155, 9]]);
 const formals$6 = { args: { name: false, "stdenv'": false }, ellipsis: false };
-const pos$9 = nix.positions(here + "/default.nix", [["name", 195, 15], ["passAsFile", 200, 7], ["buildCommand", 201, 7]]);
-const pos$10 = nix.positions(here + "/default.nix", [["name", 226, 5], ["buildCommand", 227, 5]]);
-const pos$11 = nix.positions(here + "/default.nix", [["buildInputs", 234, 9]]);
-const pos$12 = nix.positions(here + "/default.nix", [["meta", 238, 7]]);
-const pos$13 = nix.positions(here + "/default.nix", [["stdenv", 246, 7], ["pkgs", 247, 7], ["initialPath", 248, 15], ["initialBash", 248, 27], ["lib", 248, 39]]);
-const pos$14 = nix.positions(here + "/default.nix", [["NIX_DEBUG", 264, 13], ["name", 265, 13], ["outputs", 266, 13], ["buildPhase", 267, 13], ["installPhase", 268, 13]]);
-const pos$15 = nix.positions(here + "/default.nix", [["result", 262, 9], ["expectedMsg", 276, 9]]);
-const pos$16 = nix.positions(here + "/default.nix", [["name", 284, 5], ["stdenv'", 285, 5]]);
-const pos$17 = nix.positions(here + "/default.nix", [["outputHash", 293, 11]]);
-const pos$18 = nix.positions(here + "/default.nix", [["md5", 290, 5]]);
-const pos$19 = nix.positions(here + "/default.nix", [["name", 305, 13], ["builder", 306, 13], ["args", 307, 13], ["system", 311, 44]]);
-const pos$20 = nix.positions(here + "/default.nix", [["name", 314, 13], ["builder", 315, 13], ["args", 316, 13], ["system", 320, 44]]);
-const pos$21 = nix.positions(here + "/default.nix", [["dep1", 304, 11], ["dep2", 313, 11], ["passAsFile", 322, 11]]);
-const pos$22 = nix.positions(here + "/default.nix", [["exportReferencesGraph", 329, 9]]);
-const pos$23 = nix.positions(here + "/default.nix", [["name", 345, 13], ["builder", 346, 13], ["args", 347, 13], ["system", 351, 44]]);
-const pos$24 = nix.positions(here + "/default.nix", [["name", 354, 13], ["builder", 355, 13], ["args", 356, 13], ["system", 360, 44]]);
-const pos$25 = nix.positions(here + "/default.nix", [["dep1", 344, 11], ["dep2", 353, 11], ["name", 362, 11], ["outputHash", 363, 11], ["outputHashMode", 364, 11], ["outputHashAlgo", 365, 11], ["buildCommand", 366, 11], ["passAsFile", 369, 11]]);
-const pos$26 = nix.positions(here + "/default.nix", [["exportReferencesGraph", 376, 9]]);
-const pos$27 = nix.positions(here + "/default.nix", [["name", 388, 5], ["__structuredAttrs", 389, 5]]);
-const pos$28 = nix.positions(here + "/default.nix", [["name", 393, 5], ["allowedReferences", 394, 5]]);
-const pos$29 = nix.positions(here + "/default.nix", [["name", 398, 5], ["disallowedReferences", 399, 5]]);
-const pos$30 = nix.positions(here + "/default.nix", [["name", 403, 5], ["allowedRequisites", 404, 5]]);
-const pos$31 = nix.positions(here + "/default.nix", [["name", 408, 5], ["disallowedRequisites", 409, 5]]);
-const pos$32 = nix.positions(here + "/default.nix", [["allowedReferences", 415, 22]]);
-const pos$33 = nix.positions(here + "/default.nix", [["out", 415, 18]]);
-const pos$34 = nix.positions(here + "/default.nix", [["name", 413, 5], ["__structuredAttrs", 414, 5], ["outputChecks", 415, 5]]);
-const pos$35 = nix.positions(here + "/default.nix", [["disallowedReferences", 421, 22]]);
-const pos$36 = nix.positions(here + "/default.nix", [["out", 421, 18]]);
-const pos$37 = nix.positions(here + "/default.nix", [["name", 419, 5], ["__structuredAttrs", 420, 5], ["outputChecks", 421, 5]]);
-const pos$38 = nix.positions(here + "/default.nix", [["allowedRequisites", 427, 22]]);
-const pos$39 = nix.positions(here + "/default.nix", [["out", 427, 18]]);
-const pos$40 = nix.positions(here + "/default.nix", [["name", 425, 5], ["__structuredAttrs", 426, 5], ["outputChecks", 427, 5]]);
-const pos$41 = nix.positions(here + "/default.nix", [["disallowedRequisites", 433, 22]]);
-const pos$42 = nix.positions(here + "/default.nix", [["out", 433, 18]]);
-const pos$43 = nix.positions(here + "/default.nix", [["name", 431, 5], ["__structuredAttrs", 432, 5], ["outputChecks", 433, 5]]);
-const pos$44 = nix.positions(here + "/default.nix", [["name", 437, 5], ["stdenv'", 438, 5]]);
-const pos$45 = nix.positions(here + "/default.nix", [["name", 442, 5], ["stdenv'", 443, 5]]);
-const pos$46 = nix.positions(here + "/default.nix", [["name", 447, 5], ["stdenv'", 448, 5]]);
-const pos$47 = nix.positions(here + "/default.nix", [["__structuredAttrs", 455, 7]]);
-const pos$48 = nix.positions(here + "/default.nix", [["name", 452, 5], ["stdenv'", 453, 5], ["extraAttrs", 454, 5]]);
-const pos$49 = nix.positions(here + "/default.nix", [["name", 460, 5], ["stdenv'", 461, 5]]);
-const pos$50 = nix.positions(here + "/default.nix", [["name", 468, 7], ["system", 469, 37], ["builder", 470, 7], ["PATH", 471, 7], ["initialPath", 472, 7], ["args", 475, 7]]);
-const pos$51 = nix.positions(here + "/default.nix", [["meta", 506, 7]]);
-const pos$52 = nix.positions(here + "/default.nix", [["stdenv", 513, 9], ["pkgs", 514, 9], ["initialBash", 515, 17], ["initialPath", 515, 29], ["lib", 515, 41]]);
-const pos$53 = nix.positions(here + "/default.nix", [["name", 520, 7], ["stdenv'", 521, 7]]);
-const pos$54 = nix.positions(here + "/default.nix", [["name", 525, 7], ["stdenv'", 526, 7]]);
-const pos$55 = nix.positions(here + "/default.nix", [["a", 546, 11], ["b", 547, 11]]);
-const pos$56 = nix.positions(here + "/default.nix", [["list", 537, 9], ["array", 545, 9], ["extraTest", 549, 9]]);
-const pos$57 = nix.positions(here + "/default.nix", [["name", 530, 7], ["stdenv'", 531, 7], ["extraAttrs", 532, 7]]);
-const pos$58 = nix.positions(here + "/default.nix", [["listWithSpaces", 574, 9], ["extraTest", 578, 9]]);
-const pos$59 = nix.positions(here + "/default.nix", [["name", 570, 7], ["stdenv'", 571, 7], ["extraAttrs", 572, 7]]);
-const pos$60 = nix.positions(here + "/default.nix", [["name", 591, 7], ["stdenv'", 592, 7]]);
-const pos$61 = nix.positions(here + "/default.nix", [["foo", 658, 11]]);
-const pos$62 = nix.positions(here + "/default.nix", [["bar", 661, 15]]);
-const pos$63 = nix.positions(here + "/default.nix", [["foo", 661, 11]]);
-const pos$64 = nix.positions(here + "/default.nix", [["name", 638, 9], ["nativeBuildInputs", 639, 9], ["EXAMPLE_BOOL_TRUE", 641, 9], ["EXAMPLE_BOOL_FALSE", 642, 9], ["EXAMPLE_INT", 643, 9], ["EXAMPLE_INT_NEG", 644, 9], ["EXAMPLE_STR", 645, 9], ["EXAMPLE_LIST", 646, 9], ["EXAMPLE_NESTED_LIST", 650, 9], ["EXAMPLE_ATTRS", 657, 9], ["EXAMPLE_NESTED_ATTRS", 660, 9], ["goldenSh", 664, 17], ["goldenJson", 665, 17], ["buildCommand", 667, 9]]);
-const pos$65 = nix.positions(here + "/default.nix", [["hooks", 511, 5], ["test-cc-wrapper-substitutions", 519, 5], ["test-structured-env-attrset", 524, 5], ["test-prepend-append-to-var", 529, 5], ["test-concat-to", 569, 5], ["test-concat-strings-sep", 590, 5], ["test-golden-example-structuredAttrs", 595, 5]]);
-const pos$66 = nix.positions(here + "/default.nix", [["hooks", 244, 3], ["darwin-libiconv-alias", 255, 3], ["outputs-no-out", 259, 3], ["test-env-attrset", 283, 3], ["rejectedHashes", 289, 3], ["test-inputDerivation", 300, 3], ["test-inputDerivation-fixed-output", 340, 3], ["test-inputDerivation-structured", 387, 3], ["test-inputDerivation-allowedReferences", 392, 3], ["test-inputDerivation-disallowedReferences", 397, 3], ["test-inputDerivation-allowedRequisites", 402, 3], ["test-inputDerivation-disallowedRequisites", 407, 3], ["test-inputDerivation-structured-allowedReferences", 412, 3], ["test-inputDerivation-structured-disallowedReferences", 418, 3], ["test-inputDerivation-structured-allowedRequisites", 424, 3], ["test-inputDerivation-structured-disallowedRequisites", 430, 3], ["test-prepend-append-to-var", 436, 3], ["test-concat-to", 441, 3], ["test-concat-strings-sep", 446, 3], ["test-structured-env-attrset", 451, 3], ["test-cc-wrapper-substitutions", 459, 3], ["tests-stdenv-gcc-stageCompare", 464, 3], ["ensure-no-execve-in-setup-sh", 466, 3], ["structuredAttrsByDefault", 509, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -90,8 +25,8 @@ export default nix.lambda((args) => (() => {
   const pkgsStructured = nix.thunk(() => nix.app(nix.builtins.import(nix.thunk(() => nix.sel(pkgs, "path"))), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(stdenv, "hostPlatform"));
       return {
-      [nix.POS]: pos$2,
-      config: nix.thunk(() => nix.update(config, { [nix.POS]: pos$1, structuredAttrsByDefault: true })),
+      [nix.POS]: $pos[1],
+      config: nix.thunk(() => nix.update(config, { [nix.POS]: $pos[0], structuredAttrsByDefault: true })),
       system: nix.thunk(() => nix.attr(from, "system")),
     };
     })())));
@@ -103,7 +38,7 @@ export default nix.lambda((args) => (() => {
     const stdenv$ = nix.arg($_1, "stdenv'");
     const extraAttrs = nix.argOr($_1, "extraAttrs", () => ({}));
     return nix.app(nix.sel(stdenv$, "cc", "overrideAttrs"), (previousAttrs) => nix.update({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         name: name,
         postFixup: nix.thunk(() => nix.add(nix.sel(previousAttrs, "postFixup"), nix.str`declare -p wrapperName
 echo "env.wrapperName = $wrapperName"
@@ -125,9 +60,9 @@ touch $out
     const stdenv$ = nix.arg($_1, "stdenv'");
     const extraAttrs = nix.argOr($_1, "extraAttrs", () => ({}));
     return nix.app(nix.sel(stdenv$, "mkDerivation"), nix.thunk(() => nix.update({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         name: name,
-        env: nix.thunk(() => ({ [nix.POS]: pos$4, string: "testing-string" })),
+        env: nix.thunk(() => ({ [nix.POS]: $pos[3], string: "testing-string" })),
         passAsFile: nix.thunk(() => ["buildCommand"]),
         buildCommand: "declare -p string\necho \"env.string = $string\"\n[[ $string == \"testing-string\" ]] || (echo \"'\\$string' was not 'testing-string'\" && false)\n[[ \"$(declare -p string)\" == 'declare -x string=\"testing-string\"' ]] || (echo \"'\\$string' was not exported\" && false)\ntouch $out\n",
       }, extraAttrs)));
@@ -138,9 +73,9 @@ touch $out
     const stdenv$ = nix.arg($_1, "stdenv'");
     const extraAttrs = nix.argOr($_1, "extraAttrs", () => ({}));
     return nix.app(nix.sel(stdenv$, "mkDerivation"), nix.thunk(() => nix.update({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         name: name,
-        env: nix.thunk(() => ({ [nix.POS]: pos$6, string: "testing-string" })),
+        env: nix.thunk(() => ({ [nix.POS]: $pos[5], string: "testing-string" })),
         passAsFile: nix.thunk(() => nix.concat(["buildCommand"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.has(extraAttrs, "extraTest")), nix.thunk(() => ["extraTest"])))),
         buildCommand: "declare -p string\nappendToVar string hello\n# test that quoted strings work\nprependToVar string \"world\"\ndeclare -p string\n\ndeclare -A associativeArray=([\"X\"]=\"Y\")\n[[ $(appendToVar associativeArray \"fail\" 2>&1) =~ \"trying to use\" ]] || (echo \"appendToVar did not throw appending to associativeArray\" && false)\n[[ $(prependToVar associativeArray \"fail\" 2>&1) =~ \"trying to use\" ]] || (echo \"prependToVar did not throw prepending associativeArray\" && false)\n\n[[ $string == \"world testing-string hello\" ]] || (echo \"'\\$string' was not 'world testing-string hello'\" && false)\n\n# test appending to a unset variable\nappendToVar nonExistant created hello\ndeclare -p nonExistant\nif [[ -n $__structuredAttrs ]]; then\n  [[ \"${nonExistant[@]}\" == \"created hello\" ]]\nelse\n  # there's a extra \" \" in front here and a extra \" \" in the end of prependToVar\n  # shouldn't matter because these functions will mostly be used for $*Flags and the Flag variable will in most cases already exist\n  [[ \"$nonExistant\" == \" created hello\" ]]\nfi\n\neval \"$extraTest\"\n\ntouch $out\n",
       }, extraAttrs)));
@@ -151,7 +86,7 @@ touch $out
     const stdenv$ = nix.arg($_1, "stdenv'");
     const extraAttrs = nix.argOr($_1, "extraAttrs", () => ({}));
     return nix.app(nix.sel(stdenv$, "mkDerivation"), nix.thunk(() => nix.update({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         name: name,
         string: "a *",
         list: nix.thunk(() => ["c", "d"]),
@@ -164,22 +99,22 @@ touch $out
     const name = nix.arg($_1, "name");
     const stdenv$ = nix.arg($_1, "stdenv'");
     return nix.app(nix.sel(stdenv$, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         name: name,
         passAsFile: nix.thunk(() => ["buildCommand"]),
         buildCommand: "declare -A associativeArray=([\"X\"]=\"Y\")\n[[ $(concatStringsSep \";\" associativeArray 2>&1) =~ \"trying to use\" ]] || (echo \"concatStringsSep did not throw concatenating associativeArray\" && false)\n\nstring=\"lorem ipsum dolor sit amet\"\nstringWithSep=\"$(concatStringsSep \"&\" string)\"\n[[ \"$stringWithSep\" == \"lorem&ipsum&dolor&sit&amet\" ]] || (echo \"'\\$stringWithSep' was not 'lorem&ipsum&dolor&sit&amet'\" && false)\n\narray=(\"lorem ipsum\" \"dolor\" \"sit amet\")\narrayWithSep=\"$(concatStringsSep \"&\" array)\"\n[[ \"$arrayWithSep\" == \"lorem ipsum&dolor&sit amet\" ]] || (echo \"'\\$arrayWithSep' was not 'lorem ipsum&dolor&sit amet'\" && false)\n\narray=(\"lorem ipsum\" \"dolor\" \"sit amet\")\narrayWithSep=\"$(concatStringsSep \"++\" array)\"\n[[ \"$arrayWithSep\" == \"lorem ipsum++dolor++sit amet\" ]] || (echo \"'\\$arrayWithSep' was not 'lorem ipsum++dolor++sit amet'\" && false)\n\narray=(\"lorem ipsum\" \"dolor\" \"sit amet\")\narrayWithSep=\"$(concatStringsSep \" and \" array)\"\n[[ \"$arrayWithSep\" == \"lorem ipsum and dolor and sit amet\" ]] || (echo \"'\\$arrayWithSep' was not 'lorem ipsum and dolor and sit amet'\" && false)\n\ntouch $out\n",
       })));
   })(), formals$6);
   const testInputDerivationDep = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       name: "test-input-derivation-dependency",
       buildCommand: "touch $out",
     }))));
-  const testInputDerivation = (attrs) => nix.update(nix.sel(nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(attrs, { [nix.POS]: pos$11, buildInputs: nix.thunk(() => [testInputDerivationDep]) }))), "inputDerivation"), { [nix.POS]: pos$12, meta: nix.thunk(() => ({})) });
+  const testInputDerivation = (attrs) => nix.update(nix.sel(nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(attrs, { [nix.POS]: $pos[10], buildInputs: nix.thunk(() => [testInputDerivationDep]) }))), "inputDerivation"), { [nix.POS]: $pos[11], meta: nix.thunk(() => ({})) });
   return {
-    [nix.POS]: pos$66,
+    [nix.POS]: $pos[65],
     hooks: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./hooks.nix")), nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           stdenv: bootStdenv,
           pkgs: earlyPkgs,
           initialPath: initialPath,
@@ -191,9 +126,9 @@ touch $out
       return nix.sel(pkgs, "emptyFile");
     })()),
     "outputs-no-out": nix.thunk(() => nix.app(runCommand, "outputs-no-out-assert", nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         result: nix.thunk(() => nix.app(nix.sel(earlierPkgs, "testers", "testBuildFailure"), nix.thunk(() => nix.app(nix.sel(bootStdenv, "mkDerivation"), nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               NIX_DEBUG: 1n,
               name: "outputs-no-out",
               outputs: nix.thunk(() => ["foo"]),
@@ -202,22 +137,22 @@ touch $out
             })))))),
         expectedMsg: "error: _assignFirst: could not find a non-empty variable whose name to assign to outputDev.\n       The following variables were all unset or empty:\n           dev out",
       })), "grep -F \"$expectedMsg\" $result/testBuildFailure.log >/dev/null\ntouch $out\n")),
-    "test-env-attrset": nix.thunk(() => nix.app(testEnvAttrset, nix.thunk(() => ({ [nix.POS]: pos$16, name: "test-env-attrset", "stdenv'": bootStdenv })))),
+    "test-env-attrset": nix.thunk(() => nix.app(testEnvAttrset, nix.thunk(() => ({ [nix.POS]: $pos[15], name: "test-env-attrset", "stdenv'": bootStdenv })))),
     rejectedHashes: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-        [nix.POS]: pos$18,
+        [nix.POS]: $pos[17],
         md5: nix.thunk(() => (() => {
-          const drv = nix.thunk(() => nix.app(runCommand, "md5 outputHash rejected", nix.thunk(() => ({ [nix.POS]: pos$17, outputHash: "md5-fPt7dxVVP7ffY3MxkQdwVw==" })), "true"));
+          const drv = nix.thunk(() => nix.app(runCommand, "md5 outputHash rejected", nix.thunk(() => ({ [nix.POS]: $pos[16], outputHash: "md5-fPt7dxVVP7ffY3MxkQdwVw==" })), "true"));
           nix.assert_(!nix.asBool(nix.sel(nix.builtins.tryEval(drv), "success")), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/test/stdenv/default.nix:296:7");
           return {};
         })()),
       })))),
     "test-inputDerivation": nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$21,
+          [nix.POS]: $pos[20],
           dep1: nix.thunk(() => nix.app(nix.builtins.derivation, nix.thunk(() => (() => {
               const from_1 = nix.thunk(() => nix.sel(stdenv, "buildPlatform"));
               return {
-              [nix.POS]: pos$19,
+              [nix.POS]: $pos[18],
               name: "dep1",
               builder: "/bin/sh",
               args: nix.thunk(() => ["-c", ": > $out"]),
@@ -227,7 +162,7 @@ touch $out
           dep2: nix.thunk(() => nix.app(nix.builtins.derivation, nix.thunk(() => (() => {
               const from_1 = nix.thunk(() => nix.sel(stdenv, "buildPlatform"));
               return {
-              [nix.POS]: pos$20,
+              [nix.POS]: $pos[19],
               name: "dep2",
               builder: "/bin/sh",
               args: nix.thunk(() => ["-c", ": > $out"]),
@@ -238,7 +173,7 @@ touch $out
         }))));
       const inputDerivation = nix.thunk(() => nix.attr(from, "inputDerivation"));
       return nix.app(runCommand, "test-inputDerivation", nix.thunk(() => ({
-          [nix.POS]: pos$22,
+          [nix.POS]: $pos[21],
           exportReferencesGraph: nix.thunk(() => ["graph", inputDerivation]),
         })), nix.thunk(() => nix.str`grep ${nix.sel(inputDerivation, "dep1")} graph
 grep ${nix.sel(inputDerivation, "dep2")} graph
@@ -247,11 +182,11 @@ touch $out
     })()),
     "test-inputDerivation-fixed-output": nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$25,
+          [nix.POS]: $pos[24],
           dep1: nix.thunk(() => nix.app(nix.builtins.derivation, nix.thunk(() => (() => {
               const from_1 = nix.thunk(() => nix.sel(stdenv, "buildPlatform"));
               return {
-              [nix.POS]: pos$23,
+              [nix.POS]: $pos[22],
               name: "dep1",
               builder: "/bin/sh",
               args: nix.thunk(() => ["-c", ": > $out"]),
@@ -261,7 +196,7 @@ touch $out
           dep2: nix.thunk(() => nix.app(nix.builtins.derivation, nix.thunk(() => (() => {
               const from_1 = nix.thunk(() => nix.sel(stdenv, "buildPlatform"));
               return {
-              [nix.POS]: pos$24,
+              [nix.POS]: $pos[23],
               name: "dep2",
               builder: "/bin/sh",
               args: nix.thunk(() => ["-c", ": > $out"]),
@@ -277,87 +212,91 @@ touch $out
         }))));
       const inputDerivation = nix.thunk(() => nix.attr(from, "inputDerivation"));
       return nix.app(runCommand, "test-inputDerivation", nix.thunk(() => ({
-          [nix.POS]: pos$26,
+          [nix.POS]: $pos[25],
           exportReferencesGraph: nix.thunk(() => ["graph", inputDerivation]),
         })), nix.thunk(() => nix.str`grep ${nix.sel(inputDerivation, "dep1")} graph
 grep ${nix.sel(inputDerivation, "dep2")} graph
 touch $out
 `));
     })()),
-    "test-inputDerivation-structured": nix.thunk(() => nix.app(testInputDerivation, nix.thunk(() => ({ [nix.POS]: pos$27, name: "test-inDrv-structured", __structuredAttrs: true })))),
+    "test-inputDerivation-structured": nix.thunk(() => nix.app(testInputDerivation, nix.thunk(() => ({ [nix.POS]: $pos[26], name: "test-inDrv-structured", __structuredAttrs: true })))),
     "test-inputDerivation-allowedReferences": nix.thunk(() => nix.app(testInputDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$28,
+        [nix.POS]: $pos[27],
         name: "test-inDrv-allowedReferences",
         allowedReferences: [],
       })))),
     "test-inputDerivation-disallowedReferences": nix.thunk(() => nix.app(testInputDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$29,
+        [nix.POS]: $pos[28],
         name: "test-inDrv-disallowedReferences",
         disallowedReferences: nix.thunk(() => [nix.thunk(() => nix.str`${testInputDerivationDep}`)]),
       })))),
     "test-inputDerivation-allowedRequisites": nix.thunk(() => nix.app(testInputDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$30,
+        [nix.POS]: $pos[29],
         name: "test-inDrv-allowedRequisites",
         allowedRequisites: [],
       })))),
     "test-inputDerivation-disallowedRequisites": nix.thunk(() => nix.app(testInputDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$31,
+        [nix.POS]: $pos[30],
         name: "test-inDrv-disallowedRequisites",
         disallowedRequisites: nix.thunk(() => [nix.thunk(() => nix.str`${testInputDerivationDep}`)]),
       })))),
     "test-inputDerivation-structured-allowedReferences": nix.thunk(() => nix.app(testInputDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$34,
+        [nix.POS]: $pos[33],
         name: "test-inDrv-structured-allowedReferences",
         __structuredAttrs: true,
         outputChecks: nix.thunk(() => ({
-          [nix.POS]: pos$33,
-          out: nix.thunk(() => ({ [nix.POS]: pos$32, allowedReferences: [] })),
+          [nix.POS]: $pos[32],
+          out: nix.thunk(() => ({ [nix.POS]: $pos[31], allowedReferences: [] })),
         })),
       })))),
     "test-inputDerivation-structured-disallowedReferences": nix.thunk(() => nix.app(testInputDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$37,
+        [nix.POS]: $pos[36],
         name: "test-inDrv-structured-disallowedReferences",
         __structuredAttrs: true,
         outputChecks: nix.thunk(() => ({
-          [nix.POS]: pos$36,
+          [nix.POS]: $pos[35],
           out: nix.thunk(() => ({
-            [nix.POS]: pos$35,
+            [nix.POS]: $pos[34],
             disallowedReferences: nix.thunk(() => [nix.thunk(() => nix.str`${testInputDerivationDep}`)]),
           })),
         })),
       })))),
     "test-inputDerivation-structured-allowedRequisites": nix.thunk(() => nix.app(testInputDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$40,
+        [nix.POS]: $pos[39],
         name: "test-inDrv-structured-allowedRequisites",
         __structuredAttrs: true,
         outputChecks: nix.thunk(() => ({
-          [nix.POS]: pos$39,
-          out: nix.thunk(() => ({ [nix.POS]: pos$38, allowedRequisites: [] })),
+          [nix.POS]: $pos[38],
+          out: nix.thunk(() => ({ [nix.POS]: $pos[37], allowedRequisites: [] })),
         })),
       })))),
     "test-inputDerivation-structured-disallowedRequisites": nix.thunk(() => nix.app(testInputDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$43,
+        [nix.POS]: $pos[42],
         name: "test-inDrv-structured-disallowedRequisites",
         __structuredAttrs: true,
         outputChecks: nix.thunk(() => ({
-          [nix.POS]: pos$42,
+          [nix.POS]: $pos[41],
           out: nix.thunk(() => ({
-            [nix.POS]: pos$41,
+            [nix.POS]: $pos[40],
             disallowedRequisites: nix.thunk(() => [nix.thunk(() => nix.str`${testInputDerivationDep}`)]),
           })),
         })),
       })))),
-    "test-prepend-append-to-var": nix.thunk(() => nix.app(testPrependAndAppendToVar, nix.thunk(() => ({ [nix.POS]: pos$44, name: "test-prepend-append-to-var", "stdenv'": bootStdenv })))),
-    "test-concat-to": nix.thunk(() => nix.app(testConcatTo, nix.thunk(() => ({ [nix.POS]: pos$45, name: "test-concat-to", "stdenv'": bootStdenv })))),
-    "test-concat-strings-sep": nix.thunk(() => nix.app(testConcatStringsSep, nix.thunk(() => ({ [nix.POS]: pos$46, name: "test-concat-strings-sep", "stdenv'": bootStdenv })))),
+    "test-prepend-append-to-var": nix.thunk(() => nix.app(testPrependAndAppendToVar, nix.thunk(() => ({
+        [nix.POS]: $pos[43],
+        name: "test-prepend-append-to-var",
+        "stdenv'": bootStdenv,
+      })))),
+    "test-concat-to": nix.thunk(() => nix.app(testConcatTo, nix.thunk(() => ({ [nix.POS]: $pos[44], name: "test-concat-to", "stdenv'": bootStdenv })))),
+    "test-concat-strings-sep": nix.thunk(() => nix.app(testConcatStringsSep, nix.thunk(() => ({ [nix.POS]: $pos[45], name: "test-concat-strings-sep", "stdenv'": bootStdenv })))),
     "test-structured-env-attrset": nix.thunk(() => nix.app(testEnvAttrset, nix.thunk(() => ({
-        [nix.POS]: pos$48,
+        [nix.POS]: $pos[47],
         name: "test-structured-env-attrset",
         "stdenv'": bootStdenv,
-        extraAttrs: nix.thunk(() => ({ [nix.POS]: pos$47, __structuredAttrs: true })),
+        extraAttrs: nix.thunk(() => ({ [nix.POS]: $pos[46], __structuredAttrs: true })),
       })))),
     "test-cc-wrapper-substitutions": nix.thunk(() => nix.app(ccWrapperSubstitutionsTest, nix.thunk(() => ({
-        [nix.POS]: pos$49,
+        [nix.POS]: $pos[48],
         name: "test-cc-wrapper-substitutions",
         "stdenv'": bootStdenv,
       })))),
@@ -365,7 +304,7 @@ touch $out
     "ensure-no-execve-in-setup-sh": nix.thunk(() => nix.update(nix.app(nix.builtins.derivation, nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(stdenv, "hostPlatform"));
         return {
-        [nix.POS]: pos$50,
+        [nix.POS]: $pos[49],
         name: "ensure-no-execve-in-setup-sh",
         system: nix.thunk(() => nix.attr(from, "system")),
         builder: nix.thunk(() => nix.str`${initialBash}/bin/bash`),
@@ -400,11 +339,11 @@ touch $out
 `),
         ]),
       };
-      })())), { [nix.POS]: pos$51, meta: nix.thunk(() => ({})) })),
+      })())), { [nix.POS]: $pos[50], meta: nix.thunk(() => ({})) })),
     structuredAttrsByDefault: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-        [nix.POS]: pos$65,
+        [nix.POS]: $pos[64],
         hooks: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./hooks.nix")), nix.thunk(() => ({
-              [nix.POS]: pos$52,
+              [nix.POS]: $pos[51],
               stdenv: bootStdenvStructuredAttrsByDefault,
               pkgs: earlyPkgs,
               initialBash: initialBash,
@@ -412,38 +351,38 @@ touch $out
               lib: lib,
             })))))),
         "test-cc-wrapper-substitutions": nix.thunk(() => nix.app(ccWrapperSubstitutionsTest, nix.thunk(() => ({
-            [nix.POS]: pos$53,
+            [nix.POS]: $pos[52],
             name: "test-cc-wrapper-substitutions-structuredAttrsByDefault",
             "stdenv'": bootStdenvStructuredAttrsByDefault,
           })))),
         "test-structured-env-attrset": nix.thunk(() => nix.app(testEnvAttrset, nix.thunk(() => ({
-            [nix.POS]: pos$54,
+            [nix.POS]: $pos[53],
             name: "test-structured-env-attrset-structuredAttrsByDefault",
             "stdenv'": bootStdenvStructuredAttrsByDefault,
           })))),
         "test-prepend-append-to-var": nix.thunk(() => nix.app(testPrependAndAppendToVar, nix.thunk(() => ({
-            [nix.POS]: pos$57,
+            [nix.POS]: $pos[56],
             name: "test-prepend-append-to-var-structuredAttrsByDefault",
             "stdenv'": bootStdenvStructuredAttrsByDefault,
             extraAttrs: nix.thunk(() => ({
-              [nix.POS]: pos$56,
+              [nix.POS]: $pos[55],
               list: nix.thunk(() => ["a", "b"]),
-              array: nix.thunk(() => ({ [nix.POS]: pos$55, a: "1", b: "2" })),
+              array: nix.thunk(() => ({ [nix.POS]: $pos[54], a: "1", b: "2" })),
               extraTest: "declare -p array\narray+=([\"c\"]=\"3\")\ndeclare -p array\n\n[[ \"${array[c]}\" == \"3\" ]] || (echo \"c element of '\\$array' was not '3'\" && false)\n\ndeclare -p list\nprependToVar list hello\n# test that quoted strings work\nappendToVar list \"world\"\ndeclare -p list\n\n[[ \"${list[0]}\" == \"hello\" ]] || (echo \"first element of '\\$list' was not 'hello'\" && false)\n[[ \"${list[1]}\" == \"a\" ]] || (echo \"first element of '\\$list' was not 'a'\" && false)\n[[ \"${list[-1]}\" == \"world\" ]] || (echo \"last element of '\\$list' was not 'world'\" && false)\n",
             })),
           })))),
         "test-concat-to": nix.thunk(() => nix.app(testConcatTo, nix.thunk(() => ({
-            [nix.POS]: pos$59,
+            [nix.POS]: $pos[58],
             name: "test-concat-to-structuredAttrsByDefault",
             "stdenv'": bootStdenvStructuredAttrsByDefault,
             extraAttrs: nix.thunk(() => ({
-              [nix.POS]: pos$58,
+              [nix.POS]: $pos[57],
               listWithSpaces: nix.thunk(() => ["c c", "d d"]),
               extraTest: "declare -a flagsWithSpaces\nconcatTo flagsWithSpaces string listWithSpaces\ndeclare -p flagsWithSpaces\n[[ \"${flagsWithSpaces[0]}\" == \"a\" ]] || (echo \"'\\$flagsWithSpaces[0]' was not 'a'\" && false)\n[[ \"${flagsWithSpaces[1]}\" == \"*\" ]] || (echo \"'\\$flagsWithSpaces[1]' was not '*'\" && false)\n[[ \"${flagsWithSpaces[2]}\" == \"c c\" ]] || (echo \"'\\$flagsWithSpaces[2]' was not 'c c'\" && false)\n[[ \"${flagsWithSpaces[3]}\" == \"d d\" ]] || (echo \"'\\$flagsWithSpaces[3]' was not 'd d'\" && false)\n",
             })),
           })))),
         "test-concat-strings-sep": nix.thunk(() => nix.app(testConcatStringsSep, nix.thunk(() => ({
-            [nix.POS]: pos$60,
+            [nix.POS]: $pos[59],
             name: "test-concat-strings-sep-structuredAttrsByDefault",
             "stdenv'": bootStdenvStructuredAttrsByDefault,
           })))),
@@ -451,7 +390,7 @@ touch $out
           const goldenSh = nix.thunk(() => nix.app(nix.sel(earlyPkgs, "writeText"), "goldenSh", "declare -A EXAMPLE_ATTRS=(['foo']='bar' )\ndeclare EXAMPLE_BOOL_FALSE=\ndeclare EXAMPLE_BOOL_TRUE=1\ndeclare EXAMPLE_INT=123\ndeclare EXAMPLE_INT_NEG=-123\ndeclare -a EXAMPLE_LIST=('foo' 'bar' )\ndeclare EXAMPLE_STR='foo bar'\n"));
           const goldenJson = nix.thunk(() => nix.app(nix.sel(earlyPkgs, "writeText"), "goldenSh", "{\n  \"EXAMPLE_ATTRS\": {\n    \"foo\": \"bar\"\n  },\n  \"EXAMPLE_BOOL_FALSE\": false,\n  \"EXAMPLE_BOOL_TRUE\": true,\n  \"EXAMPLE_INT\": 123,\n  \"EXAMPLE_INT_NEG\": -123,\n  \"EXAMPLE_LIST\": [\n    \"foo\",\n    \"bar\"\n  ],\n  \"EXAMPLE_NESTED_ATTRS\": {\n    \"foo\": {\n      \"bar\": \"baz\"\n    }\n  },\n  \"EXAMPLE_NESTED_LIST\": [\n    [\n      \"foo\",\n      \"bar\"\n    ],\n    [\n      \"baz\"\n    ]\n  ],\n  \"EXAMPLE_STR\": \"foo bar\"\n}\n"));
           return nix.app(nix.sel(bootStdenvStructuredAttrsByDefault, "mkDerivation"), nix.thunk(() => ({
-              [nix.POS]: pos$64,
+              [nix.POS]: $pos[63],
               name: "test-golden-example-structuredAttrsByDefault",
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(earlyPkgs, "jq"))]),
               EXAMPLE_BOOL_TRUE: true,
@@ -461,8 +400,11 @@ touch $out
               EXAMPLE_STR: "foo bar",
               EXAMPLE_LIST: nix.thunk(() => ["foo", "bar"]),
               EXAMPLE_NESTED_LIST: nix.thunk(() => [nix.thunk(() => ["foo", "bar"]), nix.thunk(() => ["baz"])]),
-              EXAMPLE_ATTRS: nix.thunk(() => ({ [nix.POS]: pos$61, foo: "bar" })),
-              EXAMPLE_NESTED_ATTRS: nix.thunk(() => ({ [nix.POS]: pos$63, foo: nix.thunk(() => ({ [nix.POS]: pos$62, bar: "baz" })) })),
+              EXAMPLE_ATTRS: nix.thunk(() => ({ [nix.POS]: $pos[60], foo: "bar" })),
+              EXAMPLE_NESTED_ATTRS: nix.thunk(() => ({
+                [nix.POS]: $pos[62],
+                foo: nix.thunk(() => ({ [nix.POS]: $pos[61], bar: "baz" })),
+              })),
               goldenSh: goldenSh,
               goldenJson: goldenJson,
               buildCommand: "mkdir -p $out\ncat $NIX_ATTRS_SH_FILE | grep \"EXAMPLE\" | grep -v -E 'installPhase|jq' > $out/sh\njq 'with_entries(select(.key|match(\"EXAMPLE\")))' $NIX_ATTRS_JSON_FILE > $out/json\ndiff $out/sh $goldenSh\ndiff $out/json $goldenJson\n",

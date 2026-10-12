@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["description", 89, 5], ["homepage", 90, 5], ["downloadPage", 91, 5], ["changelog", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["platforms", 95, 5]], [["pname", 27, 3], ["version", 28, 3], ["__structuredAttrs", 30, 3], ["strictDeps", 31, 3], ["src", 33, 3], ["patches", 40, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 53, 3], ["patchPhase", 70, 3], ["makeFlags", 84, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, hexdump: false, meson: false, ninja: false, perl: false, "pkg-config": false, giflib: false, libdrm: false, libexif: false, libiconvReal: false, libinput: false, libtsm: false, libwebp: false, libxkbcommon: false, libxpm: false, libxt: false, motif: false, pixman: false, poppler: false, udev: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 89, 5], ["homepage", 90, 5], ["downloadPage", 91, 5], ["changelog", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["platforms", 95, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["__structuredAttrs", 30, 3], ["strictDeps", 31, 3], ["src", 33, 3], ["patches", 40, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 53, 3], ["patchPhase", 70, 3], ["makeFlags", 84, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,13 +30,13 @@ export default nix.lambda((args) => (() => {
   const poppler = nix.arg($, "poppler");
   const udev = nix.arg($, "udev");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "fbida",
       version: "2.15-1",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kraxel",
           repo: "fbida",
           tag: nix.thunk(() => nix.str`fbida-${nix.sel(finalAttrs, "version")}`),
@@ -65,7 +63,7 @@ export default nix.lambda((args) => (() => {
       patchPhase: "runHook prePatch\n\npatchShebangs scripts/*.pl\npatchShebangs scripts/*.sh\n\nsed -i -E \\\n  -e '/^jpeg_run[[:space:]]*=.*$/d' \\\n  -e \"/^jpeg_ver[[:space:]]*=.*$/c\\\\jpeg_ver = '62'\" \\\n  meson.build\n\nrunHook postPatch\n",
       makeFlags: nix.thunk(() => ["HOST=nix"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Image viewing and manipulation programs including fbi, fbgs, ida, exiftran and thumbnail.cgi",
         homepage: "https://www.kraxel.org/blog/linux/fbida/",
         downloadPage: "https://gitlab.com/kraxel/fbida/",

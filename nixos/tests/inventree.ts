@@ -2,52 +2,41 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/inventree.nix", [[["maintainers", 4, 8]], [["memorySize", 11, 22]], [["enable", 13, 9]], [["inventree", 12, 16]], [["virtualisation", 11, 7], ["services", 12, 7]], [["memorySize", 17, 22]], [["dbtype", 20, 18]], [["enable", 19, 9], ["database", 20, 9]], [["inventree", 18, 16]], [["virtualisation", 17, 7], ["services", 18, 7]], [["psqlTest", 9, 5], ["mysqlTest", 16, 5]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 24, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/inventree.nix", [["maintainers", 4, 8]]);
-const pos$2 = nix.positions(here + "/inventree.nix", [["memorySize", 11, 22]]);
-const pos$3 = nix.positions(here + "/inventree.nix", [["enable", 13, 9]]);
-const pos$4 = nix.positions(here + "/inventree.nix", [["inventree", 12, 16]]);
-const pos$5 = nix.positions(here + "/inventree.nix", [["virtualisation", 11, 7], ["services", 12, 7]]);
-const pos$6 = nix.positions(here + "/inventree.nix", [["memorySize", 17, 22]]);
-const pos$7 = nix.positions(here + "/inventree.nix", [["dbtype", 20, 18]]);
-const pos$8 = nix.positions(here + "/inventree.nix", [["enable", 19, 9], ["database", 20, 9]]);
-const pos$9 = nix.positions(here + "/inventree.nix", [["inventree", 18, 16]]);
-const pos$10 = nix.positions(here + "/inventree.nix", [["virtualisation", 17, 7], ["services", 18, 7]]);
-const pos$11 = nix.positions(here + "/inventree.nix", [["psqlTest", 9, 5], ["mysqlTest", 16, 5]]);
-const pos$12 = nix.positions(here + "/inventree.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     name: "inventree",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "kurogeek"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       psqlTest: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, memorySize: 2048n })),
+        [nix.POS]: $pos[4],
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[1], memorySize: 2048n })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          inventree: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
+          [nix.POS]: $pos[3],
+          inventree: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true })),
         })),
       })),
       mysqlTest: nix.thunk(() => ({
-        [nix.POS]: pos$10,
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$6, memorySize: 2048n })),
+        [nix.POS]: $pos[9],
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[5], memorySize: 2048n })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           inventree: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             enable: true,
-            database: nix.thunk(() => ({ [nix.POS]: pos$7, dbtype: "mysql" })),
+            database: nix.thunk(() => ({ [nix.POS]: $pos[6], dbtype: "mysql" })),
           })),
         })),
       })),

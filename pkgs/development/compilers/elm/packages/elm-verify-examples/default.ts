@@ -2,12 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 18, 5], ["hash", 19, 5]], [["elmPackages", 38, 7], ["elmVersion", 39, 7], ["registryDat", 40, 7]], [["updateScript", 44, 12]], [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["mainProgram", 51, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["npmDepsHash", 22, 3], ["nativeBuildInputs", 24, 3], ["npmFlags", 28, 3], ["buildPhase", 30, 3], ["postConfigure", 36, 3], ["passthru", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, elmPackages: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["elmPackages", 38, 7], ["elmVersion", 39, 7], ["registryDat", 40, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 44, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["mainProgram", 51, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["npmDepsHash", 22, 3], ["nativeBuildInputs", 24, 3], ["npmFlags", 28, 3], ["buildPhase", 30, 3], ["postConfigure", 36, 3], ["passthru", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const elmPackages = nix.arg($, "elmPackages");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "elm-verify-examples",
       version: "6.0.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "stoeffel",
           repo: "elm-verify-examples",
           rev: "63b84eca9642f6d0de37d6e35e0d8bc6edca19c6",
@@ -32,14 +28,14 @@ export default nix.lambda((args) => (() => {
       npmFlags: nix.thunk(() => ["--ignore-scripts"]),
       buildPhase: "runHook preBuild\nmake build\nrunHook postBuild\n",
       postConfigure: nix.thunk(() => nix.app(nix.sel(elmPackages, "fetchElmDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           elmPackages: nix.thunk(() => nix.builtins.import(nix.path(here, "./elm-srcs.nix"))),
           elmVersion: nix.thunk(() => nix.sel(elmPackages, "elm", "version")),
           registryDat: nix.path(here, "./registry.dat"),
         })))),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Verify examples in your docs",
         homepage: "https://github.com/stoeffel/elm-verify-examples",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

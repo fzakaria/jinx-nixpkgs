@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["plugins", 34, 16]], [["pname", 29, 7], ["version", 30, 7], ["src", 31, 7], ["dontInstall", 32, 7], ["dontStrip", 33, 7], ["passthru", 34, 7], ["newPlugins", 35, 7], ["disallowedReferences", 36, 7], ["nativeBuildInputs", 37, 7], ["buildInputs", 43, 7], ["meta", 45, 21], ["buildPhase", 47, 7]], [["tests", 14, 3], ["addPlugins", 16, 3]]]);
 const formals$1 = { args: { autoPatchelfHook: false, callPackage: false, darwin: false, fetchurl: false, fetchzip: false, glib: false, lib: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["plugins", 34, 16]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 29, 7], ["version", 30, 7], ["src", 31, 7], ["dontInstall", 32, 7], ["dontStrip", 33, 7], ["passthru", 34, 7], ["newPlugins", 35, 7], ["disallowedReferences", 36, 7], ["nativeBuildInputs", 37, 7], ["buildInputs", 43, 7], ["meta", 45, 21], ["buildPhase", 47, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 14, 3], ["addPlugins", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,20 +16,20 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return {
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     tests: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({})))),
     addPlugins: (ide) => (unprocessedPlugins) => (() => {
       const processPlugin = (plugin) => nix.app(nix.sel(lib, "throwIfNot"), nix.thunk(() => nix.app(nix.sel(lib, "isDerivation"), plugin)), "addPlugins no longer supports resolving plugins by name or id strings. Please supply a derivation instead", plugin);
       const plugins = nix.thunk(() => nix.builtins.map(processPlugin, unprocessedPlugins));
       return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.add(nix.sel(finalAttrs, "meta", "mainProgram"), "-with-plugins")),
           version: nix.thunk(() => nix.sel(ide, "version")),
           src: ide,
           dontInstall: true,
           dontStrip: true,
           passthru: nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             plugins: nix.thunk(() => nix.concat(plugins, nix.selOr(ide, () => [], "plugins"))),
           })),
           newPlugins: plugins,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["pname", 40, 7], ["version", 41, 7], ["src", 42, 7], ["patches", 43, 7], ["sourceRoot", 45, 5], ["hash", 46, 5], ["patchFlags", 47, 5]], [["description", 83, 5], ["mainProgram", 84, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["license", 87, 5], ["maintainers", 88, 5]], [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["patches", 36, 3], ["cargoDeps", 38, 3], ["cargoRoot", 50, 3], ["build-system", 52, 3], ["nativeBuildInputs", 57, 3], ["dependencies", 63, 3], ["doCheck", 78, 3], ["pythonImportsCheck", 80, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, arc4: false, asn1crypto: false, asn1tools: false, asyauth: false, asysocks: false, buildPythonPackage: false, cargo: false, colorama: false, fetchFromGitHub: false, iconv: false, pillow: false, pyperclip: false, rustPlatform: false, rustc: false, setuptools: false, "setuptools-rust": false, tqdm: false, unicrypto: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 40, 7], ["version", 41, 7], ["src", 42, 7], ["patches", 43, 7], ["sourceRoot", 45, 5], ["hash", 46, 5], ["patchFlags", 47, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 83, 5], ["mainProgram", 84, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["license", 87, 5], ["maintainers", 88, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["patches", 36, 3], ["cargoDeps", 38, 3], ["cargoRoot", 50, 3], ["build-system", 52, 3], ["nativeBuildInputs", 57, 3], ["dependencies", 63, 3], ["doCheck", 78, 3], ["pythonImportsCheck", 80, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.13";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "skelsec",
           repo: "aardwolf",
           tag: version,
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [nix.path(here, "./update-pyo3.patch")]);
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: pname,
           version: version,
           src: src,
@@ -70,7 +67,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["aardwolf"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Asynchronous RDP protocol implementation",
         mainProgram: "ardpscan",
         homepage: "https://github.com/skelsec/aardwolf",
@@ -82,7 +79,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

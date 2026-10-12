@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["mainProgram", 49, 5], ["description", 50, 5], ["homepage", 51, 5], ["platforms", 52, 5], ["license", 53, 5], ["maintainers", 54, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["dontConfigure", 25, 3], ["dontBuild", 26, 3], ["nativeBuildInputs", 27, 3], ["installPhase", 29, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, bash: false, coreutils: false, fetchFromGitHub: false, gnused: false, gnugrep: false, gawk: false, makeWrapper: false, pulseaudio: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["mainProgram", 49, 5], ["description", 50, 5], ["homepage", 51, 5], ["platforms", 52, 5], ["license", 53, 5], ["maintainers", 54, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["dontConfigure", 25, 3], ["dontBuild", 26, 3], ["nativeBuildInputs", 27, 3], ["installPhase", 29, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pulseaudio = nix.arg($, "pulseaudio");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "polybar-pulseaudio-control",
       version: "3.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "marioortizmanero",
           repo: "polybar-pulseaudio-control",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +40,7 @@ wrapProgram "$out/bin/pulseaudio-control" \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         mainProgram: "pulseaudio-control",
         description: "Polybar module to control PulseAudio devices, also known as Pavolume",
         homepage: "https://github.com/marioortizmanero/polybar-pulseaudio-control",

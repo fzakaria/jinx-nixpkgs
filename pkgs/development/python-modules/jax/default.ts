@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 52, 5], ["repo", 53, 5], ["tag", 55, 5], ["hash", 56, 5]], [["JAX_RELEASE", 63, 7]], [["cuda", 81, 7], ["cuda12", 88, 7], ["cuda12_local", 89, 7], ["cuda13", 90, 7], ["cuda13_local", 91, 7]], [["jaxlib", 167, 30]], [["jax", 167, 9]], [["test_cuda_jaxlibBin", 166, 7], ["skipBulkUpdate", 170, 7]], [["tests", 161, 5]], [["description", 175, 5], ["homepage", 176, 5], ["changelog", 177, 5], ["license", 178, 5], ["teams", 179, 5], ["maintainers", 180, 5]], [["pname", 46, 3], ["version", 47, 3], ["pyproject", 48, 3], ["__structuredAttrs", 49, 3], ["src", 51, 3], ["build-system", 59, 3], ["env", 63, 3], ["dependencies", 65, 3], ["optional-dependencies", 74, 3], ["nativeCheckInputs", 94, 3], ["pytestFlags", 104, 3], ["enabledTestPaths", 112, 3], ["preCheck", 116, 3], ["disabledTests", 129, 3], ["pythonImportsCheck", 150, 3], ["passthru", 160, 3], ["meta", 174, 3]]]);
 const formals$1 = { args: { lib: false, config: false, stdenv: false, blas: false, lapack: false, buildPythonPackage: false, fetchFromGitHub: false, cudaSupport: true, cudaPackages: false, setuptools: false, jaxlib: false, "ml-dtypes": false, numpy: false, "opt-einsum": false, scipy: false, "jax-cuda12-plugin": false, "jax-cuda13-plugin": false, "absl-py": false, cloudpickle: false, flatbuffers: false, hypothesis: false, matplotlib: false, pytestCheckHook: false, "pytest-xdist": false, callPackage: false, jax: false, "jaxlib-build": false, "jaxlib-bin": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 52, 5], ["repo", 53, 5], ["tag", 55, 5], ["hash", 56, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["JAX_RELEASE", 63, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["cuda", 81, 7], ["cuda12", 88, 7], ["cuda12_local", 89, 7], ["cuda13", 90, 7], ["cuda13_local", 91, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["jaxlib", 167, 30]]);
-const pos$5 = nix.positions(here + "/default.nix", [["jax", 167, 9]]);
-const pos$6 = nix.positions(here + "/default.nix", [["test_cuda_jaxlibBin", 166, 7], ["skipBulkUpdate", 170, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["tests", 161, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["description", 175, 5], ["homepage", 176, 5], ["changelog", 177, 5], ["license", 178, 5], ["teams", 179, 5], ["maintainers", 180, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["pname", 46, 3], ["version", 47, 3], ["pyproject", 48, 3], ["__structuredAttrs", 49, 3], ["src", 51, 3], ["build-system", 59, 3], ["env", 63, 3], ["dependencies", 65, 3], ["optional-dependencies", 74, 3], ["nativeCheckInputs", 94, 3], ["pytestFlags", 104, 3], ["enabledTestPaths", 112, 3], ["preCheck", 116, 3], ["disabledTests", 129, 3], ["pythonImportsCheck", 150, 3], ["passthru", 160, 3], ["meta", 174, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -45,27 +37,27 @@ export default nix.lambda((args) => (() => {
   const jaxlib_bin = nix.arg($, "jaxlib-bin");
   const usingMKL = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(blas, "implementation"), "mkl")) || nix.asBool(nix.eq(nix.sel(lapack, "implementation"), "mkl"))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "jax",
       version: "0.11.2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "google",
           repo: "jax",
           tag: nix.thunk(() => nix.str`jax-v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-lBfsbEa5Z6GmGVSgdDKoMF0R1TuU+e05QYP96qPNnxQ=",
         })))),
       "build-system": nix.thunk(() => [setuptools]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, JAX_RELEASE: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], JAX_RELEASE: "1" })),
       dependencies: nix.thunk(() => nix.concat([jaxlib, ml_dtypes, numpy, opt_einsum, scipy], nix.app(nix.sel(lib, "optionals"), cudaSupport, nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies", "cuda"))))),
       "optional-dependencies": nix.thunk(() => (() => {
         const cudaMajorVersion = nix.thunk(() => nix.attr(cudaPackages, "cudaMajorVersion"));
         const cuda12 = nix.thunk(() => [jax_cuda12_plugin]);
         const cuda13 = nix.thunk(() => [jax_cuda13_plugin]);
         return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           cuda: nix.thunk(() => (nix.asBool(nix.eq(cudaMajorVersion, "12")) ? nix.force(cuda12) : (nix.asBool(nix.eq(cudaMajorVersion, "13")) ? nix.force(cuda13) : nix.builtins.throw(nix.thunk(() => nix.str`Unsupported cudaPackages version (${cudaMajorVersion}). Supported versions are 12 and 13.`))))),
           cuda12: cuda12,
           cuda12_local: cuda12,
@@ -95,18 +87,18 @@ export default nix.lambda((args) => (() => {
         ]))))),
       pythonImportsCheck: nix.thunk(() => ["jax"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           test_cuda_jaxlibBin: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-cuda.nix"), nix.thunk(() => ({
-              [nix.POS]: pos$5,
-              jax: nix.thunk(() => nix.app(nix.sel(jax, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, jaxlib: jaxlib_bin })))),
+              [nix.POS]: $pos[4],
+              jax: nix.thunk(() => nix.app(nix.sel(jax, "override"), nix.thunk(() => ({ [nix.POS]: $pos[3], jaxlib: jaxlib_bin })))),
             })))),
           skipBulkUpdate: true,
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Source-built JAX frontend: differentiate, compile, and transform Numpy code",
         homepage: "https://github.com/jax-ml/jax",
         changelog: "https://docs.jax.dev/en/latest/changelog.html",

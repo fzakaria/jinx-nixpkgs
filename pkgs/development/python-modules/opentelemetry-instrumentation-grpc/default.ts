@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["instruments", 32, 5]], [["PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION", 36, 5]], [["homepage", 59, 5], ["description", 60, 5]], [["version", 16, 43], ["src", 16, 51], ["pname", 17, 3], ["pyproject", 18, 3], ["sourceRoot", 20, 3], ["build-system", 22, 3], ["dependencies", 24, 3], ["optional-dependencies", 31, 3], ["env", 35, 3], ["nativeCheckInputs", 39, 3], ["preBuild", 45, 3], ["disabledTests", 49, 3], ["pythonImportsCheck", 54, 3], ["__darwinAllowLocalNetworking", 56, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, hatchling: false, "opentelemetry-api": false, "opentelemetry-instrumentation": false, "opentelemetry-semantic-conventions": false, "opentelemetry-test-utils": false, wrapt: false, pytestCheckHook: false, grpcio: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["instruments", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION", 36, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 59, 5], ["description", 60, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["version", 16, 43], ["src", 16, 51], ["pname", 17, 3], ["pyproject", 18, 3], ["sourceRoot", 20, 3], ["build-system", 22, 3], ["dependencies", 24, 3], ["optional-dependencies", 31, 3], ["env", 35, 3], ["nativeCheckInputs", 39, 3], ["preBuild", 45, 3], ["disabledTests", 49, 3], ["pythonImportsCheck", 54, 3], ["__darwinAllowLocalNetworking", 56, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const grpcio = nix.arg($, "grpcio");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: nix.thunk(() => nix.attr(opentelemetry_instrumentation, "version")),
       src: nix.thunk(() => nix.attr(opentelemetry_instrumentation, "src")),
       pname: "opentelemetry-instrumentation-grpc",
@@ -35,15 +32,15 @@ export default nix.lambda((args) => (() => {
         opentelemetry_semantic_conventions,
         wrapt,
       ]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$1, instruments: nix.thunk(() => [grpcio]) })),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: "python" })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[0], instruments: nix.thunk(() => [grpcio]) })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: "python" })),
       nativeCheckInputs: nix.thunk(() => [opentelemetry_test_utils, grpcio, pytestCheckHook]),
       preBuild: "export TMPDIR=$(mktemp -d)\n",
       disabledTests: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["TestOpenTelemetryServerInterceptorUnix"]))),
       pythonImportsCheck: nix.thunk(() => ["opentelemetry.instrumentation.grpc"]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => nix.update(nix.sel(opentelemetry_instrumentation, "meta"), {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-grpc",
         description: "OpenTelemetry Instrumentation for grpc",
       })),

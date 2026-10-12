@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 18, 5], ["path", 19, 5]], [["description", 35, 5], ["longDescription", 36, 5], ["license", 41, 5]], [["pname", 24, 3], ["version", 25, 3], ["dontBuild", 27, 3], ["buildCommand", 29, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { stdenv: false, pkgs: false, lib: false, runtimeShell: false, cores: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 18, 5], ["path", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 35, 5], ["longDescription", 36, 5], ["license", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["dontBuild", 27, 3], ["buildCommand", 29, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,10 +21,10 @@ nohup sh -c "sleep 10 && ${exec} '$@' -f;pkill -SIGCONT kodi"
   const execs = nix.thunk(() => nix.builtins.map((core) => (() => {
       const name = nix.thunk(() => nix.sel(core, "core"));
       const path = nix.thunk(() => nix.add(nix.add(core, "/bin/retroarch-"), name));
-      return { [nix.POS]: pos$1, name, path };
+      return { [nix.POS]: $pos[0], name, path };
     })(), cores));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "kodi-retroarch-advanced-launchers",
       version: "0.2",
       dontBuild: true,
@@ -34,7 +32,7 @@ nohup sh -c "sleep 10 && ${exec} '$@' -f;pkill -SIGCONT kodi"
 ${nix.app(nix.sel(lib, "concatMapStrings"), (exec) => nix.str`ln -s ${nix.app(scriptSh, exec)} $out/bin/kodi-${nix.sel(exec, "name")};`, execs)}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Kodi retroarch advanced launchers",
         longDescription: "These retroarch launchers are intended to be used with\nadvanced (emulation) launcher for Kodi since device input is\notherwise caught by both Kodi and the retroarch process.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 22, 5], ["version", 23, 13], ["hash", 24, 5]], [["fastavro", 40, 5], ["pandas", 41, 5], ["pyarrow", 42, 5]], [["description", 65, 5], ["homepage", 66, 5], ["changelog", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["mainProgram", 70, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 27, 3], ["pythonRelaxDeps", 29, 3], ["dependencies", 33, 3], ["optional-dependencies", 39, 3], ["nativeCheckInputs", 45, 3], ["doCheck", 52, 3], ["preCheck", 54, 3], ["pythonImportsCheck", 58, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fastavro: false, fetchPypi: false, "google-api-core": false, "google-auth": false, "google-cloud-bigquery": false, pandas: false, protobuf: false, pyarrow: false, pytestCheckHook: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 22, 5], ["version", 23, 13], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["fastavro", 40, 5], ["pandas", 41, 5], ["pyarrow", 42, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 65, 5], ["homepage", 66, 5], ["changelog", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["mainProgram", 70, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 27, 3], ["pythonRelaxDeps", 29, 3], ["dependencies", 33, 3], ["optional-dependencies", 39, 3], ["nativeCheckInputs", 45, 3], ["doCheck", 52, 3], ["preCheck", 54, 3], ["pythonImportsCheck", 58, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.36.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "google_cloud_bigquery_storage",
           version: version,
           hash: "sha256-08HOnS06TXEWJZiJ3L48fHBQb3H2zmu+VKoKaLu6j48=",
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const pythonRelaxDeps = nix.thunk(() => ["protobuf"]);
       const dependencies = nix.thunk(() => nix.concat([google_api_core, protobuf], nix.sel(google_api_core, "optional-dependencies", "grpc")));
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         fastavro: nix.thunk(() => [fastavro]),
         pandas: nix.thunk(() => [pandas]),
         pyarrow: nix.thunk(() => [pyarrow]),
@@ -50,7 +47,7 @@ export default nix.lambda((args) => (() => {
         "google.cloud.bigquery_storage_v1beta2",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "BigQuery Storage API API client library",
         homepage: "https://docs.cloud.google.com/bigquery/docs/reference/storage",
         changelog: nix.thunk(() => nix.str`https://github.com/googleapis/google-cloud-python/blob/google-cloud-bigquery-storage-v${version}/packages/google-cloud-bigquery-storage/CHANGELOG.md`),
@@ -59,7 +56,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "fixup_bigquery_storage_v1_keywords.py",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

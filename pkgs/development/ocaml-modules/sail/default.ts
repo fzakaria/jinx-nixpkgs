@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 28, 5], ["hash", 29, 5]], [["url", 35, 7], ["hash", 36, 7]], [["homepage", 87, 5], ["description", 88, 5], ["maintainers", 89, 5], ["license", 90, 5]], [["pname", 24, 3], ["version", 25, 11], ["src", 27, 3], ["patches", 32, 3], ["nativeBuildInputs", 40, 3], ["propagatedBuildInputs", 50, 3], ["preBuild", 61, 3], ["buildPhase", 67, 3], ["checkPhase", 72, 3], ["installPhase", 77, 3], ["postInstall", 82, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, darwin: false, fetchurl: false, fetchpatch: false, buildDunePackage: false, base64: false, omd: false, menhir: false, menhirLib: false, ott: false, linenoise: false, "dune-site": false, pprint: false, makeWrapper: false, lem: false, linksem: false, yojson: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 35, 7], ["hash", 36, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 87, 5], ["description", 88, 5], ["maintainers", 89, 5], ["license", 90, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 11], ["src", 27, 3], ["patches", 32, 3], ["nativeBuildInputs", 40, 3], ["propagatedBuildInputs", 50, 3], ["preBuild", 61, 3], ["buildPhase", 67, 3], ["checkPhase", 72, 3], ["installPhase", 77, 3], ["postInstall", 82, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,17 +27,17 @@ export default nix.lambda((args) => (() => {
   const yojson = nix.arg($, "yojson");
   const version = nix.argOr($, "version", () => "0.20.1");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "sail",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/rems-project/sail/releases/download/${version}/sail-${version}.tbz`),
           hash: "sha256-uoG416pXBeBAZAE6sgwAa4DG20T5UiWsT79gQil+UOs=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/rems-project/sail/commit/446fb477c508853595ccc937ed60765aa685ae31.patch",
             hash: "sha256-+j0USd0Ish11aYEzYLRiqkydhUPQoD9RPNjRhQcyX9c=",
           })))),
@@ -53,7 +50,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\ndune install --prefix $out --libdir $OCAMLFIND_DESTDIR\nrunHook postInstall\n",
       postInstall: "wrapProgram $out/bin/sail --set SAIL_DIR $out/share/sail\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/rems-project/sail",
         description: "Language for describing the instruction-set architecture (ISA) semantics of processors",
         maintainers: [],

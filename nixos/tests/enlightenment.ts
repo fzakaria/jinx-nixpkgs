@@ -2,70 +2,57 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/enlightenment.nix", [[["maintainers", 6, 5], ["timeout", 7, 5], ["broken", 9, 5]], [["enable", 17, 53]], [["enlightenment", 17, 39]], [["enable", 19, 17]], [["enable", 21, 11], ["user", 22, 11]], [["lightdm", 19, 9], ["autoLogin", 20, 9]], [["enable", 16, 24], ["desktopManager", 17, 24], ["displayManager", 18, 24]], [["enable", 26, 22]], [["enable", 27, 24], ["package", 28, 24]], [["xserver", 16, 16], ["acpid", 26, 16], ["connman", 27, 16]], [["systemPackages", 25, 19]], [["imports", 15, 7], ["services", 16, 7], ["environment", 25, 7]], [["machine", 12, 9]], [["name", 3, 3], ["meta", 5, 3], ["nodes", 12, 3], ["enableOCR", 31, 3], ["testScript", 33, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/enlightenment.nix", [["maintainers", 6, 5], ["timeout", 7, 5], ["broken", 9, 5]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/enlightenment.nix", [["enable", 17, 53]]);
-const pos$3 = nix.positions(here + "/enlightenment.nix", [["enlightenment", 17, 39]]);
-const pos$4 = nix.positions(here + "/enlightenment.nix", [["enable", 19, 17]]);
-const pos$5 = nix.positions(here + "/enlightenment.nix", [["enable", 21, 11], ["user", 22, 11]]);
-const pos$6 = nix.positions(here + "/enlightenment.nix", [["lightdm", 19, 9], ["autoLogin", 20, 9]]);
-const pos$7 = nix.positions(here + "/enlightenment.nix", [["enable", 16, 24], ["desktopManager", 17, 24], ["displayManager", 18, 24]]);
-const pos$8 = nix.positions(here + "/enlightenment.nix", [["enable", 26, 22]]);
-const pos$9 = nix.positions(here + "/enlightenment.nix", [["enable", 27, 24], ["package", 28, 24]]);
-const pos$10 = nix.positions(here + "/enlightenment.nix", [["xserver", 16, 16], ["acpid", 26, 16], ["connman", 27, 16]]);
-const pos$11 = nix.positions(here + "/enlightenment.nix", [["systemPackages", 25, 19]]);
-const pos$12 = nix.positions(here + "/enlightenment.nix", [["imports", 15, 7], ["services", 16, 7], ["environment", 25, 7]]);
-const pos$13 = nix.positions(here + "/enlightenment.nix", [["machine", 12, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$14 = nix.positions(here + "/enlightenment.nix", [["name", 3, 3], ["meta", 5, 3], ["nodes", 12, 3], ["enableOCR", 31, 3], ["testScript", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$14,
+    [nix.POS]: $pos[13],
     name: "enlightenment",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "romildo"))]),
         timeout: 600n,
         broken: true,
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             xserver: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               enable: true,
               desktopManager: nix.thunk(() => ({
-                [nix.POS]: pos$3,
-                enlightenment: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+                [nix.POS]: $pos[2],
+                enlightenment: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
               })),
               displayManager: nix.thunk(() => ({
-                [nix.POS]: pos$6,
-                lightdm: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
-                autoLogin: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true, user: "alice" })),
+                [nix.POS]: $pos[5],
+                lightdm: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: true })),
+                autoLogin: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: true, user: "alice" })),
               })),
             })),
-            acpid: nix.thunk(() => ({ [nix.POS]: pos$8, enable: true })),
+            acpid: nix.thunk(() => ({ [nix.POS]: $pos[7], enable: true })),
             connman: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               enable: true,
               package: nix.thunk(() => nix.sel(pkgs, "connmanMinimal")),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "xdotool"))]),
           })),
         };

@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["package", 128, 7], ["command", 129, 7], ["version", 130, 7]], [["pdal", 132, 38]], [["package", 134, 7]], [["version", 127, 5], ["pdal", 132, 5], ["pkg-config", 133, 5]], [["tests", 126, 12]], [["description", 139, 5], ["homepage", 140, 5], ["license", 141, 5], ["teams", 142, 5], ["platforms", 143, 5], ["pkgConfigModules", 144, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 47, 3], ["strictDeps", 68, 3], ["cmakeFlags", 70, 3], ["doCheck", 94, 3], ["enableParallelChecking", 97, 3], ["disabledTests", 99, 3], ["nativeCheckInputs", 117, 3], ["postInstall", 122, 3], ["passthru", 126, 3], ["meta", 138, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, callPackage: false, ctestCheckHook: false, fetchFromGitHub: false, testers: false, enableE57: true, cmake: false, curl: false, gdal: false, gtest: false, "hdf5-cpp": false, laszip: false, libe57format: false, libgeotiff: false, libpq: false, libtiff: false, libxml2: false, openscenegraph: false, "pkg-config": false, proj: false, sqlite: false, tiledb: false, zlib: false, zstd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 128, 7], ["command", 129, 7], ["version", 130, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pdal", 132, 38]]);
-const pos$4 = nix.positions(here + "/package.nix", [["package", 134, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 127, 5], ["pdal", 132, 5], ["pkg-config", 133, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 126, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 139, 5], ["homepage", 140, 5], ["license", 141, 5], ["teams", 142, 5], ["platforms", 143, 5], ["pkgConfigModules", 144, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 47, 3], ["strictDeps", 68, 3], ["cmakeFlags", 70, 3], ["doCheck", 94, 3], ["enableParallelChecking", 97, 3], ["disabledTests", 99, 3], ["nativeCheckInputs", 117, 3], ["postInstall", 122, 3], ["passthru", 126, 3], ["meta", 138, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const zstd = nix.arg($, "zstd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "pdal",
       version: "2.10.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "PDAL",
           repo: "PDAL",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -107,24 +100,27 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [gdal, ctestCheckHook]),
       postInstall: "patchShebangs --update --build $out/bin/pdal-config\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "pdal --version",
               version: nix.thunk(() => nix.str`pdal ${nix.sel(finalAttrs, "finalPackage", "version")}`),
             })))),
-          pdal: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, pdal: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")) })))),
+          pdal: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({
+              [nix.POS]: $pos[2],
+              pdal: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
+            })))),
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Point Data Abstraction Library. GDAL for point cloud data",
         homepage: "https://pdal.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

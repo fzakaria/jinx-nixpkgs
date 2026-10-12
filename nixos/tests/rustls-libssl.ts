@@ -2,35 +2,10 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/rustls-libssl.nix", [[["maintainers", 12, 8]], [["address", 25, 17], ["prefixLength", 26, 17]], [["addresses", 23, 18]], [["ipv4", 23, 13]], [["eth1", 22, 22]], [["allowedTCPPorts", 31, 20]], [["interfaces", 22, 11], ["extraHosts", 30, 11], ["firewall", 31, 11]], [["certificates", 34, 22]], [["pki", 34, 18]], [["openssl", 39, 13], ["modules", 40, 13]], [["onlySSL", 47, 13], ["sslCertificate", 48, 13], ["sslCertificateKey", 49, 13], ["http2", 50, 13], ["reuseport", 51, 13], ["root", 52, 13]], [["acme.test", 46, 24]], [["enable", 37, 11], ["package", 38, 11], ["sslCiphers", 44, 11], ["virtualHosts", 46, 11]], [["nginx", 36, 18]], [["networking", 21, 9], ["security", 34, 9], ["services", 36, 9]], [["systemPackages", 67, 21]], [["address", 72, 17], ["prefixLength", 73, 17]], [["addresses", 70, 18]], [["ipv4", 70, 13]], [["eth1", 69, 22]], [["interfaces", 69, 11], ["extraHosts", 77, 11]], [["certificates", 80, 22]], [["pki", 80, 18]], [["environment", 67, 9], ["networking", 68, 9], ["security", 80, 9]], [["server", 18, 5], ["client", 64, 5]], [["name", 11, 3], ["meta", 12, 3], ["nodes", 17, 3], ["testScript", 84, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/rustls-libssl.nix", [["maintainers", 12, 8]]);
 const formals$2 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/rustls-libssl.nix", [["address", 25, 17], ["prefixLength", 26, 17]]);
-const pos$3 = nix.positions(here + "/rustls-libssl.nix", [["addresses", 23, 18]]);
-const pos$4 = nix.positions(here + "/rustls-libssl.nix", [["ipv4", 23, 13]]);
-const pos$5 = nix.positions(here + "/rustls-libssl.nix", [["eth1", 22, 22]]);
-const pos$6 = nix.positions(here + "/rustls-libssl.nix", [["allowedTCPPorts", 31, 20]]);
-const pos$7 = nix.positions(here + "/rustls-libssl.nix", [["interfaces", 22, 11], ["extraHosts", 30, 11], ["firewall", 31, 11]]);
-const pos$8 = nix.positions(here + "/rustls-libssl.nix", [["certificates", 34, 22]]);
-const pos$9 = nix.positions(here + "/rustls-libssl.nix", [["pki", 34, 18]]);
-const pos$10 = nix.positions(here + "/rustls-libssl.nix", [["openssl", 39, 13], ["modules", 40, 13]]);
-const pos$11 = nix.positions(here + "/rustls-libssl.nix", [["onlySSL", 47, 13], ["sslCertificate", 48, 13], ["sslCertificateKey", 49, 13], ["http2", 50, 13], ["reuseport", 51, 13], ["root", 52, 13]]);
-const pos$12 = nix.positions(here + "/rustls-libssl.nix", [["acme.test", 46, 24]]);
-const pos$13 = nix.positions(here + "/rustls-libssl.nix", [["enable", 37, 11], ["package", 38, 11], ["sslCiphers", 44, 11], ["virtualHosts", 46, 11]]);
-const pos$14 = nix.positions(here + "/rustls-libssl.nix", [["nginx", 36, 18]]);
-const pos$15 = nix.positions(here + "/rustls-libssl.nix", [["networking", 21, 9], ["security", 34, 9], ["services", 36, 9]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$16 = nix.positions(here + "/rustls-libssl.nix", [["systemPackages", 67, 21]]);
-const pos$17 = nix.positions(here + "/rustls-libssl.nix", [["address", 72, 17], ["prefixLength", 73, 17]]);
-const pos$18 = nix.positions(here + "/rustls-libssl.nix", [["addresses", 70, 18]]);
-const pos$19 = nix.positions(here + "/rustls-libssl.nix", [["ipv4", 70, 13]]);
-const pos$20 = nix.positions(here + "/rustls-libssl.nix", [["eth1", 69, 22]]);
-const pos$21 = nix.positions(here + "/rustls-libssl.nix", [["interfaces", 69, 11], ["extraHosts", 77, 11]]);
-const pos$22 = nix.positions(here + "/rustls-libssl.nix", [["certificates", 80, 22]]);
-const pos$23 = nix.positions(here + "/rustls-libssl.nix", [["pki", 80, 18]]);
-const pos$24 = nix.positions(here + "/rustls-libssl.nix", [["environment", 67, 9], ["networking", 68, 9], ["security", 80, 9]]);
-const pos$25 = nix.positions(here + "/rustls-libssl.nix", [["server", 18, 5], ["client", 64, 5]]);
-const pos$26 = nix.positions(here + "/rustls-libssl.nix", [["name", 11, 3], ["meta", 12, 3], ["nodes", 17, 3], ["testScript", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,10 +16,10 @@ export default nix.lambda((args) => (() => {
   const keyPath = nix.path(here, "./common/acme/server/acme.test.key.pem");
   const hosts = "192.168.2.101 acme.test\n";
   return {
-    [nix.POS]: pos$26,
+    [nix.POS]: $pos[25],
     name: "rustls-libssl",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [
@@ -54,49 +29,49 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$25,
+      [nix.POS]: $pos[24],
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const lib_1 = nix.arg($_1, "lib");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               eth1: nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 ipv4: nix.thunk(() => ({
-                  [nix.POS]: pos$3,
+                  [nix.POS]: $pos[2],
                   addresses: nix.thunk(() => [
-                    nix.thunk(() => ({ [nix.POS]: pos$2, address: "192.168.2.101", prefixLength: 24n })),
+                    nix.thunk(() => ({ [nix.POS]: $pos[1], address: "192.168.2.101", prefixLength: 24n })),
                   ]),
                 })),
               })),
             })),
             extraHosts: hosts,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$6, allowedTCPPorts: nix.thunk(() => [443n]) })),
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[5], allowedTCPPorts: nix.thunk(() => [443n]) })),
           })),
           security: nix.thunk(() => ({
-            [nix.POS]: pos$9,
-            pki: nix.thunk(() => ({ [nix.POS]: pos$8, certificates: nix.thunk(() => [caCert]) })),
+            [nix.POS]: $pos[8],
+            pki: nix.thunk(() => ({ [nix.POS]: $pos[7], certificates: nix.thunk(() => [caCert]) })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             nginx: nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               enable: true,
               package: nix.thunk(() => nix.app(nix.sel(pkgs_1, "nginxMainline", "override"), nix.thunk(() => ({
-                  [nix.POS]: pos$10,
+                  [nix.POS]: $pos[9],
                   openssl: nix.thunk(() => nix.sel(pkgs_1, "rustls-libssl")),
                   modules: [],
                 })))),
               sslCiphers: "HIGH:!aNULL:!MD5",
               virtualHosts: nix.thunk(() => ({
-                [nix.POS]: pos$12,
+                [nix.POS]: $pos[11],
                 "acme.test": nix.thunk(() => ({
-                  [nix.POS]: pos$11,
+                  [nix.POS]: $pos[10],
                   onlySSL: true,
                   sslCertificate: certPath,
                   sslCertificateKey: keyPath,
@@ -113,21 +88,21 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$24,
+          [nix.POS]: $pos[23],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "curl"))]),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$21,
+            [nix.POS]: $pos[20],
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$20,
+              [nix.POS]: $pos[19],
               eth1: nix.thunk(() => ({
-                [nix.POS]: pos$19,
+                [nix.POS]: $pos[18],
                 ipv4: nix.thunk(() => ({
-                  [nix.POS]: pos$18,
+                  [nix.POS]: $pos[17],
                   addresses: nix.thunk(() => [
-                    nix.thunk(() => ({ [nix.POS]: pos$17, address: "192.168.2.201", prefixLength: 24n })),
+                    nix.thunk(() => ({ [nix.POS]: $pos[16], address: "192.168.2.201", prefixLength: 24n })),
                   ]),
                 })),
               })),
@@ -135,8 +110,8 @@ export default nix.lambda((args) => (() => {
             extraHosts: hosts,
           })),
           security: nix.thunk(() => ({
-            [nix.POS]: pos$23,
-            pki: nix.thunk(() => ({ [nix.POS]: pos$22, certificates: nix.thunk(() => [caCert]) })),
+            [nix.POS]: $pos[22],
+            pki: nix.thunk(() => ({ [nix.POS]: $pos[21], certificates: nix.thunk(() => [caCert]) })),
           })),
         };
       })(), formals$3),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 22, 26], ["pname", 23, 5], ["hash", 24, 5]], [["description", 57, 5], ["homepage", 58, 5], ["changelog", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 27, 3], ["dependencies", 34, 3], ["nativeCheckInputs", 39, 3], ["pytestFlags", 45, 3], ["disabledTests", 49, 3], ["preCheck", 52, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchPypi: false, numpy: false, astropy: false, "extension-helpers": false, setuptools: false, "setuptools-scm": false, pytestCheckHook: false, "pytest-doctestplus": false, hypothesis: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 22, 26], ["pname", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 57, 5], ["homepage", 58, 5], ["changelog", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 27, 3], ["dependencies", 34, 3], ["nativeCheckInputs", 39, 3], ["pytestFlags", 45, 3], ["disabledTests", 49, 3], ["preCheck", 52, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pytest_doctestplus = nix.arg($, "pytest-doctestplus");
   const hypothesis = nix.arg($, "hypothesis");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "astropy-healpix",
       version: "1.1.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "astropy_healpix",
           hash: "sha256-9SDYOr6CFdPo4aN7K9kRce42pvVfEQ1aLbhj112Bs7c=",
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), "test_interpolate_bilinear_skycoord")),
       preCheck: "cd build/lib*\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "BSD-licensed HEALPix for Astropy",
         homepage: "https://github.com/astropy/astropy-healpix",
         changelog: nix.thunk(() => nix.str`https://github.com/astropy/astropy-healpix/blob/v${nix.sel(finalAttrs, "version")}/CHANGES.rst`),

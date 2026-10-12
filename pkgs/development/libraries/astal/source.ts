@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/source.nix", [[["owner", 8, 5], ["repo", 9, 5], ["rev", 10, 5], ["hash", 11, 5]], [["description", 21, 7], ["longDescription", 22, 7], ["maintainers", 27, 7], ["platforms", 28, 7]], [["extraArgs", 32, 42]], [["updateScript", 32, 7], ["src", 33, 7]], [["name", 16, 5], ["pname", 17, 5], ["version", 18, 5], ["meta", 20, 5], ["passthru", 31, 5]]]);
 const formals$1 = { args: { lib: false, "nix-update-script": false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/source.nix", [["owner", 8, 5], ["repo", 9, 5], ["rev", 10, 5], ["hash", 11, 5]]);
-const pos$2 = nix.positions(here + "/source.nix", [["description", 21, 7], ["longDescription", 22, 7], ["maintainers", 27, 7], ["platforms", 28, 7]]);
-const pos$3 = nix.positions(here + "/source.nix", [["extraArgs", 32, 42]]);
-const pos$4 = nix.positions(here + "/source.nix", [["updateScript", 32, 7], ["src", 33, 7]]);
-const pos$5 = nix.positions(here + "/source.nix", [["name", 16, 5], ["pname", 17, 5], ["version", 18, 5], ["meta", 20, 5], ["passthru", 31, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,19 +11,19 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const originalDrv = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "Aylur",
       repo: "astal",
       rev: "fd94e333c8bd45557291c805f1df79d5f787d590",
       hash: "sha256-flVUft590tsDX9z97O4DzVFg6zvOOmGeYhPeDdaP1DI=",
     }))));
   return nix.app(nix.sel(originalDrv, "overrideAttrs"), (final) => (prev) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       name: nix.thunk(() => nix.str`${nix.sel(final, "pname")}-${nix.sel(final, "version")}`),
       pname: "astal-source",
       version: "0-unstable-2026-07-19",
       meta: nix.thunk(() => nix.update(nix.sel(prev, "meta"), {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Building blocks for creating custom desktop shells (source)",
         longDescription: "Please don't use this package directly, use one of subpackages in\n`astal` namespace. This package is just a `fetchFromGitHub`, which is\nreused between all subpackages.\n",
         maintainers: nix.thunk(() => (() => {
@@ -37,8 +33,8 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       })),
       passthru: nix.thunk(() => nix.update(nix.sel(prev, "passthru"), {
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[2], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
         src: originalDrv,
       })),
     }));

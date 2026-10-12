@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["NIX_CFLAGS_COMPILE", 53, 5]], [["homepage", 74, 5], ["changelog", 75, 5], ["description", 76, 5], ["longDescription", 77, 5], ["license", 83, 5], ["platforms", 84, 5], ["maintainers", 85, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["depsBuildBuild", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["doInstallCheck", 47, 3], ["propagatedBuildInputs", 50, 3], ["env", 52, 3], ["hardeningDisable", 56, 3], ["postInstall", 58, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, buildPackages: false, autoreconfHook: false, "pkg-config": false, gettext: false, libusb1: false, libtool: false, libexif: false, libjpeg: false, curl: false, libxml2: false, gd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 74, 5], ["changelog", 75, 5], ["description", 76, 5], ["longDescription", 77, 5], ["license", 83, 5], ["platforms", 84, 5], ["maintainers", 85, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["depsBuildBuild", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["doInstallCheck", 47, 3], ["propagatedBuildInputs", 50, 3], ["env", 52, 3], ["hardeningDisable", 56, 3], ["postInstall", 58, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libgphoto2";
       const version = "2.5.34";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gphoto",
           repo: "libgphoto2",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const doInstallCheck = true;
       const propagatedBuildInputs = nix.thunk(() => [libexif]);
       const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
         }))));
       const hardeningDisable = nix.thunk(() => ["format"]);
@@ -56,7 +53,7 @@ ${executablePrefix}/lib/libgphoto2/print-camera-list \\
 `;
       })());
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "http://www.gphoto.org/proj/libgphoto2/",
         changelog: nix.thunk(() => nix.str`https://github.com/gphoto/libgphoto2/blob/${nix.sel(src, "tag")}/NEWS`),
         description: "Library for accessing digital cameras",
@@ -72,7 +69,7 @@ ${executablePrefix}/lib/libgphoto2/print-camera-list \\
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

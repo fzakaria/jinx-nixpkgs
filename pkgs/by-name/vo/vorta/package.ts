@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["fontDirectories", 76, 9]], [["updateScript", 98, 12]], [["changelog", 101, 5], ["description", 102, 5], ["homepage", 103, 5], ["license", 104, 5], ["maintainers", 105, 5], ["platforms", 109, 5], ["mainProgram", 110, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 29, 3], ["build-system", 36, 3], ["dependencies", 40, 3], ["postPatch", 49, 3], ["postInstall", 54, 3], ["preFixup", 59, 3], ["nativeCheckInputs", 66, 3], ["preCheck", 73, 3], ["disabledTestPaths", 88, 3], ["passthru", 98, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, python3Packages: false, fetchFromGitHub: false, qt6Packages: false, borgbackup: false, versionCheckHook: false, "nix-update-script": false, makeFontsConf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["fontDirectories", 76, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 98, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 101, 5], ["description", 102, 5], ["homepage", 103, 5], ["license", 104, 5], ["maintainers", 105, 5], ["platforms", 109, 5], ["mainProgram", 110, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 29, 3], ["build-system", 36, 3], ["dependencies", 40, 3], ["postPatch", 49, 3], ["postInstall", 54, 3], ["preFixup", 59, 3], ["nativeCheckInputs", 66, 3], ["preCheck", 73, 3], ["disabledTestPaths", 88, 3], ["passthru", 98, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const makeFontsConf = nix.arg($, "makeFontsConf");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "vorta",
       version: "0.11.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "borgbase",
           repo: "vorta",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -66,7 +62,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       preCheck: nix.thunk(() => (() => {
-        const fontsConf = nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: pos$2, fontDirectories: [] }))));
+        const fontsConf = nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: $pos[1], fontDirectories: [] }))));
         return nix.str`export HOME=$(mktemp -d)
 export FONTCONFIG_FILE=${fontsConf};
 # For tests/test_misc.py::test_autostart
@@ -77,11 +73,11 @@ export QT_QPA_PLATFORM=offscreen
       })()),
       disabledTestPaths: nix.thunk(() => nix.concat(["tests/integration", "tests/unit"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ["tests/network_manager/test_darwin.py"])))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/borgbase/vorta/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Desktop Backup Client for Borg",
         homepage: "https://vorta.borgbase.com/",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/frontend.nix", [[["yarnLock", 19, 5], ["hash", 20, 5]], [["nodejs", 26, 22]], [["description", 60, 5]], [["pname", 13, 3], ["version", 14, 20], ["src", 16, 3], ["yarnOfflineCache", 18, 3], ["nativeBuildInputs", 23, 3], ["configurePhase", 29, 3], ["buildPhase", 42, 3], ["installPhase", 50, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchYarnDeps: false, "fixup-yarn-lock": false, callPackage: false, nodejs_22: false, yarn: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/frontend.nix", [["yarnLock", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/frontend.nix", [["nodejs", 26, 22]]);
-const pos$3 = nix.positions(here + "/frontend.nix", [["description", 60, 5]]);
-const pos$4 = nix.positions(here + "/frontend.nix", [["pname", 13, 3], ["version", 14, 20], ["src", 16, 3], ["yarnOfflineCache", 18, 3], ["nativeBuildInputs", 23, 3], ["configurePhase", 29, 3], ["buildPhase", 42, 3], ["installPhase", 50, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,19 +15,19 @@ export default nix.lambda((args) => (() => {
   const yarn = nix.arg($, "yarn");
   const common = nix.thunk(() => nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({}))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "tandoor-recipes-frontend",
       version: nix.thunk(() => nix.attr(common, "version")),
       src: nix.thunk(() => nix.str`${nix.sel(common, "src")}/vue3`),
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           yarnLock: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/yarn.lock`),
           hash: nix.thunk(() => nix.sel(common, "yarnHash")),
         })))),
       nativeBuildInputs: nix.thunk(() => [
         fixup_yarn_lock,
         nodejs_22,
-        nix.thunk(() => nix.app(nix.sel(yarn, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, nodejs: nodejs_22 })))),
+        nix.thunk(() => nix.app(nix.sel(yarn, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], nodejs: nodejs_22 })))),
       ]),
       configurePhase: "runHook preConfigure\n\nexport HOME=$(mktemp -d)\nyarn config --offline set yarn-offline-mirror \"$yarnOfflineCache\"\nfixup-yarn-lock yarn.lock\ncommand -v yarn\nyarn install --frozen-lockfile --offline --no-progress --non-interactive\npatchShebangs node_modules/\n\nrunHook postConfigure\n",
       buildPhase: "runHook preBuild\n\nyarn --offline run build\n\nrunHook postBuild\n",
@@ -41,7 +38,7 @@ echo "${nix.sel(common, "version")}" > "$out/version"
 
 runHook postInstall
 `),
-      meta: nix.thunk(() => nix.update(nix.sel(common, "meta"), { [nix.POS]: pos$3, description: "Tandoor Recipes frontend" })),
+      meta: nix.thunk(() => nix.update(nix.sel(common, "meta"), { [nix.POS]: $pos[2], description: "Tandoor Recipes frontend" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=frontend.ts.map

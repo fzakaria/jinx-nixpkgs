@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 7], ["hash", 22, 7]], [["url", 25, 7], ["hash", 26, 7]], [["aarch64-darwin", 20, 5], ["x86_64-linux", 24, 5]], [["url", 30, 90], ["hash", 30, 94]], [["homepage", 34, 5], ["description", 35, 5], ["maintainers", 36, 5], ["platforms", 41, 5], ["sourceProvenance", 42, 5], ["license", 43, 5]], [["pname", 50, 7], ["version", 51, 7], ["src", 52, 7], ["meta", 53, 7], ["undmg", 54, 7]], [["pname", 60, 7], ["version", 61, 7], ["src", 62, 7], ["meta", 63, 7], ["libusb1", 64, 7], ["libsoup_3", 65, 7], ["webkitgtk_4_1", 66, 7], ["autoPatchelfHook", 67, 7], ["wrapGAppsHook4", 68, 7], ["copyDesktopItems", 69, 7], ["makeDesktopItem", 70, 7]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, callPackage: false, autoPatchelfHook: false, wrapGAppsHook4: false, libusb1: false, libsoup_3: false, webkitgtk_4_1: false, makeDesktopItem: false, copyDesktopItems: false, undmg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 7], ["hash", 22, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 25, 7], ["hash", 26, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["aarch64-darwin", 20, 5], ["x86_64-linux", 24, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 30, 90], ["hash", 30, 94]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 34, 5], ["description", 35, 5], ["maintainers", 36, 5], ["platforms", 41, 5], ["sourceProvenance", 42, 5], ["license", 43, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 50, 7], ["version", 51, 7], ["src", 52, 7], ["meta", 53, 7], ["undmg", 54, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 60, 7], ["version", 61, 7], ["src", 62, 7], ["meta", 63, 7], ["libusb1", 64, 7], ["libsoup_3", 65, 7], ["webkitgtk_4_1", 66, 7], ["autoPatchelfHook", 67, 7], ["wrapGAppsHook4", 68, 7], ["copyDesktopItems", 69, 7], ["makeDesktopItem", 70, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,14 +22,14 @@ export default nix.lambda((args) => (() => {
   const pname = "keymapp";
   const version = "1.3.7";
   const sources = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     "aarch64-darwin": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://oryx.nyc3.cdn.digitaloceanspaces.com/keymapp/keymapp-${version}.dmg`),
       hash: "sha256-H6xRau7pWuSF5Aa6lblwi/Lg5KxC+HM3rtUMjX+hEE8=",
     })),
     "x86_64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: nix.thunk(() => nix.str`https://oryx.nyc3.cdn.digitaloceanspaces.com/keymapp/keymapp-${version}.tar.gz`),
       hash: "sha256-qHvHCDzWRhuhDg2kuU8kmikQDXElQtVEmPAelHz4aPo=",
     })),
@@ -43,13 +37,13 @@ export default nix.lambda((args) => (() => {
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "system")}`)), nix.key(nix.sel(stdenv, "system"))));
       return {
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       url: nix.thunk(() => nix.attr(from, "url")),
       hash: nix.thunk(() => nix.attr(from, "hash")),
     };
     })())));
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     homepage: "https://www.zsa.io/flash/",
     description: "Application for ZSA keyboards",
     maintainers: nix.thunk(() => (() => {
@@ -65,14 +59,14 @@ export default nix.lambda((args) => (() => {
     license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
   }));
   return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(callPackage, nix.path(here, "./darwin.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: pname,
       version: version,
       src: src,
       meta: meta,
       undmg: undmg,
     }))) : nix.app(callPackage, nix.path(here, "./linux.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: pname,
       version: version,
       src: src,

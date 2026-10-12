@@ -2,16 +2,15 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libspl.nix", [[["license", 21, 5], ["platforms", 22, 5]], [["path", 4, 3], ["extraPaths", 5, 3], ["preBuild", 14, 3], ["alwaysKeepStatic", 18, 3], ["meta", 20, 3]]]);
 const formals$1 = { args: { lib: false, mkDerivation: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libspl.nix", [["license", 21, 5], ["platforms", 22, 5]]);
-const pos$2 = nix.positions(here + "/libspl.nix", [["path", 4, 3], ["extraPaths", 5, 3], ["preBuild", 14, 3], ["alwaysKeepStatic", 18, 3], ["meta", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const mkDerivation = nix.arg($, "mkDerivation");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       path: "cddl/lib/libspl",
       extraPaths: nix.thunk(() => [
         "cddl/compat/opensolaris/include",
@@ -23,7 +22,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "export MAKEOBJDIRPREFIX=$TMP/obj\n",
       alwaysKeepStatic: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         license: nix.thunk(() => nix.sel(lib, "licenses", "cddl")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       })),

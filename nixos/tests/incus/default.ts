@@ -2,113 +2,85 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["package", 15, 17]], [["incus", 14, 13]], [["imports", 9, 7], ["tests", 14, 7]], [["user", 26, 13]], [["type", 30, 9]], [["type", 34, 9]], [["c1", 29, 7], ["vm1", 33, 7]], [["ovs", 39, 7]], [["lvm", 43, 7], ["zfs", 44, 7]], [["name", 24, 5], ["appArmor", 25, 5], ["feature", 26, 5], ["instances", 28, 5], ["network", 38, 5], ["storage", 42, 5]], [["type", 52, 7], ["copyChannel", 53, 7]], [["c1", 51, 15]], [["name", 49, 5], ["instances", 51, 5]], [["type", 62, 7]], [["c1", 61, 15]], [["name", 59, 5], ["instances", 61, 5]], [["lvm", 69, 13]], [["name", 67, 5], ["storage", 69, 5]], [["ovs", 75, 13]], [["name", 73, 5], ["network", 75, 5]], [["package", 81, 30]], [["args", 81, 13]], [["imports", 79, 5], ["_module", 81, 5]], [["type", 89, 9]], [["vm1", 88, 7]], [["name", 85, 5], ["instances", 87, 5]], [["zfs", 105, 13]], [["name", 103, 5], ["storage", 105, 5]], [["all", 23, 3], ["channel", 48, 3], ["container", 58, 3], ["lvm", 66, 3], ["openvswitch", 72, 3], ["ui", 78, 3], ["virtual-machine", 84, 3], ["zfs", 102, 3]]]);
 const formals$1 = { args: { package: false, runTestOn: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["package", 15, 17]]);
-const pos$2 = nix.positions(here + "/default.nix", [["incus", 14, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["imports", 9, 7], ["tests", 14, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["user", 26, 13]]);
-const pos$5 = nix.positions(here + "/default.nix", [["type", 30, 9]]);
-const pos$6 = nix.positions(here + "/default.nix", [["type", 34, 9]]);
-const pos$7 = nix.positions(here + "/default.nix", [["c1", 29, 7], ["vm1", 33, 7]]);
-const pos$8 = nix.positions(here + "/default.nix", [["ovs", 39, 7]]);
-const pos$9 = nix.positions(here + "/default.nix", [["lvm", 43, 7], ["zfs", 44, 7]]);
-const pos$10 = nix.positions(here + "/default.nix", [["name", 24, 5], ["appArmor", 25, 5], ["feature", 26, 5], ["instances", 28, 5], ["network", 38, 5], ["storage", 42, 5]]);
-const pos$11 = nix.positions(here + "/default.nix", [["type", 52, 7], ["copyChannel", 53, 7]]);
-const pos$12 = nix.positions(here + "/default.nix", [["c1", 51, 15]]);
-const pos$13 = nix.positions(here + "/default.nix", [["name", 49, 5], ["instances", 51, 5]]);
-const pos$14 = nix.positions(here + "/default.nix", [["type", 62, 7]]);
-const pos$15 = nix.positions(here + "/default.nix", [["c1", 61, 15]]);
-const pos$16 = nix.positions(here + "/default.nix", [["name", 59, 5], ["instances", 61, 5]]);
-const pos$17 = nix.positions(here + "/default.nix", [["lvm", 69, 13]]);
-const pos$18 = nix.positions(here + "/default.nix", [["name", 67, 5], ["storage", 69, 5]]);
-const pos$19 = nix.positions(here + "/default.nix", [["ovs", 75, 13]]);
-const pos$20 = nix.positions(here + "/default.nix", [["name", 73, 5], ["network", 75, 5]]);
-const pos$21 = nix.positions(here + "/default.nix", [["package", 81, 30]]);
-const pos$22 = nix.positions(here + "/default.nix", [["args", 81, 13]]);
-const pos$23 = nix.positions(here + "/default.nix", [["imports", 79, 5], ["_module", 81, 5]]);
-const pos$24 = nix.positions(here + "/default.nix", [["type", 89, 9]]);
-const pos$25 = nix.positions(here + "/default.nix", [["vm1", 88, 7]]);
-const pos$26 = nix.positions(here + "/default.nix", [["name", 85, 5], ["instances", 87, 5]]);
-const pos$27 = nix.positions(here + "/default.nix", [["zfs", 105, 13]]);
-const pos$28 = nix.positions(here + "/default.nix", [["name", 103, 5], ["storage", 105, 5]]);
-const pos$29 = nix.positions(here + "/default.nix", [["all", 23, 3], ["channel", 48, 3], ["container", 58, 3], ["lvm", 66, 3], ["openvswitch", 72, 3], ["ui", 78, 3], ["virtual-machine", 84, 3], ["zfs", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const package$ = nix.arg($, "package");
   const runTestOn = nix.arg($, "runTestOn");
   const incusRunTest = (config) => nix.app(runTestOn, nix.thunk(() => ["x86_64-linux", "aarch64-linux"]), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       imports: nix.thunk(() => [
         nix.path(here, "./incus-tests-module.nix"),
         nix.path(here, "./incus-tests.nix"),
       ]),
       tests: nix.thunk(() => ({
-        [nix.POS]: pos$2,
-        incus: nix.thunk(() => nix.update({ [nix.POS]: pos$1, package: package$ }, config)),
+        [nix.POS]: $pos[1],
+        incus: nix.thunk(() => nix.update({ [nix.POS]: $pos[0], package: package$ }, config)),
       })),
     })));
   return {
-    [nix.POS]: pos$29,
+    [nix.POS]: $pos[28],
     all: nix.thunk(() => nix.app(incusRunTest, nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         name: "all",
         appArmor: true,
-        feature: nix.thunk(() => ({ [nix.POS]: pos$4, user: true })),
+        feature: nix.thunk(() => ({ [nix.POS]: $pos[3], user: true })),
         instances: nix.thunk(() => ({
-          [nix.POS]: pos$7,
-          c1: nix.thunk(() => ({ [nix.POS]: pos$5, type: "container" })),
-          vm1: nix.thunk(() => ({ [nix.POS]: pos$6, type: "virtual-machine" })),
+          [nix.POS]: $pos[6],
+          c1: nix.thunk(() => ({ [nix.POS]: $pos[4], type: "container" })),
+          vm1: nix.thunk(() => ({ [nix.POS]: $pos[5], type: "virtual-machine" })),
         })),
-        network: nix.thunk(() => ({ [nix.POS]: pos$8, ovs: true })),
-        storage: nix.thunk(() => ({ [nix.POS]: pos$9, lvm: true, zfs: true })),
+        network: nix.thunk(() => ({ [nix.POS]: $pos[7], ovs: true })),
+        storage: nix.thunk(() => ({ [nix.POS]: $pos[8], lvm: true, zfs: true })),
       })))),
     channel: nix.thunk(() => nix.app(incusRunTest, nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         name: "channel",
         instances: nix.thunk(() => ({
-          [nix.POS]: pos$12,
-          c1: nix.thunk(() => ({ [nix.POS]: pos$11, type: "container", copyChannel: true })),
+          [nix.POS]: $pos[11],
+          c1: nix.thunk(() => ({ [nix.POS]: $pos[10], type: "container", copyChannel: true })),
         })),
       })))),
     container: nix.thunk(() => nix.app(incusRunTest, nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         name: "container",
         instances: nix.thunk(() => ({
-          [nix.POS]: pos$15,
-          c1: nix.thunk(() => ({ [nix.POS]: pos$14, type: "container" })),
+          [nix.POS]: $pos[14],
+          c1: nix.thunk(() => ({ [nix.POS]: $pos[13], type: "container" })),
         })),
       })))),
     lvm: nix.thunk(() => nix.app(incusRunTest, nix.thunk(() => ({
-        [nix.POS]: pos$18,
+        [nix.POS]: $pos[17],
         name: "lvm",
-        storage: nix.thunk(() => ({ [nix.POS]: pos$17, lvm: true })),
+        storage: nix.thunk(() => ({ [nix.POS]: $pos[16], lvm: true })),
       })))),
     openvswitch: nix.thunk(() => nix.app(incusRunTest, nix.thunk(() => ({
-        [nix.POS]: pos$20,
+        [nix.POS]: $pos[19],
         name: "openvswitch",
-        network: nix.thunk(() => ({ [nix.POS]: pos$19, ovs: true })),
+        network: nix.thunk(() => ({ [nix.POS]: $pos[18], ovs: true })),
       })))),
     ui: nix.thunk(() => nix.app(runTestOn, nix.thunk(() => ["x86_64-linux", "aarch64-linux"]), nix.thunk(() => ({
-        [nix.POS]: pos$23,
+        [nix.POS]: $pos[22],
         imports: nix.thunk(() => [nix.path(here, "./ui.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$22,
-          args: nix.thunk(() => ({ [nix.POS]: pos$21, package: package$ })),
+          [nix.POS]: $pos[21],
+          args: nix.thunk(() => ({ [nix.POS]: $pos[20], package: package$ })),
         })),
       })))),
     "virtual-machine": nix.thunk(() => nix.app(incusRunTest, nix.thunk(() => ({
-        [nix.POS]: pos$26,
+        [nix.POS]: $pos[25],
         name: "virtual-machine",
         instances: nix.thunk(() => ({
-          [nix.POS]: pos$25,
-          vm1: nix.thunk(() => ({ [nix.POS]: pos$24, type: "virtual-machine" })),
+          [nix.POS]: $pos[24],
+          vm1: nix.thunk(() => ({ [nix.POS]: $pos[23], type: "virtual-machine" })),
         })),
       })))),
     zfs: nix.thunk(() => nix.app(incusRunTest, nix.thunk(() => ({
-        [nix.POS]: pos$28,
+        [nix.POS]: $pos[27],
         name: "zfs",
-        storage: nix.thunk(() => ({ [nix.POS]: pos$27, zfs: true })),
+        storage: nix.thunk(() => ({ [nix.POS]: $pos[26], zfs: true })),
       })))),
   };
 })(), formals$1);

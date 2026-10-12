@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 73, 5], ["hash", 74, 5]], [["enableDebuginfod", 122, 53]], [["NIX_CFLAGS_COMPILE", 136, 7]], [["updateScript", 207, 5]], [["description", 221, 5], ["mainProgram", 222, 5], ["longDescription", 223, 5], ["homepage", 228, 5], ["license", 229, 5], ["platforms", 230, 5], ["maintainers", 231, 5]], [["pname", 69, 11], ["version", 70, 3], ["src", 72, 3], ["postPatch", 77, 3], ["patches", 90, 3], ["nativeBuildInputs", 97, 3], ["buildInputs", 105, 3], ["propagatedNativeBuildInputs", 125, 3], ["depsBuildBuild", 127, 3], ["strictDeps", 129, 3], ["enableParallelBuilding", 131, 3], ["hardeningDisable", 134, 3], ["env", 136, 3], ["configurePlatforms", 139, 3], ["preConfigure", 145, 3], ["configureScript", 158, 3], ["configureFlags", 160, 3], ["postInstall", 198, 3], ["doInstallCheck", 203, 3], ["nativeInstallCheckInputs", 204, 3], ["passthru", 206, 3], ["meta", 220, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, targetPackages: false, fetchurl: false, "pkg-config": false, perl: false, texinfo: false, setupDebugInfoDirs: false, buildPackages: false, bashNonInteractive: false, readline: false, expat: false, libipt: false, zlib: false, zstd: false, xz: false, dejagnu: false, sourceHighlight: false, libiconv: false, xxhash: false, withTui: true, ncurses: false, withGmp: true, gmp: false, withMpfr: true, mpfr: false, withGuile: true, guile: false, pythonSupport: true, python3: false, enableDebuginfod: true, elfutils: false, hostCpuOnly: true, enableSim: true, enableUbsan: true, safePaths: true, writeScript: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 73, 5], ["hash", 74, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["enableDebuginfod", 122, 53]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 136, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 207, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 221, 5], ["mainProgram", 222, 5], ["longDescription", 223, 5], ["homepage", 228, 5], ["license", 229, 5], ["platforms", 230, 5], ["maintainers", 231, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 69, 11], ["version", 70, 3], ["src", 72, 3], ["postPatch", 77, 3], ["patches", 90, 3], ["nativeBuildInputs", 97, 3], ["buildInputs", 105, 3], ["propagatedNativeBuildInputs", 125, 3], ["depsBuildBuild", 127, 3], ["strictDeps", 129, 3], ["enableParallelBuilding", 131, 3], ["hardeningDisable", 134, 3], ["env", 136, 3], ["configurePlatforms", 139, 3], ["preConfigure", 145, 3], ["configureScript", 158, 3], ["configureFlags", 160, 3], ["postInstall", 198, 3], ["doInstallCheck", 203, 3], ["nativeInstallCheckInputs", 204, 3], ["passthru", 206, 3], ["meta", 220, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -63,11 +58,11 @@ export default nix.lambda((args) => (() => {
   const targetPrefix = nix.thunk(() => nix.app(optionalString, nix.thunk(() => !nix.eq(nix.sel(stdenv, "targetPlatform"), nix.sel(stdenv, "hostPlatform"))), nix.thunk(() => nix.str`${nix.sel(stdenv, "targetPlatform", "config")}-`)));
   const pname = nix.thunk(() => nix.add(nix.add(targetPrefix, "gdb"), nix.app(optionalString, hostCpuOnly, "-host-cpu-only")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: pname,
       version: "17.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnu/gdb/gdb-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-HANsDXLks9H7XJTIhjKt1vnXb018TS6nk8EqnxmjIow=",
         })))),
@@ -86,13 +81,13 @@ export default nix.lambda((args) => (() => {
         sourceHighlight,
         xxhash,
         dejagnu,
-      ], nix.concat(nix.app(optional, withTui, ncurses), nix.concat(nix.app(optional, withMpfr, mpfr), nix.concat(nix.app(optional, withGmp, gmp), nix.concat(nix.app(optional, withGuile, guile), nix.concat(nix.app(optional, enableDebuginfod, nix.thunk(() => nix.app(nix.sel(elfutils, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, enableDebuginfod: true }))))), nix.app(optional, nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), libiconv)))))))),
+      ], nix.concat(nix.app(optional, withTui, ncurses), nix.concat(nix.app(optional, withMpfr, mpfr), nix.concat(nix.app(optional, withGmp, gmp), nix.concat(nix.app(optional, withGuile, guile), nix.concat(nix.app(optional, enableDebuginfod, nix.thunk(() => nix.app(nix.sel(elfutils, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], enableDebuginfod: true }))))), nix.app(optional, nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), libiconv)))))))),
       propagatedNativeBuildInputs: nix.thunk(() => [setupDebugInfoDirs]),
       depsBuildBuild: nix.thunk(() => [nix.thunk(() => nix.sel(buildPackages, "stdenv", "cc"))]),
       strictDeps: true,
       enableParallelBuilding: true,
       hardeningDisable: nix.thunk(() => nix.app(optionals, nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["format"]))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-Wno-format-nonliteral" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_CFLAGS_COMPILE: "-Wno-format-nonliteral" })),
       configurePlatforms: nix.thunk(() => nix.app(optionals, nix.thunk(() => !nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64"))))), nix.thunk(() => ["build", "host", "target"]))),
       preConfigure: "# remove precompiled docs, required for man gdbinit to mention /etc/gdb/gdbinit\nrm gdb/doc/*.info*\nrm gdb/doc/*.5\nrm gdb/doc/*.1\n\n# fix doc build https://sourceware.org/bugzilla/show_bug.cgi?id=27808\nrm gdb/doc/GDBvn.texi\n\n# GDB have to be built out of tree.\nmkdir _build\ncd _build\n",
       configureScript: "../configure",
@@ -125,7 +120,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(writeScript, "update-gdb", nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p curl pcre2 common-updater-scripts
 
@@ -138,7 +133,7 @@ update-source-version ${pname} "$new_version"
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "GNU Project debugger",
         mainProgram: nix.thunk(() => nix.str`${targetPrefix}gdb`),
         longDescription: "GDB, the GNU Project debugger, allows you to see what is going\non `inside' another program while it executes -- or what another\nprogram was doing at the moment it crashed.\n",

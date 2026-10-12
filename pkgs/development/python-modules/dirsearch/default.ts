@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]], [["url", 51, 7], ["hash", 52, 7]], [["rustbackend", 76, 5], ["db", 77, 5]], [["src", 102, 82], ["meta", 102, 86]], [["extraArgs", 105, 7]], [["dirsearch-native", 102, 5], ["updateScript", 104, 5]], [["changelog", 113, 5], ["description", 114, 5], ["homepage", 115, 5], ["license", 116, 5], ["mainProgram", 117, 5], ["maintainers", 118, 5]], [["pname", 36, 3], ["version", 37, 3], ["__structuredAttrs", 38, 3], ["src", 40, 3], ["patches", 47, 3], ["pyproject", 56, 3], ["build-system", 58, 3], ["dependencies", 60, 3], ["optional-dependencies", 75, 3], ["postInstall", 85, 3], ["nativeCheckInputs", 91, 3], ["pythonImportsCheck", 95, 3], ["__darwinAllowLocalNetworking", 96, 3], ["pythonRelaxDeps", 99, 3], ["passthru", 101, 3], ["meta", 112, 3]]]);
 const formals$1 = { args: { lib: false, callPackage: false, fetchFromGitHub: false, buildPythonPackage: false, fetchpatch: false, setuptools: false, beautifulsoup4: false, colorama: false, defusedcsv: false, defusedxml: false, httpx: false, "httpx-ntlm": false, jinja2: false, pyopenssl: false, pysocks: false, requests: false, "requests-ntlm": false, "requests-toolbelt": false, "mysql-connector-python": false, psycopg: false, pytestCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 51, 7], ["hash", 52, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["rustbackend", 76, 5], ["db", 77, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["src", 102, 82], ["meta", 102, 86]]);
-const pos$5 = nix.positions(here + "/default.nix", [["extraArgs", 105, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["dirsearch-native", 102, 5], ["updateScript", 104, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["changelog", 113, 5], ["description", 114, 5], ["homepage", 115, 5], ["license", 116, 5], ["mainProgram", 117, 5], ["maintainers", 118, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pname", 36, 3], ["version", 37, 3], ["__structuredAttrs", 38, 3], ["src", 40, 3], ["patches", 47, 3], ["pyproject", 56, 3], ["build-system", 58, 3], ["dependencies", 60, 3], ["optional-dependencies", 75, 3], ["postInstall", 85, 3], ["nativeCheckInputs", 91, 3], ["pythonImportsCheck", 95, 3], ["__darwinAllowLocalNetworking", 96, 3], ["pythonRelaxDeps", 99, 3], ["passthru", 101, 3], ["meta", 112, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "dirsearch",
       version: "0.5.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "maurosoria",
           repo: "dirsearch",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/maurosoria/dirsearch/commit/8f2b3cceee0a27c0670ed9471b70dd666c73d6a6.patch",
             hash: "sha256-KnVYiQftq8DgbSdXPxsCCOTxS1e7vOqf/4sDqYXkX9A=",
           })))),
@@ -72,7 +65,7 @@ export default nix.lambda((args) => (() => {
         requests_toolbelt,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         rustbackend: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "passthru", "dirsearch-native"))]),
         db: nix.thunk(() => [mysql_connector_python, psycopg]),
       })),
@@ -82,19 +75,19 @@ export default nix.lambda((args) => (() => {
       __darwinAllowLocalNetworking: true,
       pythonRelaxDeps: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         "dirsearch-native": nix.thunk(() => nix.app(callPackage, nix.path(here, "./dirsearch-native.nix"), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             meta: nix.thunk(() => nix.attr(finalAttrs, "meta")),
           })))),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             extraArgs: nix.thunk(() => ["--subpackage", "dirsearch-native"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         changelog: nix.thunk(() => nix.str`https://github.com/maurosoria/dirsearch/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Command-line tool for brute-forcing directories and files in webservers, AKA a web path scanner",
         homepage: "https://github.com/maurosoria/dirsearch",

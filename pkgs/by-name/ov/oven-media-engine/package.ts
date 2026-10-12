@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["sha256", 32, 5]], [["description", 90, 5], ["mainProgram", 91, 5], ["homepage", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["platforms", 98, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["patches", 35, 3], ["makeFlags", 39, 3], ["enableParallelBuilding", 48, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 55, 3], ["preBuild", 71, 3], ["installPhase", 81, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, callPackage: false, "ffmpeg-ome": true, srt: false, bc: false, "pkg-config": false, perl: false, openssl: false, zlib: false, libvpx: false, libopus: false, libuuid: false, srtp: false, jemalloc: false, pcre2: false, hiredis: false, spdlog: false, "whisper-cpp": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["sha256", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 90, 5], ["mainProgram", 91, 5], ["homepage", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["platforms", 98, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["patches", 35, 3], ["makeFlags", 39, 3], ["enableParallelBuilding", 48, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 55, 3], ["preBuild", 71, 3], ["installPhase", 81, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const pname = "oven-media-engine";
       const version = "0.20.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "OvenMediaLabs",
           repo: "OvenMediaEngine",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -69,7 +67,7 @@ export default nix.lambda((args) => (() => {
       const preBuild = "cd src\n\npatchShebangs core/colorg++\npatchShebangs core/colorgcc\npatchShebangs projects/main/update_git_info.sh\n\nsed -i -e '/^CC =/d' -e '/^CXX =/d' -e '/^AR =/d' projects/third_party/pugixml-1.9/scripts/pugixml.make\n";
       const installPhase = "install -Dm0755 bin/RELEASE/OvenMediaEngine $out/bin/OvenMediaEngine\ninstall -Dm0644 ../misc/conf_examples/Origin.xml $out/share/examples/origin_conf/Server.xml\ninstall -Dm0644 ../misc/conf_examples/Logger.xml $out/share/examples/origin_conf/Logger.xml\ninstall -Dm0644 ../misc/conf_examples/Edge.xml $out/share/examples/edge_conf/Server.xml\ninstall -Dm0644 ../misc/conf_examples/Logger.xml $out/share/examples/edge_conf/Logger.xml\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Open-source streaming video service with sub-second latency",
         mainProgram: "OvenMediaEngine",
         homepage: "https://ovenmediaengine.com",
@@ -84,7 +82,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

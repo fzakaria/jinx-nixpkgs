@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generated.nix", [[["pname", 43, 3], ["version", 44, 3], ["src", 45, 3], ["isLibrary", 46, 3], ["isExecutable", 47, 3], ["libraryHaskellDepends", 48, 3], ["executableHaskellDepends", 78, 3], ["testHaskellDepends", 85, 3], ["benchmarkHaskellDepends", 107, 3], ["homepage", 120, 3], ["license", 121, 3], ["mainProgram", 122, 3]]]);
 const formals$1 = { args: { mkDerivation: false, aeson: false, "aeson-pretty": false, "ansi-terminal": false, attoparsec: false, base: false, bytestring: false, clock: false, containers: false, "criterion-measurement": false, deepseq: false, dlist: false, filepath: false, formatting: false, hashable: false, haxl: false, hspec: false, "hspec-core": false, "hspec-expectations": false, lib: false, mtl: false, "network-uri": false, "optparse-applicative": false, "postgresql-libpq": false, "postgresql-simple": false, QuickCheck: false, random: false, resourcet: false, statistics: false, streaming: false, text: false, time: false, transformers: false, "typed-process": false, unliftio: false, "unliftio-core": false, "unordered-containers": false, uuid: false, vector: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/generated.nix", [["pname", 43, 3], ["version", 44, 3], ["src", 45, 3], ["isLibrary", 46, 3], ["isExecutable", 47, 3], ["libraryHaskellDepends", 48, 3], ["executableHaskellDepends", 78, 3], ["testHaskellDepends", 85, 3], ["benchmarkHaskellDepends", 107, 3], ["homepage", 120, 3], ["license", 121, 3], ["mainProgram", 122, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
   const uuid = nix.arg($, "uuid");
   const vector = nix.arg($, "vector");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "codd",
       version: "0.1.8",
       src: nix.path(here, "./."),

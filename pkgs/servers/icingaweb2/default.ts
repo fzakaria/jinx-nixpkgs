@@ -2,12 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["icingaweb2", 31, 43]], [["tests", 31, 12]], [["description", 34, 5], ["longDescription", 35, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["mainProgram", 42, 5], ["platforms", 43, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["installPhase", 23, 3], ["passthru", 31, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, fetchFromGitHub: false, makeWrapper: false, php83: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["icingaweb2", 31, 43]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 31, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 34, 5], ["longDescription", 35, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["mainProgram", 42, 5], ["platforms", 43, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["installPhase", 23, 3], ["passthru", 31, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "icingaweb2";
       const version = "2.12.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Icinga",
           repo: "icingaweb2",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -35,14 +31,14 @@ cp -ra doc $out/share
 wrapProgram $out/bin/icingacli --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [php83]))}"
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           icingaweb2: nix.thunk(() => nix.attr(nixosTests, "icingaweb2")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Webinterface for Icinga 2",
         longDescription: "A lightweight and extensible web interface to keep an eye on your environment.\nAnalyse problems and act on them.\n",
         homepage: "https://www.icinga.com/products/icinga-web-2/",
@@ -55,7 +51,7 @@ wrapProgram $out/bin/icingacli --prefix PATH : "${nix.app(nix.sel(lib, "makeBinP
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

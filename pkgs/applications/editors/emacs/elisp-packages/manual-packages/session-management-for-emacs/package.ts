@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["description", 24, 5], ["homepage", 25, 5], ["license", 26, 5]], [["pname", 8, 3], ["ename", 9, 3], ["version", 10, 3], ["melpaVersion", 11, 3], ["src", 13, 3], ["meta", 18, 3]]]);
 const formals$1 = { args: { melpaBuild: false, fetchzip: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 24, 5], ["homepage", 25, 5], ["license", 26, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["ename", 9, 3], ["version", 10, 3], ["melpaVersion", 11, 3], ["src", 13, 3], ["meta", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,18 +11,18 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const lib = nix.arg($, "lib");
   return nix.app(melpaBuild, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "session-management-for-emacs",
       ename: "session",
       version: "2.4b",
       melpaVersion: "2.4",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/emacs-session/session-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-xF/hyUyerZPXgklOn2DElJtbyPZqSG/6S2PPxh971F0=",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Small session management for emacs",
         homepage: "https://emacs-session.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

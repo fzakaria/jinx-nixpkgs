@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["entrypoint", 31, 12]], [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["platforms", 38, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["patches", 18, 3], ["npmDepsHash", 20, 3], ["installPhase", 22, 3], ["passthru", 31, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["entrypoint", 31, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["platforms", 38, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["patches", 18, 3], ["npmDepsHash", 20, 3], ["installPhase", 22, 3], ["passthru", 31, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +14,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lovelace-valetudo-map-card";
       const version = "2023.04.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Hypfer",
           repo: "lovelace-valetudo-map-card",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -26,9 +23,9 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => [nix.path(here, "./remove-git-dependency.patch")]);
       const npmDepsHash = "sha256-xHHbOt9HW+zJAhHEDy2V5eYyLv4e3OrUbnzqeJasSng=";
       const installPhase = "runHook preInstall\n\nmkdir $out\ncp dist/valetudo-map-card.js $out\n\nrunHook postInstall\n";
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, entrypoint: "valetudo-map-card.js" }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[1], entrypoint: "valetudo-map-card.js" }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Display the map from a valetudo-enabled robot in a home assistant dashboard card",
         homepage: "https://github.com/Hypfer/lovelace-valetudo-map-card",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

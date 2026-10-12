@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5], ["fetchSubmodules", 27, 5]], [["extraArgs", 44, 7]], [["swim", 73, 13]], [["updateScript", 33, 12], ["tests", 72, 12]], [["NIX_CFLAGS_LINK", 61, 7]], [["description", 77, 5], ["homepage", 78, 5], ["changelog", 79, 5], ["license", 81, 5], ["maintainers", 86, 5], ["mainProgram", 87, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["cargoHash", 30, 3], ["passthru", 33, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 55, 3], ["env", 61, 3], ["cargoBuildFlags", 63, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromCodeberg: false, stdenv: false, "_experimental-update-script-combinators": false, "nix-update-script": false, "nix-update": false, writeScript: false, git: false, "pkg-config": false, openssl: false, python314: false, swim: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5], ["fetchSubmodules", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 44, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["swim", 73, 13]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 33, 12], ["tests", 72, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_LINK", 61, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 77, 5], ["homepage", 78, 5], ["changelog", 79, 5], ["license", 81, 5], ["maintainers", 86, 5], ["mainProgram", 87, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["cargoHash", 30, 3], ["passthru", 33, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 55, 3], ["env", 61, 3], ["cargoBuildFlags", 63, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "spade";
       const version = "0.20.0";
       const src = nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "spade-lang",
           repo: "spade",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -39,7 +33,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const cargoHash = "sha256-j/h9UzcsojELd/bYX6/w54PwuqMViEAOKE9tsmQOhXY=";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
             nix.thunk(() => nix.app(writeScript, "update-spade", nix.thunk(() => nix.str`VERSION="$(
   ${nix.app(nix.sel(lib, "getExe"), git)} ls-remote --tags --sort -version:refname ${nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk(() => nix.sel(src, "gitRepoUrl")))} \\
@@ -48,19 +42,19 @@ export default nix.lambda((args) => (() => {
 )"
 exec ${nix.app(nix.sel(lib, "getExe"), nix_update)} spade --version "$VERSION" "$@" --commit
 `))),
-            nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["swim", "--commit"]) })))),
+            nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[1], extraArgs: nix.thunk(() => ["swim", "--commit"]) })))),
           ]))),
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, swim: swim })),
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], swim: swim })),
       }));
       const nativeBuildInputs = nix.thunk(() => [pkg_config]);
       const buildInputs = nix.thunk(() => nix.concat([openssl], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [python314]))));
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         NIX_CFLAGS_LINK: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.str`-L${python314}/lib/python3.14/config-3.14-darwin -lpython3.14`))),
       }));
       const cargoBuildFlags = nix.thunk(() => nix.concat(["--workspace"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["--exclude=spade-surfer-plugin"]))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Better hardware description language",
         homepage: "https://codeberg/spade-lang/spade",
         changelog: "https://codeberg.org/spade-lang/spade/src/branch/main/CHANGELOG.md",
@@ -79,7 +73,7 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix_update)} spade --version "$VERSION" "
         mainProgram: "spade",
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         src,

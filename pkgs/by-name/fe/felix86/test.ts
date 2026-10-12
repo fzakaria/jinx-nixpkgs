@@ -2,41 +2,30 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test.nix", [[["emulatedSystems", 16, 19]], [["binfmt", 16, 12]], [["systemPackages", 18, 19]], [["boot", 16, 7], ["environment", 18, 7]], [["machine", 9, 9]], [["graphics", 31, 20]], [["systemPackages", 32, 17]], [["virtualisation", 31, 5], ["environment", 32, 5]], [["machine", 30, 21]], [["enable", 34, 27]], [["nodes", 30, 15], ["sshBackdoor", 34, 15]], [["name", 7, 3], ["nodes", 9, 3], ["testScript", 23, 3], ["interactive", 30, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/test.nix", [["emulatedSystems", 16, 19]]);
-const pos$2 = nix.positions(here + "/test.nix", [["binfmt", 16, 12]]);
-const pos$3 = nix.positions(here + "/test.nix", [["systemPackages", 18, 19]]);
-const pos$4 = nix.positions(here + "/test.nix", [["boot", 16, 7], ["environment", 18, 7]]);
-const pos$5 = nix.positions(here + "/test.nix", [["machine", 9, 9]]);
-const pos$6 = nix.positions(here + "/test.nix", [["graphics", 31, 20]]);
-const pos$7 = nix.positions(here + "/test.nix", [["systemPackages", 32, 17]]);
-const pos$8 = nix.positions(here + "/test.nix", [["virtualisation", 31, 5], ["environment", 32, 5]]);
-const pos$9 = nix.positions(here + "/test.nix", [["machine", 30, 21]]);
-const pos$10 = nix.positions(here + "/test.nix", [["enable", 34, 27]]);
-const pos$11 = nix.positions(here + "/test.nix", [["nodes", 30, 15], ["sshBackdoor", 34, 15]]);
-const pos$12 = nix.positions(here + "/test.nix", [["name", 7, 3], ["nodes", 9, 3], ["testScript", 23, 3], ["interactive", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return nix.app(nix.sel(pkgs, "testers", "nixosTest"), nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       name: "felix86",
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         machine: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const config = nix.arg($_1, "config");
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             boot: nix.thunk(() => ({
-              [nix.POS]: pos$2,
-              binfmt: nix.thunk(() => ({ [nix.POS]: pos$1, emulatedSystems: nix.thunk(() => ["riscv64-linux"]) })),
+              [nix.POS]: $pos[1],
+              binfmt: nix.thunk(() => ({ [nix.POS]: $pos[0], emulatedSystems: nix.thunk(() => ["riscv64-linux"]) })),
             })),
             environment: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "pkgsCross", "riscv64", "felix86"))]),
             })),
           };
@@ -44,19 +33,19 @@ export default nix.lambda((args) => (() => {
       })),
       testScript: "machine.wait_for_unit(\"multi-user.target\")\nmachine.succeed(\"felix86 --help\")\n",
       interactive: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           machine: nix.thunk(() => ({
-            [nix.POS]: pos$8,
-            virtualisation: nix.thunk(() => ({ [nix.POS]: pos$6, graphics: false })),
+            [nix.POS]: $pos[7],
+            virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[5], graphics: false })),
             environment: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "binutils"))]),
             })),
           })),
         })),
-        sshBackdoor: nix.thunk(() => ({ [nix.POS]: pos$10, enable: true })),
+        sshBackdoor: nix.thunk(() => ({ [nix.POS]: $pos[9], enable: true })),
       })),
     })));
 })(), formals$1);

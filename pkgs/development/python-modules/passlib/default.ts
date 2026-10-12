@@ -2,16 +2,15 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["changelog", 12, 28], ["description", 12, 38], ["homepage", 12, 50]], [["pname", 7, 3], ["version", 8, 21], ["dependencies", 9, 3], ["optional-dependencies", 10, 3], ["meta", 11, 3]]]);
 const formals$1 = { args: { libpass: false, mkPythonMetaPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["changelog", 12, 28], ["description", 12, 38], ["homepage", 12, 50]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 7, 3], ["version", 8, 21], ["dependencies", 9, 3], ["optional-dependencies", 10, 3], ["meta", 11, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const libpass = nix.arg($, "libpass");
   const mkPythonMetaPackage = nix.arg($, "mkPythonMetaPackage");
   return nix.app(mkPythonMetaPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "passlib",
       version: nix.thunk(() => nix.attr(libpass, "version")),
       dependencies: nix.thunk(() => [libpass]),
@@ -19,7 +18,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(libpass, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         changelog: nix.thunk(() => nix.attr(from, "changelog")),
         description: nix.thunk(() => nix.attr(from, "description")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),

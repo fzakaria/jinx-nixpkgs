@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 52, 5], ["repo", 53, 5], ["tag", 54, 5], ["hash", 55, 5]], [["mkdocstrings", 74, 7], ["mkdocs-material", 75, 7], ["mkdocs-mermaid2-plugin", 76, 7], ["hydrus", 77, 7]], [["tests", 72, 12]], [["changelog", 82, 5], ["description", 83, 5], ["homepage", 84, 5], ["license", 85, 5], ["maintainers", 89, 5]], [["pname", 47, 3], ["version", 48, 3], ["pyproject", 49, 3], ["src", 51, 3], ["build-system", 58, 3], ["dependencies", 60, 3], ["nativeCheckInputs", 66, 3], ["pythonImportsCheck", 70, 3], ["passthru", 72, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, pytestCheckHook: false, markdown: false, pyyaml: false, pygments: false, mkdocstrings: false, "mkdocs-material": false, "mkdocs-mermaid2-plugin": false, hydrus: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 52, 5], ["repo", 53, 5], ["tag", 54, 5], ["hash", 55, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["mkdocstrings", 74, 7], ["mkdocs-material", 75, 7], ["mkdocs-mermaid2-plugin", 76, 7], ["hydrus", 77, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 72, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["changelog", 82, 5], ["description", 83, 5], ["homepage", 84, 5], ["license", 85, 5], ["maintainers", 89, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 47, 3], ["version", 48, 3], ["pyproject", 49, 3], ["src", 51, 3], ["build-system", 58, 3], ["dependencies", 60, 3], ["nativeCheckInputs", 66, 3], ["pythonImportsCheck", 70, 3], ["passthru", 72, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -54,7 +50,7 @@ export default nix.lambda((args) => (() => {
       const version = "11.0.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "facelessuser",
           repo: "pymdown-extensions",
           tag: version,
@@ -65,9 +61,9 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => nix.builtins.map((ext) => nix.str`pymdownx.${ext}`, extensions));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           mkdocstrings: mkdocstrings,
           "mkdocs-material": mkdocs_material,
           "mkdocs-mermaid2-plugin": mkdocs_mermaid2_plugin,
@@ -75,7 +71,7 @@ export default nix.lambda((args) => (() => {
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/facelessuser/pymdown-extensions/blob/${nix.sel(src, "tag")}/docs/src/markdown/about/changelog.md`),
         description: "Extensions for Python Markdown",
         homepage: "https://facelessuser.github.io/pymdown-extensions/",
@@ -92,7 +88,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

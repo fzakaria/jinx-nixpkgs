@@ -2,14 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 39, 5], ["hash", 40, 5], ["stripRoot", 41, 5]], [["LD_LIBRARY_PATH", 65, 7]], [["package", 106, 43]], [["version", 106, 11], ["nyxt", 108, 36]], [["tests", 106, 5], ["updateScript", 107, 5]], [["description", 112, 5], ["mainProgram", 113, 5], ["homepage", 114, 5], ["license", 115, 5], ["maintainers", 116, 5], ["platforms", 120, 5]], [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 46, 3], ["env", 65, 3], ["postConfigure", 78, 3], ["makeFlags", 86, 3], ["preFixup", 91, 3], ["dontStrip", 103, 3], ["passthru", 105, 3], ["meta", 111, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, testers: false, wrapGAppsHook3: false, fetchzip: false, sbcl: false, "pkg-config": false, libfixposix: false, "gobject-introspection": false, "gsettings-desktop-schemas": false, "glib-networking": false, gtk3: false, glib: false, "gdk-pixbuf": false, cairo: false, pango: false, webkitgtk_4_1: false, openssl: false, sqlite: false, gstreamer: false, "gst-libav": false, "gst-plugins-base": false, "gst-plugins-good": false, "gst-plugins-bad": false, "gst-plugins-ugly": false, "xdg-utils": false, xclip: false, "wl-clipboard": false, "nix-update-script": false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 39, 5], ["hash", 40, 5], ["stripRoot", 41, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["LD_LIBRARY_PATH", 65, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["package", 106, 43]]);
-const pos$4 = nix.positions(here + "/default.nix", [["version", 106, 11], ["nyxt", 108, 36]]);
-const pos$5 = nix.positions(here + "/default.nix", [["tests", 106, 5], ["updateScript", 107, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 112, 5], ["mainProgram", 113, 5], ["homepage", 114, 5], ["license", 115, 5], ["maintainers", 116, 5], ["platforms", 120, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 46, 3], ["env", 65, 3], ["postConfigure", 78, 3], ["makeFlags", 86, 3], ["preFixup", 91, 3], ["dontStrip", 103, 3], ["passthru", 105, 3], ["meta", 111, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,11 +38,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "nyxt",
       version: "3.12.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/atlas-engineer/nyxt/releases/download/${nix.sel(finalAttrs, "version")}/nyxt-${nix.sel(finalAttrs, "version")}-source-with-submodules.tar.xz`),
           hash: "sha256-T5p3OaWp28rny81ggdE9iXffmuh6wt6XSuteTOT8FLI=",
           stripRoot: false,
@@ -70,7 +64,7 @@ export default nix.lambda((args) => (() => {
         gst_plugins_ugly,
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         LD_LIBRARY_PATH: nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [
             glib,
             gobject_introspection,
@@ -91,11 +85,11 @@ gappsWrapperArgs+=(--prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.t
 `),
       dontStrip: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
           nyxt: nix.thunk(() => nix.attr(nixosTests, "nyxt")),
@@ -103,7 +97,7 @@ gappsWrapperArgs+=(--prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.t
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Infinitely extensible web-browser (with Lisp development files using WebKitGTK platform port)",
         mainProgram: "nyxt",
         homepage: "https://nyxt.atlas.engineer",

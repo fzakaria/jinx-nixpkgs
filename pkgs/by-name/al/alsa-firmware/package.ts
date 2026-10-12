@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 17, 5]], [["url", 23, 7], ["hash", 24, 7]], [["url", 52, 5]], [["updateScript", 51, 12]], [["homepage", 56, 5], ["description", 57, 5], ["license", 58, 5], ["platforms", 59, 5], ["maintainers", 60, 5], ["sourceProvenance", 63, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 20, 3], ["nativeBuildInputs", 28, 3], ["configureFlags", 30, 3], ["depsBuildBuild", 32, 3], ["dontStrip", 39, 3], ["postInstall", 41, 3], ["passthru", 51, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPackages: false, autoreconfHook: false, fetchurl: false, fetchpatch: false, directoryListingUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 23, 7], ["hash", 24, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 52, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 51, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 56, 5], ["description", 57, 5], ["license", 58, 5], ["platforms", 59, 5], ["maintainers", 60, 5], ["sourceProvenance", 63, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 20, 3], ["nativeBuildInputs", 28, 3], ["configureFlags", 30, 3], ["depsBuildBuild", 32, 3], ["dontStrip", 39, 3], ["postInstall", 41, 3], ["passthru", 51, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,17 +15,17 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const directoryListingUpdater = nix.arg($, "directoryListingUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "alsa-firmware",
       version: "1.2.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://alsa/firmware/alsa-firmware-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-tnttfQi8/CR+9v8KuIqZwYgwWjz1euLf0LzZpbNs1bs=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://raw.githubusercontent.com/void-linux/void-packages/ae690000017d5fd355ab397c49202426e3a01c11/srcpkgs/alsa-firmware/patches/musl.patch",
             hash: "sha256-4A+TBBvpz14NwMNewLc2LQL51hnz4EZlZ44rhnx5dnc=",
           })))),
@@ -41,11 +36,11 @@ export default nix.lambda((args) => (() => {
       dontStrip: true,
       postInstall: "# These are lifted from the Arch PKGBUILD\n# remove files which conflicts with linux-firmware\nrm -rf $out/lib/firmware/{ct{efx,speq}.bin,ess,korg,sb16,yamaha}\n# remove broken symlinks (broken upstream)\nrm -rf $out/lib/firmware/turtlebeach\n# remove empty dir\nrm -rf $out/bin\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, url: "https://alsa-project.org/files/pub/firmware/" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], url: "https://alsa-project.org/files/pub/firmware/" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://www.alsa-project.org/",
         description: "Soundcard firmwares from the alsa project",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

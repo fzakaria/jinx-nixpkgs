@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["changelog", 25, 5], ["description", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["mainProgram", 29, 5], ["maintainers", 30, 5], ["platforms", 31, 5]], [["pname", 11, 3], ["version", 12, 11], ["src", 14, 3], ["composerLock", 21, 3], ["vendorHash", 22, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, php: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 25, 5], ["description", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["mainProgram", 29, 5], ["maintainers", 30, 5], ["platforms", 31, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 11], ["src", 14, 3], ["composerLock", 21, 3], ["vendorHash", 22, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const php = nix.arg($, "php");
   const version = "1.1.0";
   return nix.app(nix.sel(php, "buildComposerWithPlugin"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "nix-community/composer-local-repo-plugin",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nix-community",
           repo: "composer-local-repo-plugin",
           rev: version,
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       composerLock: nix.path(here, "./composer.lock"),
       vendorHash: "sha256-cup8maS9NkhdqTHoKJaH7r7AJQdkflWTvM6uIuxMPX0=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/nix-community/composer-local-repo-plugin/releases/tag/${version}`),
         description: "Composer plugin that facilitates the creation of a local composer type repository",
         homepage: "https://github.com/nix-community/composer-local-repo-plugin",

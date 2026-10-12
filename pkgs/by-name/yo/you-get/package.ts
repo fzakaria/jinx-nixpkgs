@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 20, 26], ["version", 20, 32], ["hash", 21, 5]], [["ffmpeg", 26, 7], ["ffprobe", 27, 7], ["version", 28, 7]], [["description", 48, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["mainProgram", 53, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["doCheck", 17, 3], ["src", 19, 3], ["patches", 24, 3], ["nativeBuildInputs", 32, 3], ["build-system", 34, 3], ["postInstall", 36, 3], ["pythonImportsCheck", 43, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchPypi: false, replaceVars: false, ffmpeg: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 20, 26], ["version", 20, 32], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ffmpeg", 26, 7], ["ffprobe", 27, 7], ["version", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 48, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["mainProgram", 53, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["doCheck", 17, 3], ["src", 19, 3], ["patches", 24, 3], ["nativeBuildInputs", 32, 3], ["build-system", 34, 3], ["postInstall", 36, 3], ["pythonImportsCheck", 43, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,20 +14,20 @@ export default nix.lambda((args) => (() => {
   const ffmpeg = nix.arg($, "ffmpeg");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "you-get",
       version: "0.4.1700",
       pyproject: true,
       doCheck: false,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-XNIUkgEqRGrBtSxvfkSUSqxltZ6ZdkWoTc9kz4BD6Zw=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./ffmpeg-path.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             ffmpeg: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), ffmpeg)}/bin/ffmpeg`),
             ffprobe: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), ffmpeg)}/bin/ffmpeg`),
             version: nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), ffmpeg)),
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "installShellCompletion --cmd you-get \\\n  --zsh contrib/completion/_you-get \\\n  --fish contrib/completion/you-get.fish \\\n  --bash contrib/completion/you-get-completion.bash\n",
       pythonImportsCheck: nix.thunk(() => ["you_get"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Tiny command line utility to download media contents from the web",
         homepage: "https://you-get.org",
         changelog: nix.thunk(() => nix.str`https://github.com/soimort/you-get/raw/v${nix.sel(finalAttrs, "version")}/CHANGELOG.rst`),

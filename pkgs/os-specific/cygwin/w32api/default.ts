@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["incdir", 30, 7], ["libdir", 31, 7]], [["description", 35, 7], ["homepage", 37, 9], ["downloadPage", 38, 9], ["license", 39, 9], ["platforms", 41, 7], ["maintainers", 42, 7]], [["pname", 13, 5], ["version", 16, 7], ["src", 17, 7], ["outputs", 20, 5], ["configureFlags", 25, 5], ["enableParallelBuilding", 27, 5], ["passthru", 29, 5], ["meta", 34, 5]], [["preConfigure", 48, 9]], [["nativeBuildInputs", 54, 9], ["hardeningDisable", 56, 9]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, stdenvNoLibc: false, autoreconfHook: false, windows: false, headersOnly: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["incdir", 30, 7], ["libdir", 31, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 35, 7], ["homepage", 37, 9], ["downloadPage", 38, 9], ["license", 39, 9], ["platforms", 41, 7], ["maintainers", 42, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 5], ["version", 16, 7], ["src", 17, 7], ["outputs", 20, 5], ["configureFlags", 25, 5], ["enableParallelBuilding", 27, 5], ["passthru", 29, 5], ["meta", 34, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["preConfigure", 48, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 54, 9], ["hardeningDisable", 56, 9]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,18 +16,18 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel((nix.asBool(headersOnly) ? nix.force(stdenvNoCC) : nix.force(stdenvNoLibc)), "mkDerivation"), nix.thunk(() => nix.update((() => {
       const from = nix.thunk(() => nix.sel(windows, "mingw_w64_headers"));
       return {
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: nix.thunk(() => nix.str`w32api${nix.app(nix.sel(lib, "optionalString"), headersOnly, "-headers")}`),
       version: nix.thunk(() => nix.attr(from, "version")),
       src: nix.thunk(() => nix.attr(from, "src")),
       outputs: nix.thunk(() => nix.concat(["out"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(headersOnly)), "dev"))),
       configureFlags: nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "enableFeature"), true, "w32api"))]),
       enableParallelBuilding: true,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, incdir: "/include/w32api/", libdir: "/lib/w32api/" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[0], incdir: "/include/w32api/", libdir: "/lib/w32api/" })),
       meta: nix.thunk(() => (() => {
         const from_1 = nix.thunk(() => nix.sel(windows, "mingw_w64_headers", "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "MinGW w32api package for Cygwin",
         homepage: nix.thunk(() => nix.attr(from_1, "homepage")),
         downloadPage: nix.thunk(() => nix.attr(from_1, "downloadPage")),
@@ -41,8 +37,8 @@ export default nix.lambda((args) => (() => {
       };
       })()),
     };
-    })(), (nix.asBool(headersOnly) ? { [nix.POS]: pos$4, preConfigure: "cd mingw-w64-headers\n" } : {
-      [nix.POS]: pos$5,
+    })(), (nix.asBool(headersOnly) ? { [nix.POS]: $pos[3], preConfigure: "cd mingw-w64-headers\n" } : {
+      [nix.POS]: $pos[4],
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       hardeningDisable: nix.thunk(() => ["stackprotector", "fortify"]),
     }))));

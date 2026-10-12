@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["colorama", 52, 5], ["d", 53, 5], ["uvloop", 54, 5], ["jupyter", 55, 5]], [["description", 102, 5], ["homepage", 103, 5], ["changelog", 104, 5], ["license", 105, 5], ["mainProgram", 106, 5], ["maintainers", 107, 5]], [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["build-system", 36, 3], ["dependencies", 42, 3], ["optional-dependencies", 51, 3], ["__darwinAllowLocalNetworking", 63, 3], ["nativeCheckInputs", 65, 3], ["pytestFlags", 71, 3], ["preCheck", 75, 3], ["disabledTests", 87, 3], ["doCheck", 99, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, buildPythonPackage: false, fetchFromGitHub: false, pytestCheckHook: false, aiohttp: false, click: false, colorama: false, "hatch-fancy-pypi-readme": false, "hatch-vcs": false, hatchling: false, ipython: false, "mypy-extensions": false, packaging: false, pathspec: false, parameterized: false, platformdirs: false, pytokens: false, "tokenize-rt": false, uvloop: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["colorama", 52, 5], ["d", 53, 5], ["uvloop", 54, 5], ["jupyter", 55, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 102, 5], ["homepage", 103, 5], ["changelog", 104, 5], ["license", 105, 5], ["mainProgram", 106, 5], ["maintainers", 107, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["build-system", 36, 3], ["dependencies", 42, 3], ["optional-dependencies", 51, 3], ["__darwinAllowLocalNetworking", 63, 3], ["nativeCheckInputs", 65, 3], ["pytestFlags", 71, 3], ["preCheck", 75, 3], ["disabledTests", 87, 3], ["doCheck", 99, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const tokenize_rt = nix.arg($, "tokenize-rt");
   const uvloop = nix.arg($, "uvloop");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "black",
       version: "26.5.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "psf",
           repo: "black",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatch_fancy_pypi_readme, hatch_vcs, hatchling]),
       dependencies: nix.thunk(() => [click, mypy_extensions, packaging, pathspec, platformdirs, pytokens]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         colorama: nix.thunk(() => [colorama]),
         d: nix.thunk(() => [aiohttp]),
         uvloop: nix.thunk(() => [uvloop]),
@@ -62,7 +59,7 @@ export default nix.lambda((args) => (() => {
         ])))),
       doCheck: nix.thunk(() => !nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64"))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Uncompromising Python code formatter",
         homepage: "https://github.com/psf/black",
         changelog: nix.thunk(() => nix.str`https://github.com/psf/black/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES.md`),

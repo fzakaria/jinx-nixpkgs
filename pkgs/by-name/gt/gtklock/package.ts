@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["testModule", 44, 12]], [["description", 60, 5], ["longDescription", 61, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 70, 5], ["mainProgram", 71, 5]], [["pname", 17, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 36, 3], ["strictDeps", 42, 3], ["passthru", 44, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, meson: false, ninja: false, scdoc: false, "pkg-config": false, wrapGAppsHook3: false, gtk3: false, pam: false, "gtk-session-lock": false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["testModule", 44, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 60, 5], ["longDescription", 61, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 70, 5], ["mainProgram", 71, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 36, 3], ["strictDeps", 42, 3], ["passthru", 44, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const gtk_session_lock = nix.arg($, "gtk-session-lock");
   const runCommand = nix.arg($, "runCommand");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gtklock",
       version: "4.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jovanlanik",
           repo: "gtklock",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gtk3, pam, gtk_session_lock]),
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         testModule: (module) => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(module, "name")}-test.sh`), nix.thunk(() => ({})), nix.thunk(() => nix.str`MODULE_PATH=$(find ${module}/lib/gtklock -maxdepth 1 -name '*.so')
 echo -e "[main]\\nmodules=\${MODULE_PATH}" >./config.ini
 ${nix.sel(finalAttrs, "finalPackage")}/bin/gtklock --config ./config.ini >./log 2>&1 || true
@@ -51,7 +48,7 @@ touch $out
 `)),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "GTK-based lockscreen for Wayland",
         longDescription: "Important note: for gtklock to work you need to set \"security.pam.services.gtklock = {};\" manually.\nOtherwise you'll lock yourself out of desktop and unable to authenticate.\n",
         homepage: "https://github.com/jovanlanik/gtklock",

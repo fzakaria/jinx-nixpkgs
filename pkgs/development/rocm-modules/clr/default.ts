@@ -2,25 +2,10 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 42, 5], ["paths", 43, 5], ["postBuild", 49, 5]], [["owner", 84, 5], ["repo", 85, 5], ["tag", 86, 5], ["sparseCheckout", 87, 5], ["hash", 91, 5]], [["LLVM_DIR", 150, 7]], [["hash", 156, 7], ["url", 157, 7], ["relative", 158, 7]], [["finalAttrs", 275, 47]], [["rocm-smi", 280, 17], ["clr", 281, 9]], [["clr", 285, 9]], [["clr", 288, 9], ["name", 289, 9], ["offloadArches", 290, 9]], [["clr", 299, 9], ["name", 300, 9], ["offloadArches", 301, 9]], [["clr", 308, 9], ["name", 309, 9], ["offloadArches", 310, 9]], [["clr", 315, 9], ["rocm-smi", 316, 17]], [["rocm-smi", 279, 7], ["opencl-cts", 284, 7], ["generic-arch", 287, 7], ["isa-compat", 298, 7], ["spirv", 307, 7], ["hiprtc-type-traits", 314, 7]], [["gpuTargets", 242, 5], ["hipClangPath", 273, 13], ["updateScript", 275, 5], ["impureTests", 277, 5], ["selectGpuTargets", 320, 5], ["gpuArchSuffix", 325, 5]], [["localGpuTargets", 328, 13], ["gpuArchSuffix", 329, 5], ["selectGpuTargets", 330, 5]], [["description", 338, 5], ["homepage", 339, 5], ["license", 340, 5], ["maintainers", 341, 5], ["teams", 342, 5], ["platforms", 343, 5]], [["pname", 72, 3], ["version", 73, 3], ["outputs", 75, 3], ["__structuredAttrs", 80, 3], ["strictDeps", 81, 3], ["src", 83, 3], ["sourceRoot", 93, 3], ["nativeBuildInputs", 95, 3], ["buildInputs", 105, 3], ["propagatedBuildInputs", 119, 3], ["cmakeBuildType", 128, 3], ["separateDebugInfo", 129, 3], ["cmakeFlags", 131, 3], ["env", 150, 3], ["patches", 152, 3], ["postPatch", 162, 3], ["postInstall", 190, 3], ["postFixup", 230, 3], ["disallowedRequisites", 234, 3], ["passthru", 238, 3], ["meta", 337, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, callPackage: false, fetchFromGitHub: false, fetchpatch: false, rocmUpdateScript: false, makeWrapper: false, cmake: false, perl: false, "hip-common": false, hipcc: false, "rocm-device-libs": false, "rocm-comgr": false, "rocm-runtime": false, "rocm-core": false, roctracer: false, rocminfo: false, "rocm-smi": false, "rocprofiler-register": false, symlinkJoin: false, numactl: false, libffi: false, zstd: false, zlib: false, libGL: false, libxml2: false, libx11: false, python3Packages: false, llvm: false, "khronos-ocl-icd-loader": false, "gcc-unwrapped": false, writeShellScriptBin: false, localGpuTargets: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 42, 5], ["paths", 43, 5], ["postBuild", 49, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 84, 5], ["repo", 85, 5], ["tag", 86, 5], ["sparseCheckout", 87, 5], ["hash", 91, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["LLVM_DIR", 150, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["hash", 156, 7], ["url", 157, 7], ["relative", 158, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["finalAttrs", 275, 47]]);
-const pos$6 = nix.positions(here + "/default.nix", [["rocm-smi", 280, 17], ["clr", 281, 9]]);
-const pos$7 = nix.positions(here + "/default.nix", [["clr", 285, 9]]);
-const pos$8 = nix.positions(here + "/default.nix", [["clr", 288, 9], ["name", 289, 9], ["offloadArches", 290, 9]]);
-const pos$9 = nix.positions(here + "/default.nix", [["clr", 299, 9], ["name", 300, 9], ["offloadArches", 301, 9]]);
-const pos$10 = nix.positions(here + "/default.nix", [["clr", 308, 9], ["name", 309, 9], ["offloadArches", 310, 9]]);
-const pos$11 = nix.positions(here + "/default.nix", [["clr", 315, 9], ["rocm-smi", 316, 17]]);
-const pos$12 = nix.positions(here + "/default.nix", [["rocm-smi", 279, 7], ["opencl-cts", 284, 7], ["generic-arch", 287, 7], ["isa-compat", 298, 7], ["spirv", 307, 7], ["hiprtc-type-traits", 314, 7]]);
 const formals$2 = { args: { supported: true }, ellipsis: false };
-const pos$13 = nix.positions(here + "/default.nix", [["gpuTargets", 242, 5], ["hipClangPath", 273, 13], ["updateScript", 275, 5], ["impureTests", 277, 5], ["selectGpuTargets", 320, 5], ["gpuArchSuffix", 325, 5]]);
 const formals$3 = { args: { supported: true }, ellipsis: false };
-const pos$14 = nix.positions(here + "/default.nix", [["localGpuTargets", 328, 13], ["gpuArchSuffix", 329, 5], ["selectGpuTargets", 330, 5]]);
-const pos$15 = nix.positions(here + "/default.nix", [["description", 338, 5], ["homepage", 339, 5], ["license", 340, 5], ["maintainers", 341, 5], ["teams", 342, 5], ["platforms", 343, 5]]);
-const pos$16 = nix.positions(here + "/default.nix", [["pname", 72, 3], ["version", 73, 3], ["outputs", 75, 3], ["__structuredAttrs", 80, 3], ["strictDeps", 81, 3], ["src", 83, 3], ["sourceRoot", 93, 3], ["nativeBuildInputs", 95, 3], ["buildInputs", 105, 3], ["propagatedBuildInputs", 119, 3], ["cmakeBuildType", 128, 3], ["separateDebugInfo", 129, 3], ["cmakeFlags", 131, 3], ["env", 150, 3], ["patches", 152, 3], ["postPatch", 162, 3], ["postInstall", 190, 3], ["postFixup", 230, 3], ["disallowedRequisites", 234, 3], ["passthru", 238, 3], ["meta", 337, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -59,7 +44,7 @@ export default nix.lambda((args) => (() => {
   const localGpuTargets = nix.argOr($, "localGpuTargets", () => null);
   const ROCM_LIBPATCH_VERSION = nix.thunk(() => nix.attr(rocm_core, "ROCM_LIBPATCH_VERSION"));
   const hipClang = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "hipClang",
       paths: nix.thunk(() => [
         nix.thunk(() => nix.sel(llvm, "bintools", "bintools")),
@@ -83,14 +68,14 @@ export default nix.lambda((args) => (() => {
   const amdclangxx = nix.thunk(() => nix.app(writeShellScriptBin, "amdclang++", nix.thunk(() => nix.str`exec ${hipClang}/bin/clang++ "$@"
 `)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       pname: "clr",
       version: "7.2.3",
       outputs: nix.thunk(() => ["out", "icd"]),
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "ROCm",
           repo: "rocm-systems",
           tag: nix.thunk(() => nix.str`rocm-${nix.sel(finalAttrs, "version")}`),
@@ -145,11 +130,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CMAKE_INSTALL_INCLUDEDIR", "include")),
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CMAKE_INSTALL_LIBDIR", "lib")),
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, LLVM_DIR: "" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], LLVM_DIR: "" })),
       patches: nix.thunk(() => [
         nix.path(here, "./cmake-find-x11-libgl.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             hash: "sha256-3MsDL+OQg24wH1RDhbao74RuIbzEAmduwla9KOPzQ/M=",
             url: "https://github.com/GZGavinZhao/rocm-systems/commit/039cb23b24d739adb8c0f9de8b550d9f557de031.patch",
             relative: "projects/clr",
@@ -195,7 +180,7 @@ ln -s ${hipClang} $out/llvm
       postFixup: "patchelf --add-rpath \"$out/lib\" \"$out\"/lib/*.so\n",
       disallowedRequisites: nix.thunk(() => [gcc_unwrapped]),
       passthru: nix.thunk(() => nix.update({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         gpuTargets: nix.thunk(() => nix.app(nix.sel(lib, "forEach"), nix.thunk(() => [
             "900",
             "906",
@@ -215,17 +200,20 @@ ln -s ${hipClang} $out/llvm
             "1201",
           ]), (target) => nix.str`gfx${target}`)),
         hipClangPath: hipClangPath,
-        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: pos$5, finalAttrs: finalAttrs })))),
+        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: $pos[4], finalAttrs: finalAttrs })))),
         impureTests: nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           "rocm-smi": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-rocm-smi.nix"), nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               "rocm-smi": rocm_smi,
               clr: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
-          "opencl-cts": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-opencl-cts.nix"), nix.thunk(() => ({ [nix.POS]: pos$7, clr: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")) })))),
+          "opencl-cts": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-opencl-cts.nix"), nix.thunk(() => ({
+              [nix.POS]: $pos[6],
+              clr: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
+            })))),
           "generic-arch": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-isa-compat.nix"), nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               clr: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               name: "generic-arch",
               offloadArches: nix.thunk(() => [
@@ -237,19 +225,19 @@ ln -s ${hipClang} $out/llvm
               ]),
             })))),
           "isa-compat": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-isa-compat.nix"), nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               clr: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               name: "isa-compat",
               offloadArches: nix.thunk(() => ["gfx900", "gfx1010", "gfx1030"]),
             })))),
           spirv: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-isa-compat.nix"), nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               clr: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               name: "spirv",
               offloadArches: nix.thunk(() => ["amdgcnspirv"]),
             })))),
           "hiprtc-type-traits": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-hiprtc-type-traits.nix"), nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               clr: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               "rocm-smi": rocm_smi,
             })))),
@@ -261,7 +249,7 @@ ln -s ${hipClang} $out/llvm
         })(), formals$2),
         gpuArchSuffix: "",
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(localGpuTargets, null)), nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           localGpuTargets: localGpuTargets,
           gpuArchSuffix: nix.thunk(() => nix.add("-", nix.builtins.concatStringsSep("-", localGpuTargets))),
           selectGpuTargets: nix.lambda((args_1) => (() => {
@@ -271,7 +259,7 @@ ln -s ${hipClang} $out/llvm
           })(), formals$3),
         }))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         description: "AMD Common Language Runtime for hipamd, opencl, and rocclr",
         homepage: "https://github.com/ROCm/rocm-systems/tree/develop/projects/clr",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

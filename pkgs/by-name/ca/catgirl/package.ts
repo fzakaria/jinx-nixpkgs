@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 18, 5]], [["homepage", 45, 5], ["description", 46, 5], ["license", 47, 5], ["platforms", 48, 5], ["mainProgram", 49, 5], ["maintainers", 50, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["postConfigure", 25, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 35, 3], ["strictDeps", 40, 3], ["enableParallelBuilding", 42, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { ctags: false, fetchurl: false, lib: false, libretls: false, openssl: false, ncurses: false, "pkg-config": false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 45, 5], ["description", 46, 5], ["license", 47, 5], ["platforms", 48, 5], ["mainProgram", 49, 5], ["maintainers", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["postConfigure", 25, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 35, 3], ["strictDeps", 40, 3], ["enableParallelBuilding", 42, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "catgirl",
       version: "2.2a",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://git.causal.agency/catgirl/snapshot/${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-xtdgqu4TTgUlht73qRA1Q/coH95lMfvLQQhkcHlCl8I=",
         })))),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://git.causal.agency/catgirl/about/",
         description: "TLS-only terminal IRC client",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

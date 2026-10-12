@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 175, 5], ["repo", 176, 5], ["rev", 177, 5], ["hash", 178, 5]], [["description", 230, 5], ["longDescription", 231, 5], ["changelog", 237, 5], ["homepage", 238, 5], ["license", 239, 5], ["maintainers", 240, 5], ["mainProgram", 244, 5]], [["pname", 169, 3], ["pyproject", 170, 3], ["version", 171, 3], ["src", 174, 3], ["build-system", 181, 3], ["dependencies", 185, 3], ["makeWrapperArgs", 217, 3], ["doCheck", 227, 3], ["meta", 229, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, texliveInfraOnly: false, setuptools: false, addict: false, appdirs: false, colour: false, diskcache: false, fonttools: false, ipython: false, isosurfaces: false, manimpango: false, "mapbox-earcut": false, matplotlib: false, moderngl: false, "moderngl-window": false, numpy: false, pillow: false, pydub: false, pygments: false, pyopengl: false, pyperclip: false, pyyaml: false, rich: false, scipy: false, screeninfo: false, "skia-pathops": false, svgelements: false, sympy: false, tqdm: false, "typing-extensions": false, validators: false, ffmpeg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 175, 5], ["repo", 176, 5], ["rev", 177, 5], ["hash", 178, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 230, 5], ["longDescription", 231, 5], ["changelog", 237, 5], ["homepage", 238, 5], ["license", 239, 5], ["maintainers", 240, 5], ["mainProgram", 244, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 169, 3], ["pyproject", 170, 3], ["version", 171, 3], ["src", 174, 3], ["build-system", 181, 3], ["dependencies", 185, 3], ["makeWrapperArgs", 217, 3], ["doCheck", 227, 3], ["meta", 229, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -162,12 +160,12 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "manimgl",
       pyproject: true,
       version: "1.7.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "3b1b",
           repo: "manim",
           rev: "0c69ab6a32d4193f03ba9a604278eb3ce9699518",
@@ -213,7 +211,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Animation engine for explanatory math videos",
         longDescription: "Manim is an engine for precise programmatic animations, designed for creating\nexplanatory math videos, as seen in the videos of 3Blue1Brown on Youtube.\nThis is the original version that is maintained by Grant Sanderson which is\nbased on OpenGL.\n",
         changelog: "https://3b1b.github.io/manim/development/changelog.html",

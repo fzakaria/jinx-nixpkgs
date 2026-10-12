@@ -2,61 +2,49 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/plasma6.nix", [[["maintainers", 6, 5]], [["enable", 14, 24]], [["enable", 15, 52]], [["enable", 21, 9], ["user", 22, 9]], [["plasma-login-manager", 15, 31], ["defaultSession", 17, 31], ["autoLogin", 20, 31]], [["enable", 18, 39]], [["plasma6", 18, 31]], [["xserver", 14, 16], ["displayManager", 15, 16], ["desktopManager", 18, 16]], [["excludePackages", 19, 27]], [["plasma6", 19, 19]], [["imports", 13, 7], ["services", 14, 7], ["environment", 19, 7]], [["machine", 9, 9]], [["name", 4, 3], ["meta", 5, 3], ["nodes", 9, 3], ["testScript", 26, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/plasma6.nix", [["maintainers", 6, 5]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/plasma6.nix", [["enable", 14, 24]]);
-const pos$3 = nix.positions(here + "/plasma6.nix", [["enable", 15, 52]]);
-const pos$4 = nix.positions(here + "/plasma6.nix", [["enable", 21, 9], ["user", 22, 9]]);
-const pos$5 = nix.positions(here + "/plasma6.nix", [["plasma-login-manager", 15, 31], ["defaultSession", 17, 31], ["autoLogin", 20, 31]]);
-const pos$6 = nix.positions(here + "/plasma6.nix", [["enable", 18, 39]]);
-const pos$7 = nix.positions(here + "/plasma6.nix", [["plasma6", 18, 31]]);
-const pos$8 = nix.positions(here + "/plasma6.nix", [["xserver", 14, 16], ["displayManager", 15, 16], ["desktopManager", 18, 16]]);
-const pos$9 = nix.positions(here + "/plasma6.nix", [["excludePackages", 19, 27]]);
-const pos$10 = nix.positions(here + "/plasma6.nix", [["plasma6", 19, 19]]);
-const pos$11 = nix.positions(here + "/plasma6.nix", [["imports", 13, 7], ["services", 14, 7], ["environment", 19, 7]]);
-const pos$12 = nix.positions(here + "/plasma6.nix", [["machine", 9, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$13 = nix.positions(here + "/plasma6.nix", [["name", 4, 3], ["meta", 5, 3], ["nodes", 9, 3], ["testScript", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     name: "plasma6",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "k900"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$8,
-            xserver: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+            [nix.POS]: $pos[7],
+            xserver: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
             displayManager: nix.thunk(() => ({
-              [nix.POS]: pos$5,
-              "plasma-login-manager": nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
+              [nix.POS]: $pos[4],
+              "plasma-login-manager": nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true })),
               defaultSession: "plasmax11",
-              autoLogin: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true, user: "alice" })),
+              autoLogin: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: true, user: "alice" })),
             })),
             desktopManager: nix.thunk(() => ({
-              [nix.POS]: pos$7,
-              plasma6: nix.thunk(() => ({ [nix.POS]: pos$6, enable: true })),
+              [nix.POS]: $pos[6],
+              plasma6: nix.thunk(() => ({ [nix.POS]: $pos[5], enable: true })),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             plasma6: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               excludePackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "kdePackages", "elisa"))]),
             })),
           })),

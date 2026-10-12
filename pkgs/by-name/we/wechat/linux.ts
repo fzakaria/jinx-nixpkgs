@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/linux.nix", [[["pname", 11, 13], ["version", 11, 19], ["src", 11, 27], ["postExtract", 12, 5]], [["pname", 18, 11], ["version", 18, 17], ["meta", 18, 25], ["src", 20, 3], ["extraInstallCommands", 22, 3]]]);
 const formals$1 = { args: { pname: false, version: false, src: false, meta: false, appimageTools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/linux.nix", [["pname", 11, 13], ["version", 11, 19], ["src", 11, 27], ["postExtract", 12, 5]]);
-const pos$2 = nix.positions(here + "/linux.nix", [["pname", 18, 11], ["version", 18, 17], ["meta", 18, 25], ["src", 20, 3], ["extraInstallCommands", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const meta = nix.arg($, "meta");
   const appimageTools = nix.arg($, "appimageTools");
   const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: pname,
       version: version,
       src: src,
       postExtract: "patchelf --replace-needed libtiff.so.5 libtiff.so $out/opt/wechat/wechat\n",
     }))));
   return nix.app(nix.sel(appimageTools, "wrapAppImage"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: pname,
       version: version,
       meta: meta,

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["name", 32, 7], ["url", 33, 7], ["hash", 34, 7]], [["name", 38, 7], ["url", 39, 7], ["hash", 40, 7]], [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["pyproject", 25, 3], ["build-system", 27, 3], ["patches", 29, 3], ["postPatch", 45, 3], ["dependencies", 50, 3], ["pythonImportsCheck", 55, 3], ["doCheck", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, setuptools: false, sphinx: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 32, 7], ["url", 33, 7], ["hash", 34, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 38, 7], ["url", 39, 7], ["hash", 40, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["pyproject", 25, 3], ["build-system", 27, 3], ["patches", 29, 3], ["postPatch", 45, 3], ["dependencies", 50, 3], ["pythonImportsCheck", 55, 3], ["doCheck", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "hieroglyph";
       const version = "2.1.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nyergler",
           repo: "hieroglyph",
           tag: nix.thunk(() => nix.str`hieroglyph-${version}`),
@@ -31,13 +27,13 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "hieroglyph-upgrade-versioneer",
             url: "https://github.com/nyergler/hieroglyph/commit/9cebee269ac10964b2436c0204156b7bd620a3d4.patch",
             hash: "sha256-ZvU7uASU727/NUAW8I7k9idzMpEdnuwRshdHm2/GQ3w=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "hieroglyph-slide-builder-type-error",
             url: "https://github.com/nyergler/hieroglyph/pull/174/commits/d75c550f797e3635d33db11f50968755288962a7.patch",
             hash: "sha256-qNQVgWL9jy0cwtxKUbWi3Qc77RU2H3raN0BzBjDk9C8=",
@@ -48,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["hieroglyph"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Generate HTML presentations from plain text sources",
         homepage: "https://github.com/nyergler/hieroglyph/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -58,7 +54,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

@@ -2,27 +2,10 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/postgresql-wal-receiver.nix", [[["maintainers", 23, 14]], [["rules", 28, 30]], [["RestartSec", 59, 73]], [["serviceConfig", 59, 59]], [["ReadWritePaths", 60, 55]], [["serviceConfig", 60, 41]], [["postgresql-wal-receiver-main", 59, 30], ["postgresql", 60, 30]], [["tmpfiles", 28, 21], ["services", 59, 21]], [["max_replication_slots", 36, 17], ["max_wal_senders", 37, 17], ["recovery_end_command", 38, 17], ["restore_command", 39, 17], ["wal_level", 40, 17]], [["package", 33, 23], ["enable", 34, 15], ["settings", 35, 15], ["authentication", 42, 15], ["initialScript", 45, 15]], [["postgresqlPackage", 52, 15], ["connection", 53, 15], ["slot", 54, 15], ["directory", 55, 15]], [["main", 51, 54]], [["receivers", 51, 44]], [["postgresql", 32, 22], ["postgresqlWalReceiver", 51, 22]], [["systemd", 28, 13], ["services", 32, 13]], [["machine", 25, 15]], [["name", 22, 9], ["meta", 23, 9], ["nodes", 25, 9], ["testScript", 63, 9]], [["makeTestFor", 112, 20]]]);
 const formals$1 = { args: { runTest: false, genTests: false }, ellipsis: true };
 const formals$2 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/postgresql-wal-receiver.nix", [["maintainers", 23, 14]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/postgresql-wal-receiver.nix", [["rules", 28, 30]]);
-const pos$3 = nix.positions(here + "/postgresql-wal-receiver.nix", [["RestartSec", 59, 73]]);
-const pos$4 = nix.positions(here + "/postgresql-wal-receiver.nix", [["serviceConfig", 59, 59]]);
-const pos$5 = nix.positions(here + "/postgresql-wal-receiver.nix", [["ReadWritePaths", 60, 55]]);
-const pos$6 = nix.positions(here + "/postgresql-wal-receiver.nix", [["serviceConfig", 60, 41]]);
-const pos$7 = nix.positions(here + "/postgresql-wal-receiver.nix", [["postgresql-wal-receiver-main", 59, 30], ["postgresql", 60, 30]]);
-const pos$8 = nix.positions(here + "/postgresql-wal-receiver.nix", [["tmpfiles", 28, 21], ["services", 59, 21]]);
-const pos$9 = nix.positions(here + "/postgresql-wal-receiver.nix", [["max_replication_slots", 36, 17], ["max_wal_senders", 37, 17], ["recovery_end_command", 38, 17], ["restore_command", 39, 17], ["wal_level", 40, 17]]);
-const pos$10 = nix.positions(here + "/postgresql-wal-receiver.nix", [["package", 33, 23], ["enable", 34, 15], ["settings", 35, 15], ["authentication", 42, 15], ["initialScript", 45, 15]]);
-const pos$11 = nix.positions(here + "/postgresql-wal-receiver.nix", [["postgresqlPackage", 52, 15], ["connection", 53, 15], ["slot", 54, 15], ["directory", 55, 15]]);
-const pos$12 = nix.positions(here + "/postgresql-wal-receiver.nix", [["main", 51, 54]]);
-const pos$13 = nix.positions(here + "/postgresql-wal-receiver.nix", [["receivers", 51, 44]]);
-const pos$14 = nix.positions(here + "/postgresql-wal-receiver.nix", [["postgresql", 32, 22], ["postgresqlWalReceiver", 51, 22]]);
-const pos$15 = nix.positions(here + "/postgresql-wal-receiver.nix", [["systemd", 28, 13], ["services", 32, 13]]);
-const pos$16 = nix.positions(here + "/postgresql-wal-receiver.nix", [["machine", 25, 15]]);
-const pos$17 = nix.positions(here + "/postgresql-wal-receiver.nix", [["name", 22, 9], ["meta", 23, 9], ["nodes", 25, 9], ["testScript", 63, 9]]);
-const pos$18 = nix.positions(here + "/postgresql-wal-receiver.nix", [["makeTestFor", 112, 20]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,50 +23,50 @@ export default nix.lambda((args) => (() => {
       const walBackupDir = "/var/cache/wals/pg_wal";
       const recoveryFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextDir"), "recovery.signal", ""));
       return {
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         name: nix.thunk(() => nix.str`postgresql-wal-receiver-${nix.sel(package$, "name")}`),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           maintainers: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w, "euxane"))];
           })()),
         })),
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           machine: nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$3);
             return {
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               systemd: nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 tmpfiles: nix.thunk(() => ({
-                  [nix.POS]: pos$2,
+                  [nix.POS]: $pos[1],
                   rules: nix.thunk(() => ["d /var/cache/wals 0750 postgres postgres - -"]),
                 })),
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   "postgresql-wal-receiver-main": nix.thunk(() => ({
-                    [nix.POS]: pos$4,
+                    [nix.POS]: $pos[3],
                     serviceConfig: nix.thunk(() => ({
-                      [nix.POS]: pos$3,
+                      [nix.POS]: $pos[2],
                       RestartSec: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), 5n)),
                     })),
                   })),
                   postgresql: nix.thunk(() => ({
-                    [nix.POS]: pos$6,
-                    serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$5, ReadWritePaths: nix.thunk(() => ["/var/cache/wals"]) })),
+                    [nix.POS]: $pos[5],
+                    serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[4], ReadWritePaths: nix.thunk(() => ["/var/cache/wals"]) })),
                   })),
                 })),
               })),
               services: nix.thunk(() => ({
-                [nix.POS]: pos$14,
+                [nix.POS]: $pos[13],
                 postgresql: nix.thunk(() => ({
-                  [nix.POS]: pos$10,
+                  [nix.POS]: $pos[9],
                   package: package$,
                   enable: true,
                   settings: nix.thunk(() => ({
-                    [nix.POS]: pos$9,
+                    [nix.POS]: $pos[8],
                     max_replication_slots: 10n,
                     max_wal_senders: 10n,
                     recovery_end_command: "touch recovery.done",
@@ -97,11 +80,11 @@ select * from pg_create_physical_replication_slot('${replicationSlot}');
 `))),
                 })),
                 postgresqlWalReceiver: nix.thunk(() => ({
-                  [nix.POS]: pos$13,
+                  [nix.POS]: $pos[12],
                   receivers: nix.thunk(() => ({
-                    [nix.POS]: pos$12,
+                    [nix.POS]: $pos[11],
                     main: nix.thunk(() => ({
-                      [nix.POS]: pos$11,
+                      [nix.POS]: $pos[10],
                       postgresqlPackage: package$,
                       connection: replicationConn,
                       slot: replicationSlot,
@@ -160,6 +143,6 @@ machine.succeed(
 `),
       };
     })(), formals$2));
-  return nix.app(genTests, nix.thunk(() => ({ [nix.POS]: pos$18, makeTestFor: makeTestFor })));
+  return nix.app(genTests, nix.thunk(() => ({ [nix.POS]: $pos[17], makeTestFor: makeTestFor })));
 })(), formals$1);
 //# sourceMappingURL=postgresql-wal-receiver.ts.map

@@ -2,11 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/eggDerivation.nix", [[["CSC_OPTIONS", 47, 7]], [["platforms", 96, 30]], [["pname", 35, 5], ["version", 36, 13], ["propagatedBuildInputs", 37, 5], ["nativeBuildInputs", 38, 5], ["buildInputs", 42, 5], ["strictDeps", 44, 5], ["env", 46, 5], ["buildPhase", 51, 5], ["installPhase", 68, 5], ["dontConfigure", 93, 5], ["meta", 95, 5]]]);
 const formals$1 = { args: { callPackage: false, lib: false, stdenv: false, chicken: false, makeWrapper: false, overridesFile: false }, ellipsis: false };
 const formals$2 = { args: { src: false, buildInputs: true, chickenInstallFlags: true, cscOptions: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/eggDerivation.nix", [["CSC_OPTIONS", 47, 7]]);
-const pos$2 = nix.positions(here + "/eggDerivation.nix", [["platforms", 96, 30]]);
-const pos$3 = nix.positions(here + "/eggDerivation.nix", [["pname", 35, 5], ["version", 36, 13], ["propagatedBuildInputs", 37, 5], ["nativeBuildInputs", 38, 5], ["buildInputs", 42, 5], ["strictDeps", 44, 5], ["env", 46, 5], ["buildPhase", 51, 5], ["installPhase", 68, 5], ["dontConfigure", 93, 5], ["meta", 95, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
     const overrides = nix.thunk(() => nix.app(callPackage, overridesFile, nix.thunk(() => ({}))));
     const override = nix.thunk(() => (nix.asBool(nix.builtins.hasAttr(pname, overrides)) ? nix.builtins.getAttr(pname, overrides) : nix.sel(lib, "id")));
     return nix.app(nix.sel(nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname: nix.thunk(() => nix.str`chicken-${pname}`),
         version: version,
         propagatedBuildInputs: buildInputs,
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
         buildInputs: nix.thunk(() => [chicken]),
         strictDeps: true,
         env: nix.thunk(() => nix.update({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           CSC_OPTIONS: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", cscOptions)),
         }, nix.selOr(args_2, () => ({}), "env"))),
         buildPhase: nix.thunk(() => nix.str`runHook preBuild
@@ -87,7 +85,7 @@ runHook postInstall
         dontConfigure: true,
         meta: nix.thunk(() => nix.update((() => {
           const from = nix.thunk(() => nix.sel(chicken, "meta"));
-          return { [nix.POS]: pos$2, platforms: nix.thunk(() => nix.attr(from, "platforms")) };
+          return { [nix.POS]: $pos[1], platforms: nix.thunk(() => nix.attr(from, "platforms")) };
         })(), nix.selOr(args_2, () => ({}), "meta"))),
       }, nix.builtins.removeAttrs(args_2, nix.thunk(() => ["name", "pname", "version", "buildInputs", "meta"]))))), "overrideAttrs"), override);
   })(), formals$2);

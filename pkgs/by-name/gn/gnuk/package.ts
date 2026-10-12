@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 19, 5], ["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5], ["fetchSubmodules", 24, 5]], [["homepage", 65, 5], ["description", 66, 5], ["license", 67, 5], ["platforms", 68, 5], ["maintainers", 69, 5], ["broken", 70, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 33, 3], ["sourceRoot", 39, 3], ["configureFlags", 41, 3], ["installPhase", 44, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, pkgsCross: false, makeWrapper: false, python3Packages: false, vid: true, pid: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 19, 5], ["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5], ["fetchSubmodules", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 65, 5], ["description", 66, 5], ["license", 67, 5], ["platforms", 68, 5], ["maintainers", 69, 5], ["broken", 70, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 33, 3], ["sourceRoot", 39, 3], ["configureFlags", 41, 3], ["installPhase", 44, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const vid = nix.argOr($, "vid", () => "234b");
   const pid = nix.argOr($, "pid", () => "0000");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gnuk",
       version: "2.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "salsa.debian.org",
           owner: "gnuk-team",
           repo: "gnuk/gnuk",
@@ -64,7 +62,7 @@ echo "$out/bin/stlinkv2 -b \\$@ $out/gnuk.bin" >> $out/bin/flash
 chmod +x $out/bin/{unlock,flash}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.fsij.org/category/gnuk.html",
         description: "Implementation of USB cryptographic token for gpg",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generic.nix", [[["fetchurl", 21, 55]], [["nativeBuildInputs", 23, 35]], [["url", 34, 13], ["hash", 34, 17]], [["name", 63, 7], ["urlPrefix", 64, 24], ["packagesLists", 65, 7], ["packages", 66, 7]], [["deps", 58, 12]], [["homepage", 77, 13], ["description", 78, 5], ["sourceProvenance", 79, 5], ["license", 80, 5], ["platforms", 81, 5], ["maintainers", 82, 5]], [["pname", 30, 3], ["version", 31, 11], ["src", 33, 3], ["sourceRoot", 37, 3], ["dontBuild", 38, 3], ["dontStrip", 39, 3], ["installPhase", 41, 3], ["passthru", 58, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchurl: false, lib: false, brand: false, type: false, version: false, homepage: false, url: false, hash: false, runCommand: false, dpkg: false, vmTools: false, runtimeShell: false, bubblewrap: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/generic.nix", [["fetchurl", 21, 55]]);
-const pos$2 = nix.positions(here + "/generic.nix", [["nativeBuildInputs", 23, 35]]);
-const pos$3 = nix.positions(here + "/generic.nix", [["url", 34, 13], ["hash", 34, 17]]);
-const pos$4 = nix.positions(here + "/generic.nix", [["name", 63, 7], ["urlPrefix", 64, 24], ["packagesLists", 65, 7], ["packages", 66, 7]]);
-const pos$5 = nix.positions(here + "/generic.nix", [["deps", 58, 12]]);
-const pos$6 = nix.positions(here + "/generic.nix", [["homepage", 77, 13], ["description", 78, 5], ["sourceProvenance", 79, 5], ["license", 80, 5], ["platforms", 81, 5], ["maintainers", 82, 5]]);
-const pos$7 = nix.positions(here + "/generic.nix", [["pname", 30, 3], ["version", 31, 11], ["src", 33, 3], ["sourceRoot", 37, 3], ["dontBuild", 38, 3], ["dontStrip", 39, 3], ["installPhase", 41, 3], ["passthru", 58, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,15 +22,15 @@ export default nix.lambda((args) => (() => {
   const runtimeShell = nix.arg($, "runtimeShell");
   const bubblewrap = nix.arg($, "bubblewrap");
   const debian = nix.thunk(() => (() => {
-    const debs = nix.thunk(() => nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./deps.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, fetchurl: fetchurl }))))));
-    return nix.app(runCommand, "x32edit-debian", nix.thunk(() => ({ [nix.POS]: pos$2, nativeBuildInputs: nix.thunk(() => [dpkg]) })), nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (deb) => nix.str`dpkg-deb -x ${deb} $out
+    const debs = nix.thunk(() => nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./deps.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], fetchurl: fetchurl }))))));
+    return nix.app(runCommand, "x32edit-debian", nix.thunk(() => ({ [nix.POS]: $pos[1], nativeBuildInputs: nix.thunk(() => [dpkg]) })), nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (deb) => nix.str`dpkg-deb -x ${deb} $out
 `, debs)));
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "toLower"), type)}-edit`),
       version: version,
-      src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: pos$3, url: url, hash: hash })))),
+      src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: $pos[2], url: url, hash: hash })))),
       sourceRoot: ".",
       dontBuild: true,
       dontStrip: true,
@@ -56,11 +50,11 @@ EOF
 chmod 755 $out/bin/${nix.sel(finalAttrs, "pname")}
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         deps: nix.thunk(() => (() => {
           const distro = nix.thunk(() => nix.sel(vmTools, "debDistros", "debian12x86_64"));
           return nix.app(nix.sel(vmTools, "debClosureGenerator"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               name: "x32edit-dependencies",
               urlPrefix: nix.thunk(() => nix.attr(distro, "urlPrefix")),
               packagesLists: nix.thunk(() => [nix.thunk(() => nix.sel(distro, "packagesLists"))]),
@@ -76,7 +70,7 @@ chmod 755 $out/bin/${nix.sel(finalAttrs, "pname")}
         })()),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: homepage,
         description: nix.thunk(() => nix.str`Editor for the ${brand} ${type} digital mixer`),
         sourceProvenance: nix.thunk(() => (() => {

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["name", 72, 7], ["exec", 73, 7], ["desktopName", 74, 7], ["comment", 75, 7], ["categories", 76, 7], ["icon", 77, 7]], [["PNAME", 90, 9], ["PKG_FILE", 91, 9]], [["name", 84, 7], ["runtimeInputs", 85, 7], ["runtimeEnv", 89, 7], ["text", 93, 7]], [["updateScript", 81, 12]], [["description", 106, 5], ["homepage", 107, 5], ["changelog", 108, 5], ["license", 109, 5], ["mainProgram", 110, 5], ["maintainers", 111, 5], ["platforms", 112, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["npmDepsHash", 31, 3], ["npmFlags", 32, 3], ["nativeBuildInputs", 34, 3], ["makeCacheWritable", 39, 3], ["buildPhase", 41, 3], ["installPhase", 53, 3], ["desktopItems", 70, 3], ["passthru", 81, 3], ["meta", 105, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, copyDesktopItems: false, electron_44: false, fetchFromGitHub: false, makeDesktopItem: false, makeWrapper: false, "nix-update-script": false, "_experimental-update-script-combinators": false, writeShellApplication: false, nix: false, jq: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 72, 7], ["exec", 73, 7], ["desktopName", 74, 7], ["comment", 75, 7], ["categories", 76, 7], ["icon", 77, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["PNAME", 90, 9], ["PKG_FILE", 91, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 84, 7], ["runtimeInputs", 85, 7], ["runtimeEnv", 89, 7], ["text", 93, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 81, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 106, 5], ["homepage", 107, 5], ["changelog", 108, 5], ["license", 109, 5], ["mainProgram", 110, 5], ["maintainers", 111, 5], ["platforms", 112, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["npmDepsHash", 31, 3], ["npmFlags", 32, 3], ["nativeBuildInputs", 34, 3], ["makeCacheWritable", 39, 3], ["buildPhase", 41, 3], ["installPhase", 53, 3], ["desktopItems", 70, 3], ["passthru", 81, 3], ["meta", 105, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const electron = electron_44;
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "appium-inspector",
       version: "2026.9.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "appium",
           repo: "appium-inspector",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -68,7 +62,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "appium-inspector",
             exec: "appium-inspector",
             desktopName: "Appium Inspector",
@@ -78,15 +72,15 @@ runHook postInstall
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
             nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
             nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-electron-updater`),
                   runtimeInputs: nix.thunk(() => [nix$, jq]),
                   runtimeEnv: nix.thunk(() => ({
-                    [nix.POS]: pos$3,
+                    [nix.POS]: $pos[2],
                     PNAME: nix.thunk(() => nix.sel(finalAttrs, "pname")),
                     PKG_FILE: nix.thunk(() => nix.builtins.toString(nix.path(here, "./package.nix"))),
                   })),
@@ -95,7 +89,7 @@ runHook postInstall
           ]))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "GUI inspector for the appium UI automation tool",
         homepage: "https://appium.github.io/appium-inspector",
         changelog: nix.thunk(() => nix.str`https://github.com/appium/appium-inspector/releases/tag/v${nix.sel(finalAttrs, "src", "tag")}`),

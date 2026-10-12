@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["url", 25, 5], ["sha256", 26, 5]], [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]], [["NIX_CFLAGS_COMPILE", 59, 7]], [["description", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["platforms", 84, 5], ["maintainers", 85, 5], ["mainProgram", 86, 5]], [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["postPatch", 41, 3], ["env", 59, 3], ["cmakeFlags", 61, 3], ["nativeBuildInputs", 65, 3], ["buildInputs", 70, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchurl: false, sdl3: false, cmake: false, libpng: false, libzip: false, openal: false, "pkg-config": false, "yaml-cpp": false, fmt_11: false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 25, 5], ["sha256", 26, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 59, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["platforms", 84, 5], ["maintainers", 85, 5], ["mainProgram", 86, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["postPatch", 41, 3], ["env", 59, 3], ["cmakeFlags", 61, 3], ["nativeBuildInputs", 65, 3], ["buildInputs", 70, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,14 +21,14 @@ export default nix.lambda((args) => (() => {
   const fmt_11 = nix.arg($, "fmt_11");
   const libx11 = nix.arg($, "libx11");
   const sfl_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "slavenf",
       repo: "sfl-library",
       tag: "2.2.0",
       hash: "sha256-U1InclhSF3pte2AhKUVYBYOXZagksDMkUWgFn5ZB/tk=",
     }))));
   const openloco_objects = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: "https://github.com/OpenLoco/OpenGraphics/releases/download/v0.1.8/objects.zip",
       sha256: "sha256-ZYiR2UpGBAt79x39fwG7wd2mRwcSyz3AdIKTH+tQE8c=",
     }))));
@@ -41,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const pname = "openloco";
       const version = "26.04";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "OpenLoco",
           repo: "OpenLoco",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -63,12 +58,12 @@ sed -i 's#GIT_REPOSITORY \\+https://github.com/slavenf/sfl-library#SOURCE_DIR ${
 # prefetch openloco-objects
 sed -i 's#URL \\+${nix.sel(openloco_objects, "url")}#URL ${openloco_objects}#' CMakeLists.txt
 `);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$4, NIX_CFLAGS_COMPILE: "-Wno-error=null-dereference" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[3], NIX_CFLAGS_COMPILE: "-Wno-error=null-dereference" }));
       const cmakeFlags = nix.thunk(() => ["-DOPENLOCO_BUILD_TESTS=NO"]);
       const nativeBuildInputs = nix.thunk(() => [cmake, pkg_config]);
       const buildInputs = nix.thunk(() => [sdl3, libpng, libzip, openal, yaml_cpp, fmt_11, libx11]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Open source re-implementation of Chris Sawyer's Locomotion",
         homepage: "https://github.com/OpenLoco/OpenLoco",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -80,7 +75,7 @@ sed -i 's#URL \\+${nix.sel(openloco_objects, "url")}#URL ${openloco_objects}#' C
         mainProgram: "OpenLoco",
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

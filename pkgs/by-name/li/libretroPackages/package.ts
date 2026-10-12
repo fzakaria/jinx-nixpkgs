@@ -2,16 +2,15 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 26, 5], ["platforms", 30, 5], ["teams", 31, 5], ["maintainers", 32, 5]], [["pname", 9, 3], ["version", 10, 3], ["strictDeps", 12, 3], ["__structuredAttrs", 13, 3], ["dontUnpack", 15, 3], ["installPhase", 17, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 26, 5], ["platforms", 30, 5], ["teams", 31, 5], ["maintainers", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["strictDeps", 12, 3], ["__structuredAttrs", 13, 3], ["dontUnpack", 15, 3], ["installPhase", 17, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "libretroPackages",
       version: "0",
       strictDeps: true,
@@ -19,7 +18,7 @@ export default nix.lambda((args) => (() => {
       dontUnpack: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Dummy package for the libretro package set",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "libretro"))]),

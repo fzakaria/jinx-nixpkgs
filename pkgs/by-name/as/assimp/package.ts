@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["updateScript", 76, 12]], [["changelog", 79, 5], ["description", 80, 5], ["mainProgram", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["platforms", 85, 5]], [["pname", 14, 3], ["version", 15, 3], ["outputs", 16, 3], ["src", 22, 3], ["patches", 35, 3], ["postPatch", 37, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 46, 3], ["strictDeps", 53, 3], ["enableParallelBuilding", 54, 3], ["cmakeFlags", 56, 3], ["doCheck", 69, 3], ["checkPhase", 70, 3], ["passthru", 76, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, pugixml: false, rapidjson: false, utf8cpp: false, zlib: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 76, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 79, 5], ["description", 80, 5], ["mainProgram", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["platforms", 85, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["outputs", 16, 3], ["src", 22, 3], ["patches", 35, 3], ["postPatch", 37, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 46, 3], ["strictDeps", 53, 3], ["enableParallelBuilding", 54, 3], ["cmakeFlags", 56, 3], ["doCheck", 69, 3], ["checkPhase", 70, 3], ["passthru", 76, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "assimp",
       version: "6.0.5",
       outputs: nix.thunk(() => ["out", "lib", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "assimp",
           repo: "assimp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,11 +42,11 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))),
       checkPhase: "runHook preCheck\nbin/unit\nrunHook postCheck\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/assimp/assimp/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Library to import various 3D model formats",
         mainProgram: "assimp",

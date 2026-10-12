@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["KAGGLE_USERNAME", 73, 5], ["KAGGLE_KEY", 74, 5]], [["description", 82, 5], ["mainProgram", 83, 5], ["homepage", 84, 5], ["changelog", 85, 5], ["license", 86, 5], ["maintainers", 87, 5]], [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["__structuredAttrs", 34, 3], ["src", 36, 3], ["build-system", 43, 3], ["dependencies", 45, 3], ["nativeCheckInputs", 60, 3], ["versionCheckKeepEnvironment", 66, 3], ["env", 72, 3], ["pythonImportsCheck", 77, 3], ["__darwinAllowLocalNetworking", 79, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, bleach: false, jupytext: false, kagglesdk: false, packaging: false, protobuf: false, "python-dateutil": false, "python-dotenv": false, "python-slugify": false, requests: false, six: false, tqdm: false, urllib3: false, pytestCheckHook: false, versionCheckHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["KAGGLE_USERNAME", 73, 5], ["KAGGLE_KEY", 74, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 82, 5], ["mainProgram", 83, 5], ["homepage", 84, 5], ["changelog", 85, 5], ["license", 86, 5], ["maintainers", 87, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["__structuredAttrs", 34, 3], ["src", 36, 3], ["build-system", 43, 3], ["dependencies", 45, 3], ["nativeCheckInputs", 60, 3], ["versionCheckKeepEnvironment", 66, 3], ["env", 72, 3], ["pythonImportsCheck", 77, 3], ["__darwinAllowLocalNetworking", 79, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,13 +28,13 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "kaggle",
       version: "2.2.4",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Kaggle",
           repo: "kaggle-cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,14 +58,14 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, versionCheckHook, writableTmpDirAsHomeHook]),
       versionCheckKeepEnvironment: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["HOME"]))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         KAGGLE_USERNAME: "nixos-test",
         KAGGLE_KEY: "00000000000000000000000000000000",
       })),
       pythonImportsCheck: nix.thunk(() => ["kaggle"]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Official Kaggle CLI",
         mainProgram: "kaggle",
         homepage: "https://github.com/Kaggle/kaggle-cli",

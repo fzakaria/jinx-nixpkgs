@@ -2,62 +2,46 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ntfy-sh-migration.nix", [[["text", 20, 51]], [["ntfy-sh-dynamic-user.conf", 20, 23]], [["etc", 20, 19]], [["base-url", 28, 33]], [["enable", 27, 24], ["settings", 28, 24]], [["ntfy-sh", 27, 16]], [["DynamicUser", 31, 9], ["ExecStartPre", 32, 9], ["Group", 37, 9], ["User", 38, 9]], [["serviceConfig", 30, 32]], [["ntfy-sh", 30, 24]], [["services", 30, 15]], [["isSystemUser", 42, 9], ["group", 43, 9]], [["old-ntfy-sh", 41, 19]], [["old-ntfy-sh", 46, 20]], [["users", 41, 13], ["groups", 46, 13]], [["environment", 20, 7], ["services", 27, 7], ["systemd", 30, 7], ["users", 41, 7]], [["machine", 13, 9]], [["name", 11, 3], ["nodes", 13, 3], ["testScript", 49, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/ntfy-sh-migration.nix", [["text", 20, 51]]);
-const pos$2 = nix.positions(here + "/ntfy-sh-migration.nix", [["ntfy-sh-dynamic-user.conf", 20, 23]]);
-const pos$3 = nix.positions(here + "/ntfy-sh-migration.nix", [["etc", 20, 19]]);
-const pos$4 = nix.positions(here + "/ntfy-sh-migration.nix", [["base-url", 28, 33]]);
-const pos$5 = nix.positions(here + "/ntfy-sh-migration.nix", [["enable", 27, 24], ["settings", 28, 24]]);
-const pos$6 = nix.positions(here + "/ntfy-sh-migration.nix", [["ntfy-sh", 27, 16]]);
-const pos$7 = nix.positions(here + "/ntfy-sh-migration.nix", [["DynamicUser", 31, 9], ["ExecStartPre", 32, 9], ["Group", 37, 9], ["User", 38, 9]]);
-const pos$8 = nix.positions(here + "/ntfy-sh-migration.nix", [["serviceConfig", 30, 32]]);
-const pos$9 = nix.positions(here + "/ntfy-sh-migration.nix", [["ntfy-sh", 30, 24]]);
-const pos$10 = nix.positions(here + "/ntfy-sh-migration.nix", [["services", 30, 15]]);
-const pos$11 = nix.positions(here + "/ntfy-sh-migration.nix", [["isSystemUser", 42, 9], ["group", 43, 9]]);
-const pos$12 = nix.positions(here + "/ntfy-sh-migration.nix", [["old-ntfy-sh", 41, 19]]);
-const pos$13 = nix.positions(here + "/ntfy-sh-migration.nix", [["old-ntfy-sh", 46, 20]]);
-const pos$14 = nix.positions(here + "/ntfy-sh-migration.nix", [["users", 41, 13], ["groups", 46, 13]]);
-const pos$15 = nix.positions(here + "/ntfy-sh-migration.nix", [["environment", 20, 7], ["services", 27, 7], ["systemd", 30, 7], ["users", 41, 7]]);
-const pos$16 = nix.positions(here + "/ntfy-sh-migration.nix", [["machine", 13, 9]]);
-const pos$17 = nix.positions(here + "/ntfy-sh-migration.nix", [["name", 11, 3], ["nodes", 13, 3], ["testScript", 49, 3]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")), nix.thunk(() => ({
-    [nix.POS]: pos$17,
+    [nix.POS]: $pos[16],
     name: "ntfy-sh",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       machine: nix.lambda((args) => (() => {
         const $ = nix.formals(args, formals$1);
         const lib = nix.arg($, "lib");
         const pkgs = nix.arg($, "pkgs");
         return {
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             etc: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               "ntfy-sh-dynamic-user.conf": nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 text: "[Service]\nGroup=new-ntfy-sh\nUser=new-ntfy-sh\nDynamicUser=true\n",
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             "ntfy-sh": nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               enable: true,
-              settings: nix.thunk(() => ({ [nix.POS]: pos$4, "base-url": "http://localhost:2586" })),
+              settings: nix.thunk(() => ({ [nix.POS]: $pos[3], "base-url": "http://localhost:2586" })),
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               "ntfy-sh": nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 serviceConfig: nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   DynamicUser: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), false)),
                   ExecStartPre: nix.thunk(() => [
                     nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/id`),
@@ -71,12 +55,12 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
             })),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$12,
-              "old-ntfy-sh": nix.thunk(() => ({ [nix.POS]: pos$11, isSystemUser: true, group: "old-ntfy-sh" })),
+              [nix.POS]: $pos[11],
+              "old-ntfy-sh": nix.thunk(() => ({ [nix.POS]: $pos[10], isSystemUser: true, group: "old-ntfy-sh" })),
             })),
-            groups: nix.thunk(() => ({ [nix.POS]: pos$13, "old-ntfy-sh": nix.thunk(() => ({})) })),
+            groups: nix.thunk(() => ({ [nix.POS]: $pos[12], "old-ntfy-sh": nix.thunk(() => ({})) })),
           })),
         };
       })(), formals$1),

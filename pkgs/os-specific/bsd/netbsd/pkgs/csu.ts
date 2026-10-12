@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/csu.nix", [[["platforms", 25, 8]], [["noLibc", 23, 3], ["path", 24, 3], ["meta", 25, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 41, 3], ["extraPaths", 42, 3]]]);
 const formals$1 = { args: { lib: false, mkDerivation: false, bsdSetupHook: false, netbsdSetupHook: false, makeMinimal: false, install: false, mandoc: false, groff: false, flex: false, byacc: false, genassym: false, gencat: false, lorder: false, tsort: false, statHook: false, headers: false, "sys-headers": false, ld_elf_so: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/csu.nix", [["platforms", 25, 8]]);
-const pos$2 = nix.positions(here + "/csu.nix", [["noLibc", 23, 3], ["path", 24, 3], ["meta", 25, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 41, 3], ["extraPaths", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const sys_headers = nix.arg($, "sys-headers");
   const ld_elf_so = nix.arg($, "ld_elf_so");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       noLibc: true,
       path: "lib/csu",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "netbsd")),
       })),
       nativeBuildInputs: nix.thunk(() => [

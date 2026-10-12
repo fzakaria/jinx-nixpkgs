@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 18, 5]], [["homepage", 36, 5], ["description", 37, 5], ["longDescription", 38, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 24, 3], ["enableParallelBuilding", 30, 3], ["doCheck", 32, 3], ["nativeCheckInputs", 33, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, cairo: false, expat: false, guile: false, "guile-lib": false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 36, 5], ["description", 37, 5], ["longDescription", 38, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 24, 3], ["enableParallelBuilding", 30, 3], ["doCheck", 32, 3], ["nativeCheckInputs", 33, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const guile_lib = nix.arg($, "guile-lib");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "guile-cairo",
       version: "1.11.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://savannah/guile-cairo/guile-cairo-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-YjLU3Cxb2dMxE5s7AfQ0PD4fucp4mDYaaZIGcwlBoHs=",
         })))),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       nativeCheckInputs: nix.thunk(() => [guile_lib]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.nongnu.org/guile-cairo/",
         description: "Cairo bindings for GNU Guile",
         longDescription: "Guile-Cairo wraps the Cairo graphics library for Guile Scheme.\n\nGuile-Cairo is complete, wrapping almost all of the Cairo API.  It is API\nstable, providing a firm base on which to do graphics work.  Finally, and\nimportantly, it is pleasant to use.  You get a powerful and well\nmaintained graphics library with all of the benefits of Scheme: memory\nmanagement, exceptions, macros, and a dynamic programming environment.\n",

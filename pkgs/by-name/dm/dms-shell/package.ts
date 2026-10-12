@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 35, 7], ["repo", 36, 7], ["tag", 37, 7], ["fetchSubmodules", 38, 7], ["hash", 39, 7]], [["updateScript", 110, 7]], [["description", 114, 7], ["homepage", 115, 7], ["changelog", 116, 7], ["license", 117, 7], ["teams", 118, 7], ["mainProgram", 119, 7], ["platforms", 120, 7]], [["pname", 31, 5], ["version", 32, 5], ["src", 34, 5], ["sourceRoot", 42, 5], ["vendorHash", 44, 5], ["tags", 46, 5], ["ldflags", 48, 5], ["subPackages", 54, 5], ["nativeBuildInputs", 56, 5], ["preBuild", 61, 5], ["postInstall", 80, 5], ["passthru", 109, 5], ["meta", 113, 5]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, makeWrapper: false, "nix-update-script": false, coreutils: false, fprintd: false, kdePackages: false, pam: false, pam_u2f: false, qt6: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 35, 7], ["repo", 36, 7], ["tag", 37, 7], ["fetchSubmodules", 38, 7], ["hash", 39, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 110, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 114, 7], ["homepage", 115, 7], ["changelog", 116, 7], ["license", 117, 7], ["teams", 118, 7], ["mainProgram", 119, 7], ["platforms", 120, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 31, 5], ["version", 32, 5], ["src", 34, 5], ["sourceRoot", 42, 5], ["vendorHash", 44, 5], ["tags", 46, 5], ["ldflags", 48, 5], ["subPackages", 54, 5], ["nativeBuildInputs", 56, 5], ["preBuild", 61, 5], ["postInstall", 80, 5], ["passthru", 109, 5], ["meta", 113, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,11 +33,11 @@ export default nix.lambda((args) => (() => {
       const qmlImportPath = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ":", nix.thunk(() => nix.builtins.map((o) => nix.str`${o}/${nix.sel(qt6, "qtbase", "qtQmlPrefix")}`, qmlPkgs))));
       const qtPluginPath = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ":", nix.thunk(() => nix.builtins.map((o) => nix.str`${o}/${nix.sel(qt6, "qtbase", "qtPluginPrefix")}`, qmlPkgs))));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname: "dms-shell",
         version: "1.6.3",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: "AvengeMedia",
             repo: "DankMaterialShell",
             tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -102,11 +99,11 @@ installShellCompletion --cmd dms \\
   --zsh <($out/bin/dms completion zsh)
 `),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         })),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           description: "DankMaterialShell - Desktop shell for wayland compositors built with Quickshell & GO",
           homepage: "https://danklinux.com",
           changelog: nix.thunk(() => nix.str`https://github.com/AvengeMedia/DankMaterialShell/releases/tag/v${nix.sel(finalAttrs, "version")}`),

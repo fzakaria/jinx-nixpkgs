@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]], [["src", 47, 55], ["version", 47, 59]], [["moondancer", 120, 24]], [["description", 123, 5], ["homepage", 124, 5], ["changelog", 125, 5], ["license", 126, 5], ["maintainers", 127, 5]], [["pname", 50, 3], ["version", 51, 11], ["src", 51, 19], ["pyproject", 52, 3], ["sourceRoot", 54, 3], ["postPatch", 56, 3], ["nativeBuildInputs", 62, 3], ["build-system", 72, 3], ["pythonRelaxDeps", 74, 3], ["pythonRemoveDeps", 75, 3], ["dependencies", 77, 3], ["nativeCheckInputs", 93, 3], ["enableParallelBuilding", 96, 3], ["pythonImportsCheck", 98, 3], ["postInstall", 100, 3], ["passthru", 120, 3], ["meta", 122, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildPythonPackage: false, callPackage: false, python: false, nextpnr: false, trellis: false, which: false, yosys: false, setuptools: false, amaranth: false, "apollo-fpga": false, libusb1: false, "luna-soc": false, "luna-usb": false, "prompt-toolkit": false, pyfwup: false, pygreat: false, pyserial: false, pyusb: false, tabulate: false, tomli: false, tqdm: false, pytestCheckHook: false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["src", 47, 55], ["version", 47, 59]]);
-const pos$3 = nix.positions(here + "/default.nix", [["moondancer", 120, 24]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 123, 5], ["homepage", 124, 5], ["changelog", 125, 5], ["license", 126, 5], ["maintainers", 127, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 50, 3], ["version", 51, 11], ["src", 51, 19], ["pyproject", 52, 3], ["sourceRoot", 54, 3], ["postPatch", 56, 3], ["nativeBuildInputs", 62, 3], ["build-system", 72, 3], ["pythonRelaxDeps", 74, 3], ["pythonRemoveDeps", 75, 3], ["dependencies", 77, 3], ["nativeCheckInputs", 93, 3], ["enableParallelBuilding", 96, 3], ["pythonImportsCheck", 98, 3], ["postInstall", 100, 3], ["passthru", 120, 3], ["meta", 122, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,15 +34,15 @@ export default nix.lambda((args) => (() => {
   const udevCheckHook = nix.arg($, "udevCheckHook");
   const version = "0.2.5";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "greatscottgadgets",
       repo: "cynthion",
       tag: version,
       hash: "sha256-Ju01eqBVZ7CD0pw4nIFML4LcCPXzC78dLpQru3a+5bU=",
     }))));
-  const moondancer = nix.thunk(() => nix.app(callPackage, nix.path(here, "./moondancer.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, src: src, version: version }))));
+  const moondancer = nix.thunk(() => nix.app(callPackage, nix.path(here, "./moondancer.nix"), nix.thunk(() => ({ [nix.POS]: $pos[1], src: src, version: version }))));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "cynthion",
       version: version,
       src: src,
@@ -95,9 +91,9 @@ install -Dm444 \\
   build/lib/cynthion/assets/54-cynthion.rules
 `;
       })()),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, moondancer: moondancer })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], moondancer: moondancer })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Python package and utilities for the Great Scott Gadgets Cynthion USB Test Instrument",
         homepage: "https://github.com/greatscottgadgets/cynthion",
         changelog: nix.thunk(() => nix.str`https://github.com/greatscottgadgets/cynthion/releases/tag/${nix.sel(src, "tag")}`),

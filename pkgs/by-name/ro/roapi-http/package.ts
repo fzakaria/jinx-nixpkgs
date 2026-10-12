@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]], [["RUSTFLAGS", 30, 7]], [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["platforms", 39, 5], ["mainProgram", 40, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["cargoHash", 18, 3], ["buildAndTestSubdir", 20, 3], ["nativeBuildInputs", 22, 3], ["buildNoDefaultFeatures", 25, 3], ["buildFeatures", 26, 3], ["env", 30, 3], ["checkFlags", 32, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { cmake: false, fetchFromGitHub: false, lib: false, rustPlatform: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["RUSTFLAGS", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["platforms", 39, 5], ["mainProgram", 40, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["cargoHash", 18, 3], ["buildAndTestSubdir", 20, 3], ["nativeBuildInputs", 22, 3], ["buildNoDefaultFeatures", 25, 3], ["buildFeatures", 26, 3], ["env", 30, 3], ["checkFlags", 32, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "roapi-http",
       version: "0.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "roapi",
           repo: "roapi",
           rev: nix.thunk(() => nix.str`roapi-http-v${nix.sel(finalAttrs, "version")}`),
@@ -30,10 +27,10 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildNoDefaultFeatures: true,
       buildFeatures: nix.thunk(() => ["rustls"]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, RUSTFLAGS: "--cap-lints warn" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], RUSTFLAGS: "--cap-lints warn" })),
       checkFlags: nix.thunk(() => ["--skip=test_http2"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Create full-fledged APIs for static datasets without writing a single line of code",
         homepage: "https://roapi.github.io/docs/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 19, 5], ["hash", 20, 5]], [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5]], [["pname", 13, 3], ["version", 14, 3], ["__structuredAttrs", 16, 3], ["src", 18, 3], ["dontConfigure", 23, 3], ["propagatedBuildInputs", 25, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchzip: false, "flint-c": false, zarith: false, ctypes: false, "dune-configurator": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["__structuredAttrs", 16, 3], ["src", 18, 3], ["dontConfigure", 23, 3], ["propagatedBuildInputs", 25, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,19 +15,19 @@ export default nix.lambda((args) => (() => {
   const ctypes = nix.arg($, "ctypes");
   const dune_configurator = nix.arg($, "dune-configurator");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "flint",
       version: "0.4.2",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://github.com/bobot/ocaml-flint/releases/download/0.4.2/flint-0.4.2.tbz",
           hash: "sha256-dZiznSROdHrQdqgxu8wXtBiQE0gCnHQjbQ+QDzCdygo=",
         })))),
       dontConfigure: true,
       propagatedBuildInputs: nix.thunk(() => [flint_c, zarith, ctypes, dune_configurator]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "OCaml stubs for Flint2, Arb, Antic, Calcium",
         homepage: "https://github.com/bobot/ocaml-flint",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),

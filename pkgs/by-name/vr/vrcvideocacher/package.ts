@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["name", 75, 7], ["desktopName", 76, 7], ["exec", 77, 7], ["comment", 78, 7], ["icon", 79, 7], ["categories", 80, 7]], [["updateScript", 84, 12]], [["description", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["sourceProvenance", 90, 5], ["maintainers", 91, 5], ["mainProgram", 92, 5], ["platforms", 93, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["__structuredAttrs", 27, 3], ["strictDeps", 28, 3], ["dotnet-sdk", 30, 3], ["dotnet-runtime", 31, 3], ["projectFile", 33, 3], ["nugetDeps", 34, 3], ["executables", 36, 3], ["selfContainedBuild", 37, 3], ["nativeBuildInputs", 39, 3], ["makeWrapperArgs", 44, 3], ["postInstall", 64, 3], ["desktopItems", 73, 3], ["passthru", 84, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { buildDotnetModule: false, dotnetCorePackages: false, fetchFromGitHub: false, lib: false, "nix-update-script": false, copyDesktopItems: false, makeDesktopItem: false, icoutils: false, "openxr-loader": false, ffmpeg: false, "yt-dlp": false, deno: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 75, 7], ["desktopName", 76, 7], ["exec", 77, 7], ["comment", 78, 7], ["icon", 79, 7], ["categories", 80, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 84, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["sourceProvenance", 90, 5], ["maintainers", 91, 5], ["mainProgram", 92, 5], ["platforms", 93, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["__structuredAttrs", 27, 3], ["strictDeps", 28, 3], ["dotnet-sdk", 30, 3], ["dotnet-runtime", 31, 3], ["projectFile", 33, 3], ["nugetDeps", 34, 3], ["executables", 36, 3], ["selfContainedBuild", 37, 3], ["nativeBuildInputs", 39, 3], ["makeWrapperArgs", 44, 3], ["postInstall", 64, 3], ["desktopItems", 73, 3], ["passthru", 84, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const yt_dlp = nix.arg($, "yt-dlp");
   const deno = nix.arg($, "deno");
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "vrcvideocacher",
       version: "2026.5.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "EllyVR",
           repo: "VRCVideoCacher",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -58,7 +54,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "icotool --icon -x $src/VRCVideoCacher/Assets/icon.ico\n\nfor i in 16 32 48 64 128 256; do\n  size=${i}x${i}\n  install -Dm444 *_${size}x*.png $out/share/icons/hicolor/$size/apps/vrcvideocacher.png\ndone\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "vrcvideocacher",
             desktopName: "VRCVideoCacher",
             exec: nix.thunk(() => nix.sel(finalAttrs, "meta", "mainProgram")),
@@ -68,11 +64,11 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Cache VRChat videos locally and fix YouTube videos that fail to load",
         homepage: "https://github.com/EllyVR/VRCVideoCacher",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

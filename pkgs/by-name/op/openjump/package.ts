@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["hash", 22, 5]], [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["mainProgram", 61, 5], ["teams", 62, 5], ["platforms", 63, 5], ["sourceProvenance", 64, 5]], [["pname", 16, 3], ["version", 17, 3], ["revision", 18, 3], ["src", 20, 3], ["unpackPhase", 26, 3], ["nativeBuildInputs", 33, 3], ["installPhase", 38, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, unzip: false, makeBinaryWrapper: false, coreutils: false, gawk: false, which: false, gnugrep: false, findutils: false, jre: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["mainProgram", 61, 5], ["teams", 62, 5], ["platforms", 63, 5], ["sourceProvenance", 64, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["revision", 18, 3], ["src", 20, 3], ["unpackPhase", 26, 3], ["nativeBuildInputs", 33, 3], ["installPhase", 38, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const findutils = nix.arg($, "findutils");
   const jre = nix.arg($, "jre");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "openjump",
       version: "2.4.0",
       revision: "r5303%5B6c9a02d%5D",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/jump-pilot/OpenJUMP/${nix.sel(finalAttrs, "version")}/OpenJUMP-Portable-${nix.sel(finalAttrs, "version")}-${nix.sel(finalAttrs, "revision")}-PLUS.zip`),
           hash: "sha256-MBP4zZTKHj3WooQvo6nQzhiAw9nO9gAJybSL2rc1mnc=",
         })))),
@@ -42,7 +40,7 @@ makeWrapper "$dir/bin/oj_linux.sh" $out/bin/OpenJump \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Open source Geographic Information System (GIS) written in the Java programming language",
         homepage: "http://www.openjump.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

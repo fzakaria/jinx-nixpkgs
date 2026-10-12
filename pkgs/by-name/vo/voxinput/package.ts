@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["package", 76, 7], ["command", 77, 7], ["version", 78, 7]], [["version", 75, 11]], [["updateScript", 74, 5], ["tests", 75, 5]], [["homepage", 83, 5], ["description", 84, 5], ["license", 85, 5], ["maintainers", 86, 5], ["platforms", 87, 5], ["changelog", 88, 5], ["mainProgram", 89, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["vendorHash", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 41, 3], ["postInstall", 58, 3], ["postFixup", 68, 3], ["passthru", 73, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { buildGoModule: false, fetchFromGitHub: false, makeWrapper: false, "pkg-config": false, libpulseaudio: false, dotool: false, libGL: false, libxxf86vm: false, libxrandr: false, libxi: false, libxinerama: false, libxcursor: false, libx11: false, libxkbcommon: false, wayland: false, lib: false, stdenv: false, "nix-update-script": false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 76, 7], ["command", 77, 7], ["version", 78, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 75, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 74, 5], ["tests", 75, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 83, 5], ["description", 84, 5], ["license", 85, 5], ["maintainers", 86, 5], ["platforms", 87, 5], ["changelog", 88, 5], ["mainProgram", 89, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["vendorHash", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 41, 3], ["postInstall", 58, 3], ["postFixup", 68, 3], ["passthru", 73, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const testers = nix.arg($, "testers");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "voxinput",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "richiejp",
           repo: "VoxInput",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -66,12 +61,12 @@ echo 'KERNEL=="uinput", GROUP="input", MODE="0620", OPTIONS+="static_node=uinput
   --add-rpath ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [libpulseaudio]))}
 `))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "voxinput ver",
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -79,7 +74,7 @@ echo 'KERNEL=="uinput", GROUP="input", MODE="0620", OPTIONS+="static_node=uinput
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/richiejp/VoxInput",
         description: "Voice to text for any Linux app via dotool/uinput and the LocalAI/OpenAI transcription API",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

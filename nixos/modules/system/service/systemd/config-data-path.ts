@@ -2,15 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/config-data-path.nix", [[["path", 21, 19]], [["config", 20, 17]], [["type", 16, 11]], [["modules", 30, 15]], [["type", 28, 11]], [["configData", 15, 9], ["services", 27, 9]], [["_class", 12, 7], ["options", 13, 7]]]);
 const formals$1 = { args: { lib: false, name: false }, ellipsis: true };
 const formals$2 = { args: { config: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/config-data-path.nix", [["path", 21, 19]]);
-const pos$2 = nix.positions(here + "/config-data-path.nix", [["config", 20, 17]]);
-const pos$3 = nix.positions(here + "/config-data-path.nix", [["type", 16, 11]]);
-const pos$4 = nix.positions(here + "/config-data-path.nix", [["modules", 30, 15]]);
-const pos$5 = nix.positions(here + "/config-data-path.nix", [["type", 28, 11]]);
-const pos$6 = nix.positions(here + "/config-data-path.nix", [["configData", 15, 9], ["services", 27, 9]]);
-const pos$7 = nix.positions(here + "/config-data-path.nix", [["_class", 12, 7], ["options", 13, 7]]);
 
 export default nix.thunk(() => (() => {
   const setPathsModule = (prefix) => nix.lambda((args) => (() => {
@@ -21,28 +15,28 @@ export default nix.thunk(() => (() => {
     const types = nix.thunk(() => nix.attr(lib, "types"));
     const servicePrefix = nix.thunk(() => nix.str`${prefix}${name}`);
     return {
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       _class: "service",
       options: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         configData: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             type: nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.lambda((args_1) => (() => {
                   const $_1 = nix.formals(args_1, formals$2);
                   const config = nix.arg($_1, "config");
                   return {
-                    [nix.POS]: pos$2,
+                    [nix.POS]: $pos[1],
                     config: nix.thunk(() => ({
-                      [nix.POS]: pos$1,
+                      [nix.POS]: $pos[0],
                       path: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.str`/etc/system-services/${servicePrefix}/${nix.sel(config, "name")}`))),
                     })),
                   };
                 })(), formals$2))))),
           })))),
         services: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submoduleWith"), nix.thunk(() => ({
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   modules: nix.thunk(() => [
                     nix.thunk(() => nix.app(setPathsModule, nix.thunk(() => nix.str`${servicePrefix}-`))),
                   ]),

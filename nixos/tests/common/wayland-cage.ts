@@ -2,25 +2,21 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wayland-cage.nix", [[["enable", 6, 5], ["user", 7, 5]], [["cage", 5, 12]], [["options", 11, 10]], [["qemu", 11, 5]], [["imports", 4, 3], ["services", 5, 3], ["virtualisation", 10, 3]]]);
 const formals$1 = { args: {  }, ellipsis: true };
-const pos$1 = nix.positions(here + "/wayland-cage.nix", [["enable", 6, 5], ["user", 7, 5]]);
-const pos$2 = nix.positions(here + "/wayland-cage.nix", [["cage", 5, 12]]);
-const pos$3 = nix.positions(here + "/wayland-cage.nix", [["options", 11, 10]]);
-const pos$4 = nix.positions(here + "/wayland-cage.nix", [["qemu", 11, 5]]);
-const pos$5 = nix.positions(here + "/wayland-cage.nix", [["imports", 4, 3], ["services", 5, 3], ["virtualisation", 10, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     imports: nix.thunk(() => [nix.path(here, "./user-account.nix")]),
     services: nix.thunk(() => ({
-      [nix.POS]: pos$2,
-      cage: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true, user: "alice" })),
+      [nix.POS]: $pos[1],
+      cage: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true, user: "alice" })),
     })),
     virtualisation: nix.thunk(() => ({
-      [nix.POS]: pos$4,
-      qemu: nix.thunk(() => ({ [nix.POS]: pos$3, options: nix.thunk(() => ["-vga virtio"]) })),
+      [nix.POS]: $pos[3],
+      qemu: nix.thunk(() => ({ [nix.POS]: $pos[2], options: nix.thunk(() => ["-vga virtio"]) })),
     })),
   };
 })(), formals$1);

@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["postFetch", 36, 5], ["hash", 37, 5]], [["isILP64", 61, 22]], [["isILP64", 62, 24]], [["isILP64", 99, 39]], [["ilp64", 99, 7]], [["mpi", 103, 9]], [["mpich", 102, 7]], [["isILP64", 97, 13], ["tests", 98, 5]], [["homepage", 109, 5], ["license", 110, 5], ["description", 127, 5], ["platforms", 128, 5], ["maintainers", 129, 5]], [["pname", 26, 3], ["version", 27, 3], ["__structuredAttrs", 29, 3], ["src", 31, 3], ["postPatch", 42, 3], ["patches", 47, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 57, 3], ["cmakeFlags", 73, 3], ["doCheck", 90, 3], ["__darwinAllowLocalNetworking", 92, 3], ["nativeCheckInputs", 94, 3], ["passthru", 96, 3], ["meta", 108, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchurl: false, llvmPackages: false, cmake: false, "pkg-config": false, gfortran: false, blas: false, lapack: false, mpi: false, mpiCheckPhaseHook: false, metis: false, parmetis: false, withParmetis: true, isILP64: true, mpich: false, superlu_dist: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["postFetch", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["isILP64", 61, 22]]);
-const pos$3 = nix.positions(here + "/package.nix", [["isILP64", 62, 24]]);
-const pos$4 = nix.positions(here + "/package.nix", [["isILP64", 99, 39]]);
-const pos$5 = nix.positions(here + "/package.nix", [["ilp64", 99, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["mpi", 103, 9]]);
-const pos$7 = nix.positions(here + "/package.nix", [["mpich", 102, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["isILP64", 97, 13], ["tests", 98, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["homepage", 109, 5], ["license", 110, 5], ["description", 127, 5], ["platforms", 128, 5], ["maintainers", 129, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["__structuredAttrs", 29, 3], ["src", 31, 3], ["postPatch", 42, 3], ["patches", 47, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 57, 3], ["cmakeFlags", 73, 3], ["doCheck", 90, 3], ["__darwinAllowLocalNetworking", 92, 3], ["nativeCheckInputs", 94, 3], ["passthru", 96, 3], ["meta", 108, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const mpich = nix.arg($, "mpich");
   const superlu_dist = nix.arg($, "superlu_dist");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "superlu_dist",
       version: "9.2.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "xiaoyeli",
           repo: "superlu_dist",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,8 +43,8 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config, gfortran]),
       buildInputs: nix.thunk(() => nix.concat([
         mpi,
-        nix.thunk(() => nix.app(nix.sel(blas, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, isILP64: false })))),
-        nix.thunk(() => nix.app(nix.sel(lapack, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, isILP64: false })))),
+        nix.thunk(() => nix.app(nix.sel(blas, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], isILP64: false })))),
+        nix.thunk(() => nix.app(nix.sel(lapack, "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], isILP64: false })))),
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), withParmetis, nix.thunk(() => [metis, parmetis])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => [
           nix.thunk(() => nix.sel(gfortran, "cc", "lib")),
           nix.thunk(() => nix.sel(llvmPackages, "openmp")),
@@ -77,18 +68,18 @@ export default nix.lambda((args) => (() => {
       __darwinAllowLocalNetworking: true,
       nativeCheckInputs: nix.thunk(() => [mpiCheckPhaseHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         isILP64: isILP64,
         tests: nix.thunk(() => nix.update({
-          [nix.POS]: pos$5,
-          ilp64: nix.thunk(() => nix.app(nix.sel(superlu_dist, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, isILP64: true })))),
+          [nix.POS]: $pos[4],
+          ilp64: nix.thunk(() => nix.app(nix.sel(superlu_dist, "override"), nix.thunk(() => ({ [nix.POS]: $pos[3], isILP64: true })))),
         }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-            [nix.POS]: pos$7,
-            mpich: nix.thunk(() => nix.app(nix.sel(superlu_dist, "override"), nix.thunk(() => ({ [nix.POS]: pos$6, mpi: mpich })))),
+            [nix.POS]: $pos[6],
+            mpich: nix.thunk(() => nix.app(nix.sel(superlu_dist, "override"), nix.thunk(() => ({ [nix.POS]: $pos[5], mpi: mpich })))),
           }))))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         homepage: "https://portal.nersc.gov/project/sparse/superlu/",
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);

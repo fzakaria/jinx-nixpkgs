@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 22, 5], ["hash", 23, 5]], [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["mainProgram", 53, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["minimalOCamlVersion", 26, 3], ["nativeCheckInputs", 28, 3], ["checkInputs", 29, 3], ["nativeBuildInputs", 30, 3], ["propagatedBuildInputs", 31, 3], ["checkPhase", 41, 3], ["doCheck", 46, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchurl: false, bppsuite: false, alcotest: false, "angstrom-unix": false, biotk: false, core: false, gsl: false, lacaml: false, menhir: false, menhirLib: false, "printbox-text": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["mainProgram", 53, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["minimalOCamlVersion", 26, 3], ["nativeCheckInputs", 28, 3], ["checkInputs", 29, 3], ["nativeBuildInputs", 30, 3], ["propagatedBuildInputs", 31, 3], ["checkPhase", 41, 3], ["doCheck", 46, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const menhirLib = nix.arg($, "menhirLib");
   const printbox_text = nix.arg($, "printbox-text");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "phylogenetics",
       version: "0.3.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/biocaml/phylogenetics/releases/download/v${nix.sel(finalAttrs, "version")}/phylogenetics-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-3oZ9fMAXqOQ02rQ+8W8PZJWXOJLNe2qERrGOeTk3BKg=",
         })))),
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       checkPhase: "runHook preCheck\ndune build @app/fulltest\nrunHook postCheck\n",
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Algorithms and datastructures for phylogenetics",
         homepage: "https://github.com/biocaml/phylogenetics",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cecill-b")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 19, 5], ["version", 20, 13], ["hash", 21, 5]], [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 24, 3], ["propagatedBuildInputs", 30, 3], ["nativeCheckInputs", 32, 3], ["pythonImportsCheck", 37, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { hypothesis: false, pytestCheckHook: false, buildPythonPackage: false, fetchPypi: false, lib: false, hatchling: false, "hatch-vcs": false, "hatch-fancy-pypi-readme": false, "argon2-cffi-bindings": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 19, 5], ["version", 20, 13], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 24, 3], ["propagatedBuildInputs", 30, 3], ["nativeCheckInputs", 32, 3], ["pythonImportsCheck", 37, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "25.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "argon2_cffi",
           version: version,
           hash: "sha256-aUrlzIpC9MTivyyg5k5R4joEDGpReoUHRoPTlZ4TRsE=",
@@ -33,13 +31,13 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [hypothesis, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["argon2"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Secure Password Hashes for Python",
         homepage: "https://argon2-cffi.readthedocs.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

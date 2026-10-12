@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 14, 7], ["hash", 15, 7]], [["name", 18, 7], ["hash", 19, 7]], [["name", 22, 7], ["hash", 23, 7]], [["x86_64-linux", 13, 5], ["aarch64-linux", 17, 5], ["armv7l-linux", 21, 5]], [["url", 43, 13], ["hash", 44, 24]], [["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["platforms", 77, 5], ["maintainers", 78, 5]], [["pname", 39, 3], ["version", 40, 11], ["src", 42, 3], ["runtimeDependencies", 47, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 55, 3], ["dontConfigure", 60, 3], ["dontBuild", 61, 3], ["installPhase", 63, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoPatchelfHook: false, udev: false, libusb1: false, "segger-jlink": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 14, 7], ["hash", 15, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 18, 7], ["hash", 19, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 22, 7], ["hash", 23, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["x86_64-linux", 13, 5], ["aarch64-linux", 17, 5], ["armv7l-linux", 21, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 43, 13], ["hash", 44, 24]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["platforms", 77, 5], ["maintainers", 78, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 39, 3], ["version", 40, 11], ["src", 42, 3], ["runtimeDependencies", 47, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 55, 3], ["dontConfigure", 60, 3], ["dontBuild", 61, 3], ["installPhase", 63, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,19 +15,19 @@ export default nix.lambda((args) => (() => {
   const libusb1 = nix.arg($, "libusb1");
   const segger_jlink = nix.arg($, "segger-jlink");
   const supported = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     "x86_64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "linux-amd64",
       hash: "sha256-zL9tXl2HsO8JZXEGsjg4+lDJJz30StOMH96rU7neDsg=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "linux-arm64",
       hash: "sha256-ACy3rXsvBZNVXdVkpP2AqrsoqKPliw6m9UUWrFOCBzs=",
     })),
     "armv7l-linux": nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "linux-armhf",
       hash: "sha256-nD1pHL/SQqC7OlxuovWwvtnXKMmhfx5qFaF4ti8gh8g=",
     })),
@@ -45,11 +39,11 @@ export default nix.lambda((args) => (() => {
     return nix.str`https://nsscprodmedia.blob.core.windows.net/prod/software-and-other-downloads/desktop-software/nrf-command-line-tools/sw/versions-${nix.app(nix.sel(lib, "versions", "major"), version)}-x-x/${versionWithDashes}/nrf-command-line-tools-${version}_${nix.sel(platform, "name")}.tar.gz`;
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "nrf-command-line-tools",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           url: url,
           hash: nix.thunk(() => nix.attr(platform, "hash")),
         })))),
@@ -60,7 +54,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\nrm -rf ./python\nmkdir -p $out\ncp -r * $out\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Nordic Semiconductor nRF Command Line Tools",
         homepage: "https://www.nordicsemi.com/Products/Development-tools/nRF-Command-Line-Tools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

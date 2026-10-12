@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["homepage", 76, 5], ["description", 77, 5], ["mainProgram", 78, 5], ["license", 79, 5], ["maintainers", 80, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["postPatch", 21, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 28, 3], ["build-system", 30, 3], ["dependencies", 32, 3], ["doCheck", 45, 3], ["pythonImportsCheck", 47, 3], ["dontWrapQtApps", 59, 3], ["makeWrapperArgs", 60, 3], ["postInstall", 66, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchFromGitHub: false, cups: false, qt6: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 76, 5], ["description", 77, 5], ["mainProgram", 78, 5], ["license", 79, 5], ["maintainers", 80, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["postPatch", 21, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 28, 3], ["build-system", 30, 3], ["dependencies", 32, 3], ["doCheck", 45, 3], ["pythonImportsCheck", 47, 3], ["dontWrapQtApps", 59, 3], ["makeWrapperArgs", 60, 3], ["postInstall", 66, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.7";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "inkcut",
           repo: "inkcut",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -64,7 +62,7 @@ export default nix.lambda((args) => (() => {
       const makeWrapperArgs = nix.thunk(() => ["--unset", "PYTHONPATH", "${qtWrapperArgs[@]}"]);
       const postInstall = "mkdir -p $out/share/inkscape/extensions\n\ncp plugins/inkscape/* $out/share/inkscape/extensions\n\nsed -i \"s|cmd = \\['inkcut'\\]|cmd = \\['$out/bin/inkcut'\\]|\" $out/share/inkscape/extensions/inkcut_cut.py\nsed -i \"s|cmd = \\['inkcut'\\]|cmd = \\['$out/bin/inkcut'\\]|\" $out/share/inkscape/extensions/inkcut_open.py\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.codelv.com/projects/inkcut/",
         description: "Control 2D plotters, cutters, engravers, and CNC machines",
         mainProgram: "inkcut",
@@ -75,7 +73,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

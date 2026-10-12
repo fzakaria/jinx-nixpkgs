@@ -2,14 +2,14 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["nativeBuildInputs", 2, 56]]]);
 const formals$1 = { args: { runCommand: false, doctoc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 2, 56]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const runCommand = nix.arg($, "runCommand");
   const doctoc = nix.arg($, "doctoc");
-  return nix.app(runCommand, "doctoc-test-generates-valid-markdown.md", nix.thunk(() => ({ [nix.POS]: pos$1, nativeBuildInputs: nix.thunk(() => [doctoc]) })), nix.thunk(() => nix.str`cp ${nix.path(here, "./input.md")} ./target.md && chmod +w ./target.md
+  return nix.app(runCommand, "doctoc-test-generates-valid-markdown.md", nix.thunk(() => ({ [nix.POS]: $pos[0], nativeBuildInputs: nix.thunk(() => [doctoc]) })), nix.thunk(() => nix.str`cp ${nix.path(here, "./input.md")} ./target.md && chmod +w ./target.md
 doctoc ./target.md
 
 # Ensure that ./target.md changed

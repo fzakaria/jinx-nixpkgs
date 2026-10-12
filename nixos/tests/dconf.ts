@@ -2,74 +2,60 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/dconf.nix", [[["maintainers", 5, 8]], [["isNormalUser", 18, 9]], [["alice", 17, 24]], [["extraUsers", 17, 13]], [["locked", 25, 26]], [["locked", 26, 25]], [["test/not", 25, 15], ["test/is", 26, 15]], [["settings", 24, 13], ["locks", 28, 13]], [["databases", 22, 23]], [["user", 22, 18]], [["enable", 21, 9], ["profiles", 22, 9]], [["dconf", 20, 16]], [["users", 17, 7], ["programs", 20, 7]], [["machine", 9, 9]], [["name", 3, 3], ["meta", 5, 3], ["nodes", 9, 3], ["testScript", 36, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/dconf.nix", [["maintainers", 5, 8]]);
 const formals$2 = { args: { config: false, pkgs: false, lib: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/dconf.nix", [["isNormalUser", 18, 9]]);
-const pos$3 = nix.positions(here + "/dconf.nix", [["alice", 17, 24]]);
-const pos$4 = nix.positions(here + "/dconf.nix", [["extraUsers", 17, 13]]);
-const pos$5 = nix.positions(here + "/dconf.nix", [["locked", 25, 26]]);
-const pos$6 = nix.positions(here + "/dconf.nix", [["locked", 26, 25]]);
-const pos$7 = nix.positions(here + "/dconf.nix", [["test/not", 25, 15], ["test/is", 26, 15]]);
-const pos$8 = nix.positions(here + "/dconf.nix", [["settings", 24, 13], ["locks", 28, 13]]);
-const pos$9 = nix.positions(here + "/dconf.nix", [["databases", 22, 23]]);
-const pos$10 = nix.positions(here + "/dconf.nix", [["user", 22, 18]]);
-const pos$11 = nix.positions(here + "/dconf.nix", [["enable", 21, 9], ["profiles", 22, 9]]);
-const pos$12 = nix.positions(here + "/dconf.nix", [["dconf", 20, 16]]);
-const pos$13 = nix.positions(here + "/dconf.nix", [["users", 17, 7], ["programs", 20, 7]]);
-const pos$14 = nix.positions(here + "/dconf.nix", [["machine", 9, 9]]);
-const pos$15 = nix.positions(here + "/dconf.nix", [["name", 3, 3], ["meta", 5, 3], ["nodes", 9, 3], ["testScript", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$15,
+    [nix.POS]: $pos[14],
     name: "dconf",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "linsui"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs = nix.arg($_1, "pkgs");
         const lib_1 = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           users: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             extraUsers: nix.thunk(() => ({
-              [nix.POS]: pos$3,
-              alice: nix.thunk(() => ({ [nix.POS]: pos$2, isNormalUser: true })),
+              [nix.POS]: $pos[2],
+              alice: nix.thunk(() => ({ [nix.POS]: $pos[1], isNormalUser: true })),
             })),
           })),
           programs: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             dconf: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib_1, "gvariant")), null);
               return {
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 enable: true,
                 profiles: nix.thunk(() => ({
-                  [nix.POS]: pos$10,
+                  [nix.POS]: $pos[9],
                   user: nix.thunk(() => ({
-                    [nix.POS]: pos$9,
+                    [nix.POS]: $pos[8],
                     databases: nix.thunk(() => [
                       nix.thunk(() => ({
-                        [nix.POS]: pos$8,
+                        [nix.POS]: $pos[7],
                         settings: nix.thunk(() => ({
-                          [nix.POS]: pos$7,
+                          [nix.POS]: $pos[6],
                           "test/not": nix.thunk(() => ({
-                            [nix.POS]: pos$5,
+                            [nix.POS]: $pos[4],
                             locked: nix.thunk(() => nix.app(nix.lookup(w, "mkInt32"), 1n)),
                           })),
-                          "test/is": nix.thunk(() => ({ [nix.POS]: pos$6, locked: "locked" })),
+                          "test/is": nix.thunk(() => ({ [nix.POS]: $pos[5], locked: "locked" })),
                         })),
                         locks: nix.thunk(() => ["/test/is/locked"]),
                       })),

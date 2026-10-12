@@ -2,70 +2,56 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/api-integration.nix", [[["memorySize", 9, 24]], [["allowedTCPPorts", 10, 29]], [["firewall", 10, 20]], [["createLocally", 15, 20]], [["enable", 12, 11], ["serverPort", 14, 11], ["database", 15, 11]], [["windmill", 11, 18]], [["FORCE_NUGET_CONFIG", 22, 25]], [["environment", 22, 13]], [["windmill-worker", 19, 11]], [["services", 18, 17]], [["flakeIgnore", 35, 13]], [["systemPackages", 33, 21]], [["virtualisation", 9, 9], ["networking", 10, 9], ["services", 11, 9], ["systemd", 18, 9], ["environment", 33, 9]], [["windmill", 6, 5]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 44, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/api-integration.nix", [["memorySize", 9, 24]]);
-const pos$2 = nix.positions(here + "/api-integration.nix", [["allowedTCPPorts", 10, 29]]);
-const pos$3 = nix.positions(here + "/api-integration.nix", [["firewall", 10, 20]]);
-const pos$4 = nix.positions(here + "/api-integration.nix", [["createLocally", 15, 20]]);
-const pos$5 = nix.positions(here + "/api-integration.nix", [["enable", 12, 11], ["serverPort", 14, 11], ["database", 15, 11]]);
-const pos$6 = nix.positions(here + "/api-integration.nix", [["windmill", 11, 18]]);
-const pos$7 = nix.positions(here + "/api-integration.nix", [["FORCE_NUGET_CONFIG", 22, 25]]);
-const pos$8 = nix.positions(here + "/api-integration.nix", [["environment", 22, 13]]);
-const pos$9 = nix.positions(here + "/api-integration.nix", [["windmill-worker", 19, 11]]);
-const pos$10 = nix.positions(here + "/api-integration.nix", [["services", 18, 17]]);
-const pos$11 = nix.positions(here + "/api-integration.nix", [["flakeIgnore", 35, 13]]);
-const pos$12 = nix.positions(here + "/api-integration.nix", [["systemPackages", 33, 21]]);
-const pos$13 = nix.positions(here + "/api-integration.nix", [["virtualisation", 9, 9], ["networking", 10, 9], ["services", 11, 9], ["systemd", 18, 9], ["environment", 33, 9]]);
-const pos$14 = nix.positions(here + "/api-integration.nix", [["windmill", 6, 5]]);
-const pos$15 = nix.positions(here + "/api-integration.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$15,
+    [nix.POS]: $pos[14],
     name: "windmill-api",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       windmill: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         const lib_1 = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$13,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$1, memorySize: 2048n })),
+          [nix.POS]: $pos[12],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[0], memorySize: 2048n })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$2, allowedTCPPorts: nix.thunk(() => [8001n]) })),
+            [nix.POS]: $pos[2],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[1], allowedTCPPorts: nix.thunk(() => [8001n]) })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             windmill: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               enable: true,
               serverPort: 8001n,
-              database: nix.thunk(() => ({ [nix.POS]: pos$4, createLocally: true })),
+              database: nix.thunk(() => ({ [nix.POS]: $pos[3], createLocally: true })),
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               "windmill-worker": nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 environment: nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   FORCE_NUGET_CONFIG: "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<configuration>\n  <packageSources>\n      <clear />\n  </packageSources>\n</configuration>\n",
                 })),
               })),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             systemPackages: nix.thunk(() => [
-              nix.thunk(() => nix.app(nix.sel(pkgs_1, "writers", "writePython3Bin"), "integration-test", nix.thunk(() => ({ [nix.POS]: pos$11, flakeIgnore: nix.thunk(() => ["E265", "E501"]) })), nix.thunk(() => nix.builtins.readFile(nix.path(here, "./api-integration.py"))))),
+              nix.thunk(() => nix.app(nix.sel(pkgs_1, "writers", "writePython3Bin"), "integration-test", nix.thunk(() => ({ [nix.POS]: $pos[10], flakeIgnore: nix.thunk(() => ["E265", "E501"]) })), nix.thunk(() => nix.builtins.readFile(nix.path(here, "./api-integration.py"))))),
             ]),
           })),
         };

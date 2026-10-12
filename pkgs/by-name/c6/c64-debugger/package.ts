@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["NIX_CFLAGS_COMPILE", 89, 5]], [["homepage", 98, 5], ["description", 99, 5], ["license", 100, 5], ["mainProgram", 107, 5], ["maintainers", 108, 5], ["platforms", 109, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["buildInputs", 25, 3], ["nativeBuildInputs", 34, 3], ["postPatch", 39, 3], ["buildPhase", 44, 3], ["installPhase", 76, 3], ["env", 88, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, "alsa-lib": false, gtk3: false, libGL: false, libGLU: false, libx11: false, "pkg-config": false, upx: false, "libxcb-util": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 89, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 98, 5], ["description", 99, 5], ["license", 100, 5], ["mainProgram", 107, 5], ["maintainers", 108, 5], ["platforms", 109, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["buildInputs", 25, 3], ["nativeBuildInputs", 34, 3], ["postPatch", 39, 3], ["buildPhase", 44, 3], ["installPhase", 76, 3], ["env", 88, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const upx = nix.arg($, "upx");
   const libxcb_util = nix.arg($, "libxcb-util");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "c64-debugger",
       version: "0.64.58.6",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.code.sf.net/p/c64-debugger/code",
           rev: "f97772e3f5c8b4fa99e8ed212ed1c4cb1e2389f1",
           hash: "sha256-3SR73AHQlYSEYpJLtQ/aJ1UITZGq7aA9tQKxBsn/yuc=",
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\n# Build C64 debugger\nmake -C MTEngine \\\n  CFLAGS=\"-w -O2 -fcommon -std=gnu17\" \\\n  CXXFLAGS=\"-w -O2 --std=c++11\" \\\n  DEFINES=\"-DRUN_COMMODORE64\" \\\n  -j$NIX_BUILD_CORES\nmv MTEngine/c64debugger c64debugger\nmake -C MTEngine clean\n\n# Build 65XE debugger\nmake -C MTEngine \\\n  CFLAGS=\"-w -O2 -fcommon -std=gnu17\" \\\n  CXXFLAGS=\"-w -O2 --std=c++11\" \\\n  DEFINES=\"-DRUN_ATARI\" \\\n  -j$NIX_BUILD_CORES\nmv MTEngine/c64debugger 65xedebugger\nmake -C MTEngine clean\n\n# Build NES debugger\nmake -C MTEngine \\\n  CFLAGS=\"-w -O2 -fcommon -std=gnu17\" \\\n  CXXFLAGS=\"-w -O2 --std=c++11\" \\\n  DEFINES=\"-DRUN_NES\" \\\n  -j$NIX_BUILD_CORES\nmv MTEngine/c64debugger nesdebugger\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\ninstall -d \"$out/bin\"\ninstall -d \"$out/share/doc\"\ninstall -m 755 c64debugger 65xedebugger nesdebugger \"$out/bin\"\ninstall -m 644 MTEngine/Assets/*.txt \"$out/share/doc\"\ninstall -m 644 MTEngine/Assets/*.pdf \"$out/share/doc\"\n\nrunHook postInstall\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-Wno-error=narrowing",
             "-Wno-error=implicit-function-declaration",
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
           ]))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://sourceforge.net/projects/c64-debugger",
         description: "Commodore 64, Atari XL/XE and NES code and memory debugger that works in real time",
         license: nix.thunk(() => (() => {

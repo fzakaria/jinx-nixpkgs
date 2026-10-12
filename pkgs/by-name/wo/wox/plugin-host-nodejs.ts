@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/plugin-host-nodejs.nix", [[["pname", 21, 7], ["version", 22, 7], ["src", 23, 7], ["sourceRoot", 24, 7], ["pnpm", 26, 5], ["fetcherVersion", 27, 5], ["hash", 28, 5]], [["description", 55, 7], ["homepage", 56, 7], ["license", 57, 7], ["maintainers", 58, 7]], [["pname", 11, 3], ["version", 13, 5], ["src", 14, 5], ["sourceRoot", 17, 3], ["pnpmDeps", 19, 3], ["nativeBuildInputs", 31, 3], ["buildPhase", 37, 3], ["installPhase", 45, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, wox: false, fetchPnpmDeps: false, nodejs: false, pnpmConfigHook: false, pnpm_11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/plugin-host-nodejs.nix", [["pname", 21, 7], ["version", 22, 7], ["src", 23, 7], ["sourceRoot", 24, 7], ["pnpm", 26, 5], ["fetcherVersion", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/plugin-host-nodejs.nix", [["description", 55, 7], ["homepage", 56, 7], ["license", 57, 7], ["maintainers", 58, 7]]);
-const pos$3 = nix.positions(here + "/plugin-host-nodejs.nix", [["pname", 11, 3], ["version", 13, 5], ["src", 14, 5], ["sourceRoot", 17, 3], ["pnpmDeps", 19, 3], ["nativeBuildInputs", 31, 3], ["buildPhase", 37, 3], ["installPhase", 45, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const pnpmConfigHook = nix.arg($, "pnpmConfigHook");
   const pnpm_11 = nix.arg($, "pnpm_11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "wox-plugin-host-nodejs",
       version: nix.thunk(() => nix.attr(wox, "version")),
       src: nix.thunk(() => nix.attr(wox, "src")),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/wox.plugin.host.nodejs`),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(wox, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: nix.thunk(() => nix.attr(from, "description")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),

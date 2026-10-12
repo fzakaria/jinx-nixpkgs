@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["django", 13, 7]], [["packageOverrides", 12, 5]], [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["sha256", 25, 5]], [["peering-manager", 85, 28]], [["python", 81, 13], ["pythonPath", 82, 5], ["tests", 84, 5]], [["homepage", 90, 5], ["license", 91, 5], ["description", 92, 5], ["mainProgram", 93, 5], ["maintainers", 94, 5], ["platforms", 95, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["pyproject", 28, 3], ["propagatedBuildInputs", 30, 3], ["buildPhase", 61, 3], ["installPhase", 69, 3], ["passthru", 79, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { python3: false, fetchFromGitHub: false, nixosTests: false, lib: false, plugins: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["django", 13, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageOverrides", 12, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["sha256", 25, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["peering-manager", 85, 28]]);
-const pos$5 = nix.positions(here + "/package.nix", [["python", 81, 13], ["pythonPath", 82, 5], ["tests", 84, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 90, 5], ["license", 91, 5], ["description", 92, 5], ["mainProgram", 93, 5], ["maintainers", 94, 5], ["platforms", 95, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["pyproject", 28, 3], ["propagatedBuildInputs", 30, 3], ["buildPhase", 61, 3], ["installPhase", 69, 3], ["passthru", 79, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,15 +13,15 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const plugins = nix.argOr($, "plugins", () => (ps) => []);
   const python = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
-      packageOverrides: (final) => (prev) => ({ [nix.POS]: pos$1, django: nix.thunk(() => nix.sel(prev, "django_5")) }),
+      [nix.POS]: $pos[1],
+      packageOverrides: (final) => (prev) => ({ [nix.POS]: $pos[0], django: nix.thunk(() => nix.sel(prev, "django_5")) }),
     }))));
   return nix.app(nix.sel(python, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "peering-manager",
       version: "1.10.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "peering-manager",
           repo: "peering-manager",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -67,16 +61,16 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\ncp peering_manager/configuration{.example,}.py\npython3 manage.py collectstatic --no-input\nrm -f peering_manager/configuration.py\nrunHook postBuild\n",
       installPhase: "runHook preInstall\nmkdir -p $out/opt/peering-manager\ncp -r . $out/opt/peering-manager\nchmod +x $out/opt/peering-manager/manage.py\nmakeWrapper $out/opt/peering-manager/manage.py $out/bin/peering-manager \\\n  --prefix PYTHONPATH : \"$PYTHONPATH\"\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         python: python,
         pythonPath: nix.thunk(() => nix.app(nix.sel(python, "pkgs", "makePythonPath"), nix.thunk(() => nix.sel(finalAttrs, "propagatedBuildInputs")))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "peering-manager": nix.thunk(() => nix.attr(nixosTests, "peering-manager")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://peering-manager.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         description: "BGP sessions management tool",

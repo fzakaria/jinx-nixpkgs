@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["cpal-0.15.3", 29, 7], ["rusty-tesseract-1.1.10", 30, 7]], [["lockFile", 27, 5], ["outputHashes", 28, 5]], [["RUSTONIG_SYSTEM_LIBONIG", 58, 5]], [["broken", 65, 5], ["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["mainProgram", 70, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoLock", 26, 3], ["postPatch", 34, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 43, 3], ["buildFeatures", 55, 3], ["env", 57, 3], ["doCheck", 61, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, dbus: false, ffmpeg: false, oniguruma: false, openssl: false, sqlite: false, stdenv: false, "alsa-lib": false, libxcb: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["cpal-0.15.3", 29, 7], ["rusty-tesseract-1.1.10", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["lockFile", 27, 5], ["outputHashes", 28, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["RUSTONIG_SYSTEM_LIBONIG", 58, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["broken", 65, 5], ["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["mainProgram", 70, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoLock", 26, 3], ["postPatch", 34, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 43, 3], ["buildFeatures", 55, 3], ["env", 57, 3], ["doCheck", 61, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,17 +23,17 @@ export default nix.lambda((args) => (() => {
       const pname = "screen-pipe";
       const version = "0.1.48";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "screenpipe",
           repo: "screenpipe",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-rWKRCqWFuPO84C52mMrrS4euD6XdJU8kqZsAz28+vWE=",
         }))));
       const cargoLock = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         lockFile: nix.path(here, "./Cargo.lock"),
         outputHashes: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "cpal-0.15.3": "sha256-eKn3tS5QuqbMTwnRAEybvbPZOiKiid7ghGztAmrs9fw=",
           "rusty-tesseract-1.1.10": "sha256-XT74zGn+DetEBUujHm4Soe2iorQcIoUeZbscTv+64hw=",
         })),
@@ -48,10 +43,10 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [pkg_config, nix.thunk(() => nix.sel(rustPlatform, "bindgenHook"))]);
       const buildInputs = nix.thunk(() => nix.concat([dbus, ffmpeg, oniguruma, openssl, sqlite], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [alsa_lib, libxcb]))));
       const buildFeatures = nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "metal"));
-      const env = nix.thunk(() => ({ [nix.POS]: pos$4, RUSTONIG_SYSTEM_LIBONIG: true }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[3], RUSTONIG_SYSTEM_LIBONIG: true }));
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         broken: true,
         description: "Personalized AI powered by what you've seen, said, or heard",
         homepage: "https://github.com/screenpipe/screenpipe",
@@ -60,7 +55,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "screen-pipe",
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

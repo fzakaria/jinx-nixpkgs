@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["description", 41, 5], ["mainProgram", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5], ["broken", 47, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["buildInputs", 20, 3], ["preBuild", 27, 3], ["installPhase", 33, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fftwSinglePrec: false, freetype: false, SDL: false, SDL_ttf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 41, 5], ["mainProgram", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5], ["broken", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["buildInputs", 20, 3], ["preBuild", 27, 3], ["installPhase", 33, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const SDL = nix.arg($, "SDL");
   const SDL_ttf = nix.arg($, "SDL_ttf");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "quantumminigolf",
       version: "1.1.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/quantumminigolf/quantumminigolf/${nix.sel(finalAttrs, "version")}/quantumminigolf-${nix.sel(finalAttrs, "version")}.src.tar.gz`),
           sha256: "sha256-Y3LUGk6pAuNGVOYkc0WYDbgJFtwJJn+aLRHmCKY7W5k=",
         })))),
@@ -32,7 +30,7 @@ sed -re 's@"(gfx|fonts|tracks)/@"'"$out"'/share/quantumminigolf/\\1/@g' -i *.cpp
 `),
       installPhase: "mkdir -p \"$out\"/{share/doc,share/quantumminigolf,bin}\ncp README THANKS LICENSE \"$out/share/doc\"\ncp -r fonts gfx tracks \"$out/share/quantumminigolf\"\ncp quantumminigolf \"$out/bin\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Quantum mechanics-based minigolf-like game",
         mainProgram: "quantumminigolf",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 29, 5], ["hash", 30, 5]], [["versionLister", 78, 5]], [["updateScript", 77, 12]], [["broken", 84, 5], ["description", 85, 5], ["downloadPage", 86, 5], ["homepage", 87, 5], ["license", 88, 5], ["longDescription", 89, 5], ["maintainers", 116, 5], ["platforms", 119, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["vendorHash", 33, 3], ["buildInputs", 34, 3], ["nativeBuildInputs", 40, 3], ["subPackages", 47, 3], ["preConfigure", 54, 3], ["preBuild", 56, 3], ["installPhase", 61, 3], ["postInstall", 70, 3], ["enableParallelBuilding", 75, 3], ["passthru", 77, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchurl: false, libogg: false, opusfile: false, sox: false, makeWrapper: false, perl: false, "pkg-config": false, zstd: false, curl: false, genericUpdater: false, writeShellScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["versionLister", 78, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 77, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["broken", 84, 5], ["description", 85, 5], ["downloadPage", 86, 5], ["homepage", 87, 5], ["license", 88, 5], ["longDescription", 89, 5], ["maintainers", 116, 5], ["platforms", 119, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["vendorHash", 33, 3], ["buildInputs", 34, 3], ["nativeBuildInputs", 40, 3], ["subPackages", 47, 3], ["preConfigure", 54, 3], ["preBuild", 56, 3], ["installPhase", 61, 3], ["postInstall", 70, 3], ["enableParallelBuilding", 75, 3], ["passthru", 77, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const genericUpdater = nix.arg($, "genericUpdater");
   const writeShellScript = nix.arg($, "writeShellScript");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "vors",
       version: "6.3.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://www.vors.stargrave.org/download/vors-${nix.sel(finalAttrs, "version")}.tar.zst`),
           hash: "sha256-N/ELiTB2T/2iSKFOS7W0hhqcSzRNxBBfkwqIRLnKYZw=",
         })))),
@@ -46,15 +42,15 @@ export default nix.lambda((args) => (() => {
 `),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(genericUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             versionLister: nix.thunk(() => nix.app(writeShellScript, "vors-versionLister", nix.thunk(() => nix.str`${curl}/bin/curl -s ${nix.sel(finalAttrs, "meta", "downloadPage")} | ${perl}/bin/perl -lne 'print $1 if /td.*>([0-9.]+)</'
 `))),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Very simple and usable multi-user VoIP solution",
         downloadPage: "http://www.vors.stargrave.org/INSTALL.html",

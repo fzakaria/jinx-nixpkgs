@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["yarnLock", 37, 5], ["hash", 38, 5]], [["tests", 83, 12]], [["description", 86, 5], ["homepage", 87, 5], ["changelog", 88, 5], ["maintainers", 89, 5], ["license", 92, 5], ["platforms", 93, 32], ["mainProgram", 94, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 29, 3], ["postPatch", 32, 3], ["offlineCache", 36, 3], ["nativeBuildInputs", 41, 3], ["configurePhase", 49, 3], ["buildPhase", 62, 3], ["preInstall", 71, 3], ["disallowedReferences", 76, 3], ["dontNpmPrune", 78, 3], ["dontStrip", 81, 3], ["passthru", 83, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchYarnDeps: false, "nodejs-slim": false, yarn: false, "fixup-yarn-lock": false, npmHooks: false, sqlite: false, srcOnly: false, buildPackages: false, nixosTests: false, xcbuild: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["yarnLock", 37, 5], ["hash", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 83, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 86, 5], ["homepage", 87, 5], ["changelog", 88, 5], ["maintainers", 89, 5], ["license", 92, 5], ["platforms", 93, 32], ["mainProgram", 94, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 29, 3], ["postPatch", 32, 3], ["offlineCache", 36, 3], ["nativeBuildInputs", 41, 3], ["configurePhase", 49, 3], ["buildPhase", 62, 3], ["preInstall", 71, 3], ["disallowedReferences", 76, 3], ["dontNpmPrune", 78, 3], ["dontStrip", 81, 3], ["passthru", 83, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const xcbuild = nix.arg($, "xcbuild");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "thelounge",
       version: "4.5.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "thelounge",
           repo: "thelounge",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +34,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./packages-path.patch")]),
       postPatch: "echo /var/lib/thelounge > .thelounge_home\n",
       offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           yarnLock: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/yarn.lock`),
           hash: "sha256-dIE6Dqg9npistgmSRQ5vD96YtDtRveTgLXyF+omtH2s=",
         })))),
@@ -65,11 +61,11 @@ runHook postConfigure
       disallowedReferences: nix.thunk(() => [nix.thunk(() => nix.sel(nodejs_slim, "src"))]),
       dontNpmPrune: true,
       dontStrip: true,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, tests: nix.thunk(() => nix.sel(nixosTests, "thelounge")) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], tests: nix.thunk(() => nix.sel(nixosTests, "thelounge")) })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(nodejs_slim, "meta"));
         return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Modern, responsive, cross-platform, self-hosted web IRC client",
         homepage: "https://thelounge.chat",
         changelog: nix.thunk(() => nix.str`https://github.com/thelounge/thelounge/releases/tag/v${nix.sel(finalAttrs, "version")}`),

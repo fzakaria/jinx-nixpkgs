@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 11, 13], ["version", 11, 19], ["src", 12, 33], ["meta", 12, 37], ["nativeBuildInputs", 13, 5]]]);
 const formals$1 = { args: { runCommand: false, makeWrapper: false, "tubekit-unwrapped": false, pname: true, version: true, kubectl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 11, 13], ["version", 11, 19], ["src", 12, 33], ["meta", 12, 37], ["nativeBuildInputs", 13, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const version = nix.argOr($, "version", () => nix.sel(tubekit_unwrapped, "version"));
   const kubectl = nix.arg($, "kubectl");
   return nix.app(runCommand, nix.thunk(() => nix.str`${pname}-${version}`), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.attr(tubekit_unwrapped, "src")),

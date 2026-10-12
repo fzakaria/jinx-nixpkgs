@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["hash", 24, 5]], [["packageName", 65, 7]], [["updateScript", 64, 5]], [["homepage", 70, 5], ["description", 71, 5], ["license", 72, 5], ["teams", 73, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["strictDeps", 27, 3], ["depsBuildBuild", 28, 3], ["nativeBuildInputs", 29, 3], ["mesonFlags", 39, 3], ["preInstall", 43, 3], ["passthru", 63, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, glib: false, "gobject-introspection": false, buildPackages: false, withIntrospection: true, meson: false, ninja: false, gnome: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 65, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 64, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 70, 5], ["description", 71, 5], ["license", 72, 5], ["teams", 73, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["strictDeps", 27, 3], ["depsBuildBuild", 28, 3], ["nativeBuildInputs", 29, 3], ["mesonFlags", 39, 3], ["preInstall", 43, 3], ["passthru", 63, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gsettings-desktop-schemas";
       const version = "50.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gsettings-desktop-schemas/${nix.app(nix.sel(lib, "versions", "major"), version)}/gsettings-desktop-schemas-${version}.tar.xz`),
           hash: "sha256-CiqiUIJnJYXRb82rYcew4z8DX7h0dlBceU8pVlr6SFs=",
         }))));
@@ -38,18 +34,18 @@ export default nix.lambda((args) => (() => {
       ]);
       const preInstall = "# Meson installs the schemas to share/glib-2.0/schemas\n# We add the override file there too so it will be compiled and later moved by\n# glib's setup hook.\nmkdir -p $out/share/glib-2.0/schemas\ncat - > $out/share/glib-2.0/schemas/remove-backgrounds.gschema.override <<- EOF\n  # These paths are supposed to refer to gnome-backgrounds\n  # but since we do not use FHS, they are broken.\n  # And we do not want to hardcode the correct paths\n  # since then every GTK app would pull in gnome-backgrounds.\n  # Let’s just override the broken paths so that people are not confused.\n  [org.gnome.desktop.background]\n  picture-uri=''\n  picture-uri-dark=''\n\n  [org.gnome.desktop.screensaver]\n  picture-uri=''\nEOF\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: pname })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: pname })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://gitlab.gnome.org/GNOME/gsettings-desktop-schemas",
         description: "Collection of GSettings schemas for settings shared by various components of a desktop",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gnome"))]),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["src", 25, 5], ["hash", 26, 5]], [["nativeBuildInputs", 37, 5], ["preBuild", 38, 5]], [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["mainProgram", 54, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["vendorHash", 23, 3], ["npmDeps", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["overrideModAttrs", 36, 3], ["npmRoot", 41, 3], ["preBuild", 42, 3], ["__darwinAllowLocalNetworking", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, fetchNpmDeps: false, "pkg-config": false, nodejs: false, npmHooks: false, lz4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 25, 5], ["hash", 26, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 37, 5], ["preBuild", 38, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["mainProgram", 54, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["vendorHash", 23, 3], ["npmDeps", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["overrideModAttrs", 36, 3], ["npmRoot", 41, 3], ["preBuild", 42, 3], ["__darwinAllowLocalNetworking", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const npmHooks = nix.arg($, "npmHooks");
   const lz4 = nix.arg($, "lz4");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "coroot",
       version: "1.27.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "coroot",
           repo: "coroot",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,14 +28,14 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-QB5jz+ks9naRM7KvlxXUkMcTTtmy0SQXkfxGx/vh3W4=",
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/front`),
           hash: "sha256-NrlZ4Lri43fkD7JclYlyLMKfRzNr2RIt4krGbZuJc68=",
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config, nodejs, nix.thunk(() => nix.sel(npmHooks, "npmConfigHook"))]),
       buildInputs: nix.thunk(() => [lz4]),
       overrideModAttrs: (oldAttrs) => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "remove"), nix.thunk(() => nix.sel(npmHooks, "npmConfigHook")), nix.thunk(() => nix.sel(oldAttrs, "nativeBuildInputs")))),
         preBuild: null,
       }),
@@ -47,7 +43,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "npm --prefix=\"$npmRoot\" run build-prod\n",
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Open-source APM & Observability tool",
         homepage: "https://coroot.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

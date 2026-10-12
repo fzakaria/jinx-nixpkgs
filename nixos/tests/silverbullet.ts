@@ -2,46 +2,34 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/silverbullet.nix", [[["maintainers", 4, 8]], [["enable", 9, 29]], [["silverbullet", 9, 16]], [["services", 9, 7]], [["isNormalUser", 15, 24]], [["test", 15, 19]], [["test", 16, 20]], [["users", 15, 13], ["groups", 16, 13]], [["enable", 19, 9], ["package", 20, 9], ["listenPort", 21, 9], ["listenAddress", 22, 9], ["spaceDir", 23, 9], ["user", 24, 9], ["group", 25, 9], ["envFile", 26, 9]], [["silverbullet", 18, 16]], [["users", 15, 7], ["services", 18, 7]], [["simple", 6, 9], ["configured", 12, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 33, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/silverbullet.nix", [["maintainers", 4, 8]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/silverbullet.nix", [["enable", 9, 29]]);
-const pos$3 = nix.positions(here + "/silverbullet.nix", [["silverbullet", 9, 16]]);
-const pos$4 = nix.positions(here + "/silverbullet.nix", [["services", 9, 7]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$5 = nix.positions(here + "/silverbullet.nix", [["isNormalUser", 15, 24]]);
-const pos$6 = nix.positions(here + "/silverbullet.nix", [["test", 15, 19]]);
-const pos$7 = nix.positions(here + "/silverbullet.nix", [["test", 16, 20]]);
-const pos$8 = nix.positions(here + "/silverbullet.nix", [["users", 15, 13], ["groups", 16, 13]]);
-const pos$9 = nix.positions(here + "/silverbullet.nix", [["enable", 19, 9], ["package", 20, 9], ["listenPort", 21, 9], ["listenAddress", 22, 9], ["spaceDir", 23, 9], ["user", 24, 9], ["group", 25, 9], ["envFile", 26, 9]]);
-const pos$10 = nix.positions(here + "/silverbullet.nix", [["silverbullet", 18, 16]]);
-const pos$11 = nix.positions(here + "/silverbullet.nix", [["users", 15, 7], ["services", 18, 7]]);
-const pos$12 = nix.positions(here + "/silverbullet.nix", [["simple", 6, 9], ["configured", 12, 9]]);
 const formals$4 = { args: { nodes: false }, ellipsis: true };
-const pos$13 = nix.positions(here + "/silverbullet.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     name: "silverbullet",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "aorith"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       simple: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            silverbullet: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+            [nix.POS]: $pos[2],
+            silverbullet: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
           })),
         };
       })(), formals$2),
@@ -49,19 +37,19 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           users: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$6,
-              test: nix.thunk(() => ({ [nix.POS]: pos$5, isNormalUser: true })),
+              [nix.POS]: $pos[5],
+              test: nix.thunk(() => ({ [nix.POS]: $pos[4], isNormalUser: true })),
             })),
-            groups: nix.thunk(() => ({ [nix.POS]: pos$7, test: nix.thunk(() => ({})) })),
+            groups: nix.thunk(() => ({ [nix.POS]: $pos[6], test: nix.thunk(() => ({})) })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             silverbullet: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               enable: true,
               package: nix.thunk(() => nix.sel(pkgs, "silverbullet")),
               listenPort: 3001n,

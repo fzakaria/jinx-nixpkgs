@@ -2,57 +2,47 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/retroarch.nix", [[["maintainers", 6, 5]], [["enable", 16, 9], ["package", 17, 9]], [["retroarch", 15, 39]], [["enable", 14, 24], ["desktopManager", 15, 24]], [["enable", 20, 14]], [["enable", 23, 11], ["user", 24, 11]], [["sddm", 20, 9], ["defaultSession", 21, 9], ["autoLogin", 22, 9]], [["xserver", 14, 16], ["displayManager", 19, 16]], [["imports", 13, 7], ["services", 14, 7]], [["machine", 9, 9]], [["name", 4, 3], ["meta", 5, 3], ["nodes", 9, 3], ["testScript", 29, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/retroarch.nix", [["maintainers", 6, 5]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/retroarch.nix", [["enable", 16, 9], ["package", 17, 9]]);
-const pos$3 = nix.positions(here + "/retroarch.nix", [["retroarch", 15, 39]]);
-const pos$4 = nix.positions(here + "/retroarch.nix", [["enable", 14, 24], ["desktopManager", 15, 24]]);
-const pos$5 = nix.positions(here + "/retroarch.nix", [["enable", 20, 14]]);
-const pos$6 = nix.positions(here + "/retroarch.nix", [["enable", 23, 11], ["user", 24, 11]]);
-const pos$7 = nix.positions(here + "/retroarch.nix", [["sddm", 20, 9], ["defaultSession", 21, 9], ["autoLogin", 22, 9]]);
-const pos$8 = nix.positions(here + "/retroarch.nix", [["xserver", 14, 16], ["displayManager", 19, 16]]);
-const pos$9 = nix.positions(here + "/retroarch.nix", [["imports", 13, 7], ["services", 14, 7]]);
-const pos$10 = nix.positions(here + "/retroarch.nix", [["machine", 9, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$11 = nix.positions(here + "/retroarch.nix", [["name", 4, 3], ["meta", 5, 3], ["nodes", 9, 3], ["testScript", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     name: "retroarch",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => nix.concat(nix.sel(pkgs, "lib", "teams", "libretro", "members"), [nix.thunk(() => nix.sel(pkgs, "lib", "maintainers", "j0hax"))])),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             xserver: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               enable: true,
               desktopManager: nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 retroarch: nix.thunk(() => ({
-                  [nix.POS]: pos$2,
+                  [nix.POS]: $pos[1],
                   enable: true,
                   package: nix.thunk(() => nix.sel(pkgs, "retroarch-bare")),
                 })),
               })),
             })),
             displayManager: nix.thunk(() => ({
-              [nix.POS]: pos$7,
-              sddm: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
+              [nix.POS]: $pos[6],
+              sddm: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: true })),
               defaultSession: "RetroArch",
-              autoLogin: nix.thunk(() => ({ [nix.POS]: pos$6, enable: true, user: "alice" })),
+              autoLogin: nix.thunk(() => ({ [nix.POS]: $pos[5], enable: true, user: "alice" })),
             })),
           })),
         };

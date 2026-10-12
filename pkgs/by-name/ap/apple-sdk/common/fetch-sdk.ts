@@ -2,9 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/fetch-sdk.nix", [[["pname", 15, 3], ["version", 16, 11], ["urls", 16, 19], ["hash", 16, 24], ["recursiveHash", 18, 3], ["nativeBuildInputs", 20, 3], ["postFetch", 25, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, cpio: false, pbzx: false }, ellipsis: false };
 const formals$2 = { args: { urls: false, version: false, hash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/fetch-sdk.nix", [["pname", 15, 3], ["version", 16, 11], ["urls", 16, 19], ["hash", 16, 24], ["recursiveHash", 18, 3], ["nativeBuildInputs", 20, 3], ["postFetch", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
     const version = nix.arg($_1, "version");
     const hash = nix.arg($_1, "hash");
     return nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         pname: "macOS-SDK",
         version: version,
         urls: urls,

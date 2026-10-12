@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 20, 5], ["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["updateScript", 55, 12]], [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["platforms", 63, 5], ["maintainers", 64, 5], ["mainProgram", 65, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 19, 3], ["pyproject", 27, 3], ["build-system", 28, 3], ["dependencies", 32, 3], ["makeWrapperArgs", 38, 3], ["passthru", 55, 3], ["__structuredAttrs", 57, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { bzip2: false, dtc: false, fetchFromGitLab: false, gzip: false, lib: false, lz4: false, lzop: false, "nix-update-script": false, python3Packages: false, ubootTools: false, "vboot-utils": false, xz: false, zstd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 20, 5], ["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 55, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["platforms", 63, 5], ["maintainers", 64, 5], ["mainProgram", 65, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 19, 3], ["pyproject", 27, 3], ["build-system", 28, 3], ["dependencies", 32, 3], ["makeWrapperArgs", 38, 3], ["passthru", 55, 3], ["__structuredAttrs", 57, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const xz = nix.arg($, "xz");
   const zstd = nix.arg($, "zstd");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "depthcharge-tools",
       version: "0.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.postmarketos.org",
           owner: "postmarketOS",
           repo: "depthcharge-tools",
@@ -55,12 +52,12 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [bzip2, dtc, gzip, lz4, lzop, ubootTools, vboot_utils, xz, zstd]))}`),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Tools to manage the Chrome OS bootloader",
         homepage: "https://gitlab.postmarketos.org/postmarketOS/depthcharge-tools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

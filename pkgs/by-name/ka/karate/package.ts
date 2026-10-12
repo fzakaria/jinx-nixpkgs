@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["description", 28, 5], ["mainProgram", 29, 5], ["longDescription", 30, 5], ["homepage", 38, 5], ["changelog", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["platforms", 42, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["dontUnpack", 17, 3], ["nativeBuildInputs", 19, 3], ["installPhase", 21, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, jre: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 28, 5], ["mainProgram", 29, 5], ["longDescription", 30, 5], ["homepage", 38, 5], ["changelog", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["platforms", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["dontUnpack", 17, 3], ["nativeBuildInputs", 19, 3], ["installPhase", 21, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "karate";
       const version = "2.1.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/karatelabs/karate/releases/download/v${version}/karate-${version}.jar`),
           sha256: "sha256-XrDmWpl1aforNvsnJU4V4TUUoCTU+7D8NTgTrJHjmOE=",
         }))));
@@ -29,7 +27,7 @@ makeWrapper ${jre}/bin/java $out/bin/karate --add-flags "-jar $src"
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "API Test Automation Made Simple",
         mainProgram: "karate",
         longDescription: "Karate is the only open-source tool to combine API\ntest-automation, mocks, performance-testing and even UI\nautomation into a single, unified framework. The BDD syntax\npopularized by Cucumber is language-neutral, and easy for even\nnon-programmers. Assertions and HTML reports are built-in, and\nyou can run tests in parallel for speed.\n",
@@ -40,7 +38,7 @@ runHook postInstall
         platforms: nix.thunk(() => nix.sel(jre, "meta", "platforms")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

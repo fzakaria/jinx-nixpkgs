@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["url", 34, 11], ["name", 35, 19], ["hash", 35, 24]], [["NIX_CFLAGS_COMPILE", 100, 7]], [["biosCdrom", 141, 18]], [["tests", 141, 12]], [["homepage", 144, 5], ["description", 145, 5], ["license", 146, 5], ["maintainers", 147, 5], ["platforms", 148, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 22, 3], ["patches", 28, 3], ["postPatch", 60, 3], ["nativeBuildInputs", 69, 3], ["buildInputs", 76, 3], ["enableParallelBuilding", 82, 3], ["hardeningDisable", 84, 3], ["stripDebugList", 90, 3], ["env", 100, 3], ["makeFlags", 102, 3], ["outputs", 125, 3], ["doCheck", 131, 3], ["postInstall", 133, 3], ["passthru", 141, 3], ["meta", 143, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromRepoOrCz: false, "gnu-efi": false, fetchpatch: false, libuuid: false, makeWrapper: false, mtools: false, nasm: false, nixosTests: false, perl: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 34, 11], ["name", 35, 19], ["hash", 35, 24]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 100, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["biosCdrom", 141, 18]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 141, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 144, 5], ["description", 145, 5], ["license", 146, 5], ["maintainers", 147, 5], ["platforms", 148, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 22, 3], ["patches", 28, 3], ["postPatch", 60, 3], ["nativeBuildInputs", 69, 3], ["buildInputs", 76, 3], ["enableParallelBuilding", 82, 3], ["hardeningDisable", 84, 3], ["stripDebugList", 90, 3], ["env", 100, 3], ["makeFlags", 102, 3], ["outputs", 125, 3], ["doCheck", 131, 3], ["postInstall", 133, 3], ["passthru", 141, 3], ["meta", 143, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "syslinux",
       version: "6.04-pre2-unstable-2019-02-07",
       src: nix.thunk(() => nix.app(fetchFromRepoOrCz, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "syslinux",
           rev: "b40487005223a78c3bb4c300ef6c436b3f6ec1f7",
           hash: "sha256-XNC+X7UYxdMQQAg4MLACQLxRNnI5/ZCOiCJrEkKgPeM=",
@@ -38,7 +32,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => (() => {
         const archlinuxCommit = "db7884ec80642781edeead3e3bbd883a15b9b3ce";
         const fetchArchlinuxPatch = (name) => (hash) => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: nix.thunk(() => nix.str`https://gitlab.archlinux.org/archlinux/packaging/packages/syslinux/-/raw/${archlinuxCommit}/${name}`),
             name: name,
             hash: hash,
@@ -63,7 +57,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: false,
       hardeningDisable: nix.thunk(() => ["pic", "stackprotector", "fortify"]),
       stripDebugList: nix.thunk(() => ["bin", "sbin", "share/syslinux/com32"]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-fcommon" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_CFLAGS_COMPILE: "-fcommon" })),
       makeFlags: nix.thunk(() => nix.concat([
         "BINDIR=$(out)/bin",
         "SBINDIR=$(out)/sbin",
@@ -86,14 +80,14 @@ export default nix.lambda((args) => (() => {
 rm -rf $out/share/syslinux/com32
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           biosCdrom: nix.thunk(() => nix.sel(nixosTests, "boot", "biosCdrom")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://www.syslinux.org/",
         description: "Lightweight bootloader",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

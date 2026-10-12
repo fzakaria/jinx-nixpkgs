@@ -2,73 +2,53 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/openbao-agent.nix", [[["maintainers", 5, 8]], [["address", 11, 15]], [["token_file_path", 16, 20]], [["type", 15, 13], ["config", 16, 13]], [["method", 13, 19]], [["contents", 22, 13], ["perms", 27, 13], ["destination", 28, 13]], [["vault", 11, 9], ["auto_auth", 13, 9], ["template", 20, 9]], [["settings", 10, 48]], [["example", 10, 40]], [["instances", 10, 30]], [["openbao-agent", 10, 16]], [["HOME", 38, 21]], [["ExecStart", 39, 23]], [["description", 35, 9], ["wantedBy", 36, 9], ["after", 37, 9], ["environment", 38, 9], ["serviceConfig", 39, 9]], [["openbao-dev", 34, 24]], [["services", 34, 15]], [["BAO_ADDR", 50, 11], ["BAO_TOKEN", 51, 11]], [["systemPackages", 47, 9], ["variables", 48, 9]], [["services", 10, 7], ["systemd", 34, 7], ["environment", 46, 7]], [["machine", 7, 9]], [["name", 3, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 56, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/openbao-agent.nix", [["maintainers", 5, 8]]);
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/openbao-agent.nix", [["address", 11, 15]]);
-const pos$3 = nix.positions(here + "/openbao-agent.nix", [["token_file_path", 16, 20]]);
-const pos$4 = nix.positions(here + "/openbao-agent.nix", [["type", 15, 13], ["config", 16, 13]]);
-const pos$5 = nix.positions(here + "/openbao-agent.nix", [["method", 13, 19]]);
-const pos$6 = nix.positions(here + "/openbao-agent.nix", [["contents", 22, 13], ["perms", 27, 13], ["destination", 28, 13]]);
-const pos$7 = nix.positions(here + "/openbao-agent.nix", [["vault", 11, 9], ["auto_auth", 13, 9], ["template", 20, 9]]);
-const pos$8 = nix.positions(here + "/openbao-agent.nix", [["settings", 10, 48]]);
-const pos$9 = nix.positions(here + "/openbao-agent.nix", [["example", 10, 40]]);
-const pos$10 = nix.positions(here + "/openbao-agent.nix", [["instances", 10, 30]]);
-const pos$11 = nix.positions(here + "/openbao-agent.nix", [["openbao-agent", 10, 16]]);
-const pos$12 = nix.positions(here + "/openbao-agent.nix", [["HOME", 38, 21]]);
-const pos$13 = nix.positions(here + "/openbao-agent.nix", [["ExecStart", 39, 23]]);
-const pos$14 = nix.positions(here + "/openbao-agent.nix", [["description", 35, 9], ["wantedBy", 36, 9], ["after", 37, 9], ["environment", 38, 9], ["serviceConfig", 39, 9]]);
-const pos$15 = nix.positions(here + "/openbao-agent.nix", [["openbao-dev", 34, 24]]);
-const pos$16 = nix.positions(here + "/openbao-agent.nix", [["services", 34, 15]]);
-const pos$17 = nix.positions(here + "/openbao-agent.nix", [["BAO_ADDR", 50, 11], ["BAO_TOKEN", 51, 11]]);
-const pos$18 = nix.positions(here + "/openbao-agent.nix", [["systemPackages", 47, 9], ["variables", 48, 9]]);
-const pos$19 = nix.positions(here + "/openbao-agent.nix", [["services", 10, 7], ["systemd", 34, 7], ["environment", 46, 7]]);
-const pos$20 = nix.positions(here + "/openbao-agent.nix", [["machine", 7, 9]]);
-const pos$21 = nix.positions(here + "/openbao-agent.nix", [["name", 3, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$21,
+    [nix.POS]: $pos[20],
     name: "openbao-agent",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "kiara"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$20,
+      [nix.POS]: $pos[19],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$19,
+          [nix.POS]: $pos[18],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             "openbao-agent": nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               instances: nix.thunk(() => ({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 example: nix.thunk(() => ({
-                  [nix.POS]: pos$8,
+                  [nix.POS]: $pos[7],
                   settings: nix.thunk(() => ({
-                    [nix.POS]: pos$7,
+                    [nix.POS]: $pos[6],
                     vault: nix.thunk(() => ({
-                      [nix.POS]: pos$2,
+                      [nix.POS]: $pos[1],
                       address: nix.thunk(() => nix.sel(config, "environment", "variables", "BAO_ADDR")),
                     })),
                     auto_auth: nix.thunk(() => ({
-                      [nix.POS]: pos$5,
+                      [nix.POS]: $pos[4],
                       method: nix.thunk(() => [
                         nix.thunk(() => ({
-                          [nix.POS]: pos$4,
+                          [nix.POS]: $pos[3],
                           type: "token_file",
                           config: nix.thunk(() => ({
-                            [nix.POS]: pos$3,
+                            [nix.POS]: $pos[2],
                             token_file_path: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "bao-token", nix.thunk(() => nix.sel(config, "environment", "variables", "BAO_TOKEN")))),
                           })),
                         })),
@@ -76,7 +56,7 @@ export default nix.lambda((args) => (() => {
                     })),
                     template: nix.thunk(() => [
                       nix.thunk(() => ({
-                        [nix.POS]: pos$6,
+                        [nix.POS]: $pos[5],
                         contents: "{{- with secret \"secret/example\" }}\n{{ .Data.data.key }}\n{{- end }}\n",
                         perms: "0600",
                         destination: "/example",
@@ -88,17 +68,17 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               "openbao-dev": nix.thunk(() => ({
-                [nix.POS]: pos$14,
+                [nix.POS]: $pos[13],
                 description: "OpenBao dev server",
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 after: nix.thunk(() => ["network.target"]),
-                environment: nix.thunk(() => ({ [nix.POS]: pos$12, HOME: "/root" })),
+                environment: nix.thunk(() => ({ [nix.POS]: $pos[11], HOME: "/root" })),
                 serviceConfig: nix.thunk(() => ({
-                  [nix.POS]: pos$13,
+                  [nix.POS]: $pos[12],
                   ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "openbao")))} server -dev \\
   -dev-root-token-id=${nix.sel(config, "environment", "variables", "BAO_TOKEN")} \\
   -dev-listen-address=127.0.0.1:8200
@@ -108,9 +88,9 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$18,
+            [nix.POS]: $pos[17],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "openbao"))]),
-            variables: nix.thunk(() => ({ [nix.POS]: pos$17, BAO_ADDR: "http://127.0.0.1:8200", BAO_TOKEN: "root" })),
+            variables: nix.thunk(() => ({ [nix.POS]: $pos[16], BAO_ADDR: "http://127.0.0.1:8200", BAO_TOKEN: "root" })),
           })),
         };
       })(), formals$2),

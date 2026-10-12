@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 7], ["repo", 23, 7], ["tag", 24, 7], ["hash", 25, 7]], [["doCheck", 59, 56]], [["updateScript", 50, 7], ["tests", 59, 7]], [["homepage", 63, 7], ["description", 64, 7], ["changelog", 65, 7], ["license", 66, 7], ["maintainers", 67, 7]], [["pname", 16, 5], ["version", 17, 5], ["pyproject", 18, 5], ["src", 21, 5], ["sourceRoot", 28, 5], ["build-system", 30, 5], ["dependencies", 32, 5], ["pythonRelaxDeps", 38, 5], ["nativeCheckInputs", 40, 5], ["pythonImportsCheck", 45, 5], ["doCheck", 47, 5], ["passthru", 49, 5], ["meta", 62, 5]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, deprecated: false, hatchling: false, "importlib-metadata": false, "typing-extensions": false, "opentelemetry-test-utils": false, pytestCheckHook: false, writeScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 7], ["repo", 23, 7], ["tag", 24, 7], ["hash", 25, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["doCheck", 59, 56]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 50, 7], ["tests", 59, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["homepage", 63, 7], ["description", 64, 7], ["changelog", 65, 7], ["license", 66, 7], ["maintainers", 67, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 16, 5], ["version", 17, 5], ["pyproject", 18, 5], ["src", 21, 5], ["sourceRoot", 28, 5], ["build-system", 30, 5], ["dependencies", 32, 5], ["pythonRelaxDeps", 38, 5], ["nativeCheckInputs", 40, 5], ["pythonImportsCheck", 45, 5], ["doCheck", 47, 5], ["passthru", 49, 5], ["meta", 62, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.43.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "open-telemetry",
           repo: "opentelemetry-python",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,14 +36,14 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["opentelemetry"]);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(writeScript, "update.sh", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p nix-update\n\nset -eu -o pipefail\nnix-update --version-regex 'v(.*)' python3Packages.opentelemetry-api\nnix-update python3Packages.opentelemetry-instrumentation\n")),
         tests: nix.thunk(() => nix.attrsDyn({}, [
-          [nix.sel(self, "pname"), nix.thunk(() => nix.app(nix.sel(self, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$2, doCheck: true }))))],
+          [nix.sel(self, "pname"), nix.thunk(() => nix.app(nix.sel(self, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[1], doCheck: true }))))],
         ])),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/open-telemetry/opentelemetry-python/tree/main/opentelemetry-api",
         description: "OpenTelemetry Python API",
         changelog: nix.thunk(() => nix.str`https://github.com/open-telemetry/opentelemetry-python/releases/tag/${nix.sel(src, "tag")}`),
@@ -55,7 +51,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "natsukium"))]),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

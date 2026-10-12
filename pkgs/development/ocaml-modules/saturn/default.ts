@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 27, 5], ["sha512", 28, 5]], [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]], [["version", 20, 11], ["pname", 22, 3], ["minimalOCamlVersion", 24, 3], ["src", 26, 3], ["propagatedBuildInputs", 31, 3], ["doCheck", 36, 3], ["checkInputs", 37, 3], ["nativeCheckInputs", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, ocaml: false, version: true, buildDunePackage: false, backoff: false, domain_shims: false, dscheck: false, mdx: false, "multicore-bench": false, "multicore-magic": false, "multicore-magic-dscheck": false, qcheck: false, "qcheck-alcotest": false, "qcheck-stm": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 27, 5], ["sha512", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 20, 11], ["pname", 22, 3], ["minimalOCamlVersion", 24, 3], ["src", 26, 3], ["propagatedBuildInputs", 31, 3], ["doCheck", 36, 3], ["checkInputs", 37, 3], ["nativeCheckInputs", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const qcheck_alcotest = nix.arg($, "qcheck-alcotest");
   const qcheck_stm = nix.arg($, "qcheck-stm");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: version,
       pname: "saturn",
       minimalOCamlVersion: "4.14",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/ocaml-multicore/saturn/releases/download/${version}/saturn-${version}.tbz`),
           sha512: "925104a4293326d345701e80932ace2b5d2da02ca6406271d33cd54f9e9c6583f35b060bc42c640357c98669f5bc42e8447dbd21614ae02ce5b5efaa8f04a132",
         })))),
@@ -48,7 +46,7 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeCheckInputs: nix.thunk(() => [nix.thunk(() => nix.sel(mdx, "bin"))]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Parallelism-safe data structures for multicore OCaml",
         homepage: "https://github.com/ocaml-multicore/lockfree",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

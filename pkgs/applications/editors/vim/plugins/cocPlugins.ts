@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cocPlugins.nix", [[["pname", 57, 22], ["version", 57, 28], ["meta", 57, 36], ["src", 58, 5]], [["pname", 63, 25], ["version", 63, 31], ["meta", 63, 39], ["src", 64, 5]], [["coc-nginx", 62, 3]]]);
 const formals$1 = { args: { lib: false, buildVimPlugin: false, pkgs: false, "coc-nginx": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/cocPlugins.nix", [["pname", 57, 22], ["version", 57, 28], ["meta", 57, 36], ["src", 58, 5]]);
-const pos$2 = nix.positions(here + "/cocPlugins.nix", [["pname", 63, 25], ["version", 63, 31], ["meta", 63, 39], ["src", 64, 5]]);
-const pos$3 = nix.positions(here + "/cocPlugins.nix", [["coc-nginx", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -56,16 +54,16 @@ export default nix.lambda((args) => (() => {
     return nix.update(nix.app(nix.sel(lib, "genAttrs"), cocPackages, (pkg) => (() => {
         const cocPkg = nix.thunk(() => nix.sel(pkgs, nix.key(nix.force(pkg))));
         return nix.app(buildVimPlugin, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             pname: nix.thunk(() => nix.attr(cocPkg, "pname")),
             version: nix.thunk(() => nix.attr(cocPkg, "version")),
             meta: nix.thunk(() => nix.attr(cocPkg, "meta")),
             src: nix.thunk(() => nix.str`${cocPkg}/lib/node_modules/${nix.sel(cocPkg, "pname")}`),
           })));
       })()), {
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       "coc-nginx": nix.thunk(() => nix.app(buildVimPlugin, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(coc_nginx, "pname")),
           version: nix.thunk(() => nix.attr(coc_nginx, "version")),
           meta: nix.thunk(() => nix.attr(coc_nginx, "meta")),

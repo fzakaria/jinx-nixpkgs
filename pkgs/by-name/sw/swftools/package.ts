@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["description", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["maintainers", 31, 5], ["platforms", 32, 5], ["knownVulnerabilities", 33, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 19, 3], ["buildInputs", 21, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, gccStdenv: false, fetchurl: false, freetype: false, libjpeg: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["maintainers", 31, 5], ["platforms", 32, 5], ["knownVulnerabilities", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 19, 3], ["buildInputs", 21, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,14 +17,14 @@ export default nix.lambda((args) => (() => {
       const pname = "swftools";
       const version = "0.9.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://www.swftools.org/${pname}-${version}.tar.gz`),
           sha256: "1w81dyi81019a6jmnm5z7fzarswng27lg1d4k4d5llxzqszr2s5z",
         }))));
       const patches = nix.thunk(() => [nix.path(here, "./swftools.patch")]);
       const buildInputs = nix.thunk(() => [freetype, libjpeg, zlib]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Collection of SWF manipulation and creation utilities",
         homepage: "http://www.swftools.org/about.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -49,7 +47,7 @@ export default nix.lambda((args) => (() => {
           "CVE-2017-16890",
         ]),
       }));
-      return { [nix.POS]: pos$3, pname, version, src, patches, buildInputs, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, patches, buildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

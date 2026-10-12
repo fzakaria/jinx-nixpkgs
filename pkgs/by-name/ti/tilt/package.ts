@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["src", 28, 13], ["substitutions", 29, 13]], [["owner", 17, 7], ["repo", 18, 7], ["tag", 19, 7], ["hash", 20, 7], ["postFetch", 24, 7]], [["version", 14, 5], ["src", 16, 5]], [["yarn-berry", 40, 61]], [["tilt-assets", 42, 45]]]);
 const formals$1 = { args: { fetchFromGitHub: false, substitute: false, callPackage: false, "yarn-berry": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["src", 28, 13], ["substitutions", 29, 13]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 17, 7], ["repo", 18, 7], ["tag", 19, 7], ["hash", 20, 7], ["postFetch", 24, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 14, 5], ["src", 16, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["yarn-berry", 40, 61]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tilt-assets", 42, 45]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const args_1 = nix.thunk(() => (() => {
     const version = "0.37.7";
     const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         owner: "tilt-dev",
         repo: "tilt",
         tag: nix.thunk(() => nix.str`v${version}`),
         hash: "sha256-0q27Tzb/kA2QWu7NzcrLFpl4HbGUXAosRuKx/9nanS8=",
         postFetch: nix.thunk(() => nix.str`cd $out/web
 patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             src: nix.path(here, "./yarn-fix.patch"),
             substitutions: nix.thunk(() => [
               "--replace-fail",
@@ -35,9 +31,9 @@ patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
           })))}
 `),
       }))));
-    return { [nix.POS]: pos$3, version, src };
+    return { [nix.POS]: $pos[2], version, src };
   })());
-  const tilt_assets = nix.thunk(() => nix.app(callPackage, nix.path(here, "./assets.nix"), nix.thunk(() => nix.update(args_1, { [nix.POS]: pos$4, "yarn-berry": yarn_berry }))));
-  return nix.app(callPackage, nix.path(here, "./binary.nix"), nix.thunk(() => nix.update(args_1, { [nix.POS]: pos$5, "tilt-assets": tilt_assets })));
+  const tilt_assets = nix.thunk(() => nix.app(callPackage, nix.path(here, "./assets.nix"), nix.thunk(() => nix.update(args_1, { [nix.POS]: $pos[3], "yarn-berry": yarn_berry }))));
+  return nix.app(callPackage, nix.path(here, "./binary.nix"), nix.thunk(() => nix.update(args_1, { [nix.POS]: $pos[4], "tilt-assets": tilt_assets })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

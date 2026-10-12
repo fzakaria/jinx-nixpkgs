@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["url", 25, 5], ["hash", 26, 5]], [["homepage", 37, 5], ["description", 38, 5], ["longDescription", 39, 5], ["license", 45, 5], ["maintainers", 46, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 24, 3], ["minimalOCamlVersion", 29, 3], ["propagatedBuildInputs", 31, 3], ["doCheck", 33, 3], ["checkInputs", 34, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchFromGitHub: false, fetchpatch: false, ocaml: false, ounit: false, zarith: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 25, 5], ["hash", 26, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 37, 5], ["description", 38, 5], ["longDescription", 39, 5], ["license", 45, 5], ["maintainers", 46, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 24, 3], ["minimalOCamlVersion", 29, 3], ["propagatedBuildInputs", 31, 3], ["doCheck", 33, 3], ["checkInputs", 34, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const ounit = nix.arg($, "ounit");
   const zarith = nix.arg($, "zarith");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "rfc7748",
       version: "1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "burgerdev",
           repo: "ocaml-rfc7748",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           sha256: "sha256-mgZooyfxrKBVQFn01B8PULmFUW9Zq5HJfgHCSJSkJo4=",
         })))),
       patches: nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "https://github.com/burgerdev/ocaml-rfc7748/commit/f66257bae0317c7b24c4b208ee27ab6eb68460e4.patch",
           hash: "sha256-780yy8gLOwwf7xIKIIIaoGpDPcY7+dZ0jPS4nrkH2s8=",
         })))),
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.08")),
       checkInputs: nix.thunk(() => [ounit]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/burgerdev/ocaml-rfc7748",
         description: "Elliptic Curve Diffie-Hellman on Edwards Curves (X25519, X448)",
         longDescription: "This library implements the ECDH functions 'X25519' and 'X448' as specified\nin RFC 7748, 'Elliptic curves for security'. In the spirit of the original\npublications, the public API is kept as simple as possible to make it easy\nto use and hard to misuse.\n",

@@ -2,64 +2,51 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/standard.nix", [["maintainers", 3, 8]]);
+const $pos = nix.positions(here + "/standard.nix", [[["maintainers", 3, 8]], [["FORCE_HTTPS_URLS", 20, 20]], [["enable", 10, 11], ["domain", 11, 11], ["nginx", 13, 11], ["secretFile", 14, 11], ["settings", 20, 11]], [["pixelfed", 9, 18]], [["memorySize", 24, 24], ["emptyDiskImages", 25, 24]], [["device", 26, 27]], [["DefaultDeviceTimeoutSec", 29, 34]], [["Manager", 29, 26]], [["settings", 29, 17]], [["kernelModules", 30, 21]], [["initrd", 30, 14]], [["services", 9, 9], ["virtualisation", 24, 9], ["swapDevices", 26, 9], ["systemd", 29, 9], ["boot", 30, 9]], [["server", 6, 5]], [["name", 2, 3], ["meta", 3, 3], ["nodes", 5, 3], ["testScript", 34, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/standard.nix", [["FORCE_HTTPS_URLS", 20, 20]]);
-const pos$3 = nix.positions(here + "/standard.nix", [["enable", 10, 11], ["domain", 11, 11], ["nginx", 13, 11], ["secretFile", 14, 11], ["settings", 20, 11]]);
-const pos$4 = nix.positions(here + "/standard.nix", [["pixelfed", 9, 18]]);
-const pos$5 = nix.positions(here + "/standard.nix", [["memorySize", 24, 24], ["emptyDiskImages", 25, 24]]);
-const pos$6 = nix.positions(here + "/standard.nix", [["device", 26, 27]]);
-const pos$7 = nix.positions(here + "/standard.nix", [["DefaultDeviceTimeoutSec", 29, 34]]);
-const pos$8 = nix.positions(here + "/standard.nix", [["Manager", 29, 26]]);
-const pos$9 = nix.positions(here + "/standard.nix", [["settings", 29, 17]]);
-const pos$10 = nix.positions(here + "/standard.nix", [["kernelModules", 30, 21]]);
-const pos$11 = nix.positions(here + "/standard.nix", [["initrd", 30, 14]]);
-const pos$12 = nix.positions(here + "/standard.nix", [["services", 9, 9], ["virtualisation", 24, 9], ["swapDevices", 26, 9], ["systemd", 29, 9], ["boot", 30, 9]]);
-const pos$13 = nix.positions(here + "/standard.nix", [["server", 6, 5]]);
-const pos$14 = nix.positions(here + "/standard.nix", [["name", 2, 3], ["meta", 3, 3], ["nodes", 5, 3], ["testScript", 34, 3]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$14,
+  [nix.POS]: $pos[13],
   name: "pixelfed-standard",
-  meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
+  meta: nix.thunk(() => ({ [nix.POS]: $pos[0], maintainers: [] })),
   nodes: nix.thunk(() => ({
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     server: nix.lambda((args) => (() => {
       const $ = nix.formals(args, formals$1);
       const pkgs = nix.arg($, "pkgs");
       const lib = nix.arg($, "lib");
       return {
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           pixelfed: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             enable: true,
             domain: "pixelfed.local",
             nginx: nix.thunk(() => ({})),
             secretFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "secrets.env", "# Snakeoil secret, can be any random 32-chars secret via CSPRNG.\nAPP_KEY=adKK9EcY8Hcj3PLU7rzG9rJ6KKTOtYfA\n")),
-            settings: nix.thunk(() => ({ [nix.POS]: pos$2, FORCE_HTTPS_URLS: false })),
+            settings: nix.thunk(() => ({ [nix.POS]: $pos[1], FORCE_HTTPS_URLS: false })),
           })),
         })),
         virtualisation: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           memorySize: 2048n,
           emptyDiskImages: nix.thunk(() => [4096n]),
         })),
-        swapDevices: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$6, device: "/dev/vdb" }))]),
+        swapDevices: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[5], device: "/dev/vdb" }))]),
         systemd: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           settings: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             Manager: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               DefaultDeviceTimeoutSec: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), 1800n)),
             })),
           })),
         })),
         boot: nix.thunk(() => ({
-          [nix.POS]: pos$11,
-          initrd: nix.thunk(() => ({ [nix.POS]: pos$10, kernelModules: nix.thunk(() => ["virtio_console"]) })),
+          [nix.POS]: $pos[10],
+          initrd: nix.thunk(() => ({ [nix.POS]: $pos[9], kernelModules: nix.thunk(() => ["virtio_console"]) })),
         })),
       };
     })(), formals$1),

@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 35, 5], ["hash", 36, 5]], [["owner", 44, 5], ["repo", 45, 5], ["tag", 46, 5], ["hash", 47, 5], ["fetchSubmodules", 50, 5]], [["url", 57, 7], ["hash", 58, 7]], [["url", 62, 7], ["hash", 63, 7], ["extraPrefix", 64, 7], ["stripLen", 65, 7]], [["url", 69, 7], ["hash", 70, 7], ["extraPrefix", 71, 7], ["stripLen", 72, 7]], [["NIX_LDFLAGS", 160, 7]], [["updateScript", 162, 12]], [["description", 165, 5], ["license", 166, 5], ["homepage", 167, 5], ["changelog", 168, 5], ["maintainers", 169, 5], ["platforms", 172, 5]], [["pname", 40, 3], ["version", 41, 3], ["src", 43, 3], ["patches", 53, 3], ["prePatch", 76, 3], ["postPatch", 84, 3], ["pythonPath", 98, 3], ["nativeBuildInputs", 104, 3], ["buildInputs", 120, 3], ["mesonFlags", 136, 3], ["dontWrapGApps", 151, 3], ["preFixup", 152, 3], ["postFixup", 155, 3], ["env", 160, 3], ["passthru", 162, 3], ["meta", 164, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchpatch2: false, fetchurl: false, fetchFromGitHub: false, asio_1_32_0: false, glib: false, fmt_11: false, jsoncpp: false, libcap_ng: false, libnl: false, libuuid: false, lz4: false, openssl: false, "pkg-config": false, protobuf: false, python3: false, systemdLibs: false, "tinyxml-2": false, wrapGAppsHook3: false, "gobject-introspection": false, meson: false, ninja: false, gdbuspp: false, cmake: false, git: false, "nix-update-script": false, unzip: false, enableSystemdResolved: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 44, 5], ["repo", 45, 5], ["tag", 46, 5], ["hash", 47, 5], ["fetchSubmodules", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 57, 7], ["hash", 58, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 62, 7], ["hash", 63, 7], ["extraPrefix", 64, 7], ["stripLen", 65, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 69, 7], ["hash", 70, 7], ["extraPrefix", 71, 7], ["stripLen", 72, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 160, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["updateScript", 162, 12]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 165, 5], ["license", 166, 5], ["homepage", 167, 5], ["changelog", 168, 5], ["maintainers", 169, 5], ["platforms", 172, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 40, 3], ["version", 41, 3], ["src", 43, 3], ["patches", 53, 3], ["prePatch", 76, 3], ["postPatch", 84, 3], ["pythonPath", 98, 3], ["nativeBuildInputs", 104, 3], ["buildInputs", 120, 3], ["mesonFlags", 136, 3], ["dontWrapGApps", 151, 3], ["preFixup", 152, 3], ["postFixup", 155, 3], ["env", 160, 3], ["passthru", 162, 3], ["meta", 164, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -45,16 +37,16 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const enableSystemdResolved = nix.argOr($, "enableSystemdResolved", () => true);
   const libfmt_meson_patch = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://wrapdb.mesonbuild.com/v2/fmt_11.2.0-1/get_patch",
       hash: "sha256-ZFvxwzWiRgi0s08W7RC5I3u7ATFIhmj7hkVCAiOeCGw=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "openvpn3",
       version: "27.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "OpenVPN",
           repo: "openvpn3-linux",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -64,19 +56,19 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./0001-handle-result-from-DcoKeyConfig_ParseFromString.patch"),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/OpenVPN/openvpn3-linux/commit/f6b84daf83ef507a78ca4af32bf4a55470ba0043.patch?full_index=1",
             hash: "sha256-nzlZvOOt1T84mZ9odmdIsBsioxvakzKzmRw6+nlwPzs=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://github.com/OpenVPN/openvpn3/commit/f3e7d10dfb787de592a3b50bbe47b8a421c8d185.patch?full_index=1",
             hash: "sha256-17jBA3lWFklxVbu/JoH6VBlBT9BpP4wAlKncGmjLqkc=",
             extraPrefix: "openvpn3-core/",
             stripLen: 1n,
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: "https://github.com/OpenVPN/openvpn3/commit/11ab894befb781a3c255e64a53571f2fd697bdfe.patch?full_index=1",
             hash: "sha256-BNR+n0g6Xkb2iAWloZy6gobxvu/KRhRkCGZJbtZXg4A=",
             extraPrefix: "openvpn3-core/",
@@ -152,13 +144,13 @@ patchShebangs \\
       postFixup: nix.thunk(() => nix.str`wrapPythonPrograms
 wrapPythonProgramsIn "$out/libexec/openvpn3-linux" "$out ${nix.sel(finalAttrs, "pythonPath")}"
 `),
-      env: nix.thunk(() => ({ [nix.POS]: pos$6, NIX_LDFLAGS: "-lpthread" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[5], NIX_LDFLAGS: "-lpthread" })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "OpenVPN 3 Linux client",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),
         homepage: "https://github.com/OpenVPN/openvpn3-linux/",

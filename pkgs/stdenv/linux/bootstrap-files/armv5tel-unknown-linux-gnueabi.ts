@@ -2,19 +2,17 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/armv5tel-unknown-linux-gnueabi.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/armv5tel-unknown-linux-gnueabi.nix", [["url", 17, 5], ["hash", 18, 5], ["executable", 19, 5]]);
-const pos$3 = nix.positions(here + "/armv5tel-unknown-linux-gnueabi.nix", [["bootstrapTools", 12, 3], ["busybox", 16, 3]]);
+const $pos = nix.positions(here + "/armv5tel-unknown-linux-gnueabi.nix", [[["url", 13, 5], ["hash", 14, 5]], [["url", 17, 5], ["hash", 18, 5], ["executable", 19, 5]], [["bootstrapTools", 12, 3], ["busybox", 16, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$3,
+  [nix.POS]: $pos[2],
   bootstrapTools: nix.thunk(() => nix.app(nix.builtins.import(nix.builtins.findFile(nix.builtins.nixPath, "nix/fetchurl.nix")), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "http://tarballs.nixos.org/stdenv/armv5tel-unknown-linux-gnueabi/029dea9aaacf920ce8f7d89e4cf09da31a38d8e1/bootstrap-tools.tar.xz",
       hash: "sha256-+7cdKUThhOb4pVFBjPWFpBbTfn64A/ezkZnP6hEhMRM=",
     })))),
   busybox: nix.thunk(() => nix.app(nix.builtins.import(nix.builtins.findFile(nix.builtins.nixPath, "nix/fetchurl.nix")), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: "http://tarballs.nixos.org/stdenv/armv5tel-unknown-linux-gnueabi/029dea9aaacf920ce8f7d89e4cf09da31a38d8e1/busybox",
       hash: "sha256-vZ3oSKUjGVcx2TJsrKmTX4d+3S4/flD780vFVaaHDGI=",
       executable: true,

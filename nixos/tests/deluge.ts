@@ -2,65 +2,54 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/deluge.nix", [[["maintainers", 5, 5]], [["enable", 14, 11], ["openFirewall", 15, 11]], [["enable", 11, 9], ["package", 12, 9], ["web", 13, 9]], [["deluge", 10, 16]], [["services", 10, 7]], [["allow_remote", 27, 11], ["download_location", 28, 11], ["daemon_port", 29, 11], ["listen_ports", 30, 11]], [["enable", 36, 11], ["port", 37, 11]], [["enable", 22, 9], ["package", 23, 9], ["openFirewall", 24, 9], ["declarative", 25, 9], ["config", 26, 9], ["web", 35, 9], ["authFile", 39, 9]], [["deluge", 21, 16]], [["services", 21, 7]], [["simple", 9, 5], ["declarative", 20, 5]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 49, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/deluge.nix", [["maintainers", 5, 5]]);
-const pos$2 = nix.positions(here + "/deluge.nix", [["enable", 14, 11], ["openFirewall", 15, 11]]);
-const pos$3 = nix.positions(here + "/deluge.nix", [["enable", 11, 9], ["package", 12, 9], ["web", 13, 9]]);
-const pos$4 = nix.positions(here + "/deluge.nix", [["deluge", 10, 16]]);
-const pos$5 = nix.positions(here + "/deluge.nix", [["services", 10, 7]]);
-const pos$6 = nix.positions(here + "/deluge.nix", [["allow_remote", 27, 11], ["download_location", 28, 11], ["daemon_port", 29, 11], ["listen_ports", 30, 11]]);
-const pos$7 = nix.positions(here + "/deluge.nix", [["enable", 36, 11], ["port", 37, 11]]);
-const pos$8 = nix.positions(here + "/deluge.nix", [["enable", 22, 9], ["package", 23, 9], ["openFirewall", 24, 9], ["declarative", 25, 9], ["config", 26, 9], ["web", 35, 9], ["authFile", 39, 9]]);
-const pos$9 = nix.positions(here + "/deluge.nix", [["deluge", 21, 16]]);
-const pos$10 = nix.positions(here + "/deluge.nix", [["services", 21, 7]]);
-const pos$11 = nix.positions(here + "/deluge.nix", [["simple", 9, 5], ["declarative", 20, 5]]);
-const pos$12 = nix.positions(here + "/deluge.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     name: "deluge",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "flokli"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       simple: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           deluge: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             enable: true,
             package: nix.thunk(() => nix.sel(pkgs, "deluge-2_x")),
-            web: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true, openFirewall: true })),
+            web: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true, openFirewall: true })),
           })),
         })),
       })),
       declarative: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           deluge: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             enable: true,
             package: nix.thunk(() => nix.sel(pkgs, "deluge-2_x")),
             openFirewall: true,
             declarative: true,
             config: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               allow_remote: true,
               download_location: "/var/lib/deluge/my-download",
               daemon_port: 58846n,
               listen_ports: nix.thunk(() => [6881n, 6889n]),
             })),
-            web: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true, port: 3142n })),
+            web: nix.thunk(() => ({ [nix.POS]: $pos[6], enable: true, port: 3142n })),
             authFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "deluge-auth", "localclient:a7bef72a890:10\nandrew:password:10\nuser3:anotherpass:5\n")),
           })),
         })),

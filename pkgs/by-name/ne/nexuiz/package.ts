@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 5], ["sha256", 23, 5]], [["name", 58, 7], ["exec", 59, 7], ["icon", 60, 7], ["desktopName", 61, 7], ["comment", 62, 7], ["categories", 63, 7]], [["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["platforms", 74, 5]], [["pname", 18, 3], ["version", 19, 11], ["src", 21, 3], ["nativeBuildInputs", 26, 3], ["postUnpack", 32, 3], ["dontBuild", 38, 3], ["installPhase", 40, 3], ["desktopItems", 56, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, unzip: false, makeBinaryWrapper: false, darkplaces: false, copyDesktopItems: false, makeDesktopItem: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 58, 7], ["exec", 59, 7], ["icon", 60, 7], ["desktopName", 61, 7], ["comment", 62, 7], ["categories", 63, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["platforms", 74, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 11], ["src", 21, 3], ["nativeBuildInputs", 26, 3], ["postUnpack", 32, 3], ["dontBuild", 38, 3], ["installPhase", 40, 3], ["desktopItems", 56, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const version = "2.5.2";
   const version_short = nix.thunk(() => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => [""]), version));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "nexuiz",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/nexuiz/nexuiz-${version_short}.zip`),
           sha256: "0010jrxc68qqinkvdh1qn2b8z3sa5v1kcd8d1m4llp3pr6y7xqm5",
         })))),
@@ -48,7 +45,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "Nexuiz",
             exec: "nexuiz",
             icon: "nexuiz",
@@ -58,7 +55,7 @@ runHook postInstall
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Free fast-paced first-person shooter",
         homepage: "http://www.alientrap.org/games/nexuiz",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

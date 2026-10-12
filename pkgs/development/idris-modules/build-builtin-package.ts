@@ -2,16 +2,15 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/build-builtin-package.nix", [[["description", 22, 5]], [["pname", 8, 11], ["version", 9, 19], ["src", 10, 19], ["noPrelude", 12, 3], ["noBase", 13, 3], ["idrisDeps", 15, 3], ["postUnpack", 17, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { idris: false, "build-idris-package": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/build-builtin-package.nix", [["description", 22, 5]]);
-const pos$2 = nix.positions(here + "/build-builtin-package.nix", [["pname", 8, 11], ["version", 9, 19], ["src", 10, 19], ["noPrelude", 12, 3], ["noBase", 13, 3], ["idrisDeps", 15, 3], ["postUnpack", 17, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const idris = nix.arg($, "idris");
   const build_idris_package = nix.arg($, "build-idris-package");
   return (pname) => (deps) => nix.app(build_idris_package, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: pname,
       version: nix.thunk(() => nix.attr(idris, "version")),
       src: nix.thunk(() => nix.attr(idris, "src")),
@@ -21,7 +20,7 @@ export default nix.lambda((args) => (() => {
       postUnpack: nix.thunk(() => nix.str`sourceRoot=$sourceRoot/libs/${pname}
 `),
       meta: nix.thunk(() => nix.update(nix.sel(idris, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: nix.thunk(() => nix.str`${pname} builtin Idris library`),
       })),
     })));

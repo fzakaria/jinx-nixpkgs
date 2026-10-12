@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/server-lwt-unix.nix", [[["description", 26, 5]], [["pname", 11, 3], ["version", 12, 20], ["src", 12, 28], ["propagatedBuildInputs", 14, 3], ["checkInputs", 19, 3], ["doCheck", 23, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, cohttp: false, "cohttp-lwt-unix": false, http: false, lwt: false, ppx_expect: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/server-lwt-unix.nix", [["description", 26, 5]]);
-const pos$2 = nix.positions(here + "/server-lwt-unix.nix", [["pname", 11, 3], ["version", 12, 20], ["src", 12, 28], ["propagatedBuildInputs", 14, 3], ["checkInputs", 19, 3], ["doCheck", 23, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,14 +14,17 @@ export default nix.lambda((args) => (() => {
   const lwt = nix.arg($, "lwt");
   const ppx_expect = nix.arg($, "ppx_expect");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "cohttp-server-lwt-unix",
       version: nix.thunk(() => nix.attr(cohttp, "version")),
       src: nix.thunk(() => nix.attr(cohttp, "src")),
       propagatedBuildInputs: nix.thunk(() => [http, lwt]),
       checkInputs: nix.thunk(() => [cohttp_lwt_unix, ppx_expect]),
       doCheck: true,
-      meta: nix.thunk(() => nix.update(nix.sel(cohttp, "meta"), { [nix.POS]: pos$1, description: "Lightweight Cohttp + Lwt based HTTP server" })),
+      meta: nix.thunk(() => nix.update(nix.sel(cohttp, "meta"), {
+        [nix.POS]: $pos[0],
+        description: "Lightweight Cohttp + Lwt based HTTP server",
+      })),
     }));
 })(), formals$1);
 //# sourceMappingURL=server-lwt-unix.ts.map

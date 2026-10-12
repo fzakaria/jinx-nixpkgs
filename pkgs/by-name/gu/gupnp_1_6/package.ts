@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 29, 5], ["hash", 30, 5]], [["attrPath", 67, 7], ["packageName", 68, 7]], [["updateScript", 66, 5]], [["homepage", 73, 5], ["description", 74, 5], ["mainProgram", 75, 5], ["license", 76, 5], ["platforms", 77, 5]], [["pname", 19, 3], ["version", 20, 3], ["outputs", 22, 3], ["src", 28, 3], ["depsBuildBuild", 33, 3], ["nativeBuildInputs", 37, 3], ["propagatedBuildInputs", 46, 3], ["mesonFlags", 53, 3], ["doCheck", 58, 3], ["postFixup", 60, 3], ["passthru", 65, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, meson: false, ninja: false, "pkg-config": false, "gobject-introspection": false, vala: false, "gi-docgen": false, glib: false, gssdp_1_6: false, libsoup_3: false, libxml2: false, gnome: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["attrPath", 67, 7], ["packageName", 68, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 66, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 73, 5], ["description", 74, 5], ["mainProgram", 75, 5], ["license", 76, 5], ["platforms", 77, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["outputs", 22, 3], ["src", 28, 3], ["depsBuildBuild", 33, 3], ["nativeBuildInputs", 37, 3], ["propagatedBuildInputs", 46, 3], ["mesonFlags", 53, 3], ["doCheck", 58, 3], ["postFixup", 60, 3], ["passthru", 65, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const libxml2 = nix.arg($, "libxml2");
   const gnome = nix.arg($, "gnome");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gupnp",
       version: "1.6.10",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gupnp/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gupnp-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-oe4Ht7Emc8Mtf8c8oVilDBpNxpqzW2XpTSTTish1NF4=",
         })))),
@@ -42,11 +38,11 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       postFixup: "# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput \"share/doc\" \"$devdoc\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, attrPath: "gupnp_1_6", packageName: "gupnp" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], attrPath: "gupnp_1_6", packageName: "gupnp" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "http://www.gupnp.org/",
         description: "Implementation of the UPnP specification",
         mainProgram: "gupnp-binding-tool-1.6",

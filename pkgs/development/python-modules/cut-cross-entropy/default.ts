@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]], [["transformers", 50, 5], ["all", 51, 5]], [["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["maintainers", 80, 5]], [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 32, 3], ["build-system", 39, 3], ["dependencies", 44, 3], ["optional-dependencies", 49, 3], ["nativeCheckInputs", 66, 3], ["disabledTests", 68, 3], ["pythonImportsCheck", 72, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "setuptools-scm": false, torch: false, triton: false, accelerate: false, datasets: false, fire: false, "huggingface-hub": false, pandas: false, pytestCheckHook: false, tqdm: false, transformers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["transformers", 50, 5], ["all", 51, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["maintainers", 80, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 32, 3], ["build-system", 39, 3], ["dependencies", 44, 3], ["optional-dependencies", 49, 3], ["nativeCheckInputs", 66, 3], ["disabledTests", 68, 3], ["pythonImportsCheck", 72, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const tqdm = nix.arg($, "tqdm");
   const transformers = nix.arg($, "transformers");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cut-cross-entropy",
       version: "25.7.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "apple",
           repo: "ml-cross-entropy",
           rev: "b19a424ed30a05b8261cfa84d83b2601a9454c67",
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
       dependencies: nix.thunk(() => [torch, triton]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         transformers: nix.thunk(() => [transformers]),
         all: nix.thunk(() => [accelerate, datasets, fire, huggingface_hub, pandas, tqdm, transformers]),
       })),
@@ -48,7 +45,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_vocab_parallel"]),
       pythonImportsCheck: nix.thunk(() => ["cut_cross_entropy"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Memory-efficient cross-entropy loss implementation using Cut Cross-Entropy (CCE)",
         homepage: "https://github.com/apple/ml-cross-entropy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "aml")),

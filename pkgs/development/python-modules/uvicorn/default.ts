@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["standard", 41, 25]], [["pytest", 61, 5]], [["tests", 60, 12]], [["homepage", 65, 5], ["changelog", 66, 5], ["description", 67, 5], ["mainProgram", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["outputs", 29, 3], ["build-system", 34, 3], ["dependencies", 36, 3], ["optional-dependencies", 41, 3], ["postInstall", 50, 3], ["pythonImportsCheck", 55, 3], ["doCheck", 58, 3], ["passthru", 60, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, callPackage: false, fetchFromGitHub: false, click: false, h11: false, httptools: false, "python-dotenv": false, pyyaml: false, uvloop: false, watchfiles: false, websockets: false, hatchling: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["standard", 41, 25]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pytest", 61, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 60, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["homepage", 65, 5], ["changelog", 66, 5], ["description", 67, 5], ["mainProgram", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["outputs", 29, 3], ["build-system", 34, 3], ["dependencies", 36, 3], ["optional-dependencies", 41, 3], ["postInstall", 50, 3], ["pythonImportsCheck", 55, 3], ["doCheck", 58, 3], ["passthru", 60, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.51.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "encode",
           repo: "uvicorn",
           tag: version,
@@ -40,21 +35,21 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [hatchling]);
       const dependencies = nix.thunk(() => [click, h11]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         standard: nix.thunk(() => [httptools, python_dotenv, pyyaml, uvloop, watchfiles, websockets]),
       }));
       const postInstall = "mkdir $testsout\ncp -R tests $testsout/tests\n";
       const pythonImportsCheck = nix.thunk(() => ["uvicorn"]);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pytest: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({})))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://www.uvicorn.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/Kludex/uvicorn/blob/${nix.sel(src, "tag")}/docs/release-notes.md`),
         description: "Lightning-fast ASGI server",
@@ -66,7 +61,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         pyproject,

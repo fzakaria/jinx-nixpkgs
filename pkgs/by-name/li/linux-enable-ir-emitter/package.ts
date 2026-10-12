@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["config_dir", 45, 7], ["localstatedir", 46, 7]], [["create_config_dir", 49, 7], ["create_log_dir", 50, 7]], [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["mainProgram", 59, 5], ["platforms", 60, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 34, 3], ["mesonFlags", 43, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, makeWrapper: false, fetchFromGitHub: false, meson: false, ninja: false, "pkg-config": false, argparse: false, gtk3: false, python3: false, spdlog: false, usbutils: false, "yaml-cpp": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["config_dir", 45, 7], ["localstatedir", 46, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["create_config_dir", 49, 7], ["create_log_dir", 50, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["mainProgram", 59, 5], ["platforms", 60, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 34, 3], ["mesonFlags", 43, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const usbutils = nix.arg($, "usbutils");
   const yaml_cpp = nix.arg($, "yaml-cpp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "linux-enable-ir-emitter",
       version: "6.1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "EmixamPP",
           repo: "linux-enable-ir-emitter",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,11 +41,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(python3, "pkgs", "opencv4Full")),
       ]),
       mesonFlags: nix.thunk(() => nix.app(nix.sel(lib, "lists", "flatten"), nix.thunk(() => [
-          nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "mapAttrsToList"), nix.thunk(() => nix.sel(lib, "strings", "mesonOption")), nix.thunk(() => ({ [nix.POS]: pos$2, config_dir: "/var/lib", localstatedir: "/var" })))),
-          nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "mapAttrsToList"), nix.thunk(() => nix.sel(lib, "strings", "mesonBool")), nix.thunk(() => ({ [nix.POS]: pos$3, create_config_dir: false, create_log_dir: false })))),
+          nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "mapAttrsToList"), nix.thunk(() => nix.sel(lib, "strings", "mesonOption")), nix.thunk(() => ({ [nix.POS]: $pos[1], config_dir: "/var/lib", localstatedir: "/var" })))),
+          nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "mapAttrsToList"), nix.thunk(() => nix.sel(lib, "strings", "mesonBool")), nix.thunk(() => ({ [nix.POS]: $pos[2], create_config_dir: false, create_log_dir: false })))),
         ]))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Provides support for infrared cameras that are not directly enabled out-of-the box",
         homepage: "https://github.com/EmixamPP/linux-enable-ir-emitter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

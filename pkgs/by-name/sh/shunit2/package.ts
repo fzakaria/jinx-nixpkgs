@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["function", 51, 9], ["builtin", 61, 9]], [["/usr/bin/od", 65, 9], ["$__SHUNIT_CMD_ECHO_ESC", 73, 9], ["$SHUNIT_CMD_TPUT", 74, 9]], [["eval", 78, 9], ["$_SHUNIT_LINENO_", 85, 9]], [["interpreter", 38, 7], ["scripts", 39, 7], ["inputs", 40, 7], ["fake", 49, 7], ["fix", 63, 7], ["keep", 76, 7], ["execer", 87, 7]], [["shunit", 36, 5]], [["homepage", 95, 5], ["description", 96, 5], ["maintainers", 97, 5], ["license", 101, 5], ["platforms", 102, 5], ["mainProgram", 103, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["installPhase", 24, 3], ["doInstallCheck", 30, 3], ["installCheckPhase", 31, 3], ["solutions", 35, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { lib: false, resholve: false, fetchFromGitHub: false, bash: false, coreutils: false, gnused: false, gnugrep: false, findutils: false, ncurses: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["function", 51, 9], ["builtin", 61, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["/usr/bin/od", 65, 9], ["$__SHUNIT_CMD_ECHO_ESC", 73, 9], ["$SHUNIT_CMD_TPUT", 74, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["eval", 78, 9], ["$_SHUNIT_LINENO_", 85, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["interpreter", 38, 7], ["scripts", 39, 7], ["inputs", 40, 7], ["fake", 49, 7], ["fix", 63, 7], ["keep", 76, 7], ["execer", 87, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["shunit", 36, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["homepage", 95, 5], ["description", 96, 5], ["maintainers", 97, 5], ["license", 101, 5], ["platforms", 102, 5], ["mainProgram", 103, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["installPhase", 24, 3], ["doInstallCheck", 30, 3], ["installCheckPhase", 31, 3], ["solutions", 35, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const findutils = nix.arg($, "findutils");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(resholve, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "shunit2",
       version: "2.1.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kward",
           repo: "shunit2",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,25 +31,25 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installCheckPhase: "$out/bin/shunit2\n",
       solutions: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         shunit: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           interpreter: nix.thunk(() => nix.str`${bash}/bin/sh`),
           scripts: nix.thunk(() => ["bin/shunit2"]),
           inputs: nix.thunk(() => [coreutils, gnused, gnugrep, findutils, ncurses]),
           fake: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             function: nix.thunk(() => ["oneTimeSetUp", "oneTimeTearDown", "setUp", "tearDown", "suite", "noexec"]),
             builtin: nix.thunk(() => ["setopt"]),
           })),
           fix: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             "/usr/bin/od": true,
             $__SHUNIT_CMD_ECHO_ESC: nix.thunk(() => ["echo -e"]),
             $SHUNIT_CMD_TPUT: nix.thunk(() => ["tput"]),
           })),
           keep: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             eval: nix.thunk(() => ["shunit_condition_", "_shunit_test_", "_shunit_prepForSourcing"]),
             $_SHUNIT_LINENO_: true,
           })),
@@ -64,7 +57,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         homepage: "https://github.com/kward/shunit2",
         description: "XUnit based unit test framework for Bourne based shell scripts",
         maintainers: nix.thunk(() => (() => {

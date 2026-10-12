@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 7], ["hash", 15, 7]], [["url", 18, 7], ["hash", 19, 7]], [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["platforms", 39, 5], ["maintainers", 40, 5]], [["pname", 9, 3], ["version", 10, 3], ["srcs", 12, 3], ["nativeBuildInputs", 23, 3], ["sourceRoot", 25, 3], ["installPhase", 27, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 7], ["hash", 15, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 18, 7], ["hash", 19, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["platforms", 39, 5], ["maintainers", 40, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["srcs", 12, 3], ["nativeBuildInputs", 23, 3], ["sourceRoot", 25, 3], ["installPhase", 27, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,17 +12,17 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "onestepback",
       version: "0.997",
       srcs: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`http://www.vide.memoire.free.fr/pages/onestepback/OneStepBack-v${nix.sel(finalAttrs, "version")}.zip`),
             hash: "sha256-uB6pfnTkMKeP71rAvn1olJJeCL84222UT5uxG72sywE=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: nix.thunk(() => nix.str`http://www.vide.memoire.free.fr/pages/onestepback/OneStepBack-wm2-v${nix.sel(finalAttrs, "version")}.zip`),
             hash: "sha256-Zdv4ZrQPficbCxPBKF3RFNavlSn/VV/efiZVUT86zRc=",
           })))),
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: ".",
       installPhase: "runHook preInstall\nmkdir -p  $out/share/themes\ncp -a OneStepBack* $out/share/themes/\nrm $out/share/themes/*/{LICENSE,README*}\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Gtk theme inspired by the NextStep look",
         homepage: "http://www.vide.memoire.free.fr/pages/onestepback",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

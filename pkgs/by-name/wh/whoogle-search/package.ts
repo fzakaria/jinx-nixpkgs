@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 14, 5], ["version", 15, 26], ["hash", 16, 5]], [["whoogle-search", 71, 26]], [["tests", 70, 12]], [["homepage", 75, 5], ["description", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["mainProgram", 79, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["build-system", 19, 3], ["dependencies", 21, 3], ["postInstall", 62, 3], ["passthru", 70, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchPypi: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 14, 5], ["version", 15, 26], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["whoogle-search", 71, 26]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 70, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 75, 5], ["description", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["mainProgram", 79, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["build-system", 19, 3], ["dependencies", 21, 3], ["postInstall", 62, 3], ["passthru", 70, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "whoogle-search",
       version: "1.2.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "whoogle_search",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-Vq8CLElP1P/Lcq98IZHgug7a4+sSSyEL2ih4Y5McAfg=",
@@ -76,14 +72,14 @@ export default nix.lambda((args) => (() => {
 python3 $out/${nix.sel(python3Packages, "python", "sitePackages")}/app/__init__.py
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "whoogle-search": nix.thunk(() => nix.attr(nixosTests, "whoogle-search")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/benbusby/whoogle-search",
         description: "Self-hosted, ad-free, privacy-respecting metasearch engine",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

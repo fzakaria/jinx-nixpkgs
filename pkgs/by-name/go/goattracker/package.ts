@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 16, 5], ["desktopName", 17, 5], ["genericName", 18, 5], ["exec", 19, 5], ["icon", 20, 5], ["categories", 21, 5], ["keywords", 25, 5]], [["url", 41, 5], ["sha256", 42, 5]], [["description", 86, 5], ["homepage", 89, 5], ["downloadPage", 90, 5], ["license", 91, 5], ["mainProgram", 92, 5], ["maintainers", 93, 5], ["platforms", 94, 5]], [["pname", 33, 11], ["version", 34, 3], ["src", 40, 3], ["sourceRoot", 48, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 55, 3], ["makeFlags", 58, 3], ["prePatch", 61, 3], ["preBuild", 66, 3], ["installPhase", 71, 3], ["desktopItems", 83, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, unzip: false, copyDesktopItems: false, makeDesktopItem: false, imagemagick: false, SDL: false, isStereo: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 16, 5], ["desktopName", 17, 5], ["genericName", 18, 5], ["exec", 19, 5], ["icon", 20, 5], ["categories", 21, 5], ["keywords", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 41, 5], ["sha256", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 86, 5], ["homepage", 89, 5], ["downloadPage", 90, 5], ["license", 91, 5], ["mainProgram", 92, 5], ["maintainers", 93, 5], ["platforms", 94, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 33, 11], ["version", 34, 3], ["src", 40, 3], ["sourceRoot", 48, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 55, 3], ["makeFlags", 58, 3], ["prePatch", 61, 3], ["preBuild", 66, 3], ["installPhase", 71, 3], ["desktopItems", 83, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const isStereo = nix.argOr($, "isStereo", () => false);
   const pname = nix.thunk(() => nix.add("goattracker", nix.app(nix.sel(lib, "optionalString"), isStereo, "-stereo")));
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: pname,
       desktopName: nix.thunk(() => nix.add("GoatTracker 2", nix.app(nix.sel(lib, "optionalString"), isStereo, " Stereo"))),
       genericName: "Music Tracker",
@@ -31,11 +28,11 @@ export default nix.lambda((args) => (() => {
       keywords: nix.thunk(() => ["tracker", "music"]),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: nix.thunk(() => (nix.asBool(isStereo) ? "2.77" : "2.77")),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`mirror://sourceforge/goattracker2/GoatTracker_${nix.sel(finalAttrs, "version")}${nix.app(nix.sel(lib, "optionalString"), isStereo, "_Stereo")}.zip`),
           sha256: nix.thunk(() => (nix.asBool(isStereo) ? "1hiig2d152sv9kazwz33i56x1c54h5sh21ipkqnp6qlnwj8x1ksy" : "sha256-lsK9amqzrKL1uxixx2SsbqaawkXK4UACpyzYfFVFYe8=")),
         })))),
@@ -55,7 +52,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [desktopItem]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: nix.thunk(() => nix.add("Crossplatform music editor for creating Commodore 64 music. Uses reSID library by Dag Lem and supports alternatively HardSID & CatWeasel devices", nix.app(nix.sel(lib, "optionalString"), isStereo, " - Stereo version"))),
         homepage: "https://cadaver.github.io/tools.html",
         downloadPage: "https://sourceforge.net/projects/goattracker2/",

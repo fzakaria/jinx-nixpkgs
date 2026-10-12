@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 39, 5], ["repo", 40, 5], ["rev", 41, 5], ["hash", 42, 5]], [["pname", 136, 58]], [["description", 142, 5], ["homepage", 143, 5], ["license", 144, 5], ["platforms", 145, 5], ["maintainers", 146, 5]], [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["patches", 45, 3], ["cmakeFlags", 51, 3], ["outputs", 82, 3], ["buildInputs", 87, 3], ["nativeBuildInputs", 96, 3], ["doCheck", 103, 3], ["ctestFlags", 106, 3], ["nativeCheckInputs", 111, 3], ["postFixup", 116, 3], ["vim", 136, 3], ["meta", 141, 3]]]);
 const formals$1 = { args: { stdenv: false, runCommand: false, lib: false, fetchFromGitHub: false, cmake: false, flex: false, bison: false, systemdLibs: false, boost: false, libedit: false, openssl: false, patchelf: false, "mariadb-connector-c": false, libpq: false, protobuf: false, zlib: false, ctestCheckHook: false, tzdata: false, withMysql: true, withPostgresql: true, withChecker: true, withCompat: true, withLivestatus: true, withNotification: true, withPerfdata: true, withIcingadb: true, withOtel: true, nameSuffix: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 39, 5], ["repo", 40, 5], ["rev", 41, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 136, 58]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 142, 5], ["homepage", 143, 5], ["license", 144, 5], ["platforms", 145, 5], ["maintainers", 146, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["patches", 45, 3], ["cmakeFlags", 51, 3], ["outputs", 82, 3], ["buildInputs", 87, 3], ["nativeBuildInputs", 96, 3], ["doCheck", 103, 3], ["ctestFlags", 106, 3], ["nativeCheckInputs", 111, 3], ["postFixup", 116, 3], ["vim", 136, 3], ["meta", 141, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const withOtel = nix.argOr($, "withOtel", () => true);
   const nameSuffix = nix.argOr($, "nameSuffix", () => "");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: nix.thunk(() => nix.str`icinga2${nameSuffix}`),
       version: "2.16.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "icinga",
           repo: "icinga2",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -103,11 +100,11 @@ icinga2Bin=$out/lib/icinga2/sbin/icinga2
 patchelf --set-rpath $out/lib/icinga2:$(patchelf --print-rpath $icinga2Bin) $icinga2Bin
 `))}
 `),
-      vim: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`vim-icinga2-${nix.sel(finalAttrs, "version")}`), nix.thunk(() => ({ [nix.POS]: pos$2, pname: "vim-icinga2" })), nix.thunk(() => nix.str`mkdir -p $out/share/vim-plugins
+      vim: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`vim-icinga2-${nix.sel(finalAttrs, "version")}`), nix.thunk(() => ({ [nix.POS]: $pos[1], pname: "vim-icinga2" })), nix.thunk(() => nix.str`mkdir -p $out/share/vim-plugins
 cp -r "${nix.sel(finalAttrs, "src")}/tools/syntax/vim" $out/share/vim-plugins/icinga2
 `))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Open source monitoring system",
         homepage: "https://www.icinga.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

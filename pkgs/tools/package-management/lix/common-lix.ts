@@ -2,19 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/common-lix.nix", [[["src", 81, 13], ["version", 82, 5], ["cargoDeps", 83, 5]], [["input", 122, 9], ["__structuredAttrs", 126, 9]], [["VERSION_SUFFIX", 141, 7], ["MESON_PACKAGE_CACHE_DIR", 286, 5], ["NIX_LDFLAGS", 296, 5]], [["rootPaths", 175, 13]], [["closure", 171, 11]], [["nixPackage", 500, 62]], [["selectNixPackage", 501, 58]], [["misc", 500, 7], ["installer", 501, 7]], [["aws-sdk-cpp", 497, 13], ["boehmgc", 497, 25], ["updateScript", 498, 13], ["tests", 499, 5]], [["description", 509, 5], ["longDescription", 510, 5], ["homepage", 517, 5], ["license", 518, 5], ["teams", 519, 5], ["maintainers", 520, 5], ["platforms", 521, 5], ["outputsToInstall", 522, 5], ["mainProgram", 523, 5], ["knownVulnerabilities", 524, 13]], [["pname", 138, 3], ["version", 140, 3], ["env", 141, 3], ["src", 143, 11], ["patches", 143, 15], ["outputs", 145, 3], ["strictDeps", 155, 3], ["disallowedReferences", 156, 3], ["__structuredAttrs", 162, 3], ["builtinDeps", 165, 3], ["dontUseCmakeConfigure", 196, 3], ["nativeBuildInputs", 198, 3], ["buildInputs", 252, 3], ["cargoDeps", 280, 11], ["propagatedBuildInputs", 299, 3], ["postPatch", 305, 3], ["preConfigure", 309, 3], ["mesonBuildType", 333, 3], ["mesonFlags", 335, 3], ["ninjaFlags", 409, 3], ["postInstall", 411, 3], ["postFixup", 441, 3], ["doCheck", 446, 3], ["mesonCheckFlags", 447, 3], ["checkInputs", 451, 3], ["doInstallCheck", 457, 3], ["mesonInstallCheckFlags", 458, 3], ["preInstallCheck", 463, 3], ["installCheckPhase", 471, 3], ["hardeningDisable", 482, 3], ["separateDebugInfo", 490, 3], ["enableParallelBuilding", 491, 3], ["__darwinAllowLocalNetworking", 494, 3], ["passthru", 496, 3], ["pos", 507, 3], ["meta", 508, 3]]]);
 const formals$1 = { args: { lib: false, suffix: true, version: false, src: false, cargoDeps: true, docCargoDeps: true, patches: true, knownVulnerabilities: true, updateScript: true }, ellipsis: false };
 const formals$2 = { args: { stdenv: false, closureInfo: false, runCommand: false, meson: false, bash: false, bison: false, boehmgc: false, boost: false, brotli: false, "busybox-sandbox-shell": false, bzip2: false, callPackage: false, capnproto: false, cargo: false, curl: false, cmake: false, darwin: false, doxygen: false, editline: false, fetchpatch2: false, flex: false, git: false, gtest: false, jq: false, lib: false, libarchive: false, libcpuid: false, libsodium: false, libsystemtap: false, llvmPackages: false, lowdown: false, "lowdown-unsandboxed": false, lsof: false, mercurial: false, mdbook: false, nlohmann_json: false, ninja: false, openssl: false, pkgsStatic: false, rustc: false, "rust-cbindgen": false, toml11: false, pegtl: false, buildPackages: false, "pkg-config": false, rapidcheck: false, sqlite: false, "systemtap-sdt": false, "util-linuxMinimal": false, removeReferencesTo: false, xz: false, yq: false, zstd: false, nixosTests: false, rustPlatform: false, "lix-doc": true, enableDocumentation: true, enableStatic: true, enableStrictLLVMChecks: true, withAWS: true, "aws-c-common": false, "aws-sdk-cpp": false, withDtrace: true, withLibseccomp: true, libseccomp: false, pastaFod: true, passt: false, withPlugins: true, confDir: false, stateDir: false, storeDir: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/common-lix.nix", [["src", 81, 13], ["version", 82, 5], ["cargoDeps", 83, 5]]);
-const pos$2 = nix.positions(here + "/common-lix.nix", [["input", 122, 9], ["__structuredAttrs", 126, 9]]);
-const pos$3 = nix.positions(here + "/common-lix.nix", [["VERSION_SUFFIX", 141, 7], ["MESON_PACKAGE_CACHE_DIR", 286, 5], ["NIX_LDFLAGS", 296, 5]]);
-const pos$4 = nix.positions(here + "/common-lix.nix", [["rootPaths", 175, 13]]);
-const pos$5 = nix.positions(here + "/common-lix.nix", [["closure", 171, 11]]);
-const pos$6 = nix.positions(here + "/common-lix.nix", [["nixPackage", 500, 62]]);
-const pos$7 = nix.positions(here + "/common-lix.nix", [["selectNixPackage", 501, 58]]);
-const pos$8 = nix.positions(here + "/common-lix.nix", [["misc", 500, 7], ["installer", 501, 7]]);
-const pos$9 = nix.positions(here + "/common-lix.nix", [["aws-sdk-cpp", 497, 13], ["boehmgc", 497, 25], ["updateScript", 498, 13], ["tests", 499, 5]]);
-const pos$10 = nix.positions(here + "/common-lix.nix", [["description", 509, 5], ["longDescription", 510, 5], ["homepage", 517, 5], ["license", 518, 5], ["teams", 519, 5], ["maintainers", 520, 5], ["platforms", 521, 5], ["outputsToInstall", 522, 5], ["mainProgram", 523, 5], ["knownVulnerabilities", 524, 13]]);
-const pos$11 = nix.positions(here + "/common-lix.nix", [["pname", 138, 3], ["version", 140, 3], ["env", 141, 3], ["src", 143, 11], ["patches", 143, 15], ["outputs", 145, 3], ["strictDeps", 155, 3], ["disallowedReferences", 156, 3], ["__structuredAttrs", 162, 3], ["builtinDeps", 165, 3], ["dontUseCmakeConfigure", 196, 3], ["nativeBuildInputs", 198, 3], ["buildInputs", 252, 3], ["cargoDeps", 280, 11], ["propagatedBuildInputs", 299, 3], ["postPatch", 305, 3], ["preConfigure", 309, 3], ["mesonBuildType", 333, 3], ["mesonFlags", 335, 3], ["ninjaFlags", 409, 3], ["postInstall", 411, 3], ["postFixup", 441, 3], ["doCheck", 446, 3], ["mesonCheckFlags", 447, 3], ["checkInputs", 451, 3], ["doInstallCheck", 457, 3], ["mesonInstallCheckFlags", 458, 3], ["preInstallCheck", 463, 3], ["installCheckPhase", 471, 3], ["hardeningDisable", 482, 3], ["separateDebugInfo", 490, 3], ["enableParallelBuilding", 491, 3], ["__darwinAllowLocalNetworking", 494, 3], ["passthru", 496, 3], ["pos", 507, 3], ["meta", 508, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -88,7 +78,7 @@ export default nix.lambda((args) => (() => {
     const nixosTests = nix.arg($_1, "nixosTests");
     const rustPlatform = nix.arg($_1, "rustPlatform");
     const lix_doc = nix.argOr($_1, "lix-doc", () => nix.app(callPackage, nix.path(here, "./doc"), nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         src: src,
         version: nix.thunk(() => nix.str`${version}${suffix}`),
         cargoDeps: docCargoDeps,
@@ -115,7 +105,7 @@ export default nix.lambda((args) => (() => {
     const parseToYAML = nix.thunk(() => nix.app(nix.sel(lib_1, "versionAtLeast"), version, "2.93"));
     const usesCapnp = nix.thunk(() => nix.app(nix.sel(lib_1, "versionAtLeast"), version, "2.94"));
     const mesonCrossFile = (deps) => nix.app(runCommand, "lix-cross-file.conf", nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         input: "[project options]\nbuiltin-dep-closure = @deps@\n",
         __structuredAttrs: true,
       })), nix.thunk(() => nix.str`printf "%s" "$input" > $out
@@ -123,11 +113,11 @@ substituteInPlace $out --replace-fail @deps@ "$(cat ${deps})"
 `));
     nix.assert_(nix.app(nix.sel(lib_1, "assertMsg"), nix.thunk(() => (!nix.asBool((nix.asBool(enableStrictLLVMChecks) && nix.asBool(isLLVMOnly))) || nix.asBool(nix.sel(stdenv, "cc", "isClang")))), "Lix upstream strongly discourage the usage of GCC to compile Lix as there's known miscompilations in important places. If you are a compiler developer, please get in touch with us."), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/tools/package-management/lix/common-lix.nix:135:1");
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         pname: "lix",
         version: nix.thunk(() => nix.str`${version}${suffix}`),
         env: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           VERSION_SUFFIX: suffix,
           MESON_PACKAGE_CACHE_DIR: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(finalAttrs, "cargoDeps"), null)) ? nix.str`${nix.sel(finalAttrs, "cargoDeps")}/source-registry-0` : "lix: no `MESON_PACKAGE_CACHE_DIR`, set `cargoDeps`")),
           NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib_1, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isElf")), "-z,noexecstack")),
@@ -142,9 +132,9 @@ substituteInPlace $out --replace-fail @deps@ "$(cat ${deps})"
           ]))),
         __structuredAttrs: true,
         builtinDeps: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")) ? nix.builtins.toFile("lix-static-dep-closure", "[]") : nix.app(runCommand, "lix-builtin-dep-closure", nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             closure: nix.thunk(() => nix.app(closureInfo, nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 rootPaths: nix.thunk(() => nix.app(nix.sel(lib_1, "flatten"), nix.thunk(() => nix.builtins.map((drv) => [
                       nix.thunk(() => nix.selOr(drv, () => [], "out")),
                       nix.thunk(() => nix.selOr(drv, () => [], "lib")),
@@ -276,25 +266,25 @@ find "$out" -type f -exec remove-references-to -t ${nix.sel(stdenv, "cc", "cc", 
         enableParallelBuilding: true,
         __darwinAllowLocalNetworking: true,
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           "aws-sdk-cpp": aws_sdk_cpp,
           boehmgc: boehmgc,
           updateScript: updateScript,
           tests: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             misc: nix.thunk(() => nix.app(nix.sel(nixosTests, "nix-misc", "default", "passthru", "override"), nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 nixPackage: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               })))),
             installer: nix.thunk(() => nix.app(nix.sel(nixosTests, "installer", "simple", "override"), nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 selectNixPackage: (_) => nix.sel(finalAttrs, "finalPackage"),
               })))),
           })),
         })),
         pos: nix.thunk(() => nix.builtins.unsafeGetAttrPos("version", args_1)),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           description: "Powerful package manager that makes package management reliable and reproducible",
           longDescription: "Lix (a fork of Nix) is a powerful package manager for Linux and other Unix systems that\nmakes package management reliable and reproducible. It provides atomic\nupgrades and rollbacks, side-by-side installation of multiple versions of\na package, multi-user package management and easy setup of build\nenvironments.\n",
           homepage: "https://lix.systems",

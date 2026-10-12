@@ -2,12 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["extraArgs", 33, 47]], [["updateScript", 33, 12]], [["changelog", 36, 5], ["description", 37, 5], ["longDescription", 38, 5], ["homepage", 55, 5], ["maintainers", 56, 5], ["license", 57, 5]], [["owner", 14, 3], ["domain", 15, 3], ["version", 16, 3], ["src", 18, 3], ["dependencies", 25, 3], ["passthru", 33, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, buildHomeAssistantComponent: false, fetchFromGitHub: false, construct: false, "paho-mqtt": false, numpy: false, cryptography: false, "psutil-home-assistant": false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 33, 47]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 33, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 36, 5], ["description", 37, 5], ["longDescription", 38, 5], ["homepage", 55, 5], ["maintainers", 56, 5], ["license", 57, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 14, 3], ["domain", 15, 3], ["version", 16, 3], ["src", 18, 3], ["dependencies", 25, 3], ["passthru", 33, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const domain = "xiaomi_home";
       const version = "0.4.7";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "XiaoMi",
           repo: "ha_xiaomi_home",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -33,14 +29,14 @@ export default nix.lambda((args) => (() => {
         }))));
       const dependencies = nix.thunk(() => [construct, paho_mqtt, numpy, cryptography, psutil_home_assistant]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex=^v([0-9.]+)$"]),
           })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/XiaoMi/ha_xiaomi_home/releases/tag/v${version}`),
         description: "Xiaomi Home Integration for Home Assistant",
         longDescription: "Xiaomi Home Integration for Home Assistant depends on additional components, example how to setup in NixOS `configuration.nix`:\n\n```\n{ config, lib, pkgs, ... }:\n{\n  services.home-assistant = {\n    customComponents = [ pkgs.home-assistant-custom-components.xiaomi_home ];\n    extraComponents = [ \"ffmpeg\" \"zeroconf\" ];\n  };\n  # OAuth2 Redirect URL is hardcoded as http://homeassistant.local:8123\n  # Make sure you can access HA via this URL with mDNS\n  services.avahi.hostName = \"homeassistant\";\n  networking.firewall.allowedTCPPorts = [ 8123 ];\n}\n```\n",
@@ -51,7 +47,16 @@ export default nix.lambda((args) => (() => {
         })()),
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
       }));
-      return { [nix.POS]: pos$5, owner, domain, version, src, dependencies, passthru, meta };
+      return {
+        [nix.POS]: $pos[4],
+        owner,
+        domain,
+        version,
+        src,
+        dependencies,
+        passthru,
+        meta,
+      };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

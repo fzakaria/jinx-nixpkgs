@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 39, 5], ["hash", 40, 5]], [["homepage", 99, 5], ["description", 100, 5], ["sourceProvenance", 101, 5], ["license", 102, 5], ["platforms", 103, 5], ["downloadPage", 104, 5], ["maintainers", 105, 5]], [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 49, 3], ["dontUnpack", 51, 3], ["installPhase", 53, 3], ["meta", 98, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, dpkg: false, autoPatchelfHook: false, makeWrapper: false, perl: false, gnused: false, ghostscript: false, file: false, coreutils: false, gnugrep: false, which: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 99, 5], ["description", 100, 5], ["sourceProvenance", 101, 5], ["license", 102, 5], ["platforms", 103, 5], ["downloadPage", 104, 5], ["maintainers", 105, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 49, 3], ["dontUnpack", 51, 3], ["installPhase", 53, 3], ["meta", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "cups-brother-dcpl2550dw";
       const version = "4.0.0-1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf103577/dcpl2550dwpdrv-${version}.i386.deb`),
           hash: "sha256-gGW8KDXlmYSMxvI29pfXd/lusg4rd4HaXiGkbBnUuQY=",
         }))));
@@ -69,7 +67,7 @@ ln -s \\
 runHook postInstall
 `));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://www.brother.com/",
         description: "Brother DCP-L2550DW printer driver",
         sourceProvenance: nix.thunk(() => (() => {
@@ -85,7 +83,7 @@ runHook postInstall
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

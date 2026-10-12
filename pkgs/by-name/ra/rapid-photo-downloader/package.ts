@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["extraArgs", 120, 5]], [["updateScript", 119, 12]], [["description", 124, 5], ["mainProgram", 125, 5], ["homepage", 126, 5], ["license", 127, 5], ["platforms", 128, 5], ["maintainers", 129, 5]], [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["build-system", 36, 3], ["dependencies", 42, 3], ["nativeBuildInputs", 67, 3], ["buildInputs", 74, 3], ["nativeInstallCheckInputs", 87, 3], ["versionCheckProgramArg", 89, 3], ["versionCheckKeepEnvironment", 94, 3], ["preVersionCheck", 98, 3], ["preFixup", 103, 3], ["passthru", 119, 3], ["meta", 123, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3Packages: false, libsForQt5: false, file: false, intltool: false, "gobject-introspection": false, libgudev: false, udisks: false, gexiv2_0_10: false, gst_all_1: false, libnotify: false, ifuse: false, libimobiledevice: false, exiftool: false, "gdk-pixbuf": false, libmediainfo: false, vmtouch: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 120, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 119, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 124, 5], ["mainProgram", 125, 5], ["homepage", 126, 5], ["license", 127, 5], ["platforms", 128, 5], ["maintainers", 129, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["build-system", 36, 3], ["dependencies", 42, 3], ["nativeBuildInputs", 67, 3], ["buildInputs", 74, 3], ["nativeInstallCheckInputs", 87, 3], ["versionCheckProgramArg", 89, 3], ["versionCheckKeepEnvironment", 94, 3], ["preVersionCheck", 98, 3], ["preFixup", 103, 3], ["passthru", 119, 3], ["meta", 123, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "rapid-photo-downloader",
       version: "0.9.37",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "damonlynch",
           repo: "rapid-photo-downloader",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -108,14 +104,14 @@ export default nix.lambda((args) => (() => {
 )
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex=^v([0-9.]+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Photo and video importer for cameras, phones, and memory cards",
         mainProgram: "rapid-photo-downloader",
         homepage: "https://damonlynch.net/rapid/",

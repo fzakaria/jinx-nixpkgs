@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 44, 5], ["repo", 45, 5], ["rev", 46, 5], ["hash", 47, 5]], [["description", 97, 5], ["homepage", 98, 5], ["license", 99, 5], ["maintainers", 100, 5], ["platforms", 104, 5]], [["pname", 40, 3], ["version", 41, 3], ["src", 43, 3], ["postPatch", 58, 3], ["configureFlags", 68, 3], ["buildInputs", 74, 3], ["nativeBuildInputs", 89, 3], ["enableParallelBuilding", 94, 3], ["meta", 96, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, "pkg-config": false, runCommand: false, coreutils: false, gnugrep: false, gnused: false, lm_sensors: false, "net-snmp": false, openssh: false, openssl: false, perl: false, dnsutils: false, libdbi: false, libmysqlclient: false, uriparser: false, zlib: false, openldap: false, procps: false, runtimeShell: false, unixtools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 44, 5], ["repo", 45, 5], ["rev", 46, 5], ["hash", 47, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 97, 5], ["homepage", 98, 5], ["license", 99, 5], ["maintainers", 100, 5], ["platforms", 104, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 40, 3], ["version", 41, 3], ["src", 43, 3], ["postPatch", 58, 3], ["configureFlags", 68, 3], ["buildInputs", 74, 3], ["nativeBuildInputs", 89, 3], ["enableParallelBuilding", 94, 3], ["meta", 96, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -46,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const pname = "monitoring-plugins";
       const version = "2.4.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "monitoring-plugins",
           repo: "monitoring-plugins",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -81,7 +79,7 @@ configureFlagsArray+=(
       const nativeBuildInputs = nix.thunk(() => [autoreconfHook, pkg_config]);
       const enableParallelBuilding = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Official monitoring plugins for Nagios/Icinga/Sensu and others",
         homepage: "https://www.monitoring-plugins.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -95,7 +93,7 @@ configureFlagsArray+=(
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

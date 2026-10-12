@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 46, 5], ["url", 47, 5], ["hash", 48, 5]], [["homepage", 112, 5], ["description", 113, 5], ["sourceProvenance", 114, 5], ["license", 115, 5], ["platforms", 116, 5], ["maintainers", 117, 5]], [["pname", 42, 3], ["version", 43, 3], ["src", 45, 3], ["nativeBuildInputs", 51, 3], ["installPhase", 53, 3], ["dontPatchELF", 63, 3], ["dontBuild", 64, 3], ["preFixup", 66, 3], ["meta", 111, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, requireFile: false, unzip: false, glib: false, systemd: false, nss: false, nspr: false, "gtk3-x11": false, pango: false, atk: false, cairo: false, "gdk-pixbuf": false, libxtst: false, libxscrnsaver: false, libxrender: false, libxrandr: false, libxi: false, libxfixes: false, libxext: false, libxdamage: false, libxcursor: false, libxcomposite: false, libx11: false, libxshmfence: false, libxcb: false, xorg_sys_opengl: false, "util-linux": false, "alsa-lib": false, dbus: false, "at-spi2-atk": false, cups: false, "vivaldi-ffmpeg-codecs": false, libpulseaudio: false, "at-spi2-core": false, libxkbcommon: false, libgbm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 46, 5], ["url", 47, 5], ["hash", 48, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 112, 5], ["description", 113, 5], ["sourceProvenance", 114, 5], ["license", 115, 5], ["platforms", 116, 5], ["maintainers", 117, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 42, 3], ["version", 43, 3], ["src", 45, 3], ["nativeBuildInputs", 51, 3], ["installPhase", 53, 3], ["dontPatchELF", 63, 3], ["dontBuild", 64, 3], ["preFixup", 66, 3], ["meta", 111, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -47,11 +45,11 @@ export default nix.lambda((args) => (() => {
   const libxkbcommon = nix.arg($, "libxkbcommon");
   const libgbm = nix.arg($, "libgbm");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "exodus",
       version: "26.1.5",
       src: nix.thunk(() => nix.app(requireFile, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: nix.thunk(() => nix.str`exodus-linux-x64-${nix.sel(finalAttrs, "version")}.zip`),
           url: nix.thunk(() => nix.str`https://downloads.exodus.com/releases/exodus-linux-x64-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-BClWuL4dTc1lESyEXuDtpGp1K/AxICbpQIaWYLrme1M=",
@@ -103,7 +101,7 @@ export default nix.lambda((args) => (() => {
 `;
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.exodus.io/",
         description: "Top-rated cryptocurrency wallet with Trezor integration and built-in Exchange",
         sourceProvenance: nix.thunk(() => (() => {

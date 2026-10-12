@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["pname", 28, 5], ["version", 29, 13], ["src", 29, 21], ["nativeBuildInputs", 31, 5], ["strictDeps", 36, 5], ["__structuredAttrs", 37, 5], ["dontConfigure", 39, 5], ["dontFixup", 40, 5], ["buildPhase", 42, 5], ["installPhase", 51, 5], ["outputHash", 60, 5], ["outputHashAlgo", 62, 5], ["outputHashMode", 63, 5]], [["extraArgs", 134, 7]], [["node_modules", 132, 13], ["updateScript", 133, 5]], [["description", 142, 5], ["mainProgram", 143, 5], ["longDescription", 144, 5], ["homepage", 149, 5], ["license", 150, 5], ["maintainers", 151, 5], ["platforms", 152, 5]], [["pname", 67, 11], ["version", 67, 17], ["src", 67, 25], ["nativeBuildInputs", 69, 3], ["strictDeps", 75, 3], ["__structuredAttrs", 76, 3], ["postPatch", 78, 3], ["configurePhase", 88, 3], ["buildPhase", 97, 3], ["installPhase", 105, 3], ["nativeInstallCheckInputs", 128, 3], ["doInstallCheck", 129, 3], ["passthru", 131, 3], ["meta", 141, 3]]]);
 const formals$1 = { args: { stdenv: false, bun: false, "nodejs-slim": false, fetchFromGitHub: false, lib: false, "nix-update-script": false, makeWrapper: false, installShellFiles: false, writableTmpDirAsHomeHook: false, versionCheckHook: false, rsync: false, gitMinimal: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 28, 5], ["version", 29, 13], ["src", 29, 21], ["nativeBuildInputs", 31, 5], ["strictDeps", 36, 5], ["__structuredAttrs", 37, 5], ["dontConfigure", 39, 5], ["dontFixup", 40, 5], ["buildPhase", 42, 5], ["installPhase", 51, 5], ["outputHash", 60, 5], ["outputHashAlgo", 62, 5], ["outputHashMode", 63, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 134, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["node_modules", 132, 13], ["updateScript", 133, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 142, 5], ["mainProgram", 143, 5], ["longDescription", 144, 5], ["homepage", 149, 5], ["license", 150, 5], ["maintainers", 151, 5], ["platforms", 152, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 67, 11], ["version", 67, 17], ["src", 67, 25], ["nativeBuildInputs", 69, 3], ["strictDeps", 75, 3], ["__structuredAttrs", 76, 3], ["postPatch", 78, 3], ["configurePhase", 88, 3], ["buildPhase", 97, 3], ["installPhase", 105, 3], ["nativeInstallCheckInputs", 128, 3], ["doInstallCheck", 129, 3], ["passthru", 131, 3], ["meta", 141, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,14 +22,14 @@ export default nix.lambda((args) => (() => {
   const pname = "gitlab-ci-local";
   const version = "4.76.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "firecow",
       repo: "gitlab-ci-local",
       rev: version,
       hash: "sha256-K03nw+8SNnqm4ouOIa3ejUmcsUdVzdGn2jMZY5bKVOI=",
     }))));
   const node_modules = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: nix.thunk(() => nix.str`${pname}-node_modules`),
       version: version,
       src: src,
@@ -50,7 +45,7 @@ export default nix.lambda((args) => (() => {
       outputHashMode: "recursive",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: pname,
       version: version,
       src: src,
@@ -84,15 +79,15 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), nodejs_slim)} $out/bin/gitlab-ci-l
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         node_modules: node_modules,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraArgs: nix.thunk(() => ["--custom-dep", "node_modules"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Run gitlab pipelines locally as shell executor or docker executor",
         mainProgram: "gitlab-ci-local",
         longDescription: "Tired of pushing to test your .gitlab-ci.yml?\nRun gitlab pipelines locally as shell executor or docker executor.\nGet rid of all those dev specific shell scripts and make files.\n",

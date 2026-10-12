@@ -2,14 +2,14 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/translations.nix", [[["url", 3, 3], ["rev", 4, 3], ["hash", 5, 3]]]);
 const formals$1 = { args: { fetchgit: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/translations.nix", [["url", 3, 3], ["rev", 4, 3], ["hash", 5, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const fetchgit = nix.arg($, "fetchgit");
   return nix.app(fetchgit, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://gerrit.libreoffice.org/translations",
       rev: "f79264e77284c75907b4ecedcbb910c5ad0bb2c4",
       hash: "sha256-Axjw2uB3dCboOEUW7cLt8CQKjRC4sA2x+QOtgwD3aPU=",

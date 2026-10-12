@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 31, 45], ["hash", 31, 49]], [["updateScript", 44, 12]], [["description", 47, 5], ["longDescription", 48, 5], ["homepage", 55, 5], ["mainProgram", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["platforms", 59, 5], ["sourceProvenance", 64, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["dontUnpack", 32, 3], ["installPhase", 34, 3], ["passthru", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, writeShellScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 31, 45], ["hash", 31, 49]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 44, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 47, 5], ["longDescription", 48, 5], ["homepage", 55, 5], ["mainProgram", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["platforms", 59, 5], ["sourceProvenance", 64, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["dontUnpack", 32, 3], ["installPhase", 34, 3], ["passthru", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchForSystem = nix.thunk(() => nix.selOr(versionMetadata, () => nix.builtins.throw(nix.thunk(() => nix.str`unsupported system ${nix.sel(stdenv, "system")}`)), nix.key(nix.sel(stdenv, "system"))));
   const wrapper = nix.thunk(() => nix.app(writeShellScript, "sysdig-cli-scanner-wrapper", "for arg in \"$@\"; do\n  # We must not pass --dbpath to the cli in case it has been called with --iac\n  # IaC Scanning does not make use of the vulnerability database\n  if [ \"$arg\" = \"--iac\" ]; then\n    exec @out@/libexec/sysdig-cli-scanner-unwrapped \"$@\"\n  fi\ndone\n\n# --dbpath argument is needed for vulnerability scanning mode, otherwise it tries to download\n# the vulnerability database in the same path as the binary, which is read-only in the case of the\n# nix store\nexec @out@/libexec/sysdig-cli-scanner-unwrapped \\\n  --dbpath=\"$HOME/.cache/sysdig-cli-scanner/\" \"$@\"\n"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "sysdig-cli-scanner",
       version: nix.thunk(() => nix.sel(versionMetadata, "version")),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.attr(fetchForSystem, "url")),
           hash: nix.thunk(() => nix.attr(fetchForSystem, "hash")),
         })))),
@@ -35,9 +32,9 @@ substituteInPlace $out/bin/sysdig-cli-scanner --subst-var out
 
 runHook postInstall
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Tool for scanning container images and directories using Sysdig",
         longDescription: "The Sysdig Vulnerability CLI Scanner, sysdig-cli-scanner, is a versatile tool designed to\nmanually scan container images and directories, whether they are located locally or remotely.\nDepending on your specific use case, you have the flexibility to execute sysdig-cli-scanner\nin Vulnerability Management (VM) mode for image scanning or Infrastructure as Code (IaC) mode\nfor scanning directories.\n",
         homepage: "https://docs.sysdig.com/en/docs/installation/sysdig-secure/install-vulnerability-cli-scanner/",

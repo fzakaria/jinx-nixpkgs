@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["urls", 24, 5], ["hash", 28, 5]], [["name", 48, 7], ["exec", 49, 7], ["icon", 50, 7], ["desktopName", 51, 7], ["comment", 52, 7], ["categories", 53, 7]], [["name", 59, 7], ["exec", 60, 7], ["icon", 61, 7], ["desktopName", 62, 7], ["comment", 63, 7], ["categories", 64, 7]], [["maintainers", 74, 5], ["description", 75, 5], ["longDescription", 76, 5], ["homepage", 81, 5], ["license", 82, 5], ["platforms", 83, 5]], [["version", 20, 3], ["pname", 21, 3], ["src", 23, 3], ["strictDeps", 31, 3], ["__structuredAttrs", 32, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 40, 3], ["enableParallelBuilding", 44, 3], ["desktopItems", 46, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, cmake: false, perl: false, "pkg-config": false, gtk3: false, "gtk3-x11": false, ncurses: false, copyDesktopItems: false, makeDesktopItem: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["urls", 24, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 48, 7], ["exec", 49, 7], ["icon", 50, 7], ["desktopName", 51, 7], ["comment", 52, 7], ["categories", 53, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 59, 7], ["exec", 60, 7], ["icon", 61, 7], ["desktopName", 62, 7], ["comment", 63, 7], ["categories", 64, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["maintainers", 74, 5], ["description", 75, 5], ["longDescription", 76, 5], ["homepage", 81, 5], ["license", 82, 5], ["platforms", 83, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 20, 3], ["pname", 21, 3], ["src", 23, 3], ["strictDeps", 31, 3], ["__structuredAttrs", 32, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 40, 3], ["enableParallelBuilding", 44, 3], ["desktopItems", 46, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const gtk3$ = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.force(gtk3_x11) : nix.force(gtk3)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       version: "0.84",
       pname: "putty",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://the.earth.li/~sgtatham/putty/${nix.sel(finalAttrs, "version")}/putty-${nix.sel(finalAttrs, "version")}.tar.gz`),
             nix.thunk(() => nix.str`ftp://ftp.wayne.edu/putty/putty-website-mirror/${nix.sel(finalAttrs, "version")}/putty-${nix.sel(finalAttrs, "version")}.tar.gz`),
@@ -42,7 +38,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "PuTTY SSH Client",
             exec: "putty",
             icon: "putty",
@@ -51,7 +47,7 @@ export default nix.lambda((args) => (() => {
             categories: nix.thunk(() => ["GTK", "Network"]),
           })))),
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "PuTTY Terminal Emulator",
             exec: "pterm",
             icon: "pterm",
@@ -61,7 +57,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "aprl"))];

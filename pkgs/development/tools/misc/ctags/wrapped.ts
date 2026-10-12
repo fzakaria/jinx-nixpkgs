@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wrapped.nix", [[["ctagsWrapped", 36, 15], ["defaultArgs", 41, 7], ["asLang", 50, 7], ["phpLang", 61, 7], ["jsLang", 74, 7], ["nixLang", 77, 7], ["rubyLang", 83, 7]], [["meta", 31, 21], ["passthru", 33, 5]], [["name", 22, 11], ["executable", 23, 3], ["destination", 24, 3], ["text", 25, 3], ["derivationArgs", 29, 3]]]);
 const formals$1 = { args: { lib: false, ctags: false, writeTextFile: false, runtimeShell: false, ctagsWrapped: false, name: true, args: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/wrapped.nix", [["ctagsWrapped", 36, 15], ["defaultArgs", 41, 7], ["asLang", 50, 7], ["phpLang", 61, 7], ["jsLang", 74, 7], ["nixLang", 77, 7], ["rubyLang", 83, 7]]);
-const pos$2 = nix.positions(here + "/wrapped.nix", [["meta", 31, 21], ["passthru", 33, 5]]);
-const pos$3 = nix.positions(here + "/wrapped.nix", [["name", 22, 11], ["executable", 23, 3], ["destination", 24, 3], ["text", 25, 3], ["derivationArgs", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.sel(ctagsWrapped, "rubyLang")),
     ])));
   return nix.app(writeTextFile, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: name,
       executable: true,
       destination: nix.thunk(() => nix.str`/bin/${name}`),
@@ -32,10 +30,10 @@ export default nix.lambda((args) => (() => {
 exec ${ctags}/bin/ctags ${nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.builtins.map(nix.thunk(() => nix.sel(lib, "escapeShellArg")), args_1)))} "$@"
 `),
       derivationArgs: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         meta: nix.thunk(() => nix.attr(ctags, "meta")),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           ctagsWrapped: ctagsWrapped,
           defaultArgs: nix.thunk(() => [
             "--exclude=.svn",

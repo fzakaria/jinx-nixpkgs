@@ -2,19 +2,17 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/chart-versions.nix", [["url", 3, 5], ["sha256", 4, 5]]);
-const pos$2 = nix.positions(here + "/chart-versions.nix", [["url", 7, 5], ["sha256", 8, 5]]);
-const pos$3 = nix.positions(here + "/chart-versions.nix", [["traefik-crd", 2, 3], ["traefik", 6, 3]]);
+const $pos = nix.positions(here + "/chart-versions.nix", [[["url", 3, 5], ["sha256", 4, 5]], [["url", 7, 5], ["sha256", 8, 5]], [["traefik-crd", 2, 3], ["traefik", 6, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$3,
+  [nix.POS]: $pos[2],
   "traefik-crd": nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     url: "https://k3s.io/k3s-charts/assets/traefik-crd/traefik-crd-40.1.4+up40.1.0.tgz",
     sha256: "0g79q6rb3n3i2v1qw3j5259pjfb9y1g4m9r9wpqrijhrsj2qjn6d",
   })),
   traefik: nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     url: "https://k3s.io/k3s-charts/assets/traefik/traefik-40.1.4+up40.1.0.tgz",
     sha256: "0rvp9ch1rda4iv79hjc6236ldqv9xvzsfrqixbzz3ffmrppczsx9",
   })),

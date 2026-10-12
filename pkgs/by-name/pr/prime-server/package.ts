@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5], ["fetchSubmodules", 23, 5]], [["nativeBuildInputs", 40, 9]], [["simple", 37, 18]], [["tests", 37, 12]], [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 63, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 30, 3], ["propagatedBuildInputs", 31, 3], ["passthru", 37, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, curl: false, zeromq: false, czmq: false, libsodium: false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5], ["fetchSubmodules", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 40, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["simple", 37, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 37, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 63, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 30, 3], ["propagatedBuildInputs", 31, 3], ["passthru", 37, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libsodium = nix.arg($, "libsodium");
   const runCommand = nix.arg($, "runCommand");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "prime-server",
       version: "0.13.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kevinkreiser",
           repo: "prime_server",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,17 +33,17 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libsodium]),
       propagatedBuildInputs: nix.thunk(() => [curl, czmq, zeromq]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           simple: nix.thunk(() => nix.app(runCommand, "prime-server-test", nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage")), curl]),
             })), "prime_serverd tcp://127.0.0.1:8001 1 0 &\npid=$!\ntrap 'kill $pid' EXIT\n\ntest \"$(curl -fsS --retry 30 --retry-delay 1 --retry-connrefused 'http://127.0.0.1:8001/is_prime?possible_prime=17')\" = 17\n\ntouch \"$out\"\n")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Non-blocking (web)server API for distributed computing and SOA based on zeromq",
         homepage: "https://github.com/kevinkreiser/prime_server",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

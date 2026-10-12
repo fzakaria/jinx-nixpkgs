@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["fetchSubmodules", 44, 5], ["hash", 45, 5]], [["tutorials", 72, 5]], [["description", 122, 5], ["homepage", 123, 5], ["license", 124, 5], ["maintainers", 125, 5]], [["pname", 36, 3], ["version", 37, 3], ["pyproject", 38, 3], ["src", 40, 3], ["build-system", 48, 3], ["pythonRelaxDeps", 53, 3], ["dependencies", 56, 3], ["optional-dependencies", 71, 3], ["pythonImportsCheck", 78, 3], ["preCheck", 84, 3], ["nativeCheckInputs", 88, 3], ["disabledTests", 93, 3], ["disabledTestPaths", 112, 3], ["meta", 121, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, pythonAtLeast: false, pybind11: false, setuptools: false, einops: false, matplotlib: false, numpy: false, pandas: false, "pytorch-msssim": false, scipy: false, tomli: false, torch: false, "torch-geometric": false, torchvision: false, tqdm: false, "typing-extensions": false, ipywidgets: false, jupyter: false, plotly: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["fetchSubmodules", 44, 5], ["hash", 45, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["tutorials", 72, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 122, 5], ["homepage", 123, 5], ["license", 124, 5], ["maintainers", 125, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 36, 3], ["version", 37, 3], ["pyproject", 38, 3], ["src", 40, 3], ["build-system", 48, 3], ["pythonRelaxDeps", 53, 3], ["dependencies", 56, 3], ["optional-dependencies", 71, 3], ["pythonImportsCheck", 78, 3], ["preCheck", 84, 3], ["nativeCheckInputs", 88, 3], ["disabledTests", 93, 3], ["disabledTestPaths", 112, 3], ["meta", 121, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,12 +31,12 @@ export default nix.lambda((args) => (() => {
   const plotly = nix.arg($, "plotly");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "compressai",
       version: "1.2.8",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "InterDigitalInc",
           repo: "CompressAI",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -62,7 +59,7 @@ export default nix.lambda((args) => (() => {
         tqdm,
         typing_extensions,
       ]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, tutorials: nix.thunk(() => [ipywidgets, jupyter]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], tutorials: nix.thunk(() => [ipywidgets, jupyter]) })),
       pythonImportsCheck: nix.thunk(() => ["compressai", "compressai._CXX"]),
       preCheck: "rm -rf compressai\n",
       nativeCheckInputs: nix.thunk(() => [plotly, pytestCheckHook]),
@@ -81,7 +78,7 @@ export default nix.lambda((args) => (() => {
           "tests/test_plot.py::test_plot[plotly-ms-ssim-rgb]",
         ]))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "PyTorch library and evaluation platform for end-to-end compression research",
         homepage: "https://github.com/InterDigitalInc/CompressAI",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3Clear")),

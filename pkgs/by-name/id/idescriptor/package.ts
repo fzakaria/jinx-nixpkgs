@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["qt6Support", 27, 5]], [["owner", 52, 5], ["repo", 53, 5], ["tag", 54, 5], ["hash", 55, 5], ["fetchSubmodules", 56, 5]], [["src", 60, 26], ["hash", 61, 5]], [["IDESCRIPTOR_PACKAGE_MANAGER_MESSAGE", 67, 5], ["QT_INCLUDE_PATH", 68, 5], ["QT_LIBRARY_PATH", 69, 5]], [["updateScript", 123, 12]], [["homepage", 126, 5], ["changelog", 127, 5], ["description", 128, 5], ["license", 129, 5], ["platforms", 130, 5], ["maintainers", 131, 5], ["mainProgram", 132, 5]], [["pname", 48, 3], ["version", 49, 3], ["src", 51, 3], ["cargoDeps", 59, 3], ["buildFeatures", 64, 3], ["env", 66, 3], ["nativeBuildInputs", 72, 3], ["buildInputs", 78, 3], ["postInstall", 99, 3], ["preFixup", 116, 3], ["passthru", 123, 3], ["meta", 125, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "nix-update-script": false, cmake: false, "pkg-config": false, avahi: false, "avahi-compat": false, coreutils: false, ffmpeg: false, fuse3: false, glib: false, gst_all_1: false, ifuse: false, libheif: false, libplist: false, libssh2: false, openssl: false, polkit: false, qt6: false, "util-linux": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["qt6Support", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 52, 5], ["repo", 53, 5], ["tag", 54, 5], ["hash", 55, 5], ["fetchSubmodules", 56, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 60, 26], ["hash", 61, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["IDESCRIPTOR_PACKAGE_MANAGER_MESSAGE", 67, 5], ["QT_INCLUDE_PATH", 68, 5], ["QT_LIBRARY_PATH", 69, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 123, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 126, 5], ["changelog", 127, 5], ["description", 128, 5], ["license", 129, 5], ["platforms", 130, 5], ["maintainers", 131, 5], ["mainProgram", 132, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 48, 3], ["version", 49, 3], ["src", 51, 3], ["cargoDeps", 59, 3], ["buildFeatures", 64, 3], ["env", 66, 3], ["nativeBuildInputs", 72, 3], ["buildInputs", 78, 3], ["postInstall", 99, 3], ["preFixup", 116, 3], ["passthru", 123, 3], ["meta", 125, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +28,7 @@ export default nix.lambda((args) => (() => {
   const polkit = nix.arg($, "polkit");
   const qt6 = nix.arg($, "qt6");
   const util_linux = nix.arg($, "util-linux");
-  const gstPluginsGoodQt6 = nix.thunk(() => nix.app(nix.sel(gst_all_1, "gst-plugins-good", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, qt6Support: true }))));
+  const gstPluginsGoodQt6 = nix.thunk(() => nix.app(nix.sel(gst_all_1, "gst-plugins-good", "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], qt6Support: true }))));
   const gstPlugins = nix.thunk(() => (() => {
     const w = nix.withScope(gst_all_1, null);
     return [
@@ -49,11 +43,11 @@ export default nix.lambda((args) => (() => {
   const runtimePrograms = nix.thunk(() => [coreutils, fuse3, ifuse, polkit, util_linux]);
   const qtEnv = nix.thunk(() => nix.app(nix.sel(qt6, "env"), "qt6-idescriptor", nix.thunk(() => [nix.thunk(() => nix.sel(qt6, "qtdeclarative"))])));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "idescriptor",
       version: "0.6.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "iDescriptor",
           repo: "iDescriptor",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,13 +55,13 @@ export default nix.lambda((args) => (() => {
           fetchSubmodules: true,
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-PzXiX6gnTB3fh5LxEJDo3n4PbczjE3pDD3TygrMGG/8=",
         })))),
       buildFeatures: nix.thunk(() => ["package_manager"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         IDESCRIPTOR_PACKAGE_MANAGER_MESSAGE: "Please update iDescriptor with the Nix profile or system configuration that installed it.",
         QT_INCLUDE_PATH: nix.thunk(() => nix.str`${qtEnv}/include`),
         QT_LIBRARY_PATH: nix.thunk(() => nix.str`${qtEnv}/lib`),
@@ -113,11 +107,11 @@ done
 )
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://github.com/iDescriptor/iDescriptor",
         changelog: nix.thunk(() => nix.str`https://github.com/iDescriptor/iDescriptor/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "A cross-platform iDevice management tool",

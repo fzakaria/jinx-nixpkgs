@@ -2,56 +2,25 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["system", 4, 33], ["config", 4, 40]], [["enable", 33, 33]], [["enable", 37, 17], ["configuration", 38, 17]], [["enable", 35, 15], ["openvpn", 36, 15]], [["systemd", 33, 25], ["network", 34, 25]], [["initrd", 33, 18]], [["boot", 33, 13]], [["useBootLoader", 47, 28], ["vlans", 48, 28]], [["nc", 52, 32]], [["ExecStart", 57, 19], ["Type", 58, 19]], [["requiredBy", 54, 17], ["after", 55, 17], ["serviceConfig", 56, 17]], [["nc", 53, 32]], [["enable", 51, 23], ["extraBin", 52, 23], ["services", 53, 23]], [["enable", 79, 19], ["configuration", 80, 19]], [["enable", 69, 17], ["postCommands", 72, 17], ["openvpn", 78, 17]], [["systemd", 51, 15], ["preLVMCommands", 64, 15], ["network", 68, 15]], [["initrd", 50, 18]], [["virtualisation", 47, 13], ["boot", 50, 13]], [["vlans", 90, 28]], [["destination", 102, 19], ["sourcePort", 103, 19]], [["enable", 97, 15], ["internalInterfaces", 98, 15], ["externalInterface", 99, 15], ["forwardPorts", 100, 15]], [["trustedInterfaces", 110, 15], ["allowedUDPPorts", 111, 15]], [["nat", 96, 24], ["firewall", 109, 24]], [["config", 116, 15]], [["testserver", 115, 38]], [["servers", 115, 30]], [["openvpn", 115, 22]], [["virtualisation", 90, 13], ["networking", 96, 13], ["services", 115, 13]], [["vlans", 129, 28]], [["virtualisation", 129, 13]], [["minimalboot", 30, 9], ["ovpnclient", 44, 9], ["ovpnserver", 87, 9], ["testclient", 126, 9]], [["name", 12, 5], ["nodes", 14, 5], ["testScript", 133, 5]]]);
 const formals$1 = { args: { system: true, config: true, pkgs: true, systemdStage1: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["system", 4, 33], ["config", 4, 40]]);
 const formals$2 = { args: { lib: false }, ellipsis: true };
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/default.nix", [["enable", 33, 33]]);
-const pos$3 = nix.positions(here + "/default.nix", [["enable", 37, 17], ["configuration", 38, 17]]);
-const pos$4 = nix.positions(here + "/default.nix", [["enable", 35, 15], ["openvpn", 36, 15]]);
-const pos$5 = nix.positions(here + "/default.nix", [["systemd", 33, 25], ["network", 34, 25]]);
-const pos$6 = nix.positions(here + "/default.nix", [["initrd", 33, 18]]);
-const pos$7 = nix.positions(here + "/default.nix", [["boot", 33, 13]]);
 const formals$4 = { args: {  }, ellipsis: true };
-const pos$8 = nix.positions(here + "/default.nix", [["useBootLoader", 47, 28], ["vlans", 48, 28]]);
-const pos$9 = nix.positions(here + "/default.nix", [["nc", 52, 32]]);
-const pos$10 = nix.positions(here + "/default.nix", [["ExecStart", 57, 19], ["Type", 58, 19]]);
-const pos$11 = nix.positions(here + "/default.nix", [["requiredBy", 54, 17], ["after", 55, 17], ["serviceConfig", 56, 17]]);
-const pos$12 = nix.positions(here + "/default.nix", [["nc", 53, 32]]);
-const pos$13 = nix.positions(here + "/default.nix", [["enable", 51, 23], ["extraBin", 52, 23], ["services", 53, 23]]);
-const pos$14 = nix.positions(here + "/default.nix", [["enable", 79, 19], ["configuration", 80, 19]]);
-const pos$15 = nix.positions(here + "/default.nix", [["enable", 69, 17], ["postCommands", 72, 17], ["openvpn", 78, 17]]);
-const pos$16 = nix.positions(here + "/default.nix", [["systemd", 51, 15], ["preLVMCommands", 64, 15], ["network", 68, 15]]);
-const pos$17 = nix.positions(here + "/default.nix", [["initrd", 50, 18]]);
-const pos$18 = nix.positions(here + "/default.nix", [["virtualisation", 47, 13], ["boot", 50, 13]]);
 const formals$5 = { args: {  }, ellipsis: true };
-const pos$19 = nix.positions(here + "/default.nix", [["vlans", 90, 28]]);
-const pos$20 = nix.positions(here + "/default.nix", [["destination", 102, 19], ["sourcePort", 103, 19]]);
-const pos$21 = nix.positions(here + "/default.nix", [["enable", 97, 15], ["internalInterfaces", 98, 15], ["externalInterface", 99, 15], ["forwardPorts", 100, 15]]);
-const pos$22 = nix.positions(here + "/default.nix", [["trustedInterfaces", 110, 15], ["allowedUDPPorts", 111, 15]]);
-const pos$23 = nix.positions(here + "/default.nix", [["nat", 96, 24], ["firewall", 109, 24]]);
-const pos$24 = nix.positions(here + "/default.nix", [["config", 116, 15]]);
-const pos$25 = nix.positions(here + "/default.nix", [["testserver", 115, 38]]);
-const pos$26 = nix.positions(here + "/default.nix", [["servers", 115, 30]]);
-const pos$27 = nix.positions(here + "/default.nix", [["openvpn", 115, 22]]);
-const pos$28 = nix.positions(here + "/default.nix", [["virtualisation", 90, 13], ["networking", 96, 13], ["services", 115, 13]]);
 const formals$6 = { args: {  }, ellipsis: true };
-const pos$29 = nix.positions(here + "/default.nix", [["vlans", 129, 28]]);
-const pos$30 = nix.positions(here + "/default.nix", [["virtualisation", 129, 13]]);
-const pos$31 = nix.positions(here + "/default.nix", [["minimalboot", 30, 9], ["ovpnclient", 44, 9], ["ovpnserver", 87, 9], ["testclient", 126, 9]]);
-const pos$32 = nix.positions(here + "/default.nix", [["name", 12, 5], ["nodes", 14, 5], ["testScript", 133, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const config = nix.argOr($, "config", () => ({}));
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, config: config }))));
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: $pos[0], system: system, config: config }))));
   const systemdStage1 = nix.arg($, "systemdStage1");
   return nix.app(nix.builtins.import(nix.path(here, "../make-test-python.nix")), nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const lib = nix.arg($_1, "lib");
       return {
-        [nix.POS]: pos$32,
+        [nix.POS]: $pos[31],
         name: "initrd-network-openvpn",
         nodes: nix.thunk(() => (() => {
           const secretblock = nix.thunk(() => nix.str`secret [inline]
@@ -60,21 +29,21 @@ ${nix.app(nix.sel(lib, "readFile"), nix.path(here, "./shared.key"))}
 </secret>
 `);
           return {
-            [nix.POS]: pos$31,
+            [nix.POS]: $pos[30],
             minimalboot: nix.lambda((args_2) => (() => {
               const $_2 = nix.formals(args_2, formals$3);
               return {
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 boot: nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   initrd: nix.thunk(() => ({
-                    [nix.POS]: pos$5,
-                    systemd: nix.thunk(() => ({ [nix.POS]: pos$2, enable: systemdStage1 })),
+                    [nix.POS]: $pos[4],
+                    systemd: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: systemdStage1 })),
                     network: nix.thunk(() => ({
-                      [nix.POS]: pos$4,
+                      [nix.POS]: $pos[3],
                       enable: true,
                       openvpn: nix.thunk(() => ({
-                        [nix.POS]: pos$3,
+                        [nix.POS]: $pos[2],
                         enable: true,
                         configuration: nix.thunk(() => nix.builtins.toFile("initrd.ovpn", "")),
                       })),
@@ -86,27 +55,27 @@ ${nix.app(nix.sel(lib, "readFile"), nix.path(here, "./shared.key"))}
             ovpnclient: nix.lambda((args_2) => (() => {
               const $_2 = nix.formals(args_2, formals$4);
               return {
-                [nix.POS]: pos$18,
-                virtualisation: nix.thunk(() => ({ [nix.POS]: pos$8, useBootLoader: true, vlans: nix.thunk(() => [1n]) })),
+                [nix.POS]: $pos[17],
+                virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[7], useBootLoader: true, vlans: nix.thunk(() => [1n]) })),
                 boot: nix.thunk(() => ({
-                  [nix.POS]: pos$17,
+                  [nix.POS]: $pos[16],
                   initrd: nix.thunk(() => ({
-                    [nix.POS]: pos$16,
+                    [nix.POS]: $pos[15],
                     systemd: nix.thunk(() => ({
-                      [nix.POS]: pos$13,
+                      [nix.POS]: $pos[12],
                       enable: systemdStage1,
                       extraBin: nix.thunk(() => ({
-                        [nix.POS]: pos$9,
+                        [nix.POS]: $pos[8],
                         nc: nix.thunk(() => nix.str`${nix.sel(pkgs, "busybox")}/bin/nc`),
                       })),
                       services: nix.thunk(() => ({
-                        [nix.POS]: pos$12,
+                        [nix.POS]: $pos[11],
                         nc: nix.thunk(() => ({
-                          [nix.POS]: pos$11,
+                          [nix.POS]: $pos[10],
                           requiredBy: nix.thunk(() => ["initrd.target"]),
                           after: nix.thunk(() => ["network.target"]),
                           serviceConfig: nix.thunk(() => ({
-                            [nix.POS]: pos$10,
+                            [nix.POS]: $pos[9],
                             ExecStart: "/bin/nc -p 1234 -lke /bin/echo TESTVALUE",
                             Type: "oneshot",
                           })),
@@ -115,11 +84,11 @@ ${nix.app(nix.sel(lib, "readFile"), nix.path(here, "./shared.key"))}
                     })),
                     preLVMCommands: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(systemdStage1)), "/bin/nc -p 1234 -lke /bin/echo TESTVALUE\n")),
                     network: nix.thunk(() => ({
-                      [nix.POS]: pos$15,
+                      [nix.POS]: $pos[14],
                       enable: true,
                       postCommands: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(systemdStage1)), "/bin/ip addr add 192.168.1.2/24 dev eth1\n")),
                       openvpn: nix.thunk(() => ({
-                        [nix.POS]: pos$14,
+                        [nix.POS]: $pos[13],
                         enable: true,
                         configuration: nix.thunk(() => nix.str`${nix.path(here, "./initrd.ovpn")}`),
                       })),
@@ -131,33 +100,33 @@ ${nix.app(nix.sel(lib, "readFile"), nix.path(here, "./shared.key"))}
             ovpnserver: nix.lambda((args_2) => (() => {
               const $_2 = nix.formals(args_2, formals$5);
               return {
-                [nix.POS]: pos$28,
-                virtualisation: nix.thunk(() => ({ [nix.POS]: pos$19, vlans: nix.thunk(() => [1n, 2n]) })),
+                [nix.POS]: $pos[27],
+                virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[18], vlans: nix.thunk(() => [1n, 2n]) })),
                 networking: nix.thunk(() => ({
-                  [nix.POS]: pos$23,
+                  [nix.POS]: $pos[22],
                   nat: nix.thunk(() => ({
-                    [nix.POS]: pos$21,
+                    [nix.POS]: $pos[20],
                     enable: true,
                     internalInterfaces: nix.thunk(() => ["tun0"]),
                     externalInterface: "eth2",
                     forwardPorts: nix.thunk(() => [
-                      nix.thunk(() => ({ [nix.POS]: pos$20, destination: "10.8.0.2:1234", sourcePort: 12345n })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[19], destination: "10.8.0.2:1234", sourcePort: 12345n })),
                     ]),
                   })),
                   firewall: nix.thunk(() => ({
-                    [nix.POS]: pos$22,
+                    [nix.POS]: $pos[21],
                     trustedInterfaces: nix.thunk(() => ["tun0"]),
                     allowedUDPPorts: nix.thunk(() => [1194n]),
                   })),
                 })),
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$27,
+                  [nix.POS]: $pos[26],
                   openvpn: nix.thunk(() => ({
-                    [nix.POS]: pos$26,
+                    [nix.POS]: $pos[25],
                     servers: nix.thunk(() => ({
-                      [nix.POS]: pos$25,
+                      [nix.POS]: $pos[24],
                       testserver: nix.thunk(() => ({
-                        [nix.POS]: pos$24,
+                        [nix.POS]: $pos[23],
                         config: nix.thunk(() => nix.str`dev tun0
 ifconfig 10.8.0.1 10.8.0.2
 cipher AES-256-CBC
@@ -172,8 +141,8 @@ ${secretblock}
             testclient: nix.lambda((args_2) => (() => {
               const $_2 = nix.formals(args_2, formals$6);
               return {
-                [nix.POS]: pos$30,
-                virtualisation: nix.thunk(() => ({ [nix.POS]: pos$29, vlans: nix.thunk(() => [2n]) })),
+                [nix.POS]: $pos[29],
+                virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[28], vlans: nix.thunk(() => [2n]) })),
               };
             })(), formals$6),
           };

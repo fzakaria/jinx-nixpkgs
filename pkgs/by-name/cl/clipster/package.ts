@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["description", 40, 5], ["longDescription", 41, 5], ["license", 59, 5], ["homepage", 60, 5], ["platforms", 61, 5], ["maintainers", 62, 5], ["mainProgram", 63, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["pythonEnv", 23, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 26, 3], ["installPhase", 33, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, stdenv: false, python3: false, gtk3: false, libwnck: false, "gobject-introspection": false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 40, 5], ["longDescription", 41, 5], ["license", 59, 5], ["homepage", 60, 5], ["platforms", 61, 5], ["maintainers", 62, 5], ["mainProgram", 63, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["pythonEnv", 23, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 26, 3], ["installPhase", 33, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "clipster";
       const version = "2.1.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mrichar1",
           repo: "clipster",
           rev: version,
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [pythonEnv, gtk3, libwnck, wrapGAppsHook3]);
       const installPhase = "sed -i 's/python/python3/g' clipster\nmkdir -p $out/bin/\ncp clipster $out/bin/\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Lightweight python clipboard manager",
         longDescription: "Clipster was designed to try to add a good selection of useful features, while avoiding bad design decisions or becoming excessively large.\nIts feature list includes:\n- Event driven, rather than polling. More efficient, helps with power management.\n- Control over when it write to disk, for similar reasons.\n- Command-line options/config for everything.\n- No global keybindings - that's the job of a Window Manager\n- Sensible handling of unusual clipboard events. Some apps (Chrome, Emacs) trigger a clipboard 'update event' for every character you select, rather than just one event when you stop selecting.\n- Preserves the last item in clipboard after an application closes. (Many apps clear the clipboard on exit).\n- Minimal dependencies, no complicated build/install requirements.\n- utf-8 support\n- Proper handling of embedded newlines and control codes.\n- Smart matching of urls, emails, regexes. (extract_*)\n- Option to synchronise the SELECTION and CLIPBOARD clipboards. (sync_selections)\n- Option to track one or both clipboards. (active_selections)\n- Option to ignore clipboard updates form certain applications. (filter_classes)\n- Ability to delete items in clipboard history.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "clipster",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

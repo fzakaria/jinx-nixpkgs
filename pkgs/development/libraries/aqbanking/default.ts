@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 24, 5], ["hash", 25, 13]], [["description", 54, 5], ["homepage", 55, 5], ["hydraPlatforms", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["platforms", 59, 5]], [["pname", 20, 3], ["version", 21, 11], ["src", 23, 3], ["postPatch", 31, 3], ["buildInputs", 38, 3], ["nativeBuildInputs", 48, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, gmp: false, gwenhywfar: false, libtool: false, libxml2: false, libxslt: false, "pkg-config": false, gettext: false, xmlsec: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 24, 5], ["hash", 25, 13]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 54, 5], ["homepage", 55, 5], ["hydraPlatforms", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["platforms", 59, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 11], ["src", 23, 3], ["postPatch", 31, 3], ["buildInputs", 38, 3], ["nativeBuildInputs", 48, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pname = "aqbanking";
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.aquamaniac.de/rdm/attachments/download/${releaseId}/aqbanking-${version_1}.tar.gz`),
           hash: hash,
         }))));
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [gmp, gwenhywfar, libtool, libxml2, libxslt, xmlsec, zlib]);
       const nativeBuildInputs = nix.thunk(() => [pkg_config, gettext]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Interface to banking tasks, file formats and country information",
         homepage: "https://www.aquamaniac.de/rdm/",
         hydraPlatforms: [],
@@ -46,7 +44,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version: version_1,
         src,

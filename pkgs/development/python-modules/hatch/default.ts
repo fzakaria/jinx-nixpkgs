@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 55, 5], ["repo", 56, 5], ["tag", 57, 5], ["hash", 58, 5]], [["uv", 63, 7]], [["extraArgs", 243, 7]], [["updateScript", 242, 5]], [["description", 251, 5], ["homepage", 252, 5], ["changelog", 253, 5], ["license", 254, 5], ["maintainers", 255, 5], ["mainProgram", 256, 5]], [["pname", 50, 3], ["version", 51, 3], ["pyproject", 52, 3], ["src", 54, 3], ["patches", 61, 3], ["build-system", 67, 3], ["pythonRemoveDeps", 72, 3], ["pythonRelaxDeps", 75, 3], ["dependencies", 78, 3], ["nativeCheckInputs", 100, 3], ["disabledTests", 116, 3], ["disabledTestPaths", 180, 3], ["passthru", 241, 3], ["meta", 250, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, replaceVars: false, uv: false, "hatch-vcs": false, hatchling: false, click: false, httpx: false, hyperlink: false, keyring: false, packaging: false, pexpect: false, platformdirs: false, "pyproject-hooks": false, "python-discovery": false, rich: false, shellingham: false, "tomli-w": false, tomlkit: false, userpath: false, virtualenv: false, pythonOlder: false, "backports-zstd": false, binary: false, cargo: false, "flit-core": false, gitMinimal: false, "pytest-mock": false, "pytest-xdist": false, pytestCheckHook: false, setuptools: false, versionCheckHook: false, writableTmpDirAsHomeHook: false, darwin: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 55, 5], ["repo", 56, 5], ["tag", 57, 5], ["hash", 58, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["uv", 63, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["extraArgs", 243, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["updateScript", 242, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 251, 5], ["homepage", 252, 5], ["changelog", 253, 5], ["license", 254, 5], ["maintainers", 255, 5], ["mainProgram", 256, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 50, 3], ["version", 51, 3], ["pyproject", 52, 3], ["src", 54, 3], ["patches", 61, 3], ["build-system", 67, 3], ["pythonRemoveDeps", 72, 3], ["pythonRelaxDeps", 75, 3], ["dependencies", 78, 3], ["nativeCheckInputs", 100, 3], ["disabledTests", 116, 3], ["disabledTestPaths", 180, 3], ["passthru", 241, 3], ["meta", 250, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -50,19 +45,19 @@ export default nix.lambda((args) => (() => {
   const darwin = nix.arg($, "darwin");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "hatch",
       version: "1.16.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pypa",
           repo: "hatch",
           tag: nix.thunk(() => nix.str`hatch-v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-pUlRy8ar0zXsGGSA1VTZyPiU4LruYp/maU2C5T4E5WI=",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./inject-uv-path.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, uv: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), uv)) })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./inject-uv-path.patch"), nix.thunk(() => ({ [nix.POS]: $pos[1], uv: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), uv)) })))),
       ]),
       "build-system": nix.thunk(() => [hatchling, hatch_vcs]),
       pythonRemoveDeps: nix.thunk(() => ["uv"]),
@@ -172,14 +167,14 @@ export default nix.lambda((args) => (() => {
           "tests/cli/version/test_version.py::test_no_compatibility_check_if_exists",
         ])))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraArgs: nix.thunk(() => ["--version-regex", "hatch-v([0-9.]+)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Modern, extensible Python project manager",
         homepage: "https://hatch.pypa.io/latest/",
         changelog: nix.thunk(() => nix.str`https://github.com/pypa/hatch/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -2,17 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["query", 83, 11], ["expected", 84, 11], ["description", 85, 11]], [["query", 88, 11], ["expected", 89, 11], ["description", 90, 11]], [["query", 93, 11], ["expected", 94, 11], ["description", 95, 11]], [["query", 98, 11], ["expected", 99, 11], ["description", 100, 11]], [["finalPackage", 54, 28], ["withPackages", 55, 7], ["postgresqlExtraSettings", 56, 7], ["sql", 60, 7], ["asserts", 81, 7]], [["extension", 53, 11]], [["updateScript", 51, 5], ["tests", 53, 5]], [["broken", 110, 5], ["changelog", 113, 5], ["description", 114, 5], ["homepage", 115, 5], ["license", 116, 5], ["maintainers", 120, 5], ["platforms", 123, 5]], [["postgresql", 13, 11], ["cargo-pgrx", 14, 3], ["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoHash", 26, 3], ["patches", 28, 3], ["postInstall", 43, 3], ["usePgTestCheckFeature", 48, 3], ["passthru", 50, 3], ["meta", 106, 3]]]);
 const formals$1 = { args: { buildPgrxExtension: false, "cargo-pgrx_0_17_0": false, fetchFromGitHub: false, lib: false, "nix-update-script": false, postgresql: false, postgresqlTestExtension: false, rustc: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["query", 83, 11], ["expected", 84, 11], ["description", 85, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["query", 88, 11], ["expected", 89, 11], ["description", 90, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["query", 93, 11], ["expected", 94, 11], ["description", 95, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["query", 98, 11], ["expected", 99, 11], ["description", 100, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["finalPackage", 54, 28], ["withPackages", 55, 7], ["postgresqlExtraSettings", 56, 7], ["sql", 60, 7], ["asserts", 81, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["extension", 53, 11]]);
-const pos$8 = nix.positions(here + "/package.nix", [["updateScript", 51, 5], ["tests", 53, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["broken", 110, 5], ["changelog", 113, 5], ["description", 114, 5], ["homepage", 115, 5], ["license", 116, 5], ["maintainers", 120, 5], ["platforms", 123, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["postgresql", 13, 11], ["cargo-pgrx", 14, 3], ["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoHash", 26, 3], ["patches", 28, 3], ["postInstall", 43, 3], ["usePgTestCheckFeature", 48, 3], ["passthru", 50, 3], ["meta", 106, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const rustc = nix.arg($, "rustc");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildPgrxExtension, (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       postgresql: postgresql,
       "cargo-pgrx": cargo_pgrx_0_17_0,
       pname: "vectorchord",
       version: "1.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "supervc-stack",
           repo: "VectorChord",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,37 +34,37 @@ export default nix.lambda((args) => (() => {
       postInstall: "cp sql/upgrade/* $out/share/postgresql/extension/\n",
       usePgTestCheckFeature: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           extension: nix.thunk(() => nix.app(postgresqlTestExtension, nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               finalPackage: nix.thunk(() => nix.attr(finalAttrs, "finalPackage")),
               withPackages: nix.thunk(() => ["pgvector"]),
               postgresqlExtraSettings: "shared_preload_libraries = 'vchord'\n",
               sql: "CREATE EXTENSION vchord CASCADE;\n\nCREATE TABLE items (id bigint PRIMARY KEY, embedding vector(3));\nINSERT INTO items (id, embedding) VALUES\n(1, '[1,2,4]'),\n(2, '[1,2,5]'),\n(3, '[0,0,3]'),\n(4, '[0,0,2]'),\n(5, '[0,0,1]');\n\nCREATE INDEX ON items USING vchordrq (embedding vector_l2_ops) WITH (options = $$\nresidual_quantization = true\n[build.internal]\nlists = [4096]\nspherical_centroids = false\n$$);\n\nSET vchordrq.probes = 1;\n",
               asserts: nix.thunk(() => [
                 nix.thunk(() => ({
-                  [nix.POS]: pos$2,
+                  [nix.POS]: $pos[1],
                   query: "SELECT extversion FROM pg_extension WHERE extname = 'vchord'",
                   expected: nix.thunk(() => nix.str`'${nix.sel(finalAttrs, "version")}'`),
                   description: "Expected installed version to match the derivation's version",
                 })),
                 nix.thunk(() => ({
-                  [nix.POS]: pos$3,
+                  [nix.POS]: $pos[2],
                   query: "SELECT id FROM items WHERE embedding <-> '[1,2,3]' = 1",
                   expected: "1",
                   description: "Expected vector of row with ID=1 to have an euclidean distance from [1,2,3] of 1.",
                 })),
                 nix.thunk(() => ({
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   query: "SELECT id FROM items WHERE embedding <-> '[1,2,3]' = 2",
                   expected: "2",
                   description: "Expected vector of row with ID=2 to have an euclidean distance from [1,2,3] of 2.",
                 })),
                 nix.thunk(() => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   query: "SELECT id FROM items ORDER BY embedding <-> '[2,3,7]' LIMIT 1",
                   expected: "2",
                   description: "Expected vector of row with ID=2 to be the closest to [2,3,7].",
@@ -83,7 +74,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         broken: nix.thunk(() => nix.app(nix.sel(lib, "warnIf"), nix.thunk(() => !nix.eq(nix.sel(finalAttrs, "version"), "1.1.1")), "Is postgresql19Packages.vectorchord still broken?", nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(postgresql, "version")), "19")))),
         changelog: nix.thunk(() => nix.str`https://github.com/supervc-stack/VectorChord/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Scalable, fast, and disk-friendly vector search in Postgres, the successor of pgvecto.rs",

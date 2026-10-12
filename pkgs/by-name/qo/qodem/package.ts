@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["url", 28, 7], ["hash", 29, 7]], [["url", 35, 7], ["hash", 36, 7]], [["url", 42, 7], ["hash", 43, 7]], [["homepage", 74, 5], ["description", 75, 5], ["longDescription", 76, 5], ["changelog", 83, 5], ["maintainers", 84, 5], ["sourceProvenance", 85, 5], ["license", 86, 5], ["platforms", 87, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 54, 3], ["configureFlags", 63, 3], ["strictDeps", 67, 3], ["enableParallelBuilding", 69, 3], ["__structuredAttrs", 71, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, fetchpatch2: false, autoreconfHook: false, ncurses: false, SDL: false, gpm: false, miniupnpc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 28, 7], ["hash", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 35, 7], ["hash", 36, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 42, 7], ["hash", 43, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 74, 5], ["description", 75, 5], ["longDescription", 76, 5], ["changelog", 83, 5], ["maintainers", 84, 5], ["sourceProvenance", 85, 5], ["license", 86, 5], ["platforms", 87, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 54, 3], ["configureFlags", 63, 3], ["strictDeps", 67, 3], ["enableParallelBuilding", 69, 3], ["__structuredAttrs", 71, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const gpm = nix.arg($, "gpm");
   const miniupnpc = nix.arg($, "miniupnpc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "qodem",
       version: "1.0.1-unstable-2022-02-12",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "AutumnMeowMeow",
           repo: "qodem",
           rev: "69cc7458ef23243f790348a4cc503a8173008e55",
@@ -34,17 +29,17 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitlab.com/-/project/6684464/uploads/c2ceaef82d483c13ff9ec64424f3c40a/0001-Fix-ICH-with-count-1.patch",
             hash: "sha256-lCqj4p8onUS4pehQMXS6lbC7JH5dP6sOjDALpasgd2M=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://gitlab.com/-/project/6684464/uploads/462c0b1cf05c3fc2857ce982e62fefcc/0001-Don-t-clear-line-rendition-on-partial-ED.patch",
             hash: "sha256-lSuxP0tUfGa3BjK3ehpdMi16XaGZrdVvAcM2vnjAme8=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://gitlab.com/-/project/6684464/uploads/812bdfdfaee44eed346fcff85f53efbe/0002-DECCOLM-should-clear-line-rendition-attributes.patch",
             hash: "sha256-XO+h5fpBTLLYC3t4FRCy1uFiMkmSXbre4T2NB/FC3uQ=",
           })))),
@@ -57,7 +52,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://qodem.sourceforge.net/",
         description: "Re-implementation of the DOS-era Qmodem serial communications package",
         longDescription: "Qodem is a from-scratch clone implementation of the Qmodem\ncommunications program made popular in the days when Bulletin Board\nSystems ruled the night. Qodem emulates the dialing directory and the\nterminal screen features of Qmodem over both modem and Internet\nconnections.\n",

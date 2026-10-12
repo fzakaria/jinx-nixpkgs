@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["webhook", 42, 25]], [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["disabled", 23, 3], ["src", 25, 3], ["build-system", 32, 3], ["dependencies", 34, 3], ["optional-dependencies", 42, 3], ["nativeCheckInputs", 44, 3], ["pythonImportsCheck", 51, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, aiohttp: false, buildPythonPackage: false, cryptography: false, fetchFromGitHub: false, "google-auth": false, "google-auth-oauthlib": false, mashumaro: false, "pytest-aiohttp": false, "pytest-asyncio": false, pytestCheckHook: false, pythonOlder: false, requests: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["webhook", 42, 25]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["disabled", 23, 3], ["src", 25, 3], ["build-system", 32, 3], ["dependencies", 34, 3], ["optional-dependencies", 42, 3], ["nativeCheckInputs", 44, 3], ["pythonImportsCheck", 51, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "google-health-api",
       version: "0.10.0",
       pyproject: true,
       disabled: nix.thunk(() => nix.app(pythonOlder, "3.14")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "allenporter",
           repo: "python-google-health-api",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,11 +36,11 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [aiohttp, google_auth, google_auth_oauthlib, mashumaro, requests]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, webhook: nix.thunk(() => [cryptography]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], webhook: nix.thunk(() => [cryptography]) })),
       nativeCheckInputs: nix.thunk(() => [cryptography, pytest_aiohttp, pytest_asyncio, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["google_health_api"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Asynchronous, type-safe Python client library for the Google Health API",
         homepage: "https://github.com/allenporter/python-google-health-api",
         changelog: nix.thunk(() => nix.str`https://github.com/allenporter/python-google-health-api/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

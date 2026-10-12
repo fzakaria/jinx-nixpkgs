@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5], ["fetchSubmodules", 41, 5]], [["NIX_CFLAGS_COMPILE", 142, 7]], [["description", 145, 5], ["homepage", 146, 5], ["license", 147, 5], ["platforms", 148, 5], ["maintainers", 149, 5]], [["pname", 32, 3], ["version", 34, 3], ["src", 36, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 54, 3], ["propagatedBuildInputs", 76, 3], ["postPatch", 80, 3], ["enableParallelBuilding", 88, 3], ["preConfigure", 91, 3], ["configureFlags", 95, 3], ["preInstall", 102, 3], ["postInstall", 107, 3], ["postCheck", 130, 3], ["postFixup", 134, 3], ["env", 142, 3], ["meta", 144, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, ncurses: false, python3: false, cunit: false, dpdk: false, fuse3: false, libaio: false, libbsd: false, libuuid: false, nasm: false, autoconf: false, automake: false, libtool: false, numactl: false, openssl: false, "pkg-config": false, zlib: false, zstd: false, libpcap: false, libnl: false, elfutils: false, fetchurl: false, jansson: false, ensureNewerSourcesForZipFilesHook: false, runtimeShell: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5], ["fetchSubmodules", 41, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 142, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 145, 5], ["homepage", 146, 5], ["license", 147, 5], ["platforms", 148, 5], ["maintainers", 149, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 34, 3], ["src", 36, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 54, 3], ["propagatedBuildInputs", 76, 3], ["postPatch", 80, 3], ["enableParallelBuilding", 88, 3], ["preConfigure", 91, 3], ["configureFlags", 95, 3], ["preInstall", 102, 3], ["postInstall", 107, 3], ["postCheck", 130, 3], ["postFixup", 134, 3], ["env", 142, 3], ["meta", 144, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const pname = "spdk";
       const version = "26.01";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "spdk",
           repo: "spdk",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -109,9 +106,9 @@ chmod +x  $out/bin/spdk-setup
       const postFixup = nix.thunk(() => nix.str`wrapPythonPrograms
 ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic"))), "# .pc files are not working properly with static linking and might just confuse other build systems\nrm $out/lib/*.a\n")}
 `);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-mssse3" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-mssse3" }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Set of libraries for fast user-mode storage",
         homepage: "https://spdk.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -122,7 +119,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(st
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["withAllEmulators", 16, 5], ["emulators", 17, 5], ["enableLibplayer", 20, 5]], [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["fetchSubmodules", 31, 5], ["hash", 32, 5]], [["url", 94, 5]], [["updateScript", 93, 12]], [["homepage", 98, 5], ["description", 99, 5], ["license", 100, 5], ["maintainers", 101, 5], ["platforms", 102, 5], ["mainProgram", 103, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["postPatch", 35, 3], ["strictDeps", 55, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 61, 3], ["checkInputs", 71, 3], ["makeFlags", 75, 3], ["enableParallelBuilding", 79, 3], ["doCheck", 81, 3], ["installPhase", 83, 3], ["passthru", 93, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, unstableGitUpdater: false, "pkg-config": false, glfw: false, libvgm: false, libx11: false, libxau: false, libxdmcp: false, cppunit: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["withAllEmulators", 16, 5], ["emulators", 17, 5], ["enableLibplayer", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["fetchSubmodules", 31, 5], ["hash", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 94, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 93, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 98, 5], ["description", 99, 5], ["license", 100, 5], ["maintainers", 101, 5], ["platforms", 102, 5], ["mainProgram", 103, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["postPatch", 35, 3], ["strictDeps", 55, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 61, 3], ["checkInputs", 71, 3], ["makeFlags", 75, 3], ["enableParallelBuilding", 79, 3], ["doCheck", 81, 3], ["installPhase", 83, 3], ["passthru", 93, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,17 +19,17 @@ export default nix.lambda((args) => (() => {
   const libxdmcp = nix.arg($, "libxdmcp");
   const cppunit = nix.arg($, "cppunit");
   const libvgm$ = nix.thunk(() => nix.app(nix.sel(libvgm, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       withAllEmulators: false,
       emulators: nix.thunk(() => ["_PRESET_SMD"]),
       enableLibplayer: false,
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "mmlgui",
       version: "210420-preview-unstable-2026-01-09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "superctr",
           repo: "mmlgui",
           rev: "9803a154c5fdbe6e88956e391ea0d5c4eae18cdc",
@@ -51,11 +46,11 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
       installPhase: "runHook preInstall\n\ninstall -Dm755 {,$out/}bin/mmlgui\nmkdir -p $out/share/ctrmml\nmv ctrmml/sample $out/share/ctrmml/\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, url: "https://github.com/superctr/mmlgui.git" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], url: "https://github.com/superctr/mmlgui.git" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/superctr/mmlgui",
         description: "MML (Music Macro Language) editor and compiler GUI, powered by the ctrmml framework",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

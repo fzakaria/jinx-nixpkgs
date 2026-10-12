@@ -2,11 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/metrics.nix", [[["description", 121, 5], ["homepage", 122, 5], ["longDescription", 123, 5]], [["real_time", 193, 5], ["user_time", 194, 5], ["sys_time", 195, 5], ["cpu_percent", 196, 5], ["max_resident_set_kb", 197, 5], ["avg_resident_set_kb", 198, 5], ["avg_total_mem_kb", 199, 5], ["avg_data_kb", 200, 5], ["avg_stack_kb", 201, 5], ["avg_unshared_data_kb", 202, 5], ["avg_shared_text_kb", 203, 5], ["page_faults_major", 204, 5], ["page_faults_minor", 205, 5], ["swaps", 206, 5], ["context_switches_voluntary", 207, 5], ["context_switches_involuntary", 208, 5], ["io_reads", 209, 5], ["io_writes", 210, 5], ["signals_received", 211, 5], ["exit_status", 212, 5], ["command", 213, 5]], [["TIME", 192, 7], ["NIXPKGS_CONFIG", 217, 7]], [["name", 9, 3], ["__structuredAttrs", 12, 3], ["evalSystem", 13, 11], ["nixpkgs", 13, 22], ["outputs", 15, 3], ["nativeBuildInputs", 20, 3], ["dontUnpack", 30, 3], ["configurePhase", 32, 3], ["buildPhase", 43, 3], ["installPhase", 106, 3], ["meta", 120, 3], ["env", 192, 3]]]);
 const formals$1 = { args: { nixpkgs: false, pkgs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/metrics.nix", [["description", 121, 5], ["homepage", 122, 5], ["longDescription", 123, 5]]);
-const pos$2 = nix.positions(here + "/metrics.nix", [["real_time", 193, 5], ["user_time", 194, 5], ["sys_time", 195, 5], ["cpu_percent", 196, 5], ["max_resident_set_kb", 197, 5], ["avg_resident_set_kb", 198, 5], ["avg_total_mem_kb", 199, 5], ["avg_data_kb", 200, 5], ["avg_stack_kb", 201, 5], ["avg_unshared_data_kb", 202, 5], ["avg_shared_text_kb", 203, 5], ["page_faults_major", 204, 5], ["page_faults_minor", 205, 5], ["swaps", 206, 5], ["context_switches_voluntary", 207, 5], ["context_switches_involuntary", 208, 5], ["io_reads", 209, 5], ["io_writes", 210, 5], ["signals_received", 211, 5], ["exit_status", 212, 5], ["command", 213, 5]]);
-const pos$3 = nix.positions(here + "/metrics.nix", [["TIME", 192, 7], ["NIXPKGS_CONFIG", 217, 7]]);
-const pos$4 = nix.positions(here + "/metrics.nix", [["name", 9, 3], ["__structuredAttrs", 12, 3], ["evalSystem", 13, 11], ["nixpkgs", 13, 22], ["outputs", 15, 3], ["nativeBuildInputs", 20, 3], ["dontUnpack", 30, 3], ["configurePhase", 32, 3], ["buildPhase", 43, 3], ["installPhase", 106, 3], ["meta", 120, 3], ["env", 192, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.thunk(() => nix.attr(pkgs, "stdenvNoCC"));
   const evalSystem = "x86_64-linux";
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       name: "nixpkgs-metrics",
       __structuredAttrs: true,
       evalSystem: evalSystem,
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\nrelease=\"$nixpkgs/nixos/release.nix\"\n\nrun() {\n  local name=\"$1\"\n  shift\n\n  echo \"running $@\"\n\n  mkdir -p \"metrics/$name\"\n  local output=\"metrics/$name/output\"\n  local nix_stats=\"metrics/$name/nix-stats.json\"\n  local time_stats=\"metrics/$name/time-stats.json\"\n\n  NIX_SHOW_STATS=1 NIX_SHOW_STATS_PATH=\"$nix_stats\" command time -o \"$time_stats\" -- \"$@\" > \"$output\"\n\n  # Show the Nix statistics and the `time` statistics.\n  echo \"Nix statistics for $@\"\n  jq . \"$nix_stats\"\n  echo\n  echo \"Time statistics for $@\"\n  jq . \"$time_stats\"\n  echo\n\n  cpuTime=\"$(jq '.cpuTime' < \"$nix_stats\")\"\n  [[ -n $cpuTime ]] || exit 1\n  echo \"$name.time $cpuTime s\" >> hydra-metrics\n\n  maxresident=\"$(jq '.max_resident_set_kb' < \"$time_stats\")\"\n  [[ -n $maxresident ]] || exit 1\n  echo \"$name.maxresident $maxresident KiB\" >> hydra-metrics\n\n  # Nix also outputs `.symbols.bytes` but since that wasn't summed originally, we don't count it here.\n  allocations=\"$(jq '[.envs,.list,.values,.sets] | map(.bytes) | add' < \"$nix_stats\")\"\n  [[ -n $allocations ]] || exit 1\n  echo \"$name.allocations $allocations B\" >> hydra-metrics\n\n  values=\"$(jq '.values.number' < \"$nix_stats\")\"\n  [[ -n $values ]] || exit 1\n  echo \"$name.values $values\" >> hydra-metrics\n}\n\nrun nixos.smallContainer nix-instantiate --option eval-system \"$evalSystem\" --dry-run \"$release\" -A closures.smallContainer.x86_64-linux --show-trace --no-gc-warning\nrun nixos.kde nix-instantiate --option eval-system \"$evalSystem\" --dry-run \"$release\" -A closures.kde.x86_64-linux --show-trace --no-gc-warning\nrun nixos.lapp nix-instantiate --option eval-system \"$evalSystem\" --dry-run \"$release\" -A closures.lapp.x86_64-linux --show-trace --no-gc-warning\nrun nix-env.qa nix-env --option eval-system \"$evalSystem\" -f \"$nixpkgs\" -qa\nrun nix-env.qaDrv nix-env --option eval-system \"$evalSystem\" -f \"$nixpkgs\" -qa --drv-path --meta --json\n\n# It's slightly unclear which of the set to track: qaCount, qaCountDrv, qaCountBroken.\nnum=\"$(wc -l < metrics/nix-env.qa/output)\"\necho \"nix-env.qaCount $num\" >> hydra-metrics\nqaCountDrv=\"$(jq -r 'reduce (.[].drvPath? // empty) as $d (0; .+1)' metrics/nix-env.qaDrv/output)\"\nnumBroken=\"$((num - $qaCountDrv))\"\necho \"nix-env.qaCountBroken $numBroken\" >> hydra-metrics\n\nlines=\"$(find \"$nixpkgs\" -name \"*.nix\" -type f -print0 | xargs -0 cat | wc -l)\"\necho \"loc $lines\" >> hydra-metrics\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out/nix-support\ntouch $out/nix-support/hydra-build-products\nmv hydra-metrics $out/nix-support/hydra-metrics\n\n# Save and compress the raw output\nmv metrics $raw\nxz -v $raw/*/output\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Metrics tracked by Hydra about Nixpkgs",
         homepage: "https://hydra.nixos.org/job/nixpkgs/trunk/metrics",
         longDescription: nix.thunk(() => nix.str`View the metrics for Nixpkgs evaluation over time at these URLs.
@@ -102,9 +99,9 @@ This counts the total number of values allocated in Nix (see \`EvalState::allocV
 `),
       })),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         TIME: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             real_time: "%e",
             user_time: "%U",
             sys_time: "%S",

@@ -2,53 +2,45 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cage.nix", [[["maintainers", 6, 5]], [["packages", 15, 13]], [["enable", 18, 9], ["user", 19, 9], ["program", 20, 9]], [["cage", 17, 16]], [["options", 24, 27]], [["qemu", 24, 22]], [["imports", 13, 7], ["fonts", 15, 7], ["services", 17, 7], ["virtualisation", 24, 7]], [["machine", 9, 9]], [["name", 4, 3], ["meta", 5, 3], ["nodes", 9, 3], ["enableOCR", 27, 3], ["testScript", 29, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/cage.nix", [["maintainers", 6, 5]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/cage.nix", [["packages", 15, 13]]);
-const pos$3 = nix.positions(here + "/cage.nix", [["enable", 18, 9], ["user", 19, 9], ["program", 20, 9]]);
-const pos$4 = nix.positions(here + "/cage.nix", [["cage", 17, 16]]);
-const pos$5 = nix.positions(here + "/cage.nix", [["options", 24, 27]]);
-const pos$6 = nix.positions(here + "/cage.nix", [["qemu", 24, 22]]);
-const pos$7 = nix.positions(here + "/cage.nix", [["imports", 13, 7], ["fonts", 15, 7], ["services", 17, 7], ["virtualisation", 24, 7]]);
-const pos$8 = nix.positions(here + "/cage.nix", [["machine", 9, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$9 = nix.positions(here + "/cage.nix", [["name", 4, 3], ["meta", 5, 3], ["nodes", 9, 3], ["enableOCR", 27, 3], ["testScript", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     name: "cage",
-    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: $pos[0], maintainers: [] })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
           fonts: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             packages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [nix.thunk(() => nix.lookup(w, "dejavu_fonts"))];
             })()),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             cage: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               enable: true,
               user: "alice",
               program: nix.thunk(() => nix.str`${nix.sel(pkgs, "xterm")}/bin/xterm`),
             })),
           })),
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             qemu: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               options: nix.thunk(() => ["-vga none -device virtio-gpu-pci"]),
             })),
           })),

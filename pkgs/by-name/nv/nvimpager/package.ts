@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]], [["description", 64, 5], ["longDescription", 65, 5], ["homepage", 70, 5], ["license", 71, 5], ["platforms", 72, 5], ["maintainers", 73, 5], ["mainProgram", 74, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["buildInputs", 24, 3], ["nativeBuildInputs", 27, 3], ["strictDeps", 29, 3], ["makeFlags", 31, 3], ["buildFlags", 32, 3], ["preBuild", 36, 3], ["doCheck", 41, 3], ["nativeCheckInputs", 42, 3], ["preCheck", 53, 3], ["postFixup", 59, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, stdenv: false, bash: false, ncurses: false, "neovim-unwrapped": false, procps: false, scdoc: false, "util-linux": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 64, 5], ["longDescription", 65, 5], ["homepage", 70, 5], ["license", 71, 5], ["platforms", 72, 5], ["maintainers", 73, 5], ["mainProgram", 74, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["buildInputs", 24, 3], ["nativeBuildInputs", 27, 3], ["strictDeps", 29, 3], ["makeFlags", 31, 3], ["buildFlags", 32, 3], ["preBuild", 36, 3], ["doCheck", 41, 3], ["nativeCheckInputs", 42, 3], ["preCheck", 53, 3], ["postFixup", 59, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const scdoc = nix.arg($, "scdoc");
   const util_linux = nix.arg($, "util-linux");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "nvimpager",
       version: "0.14.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lucc",
           repo: "nvimpager",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +47,7 @@ substituteInPlace nvimpager --replace-fail ':-nvim' ':-${nix.app(nix.sel(lib, "g
 `),
       postFixup: "patchShebangs --update --host $out/bin/nvimpager\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Use neovim as pager",
         longDescription: "Use neovim as a pager to view manpages, diffs, etc with nvim's syntax\nhighlighting.  Includes a cat mode to print highlighted files to stdout\nand a ansi esc mode to highlight ansi escape sequences in neovim.\n",
         homepage: "https://github.com/lucc/nvimpager",

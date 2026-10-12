@@ -2,23 +2,22 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 11, 5], ["longDescription", 12, 5], ["homepage", 19, 5], ["downloadPage", 20, 5], ["license", 21, 5], ["maintainers", 22, 5]], [["pname", 3, 3], ["version", 4, 3], ["name", 5, 3], ["url", 7, 3], ["sha256", 8, 3], ["meta", 10, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 11, 5], ["longDescription", 12, 5], ["homepage", 19, 5], ["downloadPage", 20, 5], ["license", 21, 5], ["maintainers", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 3, 3], ["version", 4, 3], ["name", 5, 3], ["url", 7, 3], ["sha256", 8, 3], ["meta", 10, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(fetchurl, (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "prototype",
       version: "1.7.3.0",
       name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}.js`),
       url: nix.thunk(() => nix.str`https://ajax.googleapis.com/ajax/libs/prototype/${nix.sel(finalAttrs, "version")}/prototype.js`),
       sha256: "0q43vvrsb22h4jvavs1gk3v4ps61yx9k85b5n6q9mxivhmxprg26",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Foundation for ambitious web user interfaces",
         longDescription: "Prototype takes the complexity out of client-side web\nprogramming. Built to solve real-world problems, it adds\nuseful extensions to the browser scripting environment\nand provides elegant APIs around the clumsy interfaces\nof Ajax and the Document Object Model.\n",
         homepage: "http://prototypejs.org/",

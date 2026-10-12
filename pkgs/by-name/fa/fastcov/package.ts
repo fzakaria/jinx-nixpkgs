@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5], ["license", 73, 5], ["mainProgram", 74, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["build-system", 22, 3], ["nativeBuildInputs", 26, 3], ["dontUseCmakeConfigure", 33, 3], ["nativeCheckInputs", 35, 3], ["checkPhase", 40, 3], ["postFixup", 62, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { python3Packages: false, lib: false, fetchFromGitHub: false, cmake: false, ninja: false, libgcc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5], ["license", 73, 5], ["mainProgram", 74, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["build-system", 22, 3], ["nativeBuildInputs", 26, 3], ["dontUseCmakeConfigure", 33, 3], ["nativeCheckInputs", 35, 3], ["checkPhase", 40, 3], ["postFixup", 62, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.17";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "RPGillespie6",
           repo: "fastcov",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -44,7 +42,7 @@ export default nix.lambda((args) => (() => {
   --replace-fail "default='gcov'" "default='${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(libgcc, "out")), "gcov")}'"
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Massively parallelized gcov wrapper",
         homepage: "https://github.com/RPGillespie6/fastcov",
         changelog: nix.thunk(() => nix.str`https://github.com/RPGillespie6/fastcov/releases/tag/v${version}`),
@@ -57,7 +55,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "fastcov",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

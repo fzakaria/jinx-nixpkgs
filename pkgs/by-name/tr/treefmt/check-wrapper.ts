@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/check-wrapper.nix", [[["LANG", 26, 7], ["LC_ALL", 27, 7]], [["description", 29, 10]], [["__structuredAttrs", 17, 5], ["strictDeps", 18, 5], ["nativeBuildInputs", 19, 5], ["project", 24, 13], ["env", 25, 5], ["meta", 29, 5]]]);
 const formals$1 = { args: { lib: false, gitMinimal: false, runCommandLocal: false, gitSetupHook: false, stdenvNoCC: false, wrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/check-wrapper.nix", [["LANG", 26, 7], ["LC_ALL", 27, 7]]);
-const pos$2 = nix.positions(here + "/check-wrapper.nix", [["description", 29, 10]]);
-const pos$3 = nix.positions(here + "/check-wrapper.nix", [["__structuredAttrs", 17, 5], ["strictDeps", 18, 5], ["nativeBuildInputs", 19, 5], ["project", 24, 13], ["env", 25, 5], ["meta", 29, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const wrapper = nix.arg($, "wrapper");
   return (project) => nix.app(runCommandLocal, nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getName"), wrapper)}-check`), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       __structuredAttrs: true,
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => [gitMinimal, gitSetupHook, wrapper]),
       project: project,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         LANG: nix.thunk(() => (nix.asBool(nix.sel(stdenvNoCC, "buildPlatform", "isDarwin")) ? "en_US.UTF-8" : "C.UTF-8")),
         LC_ALL: nix.thunk(() => (nix.asBool(nix.sel(stdenvNoCC, "buildPlatform", "isDarwin")) ? "en_US.UTF-8" : "C.UTF-8")),
       })),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$2, description: "Check that the project tree is formatted" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[1], description: "Check that the project tree is formatted" })),
     })), "# Copy project files into the build-dir\ncp -r \"$project\" project\nchmod -R a+w project\ncd project\n\n# Setup a git repo\ngit init --initial-branch main\ngit add .\ngit commit -m init --quiet\n\n# Run treefmt\ntreefmt --version\ntreefmt --no-cache\n\n# Ensure nothing changed\ngit status\ngit --no-pager diff --exit-code\ntouch \"$out\"\n");
 })(), formals$1);
 //# sourceMappingURL=check-wrapper.ts.map

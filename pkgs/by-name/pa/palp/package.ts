@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["sha256", 18, 5]], [["description", 60, 5], ["longDescription", 61, 5], ["homepage", 82, 5], ["changelog", 85, 5], ["license", 89, 5], ["teams", 90, 5], ["platforms", 91, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["hardeningDisable", 21, 3], ["patchPhase", 25, 3], ["preBuild", 29, 3], ["doCheck", 36, 3], ["checkPhase", 37, 3], ["installPhase", 46, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, dimensions: true, doSymlink: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 60, 5], ["longDescription", 61, 5], ["homepage", 82, 5], ["changelog", 85, 5], ["license", 89, 5], ["teams", 90, 5], ["platforms", 91, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["hardeningDisable", 21, 3], ["patchPhase", 25, 3], ["preBuild", 29, 3], ["doCheck", 36, 3], ["checkPhase", 37, 3], ["installPhase", 46, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const doSymlink = nix.argOr($, "doSymlink", () => true);
   const dim = nix.thunk(() => nix.builtins.toString(dimensions));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "palp",
       version: "2.21",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://hep.itp.tuwien.ac.at/~kreuzer/CY/palp/palp-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-fkp78hmZioRMC8zgoXbknQdDy0tQWg4ZUym/LsGW3dc=",
         })))),
@@ -37,7 +35,7 @@ for file in poly class cws nef mori; do
 done
 `, nix.app(nix.sel(lib, "optionalString"), doSymlink, "cd $out/bin\nfor file in poly class cws nef mori; do\n  ln -sf $file-6d.x $file.x\ndone\n"))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Package for Analyzing Lattice Polytopes",
         longDescription: "A Package for Analyzing Lattice Polytopes (PALP) is a set of C\nprograms for calculations with lattice polytopes and applications to\ntoric geometry.\n\nIt contains routines for vertex and facet enumeration, computation of\nincidences and symmetries, as well as completion of the set of lattice\npoints in the convex hull of a given set of points. In addition, there\nare procedures specialised to reflexive polytopes such as the\nenumeration of reflexive subpolytopes, and applications to toric\ngeometry and string theory, like the computation of Hodge data and\nfibration structures for toric Calabi-Yau varieties.  The package is\nwell tested and optimised in speed as it was used for time consuming\ntasks such as the classification of reflexive polyhedra in 4\ndimensions and the creation and manipulation of very large lists of\n5-dimensional polyhedra.\n\nWhile originally intended for low-dimensional applications, the\nalgorithms work in any dimension and our key routine for vertex and\nfacet enumeration compares well with existing packages.\n",
         homepage: "http://hep.itp.tuwien.ac.at/~kreuzer/CY/CYpalp.html",

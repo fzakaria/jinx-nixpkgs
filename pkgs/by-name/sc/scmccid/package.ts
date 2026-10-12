@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 9], ["hash", 17, 9]], [["url", 21, 9], ["hash", 22, 9]], [["description", 50, 5], ["sourceProvenance", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["platforms", 54, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 27, 3], ["installPhase", 29, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, patchelf: false, "libusb-compat-0_1": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 9], ["hash", 17, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 21, 9], ["hash", 22, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 50, 5], ["sourceProvenance", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["platforms", 54, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 27, 3], ["installPhase", 29, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,15 +13,15 @@ export default nix.lambda((args) => (() => {
   const patchelf = nix.arg($, "patchelf");
   const libusb_compat_0_1 = nix.arg($, "libusb-compat-0_1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "scmccid",
       version: "5.0.35",
       src: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "i686-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://scm-pc-card.de/file/driver/Readers_Writers/scmccid_${nix.sel(finalAttrs, "version")}_linux_rel.tar.gz`),
           hash: "sha256-eRqAoe7uZUTTLh3K3bc4PmVmqJtvSpfOBWXdjydN72U=",
         }))) : (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://scm-pc-card.de/file/driver/Readers_Writers/scmccid_${nix.sel(finalAttrs, "version")}_linux_rel_64.tar.gz`),
           hash: "sha256-SFf3QC+1hZCWIgIOEAfIHR68PHFXTW8amT4D5UMTMeQ=",
         }))) : nix.builtins.throw("Architecture not supported")))),
@@ -43,7 +40,7 @@ cp -R proprietary/* $out/pcsc/drivers
  runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "PCSC drivers for linux, for the SCM SCR3310 v2.0 card and others",
         sourceProvenance: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);

@@ -2,15 +2,10 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/internal.nix", [[["option", 38, 5], ["sep", 39, 5], ["explicitBool", 40, 5]], [["nativeBuildInputs", 60, 11], ["buildCommand", 62, 11], ["exe", 71, 19], ["exeName", 73, 11], ["exeFlags", 75, 11], ["hookName", 83, 11], ["strictDeps", 85, 11], ["__structuredAttrs", 87, 11]], [["constructDrv", 51, 7], ["extendDrvArgs", 53, 7]], [["package", 92, 5], ["exe", 93, 5], ["attrPrefix", 94, 5]], [["type", 129, 11], ["name", 130, 11], ["system", 131, 11], ["outPath", 132, 11], ["drvPath", 133, 11], ["outputs", 134, 11], ["outputName", 135, 11], ["strictDeps", 136, 11], ["__structuredAttrs", 137, 11], ["passthru", 138, 11], ["meta", 139, 11], ["out", 142, 9], ["all", 143, 9]], [["mkCliDerivationBuilder", 44, 3], ["mkAutopenDerivation", 91, 3], ["hideDerivation", 123, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, autopen: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/internal.nix", [["option", 38, 5], ["sep", 39, 5], ["explicitBool", 40, 5]]);
 const formals$2 = { args: { package: false, exe: false, attrPrefix: false }, ellipsis: false };
 const formals$3 = { args: { nativeBuildInputs: true }, ellipsis: true };
-const pos$2 = nix.positions(here + "/internal.nix", [["nativeBuildInputs", 60, 11], ["buildCommand", 62, 11], ["exe", 71, 19], ["exeName", 73, 11], ["exeFlags", 75, 11], ["hookName", 83, 11], ["strictDeps", 85, 11], ["__structuredAttrs", 87, 11]]);
-const pos$3 = nix.positions(here + "/internal.nix", [["constructDrv", 51, 7], ["extendDrvArgs", 53, 7]]);
-const pos$4 = nix.positions(here + "/internal.nix", [["package", 92, 5], ["exe", 93, 5], ["attrPrefix", 94, 5]]);
-const pos$5 = nix.positions(here + "/internal.nix", [["type", 129, 11], ["name", 130, 11], ["system", 131, 11], ["outPath", 132, 11], ["drvPath", 133, 11], ["outputs", 134, 11], ["outputName", 135, 11], ["strictDeps", 136, 11], ["__structuredAttrs", 137, 11], ["passthru", 138, 11], ["meta", 139, 11], ["out", 142, 9], ["all", 143, 9]]);
-const pos$6 = nix.positions(here + "/internal.nix", [["mkCliDerivationBuilder", 44, 3], ["mkAutopenDerivation", 91, 3], ["hideDerivation", 123, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,27 +31,27 @@ export default nix.lambda((args) => (() => {
   const splitCamelCase = nix.thunk(() => nix.app(splitStringBy, (_prev) => (curr) => !nix.eq(nix.app(match, "[A-Z]", curr), null), true));
   const toKebabCase = (camelCase) => nix.app(concatMapStringsSep, "-", toLower, nix.thunk(() => nix.app(splitCamelCase, camelCase)));
   const optionFormat = (optionName) => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     option: nix.thunk(() => nix.str`--${nix.app(toKebabCase, optionName)}`),
     sep: "=",
     explicitBool: false,
   });
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     mkCliDerivationBuilder: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const package$ = nix.arg($_1, "package");
       const exe = nix.arg($_1, "exe");
       const attrPrefix = nix.arg($_1, "attrPrefix");
       return nix.app(extendMkDerivation, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           constructDrv: nix.thunk(() => nix.sel(stdenvNoCC, "mkDerivation")),
           extendDrvArgs: (finalAttrs) => nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$3);
             const args_3 = args_2;
             const nativeBuildInputs = nix.argOr($_2, "nativeBuildInputs", () => []);
             return {
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               nativeBuildInputs: nix.thunk(() => nix.concat([package$], nativeBuildInputs)),
               buildCommand: "runHook \"pre$hookName\"\n\nechoCmd \"$exeName flags\" \"${exeFlags[@]}\"\n\"$exe\" \"${exeFlags[@]}\"\n\nrunHook \"post$hookName\"\n",
               exe: exe,
@@ -71,11 +66,11 @@ export default nix.lambda((args) => (() => {
           })(), formals$3),
         })));
     })(), formals$2),
-    mkAutopenDerivation: nix.thunk(() => nix.app(mkCliDerivationBuilder, nix.thunk(() => ({ [nix.POS]: pos$4, package: autopen, exe: "autopen", attrPrefix: "autopen" })))),
+    mkAutopenDerivation: nix.thunk(() => nix.app(mkCliDerivationBuilder, nix.thunk(() => ({ [nix.POS]: $pos[3], package: autopen, exe: "autopen", attrPrefix: "autopen" })))),
     hideDerivation: (drv) => (() => {
       nix.assert_((nix.asBool(nix.app(isDerivation, drv)) && nix.asBool(nix.eq(nix.sel(drv, "outputs"), ["out"]))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/au/autopen/internal.nix:125:5");
       const hiddenDrv = nix.thunk(() => nix.update({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         type: nix.thunk(() => nix.attr(drv, "type")),
         name: nix.thunk(() => nix.attr(drv, "name")),
         system: nix.thunk(() => nix.attr(drv, "system")),

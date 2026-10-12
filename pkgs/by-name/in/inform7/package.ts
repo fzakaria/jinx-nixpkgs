@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["sha256", 24, 5]], [["description", 39, 5], ["mainProgram", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["platforms", 44, 5], ["broken", 46, 5]], [["pname", 14, 3], ["version", 15, 11], ["buildInputs", 16, 3], ["src", 22, 3], ["preConfigure", 26, 3], ["buildPhase", 27, 3], ["installPhase", 28, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, coreutils: false, perl: false, gnutar: false, gzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["sha256", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 39, 5], ["mainProgram", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["platforms", 44, 5], ["broken", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 11], ["buildInputs", 16, 3], ["src", 22, 3], ["preConfigure", 26, 3], ["buildPhase", 27, 3], ["installPhase", 28, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const gzip = nix.arg($, "gzip");
   const version = "6M62";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "inform7",
       version: version,
       buildInputs: nix.thunk(() => [perl, coreutils, gnutar, gzip]),
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "http://inform7.com/download/content/6M62/I7_6M62_Linux_all.tar.gz",
           sha256: "0bk0pfymvsn1g8ci0pfdw7dgrlzb232a8pc67y2xk6zgpf3m41vj",
         })))),
@@ -38,7 +36,7 @@ substituteInPlace "$out/bin/i7" \\
   --replace "/usr/bin/perl" "${perl}/bin/perl"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Design system for interactive fiction",
         mainProgram: "i7",
         homepage: "http://inform7.com/",

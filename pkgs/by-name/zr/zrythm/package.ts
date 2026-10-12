@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 74, 7], ["repo", 75, 7], ["rev", 76, 7], ["hash", 77, 7]], [["pname", 70, 5], ["version", 71, 5], ["src", 73, 5]], [["url", 86, 5], ["hash", 87, 5]], [["updateScript", 90, 12]], [["NIX_LDFLAGS", 182, 5], ["GUILE_AUTO_COMPILE", 187, 5]], [["homepage", 209, 5], ["description", 210, 5], ["maintainers", 211, 5], ["platforms", 217, 5], ["broken", 218, 5], ["license", 219, 5], ["mainProgram", 220, 5]], [["pname", 82, 3], ["version", 83, 3], ["src", 85, 3], ["passthru", 90, 3], ["nativeBuildInputs", 98, 3], ["buildInputs", 120, 3], ["dontUseCmakeConfigure", 162, 3], ["dontWrapQtApps", 164, 3], ["mesonFlags", 166, 3], ["env", 181, 3], ["dontStrip", 190, 3], ["postPatch", 192, 3], ["preFixup", 201, 3], ["meta", 208, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, fetchzip: false, "alsa-lib": false, appstream: false, "bash-completion": false, boost: false, carla: false, chromaprint: false, cmake: false, curl: false, dbus: false, dconf: false, fftw: false, fftwFloat: false, flex: false, glib: false, graphviz: false, gtk4: false, gtksourceview5: false, guile: false, help2man: false, jq: false, kissfft: false, libadwaita: false, libbacktrace: false, libcyaml: false, libepoxy: false, libjack2: false, libpanel: false, libpulseaudio: false, libsamplerate: false, libsndfile: false, libxml2: false, libyaml: false, lilv: false, lv2: false, meson: false, ninja: false, pcre2: false, "pkg-config": false, kdePackages: false, python3: false, rtaudio_6: false, rtmidi: false, rubberband: false, sassc: false, serd: false, sord: false, sox: false, soxr: false, sratom: false, texi2html: false, "vamp-plugin-sdk": false, wrapGAppsHook4: false, writeScript: false, "xdg-utils": false, xxhash: false, yyjson: false, zix: false, zstd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 74, 7], ["repo", 75, 7], ["rev", 76, 7], ["hash", 77, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 70, 5], ["version", 71, 5], ["src", 73, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 86, 5], ["hash", 87, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 90, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 182, 5], ["GUILE_AUTO_COMPILE", 187, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 209, 5], ["description", 210, 5], ["maintainers", 211, 5], ["platforms", 217, 5], ["broken", 218, 5], ["license", 219, 5], ["mainProgram", 220, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 82, 3], ["version", 83, 3], ["src", 85, 3], ["passthru", 90, 3], ["nativeBuildInputs", 98, 3], ["buildInputs", 120, 3], ["dontUseCmakeConfigure", 162, 3], ["dontWrapQtApps", 164, 3], ["mesonFlags", 166, 3], ["env", 181, 3], ["dontStrip", 190, 3], ["postPatch", 192, 3], ["preFixup", 201, 3], ["meta", 208, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -76,11 +70,11 @@ export default nix.lambda((args) => (() => {
   const zix = nix.arg($, "zix");
   const zstd = nix.arg($, "zstd");
   const carla_unstable = nix.thunk(() => nix.app(nix.sel(carla, "overrideAttrs"), (oldAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "carla",
       version: "unstable-2024-04-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "falkTX",
           repo: "carla",
           rev: "948991d7b5104280c03960925908e589c77b169a",
@@ -88,16 +82,16 @@ export default nix.lambda((args) => (() => {
         })))),
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "zrythm",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`https://www.zrythm.org/releases/zrythm-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-qI1UEIeIJdYQcOWMjJa55DaWjDIabx56dSwjhm64ROM=",
         })))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(writeScript, "update-zrythm", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p curl common-updater-scripts\n\nversion=\"$(curl -s https://www.zrythm.org/releases/ | grep -o -m 1 'href=\"zrythm-[^\"]*\\.tar\\.xz\"' | head -1 | sed 's/href=\"zrythm-\\(.*\\)\\.tar\\.xz\"/\\1/')\"\nupdate-source-version zrythm \"$version\"\n")),
       })),
       nativeBuildInputs: nix.thunk(() => [
@@ -177,7 +171,7 @@ export default nix.lambda((args) => (() => {
         "-Drtmidi=enabled",
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-lfftw3_threads", "-lfftw3f_threads"]))),
         GUILE_AUTO_COMPILE: 0n,
       })),
@@ -195,7 +189,7 @@ patchShebangs ext/sh-manpage-completions/run.sh scripts/generic_guile_wrap.sh \\
 )
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://www.zrythm.org",
         description: "Automated and intuitive digital audio workstation",
         maintainers: nix.thunk(() => (() => {

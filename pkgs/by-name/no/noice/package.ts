@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["tag", 15, 5], ["sha256", 16, 5]], [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["platforms", 41, 5], ["maintainers", 42, 5], ["mainProgram", 43, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["postPatch", 19, 3], ["configFile", 25, 3], ["preBuild", 26, 3], ["buildInputs", 28, 3], ["buildFlags", 30, 3], ["installFlags", 32, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, ncurses: false, conf: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["tag", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["platforms", 41, 5], ["maintainers", 42, 5], ["mainProgram", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["postPatch", 19, 3], ["configFile", 25, 3], ["preBuild", 26, 3], ["buildInputs", 28, 3], ["buildFlags", 30, 3], ["installFlags", 32, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "noice";
       const version = "0.8";
       const src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "git://git.2f30.org/noice.git",
           tag: nix.thunk(() => nix.str`v${version}`),
           sha256: "0975j4m93s9a21pazwdzn4gqhkngwq7q6ghp0q8a75r6c4fb7aar",
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const buildFlags = nix.thunk(() => ["LDLIBS=-lncurses"]);
       const installFlags = nix.thunk(() => ["DESTDIR=$(out)", "PREFIX="]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Small ncurses-based file browser",
         homepage: "https://git.2f30.org/noice/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "noice",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

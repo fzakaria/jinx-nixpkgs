@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["src", 36, 11], ["substitutions", 37, 11]], [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5], ["postFetch", 32, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 67, 5], ["ELECTRON_OVERRIDE_DIST_PATH", 68, 5], ["NODE_ENV", 69, 5]], [["name", 85, 7], ["desktopName", 86, 7], ["comment", 87, 7], ["exec", 88, 7], ["icon", 89, 7], ["mimeTypes", 90, 7], ["terminal", 117, 7], ["categories", 118, 7], ["keywords", 122, 7], ["startupWMClass", 133, 7]], [["src", 139, 26], ["missingHashes", 139, 30], ["hash", 140, 5]], [["updateScript", 185, 12]], [["description", 188, 5], ["homepage", 189, 5], ["changelog", 190, 5], ["license", 191, 5], ["broken", 193, 5], ["maintainers", 194, 5], ["mainProgram", 198, 5], ["sourceProvenance", 199, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["patches", 47, 3], ["postPatch", 59, 3], ["env", 66, 3], ["strictDeps", 72, 3], ["nativeBuildInputs", 74, 3], ["desktopItems", 83, 3], ["missingHashes", 137, 3], ["offlineCache", 138, 3], ["postConfigure", 143, 3], ["buildPhase", 148, 3], ["installPhase", 161, 3], ["__structuredAttrs", 183, 3], ["passthru", 185, 3], ["meta", 187, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, substitute: false, stdenv: false, "yarn-berry_4": false, nodejs_24: false, electron_42: false, makeWrapper: false, "ffmpeg-headless": false, copyDesktopItems: false, makeDesktopItem: false, imagemagick: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["src", 36, 11], ["substitutions", 37, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5], ["postFetch", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 67, 5], ["ELECTRON_OVERRIDE_DIST_PATH", 68, 5], ["NODE_ENV", 69, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 85, 7], ["desktopName", 86, 7], ["comment", 87, 7], ["exec", 88, 7], ["icon", 89, 7], ["mimeTypes", 90, 7], ["terminal", 117, 7], ["categories", 118, 7], ["keywords", 122, 7], ["startupWMClass", 133, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["src", 139, 26], ["missingHashes", 139, 30], ["hash", 140, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 185, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 188, 5], ["homepage", 189, 5], ["changelog", 190, 5], ["license", 191, 5], ["broken", 193, 5], ["maintainers", 194, 5], ["mainProgram", 198, 5], ["sourceProvenance", 199, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["patches", 47, 3], ["postPatch", 59, 3], ["env", 66, 3], ["strictDeps", 72, 3], ["nativeBuildInputs", 74, 3], ["desktopItems", 83, 3], ["missingHashes", 137, 3], ["offlineCache", 138, 3], ["postConfigure", 143, 3], ["buildPhase", 148, 3], ["installPhase", 161, 3], ["__structuredAttrs", 183, 3], ["passthru", 185, 3], ["meta", 187, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,18 +23,18 @@ export default nix.lambda((args) => (() => {
   const nodejs = nodejs_24;
   const electron = electron_42;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "losslesscut",
       version: "3.69.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "mifi",
           repo: "lossless-cut",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-N53B2qylJR163M5FEg8qLGazxTio3E7GTfGJXvvLQ9s=",
           postFetch: nix.thunk(() => nix.str`cd $out
 patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               src: nix.path(here, "./yarn-fix.patch"),
               substitutions: nix.thunk(() => [
                 "--replace-fail",
@@ -58,7 +51,7 @@ patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
       ]),
       postPatch: "for f in src/main/ffmpeg.ts src/main/i18nCommon.ts; do\n  substituteInPlace \"$f\" \\\n    --subst-var-by losslesscut_resources_path $out/share/losslesscut\ndone\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         ELECTRON_SKIP_BINARY_DOWNLOAD: "1",
         ELECTRON_OVERRIDE_DIST_PATH: nix.thunk(() => nix.sel(electron, "dist")),
         NODE_ENV: "production",
@@ -74,7 +67,7 @@ patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
       ]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "losslesscut",
             desktopName: "LosslessCut",
             comment: "simple video editor to trim or cut videos",
@@ -115,7 +108,7 @@ patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
       ]),
       missingHashes: nix.path(here, "./missing-hashes.json"),
       offlineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           missingHashes: nix.thunk(() => nix.attr(finalAttrs, "missingHashes")),
           hash: "sha256-Qa/m7diKJONy6BKc8InK5xqpUMqQXEMKT/sicBDPlco=",
@@ -155,9 +148,9 @@ done
 runHook postInstall
 `),
       __structuredAttrs: true,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$6, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[5], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Swiss army knife of lossless video/audio editing",
         homepage: "https://losslesscut.app/",
         changelog: nix.thunk(() => nix.str`https://github.com/mifi/lossless-cut/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

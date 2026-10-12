@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]], [["fmt", 46, 24]], [["UDEV_DIR", 53, 7], ["UDEV_RULES_DIR", 54, 7]], [["package", 74, 50]], [["version", 74, 18]], [["tests", 74, 12], ["updateScript", 75, 12]], [["homepage", 78, 5], ["description", 79, 5], ["longDescription", 80, 5], ["license", 84, 5], ["maintainers", 85, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["cmakeFlags", 51, 3], ["postPatch", 60, 3], ["preFixup", 65, 3], ["doInstallCheck", 72, 3], ["passthru", 74, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromCodeberg: false, testers: false, cmake: false, libx11: false, libxext: false, "sdbus-cpp": false, udev: false, "libxcb-image": false, coreutils: false, cli11: false, ddcutil: false, fmt_11: false, nlohmann_json: false, spdlog: false, udevCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["fmt", 46, 24]]);
-const pos$3 = nix.positions(here + "/package.nix", [["UDEV_DIR", 53, 7], ["UDEV_RULES_DIR", 54, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["package", 74, 50]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 74, 18]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 74, 12], ["updateScript", 75, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["homepage", 78, 5], ["description", 79, 5], ["longDescription", 80, 5], ["license", 84, 5], ["maintainers", 85, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["cmakeFlags", 51, 3], ["postPatch", 60, 3], ["preFixup", 65, 3], ["doInstallCheck", 72, 3], ["passthru", 74, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const udevCheckHook = nix.arg($, "udevCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "gummy",
       version: "0.6.1",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fusco",
           repo: "gummy",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -52,13 +45,13 @@ export default nix.lambda((args) => (() => {
         libxext,
         nlohmann_json,
         sdbus_cpp,
-        nix.thunk(() => nix.app(nix.sel(spdlog, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, fmt: fmt_11 })))),
+        nix.thunk(() => nix.app(nix.sel(spdlog, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], fmt: fmt_11 })))),
         udev,
         libxcb_image,
       ]),
       cmakeFlags: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), nix.thunk(() => nix.sel(lib, "cmakeFeature")), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             UDEV_DIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/udev`),
             UDEV_RULES_DIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/udev/rules.d`),
           })))),
@@ -73,18 +66,18 @@ ln -s $out/libexec/gummyd $out/bin/gummyd
 `),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         homepage: "https://codeberg.org/fusco/gummy",
         description: "Brightness and temperature manager for X11",
         longDescription: "CLI screen manager for X11 that allows automatic and manual brightness/temperature adjustments,\nvia backlight (currently only for embedded displays) and gamma. Multiple monitors are supported.\n",

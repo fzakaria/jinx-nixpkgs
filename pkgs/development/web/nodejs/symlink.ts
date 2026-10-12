@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/symlink.nix", [[["pname", 32, 3], ["version", 33, 25], ["passthru", 33, 33], ["meta", 33, 42], ["paths", 34, 3]], [["name", 45, 21], ["value", 46, 13]], [["passthru", 41, 5]]]);
 const formals$1 = { args: { lib: false, "nodejs-slim": false, symlinkJoin: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/symlink.nix", [["pname", 32, 3], ["version", 33, 25], ["passthru", 33, 33], ["meta", 33, 42], ["paths", 34, 3]]);
-const pos$2 = nix.positions(here + "/symlink.nix", [["name", 45, 21], ["value", 46, 13]]);
-const pos$3 = nix.positions(here + "/symlink.nix", [["passthru", 41, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,16 +30,16 @@ export default nix.lambda((args) => (() => {
     "corepack",
   ]);
   return nix.app(nix.sel(nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "nodejs",
       version: nix.thunk(() => nix.attr(nodejs_slim, "version")),
       passthru: nix.thunk(() => nix.attr(nodejs_slim, "passthru")),
       meta: nix.thunk(() => nix.attr(nodejs_slim, "meta")),
       paths: nix.thunk(() => nix.concat([nodejs_slim, nix.thunk(() => nix.sel(nodejs_slim, "npm"))], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.builtins.hasAttr("corepack", nodejs_slim)), nix.thunk(() => nix.sel(nodejs_slim, "corepack"))))),
     }))), "overrideAttrs"), (nodejs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       passthru: nix.thunk(() => nix.update(nix.builtins.listToAttrs(nix.thunk(() => nix.builtins.map((name) => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: name,
             value: nix.thunk(() => nix.app(nix.sel(lib, "warn"), nix.thunk(() => nix.str`Use nodejs-slim.${name} instead of nodejs.${name}`), nix.thunk(() => nix.sel(nodejs_slim, nix.key(nix.force(name)))))),
           }), nix.thunk(() => nix.builtins.filter((name) => (nix.asBool((nix.asBool(!nix.asBool(nix.app(hasDisallowedPrefix, name))) && nix.asBool(!nix.asBool(nix.builtins.elem(name, allowedNames))))) && nix.asBool(!nix.asBool(nix.has(nodejs, nix.key(nix.force(name)))))), nix.thunk(() => nix.builtins.attrNames(nodejs_slim))))))), nix.sel(nodejs, "passthru"))),

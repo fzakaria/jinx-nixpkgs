@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["url", 35, 7], ["hash", 36, 7]], [["pname", 48, 13], ["data", 49, 5]], [["name", 68, 7], ["desktopName", 69, 7], ["genericName", 70, 7], ["exec", 71, 7], ["icon", 72, 7], ["comment", 73, 7], ["mimeTypes", 74, 7], ["categories", 79, 7]], [["description", 110, 5], ["homepage", 111, 5], ["license", 112, 5], ["platforms", 113, 5], ["maintainers", 114, 5], ["mainProgram", 115, 5]], [["pname", 30, 11], ["version", 30, 17], ["src", 30, 25], ["patches", 32, 3], ["nativeBuildInputs", 40, 3], ["mitmCache", 47, 3], ["gradleFlags", 52, 3], ["enableParallelBuilding", 60, 3], ["preBuild", 62, 3], ["gradleBuildTask", 64, 3], ["desktopItems", 66, 3], ["installPhase", 88, 3], ["meta", 109, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, fetchFromGitHub: false, makeBinaryWrapper: false, makeDesktopItem: false, jdk17: false, gradle_9: false, which: false, copyDesktopItems: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 35, 7], ["hash", 36, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 48, 13], ["data", 49, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 68, 7], ["desktopName", 69, 7], ["genericName", 70, 7], ["exec", 71, 7], ["icon", 72, 7], ["comment", 73, 7], ["mimeTypes", 74, 7], ["categories", 79, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 110, 5], ["homepage", 111, 5], ["license", 112, 5], ["platforms", 113, 5], ["maintainers", 114, 5], ["mainProgram", 115, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 30, 11], ["version", 30, 17], ["src", 30, 25], ["patches", 32, 3], ["nativeBuildInputs", 40, 3], ["mitmCache", 47, 3], ["gradleFlags", 52, 3], ["enableParallelBuilding", 60, 3], ["preBuild", 62, 3], ["gradleBuildTask", 64, 3], ["desktopItems", 66, 3], ["installPhase", 88, 3], ["meta", 109, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,33 +22,33 @@ export default nix.lambda((args) => (() => {
   const jdk = jdk17;
   const gradle = gradle_9;
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "freeplane",
       repo: "freeplane",
       rev: nix.thunk(() => nix.str`release-${version}`),
       hash: "sha256-NDji6psNXESAY5NWI/Ms63MTgbxZHiIxYAgOSkWHuK0=",
     }))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: pname,
       version: version,
       src: src,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/freeplane/freeplane/commit/34189b58bbdf0027185a212e2d6bd9e289782ef2.patch",
             hash: "sha256-gVCKXme+pB7PV0yBoDMPg6ltCaTGYh1lspEKgwVkDgc=",
           })))),
       ]),
       nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper, jdk, gradle, copyDesktopItems]),
-      mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({ [nix.POS]: pos$3, pname: pname, data: nix.path(here, "./deps.json") })))),
+      mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({ [nix.POS]: $pos[2], pname: pname, data: nix.path(here, "./deps.json") })))),
       gradleFlags: nix.thunk(() => [nix.thunk(() => nix.str`-Dorg.gradle.java.home=${jdk}`), "-x", "test"]),
       enableParallelBuilding: false,
       preBuild: "mkdir -p freeplane/build",
       gradleBuildTask: "build",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "freeplane",
             desktopName: "freeplane",
             genericName: "Mind-mapper",
@@ -79,7 +74,7 @@ makeWrapper $out/share/freeplane/freeplane.sh $out/bin/freeplane \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Mind-mapping software",
         homepage: "https://freeplane.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

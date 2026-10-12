@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 12, 8], ["broken", 48, 8]], [["pname", 8, 3], ["version", 9, 3], ["sha256", 10, 3], ["meta", 12, 3], ["outputs", 14, 3], ["buildInputs", 22, 3], ["configureFlags", 24, 3], ["postInstall", 39, 3]]]);
 const formals$1 = { args: { skawarePackages: false, stdenv: false, skalibs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 12, 8], ["broken", 48, 8]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["version", 9, 3], ["sha256", 10, 3], ["meta", 12, 3], ["outputs", 14, 3], ["buildInputs", 22, 3], ["configureFlags", 24, 3], ["postInstall", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const skalibs = nix.arg($, "skalibs");
   return nix.app(nix.sel(skawarePackages, "buildPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "tipidee",
       version: "0.0.8.0",
       sha256: "sha256-GjllM2YqxwvCsKC4xlYW/6f6IBUIhZMA67mtM82mEC0=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "HTTP 1.1 webserver, serving static files and CGI/NPH",
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       })),

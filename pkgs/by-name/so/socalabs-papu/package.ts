@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5], ["fetchSubmodules", 41, 5]], [["type", 46, 7], ["name", 47, 7], ["desktopName", 48, 7], ["comment", 49, 7], ["icon", 50, 7], ["exec", 51, 7], ["categories", 52, 7]], [["updateScript", 124, 12]], [["NIX_LDFLAGS", 126, 7]], [["description", 138, 5], ["homepage", 139, 5], ["mainProgram", 140, 5], ["platforms", 141, 5], ["license", 142, 5], ["maintainers", 143, 5]], [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["desktopItems", 44, 3], ["nativeBuildInputs", 59, 3], ["buildInputs", 68, 3], ["cmakeFlags", 87, 3], ["postPatch", 92, 3], ["strictDeps", 97, 3], ["preBuild", 99, 3], ["installPhase", 103, 3], ["passthru", 124, 3], ["env", 126, 3], ["meta", 137, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, lib: false, cmake: false, "pkg-config": false, "alsa-lib": false, copyDesktopItems: false, makeDesktopItem: false, imagemagick: false, libx11: false, libxcomposite: false, libxcursor: false, libxinerama: false, libxrandr: false, libxtst: false, libxdmcp: false, libxext: false, xvfb: false, freetype: false, fontconfig: false, expat: false, libGL: false, libjack2: false, curl: false, ninja: false, writableTmpDirAsHomeHook: false, "nix-update-script": false, enableVST2: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5], ["fetchSubmodules", 41, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["type", 46, 7], ["name", 47, 7], ["desktopName", 48, 7], ["comment", 49, 7], ["icon", 50, 7], ["exec", 51, 7], ["categories", 52, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 124, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 126, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 138, 5], ["homepage", 139, 5], ["mainProgram", 140, 5], ["platforms", 141, 5], ["license", 142, 5], ["maintainers", 143, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["desktopItems", 44, 3], ["nativeBuildInputs", 59, 3], ["buildInputs", 68, 3], ["cmakeFlags", 87, 3], ["postPatch", 92, 3], ["strictDeps", 97, 3], ["preBuild", 99, 3], ["installPhase", 103, 3], ["passthru", 124, 3], ["env", 126, 3], ["meta", 137, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const enableVST2 = nix.argOr($, "enableVST2", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "socalabs-papu",
       version: "1.2.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "FigBug",
           repo: "PAPU",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             type: "Application",
             name: "socalabs-papu",
             desktopName: "Socalabs PAPU",
@@ -116,11 +111,11 @@ magick $src/plugin/Resources/icon.png -resize 256x256 $out/share/icons/hicolor/2
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-lX11",
             "-lXext",
@@ -133,7 +128,7 @@ runHook postInstall
           ]))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Socalabs Nintendo Gameboy PAPU Emulation Plugin",
         homepage: "https://socalabs.com/synths/papu/",
         mainProgram: "PAPU",

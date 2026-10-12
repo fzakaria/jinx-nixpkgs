@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["src", 24, 13], ["version", 24, 17], ["pname", 26, 5], ["sourceRoot", 27, 5], ["npmDepsHash", 29, 5], ["postPatch", 34, 5], ["dontNpmBuild", 40, 5], ["installPhase", 41, 5]], [["npmPkg", 118, 13], ["updateScript", 119, 5]], [["description", 123, 5], ["homepage", 124, 5], ["license", 125, 5], ["maintainers", 126, 5], ["sourceProvenance", 130, 5], ["broken", 134, 5], ["mainProgram", 135, 5]], [["src", 49, 11], ["version", 49, 15], ["pname", 51, 3], ["postPatch", 53, 3], ["mvnJdk", 57, 3], ["mvnParameters", 58, 3], ["mvnHash", 59, 3], ["nativeBuildInputs", 61, 3], ["doCheck", 63, 3], ["installPhase", 65, 3], ["preFixup", 89, 3], ["passthru", 117, 3], ["meta", 122, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, buildNpmPackage: false, curl: false, jdk17: false, jq: false, makeWrapper: false, maven: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 24, 13], ["version", 24, 17], ["pname", 26, 5], ["sourceRoot", 27, 5], ["npmDepsHash", 29, 5], ["postPatch", 34, 5], ["dontNpmBuild", 40, 5], ["installPhase", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["npmPkg", 118, 13], ["updateScript", 119, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 123, 5], ["homepage", 124, 5], ["license", 125, 5], ["maintainers", 126, 5], ["sourceProvenance", 130, 5], ["broken", 134, 5], ["mainProgram", 135, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["src", 49, 11], ["version", 49, 15], ["pname", 51, 3], ["postPatch", 53, 3], ["mvnJdk", 57, 3], ["mvnParameters", 58, 3], ["mvnHash", 59, 3], ["nativeBuildInputs", 61, 3], ["doCheck", 63, 3], ["installPhase", 65, 3], ["preFixup", 89, 3], ["passthru", 117, 3], ["meta", 122, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,14 +19,14 @@ export default nix.lambda((args) => (() => {
   const jdk = jdk17;
   const version = "3.9.5";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "openrefine",
       repo: "openrefine",
       rev: version,
       hash: "sha256-548vOJf0mlk1AuuMjEXpsiVjft6UbJrUxh5mSca8Xbw=",
     }))));
   const npmPkg = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       src: src,
       version: version,
       pname: "openrefine-npm",
@@ -44,7 +40,7 @@ cp $NEW_PACKAGE_JSON package.json
       installPhase: "mkdir -p $out\ncp -r modules/core/3rdparty/* $out/\n",
     }))));
   return nix.app(nix.sel(maven, "buildMavenPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       src: src,
       version: version,
       pname: "openrefine",
@@ -78,12 +74,12 @@ wrapProgram $out/bin/refine \\
   --set-default REFINE_INI_PATH "$out/etc/refine.ini"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         npmPkg: npmPkg,
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Power tool for working with messy data and improving it",
         homepage: "https://openrefine.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

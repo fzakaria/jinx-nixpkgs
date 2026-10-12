@@ -2,18 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ucarp.nix", [[["address", 19, 11], ["prefixLength", 20, 11]], [["addresses", 17, 39]], [["ipv4", 17, 34]], [["eth1", 17, 29]], [["enable", 25, 9], ["interface", 26, 9], ["srcIp", 27, 9], ["vhId", 28, 9], ["passwordFile", 29, 9], ["addr", 30, 9], ["upscript", 31, 9], ["downscript", 35, 9]], [["interfaces", 17, 18], ["ucarp", 24, 18]], [["networking", 17, 7]], [["maintainers", 44, 8]], [["hostA", 47, 5], ["hostB", 48, 5]], [["name", 43, 3], ["meta", 44, 3], ["nodes", 46, 3], ["testScript", 51, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
 const formals$2 = { args: { config: false, pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/ucarp.nix", [["address", 19, 11], ["prefixLength", 20, 11]]);
-const pos$2 = nix.positions(here + "/ucarp.nix", [["addresses", 17, 39]]);
-const pos$3 = nix.positions(here + "/ucarp.nix", [["ipv4", 17, 34]]);
-const pos$4 = nix.positions(here + "/ucarp.nix", [["eth1", 17, 29]]);
-const pos$5 = nix.positions(here + "/ucarp.nix", [["enable", 25, 9], ["interface", 26, 9], ["srcIp", 27, 9], ["vhId", 28, 9], ["passwordFile", 29, 9], ["addr", 30, 9], ["upscript", 31, 9], ["downscript", 35, 9]]);
-const pos$6 = nix.positions(here + "/ucarp.nix", [["interfaces", 17, 18], ["ucarp", 24, 18]]);
-const pos$7 = nix.positions(here + "/ucarp.nix", [["networking", 17, 7]]);
-const pos$8 = nix.positions(here + "/ucarp.nix", [["maintainers", 44, 8]]);
-const pos$9 = nix.positions(here + "/ucarp.nix", [["hostA", 47, 5], ["hostB", 48, 5]]);
-const pos$10 = nix.positions(here + "/ucarp.nix", [["name", 43, 3], ["meta", 44, 3], ["nodes", 46, 3], ["testScript", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,21 +19,21 @@ export default nix.lambda((args) => (() => {
     const pkgs_1 = nix.arg($_1, "pkgs");
     const lib_1 = nix.arg($_1, "lib");
     return {
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       networking: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         interfaces: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           eth1: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             ipv4: nix.thunk(() => ({
-              [nix.POS]: pos$2,
-              addresses: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$1, address: addr, prefixLength: 24n }))]))),
+              [nix.POS]: $pos[1],
+              addresses: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[0], address: addr, prefixLength: 24n }))]))),
             })),
           })),
         })),
         ucarp: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           enable: true,
           interface: "eth1",
           srcIp: addr,
@@ -60,11 +51,11 @@ ${nix.sel(pkgs_1, "iproute2")}/bin/ip addr del "$2"/24 dev "$1"
     };
   })(), formals$2);
   return {
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     name: "ucarp",
-    meta: nix.thunk(() => ({ [nix.POS]: pos$8, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: $pos[7], maintainers: [] })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       hostA: nix.thunk(() => nix.app(mkUcarpHost, addrHostA)),
       hostB: nix.thunk(() => nix.app(mkUcarpHost, addrHostB)),
     })),

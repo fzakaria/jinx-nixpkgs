@@ -2,14 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/build-maven-package.nix", [[["JAVA_HOME", 66, 13]], [["pname", 50, 11], ["src", 52, 13], ["sourceRoot", 53, 13], ["prePatch", 54, 13], ["patches", 55, 13], ["postPatch", 56, 13], ["version", 57, 13], ["nativeBuildInputs", 60, 11], ["env", 65, 11], ["impureEnvVars", 69, 11], ["buildPhase", 71, 11], ["installPhase", 117, 11], ["dontFixup", 131, 11], ["outputHashAlgo", 132, 11], ["outputHashMode", 133, 11], ["outputHash", 134, 11]], [["JAVA_HOME", 149, 11]], [["platforms", 165, 11]], [["fetchedMavenDeps", 142, 17], ["nativeBuildInputs", 144, 9], ["env", 148, 9], ["buildPhase", 152, 9], ["meta", 164, 9]], [["finalPackage", 177, 57]]]);
 const formals$1 = { args: { lib: false, stdenv: false, jdk: false, "jre-generate-cacerts": false, maven: false, writers: false }, ellipsis: false };
 const formals$2 = { args: { src: false, sourceRoot: true, buildOffline: true, doCheck: true, prePatch: true, patches: true, postPatch: true, pname: false, version: false, mvnJdk: true, mvnHash: true, mvnGoal: true, mvnOffline: true, mvnFetchExtraArgs: true, mvnDepsParameters: true, manualMvnArtifacts: true, manualMvnSources: true, mvnParameters: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/build-maven-package.nix", [["JAVA_HOME", 66, 13]]);
-const pos$2 = nix.positions(here + "/build-maven-package.nix", [["pname", 50, 11], ["src", 52, 13], ["sourceRoot", 53, 13], ["prePatch", 54, 13], ["patches", 55, 13], ["postPatch", 56, 13], ["version", 57, 13], ["nativeBuildInputs", 60, 11], ["env", 65, 11], ["impureEnvVars", 69, 11], ["buildPhase", 71, 11], ["installPhase", 117, 11], ["dontFixup", 131, 11], ["outputHashAlgo", 132, 11], ["outputHashMode", 133, 11], ["outputHash", 134, 11]]);
-const pos$3 = nix.positions(here + "/build-maven-package.nix", [["JAVA_HOME", 149, 11]]);
-const pos$4 = nix.positions(here + "/build-maven-package.nix", [["platforms", 165, 11]]);
-const pos$5 = nix.positions(here + "/build-maven-package.nix", [["fetchedMavenDeps", 142, 17], ["nativeBuildInputs", 144, 9], ["env", 148, 9], ["buildPhase", 152, 9], ["meta", 164, 9]]);
-const pos$6 = nix.positions(here + "/build-maven-package.nix", [["finalPackage", 177, 57]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,7 +38,7 @@ export default nix.lambda((args) => (() => {
     const mvnSkipTests = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(doCheck)), "-DskipTests"));
     const writeProxySettings = nix.thunk(() => nix.app(nix.sel(writers, "writePython3"), "write-proxy-settings", nix.thunk(() => ({})), nix.path(here, "./maven-proxy.py")));
     const fetchedMavenDeps = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname: nix.thunk(() => nix.str`maven-deps-${pname}`),
         src: src,
         sourceRoot: sourceRoot,
@@ -52,7 +47,7 @@ export default nix.lambda((args) => (() => {
         postPatch: postPatch,
         version: version,
         nativeBuildInputs: nix.thunk(() => nix.concat([maven], nix.selOr(args_2, () => [], "nativeBuildInputs"))),
-        env: nix.thunk(() => nix.update(nix.selOr(mvnFetchExtraArgs, () => ({}), "env"), { [nix.POS]: pos$1, JAVA_HOME: mvnJdk })),
+        env: nix.thunk(() => nix.update(nix.selOr(mvnFetchExtraArgs, () => ({}), "env"), { [nix.POS]: $pos[0], JAVA_HOME: mvnJdk })),
         impureEnvVars: nix.thunk(() => nix.sel(lib, "fetchers", "proxyImpureEnvVars")),
         buildPhase: nix.thunk(() => nix.add(nix.add(nix.add(nix.str`runHook preBuild
 
@@ -96,10 +91,10 @@ done
         outputHash: mvnHash,
       }, nix.builtins.removeAttrs(mvnFetchExtraArgs, nix.thunk(() => ["env"]))))));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(nix.builtins.removeAttrs(args_2, nix.thunk(() => ["mvnFetchExtraArgs"])), {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         fetchedMavenDeps: fetchedMavenDeps,
         nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(args_2, () => [], "nativeBuildInputs"), [maven])),
-        env: nix.thunk(() => nix.update(nix.selOr(args_2, () => ({}), "env"), { [nix.POS]: pos$3, JAVA_HOME: mvnJdk })),
+        env: nix.thunk(() => nix.update(nix.selOr(args_2, () => ({}), "env"), { [nix.POS]: $pos[2], JAVA_HOME: mvnJdk })),
         buildPhase: nix.thunk(() => nix.str`runHook preBuild
 
 mvnDeps=$(cp -dpR ${fetchedMavenDeps}/.m2 ./ && chmod +w -R .m2 && pwd)
@@ -109,14 +104,14 @@ mvn ${mvnGoal} ${(nix.asBool(mvnOffline) ? "-o" : "")} -nsu "-Dmaven.repo.local=
 runHook postBuild
 `),
         meta: nix.thunk(() => nix.update(nix.selOr(args_2, () => ({}), "meta"), {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           platforms: nix.thunk(() => nix.selOr(args_2, () => nix.sel(maven, "meta", "platforms"), "meta", "platforms")),
         })),
       })));
   })(), formals$2);
   return (fnOrAttrs) => (() => {
     const finalPackage = nix.thunk(() => (nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "isFunction"), fnOrAttrs))) ? nix.app(buildMavenPackage, fnOrAttrs) : (() => {
-      const finalAttrs = nix.thunk(() => nix.app(fnOrAttrs, nix.thunk(() => nix.update(finalAttrs, { [nix.POS]: pos$6, finalPackage: finalPackage }))));
+      const finalAttrs = nix.thunk(() => nix.app(fnOrAttrs, nix.thunk(() => nix.update(finalAttrs, { [nix.POS]: $pos[5], finalPackage: finalPackage }))));
       return nix.app(buildMavenPackage, finalAttrs);
     })()));
     return nix.force(finalPackage);

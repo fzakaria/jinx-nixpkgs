@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 66, 5], ["repo", 67, 5], ["tag", 68, 5], ["hash", 69, 5]], [["withMPI", 97, 13]], [["description", 101, 5], ["mainProgram", 102, 5], ["longDescription", 103, 5], ["homepage", 109, 5], ["license", 110, 5], ["maintainers", 111, 5], ["platforms", 112, 5]], [["pname", 62, 3], ["version", 63, 3], ["src", 65, 3], ["nativeBuildInputs", 72, 3], ["buildInputs", 78, 3], ["preConfigure", 86, 3], ["passthru", 96, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, blas: false, boost: false, cmake: false, gfortran: false, lapack: false, mpi: false, suitesparse: false, swig: false, withMPI: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 66, 5], ["repo", 67, 5], ["tag", 68, 5], ["hash", 69, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["withMPI", 97, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 101, 5], ["mainProgram", 102, 5], ["longDescription", 103, 5], ["homepage", 109, 5], ["license", 110, 5], ["maintainers", 111, 5], ["platforms", 112, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 62, 3], ["version", 63, 3], ["src", 65, 3], ["nativeBuildInputs", 72, 3], ["buildInputs", 78, 3], ["preConfigure", 86, 3], ["passthru", 96, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const flagsBase = "-G \"Unix Makefiles\"\n-DBUILD_SHARED_LIBS=ON\n-DCMAKE_CXX_FLAGS=\"-O3 -fPIC\"\n-DCMAKE_C_FLAGS=\"-O3 -fPIC\"\n-DCMAKE_Fortran_FLAGS=\"-O3 -fPIC\"\n-DTrilinos_ENABLE_NOX=ON\n-DNOX_ENABLE_LOCA=ON\n-DTrilinos_ENABLE_EpetraExt=ON\n-DEpetraExt_BUILD_BTF=ON\n-DEpetraExt_BUILD_EXPERIMENTAL=ON\n-DEpetraExt_BUILD_GRAPH_REORDERINGS=ON\n-DTrilinos_ENABLE_TrilinosCouplings=ON\n-DTrilinos_ENABLE_Ifpack=ON\n-DTrilinos_ENABLE_AztecOO=ON\n-DTrilinos_ENABLE_Belos=ON\n-DTrilinos_ENABLE_Teuchos=ON\n-DTeuchos_ENABLE_COMPLEX=ON\n-DTrilinos_ENABLE_Amesos=ON\n-DAmesos_ENABLE_KLU=ON\n-DTrilinos_ENABLE_Amesos2=ON\n-DAmesos2_ENABLE_KLU2=ON\n-DAmesos2_ENABLE_Basker=ON\n-DTrilinos_ENABLE_Sacado=ON\n-DTrilinos_ENABLE_Stokhos=ON\n-DTrilinos_ENABLE_Kokkos=ON\n-DTrilinos_ENABLE_ALL_OPTIONAL_PACKAGES=OFF\n-DTrilinos_ENABLE_CXX11=ON\n-DTPL_ENABLE_AMD=ON\n-DTPL_ENABLE_BLAS=ON\n-DTPL_ENABLE_LAPACK=ON\n";
   const flagsParallel = "-DCMAKE_C_COMPILER=mpicc\n-DCMAKE_CXX_COMPILER=mpic++\n-DCMAKE_Fortran_COMPILER=mpif77\n-DTrilinos_ENABLE_Isorropia=ON\n-DTrilinos_ENABLE_Zoltan=ON\n-DTPL_ENABLE_MPI=ON\n";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "trilinos",
       version: "16.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "trilinos",
           repo: "Trilinos",
           tag: nix.thunk(() => nix.str`trilinos-release-${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["-"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -40,9 +37,9 @@ export default nix.lambda((args) => (() => {
       preConfigure: nix.thunk(() => (nix.asBool(withMPI) ? nix.str`cmakeFlagsArray+=(${flagsBase} ${flagsParallel})
 ` : nix.str`cmakeFlagsArray+=(${flagsBase})
 `)),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, withMPI: withMPI })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], withMPI: withMPI })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Engineering and scientific problems algorithms",
         mainProgram: "nvcc_wrapper",
         longDescription: "The Trilinos Project is an effort to develop algorithms and enabling\ntechnologies within an object-oriented software framework for the\nsolution of large-scale, complex multi-physics engineering and scientific\nproblems.\n",

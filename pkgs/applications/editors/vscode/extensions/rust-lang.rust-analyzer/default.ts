@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["pname", 34, 13], ["releaseTag", 34, 19], ["name", 35, 5], ["version", 36, 5], ["src", 37, 5], ["npmDepsHash", 38, 5], ["buildInputs", 39, 5], ["nativeBuildInputs", 42, 5], ["installPhase", 53, 5]], [["description", 91, 5], ["homepage", 92, 5], ["license", 93, 5], ["maintainers", 97, 5], ["platforms", 98, 5]], [["version", 67, 11], ["vsix", 67, 19], ["pname", 67, 24], ["src", 68, 3], ["vscodeExtUniqueId", 69, 3], ["vscodeExtPublisher", 70, 3], ["vscodeExtName", 71, 3], ["nativeBuildInputs", 73, 3], ["preInstall", 78, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { clang_20: false, pkgsBuildBuild: false, lib: false, fetchFromGitHub: false, "vscode-utils": false, jq: false, "rust-analyzer": false, buildNpmPackage: false, moreutils: false, esbuild: false, "pkg-config": false, stdenv: false, setDefaultServerPath: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 34, 13], ["releaseTag", 34, 19], ["name", 35, 5], ["version", 36, 5], ["src", 37, 5], ["npmDepsHash", 38, 5], ["buildInputs", 39, 5], ["nativeBuildInputs", 42, 5], ["installPhase", 53, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 91, 5], ["homepage", 92, 5], ["license", 93, 5], ["maintainers", 97, 5], ["platforms", 98, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["version", 67, 11], ["vsix", 67, 19], ["pname", 67, 24], ["src", 68, 3], ["vscodeExtUniqueId", 69, 3], ["vscodeExtPublisher", 70, 3], ["vscodeExtName", 71, 3], ["nativeBuildInputs", 73, 3], ["preInstall", 78, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,14 +25,14 @@ export default nix.lambda((args) => (() => {
   const version = nix.thunk(() => nix.attr(vsix, "version"));
   const releaseTag = "2026-02-16";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "rust-lang",
       repo: "rust-analyzer",
       tag: releaseTag,
       hash: "sha256-1TZROjtryMzOJHgHhAUQUoAMnnWal231G7gM1pfNlK4=",
     }))));
   const vsix = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: pname,
       releaseTag: releaseTag,
       name: nix.thunk(() => nix.str`${pname}-${version}.vsix`),
@@ -47,7 +44,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "jq '\n  .version = $ENV.version |\n  .releaseTag = $ENV.releaseTag |\n  .enableProposedApi = false |\n  walk(del(.[\"$generated-start\"]?) | del(.[\"$generated-end\"]?))\n' package.json | sponge package.json\n\nnpm exec --package=@vscode/vsce -- vsce package --out $out\n",
     }))));
   return nix.app(nix.sel(vscode_utils, "buildVscodeExtension"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: version,
       vsix: vsix,
       pname: pname,
@@ -67,7 +64,7 @@ grep -Fq ${rust_analyzer}/bin/rust-analyzer package.json || {
 }
 `))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Alternative rust language server to the RLS",
         homepage: "https://github.com/rust-lang/rust-analyzer",
         license: nix.thunk(() => [

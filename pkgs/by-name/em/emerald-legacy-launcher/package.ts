@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 13, 3], ["version", 14, 47], ["meta", 14, 55], ["runScript", 16, 3], ["extraPkgs", 18, 3], ["extraLibraries", 27, 11], ["extraEnv", 27, 26], ["extraInstallCommands", 29, 3], ["privateTmp", 35, 3]]]);
 const formals$1 = { args: { lib: false, steam: false, "emerald-legacy-launcher-unwrapped": false, libarchive: false, python3: false, extraPkgs: true, extraLibraries: true, extraEnv: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 47], ["meta", 14, 55], ["runScript", 16, 3], ["extraPkgs", 18, 3], ["extraLibraries", 27, 11], ["extraEnv", 27, 26], ["extraInstallCommands", 29, 3], ["privateTmp", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const extraLibraries = nix.argOr($, "extraLibraries", () => (pkgs) => []);
   const extraEnv = nix.argOr($, "extraEnv", () => ({}));
   return nix.app(nix.sel(steam, "buildRuntimeEnv"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "emerald-legacy-launcher",
       version: nix.thunk(() => nix.attr(emerald_legacy_launcher_unwrapped, "version")),
       meta: nix.thunk(() => nix.attr(emerald_legacy_launcher_unwrapped, "meta")),

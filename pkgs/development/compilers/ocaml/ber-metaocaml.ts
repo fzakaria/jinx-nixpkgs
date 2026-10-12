@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ber-metaocaml.nix", [[["url", 29, 5], ["sha256", 30, 5]], [["url", 34, 5], ["sha256", 35, 5]], [["name", 39, 5], ["paths", 40, 5]], [["nativeCompilers", 85, 5]], [["description", 89, 5], ["homepage", 90, 5], ["license", 91, 5], ["maintainers", 96, 5], ["branch", 98, 5], ["platforms", 99, 5], ["broken", 100, 5], ["longDescription", 102, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["metaocaml", 33, 3], ["x11env", 38, 3], ["x11lib", 42, 3], ["x11inc", 43, 3], ["prefixKey", 45, 3], ["configureFlags", 46, 3], ["dontStrip", 48, 3], ["buildInputs", 49, 3], ["postConfigure", 51, 3], ["buildPhase", 58, 3], ["installPhase", 71, 3], ["checkPhase", 76, 3], ["passthru", 84, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, ncurses: false, libx11: false, xorgproto: false, buildEnv: false, useX11: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/ber-metaocaml.nix", [["url", 29, 5], ["sha256", 30, 5]]);
-const pos$2 = nix.positions(here + "/ber-metaocaml.nix", [["url", 34, 5], ["sha256", 35, 5]]);
-const pos$3 = nix.positions(here + "/ber-metaocaml.nix", [["name", 39, 5], ["paths", 40, 5]]);
-const pos$4 = nix.positions(here + "/ber-metaocaml.nix", [["nativeCompilers", 85, 5]]);
-const pos$5 = nix.positions(here + "/ber-metaocaml.nix", [["description", 89, 5], ["homepage", 90, 5], ["license", 91, 5], ["maintainers", 96, 5], ["branch", 98, 5], ["platforms", 99, 5], ["broken", 100, 5], ["longDescription", 102, 5]]);
-const pos$6 = nix.positions(here + "/ber-metaocaml.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["metaocaml", 33, 3], ["x11env", 38, 3], ["x11lib", 42, 3], ["x11inc", 43, 3], ["prefixKey", 45, 3], ["configureFlags", 46, 3], ["dontStrip", 48, 3], ["buildInputs", 49, 3], ["postConfigure", 51, 3], ["buildPhase", 58, 3], ["installPhase", 71, 3], ["checkPhase", 76, 3], ["passthru", 84, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,16 +24,16 @@ export default nix.lambda((args) => (() => {
       const pname = "ber-metaocaml";
       const version = metaocamlPatch;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://caml.inria.fr/pub/distrib/ocaml-${baseOcamlBranch}/ocaml-${baseOcamlVersion}.tar.gz`),
           sha256: "sha256-IsHdneIb9Dti0ZCQQftfrWSJBSJ79pVQpqa+8x5lTzg=",
         }))));
       const metaocaml = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://okmij.org/ftp/ML/ber-metaocaml-${metaocamlPatch}.tar.gz`),
           sha256: "sha256-zN4C+ZKpPyT87U9wba8D475K6NWOotSYdd67D+1LSlI=",
         }))));
-      const x11env = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({ [nix.POS]: pos$3, name: "x11env", paths: x11deps }))));
+      const x11env = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({ [nix.POS]: $pos[2], name: "x11env", paths: x11deps }))));
       const x11lib = nix.thunk(() => nix.str`${x11env}/lib`);
       const x11inc = nix.thunk(() => nix.str`${x11env}/include`);
       const prefixKey = "-prefix ";
@@ -68,9 +63,9 @@ make test-compile
 make test-native
 cd ..
 `);
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$4, nativeCompilers: true }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[3], nativeCompilers: true }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Multi-Stage Programming extension for OCaml",
         homepage: "https://okmij.org/ftp/ML/MetaOCaml.html",
         license: nix.thunk(() => (() => {
@@ -93,7 +88,7 @@ cd ..
         longDescription: "A simple extension of OCaml with the primitive type of code values, and\nthree basic multi-stage expression forms: Brackets, Escape, and Run.\n",
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

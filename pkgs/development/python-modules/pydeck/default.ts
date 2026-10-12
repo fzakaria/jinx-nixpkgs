@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 23, 13], ["version", 23, 19], ["hash", 24, 5]], [["carto", 46, 5], ["jupyter", 49, 5]], [["homepage", 68, 5], ["description", 69, 5], ["maintainers", 70, 5], ["license", 71, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["postPatch", 29, 3], ["nativeBuildInputs", 33, 3], ["propagatedBuildInputs", 40, 3], ["optional-dependencies", 45, 3], ["pythonImportsCheck", 56, 3], ["nativeCheckInputs", 58, 3], ["disabledTests", 65, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, ipykernel: false, ipywidgets: false, jinja2: false, jupyter: false, numpy: false, pandas: false, pytestCheckHook: false, setuptools: false, traitlets: false, wheel: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 23, 13], ["version", 23, 19], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["carto", 46, 5], ["jupyter", 49, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 68, 5], ["description", 69, 5], ["maintainers", 70, 5], ["license", 71, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["postPatch", 29, 3], ["nativeBuildInputs", 33, 3], ["propagatedBuildInputs", 40, 3], ["optional-dependencies", 45, 3], ["pythonImportsCheck", 56, 3], ["nativeCheckInputs", 58, 3], ["disabledTests", 65, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-wQ2QNegerWOFJkysjRlAJHH2hmoVyh998UAPUhQrz4c=",
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [jinja2, jupyter, setuptools, wheel]);
       const propagatedBuildInputs = nix.thunk(() => [jinja2, numpy]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         carto: [],
         jupyter: nix.thunk(() => [ipykernel, ipywidgets, traitlets]),
       }));
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook, pandas], nix.sel(optional_dependencies, "jupyter")));
       const disabledTests = nix.thunk(() => ["test_nbconvert"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/visgl/deck.gl/tree/master/bindings/pydeck",
         description: "Large-scale interactive data visualization in Python",
         maintainers: nix.thunk(() => (() => {
@@ -55,7 +52,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

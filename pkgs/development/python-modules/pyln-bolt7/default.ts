@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 38, 5]], [["pname", 10, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 24], ["postUnpack", 17, 3], ["build-system", 21, 3], ["dependencies", 23, 3], ["nativeCheckInputs", 25, 3], ["pythonNamespaces", 27, 3], ["pythonImportsCheck", 29, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, hatchling: false, "pyln-proto": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 38, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 24], ["postUnpack", 17, 3], ["build-system", 21, 3], ["dependencies", 23, 3], ["nativeCheckInputs", 25, 3], ["pythonNamespaces", 27, 3], ["pythonImportsCheck", 29, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const pyln_proto = nix.arg($, "pyln-proto");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "pyln-bolt7",
       version: "1.0.246",
       pyproject: true,
@@ -26,7 +25,7 @@ export default nix.lambda((args) => (() => {
       pythonNamespaces: nix.thunk(() => ["pyln.spec"]),
       pythonImportsCheck: nix.thunk(() => ["pyln.spec.bolt7"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "BOLT7 Lightning Network node and channel discovery specification",
         homepage: "https://github.com/ElementsProject/lightning/tree/master/contrib/pyln-spec/bolt7",
         license: nix.thunk(() => (() => {

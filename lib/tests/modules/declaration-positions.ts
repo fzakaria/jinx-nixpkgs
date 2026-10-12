@@ -2,56 +2,36 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/declaration-positions.nix", [[["a", 6, 40]], [["a", 9, 5]], [["type", 15, 9]], [["line14", 14, 24]], [["type", 23, 11]], [["line22", 22, 9]], [["default", 28, 9], ["type", 29, 9]], [["extraOptLine27", 27, 31]], [["imported", 14, 15], ["generated", 21, 15], ["submoduleLine38", 27, 15]], [["options", 14, 7]], [["type", 35, 5]], [["nestedLine34", 34, 18]], [["submodDeclLine45", 45, 21]], [["options", 45, 13]], [["freeformType", 48, 11]], [["modules", 41, 7]], [["default", 39, 5], ["type", 40, 5]], [["nested", 34, 11], ["submoduleLine38", 38, 11]], [["submodDeclLine45", 54, 21]], [["submoduleLine38", 54, 5]], [["imports", 12, 3], ["options", 34, 3], ["config", 53, 3]]]);
 const formals$1 = { args: { lib: false, options: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/declaration-positions.nix", [["a", 6, 40]]);
-const pos$2 = nix.positions(here + "/declaration-positions.nix", [["a", 9, 5]]);
-const pos$3 = nix.positions(here + "/declaration-positions.nix", [["type", 15, 9]]);
-const pos$4 = nix.positions(here + "/declaration-positions.nix", [["line14", 14, 24]]);
-const pos$5 = nix.positions(here + "/declaration-positions.nix", [["type", 23, 11]]);
-const pos$6 = nix.positions(here + "/declaration-positions.nix", [["line22", 22, 9]]);
-const pos$7 = nix.positions(here + "/declaration-positions.nix", [["default", 28, 9], ["type", 29, 9]]);
-const pos$8 = nix.positions(here + "/declaration-positions.nix", [["extraOptLine27", 27, 31]]);
-const pos$9 = nix.positions(here + "/declaration-positions.nix", [["imported", 14, 15], ["generated", 21, 15], ["submoduleLine38", 27, 15]]);
-const pos$10 = nix.positions(here + "/declaration-positions.nix", [["options", 14, 7]]);
-const pos$11 = nix.positions(here + "/declaration-positions.nix", [["type", 35, 5]]);
-const pos$12 = nix.positions(here + "/declaration-positions.nix", [["nestedLine34", 34, 18]]);
 const formals$2 = { args: { options: false }, ellipsis: true };
-const pos$13 = nix.positions(here + "/declaration-positions.nix", [["submodDeclLine45", 45, 21]]);
-const pos$14 = nix.positions(here + "/declaration-positions.nix", [["options", 45, 13]]);
-const pos$15 = nix.positions(here + "/declaration-positions.nix", [["freeformType", 48, 11]]);
-const pos$16 = nix.positions(here + "/declaration-positions.nix", [["modules", 41, 7]]);
-const pos$17 = nix.positions(here + "/declaration-positions.nix", [["default", 39, 5], ["type", 40, 5]]);
-const pos$18 = nix.positions(here + "/declaration-positions.nix", [["nested", 34, 11], ["submoduleLine38", 38, 11]]);
-const pos$19 = nix.positions(here + "/declaration-positions.nix", [["submodDeclLine45", 54, 21]]);
-const pos$20 = nix.positions(here + "/declaration-positions.nix", [["submoduleLine38", 54, 5]]);
-const pos$21 = nix.positions(here + "/declaration-positions.nix", [["imports", 12, 3], ["options", 34, 3], ["config", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const options = nix.arg($, "options");
   const discardPositions = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (k) => (v) => nix.force(v)));
-  nix.assert_(!nix.eq(nix.builtins.unsafeGetAttrPos("a", nix.thunk(() => ({ [nix.POS]: pos$1, a: true }))), null), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declaration-positions.nix:6:1");
-  nix.assert_(nix.eq(nix.builtins.unsafeGetAttrPos("a", nix.thunk(() => nix.app(discardPositions, nix.thunk(() => ({ [nix.POS]: pos$2, a: true }))))), null), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declaration-positions.nix:7:1");
+  nix.assert_(!nix.eq(nix.builtins.unsafeGetAttrPos("a", nix.thunk(() => ({ [nix.POS]: $pos[0], a: true }))), null), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declaration-positions.nix:6:1");
+  nix.assert_(nix.eq(nix.builtins.unsafeGetAttrPos("a", nix.thunk(() => nix.app(discardPositions, nix.thunk(() => ({ [nix.POS]: $pos[1], a: true }))))), null), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declaration-positions.nix:7:1");
   return {
-    [nix.POS]: pos$21,
+    [nix.POS]: $pos[20],
     imports: nix.thunk(() => [
       nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         options: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           imported: nix.thunk(() => ({
-            [nix.POS]: pos$4,
-            line14: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$3, type: nix.thunk(() => nix.sel(lib, "types", "int")) })))),
+            [nix.POS]: $pos[3],
+            line14: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: $pos[2], type: nix.thunk(() => nix.sel(lib, "types", "int")) })))),
           })),
           generated: nix.thunk(() => nix.app(discardPositions, nix.thunk(() => ({
-              [nix.POS]: pos$6,
-              line22: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$5, type: nix.thunk(() => nix.sel(lib, "types", "int")) })))),
+              [nix.POS]: $pos[5],
+              line22: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: $pos[4], type: nix.thunk(() => nix.sel(lib, "types", "int")) })))),
             })))),
           submoduleLine38: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             extraOptLine27: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 default: 1n,
                 type: nix.thunk(() => nix.sel(lib, "types", "int")),
               })))),
@@ -60,30 +40,30 @@ export default nix.lambda((args) => (() => {
       })),
     ]),
     options: nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       nested: nix.thunk(() => ({
-        [nix.POS]: pos$12,
-        nestedLine34: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$11, type: nix.thunk(() => nix.sel(lib, "types", "int")) })))),
+        [nix.POS]: $pos[11],
+        nestedLine34: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: $pos[10], type: nix.thunk(() => nix.sel(lib, "types", "int")) })))),
       })),
       submoduleLine38: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           default: nix.thunk(() => ({})),
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submoduleWith"), nix.thunk(() => ({
-              [nix.POS]: pos$16,
+              [nix.POS]: $pos[15],
               modules: nix.thunk(() => [
                 nix.lambda((args_1) => (() => {
                   const $_1 = nix.formals(args_1, formals$2);
                   const options_1 = nix.arg($_1, "options");
                   return {
-                    [nix.POS]: pos$14,
+                    [nix.POS]: $pos[13],
                     options: nix.thunk(() => ({
-                      [nix.POS]: pos$13,
+                      [nix.POS]: $pos[12],
                       submodDeclLine45: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({})))),
                     })),
                   };
                 })(), formals$2),
                 nix.thunk(() => ({
-                  [nix.POS]: pos$15,
+                  [nix.POS]: $pos[14],
                   freeformType: nix.thunk(() => (() => {
                     const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                     return nix.app(nix.lookup(w, "lazyAttrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "uniq"), nix.thunk(() => nix.lookup(w, "unspecified")))));
@@ -94,9 +74,9 @@ export default nix.lambda((args) => (() => {
         })))),
     })),
     config: nix.thunk(() => ({
-      [nix.POS]: pos$20,
+      [nix.POS]: $pos[19],
       submoduleLine38: nix.thunk(() => ({
-        [nix.POS]: pos$19,
+        [nix.POS]: $pos[18],
         submodDeclLine45: nix.thunk(() => nix.sel(nix.app(nix.sel(options, "submoduleLine38", "type", "getSubOptions"), []), "submodDeclLine45", "declarationPositions")),
       })),
     })),

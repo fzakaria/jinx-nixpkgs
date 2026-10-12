@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]], [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["mainProgram", 70, 5]], [["pname", 19, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["patches", 31, 3], ["build-system", 36, 3], ["dependencies", 38, 3], ["pythonRemoveDeps", 46, 3], ["preCheck", 48, 3], ["nativeCheckInputs", 52, 3], ["disabledTests", 59, 3], ["pythonImportsCheck", 63, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, lib: false, git: false, fetchFromGitHub: false, pythonAtLeast: false, setuptools: false, "git-annex": false, pyside6: false, pyqtdarktheme: false, "datalad-next": false, outdated: false, datalad: false, pytestCheckHook: false, "pytest-qt": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["mainProgram", 70, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["patches", 31, 3], ["build-system", 36, 3], ["dependencies", 38, 3], ["pythonRemoveDeps", 46, 3], ["preCheck", 48, 3], ["nativeCheckInputs", 52, 3], ["disabledTests", 59, 3], ["pythonImportsCheck", 63, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pytest_qt = nix.arg($, "pytest-qt");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "datalad-gooey",
       version: "0.2.0-unstable-2024-02-20",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "datalad",
           repo: "datalad-gooey",
           rev: "5bd6b9257ff1569439d2a77663271f5d665e61b6",
@@ -44,7 +42,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.14")), nix.thunk(() => ["test_lsfiles"]))),
       pythonImportsCheck: nix.thunk(() => ["datalad_gooey"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Graphical user interface (GUI) for DataLad",
         homepage: "https://github.com/datalad/datalad-gooey",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

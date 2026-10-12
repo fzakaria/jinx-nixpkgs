@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/hnix-store-nar.nix", [[["pname", 31, 3], ["version", 32, 3], ["sha256", 33, 3], ["libraryHaskellDepends", 34, 3], ["testHaskellDepends", 50, 3], ["testToolDepends", 69, 3], ["benchmarkHaskellDepends", 70, 3], ["homepage", 76, 3], ["description", 77, 3], ["license", 78, 3]]]);
 const formals$1 = { args: { mkDerivation: false, "algebraic-graphs": false, base: false, "base64-bytestring": false, bytestring: false, "case-insensitive": false, cereal: false, containers: false, crypton: false, directory: false, filepath: false, hspec: false, lib: false, "lifted-base": false, "monad-control": false, mtl: false, process: false, tasty: false, "tasty-discover": false, "tasty-hspec": false, "tasty-hunit": false, "tasty-quickcheck": false, temporary: false, text: false, unix: false, "unordered-containers": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/hnix-store-nar.nix", [["pname", 31, 3], ["version", 32, 3], ["sha256", 33, 3], ["libraryHaskellDepends", 34, 3], ["testHaskellDepends", 50, 3], ["testToolDepends", 69, 3], ["benchmarkHaskellDepends", 70, 3], ["homepage", 76, 3], ["description", 77, 3], ["license", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
   const unix = nix.arg($, "unix");
   const unordered_containers = nix.arg($, "unordered-containers");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "hnix-store-nar",
       version: "0.1.2.0",
       sha256: "113cj9dhiw1fj4sdh954l0gpw4l9iycy2xj1ajx76brhsqxrh5r9",

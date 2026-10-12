@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]], [["description", 38, 5], ["longDescription", 39, 5], ["homepage", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["mainProgram", 47, 5]], [["pname", 13, 3], ["version", 15, 3], ["src", 17, 3], ["cargoHash", 24, 3], ["buildInputs", 26, 3], ["nativeBuildInputs", 27, 3], ["buildNoDefaultFeatures", 29, 3], ["buildFeatures", 30, 3], ["postPatch", 32, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rustPlatform: false, libtirpc: false, pam: false, "rpcsvc-proto": false, enablePAM: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 38, 5], ["longDescription", 39, 5], ["homepage", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["mainProgram", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 15, 3], ["src", 17, 3], ["cargoHash", 24, 3], ["buildInputs", 26, 3], ["nativeBuildInputs", 27, 3], ["buildNoDefaultFeatures", 29, 3], ["buildFeatures", 30, 3], ["postPatch", 32, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const rpcsvc_proto = nix.arg($, "rpcsvc-proto");
   const enablePAM = nix.argOr($, "enablePAM", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "webdav-server-rs",
       version: "unstable-2021-08-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "miquels",
           repo: "webdav-server-rs",
           rev: "547602e78783935b4ddd038fb795366c9c476bcc",
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
    --replace '/usr/include/tirpc' '${nix.sel(libtirpc, "dev")}/include/tirpc'
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Implementation of WebDAV server in Rust",
         longDescription: "webdav-server-rs is an implementation of WebDAV with full support for\nRFC4918.  It also supports local unix accounts, PAM authentication, and\nquota.\n",
         homepage: "https://github.com/miquels/webdav-server-rs",

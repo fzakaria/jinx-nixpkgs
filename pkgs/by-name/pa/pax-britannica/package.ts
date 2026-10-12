@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 24, 5], ["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]], [["url", 33, 7], ["hash", 34, 7]], [["url", 37, 7], ["hash", 38, 7]], [["url", 41, 7], ["hash", 42, 7]], [["url", 45, 7], ["hash", 46, 7]], [["url", 50, 5], ["hash", 51, 5]], [["description", 102, 5], ["homepage", 103, 5], ["license", 104, 5], ["maintainers", 105, 5], ["platforms", 106, 5], ["mainProgram", 107, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 31, 3], ["postPatch", 53, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 67, 3], ["makeFlags", 76, 3], ["preBuild", 86, 3], ["desktopItems", 92, 3], ["installPhase", 94, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, copyDesktopItems: false, fetchFromGitLab: false, fetchpatch: false, "pkg-config": false, luajit_2_0: false, libGL: false, libGLU: false, "alsa-lib": false, libxrandr: false, libx11: false, glfw2: false, glfw3: false, useGlfw3: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 24, 5], ["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 33, 7], ["hash", 34, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 37, 7], ["hash", 38, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 41, 7], ["hash", 42, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 45, 7], ["hash", 46, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["url", 50, 5], ["hash", 51, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 102, 5], ["homepage", 103, 5], ["license", 104, 5], ["maintainers", 105, 5], ["platforms", 106, 5], ["mainProgram", 107, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 31, 3], ["postPatch", 53, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 67, 3], ["makeFlags", 76, 3], ["preBuild", 86, 3], ["desktopItems", 92, 3], ["installPhase", 94, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const glfw3 = nix.arg($, "glfw3");
   const useGlfw3 = nix.argOr($, "useGlfw3", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "pax-britannica",
       version: "1.0.0-5",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "salsa.debian.org",
           owner: "games-team",
           repo: "pax-britannica",
@@ -43,27 +36,27 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://sources.debian.org/data/main/p/pax-britannica/1.0.0-5/debian/patches/compile_for_linux.patch",
             hash: "sha256-XncjmJrBakz5/w90O6rDif2rWSoAVKzuPEj9wN2VNvQ=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://sources.debian.org/data/main/p/pax-britannica/1.0.0-5/debian/patches/add_manpage.patch",
             hash: "sha256-c8O6t0Zv/ln7WiPdbN3sYGsb7SL9Rmeo+94DsjpfgvY=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://sources.debian.org/data/main/p/pax-britannica/1.0.0-5/debian/patches/load_resources_from_usr_share.patch",
             hash: "sha256-61Yt4Rq1I/Ofu640XsDDo0il275B+ozqH0Z6P18XT6Q=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: "https://sources.debian.org/data/main/p/pax-britannica/1.0.0-5/debian/patches/add_desktop_entry.patch",
             hash: "sha256-QSQEBoCw7KTOLgy7TaFvQRpR17HoggTOCxhfTG+kIOA=",
           })))),
       ], nix.app(nix.sel(lib, "optional"), useGlfw3, nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             url: "https://sources.debian.org/data/main/p/pax-britannica/1.0.0-5/debian/patches/glfw3.patch",
             hash: "sha256-hj00vnW/i7lxFc4CGlRz6Havkg45gGgIg6MmCXcMsSg=",
           }))))))),
@@ -83,7 +76,7 @@ export default nix.lambda((args) => (() => {
       desktopItems: nix.thunk(() => ["pax-britannica.desktop"]),
       installPhase: "mkdir -p $out/{bin,share/pax-britannica,share/pixmaps}\ncp -ar *.lua audio components dokidoki scripts sprites $out/share/pax-britannica/\ncp pax-britannica.png $out/share/pixmaps/\ncp pax-britannica $out/bin/\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "One-button multi-player real-time strategy game",
         homepage: "http://gangles.ca/games/pax-britannica/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

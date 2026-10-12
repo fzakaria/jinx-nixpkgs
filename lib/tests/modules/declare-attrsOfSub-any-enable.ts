@@ -2,14 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/declare-attrsOfSub-any-enable.nix", [[["default", 9, 11], ["example", 10, 11], ["type", 11, 11], ["description", 12, 11]], [["enable", 8, 9]], [["options", 7, 7]], [["default", 23, 7], ["example", 24, 7], ["type", 25, 7], ["description", 26, 7]], [["attrsOfSub", 22, 5]], [["options", 21, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$1 = nix.positions(here + "/declare-attrsOfSub-any-enable.nix", [["default", 9, 11], ["example", 10, 11], ["type", 11, 11], ["description", 12, 11]]);
-const pos$2 = nix.positions(here + "/declare-attrsOfSub-any-enable.nix", [["enable", 8, 9]]);
-const pos$3 = nix.positions(here + "/declare-attrsOfSub-any-enable.nix", [["options", 7, 7]]);
-const pos$4 = nix.positions(here + "/declare-attrsOfSub-any-enable.nix", [["default", 23, 7], ["example", 24, 7], ["type", 25, 7], ["description", 26, 7]]);
-const pos$5 = nix.positions(here + "/declare-attrsOfSub-any-enable.nix", [["attrsOfSub", 22, 5]]);
-const pos$6 = nix.positions(here + "/declare-attrsOfSub-any-enable.nix", [["options", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const submod = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     return {
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       options: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             default: false,
             example: true,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
@@ -31,11 +26,11 @@ export default nix.lambda((args) => (() => {
     };
   })(), formals$2);
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       attrsOfSub: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           default: nix.thunk(() => ({})),
           example: nix.thunk(() => ({})),
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => [submod]))))),

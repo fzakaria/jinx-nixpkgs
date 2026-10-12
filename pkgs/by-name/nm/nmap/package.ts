@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 5], ["hash", 25, 5]], [["name", 30, 7], ["url", 31, 7], ["excludes", 32, 7], ["hash", 33, 7]], [["name", 36, 7], ["url", 37, 7], ["hash", 38, 7]], [["static", 94, 5]], [["tests", 93, 12]], [["description", 98, 5], ["homepage", 99, 5], ["changelog", 100, 5], ["license", 101, 5], ["platforms", 102, 5], ["mainProgram", 103, 5], ["maintainers", 104, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 28, 3], ["prePatch", 42, 3], ["configureFlags", 49, 3], ["postInstall", 55, 3], ["postFixup", 59, 3], ["makeFlags", 63, 3], ["nativeBuildInputs", 69, 3], ["buildInputs", 70, 3], ["enableParallelBuilding", 83, 3], ["doCheck", 85, 3], ["nativeInstallCheckInputs", 87, 3], ["versionCheckProgramArg", 90, 3], ["doInstallCheck", 91, 3], ["passthru", 93, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, pkgsStatic: false, fetchurl: false, fetchpatch2: false, versionCheckHook: false, libpcap: false, "pkg-config": false, openssl: false, lua5_4: false, pcre2: false, liblinear: false, libssh2: false, zlib: false, withLua: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 30, 7], ["url", 31, 7], ["excludes", 32, 7], ["hash", 33, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 36, 7], ["url", 37, 7], ["hash", 38, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["static", 94, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 93, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 98, 5], ["homepage", 99, 5], ["changelog", 100, 5], ["license", 101, 5], ["platforms", 102, 5], ["mainProgram", 103, 5], ["maintainers", 104, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 28, 3], ["prePatch", 42, 3], ["configureFlags", 49, 3], ["postInstall", 55, 3], ["postFixup", 59, 3], ["makeFlags", 63, 3], ["nativeBuildInputs", 69, 3], ["buildInputs", 70, 3], ["enableParallelBuilding", 83, 3], ["doCheck", 85, 3], ["nativeInstallCheckInputs", 87, 3], ["versionCheckProgramArg", 90, 3], ["doInstallCheck", 91, 3], ["passthru", 93, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,24 +23,24 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const withLua = nix.argOr($, "withLua", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "nmap",
       version: "7.991",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://nmap.org/dist/nmap-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-pdUH8pQ3vvO+3Udx/5qqj8HCoQnduh9bHPEgJ0VpKb4=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix-ncat-signal-propagation.patch",
             url: "https://github.com/nmap/nmap/commit/10fc2ebd1b99c90ec668dc34ea3d7c6faf0fa5ff.patch",
             excludes: nix.thunk(() => ["CHANGELOG"]),
             hash: "sha256-1hvlBCpWIws/+LvE7NN9bUPnW0QI7/4o/+YGdWIITOc=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "Do-not-call-NSE-if-compiling-without-Lua-support.patch",
             url: "https://github.com/nmap/nmap/commit/4c36cf12f246b52a8d510bdde8becd5c5b3bf8b5.patch",
             hash: "sha256-aWPHfJF1wOE5l6LQUKCqKVKxBoyNFov3r0NGEOxWpw8=",
@@ -74,11 +68,11 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "-V",
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$4, static: nix.thunk(() => nix.sel(pkgsStatic, "nmap")) })),
+        [nix.POS]: $pos[4],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[3], static: nix.thunk(() => nix.sel(pkgsStatic, "nmap")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Free and open source utility for network discovery and security auditing",
         homepage: "http://www.nmap.org",
         changelog: nix.thunk(() => nix.str`https://nmap.org/changelog.html#${nix.sel(finalAttrs, "version")}`),

@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["CXXFLAGS", 38, 7]], [["src", 49, 19], ["nativeBuildInputs", 50, 11]], [["supportedFeatures", 60, 11]], [["command", 64, 9], ["supportedFeatures", 71, 9]], [["pubspecSource", 46, 5], ["updateScript", 55, 5]], [["description", 77, 5], ["longDescription", 78, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["license", 87, 5], ["maintainers", 88, 5], ["mainProgram", 89, 5], ["platforms", 90, 5], ["badPlatforms", 91, 5]], [["pname", 25, 3], ["version", 26, 11], ["src", 26, 19], ["pubspecLock", 28, 3], ["gitHashes", 30, 3], ["buildInputs", 32, 3], ["env", 38, 3], ["postInstall", 40, 3], ["passthru", 45, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, flutter341: false, sqlite: false, libsecret: false, "_experimental-update-script-combinators": false, "nix-update-script": false, runCommand: false, "yq-go": false, dart: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CXXFLAGS", 38, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 49, 19], ["nativeBuildInputs", 50, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["supportedFeatures", 60, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["command", 64, 9], ["supportedFeatures", 71, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pubspecSource", 46, 5], ["updateScript", 55, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 77, 5], ["longDescription", 78, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["license", 87, 5], ["maintainers", 88, 5], ["mainProgram", 89, 5], ["platforms", 90, 5], ["badPlatforms", 91, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 11], ["src", 26, 19], ["pubspecLock", 28, 3], ["gitHashes", 30, 3], ["buildInputs", 32, 3], ["env", 38, 3], ["postInstall", 40, 3], ["passthru", 45, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,14 +19,14 @@ export default nix.lambda((args) => (() => {
   const dart = nix.arg($, "dart");
   const version = "1.26.7+180";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "FriesI23",
       repo: "mhabit",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-QRPgtzMRdfuflw36okY8DiXqPC+EJLjz8HQ3iL2Yxh8=",
     }))));
   return nix.app(nix.sel(flutter341, "buildFlutterApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "mhabit",
       version: version,
       src: src,
@@ -41,18 +34,18 @@ export default nix.lambda((args) => (() => {
       gitHashes: nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./git-hashes.json"))),
       buildInputs: nix.thunk(() => [sqlite, libsecret]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         CXXFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-deprecated-literal-operator"]))),
       })),
       postInstall: "install -Dm644 flatpak/io.github.friesi23.mhabit.desktop --target-directory=$out/share/applications\ninstall -Dm644 assets/logo/icon.svg $out/share/icons/hicolor/scalable/io.github.friesi23.mhabit\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
-        pubspecSource: nix.thunk(() => nix.app(runCommand, "pubspec.lock.json", nix.thunk(() => ({ [nix.POS]: pos$3, src: src, nativeBuildInputs: nix.thunk(() => [yq_go]) })), "yq eval --output-format=json --prettyPrint $src/pubspec.lock > \"$out\"\n")),
+        [nix.POS]: $pos[5],
+        pubspecSource: nix.thunk(() => nix.app(runCommand, "pubspec.lock.json", nix.thunk(() => ({ [nix.POS]: $pos[2], src: src, nativeBuildInputs: nix.thunk(() => [yq_go]) })), "yq eval --output-format=json --prettyPrint $src/pubspec.lock > \"$out\"\n")),
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
             nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-            nix.thunk(() => nix.update(nix.app(nix.sel(_experimental_update_script_combinators, "copyAttrOutputToFile"), "mhabit.pubspecSource", nix.path(here, "./pubspec.lock.json")), { [nix.POS]: pos$4, supportedFeatures: [] })),
+            nix.thunk(() => nix.update(nix.app(nix.sel(_experimental_update_script_combinators, "copyAttrOutputToFile"), "mhabit.pubspecSource", nix.path(here, "./pubspec.lock.json")), { [nix.POS]: $pos[3], supportedFeatures: [] })),
             nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               command: nix.thunk(() => [
                 nix.thunk(() => nix.sel(dart, "fetchGitHashesScript")),
                 "--input",
@@ -65,7 +58,7 @@ export default nix.lambda((args) => (() => {
           ]))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Track micro habits with easy-to-use charts and tools",
         longDescription: "\"Table Habit\" is an app that helps you establish and track your\nown micro habit. It includes a complete set of growth curves and\ncharts to help you build habits more effectively, and keeps your\ndata in sync across devices (currently via WebDAV, with more\noptions coming soon).\n",
         homepage: "https://github.com/FriesI23/mhabit",

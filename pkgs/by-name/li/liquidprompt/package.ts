@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["updateScript", 48, 12]], [["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["platforms", 54, 5], ["maintainers", 55, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["strictDeps", 19, 3], ["postPatch", 21, 3], ["installPhase", 25, 3], ["passthru", 48, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 48, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["platforms", 54, 5], ["maintainers", 55, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["strictDeps", 19, 3], ["postPatch", 21, 3], ["installPhase", 25, 3], ["passthru", 48, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "liquidprompt",
       version: "2.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "liquidprompt",
           repo: "liquidprompt",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,11 +26,11 @@ export default nix.lambda((args) => (() => {
       postPatch: "patchShebangs tools/*.sh\n",
       installPhase: "runHook preInstall\n\ninstall -D -m 0444 liquidprompt $out/bin/liquidprompt\n\ninstall -D -m 0444 liquidprompt.plugin.zsh \\\n  $out/share/zsh/plugins/liquidprompt/liquidprompt.plugin.zsh\ninstall -D -m 0444 liquidprompt \\\n  $out/share/zsh/plugins/liquidprompt/liquidprompt\n\n# generate default config file\nmkdir -p $out/share/doc/liquidprompt\ntools/config-from-doc.sh --verbose > $out/share/doc/liquidprompt/liquidpromptrc-dist\n\nmkdir -p $out/share/liquidprompt\ncp -a themes $out/share/liquidprompt/\n\nmkdir -p $out/share/liquidprompt/contrib\ncp -a contrib/presets $out/share/liquidprompt/contrib/\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Full-featured & carefully designed adaptive prompt for Bash & Zsh",
         homepage: "https://github.com/liquidprompt/liquidprompt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

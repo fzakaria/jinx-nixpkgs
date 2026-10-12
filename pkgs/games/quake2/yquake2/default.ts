@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["stdenv", 17, 40], ["lib", 17, 47], ["fetchFromGitHub", 17, 51]], [["stdenv", 21, 7], ["lib", 22, 7], ["buildEnv", 23, 7], ["makeWrapper", 24, 7], ["yquake2", 25, 7], ["copyDesktopItems", 26, 7], ["makeDesktopItem", 27, 7]], [["owner", 36, 7], ["repo", 37, 7], ["rev", 38, 7], ["sha256", 39, 7]], [["name", 83, 9], ["exec", 84, 9], ["icon", 85, 9], ["desktopName", 86, 9], ["comment", 87, 9], ["categories", 88, 9]], [["description", 96, 7], ["homepage", 97, 7], ["license", 98, 7], ["platforms", 99, 7], ["maintainers", 100, 7]], [["pname", 32, 5], ["version", 33, 5], ["src", 35, 5], ["postPatch", 42, 5], ["buildInputs", 51, 5], ["makeFlags", 58, 5], ["nativeBuildInputs", 64, 5], ["enableParallelBuilding", 66, 5], ["installPhase", 68, 5], ["desktopItems", 81, 5], ["meta", 95, 5]], [["games", 109, 5], ["name", 110, 5], ["description", 111, 25]], [["games", 115, 5], ["name", 116, 5], ["description", 117, 33]], [["games", 121, 5], ["name", 122, 5], ["description", 123, 35]], [["games", 127, 5], ["name", 128, 5], ["description", 129, 5]], [["yquake2", 106, 11], ["yquake2-ctf", 108, 3], ["yquake2-ground-zero", 114, 3], ["yquake2-the-reckoning", 120, 3], ["yquake2-all-games", 126, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, buildEnv: false, makeWrapper: false, copyDesktopItems: false, makeDesktopItem: false, SDL2: false, libGL: false, curl: false, openalSupport: true, openal: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["stdenv", 17, 40], ["lib", 17, 47], ["fetchFromGitHub", 17, 51]]);
-const pos$2 = nix.positions(here + "/default.nix", [["stdenv", 21, 7], ["lib", 22, 7], ["buildEnv", 23, 7], ["makeWrapper", 24, 7], ["yquake2", 25, 7], ["copyDesktopItems", 26, 7], ["makeDesktopItem", 27, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["owner", 36, 7], ["repo", 37, 7], ["rev", 38, 7], ["sha256", 39, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["name", 83, 9], ["exec", 84, 9], ["icon", 85, 9], ["desktopName", 86, 9], ["comment", 87, 9], ["categories", 88, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 96, 7], ["homepage", 97, 7], ["license", 98, 7], ["platforms", 99, 7], ["maintainers", 100, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 32, 5], ["version", 33, 5], ["src", 35, 5], ["postPatch", 42, 5], ["buildInputs", 51, 5], ["makeFlags", 58, 5], ["nativeBuildInputs", 64, 5], ["enableParallelBuilding", 66, 5], ["installPhase", 68, 5], ["desktopItems", 81, 5], ["meta", 95, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["games", 109, 5], ["name", 110, 5], ["description", 111, 25]]);
-const pos$8 = nix.positions(here + "/default.nix", [["games", 115, 5], ["name", 116, 5], ["description", 117, 33]]);
-const pos$9 = nix.positions(here + "/default.nix", [["games", 121, 5], ["name", 122, 5], ["description", 123, 35]]);
-const pos$10 = nix.positions(here + "/default.nix", [["games", 127, 5], ["name", 128, 5], ["description", 129, 5]]);
-const pos$11 = nix.positions(here + "/default.nix", [["yquake2", 106, 11], ["yquake2-ctf", 108, 3], ["yquake2-ground-zero", 114, 3], ["yquake2-the-reckoning", 120, 3], ["yquake2-all-games", 126, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,9 +19,14 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const openalSupport = nix.argOr($, "openalSupport", () => true);
   const openal = nix.arg($, "openal");
-  const games = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./games.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: stdenv, lib: lib, fetchFromGitHub: fetchFromGitHub }))));
+  const games = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./games.nix")), nix.thunk(() => ({
+      [nix.POS]: $pos[0],
+      stdenv: stdenv,
+      lib: lib,
+      fetchFromGitHub: fetchFromGitHub,
+    }))));
   const wrapper = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./wrapper.nix")), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       stdenv: stdenv,
       lib: lib,
       buildEnv: buildEnv,
@@ -44,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const pname = "yquake2";
       const version = "8.60";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "yquake2",
           repo: "yquake2",
           rev: nix.thunk(() => nix.str`QUAKE2_${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version)}`),
@@ -66,7 +61,7 @@ export default nix.lambda((args) => (() => {
       const installPhase = "runHook preInstall\n# Yamagi Quake II expects all binaries (executables and libs) to be in the\n# same directory.\nmkdir -p $out/bin $out/lib/yquake2 $out/share/games/quake2/baseq2\ncp -r release/* $out/lib/yquake2\nln -s $out/lib/yquake2/quake2 $out/bin/yquake2\nln -s $out/lib/yquake2/q2ded $out/bin/yq2ded\ncp $src/stuff/yq2.cfg $out/share/games/quake2/baseq2\ninstall -Dm644 stuff/icon/Quake2.png $out/share/icons/hicolor/512x512/apps/yamagi-quake2.png;\nrunHook postInstall\n";
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "yquake2",
             exec: "yquake2",
             icon: "yamagi-quake2",
@@ -76,7 +71,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Yamagi Quake II client",
         homepage: "https://www.yamagi.org/quake2/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -87,7 +82,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,
@@ -102,12 +97,12 @@ export default nix.lambda((args) => (() => {
       };
     })())));
   return {
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     yquake2: yquake2,
     "yquake2-ctf": nix.thunk(() => nix.app(wrapper, nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(games, "ctf"));
         return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         games: nix.thunk(() => [nix.thunk(() => nix.sel(games, "ctf"))]),
         name: "yquake2-ctf",
         description: nix.thunk(() => nix.attr(from, "description")),
@@ -116,7 +111,7 @@ export default nix.lambda((args) => (() => {
     "yquake2-ground-zero": nix.thunk(() => nix.app(wrapper, nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(games, "ground-zero"));
         return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         games: nix.thunk(() => [nix.thunk(() => nix.sel(games, "ground-zero"))]),
         name: "yquake2-ground-zero",
         description: nix.thunk(() => nix.attr(from, "description")),
@@ -125,14 +120,14 @@ export default nix.lambda((args) => (() => {
     "yquake2-the-reckoning": nix.thunk(() => nix.app(wrapper, nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(games, "the-reckoning"));
         return {
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         games: nix.thunk(() => [nix.thunk(() => nix.sel(games, "the-reckoning"))]),
         name: "yquake2-the-reckoning",
         description: nix.thunk(() => nix.attr(from, "description")),
       };
       })()))),
     "yquake2-all-games": nix.thunk(() => nix.app(wrapper, nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         games: nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), games)),
         name: "yquake2-all-games",
         description: "Yamagi Quake II with all add-on games",

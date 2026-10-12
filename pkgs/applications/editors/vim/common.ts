@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/common.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["platforms", 50, 5], ["mainProgram", 51, 5], ["outputsToInstall", 52, 5]], [["version", 7, 3], ["outputs", 9, 3], ["src", 14, 3], ["enableParallelBuilding", 21, 3], ["enableParallelInstalling", 22, 3], ["hardeningDisable", 24, 3], ["postPatch", 27, 3], ["postFixup", 33, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/common.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/common.nix", [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["platforms", 50, 5], ["mainProgram", 51, 5], ["outputsToInstall", 52, 5]]);
-const pos$3 = nix.positions(here + "/common.nix", [["version", 7, 3], ["outputs", 9, 3], ["src", 14, 3], ["enableParallelBuilding", 21, 3], ["enableParallelInstalling", 22, 3], ["hardeningDisable", 24, 3], ["postPatch", 27, 3], ["postFixup", 33, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +14,7 @@ export default nix.lambda((args) => (() => {
     const version = "9.2.1001";
     const outputs = nix.thunk(() => ["out", "xxd"]);
     const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         owner: "vim",
         repo: "vim",
         rev: nix.thunk(() => nix.str`v${version}`),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
     const postPatch = "substituteInPlace runtime/ftplugin/man.vim \\\n  --replace \"/usr/bin/man \" \"man \"\n";
     const postFixup = "moveToOutput bin/xxd \"$xxd\"\nmoveToOutput share/man/man1/xxd.1.gz \"$xxd\"\nfor manFile in $out/share/man/*/man1/xxd.1*; do\n  # moveToOutput does not take full paths or wildcards...\n  moveToOutput \"share/man/$(basename \"$(dirname \"$(dirname \"$manFile\")\")\")/man1/xxd.1.gz\" \"$xxd\"\ndone\n";
     const meta = nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       description: "Most popular clone of the VI editor",
       homepage: "https://www.vim.org",
       license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
@@ -44,7 +42,7 @@ export default nix.lambda((args) => (() => {
       outputsToInstall: nix.thunk(() => ["out", "xxd"]),
     }));
     return {
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version,
       outputs,
       src,

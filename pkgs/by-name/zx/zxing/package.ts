@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["changelog", 43, 5], ["description", 44, 5], ["sourceProvenance", 45, 5], ["license", 49, 5], ["mainProgram", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5], ["homepage", 53, 5]], [["pname", 9, 3], ["version", 10, 3], ["jre", 12, 11], ["src", 14, 3], ["mvnHash", 21, 3], ["sourceRoot", 23, 3], ["mvnParameters", 25, 3], ["installPhase", 27, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, maven: false, fetchFromGitHub: false, jre: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 43, 5], ["description", 44, 5], ["sourceProvenance", 45, 5], ["license", 49, 5], ["mainProgram", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5], ["homepage", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["jre", 12, 11], ["src", 14, 3], ["mvnHash", 21, 3], ["sourceRoot", 23, 3], ["mvnParameters", 25, 3], ["installPhase", 27, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.5.4";
       const jre_1 = jre;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "zxing",
           repo: "zxing",
           tag: nix.thunk(() => nix.str`zxing-${version}`),
@@ -41,7 +39,7 @@ done
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/zxing/zxing/releases/tag/zxing-${version}`),
         description: "1D and 2D code reading library",
         sourceProvenance: nix.thunk(() => (() => {
@@ -58,7 +56,7 @@ runHook postInstall
         homepage: "https://github.com/zxing/zxing",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         jre: jre_1,

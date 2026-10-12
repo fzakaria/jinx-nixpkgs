@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["cli", 12, 5], ["server", 13, 5]], [["simple", 16, 5], ["python3-valkey", 17, 5]], [["tests", 15, 12]], [["license", 20, 5], ["teams", 21, 5]], [["name", 10, 3], ["substitutions", 11, 3], ["passthru", 15, 3], ["meta", 19, 3]]]);
 const formals$1 = { args: { lib: false, callPackage: false, makeSetupHook: false, valkey: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["cli", 12, 5], ["server", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["simple", 16, 5], ["python3-valkey", 17, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 15, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["license", 20, 5], ["teams", 21, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 10, 3], ["substitutions", 11, 3], ["passthru", 15, 3], ["meta", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,23 +13,23 @@ export default nix.lambda((args) => (() => {
   const valkey = nix.arg($, "valkey");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       name: "redis-test-hook",
       substitutions: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         cli: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), valkey, "redis-cli")),
         server: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), valkey, "redis-server")),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           simple: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test.nix"), nix.thunk(() => ({})))),
           "python3-valkey": nix.thunk(() => nix.sel(python3Packages, "valkey")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "redis"))]),
       })),

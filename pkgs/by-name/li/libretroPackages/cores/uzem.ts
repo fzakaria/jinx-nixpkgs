@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/uzem.nix", [[["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5]], [["description", 25, 5], ["homepage", 26, 5], ["license", 27, 5]], [["core", 7, 3], ["version", 8, 3], ["src", 10, 3], ["makefile", 17, 3], ["makeFlags", 18, 3], ["postPatch", 19, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, mkLibretroCore: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/uzem.nix", [["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/uzem.nix", [["description", 25, 5], ["homepage", 26, 5], ["license", 27, 5]]);
-const pos$3 = nix.positions(here + "/uzem.nix", [["core", 7, 3], ["version", 8, 3], ["src", 10, 3], ["makefile", 17, 3], ["makeFlags", 18, 3], ["postPatch", 19, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +14,7 @@ export default nix.lambda((args) => (() => {
       const core = "uzem";
       const version = "0-unstable-2026-08-23";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "libretro",
           repo: "libretro-uzem",
           rev: "d991ee94547c8294abc1c4cb73d63116aa58b5bc",
@@ -28,12 +26,12 @@ export default nix.lambda((args) => (() => {
       ]);
       const postPatch = "substituteInPlace Makefile.libretro \\\n  --replace-fail 'GIT_VERSION := \" $(shell git rev-parse --short HEAD)\"' 'GIT_VERSION ?='\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Uzebox emulator for Libretro",
         homepage: "https://github.com/libretro/libretro-uzem",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
-      return { [nix.POS]: pos$3, core, version, src, makefile, makeFlags, postPatch, meta };
+      return { [nix.POS]: $pos[2], core, version, src, makefile, makeFlags, postPatch, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=uzem.ts.map

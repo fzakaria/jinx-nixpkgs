@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 32, 5], ["version", 33, 26], ["hash", 34, 5]], [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]], [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["postPatch", 37, 3], ["build-system", 42, 3], ["dependencies", 47, 3], ["nativeCheckInputs", 55, 3], ["disabledTestPaths", 65, 3], ["pythonImportsCheck", 67, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, hatchling: false, "hatch-fancy-pypi-readme": false, pythonOlder: false, pythonAtLeast: false, httpx: false, pydantic: false, anyio: false, distro: false, sniffio: false, pytestCheckHook: false, "pytest-asyncio": false, "pytest-xdist": false, "dirty-equals": false, respx: false, "llama-index-core": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 32, 5], ["version", 33, 26], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["postPatch", 37, 3], ["build-system", 42, 3], ["dependencies", 47, 3], ["nativeCheckInputs", 55, 3], ["disabledTestPaths", 65, 3], ["pythonImportsCheck", 67, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const respx = nix.arg($, "respx");
   const llama_index_core = nix.arg($, "llama-index-core");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "llama-cloud",
       version: "2.16.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "llama_cloud",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-JI3cams5ReWH+PeWlVUPj0yR7Gzd+OBRPG1xKjo6x5o=",
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(pythonAtLeast, "3.14")), "tests/test_index.py")),
       pythonImportsCheck: nix.thunk(() => ["llama_cloud"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "LlamaIndex Python Client",
         homepage: "https://pypi.org/project/llama-cloud/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

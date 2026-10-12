@@ -2,14 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/melpa.nix", [[["lib", 15, 7], ["stdenv", 16, 7], ["emacs", 17, 7], ["texinfo", 18, 7]], [["owner", 26, 7], ["repo", 27, 7], ["rev", 28, 7], ["hash", 29, 7]], [["pname", 23, 5], ["version", 24, 5], ["src", 25, 5], ["prePatch", 32, 5], ["dontConfigure", 37, 5], ["dontBuild", 38, 5], ["installPhase", 40, 5]], [["homepage", 198, 9]], [["elpa2nix", 98, 7], ["melpa2nix", 99, 7], ["commit", 102, 9], ["ename", 103, 9], ["files", 104, 9], ["recipe", 105, 9], ["packageBuild", 108, 7], ["melpaVersion", 110, 7], ["preUnpack", 124, 7], ["postUnpack", 150, 7], ["buildPhase", 156, 7], ["installPhase", 178, 7], ["meta", 197, 7]], [["constructDrv", 49, 3], ["extendDrvArgs", 50, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, emacs: false, texinfo: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/melpa.nix", [["lib", 15, 7], ["stdenv", 16, 7], ["emacs", 17, 7], ["texinfo", 18, 7]]);
-const pos$2 = nix.positions(here + "/melpa.nix", [["owner", 26, 7], ["repo", 27, 7], ["rev", 28, 7], ["hash", 29, 7]]);
-const pos$3 = nix.positions(here + "/melpa.nix", [["pname", 23, 5], ["version", 24, 5], ["src", 25, 5], ["prePatch", 32, 5], ["dontConfigure", 37, 5], ["dontBuild", 38, 5], ["installPhase", 40, 5]]);
 const formals$2 = { args: { pname: false, ename: true, version: false, commit: true, files: true, recipe: true, preUnpack: true, postUnpack: true, meta: true }, ellipsis: true };
-const pos$4 = nix.positions(here + "/melpa.nix", [["homepage", 198, 9]]);
-const pos$5 = nix.positions(here + "/melpa.nix", [["elpa2nix", 98, 7], ["melpa2nix", 99, 7], ["commit", 102, 9], ["ename", 103, 9], ["files", 104, 9], ["recipe", 105, 9], ["packageBuild", 108, 7], ["melpaVersion", 110, 7], ["preUnpack", 124, 7], ["postUnpack", 150, 7], ["buildPhase", 156, 7], ["installPhase", 178, 7], ["meta", 197, 7]]);
-const pos$6 = nix.positions(here + "/melpa.nix", [["constructDrv", 49, 3], ["extendDrvArgs", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const emacs = nix.arg($, "emacs");
   const texinfo = nix.arg($, "texinfo");
-  const genericBuild = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib, stdenv: stdenv, emacs: emacs, texinfo: texinfo }))));
+  const genericBuild = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib, stdenv: stdenv, emacs: emacs, texinfo: texinfo }))));
   const packageBuild = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "package-build",
       version: "4.0.0-unstable-2026-03-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "melpa",
           repo: "package-build",
           rev: "c25ea902ac4fceb1eb998d46ac176a1de077439b",
@@ -36,7 +31,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "\n      mkdir -p $out\n      cp -r * $out\n    ",
     }))));
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       constructDrv: genericBuild,
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
@@ -51,7 +46,7 @@ export default nix.lambda((args) => (() => {
         const postUnpack = nix.argOr($_1, "postUnpack", () => "");
         const meta = nix.argOr($_1, "meta", () => ({}));
         return {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           elpa2nix: nix.thunk(() => nix.selOr(args_2, () => nix.path(here, "./elpa2nix.el"), "elpa2nix")),
           melpa2nix: nix.thunk(() => nix.selOr(args_2, () => nix.path(here, "./melpa2nix.el"), "melpa2nix")),
           commit: commit,
@@ -106,7 +101,7 @@ emacs --batch -Q \\
 runHook postInstall
 `, "installPhase")),
           meta: nix.thunk(() => nix.update({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             homepage: nix.thunk(() => nix.selOr(args_2, () => nix.str`https://melpa.org/#/${pname}`, "src", "meta", "homepage")),
           }, meta)),
         };

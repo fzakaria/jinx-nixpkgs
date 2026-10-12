@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 29, 5], ["hash", 30, 5]], [["name", 35, 7], ["icon", 36, 7], ["exec", 37, 7], ["desktopName", 38, 7], ["comment", 39, 7], ["genericName", 40, 7], ["mimeTypes", 41, 7], ["categories", 46, 7]], [["description", 119, 5], ["homepage", 120, 5], ["license", 121, 5], ["platforms", 122, 5], ["sourceProvenance", 124, 5], ["maintainers", 125, 5], ["mainProgram", 126, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 28, 3], ["desktopItems", 33, 3], ["nativeBuildInputs", 50, 3], ["unpackPhase", 58, 3], ["sourceRoot", 66, 3], ["postPatch", 68, 3], ["buildInputs", 72, 3], ["dontBuild", 84, 3], ["dontStrip", 85, 3], ["dontWrapGApps", 86, 3], ["installPhase", 88, 3], ["makeWrapperArgs", 101, 3], ["preFixup", 112, 3], ["meta", 118, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, "squashfs-tools": false, autoPatchelfHook: false, copyDesktopItems: false, pango: false, gtk3: false, "alsa-lib": false, nss: false, libxdamage: false, libdrm: false, libgbm: false, libxshmfence: false, makeDesktopItem: false, makeWrapper: false, wrapGAppsHook3: false, "gcc-unwrapped": false, udev: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 35, 7], ["icon", 36, 7], ["exec", 37, 7], ["desktopName", 38, 7], ["comment", 39, 7], ["genericName", 40, 7], ["mimeTypes", 41, 7], ["categories", 46, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 119, 5], ["homepage", 120, 5], ["license", 121, 5], ["platforms", 122, 5], ["sourceProvenance", 124, 5], ["maintainers", 125, 5], ["mainProgram", 126, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 28, 3], ["desktopItems", 33, 3], ["nativeBuildInputs", 50, 3], ["unpackPhase", 58, 3], ["sourceRoot", 66, 3], ["postPatch", 68, 3], ["buildInputs", 72, 3], ["dontBuild", 84, 3], ["dontStrip", 85, 3], ["dontWrapGApps", 86, 3], ["installPhase", 88, 3], ["makeWrapperArgs", 101, 3], ["preFixup", 112, 3], ["meta", 118, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,13 +30,13 @@ export default nix.lambda((args) => (() => {
       const pname = "bluemail";
       const version = "1.140.93";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://api.snapcraft.io/api/v1/snaps/download/ZVlj0qw0GOFd5JgTfL8kk2Y5eIG1IpiH_178.snap",
           hash: "sha512-xv7fn+VrtrxauejhgEMdTnmnDXb17TwanXZR6Lqfg5N40MbyDu76XQAWRB8xFU/+GdCTmjv47EaOC7SnnOw4EA==",
         }))));
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "bluemail",
             icon: "bluemail",
             exec: "bluemail",
@@ -75,7 +72,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const preFixup = "wrapProgram $out/opt/bluemail/bluemail \\\n  ${makeWrapperArgs[@]} \\\n  ${gappsWrapperArgs[@]}\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Cross platform email and calendar app, with AI features and a modern design",
         homepage: "https://bluemail.me",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -88,7 +85,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "bluemail",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

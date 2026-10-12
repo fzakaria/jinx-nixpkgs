@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["sha256", 28, 5]], [["description", 80, 5], ["homepage", 81, 5], ["maintainers", 82, 5], ["license", 83, 5], ["broken", 84, 5]], [["pname", 20, 3], ["version", 21, 3], ["format", 22, 3], ["src", 24, 3], ["propagatedBuildInputs", 31, 3], ["nativeCheckInputs", 36, 3], ["prePatch", 51, 3], ["postPatch", 56, 3], ["disabledTests", 61, 3], ["pythonImportsCheck", 77, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, blinker: false, buildPythonPackage: false, django: false, fetchFromGitHub: false, flake8: false, "flask-sqlalchemy": false, mock: false, peewee: false, "pytest-django": false, pytestCheckHook: false, "pytest-cov-stub": false, six: false, sqlalchemy: false, webtest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["sha256", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 80, 5], ["homepage", 81, 5], ["maintainers", 82, 5], ["license", 83, 5], ["broken", 84, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["format", 22, 3], ["src", 24, 3], ["propagatedBuildInputs", 31, 3], ["nativeCheckInputs", 36, 3], ["prePatch", 51, 3], ["postPatch", 56, 3], ["disabledTests", 61, 3], ["pythonImportsCheck", 77, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jmcarp",
           repo: "nplusone",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -65,7 +63,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["nplusone"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Detecting the n+1 queries problem in Python",
         homepage: "https://github.com/jmcarp/nplusone",
         maintainers: nix.thunk(() => (() => {
@@ -76,7 +74,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(django, "version")), "4")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

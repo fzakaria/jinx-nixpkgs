@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["homepage", 49, 5], ["description", 50, 5], ["license", 51, 5], ["platforms", 52, 5], ["maintainers", 53, 5], ["mainProgram", 57, 5]], [["pname", 15, 3], ["version", 16, 3], ["dediprogVersion", 18, 11], ["dediprogHash", 18, 27], ["strictDeps", 20, 3], ["__structuredAttrs", 21, 3], ["src", 23, 3], ["buildInputs", 30, 3], ["nativeBuildInputs", 31, 3], ["doInstallCheck", 33, 3], ["udevRules", 34, 3], ["installPhase", 38, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false, stdenv: false, fetchFromGitHub: false, libusb1: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 49, 5], ["description", 50, 5], ["license", 51, 5], ["platforms", 52, 5], ["maintainers", 53, 5], ["mainProgram", 57, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["dediprogVersion", 18, 11], ["dediprogHash", 18, 27], ["strictDeps", 20, 3], ["__structuredAttrs", 21, 3], ["src", 23, 3], ["buildInputs", 30, 3], ["nativeBuildInputs", 31, 3], ["doInstallCheck", 33, 3], ["udevRules", 34, 3], ["installPhase", 38, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const dediprogVersion = "1.14.21,x";
   const dediprogHash = "sha256-tz5qLN74IbUcvj2nXzR6Q7Nh9l/LAUy/6h43J+o8dvc=";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dediprog-sf100-linux",
       version: nix.thunk(() => nix.sel(finalAttrs, "dediprogVersion")),
       dediprogVersion: dediprogVersion,
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "DediProgSW",
           repo: "SF100Linux",
           tag: nix.thunk(() => nix.str`V${nix.sel(finalAttrs, "dediprogVersion")}`),
@@ -45,7 +43,7 @@ install -Dm0644 ${nix.sel(finalAttrs, "udevRules")} -D $out/lib/udev/rules.d/60-
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/DediProgSW/SF100Linux",
         description: "Linux software for DediProg SF100/SF600 programmers",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

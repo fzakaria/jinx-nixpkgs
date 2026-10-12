@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["openssl", 39, 7], ["ext", 40, 7]], [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5]], [["pname", 16, 3], ["version", 17, 3], ["format", 18, 3], ["src", 20, 3], ["propagatedBuildInputs", 27, 3], ["buildInputs", 34, 3], ["patches", 36, 3], ["nativeCheckInputs", 44, 3], ["disabledTests", 46, 3], ["pythonImportsCheck", 55, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, replaceVars: false, bcrypt: false, pyopenssl: false, "python-gnupg": false, pytestCheckHook: false, requests: false, openssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["openssl", 39, 7], ["ext", 40, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["format", 18, 3], ["src", 20, 3], ["propagatedBuildInputs", 27, 3], ["buildInputs", 34, 3], ["patches", 36, 3], ["nativeCheckInputs", 44, 3], ["disabledTests", 46, 3], ["pythonImportsCheck", 55, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ProtonMail",
           repo: "proton-python-client",
           rev: version,
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [openssl]);
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-OpenSSL-path-fix.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             openssl: nix.thunk(() => nix.sel(openssl, "out")),
             ext: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")),
           })))),
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_modulus_verification", "test_compute_v", "test_generate_v", "test_srp"]);
       const pythonImportsCheck = nix.thunk(() => ["proton"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python Proton client module",
         homepage: "https://github.com/ProtonMail/proton-python-client",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -53,7 +50,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         format,

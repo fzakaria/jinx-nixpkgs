@@ -2,25 +2,19 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/lemurs.nix", [[["maintainers", 8, 5]], [["enable", 18, 36]], [["lemurs", 18, 29]], [["displayManager", 18, 14]], [["imports", 17, 5], ["services", 18, 5]], [["machine", 16, 9]], [["name", 6, 3], ["meta", 7, 3], ["enableOCR", 14, 3], ["nodes", 16, 3], ["testScript", 21, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/lemurs.nix", [["maintainers", 8, 5]]);
-const pos$2 = nix.positions(here + "/lemurs.nix", [["enable", 18, 36]]);
-const pos$3 = nix.positions(here + "/lemurs.nix", [["lemurs", 18, 29]]);
-const pos$4 = nix.positions(here + "/lemurs.nix", [["displayManager", 18, 14]]);
-const pos$5 = nix.positions(here + "/lemurs.nix", [["imports", 17, 5], ["services", 18, 5]]);
-const pos$6 = nix.positions(here + "/lemurs.nix", [["machine", 16, 9]]);
-const pos$7 = nix.positions(here + "/lemurs.nix", [["name", 6, 3], ["meta", 7, 3], ["enableOCR", 14, 3], ["nodes", 16, 3], ["testScript", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     name: "lemurs",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "nullcube")),
           nix.thunk(() => nix.lookup(w, "stunkymonkey")),
@@ -29,15 +23,15 @@ export default nix.lambda((args) => (() => {
     })()),
     enableOCR: true,
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       machine: (_) => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         imports: nix.thunk(() => [nix.path(here, "../common/user-account.nix")]),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           displayManager: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            lemurs: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+            [nix.POS]: $pos[2],
+            lemurs: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
           })),
         })),
       }),

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 20, 5], ["fetcherVersion", 21, 5], ["pnpm", 22, 5], ["src", 23, 5], ["hash", 24, 5]], [["name", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 14, 3], ["pnpmDeps", 19, 3], ["buildPhase", 27, 3]]]);
 const formals$1 = { args: { pkgs: false, stdenv: false, fetchPnpmDeps: false, nodejs: false, pnpm_10: false, pnpmConfigHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 20, 5], ["fetcherVersion", 21, 5], ["pnpm", 22, 5], ["src", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 14, 3], ["pnpmDeps", 19, 3], ["buildPhase", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const pnpm_10 = nix.arg($, "pnpm_10");
   const pnpmConfigHook = nix.arg($, "pnpmConfigHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "pnpm-empty-lockfile",
       src: nix.path(here, "./."),
       nativeBuildInputs: nix.thunk(() => [pnpm_10, pnpmConfigHook]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "pnpm-empty-lockfile",
           fetcherVersion: 3n,
           pnpm: pnpm_10,

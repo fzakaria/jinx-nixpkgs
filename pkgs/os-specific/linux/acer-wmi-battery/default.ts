@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["platforms", 46, 5], ["maintainers", 47, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["makeFlags", 24, 3], ["postPatch", 26, 3], ["enableParallelBuilding", 31, 3], ["installPhase", 33, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, kernel: false, kernelModuleMakeFlags: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["platforms", 46, 5], ["maintainers", 47, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["makeFlags", 24, 3], ["postPatch", 26, 3], ["enableParallelBuilding", 31, 3], ["installPhase", 33, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const kernelModuleMakeFlags = nix.arg($, "kernelModuleMakeFlags");
   const release = "0.1.0-unstable-2025-04-24";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "acer-wmi-battery",
       version: nix.thunk(() => nix.str`${nix.sel(kernel, "version")}-${release}`),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "frederik-h",
           repo: "acer-wmi-battery",
           rev: "0889d3ea54655eaa88de552b334911ce7375952f",
@@ -39,7 +37,7 @@ install -Dm444 -t $out/lib/modules/${nix.sel(kernel, "modDirVersion")}/kernel/dr
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Driver for the Acer WMI battery health control interface",
         homepage: "https://github.com/frederik-h/acer-wmi-battery",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["src", 33, 11], ["substitutions", 34, 11]], [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5], ["postFetch", 29, 5]], [["missingHashes", 66, 13], ["src", 67, 5], ["hash", 68, 5]], [["CPPFLAGS", 72, 7], ["postgresqlExtraSettings", 235, 7]], [["pgadmin4", 221, 26]], [["tests", 220, 12]], [["description", 275, 5], ["longDescription", 278, 5], ["homepage", 296, 5], ["license", 297, 5], ["changelog", 298, 5], ["maintainers", 299, 5], ["mainProgram", 300, 5], ["platforms", 301, 5]], [["pname", 62, 11], ["version", 62, 17], ["src", 62, 25], ["missingHashes", 63, 3], ["offlineCache", 65, 3], ["env", 72, 3], ["format", 74, 3], ["patches", 76, 3], ["postPatch", 84, 3], ["dontYarnBerryInstallDeps", 105, 3], ["preBuild", 106, 3], ["nativeBuildInputs", 154, 3], ["buildInputs", 163, 3], ["propagatedBuildInputs", 168, 3], ["passthru", 220, 3], ["nativeCheckInputs", 224, 3], ["doCheck", 232, 3], ["checkPhase", 236, 3], ["meta", 274, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchFromGitHub: false, substitute: false, zlib: false, nixosTests: false, postgresqlTestHook: false, postgresql: false, "yarn-berry_4": false, nodejs: false, stdenv: false, "server-mode": true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["src", 33, 11], ["substitutions", 34, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5], ["postFetch", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["missingHashes", 66, 13], ["src", 67, 5], ["hash", 68, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["CPPFLAGS", 72, 7], ["postgresqlExtraSettings", 235, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pgadmin4", 221, 26]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 220, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 275, 5], ["longDescription", 278, 5], ["homepage", 296, 5], ["license", 297, 5], ["changelog", 298, 5], ["maintainers", 299, 5], ["mainProgram", 300, 5], ["platforms", 301, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 62, 11], ["version", 62, 17], ["src", 62, 25], ["missingHashes", 63, 3], ["offlineCache", 65, 3], ["env", 72, 3], ["format", 74, 3], ["patches", 76, 3], ["postPatch", 84, 3], ["dontYarnBerryInstallDeps", 105, 3], ["preBuild", 106, 3], ["nativeBuildInputs", 154, 3], ["buildInputs", 163, 3], ["propagatedBuildInputs", 168, 3], ["passthru", 220, 3], ["nativeCheckInputs", 224, 3], ["doCheck", 232, 3], ["checkPhase", 236, 3], ["meta", 274, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,14 +23,14 @@ export default nix.lambda((args) => (() => {
   const version = "9.14";
   const yarnHash = "sha256-uixmtWC588JD6DfM9INeh6LV5L2S9lc+GFNW62FVm+4=";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       owner: "pgadmin-org",
       repo: "pgadmin4",
       rev: nix.thunk(() => nix.str`REL-${nix.app(nix.sel(lib, "versions", "major"), version)}_${nix.app(nix.sel(lib, "versions", "minor"), version)}`),
       hash: "sha256-ZUJEwTRKG23ztLKAp+hDHKeKxPc6VmC8gnJe4x85R44=",
       postFetch: nix.thunk(() => nix.str`cd $out/web
 patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           src: nix.path(here, "./yarn-fix.patch"),
           substitutions: nix.thunk(() => [
             "--replace-fail",
@@ -60,13 +53,13 @@ patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
       const src_1 = src;
       const missingHashes = nix.path(here, "./missing-hashes.json");
       const offlineCache = nix.thunk(() => nix.app(nix.sel(yarn_berry_4, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           missingHashes: missingHashes,
           src: nix.thunk(() => nix.add(src_1, "/web")),
           hash: yarnHash,
         }))));
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         CPPFLAGS: "-DPNG_ARM_NEON_OPT=0",
         postgresqlExtraSettings: "wal_level = logical",
       }));
@@ -160,9 +153,9 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(server_mod
         ];
       })());
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           pgadmin4: nix.thunk(() => nix.attr(nixosTests, "pgadmin4")),
         })),
       }));
@@ -210,7 +203,7 @@ python regression/runtests.py --pkg resql
 runHook postCheck
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: nix.thunk(() => nix.str`Administration and development platform for PostgreSQL${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(server_mode)), ". Desktop Mode")}`),
         longDescription: nix.thunk(() => nix.str`pgAdmin 4 is designed to meet the needs of both novice and experienced Postgres users alike,
 providing a powerful graphical interface that simplifies the creation, maintenance and use of database objects.
@@ -227,7 +220,7 @@ ${(nix.asBool(server_mode) ? "This version is build with SERVER_MODE set to True
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname: pname_1,
         version: version_1,
         src: src_1,

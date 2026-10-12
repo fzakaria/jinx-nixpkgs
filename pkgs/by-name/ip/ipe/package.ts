@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["name", 39, 7], ["url", 40, 7], ["hash", 41, 7]], [["name", 94, 7], ["desktopName", 95, 7], ["genericName", 96, 7], ["comment", 97, 7], ["exec", 98, 7], ["icon", 99, 7], ["mimeTypes", 100, 7], ["categories", 104, 7], ["startupNotify", 108, 7], ["startupWMClass", 109, 7]], [["description", 119, 5], ["homepage", 120, 5], ["license", 121, 5], ["longDescription", 122, 5], ["maintainers", 127, 5], ["platforms", 128, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["patches", 37, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 54, 3], ["makeFlags", 76, 3], ["qtWrapperArgs", 88, 3], ["enableParallelBuilding", 90, 3], ["desktopItems", 92, 3], ["postInstall", 113, 3], ["meta", 118, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, makeDesktopItem: false, fetchFromGitHub: false, fetchpatch: false, "pkg-config": false, copyDesktopItems: false, cairo: false, freetype: false, ghostscriptX: false, gsl: false, libjpeg: false, libpng: false, libspiro: false, lua5_5: false, qt6Packages: false, texliveSmall: false, qhull: false, zlib: false, withTeXLive: true, withQVoronoi: true, buildPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 39, 7], ["url", 40, 7], ["hash", 41, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 94, 7], ["desktopName", 95, 7], ["genericName", 96, 7], ["comment", 97, 7], ["exec", 98, 7], ["icon", 99, 7], ["mimeTypes", 100, 7], ["categories", 104, 7], ["startupNotify", 108, 7], ["startupWMClass", 109, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 119, 5], ["homepage", 120, 5], ["license", 121, 5], ["longDescription", 122, 5], ["maintainers", 127, 5], ["platforms", 128, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["patches", 37, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 54, 3], ["makeFlags", 76, 3], ["qtWrapperArgs", 88, 3], ["enableParallelBuilding", 90, 3], ["desktopItems", 92, 3], ["postInstall", 113, 3], ["meta", 118, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const withQVoronoi = nix.argOr($, "withQVoronoi", () => false);
   const buildPackages = nix.arg($, "buildPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ipe",
       version: "7.2.30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "otfried",
           repo: "ipe",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix-gcc16-missing-include.patch",
             url: "https://salsa.debian.org/science-team/ipe/-/raw/e6dc9db1e2d889e86bfa21a95775e778f82ae802/debian/patches/0002-include-stding.patch",
             hash: "sha256-E5F7+qL0ZFTkfixO2+yIhNvKZKW0kltkHDfN+EcB/w8=",
@@ -82,7 +78,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "ipe",
             desktopName: "Ipe",
             genericName: "Drawing editor",
@@ -99,7 +95,7 @@ export default nix.lambda((args) => (() => {
 ln -s $out/share/ipe/${nix.sel(finalAttrs, "version")}/icons/icon_128x128.png $out/share/icons/hicolor/128x128/apps/ipe.png
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Editor for drawing figures",
         homepage: "http://ipe.otfried.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

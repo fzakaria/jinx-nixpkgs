@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["pname", 57, 26], ["version", 57, 32], ["versionLister", 58, 5]], [["updateScript", 56, 12]], [["mainProgram", 65, 5], ["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 33, 3], ["installPhase", 41, 3], ["passthru", 56, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchhg: false, libepoxy: false, libx11: false, libGLU: false, glm: false, "pkg-config": false, imagemagick: false, makeWrapper: false, installShellFiles: false, genericUpdater: false, writeShellScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 57, 26], ["version", 57, 32], ["versionLister", 58, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 56, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["mainProgram", 65, 5], ["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 33, 3], ["installPhase", 41, 3], ["passthru", 56, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const genericUpdater = nix.arg($, "genericUpdater");
   const writeShellScript = nix.arg($, "writeShellScript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "shadershark",
       version: "0.1",
       src: nix.thunk(() => nix.app(fetchhg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://hg.globalcode.info/graphics/shader-shark",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-AYZWfqMckPKgXNIX9kAAv1mvD3opLi5EUElFsigiF3c=",
@@ -38,9 +34,9 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libepoxy, libx11, libGLU, glm, imagemagick]),
       installPhase: "runHook preInstall\nmkdir -p $out/{bin,share/shadershark}\n\ninstall -m755 -D build/shader-shark $out/bin\ncp -r shaders textures $out/share/shadershark\n\nwrapProgram $out/bin/shader-shark \\\n  --set SHADER_SHARK_DATA_DIR $out/share/shadershark\n\ninstallShellCompletion --bash --name shader-shark.bash bash-completion.sh\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(genericUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             versionLister: nix.thunk(() => nix.app(writeShellScript, "shadershark-tags", nix.thunk(() => nix.str`repo_url=${nix.sel(finalAttrs, "src", "url")}
@@ -49,7 +45,7 @@ curl "$repo_url/tags" | grep '/rev/v' | sed 's;.*/rev/v\\([^"]*\\)[^$]*;\\1; #'
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         mainProgram: "shader-shark",
         description: "OpenGL/X11 application for GNU/Linux consisting of a single window that shows simple 3D scene of a textured rectangle with applied vertex and fragment shaders (GLSL)",
         homepage: "https://graphics.globalcode.info/v_0/shader-shark.xhtml",

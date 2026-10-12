@@ -2,81 +2,66 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tang.nix", [[["maintainers", 5, 5]], [["emptyDiskImages", 20, 9], ["useBootLoader", 21, 9], ["useEFIBoot", 22, 9], ["mountHostNixStore", 27, 9]], [["enable", 30, 32]], [["systemd-boot", 30, 19]], [["loader", 30, 12]], [["address", 34, 11], ["prefixLength", 35, 11]], [["addresses", 32, 39]], [["ipv4", 32, 34]], [["eth1", 32, 29]], [["interfaces", 32, 18]], [["systemPackages", 39, 19]], [["enable", 45, 9], ["ipAddressAllow", 46, 9]], [["tang", 44, 16]], [["imports", 16, 7], ["virtualisation", 19, 7], ["boot", 30, 7], ["networking", 32, 7], ["environment", 39, 7], ["services", 44, 7]], [["server", 8, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 49, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/tang.nix", [["maintainers", 5, 5]]);
 const formals$2 = { args: { config: false, pkgs: false, modulesPath: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/tang.nix", [["emptyDiskImages", 20, 9], ["useBootLoader", 21, 9], ["useEFIBoot", 22, 9], ["mountHostNixStore", 27, 9]]);
-const pos$3 = nix.positions(here + "/tang.nix", [["enable", 30, 32]]);
-const pos$4 = nix.positions(here + "/tang.nix", [["systemd-boot", 30, 19]]);
-const pos$5 = nix.positions(here + "/tang.nix", [["loader", 30, 12]]);
-const pos$6 = nix.positions(here + "/tang.nix", [["address", 34, 11], ["prefixLength", 35, 11]]);
-const pos$7 = nix.positions(here + "/tang.nix", [["addresses", 32, 39]]);
-const pos$8 = nix.positions(here + "/tang.nix", [["ipv4", 32, 34]]);
-const pos$9 = nix.positions(here + "/tang.nix", [["eth1", 32, 29]]);
-const pos$10 = nix.positions(here + "/tang.nix", [["interfaces", 32, 18]]);
-const pos$11 = nix.positions(here + "/tang.nix", [["systemPackages", 39, 19]]);
-const pos$12 = nix.positions(here + "/tang.nix", [["enable", 45, 9], ["ipAddressAllow", 46, 9]]);
-const pos$13 = nix.positions(here + "/tang.nix", [["tang", 44, 16]]);
-const pos$14 = nix.positions(here + "/tang.nix", [["imports", 16, 7], ["virtualisation", 19, 7], ["boot", 30, 7], ["networking", 32, 7], ["environment", 39, 7], ["services", 44, 7]]);
-const pos$15 = nix.positions(here + "/tang.nix", [["server", 8, 9]]);
-const pos$16 = nix.positions(here + "/tang.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$16,
+    [nix.POS]: $pos[15],
     name: "tang",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "jfroche"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         const modulesPath = nix.arg($_1, "modulesPath");
         return {
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           imports: nix.thunk(() => [
             nix.thunk(() => nix.str`${modulesPath}/../tests/common/auto-format-root-device.nix`),
           ]),
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             emptyDiskImages: nix.thunk(() => [512n]),
             useBootLoader: true,
             useEFIBoot: true,
             mountHostNixStore: true,
           })),
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             loader: nix.thunk(() => ({
-              [nix.POS]: pos$4,
-              "systemd-boot": nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
+              [nix.POS]: $pos[3],
+              "systemd-boot": nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true })),
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               eth1: nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 ipv4: nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   addresses: nix.thunk(() => [
-                    nix.thunk(() => ({ [nix.POS]: pos$6, address: "192.168.0.1", prefixLength: 24n })),
+                    nix.thunk(() => ({ [nix.POS]: $pos[5], address: "192.168.0.1", prefixLength: 24n })),
                   ]),
                 })),
               })),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             systemPackages: nix.thunk(() => (() => {
               const w_1 = nix.withScope(pkgs_1, null);
               return [
@@ -87,9 +72,9 @@ export default nix.lambda((args) => (() => {
             })()),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             tang: nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               enable: true,
               ipAddressAllow: nix.thunk(() => ["127.0.0.1/32"]),
             })),

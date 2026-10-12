@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 42, 5], ["hash", 43, 5]], [["packageName", 77, 7]], [["updateScript", 76, 5]], [["homepage", 82, 5], ["changelog", 83, 5], ["description", 84, 5], ["mainProgram", 85, 5], ["teams", 86, 5], ["license", 87, 5], ["platforms", 88, 5]], [["pname", 30, 3], ["version", 31, 3], ["outputs", 34, 3], ["src", 41, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 62, 3], ["mesonFlags", 73, 3], ["passthru", 75, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, gnome: false, meson: false, mesonEmulatorHook: false, ninja: false, "pkg-config": false, gtk4: false, libadwaita: false, gettext: false, glib: false, udev: false, upower: false, itstool: false, libxml2: false, wrapGAppsHook4: false, libnotify: false, gsound: false, "gobject-introspection": false, "gtk-doc": false, "docbook-xsl-nons": false, docbook_xml_dtd_43: false, python3: false, "gsettings-desktop-schemas": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 42, 5], ["hash", 43, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 77, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 76, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 82, 5], ["changelog", 83, 5], ["description", 84, 5], ["mainProgram", 85, 5], ["teams", 86, 5], ["license", 87, 5], ["platforms", 88, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["outputs", 34, 3], ["src", 41, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 62, 3], ["mesonFlags", 73, 3], ["passthru", 75, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,12 +33,12 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const gsettings_desktop_schemas = nix.arg($, "gsettings-desktop-schemas");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gnome-bluetooth",
       version: "47.2",
       outputs: nix.thunk(() => ["out", "dev", "devdoc", "man"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-bluetooth/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-bluetooth-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-QfIObWF2tyWQr2NVKyMtg/L//dd+z6perzLFpKhvrWQ=",
         })))),
@@ -72,11 +68,11 @@ export default nix.lambda((args) => (() => {
       ]),
       mesonFlags: nix.thunk(() => ["-Dgtk_doc=true"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "gnome-bluetooth" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "gnome-bluetooth" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://gitlab.gnome.org/GNOME/gnome-bluetooth",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/gnome-bluetooth/-/blob/${nix.sel(finalAttrs, "version")}/NEWS?ref_type=tags`),
         description: "Application that lets you manage Bluetooth in the GNOME desktop",

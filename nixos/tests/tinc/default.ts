@@ -2,52 +2,13 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["address", 23, 25]], [["Ed25519PublicKey", 25, 13]], [["subnets", 23, 11], ["settings", 24, 11], ["rsaPublicKey", 27, 11]], [["address", 48, 19], ["port", 49, 19]], [["addresses", 47, 29]], [["subnet", 44, 17], ["extraConfig", 47, 17]], [["subnet", 53, 17]], [["subnet", 56, 17]], [["static", 43, 15], ["dynamic1", 52, 15], ["dynamic2", 55, 15]], [["name", 38, 21], ["rsaPrivateKeyFile", 39, 13], ["ed25519PrivateKeyFile", 40, 13], ["hostSettings", 42, 13]], [["myNetwork", 37, 34]], [["networks", 37, 25]], [["tinc", 37, 20]], [["address", 68, 17], ["prefixLength", 69, 17]], [["addresses", 66, 18]], [["virtual", 64, 13], ["virtualType", 65, 13], ["ipv4", 66, 13]], [["tinc.myNetwork", 63, 33]], [["allowedTCPPorts", 82, 31], ["allowedUDPPorts", 83, 31]], [["useDHCP", 61, 22], ["interfaces", 63, 22], ["firewall", 82, 22]], [["after", 78, 13], ["requires", 79, 13]], [["tinc.myNetwork", 77, 28]], [["services", 77, 19]], [["services", 37, 11], ["networking", 61, 11], ["systemd", 77, 11]], [["maintainers", 91, 10]], [["vlans", 98, 26]], [["address", 105, 15], ["prefixLength", 106, 15]], [["addresses", 103, 43]], [["ipv4", 103, 38]], [["address", 112, 15], ["prefixLength", 113, 15]], [["addresses", 110, 43]], [["ipv4", 110, 38]], [["eth1", 103, 33], ["eth2", 110, 33]], [["interfaces", 103, 22]], [["virtualisation", 98, 11], ["networking", 103, 11]], [["vlans", 121, 26]], [["virtualisation", 121, 11]], [["vlans", 127, 26]], [["virtualisation", 127, 11]], [["static", 95, 7], ["dynamic1", 118, 7], ["dynamic2", 124, 7]], [["name", 90, 5], ["meta", 91, 5], ["nodes", 93, 5], ["testScript", 132, 5]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
 const formals$2 = { args: { subnet: false, extraConfig: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["address", 23, 25]]);
-const pos$2 = nix.positions(here + "/default.nix", [["Ed25519PublicKey", 25, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["subnets", 23, 11], ["settings", 24, 11], ["rsaPublicKey", 27, 11]]);
 const formals$3 = { args: { config: false }, ellipsis: true };
-const pos$4 = nix.positions(here + "/default.nix", [["address", 48, 19], ["port", 49, 19]]);
-const pos$5 = nix.positions(here + "/default.nix", [["addresses", 47, 29]]);
-const pos$6 = nix.positions(here + "/default.nix", [["subnet", 44, 17], ["extraConfig", 47, 17]]);
-const pos$7 = nix.positions(here + "/default.nix", [["subnet", 53, 17]]);
-const pos$8 = nix.positions(here + "/default.nix", [["subnet", 56, 17]]);
-const pos$9 = nix.positions(here + "/default.nix", [["static", 43, 15], ["dynamic1", 52, 15], ["dynamic2", 55, 15]]);
-const pos$10 = nix.positions(here + "/default.nix", [["name", 38, 21], ["rsaPrivateKeyFile", 39, 13], ["ed25519PrivateKeyFile", 40, 13], ["hostSettings", 42, 13]]);
-const pos$11 = nix.positions(here + "/default.nix", [["myNetwork", 37, 34]]);
-const pos$12 = nix.positions(here + "/default.nix", [["networks", 37, 25]]);
-const pos$13 = nix.positions(here + "/default.nix", [["tinc", 37, 20]]);
-const pos$14 = nix.positions(here + "/default.nix", [["address", 68, 17], ["prefixLength", 69, 17]]);
-const pos$15 = nix.positions(here + "/default.nix", [["addresses", 66, 18]]);
-const pos$16 = nix.positions(here + "/default.nix", [["virtual", 64, 13], ["virtualType", 65, 13], ["ipv4", 66, 13]]);
-const pos$17 = nix.positions(here + "/default.nix", [["tinc.myNetwork", 63, 33]]);
-const pos$18 = nix.positions(here + "/default.nix", [["allowedTCPPorts", 82, 31], ["allowedUDPPorts", 83, 31]]);
-const pos$19 = nix.positions(here + "/default.nix", [["useDHCP", 61, 22], ["interfaces", 63, 22], ["firewall", 82, 22]]);
-const pos$20 = nix.positions(here + "/default.nix", [["after", 78, 13], ["requires", 79, 13]]);
-const pos$21 = nix.positions(here + "/default.nix", [["tinc.myNetwork", 77, 28]]);
-const pos$22 = nix.positions(here + "/default.nix", [["services", 77, 19]]);
-const pos$23 = nix.positions(here + "/default.nix", [["services", 37, 11], ["networking", 61, 11], ["systemd", 77, 11]]);
-const pos$24 = nix.positions(here + "/default.nix", [["maintainers", 91, 10]]);
 const formals$4 = { args: {  }, ellipsis: true };
-const pos$25 = nix.positions(here + "/default.nix", [["vlans", 98, 26]]);
-const pos$26 = nix.positions(here + "/default.nix", [["address", 105, 15], ["prefixLength", 106, 15]]);
-const pos$27 = nix.positions(here + "/default.nix", [["addresses", 103, 43]]);
-const pos$28 = nix.positions(here + "/default.nix", [["ipv4", 103, 38]]);
-const pos$29 = nix.positions(here + "/default.nix", [["address", 112, 15], ["prefixLength", 113, 15]]);
-const pos$30 = nix.positions(here + "/default.nix", [["addresses", 110, 43]]);
-const pos$31 = nix.positions(here + "/default.nix", [["ipv4", 110, 38]]);
-const pos$32 = nix.positions(here + "/default.nix", [["eth1", 103, 33], ["eth2", 110, 33]]);
-const pos$33 = nix.positions(here + "/default.nix", [["interfaces", 103, 22]]);
-const pos$34 = nix.positions(here + "/default.nix", [["virtualisation", 98, 11], ["networking", 103, 11]]);
 const formals$5 = { args: {  }, ellipsis: true };
-const pos$35 = nix.positions(here + "/default.nix", [["vlans", 121, 26]]);
-const pos$36 = nix.positions(here + "/default.nix", [["virtualisation", 121, 11]]);
 const formals$6 = { args: {  }, ellipsis: true };
-const pos$37 = nix.positions(here + "/default.nix", [["vlans", 127, 26]]);
-const pos$38 = nix.positions(here + "/default.nix", [["virtualisation", 127, 11]]);
-const pos$39 = nix.positions(here + "/default.nix", [["static", 95, 7], ["dynamic1", 118, 7], ["dynamic2", 124, 7]]);
-const pos$40 = nix.positions(here + "/default.nix", [["name", 90, 5], ["meta", 91, 5], ["nodes", 93, 5], ["testScript", 132, 5]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../make-test-python.nix")), nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
@@ -64,10 +25,10 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
       const extraConfig = nix.argOr($_1, "extraConfig", () => ({}));
       return nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            subnets: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$1, address: subnet }))]),
+            [nix.POS]: $pos[2],
+            subnets: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[0], address: subnet }))]),
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               Ed25519PublicKey: nix.thunk(() => nix.sel(snakeoil_keys, nix.key(nix.force(name)), "ed25519Public")),
             })),
             rsaPublicKey: nix.thunk(() => nix.sel(snakeoil_keys, nix.key(nix.force(name)), "rsaPublic")),
@@ -80,53 +41,53 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
       const config = nix.arg($_1, "config");
       return (name) => (extraConfig) => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => ({
-            [nix.POS]: pos$23,
+            [nix.POS]: $pos[22],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               tinc: nix.thunk(() => ({
-                [nix.POS]: pos$12,
+                [nix.POS]: $pos[11],
                 networks: nix.thunk(() => ({
-                  [nix.POS]: pos$11,
+                  [nix.POS]: $pos[10],
                   myNetwork: nix.thunk(() => ({
-                    [nix.POS]: pos$10,
+                    [nix.POS]: $pos[9],
                     name: name,
                     rsaPrivateKeyFile: nix.thunk(() => nix.builtins.toFile("rsa.priv", nix.thunk(() => nix.sel(snakeoil_keys, nix.key(nix.force(name)), "rsaPrivate")))),
                     ed25519PrivateKeyFile: nix.thunk(() => nix.builtins.toFile("ed25519.priv", nix.thunk(() => nix.sel(snakeoil_keys, nix.key(nix.force(name)), "ed25519Private")))),
                     hostSettings: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), makeTincHost, nix.thunk(() => ({
-                        [nix.POS]: pos$9,
+                        [nix.POS]: $pos[8],
                         static: nix.thunk(() => ({
-                          [nix.POS]: pos$6,
+                          [nix.POS]: $pos[5],
                           subnet: "10.0.0.11",
                           extraConfig: nix.thunk(() => ({
-                            [nix.POS]: pos$5,
+                            [nix.POS]: $pos[4],
                             addresses: nix.thunk(() => nix.builtins.map((vlan) => ({
-                                [nix.POS]: pos$4,
+                                [nix.POS]: $pos[3],
                                 address: nix.thunk(() => nix.str`192.168.${nix.builtins.toString(vlan)}.11`),
                                 port: 655n,
                               }), nix.thunk(() => nix.sel(config, "virtualisation", "vlans")))),
                           })),
                         })),
-                        dynamic1: nix.thunk(() => ({ [nix.POS]: pos$7, subnet: "10.0.0.21" })),
-                        dynamic2: nix.thunk(() => ({ [nix.POS]: pos$8, subnet: "10.0.0.22" })),
+                        dynamic1: nix.thunk(() => ({ [nix.POS]: $pos[6], subnet: "10.0.0.21" })),
+                        dynamic2: nix.thunk(() => ({ [nix.POS]: $pos[7], subnet: "10.0.0.22" })),
                       })))),
                   })),
                 })),
               })),
             })),
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$19,
+              [nix.POS]: $pos[18],
               useDHCP: false,
               interfaces: nix.thunk(() => ({
-                [nix.POS]: pos$17,
+                [nix.POS]: $pos[16],
                 "tinc.myNetwork": nix.thunk(() => ({
-                  [nix.POS]: pos$16,
+                  [nix.POS]: $pos[15],
                   virtual: true,
                   virtualType: "tun",
                   ipv4: nix.thunk(() => ({
-                    [nix.POS]: pos$15,
+                    [nix.POS]: $pos[14],
                     addresses: nix.thunk(() => [
                       nix.thunk(() => ({
-                        [nix.POS]: pos$14,
+                        [nix.POS]: $pos[13],
                         address: nix.thunk(() => nix.app(subnetOf, name, config)),
                         prefixLength: 24n,
                       })),
@@ -135,17 +96,17 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
                 })),
               })),
               firewall: nix.thunk(() => ({
-                [nix.POS]: pos$18,
+                [nix.POS]: $pos[17],
                 allowedTCPPorts: nix.thunk(() => [655n]),
                 allowedUDPPorts: nix.thunk(() => [655n]),
               })),
             })),
             systemd: nix.thunk(() => ({
-              [nix.POS]: pos$22,
+              [nix.POS]: $pos[21],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$21,
+                [nix.POS]: $pos[20],
                 "tinc.myNetwork": nix.thunk(() => ({
-                  [nix.POS]: pos$20,
+                  [nix.POS]: $pos[19],
                   after: nix.thunk(() => ["network-addresses-tinc.myNetwork.service"]),
                   requires: nix.thunk(() => ["network-addresses-tinc.myNetwork.service"]),
                 })),
@@ -156,42 +117,42 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
         ]));
     })(), formals$3);
     return {
-      [nix.POS]: pos$40,
+      [nix.POS]: $pos[39],
       name: "tinc",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$24,
+        [nix.POS]: $pos[23],
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "minijackson"))];
         })()),
       })),
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$39,
+        [nix.POS]: $pos[38],
         static: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$4);
           const args_2 = args_1;
           return nix.app(makeTincNode, args_2, "static", nix.thunk(() => ({
-              [nix.POS]: pos$34,
-              virtualisation: nix.thunk(() => ({ [nix.POS]: pos$25, vlans: nix.thunk(() => [1n, 2n]) })),
+              [nix.POS]: $pos[33],
+              virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[24], vlans: nix.thunk(() => [1n, 2n]) })),
               networking: nix.thunk(() => ({
-                [nix.POS]: pos$33,
+                [nix.POS]: $pos[32],
                 interfaces: nix.thunk(() => ({
-                  [nix.POS]: pos$32,
+                  [nix.POS]: $pos[31],
                   eth1: nix.thunk(() => ({
-                    [nix.POS]: pos$28,
+                    [nix.POS]: $pos[27],
                     ipv4: nix.thunk(() => ({
-                      [nix.POS]: pos$27,
+                      [nix.POS]: $pos[26],
                       addresses: nix.thunk(() => [
-                        nix.thunk(() => ({ [nix.POS]: pos$26, address: "192.168.1.11", prefixLength: 24n })),
+                        nix.thunk(() => ({ [nix.POS]: $pos[25], address: "192.168.1.11", prefixLength: 24n })),
                       ]),
                     })),
                   })),
                   eth2: nix.thunk(() => ({
-                    [nix.POS]: pos$31,
+                    [nix.POS]: $pos[30],
                     ipv4: nix.thunk(() => ({
-                      [nix.POS]: pos$30,
+                      [nix.POS]: $pos[29],
                       addresses: nix.thunk(() => [
-                        nix.thunk(() => ({ [nix.POS]: pos$29, address: "192.168.2.11", prefixLength: 24n })),
+                        nix.thunk(() => ({ [nix.POS]: $pos[28], address: "192.168.2.11", prefixLength: 24n })),
                       ]),
                     })),
                   })),
@@ -203,16 +164,16 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
           const $_1 = nix.formals(args_1, formals$5);
           const args_2 = args_1;
           return nix.app(makeTincNode, args_2, "dynamic1", nix.thunk(() => ({
-              [nix.POS]: pos$36,
-              virtualisation: nix.thunk(() => ({ [nix.POS]: pos$35, vlans: nix.thunk(() => [1n]) })),
+              [nix.POS]: $pos[35],
+              virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[34], vlans: nix.thunk(() => [1n]) })),
             })));
         })(), formals$5),
         dynamic2: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$6);
           const args_2 = args_1;
           return nix.app(makeTincNode, args_2, "dynamic2", nix.thunk(() => ({
-              [nix.POS]: pos$38,
-              virtualisation: nix.thunk(() => ({ [nix.POS]: pos$37, vlans: nix.thunk(() => [2n]) })),
+              [nix.POS]: $pos[37],
+              virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[36], vlans: nix.thunk(() => [2n]) })),
             })));
         })(), formals$6),
       })),

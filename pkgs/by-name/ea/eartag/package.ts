@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 29, 5], ["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["updateScript", 82, 5]], [["homepage", 86, 5], ["description", 87, 5], ["changelog", 88, 5], ["license", 89, 5], ["mainProgram", 90, 5], ["teams", 91, 5]], [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["postPatch", 36, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 58, 3], ["dependencies", 63, 3], ["dontWrapGApps", 76, 3], ["preFixup", 77, 3], ["passthru", 81, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, meson: false, ninja: false, "pkg-config": false, wrapGAppsHook4: false, libadwaita: false, gettext: false, glib: false, "gobject-introspection": false, "desktop-file-utils": false, appstream: false, "appstream-glib": false, gtk4: false, librsvg: false, python3Packages: false, "blueprint-compiler": false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 29, 5], ["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 82, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 86, 5], ["description", 87, 5], ["changelog", 88, 5], ["license", 89, 5], ["mainProgram", 90, 5], ["teams", 91, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["postPatch", 36, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 58, 3], ["dependencies", 63, 3], ["dontWrapGApps", 76, 3], ["preFixup", 77, 3], ["passthru", 81, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const blueprint_compiler = nix.arg($, "blueprint-compiler");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "eartag",
       version: "1.0.3",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           owner: "World",
           repo: "eartag",
@@ -75,11 +72,11 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://gitlab.gnome.org/World/eartag",
         description: "Simple music tag editor",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/World/eartag/-/releases/${nix.sel(finalAttrs, "version")}`),

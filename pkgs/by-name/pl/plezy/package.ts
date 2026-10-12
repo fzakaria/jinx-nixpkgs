@@ -2,19 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["url", 37, 5], ["hash", 38, 5]], [["description", 48, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["mainProgram", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["platforms", 58, 5], ["sourceProvenance", 61, 5]], [["dart", 71, 12]], [["sdks", 71, 7]], [["ZLIB_ROOT", 99, 7], ["JAVA_HOME", 100, 7]], [["name", 111, 9], ["exec", 112, 9], ["icon", 113, 9], ["desktopName", 114, 9], ["comment", 115, 9], ["categories", 116, 9]], [["updateScript", 132, 14]], [["pname", 67, 13], ["version", 67, 19], ["src", 67, 27], ["pubspecLock", 70, 5], ["gitHashes", 74, 5], ["patches", 76, 5], ["nativeBuildInputs", 80, 5], ["buildInputs", 86, 5], ["env", 98, 5], ["postPatch", 103, 5], ["desktopItems", 109, 5], ["postInstall", 124, 5], ["passthru", 132, 5], ["meta", 134, 13]], [["updateScript", 140, 14]], [["url", 143, 7], ["hash", 144, 7]], [["pname", 138, 13], ["version", 138, 19], ["passthru", 140, 5], ["src", 142, 5], ["nativeBuildInputs", 147, 5], ["sourceRoot", 152, 5], ["installPhase", 154, 5], ["meta", 164, 13]]]);
 const formals$1 = { args: { lib: false, stdenv: false, stdenvNoCC: false, flutter347: false, fetchFromGitHub: false, fetchurl: false, "pkg-config": false, libsecret: false, jsoncpp: false, "mpv-unwrapped": false, libass: false, keybinder3: false, ffmpeg: false, zlib: false, libevdev: false, jdk: false, makeDesktopItem: false, copyDesktopItems: false, imagemagick: false, _7zz: false, makeBinaryWrapper: false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 37, 5], ["hash", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 48, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["mainProgram", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["platforms", 58, 5], ["sourceProvenance", 61, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["dart", 71, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["sdks", 71, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["ZLIB_ROOT", 99, 7], ["JAVA_HOME", 100, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["name", 111, 9], ["exec", 112, 9], ["icon", 113, 9], ["desktopName", 114, 9], ["comment", 115, 9], ["categories", 116, 9]]);
-const pos$8 = nix.positions(here + "/package.nix", [["updateScript", 132, 14]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 67, 13], ["version", 67, 19], ["src", 67, 27], ["pubspecLock", 70, 5], ["gitHashes", 74, 5], ["patches", 76, 5], ["nativeBuildInputs", 80, 5], ["buildInputs", 86, 5], ["env", 98, 5], ["postPatch", 103, 5], ["desktopItems", 109, 5], ["postInstall", 124, 5], ["passthru", 132, 5], ["meta", 134, 13]]);
-const pos$10 = nix.positions(here + "/package.nix", [["updateScript", 140, 14]]);
-const pos$11 = nix.positions(here + "/package.nix", [["url", 143, 7], ["hash", 144, 7]]);
-const pos$12 = nix.positions(here + "/package.nix", [["pname", 138, 13], ["version", 138, 19], ["passthru", 140, 5], ["src", 142, 5], ["nativeBuildInputs", 147, 5], ["sourceRoot", 152, 5], ["installPhase", 154, 5], ["meta", 164, 13]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,14 +32,14 @@ export default nix.lambda((args) => (() => {
   const pname = "plezy";
   const version = "2.22.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "edde746",
       repo: "plezy",
       tag: version,
       hash: "sha256-UPjZMmXpow8VUakRm3IsN52I3bZrdk1h8kyNkbIEHn4=",
     }))));
   const simdutf = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: "https://github.com/simdutf/simdutf/releases/download/v6.4.2/singleheader.zip",
       hash: "sha256-n+TW9RVySlXI3oj+5EY+CJChq+ImfNoTxLXSRdWAOeY=",
     }))));
@@ -59,7 +48,7 @@ ln -s ${nix.sel(zlib, "dev")}/include $out/include
 ln -s ${zlib}/lib $out/lib
 `)));
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     description: "Modern cross-platform Emby, Plex & Jellyfin client built with Flutter",
     homepage: "https://github.com/edde746/plezy",
     changelog: nix.thunk(() => nix.str`https://github.com/edde746/plezy/releases/tag/${version}`),
@@ -84,8 +73,8 @@ ln -s ${zlib}/lib $out/lib
       const version_1 = version;
       const src_1 = src;
       const pubspecLock = nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./pubspec.lock.json"))), nix.thunk(() => ({
-          [nix.POS]: pos$5,
-          sdks: nix.thunk(() => ({ [nix.POS]: pos$4, dart: ">=3.12.0 <4.0.0" })),
+          [nix.POS]: $pos[4],
+          sdks: nix.thunk(() => ({ [nix.POS]: $pos[3], dart: ">=3.12.0 <4.0.0" })),
         }))));
       const gitHashes = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./git-hashes.json")));
       const patches = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "aarch64-linux")), nix.thunk(() => [nix.path(here, "./aarch64-linux.patch")])));
@@ -102,7 +91,7 @@ ln -s ${zlib}/lib $out/lib
         jdk,
       ]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         ZLIB_ROOT: zlib_root,
         JAVA_HOME: nix.thunk(() => nix.str`${jdk}/lib/openjdk`),
       }));
@@ -112,7 +101,7 @@ ln -s ${zlib}/lib $out/lib
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             name: "plezy",
             exec: "plezy",
             icon: "plezy",
@@ -122,10 +111,10 @@ ln -s ${zlib}/lib $out/lib
           })))),
       ]);
       const postInstall = "install -Dm644 assets/plezy.png $out/share/icons/hicolor/128x128/apps/plezy.png\nfor size in 16 24 32 48 64 256 512; do\n  mkdir -p $out/share/icons/hicolor/${size}x${size}/apps\n  convert assets/plezy.png -resize ${size}x${size} $out/share/icons/hicolor/${size}x${size}/apps/plezy.png\ndone\n";
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$8, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[7], updateScript: nix.path(here, "./update.sh") }));
       const meta_1 = meta;
       return {
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         pname: pname_1,
         version: version_1,
         src: src_1,
@@ -143,12 +132,12 @@ ln -s ${zlib}/lib $out/lib
       };
     })())));
   const darwin = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       pname: pname,
       version: version,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$10, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[9], updateScript: nix.path(here, "./update.sh") })),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           url: nix.thunk(() => nix.str`https://github.com/edde746/plezy/releases/download/${version}/plezy-macos.dmg`),
           hash: "sha256-4YAoKfRybEjjj4vW53tUTq3r4XOI9y0M3T409/8tcg8=",
         })))),

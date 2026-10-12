@@ -2,24 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/amazon-image.nix", [[["sinceRelease", 25, 7], ["from", 26, 7], ["to", 30, 7]], [["sinceRelease", 36, 7], ["from", 37, 7], ["to", 41, 7]], [["example", 50, 7], ["default", 56, 7], ["description", 57, 7]], [["type", 64, 7], ["default", 69, 7], ["description", 70, 7]], [["contents", 49, 5], ["format", 63, 5]], [["amazonImage", 48, 11]], [["diskSize", 76, 25], ["diskSizeAutoSupported", 77, 25]], [["tags", 79, 23]], [["ashift", 114, 11], ["autoexpand", 115, 11]], [["lib", 100, 11], ["config", 101, 11], ["configFile", 102, 11], ["pkgs", 103, 11], ["contents", 105, 23], ["format", 105, 32], ["name", 106, 9], ["includeChannel", 108, 9], ["bootSize", 110, 9], ["rootSize", 112, 9], ["rootPoolProperties", 113, 9], ["datasets", 118, 9], ["postVM", 120, 9]], [["lib", 154, 11], ["config", 155, 11], ["configFile", 156, 11], ["pkgs", 157, 11], ["contents", 160, 23], ["format", 160, 32], ["baseName", 161, 32], ["name", 162, 9], ["fsType", 164, 9], ["partitionTableType", 165, 9], ["diskSize", 167, 41], ["postVM", 169, 9]], [["image", 80, 23], ["amazonImage", 83, 23]], [["nixos", 79, 17], ["build", 80, 17]], [["extension", 81, 16]], [["virtualisation", 76, 10], ["system", 79, 10], ["image", 81, 10]], [["maintainers", 193, 8]], [["imports", 20, 3], ["options", 48, 3], ["config", 76, 3], ["meta", 193, 3]]]);
 const formals$1 = { args: { config: false, lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/amazon-image.nix", [["sinceRelease", 25, 7], ["from", 26, 7], ["to", 30, 7]]);
-const pos$2 = nix.positions(here + "/amazon-image.nix", [["sinceRelease", 36, 7], ["from", 37, 7], ["to", 41, 7]]);
-const pos$3 = nix.positions(here + "/amazon-image.nix", [["example", 50, 7], ["default", 56, 7], ["description", 57, 7]]);
-const pos$4 = nix.positions(here + "/amazon-image.nix", [["type", 64, 7], ["default", 69, 7], ["description", 70, 7]]);
-const pos$5 = nix.positions(here + "/amazon-image.nix", [["contents", 49, 5], ["format", 63, 5]]);
-const pos$6 = nix.positions(here + "/amazon-image.nix", [["amazonImage", 48, 11]]);
-const pos$7 = nix.positions(here + "/amazon-image.nix", [["diskSize", 76, 25], ["diskSizeAutoSupported", 77, 25]]);
-const pos$8 = nix.positions(here + "/amazon-image.nix", [["tags", 79, 23]]);
-const pos$9 = nix.positions(here + "/amazon-image.nix", [["ashift", 114, 11], ["autoexpand", 115, 11]]);
-const pos$10 = nix.positions(here + "/amazon-image.nix", [["lib", 100, 11], ["config", 101, 11], ["configFile", 102, 11], ["pkgs", 103, 11], ["contents", 105, 23], ["format", 105, 32], ["name", 106, 9], ["includeChannel", 108, 9], ["bootSize", 110, 9], ["rootSize", 112, 9], ["rootPoolProperties", 113, 9], ["datasets", 118, 9], ["postVM", 120, 9]]);
-const pos$11 = nix.positions(here + "/amazon-image.nix", [["lib", 154, 11], ["config", 155, 11], ["configFile", 156, 11], ["pkgs", 157, 11], ["contents", 160, 23], ["format", 160, 32], ["baseName", 161, 32], ["name", 162, 9], ["fsType", 164, 9], ["partitionTableType", 165, 9], ["diskSize", 167, 41], ["postVM", 169, 9]]);
-const pos$12 = nix.positions(here + "/amazon-image.nix", [["image", 80, 23], ["amazonImage", 83, 23]]);
-const pos$13 = nix.positions(here + "/amazon-image.nix", [["nixos", 79, 17], ["build", 80, 17]]);
-const pos$14 = nix.positions(here + "/amazon-image.nix", [["extension", 81, 16]]);
-const pos$15 = nix.positions(here + "/amazon-image.nix", [["virtualisation", 76, 10], ["system", 79, 10], ["image", 81, 10]]);
-const pos$16 = nix.positions(here + "/amazon-image.nix", [["maintainers", 193, 8]]);
-const pos$17 = nix.positions(here + "/amazon-image.nix", [["imports", 20, 3], ["options", 48, 3], ["config", 76, 3], ["meta", 193, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,36 +18,36 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "amazonImage"));
   const amiBootMode = nix.thunk(() => (nix.asBool(nix.sel(config, "ec2", "efi")) ? "uefi" : "legacy-bios"));
   return {
-    [nix.POS]: pos$17,
+    [nix.POS]: $pos[16],
     imports: nix.thunk(() => [
       nix.path(here, "../../../modules/virtualisation/amazon-image.nix"),
       nix.path(here, "../../../modules/virtualisation/disk-size-option.nix"),
       nix.path(here, "../../../modules/image/file-options.nix"),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModuleWith"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           sinceRelease: 2411n,
           from: nix.thunk(() => ["amazonImage", "sizeMB"]),
           to: nix.thunk(() => ["virtualisation", "diskSize"]),
         })))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModuleWith"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           sinceRelease: 2505n,
           from: nix.thunk(() => ["amazonImage", "name"]),
           to: nix.thunk(() => ["image", "baseName"]),
         })))),
     ]),
     options: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       amazonImage: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         contents: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             example: nix.thunk(() => nix.app(literalExpression, "[ { source = pkgs.memtest86 + \"/memtest.bin\";\n    target = \"boot/memtest.bin\";\n  }\n]\n")),
             default: [],
             description: "This option lists files to be copied to fixed locations in the\ngenerated image. Glob patterns work.\n",
           })))),
         format: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["raw", "qcow2", "vpc"]))),
             default: "vpc",
             description: "The image format to output",
@@ -71,17 +55,17 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       virtualisation: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         diskSize: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 1490n, nix.thunk(() => nix.mul(4n, 1024n)))),
         diskSizeAutoSupported: nix.thunk(() => !nix.asBool(nix.sel(config, "ec2", "zfs", "enable"))),
       })),
       system: nix.thunk(() => ({
-        [nix.POS]: pos$13,
-        nixos: nix.thunk(() => ({ [nix.POS]: pos$8, tags: nix.thunk(() => ["amazon"]) })),
+        [nix.POS]: $pos[12],
+        nixos: nix.thunk(() => ({ [nix.POS]: $pos[7], tags: nix.thunk(() => ["amazon"]) })),
         build: nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           image: nix.thunk(() => nix.sel(config, "system", "build", "amazonImage")),
           amazonImage: nix.thunk(() => (() => {
             const configFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "configuration.nix", nix.thunk(() => nix.str`{ modulesPath, ... }: {
@@ -93,7 +77,7 @@ networking.hostId = "${nix.sel(config, "networking", "hostId")}";
 }
 `)));
             const zfsBuilder = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../lib/make-multi-disk-zfs-image.nix")), nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 lib: lib,
                 config: config,
                 configFile: configFile,
@@ -104,7 +88,7 @@ networking.hostId = "${nix.sel(config, "networking", "hostId")}";
                 includeChannel: true,
                 bootSize: 1000n,
                 rootSize: nix.thunk(() => nix.sel(config, "virtualisation", "diskSize")),
-                rootPoolProperties: nix.thunk(() => ({ [nix.POS]: pos$9, ashift: 12n, autoexpand: "on" })),
+                rootPoolProperties: nix.thunk(() => ({ [nix.POS]: $pos[8], ashift: 12n, autoexpand: "on" })),
                 datasets: nix.thunk(() => nix.sel(config, "ec2", "zfs", "datasets")),
                 postVM: nix.thunk(() => nix.str` extension=\${rootDiskImage##*.}
  friendlyName=$out/${nix.sel(config, "image", "baseName")}
@@ -140,7 +124,7 @@ ${nix.sel(pkgs, "jq")}/bin/jq -n \\
                 const from_1 = nix.thunk(() => nix.sel(config, "image"));
                 const from_2 = nix.thunk(() => nix.sel(config, "virtualisation"));
                 return {
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 lib: lib,
                 config: config,
                 configFile: configFile,
@@ -178,12 +162,12 @@ ${nix.sel(pkgs, "jq")}/bin/jq -n \\
         })),
       })),
       image: nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         extension: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "format"), "vpc")) ? "vhd" : nix.sel(cfg, "format"))),
       })),
     })),
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "arianvp"))];

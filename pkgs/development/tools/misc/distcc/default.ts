@@ -2,14 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 29, 7], ["repo", 30, 7], ["tag", 31, 7], ["hash", 32, 7]], [["gcc", 80, 47]], [["passthru", 80, 38]], [["rev-prefix", 101, 9]], [["links", 78, 7], ["updateScript", 100, 7]], [["description", 106, 7], ["homepage", 107, 7], ["license", 108, 7], ["platforms", 110, 7], ["maintainers", 111, 7]], [["pname", 27, 13], ["version", 27, 19], ["src", 28, 5], ["nativeBuildInputs", 35, 5], ["buildInputs", 42, 5], ["preConfigure", 49, 5], ["doCheck", 70, 5], ["passthru", 72, 5], ["meta", 105, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, popt: false, avahi: false, "pkg-config": false, python3: false, gtk3: false, runCommand: false, gcc: false, autoconf: false, automake: false, which: false, procps: false, libiberty_static: false, runtimeShell: false, gitUpdater: false, sysconfDir: true, static: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 29, 7], ["repo", 30, 7], ["tag", 31, 7], ["hash", 32, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["gcc", 80, 47]]);
-const pos$3 = nix.positions(here + "/default.nix", [["passthru", 80, 38]]);
-const pos$4 = nix.positions(here + "/default.nix", [["rev-prefix", 101, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["links", 78, 7], ["updateScript", 100, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 106, 7], ["homepage", 107, 7], ["license", 108, 7], ["platforms", 110, 7], ["maintainers", 111, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 27, 13], ["version", 27, 19], ["src", 28, 5], ["nativeBuildInputs", 35, 5], ["buildInputs", 42, 5], ["preConfigure", 49, 5], ["doCheck", 70, 5], ["passthru", 72, 5], ["meta", 105, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const pname = "distcc";
   const version = "3.4";
   const distcc = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "distcc",
           repo: "distcc",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -73,10 +67,10 @@ installFlags="sysconfdir=$out/etc";
 `),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         links: (extraConfig) => nix.app(runCommand, "distcc-links", nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            passthru: nix.thunk(() => ({ [nix.POS]: pos$2, gcc: nix.thunk(() => nix.sel(gcc, "cc")) })),
+            [nix.POS]: $pos[2],
+            passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], gcc: nix.thunk(() => nix.sel(gcc, "cc")) })),
           })), nix.thunk(() => nix.str`mkdir -p $out/bin
 if [ -x "${nix.sel(gcc, "cc")}/bin/gcc" ]; then
   cat > $out/bin/gcc << EOF
@@ -95,10 +89,10 @@ EOF
   chmod +x $out/bin/g++
 fi
 `)),
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$4, "rev-prefix": "v" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[3], "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Fast, free distributed C/C++ compiler",
         homepage: "http://distcc.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

@@ -2,46 +2,39 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/typesense.nix", [[["maintainers", 7, 8]], [["api-port", 16, 11], ["api-address", 17, 11]], [["server", 15, 18]], [["enable", 13, 9], ["apiKeyFile", 14, 9], ["settings", 15, 9]], [["typesense", 12, 16]], [["services", 12, 7]], [["machine", 9, 9]], [["name", 6, 3], ["meta", 7, 3], ["nodes", 9, 3], ["testScript", 22, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/typesense.nix", [["maintainers", 7, 8]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/typesense.nix", [["api-port", 16, 11], ["api-address", 17, 11]]);
-const pos$3 = nix.positions(here + "/typesense.nix", [["server", 15, 18]]);
-const pos$4 = nix.positions(here + "/typesense.nix", [["enable", 13, 9], ["apiKeyFile", 14, 9], ["settings", 15, 9]]);
-const pos$5 = nix.positions(here + "/typesense.nix", [["typesense", 12, 16]]);
-const pos$6 = nix.positions(here + "/typesense.nix", [["services", 12, 7]]);
-const pos$7 = nix.positions(here + "/typesense.nix", [["machine", 9, 9]]);
-const pos$8 = nix.positions(here + "/typesense.nix", [["name", 6, 3], ["meta", 7, 3], ["nodes", 9, 3], ["testScript", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const testPort = 8108n;
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     name: "typesense",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "oddlama"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             typesense: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               enable: true,
               apiKeyFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "typesense-api-key", "dummy")),
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$3,
-                server: nix.thunk(() => ({ [nix.POS]: pos$2, "api-port": testPort, "api-address": "0.0.0.0" })),
+                [nix.POS]: $pos[2],
+                server: nix.thunk(() => ({ [nix.POS]: $pos[1], "api-port": testPort, "api-address": "0.0.0.0" })),
               })),
             })),
           })),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["description", 71, 5], ["homepage", 74, 5], ["license", 75, 5], ["maintainers", 76, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["buildPhase", 31, 3], ["installPhase", 59, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, mkfontscale: false, fonttosfnt: false, bdf2psf: false, bdftopcf: false, libfaketime: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 71, 5], ["homepage", 74, 5], ["license", 75, 5], ["maintainers", 76, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["buildPhase", 31, 3], ["installPhase", 59, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const bdftopcf = nix.arg($, "bdftopcf");
   const libfaketime = nix.arg($, "libfaketime");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gohufont",
       version: "2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hchargois",
           repo: "gohufont",
           rev: "cc36b8c9fed7141763e55dcee0a97abffcf08224",
@@ -57,7 +55,7 @@ done
 `),
       installPhase: "# install the psf fonts (for the virtual console)\nfontDir=\"$out/share/consolefonts\"\ninstall -D -m 644 -t \"$fontDir\" psf/*.psf\n\n# install the pcf and otb fonts (for X11,GTK applications)\nfontDir=\"$out/share/fonts/misc\"\ninstall -D -m 644 -t \"$fontDir\" *.pcf *.otb\nmkfontdir \"$fontDir\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "A monospace bitmap font well suited for programming and terminal use\n",
         homepage: "https://font.gohu.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "wtfpl")),

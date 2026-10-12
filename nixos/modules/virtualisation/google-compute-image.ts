@@ -2,28 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/google-compute-image.nix", [[["sinceRelease", 27, 7], ["from", 28, 7], ["to", 33, 7]], [["type", 42, 7], ["default", 43, 7], ["description", 44, 7]], [["type", 53, 7], ["default", 54, 7], ["description", 55, 7]], [["type", 61, 7], ["default", 62, 7], ["description", 63, 7]], [["type", 67, 7], ["default", 68, 7], ["description", 69, 7], ["example", 79, 7]], [["configFile", 41, 39], ["compressionLevel", 52, 39], ["buildMemSize", 60, 39], ["contents", 66, 39], ["efi", 92, 39]], [["googleComputeImage", 41, 20]], [["virtualisation", 41, 5]], [["availableKernelModules", 97, 17]], [["device", 99, 7], ["efiSupport", 100, 7], ["efiInstallAsRemovable", 101, 7]], [["grub", 98, 17]], [["initrd", 97, 10], ["loader", 98, 10]], [["device", 105, 7], ["fsType", 106, 7]], [["/boot", 104, 17]], [["tags", 109, 18]], [["name", 113, 7], ["baseName", 114, 30], ["postVM", 115, 7], ["format", 133, 7], ["configFile", 134, 7], ["contents", 135, 21], ["partitionTableType", 136, 7], ["diskSize", 137, 39], ["memSize", 138, 7], ["config", 139, 15], ["lib", 139, 22], ["pkgs", 139, 26]], [["image", 111, 18], ["googleComputeImage", 112, 18]], [["nixos", 109, 12], ["build", 111, 12]], [["extension", 110, 11]], [["boot", 97, 5], ["fileSystems", 104, 5], ["system", 109, 5], ["image", 110, 5]], [["imports", 22, 3], ["options", 40, 3], ["config", 96, 3]]]);
 const formals$1 = { args: { config: false, lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/google-compute-image.nix", [["sinceRelease", 27, 7], ["from", 28, 7], ["to", 33, 7]]);
-const pos$2 = nix.positions(here + "/google-compute-image.nix", [["type", 42, 7], ["default", 43, 7], ["description", 44, 7]]);
-const pos$3 = nix.positions(here + "/google-compute-image.nix", [["type", 53, 7], ["default", 54, 7], ["description", 55, 7]]);
-const pos$4 = nix.positions(here + "/google-compute-image.nix", [["type", 61, 7], ["default", 62, 7], ["description", 63, 7]]);
-const pos$5 = nix.positions(here + "/google-compute-image.nix", [["type", 67, 7], ["default", 68, 7], ["description", 69, 7], ["example", 79, 7]]);
-const pos$6 = nix.positions(here + "/google-compute-image.nix", [["configFile", 41, 39], ["compressionLevel", 52, 39], ["buildMemSize", 60, 39], ["contents", 66, 39], ["efi", 92, 39]]);
-const pos$7 = nix.positions(here + "/google-compute-image.nix", [["googleComputeImage", 41, 20]]);
-const pos$8 = nix.positions(here + "/google-compute-image.nix", [["virtualisation", 41, 5]]);
-const pos$9 = nix.positions(here + "/google-compute-image.nix", [["availableKernelModules", 97, 17]]);
-const pos$10 = nix.positions(here + "/google-compute-image.nix", [["device", 99, 7], ["efiSupport", 100, 7], ["efiInstallAsRemovable", 101, 7]]);
-const pos$11 = nix.positions(here + "/google-compute-image.nix", [["grub", 98, 17]]);
-const pos$12 = nix.positions(here + "/google-compute-image.nix", [["initrd", 97, 10], ["loader", 98, 10]]);
-const pos$13 = nix.positions(here + "/google-compute-image.nix", [["device", 105, 7], ["fsType", 106, 7]]);
-const pos$14 = nix.positions(here + "/google-compute-image.nix", [["/boot", 104, 17]]);
-const pos$15 = nix.positions(here + "/google-compute-image.nix", [["tags", 109, 18]]);
-const pos$16 = nix.positions(here + "/google-compute-image.nix", [["name", 113, 7], ["baseName", 114, 30], ["postVM", 115, 7], ["format", 133, 7], ["configFile", 134, 7], ["contents", 135, 21], ["partitionTableType", 136, 7], ["diskSize", 137, 39], ["memSize", 138, 7], ["config", 139, 15], ["lib", 139, 22], ["pkgs", 139, 26]]);
-const pos$17 = nix.positions(here + "/google-compute-image.nix", [["image", 111, 18], ["googleComputeImage", 112, 18]]);
-const pos$18 = nix.positions(here + "/google-compute-image.nix", [["nixos", 109, 12], ["build", 111, 12]]);
-const pos$19 = nix.positions(here + "/google-compute-image.nix", [["extension", 110, 11]]);
-const pos$20 = nix.positions(here + "/google-compute-image.nix", [["boot", 97, 5], ["fileSystems", 104, 5], ["system", 109, 5], ["image", 110, 5]]);
-const pos$21 = nix.positions(here + "/google-compute-image.nix", [["imports", 22, 3], ["options", 40, 3], ["config", 96, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,26 +14,26 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "virtualisation", "googleComputeImage"));
   const defaultConfigFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "configuration.nix", "{ ... }:\n{\n  imports = [\n    <nixpkgs/nixos/modules/virtualisation/google-compute-image.nix>\n  ];\n}\n"));
   return {
-    [nix.POS]: pos$21,
+    [nix.POS]: $pos[20],
     imports: nix.thunk(() => [
       nix.path(here, "./google-compute-config.nix"),
       nix.path(here, "./disk-size-option.nix"),
       nix.path(here, "../image/file-options.nix"),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModuleWith"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           sinceRelease: 2411n,
           from: nix.thunk(() => ["virtualisation", "googleComputeImage", "diskSize"]),
           to: nix.thunk(() => ["virtualisation", "diskSize"]),
         })))),
     ]),
     options: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       virtualisation: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         googleComputeImage: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           configFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -62,19 +42,19 @@ export default nix.lambda((args) => (() => {
               description: "A path to a configuration file which will be placed at `/etc/nixos/configuration.nix`\nand be used when switching to a new configuration.\nIf set to `null`, a default configuration is used, where the only import is\n`<nixpkgs/nixos/modules/virtualisation/google-compute-image.nix>`.\n",
             })))),
           compressionLevel: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
               default: 6n,
               description: "GZIP compression level of the resulting disk image (1-9).\n",
             })))),
           buildMemSize: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
               default: 1024n,
               description: "Memory size (in MiB) for the temporary VM used to build the image.",
             })))),
           contents: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "attrs")));
@@ -88,14 +68,14 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      [nix.POS]: pos$20,
+      [nix.POS]: $pos[19],
       boot: nix.thunk(() => ({
-        [nix.POS]: pos$12,
-        initrd: nix.thunk(() => ({ [nix.POS]: pos$9, availableKernelModules: nix.thunk(() => ["nvme"]) })),
+        [nix.POS]: $pos[11],
+        initrd: nix.thunk(() => ({ [nix.POS]: $pos[8], availableKernelModules: nix.thunk(() => ["nvme"]) })),
         loader: nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           grub: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "efi")), nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               device: nix.thunk(() => nix.app(nix.lookup(w, "mkForce"), "nodev")),
               efiSupport: true,
               efiInstallAsRemovable: true,
@@ -103,20 +83,20 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       fileSystems: nix.thunk(() => ({
-        [nix.POS]: pos$14,
-        "/boot": nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "efi")), nix.thunk(() => ({ [nix.POS]: pos$13, device: "/dev/disk/by-label/ESP", fsType: "vfat" })))),
+        [nix.POS]: $pos[13],
+        "/boot": nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "efi")), nix.thunk(() => ({ [nix.POS]: $pos[12], device: "/dev/disk/by-label/ESP", fsType: "vfat" })))),
       })),
       system: nix.thunk(() => ({
-        [nix.POS]: pos$18,
-        nixos: nix.thunk(() => ({ [nix.POS]: pos$15, tags: nix.thunk(() => ["google-compute"]) })),
+        [nix.POS]: $pos[17],
+        nixos: nix.thunk(() => ({ [nix.POS]: $pos[14], tags: nix.thunk(() => ["google-compute"]) })),
         build: nix.thunk(() => ({
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           image: nix.thunk(() => nix.sel(config, "system", "build", "googleComputeImage")),
           googleComputeImage: nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "../../lib/make-disk-image.nix"), nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(config, "image"));
               const from_1 = nix.thunk(() => nix.sel(config, "virtualisation"));
               return {
-              [nix.POS]: pos$16,
+              [nix.POS]: $pos[15],
               name: "google-compute-image",
               baseName: nix.thunk(() => nix.attr(from, "baseName")),
               postVM: nix.thunk(() => nix.str`PATH=$PATH:${(() => {
@@ -149,7 +129,7 @@ popd
             })()))),
         })),
       })),
-      image: nix.thunk(() => ({ [nix.POS]: pos$19, extension: "raw.tar.gz" })),
+      image: nix.thunk(() => ({ [nix.POS]: $pos[18], extension: "raw.tar.gz" })),
     })),
   };
 })(), formals$1);

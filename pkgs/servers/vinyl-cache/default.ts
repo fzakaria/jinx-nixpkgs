@@ -2,15 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 47, 9], ["hash", 48, 17]], [["NIX_CFLAGS_COMPILE", 115, 11]], [["python", 127, 9], ["tests", 128, 9], ["stateDir", 130, 17]], [["description", 134, 9], ["homepage", 135, 9], ["license", 136, 9], ["maintainers", 137, 9], ["platforms", 141, 9], ["broken", 142, 9]], [["pname", 43, 7], ["version", 44, 15], ["src", 46, 7], ["__structuredAttrs", 51, 7], ["strictDeps", 52, 7], ["nativeBuildInputs", 54, 7], ["buildInputs", 61, 7], ["configureFlags", 73, 7], ["patches", 83, 7], ["postPatch", 85, 7], ["postConfigure", 89, 7], ["postInstall", 107, 7], ["env", 115, 7], ["outputs", 117, 7], ["passthru", 126, 7], ["meta", 133, 7]], [["version", 149, 5], ["hash", 150, 5]], [["vinyl-cache_9", 148, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, buildPackages: false, pcre2: false, jemalloc: false, libunwind: false, libxslt: false, groff: false, ncurses: false, "pkg-config": false, readline: false, libedit: false, coreutils: false, python3: false, makeWrapper: false, nixosTests: false }, ellipsis: false };
 const formals$2 = { args: { version: false, hash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 47, 9], ["hash", 48, 17]]);
-const pos$2 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 115, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["python", 127, 9], ["tests", 128, 9], ["stateDir", 130, 17]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 134, 9], ["homepage", 135, 9], ["license", 136, 9], ["maintainers", 137, 9], ["platforms", 141, 9], ["broken", 142, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 43, 7], ["version", 44, 15], ["src", 46, 7], ["__structuredAttrs", 51, 7], ["strictDeps", 52, 7], ["nativeBuildInputs", 54, 7], ["buildInputs", 61, 7], ["configureFlags", 73, 7], ["patches", 83, 7], ["postPatch", 85, 7], ["postConfigure", 89, 7], ["postInstall", 107, 7], ["env", 115, 7], ["outputs", 117, 7], ["passthru", 126, 7], ["meta", 133, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["version", 149, 5], ["hash", 150, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["vinyl-cache_9", 148, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,11 +32,11 @@ export default nix.lambda((args) => (() => {
     const version = nix.arg($_1, "version");
     const hash = nix.arg($_1, "hash");
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname: "vinyl-cache",
         version: version,
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`https://vinyl-cache.org/downloads/${nix.sel(finalAttrs, "pname")}-${version}.tgz`),
             hash: hash,
           })))),
@@ -84,18 +78,18 @@ substituteInPlace Makefile \\
         postInstall: nix.thunk(() => nix.add(nix.str`wrapProgram "$out/sbin/vinyld" --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [nix.thunk(() => nix.sel(stdenv, "cc"))]))}"
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "cp bin/vinyld/vhp_hufdec.h $vhp_hufdec_h\n"))),
         env: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isi686")), "-fexcess-precision=standard")),
         })),
         outputs: nix.thunk(() => nix.concat(["out", "dev"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), nix.thunk(() => ["man", "vhp_hufdec_h"])))),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           python: python3,
           tests: nix.thunk(() => nix.sel(nixosTests, nix.key(nix.str`vinyl-cache_${nix.app(nix.sel(lib, "versions", "major"), version)}`))),
           stateDir: stateDir,
         })),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           description: "Web application accelerator also known as a caching HTTP reverse proxy",
           homepage: "https://vinyl-cache.org",
           license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
@@ -109,9 +103,9 @@ substituteInPlace Makefile \\
       }));
   })(), formals$2);
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     "vinyl-cache_9": nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         version: "9.0.1",
         hash: "sha256-Lo7GfNIT6mhkx2OTnWSRICVVc0L60qX/2mx8W1m96xc=",
       })))),

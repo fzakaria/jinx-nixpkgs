@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 17, 5]], [["description", 44, 5], ["mainProgram", 45, 5], ["homepage", 46, 5], ["longDescription", 47, 5], ["maintainers", 52, 5], ["license", 55, 5], ["platforms", 56, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["postPatch", 20, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 27, 3], ["installFlags", 32, 3], ["installTargets", 38, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, imake: false, gccmakedep: false, libxt: false, libxext: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 44, 5], ["mainProgram", 45, 5], ["homepage", 46, 5], ["longDescription", 47, 5], ["maintainers", 52, 5], ["license", 55, 5], ["platforms", 56, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["postPatch", 20, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 27, 3], ["installFlags", 32, 3], ["installTargets", 38, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const libxt = nix.arg($, "libxt");
   const libxext = nix.arg($, "libxext");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "xearth",
       version: "1.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://xearth.org/xearth-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-vLFAfMNbP23TYGssYHInO2qRLL2e0a4i+y0maUVBMJw=",
         })))),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       installFlags: nix.thunk(() => ["DESTDIR=$(out)/", "BINDIR=bin", "MANDIR=man/man1"]),
       installTargets: nix.thunk(() => ["install", "install.man"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Set the X root window to an image of the Earth",
         mainProgram: "xearth",
         homepage: "https://xearth.org",

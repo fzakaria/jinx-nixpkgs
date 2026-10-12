@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["CFLAGS", 19, 7]], [["description", 29, 5], ["mainProgram", 30, 5], ["longDescription", 31, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["platforms", 39, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["env", 19, 3], ["buildInputs", 21, 3], ["installPhase", 23, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, gpgme: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CFLAGS", 19, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 29, 5], ["mainProgram", 30, 5], ["longDescription", 31, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["platforms", 39, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["env", 19, 3], ["buildInputs", 21, 3], ["installPhase", 23, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,19 +12,19 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const gpgme = nix.arg($, "gpgme");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "nasty",
       version: "0.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.vanheusden.com/nasty/nasty-${nix.sel(finalAttrs, "version")}.tgz`),
           sha256: "1dznlxr728k1pgy1kwmlm7ivyl3j3rlvkmq34qpwbwbj8rnja1vn",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CFLAGS: "-D_FILE_OFFSET_BITS=64" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CFLAGS: "-D_FILE_OFFSET_BITS=64" })),
       buildInputs: nix.thunk(() => [gpgme]),
       installPhase: "mkdir -p $out/bin\ncp nasty $out/bin\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Recover the passphrase of your PGP or GPG-key",
         mainProgram: "nasty",
         longDescription: "Nasty is a program that helps you to recover the passphrase of your PGP or GPG-key\nin case you forget or lost it. It is mostly a proof-of-concept: with a different implementation\nthis program could be at least 100x faster.\n",

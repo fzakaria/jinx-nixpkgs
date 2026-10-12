@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 44, 5], ["homepage", 46, 7], ["license", 47, 7], ["maintainers", 48, 7], ["platforms", 49, 7]], [["pname", 9, 3], ["version", 12, 21], ["src", 12, 29], ["sourceRoot", 14, 3], ["dontConfigure", 16, 3], ["__structuredAttrs", 18, 3], ["strictDeps", 19, 3], ["separateDebugInfo", 20, 3], ["buildInputs", 21, 3], ["buildPhase", 22, 3], ["installPhase", 34, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, grayjay: false, "curl-impersonate": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 44, 5], ["homepage", 46, 7], ["license", 47, 7], ["maintainers", 48, 7], ["platforms", 49, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 12, 21], ["src", 12, 29], ["sourceRoot", 14, 3], ["dontConfigure", 16, 3], ["__structuredAttrs", 18, 3], ["strictDeps", 19, 3], ["separateDebugInfo", 20, 3], ["buildInputs", 21, 3], ["buildPhase", 22, 3], ["installPhase", 34, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const grayjay = nix.arg($, "grayjay");
   const curl_impersonate = nix.arg($, "curl-impersonate");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: nix.thunk(() => nix.str`${nix.sel(grayjay, "pname")}-libcurlshim`),
       version: nix.thunk(() => nix.attr(grayjay, "version")),
       src: nix.thunk(() => nix.attr(grayjay, "src")),
@@ -37,7 +36,7 @@ runHook postBuild
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(grayjay, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "curl-impersonate shim used by Grayjay",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),

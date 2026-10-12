@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 17, 5]], [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["mainProgram", 61, 5], ["platforms", 62, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 29, 3], ["propagatedBuildInputs", 38, 3], ["outputs", 45, 3], ["preInstall", 51, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, ocamlPackages: false, dune: false, mpfr: false, ppl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["mainProgram", 61, 5], ["platforms", 62, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 29, 3], ["propagatedBuildInputs", 38, 3], ["outputs", 45, 3], ["preInstall", 51, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const mpfr = nix.arg($, "mpfr");
   const ppl = nix.arg($, "ppl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "jasmin-compiler",
       version: "2026.09.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/jasmin-lang/jasmin/releases/download/v${nix.sel(finalAttrs, "version")}/jasmin-compiler-v${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-Ef7Fce+597Okf+oyS04qaCieC3OyJI0jfszxObUhgZA=",
         })))),
@@ -57,7 +55,7 @@ export default nix.lambda((args) => (() => {
 export DUNE_OPTS="--prefix=$bin --libdir=$out/lib/ocaml/${nix.sel(ocamlPackages, "ocaml", "version")}/site-lib"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Workbench for high-assurance and high-speed cryptography",
         homepage: "https://github.com/jasmin-lang/jasmin/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

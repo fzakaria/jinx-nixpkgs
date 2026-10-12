@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]], [["extraArgs", 113, 5]], [["updateScript", 112, 12]], [["description", 120, 5], ["homepage", 121, 5], ["changelog", 122, 5], ["license", 123, 5], ["maintainers", 124, 5], ["platforms", 125, 25]], [["pname", 34, 3], ["version", 35, 3], ["pyproject", 36, 3], ["src", 38, 3], ["patches", 45, 3], ["postPatch", 47, 3], ["nativeBuildInputs", 69, 3], ["buildInputs", 76, 3], ["dependencies", 81, 3], ["dontWrapGApps", 93, 3], ["preFixup", 95, 3], ["pythonImportsCheck", 110, 3], ["passthru", 112, 3], ["meta", 119, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, wrapGAppsNoGuiHook: false, "gobject-introspection": false, meson: false, ninja: false, "gdk-pixbuf": false, xapp: false, dcraw: false, gimp: false, libjxl: false, "squashfs-tools": false, enabledThumbnailers: true, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 113, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 112, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 120, 5], ["homepage", 121, 5], ["changelog", 122, 5], ["license", 123, 5], ["maintainers", 124, 5], ["platforms", 125, 25]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 34, 3], ["version", 35, 3], ["pyproject", 36, 3], ["src", 38, 3], ["patches", 45, 3], ["postPatch", 47, 3], ["nativeBuildInputs", 69, 3], ["buildInputs", 76, 3], ["dependencies", 81, 3], ["dontWrapGApps", 93, 3], ["preFixup", 95, 3], ["pythonImportsCheck", 110, 3], ["passthru", 112, 3], ["meta", 119, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const enabledThumbnailers = nix.argOr($, "enabledThumbnailers", () => ["aiff", "appimage", "epub", "gimp", "jxl", "mp3", "ora", "vorbiscomment"]);
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "xapp-thumbnailers",
       version: "1.2.10",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "linuxmint",
           repo: "xapp-thumbnailers",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -78,16 +74,16 @@ done
       })()),
       pythonImportsCheck: nix.thunk(() => ["XappThumbnailers"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex", "^(\\d+\\.\\d+\\.\\d+)$"]),
           })))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(xapp, "meta"));
         return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Thumbnailers for GTK desktop environments",
         homepage: "https://github.com/linuxmint/xapp-thumbnailers",
         changelog: nix.thunk(() => nix.str`https://github.com/linuxmint/xapp-thumbnailers/blob/${nix.sel(finalAttrs, "src", "tag")}/debian/changelog`),

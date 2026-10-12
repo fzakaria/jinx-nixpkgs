@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["platforms", 85, 5], ["mainProgram", 86, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["enableParallelBuilding", 35, 3], ["strictDeps", 37, 3], ["configureFlags", 39, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 56, 3], ["preConfigure", 68, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, boost187: false, libmpdclient: false, ncurses: false, "pkg-config": false, readline: false, libiconv: false, icu: false, curl: false, autoconf: false, automake: false, libtool: false, outputsSupport: true, visualizerSupport: true, fftw: false, clockSupport: true, taglibSupport: true, taglib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["platforms", 85, 5], ["mainProgram", 86, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["enableParallelBuilding", 35, 3], ["strictDeps", 37, 3], ["configureFlags", 39, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 56, 3], ["preConfigure", 68, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const taglibSupport = nix.argOr($, "taglibSupport", () => true);
   const taglib = nix.arg($, "taglib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ncmpcpp",
       version: "0.10.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ncmpcpp",
           repo: "ncmpcpp",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -55,7 +53,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([boost187, libmpdclient, ncurses, readline, libiconv, icu, curl], nix.concat(nix.app(nix.sel(lib, "optional"), visualizerSupport, fftw), nix.app(nix.sel(lib, "optional"), taglibSupport, taglib)))),
       preConfigure: nix.thunk(() => nix.add("autoreconf -fiv\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "# std::result_of was removed in c++20 and unusable for clang16\nsubstituteInPlace ./configure \\\n  --replace-fail \"std=c++20\" \"std=c++17\"\n"))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Featureful ncurses based MPD client inspired by ncmpc",
         homepage: "https://rybczak.net/ncmpcpp/",
         changelog: nix.thunk(() => nix.str`https://github.com/ncmpcpp/ncmpcpp/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["description", 84, 5], ["homepage", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["platforms", 88, 5], ["broken", 89, 5]], [["pname", 28, 3], ["version", 29, 3], ["hardeningDisable", 31, 3], ["src", 33, 3], ["cmakeFlags", 40, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 55, 3], ["postInstall", 78, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, libsndfile: false, libsamplerate: false, flex: false, bison: false, boost: false, gettext: false, portaudio: false, "alsa-lib": true, libpulseaudio: true, libjack2: true, liblo: true, "ladspa-sdk": true, fluidsynth: true, eigen: true, curl: true, tcltk: true, fltk: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 84, 5], ["homepage", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["platforms", 88, 5], ["broken", 89, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["hardeningDisable", 31, 3], ["src", 33, 3], ["cmakeFlags", 40, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 55, 3], ["postInstall", 78, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const tcltk = nix.argOr($, "tcltk", () => null);
   const fltk = nix.argOr($, "fltk", () => null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "csound",
       version: "7.0.0-beta.10",
       hardeningDisable: nix.thunk(() => ["format"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "csound",
           repo: "csound",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -59,7 +57,7 @@ export default nix.lambda((args) => (() => {
           ]))))))),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/Library/Frameworks\nln -s $out/lib/CsoundLib64.framework $out/Library/Frameworks\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Sound design, audio synthesis, and signal processing system, providing facilities for music composition and performance on all major operating systems and platforms",
         homepage: "https://csound.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

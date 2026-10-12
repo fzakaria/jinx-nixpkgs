@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 32, 5], ["hash", 33, 5]], [["description", 113, 5], ["mainProgram", 114, 5], ["homepage", 115, 5], ["platforms", 116, 5], ["license", 117, 5], ["maintainers", 118, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["cmakeFlags", 36, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 55, 3], ["patches", 83, 3], ["postPatch", 88, 3], ["dontWrapGApps", 99, 3], ["preFixup", 101, 3], ["postFixup", 107, 3], ["meta", 112, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, cmake: false, doxygen: false, graphviz: false, "pkg-config": false, autoPatchelfHook: false, kdePackages: false, alkimia: false, aqbanking: false, gmp: false, gwenhywfar: false, libical: false, libofx: false, sqlcipher: false, wrapGAppsHook3: false, "xvfb-run": false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 113, 5], ["mainProgram", 114, 5], ["homepage", 115, 5], ["platforms", 116, 5], ["license", 117, 5], ["maintainers", 118, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["cmakeFlags", 36, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 55, 3], ["patches", 83, 3], ["postPatch", 88, 3], ["dontWrapGApps", 99, 3], ["preFixup", 101, 3], ["postFixup", 107, 3], ["meta", 112, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const xvfb_run = nix.arg($, "xvfb-run");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "kmymoney",
       version: "5.2.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://kde/stable/kmymoney/${nix.sel(finalAttrs, "version")}/kmymoney-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-QLZjnmohYQDSAkjtdPoVQgL5zN+8M1Inztwb746l03c=",
         })))),
@@ -86,7 +84,7 @@ sed -i -e '1i import sys; sys.argv = [""]' \\
   "$out/bin/.kmymoney-wrapped"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Personal finance manager for KDE",
         mainProgram: "kmymoney",
         homepage: "https://kmymoney.org/",

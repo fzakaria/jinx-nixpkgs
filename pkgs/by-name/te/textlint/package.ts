@@ -2,15 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["pname", 56, 7], ["version", 57, 7], ["src", 58, 7], ["patches", 59, 7], ["pnpm", 61, 5], ["fetcherVersion", 62, 5], ["hash", 63, 5]], [["nativeBuildInputs", 113, 45]], [["nativeBuildInputs", 138, 15]], [["withPackages", 111, 5], ["testPackages", 118, 5], ["tests", 150, 5]], [["description", 174, 5], ["homepage", 175, 5], ["changelog", 176, 5], ["license", 177, 5], ["maintainers", 178, 5], ["mainProgram", 179, 5], ["platforms", 180, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["patches", 42, 3], ["pnpmDeps", 54, 3], ["nativeBuildInputs", 66, 3], ["buildPhase", 73, 3], ["installPhase", 81, 3], ["nativeInstallCheckInputs", 106, 3], ["doInstallCheck", 108, 3], ["passthru", 110, 3], ["meta", 173, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, makeWrapper: false, "nodejs-slim": false, pnpm_10: false, fetchPnpmDeps: false, pnpmConfigHook: false, versionCheckHook: false, runCommand: false, textlint: false, "textlint-plugin-latex2e": false, "textlint-rule-abbr-within-parentheses": false, "textlint-rule-alex": false, "textlint-rule-common-misspellings": false, "textlint-rule-diacritics": false, "textlint-rule-en-max-word-count": false, "textlint-rule-max-comma": false, "textlint-rule-no-start-duplicated-conjunction": false, "textlint-rule-period-in-list-item": false, "textlint-rule-preset-ai-words-ja": false, "textlint-rule-preset-ja-spacing": false, "textlint-rule-preset-ja-technical-writing": false, "textlint-rule-prh": false, "textlint-rule-stop-words": false, "textlint-rule-terminology": false, "textlint-rule-unexpanded-acronym": false, "textlint-rule-write-good": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 56, 7], ["version", 57, 7], ["src", 58, 7], ["patches", 59, 7], ["pnpm", 61, 5], ["fetcherVersion", 62, 5], ["hash", 63, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 113, 45]]);
 const formals$2 = { args: { rule: false, testFile: false, pname: true, plugin: true }, ellipsis: false };
-const pos$4 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 138, 15]]);
-const pos$5 = nix.positions(here + "/package.nix", [["withPackages", 111, 5], ["testPackages", 118, 5], ["tests", 150, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 174, 5], ["homepage", 175, 5], ["changelog", 176, 5], ["license", 177, 5], ["maintainers", 178, 5], ["mainProgram", 179, 5], ["platforms", 180, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["patches", 42, 3], ["pnpmDeps", 54, 3], ["nativeBuildInputs", 66, 3], ["buildPhase", 73, 3], ["installPhase", 81, 3], ["nativeInstallCheckInputs", 106, 3], ["doInstallCheck", 108, 3], ["passthru", 110, 3], ["meta", 173, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,11 +37,11 @@ export default nix.lambda((args) => (() => {
   const textlint_rule_unexpanded_acronym = nix.arg($, "textlint-rule-unexpanded-acronym");
   const textlint_rule_write_good = nix.arg($, "textlint-rule-write-good");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "textlint",
       version: "15.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "textlint",
           repo: "textlint",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [nix.path(here, "./remove-overrides.patch")]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -92,8 +86,8 @@ runHook postInstall
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        withPackages: (ps) => nix.app(runCommand, "textlint-with-packages", nix.thunk(() => ({ [nix.POS]: pos$3, nativeBuildInputs: nix.thunk(() => [makeWrapper]) })), nix.thunk(() => nix.str`makeWrapper ${textlint}/bin/textlint $out/bin/textlint \\
+        [nix.POS]: $pos[4],
+        withPackages: (ps) => nix.app(runCommand, "textlint-with-packages", nix.thunk(() => ({ [nix.POS]: $pos[2], nativeBuildInputs: nix.thunk(() => [makeWrapper]) })), nix.thunk(() => nix.str`makeWrapper ${textlint}/bin/textlint $out/bin/textlint \\
   --set NODE_PATH ${nix.app(nix.sel(lib, "makeSearchPath"), "lib/node_modules", ps)}
 `)),
         testPackages: nix.lambda((args_1) => (() => {
@@ -109,7 +103,7 @@ runHook postInstall
           const args_2 = nix.thunk(() => nix.add(nix.str`${testFile} ${(nix.asBool(isPreset) ? "--preset" : "--rule")} ${ruleName$}`, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(plugin, null)), nix.thunk(() => nix.str` --plugin ${pluginName}`))));
           return nix.attrsDyn({}, [
             [nix.str`${pname}-test`, nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${pname}-test`), nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 nativeBuildInputs: nix.thunk(() => [
                   nix.thunk(() => nix.app(nix.sel(textlint, "withPackages"), nix.thunk(() => [rule, plugin]))),
                 ]),
@@ -138,7 +132,7 @@ runHook postInstall
             ]))))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Pluggable natural language linter for text and markdown",
         homepage: "https://github.com/textlint/textlint",
         changelog: nix.thunk(() => nix.str`https://github.com/textlint/textlint/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

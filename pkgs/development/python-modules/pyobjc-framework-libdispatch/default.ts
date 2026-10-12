@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["NIX_CFLAGS_COMPILE", 50, 7]], [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["platforms", 64, 5], ["maintainers", 65, 5]], [["pname", 13, 3], ["pyproject", 14, 3], ["version", 16, 25], ["src", 16, 33], ["patches", 18, 3], ["sourceRoot", 20, 3], ["build-system", 22, 3], ["buildInputs", 24, 3], ["nativeBuildInputs", 28, 3], ["nativeCheckInputs", 32, 3], ["postPatch", 38, 3], ["dependencies", 45, 3], ["env", 50, 3], ["pythonImportsCheck", 55, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, darwin: false, fetchFromGitHub: false, lib: false, "pyobjc-core": false, "pyobjc-framework-Cocoa": false, setuptools: false, unittestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 50, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["platforms", 64, 5], ["maintainers", 65, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["pyproject", 14, 3], ["version", 16, 25], ["src", 16, 33], ["patches", 18, 3], ["sourceRoot", 20, 3], ["build-system", 22, 3], ["buildInputs", 24, 3], ["nativeBuildInputs", 28, 3], ["nativeCheckInputs", 32, 3], ["postPatch", 38, 3], ["dependencies", 45, 3], ["env", 50, 3], ["pythonImportsCheck", 55, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const postPatch = "substituteInPlace pyobjc_setup.py \\\n  --replace-fail \"-buildversion\" \"-buildVersion\" \\\n  --replace-fail \"-productversion\" \"-productVersion\" \\\n  --replace-fail \"/usr/bin/\" \"\"\n";
       const dependencies = nix.thunk(() => [pyobjc_core, pyobjc_framework_Cocoa]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             nix.thunk(() => nix.str`-I${nix.sel(darwin, "libffi", "dev")}/include`),
             "-Wno-error=unused-command-line-argument",
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       }));
       const pythonImportsCheck = nix.thunk(() => ["dispatch", "libdispatch"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "PyObjC wrappers for the libdispatch framework on macOS",
         homepage: "https://github.com/ronaldoussoren/pyobjc/tree/main/pyobjc-framework-libdispatch",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -50,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         pyproject,
         version,

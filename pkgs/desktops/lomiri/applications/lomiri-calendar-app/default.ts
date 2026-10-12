@@ -2,16 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["name", 36, 7], ["url", 37, 7], ["hash", 38, 7]], [["name", 41, 7], ["url", 42, 7], ["hash", 43, 7]], [["name", 48, 7], ["url", 49, 7], ["hash", 50, 7]], [["vm", 144, 11]], [["rev-prefix", 145, 33]], [["tests", 144, 5], ["updateScript", 145, 5]], [["description", 149, 5], ["homepage", 150, 5], ["changelog", 151, 5], ["license", 152, 5], ["mainProgram", 153, 5], ["teams", 154, 5], ["platforms", 155, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["patches", 33, 3], ["postPatch", 75, 3], ["strictDeps", 88, 3], ["nativeBuildInputs", 90, 3], ["buildInputs", 96, 3], ["cmakeFlags", 110, 3], ["doCheck", 116, 3], ["enableParallelChecking", 118, 3], ["preCheck", 120, 3], ["passthru", 143, 3], ["meta", 148, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, fetchpatch: false, gitUpdater: false, nixosTests: false, "accounts-qml-module": false, "buteo-syncfw": false, cmake: false, gettext: false, "lomiri-content-hub": false, "lomiri-indicator-network": false, "lomiri-ui-toolkit": false, qtbase: false, qtdeclarative: false, "qtorganizer-mkcal": false, qtpim: false, wrapQtAppsHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 36, 7], ["url", 37, 7], ["hash", 38, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 41, 7], ["url", 42, 7], ["hash", 43, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["name", 48, 7], ["url", 49, 7], ["hash", 50, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["vm", 144, 11]]);
-const pos$6 = nix.positions(here + "/default.nix", [["rev-prefix", 145, 33]]);
-const pos$7 = nix.positions(here + "/default.nix", [["tests", 144, 5], ["updateScript", 145, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["description", 149, 5], ["homepage", 150, 5], ["changelog", 151, 5], ["license", 152, 5], ["mainProgram", 153, 5], ["teams", 154, 5], ["platforms", 155, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["patches", 33, 3], ["postPatch", 75, 3], ["strictDeps", 88, 3], ["nativeBuildInputs", 90, 3], ["buildInputs", 96, 3], ["cmakeFlags", 110, 3], ["doCheck", 116, 3], ["enableParallelChecking", 118, 3], ["preCheck", 120, 3], ["passthru", 143, 3], ["meta", 148, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const qtpim = nix.arg($, "qtpim");
   const wrapQtAppsHook = nix.arg($, "wrapQtAppsHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "lomiri-calendar-app",
       version: "1.1.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ubports",
           repo: "development/apps/lomiri-calendar-app",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,19 +38,19 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "0001-lomiri-calendar-app-Remove-deprecated-tabs.patch",
             url: "https://gitlab.com/ubports/development/apps/lomiri-calendar-app/-/commit/12c9d3b8a5643790334e664e6b3d2c8f9b600e83.patch",
             hash: "sha256-tvY5inNkNrSvfuD05RpmI3a2tFEOwNPCRgRn0RZB4DA=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "0002-lomiri-calendar-app-Ensure-PageStack-is-initialized.patch",
             url: "https://gitlab.com/ubports/development/apps/lomiri-calendar-app/-/commit/deef3605b31c4c41f5c67311f1ff1ee02bd3b39a.patch",
             hash: "sha256-FusFYFnpEEJKchInLZ5vE08SnKbwmlnUYh85cQE+JbM=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "0101-lomiri-calendar-app-bindtextdomain.patch",
             url: "https://gitlab.com/ubports/development/apps/lomiri-calendar-app/-/commit/c4c296e7f308af491558f1b7964542e4d638cb47.patch",
             hash: "sha256-GLEJlr4EMY6ugP2UVvpyVIZkBnkArn0XoSB5aqGEpm4=",
@@ -113,15 +105,15 @@ export QML2_IMPORT_PATH=${nix.app(listToQtVar, nix.thunk(() => nix.sel(qtbase, "
 `;
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           vm: nix.thunk(() => nix.sel(nixosTests, "lomiri-calendar-app")),
         })),
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$6, "rev-prefix": "v" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[5], "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Default Calendar application for Ubuntu Touch devices",
         homepage: "https://gitlab.com/ubports/development/apps/lomiri-calendar-app",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/ubports/development/apps/lomiri-calendar-app/-/blob/v${nix.sel(finalAttrs, "version")}/ChangeLog`),

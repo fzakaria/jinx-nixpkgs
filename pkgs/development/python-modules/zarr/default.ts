@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 44, 5], ["repo", 45, 5], ["tag", 46, 5], ["hash", 47, 5]], [["remote", 73, 7], ["gpu", 77, 7], ["cli", 80, 7], ["optional", 83, 7]], [["optional-dependencies", 72, 5]], [["description", 111, 5], ["homepage", 112, 5], ["changelog", 113, 5], ["license", 114, 5], ["maintainers", 115, 5]], [["pname", 39, 3], ["version", 40, 3], ["pyproject", 41, 3], ["src", 43, 3], ["preBuild", 51, 3], ["build-system", 57, 3], ["dependencies", 62, 3], ["passthru", 71, 3], ["nativeCheckInputs", 90, 3], ["disabledTestPaths", 99, 3], ["pythonImportsCheck", 108, 3], ["meta", 110, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, "hatch-vcs": false, donfig: false, numpy: false, numcodecs: false, "google-crc32c": false, packaging: false, "typing-extensions": false, fsspec: false, obstore: true, cupy: false, typer: false, rich: false, "universal-pathlib": false, hypothesis: false, numpydoc: false, "pytest-asyncio": false, pytestCheckHook: false, tomlkit: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 44, 5], ["repo", 45, 5], ["tag", 46, 5], ["hash", 47, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["remote", 73, 7], ["gpu", 77, 7], ["cli", 80, 7], ["optional", 83, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["optional-dependencies", 72, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 111, 5], ["homepage", 112, 5], ["changelog", 113, 5], ["license", 114, 5], ["maintainers", 115, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 39, 3], ["version", 40, 3], ["pyproject", 41, 3], ["src", 43, 3], ["preBuild", 51, 3], ["build-system", 57, 3], ["dependencies", 62, 3], ["passthru", 71, 3], ["nativeCheckInputs", 90, 3], ["disabledTestPaths", 99, 3], ["pythonImportsCheck", 108, 3], ["meta", 110, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const tomlkit = nix.arg($, "tomlkit");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "zarr",
       version: "3.2.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "zarr-developers",
           repo: "zarr-python",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,9 +45,9 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling, hatch_vcs]),
       dependencies: nix.thunk(() => [donfig, numcodecs, google_crc32c, numpy, packaging, typing_extensions]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         "optional-dependencies": nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           remote: nix.thunk(() => [fsspec, obstore]),
           gpu: nix.thunk(() => [cupy]),
           cli: nix.thunk(() => [typer]),
@@ -66,7 +62,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["zarr"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Implementation of chunked, compressed, N-dimensional arrays for Python",
         homepage: "https://github.com/zarr-developers/zarr",
         changelog: nix.thunk(() => nix.str`https://github.com/zarr-developers/zarr-python/releases/tag/v${nix.sel(finalAttrs, "version")}`),

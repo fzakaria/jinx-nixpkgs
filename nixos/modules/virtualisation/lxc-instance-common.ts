@@ -2,26 +2,16 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/lxc-instance-common.nix", [[["teams", 5, 5]], [["initialHashedPassword", 17, 20]], [["root", 17, 15]], [["users", 17, 9]], [["helpLine", 20, 18]], [["enable", 26, 20], ["startWhenNeeded", 27, 20]], [["enable", 33, 22]], [["getty", 20, 12], ["openssh", 26, 12], ["logrotate", 33, 12]], [["enable", 32, 23]], [["enable", 31, 17], ["nixos", 32, 17]], [["meta", 4, 3], ["imports", 8, 3], ["users", 17, 3], ["services", 20, 3], ["documentation", 31, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/lxc-instance-common.nix", [["teams", 5, 5]]);
-const pos$2 = nix.positions(here + "/lxc-instance-common.nix", [["initialHashedPassword", 17, 20]]);
-const pos$3 = nix.positions(here + "/lxc-instance-common.nix", [["root", 17, 15]]);
-const pos$4 = nix.positions(here + "/lxc-instance-common.nix", [["users", 17, 9]]);
-const pos$5 = nix.positions(here + "/lxc-instance-common.nix", [["helpLine", 20, 18]]);
-const pos$6 = nix.positions(here + "/lxc-instance-common.nix", [["enable", 26, 20], ["startWhenNeeded", 27, 20]]);
-const pos$7 = nix.positions(here + "/lxc-instance-common.nix", [["enable", 33, 22]]);
-const pos$8 = nix.positions(here + "/lxc-instance-common.nix", [["getty", 20, 12], ["openssh", 26, 12], ["logrotate", 33, 12]]);
-const pos$9 = nix.positions(here + "/lxc-instance-common.nix", [["enable", 32, 23]]);
-const pos$10 = nix.positions(here + "/lxc-instance-common.nix", [["enable", 31, 17], ["nixos", 32, 17]]);
-const pos$11 = nix.positions(here + "/lxc-instance-common.nix", [["meta", 4, 3], ["imports", 8, 3], ["users", 17, 3], ["services", 20, 3], ["documentation", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "lxc"))]),
     })),
     imports: nix.thunk(() => [
@@ -31,30 +21,33 @@ export default nix.lambda((args) => (() => {
       nix.path(here, "../profiles/minimal.nix"),
     ]),
     users: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       users: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         root: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           initialHashedPassword: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 150n, "")),
         })),
       })),
     })),
     services: nix.thunk(() => ({
-      [nix.POS]: pos$8,
-      getty: nix.thunk(() => ({ [nix.POS]: pos$5, helpLine: "\nLog in as \"root\" with an empty password.\n" })),
+      [nix.POS]: $pos[7],
+      getty: nix.thunk(() => ({
+        [nix.POS]: $pos[4],
+        helpLine: "\nLog in as \"root\" with an empty password.\n",
+      })),
       openssh: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
         startWhenNeeded: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
       })),
-      logrotate: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
+      logrotate: nix.thunk(() => ({ [nix.POS]: $pos[6], enable: true })),
     })),
     documentation: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 890n, true)),
       nixos: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 890n, true)),
       })),
     })),

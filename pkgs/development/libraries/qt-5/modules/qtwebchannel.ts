@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/qtwebchannel.nix", [[["pname", 10, 3], ["propagatedBuildInputs", 11, 3], ["outputs", 15, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, qtModule: false, qtbase: false, qtdeclarative: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/qtwebchannel.nix", [["pname", 10, 3], ["propagatedBuildInputs", 11, 3], ["outputs", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const qtbase = nix.arg($, "qtbase");
   const qtdeclarative = nix.arg($, "qtdeclarative");
   return nix.app(qtModule, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "qtwebchannel",
       propagatedBuildInputs: nix.thunk(() => [qtbase, qtdeclarative]),
       outputs: nix.thunk(() => nix.concat(["out", "dev"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))), nix.thunk(() => ["bin"])))),

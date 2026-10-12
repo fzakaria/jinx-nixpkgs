@@ -2,9 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/build-app.nix", [[["name", 36, 5], ["ANDROID_HOME", 37, 5], ["buildInputs", 38, 5], ["buildPhase", 42, 5], ["installPhase", 61, 5], ["meta", 69, 13]]]);
 const formals$1 = { args: { composeAndroidPackages: false, stdenv: false, lib: false, ant: false, jdk: false, gnumake: false, gawk: false, meta: false }, ellipsis: false };
 const formals$2 = { args: { name: false, release: true, keyStore: true, keyAlias: true, keyStorePassword: true, keyAliasPassword: true, antFlags: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/build-app.nix", [["name", 36, 5], ["ANDROID_HOME", 37, 5], ["buildInputs", 38, 5], ["buildPhase", 42, 5], ["installPhase", 61, 5], ["meta", 69, 13]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
     const androidsdk = nix.thunk(() => nix.sel(nix.app(composeAndroidPackages, androidArgs), "androidsdk"));
     const extraArgs = nix.thunk(() => nix.builtins.removeAttrs(args_2, nix.thunk(() => nix.concat(["name"], nix.builtins.attrNames(androidSdkFormalArgs)))));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: nix.thunk(() => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => [" "]), nix.thunk(() => [""]), name)),
         ANDROID_HOME: nix.thunk(() => nix.str`${androidsdk}/libexec/android-sdk`),
         buildInputs: nix.thunk(() => [jdk, ant]),

@@ -2,22 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/containers-portforward.nix", [[["maintainers", 12, 5]], [["writableStore", 22, 22], ["additionalPaths", 43, 22]], [["protocol", 30, 13], ["hostPort", 31, 13], ["containerPort", 32, 13]], [["enable", 36, 26], ["adminAddr", 37, 26]], [["httpd", 36, 20]], [["allowedTCPPorts", 38, 31]], [["firewall", 38, 22]], [["enable", 39, 15]], [["services", 36, 11], ["networking", 38, 11], ["nix", 39, 11]], [["privateNetwork", 25, 9], ["hostAddress", 26, 9], ["localAddress", 27, 9], ["forwardPorts", 28, 9], ["config", 35, 9]], [["webserver", 24, 18]], [["imports", 21, 7], ["virtualisation", 22, 7], ["containers", 24, 7]], [["machine", 18, 9]], [["name", 10, 3], ["meta", 11, 3], ["nodes", 18, 3], ["testScript", 46, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/containers-portforward.nix", [["maintainers", 12, 5]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/containers-portforward.nix", [["writableStore", 22, 22], ["additionalPaths", 43, 22]]);
-const pos$3 = nix.positions(here + "/containers-portforward.nix", [["protocol", 30, 13], ["hostPort", 31, 13], ["containerPort", 32, 13]]);
-const pos$4 = nix.positions(here + "/containers-portforward.nix", [["enable", 36, 26], ["adminAddr", 37, 26]]);
-const pos$5 = nix.positions(here + "/containers-portforward.nix", [["httpd", 36, 20]]);
-const pos$6 = nix.positions(here + "/containers-portforward.nix", [["allowedTCPPorts", 38, 31]]);
-const pos$7 = nix.positions(here + "/containers-portforward.nix", [["firewall", 38, 22]]);
-const pos$8 = nix.positions(here + "/containers-portforward.nix", [["enable", 39, 15]]);
-const pos$9 = nix.positions(here + "/containers-portforward.nix", [["services", 36, 11], ["networking", 38, 11], ["nix", 39, 11]]);
-const pos$10 = nix.positions(here + "/containers-portforward.nix", [["privateNetwork", 25, 9], ["hostAddress", 26, 9], ["localAddress", 27, 9], ["forwardPorts", 28, 9], ["config", 35, 9]]);
-const pos$11 = nix.positions(here + "/containers-portforward.nix", [["webserver", 24, 18]]);
-const pos$12 = nix.positions(here + "/containers-portforward.nix", [["imports", 21, 7], ["virtualisation", 22, 7], ["containers", 24, 7]]);
-const pos$13 = nix.positions(here + "/containers-portforward.nix", [["machine", 18, 9]]);
-const pos$14 = nix.positions(here + "/containers-portforward.nix", [["name", 10, 3], ["meta", 11, 3], ["nodes", 18, 3], ["testScript", 46, 3]]);
 
 export default nix.thunk(() => (() => {
   const hostIp = "192.168.0.1";
@@ -29,10 +16,10 @@ export default nix.thunk(() => (() => {
     const pkgs = nix.arg($, "pkgs");
     const lib = nix.arg($, "lib");
     return {
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       name: "containers-portforward",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [
@@ -42,44 +29,44 @@ export default nix.thunk(() => (() => {
         })()),
       })),
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         machine: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             imports: nix.thunk(() => [nix.path(here, "../modules/installer/cd-dvd/channel.nix")]),
             virtualisation: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               writableStore: true,
               additionalPaths: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "stdenv"))]),
             })),
             containers: nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               webserver: nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 privateNetwork: true,
                 hostAddress: hostIp,
                 localAddress: containerIp,
                 forwardPorts: nix.thunk(() => [
                   nix.thunk(() => ({
-                    [nix.POS]: pos$3,
+                    [nix.POS]: $pos[2],
                     protocol: "tcp",
                     hostPort: hostPort,
                     containerPort: containerPort,
                   })),
                 ]),
                 config: nix.thunk(() => ({
-                  [nix.POS]: pos$9,
+                  [nix.POS]: $pos[8],
                   services: nix.thunk(() => ({
-                    [nix.POS]: pos$5,
-                    httpd: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true, adminAddr: "foo@example.org" })),
+                    [nix.POS]: $pos[4],
+                    httpd: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: true, adminAddr: "foo@example.org" })),
                   })),
                   networking: nix.thunk(() => ({
-                    [nix.POS]: pos$7,
-                    firewall: nix.thunk(() => ({ [nix.POS]: pos$6, allowedTCPPorts: nix.thunk(() => [80n]) })),
+                    [nix.POS]: $pos[6],
+                    firewall: nix.thunk(() => ({ [nix.POS]: $pos[5], allowedTCPPorts: nix.thunk(() => [80n]) })),
                   })),
-                  nix: nix.thunk(() => ({ [nix.POS]: pos$8, enable: false })),
+                  nix: nix.thunk(() => ({ [nix.POS]: $pos[7], enable: false })),
                 })),
               })),
             })),

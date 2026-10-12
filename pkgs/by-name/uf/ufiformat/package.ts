@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["homepage", 24, 5], ["description", 25, 5], ["maintainers", 26, 5], ["platforms", 27, 5], ["license", 28, 5], ["mainProgram", 29, 5]], [["pname", 9, 3], ["version", 10, 3], ["buildInputs", 12, 3], ["src", 16, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { stdenv: false, e2fsprogs: false, fetchFromGitHub: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 24, 5], ["description", 25, 5], ["maintainers", 26, 5], ["platforms", 27, 5], ["license", 28, 5], ["mainProgram", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["buildInputs", 12, 3], ["src", 16, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,19 +12,19 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ufiformat",
       version: "0.9.9",
       buildInputs: nix.thunk(() => [e2fsprogs]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tedigh",
           repo: "ufiformat",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           sha256: "heFETZj9migz2s9kvmw0ZQ1ieNpU4V4Lwfp91ek2cS4=",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/tedigh/ufiformat",
         description: "Low-level disk formatting utility for USB floppy drives",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "amarshall"))]),

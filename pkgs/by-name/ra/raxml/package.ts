@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["NIX_CFLAGS_COMPILE", 34, 7]], [["description", 47, 5], ["license", 48, 5], ["homepage", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 20, 3], ["buildPhase", 23, 3], ["env", 34, 3], ["installPhase", 36, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, useMpi: true, mpi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 34, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 47, 5], ["license", 48, 5], ["homepage", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 20, 3], ["buildPhase", 23, 3], ["env", 34, 3], ["installPhase", 36, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const useMpi = nix.argOr($, "useMpi", () => false);
   const mpi = nix.arg($, "mpi");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: nix.thunk(() => nix.str`RAxML${nix.app(nix.sel(lib, "optionalString"), useMpi, "-mpi")}`),
       version: "8.2.13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "stamatak",
           repo: "standard-RAxML",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,12 +26,12 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), useMpi, nix.thunk(() => [mpi]))),
       buildPhase: nix.thunk(() => (nix.asBool(useMpi) ? "make -f Makefile.MPI.gcc\n" : "make -f Makefile.SSE3.PTHREADS.gcc\n")),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), "-std=gnu17")),
       })),
       installPhase: nix.thunk(() => (nix.asBool(useMpi) ? "mkdir -p $out/bin && cp raxmlHPC-MPI $out/bin\n" : "mkdir -p $out/bin && cp raxmlHPC-PTHREADS-SSE3 $out/bin\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Tool for Phylogenetic Analysis and Post-Analysis of Large Phylogenies",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
         homepage: "https://sco.h-its.org/exelixis/web/software/raxml/",

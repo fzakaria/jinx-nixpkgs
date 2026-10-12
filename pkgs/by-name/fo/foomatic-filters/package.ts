@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["hash", 20, 5]], [["name", 33, 7], ["url", 34, 7], ["sha256", 35, 7]], [["NIX_CFLAGS_COMPILE", 51, 7]], [["description", 64, 5], ["mainProgram", 65, 5], ["maintainers", 66, 5], ["platforms", 67, 5], ["license", 68, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 24, 3], ["patches", 31, 3], ["preConfigure", 42, 3], ["env", 51, 3], ["installTargets", 53, 3], ["installFlags", 55, 3], ["nativeInstallCheckInputs", 60, 3], ["doInstallCheck", 61, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchpatch: false, fetchurl: false, "pkg-config": false, perl: false, cups: false, dbus: false, enscript: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 33, 7], ["url", 34, 7], ["sha256", 35, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 51, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 64, 5], ["mainProgram", 65, 5], ["maintainers", 66, 5], ["platforms", 67, 5], ["license", 68, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 24, 3], ["patches", 31, 3], ["preConfigure", 42, 3], ["env", 51, 3], ["installTargets", 53, 3], ["installFlags", 55, 3], ["nativeInstallCheckInputs", 60, 3], ["doInstallCheck", 61, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const enscript = nix.arg($, "enscript");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "foomatic-filters",
       version: "4.0.17",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.openprinting.org/download/foomatic/foomatic-filters-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-ouLlPlAlceiO65AQxFoNVGcfFXB+4QT1ycIrWep6M+M=",
         })))),
@@ -34,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [perl, cups, dbus, enscript]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "CVE-2015-8327+CVE-2015-8560.patch",
             url: "https://salsa.debian.org/debian/foomatic-filters/raw/a3abbef2d2f8c7e62d2fe64f64afe294563fdf8f/debian/patches/0500-r7406_also_consider_the_back_tick_as_an_illegal_shell_escape_character.patch",
             sha256: "055nwi3sjf578nk40bqsch3wx8m2h65hdih0wmxflb6l0hwkq4p4",
@@ -44,7 +40,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: nix.thunk(() => nix.str`substituteInPlace foomaticrip.c \\
   --replace-fail /bin/bash ${nix.sel(stdenv, "shell")}
 `),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-fcommon" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_CFLAGS_COMPILE: "-fcommon" })),
       installTargets: nix.thunk(() => ["install-cups"]),
       installFlags: nix.thunk(() => [
         "CUPS_FILTERS=$(out)/lib/cups/filter",
@@ -53,7 +49,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Foomatic printing filters",
         mainProgram: "foomatic-rip",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "raskin"))]),

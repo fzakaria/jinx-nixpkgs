@@ -2,24 +2,21 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/busybox.nix", [[["systemPackages", 8, 21]], [["environment", 8, 9]], [["machine", 5, 5]], [["name", 2, 3], ["nodes", 4, 3], ["testScript", 15, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/busybox.nix", [["systemPackages", 8, 21]]);
-const pos$2 = nix.positions(here + "/busybox.nix", [["environment", 8, 9]]);
-const pos$3 = nix.positions(here + "/busybox.nix", [["machine", 5, 5]]);
-const pos$4 = nix.positions(here + "/busybox.nix", [["name", 2, 3], ["nodes", 4, 3], ["testScript", 15, 3]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$4,
+  [nix.POS]: $pos[3],
   name: "Test that basic tests work when busybox is installed",
   nodes: nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     machine: nix.lambda((args) => (() => {
       const $ = nix.formals(args, formals$1);
       const pkgs = nix.arg($, "pkgs");
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "busybox"))]),
         })),
       };

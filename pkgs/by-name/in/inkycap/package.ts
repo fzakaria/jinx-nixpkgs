@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 23, 5], ["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["changelog", 59, 9], ["homepage", 60, 9], ["license", 61, 9], ["maintainers", 62, 9], ["description", 64, 7]], [["pname", 39, 5], ["version", 40, 13], ["src", 40, 21], ["npmDepsHash", 42, 5], ["preBuild", 47, 5], ["installPhase", 51, 5], ["meta", 57, 5]], [["src", 78, 26], ["cargoRoot", 78, 30], ["hash", 79, 5]], [["changelog", 120, 7], ["homepage", 121, 7], ["license", 122, 7], ["maintainers", 123, 7], ["description", 125, 5], ["longDescription", 126, 5], ["platforms", 132, 5], ["mainProgram", 133, 5]], [["pname", 71, 3], ["version", 72, 11], ["src", 72, 19], ["__structuredAttrs", 74, 3], ["cargoRoot", 76, 3], ["cargoDeps", 77, 3], ["buildAndTestSubdir", 81, 3], ["nativeBuildInputs", 83, 3], ["buildInputs", 90, 3], ["postPatch", 101, 3], ["doCheck", 116, 3], ["meta", 118, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromForgejo: false, buildNpmPackage: false, "cargo-tauri": false, "glib-networking": false, gst_all_1: false, "libayatana-appindicator": false, libsecret: false, nodejs: false, perl: false, "pkg-config": false, tinymist: false, webkitgtk_4_1: false, wrapGAppsHook4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 23, 5], ["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 59, 9], ["homepage", 60, 9], ["license", 61, 9], ["maintainers", 62, 9], ["description", 64, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 39, 5], ["version", 40, 13], ["src", 40, 21], ["npmDepsHash", 42, 5], ["preBuild", 47, 5], ["installPhase", 51, 5], ["meta", 57, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["src", 78, 26], ["cargoRoot", 78, 30], ["hash", 79, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["changelog", 120, 7], ["homepage", 121, 7], ["license", 122, 7], ["maintainers", 123, 7], ["description", 125, 5], ["longDescription", 126, 5], ["platforms", 132, 5], ["mainProgram", 133, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 71, 3], ["version", 72, 11], ["src", 72, 19], ["__structuredAttrs", 74, 3], ["cargoRoot", 76, 3], ["cargoDeps", 77, 3], ["buildAndTestSubdir", 81, 3], ["nativeBuildInputs", 83, 3], ["buildInputs", 90, 3], ["postPatch", 101, 3], ["doCheck", 116, 3], ["meta", 118, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +25,7 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   const version = "26.9.6";
   const src = nix.thunk(() => nix.app(fetchFromForgejo, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       domain: "codefloe.com",
       owner: "InkyCap",
       repo: "app",
@@ -46,7 +41,7 @@ export default nix.lambda((args) => (() => {
   })());
   const requiredTinymistVersion = "0.15.2";
   const frontend = nix.thunk(() => nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "inkycap-frontend",
       version: version,
       src: src,
@@ -54,7 +49,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "./node_modules/.bin/patch-package\n",
       installPhase: "runHook preInstall\ncp -r dist $out\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: changelog,
         homepage: homepage,
         license: license,
@@ -64,14 +59,14 @@ export default nix.lambda((args) => (() => {
     })));
   nix.assert_(nix.le(nix.builtins.compareVersions(requiredTinymistVersion, nix.thunk(() => nix.sel(tinymist, "version"))), 0n), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/in/inkycap/package.nix:68:1");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "inkycap",
       version: version,
       src: src,
       __structuredAttrs: true,
       cargoRoot: "src-tauri",
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           cargoRoot: nix.thunk(() => nix.attr(finalAttrs, "cargoRoot")),
           hash: "sha256-NHlLURI2O2W28gAWGZd6Hx7lWOXn8LNeoiubReRA5Bo=",
@@ -108,7 +103,7 @@ substituteInPlace src-tauri/tauri.conf.json \\
 `),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: changelog,
         homepage: homepage,
         license: license,

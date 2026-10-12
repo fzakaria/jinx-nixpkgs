@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test.nix", [[["pname", 8, 3], ["src", 9, 23], ["version", 9, 27], ["nativeCheckInputs", 10, 3], ["dontConfigure", 14, 3], ["dontBuild", 15, 3], ["doCheck", 16, 3], ["checkPhase", 18, 3], ["installPhase", 26, 3]]]);
 const formals$1 = { args: { stdenv: false, coq: false, "simple-io": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/test.nix", [["pname", 8, 3], ["src", 9, 23], ["version", 9, 27], ["nativeCheckInputs", 10, 3], ["dontConfigure", 14, 3], ["dontBuild", 15, 3], ["doCheck", 16, 3], ["checkPhase", 18, 3], ["installPhase", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const coq = nix.arg($, "coq");
   const simple_io = nix.arg($, "simple-io");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "coq-simple-io-test",
       src: nix.thunk(() => nix.attr(simple_io, "src")),
       version: nix.thunk(() => nix.attr(simple_io, "version")),

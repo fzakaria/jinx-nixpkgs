@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 43, 5], ["repo", 44, 5], ["rev", 45, 5], ["hash", 46, 5]], [["gtkSupport", 81, 34]], [["NIX_CFLAGS_COMPILE", 92, 7]], [["extraLoaders", 105, 9]], [["updateScript", 114, 5]], [["description", 118, 5], ["homepage", 119, 5], ["mainProgram", 120, 5], ["license", 121, 5], ["changelog", 122, 5], ["maintainers", 123, 5], ["teams", 127, 5]], [["pname", 39, 3], ["version", 40, 3], ["src", 42, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 60, 3], ["mesonFlags", 88, 3], ["env", 92, 3], ["preFixup", 94, 3], ["postInstall", 102, 3], ["passthru", 113, 3], ["meta", 117, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, vala: false, meson: false, ninja: false, python3: false, "pkg-config": false, wrapGAppsHook4: false, "desktop-file-utils": false, gtk4: false, libadwaita: false, "json-glib": false, gexiv2_0_10: false, glib: false, "glib-networking": false, gnome: false, "gobject-introspection": false, gtksourceview5: false, libxml2: false, libgee: false, librsvg: false, libsoup_3: false, libsecret: false, libwebp: false, libspelling: false, webkitgtk_6_0: false, "webp-pixbuf-loader": false, icu: false, gst_all_1: false, "clapper-enhancers": false, "clapper-unwrapped": false, clapperSupport: true, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 43, 5], ["repo", 44, 5], ["rev", 45, 5], ["hash", 46, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["gtkSupport", 81, 34]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 92, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["extraLoaders", 105, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 114, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 118, 5], ["homepage", 119, 5], ["mainProgram", 120, 5], ["license", 121, 5], ["changelog", 122, 5], ["maintainers", 123, 5], ["teams", 127, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 39, 3], ["version", 40, 3], ["src", 42, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 60, 3], ["mesonFlags", 88, 3], ["env", 92, 3], ["preFixup", 94, 3], ["postInstall", 102, 3], ["passthru", 113, 3], ["meta", 117, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -48,11 +42,11 @@ export default nix.lambda((args) => (() => {
   const clapperSupport = nix.argOr($, "clapperSupport", () => true);
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "tuba",
       version: "0.10.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "GeopJr",
           repo: "Tuba",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -90,7 +84,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.lookup(w, "gstreamer")),
           nix.thunk(() => nix.lookup(w, "gst-libav")),
           nix.thunk(() => nix.lookup(w, "gst-plugins-base")),
-          nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "gst-plugins-good"), "override"), nix.thunk(() => ({ [nix.POS]: pos$2, gtkSupport: true })))),
+          nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "gst-plugins-good"), "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], gtkSupport: true })))),
           nix.thunk(() => nix.lookup(w, "gst-plugins-bad")),
         ];
       })(), nix.app(nix.sel(lib, "optionals"), clapperSupport, nix.thunk(() => [clapper_unwrapped]))))),
@@ -98,7 +92,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "mesonEnable"), "clapper", clapperSupport)),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-Wno-error=int-conversion")),
       })),
       preFixup: nix.thunk(() => nix.str`gappsWrapperArgs+=(
@@ -106,16 +100,16 @@ export default nix.lambda((args) => (() => {
 )
 `),
       postInstall: nix.thunk(() => nix.str`export GDK_PIXBUF_MODULE_FILE="${nix.app(nix.sel(gnome, "_gdkPixbufCacheBuilder_DO_NOT_USE"), nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           extraLoaders: nix.thunk(() => [librsvg, webp_pixbuf_loader]),
         })))}"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Browse the Fediverse",
         homepage: "https://tuba.geopjr.dev/",
         mainProgram: "dev.geopjr.Tuba",

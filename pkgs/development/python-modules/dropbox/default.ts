@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["description", 77, 5], ["homepage", 78, 5], ["changelog", 79, 5], ["license", 80, 5], ["maintainers", 81, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["outputs", 20, 3], ["src", 25, 3], ["build-system", 32, 3], ["dependencies", 34, 3], ["nativeCheckInputs", 39, 3], ["pythonImportsCheck", 45, 3], ["nativeBuildInputs", 47, 3], ["disabledTests", 53, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, requests: false, stone: false, mock: false, "pytest-mock": false, pytestCheckHook: false, sphinxHook: false, "sphinx-rtd-theme": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 77, 5], ["homepage", 78, 5], ["changelog", 79, 5], ["license", 80, 5], ["maintainers", 81, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["outputs", 20, 3], ["src", 25, 3], ["build-system", 32, 3], ["dependencies", 34, 3], ["nativeCheckInputs", 39, 3], ["pythonImportsCheck", 45, 3], ["nativeBuildInputs", 47, 3], ["disabledTests", 53, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const sphinxHook = nix.arg($, "sphinxHook");
   const sphinx_rtd_theme = nix.arg($, "sphinx-rtd-theme");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dropbox",
       version: "12.2.0",
       pyproject: true,
       outputs: nix.thunk(() => ["out", "doc"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dropbox",
           repo: "dropbox-sdk-python",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,7 +59,7 @@ export default nix.lambda((args) => (() => {
         "test_upload_auto_content_hash",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python library for Dropbox's HTTP-based Core and Datastore APIs",
         homepage: "https://github.com/dropbox/dropbox-sdk-python",
         changelog: nix.thunk(() => nix.str`https://github.com/dropbox/dropbox-sdk-python/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

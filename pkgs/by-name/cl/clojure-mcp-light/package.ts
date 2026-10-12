@@ -2,15 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["name", 36, 11], ["module", 37, 11]], [["name", 40, 11], ["module", 41, 11]], [["name", 44, 11], ["module", 45, 11]], [["updateScript", 65, 12]], [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["mainProgram", 73, 5], ["platforms", 74, 5]], [["pname", 12, 3], ["version", 13, 3], ["__structuredAttrs", 14, 3], ["strictDeps", 15, 3], ["src", 17, 3], ["buildInputs", 24, 3], ["dontConfigure", 29, 3], ["dontBuild", 30, 3], ["installPhase", 32, 3], ["passthru", 65, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, "nix-update-script": false, babashka: false, runtimeShell: false, "parinfer-rust": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 36, 11], ["module", 37, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 40, 11], ["module", 41, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 44, 11], ["module", 45, 11]]);
 const formals$2 = { args: { name: false, module: false }, ellipsis: false };
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 65, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["mainProgram", 73, 5], ["platforms", 74, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["__structuredAttrs", 14, 3], ["strictDeps", 15, 3], ["src", 17, 3], ["buildInputs", 24, 3], ["dontConfigure", 29, 3], ["dontBuild", 30, 3], ["installPhase", 32, 3], ["passthru", 65, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const runtimeShell = nix.arg($, "runtimeShell");
   const parinfer_rust = nix.arg($, "parinfer-rust");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "clojure-mcp-light",
       version: "0.2.2",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bhauman",
           repo: "clojure-mcp-light",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,17 +34,17 @@ export default nix.lambda((args) => (() => {
       installPhase: nix.thunk(() => (() => {
         const scripts = nix.thunk(() => [
           nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "clj-nrepl-eval",
             module: "clojure-mcp-light.nrepl-eval",
           })),
           nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "clj-paren-repair",
             module: "clojure-mcp-light.paren-repair",
           })),
           nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "clj-paren-repair-claude-hook",
             module: "clojure-mcp-light.hook",
           })),
@@ -75,11 +69,11 @@ runHook postInstall
 `;
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Simple Clojure tooling for AI coding assistants",
         homepage: "https://github.com/bhauman/clojure-mcp-light",
         changelog: nix.thunk(() => nix.str`https://github.com/bhauman/clojure-mcp-light/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

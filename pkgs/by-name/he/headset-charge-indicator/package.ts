@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]], [["homepage", 65, 5], ["description", 66, 5], ["longDescription", 67, 5], ["platforms", 68, 5], ["maintainers", 69, 5], ["license", 70, 5], ["mainProgram", 71, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 31, 3], ["installPhase", 38, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, headsetcontrol: false, wrapGAppsHook3: false, python3: false, gtk3: false, "gobject-introspection": false, "libayatana-appindicator": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 65, 5], ["description", 66, 5], ["longDescription", 67, 5], ["platforms", 68, 5], ["maintainers", 69, 5], ["license", 70, 5], ["mainProgram", 71, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 31, 3], ["installPhase", 38, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "headset-charge-indicator";
       const version = "2021-08-15";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "centic9",
           repo: "headset-charge-indicator",
           rev: "6e20f81a4d6118c7385b831044c468af83103193",
@@ -63,7 +61,7 @@ cp ${pname}.desktop $out/share/applications/${pname}.desktop
 cp ${pname}.desktop $out/etc/xdg/autostart/${pname}.desktop
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/centic9/headset-charge-indicator",
         description: "App-indicator for GNOME desktops for controlling some features of various wireless headsets",
         longDescription: "A simple app-indicator for GNOME desktops to display the battery charge of some wireless headsets which also allows to control some functions like LEDs, sidetone and others.",
@@ -76,7 +74,7 @@ cp ${pname}.desktop $out/etc/xdg/autostart/${pname}.desktop
         mainProgram: "headset-charge-indicator.py",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]], [["pname", 51, 26], ["data", 52, 5]], [["broken", 104, 5], ["changelog", 105, 5], ["description", 106, 5], ["downloadPage", 107, 5], ["homepage", 108, 5], ["license", 109, 5], ["mainProgram", 110, 5], ["maintainers", 111, 5], ["platforms", 112, 5], ["sourceProvenance", 113, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["patches", 39, 3], ["nativeBuildInputs", 45, 3], ["mitmCache", 50, 3], ["doCheck", 55, 3], ["gradleBuildTask", 57, 3], ["gradleFlags", 59, 3], ["installPhase", 63, 3], ["postInstall", 92, 3], ["meta", 103, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, gradle_8: false, jdk17_headless: false, jre: false, lib: false, makeWrapper: false, stdenvNoCC: false, gamemodeSupport: true, textToSpeechSupport: true, additionalLibs: true, flite: false, gamemode: false, libglvnd: false, libpulseaudio: false, udev: false, libxxf86vm: false, libxcursor: false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 51, 26], ["data", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["broken", 104, 5], ["changelog", 105, 5], ["description", 106, 5], ["downloadPage", 107, 5], ["homepage", 108, 5], ["license", 109, 5], ["mainProgram", 110, 5], ["maintainers", 111, 5], ["platforms", 112, 5], ["sourceProvenance", 113, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["patches", 39, 3], ["nativeBuildInputs", 45, 3], ["mitmCache", 50, 3], ["doCheck", 55, 3], ["gradleBuildTask", 57, 3], ["gradleFlags", 59, 3], ["installPhase", 63, 3], ["postInstall", 92, 3], ["meta", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const gradle = gradle_8;
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "atlauncher",
       version: "3.4.41.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ATLauncher",
           repo: "ATLauncher",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./remove-launch4j.patch")]),
       nativeBuildInputs: nix.thunk(() => [gradle, makeWrapper]),
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           data: nix.path(here, "./deps.json"),
         })))),
@@ -77,7 +74,7 @@ install -D -m444 ${packagingDir}/atlauncher.svg -t $out/share/icons/hicolor/scal
 `;
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         broken: nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")),
         changelog: nix.thunk(() => nix.str`https://github.com/ATLauncher/ATLauncher/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),
         description: "Simple and easy to use Minecraft launcher which contains many different modpacks for you to choose from and play",

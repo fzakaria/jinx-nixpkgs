@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 70, 7], ["exec", 71, 7], ["icon", 72, 7]], [["new-empty-window", 69, 13]], [["name", 49, 5], ["desktopName", 50, 5], ["comment", 51, 5], ["genericName", 52, 5], ["exec", 53, 5], ["icon", 54, 5], ["startupNotify", 55, 5], ["startupWMClass", 56, 5], ["categories", 57, 5], ["mimeTypes", 63, 5], ["keywords", 68, 5], ["actions", 69, 5]], [["name", 77, 5], ["desktopName", 78, 5], ["comment", 79, 5], ["genericName", 80, 5], ["exec", 81, 5], ["icon", 82, 5], ["startupNotify", 83, 5], ["startupWMClass", 84, 5], ["categories", 85, 5], ["mimeTypes", 91, 5], ["keywords", 92, 5], ["noDisplay", 93, 5]], [["name", 107, 5], ["url", 113, 5], ["sha256", 114, 5]], [["maintainers", 222, 5], ["description", 223, 5], ["homepage", 224, 5], ["sourceProvenance", 225, 5], ["license", 226, 5], ["platforms", 227, 5], ["mainProgram", 228, 5]], [["pname", 98, 3], ["version", 99, 3], ["desktopItems", 101, 3], ["src", 106, 3], ["nativeBuildInputs", 117, 3], ["buildInputs", 123, 3], ["installPhase", 129, 3], ["edition", 138, 3], ["targetPath", 139, 3], ["unpackPhase", 141, 3], ["sqltoolsserviceRpath", 146, 3], ["sqltoolsservicePath", 157, 3], ["rpath", 159, 3], ["preFixup", 192, 3], ["meta", 221, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, copyDesktopItems: false, makeDesktopItem: false, makeWrapper: false, "alsa-lib": false, "at-spi2-atk": false, "at-spi2-core": false, cairo: false, cups: false, curl: false, dbus: false, expat: false, "gdk-pixbuf": false, glib: false, gnutar: false, gtk3: false, icu: false, libdrm: false, libunwind: false, libuuid: false, libxkbcommon: false, libgbm: false, nspr: false, nss: false, openssl: false, pango: false, systemd: false, wrapGAppsHook3: false, libxrandr: false, libxfixes: false, libxext: false, libxdamage: false, libxcomposite: false, libx11: false, libxshmfence: false, libxkbfile: false, libxcb: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 70, 7], ["exec", 71, 7], ["icon", 72, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["new-empty-window", 69, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 49, 5], ["desktopName", 50, 5], ["comment", 51, 5], ["genericName", 52, 5], ["exec", 53, 5], ["icon", 54, 5], ["startupNotify", 55, 5], ["startupWMClass", 56, 5], ["categories", 57, 5], ["mimeTypes", 63, 5], ["keywords", 68, 5], ["actions", 69, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 77, 5], ["desktopName", 78, 5], ["comment", 79, 5], ["genericName", 80, 5], ["exec", 81, 5], ["icon", 82, 5], ["startupNotify", 83, 5], ["startupWMClass", 84, 5], ["categories", 85, 5], ["mimeTypes", 91, 5], ["keywords", 92, 5], ["noDisplay", 93, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 107, 5], ["url", 113, 5], ["sha256", 114, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["maintainers", 222, 5], ["description", 223, 5], ["homepage", 224, 5], ["sourceProvenance", 225, 5], ["license", 226, 5], ["platforms", 227, 5], ["mainProgram", 228, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 98, 3], ["version", 99, 3], ["desktopItems", 101, 3], ["src", 106, 3], ["nativeBuildInputs", 117, 3], ["buildInputs", 123, 3], ["installPhase", 129, 3], ["edition", 138, 3], ["targetPath", 139, 3], ["unpackPhase", 141, 3], ["sqltoolsserviceRpath", 146, 3], ["sqltoolsservicePath", 157, 3], ["rpath", 159, 3], ["preFixup", 192, 3], ["meta", 221, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -54,7 +48,7 @@ export default nix.lambda((args) => (() => {
   const libxcb = nix.arg($, "libxcb");
   const zlib = nix.arg($, "zlib");
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "azuredatastudio",
       desktopName: "Azure Data Studio",
       comment: "Data Management Tool that enables you to work with SQL Server, Azure SQL DB and SQL DW from Windows, macOS and Linux.",
@@ -67,9 +61,9 @@ export default nix.lambda((args) => (() => {
       mimeTypes: nix.thunk(() => ["text/plain", "inode/directory", "application/x-azuredatastudio-workspace"]),
       keywords: nix.thunk(() => ["azuredatastudio"]),
       actions: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         "new-empty-window": nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: "New Empty Window",
           exec: "azuredatastudio --no-sandbox --new-window %F",
           icon: "azuredatastudio",
@@ -77,7 +71,7 @@ export default nix.lambda((args) => (() => {
       })),
     }))));
   const urlHandlerDesktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       name: "azuredatastudio-url-handler",
       desktopName: "Azure Data Studio - URL Handler",
       comment: "Azure Data Studio",
@@ -96,7 +90,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.49.1";
       const desktopItems = nix.thunk(() => [desktopItem, urlHandlerDesktopItem]);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           name: nix.thunk(() => nix.str`${pname}-${version}.tar.gz`),
           url: "https://download.microsoft.com/download/7/8/3/783c2037-8607-43c4-a593-0936e965d38b/azuredatastudio-linux-1.49.1.tar.gz",
           sha256: "sha256-0LCrRUTTe8UEDgtGLvxVQL8pA5dwA6SvZEZSDILr7jo=",
@@ -184,7 +178,7 @@ makeWrapper \\
   --set LD_LIBRARY_PATH ${rpath}
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "xavierzwirtz"))];
@@ -200,7 +194,7 @@ makeWrapper \\
         mainProgram: "azuredatastudio",
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         desktopItems,

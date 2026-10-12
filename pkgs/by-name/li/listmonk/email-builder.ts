@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/email-builder.nix", [[["yarnLock", 19, 5], ["hash", 20, 5]], [["pname", 13, 3], ["version", 14, 11], ["src", 16, 3], ["offlineCache", 18, 3], ["nativeBuildInputs", 23, 3], ["installPhase", 29, 3], ["meta", 36, 11]]]);
 const formals$1 = { args: { stdenv: false, fetchYarnDeps: false, yarnConfigHook: false, yarnBuildHook: false, nodejs: false, src: false, version: false, meta: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/email-builder.nix", [["yarnLock", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/email-builder.nix", [["pname", 13, 3], ["version", 14, 11], ["src", 16, 3], ["offlineCache", 18, 3], ["nativeBuildInputs", 23, 3], ["installPhase", 29, 3], ["meta", 36, 11]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const version = nix.arg($, "version");
   const meta = nix.arg($, "meta");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "listmonk-email-builder",
       version: version,
       src: nix.thunk(() => nix.str`${src}/frontend/email-builder`),
       offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           yarnLock: nix.thunk(() => nix.str`${src}/frontend/email-builder/yarn.lock`),
           hash: "sha256-ANPLOL9j0gljtNtbfb+ZifVRN9vLexPddAevpeFwX4o=",
         })))),

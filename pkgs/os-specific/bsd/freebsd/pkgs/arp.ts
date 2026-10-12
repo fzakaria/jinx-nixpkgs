@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/arp.nix", [[["mainProgram", 10, 8]], [["path", 7, 3], ["buildInputs", 8, 3], ["meta", 10, 3]]]);
 const formals$1 = { args: { lib: false, mkDerivation: false, libxo: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/arp.nix", [["mainProgram", 10, 8]]);
-const pos$2 = nix.positions(here + "/arp.nix", [["path", 7, 3], ["buildInputs", 8, 3], ["meta", 10, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,10 +11,10 @@ export default nix.lambda((args) => (() => {
   const mkDerivation = nix.arg($, "mkDerivation");
   const libxo = nix.arg($, "libxo");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       path: "usr.sbin/arp",
       buildInputs: nix.thunk(() => [libxo]),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "arp" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], mainProgram: "arp" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=arp.ts.map

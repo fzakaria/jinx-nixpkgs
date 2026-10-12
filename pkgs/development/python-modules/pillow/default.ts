@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 49, 5], ["repo", 50, 5], ["tag", 51, 5], ["hash", 52, 5]], [["fpx", 99, 5], ["mic", 100, 5], ["xmp", 101, 5]], [["imageio", 132, 7], ["matplotlib", 133, 7], ["pilkit", 134, 7], ["pydicom", 135, 7], ["reportlab", 136, 7], ["sage", 137, 7]], [["tests", 130, 12]], [["homepage", 142, 5], ["changelog", 143, 5], ["description", 144, 5], ["longDescription", 145, 5], ["license", 151, 5], ["maintainers", 152, 5]], [["pname", 44, 3], ["version", 45, 3], ["pyproject", 46, 3], ["src", 48, 3], ["build-system", 55, 3], ["nativeBuildInputs", 60, 3], ["buildInputs", 63, 3], ["pypaBuildFlags", 77, 3], ["preConfigure", 82, 3], ["optional-dependencies", 98, 3], ["nativeCheckInputs", 104, 3], ["disabledTests", 111, 3], ["disabledTestPaths", 122, 3], ["passthru", 130, 3], ["meta", 141, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "pkg-config": false, pybind11: false, freetype: false, lcms2: false, libavif: false, libimagequant: false, libjpeg: false, libraqm: false, libtiff: false, libwebp: false, libxcb: false, openjpeg: false, "zlib-ng": false, defusedxml: false, olefile: false, numpy: false, "pytest-cov-stub": false, pytestCheckHook: false, imageio: false, matplotlib: false, pilkit: false, pydicom: false, reportlab: false, sage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 49, 5], ["repo", 50, 5], ["tag", 51, 5], ["hash", 52, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["fpx", 99, 5], ["mic", 100, 5], ["xmp", 101, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["imageio", 132, 7], ["matplotlib", 133, 7], ["pilkit", 134, 7], ["pydicom", 135, 7], ["reportlab", 136, 7], ["sage", 137, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 130, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["homepage", 142, 5], ["changelog", 143, 5], ["description", 144, 5], ["longDescription", 145, 5], ["license", 151, 5], ["maintainers", 152, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 44, 3], ["version", 45, 3], ["pyproject", 46, 3], ["src", 48, 3], ["build-system", 55, 3], ["nativeBuildInputs", 60, 3], ["buildInputs", 63, 3], ["pypaBuildFlags", 77, 3], ["preConfigure", 82, 3], ["optional-dependencies", 98, 3], ["nativeCheckInputs", 104, 3], ["disabledTests", 111, 3], ["disabledTestPaths", 122, 3], ["passthru", 130, 3], ["meta", 141, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -46,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const version = "12.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "python-pillow",
           repo: "pillow",
           tag: version,
@@ -82,7 +77,7 @@ export CFLAGS="$CFLAGS -I${nix.sel(libxcb, "dev")}/include"
 `;
       })());
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         fpx: nix.thunk(() => [olefile]),
         mic: nix.thunk(() => [olefile]),
         xmp: nix.thunk(() => [defusedxml]),
@@ -94,9 +89,9 @@ export CFLAGS="$CFLAGS -I${nix.sel(libxcb, "dev")}/include"
           "Tests/test_file_avif.py::TestFileAvif::test_background_from_gif",
         ])));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           imageio: imageio,
           matplotlib: matplotlib,
           pilkit: pilkit,
@@ -106,7 +101,7 @@ export CFLAGS="$CFLAGS -I${nix.sel(libxcb, "dev")}/include"
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://python-pillow.github.io/",
         changelog: nix.thunk(() => nix.str`https://pillow.readthedocs.io/en/stable/releasenotes/${version}.html`),
         description: "Friendly PIL fork (Python Imaging Library)",
@@ -118,7 +113,7 @@ export CFLAGS="$CFLAGS -I${nix.sel(libxcb, "dev")}/include"
         })()),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         pyproject,

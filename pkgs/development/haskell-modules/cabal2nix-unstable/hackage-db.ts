@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/hackage-db.nix", [[["url", 21, 5], ["sha256", 22, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 20, 3], ["postUnpack", 24, 3], ["isLibrary", 25, 3], ["isExecutable", 26, 3], ["libraryHaskellDepends", 27, 3], ["homepage", 39, 3], ["description", 40, 3], ["license", 41, 3]]]);
 const formals$1 = { args: { mkDerivation: false, aeson: false, base: false, bytestring: false, Cabal: false, containers: false, directory: false, exceptions: false, fetchzip: false, filepath: false, lib: false, tar: false, time: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/hackage-db.nix", [["url", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/hackage-db.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 20, 3], ["postUnpack", 24, 3], ["isLibrary", 25, 3], ["isExecutable", 26, 3], ["libraryHaskellDepends", 27, 3], ["homepage", 39, 3], ["description", 40, 3], ["license", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const tar = nix.arg($, "tar");
   const time = nix.arg($, "time");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "hackage-db",
       version: "2.1.3-unstable-2026-03-30",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://github.com/NixOS/cabal2nix/archive/41239bcc0622a0975c6705a03a44dfeffeb56f23.tar.gz",
           sha256: "01qj6cvaif0810v83r6izcj1bbfpcqqxw4wybq04qsq92sqybpw2",
         })))),

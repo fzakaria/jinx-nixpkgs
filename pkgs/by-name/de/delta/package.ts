@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["RUSTONIG_SYSTEM_LIBONIG", 46, 5], ["LIBGIT2_NO_VENDOR", 47, 5]], [["homepage", 81, 5], ["description", 82, 5], ["changelog", 83, 5], ["license", 84, 5], ["maintainers", 85, 5], ["mainProgram", 89, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["cargoHash", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 35, 3], ["nativeCheckInputs", 43, 3], ["env", 45, 3], ["postInstall", 50, 3], ["dontUseCargoParallelTests", 65, 3], ["checkFlags", 67, 3], ["nativeInstallCheckInputs", 73, 3], ["versionCheckKeepEnvironment", 77, 3], ["doInstallCheck", 78, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, buildPackages: false, fetchFromGitHub: false, installShellFiles: false, "pkg-config": false, oniguruma: false, libgit2: false, stdenv: false, git: false, zlib: false, versionCheckHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["RUSTONIG_SYSTEM_LIBONIG", 46, 5], ["LIBGIT2_NO_VENDOR", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 81, 5], ["description", 82, 5], ["changelog", 83, 5], ["license", 84, 5], ["maintainers", 85, 5], ["mainProgram", 89, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["cargoHash", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 35, 3], ["nativeCheckInputs", 43, 3], ["env", 45, 3], ["postInstall", 50, 3], ["dontUseCargoParallelTests", 65, 3], ["checkFlags", 67, 3], ["nativeInstallCheckInputs", 73, 3], ["versionCheckKeepEnvironment", 77, 3], ["doInstallCheck", 78, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "delta",
       version: "0.20.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dandavison",
           repo: "delta",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles, pkg_config]),
       buildInputs: nix.thunk(() => nix.concat([oniguruma, libgit2], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [zlib])))),
       nativeCheckInputs: nix.thunk(() => [git]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, RUSTONIG_SYSTEM_LIBONIG: true, LIBGIT2_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], RUSTONIG_SYSTEM_LIBONIG: true, LIBGIT2_NO_VENDOR: 1n })),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "hostPlatform", "emulatorAvailable"), buildPackages)), nix.thunk(() => (() => {
           const emulator = nix.thunk(() => nix.app(nix.sel(stdenv, "hostPlatform", "emulator"), buildPackages));
           return nix.str`installShellCompletion --cmd delta \\
@@ -53,7 +50,7 @@ export default nix.lambda((args) => (() => {
       versionCheckKeepEnvironment: nix.thunk(() => ["HOME"]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/dandavison/delta",
         description: "Syntax-highlighting pager for git",
         changelog: nix.thunk(() => nix.str`https://github.com/dandavison/delta/releases/tag/${nix.sel(finalAttrs, "version")}`),

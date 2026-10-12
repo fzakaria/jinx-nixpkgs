@@ -2,18 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 127, 5], ["hash", 128, 5]], [["driverLink", 134, 34]], [["mpeghdec", 338, 5], ["tflite", 339, 5]], [["enableZbar", 420, 9], ["faacSupport", 421, 9], ["opencvSupport", 422, 9]], [["enableGplPlugins", 426, 9]], [["full", 419, 7], ["lgplOnly", 425, 7]], [["odd-unstable", 430, 46]], [["tests", 418, 5], ["updateScript", 430, 5]], [["cpeParts", 446, 17]], [["description", 434, 5], ["mainProgram", 435, 5], ["homepage", 436, 5], ["longDescription", 437, 5], ["license", 443, 5], ["platforms", 444, 5], ["maintainers", 445, 5], ["identifiers", 446, 5]], [["pname", 118, 3], ["version", 119, 3], ["outputs", 121, 3], ["src", 126, 3], ["patches", 131, 3], ["separateDebugInfo", 138, 3], ["__structuredAttrs", 140, 3], ["strictDeps", 142, 3], ["nativeBuildInputs", 144, 3], ["buildInputs", 161, 3], ["mesonFlags", 280, 3], ["postPatch", 402, 3], ["hardeningDisable", 409, 3], ["doCheck", 411, 3], ["preFixup", 413, 3], ["passthru", 417, 3], ["meta", 433, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, replaceVars: false, meson: false, ninja: false, gettext: false, "pkg-config": false, python3: false, "gst-plugins-base": false, orc: false, gstreamer: false, "gobject-introspection": false, "wayland-scanner": false, enableZbar: true, faacSupport: true, faac: false, opencvSupport: true, opencv4: false, faad2: false, lcevcdecSupport: true, lcevcdec: false, ldacbtSupport: true, ldacbt: false, liblc3: false, libass: false, lrdf: false, "ladspa-header": false, lcms2: false, libnice: false, webrtcAudioProcessingSupport: true, "webrtc-audio-processing_1": false, lilv: false, lv2: false, serd: false, sord: false, sratom: false, libbs2b: false, libmodplug: false, libmpeg2: false, libmicrodns: false, openjpeg: false, libopus: false, librsvg: false, bluez: false, chromaprint: false, curl: false, fdk_aac: false, flite: false, gsm: false, "json-glib": false, ajaSupport: true, libajantv2: false, libaom: false, libdc1394: false, libde265: false, libdrm: false, libdvdnav: false, libdvdread: false, libgudev: false, qrencode: false, libsndfile: false, libusb1: false, neon: false, openal: false, openexr: false, openh264Support: true, openh264: false, libopenmpt: false, pango: false, rtmpdump: false, sbc: false, soundtouch: false, spandsp: false, srtp: false, zbar: false, "wayland-protocols": false, wildmidi: false, "svt-av1": false, fluidsynth: false, libva: false, wayland: false, libwebp: false, gnutls: false, mjpegtools: false, libGL: false, addDriverRunpath: false, gtk3: false, libintl: false, "game-music-emu": false, openssl: false, x265: false, libxml2: false, srt: false, "vo-aacenc": false, libfreeaptx: false, "zxing-cpp": false, usrsctp: false, directoryListingUpdater: false, enableGplPlugins: true, bluezSupport: true, microdnsSupport: true, enableDocumentation: true, hotdoc: false, guiSupport: true, "gst-plugins-bad": false, "apple-sdk_gstreamer": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 127, 5], ["hash", 128, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["driverLink", 134, 34]]);
-const pos$3 = nix.positions(here + "/default.nix", [["mpeghdec", 338, 5], ["tflite", 339, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["enableZbar", 420, 9], ["faacSupport", 421, 9], ["opencvSupport", 422, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["enableGplPlugins", 426, 9]]);
-const pos$6 = nix.positions(here + "/default.nix", [["full", 419, 7], ["lgplOnly", 425, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["odd-unstable", 430, 46]]);
-const pos$8 = nix.positions(here + "/default.nix", [["tests", 418, 5], ["updateScript", 430, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["cpeParts", 446, 17]]);
-const pos$10 = nix.positions(here + "/default.nix", [["description", 434, 5], ["mainProgram", 435, 5], ["homepage", 436, 5], ["longDescription", 437, 5], ["license", 443, 5], ["platforms", 444, 5], ["maintainers", 445, 5], ["identifiers", 446, 5]]);
-const pos$11 = nix.positions(here + "/default.nix", [["pname", 118, 3], ["version", 119, 3], ["outputs", 121, 3], ["src", 126, 3], ["patches", 131, 3], ["separateDebugInfo", 138, 3], ["__structuredAttrs", 140, 3], ["strictDeps", 142, 3], ["nativeBuildInputs", 144, 3], ["buildInputs", 161, 3], ["mesonFlags", 280, 3], ["postPatch", 402, 3], ["hardeningDisable", 409, 3], ["doCheck", 411, 3], ["preFixup", 413, 3], ["passthru", 417, 3], ["meta", 433, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -126,18 +116,18 @@ export default nix.lambda((args) => (() => {
   const gst_plugins_bad = nix.arg($, "gst-plugins-bad");
   const apple_sdk_gstreamer = nix.arg($, "apple-sdk_gstreamer");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       pname: "gst-plugins-bad",
       version: "1.28.7",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://gstreamer.freedesktop.org/src/gst-plugins-bad/gst-plugins-bad-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-3FJTg8GLLCZbvmpD1JhlbNkYqqEwqk46vqvNqnQcP/4=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             driverLink: nix.thunk(() => nix.attr(addDriverRunpath, "driverLink")),
           })))),
       ]),
@@ -262,7 +252,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "mesonEnable"), "ldac", ldacbtSupport)),
         nix.thunk(() => nix.app(nix.sel(lib, "mesonEnable"), "webrtcdsp", webrtcAudioProcessingSupport)),
         nix.thunk(() => nix.app(nix.sel(lib, "mesonEnable"), "isac", webrtcAudioProcessingSupport)),
-      ], nix.concat(nix.app(nix.sel(lib, "mapAttrsToList"), nix.thunk(() => nix.sel(lib, "mesonEnable")), nix.thunk(() => ({ [nix.POS]: pos$3, mpeghdec: false, tflite: false }))), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux"))), nix.thunk(() => ["-Ddoc=disabled"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux"))) || nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86"))))), nix.thunk(() => ["-Dnvcodec=disabled"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux"))) || nix.asBool(!nix.asBool(nix.sel(gst_plugins_base, "waylandEnabled"))))), nix.thunk(() => ["-Dva=disabled"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [
+      ], nix.concat(nix.app(nix.sel(lib, "mapAttrsToList"), nix.thunk(() => nix.sel(lib, "mesonEnable")), nix.thunk(() => ({ [nix.POS]: $pos[2], mpeghdec: false, tflite: false }))), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux"))), nix.thunk(() => ["-Ddoc=disabled"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux"))) || nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86"))))), nix.thunk(() => ["-Dnvcodec=disabled"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux"))) || nix.asBool(!nix.asBool(nix.sel(gst_plugins_base, "waylandEnabled"))))), nix.thunk(() => ["-Dva=disabled"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [
           "-Daja=disabled",
           "-Dchromaprint=disabled",
           "-Dflite=disabled",
@@ -290,16 +280,16 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       preFixup: "moveToOutput \"lib/gstreamer-1.0/pkgconfig\" \"$dev\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$6,
-          full: nix.thunk(() => nix.app(nix.sel(gst_plugins_bad, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, enableZbar: true, faacSupport: true, opencvSupport: true })))),
-          lgplOnly: nix.thunk(() => nix.app(nix.sel(gst_plugins_bad, "override"), nix.thunk(() => ({ [nix.POS]: pos$5, enableGplPlugins: false })))),
+          [nix.POS]: $pos[5],
+          full: nix.thunk(() => nix.app(nix.sel(gst_plugins_bad, "override"), nix.thunk(() => ({ [nix.POS]: $pos[3], enableZbar: true, faacSupport: true, opencvSupport: true })))),
+          lgplOnly: nix.thunk(() => nix.app(nix.sel(gst_plugins_bad, "override"), nix.thunk(() => ({ [nix.POS]: $pos[4], enableGplPlugins: false })))),
         })),
-        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ [nix.POS]: pos$7, "odd-unstable": true })))),
+        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ [nix.POS]: $pos[6], "odd-unstable": true })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         description: "GStreamer Bad Plugins",
         mainProgram: "gst-transcoder-1.0",
         homepage: "https://gstreamer.freedesktop.org",
@@ -311,7 +301,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "tmarkus"))];
         })()),
         identifiers: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           cpeParts: nix.thunk(() => nix.app(nix.sel(gstreamer, "passthru", "gstreamerCpeParts"), nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
       })),

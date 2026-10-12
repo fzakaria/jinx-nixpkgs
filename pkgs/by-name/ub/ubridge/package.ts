@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["package", 41, 7], ["command", 42, 7]], [["version", 40, 11]], [["tests", 40, 5], ["updateScript", 44, 5]], [["description", 48, 5], ["longDescription", 49, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5], ["mainProgram", 57, 5], ["maintainers", 58, 5], ["platforms", 61, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["postPatch", 22, 3], ["buildInputs", 28, 3], ["installPhase", 30, 3], ["passthru", 39, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, libpcap: false, "nix-update-script": false, testers: false, ubridge: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 41, 7], ["command", 42, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 40, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 40, 5], ["updateScript", 44, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 48, 5], ["longDescription", 49, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5], ["mainProgram", 57, 5], ["maintainers", 58, 5], ["platforms", 61, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["postPatch", 22, 3], ["buildInputs", 28, 3], ["installPhase", 30, 3], ["passthru", 39, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const ubridge = nix.arg($, "ubridge");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "ubridge",
       version: "1.2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "GNS3",
           repo: "ubridge",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,15 +29,15 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libpcap]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\ninstall -Dm755 ubridge $out/bin/ubridge\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: ubridge, command: "ubridge -v" })))),
+          [nix.POS]: $pos[2],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: ubridge, command: "ubridge -v" })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Bridge for UDP tunnels, Ethernet, TAP, and VMnet interfaces",
         longDescription: "uBridge is a simple application to create user-land bridges between\nvarious technologies. Currently bridging between UDP tunnels, Ethernet\nand TAP interfaces is supported. Packet capture is also supported.\n",
         homepage: "https://github.com/GNS3/ubridge",

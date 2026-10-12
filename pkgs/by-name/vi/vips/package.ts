@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 72, 5], ["repo", 73, 5], ["tag", 74, 5], ["hash", 75, 5], ["postFetch", 78, 5]], [["package", 152, 9]], [["package", 155, 9], ["command", 156, 9]], [["pkg-config", 151, 7], ["version", 154, 7]], [["extraArgs", 160, 7]], [["tests", 150, 5], ["updateScript", 159, 5]], [["changelog", 168, 5], ["homepage", 169, 5], ["description", 170, 5], ["license", 171, 5], ["maintainers", 172, 5], ["pkgConfigModules", 176, 5], ["platforms", 180, 5], ["mainProgram", 181, 5]], [["pname", 60, 3], ["version", 61, 3], ["outputs", 63, 3], ["src", 71, 3], ["postPatch", 83, 3], ["nativeBuildInputs", 87, 3], ["buildInputs", 98, 3], ["propagatedBuildInputs", 132, 3], ["mesonFlags", 136, 3], ["postFixup", 145, 3], ["passthru", 149, 3], ["meta", 167, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "docbook-xsl-nons": false, "gi-docgen": false, "gobject-introspection": false, meson: false, ninja: false, "pkg-config": false, buildPackages: false, expat: false, glib: false, libxml2: false, python3: false, cfitsio: false, cgif: false, fftw: false, imagemagick: false, lcms2: false, libarchive: false, libexif: false, libheif: false, libhwy: false, libimagequant: false, libjpeg: false, libjxl: false, libraw: false, librsvg: false, libpng: false, libtiff: false, libultrahdr: false, libwebp: false, matio: false, openexr: false, openjpeg: false, openslide: false, pango: false, poppler: false, withIntrospection: true, withDevDoc: true, testers: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 72, 5], ["repo", 73, 5], ["tag", 74, 5], ["hash", 75, 5], ["postFetch", 78, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 152, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 155, 9], ["command", 156, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pkg-config", 151, 7], ["version", 154, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["extraArgs", 160, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 150, 5], ["updateScript", 159, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["changelog", 168, 5], ["homepage", 169, 5], ["description", 170, 5], ["license", 171, 5], ["maintainers", 172, 5], ["pkgConfigModules", 176, 5], ["platforms", 180, 5], ["mainProgram", 181, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 60, 3], ["version", 61, 3], ["outputs", 63, 3], ["src", 71, 3], ["postPatch", 83, 3], ["nativeBuildInputs", 87, 3], ["buildInputs", 98, 3], ["propagatedBuildInputs", 132, 3], ["mesonFlags", 136, 3], ["postFixup", 145, 3], ["passthru", 149, 3], ["meta", 167, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -57,12 +50,12 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "vips",
       version: "8.18.7",
       outputs: nix.thunk(() => nix.concat(["bin", "out", "man", "dev"], nix.app(nix.sel(lib, "optionals"), withDevDoc, nix.thunk(() => ["devdoc"])))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "libvips",
           repo: "libvips",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -110,26 +103,26 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optional"), withDevDoc, nix.thunk(() => nix.app(nix.sel(lib, "mesonBool"), "docs", true))), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(imagemagick, null)), nix.thunk(() => nix.app(nix.sel(lib, "mesonEnable"), "magick", false)))))),
       postFixup: "moveToOutput \"share/doc\" \"$devdoc\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "vips --version",
             })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             extraArgs: nix.thunk(() => ["--version-regex", "^v([0-9.]+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         changelog: nix.thunk(() => nix.str`https://github.com/libvips/libvips/blob/${nix.sel(finalAttrs, "src", "rev")}/ChangeLog`),
         homepage: "https://www.libvips.org/",
         description: "Image processing system for large images",

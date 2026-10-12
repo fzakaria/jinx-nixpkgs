@@ -2,32 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/amazon-image.nix", [[["devNodes", 55, 14]], [["availableKernelModules", 60, 17]], [["device", 84, 22], ["efiSupport", 85, 22], ["efiInstallAsRemovable", 86, 22], ["extraConfig", 88, 22]], [["grub", 84, 17], ["timeout", 87, 17]], [["growPartition", 34, 10], ["zfs", 55, 10], ["extraModulePackages", 57, 10], ["initrd", 60, 10], ["kernelParams", 61, 10], ["blacklistedKernelModules", 79, 10], ["loader", 84, 10]], [["device", 38, 9], ["fsType", 39, 9], ["autoResize", 40, 9]], [["device", 48, 9], ["fsType", 49, 9]], [["/", 36, 17], ["/boot", 44, 17]], [["expandOnBoot", 53, 18]], [["enable", 115, 31]], [["PermitRootLogin", 120, 31]], [["enable", 119, 22], ["settings", 120, 22]], [["packages", 126, 19]], [["enable", 139, 22]], [["zfs", 53, 14], ["amazon-ssm-agent", 115, 14], ["openssh", 119, 14], ["udev", 126, 14], ["udisks2", 139, 14]], [["Type", 109, 21], ["StandardOutput", 110, 21]], [["wantedBy", 95, 7], ["wants", 96, 7], ["after", 97, 7], ["path", 98, 7], ["script", 108, 7], ["serviceConfig", 109, 7]], [["enable", 123, 43]], [["fetch-ec2-metadata", 94, 22], ["serial-getty@ttyS0", 123, 22]], [["services", 94, 13]], [["hostName", 129, 16], ["timeServers", 135, 16]], [["systemPackages", 132, 17]], [["assertions", 32, 5], ["boot", 34, 5], ["fileSystems", 36, 5], ["services", 53, 5], ["systemd", 94, 5], ["networking", 129, 5], ["environment", 132, 5]], [["maintainers", 141, 8]], [["imports", 20, 3], ["config", 30, 3], ["meta", 141, 3]]]);
 const formals$1 = { args: { config: false, lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/amazon-image.nix", [["devNodes", 55, 14]]);
-const pos$2 = nix.positions(here + "/amazon-image.nix", [["availableKernelModules", 60, 17]]);
-const pos$3 = nix.positions(here + "/amazon-image.nix", [["device", 84, 22], ["efiSupport", 85, 22], ["efiInstallAsRemovable", 86, 22], ["extraConfig", 88, 22]]);
-const pos$4 = nix.positions(here + "/amazon-image.nix", [["grub", 84, 17], ["timeout", 87, 17]]);
-const pos$5 = nix.positions(here + "/amazon-image.nix", [["growPartition", 34, 10], ["zfs", 55, 10], ["extraModulePackages", 57, 10], ["initrd", 60, 10], ["kernelParams", 61, 10], ["blacklistedKernelModules", 79, 10], ["loader", 84, 10]]);
-const pos$6 = nix.positions(here + "/amazon-image.nix", [["device", 38, 9], ["fsType", 39, 9], ["autoResize", 40, 9]]);
-const pos$7 = nix.positions(here + "/amazon-image.nix", [["device", 48, 9], ["fsType", 49, 9]]);
-const pos$8 = nix.positions(here + "/amazon-image.nix", [["/", 36, 17], ["/boot", 44, 17]]);
-const pos$9 = nix.positions(here + "/amazon-image.nix", [["expandOnBoot", 53, 18]]);
-const pos$10 = nix.positions(here + "/amazon-image.nix", [["enable", 115, 31]]);
-const pos$11 = nix.positions(here + "/amazon-image.nix", [["PermitRootLogin", 120, 31]]);
-const pos$12 = nix.positions(here + "/amazon-image.nix", [["enable", 119, 22], ["settings", 120, 22]]);
-const pos$13 = nix.positions(here + "/amazon-image.nix", [["packages", 126, 19]]);
-const pos$14 = nix.positions(here + "/amazon-image.nix", [["enable", 139, 22]]);
-const pos$15 = nix.positions(here + "/amazon-image.nix", [["zfs", 53, 14], ["amazon-ssm-agent", 115, 14], ["openssh", 119, 14], ["udev", 126, 14], ["udisks2", 139, 14]]);
-const pos$16 = nix.positions(here + "/amazon-image.nix", [["Type", 109, 21], ["StandardOutput", 110, 21]]);
-const pos$17 = nix.positions(here + "/amazon-image.nix", [["wantedBy", 95, 7], ["wants", 96, 7], ["after", 97, 7], ["path", 98, 7], ["script", 108, 7], ["serviceConfig", 109, 7]]);
-const pos$18 = nix.positions(here + "/amazon-image.nix", [["enable", 123, 43]]);
-const pos$19 = nix.positions(here + "/amazon-image.nix", [["fetch-ec2-metadata", 94, 22], ["serial-getty@ttyS0", 123, 22]]);
-const pos$20 = nix.positions(here + "/amazon-image.nix", [["services", 94, 13]]);
-const pos$21 = nix.positions(here + "/amazon-image.nix", [["hostName", 129, 16], ["timeServers", 135, 16]]);
-const pos$22 = nix.positions(here + "/amazon-image.nix", [["systemPackages", 132, 17]]);
-const pos$23 = nix.positions(here + "/amazon-image.nix", [["assertions", 32, 5], ["boot", 34, 5], ["fileSystems", 36, 5], ["services", 53, 5], ["systemd", 94, 5], ["networking", 129, 5], ["environment", 132, 5]]);
-const pos$24 = nix.positions(here + "/amazon-image.nix", [["maintainers", 141, 8]]);
-const pos$25 = nix.positions(here + "/amazon-image.nix", [["imports", 20, 3], ["config", 30, 3], ["meta", 141, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,24 +14,24 @@ export default nix.lambda((args) => (() => {
   const mkIf = nix.thunk(() => nix.attr(lib, "mkIf"));
   const cfg = nix.thunk(() => nix.sel(config, "ec2"));
   return {
-    [nix.POS]: pos$25,
+    [nix.POS]: $pos[24],
     imports: nix.thunk(() => [
       nix.path(here, "../profiles/headless.nix"),
       nix.path(here, "./ec2-data.nix"),
       nix.path(here, "./amazon-init.nix"),
     ]),
     config: nix.thunk(() => ({
-      [nix.POS]: pos$23,
+      [nix.POS]: $pos[22],
       assertions: [],
       boot: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         growPartition: true,
         zfs: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           devNodes: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "zfs", "enable")), "/dev/")),
         })),
         extraModulePackages: nix.thunk(() => [nix.thunk(() => nix.sel(config, "boot", "kernelPackages", "ena"))]),
-        initrd: nix.thunk(() => ({ [nix.POS]: pos$2, availableKernelModules: nix.thunk(() => ["nvme"]) })),
+        initrd: nix.thunk(() => ({ [nix.POS]: $pos[1], availableKernelModules: nix.thunk(() => ["nvme"]) })),
         kernelParams: nix.thunk(() => (() => {
           const nvmeTimeout = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(config, "boot", "kernelPackages", "kernel", "version")), "4.15")) ? "4294967295" : "255"));
           return [
@@ -66,9 +42,9 @@ export default nix.lambda((args) => (() => {
         })()),
         blacklistedKernelModules: nix.thunk(() => ["nouveau", "xen_fbfront"]),
         loader: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           grub: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             device: nix.thunk(() => (nix.asBool(nix.sel(cfg, "efi")) ? "nodev" : "/dev/xvda")),
             efiSupport: nix.thunk(() => nix.sel(cfg, "efi")),
             efiInstallAsRemovable: nix.thunk(() => nix.sel(cfg, "efi")),
@@ -78,39 +54,39 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       fileSystems: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         "/": nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.asBool(nix.sel(cfg, "zfs", "enable"))), nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               device: "/dev/disk/by-label/nixos",
               fsType: "ext4",
               autoResize: true,
             })))))),
-        "/boot": nix.thunk(() => nix.app(mkIf, nix.thunk(() => (nix.asBool(nix.sel(cfg, "efi")) || nix.asBool(nix.sel(cfg, "zfs", "enable")))), nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => ({ [nix.POS]: pos$7, device: "/dev/disk/by-label/ESP", fsType: "vfat" })))))),
+        "/boot": nix.thunk(() => nix.app(mkIf, nix.thunk(() => (nix.asBool(nix.sel(cfg, "efi")) || nix.asBool(nix.sel(cfg, "zfs", "enable")))), nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => ({ [nix.POS]: $pos[6], device: "/dev/disk/by-label/ESP", fsType: "vfat" })))))),
       })),
       services: nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         zfs: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           expandOnBoot: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "zfs", "enable")), "all")),
         })),
-        "amazon-ssm-agent": nix.thunk(() => ({ [nix.POS]: pos$10, enable: true })),
+        "amazon-ssm-agent": nix.thunk(() => ({ [nix.POS]: $pos[9], enable: true })),
         openssh: nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           enable: true,
-          settings: nix.thunk(() => ({ [nix.POS]: pos$11, PermitRootLogin: "prohibit-password" })),
+          settings: nix.thunk(() => ({ [nix.POS]: $pos[10], PermitRootLogin: "prohibit-password" })),
         })),
         udev: nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "amazon-ec2-utils"))]),
         })),
-        udisks2: nix.thunk(() => ({ [nix.POS]: pos$14, enable: false })),
+        udisks2: nix.thunk(() => ({ [nix.POS]: $pos[13], enable: false })),
       })),
       systemd: nix.thunk(() => ({
-        [nix.POS]: pos$20,
+        [nix.POS]: $pos[19],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$19,
+          [nix.POS]: $pos[18],
           "fetch-ec2-metadata": nix.thunk(() => ({
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             wantedBy: nix.thunk(() => ["multi-user.target"]),
             wants: nix.thunk(() => ["network-online.target"]),
             after: nix.thunk(() => ["network-online.target"]),
@@ -128,23 +104,23 @@ export default nix.lambda((args) => (() => {
               ];
             })()),
             script: nix.thunk(() => nix.builtins.readFile(nix.path(here, "./ec2-metadata-fetcher.sh"))),
-            serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$16, Type: "oneshot", StandardOutput: "journal+console" })),
+            serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[15], Type: "oneshot", StandardOutput: "journal+console" })),
           })),
-          "serial-getty@ttyS0": nix.thunk(() => ({ [nix.POS]: pos$18, enable: true })),
+          "serial-getty@ttyS0": nix.thunk(() => ({ [nix.POS]: $pos[17], enable: true })),
         })),
       })),
       networking: nix.thunk(() => ({
-        [nix.POS]: pos$21,
+        [nix.POS]: $pos[20],
         hostName: nix.thunk(() => nix.app(mkDefault, "")),
         timeServers: nix.thunk(() => ["169.254.169.123"]),
       })),
       environment: nix.thunk(() => ({
-        [nix.POS]: pos$22,
+        [nix.POS]: $pos[21],
         systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "cryptsetup"))]),
       })),
     })),
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$24,
+      [nix.POS]: $pos[23],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "arianvp"))];

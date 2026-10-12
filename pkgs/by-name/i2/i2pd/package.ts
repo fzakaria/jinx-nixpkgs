@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["homepage", 53, 5], ["description", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["platforms", 57, 5], ["mainProgram", 58, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["postPatch", 24, 3], ["buildInputs", 29, 3], ["nativeBuildInputs", 36, 3], ["makeFlags", 40, 3], ["enableParallelBuilding", 44, 3], ["installPhase", 46, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, installShellFiles: false, boost: false, zlib: false, openssl: false, upnpSupport: true, miniupnpc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 53, 5], ["description", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["platforms", 57, 5], ["mainProgram", 58, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["postPatch", 24, 3], ["buildInputs", 29, 3], ["nativeBuildInputs", 36, 3], ["makeFlags", 40, 3], ["enableParallelBuilding", 44, 3], ["installPhase", 46, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const upnpSupport = nix.argOr($, "upnpSupport", () => true);
   const miniupnpc = nix.arg($, "miniupnpc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "i2pd",
       version: "2.61.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "PurpleI2P",
           repo: "i2pd",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       installPhase: "install -D i2pd $out/bin/i2pd\ninstall --mode=444 -D 'contrib/i2pd.service' \"$out/etc/systemd/system/i2pd.service\"\ninstallManPage 'debian/i2pd.1'\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://i2pd.website",
         description: "Minimal I2P router written in C++",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

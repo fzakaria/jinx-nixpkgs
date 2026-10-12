@@ -2,27 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["callPackage", 8, 35]], [["description", 14, 7], ["license", 15, 7], ["maintainers", 16, 7]], [["test-bash", 19, 23]], [["tests", 18, 14]], [["name", 12, 5], ["meta", 13, 5], ["passthru", 18, 5]], [["sed", 25, 7]], [["description", 28, 7], ["license", 29, 7], ["maintainers", 30, 7]], [["test-csh", 33, 23]], [["tests", 32, 14]], [["name", 23, 5], ["substitutions", 24, 5], ["meta", 27, 5], ["passthru", 32, 5]], [["description", 39, 7], ["license", 40, 7], ["maintainers", 41, 7]], [["test-fish", 44, 23]], [["tests", 43, 14]], [["name", 37, 5], ["meta", 38, 5], ["passthru", 43, 5]], [["sed", 50, 7]], [["description", 53, 7], ["license", 54, 7], ["maintainers", 55, 7]], [["test-posix", 58, 23]], [["tests", 57, 14]], [["name", 48, 5], ["substitutions", 49, 5], ["meta", 52, 5], ["passthru", 57, 5]], [["patchRcPathBash", 11, 3], ["patchRcPathCsh", 22, 3], ["patchRcPathFish", 36, 3], ["patchRcPathPosix", 47, 3]]]);
 const formals$1 = { args: { lib: false, callPackage: false, makeSetupHook: false, gnused: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["callPackage", 8, 35]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 14, 7], ["license", 15, 7], ["maintainers", 16, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["test-bash", 19, 23]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 18, 14]]);
-const pos$5 = nix.positions(here + "/default.nix", [["name", 12, 5], ["meta", 13, 5], ["passthru", 18, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["sed", 25, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["description", 28, 7], ["license", 29, 7], ["maintainers", 30, 7]]);
-const pos$8 = nix.positions(here + "/default.nix", [["test-csh", 33, 23]]);
-const pos$9 = nix.positions(here + "/default.nix", [["tests", 32, 14]]);
-const pos$10 = nix.positions(here + "/default.nix", [["name", 23, 5], ["substitutions", 24, 5], ["meta", 27, 5], ["passthru", 32, 5]]);
-const pos$11 = nix.positions(here + "/default.nix", [["description", 39, 7], ["license", 40, 7], ["maintainers", 41, 7]]);
-const pos$12 = nix.positions(here + "/default.nix", [["test-fish", 44, 23]]);
-const pos$13 = nix.positions(here + "/default.nix", [["tests", 43, 14]]);
-const pos$14 = nix.positions(here + "/default.nix", [["name", 37, 5], ["meta", 38, 5], ["passthru", 43, 5]]);
-const pos$15 = nix.positions(here + "/default.nix", [["sed", 50, 7]]);
-const pos$16 = nix.positions(here + "/default.nix", [["description", 53, 7], ["license", 54, 7], ["maintainers", 55, 7]]);
-const pos$17 = nix.positions(here + "/default.nix", [["test-posix", 58, 23]]);
-const pos$18 = nix.positions(here + "/default.nix", [["tests", 57, 14]]);
-const pos$19 = nix.positions(here + "/default.nix", [["name", 48, 5], ["substitutions", 49, 5], ["meta", 52, 5], ["passthru", 57, 5]]);
-const pos$20 = nix.positions(here + "/default.nix", [["patchRcPathBash", 11, 3], ["patchRcPathCsh", 22, 3], ["patchRcPathFish", 36, 3], ["patchRcPathPosix", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,14 +11,14 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const makeSetupHook = nix.arg($, "makeSetupHook");
   const gnused = nix.arg($, "gnused");
-  const tests = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./test")), nix.thunk(() => ({ [nix.POS]: pos$1, callPackage: callPackage }))));
+  const tests = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./test")), nix.thunk(() => ({ [nix.POS]: $pos[0], callPackage: callPackage }))));
   return {
-    [nix.POS]: pos$20,
+    [nix.POS]: $pos[19],
     patchRcPathBash: nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         name: "patch-rc-path-bash",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           description: "Setup-hook to inject source-time PATH prefix to a Bash/Ksh/Zsh script",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
           maintainers: nix.thunk(() => (() => {
@@ -46,16 +27,19 @@ export default nix.lambda((args) => (() => {
           })()),
         })),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          tests: nix.thunk(() => ({ [nix.POS]: pos$3, "test-bash": nix.thunk(() => nix.attr(tests, "test-bash")) })),
+          [nix.POS]: $pos[3],
+          tests: nix.thunk(() => ({
+            [nix.POS]: $pos[2],
+            "test-bash": nix.thunk(() => nix.attr(tests, "test-bash")),
+          })),
         })),
       })), nix.path(here, "./patch-rc-path-bash.sh"))),
     patchRcPathCsh: nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         name: "patch-rc-path-csh",
-        substitutions: nix.thunk(() => ({ [nix.POS]: pos$6, sed: nix.thunk(() => nix.str`${gnused}/bin/sed`) })),
+        substitutions: nix.thunk(() => ({ [nix.POS]: $pos[5], sed: nix.thunk(() => nix.str`${gnused}/bin/sed`) })),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           description: "Setup-hook to inject source-time PATH prefix to a Csh script",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
           maintainers: nix.thunk(() => (() => {
@@ -64,15 +48,15 @@ export default nix.lambda((args) => (() => {
           })()),
         })),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$9,
-          tests: nix.thunk(() => ({ [nix.POS]: pos$8, "test-csh": nix.thunk(() => nix.attr(tests, "test-csh")) })),
+          [nix.POS]: $pos[8],
+          tests: nix.thunk(() => ({ [nix.POS]: $pos[7], "test-csh": nix.thunk(() => nix.attr(tests, "test-csh")) })),
         })),
       })), nix.path(here, "./patch-rc-path-csh.sh"))),
     patchRcPathFish: nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         name: "patch-rc-path-fish",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           description: "Setup-hook to inject source-time PATH prefix to a Fish script",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
           maintainers: nix.thunk(() => (() => {
@@ -81,19 +65,19 @@ export default nix.lambda((args) => (() => {
           })()),
         })),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           tests: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             "test-fish": nix.thunk(() => nix.attr(tests, "test-fish")),
           })),
         })),
       })), nix.path(here, "./patch-rc-path-fish.sh"))),
     patchRcPathPosix: nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-        [nix.POS]: pos$19,
+        [nix.POS]: $pos[18],
         name: "patch-rc-path-posix",
-        substitutions: nix.thunk(() => ({ [nix.POS]: pos$15, sed: nix.thunk(() => nix.str`${gnused}/bin/sed`) })),
+        substitutions: nix.thunk(() => ({ [nix.POS]: $pos[14], sed: nix.thunk(() => nix.str`${gnused}/bin/sed`) })),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           description: "Setup-hook to inject source-time PATH prefix to a POSIX shell script",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
           maintainers: nix.thunk(() => (() => {
@@ -102,9 +86,9 @@ export default nix.lambda((args) => (() => {
           })()),
         })),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           tests: nix.thunk(() => ({
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             "test-posix": nix.thunk(() => nix.attr(tests, "test-posix")),
           })),
         })),

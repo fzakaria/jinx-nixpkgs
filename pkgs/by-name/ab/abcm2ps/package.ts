@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["package", 38, 7], ["command", 39, 7]], [["version", 37, 5]], [["tests", 36, 12]], [["homepage", 44, 5], ["license", 45, 5], ["description", 46, 5], ["platforms", 47, 5], ["maintainers", 48, 5], ["mainProgram", 49, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["configureFlags", 22, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 31, 3], ["passthru", 36, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchfossil: false, docutils: false, "pkg-config": false, freetype: false, pango: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 38, 7], ["command", 39, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 37, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 36, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 44, 5], ["license", 45, 5], ["description", 46, 5], ["platforms", 47, 5], ["maintainers", 48, 5], ["mainProgram", 49, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["configureFlags", 22, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 31, 3], ["passthru", 36, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const pango = nix.arg($, "pango");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "abcm2ps",
       version: "8.14.18",
       src: nix.thunk(() => nix.app(fetchfossil, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://chiselapp.com/user/moinejf/repository/abcm2ps",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-2nmKjLEZ9dTk+oE16gBm9iheVlLvQFvcdc5FPcxaq6M=",
@@ -34,18 +29,18 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [docutils, pkg_config]),
       buildInputs: nix.thunk(() => [freetype, pango]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "abcm2ps -V",
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "http://moinejf.free.fr/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),
         description: "Command line program which converts ABC to music sheet in PostScript or SVG format",

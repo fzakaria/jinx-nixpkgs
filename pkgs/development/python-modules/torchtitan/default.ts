@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]], [["description", 101, 5], ["changelog", 102, 5], ["homepage", 103, 5], ["license", 104, 5], ["maintainers", 105, 5]], [["pname", 36, 3], ["version", 37, 3], ["pyproject", 38, 3], ["__structuredAttrs", 39, 3], ["src", 41, 3], ["build-system", 48, 3], ["pythonRelaxDeps", 52, 3], ["dependencies", 55, 3], ["pythonImportsCheck", 70, 3], ["nativeCheckInputs", 72, 3], ["disabledTests", 83, 3], ["disabledTestPaths", 95, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, datasets: false, einops: false, pillow: false, safetensors: false, "spmd-types": false, tensorboard: false, tokenizers: false, torch: false, "torch-checkpointing": false, torchdata: false, transformers: false, tyro: false, wandb: false, expecttest: false, "flash-linear-attention": false, pytestCheckHook: false, "tomli-w": false, torchvision: false, triton: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 101, 5], ["changelog", 102, 5], ["homepage", 103, 5], ["license", 104, 5], ["maintainers", 105, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 36, 3], ["version", 37, 3], ["pyproject", 38, 3], ["__structuredAttrs", 39, 3], ["src", 41, 3], ["build-system", 48, 3], ["pythonRelaxDeps", 52, 3], ["dependencies", 55, 3], ["pythonImportsCheck", 70, 3], ["nativeCheckInputs", 72, 3], ["disabledTests", 83, 3], ["disabledTestPaths", 95, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,13 +33,13 @@ export default nix.lambda((args) => (() => {
   const triton = nix.arg($, "triton");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "torchtitan",
       version: "0.3.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pytorch",
           repo: "torchtitan",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -77,7 +75,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => nix.concat(["test_list_files", "TestHelionRoPEOverride"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => ["test_lora_forward"])))),
       disabledTestPaths: nix.thunk(() => ["tests/unit_tests/test_tokenizer.py"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "PyTorch native platform for training generative AI models",
         changelog: nix.thunk(() => nix.str`https://github.com/pytorch/torchtitan/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         homepage: "https://github.com/pytorch/torchtitan",

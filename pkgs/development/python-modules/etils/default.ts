@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 48, 5], ["repo", 49, 5], ["tag", 50, 5], ["hash", 51, 5]], [["array-types", 57, 5], ["eapp", 58, 5], ["ecolab", 63, 5], ["edc", 73, 5], ["enp", 74, 5], ["epath", 79, 5], ["epath-gcs", 85, 5], ["epath-s3", 86, 5], ["epy", 87, 5], ["etqdm", 88, 5], ["etree", 93, 5], ["etree-dm", 94, 5], ["etree-jax", 95, 5], ["etree-tf", 96, 5], ["lazy-imports", 97, 5], ["all", 98, 5]], [["description", 173, 5], ["homepage", 174, 5], ["changelog", 175, 5], ["license", 176, 5], ["maintainers", 177, 5]], [["pname", 42, 3], ["version", 43, 3], ["pyproject", 44, 3], ["__structuredAttrs", 45, 3], ["src", 47, 3], ["build-system", 54, 3], ["optional-dependencies", 56, 3], ["pythonImportsCheck", 115, 3], ["nativeCheckInputs", 117, 3], ["disabledTests", 132, 3], ["disabledTestPaths", 152, 3], ["meta", 172, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, "flit-core": false, jupyter: false, mediapy: false, numpy: false, packaging: false, protobuf: false, fsspec: false, "typing-extensions": false, zipp: false, "absl-py": false, "simple-parsing": false, einops: false, gcsfs: false, s3fs: false, tqdm: false, "dm-tree": false, jax: false, tensorflow: false, chex: false, ffmpeg: false, jaxlib: false, optree: false, pydantic: false, "pytest-xdist": false, pytestCheckHook: false, torch: false, yapf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 48, 5], ["repo", 49, 5], ["tag", 50, 5], ["hash", 51, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["array-types", 57, 5], ["eapp", 58, 5], ["ecolab", 63, 5], ["edc", 73, 5], ["enp", 74, 5], ["epath", 79, 5], ["epath-gcs", 85, 5], ["epath-s3", 86, 5], ["epy", 87, 5], ["etqdm", 88, 5], ["etree", 93, 5], ["etree-dm", 94, 5], ["etree-jax", 95, 5], ["etree-tf", 96, 5], ["lazy-imports", 97, 5], ["all", 98, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 173, 5], ["homepage", 174, 5], ["changelog", 175, 5], ["license", 176, 5], ["maintainers", 177, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 42, 3], ["version", 43, 3], ["pyproject", 44, 3], ["__structuredAttrs", 45, 3], ["src", 47, 3], ["build-system", 54, 3], ["optional-dependencies", 56, 3], ["pythonImportsCheck", 115, 3], ["nativeCheckInputs", 117, 3], ["disabledTests", 132, 3], ["disabledTestPaths", 152, 3], ["meta", 172, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,13 +39,13 @@ export default nix.lambda((args) => (() => {
   const torch = nix.arg($, "torch");
   const yapf = nix.arg($, "yapf");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "etils",
       version: "1.14.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "google",
           repo: "etils",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,7 +53,7 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [flit_core]),
       "optional-dependencies": nix.thunk(() => nix.app(nix.sel(lib, "fix"), (self) => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "array-types": nix.thunk(() => nix.sel(self, "enp")),
           eapp: nix.thunk(() => nix.concat([absl_py, simple_parsing], nix.sel(self, "epy"))),
           ecolab: nix.thunk(() => nix.concat([jupyter, numpy, mediapy, packaging, protobuf], nix.concat(nix.sel(self, "enp"), nix.concat(nix.sel(self, "epy"), nix.sel(self, "etree"))))),
@@ -108,7 +105,7 @@ export default nix.lambda((args) => (() => {
           "etils/etree/tree_utils_test.py",
         ])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Collection of eclectic utils",
         homepage: "https://github.com/google/etils",
         changelog: nix.thunk(() => nix.str`https://github.com/google/etils/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

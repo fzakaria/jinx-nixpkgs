@@ -2,13 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/support.nix", [[["package", 28, 9], ["repositoryURL", 29, 9], ["state", 30, 9]], [["pins", 27, 14]], [["version", 26, 7], ["object", 27, 7]], [["url", 49, 13], ["rev", 50, 13], ["sha256", 51, 13], ["fetchSubmodules", 52, 13]], [["sources", 45, 7], ["configure", 58, 7]], [["mkPinFile", 22, 3], ["helpers", 35, 3]]]);
 const formals$1 = { args: { lib: false, fetchgit: false, formats: false, jq: false, swiftpmHook: false, swiftpmUnpackHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/support.nix", [["package", 28, 9], ["repositoryURL", 29, 9], ["state", 30, 9]]);
-const pos$2 = nix.positions(here + "/support.nix", [["pins", 27, 14]]);
-const pos$3 = nix.positions(here + "/support.nix", [["version", 26, 7], ["object", 27, 7]]);
-const pos$4 = nix.positions(here + "/support.nix", [["url", 49, 13], ["rev", 50, 13], ["sha256", 51, 13], ["fetchSubmodules", 52, 13]]);
-const pos$5 = nix.positions(here + "/support.nix", [["sources", 45, 7], ["configure", 58, 7]]);
-const pos$6 = nix.positions(here + "/support.nix", [["mkPinFile", 22, 3], ["helpers", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,12 +23,12 @@ export default nix.lambda((args) => (() => {
     const mkPinFile = (workspaceState) => (() => {
       nix.assert_((nix.asBool(nix.ge(nix.sel(workspaceState, "version"), 5n)) && nix.asBool(nix.le(nix.sel(workspaceState, "version"), 6n))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/compilers/swift/by-name/sw/swiftpm2nix/support.nix:24:5");
       return nix.app(nix.sel(json, "generate"), "Package.resolved", nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: 1n,
           object: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             pins: nix.thunk(() => nix.builtins.map((dep) => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 package: nix.thunk(() => nix.sel(dep, "packageRef", "name")),
                 repositoryURL: nix.thunk(() => nix.sel(dep, "packageRef", "location")),
                 state: nix.thunk(() => nix.sel(dep, "state", "checkoutState")),
@@ -49,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const pinFile = nix.thunk(() => nix.app(mkPinFile, workspaceState));
       return (() => {
         const sources = nix.thunk(() => nix.app(listToAttrs, nix.thunk(() => nix.builtins.map((dep) => nix.app(nameValuePair, nix.thunk(() => nix.sel(dep, "subpath")), nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   url: nix.thunk(() => nix.sel(dep, "packageRef", "location")),
                   rev: nix.thunk(() => nix.sel(dep, "state", "checkoutState", "revision")),
                   sha256: nix.thunk(() => nix.sel(hashes, nix.key(nix.sel(dep, "subpath")))),
@@ -82,10 +77,10 @@ ${nix.app(nix.sel(lib, "getExe"), jq)} '
 ' < ${workspaceStateFile} > "$swiftpmDeps/workspace-state.json"
 `, nix.app(concatStrings, nix.thunk(() => nix.app(mapAttrsToList, (name) => (src) => nix.str`ln -s '${src}' "$swiftpmDeps/Packages/${name}"
 `, sources)))), "swiftpmUnpackDeps\n\n# Helper that makes a swiftpm dependency mutable by copying the source.\nswiftpmMakeMutable() {\n  local checkoutDir=$NIX_BUILD_TOP/$sourceRoot/.build/checkouts\n  local orig=$(readlink -f \"Packages/$1\")\n\n  mkdir -p \"$checkoutDir\"\n  cp -r \"$orig\" \"$checkoutDir/$1\"\n  chmod -R u+w \"$checkoutDir/$1\"\n\n  rm \"Packages/$1\"\n  ln -s \"$checkoutDir/$1\" \"Packages/$1\"\n}\n"));
-        return { [nix.POS]: pos$5, sources, configure };
+        return { [nix.POS]: $pos[4], sources, configure };
       })();
     })();
-    return { [nix.POS]: pos$6, mkPinFile, helpers };
+    return { [nix.POS]: $pos[5], mkPinFile, helpers };
   })();
 })(), formals$1);
 //# sourceMappingURL=support.ts.map

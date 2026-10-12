@@ -2,51 +2,38 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/dawarich.nix", [[["memorySize", 8, 22]], [["enable", 11, 9], ["localDomain", 12, 9]], [["dawarich", 10, 16]], [["lat", 20, 13], ["lon", 21, 13], ["timestamp", 22, 13]], [["type", 34, 17], ["coordinates", 35, 17]], [["altitude", 41, 17], ["vertical_accuracy", 42, 17], ["accuracy", 43, 17], ["timestamp", 44, 25]], [["type", 32, 15], ["geometry", 33, 15], ["properties", 40, 15]], [["type", 49, 11], ["features", 50, 11]], [["text", 15, 31]], [["geojson", 15, 23]], [["etc", 15, 19]], [["virtualisation", 8, 7], ["services", 10, 7], ["environment", 15, 7]], [["machine", 5, 9]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 54, 3]]]);
 const formals$1 = { args: {  }, ellipsis: true };
 const formals$2 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/dawarich.nix", [["memorySize", 8, 22]]);
-const pos$2 = nix.positions(here + "/dawarich.nix", [["enable", 11, 9], ["localDomain", 12, 9]]);
-const pos$3 = nix.positions(here + "/dawarich.nix", [["dawarich", 10, 16]]);
-const pos$4 = nix.positions(here + "/dawarich.nix", [["lat", 20, 13], ["lon", 21, 13], ["timestamp", 22, 13]]);
 const formals$3 = { args: { lat: false, lon: false, timestamp: false }, ellipsis: false };
-const pos$5 = nix.positions(here + "/dawarich.nix", [["type", 34, 17], ["coordinates", 35, 17]]);
-const pos$6 = nix.positions(here + "/dawarich.nix", [["altitude", 41, 17], ["vertical_accuracy", 42, 17], ["accuracy", 43, 17], ["timestamp", 44, 25]]);
-const pos$7 = nix.positions(here + "/dawarich.nix", [["type", 32, 15], ["geometry", 33, 15], ["properties", 40, 15]]);
-const pos$8 = nix.positions(here + "/dawarich.nix", [["type", 49, 11], ["features", 50, 11]]);
-const pos$9 = nix.positions(here + "/dawarich.nix", [["text", 15, 31]]);
-const pos$10 = nix.positions(here + "/dawarich.nix", [["geojson", 15, 23]]);
-const pos$11 = nix.positions(here + "/dawarich.nix", [["etc", 15, 19]]);
-const pos$12 = nix.positions(here + "/dawarich.nix", [["virtualisation", 8, 7], ["services", 10, 7], ["environment", 15, 7]]);
-const pos$13 = nix.positions(here + "/dawarich.nix", [["machine", 5, 9]]);
-const pos$14 = nix.positions(here + "/dawarich.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    [nix.POS]: pos$14,
+    [nix.POS]: $pos[13],
     name: "dawarich-nixos",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const lib = nix.arg($_1, "lib");
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$12,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$1, memorySize: 1536n })),
+          [nix.POS]: $pos[11],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[0], memorySize: 1536n })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            dawarich: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true, localDomain: "localhost" })),
+            [nix.POS]: $pos[2],
+            dawarich: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true, localDomain: "localhost" })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             etc: nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               geojson: nix.thunk(() => ({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 text: nix.thunk(() => (() => {
                   const points = nix.thunk(() => nix.builtins.map((i) => ({
-                      [nix.POS]: pos$4,
+                      [nix.POS]: $pos[3],
                       lat: nix.thunk(() => nix.div(i, 10.0)),
                       lon: nix.thunk(() => nix.div(i, 10.0)),
                       timestamp: nix.thunk(() => nix.add(1609459200n, nix.mul(i, 1000n))),
@@ -57,11 +44,11 @@ export default nix.lambda((args) => (() => {
                     const lon = nix.arg($_2, "lon");
                     const timestamp = nix.arg($_2, "timestamp");
                     return {
-                      [nix.POS]: pos$7,
+                      [nix.POS]: $pos[6],
                       type: "Feature",
-                      geometry: nix.thunk(() => ({ [nix.POS]: pos$5, type: "Point", coordinates: nix.thunk(() => [lon, lat]) })),
+                      geometry: nix.thunk(() => ({ [nix.POS]: $pos[4], type: "Point", coordinates: nix.thunk(() => [lon, lat]) })),
                       properties: nix.thunk(() => ({
-                        [nix.POS]: pos$6,
+                        [nix.POS]: $pos[5],
                         altitude: 1n,
                         vertical_accuracy: 1n,
                         accuracy: 1n,
@@ -70,7 +57,7 @@ export default nix.lambda((args) => (() => {
                     };
                   })(), formals$3);
                   return nix.builtins.toJSON(nix.thunk(() => ({
-                      [nix.POS]: pos$8,
+                      [nix.POS]: $pos[7],
                       type: "FeatureCollection",
                       features: nix.thunk(() => nix.builtins.map(mkGeoJsonPoint, points)),
                     })));

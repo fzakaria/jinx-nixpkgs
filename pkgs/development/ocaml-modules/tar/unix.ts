@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/unix.nix", [[["description", 26, 5]], [["pname", 11, 3], ["version", 12, 17], ["src", 12, 25], ["doCheck", 12, 29], ["propagatedBuildInputs", 14, 3], ["nativeCheckInputs", 21, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, tar: false, fpath: false, logs: false, lwt: false, git: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/unix.nix", [["description", 26, 5]]);
-const pos$2 = nix.positions(here + "/unix.nix", [["pname", 11, 3], ["version", 12, 17], ["src", 12, 25], ["doCheck", 12, 29], ["propagatedBuildInputs", 14, 3], ["nativeCheckInputs", 21, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const lwt = nix.arg($, "lwt");
   const git = nix.arg($, "git");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "tar-unix",
       version: nix.thunk(() => nix.attr(tar, "version")),
       src: nix.thunk(() => nix.attr(tar, "src")),
@@ -23,7 +22,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [tar, fpath, logs, lwt]),
       nativeCheckInputs: nix.thunk(() => [git]),
       meta: nix.thunk(() => nix.update(nix.sel(tar, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Decode and encode tar format files from Unix",
       })),
     })));

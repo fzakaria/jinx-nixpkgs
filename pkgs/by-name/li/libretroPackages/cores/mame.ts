@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mame.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5], ["fetchSubmodules", 19, 5]], [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5]], [["core", 11, 3], ["version", 12, 3], ["src", 14, 3], ["extraNativeBuildInputs", 22, 3], ["extraBuildInputs", 23, 3], ["makeFlags", 29, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, mkLibretroCore: false, python3: false, "alsa-lib": false, libGLU: false, libGL: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/mame.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5], ["fetchSubmodules", 19, 5]]);
-const pos$2 = nix.positions(here + "/mame.nix", [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5]]);
-const pos$3 = nix.positions(here + "/mame.nix", [["core", 11, 3], ["version", 12, 3], ["src", 14, 3], ["extraNativeBuildInputs", 22, 3], ["extraBuildInputs", 23, 3], ["makeFlags", 29, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const libGLU = nix.arg($, "libGLU");
   const libGL = nix.arg($, "libGL");
   return nix.app(mkLibretroCore, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       core: "mame",
       version: "0-unstable-2026-09-24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "libretro",
           repo: "mame",
           rev: "9069f39340f2d2b1795df8e71bb1d3d0fbc76598",
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       extraBuildInputs: nix.thunk(() => [alsa_lib, libGLU, libGL]),
       makeFlags: nix.thunk(() => ["ARCH="]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Port of MAME to libretro",
         homepage: "https://github.com/libretro/mame",
         license: nix.thunk(() => (() => {

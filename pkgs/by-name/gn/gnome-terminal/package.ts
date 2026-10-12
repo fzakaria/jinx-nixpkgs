@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 36, 5], ["hash", 37, 5]], [["packageName", 79, 7], ["versionPolicy", 80, 7]], [["test", 84, 7]], [["updateScript", 78, 5], ["tests", 83, 5]], [["description", 89, 5], ["mainProgram", 90, 5], ["homepage", 91, 5], ["platforms", 92, 5], ["license", 93, 5], ["teams", 94, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 57, 3], ["postPatch", 69, 3], ["passthru", 77, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, meson: false, ninja: false, "pkg-config": false, python3: false, libxml2: false, gnome: false, nautilus: false, glib: false, gtk4: false, gtk3: false, libhandy: false, "gsettings-desktop-schemas": false, vte: false, gettext: false, which: false, libuuid: false, vala: false, "desktop-file-utils": false, itstool: false, wrapGAppsHook3: false, pcre2: false, libxslt: false, "docbook-xsl-nons": false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 79, 7], ["versionPolicy", 80, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["test", 84, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 78, 5], ["tests", 83, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 89, 5], ["mainProgram", 90, 5], ["homepage", 91, 5], ["platforms", 92, 5], ["license", 93, 5], ["teams", 94, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 57, 3], ["postPatch", 69, 3], ["passthru", 77, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const docbook_xsl_nons = nix.arg($, "docbook-xsl-nons");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "gnome-terminal",
       version: "3.60.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-terminal/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-terminal-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-uNrz8IVFFyxNKIVzP3IDYasDSepmm5kkXu1K0W7T3ig=",
         })))),
@@ -77,19 +72,19 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "patchShebangs \\\n  data/icons/meson_updateiconcache.py \\\n  data/meson_desktopfile.py \\\n  data/meson_metainfofile.py \\\n  src/meson_compileschemas.py\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             packageName: "gnome-terminal",
             versionPolicy: "odd-unstable",
           })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           test: nix.thunk(() => nix.sel(nixosTests, "terminal-emulators", "gnome-terminal")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "GNOME Terminal Emulator",
         mainProgram: "gnome-terminal",
         homepage: "https://gitlab.gnome.org/GNOME/gnome-terminal",

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/functions-doc.nix", [[["nativeBuildInputs", 46, 9]], [["locations", 25, 3], ["markdown", 43, 3]]]);
 const formals$1 = { args: { lib: false, writers: false, nixdoc: false, runCommand: false, treefmt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/functions-doc.nix", [["nativeBuildInputs", 46, 9]]);
-const pos$2 = nix.positions(here + "/functions-doc.nix", [["locations", 25, 3], ["markdown", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +21,7 @@ export default nix.lambda((args) => (() => {
     return nix.app(fn, args_1);
   })());
   return {
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     locations: nix.thunk(() => nix.app(nix.sel(lib, "pipe"), attrs, nix.thunk(() => [
         nix.thunk(() => nix.builtins.attrNames),
         nix.thunk(() => nix.app(nix.builtins.map, (name) => (() => {
@@ -37,7 +36,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.builtins.listToAttrs),
         nix.thunk(() => nix.app(nix.sel(writers, "writeJSON"), "treefmt-function-locations")),
       ]))),
-    markdown: nix.thunk(() => nix.app(runCommand, "treefmt-functions-doc", nix.thunk(() => ({ [nix.POS]: pos$1, nativeBuildInputs: nix.thunk(() => [nixdoc]) })), nix.thunk(() => nix.str`nixdoc --file ${nix.path(here, "./lib.nix")} \\
+    markdown: nix.thunk(() => nix.app(runCommand, "treefmt-functions-doc", nix.thunk(() => ({ [nix.POS]: $pos[0], nativeBuildInputs: nix.thunk(() => [nixdoc]) })), nix.thunk(() => nix.str`nixdoc --file ${nix.path(here, "./lib.nix")} \\
   --locs ${nix.sel(treefmt, "functionsDoc", "locations")} \\
   --description "Functions Reference" \\
   --prefix "pkgs" \\

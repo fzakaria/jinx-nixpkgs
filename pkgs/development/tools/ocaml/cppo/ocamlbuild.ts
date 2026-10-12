@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ocamlbuild.nix", [[["description", 23, 7]], [["pname", 13, 5], ["version", 15, 20], ["src", 15, 28], ["minimalOCamlVersion", 17, 5], ["duneVersion", 18, 5], ["propagatedBuildInputs", 20, 5], ["meta", 22, 5]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, cppo: false, ocamlbuild: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/ocamlbuild.nix", [["description", 23, 7]]);
-const pos$2 = nix.positions(here + "/ocamlbuild.nix", [["pname", 13, 5], ["version", 15, 20], ["src", 15, 28], ["minimalOCamlVersion", 17, 5], ["duneVersion", 18, 5], ["propagatedBuildInputs", 20, 5], ["meta", 22, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,14 +12,14 @@ export default nix.lambda((args) => (() => {
   const cppo = nix.arg($, "cppo");
   const ocamlbuild = nix.arg($, "ocamlbuild");
   return (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), cppo)), "1.6")) ? nix.force(cppo) : nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "cppo_ocamlbuild",
       version: nix.thunk(() => nix.attr(cppo, "version")),
       src: nix.thunk(() => nix.attr(cppo, "src")),
       minimalOCamlVersion: "4.03",
       duneVersion: "3",
       propagatedBuildInputs: nix.thunk(() => [ocamlbuild]),
-      meta: nix.thunk(() => nix.update(nix.sel(cppo, "meta"), { [nix.POS]: pos$1, description: "Plugin to use cppo with ocamlbuild" })),
+      meta: nix.thunk(() => nix.update(nix.sel(cppo, "meta"), { [nix.POS]: $pos[0], description: "Plugin to use cppo with ocamlbuild" })),
     }))));
 })(), formals$1);
 //# sourceMappingURL=ocamlbuild.ts.map

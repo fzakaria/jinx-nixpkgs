@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 62, 5], ["repo", 63, 5], ["tag", 64, 5], ["hash", 65, 5]], [["description", 155, 5], ["homepage", 156, 5], ["changelog", 157, 5], ["license", 158, 5], ["maintainers", 159, 5], ["platforms", 160, 5], ["mainProgram", 161, 5]], [["pname", 56, 3], ["version", 57, 3], ["pyproject", 58, 3], ["__structuredAttrs", 59, 3], ["src", 61, 3], ["patches", 68, 3], ["build-system", 79, 3], ["preBuild", 81, 3], ["dependencies", 88, 3], ["pythonRemoveDeps", 131, 3], ["pythonRelaxDeps", 133, 3], ["makeWrapperArgs", 144, 3], ["meta", 154, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3: false, python3Packages: false, apkid: false, "frida-tools": false, jadx: false, jdk_headless: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 62, 5], ["repo", 63, 5], ["tag", 64, 5], ["hash", 65, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 155, 5], ["homepage", 156, 5], ["changelog", 157, 5], ["license", 158, 5], ["maintainers", 159, 5], ["platforms", 160, 5], ["mainProgram", 161, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 56, 3], ["version", 57, 3], ["pyproject", 58, 3], ["__structuredAttrs", 59, 3], ["src", 61, 3], ["patches", 68, 3], ["build-system", 79, 3], ["preBuild", 81, 3], ["dependencies", 88, 3], ["pythonRemoveDeps", 131, 3], ["pythonRelaxDeps", 133, 3], ["makeWrapperArgs", 144, 3], ["meta", 154, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -58,13 +56,13 @@ export default nix.lambda((args) => (() => {
   const bleach = nix.thunk(() => nix.attr(python3Packages, "bleach"));
   const ip2location = nix.thunk(() => nix.attr(python3Packages, "ip2location"));
   return nix.app(buildPythonApplication, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mobsf",
       version: "4.5.3",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "MobSF",
           repo: "Mobile-Security-Framework-MobSF",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -135,7 +133,7 @@ ${nix.sel(python3, "pythonOnBuildForHost", "interpreter")} -m django makemigrati
         nix.thunk(() => nix.str`${jadx}/bin/jadx`),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Mobile Security Framework (MobSF) is an automated, all-in-one mobile application (Android/iOS/Windows) pen-testing, malware analysis and security assessment framework capable of performing static and dynamic analysis",
         homepage: "https://github.com/MobSF/Mobile-Security-Framework-MobSF",
         changelog: nix.thunk(() => nix.str`https://github.com/MobSF/Mobile-Security-Framework-MobSF/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

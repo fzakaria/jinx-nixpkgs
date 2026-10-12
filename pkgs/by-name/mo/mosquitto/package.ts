@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["withExternalPoll", 26, 7]], [["cmakeFlags", 31, 9]], [["owner", 44, 5], ["repo", 45, 5], ["rev", 46, 5], ["hash", 47, 5]], [["mosquitto", 96, 26]], [["tests", 95, 12]], [["description", 100, 5], ["homepage", 101, 5], ["changelog", 102, 5], ["license", 103, 5], ["maintainers", 104, 5], ["platforms", 108, 5], ["mainProgram", 109, 5]], [["pname", 36, 3], ["version", 37, 3], ["doCheck", 41, 3], ["src", 43, 3], ["postPatch", 50, 3], ["outputs", 57, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 69, 3], ["propagatedBuildInputs", 82, 3], ["cmakeFlags", 84, 3], ["postFixup", 91, 3], ["passthru", 95, 3], ["meta", 99, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cmake: false, docbook_xsl: false, libxslt: false, "c-ares": false, cjson: false, libargon2: false, libuuid: false, libuv: false, libwebsockets: false, openssl: false, withSystemd: true, sqlite: false, systemdLibs: false, uthash: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["withExternalPoll", 26, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["cmakeFlags", 31, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 44, 5], ["repo", 45, 5], ["rev", 46, 5], ["hash", 47, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["mosquitto", 96, 26]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 95, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 100, 5], ["homepage", 101, 5], ["changelog", 102, 5], ["license", 103, 5], ["maintainers", 104, 5], ["platforms", 108, 5], ["mainProgram", 109, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 36, 3], ["version", 37, 3], ["doCheck", 41, 3], ["src", 43, 3], ["postPatch", 50, 3], ["outputs", 57, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 69, 3], ["propagatedBuildInputs", 82, 3], ["cmakeFlags", 84, 3], ["postFixup", 91, 3], ["passthru", 95, 3], ["meta", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,17 +25,17 @@ export default nix.lambda((args) => (() => {
   const systemdLibs = nix.arg($, "systemdLibs");
   const uthash = nix.arg($, "uthash");
   const nixosTests = nix.arg($, "nixosTests");
-  const libwebsockets$ = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(libwebsockets, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withExternalPoll: true }))), "overrideAttrs"), (old) => ({
-      [nix.POS]: pos$2,
+  const libwebsockets$ = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(libwebsockets, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], withExternalPoll: true }))), "overrideAttrs"), (old) => ({
+      [nix.POS]: $pos[1],
       cmakeFlags: nix.thunk(() => nix.concat(nix.sel(old, "cmakeFlags"), ["-DLWS_WITH_HTTP2=OFF"])),
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "mosquitto",
       version: "2.1.2",
       doCheck: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "eclipse-mosquitto",
           repo: "mosquitto",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -74,14 +68,14 @@ done
       ]),
       postFixup: "sed -i \"s|^libdir=.*|libdir=$lib/lib|g\" $dev/lib/pkgconfig/*.pc\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           mosquitto: nix.thunk(() => nix.attr(nixosTests, "mosquitto")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Open source MQTT v3.1/3.1.1/5.0 broker",
         homepage: "https://mosquitto.org/",
         changelog: "https://github.com/eclipse-mosquitto/mosquitto/blob/v2.0.22/ChangeLog.txt",

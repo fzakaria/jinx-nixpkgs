@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 21, 5], ["version", 22, 13], ["hash", 23, 5]], [["sip", 76, 13]], [["description", 90, 5], ["homepage", 91, 5], ["license", 92, 5], ["platforms", 93, 25], ["maintainers", 94, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["patches", 26, 3], ["postPatch", 31, 3], ["enableParallelBuilding", 39, 3], ["postUnpack", 46, 3], ["outputs", 50, 3], ["dontWrapQtApps", 55, 3], ["build-system", 57, 3], ["dependencies", 62, 3], ["nativeBuildInputs", 66, 3], ["buildInputs", 73, 3], ["passthru", 75, 3], ["dontConfigure", 79, 3], ["pythonImportsCheck", 83, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, "pkg-config": false, lndir: false, sip: false, "pyqt-builder": false, qt6Packages: false, pyqt6: false, python: false, mesa: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 21, 5], ["version", 22, 13], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["sip", 76, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 90, 5], ["homepage", 91, 5], ["license", 92, 5], ["platforms", 93, 25], ["maintainers", 94, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["patches", 26, 3], ["postPatch", 31, 3], ["enableParallelBuilding", 39, 3], ["postUnpack", 46, 3], ["outputs", 50, 3], ["dontWrapQtApps", 55, 3], ["build-system", 57, 3], ["dependencies", 62, 3], ["nativeBuildInputs", 66, 3], ["buildInputs", 73, 3], ["passthru", 75, 3], ["dontConfigure", 79, 3], ["pythonImportsCheck", 83, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.11.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "pyqt6_webengine",
           version: version,
           hash: "sha256-Fc9J77u9TGvIdlOyxK6A1gSfgA4xYgszZzSuLjfL7a4=",
@@ -57,7 +54,7 @@ export default nix.lambda((args) => (() => {
         const w_1 = nix.withScope(qt6Packages, null);
         return [nix.thunk(() => nix.lookup(w_1, "qtwebengine"))];
       })());
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, sip: sip }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[1], sip: sip }));
       const dontConfigure = true;
       const pythonImportsCheck = nix.thunk(() => [
         "PyQt6.QtWebEngineCore",
@@ -67,7 +64,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(mesa, "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python bindings for Qt6 WebEngine",
         homepage: "https://riverbankcomputing.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -79,7 +76,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

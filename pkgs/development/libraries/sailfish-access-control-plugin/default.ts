@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 48, 5], ["homepage", 50, 7], ["changelog", 51, 7], ["license", 52, 7], ["teams", 53, 7], ["platforms", 54, 7]], [["pname", 12, 3], ["version", 13, 37], ["src", 13, 45], ["patches", 13, 49], ["postPatch", 15, 3], ["strictDeps", 21, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 29, 3], ["dontWrapQtApps", 35, 3], ["preConfigure", 38, 3], ["postConfigure", 43, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, "pkg-config": false, qmake: false, qtbase: false, qtdeclarative: false, "sailfish-access-control": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 48, 5], ["homepage", 50, 7], ["changelog", 51, 7], ["license", 52, 7], ["teams", 53, 7], ["platforms", 54, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 37], ["src", 13, 45], ["patches", 13, 49], ["postPatch", 15, 3], ["strictDeps", 21, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 29, 3], ["dontWrapQtApps", 35, 3], ["preConfigure", 38, 3], ["postConfigure", 43, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const qtdeclarative = nix.arg($, "qtdeclarative");
   const sailfish_access_control = nix.arg($, "sailfish-access-control");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "sailfish-access-control-plugin",
       version: nix.thunk(() => nix.attr(sailfish_access_control, "version")),
       src: nix.thunk(() => nix.attr(sailfish_access_control, "src")),
@@ -33,7 +32,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(sailfish_access_control, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "QML interface for sailfish-access-control",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         changelog: nix.thunk(() => nix.attr(from, "changelog")),

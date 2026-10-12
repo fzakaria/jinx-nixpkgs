@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 15, 5], ["url", 16, 5], ["outputHash", 17, 5], ["outputHashAlgo", 18, 5]], [["pname", 27, 26], ["version", 27, 32], ["hash", 28, 5]], [["RECURSION_SRC_PATH", 32, 5]], [["updateScript", 45, 12]], [["broken", 49, 5], ["description", 50, 5], ["mainProgram", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["env", 31, 3], ["cargoHash", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 41, 3], ["passthru", 45, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, fetchCrate: false, fetchurl: false, rustPlatform: false, "pkg-config": false, openssl: false, "nix-update-script": false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 15, 5], ["url", 16, 5], ["outputHash", 17, 5], ["outputHashAlgo", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 27, 26], ["version", 27, 32], ["hash", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["RECURSION_SRC_PATH", 32, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 45, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["broken", 49, 5], ["description", 50, 5], ["mainProgram", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["env", 31, 3], ["cargoHash", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 41, 3], ["passthru", 45, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,32 +17,32 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const src_recursion_hash = "744b999f0a35b3c86753311c7efb2a0054be21727095cf105af6ee7d3f4d8849";
   const src_recursion = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "cargo-risczero-recursion-source",
       url: nix.thunk(() => nix.str`https://risc0-artifacts.s3.us-west-2.amazonaws.com/zkr/${src_recursion_hash}.zip`),
       outputHash: src_recursion_hash,
       outputHashAlgo: "sha256",
     }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "cargo-risczero",
       version: "3.0.6",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-yhYD2wtkR5ZSZGuFuOEiMYw1xH9e/I17EYFiTaSKZcA=",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, RECURSION_SRC_PATH: src_recursion })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], RECURSION_SRC_PATH: src_recursion })),
       cargoHash: "sha256-D2TtmGvjffWDesHm1/lnNTZHRB3INfNp2RI/PfHMo2o=",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [openssl]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Cargo extension to help create, manage, and test RISC Zero projects",
         mainProgram: "cargo-risczero",

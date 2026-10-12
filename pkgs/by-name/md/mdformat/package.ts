@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["withPlugins", 25, 19]], [["pname", 16, 40], ["version", 16, 46], ["meta", 16, 54], ["nativeBuildInputs", 18, 9], ["plugins", 22, 9], ["passthru", 24, 9]]]);
 const formals$1 = { args: { lib: false, python3: false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["withPlugins", 25, 19]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 16, 40], ["version", 16, 46], ["meta", 16, 54], ["nativeBuildInputs", 18, 9], ["plugins", 22, 9], ["passthru", 24, 9]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const withPlugins = (selector) => nix.app(runCommand, "mdformat-wrapped", nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(python, "pkgs", "mdformat"));
       return {
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: nix.thunk(() => nix.attr(from, "pname")),
       version: nix.thunk(() => nix.attr(from, "version")),
       meta: nix.thunk(() => nix.attr(from, "meta")),
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(python, "pkgs", "wrapPython"))]),
       plugins: nix.thunk(() => nix.app(selector, nix.thunk(() => nix.sel(python, "pkgs")))),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, withPlugins: withPlugins })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[0], withPlugins: withPlugins })),
     };
     })()), nix.thunk(() => nix.str`buildPythonPath "$plugins"
 makeWrapper ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(python, "pkgs", "mdformat")))} $out/bin/mdformat \\

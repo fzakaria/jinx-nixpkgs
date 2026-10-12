@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["package", 24, 5], ["command", 25, 5]], [["version", 23, 18]], [["tests", 23, 12]], [["homepage", 29, 5], ["description", 30, 5], ["longDescription", 31, 5], ["license", 35, 5], ["maintainers", 36, 5], ["broken", 38, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["passthru", 23, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, stdenv: false, testers: false, "mynewt-newtmgr": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 24, 5], ["command", 25, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 23, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 23, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 29, 5], ["description", 30, 5], ["longDescription", 31, 5], ["license", 35, 5], ["maintainers", 36, 5], ["broken", 38, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["passthru", 23, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const mynewt_newtmgr = nix.arg($, "mynewt-newtmgr");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "mynewt-newtmgr",
       version: "1.10.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "apache",
           repo: "mynewt-newtmgr",
           rev: nix.thunk(() => nix.str`mynewt_${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}_tag`),
@@ -31,14 +26,14 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-+vOZoueoMqlGnopLKc6pCgTmcgI34pxaMNbr6Y+JCfQ=",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: mynewt_newtmgr, command: "newtmgr version" })))),
+          [nix.POS]: $pos[2],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: mynewt_newtmgr, command: "newtmgr version" })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://mynewt.apache.org/",
         description: "Tool to communicate with devices running Mynewt OS",
         longDescription: "Newt Manager (newtmgr) an application that enables a user to communicate\nwith and manage remote devices running the Mynewt OS\n",

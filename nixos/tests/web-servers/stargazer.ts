@@ -2,42 +2,11 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/stargazer.nix", [[["pname", 4, 5], ["version", 5, 30], ["src", 5, 38], ["buildInputs", 6, 5], ["dontBuild", 14, 5], ["doCheck", 15, 5], ["installPhase", 16, 5]], [["pname", 22, 5], ["version", 23, 30], ["src", 23, 38], ["buildPhase", 24, 5], ["doCheck", 27, 5], ["installPhase", 28, 5]], [["pname", 34, 5], ["version", 35, 30], ["src", 35, 38], ["buildInputs", 36, 5], ["dontConfigure", 37, 5], ["dontBuild", 38, 5], ["doCheck", 39, 5], ["installPhase", 40, 5]], [["maintainers", 49, 5]], [["route", 62, 15], ["root", 63, 15]], [["route", 66, 15], ["root", 67, 15], ["lang", 68, 15], ["charset", 69, 15]], [["route", 72, 15], ["root", 73, 15], ["rewrite", 74, 15], ["lang", 75, 15], ["charset", 76, 15]], [["route", 79, 15], ["root", 80, 15], ["lang", 81, 15], ["charset", 82, 15], ["cert-path", 83, 15], ["key-path", 84, 15]], [["route", 87, 15], ["root", 88, 15], ["cgi", 89, 15], ["cgi-timeout", 90, 15]], [["route", 93, 15], ["scgi", 94, 15], ["scgi-address", 95, 15]], [["route", 98, 15], ["redirect", 99, 15], ["permanent", 100, 15]], [["route", 103, 15], ["root", 104, 15], ["client-cert", 105, 15]], [["route", 108, 15], ["redirect", 109, 15], ["rewrite", 110, 15]], [["route", 113, 15], ["root", 114, 15]], [["route", 117, 15], ["root", 118, 15], ["mime-override", 119, 15]], [["enable", 57, 11], ["connectionLogging", 58, 11], ["requestTimeout", 59, 11], ["routes", 60, 11]], [["stargazer", 56, 18]], [["ExecStart", 127, 13]], [["after", 124, 11], ["wantedBy", 125, 11], ["serviceConfig", 126, 11]], [["scgi_server", 123, 26]], [["services", 123, 17]], [["services", 56, 9], ["systemd", 123, 9]], [["isSystemUser", 135, 11], ["group", 136, 11]], [["cgi", 134, 21]], [["cgi", 138, 22]], [["users", 134, 15], ["groups", 138, 15]], [["route", 146, 15], ["root", 147, 15], ["cgi", 148, 15], ["cgi-timeout", 149, 15], ["cgi-user", 150, 15]], [["enable", 140, 11], ["connectionLogging", 141, 11], ["requestTimeout", 142, 11], ["allowCgiUser", 143, 11], ["routes", 144, 11]], [["stargazer", 139, 18]], [["users", 134, 9], ["services", 139, 9]], [["geminiserver", 53, 5], ["cgiTestServer", 131, 5]], [["name", 47, 3], ["meta", 48, 3], ["nodes", 52, 3], ["testScript", 157, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/stargazer.nix", [["pname", 4, 5], ["version", 5, 30], ["src", 5, 38], ["buildInputs", 6, 5], ["dontBuild", 14, 5], ["doCheck", 15, 5], ["installPhase", 16, 5]]);
-const pos$2 = nix.positions(here + "/stargazer.nix", [["pname", 22, 5], ["version", 23, 30], ["src", 23, 38], ["buildPhase", 24, 5], ["doCheck", 27, 5], ["installPhase", 28, 5]]);
-const pos$3 = nix.positions(here + "/stargazer.nix", [["pname", 34, 5], ["version", 35, 30], ["src", 35, 38], ["buildInputs", 36, 5], ["dontConfigure", 37, 5], ["dontBuild", 38, 5], ["doCheck", 39, 5], ["installPhase", 40, 5]]);
-const pos$4 = nix.positions(here + "/stargazer.nix", [["maintainers", 49, 5]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$5 = nix.positions(here + "/stargazer.nix", [["route", 62, 15], ["root", 63, 15]]);
-const pos$6 = nix.positions(here + "/stargazer.nix", [["route", 66, 15], ["root", 67, 15], ["lang", 68, 15], ["charset", 69, 15]]);
-const pos$7 = nix.positions(here + "/stargazer.nix", [["route", 72, 15], ["root", 73, 15], ["rewrite", 74, 15], ["lang", 75, 15], ["charset", 76, 15]]);
-const pos$8 = nix.positions(here + "/stargazer.nix", [["route", 79, 15], ["root", 80, 15], ["lang", 81, 15], ["charset", 82, 15], ["cert-path", 83, 15], ["key-path", 84, 15]]);
-const pos$9 = nix.positions(here + "/stargazer.nix", [["route", 87, 15], ["root", 88, 15], ["cgi", 89, 15], ["cgi-timeout", 90, 15]]);
-const pos$10 = nix.positions(here + "/stargazer.nix", [["route", 93, 15], ["scgi", 94, 15], ["scgi-address", 95, 15]]);
-const pos$11 = nix.positions(here + "/stargazer.nix", [["route", 98, 15], ["redirect", 99, 15], ["permanent", 100, 15]]);
-const pos$12 = nix.positions(here + "/stargazer.nix", [["route", 103, 15], ["root", 104, 15], ["client-cert", 105, 15]]);
-const pos$13 = nix.positions(here + "/stargazer.nix", [["route", 108, 15], ["redirect", 109, 15], ["rewrite", 110, 15]]);
-const pos$14 = nix.positions(here + "/stargazer.nix", [["route", 113, 15], ["root", 114, 15]]);
-const pos$15 = nix.positions(here + "/stargazer.nix", [["route", 117, 15], ["root", 118, 15], ["mime-override", 119, 15]]);
-const pos$16 = nix.positions(here + "/stargazer.nix", [["enable", 57, 11], ["connectionLogging", 58, 11], ["requestTimeout", 59, 11], ["routes", 60, 11]]);
-const pos$17 = nix.positions(here + "/stargazer.nix", [["stargazer", 56, 18]]);
-const pos$18 = nix.positions(here + "/stargazer.nix", [["ExecStart", 127, 13]]);
-const pos$19 = nix.positions(here + "/stargazer.nix", [["after", 124, 11], ["wantedBy", 125, 11], ["serviceConfig", 126, 11]]);
-const pos$20 = nix.positions(here + "/stargazer.nix", [["scgi_server", 123, 26]]);
-const pos$21 = nix.positions(here + "/stargazer.nix", [["services", 123, 17]]);
-const pos$22 = nix.positions(here + "/stargazer.nix", [["services", 56, 9], ["systemd", 123, 9]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$23 = nix.positions(here + "/stargazer.nix", [["isSystemUser", 135, 11], ["group", 136, 11]]);
-const pos$24 = nix.positions(here + "/stargazer.nix", [["cgi", 134, 21]]);
-const pos$25 = nix.positions(here + "/stargazer.nix", [["cgi", 138, 22]]);
-const pos$26 = nix.positions(here + "/stargazer.nix", [["users", 134, 15], ["groups", 138, 15]]);
-const pos$27 = nix.positions(here + "/stargazer.nix", [["route", 146, 15], ["root", 147, 15], ["cgi", 148, 15], ["cgi-timeout", 149, 15], ["cgi-user", 150, 15]]);
-const pos$28 = nix.positions(here + "/stargazer.nix", [["enable", 140, 11], ["connectionLogging", 141, 11], ["requestTimeout", 142, 11], ["allowCgiUser", 143, 11], ["routes", 144, 11]]);
-const pos$29 = nix.positions(here + "/stargazer.nix", [["stargazer", 139, 18]]);
-const pos$30 = nix.positions(here + "/stargazer.nix", [["users", 134, 9], ["services", 139, 9]]);
-const pos$31 = nix.positions(here + "/stargazer.nix", [["geminiserver", 53, 5], ["cgiTestServer", 131, 5]]);
 const formals$4 = { args: { nodes: false }, ellipsis: true };
-const pos$32 = nix.positions(here + "/stargazer.nix", [["name", 47, 3], ["meta", 48, 3], ["nodes", 52, 3], ["testScript", 157, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -46,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const test_script = nix.thunk(() => nix.app(nix.sel(pkgs, "stdenv", "mkDerivation"), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(pkgs, "stargazer"));
       return {
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "stargazer-test-script",
       version: nix.thunk(() => nix.attr(from, "version")),
       src: nix.thunk(() => nix.attr(from, "src")),
@@ -70,7 +39,7 @@ export default nix.lambda((args) => (() => {
   const test_env = nix.thunk(() => nix.app(nix.sel(pkgs, "stdenv", "mkDerivation"), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(pkgs, "stargazer"));
       return {
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "stargazer-test-env",
       version: nix.thunk(() => nix.attr(from, "version")),
       src: nix.thunk(() => nix.attr(from, "src")),
@@ -82,7 +51,7 @@ export default nix.lambda((args) => (() => {
   const scgi_server = nix.thunk(() => nix.app(nix.sel(pkgs, "stdenv", "mkDerivation"), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(pkgs, "stargazer"));
       return {
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "stargazer-test-scgi-server",
       version: nix.thunk(() => nix.attr(from, "version")),
       src: nix.thunk(() => nix.attr(from, "src")),
@@ -97,44 +66,44 @@ export default nix.lambda((args) => (() => {
     };
     })())));
   return {
-    [nix.POS]: pos$32,
+    [nix.POS]: $pos[31],
     name: "stargazer",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "gaykitty"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$31,
+      [nix.POS]: $pos[30],
       geminiserver: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$22,
+          [nix.POS]: $pos[21],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             stargazer: nix.thunk(() => ({
-              [nix.POS]: pos$16,
+              [nix.POS]: $pos[15],
               enable: true,
               connectionLogging: false,
               requestTimeout: 1n,
               routes: nix.thunk(() => [
                 nix.thunk(() => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   route: "localhost",
                   root: nix.thunk(() => nix.str`${test_env}/test_data/test_site`),
                 })),
                 nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   route: "localhost=/en.gmi",
                   root: nix.thunk(() => nix.str`${test_env}/test_data/test_site`),
                   lang: "en",
                   charset: "ascii",
                 })),
                 nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   route: "localhost~/(.*).gemini",
                   root: nix.thunk(() => nix.str`${test_env}/test_data/test_site`),
                   rewrite: "\\1.gmi",
@@ -142,7 +111,7 @@ export default nix.lambda((args) => (() => {
                   charset: "ascii",
                 })),
                 nix.thunk(() => ({
-                  [nix.POS]: pos$8,
+                  [nix.POS]: $pos[7],
                   route: "localhost=/plain.txt",
                   root: nix.thunk(() => nix.str`${test_env}/test_data/test_site`),
                   lang: "en",
@@ -151,38 +120,43 @@ export default nix.lambda((args) => (() => {
                   "key-path": "/var/lib/gemini/certs/localhost.key",
                 })),
                 nix.thunk(() => ({
-                  [nix.POS]: pos$9,
+                  [nix.POS]: $pos[8],
                   route: "localhost:/cgi-bin",
                   root: nix.thunk(() => nix.str`${test_env}/test_data`),
                   cgi: true,
                   "cgi-timeout": 5n,
                 })),
                 nix.thunk(() => ({
-                  [nix.POS]: pos$10,
+                  [nix.POS]: $pos[9],
                   route: "localhost:/scgi",
                   scgi: true,
                   "scgi-address": "127.0.0.1:1099",
                 })),
-                nix.thunk(() => ({ [nix.POS]: pos$11, route: "localhost=/root", redirect: "..", permanent: true })),
                 nix.thunk(() => ({
-                  [nix.POS]: pos$12,
+                  [nix.POS]: $pos[10],
+                  route: "localhost=/root",
+                  redirect: "..",
+                  permanent: true,
+                })),
+                nix.thunk(() => ({
+                  [nix.POS]: $pos[11],
                   route: "localhost=/priv.gmi",
                   root: nix.thunk(() => nix.str`${test_env}/test_data/test_site`),
                   "client-cert": nix.thunk(() => nix.str`${test_env}/test_data/client_cert/good.crt`),
                 })),
                 nix.thunk(() => ({
-                  [nix.POS]: pos$13,
+                  [nix.POS]: $pos[12],
                   route: "example.com~(.*)",
                   redirect: "gemini://localhost",
                   rewrite: "\\1",
                 })),
                 nix.thunk(() => ({
-                  [nix.POS]: pos$14,
+                  [nix.POS]: $pos[13],
                   route: "localhost:/no-exist",
                   root: nix.thunk(() => nix.str`${test_env}/does_not_exist`),
                 })),
                 nix.thunk(() => ({
-                  [nix.POS]: pos$15,
+                  [nix.POS]: $pos[14],
                   route: "localhost=/rss.xml",
                   root: nix.thunk(() => nix.str`${test_env}/test_data/test_site`),
                   "mime-override": "application/atom+xml",
@@ -191,15 +165,15 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$21,
+            [nix.POS]: $pos[20],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$20,
+              [nix.POS]: $pos[19],
               scgi_server: nix.thunk(() => ({
-                [nix.POS]: pos$19,
+                [nix.POS]: $pos[18],
                 after: nix.thunk(() => ["network.target"]),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  [nix.POS]: pos$18,
+                  [nix.POS]: $pos[17],
                   ExecStart: nix.thunk(() => nix.str`${scgi_server}/bin/scgi-server`),
                 })),
               })),
@@ -210,26 +184,26 @@ export default nix.lambda((args) => (() => {
       cgiTestServer: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return {
-          [nix.POS]: pos$30,
+          [nix.POS]: $pos[29],
           users: nix.thunk(() => ({
-            [nix.POS]: pos$26,
+            [nix.POS]: $pos[25],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$24,
-              cgi: nix.thunk(() => ({ [nix.POS]: pos$23, isSystemUser: true, group: "cgi" })),
+              [nix.POS]: $pos[23],
+              cgi: nix.thunk(() => ({ [nix.POS]: $pos[22], isSystemUser: true, group: "cgi" })),
             })),
-            groups: nix.thunk(() => ({ [nix.POS]: pos$25, cgi: nix.thunk(() => ({})) })),
+            groups: nix.thunk(() => ({ [nix.POS]: $pos[24], cgi: nix.thunk(() => ({})) })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$29,
+            [nix.POS]: $pos[28],
             stargazer: nix.thunk(() => ({
-              [nix.POS]: pos$28,
+              [nix.POS]: $pos[27],
               enable: true,
               connectionLogging: false,
               requestTimeout: 1n,
               allowCgiUser: true,
               routes: nix.thunk(() => [
                 nix.thunk(() => ({
-                  [nix.POS]: pos$27,
+                  [nix.POS]: $pos[26],
                   route: "localhost:/cgi-bin",
                   root: nix.thunk(() => nix.str`${test_env}/test_data`),
                   cgi: true,

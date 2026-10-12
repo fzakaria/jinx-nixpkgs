@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["pname", 27, 7], ["version", 28, 7], ["src", 29, 7], ["pnpmWorkspaces", 30, 7], ["pnpm", 32, 5], ["fetcherVersion", 33, 5], ["hash", 34, 5]], [["description", 100, 5], ["homepage", 101, 5], ["changelog", 102, 5], ["license", 103, 5], ["maintainers", 104, 5], ["mainProgram", 108, 5], ["platforms", 109, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["pnpmWorkspaces", 24, 3], ["pnpmDeps", 25, 3], ["nativeBuildInputs", 37, 3], ["buildPhase", 44, 3], ["preInstall", 59, 3], ["installPhase", 82, 3], ["doInstallCheck", 97, 3], ["meta", 99, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, pnpm_12: false, fetchPnpmDeps: false, pnpmConfigHook: false, "nodejs-slim": false, makeBinaryWrapper: false, shellcheck: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 27, 7], ["version", 28, 7], ["src", 29, 7], ["pnpmWorkspaces", 30, 7], ["pnpm", 32, 5], ["fetcherVersion", 33, 5], ["hash", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 100, 5], ["homepage", 101, 5], ["changelog", 102, 5], ["license", 103, 5], ["maintainers", 104, 5], ["mainProgram", 108, 5], ["platforms", 109, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["pnpmWorkspaces", 24, 3], ["pnpmDeps", 25, 3], ["nativeBuildInputs", 37, 3], ["buildPhase", 44, 3], ["preInstall", 59, 3], ["installPhase", 82, 3], ["doInstallCheck", 97, 3], ["meta", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const shellcheck = nix.arg($, "shellcheck");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "bash-language-server",
       version: "5.8.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bash-lsp",
           repo: "bash-language-server",
           tag: nix.thunk(() => nix.str`server-${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       pnpmWorkspaces: nix.thunk(() => ["bash-language-server"]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -60,7 +57,7 @@ runHook postInstall
 `),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Language server for Bash",
         homepage: "https://github.com/bash-lsp/bash-language-server",
         changelog: nix.thunk(() => nix.str`https://github.com/bash-lsp/bash-language-server/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

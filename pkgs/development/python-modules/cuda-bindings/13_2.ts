@@ -2,20 +2,19 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/13_2.nix", [[["libcudart", 11, 7], ["libcufile", 12, 7], ["libnvfatbin", 13, 7], ["libnvjitlink", 14, 7], ["libnvml", 15, 7], ["libnvrtc", 16, 7], ["libnvvm", 17, 7]], [["version", 6, 3], ["sourceHash", 7, 3], ["nvidiaLibsPatch", 9, 3], ["pythonImportsCheck", 21, 3], ["disabledTests", 26, 3]]]);
 const formals$1 = { args: { replaceVars: false, cudaLibPaths: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/13_2.nix", [["libcudart", 11, 7], ["libcufile", 12, 7], ["libnvfatbin", 13, 7], ["libnvjitlink", 14, 7], ["libnvml", 15, 7], ["libnvrtc", 16, 7], ["libnvvm", 17, 7]]);
-const pos$2 = nix.positions(here + "/13_2.nix", [["version", 6, 3], ["sourceHash", 7, 3], ["nvidiaLibsPatch", 9, 3], ["pythonImportsCheck", 21, 3], ["disabledTests", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const replaceVars = nix.arg($, "replaceVars");
   const cudaLibPaths = nix.arg($, "cudaLibPaths");
   return {
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     version: "13.2.0",
     sourceHash: "sha256-VOaRjZwg1phGjkOeXjWMcs/vjlPMNKiVSKyKrQG5ohM=",
     nvidiaLibsPatch: nix.thunk(() => nix.app(replaceVars, nix.path(here, "./patch-nvidia-libs-paths_13_2.patch"), nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         libcudart: nix.thunk(() => nix.attr(cudaLibPaths, "libcudart")),
         libcufile: nix.thunk(() => nix.attr(cudaLibPaths, "libcufile")),
         libnvfatbin: nix.thunk(() => nix.attr(cudaLibPaths, "libnvfatbin")),

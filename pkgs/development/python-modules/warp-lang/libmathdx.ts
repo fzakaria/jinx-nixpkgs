@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libmathdx.nix", [[["aarch64-linux", 36, 11], ["x86_64-linux", 37, 11]], [["aarch64-linux", 40, 11], ["x86_64-linux", 41, 11]], [["12", 35, 9], ["13", 39, 9]], [["hash", 48, 17], ["name", 48, 22], ["url", 49, 9]], [["description", 70, 5], ["homepage", 71, 5], ["sourceProvenance", 72, 5], ["license", 73, 5], ["platforms", 89, 5], ["maintainers", 93, 5]], [["pname", 12, 3], ["version", 13, 3], ["outputs", 15, 3], ["src", 20, 3], ["dontUnpack", 53, 3], ["dontConfigure", 54, 3], ["dontBuild", 55, 3], ["installPhase", 57, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { _cuda: false, cudaPackages: false, fetchurl: false, lib: false, stdenvNoCC: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libmathdx.nix", [["aarch64-linux", 36, 11], ["x86_64-linux", 37, 11]]);
-const pos$2 = nix.positions(here + "/libmathdx.nix", [["aarch64-linux", 40, 11], ["x86_64-linux", 41, 11]]);
-const pos$3 = nix.positions(here + "/libmathdx.nix", [["12", 35, 9], ["13", 39, 9]]);
-const pos$4 = nix.positions(here + "/libmathdx.nix", [["hash", 48, 17], ["name", 48, 22], ["url", 49, 9]]);
-const pos$5 = nix.positions(here + "/libmathdx.nix", [["description", 70, 5], ["homepage", 71, 5], ["sourceProvenance", 72, 5], ["license", 73, 5], ["platforms", 89, 5], ["maintainers", 93, 5]]);
-const pos$6 = nix.positions(here + "/libmathdx.nix", [["pname", 12, 3], ["version", 13, 3], ["outputs", 15, 3], ["src", 20, 3], ["dontUnpack", 53, 3], ["dontConfigure", 54, 3], ["dontBuild", 55, 3], ["installPhase", 57, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "libmathdx",
       version: "0.2.3",
       outputs: nix.thunk(() => ["out", "static"]),
@@ -34,20 +29,20 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.str`cuda${cudaVersion}`),
           ])));
         const hashes = nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "12": nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             "aarch64-linux": "sha256-d/aBC+zU2ciaw3isv33iuviXYaLGLdVDdzynGk9SFck=",
             "x86_64-linux": "sha256-CHIH0s4SnA67COtHBkwVCajW/3f0VxNBmuDLXy4LFIg=",
           })),
           "13": nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             "aarch64-linux": "sha256-TetJbMts8tpmj5PV4+jpnUHMcooDrXUEKL3aGWqilKI=",
             "x86_64-linux": "sha256-wLJLbRpQWa6QEm8ibm1gxt3mXvkWvu0vEzpnqTIvE1M=",
           })),
         }));
         return nix.app(nix.sel(lib, "mapNullable"), (hash) => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               hash: hash,
               name: name,
               url: nix.thunk(() => nix.str`${baseURL}/cuda${cudaMajorVersion}/${name}.tar.gz`),
@@ -58,7 +53,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\nmkdir -p \"$out\"\ntar -xzf \"$src\" -C \"$out\"\n\nmkdir -p \"$static\"\nmoveToOutput \"lib/libmathdx_static.a\" \"$static\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Library used to integrate cuBLASDx and cuFFTDx into Warp",
         homepage: "https://developer.nvidia.com/cublasdx-downloads",
         sourceProvenance: nix.thunk(() => (() => {

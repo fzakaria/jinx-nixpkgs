@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["pname", 69, 26], ["data", 70, 5]], [["package", 117, 5], ["command", 118, 5]], [["default", 113, 18], ["version", 116, 18]], [["tests", 113, 12]], [["description", 122, 5], ["longDescription", 123, 5], ["homepage", 130, 5], ["changelog", 131, 5], ["license", 132, 5], ["maintainers", 133, 5], ["mainProgram", 139, 5], ["platforms", 140, 5]], [["pname", 22, 3], ["version", 23, 3], ["__structuredAttrs", 25, 3], ["src", 30, 3], ["buildInputs", 37, 3], ["nativeBuildInputs", 41, 3], ["postPatch", 46, 3], ["mitmCache", 68, 3], ["__darwinAllowLocalNetworking", 72, 3], ["gradleUpdateTask", 78, 3], ["gradleFlags", 80, 3], ["preBuild", 81, 3], ["gradleBuildTask", 85, 3], ["installPhase", 87, 3], ["postFixup", 98, 3], ["passthru", 113, 3], ["meta", 121, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, makeWrapper: false, openjdk: false, gradle_8: false, wget: false, which: false, gnused: false, gawk: false, coreutils: false, bash: false, testers: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 69, 26], ["data", 70, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 117, 5], ["command", 118, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["default", 113, 18], ["version", 116, 18]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 113, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 122, 5], ["longDescription", 123, 5], ["homepage", 130, 5], ["changelog", 131, 5], ["license", 132, 5], ["maintainers", 133, 5], ["mainProgram", 139, 5], ["platforms", 140, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["__structuredAttrs", 25, 3], ["src", 30, 3], ["buildInputs", 37, 3], ["nativeBuildInputs", 41, 3], ["postPatch", 46, 3], ["mitmCache", 68, 3], ["__darwinAllowLocalNetworking", 72, 3], ["gradleUpdateTask", 78, 3], ["gradleFlags", 80, 3], ["preBuild", 81, 3], ["gradleBuildTask", 85, 3], ["installPhase", 87, 3], ["postFixup", 98, 3], ["passthru", 113, 3], ["meta", 121, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const gradle = gradle_8;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "nextflow",
       version: "26.04.6",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nextflow-io",
           repo: "nextflow",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -63,7 +57,7 @@ substituteInPlace modules/nextflow/src/main/groovy/nextflow/executor/BashWrapper
     "binding.trace_cmd = containerBuilder != null ? getTraceCommand(interpreter).replaceFirst(\\"/nix/store/.*/bin/bash\\", \\"/bin/bash\\") : getTraceCommand(interpreter)"
 `),
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           data: nix.path(here, "./deps.json"),
         })))),
@@ -85,19 +79,19 @@ runHook postInstall
   --run 'export NXF_OPTS="-Duser.name=$USER\${NXF_OPTS:+ $NXF_OPTS}"'
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           default: nix.thunk(() => nix.sel(nixosTests, "nextflow")),
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "env HOME=$TMPDIR nextflow -version",
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "DSL for data-driven computational pipelines",
         longDescription: "Nextflow is a bioinformatics workflow manager that enables the development of portable and reproducible workflows.\n\nIt supports deploying workflows on a variety of execution platforms including local, HPC schedulers, AWS Batch, Google Cloud Life Sciences, and Kubernetes.\n\nAdditionally, it provides support for manage your workflow dependencies through built-in support for Conda, Docker, Singularity, and Modules.\n",
         homepage: "https://www.nextflow.io/",

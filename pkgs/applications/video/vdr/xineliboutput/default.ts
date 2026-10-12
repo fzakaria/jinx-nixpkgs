@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 31, 7], ["sha256", 32, 7]], [["requiredXinePlugins", 84, 14]], [["homepage", 90, 7], ["description", 91, 7], ["maintainers", 92, 7], ["license", 93, 7], ["platforms", 94, 26]], [["pname", 27, 5], ["version", 28, 5], ["src", 30, 5], ["postPatch", 35, 5], ["dontAddPrefix", 42, 5], ["postConfigure", 44, 5], ["makeFlags", 49, 5], ["postFixup", 51, 5], ["nativeBuildInputs", 63, 5], ["buildInputs", 65, 5], ["passthru", 84, 5], ["meta", 89, 5]]]);
 const formals$1 = { args: { stdenv: false, fetchurl: false, lib: false, vdr: false, libcap: false, libvdpau: false, "xine-lib": false, libjpeg: false, libextractor: false, libglvnd: false, libGLU: false, libx11: false, libxext: false, libxrender: false, libxrandr: false, ffmpeg: false, avahi: false, wayland: false, makeWrapper: false, "dbus-glib": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 31, 7], ["sha256", 32, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["requiredXinePlugins", 84, 14]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 90, 7], ["description", 91, 7], ["maintainers", 92, 7], ["license", 93, 7], ["platforms", 94, 26]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 27, 5], ["version", 28, 5], ["src", 30, 5], ["postPatch", 35, 5], ["dontAddPrefix", 42, 5], ["postConfigure", 44, 5], ["makeFlags", 49, 5], ["postFixup", 51, 5], ["nativeBuildInputs", 63, 5], ["buildInputs", 65, 5], ["passthru", 84, 5], ["meta", 89, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const pname = "vdr-xineliboutput";
       const version = "2.3.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/xineliboutput/xineliboutput/${pname}-${version}/${pname}-${version}.tgz`),
           sha256: "sha256-GnTaGaIbBufZP2npa9mAbrO1ccMf1RzhbvjrWhKBTjg=",
         }))));
@@ -67,11 +64,11 @@ done
         avahi,
         wayland,
       ]);
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, requiredXinePlugins: nix.thunk(() => [xine_lib, self]) }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[1], requiredXinePlugins: nix.thunk(() => [xine_lib, self]) }));
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(vdr, "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://sourceforge.net/projects/xineliboutput/",
         description: "Xine-lib based software output device for VDR",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "ck3d"))]),
@@ -80,7 +77,7 @@ done
       };
       })());
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["changelog", 78, 5], ["description", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["maintainers", 82, 5]], [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["src", 32, 3], ["postPatch", 39, 3], ["nativeBuildInputs", 46, 3], ["build-system", 50, 3], ["pythonImportsCheck", 56, 3], ["nativeCheckInputs", 58, 3], ["disabledTestPaths", 69, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, docutils: false, fetchFromGitHub: false, httpx2: false, jinja2: false, lib: false, meson: false, "meson-python": false, ninja: false, pyperf: false, pyprojectVersionPatchHook: false, "pytest-codspeed": false, "pytest-mock": false, pytestCheckHook: false, tenacity: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 78, 5], ["description", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["maintainers", 82, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["src", 32, 3], ["postPatch", 39, 3], ["nativeBuildInputs", 46, 3], ["build-system", 50, 3], ["pythonImportsCheck", 56, 3], ["nativeCheckInputs", 58, 3], ["disabledTestPaths", 69, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,19 +23,19 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const tenacity = nix.arg($, "tenacity");
   const html5lib_tests = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "html5lib",
       repo: "html5lib-tests",
       rev: "9fb614afaa42ce8787840f057b32084308e76549",
       hash: "sha256-I9Sp8wCO0oXRzdmIsR889fSlzM8GXUoDc7tFUuDBmKk=",
     }))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "turbohtml",
       version: "1.13.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "tox-dev",
           repo: "turbohtml",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -68,7 +65,7 @@ patchShebangs tools
         "tests/url/test_idna.py",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/tox-dev/turbohtml/blob/${nix.sel(finalAttrs, "src", "tag")}/docs/changelog.rst`),
         description: "Fast, fully typed HTML toolkit for Python, powered by a C-accelerated core",
         homepage: "https://github.com/tox-dev/turbohtml",

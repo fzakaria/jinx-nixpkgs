@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["updateScript", 49, 12]], [["homepage", 52, 5], ["description", 53, 5], ["mainProgram", 54, 5], ["license", 55, 5], ["platforms", 56, 5], ["maintainers", 57, 5], ["teams", 58, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 38, 3], ["hardeningDisable", 47, 3], ["passthru", 49, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, "lxqt-build-tools": false, "json-glib": false, libexif: false, "libfm-qt": false, "menu-cache": false, qtbase: false, qttools: false, qtwayland: false, wrapQtAppsHook: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 49, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 52, 5], ["description", 53, 5], ["mainProgram", 54, 5], ["license", 55, 5], ["platforms", 56, 5], ["maintainers", 57, 5], ["teams", 58, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 38, 3], ["hardeningDisable", 47, 3], ["passthru", 49, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lxqt-archiver";
       const version = "1.4.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lxqt",
           repo: "lxqt-archiver",
           rev: version,
@@ -39,11 +36,11 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [json_glib, libexif, libfm_qt, menu_cache, qtbase, qtwayland]);
       const hardeningDisable = nix.thunk(() => ["format"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/lxqt/lxqt-archiver/",
         description: "Archive tool for the LXQt desktop environment",
         mainProgram: "lxqt-archiver",
@@ -59,7 +56,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "lxqt"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

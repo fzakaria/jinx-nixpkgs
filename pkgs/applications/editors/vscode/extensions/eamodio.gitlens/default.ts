@@ -2,15 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 7], ["repo", 24, 7], ["tag", 25, 7], ["hash", 26, 7]], [["pname", 30, 28], ["version", 30, 34], ["src", 30, 42], ["pnpm", 31, 15], ["fetcherVersion", 32, 7], ["hash", 33, 7]], [["npm_config_manage_package_manager_versions", 49, 9]], [["name", 18, 5], ["pname", 19, 5], ["version", 20, 5], ["src", 22, 5], ["pnpmDeps", 29, 5], ["postPatch", 36, 5], ["nativeBuildInputs", 41, 5], ["strictDeps", 47, 5], ["env", 49, 5], ["preBuild", 53, 5], ["buildPhase", 57, 5], ["installPhase", 65, 5]], [["attrPath", 87, 7]], [["vsix", 85, 5], ["updateScript", 86, 5]], [["changelog", 92, 5], ["description", 93, 5], ["longDescription", 94, 5], ["downloadPage", 99, 5], ["homepage", 100, 5], ["license", 101, 5], ["maintainers", 102, 5]], [["pname", 75, 3], ["version", 76, 28], ["vscodeExtPublisher", 78, 3], ["vscodeExtName", 79, 3], ["vscodeExtUniqueId", 80, 3], ["src", 82, 3], ["passthru", 84, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false, stdenv: false, fetchFromGitHub: false, pnpm_10: false, fetchPnpmDeps: false, pnpmConfigHook: false, nodejs: false, "vscode-utils": false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 7], ["repo", 24, 7], ["tag", 25, 7], ["hash", 26, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 30, 28], ["version", 30, 34], ["src", 30, 42], ["pnpm", 31, 15], ["fetcherVersion", 32, 7], ["hash", 33, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["npm_config_manage_package_manager_versions", 49, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["name", 18, 5], ["pname", 19, 5], ["version", 20, 5], ["src", 22, 5], ["pnpmDeps", 29, 5], ["postPatch", 36, 5], ["nativeBuildInputs", 41, 5], ["strictDeps", 47, 5], ["env", 49, 5], ["preBuild", 53, 5], ["buildPhase", 57, 5], ["installPhase", 65, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["attrPath", 87, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["vsix", 85, 5], ["updateScript", 86, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["changelog", 92, 5], ["description", 93, 5], ["longDescription", 94, 5], ["downloadPage", 99, 5], ["homepage", 100, 5], ["license", 101, 5], ["maintainers", 102, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pname", 75, 3], ["version", 76, 28], ["vscodeExtPublisher", 78, 3], ["vscodeExtName", 79, 3], ["vscodeExtUniqueId", 80, 3], ["src", 82, 3], ["passthru", 84, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,19 +19,19 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const pnpm = pnpm_10;
   const vsix = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       name: nix.thunk(() => nix.str`gitlens-${nix.sel(finalAttrs, "version")}.vsix`),
       pname: "gitlens-vsix",
       version: "17.11.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gitkraken",
           repo: "vscode-gitlens",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-BN6qgPYhZ+FuYnwmV0S3y2vOR4ZLC+VGWuEEPqfOqi4=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -51,7 +44,7 @@ substituteInPlace package.json --replace-fail '"vscode:prepublish": "pnpm run bu
 `),
       nativeBuildInputs: nix.thunk(() => [nodejs, pnpmConfigHook, pnpm]),
       strictDeps: true,
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, npm_config_manage_package_manager_versions: "false" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], npm_config_manage_package_manager_versions: "false" })),
       preBuild: "rm -r node_modules/.pnpm/sass-embedded*\n",
       buildPhase: "runHook preBuild\n\nnode --run package\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\ncp ./gitlens-$version.vsix $out\n\nrunHook postInstall\n",
@@ -59,7 +52,7 @@ substituteInPlace package.json --replace-fail '"vscode:prepublish": "pnpm run bu
   return nix.app(nix.sel(vscode_utils, "buildVscodeExtension"), (finalAttrs) => (() => {
       const from = nix.thunk(() => nix.sel(finalAttrs, "src"));
       return {
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "gitlens",
       version: nix.thunk(() => nix.attr(from, "version")),
       vscodeExtPublisher: "eamodio",
@@ -67,12 +60,12 @@ substituteInPlace package.json --replace-fail '"vscode:prepublish": "pnpm run bu
       vscodeExtUniqueId: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "vscodeExtPublisher")}.${nix.sel(finalAttrs, "vscodeExtName")}`),
       src: vsix,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         vsix: nix.thunk(() => nix.sel(finalAttrs, "src")),
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$5, attrPath: "vscode-extensions.eamodio.gitlens.vsix" })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[4], attrPath: "vscode-extensions.eamodio.gitlens.vsix" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         changelog: "https://marketplace.visualstudio.com/items/eamodio.gitlens/changelog",
         description: "Visual Studio Code extension that improves its built-in Git capabilities",
         longDescription: "Supercharge the Git capabilities built into Visual Studio Code — Visualize code authorship at a glance via Git\nblame annotations and code lens, seamlessly navigate and explore Git repositories, gain valuable insights via\npowerful comparison commands, and so much more\n",

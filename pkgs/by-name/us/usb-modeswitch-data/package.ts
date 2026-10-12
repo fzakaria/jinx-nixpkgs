@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["description", 43, 5], ["license", 44, 35], ["maintainers", 44, 43], ["platforms", 44, 55]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["doInstallCheck", 18, 3], ["makeFlags", 20, 3], ["postPatch", 25, 3], ["nativeBuildInputs", 37, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchurl: false, tcl: false, "usb-modeswitch": false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 43, 5], ["license", 44, 35], ["maintainers", 44, 43], ["platforms", 44, 55]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["doInstallCheck", 18, 3], ["makeFlags", 20, 3], ["postPatch", 25, 3], ["nativeBuildInputs", 37, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const usb_modeswitch = nix.arg($, "usb-modeswitch");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "usb-modeswitch-data",
       version: "20251207",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.draisberghof.de/usb_modeswitch/${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-C7EtZK7l5GfDGvYaU/uCj/eqWcVKgsqF7u3kxWkL+mY=",
         })))),
@@ -35,7 +33,7 @@ sed -i 's/,,/,/g' 40-usb_modeswitch.rules
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(usb_modeswitch, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Device database and the rules file for 'multi-mode' USB devices",
         license: nix.thunk(() => nix.attr(from, "license")),
         maintainers: nix.thunk(() => nix.attr(from, "maintainers")),

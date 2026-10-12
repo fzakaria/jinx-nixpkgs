@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["cases", 23, 9], ["out", 27, 17]], [["hash", 40, 19]], [["hash", 41, 19]], [["hash", 42, 19]], [["hash", 43, 19]], [["1.2.1", 40, 11], ["1.2.0", 41, 11], ["1.1.2", 42, 11], ["1.0.0", 43, 11]], [["description", 52, 5], ["license", 53, 5], ["maintainers", 54, 5]], [["namePrefix", 12, 3], ["pname", 16, 3], ["owner", 17, 3], ["version", 19, 11], ["defaultVersion", 20, 3], ["release", 40, 3], ["propagatedBuildInputs", 45, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { coq: false, mkCoqDerivation: false, mathcomp: false, "mathcomp-real-closed": false, lib: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["cases", 23, 9], ["out", 27, 17]]);
-const pos$2 = nix.positions(here + "/default.nix", [["hash", 40, 19]]);
-const pos$3 = nix.positions(here + "/default.nix", [["hash", 41, 19]]);
-const pos$4 = nix.positions(here + "/default.nix", [["hash", 42, 19]]);
-const pos$5 = nix.positions(here + "/default.nix", [["hash", 43, 19]]);
-const pos$6 = nix.positions(here + "/default.nix", [["1.2.1", 40, 11], ["1.2.0", 41, 11], ["1.1.2", 42, 11], ["1.0.0", 43, 11]]);
-const pos$7 = nix.positions(here + "/default.nix", [["description", 52, 5], ["license", 53, 5], ["maintainers", 54, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["namePrefix", 12, 3], ["pname", 16, 3], ["owner", 17, 3], ["version", 19, 11], ["defaultVersion", 20, 3], ["release", 40, 3], ["propagatedBuildInputs", 45, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       namePrefix: nix.thunk(() => ["coq", "mathcomp"]),
       pname: "abel",
       owner: "math-comp",
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (coq_1) => (mc) => (out) => ({ [nix.POS]: pos$1, cases: nix.thunk(() => [coq_1, mc]), out: out });
+        const case$ = (coq_1) => (mc) => (out) => ({ [nix.POS]: $pos[0], cases: nix.thunk(() => [coq_1, mc]), out: out });
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => [
             nix.thunk(() => nix.sel(coq, "coq-version")),
@@ -39,21 +32,21 @@ export default nix.lambda((args) => (() => {
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         "1.2.1": nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           hash: "sha256-M1q6WIPBsayHde2hwlTxylH169hcTs3OuFsEkM0e3yc=",
         })),
         "1.2.0": nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           hash: "sha256:1picd4m85ipj22j3b84cv8ab3330radzrhd6kp0gpxq14dhv02c2",
         })),
         "1.1.2": nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           hash: "sha256:0565w713z1cwxvvdlqws2z5lgdys8lddf0vpwfdj7bpd7pq9hwxg",
         })),
         "1.0.0": nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           hash: "sha256:190jd8hb8anqsvr9ysr514pm5sh8qhw4030ddykvwxx9d9q6rbp3",
         })),
       })),
@@ -63,7 +56,7 @@ export default nix.lambda((args) => (() => {
         mathcomp_real_closed,
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Abel - Galois and Abel - Ruffini Theorems",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cecill-b")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "cohencyril"))]),

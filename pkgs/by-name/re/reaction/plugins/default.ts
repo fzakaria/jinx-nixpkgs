@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["changelog", 24, 11], ["description", 25, 11], ["homepage", 26, 11], ["license", 27, 11], ["mainProgram", 28, 11], ["maintainers", 29, 11], ["platforms", 30, 11], ["teams", 31, 11]], [["pname", 14, 9], ["version", 16, 11], ["src", 17, 11], ["patches", 18, 11], ["cargoHash", 19, 11], ["buildAndTestSubdir", 21, 9], ["meta", 23, 9]], [["callPackage", 39, 13], ["directory", 40, 5]], [["mkReactionPlugin", 10, 3], ["plugins", 38, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, callPackage: false, reaction: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["changelog", 24, 11], ["description", 25, 11], ["homepage", 26, 11], ["license", 27, 11], ["mainProgram", 28, 11], ["maintainers", 29, 11], ["platforms", 30, 11], ["teams", 31, 11]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 14, 9], ["version", 16, 11], ["src", 17, 11], ["patches", 18, 11], ["cargoHash", 19, 11], ["buildAndTestSubdir", 21, 9], ["meta", 23, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["callPackage", 39, 13], ["directory", 40, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["mkReactionPlugin", 10, 3], ["plugins", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,9 +12,9 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const reaction = nix.arg($, "reaction");
   return {
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     mkReactionPlugin: (name) => (extra) => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => nix.update({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname: name,
         version: nix.thunk(() => nix.attr(reaction, "version")),
         src: nix.thunk(() => nix.attr(reaction, "src")),
@@ -25,7 +22,7 @@ export default nix.lambda((args) => (() => {
         cargoHash: nix.thunk(() => nix.attr(reaction, "cargoHash")),
         buildAndTestSubdir: nix.thunk(() => nix.str`plugins/${name}`),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           changelog: nix.thunk(() => nix.str`https://framagit.org/ppom/reaction/-/releases/v${nix.sel(reaction, "version")}`),
           description: nix.thunk(() => nix.str`Official reaction plugin ${name}`),
           homepage: "https://framagit.org/ppom/reaction",
@@ -39,7 +36,11 @@ export default nix.lambda((args) => (() => {
           teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "ngi"))]),
         })),
       }, extra))),
-    plugins: nix.thunk(() => nix.app(nix.sel(lib, "removeAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "packagesFromDirectoryRecursive"), nix.thunk(() => ({ [nix.POS]: pos$3, callPackage: callPackage, directory: nix.path(here, "./.") })))), nix.thunk(() => ["default"]))),
+    plugins: nix.thunk(() => nix.app(nix.sel(lib, "removeAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "packagesFromDirectoryRecursive"), nix.thunk(() => ({
+          [nix.POS]: $pos[2],
+          callPackage: callPackage,
+          directory: nix.path(here, "./."),
+        })))), nix.thunk(() => ["default"]))),
   };
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

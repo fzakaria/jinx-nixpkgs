@@ -2,81 +2,55 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/jellyfin.nix", [[["maintainers", 5, 8]], [["enable", 9, 25]], [["jellyfin", 9, 16]], [["systemPackages", 10, 19]], [["diskSize", 12, 22]], [["services", 9, 7], ["environment", 10, 7], ["virtualisation", 12, 7]], [["enable", 19, 11], ["type", 20, 11], ["device", 21, 11]], [["h264", 34, 13], ["hevc", 35, 13], ["hevc10bit", 36, 13], ["vp9", 37, 13], ["hevcRExt10bit", 38, 13], ["hevcRExt12bit", 39, 13]], [["hevc", 42, 13], ["av1", 43, 13]], [["enableToneMapping", 24, 11], ["threadCount", 25, 11], ["enableHardwareEncoding", 26, 11], ["enableSubtitleExtraction", 27, 11], ["deleteSegments", 28, 11], ["h264Crf", 29, 11], ["h265Crf", 30, 11], ["throttleTranscoding", 31, 11], ["enableIntelLowPowerEncoding", 32, 11], ["hardwareDecodingCodecs", 33, 11], ["hardwareEncodingCodecs", 41, 11]], [["enable", 17, 9], ["hardwareAcceleration", 18, 9], ["transcoding", 23, 9]], [["jellyfin", 16, 16]], [["systemPackages", 47, 19]], [["diskSize", 48, 22]], [["services", 16, 7], ["environment", 47, 7], ["virtualisation", 48, 7]], [["enable", 55, 11], ["type", 56, 11], ["device", 57, 11]], [["enable", 53, 9], ["hardwareAcceleration", 54, 9]], [["jellyfin", 52, 16]], [["systemPackages", 60, 19]], [["diskSize", 61, 22]], [["services", 52, 7], ["environment", 60, 7], ["virtualisation", 61, 7]], [["enable", 69, 11], ["type", 70, 11], ["device", 71, 11]], [["threadCount", 74, 11]], [["enable", 66, 9], ["forceEncodingConfig", 67, 9], ["hardwareAcceleration", 68, 9], ["transcoding", 73, 9]], [["jellyfin", 65, 16]], [["systemPackages", 77, 19]], [["diskSize", 78, 22]], [["services", 65, 7], ["environment", 77, 7], ["virtualisation", 78, 7]], [["machine", 8, 5], ["machineWithTranscoding", 15, 5], ["machineWithQsvTranscoding", 51, 5], ["machineWithForceConfig", 64, 5]], [["Username", 89, 13]], [["auth", 87, 9], ["empty", 92, 9]], [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 84, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/jellyfin.nix", [["maintainers", 5, 8]]);
-const pos$2 = nix.positions(here + "/jellyfin.nix", [["enable", 9, 25]]);
-const pos$3 = nix.positions(here + "/jellyfin.nix", [["jellyfin", 9, 16]]);
-const pos$4 = nix.positions(here + "/jellyfin.nix", [["systemPackages", 10, 19]]);
-const pos$5 = nix.positions(here + "/jellyfin.nix", [["diskSize", 12, 22]]);
-const pos$6 = nix.positions(here + "/jellyfin.nix", [["services", 9, 7], ["environment", 10, 7], ["virtualisation", 12, 7]]);
-const pos$7 = nix.positions(here + "/jellyfin.nix", [["enable", 19, 11], ["type", 20, 11], ["device", 21, 11]]);
-const pos$8 = nix.positions(here + "/jellyfin.nix", [["h264", 34, 13], ["hevc", 35, 13], ["hevc10bit", 36, 13], ["vp9", 37, 13], ["hevcRExt10bit", 38, 13], ["hevcRExt12bit", 39, 13]]);
-const pos$9 = nix.positions(here + "/jellyfin.nix", [["hevc", 42, 13], ["av1", 43, 13]]);
-const pos$10 = nix.positions(here + "/jellyfin.nix", [["enableToneMapping", 24, 11], ["threadCount", 25, 11], ["enableHardwareEncoding", 26, 11], ["enableSubtitleExtraction", 27, 11], ["deleteSegments", 28, 11], ["h264Crf", 29, 11], ["h265Crf", 30, 11], ["throttleTranscoding", 31, 11], ["enableIntelLowPowerEncoding", 32, 11], ["hardwareDecodingCodecs", 33, 11], ["hardwareEncodingCodecs", 41, 11]]);
-const pos$11 = nix.positions(here + "/jellyfin.nix", [["enable", 17, 9], ["hardwareAcceleration", 18, 9], ["transcoding", 23, 9]]);
-const pos$12 = nix.positions(here + "/jellyfin.nix", [["jellyfin", 16, 16]]);
-const pos$13 = nix.positions(here + "/jellyfin.nix", [["systemPackages", 47, 19]]);
-const pos$14 = nix.positions(here + "/jellyfin.nix", [["diskSize", 48, 22]]);
-const pos$15 = nix.positions(here + "/jellyfin.nix", [["services", 16, 7], ["environment", 47, 7], ["virtualisation", 48, 7]]);
-const pos$16 = nix.positions(here + "/jellyfin.nix", [["enable", 55, 11], ["type", 56, 11], ["device", 57, 11]]);
-const pos$17 = nix.positions(here + "/jellyfin.nix", [["enable", 53, 9], ["hardwareAcceleration", 54, 9]]);
-const pos$18 = nix.positions(here + "/jellyfin.nix", [["jellyfin", 52, 16]]);
-const pos$19 = nix.positions(here + "/jellyfin.nix", [["systemPackages", 60, 19]]);
-const pos$20 = nix.positions(here + "/jellyfin.nix", [["diskSize", 61, 22]]);
-const pos$21 = nix.positions(here + "/jellyfin.nix", [["services", 52, 7], ["environment", 60, 7], ["virtualisation", 61, 7]]);
-const pos$22 = nix.positions(here + "/jellyfin.nix", [["enable", 69, 11], ["type", 70, 11], ["device", 71, 11]]);
-const pos$23 = nix.positions(here + "/jellyfin.nix", [["threadCount", 74, 11]]);
-const pos$24 = nix.positions(here + "/jellyfin.nix", [["enable", 66, 9], ["forceEncodingConfig", 67, 9], ["hardwareAcceleration", 68, 9], ["transcoding", 73, 9]]);
-const pos$25 = nix.positions(here + "/jellyfin.nix", [["jellyfin", 65, 16]]);
-const pos$26 = nix.positions(here + "/jellyfin.nix", [["systemPackages", 77, 19]]);
-const pos$27 = nix.positions(here + "/jellyfin.nix", [["diskSize", 78, 22]]);
-const pos$28 = nix.positions(here + "/jellyfin.nix", [["services", 65, 7], ["environment", 77, 7], ["virtualisation", 78, 7]]);
-const pos$29 = nix.positions(here + "/jellyfin.nix", [["machine", 8, 5], ["machineWithTranscoding", 15, 5], ["machineWithQsvTranscoding", 51, 5], ["machineWithForceConfig", 64, 5]]);
-const pos$30 = nix.positions(here + "/jellyfin.nix", [["Username", 89, 13]]);
-const pos$31 = nix.positions(here + "/jellyfin.nix", [["auth", 87, 9], ["empty", 92, 9]]);
-const pos$32 = nix.positions(here + "/jellyfin.nix", [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$32,
+    [nix.POS]: $pos[31],
     name: "jellyfin",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "minijackson"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$29,
+      [nix.POS]: $pos[28],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          jellyfin: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+          [nix.POS]: $pos[2],
+          jellyfin: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
         })),
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           systemPackages: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return [nix.thunk(() => nix.lookup(w, "ffmpeg"))];
           })()),
         })),
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$5, diskSize: nix.thunk(() => nix.mul(3n, 1024n)) })),
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[4], diskSize: nix.thunk(() => nix.mul(3n, 1024n)) })),
       })),
       machineWithTranscoding: nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           jellyfin: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             enable: true,
-            hardwareAcceleration: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true, type: "vaapi", device: "/dev/dri/renderD128" })),
+            hardwareAcceleration: nix.thunk(() => ({
+              [nix.POS]: $pos[6],
+              enable: true,
+              type: "vaapi",
+              device: "/dev/dri/renderD128",
+            })),
             transcoding: nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               enableToneMapping: false,
               threadCount: 4n,
               enableHardwareEncoding: true,
@@ -87,7 +61,7 @@ export default nix.lambda((args) => (() => {
               throttleTranscoding: false,
               enableIntelLowPowerEncoding: true,
               hardwareDecodingCodecs: nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 h264: true,
                 hevc: true,
                 hevc10bit: true,
@@ -95,69 +69,74 @@ export default nix.lambda((args) => (() => {
                 hevcRExt10bit: true,
                 hevcRExt12bit: true,
               })),
-              hardwareEncodingCodecs: nix.thunk(() => ({ [nix.POS]: pos$9, hevc: true, av1: true })),
+              hardwareEncodingCodecs: nix.thunk(() => ({ [nix.POS]: $pos[8], hevc: true, av1: true })),
             })),
           })),
         })),
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           systemPackages: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return [nix.thunk(() => nix.lookup(w, "ffmpeg"))];
           })()),
         })),
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$14, diskSize: nix.thunk(() => nix.mul(3n, 1024n)) })),
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[13], diskSize: nix.thunk(() => nix.mul(3n, 1024n)) })),
       })),
       machineWithQsvTranscoding: nix.thunk(() => ({
-        [nix.POS]: pos$21,
+        [nix.POS]: $pos[20],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           jellyfin: nix.thunk(() => ({
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             enable: true,
-            hardwareAcceleration: nix.thunk(() => ({ [nix.POS]: pos$16, enable: true, type: "qsv", device: "/dev/dri/renderD128" })),
+            hardwareAcceleration: nix.thunk(() => ({
+              [nix.POS]: $pos[15],
+              enable: true,
+              type: "qsv",
+              device: "/dev/dri/renderD128",
+            })),
           })),
         })),
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$19,
+          [nix.POS]: $pos[18],
           systemPackages: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return [nix.thunk(() => nix.lookup(w, "ffmpeg"))];
           })()),
         })),
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$20, diskSize: nix.thunk(() => nix.mul(3n, 1024n)) })),
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[19], diskSize: nix.thunk(() => nix.mul(3n, 1024n)) })),
       })),
       machineWithForceConfig: nix.thunk(() => ({
-        [nix.POS]: pos$28,
+        [nix.POS]: $pos[27],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$25,
+          [nix.POS]: $pos[24],
           jellyfin: nix.thunk(() => ({
-            [nix.POS]: pos$24,
+            [nix.POS]: $pos[23],
             enable: true,
             forceEncodingConfig: true,
             hardwareAcceleration: nix.thunk(() => ({
-              [nix.POS]: pos$22,
+              [nix.POS]: $pos[21],
               enable: true,
               type: "vaapi",
               device: "/dev/dri/renderD128",
             })),
-            transcoding: nix.thunk(() => ({ [nix.POS]: pos$23, threadCount: 2n })),
+            transcoding: nix.thunk(() => ({ [nix.POS]: $pos[22], threadCount: 2n })),
           })),
         })),
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$26,
+          [nix.POS]: $pos[25],
           systemPackages: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return [nix.thunk(() => nix.lookup(w, "ffmpeg"))];
           })()),
         })),
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$27, diskSize: nix.thunk(() => nix.mul(3n, 1024n)) })),
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[26], diskSize: nix.thunk(() => nix.mul(3n, 1024n)) })),
       })),
     })),
     testScript: nix.thunk(() => (() => {
       const payloads = nix.thunk(() => ({
-        [nix.POS]: pos$31,
-        auth: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "auth.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: pos$30, Username: "jellyfin" })))))),
+        [nix.POS]: $pos[30],
+        auth: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "auth.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: $pos[29], Username: "jellyfin" })))))),
         empty: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "empty.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({})))))),
       }));
       return nix.str`import json

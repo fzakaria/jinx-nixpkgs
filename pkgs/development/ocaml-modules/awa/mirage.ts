@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mirage.nix", [[["pname", 14, 3], ["version", 16, 17], ["src", 16, 25], ["propagatedBuildInputs", 18, 3], ["meta", 29, 17]]]);
 const formals$1 = { args: { buildDunePackage: false, awa: false, mtime: false, lwt: false, "mirage-flow": false, "mirage-sleep": false, logs: false, duration: false, "mirage-mtime": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/mirage.nix", [["pname", 14, 3], ["version", 16, 17], ["src", 16, 25], ["propagatedBuildInputs", 18, 3], ["meta", 29, 17]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const duration = nix.arg($, "duration");
   const mirage_mtime = nix.arg($, "mirage-mtime");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "awa-mirage",
       version: nix.thunk(() => nix.attr(awa, "version")),
       src: nix.thunk(() => nix.attr(awa, "src")),

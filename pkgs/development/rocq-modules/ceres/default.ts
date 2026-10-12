@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["case", 18, 35], ["out", 18, 40]], [["hash", 25, 19]], [["hash", 26, 19]], [["0.4.1", 25, 11], ["0.4.0", 26, 11]], [["description", 33, 5], ["license", 34, 5], ["maintainers", 35, 5]], [["pname", 11, 3], ["repo", 12, 3], ["owner", 13, 3], ["version", 15, 11], ["defaultVersion", 16, 3], ["release", 25, 3], ["useDuneifVersion", 28, 3], ["propagatedBuildInputs", 30, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, mkCoqDerivation: false, coq: false, stdlib: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["case", 18, 35], ["out", 18, 40]]);
-const pos$2 = nix.positions(here + "/default.nix", [["hash", 25, 19]]);
-const pos$3 = nix.positions(here + "/default.nix", [["hash", 26, 19]]);
-const pos$4 = nix.positions(here + "/default.nix", [["0.4.1", 25, 11], ["0.4.0", 26, 11]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 33, 5], ["license", 34, 5], ["maintainers", 35, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["repo", 12, 3], ["owner", 13, 3], ["version", 15, 11], ["defaultVersion", 16, 3], ["release", 25, 3], ["useDuneifVersion", 28, 3], ["propagatedBuildInputs", 30, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const stdlib = nix.arg($, "stdlib");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "ceres",
       repo: "coq-ceres",
       owner: "Lysxia",
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (case$_1) => (out) => ({ [nix.POS]: pos$1, case: case$_1, out: out });
+        const case$ = (case$_1) => (out) => ({ [nix.POS]: $pos[0], case: case$_1, out: out });
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "version")), nix.thunk(() => [
             nix.thunk(() => nix.app(case$, nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.14", "9.3")), "0.4.1")),
@@ -32,20 +27,20 @@ export default nix.lambda((args) => (() => {
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         "0.4.1": nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           hash: "sha256-9vyk8/8IVsqNyhw3WPzl8w3L9Wu7gfaMVa3n2nWjFiA=",
         })),
         "0.4.0": nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           hash: "sha256:0zwp3pn6fdj0qdig734zdczrls886al06mxqhhabms0jvvqijmbi",
         })),
       })),
       useDuneifVersion: nix.thunk(() => nix.app(nix.sel(lib, "versions", "isGe"), "0.4.1")),
       propagatedBuildInputs: nix.thunk(() => [stdlib]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Library for serialization to S-expressions",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {

@@ -2,23 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/4.nix", [[["owner", 31, 9], ["repo", 32, 9], ["tag", 33, 9], ["sha256", 34, 9]], [["url", 42, 11], ["sha256", 43, 11]], [["runtime", 69, 19], ["jarLocation", 70, 11]], [["description", 74, 11], ["longDescription", 75, 11], ["homepage", 82, 11], ["sourceProvenance", 83, 11], ["license", 84, 11], ["platforms", 85, 11], ["maintainers", 86, 11]], [["pname", 38, 9], ["version", 39, 17], ["src", 41, 9], ["dontUnpack", 46, 9], ["installPhase", 48, 9], ["jre", 66, 17], ["passthru", 68, 9], ["meta", 73, 9]], [["description", 116, 13], ["homepage", 117, 13], ["license", 118, 13], ["platforms", 119, 13], ["maintainers", 120, 13]], [["pname", 92, 11], ["version", 93, 19], ["src", 94, 11], ["patches", 96, 11], ["outputs", 98, 11], ["nativeBuildInputs", 104, 11], ["buildInputs", 109, 11], ["cmakeDir", 111, 11], ["cmakeFlags", 113, 11], ["meta", 115, 11]], [["cpp", 91, 9]], [["source", 30, 7], ["antlr", 37, 7], ["runtime", 90, 7]], [["version", 130, 7], ["sourceSha256", 131, 7], ["jarSha256", 132, 7], ["extraCppCmakeFlags", 133, 7], ["extraPatches", 141, 7]], [["version", 148, 7], ["sourceSha256", 149, 7], ["jarSha256", 150, 7], ["extraCppCmakeFlags", 151, 7]], [["version", 163, 7], ["sourceSha256", 164, 7], ["jarSha256", 165, 7], ["extraCppCmakeFlags", 166, 7], ["extraPatches", 174, 7]], [["version", 181, 7], ["sourceSha256", 182, 7], ["jarSha256", 183, 7], ["extraCppBuildInputs", 184, 7], ["extraCppCmakeFlags", 185, 7], ["extraPatches", 189, 7]], [["version", 196, 7], ["sourceSha256", 197, 7], ["jarSha256", 198, 7], ["extraCppBuildInputs", 199, 7], ["extraCppCmakeFlags", 200, 7], ["extraPatches", 204, 7]], [["antlr4_13", 128, 3], ["antlr4_12", 146, 3], ["antlr4_11", 161, 3], ["antlr4_10", 179, 3], ["antlr4_9", 194, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, jre: false, fetchFromGitHub: false, cmake: false, ninja: false, "pkg-config": false, libuuid: false, utf8cpp: false }, ellipsis: false };
 const formals$2 = { args: { version: false, sourceSha256: false, jarSha256: false, extraCppBuildInputs: true, extraCppCmakeFlags: true, extraPatches: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/4.nix", [["owner", 31, 9], ["repo", 32, 9], ["tag", 33, 9], ["sha256", 34, 9]]);
-const pos$2 = nix.positions(here + "/4.nix", [["url", 42, 11], ["sha256", 43, 11]]);
-const pos$3 = nix.positions(here + "/4.nix", [["runtime", 69, 19], ["jarLocation", 70, 11]]);
-const pos$4 = nix.positions(here + "/4.nix", [["description", 74, 11], ["longDescription", 75, 11], ["homepage", 82, 11], ["sourceProvenance", 83, 11], ["license", 84, 11], ["platforms", 85, 11], ["maintainers", 86, 11]]);
-const pos$5 = nix.positions(here + "/4.nix", [["pname", 38, 9], ["version", 39, 17], ["src", 41, 9], ["dontUnpack", 46, 9], ["installPhase", 48, 9], ["jre", 66, 17], ["passthru", 68, 9], ["meta", 73, 9]]);
-const pos$6 = nix.positions(here + "/4.nix", [["description", 116, 13], ["homepage", 117, 13], ["license", 118, 13], ["platforms", 119, 13], ["maintainers", 120, 13]]);
-const pos$7 = nix.positions(here + "/4.nix", [["pname", 92, 11], ["version", 93, 19], ["src", 94, 11], ["patches", 96, 11], ["outputs", 98, 11], ["nativeBuildInputs", 104, 11], ["buildInputs", 109, 11], ["cmakeDir", 111, 11], ["cmakeFlags", 113, 11], ["meta", 115, 11]]);
-const pos$8 = nix.positions(here + "/4.nix", [["cpp", 91, 9]]);
-const pos$9 = nix.positions(here + "/4.nix", [["source", 30, 7], ["antlr", 37, 7], ["runtime", 90, 7]]);
-const pos$10 = nix.positions(here + "/4.nix", [["version", 130, 7], ["sourceSha256", 131, 7], ["jarSha256", 132, 7], ["extraCppCmakeFlags", 133, 7], ["extraPatches", 141, 7]]);
-const pos$11 = nix.positions(here + "/4.nix", [["version", 148, 7], ["sourceSha256", 149, 7], ["jarSha256", 150, 7], ["extraCppCmakeFlags", 151, 7]]);
-const pos$12 = nix.positions(here + "/4.nix", [["version", 163, 7], ["sourceSha256", 164, 7], ["jarSha256", 165, 7], ["extraCppCmakeFlags", 166, 7], ["extraPatches", 174, 7]]);
-const pos$13 = nix.positions(here + "/4.nix", [["version", 181, 7], ["sourceSha256", 182, 7], ["jarSha256", 183, 7], ["extraCppBuildInputs", 184, 7], ["extraCppCmakeFlags", 185, 7], ["extraPatches", 189, 7]]);
-const pos$14 = nix.positions(here + "/4.nix", [["version", 196, 7], ["sourceSha256", 197, 7], ["jarSha256", 198, 7], ["extraCppBuildInputs", 199, 7], ["extraCppCmakeFlags", 200, 7], ["extraPatches", 204, 7]]);
-const pos$15 = nix.positions(here + "/4.nix", [["antlr4_13", 128, 3], ["antlr4_12", 146, 3], ["antlr4_11", 161, 3], ["antlr4_10", 179, 3], ["antlr4_9", 194, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,18 +28,18 @@ export default nix.lambda((args) => (() => {
     const extraPatches = nix.argOr($_1, "extraPatches", () => []);
     return (() => {
       const source = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "antlr",
           repo: "antlr4",
           tag: version,
           sha256: sourceSha256,
         }))));
       const antlr = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           pname: "antlr",
           version: version,
           src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               url: nix.thunk(() => nix.str`https://www.antlr.org/download/antlr-${version}-complete.jar`),
               sha256: jarSha256,
             })))),
@@ -76,12 +62,12 @@ ln -s "$out/bin/antlr"{,4}-parse
 `),
           jre: jre,
           passthru: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             runtime: runtime,
             jarLocation: nix.thunk(() => nix.sel(antlr, "src")),
           })),
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             description: "Powerful parser generator",
             longDescription: "ANTLR (ANother Tool for Language Recognition) is a powerful parser\ngenerator for reading, processing, executing, or translating structured\ntext or binary files. It's widely used to build languages, tools, and\nframeworks. From a grammar, ANTLR generates a parser that can build and\nwalk parse trees.\n",
             homepage: "https://www.antlr.org/",
@@ -98,9 +84,9 @@ ln -s "$out/bin/antlr"{,4}-parse
           })),
         }))));
       const runtime = nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         cpp: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             pname: "antlr-runtime-cpp",
             version: version,
             src: source,
@@ -111,7 +97,7 @@ ln -s "$out/bin/antlr"{,4}-parse
             cmakeDir: "../runtime/Cpp",
             cmakeFlags: extraCppCmakeFlags,
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               description: "C++ target for ANTLR 4",
               homepage: "https://www.antlr.org/",
               license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -123,13 +109,13 @@ ln -s "$out/bin/antlr"{,4}-parse
             })),
           })))),
       }));
-      return { [nix.POS]: pos$9, source, antlr, runtime };
+      return { [nix.POS]: $pos[8], source, antlr, runtime };
     })();
   })(), formals$2);
   return {
-    [nix.POS]: pos$15,
+    [nix.POS]: $pos[14],
     antlr4_13: nix.thunk(() => nix.sel(nix.app(mkAntlr, nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         version: "4.13.2",
         sourceSha256: "sha256-DxxRL+FQFA+x0RudIXtLhewseU50aScHKSCDX7DE9bY=",
         jarSha256: "sha256-6uLfoRmmQydERnKv9j6ew1ogGA3FuAkLemq4USXfTXY=",
@@ -140,7 +126,7 @@ ln -s "$out/bin/antlr"{,4}-parse
         extraPatches: nix.thunk(() => [nix.path(here, "./include-dir-issue-379757.patch")]),
       }))), "antlr")),
     antlr4_12: nix.thunk(() => nix.sel(nix.app(mkAntlr, nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         version: "4.12.0",
         sourceSha256: "sha256-0JMG8UYFT+IAWvARY2KnuXSr5X6LlVZN4LJHy5d4x08=",
         jarSha256: "sha256-iPGKK/rA3eEAntpcfc41ilKHf673ho9WIjpbzBUynkM=",
@@ -150,7 +136,7 @@ ln -s "$out/bin/antlr"{,4}-parse
         ]),
       }))), "antlr")),
     antlr4_11: nix.thunk(() => nix.sel(nix.app(mkAntlr, nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         version: "4.11.1",
         sourceSha256: "sha256-SUeDgfqLjYQorC8r/CKlwbYooTThMOILkizwQV8pocc=",
         jarSha256: "sha256-YpdeGStK8mIrcrXwExVT7jy86X923CpBYy3MVeJUc+E=",
@@ -161,7 +147,7 @@ ln -s "$out/bin/antlr"{,4}-parse
         extraPatches: nix.thunk(() => [nix.path(here, "./4.11.runtime.cpp.cmake.patch")]),
       }))), "antlr")),
     antlr4_10: nix.thunk(() => nix.sel(nix.app(mkAntlr, nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         version: "4.10.1",
         sourceSha256: "sha256-Z1P81L0aPbimitzrHH/9rxsMCA6Qn3i42jFbUmVqu1E=",
         jarSha256: "sha256-QZSdQfINMdW4J3GHc13XVRCN9Ss422yGUQjTOCBA+Rg=",
@@ -173,7 +159,7 @@ ln -s "$out/bin/antlr"{,4}-parse
         extraPatches: nix.thunk(() => [nix.path(here, "./4.10.runtime.cpp.cmake.patch")]),
       }))), "antlr")),
     antlr4_9: nix.thunk(() => nix.sel(nix.app(mkAntlr, nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         version: "4.9.3",
         sourceSha256: "1af3cfqwk7lq1b5qsh1am0922fyhy7wmlpnrqdnvch3zzza9n1qm",
         jarSha256: "0dnz2x54kigc58bxnynjhmr5iq49f938vj6p50gdir1xdna41kdg",

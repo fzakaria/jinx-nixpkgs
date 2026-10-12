@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]], [["SETUPTOOLS_SCM_PRETEND_VERSION", 44, 7]], [["updateScript", 66, 12]], [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["maintainers", 72, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["postPatch", 34, 3], ["build-system", 39, 3], ["env", 44, 3], ["dependencies", 46, 3], ["pythonImportsCheck", 61, 3], ["passthru", 66, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, unstableGitUpdater: false, setuptools: false, "setuptools-scm": false, fonttools: false, ufomerge: false, fontmake: false, glyphslib: false, "ttfautohint-py": false, ufo2ft: false, gftools: false, fontbakery: false, chevron: false, sh: false, "font-v": false, ninja: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["SETUPTOOLS_SCM_PRETEND_VERSION", 44, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 66, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["maintainers", 72, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["postPatch", 34, 3], ["build-system", 39, 3], ["env", 44, 3], ["dependencies", 46, 3], ["pythonImportsCheck", 61, 3], ["passthru", 66, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const font_v = nix.arg($, "font-v");
   const ninja = nix.arg($, "ninja");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "notobuilder",
       version: "0-unstable-2026-09-24",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "notofonts",
           repo: "notobuilder",
           rev: "efda64ea4bdb249cfa69cad28d9cf2febfc7b0c8",
@@ -45,7 +41,7 @@ export default nix.lambda((args) => (() => {
   --replace-fail '"ninja"' '"${nix.app(nix.sel(lib, "getExe"), ninja)}"'
 `),
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, SETUPTOOLS_SCM_PRETEND_VERSION: "0.0.0" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], SETUPTOOLS_SCM_PRETEND_VERSION: "0.0.0" })),
       dependencies: nix.thunk(() => nix.concat([
         fonttools,
         ufomerge,
@@ -61,11 +57,11 @@ export default nix.lambda((args) => (() => {
       ], nix.sel(gftools, "optional-dependencies", "qa"))),
       pythonImportsCheck: nix.thunk(() => ["notobuilder", "notoqa"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Python module for building Noto fonts",
         homepage: "https://github.com/notofonts/notobuilder",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

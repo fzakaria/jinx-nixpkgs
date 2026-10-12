@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["name", 31, 7], ["desktopName", 32, 7], ["startupWMClass", 33, 7], ["icon", 34, 7], ["genericName", 35, 7], ["comment", 36, 7], ["exec", 37, 7], ["categories", 38, 7]], [["updateScript", 96, 12]], [["description", 99, 5], ["homepage", 100, 5], ["sourceProvenance", 101, 5], ["license", 108, 5], ["maintainers", 109, 5], ["platforms", 110, 5], ["mainProgram", 115, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["desktopItems", 29, 3], ["dotnet-sdk", 45, 3], ["dotnet-runtime", 46, 3], ["enableParallelBuilding", 50, 3], ["projectFile", 52, 3], ["nugetDeps", 53, 3], ["executables", 55, 3], ["runtimeDeps", 57, 3], ["dotnetInstallFlags", 67, 3], ["doCheck", 70, 3], ["postInstall", 73, 3], ["passthru", 96, 3], ["meta", 98, 3]]]);
 const formals$1 = { args: { "alsa-lib": false, lib: false, stdenv: false, buildDotnetModule: false, fetchFromGitHub: false, dotnetCorePackages: false, dbus: false, fontconfig: false, portaudio: false, libxi: false, copyDesktopItems: false, makeDesktopItem: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 31, 7], ["desktopName", 32, 7], ["startupWMClass", 33, 7], ["icon", 34, 7], ["genericName", 35, 7], ["comment", 36, 7], ["exec", 37, 7], ["categories", 38, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 96, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 99, 5], ["homepage", 100, 5], ["sourceProvenance", 101, 5], ["license", 108, 5], ["maintainers", 109, 5], ["platforms", 110, 5], ["mainProgram", 115, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["desktopItems", 29, 3], ["dotnet-sdk", 45, 3], ["dotnet-runtime", 46, 3], ["enableParallelBuilding", 50, 3], ["projectFile", 52, 3], ["nugetDeps", 53, 3], ["executables", 55, 3], ["runtimeDeps", 57, 3], ["dotnetInstallFlags", 67, 3], ["doCheck", 70, 3], ["postInstall", 73, 3], ["passthru", 96, 3], ["meta", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "OpenUtau";
       const version = "0.1.565";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "openutau",
           repo: "OpenUtau",
           tag: version,
@@ -36,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [copyDesktopItems]);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "openutau",
             desktopName: "OpenUtau",
             startupWMClass: "openutau",
@@ -65,9 +61,9 @@ export default nix.lambda((args) => (() => {
 ${shouldInstallDesktopItem}
 `;
       })());
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[2], updateScript: nix.path(here, "./update.sh") }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Open source singing synthesis platform and UTAU successor",
         homepage: "http://www.openutau.com/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -84,7 +80,7 @@ ${shouldInstallDesktopItem}
         mainProgram: "OpenUtau",
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

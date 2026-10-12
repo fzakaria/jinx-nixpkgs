@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 25, 5], ["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["changelog", 57, 5], ["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["longDescription", 61, 5], ["mainProgram", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["buildInputs", 32, 3], ["nativeBuildInputs", 41, 3], ["mesonFlags", 49, 3], ["enableParallelBuilding", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { fetchFromGitLab: false, lib: false, stdenv: false, "pkg-config": false, intltool: false, libpulseaudio: false, gtkmm4: false, libsigcxx_2_0: false, withLibcanberra: true, "libcanberra-gtk3": false, "json-glib": false, "adwaita-icon-theme": false, wrapGAppsHook4: false, meson: false, ninja: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 25, 5], ["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 57, 5], ["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["longDescription", 61, 5], ["mainProgram", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["buildInputs", 32, 3], ["nativeBuildInputs", 41, 3], ["mesonFlags", 49, 3], ["enableParallelBuilding", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const meson = nix.arg($, "meson");
   const ninja = nix.arg($, "ninja");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pavucontrol",
       version: "6.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.freedesktop.org",
           owner: "pulseaudio",
           repo: "pavucontrol",
@@ -51,7 +49,7 @@ export default nix.lambda((args) => (() => {
       ]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: "https://freedesktop.org/software/pulseaudio/pavucontrol/#news",
         description: "PulseAudio Volume Control",
         homepage: "http://freedesktop.org/software/pulseaudio/pavucontrol/",

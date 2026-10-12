@@ -2,102 +2,15 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/iso-image.nix", [[["name", 39, 9], ["params", 47, 9], ["image", 48, 9], ["initrd", 49, 9], ["class", 50, 9]], [["cfg", 60, 13], ["params", 61, 21]], [["title", 82, 7], ["class", 83, 7], ["params", 84, 7]], [["title", 87, 7], ["class", 88, 7], ["params", 89, 7]], [["title", 92, 7], ["class", 93, 7], ["params", 94, 7]], [["title", 100, 7], ["class", 101, 7], ["params", 102, 7]], [["title", 111, 7], ["class", 112, 7], ["params", 113, 7]], [["title", 116, 7], ["class", 117, 7], ["params", 118, 7]], [["title", 121, 7], ["class", 122, 7], ["params", 123, 7]], [["title", 127, 7], ["class", 128, 7], ["params", 129, 7]], [["cfg", 167, 13], ["label", 168, 13], ["params", 169, 21]], [["label", 185, 29]], [["label", 198, 11], ["params", 199, 19]], [["nativeBuildInputs", 324, 9], ["strictDeps", 325, 9]], [["params", 444, 44]], [["nativeBuildInputs", 486, 9], ["strictDeps", 491, 9]], [["sinceRelease", 533, 7], ["from", 534, 7], ["to", 538, 7]], [["sinceRelease", 544, 7], ["from", 545, 7], ["to", 549, 7]], [["default", 560, 7], ["type", 561, 7], ["description", 562, 7]], [["default", 569, 7], ["type", 570, 7], ["description", 571, 7], ["example", 575, 7]], [["default", 579, 7], ["type", 580, 7], ["description", 581, 7]], [["default", 589, 7], ["type", 592, 7], ["description", 593, 7]], [["example", 601, 7], ["description", 607, 7]], [["example", 614, 7], ["description", 615, 7]], [["default", 622, 7], ["type", 623, 7], ["description", 624, 7]], [["default", 640, 7], ["defaultText", 641, 7], ["type", 645, 7], ["description", 646, 7]], [["default", 652, 7], ["type", 653, 7], ["description", 654, 7]], [["default", 660, 7], ["type", 661, 7], ["description", 662, 7]], [["url", 669, 9], ["sha256", 670, 9]], [["default", 668, 7], ["description", 672, 7]], [["url", 679, 9], ["sha256", 680, 9]], [["default", 678, 7], ["description", 682, 7]], [["default", 688, 7], ["type", 689, 7], ["description", 690, 7]], [["default", 696, 7], ["type", 720, 7], ["description", 721, 7]], [["default", 727, 7], ["type", 728, 7], ["example", 729, 7], ["description", 730, 7]], [["default", 740, 7], ["type", 741, 7], ["example", 742, 7], ["description", 743, 7]], [["default", 753, 7], ["type", 754, 7], ["example", 755, 7], ["description", 756, 7]], [["default", 762, 7]], [["default", 766, 7], ["type", 767, 7], ["example", 768, 7], ["description", 769, 7]], [["compressImage", 559, 14], ["squashfsCompression", 568, 14], ["edition", 578, 14], ["volumeID", 587, 14], ["contents", 600, 14], ["storeContents", 613, 14], ["includeSystemBuildDependencies", 621, 14], ["makeBiosBootable", 633, 14], ["makeEfiBootable", 651, 14], ["makeUsbBootable", 659, 14], ["efiSplashImage", 667, 14], ["splashImage", 677, 14], ["grubTheme", 687, 14], ["syslinuxTheme", 695, 14], ["prependToMenuLabel", 726, 14], ["appendToMenuLabel", 739, 14], ["configurationName", 752, 14], ["showConfiguration", 761, 14], ["forceTextMode", 765, 14]], [["isoImage", 559, 5]], [["fsType", 785, 7], ["options", 786, 7]], [["device", 794, 7], ["fsType", 799, 7], ["neededForBoot", 800, 7], ["noCheck", 801, 7]], [["fsType", 807, 7], ["device", 808, 7], ["options", 809, 7], ["neededForBoot", 813, 7]], [["fsType", 817, 7], ["options", 818, 7], ["neededForBoot", 819, 7]], [["lowerdir", 824, 9], ["upperdir", 825, 9], ["workdir", 826, 9]], [["overlay", 823, 7]], [["/", 784, 5], ["/iso", 793, 5], ["/nix/.ro-store", 806, 5], ["/nix/.rw-store", 816, 5], ["/nix/store", 822, 5]], [["isoFileSystems", 783, 14]], [["assertion", 835, 9], ["message", 836, 9]], [["assertion", 839, 9], ["message", 842, 9]], [["assertion", 857, 11], ["message", 858, 11]], [["enable", 873, 22]], [["grub", 873, 17], ["timeout", 1029, 17]], [["RequiresMountsFor", 921, 11], ["ConditionKernelCommandLine", 922, 11]], [["Type", 925, 11], ["RemainAfterExit", 926, 11]], [["description", 914, 9], ["requiredBy", 915, 9], ["before", 916, 9], ["unitConfig", 920, 9], ["serviceConfig", 924, 9], ["path", 928, 9], ["script", 932, 9]], [["copytoram", 913, 16]], [["emergencyAccess", 909, 7], ["initrdBin", 912, 7], ["services", 913, 7]], [["availableKernelModules", 896, 17], ["kernelModules", 903, 17], ["systemd", 908, 17], ["supportedFilesystems", 1088, 17]], [["loader", 873, 10], ["kernelParams", 889, 10], ["initrd", 896, 10]], [["systemPackages", 875, 17]], [["compressImage", 1040, 35], ["volumeID", 1040, 49], ["contents", 1040, 58], ["isoName", 1041, 9], ["bootable", 1042, 9], ["bootImage", 1043, 9], ["syslinux", 1044, 9], ["squashfsContents", 1045, 9], ["squashfsCompression", 1046, 9]], [["usbBootable", 1049, 9], ["isohybridMbrImage", 1050, 9]], [["efiBootable", 1053, 9], ["efiBootImage", 1054, 9]], [["image", 1037, 18], ["isoImage", 1038, 18]], [["extraDependencies", 879, 12], ["build", 1037, 12]], [["source", 961, 15], ["target", 962, 15]], [["source", 965, 15], ["target", 966, 15]], [["source", 975, 11], ["target", 976, 11]], [["source", 982, 11], ["target", 983, 11]], [["source", 986, 11], ["target", 987, 11]], [["source", 990, 11], ["target", 991, 11]], [["source", 996, 11], ["target", 997, 11]], [["source", 1000, 11], ["target", 1001, 11]], [["source", 1004, 11], ["target", 1005, 11]], [["source", 1012, 11], ["target", 1013, 11]], [["source", 1018, 11], ["target", 1019, 11]], [["source", 1024, 11], ["target", 1025, 11]], [["storeContents", 948, 14], ["contents", 955, 14]], [["extension", 1032, 11], ["filePath", 1033, 11], ["baseName", 1034, 11]], [["DefaultDependencies", 1060, 18]], [["Type", 1072, 9], ["RemainAfterExit", 1073, 9]], [["description", 1059, 7], ["unitConfig", 1060, 7], ["wantedBy", 1061, 7], ["before", 1062, 7], ["after", 1068, 7], ["conflicts", 1069, 7], ["restartIfChanged", 1070, 7], ["serviceConfig", 1071, 7], ["script", 1075, 7]], [["register-nix-paths", 1058, 22]], [["services", 1058, 13]], [["lib", 783, 10], ["assertions", 832, 5], ["boot", 873, 5], ["environment", 875, 5], ["system", 879, 5], ["fileSystems", 894, 5], ["isoImage", 948, 5], ["image", 1032, 5], ["systemd", 1058, 5]], [["imports", 531, 3], ["options", 557, 3], ["config", 783, 3]]]);
 const formals$1 = { args: { config: false, lib: false, utils: false, pkgs: false }, ellipsis: true };
 const formals$2 = { args: { name: false, class: false, image: false, params: false, initrd: false }, ellipsis: false };
 const formals$3 = { args: { cfg: true, params: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/iso-image.nix", [["name", 39, 9], ["params", 47, 9], ["image", 48, 9], ["initrd", 49, 9], ["class", 50, 9]]);
 const formals$4 = { args: { configuration: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/iso-image.nix", [["cfg", 60, 13], ["params", 61, 21]]);
-const pos$3 = nix.positions(here + "/iso-image.nix", [["title", 82, 7], ["class", 83, 7], ["params", 84, 7]]);
-const pos$4 = nix.positions(here + "/iso-image.nix", [["title", 87, 7], ["class", 88, 7], ["params", 89, 7]]);
-const pos$5 = nix.positions(here + "/iso-image.nix", [["title", 92, 7], ["class", 93, 7], ["params", 94, 7]]);
-const pos$6 = nix.positions(here + "/iso-image.nix", [["title", 100, 7], ["class", 101, 7], ["params", 102, 7]]);
-const pos$7 = nix.positions(here + "/iso-image.nix", [["title", 111, 7], ["class", 112, 7], ["params", 113, 7]]);
-const pos$8 = nix.positions(here + "/iso-image.nix", [["title", 116, 7], ["class", 117, 7], ["params", 118, 7]]);
-const pos$9 = nix.positions(here + "/iso-image.nix", [["title", 121, 7], ["class", 122, 7], ["params", 123, 7]]);
-const pos$10 = nix.positions(here + "/iso-image.nix", [["title", 127, 7], ["class", 128, 7], ["params", 129, 7]]);
 const formals$5 = { args: { cfg: true, label: false, params: true }, ellipsis: false };
-const pos$11 = nix.positions(here + "/iso-image.nix", [["cfg", 167, 13], ["label", 168, 13], ["params", 169, 21]]);
-const pos$12 = nix.positions(here + "/iso-image.nix", [["label", 185, 29]]);
 const formals$6 = { args: { title: false, class: false, params: false }, ellipsis: false };
-const pos$13 = nix.positions(here + "/iso-image.nix", [["label", 198, 11], ["params", 199, 19]]);
-const pos$14 = nix.positions(here + "/iso-image.nix", [["nativeBuildInputs", 324, 9], ["strictDeps", 325, 9]]);
 const formals$7 = { args: { title: false, class: false, params: false }, ellipsis: false };
-const pos$15 = nix.positions(here + "/iso-image.nix", [["params", 444, 44]]);
-const pos$16 = nix.positions(here + "/iso-image.nix", [["nativeBuildInputs", 486, 9], ["strictDeps", 491, 9]]);
-const pos$17 = nix.positions(here + "/iso-image.nix", [["sinceRelease", 533, 7], ["from", 534, 7], ["to", 538, 7]]);
-const pos$18 = nix.positions(here + "/iso-image.nix", [["sinceRelease", 544, 7], ["from", 545, 7], ["to", 549, 7]]);
-const pos$19 = nix.positions(here + "/iso-image.nix", [["default", 560, 7], ["type", 561, 7], ["description", 562, 7]]);
-const pos$20 = nix.positions(here + "/iso-image.nix", [["default", 569, 7], ["type", 570, 7], ["description", 571, 7], ["example", 575, 7]]);
-const pos$21 = nix.positions(here + "/iso-image.nix", [["default", 579, 7], ["type", 580, 7], ["description", 581, 7]]);
-const pos$22 = nix.positions(here + "/iso-image.nix", [["default", 589, 7], ["type", 592, 7], ["description", 593, 7]]);
-const pos$23 = nix.positions(here + "/iso-image.nix", [["example", 601, 7], ["description", 607, 7]]);
-const pos$24 = nix.positions(here + "/iso-image.nix", [["example", 614, 7], ["description", 615, 7]]);
-const pos$25 = nix.positions(here + "/iso-image.nix", [["default", 622, 7], ["type", 623, 7], ["description", 624, 7]]);
-const pos$26 = nix.positions(here + "/iso-image.nix", [["default", 640, 7], ["defaultText", 641, 7], ["type", 645, 7], ["description", 646, 7]]);
-const pos$27 = nix.positions(here + "/iso-image.nix", [["default", 652, 7], ["type", 653, 7], ["description", 654, 7]]);
-const pos$28 = nix.positions(here + "/iso-image.nix", [["default", 660, 7], ["type", 661, 7], ["description", 662, 7]]);
-const pos$29 = nix.positions(here + "/iso-image.nix", [["url", 669, 9], ["sha256", 670, 9]]);
-const pos$30 = nix.positions(here + "/iso-image.nix", [["default", 668, 7], ["description", 672, 7]]);
-const pos$31 = nix.positions(here + "/iso-image.nix", [["url", 679, 9], ["sha256", 680, 9]]);
-const pos$32 = nix.positions(here + "/iso-image.nix", [["default", 678, 7], ["description", 682, 7]]);
-const pos$33 = nix.positions(here + "/iso-image.nix", [["default", 688, 7], ["type", 689, 7], ["description", 690, 7]]);
-const pos$34 = nix.positions(here + "/iso-image.nix", [["default", 696, 7], ["type", 720, 7], ["description", 721, 7]]);
-const pos$35 = nix.positions(here + "/iso-image.nix", [["default", 727, 7], ["type", 728, 7], ["example", 729, 7], ["description", 730, 7]]);
-const pos$36 = nix.positions(here + "/iso-image.nix", [["default", 740, 7], ["type", 741, 7], ["example", 742, 7], ["description", 743, 7]]);
-const pos$37 = nix.positions(here + "/iso-image.nix", [["default", 753, 7], ["type", 754, 7], ["example", 755, 7], ["description", 756, 7]]);
-const pos$38 = nix.positions(here + "/iso-image.nix", [["default", 762, 7]]);
-const pos$39 = nix.positions(here + "/iso-image.nix", [["default", 766, 7], ["type", 767, 7], ["example", 768, 7], ["description", 769, 7]]);
-const pos$40 = nix.positions(here + "/iso-image.nix", [["compressImage", 559, 14], ["squashfsCompression", 568, 14], ["edition", 578, 14], ["volumeID", 587, 14], ["contents", 600, 14], ["storeContents", 613, 14], ["includeSystemBuildDependencies", 621, 14], ["makeBiosBootable", 633, 14], ["makeEfiBootable", 651, 14], ["makeUsbBootable", 659, 14], ["efiSplashImage", 667, 14], ["splashImage", 677, 14], ["grubTheme", 687, 14], ["syslinuxTheme", 695, 14], ["prependToMenuLabel", 726, 14], ["appendToMenuLabel", 739, 14], ["configurationName", 752, 14], ["showConfiguration", 761, 14], ["forceTextMode", 765, 14]]);
-const pos$41 = nix.positions(here + "/iso-image.nix", [["isoImage", 559, 5]]);
-const pos$42 = nix.positions(here + "/iso-image.nix", [["fsType", 785, 7], ["options", 786, 7]]);
-const pos$43 = nix.positions(here + "/iso-image.nix", [["device", 794, 7], ["fsType", 799, 7], ["neededForBoot", 800, 7], ["noCheck", 801, 7]]);
-const pos$44 = nix.positions(here + "/iso-image.nix", [["fsType", 807, 7], ["device", 808, 7], ["options", 809, 7], ["neededForBoot", 813, 7]]);
-const pos$45 = nix.positions(here + "/iso-image.nix", [["fsType", 817, 7], ["options", 818, 7], ["neededForBoot", 819, 7]]);
-const pos$46 = nix.positions(here + "/iso-image.nix", [["lowerdir", 824, 9], ["upperdir", 825, 9], ["workdir", 826, 9]]);
-const pos$47 = nix.positions(here + "/iso-image.nix", [["overlay", 823, 7]]);
-const pos$48 = nix.positions(here + "/iso-image.nix", [["/", 784, 5], ["/iso", 793, 5], ["/nix/.ro-store", 806, 5], ["/nix/.rw-store", 816, 5], ["/nix/store", 822, 5]]);
-const pos$49 = nix.positions(here + "/iso-image.nix", [["isoFileSystems", 783, 14]]);
-const pos$50 = nix.positions(here + "/iso-image.nix", [["assertion", 835, 9], ["message", 836, 9]]);
-const pos$51 = nix.positions(here + "/iso-image.nix", [["assertion", 839, 9], ["message", 842, 9]]);
-const pos$52 = nix.positions(here + "/iso-image.nix", [["assertion", 857, 11], ["message", 858, 11]]);
-const pos$53 = nix.positions(here + "/iso-image.nix", [["enable", 873, 22]]);
-const pos$54 = nix.positions(here + "/iso-image.nix", [["grub", 873, 17], ["timeout", 1029, 17]]);
-const pos$55 = nix.positions(here + "/iso-image.nix", [["RequiresMountsFor", 921, 11], ["ConditionKernelCommandLine", 922, 11]]);
-const pos$56 = nix.positions(here + "/iso-image.nix", [["Type", 925, 11], ["RemainAfterExit", 926, 11]]);
-const pos$57 = nix.positions(here + "/iso-image.nix", [["description", 914, 9], ["requiredBy", 915, 9], ["before", 916, 9], ["unitConfig", 920, 9], ["serviceConfig", 924, 9], ["path", 928, 9], ["script", 932, 9]]);
-const pos$58 = nix.positions(here + "/iso-image.nix", [["copytoram", 913, 16]]);
-const pos$59 = nix.positions(here + "/iso-image.nix", [["emergencyAccess", 909, 7], ["initrdBin", 912, 7], ["services", 913, 7]]);
-const pos$60 = nix.positions(here + "/iso-image.nix", [["availableKernelModules", 896, 17], ["kernelModules", 903, 17], ["systemd", 908, 17], ["supportedFilesystems", 1088, 17]]);
-const pos$61 = nix.positions(here + "/iso-image.nix", [["loader", 873, 10], ["kernelParams", 889, 10], ["initrd", 896, 10]]);
-const pos$62 = nix.positions(here + "/iso-image.nix", [["systemPackages", 875, 17]]);
-const pos$63 = nix.positions(here + "/iso-image.nix", [["compressImage", 1040, 35], ["volumeID", 1040, 49], ["contents", 1040, 58], ["isoName", 1041, 9], ["bootable", 1042, 9], ["bootImage", 1043, 9], ["syslinux", 1044, 9], ["squashfsContents", 1045, 9], ["squashfsCompression", 1046, 9]]);
-const pos$64 = nix.positions(here + "/iso-image.nix", [["usbBootable", 1049, 9], ["isohybridMbrImage", 1050, 9]]);
-const pos$65 = nix.positions(here + "/iso-image.nix", [["efiBootable", 1053, 9], ["efiBootImage", 1054, 9]]);
-const pos$66 = nix.positions(here + "/iso-image.nix", [["image", 1037, 18], ["isoImage", 1038, 18]]);
-const pos$67 = nix.positions(here + "/iso-image.nix", [["extraDependencies", 879, 12], ["build", 1037, 12]]);
-const pos$68 = nix.positions(here + "/iso-image.nix", [["source", 961, 15], ["target", 962, 15]]);
-const pos$69 = nix.positions(here + "/iso-image.nix", [["source", 965, 15], ["target", 966, 15]]);
 const formals$8 = { args: { configuration: false }, ellipsis: true };
-const pos$70 = nix.positions(here + "/iso-image.nix", [["source", 975, 11], ["target", 976, 11]]);
-const pos$71 = nix.positions(here + "/iso-image.nix", [["source", 982, 11], ["target", 983, 11]]);
-const pos$72 = nix.positions(here + "/iso-image.nix", [["source", 986, 11], ["target", 987, 11]]);
-const pos$73 = nix.positions(here + "/iso-image.nix", [["source", 990, 11], ["target", 991, 11]]);
-const pos$74 = nix.positions(here + "/iso-image.nix", [["source", 996, 11], ["target", 997, 11]]);
-const pos$75 = nix.positions(here + "/iso-image.nix", [["source", 1000, 11], ["target", 1001, 11]]);
-const pos$76 = nix.positions(here + "/iso-image.nix", [["source", 1004, 11], ["target", 1005, 11]]);
-const pos$77 = nix.positions(here + "/iso-image.nix", [["source", 1012, 11], ["target", 1013, 11]]);
-const pos$78 = nix.positions(here + "/iso-image.nix", [["source", 1018, 11], ["target", 1019, 11]]);
-const pos$79 = nix.positions(here + "/iso-image.nix", [["source", 1024, 11], ["target", 1025, 11]]);
-const pos$80 = nix.positions(here + "/iso-image.nix", [["storeContents", 948, 14], ["contents", 955, 14]]);
-const pos$81 = nix.positions(here + "/iso-image.nix", [["extension", 1032, 11], ["filePath", 1033, 11], ["baseName", 1034, 11]]);
-const pos$82 = nix.positions(here + "/iso-image.nix", [["DefaultDependencies", 1060, 18]]);
-const pos$83 = nix.positions(here + "/iso-image.nix", [["Type", 1072, 9], ["RemainAfterExit", 1073, 9]]);
-const pos$84 = nix.positions(here + "/iso-image.nix", [["description", 1059, 7], ["unitConfig", 1060, 7], ["wantedBy", 1061, 7], ["before", 1062, 7], ["after", 1068, 7], ["conflicts", 1069, 7], ["restartIfChanged", 1070, 7], ["serviceConfig", 1071, 7], ["script", 1075, 7]]);
-const pos$85 = nix.positions(here + "/iso-image.nix", [["register-nix-paths", 1058, 22]]);
-const pos$86 = nix.positions(here + "/iso-image.nix", [["services", 1058, 13]]);
-const pos$87 = nix.positions(here + "/iso-image.nix", [["lib", 783, 10], ["assertions", 832, 5], ["boot", 873, 5], ["environment", 875, 5], ["system", 879, 5], ["fileSystems", 894, 5], ["isoImage", 948, 5], ["image", 1032, 5], ["systemd", 1058, 5]]);
-const pos$88 = nix.positions(here + "/iso-image.nix", [["imports", 531, 3], ["options", 557, 3], ["config", 783, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -126,7 +39,7 @@ export default nix.lambda((args) => (() => {
     const cfg = nix.argOr($_1, "cfg", () => nix.force(config));
     const params = nix.argOr($_1, "params", () => []);
     const menuConfig = nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: nix.thunk(() => nix.app(nix.sel(lib, "concatStrings"), nix.thunk(() => [
           nix.thunk(() => nix.sel(cfg, "isoImage", "prependToMenuLabel")),
           nix.thunk(() => nix.sel(cfg, "system", "nixos", "distroName")),
@@ -144,7 +57,7 @@ export default nix.lambda((args) => (() => {
 ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (specName) => nix.lambda((args_2) => (() => {
           const $_2 = nix.formals(args_2, formals$4);
           const configuration = nix.arg($_2, "configuration");
-          return nix.app(buildMenuGrub2, nix.thunk(() => ({ [nix.POS]: pos$2, cfg: configuration, params: params })));
+          return nix.app(buildMenuGrub2, nix.thunk(() => ({ [nix.POS]: $pos[1], cfg: configuration, params: params })));
         })(), formals$4), nix.thunk(() => nix.sel(cfg, "specialisation")))))}
 `;
   })(), formals$3);
@@ -153,49 +66,49 @@ ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.se
   const grubEfiTimeout = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(config, "boot", "loader", "timeout"), null)) ? nix.neg(1n) : nix.sel(config, "boot", "loader", "timeout")));
   const optionsSubMenus = nix.thunk(() => [
     nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       title: "Copy ISO Files to RAM",
       class: "copytoram",
       params: nix.thunk(() => ["copytoram"]),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       title: "No modesetting",
       class: "nomodeset",
       params: nix.thunk(() => ["nomodeset"]),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       title: "Debug Console Output",
       class: "debug",
       params: nix.thunk(() => ["debug"]),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       title: "Disable display-manager",
       class: "quirk-disable-displaymanager",
       params: nix.thunk(() => ["systemd.mask=display-manager.service", "plymouth.enable=0"]),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       title: "Rotate framebuffer Clockwise",
       class: "rotate-90cw",
       params: nix.thunk(() => ["fbcon=rotate:1"]),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       title: "Rotate framebuffer Upside-Down",
       class: "rotate-180",
       params: nix.thunk(() => ["fbcon=rotate:2"]),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       title: "Rotate framebuffer Counter-Clockwise",
       class: "rotate-90ccw",
       params: nix.thunk(() => ["fbcon=rotate:3"]),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       title: "Serial console=ttyS0,115200n8",
       class: "serial",
       params: nix.thunk(() => ["console=ttyS0,115200n8"]),
@@ -214,7 +127,7 @@ INITRD /boot/${nix.add(nix.add(nix.sel(cfg, "system", "build", "initialRamdisk")
 `))}
 
 ${nix.app(nix.sel(lib, "concatStringsSep"), "\n\n", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (specCfg) => nix.app(menuBuilderIsolinux, nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             cfg: nix.thunk(() => nix.sel(specCfg, "configuration")),
             label: nix.thunk(() => nix.str`${label}-${name}`),
             params: params,
@@ -230,7 +143,7 @@ ${nix.sel(config, "isoImage", "syslinuxTheme")}
 
 DEFAULT boot
 
-${nix.app(menuBuilderIsolinux, nix.thunk(() => ({ [nix.POS]: pos$12, label: "boot" })))}
+${nix.app(menuBuilderIsolinux, nix.thunk(() => ({ [nix.POS]: $pos[11], label: "boot" })))}
 
 MENU BEGIN Options
 
@@ -241,7 +154,7 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", nix.lambda((args_1) => (() 
       const params = nix.arg($_1, "params");
       return nix.str`MENU BEGIN ${title}
 ${nix.app(menuBuilderIsolinux, nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           label: nix.thunk(() => nix.str`boot-${class$}`),
           params: params,
         })))}
@@ -318,7 +231,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(config
 `))}
 `);
   const efiDir = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "efi-directory", nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "buildPackages", "grub2_efi"))]),
       strictDeps: true,
     })), nix.thunk(() => nix.str`mkdir -p $out/EFI/BOOT
@@ -435,7 +348,7 @@ submenu "Options" --class submenu --class hidpi {
         const params = nix.arg($_1, "params");
         return nix.str`submenu "${title}" --class ${class$} {
   ${grubMenuCfg}
-  ${nix.app(buildMenuGrub2, nix.thunk(() => ({ [nix.POS]: pos$15, params: params })))}
+  ${nix.app(buildMenuGrub2, nix.thunk(() => ({ [nix.POS]: $pos[14], params: params })))}
 }
 `;
       })(), formals$7), optionsSubMenus)}
@@ -472,7 +385,7 @@ grub-script-check $out/EFI/BOOT/grub.cfg
 ${refind}
 `)));
   const efiImg = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "efi-image_eltorito", nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       nativeBuildInputs: nix.thunk(() => [
         nix.thunk(() => nix.sel(pkgs, "buildPackages", "mtools")),
         nix.thunk(() => nix.sel(pkgs, "buildPackages", "libfaketime")),
@@ -511,16 +424,16 @@ done
 fsck.vfat -vn "$out"
 `)));
   return {
-    [nix.POS]: pos$88,
+    [nix.POS]: $pos[87],
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModuleWith"), nix.thunk(() => ({
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           sinceRelease: 2505n,
           from: nix.thunk(() => ["isoImage", "isoBaseName"]),
           to: nix.thunk(() => ["image", "baseName"]),
         })))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModuleWith"), nix.thunk(() => ({
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           sinceRelease: 2505n,
           from: nix.thunk(() => ["isoImage", "isoName"]),
           to: nix.thunk(() => ["image", "fileName"]),
@@ -528,95 +441,95 @@ fsck.vfat -vn "$out"
       nix.path(here, "../../image/file-options.nix"),
     ]),
     options: nix.thunk(() => ({
-      [nix.POS]: pos$41,
+      [nix.POS]: $pos[40],
       isoImage: nix.thunk(() => ({
-        [nix.POS]: pos$40,
+        [nix.POS]: $pos[39],
         compressImage: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            [nix.POS]: pos$19,
+            [nix.POS]: $pos[18],
             default: false,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             description: "Whether the ISO image should be compressed using\n{command}`zstd`.\n",
           })))),
         squashfsCompression: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            [nix.POS]: pos$20,
+            [nix.POS]: $pos[19],
             default: "zstd -Xcompression-level 19",
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             description: "Compression settings to use for the squashfs nix store.\n`null` disables compression.\n",
             example: "zstd -Xcompression-level 6",
           })))),
         edition: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            [nix.POS]: pos$21,
+            [nix.POS]: $pos[20],
             default: "",
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             description: "Specifies which edition string to use in the volume ID of the generated\nISO image.\n",
           })))),
         volumeID: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            [nix.POS]: pos$22,
+            [nix.POS]: $pos[21],
             default: nix.thunk(() => nix.str`nixos${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(config, "isoImage", "edition"), "")), nix.thunk(() => nix.str`-${nix.sel(config, "isoImage", "edition")}`))}-${nix.sel(config, "system", "nixos", "release")}-${nix.sel(pkgs, "stdenv", "hostPlatform", "uname", "processor")}`),
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             description: "Specifies the label or volume ID of the generated ISO image.\nNote that the label is used by stage 1 of the boot process to\nmount the CD, so it should be reasonably distinctive.\n",
           })))),
         contents: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            [nix.POS]: pos$23,
+            [nix.POS]: $pos[22],
             example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ { source = pkgs.memtest86 + \"/memtest.bin\";\n    target = \"boot/memtest.bin\";\n  }\n]\n")),
             description: "This option lists files to be copied to fixed locations in the\ngenerated ISO image.\n",
           })))),
         storeContents: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            [nix.POS]: pos$24,
+            [nix.POS]: $pos[23],
             example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ pkgs.stdenv ]")),
             description: "This option lists additional derivations to be included in the\nNix store in the generated ISO image.\n",
           })))),
         includeSystemBuildDependencies: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            [nix.POS]: pos$25,
+            [nix.POS]: $pos[24],
             default: false,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             description: "Set this option to include all the needed sources etc in the\nimage. It significantly increases image size. Use that when\nyou want to be able to keep all the sources needed to build your\nsystem or when you are going to install the system on a computer\nwith slow or non-existent network connection.\n",
           })))),
         makeBiosBootable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            [nix.POS]: pos$26,
+            [nix.POS]: $pos[25],
             default: nix.thunk(() => (nix.asBool(nix.sel(pkgs, "stdenv", "buildPlatform", "isx86")) && nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isx86")))),
             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalMD"), "`true` if both build and host platforms are x86-based architectures,\ne.g. i686 and x86_64.\n")),
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             description: "Whether the ISO image should be a BIOS-bootable disk.\n",
           })))),
         makeEfiBootable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            [nix.POS]: pos$27,
+            [nix.POS]: $pos[26],
             default: false,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             description: "Whether the ISO image should be an EFI-bootable volume.\n",
           })))),
         makeUsbBootable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            [nix.POS]: pos$28,
+            [nix.POS]: $pos[27],
             default: false,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             description: "Whether the ISO image should be bootable from CD as well as USB.\n",
           })))),
         efiSplashImage: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            [nix.POS]: pos$30,
+            [nix.POS]: $pos[29],
             default: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchurl"), nix.thunk(() => ({
-                [nix.POS]: pos$29,
+                [nix.POS]: $pos[28],
                 url: "https://raw.githubusercontent.com/NixOS/nixos-artwork/a9e05d7deb38a8e005a2b52575a3f59a63a4dba0/bootloader/efi-background.png",
                 sha256: "18lfwmp8yq923322nlb9gxrh5qikj1wsk6g5qvdh31c4h5b1538x",
               })))),
             description: "The splash image to use in the EFI bootloader.\n",
           })))),
         splashImage: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            [nix.POS]: pos$32,
+            [nix.POS]: $pos[31],
             default: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchurl"), nix.thunk(() => ({
-                [nix.POS]: pos$31,
+                [nix.POS]: $pos[30],
                 url: "https://raw.githubusercontent.com/NixOS/nixos-artwork/a9e05d7deb38a8e005a2b52575a3f59a63a4dba0/bootloader/isolinux/bios-boot.png",
                 sha256: "1wp822zrhbg4fgfbwkr7cbkr4labx477209agzc0hr6k62fr6rxd",
               })))),
             description: "The splash image to use in the legacy-boot bootloader.\n",
           })))),
         grubTheme: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            [nix.POS]: pos$33,
+            [nix.POS]: $pos[32],
             default: nix.thunk(() => nix.sel(pkgs, "nixos-grub2-theme")),
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "either"), nix.thunk(() => nix.sel(lib, "types", "path")), nix.thunk(() => nix.sel(lib, "types", "package")))))),
             description: "The grub2 theme used for UEFI boot.\n",
           })))),
         syslinuxTheme: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            [nix.POS]: pos$34,
+            [nix.POS]: $pos[33],
             default: nix.thunk(() => nix.str`MENU TITLE ${nix.sel(config, "system", "nixos", "distroName")}
 MENU RESOLUTION 800 600
 MENU CLEAR
@@ -644,29 +557,29 @@ MENU COLOR SEL          7;37;40    #FFFFFFFF    #FF5277C3   std
             description: "The syslinux theme used for BIOS boot.\n",
           })))),
         prependToMenuLabel: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            [nix.POS]: pos$35,
+            [nix.POS]: $pos[34],
             default: "",
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             example: "Install ",
             description: "The string to prepend before the menu label for the NixOS system.\nThis will be directly prepended (without whitespace) to the NixOS version\nstring, like for example if it is set to `XXX`:\n\n`XXXNixOS 99.99-pre666`\n",
           })))),
         appendToMenuLabel: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            [nix.POS]: pos$36,
+            [nix.POS]: $pos[35],
             default: " Installer",
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             example: " Live System",
             description: "The string to append after the menu label for the NixOS system.\nThis will be directly appended (without whitespace) to the NixOS version\nstring, like for example if it is set to `XXX`:\n\n`NixOS 99.99-pre666XXX`\n",
           })))),
         configurationName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            [nix.POS]: pos$37,
+            [nix.POS]: $pos[36],
             default: null,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             example: "GNOME",
             description: "The name of the configuration in the title of the boot entry.\n",
           })))),
-        showConfiguration: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "show this configuration in the menu"), { [nix.POS]: pos$38, default: true })),
+        showConfiguration: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "show this configuration in the menu"), { [nix.POS]: $pos[37], default: true })),
         forceTextMode: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            [nix.POS]: pos$39,
+            [nix.POS]: $pos[38],
             default: false,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             example: true,
@@ -675,36 +588,40 @@ MENU COLOR SEL          7;37;40    #FFFFFFFF    #FF5277C3   std
       })),
     })),
     config: nix.thunk(() => ({
-      [nix.POS]: pos$87,
+      [nix.POS]: $pos[86],
       lib: nix.thunk(() => ({
-        [nix.POS]: pos$49,
+        [nix.POS]: $pos[48],
         isoFileSystems: nix.thunk(() => ({
-          [nix.POS]: pos$48,
-          "/": nix.thunk(() => nix.app(nix.sel(lib, "mkImageMediaOverride"), nix.thunk(() => ({ [nix.POS]: pos$42, fsType: "tmpfs", options: nix.thunk(() => ["mode=0755"]) })))),
+          [nix.POS]: $pos[47],
+          "/": nix.thunk(() => nix.app(nix.sel(lib, "mkImageMediaOverride"), nix.thunk(() => ({
+              [nix.POS]: $pos[41],
+              fsType: "tmpfs",
+              options: nix.thunk(() => ["mode=0755"]),
+            })))),
           "/iso": nix.thunk(() => nix.app(nix.sel(lib, "mkImageMediaOverride"), nix.thunk(() => ({
-              [nix.POS]: pos$43,
+              [nix.POS]: $pos[42],
               device: nix.thunk(() => (nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable")) ? nix.str`/dev/disk/by-label/${nix.sel(config, "isoImage", "volumeID")}` : "/dev/root")),
               fsType: "iso9660",
               neededForBoot: true,
               noCheck: true,
             })))),
           "/nix/.ro-store": nix.thunk(() => nix.app(nix.sel(lib, "mkImageMediaOverride"), nix.thunk(() => ({
-              [nix.POS]: pos$44,
+              [nix.POS]: $pos[43],
               fsType: "squashfs",
               device: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(config, "boot", "initrd", "systemd", "enable")), "/sysroot")}/iso/nix-store.squashfs`),
               options: nix.thunk(() => nix.concat(["loop"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(config, "boot", "kernelPackages", "kernel", "kernelAtLeast"), "6.2")), "threads=multi"))),
               neededForBoot: true,
             })))),
           "/nix/.rw-store": nix.thunk(() => nix.app(nix.sel(lib, "mkImageMediaOverride"), nix.thunk(() => ({
-              [nix.POS]: pos$45,
+              [nix.POS]: $pos[44],
               fsType: "tmpfs",
               options: nix.thunk(() => ["mode=0755"]),
               neededForBoot: true,
             })))),
           "/nix/store": nix.thunk(() => nix.app(nix.sel(lib, "mkImageMediaOverride"), nix.thunk(() => ({
-              [nix.POS]: pos$47,
+              [nix.POS]: $pos[46],
               overlay: nix.thunk(() => ({
-                [nix.POS]: pos$46,
+                [nix.POS]: $pos[45],
                 lowerdir: nix.thunk(() => ["/nix/.ro-store"]),
                 upperdir: "/nix/.rw-store/store",
                 workdir: "/nix/.rw-store/work",
@@ -714,12 +631,12 @@ MENU COLOR SEL          7;37;40    #FFFFFFFF    #FF5277C3   std
       })),
       assertions: nix.thunk(() => [
         nix.thunk(() => ({
-          [nix.POS]: pos$50,
+          [nix.POS]: $pos[49],
           assertion: nix.thunk(() => (!nix.asBool(nix.sel(config, "isoImage", "makeBiosBootable")) || nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isx86")))),
           message: "BIOS boot is only supported on x86-based architectures.",
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$51,
+          [nix.POS]: $pos[50],
           assertion: nix.thunk(() => !nix.asBool(nix.gt(nix.app(nix.sel(lib, "stringLength"), nix.thunk(() => nix.sel(config, "isoImage", "volumeID"))), 32n))),
           message: nix.thunk(() => (() => {
             const length = nix.thunk(() => nix.app(nix.sel(lib, "stringLength"), nix.thunk(() => nix.sel(config, "isoImage", "volumeID"))));
@@ -731,7 +648,7 @@ MENU COLOR SEL          7;37;40    #FFFFFFFF    #FF5277C3   std
         nix.thunk(() => (() => {
           const badSpecs = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (specName) => (specCfg) => !nix.eq(nix.sel(specCfg, "configuration", "isoImage", "volumeID"), nix.sel(config, "isoImage", "volumeID")), nix.thunk(() => nix.sel(config, "specialisation"))));
           return {
-            [nix.POS]: pos$52,
+            [nix.POS]: $pos[51],
             assertion: nix.thunk(() => nix.eq(badSpecs, {})),
             message: nix.thunk(() => nix.str`All specialisations must use the same 'isoImage.volumeID'.
 
@@ -744,11 +661,11 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (specName) => nix.str`- ${s
         })()),
       ]),
       boot: nix.thunk(() => ({
-        [nix.POS]: pos$61,
+        [nix.POS]: $pos[60],
         loader: nix.thunk(() => ({
-          [nix.POS]: pos$54,
+          [nix.POS]: $pos[53],
           grub: nix.thunk(() => ({
-            [nix.POS]: pos$53,
+            [nix.POS]: $pos[52],
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkImageMediaOverride"), false)),
           })),
           timeout: 10n,
@@ -758,19 +675,19 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (specName) => nix.str`- ${s
             nix.thunk(() => nix.str`root=LABEL=${nix.sel(config, "isoImage", "volumeID")}`),
           ]))),
         initrd: nix.thunk(() => ({
-          [nix.POS]: pos$60,
+          [nix.POS]: $pos[59],
           availableKernelModules: nix.thunk(() => ["squashfs", "iso9660", "uas", "overlay"]),
           kernelModules: nix.thunk(() => ["loop", "overlay"]),
           systemd: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "boot", "initrd", "systemd", "enable")), nix.thunk(() => ({
-              [nix.POS]: pos$59,
+              [nix.POS]: $pos[58],
               emergencyAccess: true,
               initrdBin: nix.thunk(() => [
                 nix.thunk(() => nix.sel(config, "boot", "initrd", "systemd", "package", "util-linux")),
               ]),
               services: nix.thunk(() => ({
-                [nix.POS]: pos$58,
+                [nix.POS]: $pos[57],
                 copytoram: nix.thunk(() => ({
-                  [nix.POS]: pos$57,
+                  [nix.POS]: $pos[56],
                   description: "Copy ISO contents to RAM",
                   requiredBy: nix.thunk(() => ["initrd.target"]),
                   before: nix.thunk(() => [
@@ -778,11 +695,11 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (specName) => nix.str`- ${s
                     "initrd-switch-root.target",
                   ]),
                   unitConfig: nix.thunk(() => ({
-                    [nix.POS]: pos$55,
+                    [nix.POS]: $pos[54],
                     RequiresMountsFor: "/sysroot/iso",
                     ConditionKernelCommandLine: "copytoram",
                   })),
-                  serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$56, Type: "oneshot", RemainAfterExit: true })),
+                  serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[55], Type: "oneshot", RemainAfterExit: true })),
                   path: nix.thunk(() => [
                     nix.thunk(() => nix.sel(pkgs, "coreutils")),
                     nix.thunk(() => nix.sel(config, "boot", "initrd", "systemd", "package", "util-linux")),
@@ -795,19 +712,19 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (specName) => nix.str`- ${s
         })),
       })),
       environment: nix.thunk(() => ({
-        [nix.POS]: pos$62,
+        [nix.POS]: $pos[61],
         systemPackages: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(grubPkgs, "grub2"))], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(config, "isoImage", "makeBiosBootable")), nix.thunk(() => nix.sel(pkgs, "syslinux"))))),
       })),
       system: nix.thunk(() => ({
-        [nix.POS]: pos$67,
+        [nix.POS]: $pos[66],
         extraDependencies: nix.thunk(() => [nix.thunk(() => nix.sel(grubPkgs, "grub2_efi"))]),
         build: nix.thunk(() => ({
-          [nix.POS]: pos$66,
+          [nix.POS]: $pos[65],
           image: nix.thunk(() => nix.sel(config, "system", "build", "isoImage")),
           isoImage: nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "../../../lib/make-iso9660-image.nix"), nix.thunk(() => nix.update((() => {
               const from = nix.thunk(() => nix.sel(config, "isoImage"));
               return {
-              [nix.POS]: pos$63,
+              [nix.POS]: $pos[62],
               compressImage: nix.thunk(() => nix.attr(from, "compressImage")),
               volumeID: nix.thunk(() => nix.attr(from, "volumeID")),
               contents: nix.thunk(() => nix.attr(from, "contents")),
@@ -819,25 +736,25 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (specName) => nix.str`- ${s
               squashfsCompression: nix.thunk(() => nix.sel(config, "isoImage", "squashfsCompression")),
             };
             })(), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(config, "isoImage", "makeUsbBootable")) && nix.asBool(nix.sel(config, "isoImage", "makeBiosBootable")))), nix.thunk(() => ({
-                [nix.POS]: pos$64,
+                [nix.POS]: $pos[63],
                 usbBootable: true,
                 isohybridMbrImage: nix.thunk(() => nix.str`${nix.sel(pkgs, "syslinux")}/share/syslinux/isohdpfx.bin`),
-              }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "isoImage", "makeEfiBootable")), nix.thunk(() => ({ [nix.POS]: pos$65, efiBootable: true, efiBootImage: "boot/efi.img" })))))))),
+              }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "isoImage", "makeEfiBootable")), nix.thunk(() => ({ [nix.POS]: $pos[64], efiBootable: true, efiBootImage: "boot/efi.img" })))))))),
         })),
       })),
       fileSystems: nix.thunk(() => nix.sel(config, "lib", "isoFileSystems")),
       isoImage: nix.thunk(() => ({
-        [nix.POS]: pos$80,
+        [nix.POS]: $pos[79],
         storeContents: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(config, "system", "build", "toplevel"))], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(config, "isoImage", "includeSystemBuildDependencies")), nix.thunk(() => nix.sel(config, "system", "build", "toplevel", "drvPath"))))),
         contents: nix.thunk(() => (() => {
           const cfgFiles = (cfg) => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "isoImage", "showConfiguration")), nix.thunk(() => [
               nix.thunk(() => ({
-                [nix.POS]: pos$68,
+                [nix.POS]: $pos[67],
                 source: nix.thunk(() => nix.add(nix.add(nix.sel(cfg, "boot", "kernelPackages", "kernel"), "/"), nix.sel(cfg, "system", "boot", "loader", "kernelFile"))),
                 target: nix.thunk(() => nix.add(nix.add(nix.add("/boot/", nix.sel(cfg, "boot", "kernelPackages", "kernel")), "/"), nix.sel(cfg, "system", "boot", "loader", "kernelFile"))),
               })),
               nix.thunk(() => ({
-                [nix.POS]: pos$69,
+                [nix.POS]: $pos[68],
                 source: nix.thunk(() => nix.add(nix.add(nix.sel(cfg, "system", "build", "initialRamdisk"), "/"), nix.sel(cfg, "system", "boot", "loader", "initrdFile"))),
                 target: nix.thunk(() => nix.add(nix.add(nix.add("/boot/", nix.sel(cfg, "system", "build", "initialRamdisk")), "/"), nix.sel(cfg, "system", "boot", "loader", "initrdFile"))),
               })),
@@ -848,53 +765,53 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (specName) => nix.str`- ${s
               })(), formals$8), nix.thunk(() => nix.sel(cfg, "specialisation"))))));
           return nix.concat([
             nix.thunk(() => ({
-              [nix.POS]: pos$70,
+              [nix.POS]: $pos[69],
               source: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "version", nix.thunk(() => nix.sel(config, "system", "nixos", "label")))),
               target: "/version.txt",
             })),
           ], nix.concat(nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.app(cfgFiles, config))), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(config, "isoImage", "makeBiosBootable")), nix.thunk(() => [
               nix.thunk(() => ({
-                [nix.POS]: pos$71,
+                [nix.POS]: $pos[70],
                 source: nix.thunk(() => nix.sel(config, "isoImage", "splashImage")),
                 target: "/isolinux/background.png",
               })),
               nix.thunk(() => ({
-                [nix.POS]: pos$72,
+                [nix.POS]: $pos[71],
                 source: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "isolinux.cfg", isolinuxCfg)),
                 target: "/isolinux/isolinux.cfg",
               })),
               nix.thunk(() => ({
-                [nix.POS]: pos$73,
+                [nix.POS]: $pos[72],
                 source: nix.thunk(() => nix.str`${nix.sel(pkgs, "syslinux")}/share/syslinux`),
                 target: "/isolinux",
               })),
             ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(config, "isoImage", "makeEfiBootable")), nix.thunk(() => [
-              nix.thunk(() => ({ [nix.POS]: pos$74, source: efiImg, target: "/boot/efi.img" })),
+              nix.thunk(() => ({ [nix.POS]: $pos[73], source: efiImg, target: "/boot/efi.img" })),
               nix.thunk(() => ({
-                [nix.POS]: pos$75,
+                [nix.POS]: $pos[74],
                 source: nix.thunk(() => nix.str`${efiDir}/EFI`),
                 target: "/EFI",
               })),
               nix.thunk(() => ({
-                [nix.POS]: pos$76,
+                [nix.POS]: $pos[75],
                 source: nix.thunk(() => nix.sel(config, "isoImage", "efiSplashImage")),
                 target: "/EFI/BOOT/efi-background.png",
               })),
             ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(config, "isoImage", "makeEfiBootable")) && nix.asBool(!nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable"))))), nix.thunk(() => [
               nix.thunk(() => ({
-                [nix.POS]: pos$77,
+                [nix.POS]: $pos[76],
                 source: nix.thunk(() => nix.add(nix.app(nix.sel(pkgs, "writeTextDir"), "grub/loopback.cfg", "source /EFI/BOOT/grub.cfg"), "/grub")),
                 target: "/boot/grub",
               })),
             ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(config, "boot", "loader", "grub", "memtest86", "enable")) && nix.asBool(nix.sel(config, "isoImage", "makeBiosBootable")))), nix.thunk(() => [
               nix.thunk(() => ({
-                [nix.POS]: pos$78,
+                [nix.POS]: $pos[77],
                 source: nix.thunk(() => nix.sel(pkgs, "memtest86plus", "efi")),
                 target: "/boot/memtest.bin",
               })),
             ])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(config, "isoImage", "grubTheme"), null)), nix.thunk(() => [
               nix.thunk(() => ({
-                [nix.POS]: pos$79,
+                [nix.POS]: $pos[78],
                 source: nix.thunk(() => nix.sel(config, "isoImage", "grubTheme")),
                 target: "/EFI/BOOT/grub-theme",
               })),
@@ -902,19 +819,19 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (specName) => nix.str`- ${s
         })()),
       })),
       image: nix.thunk(() => ({
-        [nix.POS]: pos$81,
+        [nix.POS]: $pos[80],
         extension: nix.thunk(() => (nix.asBool(nix.sel(config, "isoImage", "compressImage")) ? "iso.zst" : "iso")),
         filePath: nix.thunk(() => nix.str`iso/${nix.sel(config, "image", "fileName")}`),
         baseName: nix.thunk(() => nix.str`nixos${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(config, "isoImage", "edition"), "")), nix.thunk(() => nix.str`-${nix.sel(config, "isoImage", "edition")}`))}-${nix.sel(config, "system", "nixos", "label")}-${nix.sel(pkgs, "stdenv", "hostPlatform", "system")}`),
       })),
       systemd: nix.thunk(() => ({
-        [nix.POS]: pos$86,
+        [nix.POS]: $pos[85],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$85,
+          [nix.POS]: $pos[84],
           "register-nix-paths": nix.thunk(() => ({
-            [nix.POS]: pos$84,
+            [nix.POS]: $pos[83],
             description: "Register Nix Store Paths",
-            unitConfig: nix.thunk(() => ({ [nix.POS]: pos$82, DefaultDependencies: false })),
+            unitConfig: nix.thunk(() => ({ [nix.POS]: $pos[81], DefaultDependencies: false })),
             wantedBy: nix.thunk(() => ["sysinit.target"]),
             before: nix.thunk(() => [
               "sysinit.target",
@@ -925,7 +842,7 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (specName) => nix.str`- ${s
             after: nix.thunk(() => ["local-fs.target"]),
             conflicts: nix.thunk(() => ["shutdown.target"]),
             restartIfChanged: false,
-            serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$83, Type: "oneshot", RemainAfterExit: true })),
+            serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[82], Type: "oneshot", RemainAfterExit: true })),
             script: nix.thunk(() => nix.str`# After booting, register the contents of the Nix store on the
 # CD in the Nix database in the tmpfs.
 ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(config, "nix", "package", "out")), "nix-store")} --load-db < /nix/store/nix-path-registration

@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 90, 5], ["repo", 91, 5], ["tag", 92, 5], ["hash", 93, 5]], [["pname", 104, 5], ["version", 105, 26], ["src", 105, 34], ["pnpm", 106, 13], ["fetcherVersion", 107, 5], ["hash", 108, 5]], [["CI", 114, 5]], [["oauth", 165, 25]], [["gradio-client", 432, 11]], [["gradio-client", 424, 9], ["gradio-pdf", 425, 9], ["hf-gradio", 431, 9]], [["pname", 436, 11], ["pythonRemoveDeps", 437, 11], ["doInstallCheck", 440, 11], ["doCheck", 441, 11], ["postPatch", 442, 11], ["preCheck", 443, 11], ["disabledTests", 444, 11], ["disabledTestPaths", 445, 11], ["disabledTestMarks", 446, 11], ["pytestFlags", 447, 11], ["preBuild", 448, 11], ["postInstall", 449, 11], ["pythonImportsCheck", 456, 11], ["dontCheckRuntimeDeps", 457, 11], ["dontCheckPythonMetadata", 458, 11]], [["sans-reverse-dependencies", 422, 5], ["updateScript", 464, 5]], [["homepage", 486, 5], ["changelog", 487, 5], ["description", 488, 5], ["license", 489, 5], ["maintainers", 490, 5]], [["pname", 84, 3], ["version", 85, 3], ["pyproject", 86, 3], ["__structuredAttrs", 87, 3], ["src", 89, 3], ["patches", 96, 3], ["pnpmDeps", 103, 3], ["env", 111, 3], ["nativeBuildInputs", 117, 3], ["build-system", 125, 3], ["dependencies", 131, 3], ["optional-dependencies", 165, 3], ["nativeCheckInputs", 170, 3], ["pythonRelaxDeps", 199, 3], ["preBuild", 203, 3], ["preCheck", 210, 3], ["disabledTests", 218, 3], ["disabledTestPaths", 381, 3], ["disabledTestMarks", 398, 3], ["pytestFlags", 402, 3], ["postCheck", 411, 3], ["pythonImportsCheck", 415, 3], ["__darwinAllowLocalNetworking", 417, 3], ["passthru", 421, 3], ["meta", 485, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, pythonAtLeast: false, writeScript: false, writeShellScriptBin: false, gradio: false, hatchling: false, "hatch-requirements-txt": false, "hatch-fancy-pypi-readme": false, zip: false, "nodejs-slim": false, pnpm_10: false, fetchPnpmDeps: false, pnpmConfigHook: false, anyio: false, "audioop-lts": false, brotli: false, fastapi: false, "gradio-client": false, groovy: false, "hf-gradio": false, httpx: false, "huggingface-hub": false, jinja2: false, markupsafe: false, matplotlib: false, numpy: false, orjson: false, packaging: false, pandas: false, pillow: false, pydantic: false, "python-multipart": false, pydub: false, pyyaml: false, safehttpx: false, "semantic-version": false, starlette: false, tomlkit: false, typer: false, "typing-extensions": false, uvicorn: false, urllib3: false, authlib: false, itsdangerous: false, pytestCheckHook: false, build: false, hypothesis: false, altair: false, boto3: false, diffusers: false, docker: false, "gradio-pdf": false, ffmpeg: false, ipython: false, mcp: false, polars: false, "pytest-asyncio": false, respx: false, "scikit-image": false, torch: false, tqdm: false, transformers: false, "vega-datasets": false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 90, 5], ["repo", 91, 5], ["tag", 92, 5], ["hash", 93, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 104, 5], ["version", 105, 26], ["src", 105, 34], ["pnpm", 106, 13], ["fetcherVersion", 107, 5], ["hash", 108, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["CI", 114, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["oauth", 165, 25]]);
-const pos$5 = nix.positions(here + "/default.nix", [["gradio-client", 432, 11]]);
-const pos$6 = nix.positions(here + "/default.nix", [["gradio-client", 424, 9], ["gradio-pdf", 425, 9], ["hf-gradio", 431, 9]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 436, 11], ["pythonRemoveDeps", 437, 11], ["doInstallCheck", 440, 11], ["doCheck", 441, 11], ["postPatch", 442, 11], ["preCheck", 443, 11], ["disabledTests", 444, 11], ["disabledTestPaths", 445, 11], ["disabledTestMarks", 446, 11], ["pytestFlags", 447, 11], ["preBuild", 448, 11], ["postInstall", 449, 11], ["pythonImportsCheck", 456, 11], ["dontCheckRuntimeDeps", 457, 11], ["dontCheckPythonMetadata", 458, 11]]);
-const pos$8 = nix.positions(here + "/default.nix", [["sans-reverse-dependencies", 422, 5], ["updateScript", 464, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["homepage", 486, 5], ["changelog", 487, 5], ["description", 488, 5], ["license", 489, 5], ["maintainers", 490, 5]]);
-const pos$10 = nix.positions(here + "/default.nix", [["pname", 84, 3], ["version", 85, 3], ["pyproject", 86, 3], ["__structuredAttrs", 87, 3], ["src", 89, 3], ["patches", 96, 3], ["pnpmDeps", 103, 3], ["env", 111, 3], ["nativeBuildInputs", 117, 3], ["build-system", 125, 3], ["dependencies", 131, 3], ["optional-dependencies", 165, 3], ["nativeCheckInputs", 170, 3], ["pythonRelaxDeps", 199, 3], ["preBuild", 203, 3], ["preCheck", 210, 3], ["disabledTests", 218, 3], ["disabledTestPaths", 381, 3], ["disabledTestMarks", 398, 3], ["pytestFlags", 402, 3], ["postCheck", 411, 3], ["pythonImportsCheck", 415, 3], ["__darwinAllowLocalNetworking", 417, 3], ["passthru", 421, 3], ["meta", 485, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -85,13 +76,13 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const pnpm = pnpm_10;
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "gradio",
       version: "6.29.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gradio-app",
           repo: "gradio",
           tag: nix.thunk(() => nix.str`gradio@${nix.sel(finalAttrs, "version")}`),
@@ -99,7 +90,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [nix.path(here, "./dont-npm-install-http-proxy.patch")]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: "gradio",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -107,7 +98,7 @@ export default nix.lambda((args) => (() => {
           fetcherVersion: 4n,
           hash: "sha256-JL0tYymcQt6hSeoCe8fHzTCMW461+sWa48elhPOm2Co=",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, CI: "true" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], CI: "true" })),
       nativeBuildInputs: nix.thunk(() => [zip, nodejs_slim, pnpm, pnpmConfigHook, writableTmpDirAsHomeHook]),
       "build-system": nix.thunk(() => [hatchling, hatch_requirements_txt, hatch_fancy_pypi_readme]),
       dependencies: nix.thunk(() => nix.concat([
@@ -140,7 +131,7 @@ export default nix.lambda((args) => (() => {
         uvicorn,
         urllib3,
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.13")), nix.thunk(() => [audioop_lts])))),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$4, oauth: nix.thunk(() => [authlib, itsdangerous]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[3], oauth: nix.thunk(() => [authlib, itsdangerous]) })),
       nativeCheckInputs: nix.thunk(() => nix.concat([
         altair,
         boto3,
@@ -315,17 +306,17 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["gradio"]),
       __darwinAllowLocalNetworking: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         "sans-reverse-dependencies": nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(gradio, "override"), nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             "gradio-client": null,
             "gradio-pdf": null,
             "hf-gradio": nix.thunk(() => nix.app(nix.sel(hf_gradio, "override"), nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 "gradio-client": nix.thunk(() => nix.sel(gradio_client, "sans-reverse-dependencies")),
               })))),
           }))), "overridePythonAttrs"), (old) => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             pname: nix.thunk(() => nix.add(nix.sel(old, "pname"), "-sans-reverse-dependencies")),
             pythonRemoveDeps: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "pythonRemoveDeps"), ["gradio-client"])),
             doInstallCheck: false,
@@ -345,7 +336,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(writeScript, "update-python3Packages.gradio", "#! /usr/bin/env nix-shell\n#! nix-shell -i bash -p common-updater-scripts coreutils gnugrep gnused nix-update jq curl\nset -euo pipefail\nset -x\n\ntag=$(list-git-tags \\\n      | grep \"^gradio@\" \\\n      | sed -e \"s,^gradio@,,\" \\\n      | grep -v -E -e \".*-(beta|dev).*\" \\\n      | sort --reverse --version-sort \\\n      | head -n 1 \\\n      | tr -d '\\n' \\\n     )\nnix-update python3Packages.gradio --version=\"$tag\"\n\ngradio_client_version=\"$(curl https://raw.githubusercontent.com/gradio-app/gradio/gradio@\"$tag\"/client/python/gradio_client/package.json | jq \".version\" -r)\"\nnix-update python3Packages.gradio-client --version=\"$gradio_client_version\" --no-src\n")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         homepage: "https://www.gradio.app/",
         changelog: nix.thunk(() => nix.str`https://github.com/gradio-app/gradio/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Python library for easily interacting with trained machine learning models",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["sha256", 28, 5]], [["description", 66, 5], ["longDescription", 67, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["platforms", 74, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 36, 3], ["postPatch", 46, 3], ["qmakeFlags", 52, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, qt6: false, fftw: false, itstool: false, alsaSupport: true, "alsa-lib": true, jackSupport: true, libjack2: true, portaudioSupport: true, portaudio: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["sha256", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 66, 5], ["longDescription", 67, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["platforms", 74, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 36, 3], ["postPatch", 46, 3], ["qmakeFlags", 52, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +23,11 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(jackSupport) || nix.asBool(!nix.eq(libjack2, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/fm/fmit/package.nix:17:1");
   nix.assert_((!nix.asBool(portaudioSupport) || nix.asBool(!nix.eq(portaudio, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/fm/fmit/package.nix:18:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "fmit",
       version: "1.4.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gillesdegottex",
           repo: "fmit",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,7 +50,7 @@ export default nix.lambda((args) => (() => {
 `),
       qmakeFlags: nix.thunk(() => nix.concat([nix.thunk(() => nix.str`PREFIXSHORTCUT=${nix.builtins.placeholder("out")}`)], nix.concat(nix.app(nix.sel(lib, "optionals"), alsaSupport, nix.thunk(() => ["CONFIG+=acs_alsa"])), nix.concat(nix.app(nix.sel(lib, "optionals"), jackSupport, nix.thunk(() => ["CONFIG+=acs_jack"])), nix.app(nix.sel(lib, "optionals"), portaudioSupport, nix.thunk(() => ["CONFIG+=acs_portaudio"])))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Free Musical Instrument Tuner",
         longDescription: "FMIT is a graphical utility for tuning musical instruments, with error\nand volume history, and advanced features.\n",
         homepage: "http://gillesdegottex.github.io/fmit/",

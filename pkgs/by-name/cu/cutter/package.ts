@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 7], ["repo", 25, 7], ["rev", 26, 7], ["hash", 27, 7], ["fetchSubmodules", 28, 7]], [["cutter", 72, 19], ["qt6", 72, 26], ["enableCutterPlugin", 73, 11]], [["rz-ghidra", 71, 9]], [["rizin", 79, 19], ["cutter", 79, 25], ["isCutter", 80, 11], ["plugins", 81, 11]], [["plugins", 70, 7], ["withPlugins", 76, 7]], [["description", 86, 7], ["homepage", 87, 7], ["license", 88, 7], ["mainProgram", 89, 7], ["maintainers", 90, 7], ["platforms", 91, 28]], [["pname", 20, 5], ["version", 21, 5], ["src", 23, 5], ["nativeBuildInputs", 31, 5], ["propagatedBuildInputs", 39, 5], ["buildInputs", 43, 5], ["cmakeFlags", 57, 5], ["preBuild", 65, 5], ["passthru", 69, 5], ["meta", 85, 5]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, stdenv: false, pkgs: false, cmake: false, "pkg-config": false, qt6: false, graphviz: false, python3: false, rizin: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 7], ["repo", 25, 7], ["rev", 26, 7], ["hash", 27, 7], ["fetchSubmodules", 28, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["cutter", 72, 19], ["qt6", 72, 26], ["enableCutterPlugin", 73, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["rz-ghidra", 71, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["rizin", 79, 19], ["cutter", 79, 25], ["isCutter", 80, 11], ["plugins", 81, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["plugins", 70, 7], ["withPlugins", 76, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 86, 7], ["homepage", 87, 7], ["license", 88, 7], ["mainProgram", 89, 7], ["maintainers", 90, 7], ["platforms", 91, 28]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 20, 5], ["version", 21, 5], ["src", 23, 5], ["nativeBuildInputs", 31, 5], ["propagatedBuildInputs", 39, 5], ["buildInputs", 43, 5], ["cmakeFlags", 57, 5], ["preBuild", 65, 5], ["passthru", 69, 5], ["meta", 85, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "cutter";
       const version = "2.5.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rizinorg",
           repo: "cutter",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -62,22 +56,22 @@ export default nix.lambda((args) => (() => {
       const preBuild = "qtWrapperArgs+=(--prefix PYTHONPATH : \"$PYTHONPATH\")\n";
       const passthru = nix.thunk(() => (() => {
         const plugins = nix.thunk(() => nix.update(nix.sel(rizin, "plugins"), {
-          [nix.POS]: pos$3,
-          "rz-ghidra": nix.thunk(() => nix.app(nix.sel(rizin, "plugins", "rz-ghidra", "override"), nix.thunk(() => ({ [nix.POS]: pos$2, cutter: cutter, qt6: qt6, enableCutterPlugin: true })))),
+          [nix.POS]: $pos[2],
+          "rz-ghidra": nix.thunk(() => nix.app(nix.sel(rizin, "plugins", "rz-ghidra", "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], cutter: cutter, qt6: qt6, enableCutterPlugin: true })))),
         }));
         const withPlugins = (filter) => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./wrapper.nix"), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             rizin: rizin,
             cutter: cutter,
             isCutter: true,
             plugins: nix.thunk(() => nix.app(filter, plugins)),
           })));
-        return { [nix.POS]: pos$5, plugins, withPlugins };
+        return { [nix.POS]: $pos[4], plugins, withPlugins };
       })());
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(rizin, "meta"));
         return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Free and Open Source Reverse Engineering Platform powered by rizin",
         homepage: nix.thunk(() => nix.sel(src, "meta", "homepage")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
@@ -90,7 +84,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         src,

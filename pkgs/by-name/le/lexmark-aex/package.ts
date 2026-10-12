@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["hash", 22, 5]], [["description", 80, 5], ["homepage", 81, 5], ["sourceProvenance", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["platforms", 85, 5]], [["pname", 14, 3], ["version", 15, 3], ["dontPatchELF", 17, 3], ["dontStrip", 18, 3], ["src", 20, 3], ["strictDeps", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 33, 3], ["runtimeDependencies", 42, 3], ["ppdFileCommands", 44, 3], ["installPhase", 49, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cups: false, fetchurl: false, patchPpdFilesHook: false, autoPatchelfHook: false, dpkg: false, perl: false, avahi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 80, 5], ["homepage", 81, 5], ["sourceProvenance", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["platforms", 85, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["dontPatchELF", 17, 3], ["dontStrip", 18, 3], ["src", 20, 3], ["strictDeps", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 33, 3], ["runtimeDependencies", 42, 3], ["ppdFileCommands", 44, 3], ["installPhase", 49, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const avahi = nix.arg($, "avahi");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "lexmark-aex",
       version: "1.0",
       dontPatchELF: true,
       dontStrip: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://downloads.lexmark.com/downloads/drivers/Lexmark-AEX-PPD-Files-1.0-01242019.amd64.deb",
           hash: "sha256-igrJEeFLArGbncOwk/WttnWfPjOokD0/IzpJ4VSOtHk=",
         })))),
@@ -56,7 +54,7 @@ runHook postInstall
 `;
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "CUPS drivers for Lexmark B2200 and MB2200 Series printers",
         homepage: "https://support.lexmark.com/en_xm/drivers-downloads.html",
         sourceProvenance: nix.thunk(() => (() => {

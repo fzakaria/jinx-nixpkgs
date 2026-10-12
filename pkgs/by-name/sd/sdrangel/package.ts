@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 54, 5], ["repo", 55, 5], ["tag", 56, 5], ["hash", 57, 5]], [["updateScript", 131, 12]], [["description", 134, 5], ["homepage", 135, 5], ["license", 136, 5], ["longDescription", 137, 5], ["maintainers", 140, 5], ["platforms", 145, 5]], [["pname", 50, 3], ["version", 51, 3], ["src", 53, 3], ["__structuredAttrs", 60, 3], ["strictDeps", 61, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 70, 3], ["cmakeFlags", 122, 3], ["passthru", 131, 3], ["meta", 133, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, airspy: false, airspyhf: false, aptdec: false, boost: false, cm256cc: false, cmake: false, codec2: false, dab_lib: false, dsdcc: false, faad2: false, fetchFromGitHub: false, fftwFloat: false, flac: false, ggmorse: false, glew: false, hackrf: false, hidapi: false, ffmpeg: false, inmarsatc: false, libiio: false, libogg: false, libopus: false, libpulseaudio: false, libunwind: false, libusb1: false, limesuite: false, libbladeRF: false, mbelib: false, ninja: false, opencv4: false, "pkg-config": false, qt6: false, qt6Packages: false, rnnoise: false, "rtl-sdr": false, serialdv: false, sdrplay: false, sgp4: false, "soapysdr-with-plugins": false, uhd: false, zlib: false, withSDRplay: true, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 54, 5], ["repo", 55, 5], ["tag", 56, 5], ["hash", 57, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 131, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 134, 5], ["homepage", 135, 5], ["license", 136, 5], ["longDescription", 137, 5], ["maintainers", 140, 5], ["platforms", 145, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 50, 3], ["version", 51, 3], ["src", 53, 3], ["__structuredAttrs", 60, 3], ["strictDeps", 61, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 70, 3], ["cmakeFlags", 122, 3], ["passthru", 131, 3], ["meta", 133, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -56,11 +53,11 @@ export default nix.lambda((args) => (() => {
   const withSDRplay = nix.argOr($, "withSDRplay", () => false);
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "sdrangel",
       version: "7.27.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "f4exb",
           repo: "sdrangel",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -127,11 +124,11 @@ export default nix.lambda((args) => (() => {
         "-Wno-dev",
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Software defined radio (SDR) software",
         homepage: "https://github.com/f4exb/sdrangel",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

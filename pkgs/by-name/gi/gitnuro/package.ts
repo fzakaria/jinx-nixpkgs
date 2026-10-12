@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 9], ["hash", 20, 9]], [["url", 24, 9], ["hash", 25, 9]], [["url", 32, 5], ["hash", 33, 5]], [["name", 57, 7], ["exec", 58, 7], ["icon", 59, 7], ["desktopName", 60, 7], ["categories", 61, 7], ["comment", 62, 7]], [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["platforms", 70, 5], ["sourceProvenance", 74, 5], ["maintainers", 75, 5], ["mainProgram", 76, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["icon", 31, 3], ["dontUnpack", 36, 3], ["nativeBuildInputs", 38, 3], ["installPhase", 43, 3], ["desktopItems", 55, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, copyDesktopItems: false, makeDesktopItem: false, jre: false, libGL: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 9], ["hash", 20, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 24, 9], ["hash", 25, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 32, 5], ["hash", 33, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 57, 7], ["exec", 58, 7], ["icon", 59, 7], ["desktopName", 60, 7], ["categories", 61, 7], ["comment", 62, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["platforms", 70, 5], ["sourceProvenance", 74, 5], ["maintainers", 75, 5], ["mainProgram", 76, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["icon", 31, 3], ["dontUnpack", 36, 3], ["nativeBuildInputs", 38, 3], ["installPhase", 43, 3], ["desktopItems", 55, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,20 +16,20 @@ export default nix.lambda((args) => (() => {
   const jre = nix.arg($, "jre");
   const libGL = nix.arg($, "libGL");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "gitnuro",
       version: "1.5.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")) ? {
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/JetpackDuba/Gitnuro/releases/download/v${nix.sel(finalAttrs, "version")}/Gitnuro-linux-x86_64-${nix.sel(finalAttrs, "version")}.jar`),
           hash: "sha256-EoBjw98O5gO2wTO34KMiFeteryYapZC83MUfIqxtbmQ=",
         } : (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "aarch64-linux")) ? {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://github.com/JetpackDuba/Gitnuro/releases/download/v${nix.sel(finalAttrs, "version")}/Gitnuro-linux-arm_aarch64-${nix.sel(finalAttrs, "version")}.jar`),
           hash: "sha256-oAmCapu9xFS1LMasj21q39Q/4yjLh6MZx79tC8Yjlec=",
         } : nix.builtins.throw(nix.thunk(() => nix.str`Unsupported architecture: ${nix.sel(stdenv, "hostPlatform", "system")}`))))))),
       icon: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: "https://raw.githubusercontent.com/JetpackDuba/Gitnuro/4cfc45069c176f807d9bfb1a7cba410257078d3c/icons/logo.svg",
           hash: "sha256-QGJcWTSJesIpDArOWiS3Kn1iznzeMFzvqS+CuNXh3as=",
         })))),
@@ -52,7 +47,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "Gitnuro",
             exec: "gitnuro",
             icon: "com.jetpackduba.Gitnuro",
@@ -62,7 +57,7 @@ runHook postInstall
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "FOSS Git multiplatform client based on Compose and JGit",
         homepage: "https://gitnuro.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

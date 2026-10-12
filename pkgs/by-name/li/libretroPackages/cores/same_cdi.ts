@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/same_cdi.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["name", 27, 7], ["url", 28, 7], ["hash", 29, 7]], [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5]], [["core", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["postPatch", 33, 3], ["extraNativeBuildInputs", 42, 3], ["extraBuildInputs", 43, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, "alsa-lib": false, fetchFromGitHub: false, fetchpatch2: false, libGL: false, libGLU: false, mkLibretroCore: false, portaudio: false, python3: false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/same_cdi.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/same_cdi.nix", [["name", 27, 7], ["url", 28, 7], ["hash", 29, 7]]);
-const pos$3 = nix.positions(here + "/same_cdi.nix", [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5]]);
-const pos$4 = nix.positions(here + "/same_cdi.nix", [["core", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["postPatch", 33, 3], ["extraNativeBuildInputs", 42, 3], ["extraBuildInputs", 43, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const libx11 = nix.arg($, "libx11");
   return nix.app(mkLibretroCore, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       core: "same_cdi",
       version: "0-unstable-2026-03-31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "libretro",
           repo: "same_cdi",
           rev: "2184aa6d87a31fb6c64534b9b7b2d26e36bae757",
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "Fixes_compilation_errors_as_per_issue_9.patch",
             url: "https://github.com/libretro/same_cdi/commit/bf3212315546cdd514118a4f3ea764fd9c401091.patch?full_index=1",
             hash: "sha256-1vrMxnRtEWUt+6I/4PSfCPDIUAGKkXFd2UVr9473ngo=",
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
       extraNativeBuildInputs: nix.thunk(() => [python3]),
       extraBuildInputs: nix.thunk(() => [alsa_lib, libGL, libGLU, portaudio, libx11]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "SAME_CDI is a libretro core to play CD-i games",
         homepage: "https://github.com/libretro/same_cdi",
         license: nix.thunk(() => (() => {

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 16, 5], ["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 15, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 27, 3], ["patches", 33, 3], ["postPatch", 38, 3], ["postInstall", 43, 3], ["postFixup", 49, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, "pkg-config": false, libxext: false, libx11: false, imlib2: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 16, 5], ["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 15, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 27, 3], ["patches", 33, 3], ["postPatch", 38, 3], ["postInstall", 43, 3], ["postFixup", 49, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const imlib2 = nix.arg($, "imlib2");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "xteddy",
       version: "2.2-5",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "salsa.debian.org",
           owner: "games-team",
           repo: "xteddy",
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "cp -R images $out/share/images\n# remove broken test script\nrm $out/bin/xteddy_test\n",
       postFixup: "# this is needed, because xteddy expects images to reside\n# in the current working directory\nwrapProgram $out/bin/xteddy --chdir \"$out/share/images/\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Cuddly teddy bear for your X desktop",
         homepage: "https://salsa.debian.org/games-team/xteddy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

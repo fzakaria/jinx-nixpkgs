@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 22, 5], ["hash", 23, 5]], [["ruby", 61, 7]], [["url", 64, 7]], [["rubyEngine", 57, 5], ["gemPath", 58, 5], ["libPath", 59, 5], ["devEnv", 60, 5], ["updateScript", 63, 5]], [["description", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["platforms", 77, 5], ["maintainers", 78, 5], ["sourceProvenance", 79, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 26, 3], ["installPhase", 28, 3], ["postFixup", 52, 3], ["passthru", 56, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, callPackage: false, fetchurl: false, fetchMavenArtifact: false, gitUpdater: false, mkRubyVersion: false, makeBinaryWrapper: false, jre: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["ruby", 61, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 64, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["rubyEngine", 57, 5], ["gemPath", 58, 5], ["libPath", 59, 5], ["devEnv", 60, 5], ["updateScript", 63, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["platforms", 77, 5], ["maintainers", 78, 5], ["sourceProvenance", 79, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 26, 3], ["installPhase", 28, 3], ["postFixup", 52, 3], ["passthru", 56, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const jre = nix.arg($, "jre");
   const rubyVersion = nix.thunk(() => nix.app(mkRubyVersion, "3", "4", "2", ""));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "jruby",
       version: "10.0.2.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://repo1.maven.org/maven2/org/jruby/jruby-dist/${nix.sel(finalAttrs, "version")}/jruby-dist-${nix.sel(finalAttrs, "version")}-bin.tar.gz`),
           hash: "sha256-uKAm84qphGGgTtCqCyCJHOJX7L5T4SRxnOnuW4BFJfE=",
         })))),
@@ -59,12 +54,15 @@ EOF
         const rubyEngine = "jruby";
         const gemPath = nix.thunk(() => nix.str`lib/${rubyEngine}/gems/${nix.sel(rubyVersion, "libDir")}`);
         const libPath = nix.thunk(() => nix.str`lib/${rubyEngine}/${nix.sel(rubyVersion, "libDir")}`);
-        const devEnv = nix.thunk(() => nix.app(callPackage, nix.path(here, "../ruby/dev.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, ruby: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")) }))));
-        const updateScript = nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, url: "https://github.com/jruby/jruby.git" }))));
-        return { [nix.POS]: pos$4, rubyEngine, gemPath, libPath, devEnv, updateScript };
+        const devEnv = nix.thunk(() => nix.app(callPackage, nix.path(here, "../ruby/dev.nix"), nix.thunk(() => ({
+            [nix.POS]: $pos[1],
+            ruby: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
+          }))));
+        const updateScript = nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], url: "https://github.com/jruby/jruby.git" }))));
+        return { [nix.POS]: $pos[3], rubyEngine, gemPath, libPath, devEnv, updateScript };
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Ruby interpreter written in Java",
         homepage: "https://www.jruby.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/jruby/jruby/releases/tag/${nix.sel(finalAttrs, "version")}`),

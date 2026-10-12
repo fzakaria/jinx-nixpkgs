@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 21, 5], ["hash", 22, 5]], [["description", 59, 5], ["homepage", 60, 5], ["platforms", 61, 26], ["license", 62, 5], ["maintainers", 63, 5]], [["name", 16, 3], ["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 31, 3], ["propagatedBuildInputs", 38, 3], ["strictDeps", 40, 3], ["buildPhase", 42, 3], ["installPhase", 48, 19], ["doCheck", 50, 3], ["checkPhase", 51, 3], ["checkInputs", 56, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, ocaml: false, findlib: false, ocamlbuild: false, topkg: false, uchar: false, uutf: false, uunf: false, uucd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 59, 5], ["homepage", 60, 5], ["platforms", 61, 26], ["license", 62, 5], ["maintainers", 63, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 16, 3], ["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 31, 3], ["propagatedBuildInputs", 38, 3], ["strictDeps", 40, 3], ["buildPhase", 42, 3], ["installPhase", 48, 19], ["doCheck", 50, 3], ["checkPhase", 51, 3], ["checkInputs", 56, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const uunf = nix.arg($, "uunf");
   const uucd = nix.arg($, "uucd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}`),
       pname: "uucp",
       version: "18.0.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://erratique.ch/software/uucp/releases/uucp-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-ut7cfFg6entCN2O625f5/UuWmQa5NFyFQifDje1jI/w=",
         })))),
@@ -48,7 +46,7 @@ runHook postCheck
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "OCaml library providing efficient access to a selection of character properties of the Unicode character database",
         homepage: "https://erratique.ch/software/uucp",
         platforms: nix.thunk(() => nix.attr(from, "platforms")),

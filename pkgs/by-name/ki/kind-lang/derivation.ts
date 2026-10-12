@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/derivation.nix", [[["url", 19, 5], ["sha256", 20, 5], ["rev", 21, 5], ["fetchSubmodules", 22, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 18, 3], ["isLibrary", 24, 3], ["isExecutable", 25, 3], ["libraryHaskellDepends", 26, 3], ["executableHaskellDepends", 36, 3], ["license", 44, 3], ["mainProgram", 45, 3]]]);
 const formals$1 = { args: { mkDerivation: false, "ansi-terminal": false, base: false, containers: false, directory: false, fetchgit: false, filepath: false, "hs-highlight": false, lib: false, mtl: false, parsec: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/derivation.nix", [["url", 19, 5], ["sha256", 20, 5], ["rev", 21, 5], ["fetchSubmodules", 22, 5]]);
-const pos$2 = nix.positions(here + "/derivation.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 18, 3], ["isLibrary", 24, 3], ["isExecutable", 25, 3], ["libraryHaskellDepends", 26, 3], ["executableHaskellDepends", 36, 3], ["license", 44, 3], ["mainProgram", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const mtl = nix.arg($, "mtl");
   const parsec = nix.arg($, "parsec");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "kind-lang",
       version: "0.1.0.0",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://github.com/higherorderco/kind.git",
           sha256: "1g4pikxh42p3hikzyfzf11cs7zd1miaxapyf8pijdcxhpdx7wwl0",
           rev: "5cfff210b3aeed01ebd73b2364cf9e5d2df658af",

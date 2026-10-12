@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["pname", 48, 7], ["version", 49, 15], ["src", 50, 7], ["hash", 51, 7]], [["pname", 43, 5], ["version", 44, 13], ["src", 44, 21], ["sourceRoot", 45, 5], ["npmDeps", 47, 5], ["nativeBuildInputs", 54, 5], ["npmBuildScript", 60, 5], ["installPhase", 62, 5]], [["description", 73, 5], ["homepage", 74, 5], ["platforms", 75, 5], ["license", 76, 5], ["maintainers", 77, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["cargoHash", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 32, 3], ["cargoBuildFlags", 34, 3], ["cargoTestFlags", 40, 3], ["dashboard", 42, 3], ["prePatch", 68, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromCodeberg: false, fetchNpmDeps: false, installShellFiles: false, "pkg-config": false, rustPlatform: false, npmHooks: false, stdenv: false, nodejs: false, udev: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 48, 7], ["version", 49, 15], ["src", 50, 7], ["hash", 51, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 43, 5], ["version", 44, 13], ["src", 44, 21], ["sourceRoot", 45, 5], ["npmDeps", 47, 5], ["nativeBuildInputs", 54, 5], ["npmBuildScript", 60, 5], ["installPhase", 62, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 73, 5], ["homepage", 74, 5], ["platforms", 75, 5], ["license", 76, 5], ["maintainers", 77, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["cargoHash", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 32, 3], ["cargoBuildFlags", 34, 3], ["cargoTestFlags", 40, 3], ["dashboard", 42, 3], ["prePatch", 68, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ratman";
       const version = "0.7.0";
       const src = nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "irdest",
           repo: "irdest",
           tag: version,
@@ -42,7 +38,7 @@ export default nix.lambda((args) => (() => {
           const src_1 = src;
           const sourceRoot = nix.thunk(() => nix.str`${nix.sel(src_1, "name")}/ratman/dashboard`);
           const npmDeps = nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               pname: nix.thunk(() => nix.str`npm-deps-${pname_1}`),
               version: version_1,
               src: nix.thunk(() => nix.str`${src_1}/ratman/dashboard`),
@@ -56,7 +52,7 @@ export default nix.lambda((args) => (() => {
           const npmBuildScript = "build";
           const installPhase = "mkdir $out\ncp -r dist/* $out/\n";
           return {
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             pname: pname_1,
             version: version_1,
             src: src_1,
@@ -70,7 +66,7 @@ export default nix.lambda((args) => (() => {
       const prePatch = nix.thunk(() => nix.str`cp -r ${dashboard} ratman/dashboard/dist
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Modular decentralised peer-to-peer packet router and associated tools",
         homepage: "https://git.irde.st/we/irdest",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
@@ -81,7 +77,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

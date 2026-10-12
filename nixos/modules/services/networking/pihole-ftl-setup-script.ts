@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/pihole-ftl-setup-script.nix", [[["type", 13, 22], ["enabled", 13, 27], ["address", 14, 7], ["comment", 15, 7]]]);
 const formals$1 = { args: { cfg: false, config: false, lib: false, pkgs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/pihole-ftl-setup-script.nix", [["type", 13, 22], ["enabled", 13, 27], ["address", 14, 7], ["comment", 15, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const pihole = nix.thunk(() => nix.sel(cfg, "piholePackage"));
   const makePayload = (list) => nix.builtins.toJSON(nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       type: nix.thunk(() => nix.attr(list, "type")),
       enabled: nix.thunk(() => nix.attr(list, "enabled")),
       address: nix.thunk(() => nix.sel(list, "url")),

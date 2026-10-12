@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["hash", 38, 5]], [["description", 85, 5], ["homepage", 86, 5], ["changelog", 87, 5], ["license", 88, 5], ["maintainers", 89, 5], ["platforms", 90, 5]], [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 47, 3], ["postPatch", 68, 3], ["postInstall", 73, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, makeWrapper: false, yajl: false, "alsa-lib": false, libpulseaudio: false, glib: false, libnl: false, udev: false, libxau: false, libxdmcp: false, pcre2: false, "util-linux": false, libselinux: false, libsepol: false, lua5: false, docutils: false, libxcb: false, libx11: false, "libxcb-util": false, "libxcb-wm": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 85, 5], ["homepage", 86, 5], ["changelog", 87, 5], ["license", 88, 5], ["maintainers", 89, 5], ["platforms", 90, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 47, 3], ["postPatch", 68, 3], ["postInstall", 73, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const libxcb_util = nix.arg($, "libxcb-util");
   const libxcb_wm = nix.arg($, "libxcb-wm");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "luastatus",
       version: "0.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "shdown",
           repo: "luastatus",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -68,7 +66,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required (VERSION 3.1.3)\" \"cmake_minimum_required(VERSION 3.10)\"\n",
       postInstall: "wrapProgram $out/bin/luastatus-stdout-wrapper \\\n  --prefix LUASTATUS : $out/bin/luastatus\n\nwrapProgram $out/bin/luastatus-i3-wrapper \\\n  --prefix LUASTATUS : $out/bin/luastatus\n\nwrapProgram $out/bin/luastatus-lemonbar-launcher \\\n  --prefix LUASTATUS : $out/bin/luastatus\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Universal status bar content generator",
         homepage: "https://github.com/shdown/luastatus",
         changelog: nix.thunk(() => nix.str`https://github.com/shdown/luastatus/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -2,29 +2,21 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/engelsystem.nix", [[["maintainers", 5, 5]], [["enable", 15, 9], ["domain", 16, 9], ["createDatabase", 17, 9]], [["engelsystem", 14, 16]], [["allowedTCPPorts", 19, 27]], [["firewall", 19, 18]], [["systemPackages", 23, 19]], [["services", 14, 7], ["networking", 19, 7], ["environment", 23, 7]], [["engelsystem", 11, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 11, 3], ["testScript", 29, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/engelsystem.nix", [["maintainers", 5, 5]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/engelsystem.nix", [["enable", 15, 9], ["domain", 16, 9], ["createDatabase", 17, 9]]);
-const pos$3 = nix.positions(here + "/engelsystem.nix", [["engelsystem", 14, 16]]);
-const pos$4 = nix.positions(here + "/engelsystem.nix", [["allowedTCPPorts", 19, 27]]);
-const pos$5 = nix.positions(here + "/engelsystem.nix", [["firewall", 19, 18]]);
-const pos$6 = nix.positions(here + "/engelsystem.nix", [["systemPackages", 23, 19]]);
-const pos$7 = nix.positions(here + "/engelsystem.nix", [["services", 14, 7], ["networking", 19, 7], ["environment", 23, 7]]);
-const pos$8 = nix.positions(here + "/engelsystem.nix", [["engelsystem", 11, 9]]);
-const pos$9 = nix.positions(here + "/engelsystem.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 11, 3], ["testScript", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     name: "engelsystem",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "talyz")),
           nix.thunk(() => nix.lookup(w, "tmarkus")),
@@ -32,21 +24,26 @@ export default nix.lambda((args) => (() => {
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       engelsystem: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            engelsystem: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true, domain: "engelsystem", createDatabase: true })),
+            [nix.POS]: $pos[2],
+            engelsystem: nix.thunk(() => ({
+              [nix.POS]: $pos[1],
+              enable: true,
+              domain: "engelsystem",
+              createDatabase: true,
+            })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$5,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$4, allowedTCPPorts: nix.thunk(() => [80n, 443n]) })),
+            [nix.POS]: $pos[4],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[3], allowedTCPPorts: nix.thunk(() => [80n, 443n]) })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             systemPackages: nix.thunk(() => (() => {
               const w_1 = nix.withScope(pkgs, null);
               return [

@@ -2,72 +2,50 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/vikunja.nix", [[["maintainers", 5, 8]], [["type", 14, 13]], [["enable", 12, 11], ["database", 13, 11], ["frontendScheme", 16, 11], ["frontendHostname", 17, 11]], [["proxyPass", 22, 27]], [["/", 22, 23]], [["locations", 22, 13]], [["http://localhost", 21, 24]], [["enable", 20, 11], ["virtualHosts", 21, 11]], [["vikunja", 11, 18], ["nginx", 19, 18]], [["services", 11, 9]], [["type", 32, 13], ["user", 33, 13], ["database", 34, 13], ["host", 35, 13]], [["enable", 30, 11], ["database", 31, 11], ["frontendScheme", 37, 11], ["frontendHostname", 38, 11], ["port", 39, 11]], [["name", 46, 15], ["ensureDBOwnership", 47, 15]], [["enable", 42, 11], ["ensureDatabases", 43, 11], ["ensureUsers", 44, 11]], [["proxyPass", 54, 27]], [["/", 54, 23]], [["locations", 54, 13]], [["http://localhost", 53, 24]], [["enable", 52, 11], ["virtualHosts", 53, 11]], [["vikunja", 29, 18], ["postgresql", 41, 18], ["nginx", 51, 18]], [["services", 29, 9]], [["vikunjaSqlite", 8, 5], ["vikunjaPostgresql", 26, 5]], [["name", 3, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 60, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/vikunja.nix", [["maintainers", 5, 8]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/vikunja.nix", [["type", 14, 13]]);
-const pos$3 = nix.positions(here + "/vikunja.nix", [["enable", 12, 11], ["database", 13, 11], ["frontendScheme", 16, 11], ["frontendHostname", 17, 11]]);
-const pos$4 = nix.positions(here + "/vikunja.nix", [["proxyPass", 22, 27]]);
-const pos$5 = nix.positions(here + "/vikunja.nix", [["/", 22, 23]]);
-const pos$6 = nix.positions(here + "/vikunja.nix", [["locations", 22, 13]]);
-const pos$7 = nix.positions(here + "/vikunja.nix", [["http://localhost", 21, 24]]);
-const pos$8 = nix.positions(here + "/vikunja.nix", [["enable", 20, 11], ["virtualHosts", 21, 11]]);
-const pos$9 = nix.positions(here + "/vikunja.nix", [["vikunja", 11, 18], ["nginx", 19, 18]]);
-const pos$10 = nix.positions(here + "/vikunja.nix", [["services", 11, 9]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$11 = nix.positions(here + "/vikunja.nix", [["type", 32, 13], ["user", 33, 13], ["database", 34, 13], ["host", 35, 13]]);
-const pos$12 = nix.positions(here + "/vikunja.nix", [["enable", 30, 11], ["database", 31, 11], ["frontendScheme", 37, 11], ["frontendHostname", 38, 11], ["port", 39, 11]]);
-const pos$13 = nix.positions(here + "/vikunja.nix", [["name", 46, 15], ["ensureDBOwnership", 47, 15]]);
-const pos$14 = nix.positions(here + "/vikunja.nix", [["enable", 42, 11], ["ensureDatabases", 43, 11], ["ensureUsers", 44, 11]]);
-const pos$15 = nix.positions(here + "/vikunja.nix", [["proxyPass", 54, 27]]);
-const pos$16 = nix.positions(here + "/vikunja.nix", [["/", 54, 23]]);
-const pos$17 = nix.positions(here + "/vikunja.nix", [["locations", 54, 13]]);
-const pos$18 = nix.positions(here + "/vikunja.nix", [["http://localhost", 53, 24]]);
-const pos$19 = nix.positions(here + "/vikunja.nix", [["enable", 52, 11], ["virtualHosts", 53, 11]]);
-const pos$20 = nix.positions(here + "/vikunja.nix", [["vikunja", 29, 18], ["postgresql", 41, 18], ["nginx", 51, 18]]);
-const pos$21 = nix.positions(here + "/vikunja.nix", [["services", 29, 9]]);
-const pos$22 = nix.positions(here + "/vikunja.nix", [["vikunjaSqlite", 8, 5], ["vikunjaPostgresql", 26, 5]]);
-const pos$23 = nix.positions(here + "/vikunja.nix", [["name", 3, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$23,
+    [nix.POS]: $pos[22],
     name: "vikunja",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "leona"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$22,
+      [nix.POS]: $pos[21],
       vikunjaSqlite: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             vikunja: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               enable: true,
-              database: nix.thunk(() => ({ [nix.POS]: pos$2, type: "sqlite" })),
+              database: nix.thunk(() => ({ [nix.POS]: $pos[1], type: "sqlite" })),
               frontendScheme: "http",
               frontendHostname: "localhost",
             })),
             nginx: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               enable: true,
               virtualHosts: nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 "http://localhost": nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   locations: nix.thunk(() => ({
-                    [nix.POS]: pos$5,
-                    "/": nix.thunk(() => ({ [nix.POS]: pos$4, proxyPass: "http://localhost:3456" })),
+                    [nix.POS]: $pos[4],
+                    "/": nix.thunk(() => ({ [nix.POS]: $pos[3], proxyPass: "http://localhost:3456" })),
                   })),
                 })),
               })),
@@ -79,14 +57,14 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$21,
+          [nix.POS]: $pos[20],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$20,
+            [nix.POS]: $pos[19],
             vikunja: nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               enable: true,
               database: nix.thunk(() => ({
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 type: "postgres",
                 user: "vikunja",
                 database: "vikunja",
@@ -97,23 +75,23 @@ export default nix.lambda((args) => (() => {
               port: 9090n,
             })),
             postgresql: nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               enable: true,
               ensureDatabases: nix.thunk(() => ["vikunja"]),
               ensureUsers: nix.thunk(() => [
-                nix.thunk(() => ({ [nix.POS]: pos$13, name: "vikunja", ensureDBOwnership: true })),
+                nix.thunk(() => ({ [nix.POS]: $pos[12], name: "vikunja", ensureDBOwnership: true })),
               ]),
             })),
             nginx: nix.thunk(() => ({
-              [nix.POS]: pos$19,
+              [nix.POS]: $pos[18],
               enable: true,
               virtualHosts: nix.thunk(() => ({
-                [nix.POS]: pos$18,
+                [nix.POS]: $pos[17],
                 "http://localhost": nix.thunk(() => ({
-                  [nix.POS]: pos$17,
+                  [nix.POS]: $pos[16],
                   locations: nix.thunk(() => ({
-                    [nix.POS]: pos$16,
-                    "/": nix.thunk(() => ({ [nix.POS]: pos$15, proxyPass: "http://localhost:9090" })),
+                    [nix.POS]: $pos[15],
+                    "/": nix.thunk(() => ({ [nix.POS]: $pos[14], proxyPass: "http://localhost:9090" })),
                   })),
                 })),
               })),

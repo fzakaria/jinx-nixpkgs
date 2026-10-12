@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 60, 5], ["homepage", 61, 33], ["changelog", 61, 42], ["license", 61, 52], ["maintainers", 62, 5]], [["pname", 15, 3], ["version", 16, 26], ["src", 16, 34], ["pyproject", 17, 3], ["__structuredAttrs", 18, 3], ["postPatch", 20, 3], ["cmakeFlags", 26, 3], ["build-system", 30, 3], ["dontUseCmakeConfigure", 37, 3], ["buildInputs", 39, 3], ["dependencies", 43, 3], ["nativeCheckInputs", 47, 3], ["enabledTestPaths", 51, 3], ["pythonImportsCheck", 55, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, pytestCheckHook: false, pkgs: false, cmake: false, ninja: false, numpy: false, pybind11: false, "scikit-build-core": false, imath: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 60, 5], ["homepage", 61, 33], ["changelog", 61, 42], ["license", 61, 52], ["maintainers", 62, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 26], ["src", 16, 34], ["pyproject", 17, 3], ["__structuredAttrs", 18, 3], ["postPatch", 20, 3], ["cmakeFlags", 26, 3], ["build-system", 30, 3], ["dontUseCmakeConfigure", 37, 3], ["buildInputs", 39, 3], ["dependencies", 43, 3], ["nativeCheckInputs", 47, 3], ["enabledTestPaths", 51, 3], ["pythonImportsCheck", 55, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +20,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(buildPythonPackage, nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(pkgs, "openexr"));
       return {
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "openexr",
       version: nix.thunk(() => nix.attr(from, "version")),
       src: nix.thunk(() => nix.attr(from, "src")),
@@ -39,7 +38,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from_1 = nix.thunk(() => nix.sel(pkgs, "openexr", "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Python bindings for the OpenEXR image file format",
         homepage: nix.thunk(() => nix.attr(from_1, "homepage")),
         changelog: nix.thunk(() => nix.attr(from_1, "changelog")),

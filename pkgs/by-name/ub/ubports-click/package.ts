@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["name", 41, 7], ["url", 42, 7], ["hash", 43, 7]], [["name", 48, 7], ["url", 49, 7], ["hash", 50, 7]], [["package", 156, 7], ["versionCheck", 157, 7]], [["pkg-config", 155, 11]], [["tests", 155, 5], ["updateScript", 159, 5]], [["description", 163, 5], ["homepage", 164, 5], ["changelog", 165, 5], ["license", 166, 5], ["mainProgram", 167, 5], ["maintainers", 168, 5], ["teams", 171, 5], ["platforms", 172, 5], ["pkgConfigModules", 173, 5]], [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["patches", 38, 3], ["postPatch", 54, 3], ["pkgsBuildBuild", 69, 3], ["nativeBuildInputs", 73, 3], ["buildInputs", 84, 3], ["build-system", 91, 3], ["dependencies", 95, 3], ["nativeCheckInputs", 101, 3], ["checkInputs", 108, 3], ["preConfigure", 113, 3], ["configureFlags", 118, 3], ["enableParallelBuilding", 123, 3], ["doCheck", 125, 3], ["disabledTestPaths", 127, 3], ["preCheck", 135, 3], ["preFixup", 148, 3], ["passthru", 154, 3], ["meta", 162, 3]]]);
 const formals$1 = { args: { fetchFromGitLab: false, fetchpatch: false, gitUpdater: false, lib: false, stdenv: false, testers: false, autoreconfHook: false, dbus: false, "dbus-test-runner": false, dpkg: false, getopt: false, glib: false, "gobject-introspection": false, "json-glib": false, libgee: false, perl: false, "pkg-config": false, "properties-cpp": false, python3Packages: false, vala: false, wrapGAppsHook3: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 41, 7], ["url", 42, 7], ["hash", 43, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 48, 7], ["url", 49, 7], ["hash", 50, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["package", 156, 7], ["versionCheck", 157, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pkg-config", 155, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 155, 5], ["updateScript", 159, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 163, 5], ["homepage", 164, 5], ["changelog", 165, 5], ["license", 166, 5], ["mainProgram", 167, 5], ["maintainers", 168, 5], ["teams", 171, 5], ["platforms", 172, 5], ["pkgConfigModules", 173, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["patches", 38, 3], ["postPatch", 54, 3], ["pkgsBuildBuild", 69, 3], ["nativeBuildInputs", 73, 3], ["buildInputs", 84, 3], ["build-system", 91, 3], ["dependencies", 95, 3], ["nativeCheckInputs", 101, 3], ["checkInputs", 108, 3], ["preConfigure", 113, 3], ["configureFlags", 118, 3], ["enableParallelBuilding", 123, 3], ["doCheck", 125, 3], ["disabledTestPaths", 127, 3], ["preCheck", 135, 3], ["preFixup", 148, 3], ["passthru", 154, 3], ["meta", 162, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "click",
       version: "0.5.2",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ubports",
           repo: "development/core/click",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -50,13 +43,13 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "0001-click-fix-Wimplicit-function-declaration.patch",
             url: "https://gitlab.com/ubports/development/core/click/-/commit/8f654978a12e6f9a0b6ff64296ec5565e3ff5cd0.patch",
             hash: "sha256-kio+DdtuagUNYEosyQY3q3H+dJM3cLQRW9wUKUcpUTY=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "0002-click-Add-uid_t-and-gid_t-to-the-ctypes-_typemap.patch",
             url: "https://gitlab.com/ubports/development/core/click/-/commit/cbcd23b08b02fa122434e1edd69c2b3dcb6a8793.patch",
             hash: "sha256-QaWRhxO61wAzULVqPLdJrLuBCr3+NhKmQlEPuYq843I=",
@@ -115,11 +108,11 @@ export PYTHON_INSTALL_FLAGS="--prefix=$out"
       preCheck: nix.thunk(() => nix.add("export NIX_CFLAGS_COMPILE+=\" -U_FORTIFY_SOURCE\"\n", "for path in $disabledTestPaths; do\n  rm -v $path\ndone\n")),
       preFixup: "makeWrapperArgs+=(\n  --prefix LD_LIBRARY_PATH : \"$out/lib\"\n)\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               versionCheck: true,
             })))),
@@ -127,7 +120,7 @@ export PYTHON_INSTALL_FLAGS="--prefix=$out"
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Tool to build click packages, mainly used for Ubuntu Touch",
         homepage: "https://gitlab.com/ubports/development/core/click",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/ubports/development/core/click/-/blob/${nix.sel(finalAttrs, "version")}/ChangeLog`),

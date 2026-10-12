@@ -2,12 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/overrides.nix", [[["dependencies", 12, 40]], [["passthru", 12, 7]], [["builtGrammars", 25, 7], ["allGrammars", 26, 7], ["grammarToPlugin", 27, 7], ["grammarPlugins", 28, 7], ["parsers", 29, 7], ["withPlugins", 32, 7], ["withAllGrammars", 33, 7]], [["license", 38, 5], ["maintainers", 39, 5]], [["postPatch", 19, 3], ["passthru", 23, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/overrides.nix", [["dependencies", 12, 40]]);
-const pos$2 = nix.positions(here + "/overrides.nix", [["passthru", 12, 7]]);
-const pos$3 = nix.positions(here + "/overrides.nix", [["builtGrammars", 25, 7], ["allGrammars", 26, 7], ["grammarToPlugin", 27, 7], ["grammarPlugins", 28, 7], ["parsers", 29, 7], ["withPlugins", 32, 7], ["withAllGrammars", 33, 7]]);
-const pos$4 = nix.positions(here + "/overrides.nix", [["license", 38, 5], ["maintainers", 39, 5]]);
-const pos$5 = nix.positions(here + "/overrides.nix", [["postPatch", 19, 3], ["passthru", 23, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,19 +13,19 @@ export default nix.lambda((args) => (() => {
     const withPlugins = (f) => (() => {
       const from_main = nix.thunk(() => nix.app(nix.sel(self, "nvim-treesitter", "withPlugins"), f));
       return nix.app(nix.sel(self, "nvim-treesitter-legacy", "overrideAttrs"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           passthru: nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             dependencies: nix.thunk(() => nix.attr(from_main, "dependencies")),
           })),
         })));
     })();
     const withAllGrammars = nix.thunk(() => nix.app(withPlugins, (_) => nix.sel(nvim_treesitter, "allGrammars")));
     return {
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       postPatch: "rm -r parser\n",
       passthru: nix.thunk(() => nix.update(nix.selOr(super$, () => ({}), "nvim-treesitter-legacy", "passthru"), {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         builtGrammars: nix.thunk(() => nix.attr(nvim_treesitter, "builtGrammars")),
         allGrammars: nix.thunk(() => nix.attr(nvim_treesitter, "allGrammars")),
         grammarToPlugin: nix.thunk(() => nix.attr(nvim_treesitter, "grammarToPlugin")),
@@ -39,7 +35,7 @@ export default nix.lambda((args) => (() => {
         withAllGrammars: withAllGrammars,
       })),
       meta: nix.thunk(() => nix.update(nix.selOr(super$, () => ({}), "nvim-treesitter-legacy", "meta"), {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: [],
       })),

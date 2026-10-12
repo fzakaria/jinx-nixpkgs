@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 34, 5], ["homepage", 35, 5], ["changelog", 36, 5], ["license", 37, 5], ["maintainers", 38, 5]], [["pname", 13, 3], ["version", 14, 33], ["src", 14, 41], ["pyproject", 15, 3], ["sourceRoot", 17, 3], ["build-system", 19, 3], ["dependencies", 21, 3], ["_flet_setup_view", 23, 3], ["postPatch", 27, 3], ["pythonImportsCheck", 31, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, "flet-client-flutter": false, "poetry-core": false, flet: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 34, 5], ["homepage", 35, 5], ["changelog", 36, 5], ["license", 37, 5], ["maintainers", 38, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 33], ["src", 14, 41], ["pyproject", 15, 3], ["sourceRoot", 17, 3], ["build-system", 19, 3], ["dependencies", 21, 3], ["_flet_setup_view", 23, 3], ["postPatch", 27, 3], ["pythonImportsCheck", 31, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const postPatch = "echo \"$_flet_setup_view\" >> src/flet_desktop/__init__.py\n";
       const pythonImportsCheck = nix.thunk(() => ["flet_desktop"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Compiled Flutter Flet desktop client",
         homepage: "https://flet.dev/",
         changelog: nix.thunk(() => nix.str`https://github.com/flet-dev/flet/releases/tag/v${version}`),
@@ -38,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname,
         version,
         src,

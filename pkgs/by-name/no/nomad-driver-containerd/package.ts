@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["url", 23, 7], ["hash", 24, 7]], [["url", 27, 7], ["hash", 28, 7]], [["CGO_ENABLED", 37, 7]], [["homepage", 50, 5], ["description", 51, 5], ["mainProgram", 52, 5], ["platforms", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 21, 3], ["postPatch", 33, 3], ["env", 37, 3], ["vendorHash", 39, 3], ["subPackages", 40, 3], ["buildInputs", 42, 3], ["ldflags", 44, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, fetchpatch: false, containerd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 23, 7], ["hash", 24, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 27, 7], ["hash", 28, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 37, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 50, 5], ["description", 51, 5], ["mainProgram", 52, 5], ["platforms", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 21, 3], ["postPatch", 33, 3], ["env", 37, 3], ["vendorHash", 39, 3], ["subPackages", 40, 3], ["buildInputs", 42, 3], ["ldflags", 44, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const containerd = nix.arg($, "containerd");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "nomad-driver-containerd",
       version: "0.9.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Roblox",
           repo: "nomad-driver-containerd",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,25 +25,25 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/Roblox/nomad-driver-containerd/commit/80b9be1353f701b9d47d874923a9e8ffed4dbd98.patch",
             hash: "sha256-d4C/YwemmZQAt0fTAnQkJVKn8cK4kmxB+wQEHycdn9U=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/Roblox/nomad-driver-containerd/commit/cc0da224669a8f85a8b695288fe5ea748fb270c2.patch",
             hash: "sha256-W8ZOKMkv1814cPNyqTaXUGhh44WfMizZNL4cNX+FOqg=",
           })))),
       ]),
       postPatch: nix.thunk(() => nix.str`substituteInPlace containerd/driver.go --replace-warn 'PluginVersion = "v0.9.3"' 'PluginVersion = "v${nix.sel(finalAttrs, "version")}"'
 `),
-      env: nix.thunk(() => ({ [nix.POS]: pos$4, CGO_ENABLED: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[3], CGO_ENABLED: "1" })),
       vendorHash: "sha256-OO+a5AqhB0tf6lyodhYl9HUSaWvtXWwevRHYy1Q6VoU=",
       subPackages: nix.thunk(() => ["."]),
       buildInputs: nix.thunk(() => [containerd]),
       ldflags: nix.thunk(() => ["-s", "-w"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://www.github.com/Roblox/nomad-driver-containerd",
         description: "Containerd task driver for Nomad",
         mainProgram: "nomad-driver-containerd",

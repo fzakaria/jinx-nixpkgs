@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 35, 7], ["sha256", 36, 7]], [["description", 39, 7], ["homepage", 40, 7], ["platforms", 41, 7], ["license", 42, 7]], [["pname", 33, 13], ["version", 33, 19], ["src", 34, 5], ["meta", 38, 5]]]);
 const formals$1 = { args: { fetchurl: false, perlPackages: false, lib: false, runCommand: false, postfix: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 35, 7], ["sha256", 36, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 39, 7], ["homepage", 40, 7], ["platforms", 41, 7], ["license", 42, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 33, 13], ["version", 33, 19], ["src", 34, 5], ["meta", 38, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,16 +30,16 @@ export default nix.lambda((args) => (() => {
   const pname = "postgrey";
   const version = "1.37";
   return nix.app(runCommand, nix.thunk(() => nix.str`${pname}-${version}`), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://postgrey.schweikert.ch/pub/${pname}-${version}.tar.gz`),
           sha256: "1xx51xih4711vrvc6d57il9ccallbljj5zhgqdb07jzmz11rakgz",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Postfix policy server to provide greylisting",
         homepage: "https://postgrey.schweikert.ch/",
         platforms: nix.thunk(() => nix.sel(postfix, "meta", "platforms")),

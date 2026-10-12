@@ -2,10 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wyvern.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]], [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 32, 5]], [["pname", 9, 3], ["version", 10, 3], ["idrisDeps", 12, 3], ["src", 17, 3], ["postUnpack", 24, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { "build-idris-package": false, fetchFromGitHub: false, contrib: false, effects: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/wyvern.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/wyvern.nix", [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 32, 5]]);
-const pos$3 = nix.positions(here + "/wyvern.nix", [["pname", 9, 3], ["version", 10, 3], ["idrisDeps", 12, 3], ["src", 17, 3], ["postUnpack", 24, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const effects = nix.arg($, "effects");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "wyvern",
       version: "2017-06-26",
       idrisDeps: nix.thunk(() => [contrib, effects]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ericqweinstein",
           repo: "wyvern",
           rev: "b9e3e5747c5b23608c6ed5e2ccf43b86caa04292",
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       postUnpack: "sed -i \"s/Wyvern.Core/Wyvern.Main/g\" source/src/Wyvern.idr\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Little web server written in Idris",
         homepage: "https://github.com/ericqweinstein/wyvern",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

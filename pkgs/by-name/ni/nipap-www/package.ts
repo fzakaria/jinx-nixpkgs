@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["nixos", 36, 11]], [["gunicorn", 34, 31], ["python", 34, 40], ["pythonPath", 35, 5], ["tests", 36, 5]], [["description", 40, 5], ["longDescription", 41, 5], ["homepage", 45, 5], ["changelog", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 51, 5]], [["pname", 8, 3], ["version", 9, 35], ["src", 9, 43], ["pyproject", 10, 3], ["sourceRoot", 12, 3], ["postPatch", 14, 3], ["pythonRelaxDeps", 21, 3], ["build-system", 23, 3], ["dependencies", 27, 3], ["passthru", 33, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["nixos", 36, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["gunicorn", 34, 31], ["python", 34, 40], ["pythonPath", 35, 5], ["tests", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 40, 5], ["longDescription", 41, 5], ["homepage", 45, 5], ["changelog", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 51, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 35], ["src", 9, 43], ["pyproject", 10, 3], ["sourceRoot", 12, 3], ["postPatch", 14, 3], ["pythonRelaxDeps", 21, 3], ["build-system", 23, 3], ["dependencies", 27, 3], ["passthru", 33, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,14 +32,14 @@ export default nix.lambda((args) => (() => {
         ];
       })());
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         gunicorn: nix.thunk(() => nix.attr(python3Packages, "gunicorn")),
         python: nix.thunk(() => nix.attr(python3Packages, "python")),
         pythonPath: nix.thunk(() => nix.app(nix.sel(python3Packages, "makePythonPath"), dependencies)),
-        tests: nix.thunk(() => ({ [nix.POS]: pos$1, nixos: nix.thunk(() => nix.sel(nixosTests, "nipap")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[0], nixos: nix.thunk(() => nix.sel(nixosTests, "nipap")) })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Neat IP Address Planner CLI, web UI",
         longDescription: "NIPAP is the best open source IPAM in the known universe,\nchallenging classical IP address management (IPAM) systems in many areas.\n",
         homepage: "https://github.com/SpriteLink/NIPAP",
@@ -55,7 +52,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

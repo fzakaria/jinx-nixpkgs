@@ -2,28 +2,11 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/pocket-id.nix", [[["maintainers", 9, 8]], [["PORT", 21, 13]], [["ENCRYPTION_KEY", 24, 21]], [["enable", 19, 11], ["settings", 20, 11], ["credentials", 23, 11]], [["pocket-id", 18, 18]], [["services", 18, 9]], [["PORT", 38, 13], ["DB_CONNECTION_STRING", 39, 13]], [["ENCRYPTION_KEY", 42, 21]], [["enable", 36, 11], ["settings", 37, 11], ["credentials", 41, 11]], [["name", 55, 15], ["ensureDBOwnership", 56, 15]], [["enable", 52, 11], ["ensureUsers", 53, 11], ["ensureDatabases", 59, 11]], [["pocket-id", 35, 18], ["postgresql", 51, 18]], [["after", 47, 11], ["requires", 48, 11]], [["pocket-id", 46, 26]], [["services", 46, 17]], [["services", 35, 9], ["systemd", 46, 9]], [["machineSqlite", 15, 5], ["machinePostgres", 29, 5]], [["name", 8, 3], ["meta", 9, 3], ["nodes", 14, 3], ["testScript", 64, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/pocket-id.nix", [["maintainers", 9, 8]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/pocket-id.nix", [["PORT", 21, 13]]);
-const pos$3 = nix.positions(here + "/pocket-id.nix", [["ENCRYPTION_KEY", 24, 21]]);
-const pos$4 = nix.positions(here + "/pocket-id.nix", [["enable", 19, 11], ["settings", 20, 11], ["credentials", 23, 11]]);
-const pos$5 = nix.positions(here + "/pocket-id.nix", [["pocket-id", 18, 18]]);
-const pos$6 = nix.positions(here + "/pocket-id.nix", [["services", 18, 9]]);
 const formals$3 = { args: { config: false }, ellipsis: true };
-const pos$7 = nix.positions(here + "/pocket-id.nix", [["PORT", 38, 13], ["DB_CONNECTION_STRING", 39, 13]]);
-const pos$8 = nix.positions(here + "/pocket-id.nix", [["ENCRYPTION_KEY", 42, 21]]);
-const pos$9 = nix.positions(here + "/pocket-id.nix", [["enable", 36, 11], ["settings", 37, 11], ["credentials", 41, 11]]);
-const pos$10 = nix.positions(here + "/pocket-id.nix", [["name", 55, 15], ["ensureDBOwnership", 56, 15]]);
-const pos$11 = nix.positions(here + "/pocket-id.nix", [["enable", 52, 11], ["ensureUsers", 53, 11], ["ensureDatabases", 59, 11]]);
-const pos$12 = nix.positions(here + "/pocket-id.nix", [["pocket-id", 35, 18], ["postgresql", 51, 18]]);
-const pos$13 = nix.positions(here + "/pocket-id.nix", [["after", 47, 11], ["requires", 48, 11]]);
-const pos$14 = nix.positions(here + "/pocket-id.nix", [["pocket-id", 46, 26]]);
-const pos$15 = nix.positions(here + "/pocket-id.nix", [["services", 46, 17]]);
-const pos$16 = nix.positions(here + "/pocket-id.nix", [["services", 35, 9], ["systemd", 46, 9]]);
-const pos$17 = nix.positions(here + "/pocket-id.nix", [["machineSqlite", 15, 5], ["machinePostgres", 29, 5]]);
 const formals$4 = { args: { nodes: false }, ellipsis: true };
-const pos$18 = nix.positions(here + "/pocket-id.nix", [["name", 8, 3], ["meta", 9, 3], ["nodes", 14, 3], ["testScript", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,10 +14,10 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const ENCRYPTION_KEY = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "pocket-id-encryption-key", "SUeAyRRFZ1uf03ClOE+o++BVENSE/Ptb9YFRF2Sk+zM="));
   return {
-    [nix.POS]: pos$18,
+    [nix.POS]: $pos[17],
     name: "pocket-id",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -44,18 +27,18 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       machineSqlite: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             "pocket-id": nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               enable: true,
-              settings: nix.thunk(() => ({ [nix.POS]: pos$2, PORT: 10001n })),
-              credentials: nix.thunk(() => ({ [nix.POS]: pos$3, ENCRYPTION_KEY: ENCRYPTION_KEY })),
+              settings: nix.thunk(() => ({ [nix.POS]: $pos[1], PORT: 10001n })),
+              credentials: nix.thunk(() => ({ [nix.POS]: $pos[2], ENCRYPTION_KEY: ENCRYPTION_KEY })),
             })),
           })),
         };
@@ -65,25 +48,25 @@ export default nix.lambda((args) => (() => {
         const config = nix.arg($_1, "config");
         const username = nix.thunk(() => nix.sel(config, "services", "pocket-id", "user"));
         return {
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             "pocket-id": nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 PORT: 10001n,
                 DB_CONNECTION_STRING: nix.thunk(() => nix.str`postgresql:///${username}?host=/run/postgresql`),
               })),
-              credentials: nix.thunk(() => ({ [nix.POS]: pos$8, ENCRYPTION_KEY: ENCRYPTION_KEY })),
+              credentials: nix.thunk(() => ({ [nix.POS]: $pos[7], ENCRYPTION_KEY: ENCRYPTION_KEY })),
             })),
             postgresql: nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               enable: true,
               ensureUsers: nix.thunk(() => [
                 nix.thunk(() => ({
-                  [nix.POS]: pos$10,
+                  [nix.POS]: $pos[9],
                   name: nix.thunk(() => nix.str`${username}`),
                   ensureDBOwnership: true,
                 })),
@@ -92,11 +75,11 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               "pocket-id": nix.thunk(() => ({
-                [nix.POS]: pos$13,
+                [nix.POS]: $pos[12],
                 after: nix.thunk(() => ["postgresql.target"]),
                 requires: nix.thunk(() => ["postgresql.target"]),
               })),

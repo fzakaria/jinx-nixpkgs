@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["url", 40, 7], ["hash", 41, 7]], [["changelog", 92, 5], ["description", 93, 5], ["homepage", 94, 5], ["license", 95, 5], ["platforms", 96, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["buildInputs", 29, 3], ["patches", 37, 3], ["configurePlatforms", 47, 3], ["configureFlags", 49, 3], ["dontAddStaticConfigureFlags", 54, 3], ["nativeBuildInputs", 56, 3], ["strictDeps", 62, 3], ["enableParallelBuilding", 64, 3], ["postPatch", 66, 3], ["pythonPath", 71, 3], ["makeWrapperArgs", 73, 3], ["postInstall", 77, 3], ["doCheck", 81, 3], ["checkPhase", 83, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch2: false, makeWrapper: false, libaio: false, "pkg-config": false, cunit: false, python3: false, zlib: false, withGnuplot: true, gnuplot: false, withLibnbd: true, libnbd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 40, 7], ["hash", 41, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 92, 5], ["description", 93, 5], ["homepage", 94, 5], ["license", 95, 5], ["platforms", 96, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["buildInputs", 29, 3], ["patches", 37, 3], ["configurePlatforms", 47, 3], ["configureFlags", 49, 3], ["dontAddStaticConfigureFlags", 54, 3], ["nativeBuildInputs", 56, 3], ["strictDeps", 62, 3], ["enableParallelBuilding", 64, 3], ["postPatch", 66, 3], ["pythonPath", 71, 3], ["makeWrapperArgs", 73, 3], ["postInstall", 77, 3], ["doCheck", 81, 3], ["checkPhase", 83, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const withLibnbd = nix.argOr($, "withLibnbd", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   const libnbd = nix.arg($, "libnbd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "fio",
       version: "3.42",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "axboe",
           repo: "fio",
           tag: nix.thunk(() => nix.str`fio-${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([cunit, python3, zlib], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), libaio), nix.app(nix.sel(lib, "optional"), withLibnbd, libnbd)))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/axboe/fio/commit/a84eece62edd46c1f4c8047f1052ac6181fc8b3e.patch?full_index=1",
             hash: "sha256-ik/PMlNEJa2mIOIWn4utSNfLG/iV7sjN+XmyOkEX83Q=",
           })))),
@@ -62,7 +59,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkPhase: "runHook preCheck\n\n./unittests/unittest\n\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/axboe/fio/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Flexible IO Tester - an IO benchmark tool",
         homepage: "https://github.com/axboe/fio",

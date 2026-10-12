@@ -2,20 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/upgrade.nix", [[["maintainers", 42, 8]], [["package", 47, 9], ["enable", 48, 9]], [["extraDependencies", 50, 12]], [["package", 55, 11]], [["isNormalUser", 57, 25]], [["alice", 57, 19]], [["users", 57, 13]], [["nix", 55, 7], ["users", 57, 7]], [["configuration", 54, 30]], [["newer-nix", 54, 20]], [["imports", 45, 5], ["nix", 47, 5], ["system", 50, 5], ["specialisation", 54, 5]], [["machine", 44, 9]], [["name", 41, 3], ["meta", 42, 3], ["nodes", 44, 3], ["testScript", 61, 3]]]);
 const formals$1 = { args: { pkgs: false, nixVersions: false, system: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/upgrade.nix", [["maintainers", 42, 8]]);
-const pos$2 = nix.positions(here + "/upgrade.nix", [["package", 47, 9], ["enable", 48, 9]]);
-const pos$3 = nix.positions(here + "/upgrade.nix", [["extraDependencies", 50, 12]]);
-const pos$4 = nix.positions(here + "/upgrade.nix", [["package", 55, 11]]);
-const pos$5 = nix.positions(here + "/upgrade.nix", [["isNormalUser", 57, 25]]);
-const pos$6 = nix.positions(here + "/upgrade.nix", [["alice", 57, 19]]);
-const pos$7 = nix.positions(here + "/upgrade.nix", [["users", 57, 13]]);
-const pos$8 = nix.positions(here + "/upgrade.nix", [["nix", 55, 7], ["users", 57, 7]]);
-const pos$9 = nix.positions(here + "/upgrade.nix", [["configuration", 54, 30]]);
-const pos$10 = nix.positions(here + "/upgrade.nix", [["newer-nix", 54, 20]]);
-const pos$11 = nix.positions(here + "/upgrade.nix", [["imports", 45, 5], ["nix", 47, 5], ["system", 50, 5], ["specialisation", 54, 5]]);
-const pos$12 = nix.positions(here + "/upgrade.nix", [["machine", 44, 9]]);
-const pos$13 = nix.positions(here + "/upgrade.nix", [["name", 41, 3], ["meta", 42, 3], ["nodes", 44, 3], ["testScript", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,44 +16,44 @@ export default nix.lambda((args) => (() => {
 }`)));
   const nixos_module = nix.thunk(() => nix.builtins.toFile("nixos-module.nix", "{ lib, pkgs, modulesPath, ... }:\n{\n  imports = [\n    (modulesPath + \"/profiles/minimal.nix\")\n    (modulesPath + \"/testing/test-instrumentation.nix\")\n  ];\n\n  hardware.enableAllFirmware = lib.mkForce false;\n\n  nix.settings.substituters = lib.mkForce [];\n  nix.settings.hashed-mirrors = null;\n  nix.settings.connect-timeout = 1;\n  nix.extraOptions = \"experimental-features = nix-command\";\n\n  environment.localBinInPath = true;\n  users.users.alice = {\n    isNormalUser = true;\n    packages = [ pkgs.nixVersions.latest ];\n  };\n  documentation.enable = false;\n}\n"));
   return nix.app(nix.sel(pkgs, "testers", "nixosTest"), nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       name: nix.thunk(() => nix.str`nix-upgrade-${nix.sel(nixVersions, "stable", "version")}-${nix.sel(nixVersions, "latest", "version")}`),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "tomberek"))];
         })()),
       })),
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         machine: nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           imports: nix.thunk(() => [nixos_module]),
           nix: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             package: nix.thunk(() => nix.sel(nixVersions, "stable")),
             enable: true,
           })),
           system: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraDependencies: nix.thunk(() => [fallback_paths_external]),
           })),
           specialisation: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             "newer-nix": nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 nix: nix.thunk(() => ({
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   package: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => nix.sel(nixVersions, "latest")))),
                 })),
                 users: nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   users: nix.thunk(() => ({
-                    [nix.POS]: pos$6,
-                    alice: nix.thunk(() => ({ [nix.POS]: pos$5, isNormalUser: true })),
+                    [nix.POS]: $pos[5],
+                    alice: nix.thunk(() => ({ [nix.POS]: $pos[4], isNormalUser: true })),
                   })),
                 })),
               })),

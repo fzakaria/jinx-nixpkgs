@@ -2,14 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 11], ["hash", 17, 19]], [["asset", 22, 9], ["hash", 23, 9]], [["asset", 26, 9], ["hash", 27, 9]], [["asset", 30, 9], ["hash", 31, 9]], [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["longDescription", 49, 5], ["maintainers", 54, 5], ["platforms", 55, 5]], [["pname", 8, 3], ["version", 9, 3], ["srcs", 11, 3], ["sourceRoot", 35, 3], ["unpackCmd", 36, 3], ["installPhase", 38, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false }, ellipsis: false };
 const formals$2 = { args: { asset: false, hash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 11], ["hash", 17, 19]]);
-const pos$2 = nix.positions(here + "/package.nix", [["asset", 22, 9], ["hash", 23, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["asset", 26, 9], ["hash", 27, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["asset", 30, 9], ["hash", 31, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["longDescription", 49, 5], ["maintainers", 54, 5], ["platforms", 55, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["srcs", 11, 3], ["sourceRoot", 35, 3], ["unpackCmd", 36, 3], ["installPhase", 38, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "etlegacy-assets",
       version: "2.86.1",
       srcs: nix.thunk(() => (() => {
@@ -26,24 +21,24 @@ export default nix.lambda((args) => (() => {
           const asset = nix.arg($_1, "asset");
           const hash = nix.arg($_1, "hash");
           return nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               url: nix.thunk(() => nix.str`https://mirror.etlegacy.com/etmain/${asset}`),
               hash: hash,
             })));
         })(), formals$2);
         return [
           nix.thunk(() => nix.app(fetchAsset, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               asset: "pak0.pk3",
               hash: "sha256-cSlmsg4GUj/oFBlRZQDkmchrK0/sgjhW3b0zP8s9JuU=",
             })))),
           nix.thunk(() => nix.app(fetchAsset, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               asset: "pak1.pk3",
               hash: "sha256-VhD9dJAkQFtEJafOY5flgYe5QdIgku8R1IRLQn31Pl0=",
             })))),
           nix.thunk(() => nix.app(fetchAsset, nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               asset: "pak2.pk3",
               hash: "sha256-pIq3SaGhKrTZE3KGsfI9ZCwp2lmEWyuvyPZOBSzwbz4=",
             })))),
@@ -53,7 +48,7 @@ export default nix.lambda((args) => (() => {
       unpackCmd: "cp -r $curSrc ${curSrc##*-}",
       installPhase: "runHook preInstall\nmkdir -p $out/lib/etlegacy/etmain\ncp -r . $out/lib/etlegacy/etmain/\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "ET: Legacy assets only",
         homepage: "https://etlegacy.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-nc-sa-30")),

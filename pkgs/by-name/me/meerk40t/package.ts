@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["cam", 46, 5], ["camhead", 49, 5], ["dxf", 52, 5], ["gui", 55, 5]], [["changelog", 79, 5], ["description", 80, 5], ["mainProgram", 81, 5], ["homepage", 82, 5], ["license", 83, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["dontWrapGApps", 30, 3], ["dependencies", 33, 3], ["optional-dependencies", 45, 3], ["preFixup", 63, 3], ["nativeCheckInputs", 70, 3], ["preCheck", 74, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, "meerk40t-camera": false, python3Packages: false, gtk3: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["cam", 46, 5], ["camhead", 49, 5], ["dxf", 52, 5], ["gui", 55, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 79, 5], ["description", 80, 5], ["mainProgram", 81, 5], ["homepage", 82, 5], ["license", 83, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["dontWrapGApps", 30, 3], ["dependencies", 33, 3], ["optional-dependencies", 45, 3], ["preFixup", 63, 3], ["nativeCheckInputs", 70, 3], ["preCheck", 74, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.8000";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "meerk40t",
           repo: "MeerK40t",
           tag: version,
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const optional_dependencies = nix.thunk(() => (() => {
         const w_2 = nix.withScope(python3Packages, null);
         return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           cam: nix.thunk(() => [nix.thunk(() => nix.lookup(w_2, "opencv4"))]),
           camhead: nix.thunk(() => [nix.thunk(() => nix.lookup(w_2, "opencv4"))]),
           dxf: nix.thunk(() => [nix.thunk(() => nix.lookup(w_2, "ezdxf"))]),
@@ -69,7 +66,7 @@ makeWrapperArgs+=("\${gappsWrapperArgs[@]}")
       })());
       const preCheck = "export HOME=$TMPDIR\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/meerk40t/meerk40t/releases/tag/${nix.sel(src, "tag")}`),
         description: "MeerK40t LaserCutter Software",
         mainProgram: "meerk40t",
@@ -77,7 +74,7 @@ makeWrapperArgs+=("\${gappsWrapperArgs[@]}")
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

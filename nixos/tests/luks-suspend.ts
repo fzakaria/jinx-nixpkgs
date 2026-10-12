@@ -2,28 +2,10 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/luks-suspend.nix", [[["nativeBuildInputs", 17, 52]], [["systemPackages", 32, 19]], [["format", 39, 13], ["readonly", 40, 13]], [["name", 36, 11], ["file", 37, 11], ["driveExtraOpts", 38, 11]], [["drives", 34, 27]], [["memorySize", 33, 22], ["qemu", 34, 22]], [["environment", 32, 7], ["virtualisation", 33, 7]], [["maintainers", 48, 8]], [["source", 74, 58]], [["/etc/luks-foo.key", 74, 38]], [["enable", 60, 29], ["contents", 74, 29]], [["device", 68, 13], ["keyFile", 69, 13]], [["foo", 67, 11]], [["devices", 66, 26]], [["systemd", 60, 21], ["luks", 66, 21]], [["initrd", 60, 14]], [["imports", 59, 9], ["boot", 60, 9]], [["cli", 52, 5], ["native", 56, 5]], [["name", 47, 3], ["meta", 48, 3], ["nodes", 50, 3], ["testScript", 78, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/luks-suspend.nix", [["nativeBuildInputs", 17, 52]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/luks-suspend.nix", [["systemPackages", 32, 19]]);
-const pos$3 = nix.positions(here + "/luks-suspend.nix", [["format", 39, 13], ["readonly", 40, 13]]);
-const pos$4 = nix.positions(here + "/luks-suspend.nix", [["name", 36, 11], ["file", 37, 11], ["driveExtraOpts", 38, 11]]);
-const pos$5 = nix.positions(here + "/luks-suspend.nix", [["drives", 34, 27]]);
-const pos$6 = nix.positions(here + "/luks-suspend.nix", [["memorySize", 33, 22], ["qemu", 34, 22]]);
-const pos$7 = nix.positions(here + "/luks-suspend.nix", [["environment", 32, 7], ["virtualisation", 33, 7]]);
-const pos$8 = nix.positions(here + "/luks-suspend.nix", [["maintainers", 48, 8]]);
 const formals$3 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$9 = nix.positions(here + "/luks-suspend.nix", [["source", 74, 58]]);
-const pos$10 = nix.positions(here + "/luks-suspend.nix", [["/etc/luks-foo.key", 74, 38]]);
-const pos$11 = nix.positions(here + "/luks-suspend.nix", [["enable", 60, 29], ["contents", 74, 29]]);
-const pos$12 = nix.positions(here + "/luks-suspend.nix", [["device", 68, 13], ["keyFile", 69, 13]]);
-const pos$13 = nix.positions(here + "/luks-suspend.nix", [["foo", 67, 11]]);
-const pos$14 = nix.positions(here + "/luks-suspend.nix", [["devices", 66, 26]]);
-const pos$15 = nix.positions(here + "/luks-suspend.nix", [["systemd", 60, 21], ["luks", 66, 21]]);
-const pos$16 = nix.positions(here + "/luks-suspend.nix", [["initrd", 60, 14]]);
-const pos$17 = nix.positions(here + "/luks-suspend.nix", [["imports", 59, 9], ["boot", 60, 9]]);
-const pos$18 = nix.positions(here + "/luks-suspend.nix", [["cli", 52, 5], ["native", 56, 5]]);
-const pos$19 = nix.positions(here + "/luks-suspend.nix", [["name", 47, 3], ["meta", 48, 3], ["nodes", 50, 3], ["testScript", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const luksUUID = "55555555-5555-5555-5555-555555555555";
   const memorySizeMiB = 1024n;
   const luksImage = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "luks-suspend-test-disk.img", nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "cryptsetup"))]),
     })), nix.thunk(() => nix.str`truncate -s 64M $out
 
@@ -48,22 +30,22 @@ echo -n abc | cryptsetup luksFormat \\
     const $_1 = nix.formals(args_1, formals$2);
     const pkgs_1 = nix.arg($_1, "pkgs");
     return {
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       environment: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "cryptsetup"))]),
       })),
       virtualisation: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         memorySize: memorySizeMiB,
         qemu: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           drives: nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               name: "luks",
               file: nix.thunk(() => nix.str`${luksImage}`),
-              driveExtraOpts: nix.thunk(() => ({ [nix.POS]: pos$3, format: "raw", readonly: "on" })),
+              driveExtraOpts: nix.thunk(() => ({ [nix.POS]: $pos[2], format: "raw", readonly: "on" })),
             })),
           ]),
         })),
@@ -71,46 +53,46 @@ echo -n abc | cryptsetup luksFormat \\
     };
   })(), formals$2);
   return {
-    [nix.POS]: pos$19,
+    [nix.POS]: $pos[18],
     name: "luks-suspend",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "iblech"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       cli: commonMachine,
       native: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs_1 = nix.arg($_1, "pkgs");
         const lib_1 = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           imports: nix.thunk(() => [commonMachine]),
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             initrd: nix.thunk(() => ({
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               systemd: nix.thunk(() => ({
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 enable: true,
                 contents: nix.thunk(() => ({
-                  [nix.POS]: pos$10,
+                  [nix.POS]: $pos[9],
                   "/etc/luks-foo.key": nix.thunk(() => ({
-                    [nix.POS]: pos$9,
+                    [nix.POS]: $pos[8],
                     source: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "luks-foo-key", "abc")),
                   })),
                 })),
               })),
               luks: nix.thunk(() => ({
-                [nix.POS]: pos$14,
+                [nix.POS]: $pos[13],
                 devices: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOverride"), 5n, nix.thunk(() => ({
-                    [nix.POS]: pos$13,
+                    [nix.POS]: $pos[12],
                     foo: nix.thunk(() => ({
-                      [nix.POS]: pos$12,
+                      [nix.POS]: $pos[11],
                       device: nix.thunk(() => nix.str`/dev/disk/by-uuid/${luksUUID}`),
                       keyFile: "/etc/luks-foo.key",
                     })),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["tt-rss", 34, 36]], [["hardcodeZeroVersion", 35, 41]], [["tests", 34, 5], ["updateScript", 35, 5]], [["description", 39, 5], ["license", 40, 5], ["homepage", 41, 5], ["maintainers", 42, 5], ["platforms", 47, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["installPhase", 20, 3], ["passthru", 33, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, nixosTests: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["tt-rss", 34, 36]]);
-const pos$3 = nix.positions(here + "/package.nix", [["hardcodeZeroVersion", 35, 41]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 34, 5], ["updateScript", 35, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 39, 5], ["license", 40, 5], ["homepage", 41, 5], ["maintainers", 42, 5], ["platforms", 47, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["installPhase", 20, 3], ["passthru", 33, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "tt-rss",
       version: "0-unstable-2025-11-01",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://github.com/tt-rss/tt-rss.git",
           rev: "912162ad811869af334232d32fe6c79b3cf095ca",
           hash: "sha256-2U9V4MTWGNZzdVr9AlH/S7KdBGPap+mm5/KieWLcF1A=",
@@ -39,12 +34,15 @@ echo "${nix.sel(finalAttrs, "version")}" > $out/version_static.txt
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, "tt-rss": nix.thunk(() => nix.attr(nixosTests, "tt-rss")) })),
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, hardcodeZeroVersion: true })))),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[1],
+          "tt-rss": nix.thunk(() => nix.attr(nixosTests, "tt-rss")),
+        })),
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], hardcodeZeroVersion: true })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Web-based news feed (RSS/Atom) aggregator",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         homepage: "https://tt-rss.org",

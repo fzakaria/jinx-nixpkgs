@@ -2,15 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/build-octave-package.nix", [[["OCTAVE_HISTFILE", 101, 7]], [["updateScript", 144, 7]], [["name", 153, 11]], [["nativeOctavePkgTestInputs", 156, 19], ["octavePkgTestEnv", 156, 45]], [["testOctaveBuildEnv", 152, 9], ["testOctavePkgTests", 155, 9]], [["tests", 151, 7]], [["packageName", 90, 5], ["name", 93, 5], ["isOctavePackage", 98, 5], ["env", 100, 5], ["src", 104, 13], ["dontPatch", 106, 13], ["patches", 106, 23], ["patchPhase", 106, 31], ["dontConfigure", 108, 5], ["enableParallelBuilding", 110, 5], ["requiredOctavePackages", 112, 5], ["nativeBuildInputs", 114, 5], ["buildInputs", 116, 5], ["propagatedBuildInputs", 118, 5], ["preBuild", 120, 5], ["buildPhase", 130, 5], ["dontInstall", 141, 5], ["passthru", 143, 5], ["meta", 162, 13]]]);
 const formals$1 = { args: { lib: false, stdenv: false, config: false, octave: false, callPackage: false, texinfo: false, computeRequiredOctavePackages: false, writeRequiredOctavePackagesHook: false }, ellipsis: false };
 const formals$2 = { args: { fullLibName: true, src: false, dontPatch: true, patches: true, patchPhase: true, enableParallelBuilding: true, nativeBuildInputs: true, buildInputs: true, propagatedBuildInputs: true, requiredOctavePackages: true, nativeOctavePkgTestInputs: true, octavePkgTestEnv: true, preBuild: true, meta: true, passthru: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/build-octave-package.nix", [["OCTAVE_HISTFILE", 101, 7]]);
-const pos$2 = nix.positions(here + "/build-octave-package.nix", [["updateScript", 144, 7]]);
-const pos$3 = nix.positions(here + "/build-octave-package.nix", [["name", 153, 11]]);
-const pos$4 = nix.positions(here + "/build-octave-package.nix", [["nativeOctavePkgTestInputs", 156, 19], ["octavePkgTestEnv", 156, 45]]);
-const pos$5 = nix.positions(here + "/build-octave-package.nix", [["testOctaveBuildEnv", 152, 9], ["testOctavePkgTests", 155, 9]]);
-const pos$6 = nix.positions(here + "/build-octave-package.nix", [["tests", 151, 7]]);
-const pos$7 = nix.positions(here + "/build-octave-package.nix", [["packageName", 90, 5], ["name", 93, 5], ["isOctavePackage", 98, 5], ["env", 100, 5], ["src", 104, 13], ["dontPatch", 106, 13], ["patches", 106, 23], ["patchPhase", 106, 31], ["dontConfigure", 108, 5], ["enableParallelBuilding", 110, 5], ["requiredOctavePackages", 112, 5], ["nativeBuildInputs", 114, 5], ["buildInputs", 116, 5], ["propagatedBuildInputs", 118, 5], ["preBuild", 120, 5], ["buildPhase", 130, 5], ["dontInstall", 141, 5], ["passthru", 143, 5], ["meta", 162, 13]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,11 +38,11 @@ export default nix.lambda((args) => (() => {
     const nativeBuildInputs$ = nix.thunk(() => nix.concat([octave, writeRequiredOctavePackagesHook], nativeBuildInputs));
     const attrs$ = nix.thunk(() => nix.builtins.removeAttrs(attrs, nix.thunk(() => ["nativeBuildInputs", "nativeOctavePkgTestInputs", "passthru", "env"])));
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => nix.update({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         packageName: nix.thunk(() => nix.str`${fullLibName}`),
         name: nix.thunk(() => nix.str`${nix.sel(octave, "pname")}-${nix.sel(octave, "version")}-${fullLibName}`),
         isOctavePackage: true,
-        env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), { [nix.POS]: pos$1, OCTAVE_HISTFILE: "/dev/null" })),
+        env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), { [nix.POS]: $pos[0], OCTAVE_HISTFILE: "/dev/null" })),
         src: src,
         dontPatch: dontPatch,
         patches: patches,
@@ -72,21 +66,21 @@ runHook postBuild
 `),
         dontInstall: true,
         passthru: nix.thunk(() => nix.update({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           updateScript: nix.thunk(() => [
             nix.path(here, "../../../../maintainers/scripts/update-octave-packages"),
             nix.thunk(() => nix.sel(nix.builtins.unsafeGetAttrPos("pname", nix.thunk(() => nix.sel(octave, "pkgs", nix.key(nix.sel(attrs, "pname"))))), "file")),
           ]),
         }, nix.update(passthru, {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           tests: nix.thunk(() => nix.update({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             testOctaveBuildEnv: nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(octave, "withPackages"), (os) => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]), "overrideAttrs"), (old) => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "name")}-pkg-install`),
               }))),
             testOctavePkgTests: nix.thunk(() => nix.app(callPackage, nix.path(here, "./run-pkg-test.nix"), nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 nativeOctavePkgTestInputs: nativeOctavePkgTestInputs,
                 octavePkgTestEnv: octavePkgTestEnv,
               })), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),

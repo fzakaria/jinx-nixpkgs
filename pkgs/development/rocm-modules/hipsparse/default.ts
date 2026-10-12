@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["sparseCheckout", 38, 5], ["hash", 42, 5]], [["finalAttrs", 139, 54]], [["updateScript", 139, 12]], [["description", 142, 5], ["homepage", 143, 5], ["license", 144, 5], ["teams", 145, 5], ["platforms", 146, 5]], [["pname", 21, 3], ["version", 22, 3], ["outputs", 24, 3], ["src", 34, 3], ["sourceRoot", 44, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 53, 3], ["cmakeFlags", 63, 3], ["postPatch", 79, 3], ["postInstall", 118, 3], ["passthru", 139, 3], ["meta", 141, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rocmUpdateScript: false, cmake: false, "rocm-cmake": false, rocsparse: false, clr: false, gfortran: false, gtest: false, openmp: false, buildTests: true, buildBenchmarks: true, buildSamples: true, gpuTargets: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["sparseCheckout", 38, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["finalAttrs", 139, 54]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 139, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 142, 5], ["homepage", 143, 5], ["license", 144, 5], ["teams", 145, 5], ["platforms", 146, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["outputs", 24, 3], ["src", 34, 3], ["sourceRoot", 44, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 53, 3], ["cmakeFlags", 63, 3], ["postPatch", 79, 3], ["postInstall", 118, 3], ["passthru", 139, 3], ["meta", 141, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const buildSamples = nix.argOr($, "buildSamples", () => false);
   const gpuTargets = nix.argOr($, "gpuTargets", () => nix.selOr(clr, () => [], "localGpuTargets"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "hipsparse",
       version: "7.2.3",
       outputs: nix.thunk(() => nix.concat(["out"], nix.concat(nix.app(nix.sel(lib, "optionals"), buildTests, nix.thunk(() => ["test"])), nix.app(nix.sel(lib, "optionals"), buildSamples, nix.thunk(() => ["sample"]))))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ROCm",
           repo: "rocm-libraries",
           tag: nix.thunk(() => nix.str`rocm-${nix.sel(finalAttrs, "version")}`),
@@ -94,11 +90,11 @@ mv clients/staging/example_* $sample/bin
 patchelf --set-rpath $out/lib:${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => nix.concat(nix.sel(finalAttrs, "buildInputs"), [clr, nix.thunk(() => nix.sel(gfortran, "cc"))])))} $sample/bin/example_*
 `)))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: pos$2, finalAttrs: finalAttrs })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: $pos[1], finalAttrs: finalAttrs })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "ROCm SPARSE marshalling library",
         homepage: "https://github.com/ROCm/rocm-libraries/tree/develop/projects/hipsparse",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

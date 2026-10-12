@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 18, 13], ["version", 18, 19], ["hash", 19, 5]], [["mainProgram", 44, 5], ["homepage", 45, 5], ["description", 46, 5], ["license", 47, 5], ["maintainers", 48, 5]], [["pname", 14, 11], ["version", 14, 17], ["pyproject", 15, 3], ["src", 17, 3], ["postPatch", 22, 3], ["build-system", 30, 3], ["buildInputs", 34, 3], ["pythonImportsCheck", 39, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, sqlcipher: false, openssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 18, 13], ["version", 18, 19], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["mainProgram", 44, 5], ["homepage", 45, 5], ["description", 46, 5], ["license", 47, 5], ["maintainers", 48, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 14, 11], ["version", 14, 17], ["pyproject", 15, 3], ["src", 17, 3], ["postPatch", 22, 3], ["build-system", 30, 3], ["buildInputs", 34, 3], ["pythonImportsCheck", 39, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const pname = "sqlcipher3";
   const version = "0.6.3";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-/Lt4RmPSEhNWPz+9o5L/tfnXuE3/A9PRFL5rtUM4oa4=",
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [sqlcipher, openssl]),
       pythonImportsCheck: nix.thunk(() => ["sqlcipher3"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         mainProgram: "sqlcipher3",
         homepage: "https://github.com/coleifer/sqlcipher3",
         description: "Python 3 bindings for SQLCipher",

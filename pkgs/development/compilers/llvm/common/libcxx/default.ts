@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["passthru", 117, 33], ["strictDeps", 118, 11], ["__structuredAttrs", 119, 11]], [["isLLVM", 209, 5]], [["homepage", 215, 5], ["description", 216, 5], ["longDescription", 217, 5], ["license", 223, 5]], [["pname", 110, 3], ["version", 111, 11], ["cmakeFlags", 111, 19], ["src", 113, 3], ["outputs", 143, 3], ["preConfigure", 148, 3], ["nativeBuildInputs", 152, 3], ["buildInputs", 160, 3], ["strictDeps", 167, 3], ["postPatch", 170, 3], ["postInstall", 177, 3], ["passthru", 208, 3], ["__structuredAttrs", 212, 3], ["meta", 214, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, llvm_meta: false, release_version: false, monorepoSrc: true, src: true, runCommand: false, cmake: false, lndir: false, ninja: false, python3: false, fixDarwinDylibNames: false, version: false, freebsd: false, cxxabi: true, libunwind: false, enableShared: true, devExtraCmakeFlags: true, substitute: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["passthru", 117, 33], ["strictDeps", 118, 11], ["__structuredAttrs", 119, 11]]);
-const pos$2 = nix.positions(here + "/default.nix", [["isLLVM", 209, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 215, 5], ["description", 216, 5], ["longDescription", 217, 5], ["license", 223, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 110, 3], ["version", 111, 11], ["cmakeFlags", 111, 19], ["src", 113, 3], ["outputs", 143, 3], ["preConfigure", 148, 3], ["nativeBuildInputs", 152, 3], ["buildInputs", 160, 3], ["strictDeps", 167, 3], ["postPatch", 170, 3], ["postInstall", 177, 3], ["passthru", 208, 3], ["__structuredAttrs", 212, 3], ["meta", 214, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -78,12 +75,12 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "UNIX", true)),
     ])), nix.concat(cxxCMakeFlags, nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(cxxabi, null)), cxxabiCMakeFlags), devExtraCmakeFlags)))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libcxx",
       version: version,
       cmakeFlags: cmakeFlags,
       src: nix.thunk(() => (nix.asBool(!nix.eq(monorepoSrc, null)) ? nix.app(runCommand, nix.thunk(() => nix.str`libcxx-src-${version}`), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           passthru: nix.thunk(() => nix.attr(monorepoSrc, "passthru")),
           strictDeps: true,
           __structuredAttrs: true,
@@ -107,10 +104,10 @@ cp -r ${monorepoSrc}/third-party "$out"
 lndir ${nix.app(nix.sel(lib, "getLib"), cxxabi)}/lib $out/lib
 libcxxabi=$out/lib/lib${nix.sel(cxxabi, "libName")}.a
 `)), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(cxxabi, null)), "libcxxabi=${libcxxabi-$out/lib/libc++abi.a}\nif [[ -f $out/lib/libc++.a && -e $libcxxabi ]]; then\n  $AR -M <<MRI\n    create $out/lib/libc++.a\n    addlib $out/lib/libc++.a\n    addlib $libcxxabi\n    save\n    end\nMRI\n  $AR -M <<MRI\n    create $out/lib/libc++.a\n    addlib $out/lib/libc++.a\n    save\n    end\nMRI\nfi\n"))),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, isLLVM: true })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], isLLVM: true })),
       __structuredAttrs: true,
       meta: nix.thunk(() => nix.update(llvm_meta, {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://libcxx.llvm.org/",
         description: "C++ standard library",
         longDescription: "libc++ is an implementation of the C++ standard library, targeting C++11,\nC++14 and above.\n",

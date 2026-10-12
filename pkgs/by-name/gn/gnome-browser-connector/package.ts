@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["sha256", 24, 5]], [["packageName", 55, 7]], [["updateScript", 54, 5]], [["description", 60, 5], ["homepage", 61, 5], ["longDescription", 62, 5], ["license", 65, 5], ["teams", 66, 5], ["platforms", 67, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 34, 3], ["pythonPath", 38, 3], ["postPatch", 42, 3], ["dontWrapGApps", 46, 3], ["preFixup", 49, 3], ["passthru", 53, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, meson: false, ninja: false, python3: false, gnome: false, "gnome-shell": false, wrapGAppsNoGuiHook: false, "gobject-introspection": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["sha256", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 55, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 54, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 60, 5], ["homepage", 61, 5], ["longDescription", 62, 5], ["license", 65, 5], ["teams", 66, 5], ["platforms", 67, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 34, 3], ["pythonPath", 38, 3], ["postPatch", 42, 3], ["dontWrapGApps", 46, 3], ["preFixup", 49, 3], ["passthru", 53, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const buildPythonApplication = nix.thunk(() => nix.attr(from, "buildPythonApplication"));
   const pygobject3 = nix.thunk(() => nix.attr(from, "pygobject3"));
   return nix.app(buildPythonApplication, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gnome-browser-connector",
       version: "42.1",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-browser-connector/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-browser-connector-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "vZcCzhwWNgbKMrjBPR87pugrJHz4eqxgYQtBHfFVYhI=",
         })))),
@@ -40,11 +36,11 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "gnome-browser-connector" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "gnome-browser-connector" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Native host connector for the GNOME Shell browser extension",
         homepage: "https://gitlab.gnome.org/GNOME/gnome-browser-connector",
         longDescription: "To use the integration, install the [browser extension](https://gitlab.gnome.org/GNOME/gnome-browser-extension), and then set `services.gnome.gnome-browser-connector.enable` to `true`.\n",

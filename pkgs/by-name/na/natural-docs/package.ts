@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["description", 31, 5], ["longDescription", 32, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["mainProgram", 41, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["dontPatch", 18, 3], ["dontConfigure", 19, 3], ["dontBuild", 20, 3], ["nativeBuildInputs", 22, 3], ["installPhase", 24, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchzip: false, makeWrapper: false, mono: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 31, 5], ["longDescription", 32, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["mainProgram", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["dontPatch", 18, 3], ["dontConfigure", 19, 3], ["dontBuild", 20, 3], ["nativeBuildInputs", 22, 3], ["installPhase", 24, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const mono = nix.arg($, "mono");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "natural-docs",
       version: "2.3.1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://naturaldocs.org/download/natural_docs/${nix.sel(finalAttrs, "version")}/Natural_Docs_${nix.sel(finalAttrs, "version")}.zip`),
           sha256: "sha256-gjAhS2hdFA8G+E5bJD18BQdb7PrBeRnpBBSlnVJ5hgY=",
         })))),
@@ -32,7 +30,7 @@ cp -r . $out/
 makeWrapper ${mono}/bin/mono $out/bin/NaturalDocs --add-flags "$out/NaturalDocs.exe"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Documentation generator for multiple programming languages",
         longDescription: "Natural Docs is an open source documentation generator for multiple\nprogramming languages. You document your code in a natural syntax that\nreads like plain English. Natural Docs then scans your code and builds\nhigh-quality HTML documentation from it.\n",
         homepage: "https://naturaldocs.org",

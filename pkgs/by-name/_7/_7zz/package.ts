@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 51, 5], ["repo", 52, 5], ["tag", 53, 5], ["hash", 54, 5], ["postFetch", 63, 5]], [["NIX_CFLAGS_COMPILE", 73, 7]], [["attrPath", 160, 9], ["extraArgs", 161, 9]], [["attrPath", 164, 9], ["extraArgs", 165, 9]], [["package", 169, 7], ["command", 170, 7]], [["version", 168, 11]], [["updateScript", 158, 5], ["tests", 168, 5]], [["vendor", 198, 7], ["product", 199, 7], ["version", 200, 28], ["update", 201, 7]], [["cpeParts", 197, 17]], [["description", 175, 5], ["homepage", 176, 5], ["changelog", 177, 5], ["license", 178, 5], ["maintainers", 190, 5], ["platforms", 195, 5], ["mainProgram", 196, 5], ["identifiers", 197, 5]], [["pname", 47, 3], ["version", 48, 3], ["src", 50, 3], ["postPatch", 68, 3], ["env", 73, 3], ["makefile", 105, 11], ["makeFlags", 107, 3], ["nativeBuildInputs", 127, 3], ["outputs", 129, 3], ["setupHook", 135, 3], ["enableParallelBuilding", 137, 3], ["preBuild", 139, 3], ["postBuild", 141, 3], ["installPhase", 145, 3], ["passthru", 157, 3], ["meta", 174, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, "_experimental-update-script-combinators": false, "nix-update-script": false, "asmc-linux": false, useAsmc: true, uasm: false, useUasm: true, enableUnfree: true, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 51, 5], ["repo", 52, 5], ["tag", 53, 5], ["hash", 54, 5], ["postFetch", 63, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 73, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["attrPath", 160, 9], ["extraArgs", 161, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["attrPath", 164, 9], ["extraArgs", 165, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["package", 169, 7], ["command", 170, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["version", 168, 11]]);
-const pos$7 = nix.positions(here + "/package.nix", [["updateScript", 158, 5], ["tests", 168, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["vendor", 198, 7], ["product", 199, 7], ["version", 200, 28], ["update", 201, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["cpeParts", 197, 17]]);
-const pos$10 = nix.positions(here + "/package.nix", [["description", 175, 5], ["homepage", 176, 5], ["changelog", 177, 5], ["license", 178, 5], ["maintainers", 190, 5], ["platforms", 195, 5], ["mainProgram", 196, 5], ["identifiers", 197, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["pname", 47, 3], ["version", 48, 3], ["src", 50, 3], ["postPatch", 68, 3], ["env", 73, 3], ["makefile", 105, 11], ["makeFlags", 107, 3], ["nativeBuildInputs", 127, 3], ["outputs", 129, 3], ["setupHook", 135, 3], ["enableParallelBuilding", 137, 3], ["preBuild", 139, 3], ["postBuild", 141, 3], ["installPhase", 145, 3], ["passthru", 157, 3], ["meta", 174, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const makefile = nix.thunk(() => nix.str`../../cmpl_${(nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "mac" : (nix.asBool(nix.sel(stdenv, "cc", "isClang")) ? "clang" : "gcc"))}${(nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")) ? "_x64" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) ? "_arm64" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isi686")) ? "_x86" : "")))}.mak`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       pname: "7zz",
       version: "26.04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ip7z",
           repo: "7zip",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,7 +35,7 @@ export default nix.lambda((args) => (() => {
   --replace-fail windres.exe ${nix.sel(stdenv, "cc", "targetPrefix")}windres
 `))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(["-Wno-error=array-bounds"], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["-Wno-deprecated-copy-dtor"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMinGW")), nix.thunk(() => ["-Wno-conversion", "-Wno-unused-macros"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => [
               "-Wno-declaration-after-statement",
               nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), nix.thunk(() => nix.sel(stdenv, "cc", "cc")))), "13")), nix.thunk(() => ["-Wno-reserved-identifier", "-Wno-unused-but-set-variable"]))),
@@ -78,30 +68,30 @@ install -Dm555 -t $lib/lib ../Format7zF/b/*/7z.*
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
             nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 attrPath: "_7zz",
                 extraArgs: nix.thunk(() => ["--use-github-releases"]),
               })))),
             nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 attrPath: "_7zz-rar",
                 extraArgs: nix.thunk(() => ["--version=skip"]),
               })))),
           ]))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "7zz --help",
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         description: "Command line version of the 7-Zip archiver utility",
         homepage: "https://7-zip.org",
         changelog: "https://7-zip.org/history.txt",
@@ -126,9 +116,9 @@ runHook postInstall
         })()),
         mainProgram: "7zz",
         identifiers: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           cpeParts: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             vendor: "7-zip",
             product: "7-zip",
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),

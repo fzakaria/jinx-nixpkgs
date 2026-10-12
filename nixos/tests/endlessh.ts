@@ -2,70 +2,54 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/endlessh.nix", [[["maintainers", 4, 8]], [["enable", 11, 11], ["openFirewall", 12, 11]], [["endlessh", 10, 18]], [["port", 16, 56]], [["endlessh", 16, 47]], [["services", 16, 38]], [["configuration", 16, 24]], [["port", 18, 54]], [["endlessh", 18, 45]], [["services", 18, 36]], [["configuration", 18, 22]], [["unprivileged", 16, 11], ["privileged", 18, 11]], [["services", 10, 9], ["specialisation", 15, 9]], [["systemPackages", 25, 21]], [["environment", 25, 9]], [["server", 7, 5], ["client", 22, 5]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 32, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/endlessh.nix", [["maintainers", 4, 8]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/endlessh.nix", [["enable", 11, 11], ["openFirewall", 12, 11]]);
-const pos$3 = nix.positions(here + "/endlessh.nix", [["endlessh", 10, 18]]);
-const pos$4 = nix.positions(here + "/endlessh.nix", [["port", 16, 56]]);
-const pos$5 = nix.positions(here + "/endlessh.nix", [["endlessh", 16, 47]]);
-const pos$6 = nix.positions(here + "/endlessh.nix", [["services", 16, 38]]);
-const pos$7 = nix.positions(here + "/endlessh.nix", [["configuration", 16, 24]]);
-const pos$8 = nix.positions(here + "/endlessh.nix", [["port", 18, 54]]);
-const pos$9 = nix.positions(here + "/endlessh.nix", [["endlessh", 18, 45]]);
-const pos$10 = nix.positions(here + "/endlessh.nix", [["services", 18, 36]]);
-const pos$11 = nix.positions(here + "/endlessh.nix", [["configuration", 18, 22]]);
-const pos$12 = nix.positions(here + "/endlessh.nix", [["unprivileged", 16, 11], ["privileged", 18, 11]]);
-const pos$13 = nix.positions(here + "/endlessh.nix", [["services", 10, 9], ["specialisation", 15, 9]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$14 = nix.positions(here + "/endlessh.nix", [["systemPackages", 25, 21]]);
-const pos$15 = nix.positions(here + "/endlessh.nix", [["environment", 25, 9]]);
-const pos$16 = nix.positions(here + "/endlessh.nix", [["server", 7, 5], ["client", 22, 5]]);
-const pos$17 = nix.positions(here + "/endlessh.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$17,
+    [nix.POS]: $pos[16],
     name: "endlessh",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "azahi"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            endlessh: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true, openFirewall: true })),
+            [nix.POS]: $pos[2],
+            endlessh: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true, openFirewall: true })),
           })),
           specialisation: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             unprivileged: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$5,
-                  endlessh: nix.thunk(() => ({ [nix.POS]: pos$4, port: 2222n })),
+                  [nix.POS]: $pos[4],
+                  endlessh: nix.thunk(() => ({ [nix.POS]: $pos[3], port: 2222n })),
                 })),
               })),
             })),
             privileged: nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$9,
-                  endlessh: nix.thunk(() => ({ [nix.POS]: pos$8, port: 22n })),
+                  [nix.POS]: $pos[8],
+                  endlessh: nix.thunk(() => ({ [nix.POS]: $pos[7], port: 22n })),
                 })),
               })),
             })),
@@ -76,9 +60,9 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs_1, null);
               return [

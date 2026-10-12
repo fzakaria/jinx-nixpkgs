@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 24, 5], ["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["description", 64, 5], ["mainProgram", 65, 5], ["homepage", 66, 5], ["changelog", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5]], [["pname", 19, 3], ["version", 20, 11], ["pyproject", 21, 3], ["src", 23, 3], ["postPatch", 31, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 43, 3], ["dependencies", 50, 3], ["mesonFlags", 54, 3], ["dontWrapGApps", 59, 3], ["makeWrapperArgs", 61, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, ninja: false, meson: false, fetchFromGitLab: false, systemd: false, libdrm: false, libgudev: false, "pkg-config": false, wrapGAppsNoGuiHook: false, glib: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 24, 5], ["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 64, 5], ["mainProgram", 65, 5], ["homepage", 66, 5], ["changelog", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 11], ["pyproject", 21, 3], ["src", 23, 3], ["postPatch", 31, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 43, 3], ["dependencies", 50, 3], ["mesonFlags", 54, 3], ["dontWrapGApps", 59, 3], ["makeWrapperArgs", 61, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const version = "3.0";
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "switcheroo-control",
       version: version,
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.freedesktop.org",
           owner: "hadess",
           repo: "switcheroo-control",
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       makeWrapperArgs: nix.thunk(() => ["${gappsWrapperArgs[@]}"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "D-Bus service to check the availability of dual-GPU",
         mainProgram: "switcherooctl",
         homepage: "https://gitlab.freedesktop.org/hadess/switcheroo-control/",

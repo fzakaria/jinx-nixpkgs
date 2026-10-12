@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["GOWORK", 22, 7]], [["changelog", 51, 5], ["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["mainProgram", 55, 5], ["maintainers", 56, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["env", 22, 3], ["subPackages", 24, 3], ["ldflags", 28, 3], ["nativeBuildInputs", 34, 3], ["postInstall", 38, 3], ["__darwinAllowLocalNetworking", 45, 3], ["doInstallCheck", 47, 3], ["nativeInstallCheckInputs", 48, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["GOWORK", 22, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 51, 5], ["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["mainProgram", 55, 5], ["maintainers", 56, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["env", 22, 3], ["subPackages", 24, 3], ["ldflags", 28, 3], ["nativeBuildInputs", 34, 3], ["postInstall", 38, 3], ["__darwinAllowLocalNetworking", 45, 3], ["doInstallCheck", 47, 3], ["nativeInstallCheckInputs", 48, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "roadrunner",
       version: "2025.1.15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "roadrunner-server",
           repo: "roadrunner",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-T7JWA/O25s7A/jSrWJJF4oJbQD0hQyCRt6vFiuz8kwE=",
         })))),
       vendorHash: "sha256-OhfqfLYHCoBU8QyrpaHwKXtGZf5eK8ocfTyjtZxsgSg=",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, GOWORK: "off" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], GOWORK: "off" })),
       subPackages: nix.thunk(() => ["cmd/rr"]),
       ldflags: nix.thunk(() => [
         "-s",
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/roadrunner-server/roadrunner/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),
         description: "High-performance PHP application server, process manager written in Go and powered with plugins",
         homepage: "https://roadrunner.dev",

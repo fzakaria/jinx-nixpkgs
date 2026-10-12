@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["url", 39, 7], ["hash", 40, 7]], [["url", 44, 7], ["hash", 45, 7]], [["url", 49, 7], ["hash", 50, 7]], [["url", 54, 7], ["hash", 55, 7]], [["homepage", 102, 5], ["description", 103, 5], ["license", 104, 5], ["maintainers", 105, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 14, 3], ["buildInputs", 19, 3], ["patches", 36, 3], ["nativeBuildInputs", 59, 3], ["propagatedBuildInputs", 64, 3], ["outputs", 86, 3], ["postPatch", 88, 3], ["fixupPhase", 92, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false, fetchurl: false, fetchpatch: false, perlPackages: false, rsync: false, which: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 39, 7], ["hash", 40, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 44, 7], ["hash", 45, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 49, 7], ["hash", 50, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 54, 7], ["hash", 55, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 102, 5], ["description", 103, 5], ["license", 104, 5], ["maintainers", 105, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 14, 3], ["buildInputs", 19, 3], ["patches", 36, 3], ["nativeBuildInputs", 59, 3], ["propagatedBuildInputs", 64, 3], ["outputs", 86, 3], ["postPatch", 88, 3], ["fixupPhase", 92, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "Rex";
       const version = "1.14.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://cpan/authors/id/F/FE/FERKI/Rex-${version}.tar.gz`),
           hash: "sha256-An0wQu+UC2dZDlmJ6W8irh5nunRIlcXdPbVpwFE3Alw=",
         }))));
@@ -47,22 +41,22 @@ export default nix.lambda((args) => (() => {
       })());
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/RexOps/Rex/commit/c71f3b255dac8f929abea46913798f132566af55.patch",
             hash: "sha256-S2tF3IZ96QrxDN3HfBk7RWDZcEwukQYAkSId51dATiU=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/RexOps/Rex/commit/2782e80bb9789d3afb42e08904c28a4366a58334.patch",
             hash: "sha256-htm39fF2tumG5b5E1ZBRX5n3vRaZZZzn2lfSN1omP8s=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://github.com/RexOps/Rex/commit/ec72c8d1fdddf9116afdb21091100fe7cc20f41a.patch",
             hash: "sha256-a/Sns2f596dbAWbuIveNldc/V3MwR08/ocXVgx0Tbcw=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: "https://github.com/RexOps/Rex/commit/f0b312f42178e7e4271b5b010c00efb5cdba2970.patch",
             hash: "sha256-n/+huVCM8zpgx2LZgMB41PPIYgNhF6AK8+4FGPQH+FU=",
           })))),
@@ -105,7 +99,7 @@ installShellCompletion --name _rex --zsh ./share/rex-tab-completion.zsh
 installShellCompletion --name rex --bash ./share/rex-tab-completion.bash
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://www.rexify.org",
         description: "Friendly automation framework",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -115,7 +109,7 @@ installShellCompletion --name rex --bash ./share/rex-tab-completion.bash
         })()),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         src,

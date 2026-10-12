@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["extraTools", 20, 29]], [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]], [["CXXFLAGS", 58, 7]], [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["platforms", 64, 5], ["maintainers", 65, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["prePatch", 54, 3], ["env", 58, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, python3: false, cairo: false, libjpeg: false, ntk: false, libjack2: false, libsndfile: false, "ladspa-header": false, liblo: false, libsigcxx_2_0: false, lrdf: false, waf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["extraTools", 20, 29]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["CXXFLAGS", 58, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["platforms", 64, 5], ["maintainers", 65, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["prePatch", 54, 3], ["env", 58, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const libsigcxx_2_0 = nix.arg($, "libsigcxx_2_0");
   const lrdf = nix.arg($, "lrdf");
   const waf = nix.arg($, "waf");
-  const wafHook = nix.thunk(() => nix.sel(nix.app(nix.sel(waf, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, extraTools: nix.thunk(() => ["gccdeps"]) }))), "hook"));
+  const wafHook = nix.thunk(() => nix.sel(nix.app(nix.sel(waf, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], extraTools: nix.thunk(() => ["gccdeps"]) }))), "hook"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "non",
       version: "unstable-2021-01-28",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "linuxaudio",
           repo: "non",
           rev: "cdad26211b301d2fad55a26812169ab905b85bbb",
@@ -52,9 +48,9 @@ export default nix.lambda((args) => (() => {
         lrdf,
       ]),
       prePatch: "rm waf\n",
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, CXXFLAGS: "-std=c++14" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], CXXFLAGS: "-std=c++14" })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Lightweight and lightning fast modular Digital Audio Workstation",
         homepage: "http://non.tuxfamily.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

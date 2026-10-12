@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 11, 5], ["rev", 12, 5], ["hash", 13, 5]], [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["teams", 40, 5]], [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["cargoHash", 16, 3], ["outputs", 18, 3], ["postPatch", 23, 3], ["postInstall", 29, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchgit: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 11, 5], ["rev", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["teams", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["cargoHash", 16, 3], ["outputs", 18, 3], ["postPatch", 23, 3], ["postInstall", 29, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchgit = nix.arg($, "fetchgit");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "taler-depolymerization",
       version: "0-unstable-2024-06-17",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git-www.taler.net/depolymerization.git",
           rev: "a0d27ac3bba22d4934ca9f7b244b0d9e45bb484f",
           hash: "sha256-HmQ/DPq/O6aODWms/bSsCVgBF7z246xxfYxiHrAkgYw=",
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "# fix missing expression in test docs\nsubstituteInPlace common/src/status.rs \\\n  --replace-fail '          -> Requested' '()        -> Requested'\n",
       postInstall: "mkdir -p $doc/share/doc $out/share/examples\n\ncp -R docs $doc/share/doc/taler-depolymerization\ncp docs/*.conf $out/share/examples\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Wire gateway for Bitcoin/Ethereum",
         homepage: "https://git-www.taler.net/depolymerization.git/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

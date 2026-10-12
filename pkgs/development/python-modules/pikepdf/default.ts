@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["postFetch", 42, 5], ["hash", 45, 5]], [["jbig2dec", 50, 7], ["mutool", 51, 7]], [["homepage", 100, 5], ["description", 101, 5], ["license", 102, 5], ["maintainers", 103, 5], ["changelog", 104, 5]], [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["src", 35, 3], ["patches", 48, 3], ["buildInputs", 61, 3], ["build-system", 63, 3], ["dontUseCmakeConfigure", 77, 3], ["nativeCheckInputs", 79, 3], ["dependencies", 90, 3], ["pythonImportsCheck", 97, 3], ["meta", 99, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, attrs: false, buildPythonPackage: false, "clang-tools": false, cmake: false, fetchFromGitHub: false, hypothesis: false, jbig2dec: false, deprecated: false, lxml: false, withMupdf: true, "mupdf-headless": false, nanobind: false, ninja: false, numpy: false, packaging: false, pillow: false, psutil: false, "pytest-xdist": false, pytestCheckHook: false, "python-dateutil": false, "python-xmp-toolkit": false, qpdf: false, replaceVars: false, "scikit-build-core": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["postFetch", 42, 5], ["hash", 45, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["jbig2dec", 50, 7], ["mutool", 51, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 100, 5], ["description", 101, 5], ["license", 102, 5], ["maintainers", 103, 5], ["changelog", 104, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["src", 35, 3], ["patches", 48, 3], ["buildInputs", 61, 3], ["build-system", 63, 3], ["dontUseCmakeConfigure", 77, 3], ["nativeCheckInputs", 79, 3], ["dependencies", 90, 3], ["pythonImportsCheck", 97, 3], ["meta", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,12 +34,12 @@ export default nix.lambda((args) => (() => {
   const replaceVars = nix.arg($, "replaceVars");
   const scikit_build_core = nix.arg($, "scikit-build-core");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pikepdf",
       version: "10.10.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pikepdf",
           repo: "pikepdf",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./paths.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             jbig2dec: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), jbig2dec, "jbig2dec")),
             mutool: nix.thunk(() => (nix.asBool(withMupdf) ? nix.app(nix.sel(lib, "getExe'"), mupdf_headless, "mutool") : "mutool")),
           })))),
@@ -72,7 +69,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [deprecated, lxml, packaging, pillow]),
       pythonImportsCheck: nix.thunk(() => ["pikepdf"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/pikepdf/pikepdf",
         description: "Read and write PDFs with Python, powered by qpdf",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

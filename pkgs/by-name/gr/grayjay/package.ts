@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 53, 5], ["owner", 54, 5], ["repo", 55, 5], ["tag", 56, 5], ["hash", 57, 5], ["fetchSubmodules", 58, 5], ["fetchLFS", 59, 5]], [["url", 62, 5], ["hash", 63, 5]], [["name", 104, 7], ["exec", 105, 7], ["icon", 106, 7], ["comment", 107, 7], ["desktopName", 108, 7], ["categories", 109, 7]], [["packages", 137, 7], ["targetPackages", 138, 7]], [["extraArgs", 207, 7]], [["updateScript", 205, 12]], [["description", 218, 5], ["longDescription", 219, 5], ["homepage", 226, 5], ["license", 227, 5], ["maintainers", 228, 5], ["platforms", 233, 5], ["mainProgram", 237, 5]], [["pname", 70, 3], ["version", 72, 11], ["src", 72, 19], ["frontend", 74, 3], ["__structuredAttrs", 76, 3], ["strictDeps", 77, 3], ["buildInputs", 78, 3], ["nativeBuildInputs", 93, 3], ["dontWrapGApps", 100, 3], ["desktopItems", 102, 3], ["projectFile", 113, 3], ["testProjectFile", 121, 3], ["dotnetBuildFlags", 125, 3], ["nugetDeps", 129, 3], ["dotnet-sdk", 131, 3], ["dotnet-runtime", 141, 3], ["executables", 143, 3], ["preBuild", 145, 3], ["postInstall", 154, 3], ["makeWrapperArgs", 173, 3], ["preFixup", 178, 3], ["runtimeDeps", 182, 3], ["passthru", 205, 3], ["meta", 217, 3]]]);
 const formals$1 = { args: { buildDotnetModule: false, fetchFromGitLab: false, fetchurl: false, dotnetCorePackages: false, lib: false, ffmpeg: false, "curl-impersonate": false, libsodium: false, sqlite: false, libz: false, icu: false, openssl: false, libgbm: false, libxrandr: false, libxfixes: false, libxext: false, libxdamage: false, libxcomposite: false, libx11: false, libxcb: false, gtk3: false, glib: false, nss: false, nspr: false, dbus: false, atk: false, cups: false, libdrm: false, expat: false, libxkbcommon: false, pango: false, cairo: false, udev: false, "alsa-lib": false, libGL: false, libsecret: false, "nix-update-script": false, autoPatchelfHook: false, makeDesktopItem: false, copyDesktopItems: false, libgcc: false, krb5: false, wrapGAppsHook3: false, "_experimental-update-script-combinators": false, "grayjay-frontend": false, "grayjay-libcurlshim": false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 53, 5], ["owner", 54, 5], ["repo", 55, 5], ["tag", 56, 5], ["hash", 57, 5], ["fetchSubmodules", 58, 5], ["fetchLFS", 59, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 62, 5], ["hash", 63, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 104, 7], ["exec", 105, 7], ["icon", 106, 7], ["comment", 107, 7], ["desktopName", 108, 7], ["categories", 109, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["packages", 137, 7], ["targetPackages", 138, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["extraArgs", 207, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 205, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 218, 5], ["longDescription", 219, 5], ["homepage", 226, 5], ["license", 227, 5], ["maintainers", 228, 5], ["platforms", 233, 5], ["mainProgram", 237, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 70, 3], ["version", 72, 11], ["src", 72, 19], ["frontend", 74, 3], ["__structuredAttrs", 76, 3], ["strictDeps", 77, 3], ["buildInputs", 78, 3], ["nativeBuildInputs", 93, 3], ["dontWrapGApps", 100, 3], ["desktopItems", 102, 3], ["projectFile", 113, 3], ["testProjectFile", 121, 3], ["dotnetBuildFlags", 125, 3], ["nugetDeps", 129, 3], ["dotnet-sdk", 131, 3], ["dotnet-runtime", 141, 3], ["executables", 143, 3], ["preBuild", 145, 3], ["postInstall", 154, 3], ["makeWrapperArgs", 173, 3], ["preFixup", 178, 3], ["runtimeDeps", 182, 3], ["passthru", 205, 3], ["meta", 217, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -63,7 +56,7 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const version = "18";
   const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       domain: "gitlab.futo.org",
       owner: "videostreaming",
       repo: "Grayjay.Desktop",
@@ -73,13 +66,13 @@ export default nix.lambda((args) => (() => {
       fetchLFS: true,
     }))));
   const justcefNative = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: "https://static.grayjay.app/justcef/1/JustCefNative-linux-x64.zip",
       hash: "sha256-LXOp+QZZcWBd8eP+BpK++AMBo9303+aIDEEYNVWekhE=",
     }))));
   const getLibrary = (pkg) => (libnm) => nix.str`${nix.app(nix.sel(lib, "getLib"), pkg)}/lib/lib${libnm}${nix.sel(pkg, "drvAttrs", "stdenv", "hostPlatform", "extensions", "sharedLibrary")}`;
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "grayjay",
       version: version,
       src: src,
@@ -104,7 +97,7 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "Grayjay",
             exec: "Grayjay",
             icon: "grayjay",
@@ -129,7 +122,7 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.sel(dotnetCorePackages, "sdk_8_0")),
           ])));
         return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         packages: nix.thunk(() => nix.attr(from, "packages")),
         targetPackages: nix.thunk(() => nix.attr(from, "targetPackages")),
       };
@@ -186,10 +179,10 @@ ln -s $out/lib/grayjay/grayjay.png $out/share/icons/hicolor/scalable/apps/grayja
         libsecret,
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
             nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 extraArgs: nix.thunk(() => [
                   "--subpackage",
                   "frontend",
@@ -201,7 +194,7 @@ ln -s $out/lib/grayjay/grayjay.png $out/share/icons/hicolor/scalable/apps/grayja
           ]))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Cross-platform application to stream and download content from various sources",
         longDescription: "Grayjay is a cross-platform application that enables users to\nstream and download multimedia content from various online sources,\nmost prominently YouTube.\nIt also offers an extensible plugin API to create and import new\nintegrations.\n",
         homepage: "https://grayjay.app/desktop/",

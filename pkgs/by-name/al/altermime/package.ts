@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["hash", 13, 5]], [["NIX_CFLAGS_COMPILE", 16, 7]], [["description", 32, 5], ["maintainers", 33, 5], ["platforms", 34, 5], ["license", 35, 5], ["downloadPage", 36, 5], ["mainProgram", 37, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["env", 16, 3], ["postPatch", 24, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, gccStdenv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 16, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 32, 5], ["maintainers", 33, 5], ["platforms", 34, 5], ["license", 35, 5], ["downloadPage", 36, 5], ["mainProgram", 37, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["env", 16, 3], ["postPatch", 24, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,16 +11,16 @@ export default nix.lambda((args) => (() => {
   const gccStdenv = nix.arg($, "gccStdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(gccStdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "altermime",
       version: "0.3.11",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://pldaniels.com/altermime/altermime-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-R17ScQWH0k8R0A2vpcP234rHnhO4xdVNLqNVdrV5/Zc=",
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-Wno-error=format",
             "-Wno-error=format-truncation",
@@ -38,7 +35,7 @@ substituteInPlace Makefile \\
   --replace-fail "strip " "${nix.sel(gccStdenv, "cc", "targetPrefix")}strip "
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "MIME alteration tool",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "raskin"))]),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),

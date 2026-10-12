@@ -2,26 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/eggs.nix", [[["name", 10, 7], ["version", 11, 7], ["sha256", 12, 7]], [["pname", 6, 5], ["version", 7, 5], ["src", 9, 5], ["buildInputs", 15, 5]], [["name", 25, 7], ["version", 26, 7], ["sha256", 27, 7]], [["pname", 21, 5], ["version", 22, 5], ["src", 24, 5], ["buildInputs", 30, 5]], [["name", 40, 7], ["version", 41, 7], ["sha256", 42, 7]], [["pname", 36, 5], ["version", 37, 5], ["src", 39, 5], ["buildInputs", 45, 5]], [["name", 58, 7], ["version", 59, 7], ["sha256", 60, 7]], [["pname", 54, 5], ["version", 55, 5], ["src", 57, 5], ["buildInputs", 63, 5]], [["name", 75, 7], ["version", 76, 7], ["sha256", 77, 7]], [["pname", 71, 5], ["version", 72, 5], ["src", 74, 5], ["buildInputs", 80, 5]], [["name", 90, 7], ["version", 91, 7], ["sha256", 92, 7]], [["pname", 86, 5], ["version", 87, 5], ["src", 89, 5], ["buildInputs", 95, 5]], [["name", 105, 7], ["version", 106, 7], ["sha256", 107, 7]], [["pname", 101, 5], ["version", 102, 5], ["src", 104, 5], ["buildInputs", 110, 5]], [["name", 120, 7], ["version", 121, 7], ["sha256", 122, 7]], [["pname", 116, 5], ["version", 117, 5], ["src", 119, 5], ["buildInputs", 125, 5]], [["name", 137, 7], ["version", 138, 7], ["sha256", 139, 7]], [["pname", 133, 5], ["version", 134, 5], ["src", 136, 5], ["buildInputs", 142, 5]], [["eggDerivation", 3, 18], ["fetchegg", 3, 32], ["base64", 5, 3], ["defstruct", 20, 3], ["http-client", 35, 3], ["intarweb", 53, 3], ["matchable", 70, 3], ["sendfile", 85, 3], ["simple-md5", 100, 3], ["uri-common", 115, 3], ["uri-generic", 132, 3]]]);
 const formals$1 = { args: { pkgs: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/eggs.nix", [["name", 10, 7], ["version", 11, 7], ["sha256", 12, 7]]);
-const pos$2 = nix.positions(here + "/eggs.nix", [["pname", 6, 5], ["version", 7, 5], ["src", 9, 5], ["buildInputs", 15, 5]]);
-const pos$3 = nix.positions(here + "/eggs.nix", [["name", 25, 7], ["version", 26, 7], ["sha256", 27, 7]]);
-const pos$4 = nix.positions(here + "/eggs.nix", [["pname", 21, 5], ["version", 22, 5], ["src", 24, 5], ["buildInputs", 30, 5]]);
-const pos$5 = nix.positions(here + "/eggs.nix", [["name", 40, 7], ["version", 41, 7], ["sha256", 42, 7]]);
-const pos$6 = nix.positions(here + "/eggs.nix", [["pname", 36, 5], ["version", 37, 5], ["src", 39, 5], ["buildInputs", 45, 5]]);
-const pos$7 = nix.positions(here + "/eggs.nix", [["name", 58, 7], ["version", 59, 7], ["sha256", 60, 7]]);
-const pos$8 = nix.positions(here + "/eggs.nix", [["pname", 54, 5], ["version", 55, 5], ["src", 57, 5], ["buildInputs", 63, 5]]);
-const pos$9 = nix.positions(here + "/eggs.nix", [["name", 75, 7], ["version", 76, 7], ["sha256", 77, 7]]);
-const pos$10 = nix.positions(here + "/eggs.nix", [["pname", 71, 5], ["version", 72, 5], ["src", 74, 5], ["buildInputs", 80, 5]]);
-const pos$11 = nix.positions(here + "/eggs.nix", [["name", 90, 7], ["version", 91, 7], ["sha256", 92, 7]]);
-const pos$12 = nix.positions(here + "/eggs.nix", [["pname", 86, 5], ["version", 87, 5], ["src", 89, 5], ["buildInputs", 95, 5]]);
-const pos$13 = nix.positions(here + "/eggs.nix", [["name", 105, 7], ["version", 106, 7], ["sha256", 107, 7]]);
-const pos$14 = nix.positions(here + "/eggs.nix", [["pname", 101, 5], ["version", 102, 5], ["src", 104, 5], ["buildInputs", 110, 5]]);
-const pos$15 = nix.positions(here + "/eggs.nix", [["name", 120, 7], ["version", 121, 7], ["sha256", 122, 7]]);
-const pos$16 = nix.positions(here + "/eggs.nix", [["pname", 116, 5], ["version", 117, 5], ["src", 119, 5], ["buildInputs", 125, 5]]);
-const pos$17 = nix.positions(here + "/eggs.nix", [["name", 137, 7], ["version", 138, 7], ["sha256", 139, 7]]);
-const pos$18 = nix.positions(here + "/eggs.nix", [["pname", 133, 5], ["version", 134, 5], ["src", 136, 5], ["buildInputs", 142, 5]]);
-const pos$19 = nix.positions(here + "/eggs.nix", [["eggDerivation", 3, 18], ["fetchegg", 3, 32], ["base64", 5, 3], ["defstruct", 20, 3], ["http-client", 35, 3], ["intarweb", 53, 3], ["matchable", 70, 3], ["sendfile", 85, 3], ["simple-md5", 100, 3], ["uri-common", 115, 3], ["uri-generic", 132, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +13,11 @@ export default nix.lambda((args) => (() => {
     const eggDerivation = nix.thunk(() => nix.attr(pkgs, "eggDerivation"));
     const fetchegg = nix.thunk(() => nix.attr(pkgs, "fetchegg"));
     const base64 = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname: "base64",
         version: "3.3.1",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             name: "base64",
             version: "3.3.1",
             sha256: "0wmldiwwg1jpcn07wb906nc53si5j7sa83wgyq643xzqcx4v4x1d",
@@ -43,11 +25,11 @@ export default nix.lambda((args) => (() => {
         buildInputs: [],
       }))));
     const defstruct = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname: "defstruct",
         version: "1.7",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "defstruct",
             version: "1.7",
             sha256: "1rkqk9jxd6vnlvkwzqg8mc7bsw050fgmxfj84y66lf0a14n5r5dg",
@@ -55,11 +37,11 @@ export default nix.lambda((args) => (() => {
         buildInputs: [],
       }))));
     const http_client = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname: "http-client",
         version: "0.18",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "http-client",
             version: "0.18",
             sha256: "1b9x66kfcglld4xhm06vba00gw37vr07c859kj7lmwnk9nwhcplg",
@@ -67,11 +49,11 @@ export default nix.lambda((args) => (() => {
         buildInputs: nix.thunk(() => [intarweb, uri_common, simple_md5, sendfile]),
       }))));
     const intarweb = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname: "intarweb",
         version: "1.7.1",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             name: "intarweb",
             version: "1.7.1",
             sha256: "0pqgwgy4jynlsr3l52qsiwm75qgs7n86kwssaawzp9y34y80awpg",
@@ -79,11 +61,11 @@ export default nix.lambda((args) => (() => {
         buildInputs: nix.thunk(() => [defstruct, uri_common, base64]),
       }))));
     const matchable = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         pname: "matchable",
         version: "3.7",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             name: "matchable",
             version: "3.7",
             sha256: "1vc9rpb44fhn0n91hzglin986dw9zj87fikvfrd7j308z22a41yh",
@@ -91,11 +73,11 @@ export default nix.lambda((args) => (() => {
         buildInputs: [],
       }))));
     const sendfile = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         pname: "sendfile",
         version: "1.11",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             name: "sendfile",
             version: "1.11",
             sha256: "15gm380asvj87f3bqb7rz4mz6znnk6r00rdy3njx9ay0qkxi3q9y",
@@ -103,11 +85,11 @@ export default nix.lambda((args) => (() => {
         buildInputs: [],
       }))));
     const simple_md5 = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         pname: "simple-md5",
         version: "0.0.1",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             name: "simple-md5",
             version: "0.0.1",
             sha256: "1h0b51p9wl1dl3pzs39hdq3hk2qnjgn8n750bgmh0651g4lzmq3i",
@@ -115,11 +97,11 @@ export default nix.lambda((args) => (() => {
         buildInputs: [],
       }))));
     const uri_common = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         pname: "uri-common",
         version: "1.4",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             name: "uri-common",
             version: "1.4",
             sha256: "01ds1gixcn4rz657x3hr4rhw2496hsjff42ninw0k39l8i1cbh7c",
@@ -127,11 +109,11 @@ export default nix.lambda((args) => (() => {
         buildInputs: nix.thunk(() => [uri_generic, defstruct, matchable]),
       }))));
     const uri_generic = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$18,
+        [nix.POS]: $pos[17],
         pname: "uri-generic",
         version: "2.46",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             name: "uri-generic",
             version: "2.46",
             sha256: "10ivf4xlmr6jcm00l2phq1y73hjv6g3qgr38ycc8rw56wv6sbm4g",
@@ -139,7 +121,7 @@ export default nix.lambda((args) => (() => {
         buildInputs: nix.thunk(() => [matchable]),
       }))));
     return {
-      [nix.POS]: pos$19,
+      [nix.POS]: $pos[18],
       eggDerivation,
       fetchegg,
       base64,

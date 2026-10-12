@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/darwin.nix", [[["pname", 14, 5], ["version", 15, 5], ["src", 16, 5], ["passthru", 17, 5], ["meta", 18, 5], ["sourceRoot", 21, 3], ["nativeBuildInputs", 24, 3], ["installPhase", 29, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, pname: false, version: false, src: false, passthru: false, meta: false, _7zz: false, autoSignDarwinBinariesHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/darwin.nix", [["pname", 14, 5], ["version", 15, 5], ["src", 16, 5], ["passthru", 17, 5], ["meta", 18, 5], ["sourceRoot", 21, 3], ["nativeBuildInputs", 24, 3], ["installPhase", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const _7zz = nix.arg($, "_7zz");
   const autoSignDarwinBinariesHook = nix.arg($, "autoSignDarwinBinariesHook");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: pname,
       version: version,
       src: src,

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 24, 7], ["license", 25, 7], ["platforms", 26, 7], ["homepage", 27, 7], ["maintainers", 29, 5]], [["pname", 8, 3], ["version", 9, 24], ["dontUnpack", 11, 3], ["installPhase", 13, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, mysql_jdbc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 24, 7], ["license", 25, 7], ["platforms", 26, 7], ["homepage", 27, 7], ["maintainers", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 24], ["dontUnpack", 11, 3], ["installPhase", 13, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const mysql_jdbc = nix.arg($, "mysql_jdbc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "jboss-mysql-jdbc",
       version: nix.thunk(() => nix.attr(mysql_jdbc, "version")),
       dontUnpack: true,
@@ -20,7 +19,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(mysql_jdbc, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: nix.thunk(() => nix.attr(from, "description")),
         license: nix.thunk(() => nix.attr(from, "license")),
         platforms: nix.thunk(() => nix.attr(from, "platforms")),

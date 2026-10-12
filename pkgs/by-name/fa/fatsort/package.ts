@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["homepage", 41, 5], ["description", 42, 5], ["maintainers", 43, 5], ["license", 44, 5], ["platforms", 45, 5], ["mainProgram", 46, 5]], [["version", 10, 3], ["pname", 11, 3], ["src", 13, 3], ["buildInputs", 18, 3], ["makeFlags", 23, 3], ["installPhase", 33, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, help2man: false, libiconv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 41, 5], ["description", 42, 5], ["maintainers", 43, 5], ["license", 44, 5], ["platforms", 45, 5], ["mainProgram", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 10, 3], ["pname", 11, 3], ["src", 13, 3], ["buildInputs", 18, 3], ["makeFlags", 23, 3], ["installPhase", 33, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const help2man = nix.arg($, "help2man");
   const libiconv = nix.arg($, "libiconv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "1.7.679",
       pname: "fatsort",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/fatsort/fatsort-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-EBL1UTgmOdaeGU6r++mTQu3nyFaxzWeIKH+d/UvY0SI=",
         })))),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\ninstall -D -m 755 ./src/fatsort   $out/bin/fatsort\ninstall -D -m 644 ./man/fatsort.1 $out/man/man1/fatsort.1\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://fatsort.sourceforge.net/",
         description: "Sorts FAT partition table, for devices that don't do sorting of files",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "kovirobi"))]),

@@ -2,9 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/roundcube-plugin.nix", [[["pname", 8, 61], ["version", 8, 67]]]);
 const formals$1 = { args: { runCommand: false }, ellipsis: false };
 const formals$2 = { args: { pname: false, version: false, src: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/roundcube-plugin.nix", [["pname", 8, 61], ["version", 8, 67]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
     const pname = nix.arg($_1, "pname");
     const version = nix.arg($_1, "version");
     const src = nix.arg($_1, "src");
-    return nix.app(runCommand, nix.thunk(() => nix.str`roundcube-plugin-${pname}-${version}`), nix.thunk(() => ({ [nix.POS]: pos$1, pname: pname, version: version })), nix.thunk(() => nix.str`mkdir -p $out/plugins/
+    return nix.app(runCommand, nix.thunk(() => nix.str`roundcube-plugin-${pname}-${version}`), nix.thunk(() => ({ [nix.POS]: $pos[0], pname: pname, version: version })), nix.thunk(() => nix.str`mkdir -p $out/plugins/
 cp -r ${src} $out/plugins/${pname}
 `));
   })(), formals$2);

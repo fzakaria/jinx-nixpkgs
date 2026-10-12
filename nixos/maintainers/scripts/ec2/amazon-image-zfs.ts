@@ -2,29 +2,22 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/amazon-image-zfs.nix", [["mount", 6, 26]]);
-const pos$2 = nix.positions(here + "/amazon-image-zfs.nix", [["mount", 7, 25]]);
-const pos$3 = nix.positions(here + "/amazon-image-zfs.nix", [["mount", 8, 24]]);
-const pos$4 = nix.positions(here + "/amazon-image-zfs.nix", [["mount", 9, 24]]);
-const pos$5 = nix.positions(here + "/amazon-image-zfs.nix", [["tank/system/root", 6, 7], ["tank/system/var", 7, 7], ["tank/local/nix", 8, 7], ["tank/user/home", 9, 7]]);
-const pos$6 = nix.positions(here + "/amazon-image-zfs.nix", [["enable", 4, 5], ["datasets", 5, 5]]);
-const pos$7 = nix.positions(here + "/amazon-image-zfs.nix", [["zfs", 3, 7]]);
-const pos$8 = nix.positions(here + "/amazon-image-zfs.nix", [["imports", 2, 3], ["ec2", 3, 3]]);
+const $pos = nix.positions(here + "/amazon-image-zfs.nix", [[["mount", 6, 26]], [["mount", 7, 25]], [["mount", 8, 24]], [["mount", 9, 24]], [["tank/system/root", 6, 7], ["tank/system/var", 7, 7], ["tank/local/nix", 8, 7], ["tank/user/home", 9, 7]], [["enable", 4, 5], ["datasets", 5, 5]], [["zfs", 3, 7]], [["imports", 2, 3], ["ec2", 3, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$8,
+  [nix.POS]: $pos[7],
   imports: nix.thunk(() => [nix.path(here, "./amazon-image.nix")]),
   ec2: nix.thunk(() => ({
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     zfs: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       enable: true,
       datasets: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        "tank/system/root": nix.thunk(() => ({ [nix.POS]: pos$1, mount: "/" })),
-        "tank/system/var": nix.thunk(() => ({ [nix.POS]: pos$2, mount: "/var" })),
-        "tank/local/nix": nix.thunk(() => ({ [nix.POS]: pos$3, mount: "/nix" })),
-        "tank/user/home": nix.thunk(() => ({ [nix.POS]: pos$4, mount: "/home" })),
+        [nix.POS]: $pos[4],
+        "tank/system/root": nix.thunk(() => ({ [nix.POS]: $pos[0], mount: "/" })),
+        "tank/system/var": nix.thunk(() => ({ [nix.POS]: $pos[1], mount: "/var" })),
+        "tank/local/nix": nix.thunk(() => ({ [nix.POS]: $pos[2], mount: "/nix" })),
+        "tank/user/home": nix.thunk(() => ({ [nix.POS]: $pos[3], mount: "/home" })),
       })),
     })),
   })),

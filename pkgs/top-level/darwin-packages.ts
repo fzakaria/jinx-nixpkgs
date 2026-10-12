@@ -2,34 +2,10 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/darwin-packages.nix", [[["enableBootstrap", 38, 26]], [["extraBuildInputs", 35, 7]], [["clang-unwrapped", 48, 28], ["mkAppleDerivation", 52, 5]], [["libc", 64, 9], ["bintools", 65, 9]], [["libc", 69, 9], ["bintools", 70, 9]], [["pkgs", 169, 47]], [["host", 169, 30]], [["hostPlatform", 171, 23]], [["imports", 160, 15], ["virtualisation", 169, 15], ["nixpkgs", 171, 15]], [["configuration", 159, 13], ["system", 174, 13]], [["modules", 179, 11]], [["hostPlatform", 182, 31]], [["nixpkgs", 182, 23]], [["modules", 182, 9]], [["pkgs", 198, 47]], [["host", 198, 30]], [["hostPlatform", 201, 23]], [["imports", 193, 15], ["virtualisation", 198, 15], ["nixpkgs", 201, 15]], [["configuration", 192, 13], ["system", 204, 13]], [["store-gc", 210, 15]], [["tests", 209, 13]], [["passthru", 208, 11]], [["modules", 214, 11]], [["ps", 57, 31], ["bootstrapStdenv", 60, 7], ["binutils", 63, 7], ["binutilsNoLibc", 68, 7], ["sourceRelease", 73, 7], ["xattr", 75, 32], ["xcode_8_1", 79, 9], ["xcode_8_2", 80, 9], ["xcode_9_1", 81, 9], ["xcode_9_2", 82, 9], ["xcode_9_3", 83, 9], ["xcode_9_4", 84, 9], ["xcode_9_4_1", 85, 9], ["xcode_10_1", 86, 9], ["xcode_10_2", 87, 9], ["xcode_10_2_1", 88, 9], ["xcode_10_3", 89, 9], ["xcode_11", 90, 9], ["xcode_11_1", 91, 9], ["xcode_11_2", 92, 9], ["xcode_11_3_1", 93, 9], ["xcode_11_4", 94, 9], ["xcode_11_5", 95, 9], ["xcode_11_6", 96, 9], ["xcode_11_7", 97, 9], ["xcode_12", 98, 9], ["xcode_12_0_1", 99, 9], ["xcode_12_1", 100, 9], ["xcode_12_2", 101, 9], ["xcode_12_3", 102, 9], ["xcode_12_4", 103, 9], ["xcode_12_5", 104, 9], ["xcode_12_5_1", 105, 9], ["xcode_13", 106, 9], ["xcode_13_1", 107, 9], ["xcode_13_2", 108, 9], ["xcode_13_3", 109, 9], ["xcode_13_3_1", 110, 9], ["xcode_13_4", 111, 9], ["xcode_13_4_1", 112, 9], ["xcode_14", 113, 9], ["xcode_14_1", 114, 9], ["xcode_15", 115, 9], ["xcode_15_0_1", 116, 9], ["xcode_15_1", 117, 9], ["xcode_15_2", 118, 9], ["xcode_15_3", 119, 9], ["xcode_15_4", 120, 9], ["xcode_16", 121, 9], ["xcode_16_1", 122, 9], ["xcode_16_2", 123, 9], ["xcode_16_3", 124, 9], ["xcode_16_4", 125, 9], ["xcode_26", 126, 9], ["xcode_26_Apple_silicon", 127, 9], ["xcode_26_0_1", 128, 9], ["xcode_26_0_1_Apple_silicon", 129, 9], ["xcode_26_1", 130, 9], ["xcode_26_1_Apple_silicon", 131, 9], ["xcode_26_1_1", 132, 9], ["xcode_26_1_1_Apple_silicon", 133, 9], ["xcode_26_2", 134, 9], ["xcode_26_2_Apple_silicon", 135, 9], ["xcode_26_3", 136, 9], ["xcode_26_3_Apple_silicon", 137, 9], ["xcode_26_4", 138, 9], ["xcode_26_4_Apple_silicon", 139, 9], ["xcode_26_4_1", 140, 9], ["xcode_26_4_1_Apple_silicon", 141, 9], ["xcode_26_5", 142, 9], ["xcode_26_5_Apple_silicon", 143, 9], ["xcode_26_6", 144, 9], ["xcode_26_6_Apple_silicon", 145, 9], ["xcode_27", 146, 9], ["xcode", 147, 9], ["requireXcode", 148, 9], ["linux-builder", 153, 7], ["linux-builder-x86_64", 181, 7], ["linux-builder-vz", 188, 7]], [["otherSplices", 46, 3], ["extra", 47, 3], ["f", 54, 3]]]);
 const formals$1 = { args: { lib: false, buildEnv: false, cctools: false, generateSplicesForMkScope: false, libc: false, llvmPackages: false, "makeScopeWithSplicing'": false, nixosTests: false, pkgs: false, preLibcHeaders: false, stdenv: false, targetPackages: false, wrapBintoolsWith: false, config: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/darwin-packages.nix", [["enableBootstrap", 38, 26]]);
-const pos$2 = nix.positions(here + "/darwin-packages.nix", [["extraBuildInputs", 35, 7]]);
-const pos$3 = nix.positions(here + "/darwin-packages.nix", [["clang-unwrapped", 48, 28], ["mkAppleDerivation", 52, 5]]);
-const pos$4 = nix.positions(here + "/darwin-packages.nix", [["libc", 64, 9], ["bintools", 65, 9]]);
-const pos$5 = nix.positions(here + "/darwin-packages.nix", [["libc", 69, 9], ["bintools", 70, 9]]);
 const formals$2 = { args: { modules: false }, ellipsis: false };
-const pos$6 = nix.positions(here + "/darwin-packages.nix", [["pkgs", 169, 47]]);
-const pos$7 = nix.positions(here + "/darwin-packages.nix", [["host", 169, 30]]);
-const pos$8 = nix.positions(here + "/darwin-packages.nix", [["hostPlatform", 171, 23]]);
-const pos$9 = nix.positions(here + "/darwin-packages.nix", [["imports", 160, 15], ["virtualisation", 169, 15], ["nixpkgs", 171, 15]]);
-const pos$10 = nix.positions(here + "/darwin-packages.nix", [["configuration", 159, 13], ["system", 174, 13]]);
-const pos$11 = nix.positions(here + "/darwin-packages.nix", [["modules", 179, 11]]);
-const pos$12 = nix.positions(here + "/darwin-packages.nix", [["hostPlatform", 182, 31]]);
-const pos$13 = nix.positions(here + "/darwin-packages.nix", [["nixpkgs", 182, 23]]);
-const pos$14 = nix.positions(here + "/darwin-packages.nix", [["modules", 182, 9]]);
 const formals$3 = { args: { modules: false }, ellipsis: false };
-const pos$15 = nix.positions(here + "/darwin-packages.nix", [["pkgs", 198, 47]]);
-const pos$16 = nix.positions(here + "/darwin-packages.nix", [["host", 198, 30]]);
-const pos$17 = nix.positions(here + "/darwin-packages.nix", [["hostPlatform", 201, 23]]);
-const pos$18 = nix.positions(here + "/darwin-packages.nix", [["imports", 193, 15], ["virtualisation", 198, 15], ["nixpkgs", 201, 15]]);
-const pos$19 = nix.positions(here + "/darwin-packages.nix", [["configuration", 192, 13], ["system", 204, 13]]);
-const pos$20 = nix.positions(here + "/darwin-packages.nix", [["store-gc", 210, 15]]);
-const pos$21 = nix.positions(here + "/darwin-packages.nix", [["tests", 209, 13]]);
-const pos$22 = nix.positions(here + "/darwin-packages.nix", [["passthru", 208, 11]]);
-const pos$23 = nix.positions(here + "/darwin-packages.nix", [["modules", 214, 11]]);
-const pos$24 = nix.positions(here + "/darwin-packages.nix", [["ps", 57, 31], ["bootstrapStdenv", 60, 7], ["binutils", 63, 7], ["binutilsNoLibc", 68, 7], ["sourceRelease", 73, 7], ["xattr", 75, 32], ["xcode_8_1", 79, 9], ["xcode_8_2", 80, 9], ["xcode_9_1", 81, 9], ["xcode_9_2", 82, 9], ["xcode_9_3", 83, 9], ["xcode_9_4", 84, 9], ["xcode_9_4_1", 85, 9], ["xcode_10_1", 86, 9], ["xcode_10_2", 87, 9], ["xcode_10_2_1", 88, 9], ["xcode_10_3", 89, 9], ["xcode_11", 90, 9], ["xcode_11_1", 91, 9], ["xcode_11_2", 92, 9], ["xcode_11_3_1", 93, 9], ["xcode_11_4", 94, 9], ["xcode_11_5", 95, 9], ["xcode_11_6", 96, 9], ["xcode_11_7", 97, 9], ["xcode_12", 98, 9], ["xcode_12_0_1", 99, 9], ["xcode_12_1", 100, 9], ["xcode_12_2", 101, 9], ["xcode_12_3", 102, 9], ["xcode_12_4", 103, 9], ["xcode_12_5", 104, 9], ["xcode_12_5_1", 105, 9], ["xcode_13", 106, 9], ["xcode_13_1", 107, 9], ["xcode_13_2", 108, 9], ["xcode_13_3", 109, 9], ["xcode_13_3_1", 110, 9], ["xcode_13_4", 111, 9], ["xcode_13_4_1", 112, 9], ["xcode_14", 113, 9], ["xcode_14_1", 114, 9], ["xcode_15", 115, 9], ["xcode_15_0_1", 116, 9], ["xcode_15_1", 117, 9], ["xcode_15_2", 118, 9], ["xcode_15_3", 119, 9], ["xcode_15_4", 120, 9], ["xcode_16", 121, 9], ["xcode_16_1", 122, 9], ["xcode_16_2", 123, 9], ["xcode_16_3", 124, 9], ["xcode_16_4", 125, 9], ["xcode_26", 126, 9], ["xcode_26_Apple_silicon", 127, 9], ["xcode_26_0_1", 128, 9], ["xcode_26_0_1_Apple_silicon", 129, 9], ["xcode_26_1", 130, 9], ["xcode_26_1_Apple_silicon", 131, 9], ["xcode_26_1_1", 132, 9], ["xcode_26_1_1_Apple_silicon", 133, 9], ["xcode_26_2", 134, 9], ["xcode_26_2_Apple_silicon", 135, 9], ["xcode_26_3", 136, 9], ["xcode_26_3_Apple_silicon", 137, 9], ["xcode_26_4", 138, 9], ["xcode_26_4_Apple_silicon", 139, 9], ["xcode_26_4_1", 140, 9], ["xcode_26_4_1_Apple_silicon", 141, 9], ["xcode_26_5", 142, 9], ["xcode_26_5_Apple_silicon", 143, 9], ["xcode_26_6", 144, 9], ["xcode_26_6_Apple_silicon", 145, 9], ["xcode_27", 146, 9], ["xcode", 147, 9], ["requireXcode", 148, 9], ["linux-builder", 153, 7], ["linux-builder-x86_64", 181, 7], ["linux-builder-vz", 188, 7]]);
-const pos$25 = nix.positions(here + "/darwin-packages.nix", [["otherSplices", 46, 3], ["extra", 47, 3], ["f", 54, 3]]);
 
 export default nix.thunk(() => (() => {
   const autoCalledPackages = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./by-name-overlay.nix")), nix.path(here, "../os-specific/darwin/by-name")));
@@ -52,14 +28,14 @@ export default nix.thunk(() => (() => {
     const aliases = (final) => (prev) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../top-level/darwin-aliases.nix")), lib, final, prev, pkgs)));
     const autoCalledPackagesWithAliases = nix.thunk(() => nix.app(nix.sel(lib, "composeManyExtensions"), nix.thunk(() => [autoCalledPackages, aliases])));
     const mkBootstrapStdenv = (stdenv_1) => nix.app(nix.sel(stdenv_1, "override"), (old) => ({
-        [nix.POS]: pos$2,
-        extraBuildInputs: nix.thunk(() => nix.builtins.map((pkg) => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "isDerivation"), pkg)) && nix.asBool(nix.eq(nix.app(nix.sel(lib, "getName"), pkg), "apple-sdk")))) ? nix.app(nix.sel(pkg, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableBootstrap: true }))) : nix.force(pkg)), nix.thunk(() => nix.selOr(old, () => [], "extraBuildInputs")))),
+        [nix.POS]: $pos[1],
+        extraBuildInputs: nix.thunk(() => nix.builtins.map((pkg) => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "isDerivation"), pkg)) && nix.asBool(nix.eq(nix.app(nix.sel(lib, "getName"), pkg), "apple-sdk")))) ? nix.app(nix.sel(pkg, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], enableBootstrap: true }))) : nix.force(pkg)), nix.thunk(() => nix.selOr(old, () => [], "extraBuildInputs")))),
       }));
     return nix.app(makeScopeWithSplicing$, nix.thunk(() => ({
-        [nix.POS]: pos$25,
+        [nix.POS]: $pos[24],
         otherSplices: nix.thunk(() => nix.app(generateSplicesForMkScope, "darwin")),
         extra: (self) => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "clang-unwrapped": nix.thunk(() => nix.attr(llvmPackages, "clang-unwrapped")),
           mkAppleDerivation: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../os-specific/darwin/mk-apple-derivation"), nix.thunk(() => ({})))),
         }),
@@ -68,16 +44,16 @@ export default nix.thunk(() => (() => {
               const from_1 = nix.thunk(() => nix.sel(self, "file_cmds"));
               const from_2 = nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../os-specific/darwin/xcode"), nix.thunk(() => ({}))));
               return {
-              [nix.POS]: pos$24,
+              [nix.POS]: $pos[23],
               ps: nix.thunk(() => nix.attr(from, "ps")),
               bootstrapStdenv: nix.thunk(() => nix.app(mkBootstrapStdenv, stdenv)),
               binutils: nix.thunk(() => nix.app(wrapBintoolsWith, nix.thunk(() => ({
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   libc: nix.thunk(() => nix.selOr(targetPackages, () => nix.force(libc), "libc")),
                   bintools: nix.thunk(() => nix.sel(self, "binutils-unwrapped")),
                 })))),
               binutilsNoLibc: nix.thunk(() => nix.app(wrapBintoolsWith, nix.thunk(() => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   libc: nix.thunk(() => nix.selOr(targetPackages, () => nix.force(preLibcHeaders), "preLibcHeaders")),
                   bintools: nix.thunk(() => nix.sel(self, "binutils-unwrapped")),
                 })))),
@@ -158,26 +134,29 @@ export default nix.thunk(() => (() => {
                   const modules = nix.arg($_1, "modules");
                   const toGuest = nix.thunk(() => nix.app(nix.builtins.replaceStrings, nix.thunk(() => ["darwin"]), nix.thunk(() => ["linux"])));
                   const nixos = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../nixos")), nix.thunk(() => ({
-                      [nix.POS]: pos$10,
+                      [nix.POS]: $pos[9],
                       configuration: nix.thunk(() => ({
-                        [nix.POS]: pos$9,
+                        [nix.POS]: $pos[8],
                         imports: nix.thunk(() => nix.concat([nix.path(here, "../../nixos/modules/profiles/nix-builder-vm.nix")], modules)),
-                        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$7, host: nix.thunk(() => ({ [nix.POS]: pos$6, pkgs: pkgs })) })),
+                        virtualisation: nix.thunk(() => ({
+                          [nix.POS]: $pos[6],
+                          host: nix.thunk(() => ({ [nix.POS]: $pos[5], pkgs: pkgs })),
+                        })),
                         nixpkgs: nix.thunk(() => ({
-                          [nix.POS]: pos$8,
+                          [nix.POS]: $pos[7],
                           hostPlatform: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.app(toGuest, nix.thunk(() => nix.sel(stdenv, "hostPlatform", "system")))))),
                         })),
                       })),
                       system: null,
                     }))));
                   return nix.sel(nixos, "config", "system", "build", "macos-builder-installer");
-                })(), formals$2), nix.thunk(() => ({ [nix.POS]: pos$11, modules: [] })))),
+                })(), formals$2), nix.thunk(() => ({ [nix.POS]: $pos[10], modules: [] })))),
               "linux-builder-x86_64": nix.thunk(() => nix.app(nix.sel(self, "linux-builder", "override"), nix.thunk(() => ({
-                  [nix.POS]: pos$14,
+                  [nix.POS]: $pos[13],
                   modules: nix.thunk(() => [
                     nix.thunk(() => ({
-                      [nix.POS]: pos$13,
-                      nixpkgs: nix.thunk(() => ({ [nix.POS]: pos$12, hostPlatform: "x86_64-linux" })),
+                      [nix.POS]: $pos[12],
+                      nixpkgs: nix.thunk(() => ({ [nix.POS]: $pos[11], hostPlatform: "x86_64-linux" })),
                     })),
                   ]),
                 })))),
@@ -185,32 +164,32 @@ export default nix.thunk(() => (() => {
                   const $_1 = nix.formals(args_1, formals$3);
                   const modules = nix.arg($_1, "modules");
                   const nixos = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../nixos")), nix.thunk(() => ({
-                      [nix.POS]: pos$19,
+                      [nix.POS]: $pos[18],
                       configuration: nix.thunk(() => ({
-                        [nix.POS]: pos$18,
+                        [nix.POS]: $pos[17],
                         imports: nix.thunk(() => nix.concat([nix.path(here, "../../nixos/modules/profiles/nix-builder-vz-vm.nix")], modules)),
                         virtualisation: nix.thunk(() => ({
-                          [nix.POS]: pos$16,
-                          host: nix.thunk(() => ({ [nix.POS]: pos$15, pkgs: pkgs })),
+                          [nix.POS]: $pos[15],
+                          host: nix.thunk(() => ({ [nix.POS]: $pos[14], pkgs: pkgs })),
                         })),
                         nixpkgs: nix.thunk(() => ({
-                          [nix.POS]: pos$17,
+                          [nix.POS]: $pos[16],
                           hostPlatform: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "aarch64-linux")),
                         })),
                       })),
                       system: null,
                     }))));
                   return nix.app(nix.sel(nixos, "config", "system", "build", "macos-builder-installer", "overrideAttrs"), (oldAttrs) => ({
-                      [nix.POS]: pos$22,
+                      [nix.POS]: $pos[21],
                       passthru: nix.thunk(() => nix.update(nix.sel(oldAttrs, "passthru"), {
-                        [nix.POS]: pos$21,
+                        [nix.POS]: $pos[20],
                         tests: nix.thunk(() => nix.update(nix.selOr(oldAttrs, () => ({}), "passthru", "tests"), {
-                          [nix.POS]: pos$20,
+                          [nix.POS]: $pos[19],
                           "store-gc": nix.thunk(() => nix.sel(nixosTests, "linux-builder-vz-store-gc")),
                         })),
                       })),
                     }));
-                })(), formals$3), nix.thunk(() => ({ [nix.POS]: pos$23, modules: [] })))),
+                })(), formals$3), nix.thunk(() => ({ [nix.POS]: $pos[22], modules: [] })))),
             };
             })())))),
       })));

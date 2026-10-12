@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 30, 26], ["version", 30, 32], ["hash", 31, 5]], [["package", 70, 7], ["version", 71, 7]], [["version", 69, 11]], [["tests", 69, 5]], [["description", 76, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["license", 79, 5], ["maintainers", 80, 5], ["mainProgram", 81, 5]], [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["postPatch", 34, 3], ["nativeBuildInputs", 39, 3], ["build-system", 41, 3], ["dependencies", 46, 3], ["nativeCheckInputs", 55, 3], ["postInstall", 62, 3], ["pythonImportsCheck", 66, 3], ["passthru", 68, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, apprise: false, babel: false, buildPythonPackage: false, click: false, cryptography: false, fetchPypi: false, gntp: false, installShellFiles: false, markdown: false, "paho-mqtt": false, "pytest-mock": false, pytestCheckHook: false, pyyaml: false, requests: false, "requests-oauthlib": false, setuptools: false, stdenv: false, "terminal-notifier": false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 30, 26], ["version", 30, 32], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["package", 70, 7], ["version", 71, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 69, 11]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 69, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 76, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["license", 79, 5], ["maintainers", 80, 5], ["mainProgram", 81, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["postPatch", 34, 3], ["nativeBuildInputs", 39, 3], ["build-system", 41, 3], ["dependencies", 46, 3], ["nativeCheckInputs", 55, 3], ["postInstall", 62, 3], ["pythonImportsCheck", 66, 3], ["passthru", 68, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const terminal_notifier = nix.arg($, "terminal-notifier");
   const testers = nix.arg($, "testers");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "apprise",
       version: "1.13.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-mlaWS/PKAEs+DbmKuKjYf60FHY7bN3vBZtxL6CZmbIE=",
@@ -53,18 +48,18 @@ export default nix.lambda((args) => (() => {
       postInstall: "installManPage packaging/man/apprise.1\n",
       pythonImportsCheck: nix.thunk(() => ["apprise"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: apprise,
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Push Notifications that work with just about every platform",
         homepage: "https://appriseit.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/caronc/apprise/releases/tag/v${nix.sel(finalAttrs, "version")}`),

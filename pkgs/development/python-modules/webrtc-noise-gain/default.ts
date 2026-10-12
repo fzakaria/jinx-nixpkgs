@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["description", 57, 5], ["homepage", 58, 5], ["changelog", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["postPatch", 34, 3], ["build-system", 44, 3], ["buildInputs", 46, 3], ["pythonImportsCheck", 48, 3], ["nativeCheckInputs", 50, 3], ["preCheck", 52, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, stdenv: false, pybind11: false, setuptools: false, "abseil-cpp": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 57, 5], ["homepage", 58, 5], ["changelog", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["postPatch", 34, 3], ["build-system", 44, 3], ["buildInputs", 46, 3], ["pythonImportsCheck", 48, 3], ["nativeCheckInputs", 50, 3], ["preCheck", 52, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const abseil_cpp = nix.arg($, "abseil-cpp");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "webrtc-noise-gain",
       version: "1.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rhasspy",
           repo: "webrtc-noise-gain",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,7 +45,7 @@ substituteInPlace setup.py --replace-fail \\
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       preCheck: "rm -rf webrtc_noise_gain\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tiny wrapper around webrtc-audio-processing for noise suppression/auto gain only",
         homepage: "https://github.com/rhasspy/webrtc-noise-gain",
         changelog: nix.thunk(() => nix.str`https://github.com/rhasspy/webrtc-noise-gain/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

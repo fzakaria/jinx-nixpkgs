@@ -2,14 +2,14 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/example.nix", [[["nativeBuildInputs", 5, 5]]]);
 const formals$1 = { args: { "xunit-viewer": false, runCommand: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/example.nix", [["nativeBuildInputs", 5, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const xunit_viewer = nix.arg($, "xunit-viewer");
   const runCommand = nix.arg($, "runCommand");
-  return nix.app(runCommand, "test-xunit-viewer", nix.thunk(() => ({ [nix.POS]: pos$1, nativeBuildInputs: nix.thunk(() => [xunit_viewer]) })), nix.thunk(() => nix.str`mkdir $out
+  return nix.app(runCommand, "test-xunit-viewer", nix.thunk(() => ({ [nix.POS]: $pos[0], nativeBuildInputs: nix.thunk(() => [xunit_viewer]) })), nix.thunk(() => nix.str`mkdir $out
 xunit-viewer -r ${nix.path(here, "./example.junit.xml")} -o $out/index.html
 ( set -x
   grep '<body' $out/index.html

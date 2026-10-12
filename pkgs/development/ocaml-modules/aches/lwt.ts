@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/lwt.nix", [[["description", 19, 5], ["homepage", 20, 5], ["license", 21, 5], ["maintainers", 22, 5]], [["pname", 10, 3], ["src", 11, 19], ["version", 11, 23], ["propagatedBuildInputs", 13, 3], ["meta", 18, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, ringo: false, aches: false, lwt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/lwt.nix", [["description", 19, 5], ["homepage", 20, 5], ["license", 21, 5], ["maintainers", 22, 5]]);
-const pos$2 = nix.positions(here + "/lwt.nix", [["pname", 10, 3], ["src", 11, 19], ["version", 11, 23], ["propagatedBuildInputs", 13, 3], ["meta", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const aches = nix.arg($, "aches");
   const lwt = nix.arg($, "lwt");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "aches-lwt",
       src: nix.thunk(() => nix.attr(ringo, "src")),
       version: nix.thunk(() => nix.attr(ringo, "version")),
       propagatedBuildInputs: nix.thunk(() => [aches, lwt]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Caches (bounded-size stores) for Lwt promises",
         homepage: "https://gitlab.com/nomadic-labs/ringo",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

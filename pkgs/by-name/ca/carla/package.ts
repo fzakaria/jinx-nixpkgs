@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["homepage", 102, 5], ["description", 103, 5], ["longDescription", 104, 5], ["license", 110, 5], ["maintainers", 111, 5], ["platforms", 112, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 36, 3], ["pythonPath", 43, 3], ["buildInputs", 51, 3], ["propagatedBuildInputs", 63, 3], ["enableParallelBuilding", 65, 3], ["installFlags", 67, 3], ["postPatch", 69, 3], ["dontWrapQtApps", 77, 3], ["postFixup", 78, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "alsa-lib": false, file: false, fluidsynth: false, jack2: false, liblo: false, libpulseaudio: false, libsndfile: false, "pkg-config": false, python3Packages: false, libsForQt5: false, which: false, gtk3: true, withFrontend: true, withGtk3: true, withQt: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 102, 5], ["description", 103, 5], ["longDescription", 104, 5], ["license", 110, 5], ["maintainers", 111, 5], ["platforms", 112, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 36, 3], ["pythonPath", 43, 3], ["buildInputs", 51, 3], ["propagatedBuildInputs", 63, 3], ["enableParallelBuilding", 65, 3], ["installFlags", 67, 3], ["postPatch", 69, 3], ["dontWrapQtApps", 77, 3], ["postFixup", 78, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +28,11 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(withQt) || nix.asBool(!nix.eq(nix.sel(libsForQt5, "qtbase"), null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ca/carla/package.nix:22:1");
   nix.assert_((!nix.asBool(withQt) || nix.asBool(!nix.eq(nix.sel(libsForQt5, "wrapQtAppsHook"), null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ca/carla/package.nix:23:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "carla",
       version: "2.5.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "falkTX",
           repo: "carla",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -81,7 +79,7 @@ find "$out/share/carla/resources" -maxdepth 1 -type f -not -name "*.py" -print0 
 done
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://kx.studio/Applications:Carla",
         description: "Audio plugin host",
         longDescription: "It currently supports LADSPA (including LRDF), DSSI, LV2, VST2/3\nand AU plugin formats, plus GIG, SF2 and SFZ file support.\nIt uses JACK as the default and preferred audio driver but also\nsupports native drivers like ALSA, DirectSound or CoreAudio.\n",

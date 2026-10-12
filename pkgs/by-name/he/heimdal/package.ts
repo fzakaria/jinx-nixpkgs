@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 51, 5], ["repo", 52, 5], ["rev", 53, 5], ["hash", 54, 5]], [["nixos", 185, 11]], [["implementation", 184, 5], ["tests", 185, 5]], [["homepage", 189, 5], ["changelog", 190, 5], ["description", 191, 5], ["license", 192, 5], ["platforms", 193, 5], ["maintainers", 194, 5]], [["pname", 47, 3], ["version", 48, 3], ["src", 50, 3], ["outputs", 57, 3], ["nativeBuildInputs", 64, 3], ["buildInputs", 75, 3], ["doCheck", 87, 3], ["nativeCheckInputs", 88, 3], ["configureFlags", 95, 3], ["patches", 122, 3], ["postPatch", 139, 3], ["preCheck", 152, 3], ["postBuild", 157, 3], ["postInstall", 162, 3], ["passthru", 183, 3], ["meta", 188, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, "pkg-config": false, python3: false, perl: false, bison: false, flex: false, texinfo: false, perlPackages: false, openldap: false, libcap_ng: false, sqlite: false, openssl: false, db: false, libedit: false, pam: false, libmicrohttpd: false, cjson: false, curl: false, jdk_headless: false, unzip: false, which: false, nixosTests: false, withCJSON: true, withCapNG: true, withMicroHTTPD: true, withOpenLDAP: true, withOpenLDAPAsHDBModule: true, withOpenSSL: true, withSQLite3: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 51, 5], ["repo", 52, 5], ["rev", 53, 5], ["hash", 54, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nixos", 185, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["implementation", 184, 5], ["tests", 185, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 189, 5], ["changelog", 190, 5], ["description", 191, 5], ["license", 192, 5], ["platforms", 193, 5], ["maintainers", 194, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 47, 3], ["version", 48, 3], ["src", 50, 3], ["outputs", 57, 3], ["nativeBuildInputs", 64, 3], ["buildInputs", 75, 3], ["doCheck", 87, 3], ["nativeCheckInputs", 88, 3], ["configureFlags", 95, 3], ["patches", 122, 3], ["postPatch", 139, 3], ["preCheck", 152, 3], ["postBuild", 157, 3], ["postInstall", 162, 3], ["passthru", 183, 3], ["meta", 188, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -45,11 +41,11 @@ export default nix.lambda((args) => (() => {
   const withSQLite3 = nix.argOr($, "withSQLite3", () => true);
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => (!nix.asBool(withOpenLDAPAsHDBModule) || nix.asBool(withOpenLDAP))), "OpenLDAP needs to be enabled in order to build the OpenLDAP HDB Module.\n"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/he/heimdal/package.nix:42:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "heimdal",
       version: "7.8.0-unstable-2024-09-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "heimdal",
           repo: "heimdal",
           rev: "fd2d434dd375c402d803e6f948cfc6e257d3facc",
@@ -96,15 +92,15 @@ substituteInPlace tests/kdc/check-iprop.in \\
       postBuild: "(cd include/hcrypto; make -j $NIX_BUILD_CORES)\n(cd lib/hcrypto; make -j $NIX_BUILD_CORES)\n",
       postInstall: "# Install hcrypto\n(cd include/hcrypto; make -j $NIX_BUILD_CORES install)\n(cd lib/hcrypto; make -j $NIX_BUILD_CORES install)\n\nmkdir -p $dev/bin\nmv $out/bin/krb5-config $dev/bin/\n\n# asn1 compilers, move them to $dev\nmv $out/libexec/heimdal/* $dev/bin\nrmdir $out/libexec/heimdal\n\n# compile_et is needed for cross-compiling this package and samba\nmv lib/com_err/.libs/compile_et $dev/bin\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         implementation: "heimdal",
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           nixos: nix.thunk(() => nix.sel(nixosTests, "kerberos", "heimdal")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://www.heimdal.software",
         changelog: "https://github.com/heimdal/heimdal/releases",
         description: "Implementation of Kerberos 5 (and some more stuff)",

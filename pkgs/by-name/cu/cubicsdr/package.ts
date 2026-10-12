@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["sha256", 27, 5]], [["url", 33, 7], ["sha256", 34, 7]], [["homepage", 68, 5], ["description", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5], ["mainProgram", 73, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 43, 3], ["cmakeFlags", 56, 3], ["postPatch", 58, 3], ["postFixup", 63, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, fftw: false, hamlib: false, libpulseaudio: false, libGL: false, libx11: false, "liquid-dsp": false, "pkg-config": false, "soapysdr-with-plugins": false, wxwidgets_3_2: false, enableDigitalLab: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["sha256", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 33, 7], ["sha256", 34, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 68, 5], ["description", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5], ["mainProgram", 73, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 43, 3], ["cmakeFlags", 56, 3], ["postPatch", 58, 3], ["postFixup", 63, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const wxwidgets_3_2 = nix.arg($, "wxwidgets_3_2");
   const enableDigitalLab = nix.argOr($, "enableDigitalLab", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cubicsdr",
       version: "0.2.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cjcliffe",
           repo: "CubicSDR",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/cjcliffe/CubicSDR/commit/0e3a785bd2af56d18ff06b56579197b3e89b34ab.patch",
             sha256: "sha256-mPfNZcV3FnEtGVX4sCMSs+Qc3VeSBIRkpCyx24TKkcU=",
           })))),
@@ -50,7 +47,7 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.str`install_name_tool -change libliquid.dylib ${nix.app(nix.sel(lib, "getLib"), liquid_dsp)}/lib/libliquid.dylib \${out}/bin/CubicSDR
 `))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/cjcliffe/CubicSDR",
         description: "Software Defined Radio application",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

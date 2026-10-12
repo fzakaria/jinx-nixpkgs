@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/su.nix", [[["mainProgram", 25, 8]], [["path", 8, 3], ["outputs", 10, 3], ["buildInputs", 16, 3], ["postPatch", 21, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, mkDerivation: false, libpam: false, libbsm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/su.nix", [["mainProgram", 25, 8]]);
-const pos$2 = nix.positions(here + "/su.nix", [["path", 8, 3], ["outputs", 10, 3], ["buildInputs", 16, 3], ["postPatch", 21, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const libpam = nix.arg($, "libpam");
   const libbsm = nix.arg($, "libbsm");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       path: "usr.bin/su",
       outputs: nix.thunk(() => ["out", "man", "debug"]),
       buildInputs: nix.thunk(() => [libpam, libbsm]),
       postPatch: "sed -E -i -e '/BINOWN|BINMODE|PRECIOUSPROG/d' $BSDSRCDIR/usr.bin/su/Makefile\n",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "su" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], mainProgram: "su" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=su.ts.map

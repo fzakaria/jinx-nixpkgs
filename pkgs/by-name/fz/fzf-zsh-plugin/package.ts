@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["tagPrefix", 37, 48]], [["updateScript", 37, 12]], [["homepage", 40, 5], ["description", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["platforms", 44, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["strictDeps", 21, 3], ["buildInputs", 23, 3], ["installPhase", 28, 3], ["passthru", 37, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { bash: false, stdenv: false, lib: false, fetchFromGitHub: false, unstableGitUpdater: false, zsh: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["tagPrefix", 37, 48]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 37, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 40, 5], ["description", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["platforms", 44, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["strictDeps", 21, 3], ["buildInputs", 23, 3], ["installPhase", 28, 3], ["passthru", 37, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const zsh = nix.arg($, "zsh");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "fzf-zsh-plugin",
       version: "1.0.0-unstable-2026-09-07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "unixorn",
           repo: "fzf-zsh-plugin",
           rev: "e3894e83a3e8a3e8751456d56c51bb49b34e8d2b",
@@ -32,11 +28,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [bash, zsh]),
       installPhase: "runHook preInstall\ninstall -D fzf-settings.zsh $out/share/zsh/fzf-zsh-plugin/fzf-settings.zsh\ninstall -D fzf-zsh-plugin.plugin.zsh $out/share/zsh/fzf-zsh-plugin/fzf-zsh-plugin.plugin.zsh\nmkdir -p $out/bin\ncp -r bin/* $out/bin/\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, tagPrefix: "v" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], tagPrefix: "v" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/unixorn/fzf-zsh-plugin",
         description: "ZSH plugin to enable fzf searches of a lot more stuff - docker, tmux, homebrew and more",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

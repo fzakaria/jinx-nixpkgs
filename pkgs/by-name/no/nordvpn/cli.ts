@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cli.nix", [[["owner", 29, 11], ["repo", 30, 11], ["tag", 32, 11], ["hash", 33, 11]], [["patches", 26, 5]], [["comment", 132, 9], ["desktopName", 133, 9], ["exec", 134, 9], ["mimeTypes", 135, 9], ["name", 136, 9], ["noDisplay", 137, 9], ["terminal", 138, 9]], [["description", 144, 5], ["longDescription", 145, 5], ["mainProgram", 149, 5]], [["src", 50, 11], ["version", 50, 15], ["pname", 52, 3], ["nativeBuildInputs", 54, 3], ["vendorHash", 59, 3], ["preBuild", 61, 3], ["ldflags", 74, 3], ["subPackages", 79, 3], ["checkPhase", 85, 3], ["postInstall", 97, 3], ["postFixup", 113, 3], ["desktopItems", 128, 3], ["meta", 143, 3]]]);
 const formals$1 = { args: { desktopItemArgs: false, meta: false, src: false, version: false, buildGoModule: false, copyDesktopItems: false, e2fsprogs: false, fetchFromGitHub: false, iproute2: false, lib: false, libxslt: false, makeDesktopItem: false, makeWrapper: false, nftables: false, openvpn: false, procps: false, systemdMinimal: false, "wireguard-tools": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/cli.nix", [["owner", 29, 11], ["repo", 30, 11], ["tag", 32, 11], ["hash", 33, 11]]);
-const pos$2 = nix.positions(here + "/cli.nix", [["patches", 26, 5]]);
-const pos$3 = nix.positions(here + "/cli.nix", [["comment", 132, 9], ["desktopName", 133, 9], ["exec", 134, 9], ["mimeTypes", 135, 9], ["name", 136, 9], ["noDisplay", 137, 9], ["terminal", 138, 9]]);
-const pos$4 = nix.positions(here + "/cli.nix", [["description", 144, 5], ["longDescription", 145, 5], ["mainProgram", 149, 5]]);
-const pos$5 = nix.positions(here + "/cli.nix", [["src", 50, 11], ["version", 50, 15], ["pname", 52, 3], ["nativeBuildInputs", 54, 3], ["vendorHash", 59, 3], ["preBuild", 61, 3], ["ldflags", 74, 3], ["subPackages", 79, 3], ["checkPhase", 85, 3], ["postInstall", 97, 3], ["postFixup", 113, 3], ["desktopItems", 128, 3], ["meta", 143, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,10 +26,10 @@ export default nix.lambda((args) => (() => {
   const systemdMinimal = nix.arg($, "systemdMinimal");
   const wireguard_tools = nix.arg($, "wireguard-tools");
   const patchedOpenvpn = nix.thunk(() => nix.app(nix.sel(openvpn, "overrideAttrs"), (old) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       patches: nix.thunk(() => (() => {
         const tunnelblickSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: "Tunnelblick",
             repo: "Tunnelblick",
             tag: "v6.0beta09",
@@ -50,7 +46,7 @@ export default nix.lambda((args) => (() => {
       })()),
     })));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       src: src,
       version: version,
       pname: "nordvpn-cli",
@@ -87,7 +83,7 @@ substituteInPlace daemon/vpn/openvpn/config.go \\
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => nix.update(desktopItemArgs, {
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             comment: "Handles NordVPN OAuth browser login callbacks.",
             desktopName: "NordVPN CLI",
             exec: "nordvpn click %u",
@@ -98,7 +94,7 @@ substituteInPlace daemon/vpn/openvpn/config.go \\
           })))),
       ]),
       meta: nix.thunk(() => nix.update(meta, {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "NordVPN command-line client and daemon",
         longDescription: "Contains the nordvpn client and nordvpnd daemon.\nEven if you intend to use the GUI only, you'd need this package.\n",
         mainProgram: "nordvpn",

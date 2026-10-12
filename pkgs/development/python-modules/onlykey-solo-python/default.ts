@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 21, 13], ["version", 21, 19], ["hash", 22, 5]], [["url", 33, 7], ["hash", 34, 7]], [["homepage", 53, 5], ["description", 54, 5], ["mainProgram", 55, 5], ["maintainers", 56, 5], ["license", 57, 5]], [["pname", 16, 3], ["version", 17, 3], ["format", 18, 3], ["src", 20, 3], ["postPatch", 25, 3], ["patches", 30, 3], ["propagatedBuildInputs", 38, 3], ["doCheck", 49, 3], ["pythonImportsCheck", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, click: false, ecdsa: false, fetchpatch: false, fetchPypi: false, fido2: false, intelhex: false, lib: false, pyserial: false, pyusb: false, requests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 21, 13], ["version", 21, 19], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 33, 7], ["hash", 34, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 53, 5], ["description", 54, 5], ["mainProgram", 55, 5], ["maintainers", 56, 5], ["license", 57, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["format", 18, 3], ["src", 20, 3], ["postPatch", 25, 3], ["patches", 30, 3], ["propagatedBuildInputs", 38, 3], ["doCheck", 49, 3], ["pythonImportsCheck", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.32";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-88DuhgX4FCwzIKzw4RqWgMtjRdf5huVlKEHAAEminuQ=",
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const postPatch = "substituteInPlace setup.py \\\n  --replace \"fido2 == 0.9.3\" \"fido2\"\n";
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/trustcrypto/onlykey-solo-python/commit/dfebd6b36087f5f918da8c1af5a3236581cccf2d.patch",
             hash: "sha256-O0XQoWwhwvLc0CchUTXSuWgHMNG2ZPDy7FsU3RQrdp8=",
           })))),
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["solo"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/trustcrypto/onlykey-solo-python",
         description: "Python library for OnlyKey with Solo FIDO2",
         mainProgram: "solo",
@@ -54,7 +51,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         format,

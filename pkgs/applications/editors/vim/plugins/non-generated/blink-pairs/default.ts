@@ -2,14 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["RUSTC_BOOTSTRAP", 28, 7], ["RUSTFLAGS", 31, 7]], [["pname", 22, 5], ["version", 23, 13], ["src", 23, 21], ["cargoHash", 25, 5], ["env", 27, 5], ["doCheck", 35, 5], ["nativeBuildInputs", 37, 5]], [["attrPath", 65, 7]], [["updateScript", 64, 5], ["blink-pairs-lib", 69, 13]], [["description", 73, 5], ["homepage", 74, 5], ["changelog", 75, 5], ["license", 76, 5], ["maintainers", 77, 5]], [["pname", 43, 3], ["version", 44, 11], ["src", 44, 19], ["dependencies", 46, 3], ["preInstall", 48, 3], ["nvimSkipModules", 57, 3], ["passthru", 63, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, vimPlugins: false, vimUtils: false, stdenv: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["RUSTC_BOOTSTRAP", 28, 7], ["RUSTFLAGS", 31, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 22, 5], ["version", 23, 13], ["src", 23, 21], ["cargoHash", 25, 5], ["env", 27, 5], ["doCheck", 35, 5], ["nativeBuildInputs", 37, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["attrPath", 65, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["updateScript", 64, 5], ["blink-pairs-lib", 69, 13]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 73, 5], ["homepage", 74, 5], ["changelog", 75, 5], ["license", 76, 5], ["maintainers", 77, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 43, 3], ["version", 44, 11], ["src", 44, 19], ["dependencies", 46, 3], ["preInstall", 48, 3], ["nvimSkipModules", 57, 3], ["passthru", 63, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,20 +17,20 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const version = "0.7.1";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "Saghen",
       repo: "blink.pairs",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-HrBUKw1qWRmciiPgBkjTArDxmYayKXesQafJixvUpbc=",
     }))));
   const blink_pairs_lib = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "blink-pairs",
       version: version,
       src: src,
       cargoHash: "sha256-XLlluprxhVueHhkIufJa7fJXvFxpJJzh89+yL9PZ4GI=",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         RUSTC_BOOTSTRAP: 1n,
         RUSTFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-C link-arg=-undefined -C link-arg=dynamic_lookup")),
       })),
@@ -44,7 +38,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
     }))));
   return nix.app(nix.sel(vimUtils, "buildVimPlugin"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "blink.pairs",
       version: version,
       src: src,
@@ -57,12 +51,12 @@ ln -s ${blink_pairs_lib}/lib/libblink_pairs_parser${ext} lib/
       })()),
       nvimSkipModules: nix.thunk(() => ["repro"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, attrPath: "vimPlugins.blink-pairs.blink-pairs-lib" })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[3], attrPath: "vimPlugins.blink-pairs.blink-pairs-lib" })))),
         "blink-pairs-lib": blink_pairs_lib,
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Rainbow highlighting and intelligent auto-pairs for Neovim",
         homepage: "https://github.com/Saghen/blink.pairs",
         changelog: nix.thunk(() => nix.str`https://github.com/Saghen/blink.pairs/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),

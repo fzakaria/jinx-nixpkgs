@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["NIX_CFLAGS_COMPILE", 29, 7]], [["description", 36, 5], ["homepage", 37, 5], ["platforms", 38, 5], ["license", 39, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["configureFlags", 20, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 25, 3], ["env", 29, 3], ["preBuild", 31, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { config: false, lib: false, stdenv: false, fetchurl: false, "pkg-config": false, gtk2: false, useGTK: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 36, 5], ["homepage", 37, 5], ["platforms", 38, 5], ["license", 39, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["configureFlags", 20, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 25, 3], ["env", 29, 3], ["preBuild", 31, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,21 +15,21 @@ export default nix.lambda((args) => (() => {
   const gtk2 = nix.arg($, "gtk2");
   const useGTK = nix.argOr($, "useGTK", () => nix.selOr(config, () => false, "libiodbc", "gtk"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libiodbc",
       version: "3.52.16",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/iodbc/libiodbc-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-OJizLQeWE2D28s822zYDa3GaIw5HZGklioDzIkPoRfo=",
         })))),
       configureFlags: nix.thunk(() => ["--disable-libodbc"]),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), useGTK, nix.thunk(() => [gtk2]))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       preBuild: "export NIX_LDFLAGS_BEFORE=\"-rpath $out/lib\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "iODBC driver manager",
         homepage: "https://www.iodbc.org",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

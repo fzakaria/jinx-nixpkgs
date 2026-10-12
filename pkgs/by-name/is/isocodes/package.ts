@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 20, 5]], [["package", 36, 7]], [["pkg-config", 35, 5]], [["tests", 34, 12]], [["homepage", 41, 5], ["description", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5], ["pkgConfigModules", 46, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["postPatch", 23, 3], ["nativeBuildInputs", 27, 3], ["passthru", 34, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, gettext: false, meson: false, ninja: false, python3: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 36, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pkg-config", 35, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 34, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 41, 5], ["description", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5], ["pkgConfigModules", 46, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["postPatch", 23, 3], ["nativeBuildInputs", 27, 3], ["passthru", 34, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "iso-codes",
       version: "4.20.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => (() => {
             const w = nix.withScope(finalAttrs, null);
             return nix.str`https://salsa.debian.org/iso-codes-team/iso-codes/-/archive/v${nix.lookup(w, "version")}/iso-codes-v${nix.lookup(w, "version")}.tar.gz`;
@@ -35,17 +30,17 @@ export default nix.lambda((args) => (() => {
       postPatch: "patchShebangs scripts\n",
       nativeBuildInputs: nix.thunk(() => [gettext, meson, ninja, python3]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://salsa.debian.org/iso-codes-team/iso-codes",
         description: "Various ISO codes packaged as XML files",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

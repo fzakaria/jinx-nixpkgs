@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["homepage", 28, 5], ["description", 29, 5], ["license", 30, 5], ["platforms", 31, 5], ["mainProgram", 32, 5]], [["version", 10, 3], ["pname", 11, 3], ["src", 13, 3], ["buildInputs", 18, 3], ["installPhase", 22, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libx11: false, libxaw: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 28, 5], ["description", 29, 5], ["license", 30, 5], ["platforms", 31, 5], ["mainProgram", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 10, 3], ["pname", 11, 3], ["src", 13, 3], ["buildInputs", 18, 3], ["installPhase", 22, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const libxaw = nix.arg($, "libxaw");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "0.10.1",
       pname: "autocutsel",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/sigmike/autocutsel/releases/download/${nix.sel(finalAttrs, "version")}/autocutsel-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-8X4G1C90lENtSyb0vgtrDaOUgcBADJZ3jkuQW2NB6xc=",
         })))),
       buildInputs: nix.thunk(() => [libx11, libxaw]),
       installPhase: "mkdir -p $out/bin\ncp autocutsel $out/bin/\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.nongnu.org/autocutsel/",
         description: "Tracks changes in the server's cutbuffer and CLIPBOARD selection",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

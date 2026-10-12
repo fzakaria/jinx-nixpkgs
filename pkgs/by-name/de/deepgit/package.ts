@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["hash", 22, 5]], [["name", 51, 7], ["desktopName", 52, 7], ["keywords", 53, 7], ["comment", 54, 7], ["categories", 55, 7], ["terminal", 59, 7], ["startupNotify", 60, 7], ["startupWMClass", 61, 7], ["exec", 62, 7], ["mimeTypes", 63, 7], ["icon", 67, 7]], [["description", 89, 5], ["homepage", 90, 5], ["changelog", 91, 5], ["license", 92, 5], ["maintainers", 93, 5], ["platforms", 94, 5], ["mainProgram", 95, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 30, 3], ["preFixup", 36, 3], ["desktopItems", 49, 3], ["installPhase", 71, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { copyDesktopItems: false, fetchurl: false, glib: false, "adwaita-icon-theme": false, gtk3: false, jre: false, lib: false, makeDesktopItem: false, stdenv: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 51, 7], ["desktopName", 52, 7], ["keywords", 53, 7], ["comment", 54, 7], ["categories", 55, 7], ["terminal", 59, 7], ["startupNotify", 60, 7], ["startupWMClass", 61, 7], ["exec", 62, 7], ["mimeTypes", 63, 7], ["icon", 67, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 89, 5], ["homepage", 90, 5], ["changelog", 91, 5], ["license", 92, 5], ["maintainers", 93, 5], ["platforms", 94, 5], ["mainProgram", 95, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 30, 3], ["preFixup", 36, 3], ["desktopItems", 49, 3], ["installPhase", 71, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "deepgit";
       const version = "4.4";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.syntevo.com/downloads/deepgit/deepgit-linux-${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version)}.tar.gz`),
           hash: "sha256-ILqwXDyW7/hZzoSxxaxv4bF5xsB/JFaOBYAJFb7xmdk=",
         }))));
@@ -50,7 +47,7 @@ patchShebangs bin/deepgit.sh
             const mimeTypes = nix.thunk(() => ["x-scheme-handler/deepgit", "x-scheme-handler/sourcetree"]);
             const icon = "deepgit";
             return {
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               name,
               desktopName,
               keywords,
@@ -67,7 +64,7 @@ patchShebangs bin/deepgit.sh
       ]);
       const installPhase = "runHook preInstall\n\nmkdir -pv $out/{bin,share/icons/hicolor/scalable/apps/}\ncp -a lib license.html $out\nmv bin/deepgit.sh $out/bin/deepgit\n\nfor icon_size in 32 48 64 128 256; do\n  path=$icon_size'x'$icon_size\n  icon=bin/deepgit-$icon_size.png\n  mkdir -p $out/share/icons/hicolor/$path/apps\n  cp $icon $out/share/icons/hicolor/$path/apps/deepgit.png\ndone\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Tool to investigate the history of source code",
         homepage: "https://www.syntevo.com/deepgit",
         changelog: "https://www.syntevo.com/deepgit/changelog.txt",
@@ -77,7 +74,7 @@ patchShebangs bin/deepgit.sh
         mainProgram: "deepgit",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

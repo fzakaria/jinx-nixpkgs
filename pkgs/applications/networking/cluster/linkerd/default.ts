@@ -2,14 +2,14 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["channel", 4, 3], ["version", 5, 3], ["sha256", 6, 3], ["vendorHash", 7, 3]]]);
 const formals$1 = { args: { callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["channel", 4, 3], ["version", 5, 3], ["sha256", 6, 3], ["vendorHash", 7, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const callPackage = nix.arg($, "callPackage");
   return nix.app(callPackage, nix.path(here, "./generic.nix"), nix.thunk(() => ({})), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       channel: "stable",
       version: "2.14.9",
       sha256: "135x5q0a8knckbjkag2xqcr76zy49i57zf2hlsa70iknynq33ys7",

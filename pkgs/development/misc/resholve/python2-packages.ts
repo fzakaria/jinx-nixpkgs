@@ -2,13 +2,13 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/python2-packages.nix", [["bootstrapped-pip", 11, 3], ["pip", 13, 3], ["setuptools", 15, 3], ["wheel", 17, 3], ["configargparse", 20, 3], ["six", 22, 3], ["typing", 24, 3], ["oildev", 26, 3], ["sedparse", 28, 3]]);
+const $pos = nix.positions(here + "/python2-packages.nix", [[["bootstrapped-pip", 11, 3], ["pip", 13, 3], ["setuptools", 15, 3], ["wheel", 17, 3], ["configargparse", 20, 3], ["six", 22, 3], ["typing", 24, 3], ["oildev", 26, 3], ["sedparse", 28, 3]]]);
 
 export default (self) => (super$) => (() => {
   const w = nix.withScope(self, null);
   const w_1 = nix.withScope(super$, w);
   return {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "bootstrapped-pip": nix.thunk(() => nix.app(nix.lookup(w_1, "toPythonModule"), nix.thunk(() => nix.app(nix.lookup(w_1, "callPackage"), nix.path(here, "./python2-modules/bootstrapped-pip"), nix.thunk(() => ({})))))),
     pip: nix.thunk(() => nix.app(nix.lookup(w_1, "callPackage"), nix.path(here, "./python2-modules/pip"), nix.thunk(() => ({})))),
     setuptools: nix.thunk(() => nix.app(nix.lookup(w_1, "callPackage"), nix.path(here, "./python2-modules/setuptools"), nix.thunk(() => ({})))),

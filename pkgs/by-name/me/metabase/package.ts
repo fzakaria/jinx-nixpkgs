@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["hash", 19, 5]], [["description", 33, 5], ["homepage", 34, 5], ["sourceProvenance", 35, 5], ["license", 36, 5], ["platforms", 37, 5], ["maintainers", 38, 5], ["mainProgram", 42, 5]], [["metabase", 45, 26]], [["tests", 44, 12]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["dontUnpack", 24, 3], ["installPhase", 26, 3], ["meta", 32, 3], ["passthru", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, jre_headless: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 33, 5], ["homepage", 34, 5], ["sourceProvenance", 35, 5], ["license", 36, 5], ["platforms", 37, 5], ["maintainers", 38, 5], ["mainProgram", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["metabase", 45, 26]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 44, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["dontUnpack", 24, 3], ["installPhase", 26, 3], ["meta", 32, 3], ["passthru", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const jre = jre_headless;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "metabase",
       version: "0.63.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://downloads.metabase.com/v${nix.sel(finalAttrs, "version")}/metabase.jar`),
           hash: "sha256-dr9ezSvYgweyViXYAmf8VYN15mdWqcQ9EsdSIxHUrLQ=",
         })))),
@@ -34,7 +30,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), jre)} $out/bin/metabase --add-flag
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Business Intelligence and Embedded Analytics tool",
         homepage: "https://metabase.com",
         sourceProvenance: nix.thunk(() => (() => {
@@ -53,9 +49,9 @@ runHook postInstall
         mainProgram: "metabase",
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           metabase: nix.thunk(() => nix.attr(nixosTests, "metabase")),
         })),
       })),

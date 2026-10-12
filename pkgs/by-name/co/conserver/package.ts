@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["sha256", 27, 5]], [["url", 34, 7], ["sha256", 35, 7]], [["homepage", 70, 5], ["description", 71, 5], ["license", 72, 5], ["platforms", 73, 5], ["maintainers", 74, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 32, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 41, 3], ["configureFlags", 48, 3], ["doCheck", 60, 3], ["postPatch", 62, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, autoreconfHook: false, libxcrypt: false, gssapiSupport: true, libkrb5: false, freeipmiSupport: true, freeipmi: false, ipv6Support: true, opensslSupport: true, openssl: false, trustUdsCredSupport: true, udsSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["sha256", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 34, 7], ["sha256", 35, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 70, 5], ["description", 71, 5], ["license", 72, 5], ["platforms", 73, 5], ["maintainers", 74, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 32, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 41, 3], ["configureFlags", 48, 3], ["doCheck", 60, 3], ["postPatch", 62, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const trustUdsCredSupport = nix.argOr($, "trustUdsCredSupport", () => false);
   const udsSupport = nix.argOr($, "udsSupport", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "conserver",
       version: "8.2.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bstansell",
           repo: "conserver",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/bstansell/conserver/commit/84fc79a459e00dbc87b8cfc943c5045bfcc7aeeb.patch",
             sha256: "sha256:1dy8r9z7rv8512fl0rk5gi1vl02hnh7x0i6flvpcc13h6r6fhxyc",
           })))),
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       postPatch: "# install -s calls the wrong strip program when cross compiling\nsubstituteInPlace \\\n  console/Makefile.in conserver/Makefile.in autologin/Makefile.in contrib/chat/Makefile.in \\\n  --replace-fail \"@INSTALL_PROGRAM@ -s\" \"@INSTALL_PROGRAM@\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.conserver.com/",
         description: "Application that allows multiple users to watch a serial console at the same time",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

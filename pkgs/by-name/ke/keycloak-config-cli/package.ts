@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["updateScript", 43, 12]], [["homepage", 46, 5], ["changelog", 47, 5], ["description", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["mainProgram", 55, 5], ["platforms", 56, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["mvnHash", 21, 3], ["doCheck", 25, 3], ["strictDeps", 27, 3], ["__structuredAttrs", 28, 3], ["nativeBuildInputs", 30, 3], ["doInstallCheck", 32, 3], ["nativeInstallCheckInputs", 33, 3], ["installPhase", 35, 3], ["passthru", 43, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { maven: false, lib: false, fetchFromGitHub: false, jre_headless: false, makeWrapper: false, "nix-update-script": false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 43, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 46, 5], ["changelog", 47, 5], ["description", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["mainProgram", 55, 5], ["platforms", 56, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["mvnHash", 21, 3], ["doCheck", 25, 3], ["strictDeps", 27, 3], ["__structuredAttrs", 28, 3], ["nativeBuildInputs", 30, 3], ["doInstallCheck", 32, 3], ["nativeInstallCheckInputs", 33, 3], ["installPhase", 35, 3], ["passthru", 43, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(maven, "buildMavenPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "keycloak-config-cli",
       version: "6.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "adorsys",
           repo: "keycloak-config-cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,11 +39,11 @@ makeWrapper ${jre_headless}/bin/java $out/bin/keycloak-config-cli \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/adorsys/keycloak-config-cli",
         changelog: nix.thunk(() => nix.str`https://github.com/adorsys/keycloak-config-cli/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Import YAML/JSON-formatted configuration files into Keycloak",

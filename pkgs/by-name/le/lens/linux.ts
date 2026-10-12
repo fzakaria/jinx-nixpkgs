@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/linux.nix", [[["pname", 12, 13], ["version", 12, 19], ["src", 12, 27]], [["updateScript", 25, 24]], [["pname", 19, 5], ["version", 20, 5], ["src", 21, 5], ["meta", 22, 5], ["passthru", 25, 3], ["nativeBuildInputs", 27, 3], ["extraInstallCommands", 29, 3], ["extraPkgs", 39, 3]]]);
 const formals$1 = { args: { pname: false, version: false, src: false, meta: false, updateScript: false, appimageTools: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/linux.nix", [["pname", 12, 13], ["version", 12, 19], ["src", 12, 27]]);
-const pos$2 = nix.positions(here + "/linux.nix", [["updateScript", 25, 24]]);
-const pos$3 = nix.positions(here + "/linux.nix", [["pname", 19, 5], ["version", 20, 5], ["src", 21, 5], ["meta", 22, 5], ["passthru", 25, 3], ["nativeBuildInputs", 27, 3], ["extraInstallCommands", 29, 3], ["extraPkgs", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const updateScript = nix.arg($, "updateScript");
   const appimageTools = nix.arg($, "appimageTools");
   const makeWrapper = nix.arg($, "makeWrapper");
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$1, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[0], pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: version,
       src: src,
       meta: meta,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: updateScript })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: updateScript })),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       extraInstallCommands: nix.thunk(() => nix.str`wrapProgram $out/bin/${pname} \\
   --add-flags "\\\${NIXOS_OZONE_WL:+\\\${WAYLAND_DISPLAY:+--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime=true}}"

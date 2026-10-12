@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["LIBCLANG_PATH", 30, 5]], [["updateScript", 68, 12]], [["description", 71, 5], ["homepage", 72, 5], ["maintainers", 73, 5], ["license", 76, 5], ["platforms", 77, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["env", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 35, 3], ["cargoPatches", 40, 3], ["cargoHash", 44, 3], ["cargoBuildFlags", 46, 3], ["doCheck", 66, 3], ["passthru", 68, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, "nix-update-script": false, clang: false, glibc: false, openssl: false, "pkg-config": false, sqlite: false, withPostQuantum: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["LIBCLANG_PATH", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 68, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 71, 5], ["homepage", 72, 5], ["maintainers", 73, 5], ["license", 76, 5], ["platforms", 77, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["env", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 35, 3], ["cargoPatches", 40, 3], ["cargoHash", 44, 3], ["cargoBuildFlags", 46, 3], ["doCheck", 66, 3], ["passthru", 68, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,18 +19,18 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const withPostQuantum = nix.argOr($, "withPostQuantum", () => true);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "kryoptic",
       version: "1.5.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "latchset",
           repo: "kryoptic",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-ta5PHvKma371rpoyjf8VBFX70v+DcQCxaGKG+Q9bcRg=",
         })))),
       env: nix.thunk(() => nix.attrsDyn({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         LIBCLANG_PATH: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(clang, "cc")))}/lib`),
       }, [
         [(nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))) ? "OSSL_BINDGEN_CLANG_ARGS" : null), nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getInclude"), glibc)}/include`)],
@@ -49,11 +45,11 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "A PKCS#11 soft token written in Rust.",
         homepage: "https://github.com/latchset/kryoptic",
         maintainers: nix.thunk(() => (() => {

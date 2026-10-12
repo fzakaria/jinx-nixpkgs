@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 20, 13], ["version", 20, 19], ["hash", 21, 5]], [["yaml", 33, 5]], [["description", 62, 5], ["longDescription", 63, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["maintainers", 70, 5], ["mainProgram", 71, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 24, 3], ["dependencies", 26, 3], ["optional-dependencies", 32, 3], ["nativeCheckInputs", 36, 3], ["preCheck", 41, 3], ["disabledTests", 46, 3], ["pythonImportsCheck", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, attrs: false, boltons: false, buildPythonPackage: false, face: false, fetchPypi: false, pytestCheckHook: false, pythonAtLeast: false, pyyaml: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 20, 13], ["version", 20, 19], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["yaml", 33, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 62, 5], ["longDescription", 63, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["maintainers", 70, 5], ["mainProgram", 71, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 24, 3], ["dependencies", 26, 3], ["optional-dependencies", 32, 3], ["nativeCheckInputs", 36, 3], ["preCheck", 41, 3], ["disabledTests", 46, 3], ["pythonImportsCheck", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,14 +22,14 @@ export default nix.lambda((args) => (() => {
       const version = "25.12.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-GufaiL42k99ArSe99Xp2WlXAdchslxvN3WeSdAPrAGk=",
         }))));
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [boltons, attrs, face]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, yaml: nix.thunk(() => [pyyaml]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], yaml: nix.thunk(() => [pyyaml]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const preCheck = "# test_cli.py checks the output of running \"glom\"\nexport PATH=$out/bin:$PATH\n";
       const disabledTests = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.11")), nix.thunk(() => [
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
         ])));
       const pythonImportsCheck = nix.thunk(() => ["glom"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Module for restructuring data",
         longDescription: "glom helps pull together objects from other objects in a\ndeclarative, dynamic, and downright simple way.\n",
         homepage: "https://github.com/mahmoud/glom",
@@ -62,7 +59,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "glom",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

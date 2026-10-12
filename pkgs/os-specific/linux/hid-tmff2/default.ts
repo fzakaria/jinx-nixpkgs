@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5], ["fetchSubmodules", 20, 5]], [["updateScript", 33, 12]], [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["platforms", 42, 5]], [["pname", 10, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 23, 3], ["makeFlags", 25, 3], ["installFlags", 29, 3], ["passthru", 33, 3], ["postPatch", 35, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, kernel: false, kernelModuleMakeFlags: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5], ["fetchSubmodules", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 33, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["platforms", 42, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 23, 3], ["makeFlags", 25, 3], ["installFlags", 29, 3], ["passthru", 33, 3], ["postPatch", 35, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const kernelModuleMakeFlags = nix.arg($, "kernelModuleMakeFlags");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "hid-tmff2",
       version: "0.83-unstable-2026-08-09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Kimplul",
           repo: "hid-tmff2",
           rev: "c5b9b79d4e61b77e0827e81dd676420b3c366743",
@@ -36,12 +33,12 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`INSTALL_MOD_PATH=${nix.builtins.placeholder("out")}`),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       postPatch: "sed -i '/depmod -A/d' Makefile",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Linux kernel module for Thrustmaster T300RS, T248 and TX(experimental)",
         homepage: "https://github.com/Kimplul/hid-tmff2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -2,15 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["llvmPackages", 14, 7], ["hash", 15, 7]], [["llvmPackages", 18, 7], ["hash", 19, 7]], [["llvmPackages", 22, 7], ["hash", 23, 7]], [["llvmPackages", 26, 7], ["hash", 27, 7]], [["llvmPackages", 30, 7], ["hash", 31, 7]], [["0.13.0", 13, 5], ["0.14.1", 17, 5], ["0.15.2", 21, 5], ["0.16.0", 25, 5], ["0.17.0", 29, 5]], [["version", 46, 87]]]);
 const formals$1 = { args: { lib: false, callPackage: false, llvmPackages_18: false, llvmPackages_19: false, llvmPackages_20: false, llvmPackages_21: false, llvmPackages_22: false, zigVersions: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["llvmPackages", 14, 7], ["hash", 15, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["llvmPackages", 18, 7], ["hash", 19, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["llvmPackages", 22, 7], ["hash", 23, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["llvmPackages", 26, 7], ["hash", 27, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["llvmPackages", 30, 7], ["hash", 31, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["0.13.0", 13, 5], ["0.14.1", 17, 5], ["0.15.2", 21, 5], ["0.16.0", 25, 5], ["0.17.0", 29, 5]]);
 const formals$2 = { args: { version: false, hash: false, llvmPackages: false }, ellipsis: false };
-const pos$7 = nix.positions(here + "/default.nix", [["version", 46, 87]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,29 +17,29 @@ export default nix.lambda((args) => (() => {
   const llvmPackages_22 = nix.arg($, "llvmPackages_22");
   const zigVersions = nix.argOr($, "zigVersions", () => ({}));
   const versions = nix.thunk(() => nix.update({
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     "0.13.0": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       llvmPackages: llvmPackages_18,
       hash: "sha256-5qSiTq+UWGOwjDVZMIrAt2cDKHkyNPBSAEjpRQUByFM=",
     })),
     "0.14.1": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       llvmPackages: llvmPackages_19,
       hash: "sha256-DhVJIY/z12PJZdb5j4dnCRb7k1CmeQVOnayYRP8azDI=",
     })),
     "0.15.2": nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       llvmPackages: llvmPackages_20,
       hash: "sha256-u3pEMcYN71d83MJh14vtzU4DJXnMHu/Jw86d9XvwKE8=",
     })),
     "0.16.0": nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       llvmPackages: llvmPackages_21,
       hash: "sha256-2sTMhaasyrKoBnyH/hQrNCbi0Vh6HekIrpE4XkyQulQ=",
     })),
     "0.17.0": nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       llvmPackages: llvmPackages_22,
       hash: "sha256-dXy3DrGQHDpXCnr+Wi/1tPEktPm9bBDJQiQ/0VyiMaM=",
     })),
@@ -58,7 +52,7 @@ export default nix.lambda((args) => (() => {
     const llvmPackages = nix.arg($_1, "llvmPackages");
     return nix.app(callPackage, nix.path(here, "./generic.nix"), args_2);
   })(), formals$2);
-  const zigPackages = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (version) => (args_1) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), version)), nix.thunk(() => nix.app(mkPackage, nix.thunk(() => nix.update(args_1, { [nix.POS]: pos$7, version: version }))))), versions));
+  const zigPackages = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (version) => (args_1) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), version)), nix.thunk(() => nix.app(mkPackage, nix.thunk(() => nix.update(args_1, { [nix.POS]: $pos[6], version: version }))))), versions));
   return nix.force(zigPackages);
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

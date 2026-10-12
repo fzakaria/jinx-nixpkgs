@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 29, 5], ["version", 30, 26], ["hash", 31, 5]], [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["__structuredAttrs", 26, 3], ["src", 28, 3], ["build-system", 34, 3], ["dependencies", 36, 3], ["pythonImportsCheck", 52, 3], ["doCheck", 55, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, "alibabacloud-darabonba-array": false, "alibabacloud-darabonba-encode-util": false, "alibabacloud-darabonba-map": false, "alibabacloud-darabonba-signature-util": false, "alibabacloud-darabonba-string": false, "alibabacloud-darabonba-time": false, "alibabacloud-gateway-oss-util": false, "alibabacloud-gateway-spi": false, "alibabacloud-openapi-util": false, "alibabacloud-oss-util": false, "alibabacloud-tea-util": false, "alibabacloud-tea-xml": false, buildPythonPackage: false, "darabonba-core": false, fetchPypi: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 29, 5], ["version", 30, 26], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["__structuredAttrs", 26, 3], ["src", 28, 3], ["build-system", 34, 3], ["dependencies", 36, 3], ["pythonImportsCheck", 52, 3], ["doCheck", 55, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,13 +25,13 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "alibabacloud-gateway-oss",
       version: "0.0.29",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "alibabacloud_gateway_oss",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-fsjqL3+DvHIBMm1sI2DHj9CSvBkxxYJNNotG1Nh3m+4=",
@@ -57,7 +55,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["alibabacloud_gateway_oss"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Aliyun Gateway OSS Library for Python",
         homepage: "https://pypi.org/project/alibabacloud-gateway-oss/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

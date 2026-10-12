@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/9.nix", [[["url", 51, 7], ["hash", 52, 7]], [["url", 55, 7], ["hash", 56, 7]], [["url", 73, 7], ["hash", 74, 7]], [["NIX_CFLAGS_COMPILE", 131, 5]], [["homepage", 161, 5], ["description", 162, 5], ["license", 163, 5], ["maintainers", 164, 5], ["platforms", 165, 5], ["mainProgram", 166, 5]], [["pname", 46, 3], ["version", 47, 3], ["srcs", 49, 3], ["sourceRoot", 60, 3], ["postUnpack", 62, 3], ["patches", 66, 3], ["postPatch", 78, 3], ["strictDeps", 89, 3], ["__structuredAttrs", 90, 3], ["nativeBuildInputs", 92, 3], ["buildInputs", 106, 3], ["env", 130, 3], ["preConfigure", 134, 3], ["postFixup", 156, 3], ["meta", 160, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "pkg-config": false, cmake: false, fetchurl: false, git: false, cctools: false, darwin: false, makeWrapper: false, bison: false, openssl: false, protobuf: false, curl: false, zlib: false, libssh: false, zstd: false, lz4: false, readline: false, libtirpc: false, "rpcsvc-proto": false, libedit: false, libevent: false, icu: false, re2: false, ncurses: false, libfido2: false, python3: false, cyrus_sasl: false, openldap: false, antlr: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/9.nix", [["url", 51, 7], ["hash", 52, 7]]);
-const pos$2 = nix.positions(here + "/9.nix", [["url", 55, 7], ["hash", 56, 7]]);
-const pos$3 = nix.positions(here + "/9.nix", [["url", 73, 7], ["hash", 74, 7]]);
-const pos$4 = nix.positions(here + "/9.nix", [["NIX_CFLAGS_COMPILE", 131, 5]]);
-const pos$5 = nix.positions(here + "/9.nix", [["homepage", 161, 5], ["description", 162, 5], ["license", 163, 5], ["maintainers", 164, 5], ["platforms", 165, 5], ["mainProgram", 166, 5]]);
-const pos$6 = nix.positions(here + "/9.nix", [["pname", 46, 3], ["version", 47, 3], ["srcs", 49, 3], ["sourceRoot", 60, 3], ["postUnpack", 62, 3], ["patches", 66, 3], ["postPatch", 78, 3], ["strictDeps", 89, 3], ["__structuredAttrs", 90, 3], ["nativeBuildInputs", 92, 3], ["buildInputs", 106, 3], ["env", 130, 3], ["preConfigure", 134, 3], ["postFixup", 156, 3], ["meta", 160, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -54,17 +49,17 @@ export default nix.lambda((args) => (() => {
   const mysqlShellVersion = "9.7.1";
   const mysqlServerVersion = "9.7.1";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "mysql-shell",
       version: mysqlShellVersion,
       srcs: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`https://dev.mysql.com/get/Downloads/MySQL-${nix.app(nix.sel(lib, "versions", "majorMinor"), mysqlServerVersion)}/mysql-${mysqlServerVersion}.tar.gz`),
             hash: "sha256-2r/yYwIr5qCRUcIYEjIoc0N+DXeuyMTMc4GILD6hrq4=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: nix.thunk(() => nix.str`https://dev.mysql.com/get/Downloads/MySQL-Shell/mysql-shell-${nix.sel(finalAttrs, "version")}-src.tar.gz`),
             hash: "sha256-7bRgb3CBu3oQiZm5xe6U6DvX5xd9iWqqeNPDwI+BYRQ=",
           })))),
@@ -75,7 +70,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./no-openssl-bundling.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/mysql/mysql-shell/commit/4ce8746d8a7eecf9ae66d4d500c84d57cc4fbdbb.patch",
             hash: "sha256-LUGC7gnNQ3zhmWUm2xogsOAmx8QSngQBHVJMWHFtWz0=",
           })))),
@@ -112,14 +107,14 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostP
         nix.thunk(() => nix.sel(antlr, "runtime", "cpp")),
       ], nix.concat(pythonDeps, nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libtirpc])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.thunk(() => nix.sel(darwin, "libutil"))])))))),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           NIX_CFLAGS_COMPILE: "-Wno-error=maybe-uninitialized -Wno-error=array-bounds",
         })))),
       preConfigure: "# Build MySQL\necho \"Building mysqlclient mysqlxclient\"\n\ncmake -DWITH_SYSTEM_LIBS=ON -DWITH_FIDO=system -DWITH_ROUTER=ON -DWITH_UNIT_TESTS=OFF \\\n  -DFORCE_UNSUPPORTED_COMPILER=1 -S ../mysql -B ../mysql/build\n\ncmake --build ../mysql/build --parallel ${NIX_BUILD_CORES:-1} \\\n  --target mysqlclient mysqlxclient mysqlbinlog mysql_binlog_event_standalone mysqlrouter_all\n\ncmakeFlagsArray+=(\n  \"-DMYSQL_SOURCE_DIR=${NIX_BUILD_TOP}/mysql\"\n  \"-DMYSQL_BUILD_DIR=${NIX_BUILD_TOP}/mysql/build\"\n  \"-DMYSQL_CONFIG_EXECUTABLE=${NIX_BUILD_TOP}/mysql/build/scripts/mysql_config\"\n  \"-DWITH_ZSTD=system\"\n  \"-DWITH_LZ4=system\"\n  \"-DWITH_ZLIB=system\"\n  \"-DWITH_PROTOBUF=system\"\n  \"-DHAVE_PYTHON=1\"\n)\n",
       postFixup: nix.thunk(() => nix.str`wrapProgram $out/bin/mysqlsh --set PYTHONPATH "${nix.app(nix.sel(lib, "makeSearchPath"), nix.thunk(() => nix.sel(python3, "sitePackages")), pythonDeps)}"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: nix.thunk(() => nix.str`https://dev.mysql.com/doc/mysql-shell/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/en/`),
         description: "New command line scriptable shell for MySQL",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

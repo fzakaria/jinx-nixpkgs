@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["description", 23, 5], ["homepage", 24, 5], ["license", 25, 5], ["mainProgram", 26, 5], ["maintainers", 27, 5], ["platforms", 31, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["buildInputs", 20, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { lib: false, clangStdenv: false, fetchurl: false, "gnustep-back": false, wrapGNUstepAppsHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 23, 5], ["homepage", 24, 5], ["license", 25, 5], ["mainProgram", 26, 5], ["maintainers", 27, 5], ["platforms", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["buildInputs", 20, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const gnustep_back = nix.arg($, "gnustep-back");
   const wrapGNUstepAppsHook = nix.arg($, "wrapGNUstepAppsHook");
   return nix.app(nix.sel(clangStdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "system-preferences",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`ftp://ftp.gnustep.org/pub/gnustep/usr-apps/SystemPreferences-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1fg7c3ihfgvl6n21rd17fs9ivx3l8ps874m80vz86n1callgs339",
         })))),
       nativeBuildInputs: nix.thunk(() => [wrapGNUstepAppsHook]),
       buildInputs: nix.thunk(() => [gnustep_back]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Settings manager for the GNUstep environment and its applications",
         homepage: "https://gnustep.github.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),

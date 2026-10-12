@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]], [["pname", 48, 26], ["version", 48, 32], ["src", 48, 40], ["hash", 49, 5]], [["CXXFLAGS", 74, 7]], [["package", 91, 5], ["command", 92, 5], ["version", 93, 5]], [["version", 90, 18]], [["tests", 90, 12]], [["description", 108, 5], ["homepage", 109, 5], ["maintainers", 110, 5], ["license", 114, 5], ["broken", 117, 5]], [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["patches", 41, 3], ["cargoDeps", 47, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 64, 3], ["env", 74, 3], ["configureFlags", 79, 3], ["enableParallelBuilding", 85, 3], ["doCheck", 88, 3], ["passthru", 90, 3], ["postInstall", 96, 3], ["meta", 107, 3]]]);
 const formals$1 = { args: { autoreconfHook: false, boost: false, cargo: false, coreutils: false, curl: false, "cxx-rs": false, db62: false, fetchFromGitHub: false, gitMinimal: false, hexdump: false, lib: false, libevent: false, libsodium: false, makeWrapper: false, rustc: false, rustPlatform: false, "pkg-config": false, llvmPackages: false, testers: false, "tl-expected": false, utf8cpp: false, "util-linux": false, zcash: false, zeromq: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 48, 26], ["version", 48, 32], ["src", 48, 40], ["hash", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["CXXFLAGS", 74, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["package", 91, 5], ["command", 92, 5], ["version", 93, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 90, 18]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 90, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 108, 5], ["homepage", 109, 5], ["maintainers", 110, 5], ["license", 114, 5], ["broken", 117, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["patches", 41, 3], ["cargoDeps", 47, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 64, 3], ["env", 74, 3], ["configureFlags", 79, 3], ["enableParallelBuilding", 85, 3], ["doCheck", 88, 3], ["passthru", 90, 3], ["postInstall", 96, 3], ["meta", 107, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const zeromq = nix.arg($, "zeromq");
   const stdenv = nix.thunk(() => nix.sel(llvmPackages, "stdenv"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "zcash",
       version: "5.4.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "zcash",
           repo: "zcash",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [nix.path(here, "./dont-use-custom-vendoring-logic.patch")]),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -71,7 +64,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [boost, db62, libevent, libsodium, tl_expected, utf8cpp, zeromq]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         CXXFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getDev"), utf8cpp)}/include/utf8cpp`),
             nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getDev"), cxx_rs)}/include`),
@@ -85,11 +78,11 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               package: zcash,
               command: "zcashd --version",
               version: nix.thunk(() => nix.str`v${nix.sel(zcash, "version")}`),
@@ -100,7 +93,7 @@ export default nix.lambda((args) => (() => {
     --set PATH ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutils, curl, util_linux]))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Peer-to-peer, anonymous electronic cash system",
         homepage: "https://z.cash/",
         maintainers: nix.thunk(() => (() => {

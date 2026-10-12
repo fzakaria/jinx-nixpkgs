@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["updateScript", 64, 12]], [["homepage", 67, 5], ["description", 68, 5], ["license", 69, 5], ["platforms", 70, 5], ["teams", 71, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 37, 3], ["cmakeFlags", 46, 3], ["postPatch", 52, 3], ["passthru", 64, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, kwindowsystem: false, liblxqt: false, libqtxdg: false, "lxqt-build-tools": false, "polkit-qt-1": false, qtsvg: false, qttools: false, qtwayland: false, tzdata: false, wrapQtAppsHook: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 64, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 67, 5], ["description", 68, 5], ["license", 69, 5], ["platforms", 70, 5], ["teams", 71, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 37, 3], ["cmakeFlags", 46, 3], ["postPatch", 52, 3], ["passthru", 64, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lxqt-admin";
       const version = "2.4.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lxqt",
           repo: "lxqt-admin",
           rev: version,
@@ -49,11 +46,11 @@ substituteInPlace lxqt-admin-time/timeadmindialog.cpp \\
   --replace-fail "/usr/share/zoneinfo/zone.tab" "${tzdata}/share/zoneinfo/zone.tab"
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/lxqt/lxqt-admin",
         description: "LXQt system administration tool",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
@@ -61,7 +58,7 @@ substituteInPlace lxqt-admin-time/timeadmindialog.cpp \\
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "lxqt"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

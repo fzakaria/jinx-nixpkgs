@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 13], ["hash", 27, 5]], [["nextjs-ollama-llm-ui", 88, 28]], [["tests", 87, 5]], [["description", 93, 5], ["changelog", 94, 5], ["mainProgram", 95, 5], ["homepage", 96, 5], ["license", 97, 5], ["maintainers", 98, 5], ["platforms", 99, 5]], [["pname", 20, 3], ["version", 21, 11], ["src", 23, 3], ["npmDepsHash", 29, 3], ["patches", 31, 3], ["preBuild", 41, 3], ["postBuild", 49, 3], ["installPhase", 55, 3], ["doDist", 83, 3], ["passthru", 86, 3], ["meta", 92, 3]]]);
 const formals$1 = { args: { buildNpmPackage: false, fetchFromGitHub: false, inter: false, nixosTests: false, lib: false, defaultHostname: true, defaultPort: true, ollamaUrl: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 13], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nextjs-ollama-llm-ui", 88, 28]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 87, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 93, 5], ["changelog", 94, 5], ["mainProgram", 95, 5], ["homepage", 96, 5], ["license", 97, 5], ["maintainers", 98, 5], ["platforms", 99, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 11], ["src", 23, 3], ["npmDepsHash", 29, 3], ["patches", 31, 3], ["preBuild", 41, 3], ["postBuild", 49, 3], ["installPhase", 55, 3], ["doDist", 83, 3], ["passthru", 86, 3], ["meta", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const version = "1.2.0";
   const tag = nix.thunk(() => nix.str`v.${version}`);
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "nextjs-ollama-llm-ui",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jakobhoeg",
           repo: "nextjs-ollama-llm-ui",
           tag: tag,
@@ -69,14 +65,14 @@ runHook postInstall
 `),
       doDist: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "nextjs-ollama-llm-ui": nix.thunk(() => nix.attr(nixosTests, "nextjs-ollama-llm-ui")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Simple chat web interface for Ollama LLMs",
         changelog: nix.thunk(() => nix.str`https://github.com/jakobhoeg/nextjs-ollama-llm-ui/releases/tag/${tag}`),
         mainProgram: "nextjs-ollama-llm-ui",

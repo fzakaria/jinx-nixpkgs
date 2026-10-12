@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]], [["tkinter", 67, 66], ["customtkinter", 67, 74], ["packaging", 67, 88]], [["updateScript", 126, 12]], [["changelog", 129, 5], ["description", 130, 5], ["homepage", 131, 5], ["license", 132, 5], ["mainProgram", 133, 5], ["maintainers", 134, 5], ["platforms", 137, 5]], [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["enableParallelBuilding", 51, 3], ["nativeBuildInputs", 53, 3], ["postPatch", 59, 3], ["pythonInputs", 67, 3], ["buildInputs", 69, 3], ["pythonPath", 87, 3], ["makeFlags", 89, 3], ["installPhase", 99, 3], ["postFixup", 120, 3], ["passthru", 126, 3], ["meta", 128, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, stdenv: false, makeWrapper: false, python3Packages: false, tk: false, addDriverRunpath: false, koboldLiteSupport: true, config: false, cudaPackages: true, cublasSupport: true, cudaArches: true, clblastSupport: true, clblast: false, "ocl-icd": false, vulkanSupport: true, "vulkan-loader": false, shaderc: false, metalSupport: true, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["tkinter", 67, 66], ["customtkinter", 67, 74], ["packaging", 67, 88]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 126, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 129, 5], ["description", 130, 5], ["homepage", 131, 5], ["license", 132, 5], ["mainProgram", 133, 5], ["maintainers", 134, 5], ["platforms", 137, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["enableParallelBuilding", 51, 3], ["nativeBuildInputs", 53, 3], ["postPatch", 59, 3], ["pythonInputs", 67, 3], ["buildInputs", 69, 3], ["pythonPath", 87, 3], ["makeFlags", 89, 3], ["installPhase", 99, 3], ["postFixup", 120, 3], ["passthru", 126, 3], ["meta", 128, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,11 +32,11 @@ export default nix.lambda((args) => (() => {
 `)));
   const effectiveStdenv = nix.thunk(() => (nix.asBool(cublasSupport) ? nix.sel(cudaPackages, "backendStdenv") : nix.force(stdenv)));
   return nix.app(nix.sel(effectiveStdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "koboldcpp",
       version: "1.119",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "LostRuins",
           repo: "koboldcpp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +46,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([makeWrapper, nix.thunk(() => nix.sel(python3Packages, "wrapPython"))], nix.app(nix.sel(lib, "optionals"), vulkanSupport, nix.thunk(() => [shaderc])))),
       postPatch: "nixLog \"patching $PWD/Makefile to remove explicit linking against CUDA driver\"\nsubstituteInPlace \"$PWD/Makefile\" \\\n  --replace-fail \\\n    'CUBLASLD_FLAGS = -lcuda ' \\\n    'CUBLASLD_FLAGS = '\n",
       pythonInputs: nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           tkinter: nix.thunk(() => nix.attr(python3Packages, "tkinter")),
           customtkinter: nix.thunk(() => nix.attr(python3Packages, "customtkinter")),
           packaging: nix.thunk(() => nix.attr(python3Packages, "packaging")),
@@ -87,11 +83,11 @@ makeWrapper "$out/bin/koboldcpp.unwrapped" "$out/bin/koboldcpp" \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [tk]))} ${libraryPathWrapperArgs}
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/LostRuins/koboldcpp/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Way to run various GGML and GGUF models",
         homepage: "https://github.com/LostRuins/koboldcpp",

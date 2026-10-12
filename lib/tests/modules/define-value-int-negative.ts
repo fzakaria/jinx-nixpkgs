@@ -2,7 +2,7 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/define-value-int-negative.nix", [["value", 2, 3]]);
+const $pos = nix.positions(here + "/define-value-int-negative.nix", [[["value", 2, 3]]]);
 
-export default nix.thunk(() => ({ [nix.POS]: pos$1, value: nix.thunk(() => nix.neg(23n)) }));
+export default nix.thunk(() => ({ [nix.POS]: $pos[0], value: nix.thunk(() => nix.neg(23n)) }));
 //# sourceMappingURL=define-value-int-negative.ts.map

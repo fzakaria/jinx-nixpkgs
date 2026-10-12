@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["changelog", 49, 5], ["description", 50, 5], ["longDescription", 51, 5], ["homepage", 55, 5], ["mainProgram", 56, 5], ["maintainers", 57, 5], ["license", 61, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["ldflags", 23, 3], ["subPackages", 29, 3], ["nativeBuildInputs", 34, 3], ["doInstallCheck", 36, 3], ["nativeInstallCheckInputs", 37, 3], ["postInstall", 41, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, lib: false, stdenv: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 49, 5], ["description", 50, 5], ["longDescription", 51, 5], ["homepage", 55, 5], ["mainProgram", 56, 5], ["maintainers", 57, 5], ["license", 61, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["ldflags", 23, 3], ["subPackages", 29, 3], ["nativeBuildInputs", 34, 3], ["doInstallCheck", 36, 3], ["nativeInstallCheckInputs", 37, 3], ["postInstall", 41, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "talhelper",
       version: "3.1.17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "budimanjojo",
           repo: "talhelper",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd talhelper \\\n  --bash <($out/bin/talhelper completion bash) \\\n  --fish <($out/bin/talhelper completion fish) \\\n  --zsh <($out/bin/talhelper completion zsh)\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/budimanjojo/talhelper/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Help creating Talos kubernetes cluster",
         longDescription: "Talhelper is a helper tool to help creating Talos Linux cluster\nin your GitOps repository.\n",

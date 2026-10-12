@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["APP_VERSION", 33, 5], ["SEMVER_STR", 34, 5]], [["updateScript", 88, 12]], [["description", 91, 5], ["homepage", 92, 5], ["changelog", 93, 5], ["license", 94, 5], ["mainProgram", 95, 5], ["maintainers", 96, 5], ["platforms", 99, 5], ["sourceProvenance", 103, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["mvnJdk", 28, 3], ["mvnParameters", 29, 3], ["mvnHash", 30, 3], ["env", 32, 3], ["nativeBuildInputs", 37, 3], ["installPhase", 44, 3], ["doInstallCheck", 82, 3], ["versionCheckProgramArg", 83, 3], ["nativeInstallCheckInputs", 84, 3], ["passthru", 88, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, fuse3: false, installShellFiles: false, zulu25: false, lib: false, makeShellWrapper: false, maven: false, "nix-update-script": false, stdenv: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["APP_VERSION", 33, 5], ["SEMVER_STR", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 88, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 91, 5], ["homepage", 92, 5], ["changelog", 93, 5], ["license", 94, 5], ["mainProgram", 95, 5], ["maintainers", 96, 5], ["platforms", 99, 5], ["sourceProvenance", 103, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["mvnJdk", 28, 3], ["mvnParameters", 29, 3], ["mvnHash", 30, 3], ["env", 32, 3], ["nativeBuildInputs", 37, 3], ["installPhase", 44, 3], ["doInstallCheck", 82, 3], ["versionCheckProgramArg", 83, 3], ["nativeInstallCheckInputs", 84, 3], ["passthru", 88, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "cryptomator-cli";
       const version = "0.6.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cryptomator",
           repo: "cli",
           tag: version,
@@ -35,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const mvnJdk = jdk;
       const mvnParameters = "-Dmaven.test.skip=true";
       const mvnHash = "sha256-oMfgWQ6mID1me0OP+BIwGJShCV5r/ahHlcAJ+S1KRBA=";
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, APP_VERSION: version, SEMVER_STR: version }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], APP_VERSION: version, SEMVER_STR: version }));
       const nativeBuildInputs = nix.thunk(() => [jdk, makeShellWrapper, installShellFiles]);
       const installPhase = nix.thunk(() => nix.str`runHook preInstall
 
@@ -70,11 +66,11 @@ runHook postInstall
       const versionCheckProgramArg = "--version";
       const nativeInstallCheckInputs = nix.thunk(() => [versionCheckHook]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Command line program to access encrypted Cryptomator vaults",
         homepage: "https://github.com/cryptomator/cli",
         changelog: nix.thunk(() => nix.str`https://github.com/cryptomator/cli/releases/tag/${version}`),
@@ -94,7 +90,7 @@ runHook postInstall
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

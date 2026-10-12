@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 25, 5], ["version", 26, 13], ["hash", 27, 5]], [["elasticsearch", 40, 5]], [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["build-system", 30, 3], ["buildInputs", 35, 3], ["dependencies", 37, 3], ["optional-dependencies", 39, 3], ["doCheck", 44, 3], ["nativeCheckInputs", 46, 3], ["checkPhase", 55, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, django: false, elasticsearch: false, fetchPypi: false, geopy: false, packaging: false, pysolr: false, pythonAtLeast: false, "python-dateutil": false, requests: false, "setuptools-scm": false, setuptools: false, stdenv: false, whoosh: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 25, 5], ["version", 26, 13], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["elasticsearch", 40, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["build-system", 30, 3], ["buildInputs", 35, 3], ["dependencies", 37, 3], ["optional-dependencies", 39, 3], ["doCheck", 44, 3], ["nativeCheckInputs", 46, 3], ["checkPhase", 55, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.4.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "django_haystack",
           version: version,
           hash: "sha256-Eianyc4T4efq2KyD9uh7/vSZbxRu0klx/eeJYRWxxTA=",
@@ -38,12 +35,12 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools, setuptools_scm]);
       const buildInputs = nix.thunk(() => [django]);
       const dependencies = nix.thunk(() => [packaging]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, elasticsearch: nix.thunk(() => [elasticsearch]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], elasticsearch: nix.thunk(() => [elasticsearch]) }));
       const doCheck = nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")));
       const nativeCheckInputs = nix.thunk(() => nix.concat([geopy, pysolr, python_dateutil, requests, whoosh], nix.sel(optional_dependencies, "elasticsearch")));
       const checkPhase = "runHook preCheck\npython test_haystack/run_tests.py\nrunHook postCheck\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Pluggable search for Django",
         homepage: "http://haystacksearch.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/django-haystack/django-haystack/releases/tag/v${version}`),
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

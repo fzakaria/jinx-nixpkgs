@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 17, 5]], [["pkg-config", 36, 11]], [["tests", 36, 5]], [["description", 40, 5], ["longDescription", 41, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["pkgConfigModules", 51, 5], ["platforms", 52, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["strictDeps", 20, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 24, 3], ["configureFlags", 30, 3], ["passthru", 34, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, xorgproto: false, libx11: false, libxext: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pkg-config", 36, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 36, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 40, 5], ["longDescription", 41, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["pkgConfigModules", 51, 5], ["platforms", 52, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["strictDeps", 20, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 24, 3], ["configureFlags", 30, 3], ["passthru", 34, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libxext = nix.arg($, "libxext");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "libdmx",
       version: "1.1.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://xorg/individual/lib/libdmx-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-NaTiaosLK0/jZEHcpGNkXD+lLSgqw1IFAaOOqULL908=",
         })))),
@@ -33,14 +29,14 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [xorgproto, libx11, libxext]),
       configureFlags: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))), "--enable-malloc0returnsnull")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Xlib-based library for the DMX (Distributed Multihead X) extension",
         longDescription: "This library allows X11 clients to use the Distributed Multihead X (DMX) Extension,\nas previously implemented in the Xdmx server.\nX.Org removed support for the Xdmx server from the xorg-server releases in the version 21\nrelease in 2021. This library is thus now considered deprecated and the version 1.1.5 release\nis the last release X.Org plans to make of libdmx.\n",
         homepage: "https://gitlab.freedesktop.org/xorg/lib/libdmx",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["updateScript", 33, 12]], [["homepage", 36, 5], ["description", 37, 5], ["maintainers", 38, 5]], [["pname", 10, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["mesonAutoFeatures", 30, 3], ["dontVersionCheck", 32, 3], ["passthru", 33, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, cava: false, fetchFromGitHub: false, "nix-update-script": false, meson: false, ninja: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 33, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 36, 5], ["description", 37, 5], ["maintainers", 38, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["mesonAutoFeatures", 30, 3], ["dontVersionCheck", 32, 3], ["passthru", 33, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libcava";
       const version = "1.0.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "LukashonakV",
           repo: "cava",
           tag: version,
@@ -30,17 +27,17 @@ export default nix.lambda((args) => (() => {
       const mesonAutoFeatures = "auto";
       const dontVersionCheck = true;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/LukashonakV/cava",
         description: "Fork of CAVA to build it as a shared library",
         maintainers: nix.thunk(() => nix.concat(nix.sel(old, "meta", "maintainers"), [nix.thunk(() => nix.sel(lib, "maintainers", "PerchunPak"))])),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

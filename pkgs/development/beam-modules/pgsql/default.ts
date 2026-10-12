@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 12, 7], ["buildInputs", 13, 7]], [["owner", 23, 9], ["repo", 24, 9], ["rev", 25, 9], ["sha256", 26, 9]], [["description", 32, 9], ["license", 33, 9], ["homepage", 34, 9], ["maintainers", 35, 9]], [["env", 39, 9]], [["name", 19, 7], ["version", 20, 7], ["src", 22, 7], ["dontStrip", 29, 7], ["meta", 31, 7], ["passthru", 38, 7]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, buildRebar3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 12, 7], ["buildInputs", 13, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 23, 9], ["repo", 24, 9], ["rev", 25, 9], ["sha256", 26, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 32, 9], ["license", 33, 9], ["homepage", 34, 9], ["maintainers", 35, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["env", 39, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["name", 19, 7], ["version", 20, 7], ["src", 22, 7], ["dontStrip", 29, 7], ["meta", 31, 7], ["passthru", 38, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,16 +12,16 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const buildRebar3 = nix.arg($, "buildRebar3");
   const shell = (drv) => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: nix.thunk(() => nix.str`interactive-shell-${nix.sel(drv, "name")}`),
       buildInputs: nix.thunk(() => [drv]),
     })));
   const pkg = (self) => nix.app(buildRebar3, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       name: "pgsql",
       version: "25+beta.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "semiocast",
           repo: "pgsql",
           rev: "14f632bc89e464d82ce3ef12a67ed8c2adb5b60c",
@@ -33,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       dontStrip: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Erlang PostgreSQL Driver",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/semiocast/pgsql",
@@ -42,7 +38,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "ericbmerritt"))];
         })()),
       })),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, env: nix.thunk(() => nix.app(shell, self)) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], env: nix.thunk(() => nix.app(shell, self)) })),
     })));
   return nix.app(nix.sel(lib, "fix"), pkg);
 })(), formals$1);

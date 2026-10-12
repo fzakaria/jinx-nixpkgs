@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 38, 3], ["version", 39, 33], ["meta", 39, 41], ["paths", 41, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 47, 3], ["dontWrapGApps", 56, 3], ["postBuild", 59, 3]]]);
 const formals$1 = { args: { symlinkJoin: false, wrapGAppsHook4: false, gtk4: false, feedbackd: false, librsvg: false, "glycin-loaders": false, "highscore-unwrapped": false, "highscore-blastem": false, "highscore-bsnes": false, "highscore-desmume": false, "highscore-gearsystem": false, "highscore-mednafen": false, "highscore-mgba": false, "highscore-mupen64plus": false, "highscore-nestopia": false, "highscore-prosystem": false, "highscore-sameboy": false, "highscore-stella": false, cores: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 38, 3], ["version", 39, 33], ["meta", 39, 41], ["paths", 41, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 47, 3], ["dontWrapGApps", 56, 3], ["postBuild", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       highscore_stella,
     ])));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "highscore",
       version: nix.thunk(() => nix.attr(highscore_unwrapped, "version")),
       meta: nix.thunk(() => nix.attr(highscore_unwrapped, "meta")),

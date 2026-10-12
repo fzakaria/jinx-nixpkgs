@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["simple", 10, 5]], [["tests", 9, 12]], [["badPlatforms", 14, 5], ["license", 15, 5]], [["name", 8, 3], ["passthru", 9, 3], ["meta", 12, 3]]]);
 const formals$1 = { args: { callPackage: false, makeSetupHook: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["simple", 10, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["tests", 9, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["badPlatforms", 14, 5], ["license", 15, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 8, 3], ["passthru", 9, 3], ["meta", 12, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,17 +11,17 @@ export default nix.lambda((args) => (() => {
   const makeSetupHook = nix.arg($, "makeSetupHook");
   const lib = nix.arg($, "lib");
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       name: "postgresql-test-hook",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           simple: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test.nix"), nix.thunk(() => ({})))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         badPlatforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),

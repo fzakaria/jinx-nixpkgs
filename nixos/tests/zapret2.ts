@@ -2,54 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/zapret2.nix", [[["address", 9, 15], ["prefixLength", 10, 7]], [["addresses", 8, 10]], [["ipv4", 8, 5]], [["maintainers", 22, 8]], [["vlans", 26, 22]], [["addresses", 33, 21]], [["ipv4", 33, 16]], [["addresses", 34, 21]], [["ipv4", 34, 16]], [["eth1", 33, 11], ["eth2", 34, 11]], [["useDHCP", 31, 9], ["interfaces", 32, 9]], [["enable", 39, 40]], [["suricata-update", 39, 24]], [["rules", 75, 24]], [["services", 39, 15], ["tmpfiles", 75, 15]], [["enabled", 45, 18]], [["fast", 45, 13]], [["interface", 50, 15], ["threads", 51, 15], ["defrag", 52, 15], ["cluster-type", 53, 15], ["cluster-id", 54, 15], ["copy-mode", 55, 15], ["copy-iface", 56, 15], ["buffer-size", 57, 15]], [["interface", 60, 15], ["threads", 61, 15], ["cluster-id", 62, 15], ["defrag", 63, 15], ["cluster-type", 64, 15], ["copy-mode", 65, 15], ["copy-iface", 66, 15], ["buffer-size", 67, 15]], [["outputs", 44, 11], ["af-packet", 48, 11], ["classification-file", 71, 11]], [["enable", 42, 9], ["settings", 43, 9]], [["suricata", 41, 16]], [["virtualisation", 26, 7], ["networking", 30, 7], ["systemd", 39, 7], ["services", 41, 7]], [["vlans", 82, 22]], [["eth1", 85, 20]], [["allowedTCPPorts", 86, 18]], [["useDHCP", 84, 9], ["interfaces", 85, 9], ["firewall", 86, 9]], [["certificates", 89, 20]], [["pki", 89, 16]], [["onlySSL", 94, 11], ["reuseport", 95, 11], ["sslCertificate", 96, 11], ["sslCertificateKey", 97, 11], ["root", 98, 11]], [["acme.test", 93, 22]], [["enable", 92, 9], ["virtualHosts", 93, 9]], [["nginx", 91, 16]], [["virtualisation", 82, 7], ["networking", 83, 7], ["security", 89, 7], ["services", 91, 7]], [["vlans", 111, 22]], [["eth1", 114, 20]], [["useDHCP", 113, 9], ["interfaces", 114, 9], ["extraHosts", 129, 18]], [["certificates", 117, 20]], [["pki", 117, 16]], [["interfaces", 121, 18]], [["parameters", 122, 26]], [["default", 122, 18]], [["enable", 120, 9], ["firewall", 121, 9], ["profiles", 122, 9]], [["zapret2", 119, 16]], [["virtualisation", 111, 7], ["networking", 112, 7], ["security", 117, 7], ["services", 119, 7]], [["router", 25, 5], ["server", 81, 5], ["client", 110, 5]], [["name", 21, 3], ["meta", 22, 3], ["nodes", 24, 3], ["testScript", 135, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/zapret2.nix", [["address", 9, 15], ["prefixLength", 10, 7]]);
-const pos$2 = nix.positions(here + "/zapret2.nix", [["addresses", 8, 10]]);
-const pos$3 = nix.positions(here + "/zapret2.nix", [["ipv4", 8, 5]]);
-const pos$4 = nix.positions(here + "/zapret2.nix", [["maintainers", 22, 8]]);
-const pos$5 = nix.positions(here + "/zapret2.nix", [["vlans", 26, 22]]);
-const pos$6 = nix.positions(here + "/zapret2.nix", [["addresses", 33, 21]]);
-const pos$7 = nix.positions(here + "/zapret2.nix", [["ipv4", 33, 16]]);
-const pos$8 = nix.positions(here + "/zapret2.nix", [["addresses", 34, 21]]);
-const pos$9 = nix.positions(here + "/zapret2.nix", [["ipv4", 34, 16]]);
-const pos$10 = nix.positions(here + "/zapret2.nix", [["eth1", 33, 11], ["eth2", 34, 11]]);
-const pos$11 = nix.positions(here + "/zapret2.nix", [["useDHCP", 31, 9], ["interfaces", 32, 9]]);
-const pos$12 = nix.positions(here + "/zapret2.nix", [["enable", 39, 40]]);
-const pos$13 = nix.positions(here + "/zapret2.nix", [["suricata-update", 39, 24]]);
-const pos$14 = nix.positions(here + "/zapret2.nix", [["rules", 75, 24]]);
-const pos$15 = nix.positions(here + "/zapret2.nix", [["services", 39, 15], ["tmpfiles", 75, 15]]);
-const pos$16 = nix.positions(here + "/zapret2.nix", [["enabled", 45, 18]]);
-const pos$17 = nix.positions(here + "/zapret2.nix", [["fast", 45, 13]]);
-const pos$18 = nix.positions(here + "/zapret2.nix", [["interface", 50, 15], ["threads", 51, 15], ["defrag", 52, 15], ["cluster-type", 53, 15], ["cluster-id", 54, 15], ["copy-mode", 55, 15], ["copy-iface", 56, 15], ["buffer-size", 57, 15]]);
-const pos$19 = nix.positions(here + "/zapret2.nix", [["interface", 60, 15], ["threads", 61, 15], ["cluster-id", 62, 15], ["defrag", 63, 15], ["cluster-type", 64, 15], ["copy-mode", 65, 15], ["copy-iface", 66, 15], ["buffer-size", 67, 15]]);
-const pos$20 = nix.positions(here + "/zapret2.nix", [["outputs", 44, 11], ["af-packet", 48, 11], ["classification-file", 71, 11]]);
-const pos$21 = nix.positions(here + "/zapret2.nix", [["enable", 42, 9], ["settings", 43, 9]]);
-const pos$22 = nix.positions(here + "/zapret2.nix", [["suricata", 41, 16]]);
-const pos$23 = nix.positions(here + "/zapret2.nix", [["virtualisation", 26, 7], ["networking", 30, 7], ["systemd", 39, 7], ["services", 41, 7]]);
-const pos$24 = nix.positions(here + "/zapret2.nix", [["vlans", 82, 22]]);
-const pos$25 = nix.positions(here + "/zapret2.nix", [["eth1", 85, 20]]);
-const pos$26 = nix.positions(here + "/zapret2.nix", [["allowedTCPPorts", 86, 18]]);
-const pos$27 = nix.positions(here + "/zapret2.nix", [["useDHCP", 84, 9], ["interfaces", 85, 9], ["firewall", 86, 9]]);
-const pos$28 = nix.positions(here + "/zapret2.nix", [["certificates", 89, 20]]);
-const pos$29 = nix.positions(here + "/zapret2.nix", [["pki", 89, 16]]);
-const pos$30 = nix.positions(here + "/zapret2.nix", [["onlySSL", 94, 11], ["reuseport", 95, 11], ["sslCertificate", 96, 11], ["sslCertificateKey", 97, 11], ["root", 98, 11]]);
-const pos$31 = nix.positions(here + "/zapret2.nix", [["acme.test", 93, 22]]);
-const pos$32 = nix.positions(here + "/zapret2.nix", [["enable", 92, 9], ["virtualHosts", 93, 9]]);
-const pos$33 = nix.positions(here + "/zapret2.nix", [["nginx", 91, 16]]);
-const pos$34 = nix.positions(here + "/zapret2.nix", [["virtualisation", 82, 7], ["networking", 83, 7], ["security", 89, 7], ["services", 91, 7]]);
-const pos$35 = nix.positions(here + "/zapret2.nix", [["vlans", 111, 22]]);
-const pos$36 = nix.positions(here + "/zapret2.nix", [["eth1", 114, 20]]);
-const pos$37 = nix.positions(here + "/zapret2.nix", [["useDHCP", 113, 9], ["interfaces", 114, 9], ["extraHosts", 129, 18]]);
-const pos$38 = nix.positions(here + "/zapret2.nix", [["certificates", 117, 20]]);
-const pos$39 = nix.positions(here + "/zapret2.nix", [["pki", 117, 16]]);
-const pos$40 = nix.positions(here + "/zapret2.nix", [["interfaces", 121, 18]]);
-const pos$41 = nix.positions(here + "/zapret2.nix", [["parameters", 122, 26]]);
-const pos$42 = nix.positions(here + "/zapret2.nix", [["default", 122, 18]]);
-const pos$43 = nix.positions(here + "/zapret2.nix", [["enable", 120, 9], ["firewall", 121, 9], ["profiles", 122, 9]]);
-const pos$44 = nix.positions(here + "/zapret2.nix", [["zapret2", 119, 16]]);
-const pos$45 = nix.positions(here + "/zapret2.nix", [["virtualisation", 111, 7], ["networking", 112, 7], ["security", 117, 7], ["services", 119, 7]]);
-const pos$46 = nix.positions(here + "/zapret2.nix", [["router", 25, 5], ["server", 81, 5], ["client", 110, 5]]);
-const pos$47 = nix.positions(here + "/zapret2.nix", [["name", 21, 3], ["meta", 22, 3], ["nodes", 24, 3], ["testScript", 135, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -58,57 +12,57 @@ export default nix.lambda((args) => (() => {
   const serverIP = "203.0.113.1";
   const clientIP = "203.0.113.2";
   const mkInterface = (address) => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     ipv4: nix.thunk(() => ({
-      [nix.POS]: pos$2,
-      addresses: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => ({ [nix.POS]: pos$1, address: address, prefixLength: 24n })))),
+      [nix.POS]: $pos[1],
+      addresses: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => ({ [nix.POS]: $pos[0], address: address, prefixLength: 24n })))),
     })),
   });
   const suricataRules = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "suricata.rules", "drop tcp-pkt any any -> any any (msg:\"Block acme.test\"; flow:established,to_server; content:\"acme.test\"; nocase; sid:1000001; rev:1;)\n"));
   return {
-    [nix.POS]: pos$47,
+    [nix.POS]: $pos[46],
     name: "zapret2",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "andre4ik3"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$46,
+      [nix.POS]: $pos[45],
       router: nix.thunk(() => ({
-        [nix.POS]: pos$23,
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$5, vlans: nix.thunk(() => [1n, 2n]) })),
+        [nix.POS]: $pos[22],
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[4], vlans: nix.thunk(() => [1n, 2n]) })),
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           useDHCP: false,
           interfaces: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             eth1: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               ipv4: nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), [])),
               })),
             })),
             eth2: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               ipv4: nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), [])),
               })),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$13,
-            "suricata-update": nix.thunk(() => ({ [nix.POS]: pos$12, enable: false })),
+            [nix.POS]: $pos[12],
+            "suricata-update": nix.thunk(() => ({ [nix.POS]: $pos[11], enable: false })),
           })),
           tmpfiles: nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             rules: nix.thunk(() => [
               nix.thunk(() => nix.str`C /var/lib/suricata/rules/suricata.rules - - - - ${suricataRules}`),
               "z /var/lib/suricata/rules/suricata.rules 644 suricata suricata -",
@@ -116,19 +70,19 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$22,
+          [nix.POS]: $pos[21],
           suricata: nix.thunk(() => ({
-            [nix.POS]: pos$21,
+            [nix.POS]: $pos[20],
             enable: true,
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$20,
+              [nix.POS]: $pos[19],
               outputs: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => ({
-                  [nix.POS]: pos$17,
-                  fast: nix.thunk(() => ({ [nix.POS]: pos$16, enabled: true })),
+                  [nix.POS]: $pos[16],
+                  fast: nix.thunk(() => ({ [nix.POS]: $pos[15], enabled: true })),
                 })))),
               "af-packet": nix.thunk(() => [
                 nix.thunk(() => ({
-                  [nix.POS]: pos$18,
+                  [nix.POS]: $pos[17],
                   interface: "eth1",
                   threads: 1n,
                   defrag: false,
@@ -139,7 +93,7 @@ export default nix.lambda((args) => (() => {
                   "buffer-size": 64535n,
                 })),
                 nix.thunk(() => ({
-                  [nix.POS]: pos$19,
+                  [nix.POS]: $pos[18],
                   interface: "eth2",
                   threads: 1n,
                   "cluster-id": 97n,
@@ -156,30 +110,30 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       server: nix.thunk(() => ({
-        [nix.POS]: pos$34,
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$24, vlans: nix.thunk(() => [1n]) })),
+        [nix.POS]: $pos[33],
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[23], vlans: nix.thunk(() => [1n]) })),
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$27,
+          [nix.POS]: $pos[26],
           useDHCP: false,
-          interfaces: nix.thunk(() => ({ [nix.POS]: pos$25, eth1: nix.thunk(() => nix.app(mkInterface, serverIP)) })),
-          firewall: nix.thunk(() => ({ [nix.POS]: pos$26, allowedTCPPorts: nix.thunk(() => [443n]) })),
+          interfaces: nix.thunk(() => ({ [nix.POS]: $pos[24], eth1: nix.thunk(() => nix.app(mkInterface, serverIP)) })),
+          firewall: nix.thunk(() => ({ [nix.POS]: $pos[25], allowedTCPPorts: nix.thunk(() => [443n]) })),
         })),
         security: nix.thunk(() => ({
-          [nix.POS]: pos$29,
+          [nix.POS]: $pos[28],
           pki: nix.thunk(() => ({
-            [nix.POS]: pos$28,
+            [nix.POS]: $pos[27],
             certificates: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => nix.builtins.readFile(nix.path(here, "./common/acme/server/ca.cert.pem"))))),
           })),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$33,
+          [nix.POS]: $pos[32],
           nginx: nix.thunk(() => ({
-            [nix.POS]: pos$32,
+            [nix.POS]: $pos[31],
             enable: true,
             virtualHosts: nix.thunk(() => ({
-              [nix.POS]: pos$31,
+              [nix.POS]: $pos[30],
               "acme.test": nix.thunk(() => ({
-                [nix.POS]: pos$30,
+                [nix.POS]: $pos[29],
                 onlySSL: true,
                 reuseport: true,
                 sslCertificate: nix.path(here, "./common/acme/server/acme.test.cert.pem"),
@@ -191,32 +145,32 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       client: nix.thunk(() => ({
-        [nix.POS]: pos$45,
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$35, vlans: nix.thunk(() => [2n]) })),
+        [nix.POS]: $pos[44],
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[34], vlans: nix.thunk(() => [2n]) })),
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$37,
+          [nix.POS]: $pos[36],
           useDHCP: false,
-          interfaces: nix.thunk(() => ({ [nix.POS]: pos$36, eth1: nix.thunk(() => nix.app(mkInterface, clientIP)) })),
+          interfaces: nix.thunk(() => ({ [nix.POS]: $pos[35], eth1: nix.thunk(() => nix.app(mkInterface, clientIP)) })),
           extraHosts: nix.thunk(() => nix.str`${serverIP} acme.test
 `),
         })),
         security: nix.thunk(() => ({
-          [nix.POS]: pos$39,
+          [nix.POS]: $pos[38],
           pki: nix.thunk(() => ({
-            [nix.POS]: pos$38,
+            [nix.POS]: $pos[37],
             certificates: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => nix.builtins.readFile(nix.path(here, "./common/acme/server/ca.cert.pem"))))),
           })),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$44,
+          [nix.POS]: $pos[43],
           zapret2: nix.thunk(() => ({
-            [nix.POS]: pos$43,
+            [nix.POS]: $pos[42],
             enable: true,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$40, interfaces: nix.thunk(() => ["eth1"]) })),
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[39], interfaces: nix.thunk(() => ["eth1"]) })),
             profiles: nix.thunk(() => ({
-              [nix.POS]: pos$42,
+              [nix.POS]: $pos[41],
               default: nix.thunk(() => ({
-                [nix.POS]: pos$41,
+                [nix.POS]: $pos[40],
                 parameters: nix.thunk(() => [
                   "--filter-tcp=443",
                   "--payload=tls_client_hello",

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 44, 5], ["repo", 45, 5], ["tag", 46, 5], ["hash", 47, 5]], [["fontconfig", 52, 7], ["gobject", 53, 7], ["harfbuzz", 54, 7], ["harfbuzz_subset", 55, 7], ["pango", 56, 7], ["pangoft2", 57, 7]], [["name", 60, 7], ["url", 61, 7], ["hash", 62, 7]], [["FONTCONFIG_FILE", 112, 7]], [["fontDirectories", 119, 9], ["impureFontDirectories", 122, 9]], [["changelog", 133, 5], ["description", 134, 5], ["homepage", 135, 5], ["license", 136, 5], ["mainProgram", 137, 5], ["maintainers", 138, 5]], [["pname", 37, 3], ["version", 38, 3], ["pyproject", 39, 3], ["__darwinAllowLocalNetworking", 41, 3], ["src", 43, 3], ["patches", 50, 3], ["build-system", 66, 3], ["dependencies", 68, 3], ["nativeCheckInputs", 80, 3], ["disabledTests", 88, 3], ["env", 112, 3], ["preCheck", 115, 3], ["makeWrapperArgs", 128, 3], ["pythonImportsCheck", 130, 3], ["meta", 132, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, pkgs: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch2: false, fontconfig: false, glib: false, harfbuzz: false, makeFontsConf: false, pango: false, "twemoji-color-font": false, "flit-core": false, cffi: false, cssselect2: false, fonttools: false, pillow: false, pydyf: false, pyphen: false, tinycss2: false, tinyhtml5: false, "pytest-cov-stub": false, pytestCheckHook: false, replaceVars: false, versionCheckHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 44, 5], ["repo", 45, 5], ["tag", 46, 5], ["hash", 47, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["fontconfig", 52, 7], ["gobject", 53, 7], ["harfbuzz", 54, 7], ["harfbuzz_subset", 55, 7], ["pango", 56, 7], ["pangoft2", 57, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 60, 7], ["url", 61, 7], ["hash", 62, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["FONTCONFIG_FILE", 112, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["fontDirectories", 119, 9], ["impureFontDirectories", 122, 9]]);
-const pos$6 = nix.positions(here + "/default.nix", [["changelog", 133, 5], ["description", 134, 5], ["homepage", 135, 5], ["license", 136, 5], ["mainProgram", 137, 5], ["maintainers", 138, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 37, 3], ["version", 38, 3], ["pyproject", 39, 3], ["__darwinAllowLocalNetworking", 41, 3], ["src", 43, 3], ["patches", 50, 3], ["build-system", 66, 3], ["dependencies", 68, 3], ["nativeCheckInputs", 80, 3], ["disabledTests", 88, 3], ["env", 112, 3], ["preCheck", 115, 3], ["makeWrapperArgs", 128, 3], ["pythonImportsCheck", 130, 3], ["meta", 132, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,13 +34,13 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "weasyprint",
       version: "69.0",
       pyproject: true,
       __darwinAllowLocalNetworking: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Kozea",
           repo: "WeasyPrint",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./library-paths.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             fontconfig: nix.thunk(() => nix.str`${nix.sel(fontconfig, "lib")}/lib/libfontconfig${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
             gobject: nix.thunk(() => nix.str`${nix.sel(glib, "out")}/lib/libgobject-2.0${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
             harfbuzz: nix.thunk(() => nix.str`${nix.sel(harfbuzz, "out")}/lib/libharfbuzz${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
@@ -63,7 +57,7 @@ export default nix.lambda((args) => (() => {
             pangoft2: nix.thunk(() => nix.str`${nix.sel(pango, "out")}/lib/libpangoft2-1.0${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "fix-unicode-test",
             url: "https://github.com/Kozea/WeasyPrint/commit/b2efb459fbe7f7fd35ab9078734121cb87d3d65a.patch?full_index=1",
             hash: "sha256-uixfpg9fvkdNmSTqz/M1c1vkV/mJDqOs7zDAunn2rEY=",
@@ -98,11 +92,11 @@ export default nix.lambda((args) => (() => {
         "test_2d_transform",
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         FONTCONFIG_FILE: nix.thunk(() => nix.str`${nix.sel(fontconfig, "out")}/etc/fonts/fonts.conf`),
       })),
       preCheck: nix.thunk(() => nix.str`export FONTCONFIG_FILE=${nix.app(makeFontsConf, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           fontDirectories: nix.thunk(() => [twemoji_color_font]),
           impureFontDirectories: [],
         })))}
@@ -112,7 +106,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["weasyprint"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         changelog: nix.thunk(() => nix.str`https://github.com/Kozea/WeasyPrint/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Converts web documents to PDF",
         homepage: "https://weasyprint.org/",

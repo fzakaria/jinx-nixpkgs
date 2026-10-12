@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5], ["fetchSubmodules", 39, 5]], [["updateScript", 73, 12]], [["description", 76, 5], ["mainProgram", 77, 5], ["longDescription", 78, 5], ["homepage", 95, 5], ["changelog", 96, 5], ["license", 97, 5], ["maintainers", 102, 5], ["platforms", 106, 5]], [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["strictDeps", 42, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 54, 3], ["passthru", 73, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "desktop-file-utils": false, "glycin-loaders": false, "gobject-introspection": false, meson: false, ninja: false, "pkg-config": false, wrapGAppsHook4: false, vala: false, "evolution-data-server-gtk4": false, glib: false, "glib-networking": false, gnutls: false, gst_all_1: false, "json-glib": false, libadwaita: false, libglycin: false, libpeas2: false, libphonenumber: false, "libportal-gtk4": false, pipewire: false, pulseaudio: false, tinysparql: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5], ["fetchSubmodules", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 73, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 76, 5], ["mainProgram", 77, 5], ["longDescription", 78, 5], ["homepage", 95, 5], ["changelog", 96, 5], ["license", 97, 5], ["maintainers", 102, 5], ["platforms", 106, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["strictDeps", 42, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 54, 3], ["passthru", 73, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const tinysparql = nix.arg($, "tinysparql");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "valent",
       version: "1.0.0.alpha.49",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "andyholmes",
           repo: "valent",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -77,11 +74,11 @@ export default nix.lambda((args) => (() => {
         tinysparql,
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Implementation of the KDE Connect protocol, built on GNOME platform libraries",
         mainProgram: "valent",
         longDescription: "Note that you have to open firewall ports for other devices\nto connect to it. Use either:\n```nix\nprograms.kdeconnect = {\n  enable = true;\n  package = pkgs.valent;\n}\n```\nor open corresponding firewall ports directly:\n```nix\nnetworking.firewall = rec {\n  allowedTCPPortRanges = [ { from = 1714; to = 1764; } ];\n  allowedUDPPortRanges = allowedTCPPortRanges;\n}\n```\n",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["pname", 19, 13], ["version", 19, 19], ["src", 19, 27]], [["updateScript", 41, 12]], [["description", 44, 5], ["homepage", 45, 5], ["platforms", 46, 5], ["maintainers", 47, 5], ["license", 48, 5], ["mainProgram", 49, 5]], [["pname", 23, 11], ["version", 23, 17], ["src", 23, 25], ["extraPkgs", 25, 3], ["nativeBuildInputs", 30, 3], ["extraInstallCommands", 32, 3], ["passthru", 41, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { appimageTools: false, lib: false, fetchurl: false, makeWrapper: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 19, 13], ["version", 19, 19], ["src", 19, 27]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 41, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 44, 5], ["homepage", 45, 5], ["platforms", 46, 5], ["maintainers", 47, 5], ["license", 48, 5], ["mainProgram", 49, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 23, 11], ["version", 23, 17], ["src", 23, 25], ["extraPkgs", 25, 3], ["nativeBuildInputs", 30, 3], ["extraInstallCommands", 32, 3], ["passthru", 41, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const pname = "zettlr";
   const version = "4.8.0";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://github.com/Zettlr/Zettlr/releases/download/v${version}/Zettlr-${version}-x86_64.appimage`),
       hash: "sha256-DICsOp5ojOmcLJoFJU2vMqr5qqxKQPIwfmlevpjQvfs=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[1], pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => (() => {
       const pname_1 = pname;
       const version_1 = version;
@@ -41,11 +37,11 @@ substituteInPlace $out/share/applications/Zettlr.desktop \\
   --replace-fail 'Exec=AppRun' 'Exec=${pname_1}'
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Markdown editor for writing academic texts and taking notes",
         homepage: "https://www.zettlr.com",
         platforms: nix.thunk(() => ["x86_64-linux"]),
@@ -57,7 +53,7 @@ substituteInPlace $out/share/applications/Zettlr.desktop \\
         mainProgram: "zettlr",
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname: pname_1,
         version: version_1,
         src: src_1,

@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 5], ["hash", 25, 5]], [["pname", 29, 13], ["version", 29, 19], ["src", 29, 27]], [["src", 33, 13], ["pname", 35, 5], ["version", 36, 13], ["extraPkgs", 37, 5]], [["name", 68, 7], ["desktopName", 69, 7], ["genericName", 70, 7], ["comment", 71, 7], ["exec", 72, 7], ["icon", 73, 7], ["terminal", 74, 7], ["type", 75, 7], ["mimeTypes", 76, 7], ["categories", 93, 7], ["keywords", 94, 7]], [["extraArgs", 113, 47]], [["updateScript", 113, 12]], [["description", 116, 5], ["homepage", 117, 5], ["changelog", 118, 5], ["longDescription", 119, 5], ["license", 122, 5], ["platforms", 123, 5], ["mainProgram", 124, 5], ["maintainers", 125, 5]], [["pname", 15, 3], ["version", 16, 3], ["appimageBinName", 20, 3], ["wrapperScriptName", 21, 3], ["src", 23, 3], ["appimageContents", 28, 3], ["curaAppimageToolsWrapped", 32, 3], ["script", 42, 3], ["dontUnpack", 58, 3], ["nativeBuildInputs", 60, 3], ["desktopItems", 64, 3], ["installPhase", 101, 3], ["passthru", 113, 3], ["meta", 115, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, stdenvNoCC: false, fetchurl: false, writeScriptBin: false, appimageTools: false, copyDesktopItems: false, makeDesktopItem: false, "nix-update-script": false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 29, 13], ["version", 29, 19], ["src", 29, 27]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 33, 13], ["pname", 35, 5], ["version", 36, 13], ["extraPkgs", 37, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 68, 7], ["desktopName", 69, 7], ["genericName", 70, 7], ["comment", 71, 7], ["exec", 72, 7], ["icon", 73, 7], ["terminal", 74, 7], ["type", 75, 7], ["mimeTypes", 76, 7], ["categories", 93, 7], ["keywords", 94, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["extraArgs", 113, 47]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 113, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 116, 5], ["homepage", 117, 5], ["changelog", 118, 5], ["longDescription", 119, 5], ["license", 122, 5], ["platforms", 123, 5], ["mainProgram", 124, 5], ["maintainers", 125, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["appimageBinName", 20, 3], ["wrapperScriptName", 21, 3], ["src", 23, 3], ["appimageContents", 28, 3], ["curaAppimageToolsWrapped", 32, 3], ["script", 42, 3], ["dontUnpack", 58, 3], ["nativeBuildInputs", 60, 3], ["desktopItems", 64, 3], ["installPhase", 101, 3], ["passthru", 113, 3], ["meta", 115, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,13 +23,13 @@ export default nix.lambda((args) => (() => {
       const appimageBinName = "cura-appimage-tools-output";
       const wrapperScriptName = nix.thunk(() => nix.str`${pname}-wrapper-script`);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/Ultimaker/Cura/releases/download/${version}/Ultimaker-Cura-${version}-linux-X64.AppImage`),
           hash: "sha256-EA8GgSeyWYFn8Auk2w4Gmd7UWt+Xu6stIv8XGh4ezEA=",
         }))));
-      const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
+      const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[1], pname: pname, version: version, src: src }))));
       const curaAppimageToolsWrapped = nix.thunk(() => nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           src: src,
           pname: appimageBinName,
           version: version,
@@ -60,7 +53,7 @@ QT_QPA_PLATFORM=xcb GTK_USE_PORTAL=1 exec "${curaAppimageToolsWrapped}/bin/${app
       const nativeBuildInputs = nix.thunk(() => [copyDesktopItems, wrapGAppsHook3]);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "cura",
             desktopName: "UltiMaker Cura",
             genericName: "3D Printing Software",
@@ -101,14 +94,14 @@ install -Dm644 ${appimageContents}/usr/share/icons/hicolor/128x128/apps/cura-ico
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             extraArgs: nix.thunk(() => ["--version-regex=([56789].+)"]),
           })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "3D printing software",
         homepage: "https://github.com/ultimaker/cura",
         changelog: nix.thunk(() => nix.str`https://github.com/Ultimaker/Cura/releases/tag/${version}`),
@@ -126,7 +119,7 @@ runHook postInstall
         })()),
       }));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname,
         version,
         appimageBinName,

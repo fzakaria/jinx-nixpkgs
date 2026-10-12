@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["hash", 16, 17]], [["hash", 17, 17]], [["hash", 18, 17]], [["0.5", 16, 11], ["0.6", 17, 11], ["0.9", 18, 11]], [["cases", 28, 11], ["out", 32, 11]], [["cases", 35, 11], ["out", 39, 11]], [["description", 53, 5], ["longDescription", 54, 5], ["maintainers", 58, 5], ["license", 59, 5], ["platforms", 60, 5]], [["pname", 13, 3], ["repo", 14, 3], ["release", 16, 3], ["releaseRev", 19, 3], ["version", 21, 11], ["defaultVersion", 22, 3], ["propagatedBuildInputs", 44, 3], ["useDune", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, mkCoqDerivation: false, coq: false, "hydra-battles": false, gaia: false, "mathcomp-zify": false, mathcomp: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["hash", 16, 17]]);
-const pos$2 = nix.positions(here + "/default.nix", [["hash", 17, 17]]);
-const pos$3 = nix.positions(here + "/default.nix", [["hash", 18, 17]]);
-const pos$4 = nix.positions(here + "/default.nix", [["0.5", 16, 11], ["0.6", 17, 11], ["0.9", 18, 11]]);
-const pos$5 = nix.positions(here + "/default.nix", [["cases", 28, 11], ["out", 32, 11]]);
-const pos$6 = nix.positions(here + "/default.nix", [["cases", 35, 11], ["out", 39, 11]]);
-const pos$7 = nix.positions(here + "/default.nix", [["description", 53, 5], ["longDescription", 54, 5], ["maintainers", 58, 5], ["license", 59, 5], ["platforms", 60, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["repo", 14, 3], ["release", 16, 3], ["releaseRev", 19, 3], ["version", 21, 11], ["defaultVersion", 22, 3], ["propagatedBuildInputs", 44, 3], ["useDune", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,21 +16,21 @@ export default nix.lambda((args) => (() => {
   const mathcomp = nix.arg($, "mathcomp");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "gaia-hydras",
       repo: "hydra-battles",
       release: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         "0.5": nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           hash: "sha256:121pcbn6v59l0c165ha9n00whbddpy11npx2y9cn7g879sfk2nqk",
         })),
         "0.6": nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           hash: "sha256:1dri4sisa7mhclf8w4kw7ixs5zxm8xyjr034r1377p96rdk3jj0j",
         })),
         "0.9": nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           hash: "sha256-wlK+154owQD/03FB669KCjyQlL2YOXLCi0KLSo0DOwc=",
         })),
       })),
@@ -50,7 +43,7 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.sel(mathcomp, "version")),
           ]), nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               cases: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.13", "8.16")),
                 nix.thunk(() => nix.app(nix.lookup(w, "range"), "1.12.0", "1.18.0")),
@@ -58,7 +51,7 @@ export default nix.lambda((args) => (() => {
               out: "0.9",
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               cases: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.13", "8.14")),
                 nix.thunk(() => nix.app(nix.lookup(w, "range"), "1.12.0", "1.18.0")),
@@ -70,7 +63,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [hydra_battles, gaia, mathcomp_zify]),
       useDune: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Comparison between ordinals in Gaia and Hydra battles",
         longDescription: "The Gaia and Hydra battles projects develop different notions of ordinals.\nThis development bridges the different notions.\n",
         maintainers: nix.thunk(() => (() => {

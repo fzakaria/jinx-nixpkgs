@@ -2,59 +2,52 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 5, 5], ["hash", 6, 5]], [["url", 9, 5], ["hash", 10, 5]], [["url", 13, 5], ["hash", 14, 5]], [["testName", 19, 5], ["programPath", 20, 5], ["expectedOutput", 21, 5]], [["testName", 24, 5], ["programPath", 25, 5], ["programInput", 26, 5], ["expectedOutput", 27, 5]], [["testName", 30, 5], ["programPath", 31, 5], ["programInput", 32, 5], ["expectedOutput", 33, 5]], [["testName", 36, 5], ["programPath", 37, 5], ["programInput", 38, 5], ["expectedOutput", 39, 5]], [["hello", 18, 3], ["prime", 23, 3], ["no-prime", 29, 3], ["brainfuck", 35, 3]]]);
 const formals$1 = { args: { fetchurl: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 5, 5], ["hash", 6, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 9, 5], ["hash", 10, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["testName", 19, 5], ["programPath", 20, 5], ["expectedOutput", 21, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["testName", 24, 5], ["programPath", 25, 5], ["programInput", 26, 5], ["expectedOutput", 27, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["testName", 30, 5], ["programPath", 31, 5], ["programInput", 32, 5], ["expectedOutput", 33, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["testName", 36, 5], ["programPath", 37, 5], ["programInput", 38, 5], ["expectedOutput", 39, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["hello", 18, 3], ["prime", 23, 3], ["no-prime", 29, 3], ["brainfuck", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const fetchurl = nix.arg($, "fetchurl");
   const callPackage = nix.arg($, "callPackage");
   const hello_program = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://www.dangermouse.net/esoteric/piet/hw6.png",
       hash: "sha256-E8OMu0b/oU8lDF3X4o5WMnnD1IKNT2YF+qe4MXLuczI=",
     }))));
   const prime_tester_program = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: "https://www.bertnase.de/npiet/nprime.gif",
       hash: "sha256-4eaJweV/n73byoWZWCXiMLkfSEhMPf5itVwz48AK/FA=",
     }))));
   const brainfuck_interpreter_program = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       url: "https://www.dangermouse.net/esoteric/piet/piet_bfi.gif",
       hash: "sha256-LIfOG0KFpr4nxAtLLeIsPQl+8Ujyvfz/YnEm/HRoVjY=",
     }))));
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     hello: nix.thunk(() => nix.app(callPackage, nix.path(here, "./run-test.nix"), nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         testName: "hello",
         programPath: hello_program,
         expectedOutput: "Hello, world!",
       })))),
     prime: nix.thunk(() => nix.app(callPackage, nix.path(here, "./run-test.nix"), nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         testName: "prime",
         programPath: prime_tester_program,
         programInput: "2069",
         expectedOutput: "Y",
       })))),
     "no-prime": nix.thunk(() => nix.app(callPackage, nix.path(here, "./run-test.nix"), nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         testName: "no-prime",
         programPath: prime_tester_program,
         programInput: "2070",
         expectedOutput: "N",
       })))),
     brainfuck: nix.thunk(() => nix.app(callPackage, nix.path(here, "./run-test.nix"), nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         testName: "brainfuck",
         programPath: brainfuck_interpreter_program,
         programInput: ",+>,+>,+>,+.<.<.<.|sdhO",

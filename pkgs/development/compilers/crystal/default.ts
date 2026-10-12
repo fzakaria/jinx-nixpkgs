@@ -2,29 +2,10 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["x86_64-linux", 38, 5], ["i686-linux", 39, 5], ["aarch64-darwin", 40, 5], ["aarch64-linux", 41, 5]], [["url", 74, 9], ["sha256", 75, 9]], [["platforms", 84, 12]], [["pname", 70, 7], ["version", 71, 15], ["src", 73, 7], ["buildCommand", 78, 7], ["meta", 84, 7]], [["owner", 106, 9], ["repo", 107, 9], ["rev", 108, 9], ["sha256", 109, 17]], [["tzdata", 114, 19]], [["LLVM_CONFIG", 202, 9], ["FLAGS", 205, 9], ["CRYSTAL_LIBRARY_PATH", 209, 9]], [["crystal", 267, 9]], [["buildBinary", 265, 16], ["buildCrystalPackage", 266, 16], ["llvmPackages", 269, 16]], [["platforms", 272, 31], ["description", 273, 9], ["mainProgram", 274, 9], ["homepage", 275, 9], ["license", 276, 9], ["maintainers", 277, 9]], [["pname", 102, 7], ["buildFlags", 103, 15], ["doCheck", 103, 26], ["version", 103, 34], ["src", 105, 7], ["patches", 112, 7], ["outputs", 118, 7], ["postPatch", 124, 7], ["preBuild", 167, 7], ["strictDeps", 175, 7], ["nativeBuildInputs", 176, 7], ["buildInputs", 184, 7], ["makeFlags", 196, 7], ["env", 201, 7], ["installPhase", 214, 7], ["enableParallelBuilding", 254, 7], ["dontStrip", 256, 7], ["checkTarget", 258, 7], ["preCheck", 260, 7], ["passthru", 265, 7], ["meta", 271, 7]], [["x86_64-linux", 289, 7], ["aarch64-darwin", 290, 7], ["aarch64-linux", 291, 7]], [["version", 287, 5], ["sha256s", 288, 5]], [["version", 296, 5], ["sha256", 297, 5], ["binary", 298, 5], ["llvmPackages", 299, 5], ["doCheck", 300, 5]], [["version", 304, 5], ["sha256", 305, 5], ["binary", 306, 5], ["llvmPackages", 307, 5], ["doCheck", 308, 5]], [["version", 312, 5], ["sha256", 313, 5], ["binary", 314, 5], ["llvmPackages", 315, 5], ["doCheck", 316, 5]], [["version", 320, 5], ["sha256", 321, 5], ["binary", 322, 5], ["llvmPackages", 323, 5], ["doCheck", 324, 5]], [["version", 328, 5], ["sha256", 329, 5], ["binary", 330, 5], ["llvmPackages", 331, 5], ["doCheck", 332, 5]], [["version", 336, 5], ["sha256", 337, 5], ["binary", 338, 5], ["llvmPackages", 339, 5], ["doCheck", 340, 5]], [["binaryCrystal_1_10", 286, 3], ["crystal_1_14", 295, 3], ["crystal_1_15", 303, 3], ["crystal_1_16", 311, 3], ["crystal_1_17", 319, 3], ["crystal_1_18", 327, 3], ["crystal_1_19", 335, 3], ["crystal", 343, 3]]]);
 const formals$1 = { args: { stdenv: false, callPackage: false, fetchFromGitHub: false, fetchurl: false, lib: false, replaceVars: false, boehmgc: false, coreutils: false, git: false, gmp: false, hostname: false, libevent: false, libiconv: false, libxml2: false, libyaml: false, libffi: false, llvmPackages_19: false, llvmPackages_20: false, llvmPackages_21: false, llvmPackages_22: false, makeWrapper: false, openssl: false, pcre2: false, "pkg-config": false, installShellFiles: false, readline: false, tzdata: false, which: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["x86_64-linux", 38, 5], ["i686-linux", 39, 5], ["aarch64-darwin", 40, 5], ["aarch64-linux", 41, 5]]);
 const formals$2 = { args: { version: false, sha256s: false, rel: true }, ellipsis: false };
-const pos$2 = nix.positions(here + "/default.nix", [["url", 74, 9], ["sha256", 75, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["platforms", 84, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 70, 7], ["version", 71, 15], ["src", 73, 7], ["buildCommand", 78, 7], ["meta", 84, 7]]);
 const formals$3 = { args: { version: false, sha256: false, binary: false, llvmPackages: false, doCheck: true, extraBuildInputs: true, buildFlags: true }, ellipsis: false };
-const pos$5 = nix.positions(here + "/default.nix", [["owner", 106, 9], ["repo", 107, 9], ["rev", 108, 9], ["sha256", 109, 17]]);
-const pos$6 = nix.positions(here + "/default.nix", [["tzdata", 114, 19]]);
-const pos$7 = nix.positions(here + "/default.nix", [["LLVM_CONFIG", 202, 9], ["FLAGS", 205, 9], ["CRYSTAL_LIBRARY_PATH", 209, 9]]);
-const pos$8 = nix.positions(here + "/default.nix", [["crystal", 267, 9]]);
-const pos$9 = nix.positions(here + "/default.nix", [["buildBinary", 265, 16], ["buildCrystalPackage", 266, 16], ["llvmPackages", 269, 16]]);
-const pos$10 = nix.positions(here + "/default.nix", [["platforms", 272, 31], ["description", 273, 9], ["mainProgram", 274, 9], ["homepage", 275, 9], ["license", 276, 9], ["maintainers", 277, 9]]);
-const pos$11 = nix.positions(here + "/default.nix", [["pname", 102, 7], ["buildFlags", 103, 15], ["doCheck", 103, 26], ["version", 103, 34], ["src", 105, 7], ["patches", 112, 7], ["outputs", 118, 7], ["postPatch", 124, 7], ["preBuild", 167, 7], ["strictDeps", 175, 7], ["nativeBuildInputs", 176, 7], ["buildInputs", 184, 7], ["makeFlags", 196, 7], ["env", 201, 7], ["installPhase", 214, 7], ["enableParallelBuilding", 254, 7], ["dontStrip", 256, 7], ["checkTarget", 258, 7], ["preCheck", 260, 7], ["passthru", 265, 7], ["meta", 271, 7]]);
-const pos$12 = nix.positions(here + "/default.nix", [["x86_64-linux", 289, 7], ["aarch64-darwin", 290, 7], ["aarch64-linux", 291, 7]]);
-const pos$13 = nix.positions(here + "/default.nix", [["version", 287, 5], ["sha256s", 288, 5]]);
-const pos$14 = nix.positions(here + "/default.nix", [["version", 296, 5], ["sha256", 297, 5], ["binary", 298, 5], ["llvmPackages", 299, 5], ["doCheck", 300, 5]]);
-const pos$15 = nix.positions(here + "/default.nix", [["version", 304, 5], ["sha256", 305, 5], ["binary", 306, 5], ["llvmPackages", 307, 5], ["doCheck", 308, 5]]);
-const pos$16 = nix.positions(here + "/default.nix", [["version", 312, 5], ["sha256", 313, 5], ["binary", 314, 5], ["llvmPackages", 315, 5], ["doCheck", 316, 5]]);
-const pos$17 = nix.positions(here + "/default.nix", [["version", 320, 5], ["sha256", 321, 5], ["binary", 322, 5], ["llvmPackages", 323, 5], ["doCheck", 324, 5]]);
-const pos$18 = nix.positions(here + "/default.nix", [["version", 328, 5], ["sha256", 329, 5], ["binary", 330, 5], ["llvmPackages", 331, 5], ["doCheck", 332, 5]]);
-const pos$19 = nix.positions(here + "/default.nix", [["version", 336, 5], ["sha256", 337, 5], ["binary", 338, 5], ["llvmPackages", 339, 5], ["doCheck", 340, 5]]);
-const pos$20 = nix.positions(here + "/default.nix", [["binaryCrystal_1_10", 286, 3], ["crystal_1_14", 295, 3], ["crystal_1_15", 303, 3], ["crystal_1_16", 311, 3], ["crystal_1_17", 319, 3], ["crystal_1_18", 327, 3], ["crystal_1_19", 335, 3], ["crystal", 343, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -58,7 +39,7 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const zlib = nix.arg($, "zlib");
   const archs = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "x86_64-linux": "linux-x86_64",
     "i686-linux": "linux-i686",
     "aarch64-darwin": "darwin-universal",
@@ -76,7 +57,7 @@ export default nix.lambda((args) => (() => {
         const pname = "crystal-binary";
         const version_1 = version;
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: nix.thunk(() => nix.app(binaryUrl, version_1, rel)),
             sha256: nix.thunk(() => nix.sel(sha256s, nix.key(nix.sel(stdenv, "system")))),
           }))));
@@ -85,10 +66,10 @@ tar --strip-components=1 -C $out -xf ${src}
 patchShebangs $out/bin/crystal
 `);
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           platforms: nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), sha256s)),
         }));
-        return { [nix.POS]: pos$4, pname, version: version_1, src, buildCommand, meta };
+        return { [nix.POS]: $pos[3], pname, version: version_1, src, buildCommand, meta };
       })()));
   })(), formals$2);
   const generic = nix.lambda((args_1) => (() => {
@@ -101,20 +82,20 @@ patchShebangs $out/bin/crystal
     const extraBuildInputs = nix.argOr($_1, "extraBuildInputs", () => []);
     const buildFlags = nix.argOr($_1, "buildFlags", () => ["all", "docs", "release=1"]);
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         pname: "crystal",
         buildFlags: buildFlags,
         doCheck: doCheck,
         version: version,
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             owner: "crystal-lang",
             repo: "crystal",
             rev: version,
             sha256: sha256,
           })))),
         patches: nix.thunk(() => [
-          nix.thunk(() => nix.app(replaceVars, nix.path(here, "./tzdata.patch"), nix.thunk(() => ({ [nix.POS]: pos$6, tzdata: tzdata })))),
+          nix.thunk(() => nix.app(replaceVars, nix.path(here, "./tzdata.patch"), nix.thunk(() => ({ [nix.POS]: $pos[5], tzdata: tzdata })))),
         ]),
         outputs: nix.thunk(() => ["out", "lib", "bin"]),
         postPatch: nix.thunk(() => nix.add(nix.str`export TMP=$(mktemp -d)
@@ -164,7 +145,7 @@ substituteInPlace spec/std/socket/udp_socket_spec.cr \\
         buildInputs: nix.thunk(() => nix.concat([boehmgc, pcre2, libevent, libyaml, zlib, libxml2, openssl], nix.concat(extraBuildInputs, nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv]))))),
         makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`CRYSTAL_CONFIG_VERSION=${version}`), "progress=1"]),
         env: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           LLVM_CONFIG: nix.thunk(() => nix.str`${nix.sel(llvmPackages, "llvm", "dev")}/bin/llvm-config`),
           FLAGS: "--single-module",
           CRYSTAL_LIBRARY_PATH: nix.thunk(() => nix.str`${nix.builtins.placeholder("lib")}/crystal`),
@@ -206,10 +187,10 @@ runHook postInstall
 export PATH=${nix.app(nix.sel(lib, "makeBinPath"), nativeCheckInputs)}:$PATH
 `),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           buildBinary: binary,
           buildCrystalPackage: nix.thunk(() => nix.app(callPackage, nix.path(here, "./build-package.nix"), nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               crystal: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
           llvmPackages: llvmPackages,
@@ -217,7 +198,7 @@ export PATH=${nix.app(nix.sel(lib, "makeBinPath"), nativeCheckInputs)}:$PATH
         meta: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(binary, "meta"));
           return {
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           platforms: nix.thunk(() => nix.attr(from, "platforms")),
           description: "Compiled language with Ruby like syntax and type inference",
           mainProgram: "crystal",
@@ -237,17 +218,17 @@ export PATH=${nix.app(nix.sel(lib, "makeBinPath"), nativeCheckInputs)}:$PATH
   })(), formals$3);
   return (() => {
     const binaryCrystal_1_10 = nix.thunk(() => nix.app(genericBinary, nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         version: "1.10.1",
         sha256s: nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           "x86_64-linux": "sha256-F0LjdV02U9G6B8ApHxClF/o5KvhxMNukSX7Z2CwSNIs=",
           "aarch64-darwin": "sha256-5kkObQl0VIO6zqQ8TYl0JzYyUmwfmPE9targpfwseSQ=",
           "aarch64-linux": "sha256-AzFz+nrU/HJmCL1hbCKXf5ej/uypqV1GJPVLQ4J3778=",
         })),
       }))));
     const crystal_1_14 = nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         version: "1.14.1",
         sha256: "sha256-cQWK92BfksOW8GmoXn4BmPGJ7CLyLAeKccOffQMh5UU=",
         binary: binaryCrystal_1_10,
@@ -255,7 +236,7 @@ export PATH=${nix.app(nix.sel(lib, "makeBinPath"), nativeCheckInputs)}:$PATH
         doCheck: false,
       }))));
     const crystal_1_15 = nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         version: "1.15.1",
         sha256: "sha256-L/Q8yZdDq/wn4kJ+zpLfi4pxznAtgjxTCbLnEiCC2K0=",
         binary: binaryCrystal_1_10,
@@ -263,7 +244,7 @@ export PATH=${nix.app(nix.sel(lib, "makeBinPath"), nativeCheckInputs)}:$PATH
         doCheck: false,
       }))));
     const crystal_1_16 = nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         version: "1.16.3",
         sha256: "sha256-U9H1tHUMyDNicZnXzEccDki5bGXdV0B2Wu2PyCksPVI=",
         binary: binaryCrystal_1_10,
@@ -271,7 +252,7 @@ export PATH=${nix.app(nix.sel(lib, "makeBinPath"), nativeCheckInputs)}:$PATH
         doCheck: false,
       }))));
     const crystal_1_17 = nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         version: "1.17.1",
         sha256: "sha256-+wHhozPhpIsfQy1Lw+V48zvuWCfXzT4IC9KA1AU/DLw=",
         binary: binaryCrystal_1_10,
@@ -279,7 +260,7 @@ export PATH=${nix.app(nix.sel(lib, "makeBinPath"), nativeCheckInputs)}:$PATH
         doCheck: false,
       }))));
     const crystal_1_18 = nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        [nix.POS]: pos$18,
+        [nix.POS]: $pos[17],
         version: "1.18.2",
         sha256: "sha256-bwKs9bwD1WfS95DSxVY5AjT5Q61jOsfAH897tmiurng=",
         binary: binaryCrystal_1_10,
@@ -287,7 +268,7 @@ export PATH=${nix.app(nix.sel(lib, "makeBinPath"), nativeCheckInputs)}:$PATH
         doCheck: false,
       }))));
     const crystal_1_19 = nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        [nix.POS]: pos$19,
+        [nix.POS]: $pos[18],
         version: "1.19.1",
         sha256: "sha256-vMS2GJb6c6RvflDSS2EWHsERJ0rvzZMVm50gaTXRs4Y=",
         binary: binaryCrystal_1_10,
@@ -296,7 +277,7 @@ export PATH=${nix.app(nix.sel(lib, "makeBinPath"), nativeCheckInputs)}:$PATH
       }))));
     const crystal = crystal_1_19;
     return {
-      [nix.POS]: pos$20,
+      [nix.POS]: $pos[19],
       binaryCrystal_1_10,
       crystal_1_14,
       crystal_1_15,

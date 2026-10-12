@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["name", 35, 7], ["url", 36, 7], ["hash", 37, 7]], [["homepage", 73, 5], ["description", 74, 5], ["license", 75, 5], ["platforms", 76, 5], ["maintainers", 77, 5]], [["pname", 10, 3], ["version", 12, 3], ["src", 14, 3], ["outputs", 21, 3], ["nativeBuildInputs", 25, 3], ["cmakeFlags", 27, 3], ["patches", 32, 3], ["postPatch", 43, 3], ["checkPhase", 53, 3], ["doCheck", 59, 3], ["installPhase", 61, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cmake: false, fetchFromGitHub: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 35, 7], ["url", 36, 7], ["hash", 37, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 73, 5], ["description", 74, 5], ["license", 75, 5], ["platforms", 76, 5], ["maintainers", 77, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 12, 3], ["src", 14, 3], ["outputs", 21, 3], ["nativeBuildInputs", 25, 3], ["cmakeFlags", 27, 3], ["patches", 32, 3], ["postPatch", 43, 3], ["checkPhase", 53, 3], ["doCheck", 59, 3], ["installPhase", 61, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "safestringlib",
       version: "1.2.0-unstable-2024-10-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "intel",
           repo: "safestringlib",
           rev: "e99c03cfafdce5311c4dbf1fd3f916ccc6e300be",
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
       ]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "darwin-fix",
             url: "https://github.com/intel/safestringlib/pull/75/commits/3ff9c6234be7dd4ee1dd5cdc2ccbb2c7541adfec.patch",
             hash: "sha256-4HS7XyKPQSmKczaMCi1s6NxgTNzRZXTds2CXBTbpuAM=",
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/lib\ncp ../libsafestring_static.a $out/lib/libsafestring.a\nmkdir -p $out/\ncp -r ../../include  $out/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/intel/safestringlib",
         description: "Safer replacements for C library functions that prevent serious security vulnerabilities",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

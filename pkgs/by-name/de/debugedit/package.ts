@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["url", 31, 7], ["hash", 32, 7]], [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["platforms", 64, 5], ["maintainers", 65, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 27, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 42, 3], ["nativeCheckInputs", 47, 3], ["preBuild", 54, 3], ["doCheck", 58, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { fetchgit: false, fetchpatch: false, lib: false, stdenv: false, autoreconfHook: false, "pkg-config": false, elfutils: false, xxhash: false, help2man: false, "util-linux": false, cpio: false, gdb: false, dwz: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 31, 7], ["hash", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["platforms", 64, 5], ["maintainers", 65, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 27, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 42, 3], ["nativeCheckInputs", 47, 3], ["preBuild", 54, 3], ["doCheck", 58, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,18 +21,18 @@ export default nix.lambda((args) => (() => {
   const gdb = nix.arg($, "gdb");
   const dwz = nix.arg($, "dwz");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "debugedit",
       version: "5.2",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "git://sourceware.org/git/debugedit.git",
           tag: nix.thunk(() => nix.str`debugedit-${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-6SOw5t9Hnb9Picx18LwqLwaPieueO6mXl8/vGnU+81E=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://sourceware.org/git/?p=debugedit.git;a=commitdiff_plain;h=c011f478dca2c89d52958a8999b99663d14db85d",
             hash: "sha256-fOjXKA3U1YM+ZMieLhWiXdJj79IJ+iFNH0x+Asn/EMY=",
           })))),
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "patchShebangs scripts/find-debuginfo.in\n",
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Provides programs and scripts for creating debuginfo and source file distributions, collect build-ids and rewrite source paths in DWARF data for debugging, tracing and profiling",
         homepage: "https://sourceware.org/debugedit/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

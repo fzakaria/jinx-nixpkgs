@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]], [["url", 42, 7], ["hash", 43, 7]], [["tagPrefix", 81, 41]], [["updateScript", 81, 5], ["libVersion", 82, 13]], [["description", 86, 5], ["longDescription", 87, 5], ["homepage", 92, 5], ["license", 93, 5], ["platforms", 97, 5], ["maintainers", 98, 5]], [["pname", 37, 11], ["version", 37, 17], ["src", 37, 25], ["patches", 39, 3], ["outputs", 47, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 61, 3], ["configureFlags", 69, 3], ["postFixup", 74, 3], ["passthru", 80, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, unstableGitUpdater: false, autoreconfHook: false, "autoconf-archive": false, bison: false, flex: false, glib: false, "pkg-config": false, json_c: false, libvirt: false, legacyKVM: true, libkvmi: false, xenSupport: true, xen: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 42, 7], ["hash", 43, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tagPrefix", 81, 41]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 81, 5], ["libVersion", 82, 13]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 86, 5], ["longDescription", 87, 5], ["homepage", 92, 5], ["license", 93, 5], ["platforms", 97, 5], ["maintainers", 98, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 37, 11], ["version", 37, 17], ["src", 37, 25], ["patches", 39, 3], ["outputs", 47, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 61, 3], ["configureFlags", 69, 3], ["postFixup", 74, 3], ["passthru", 80, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,20 +28,20 @@ export default nix.lambda((args) => (() => {
   const version = "0.14.0-unstable-2026-01-04";
   const libVersion = "0.0.15";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "libvmi",
       repo: "libvmi",
       rev: "82bbee6c378da854d07887048b06dc4ee8e20d6a",
       hash: "sha256-PGILZdVdY3MyfvYW8h4NGeB4XgwL02oKdl4RAR1OkqA=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: pname,
       version: version,
       src: src,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/libvmi/libvmi/commit/9deb49d17e7e675158ed3b19d405792254e22bdf.patch",
             hash: "sha256-stjbHogH6JpCu3hTR+UUJGzUeq1TOWZPc8ocjUA7t/g=",
           })))),
@@ -60,12 +55,12 @@ oldrpath=$(patchelf --print-rpath "$libvmi")
 patchelf --set-rpath "$oldrpath:${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [xen]))}" "$libvmi"
 `))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, tagPrefix: "v" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], tagPrefix: "v" })))),
         libVersion: libVersion,
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "C library for virtual machine introspection",
         longDescription: "LibVMI is a C library with Python bindings that makes it easy to monitor the low-level\ndetails of a running virtual machine by viewing its memory, trapping on hardware events,\nand accessing the vCPU registers.\n",
         homepage: "https://libvmi.com/",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 27, 5], ["version", 28, 13], ["hash", 29, 5]], [["libcst", 50, 5]], [["description", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["mainProgram", 77, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["build-system", 32, 3], ["dependencies", 34, 3], ["pythonRelaxDeps", 47, 3], ["optional-dependencies", 49, 3], ["nativeCheckInputs", 53, 3], ["preCheck", 59, 3], ["disabledTestPaths", 64, 3], ["pythonImportsCheck", 69, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, "google-api-core": false, "google-auth": false, "google-cloud-testutils": false, "grpc-google-iam-v1": false, "grpcio-status": false, grpcio: false, libcst: false, "opentelemetry-api": false, "opentelemetry-sdk": false, "proto-plus": false, protobuf: false, "pytest-asyncio": false, pytestCheckHook: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 27, 5], ["version", 28, 13], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["libcst", 50, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["mainProgram", 77, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["build-system", 32, 3], ["dependencies", 34, 3], ["pythonRelaxDeps", 47, 3], ["optional-dependencies", 49, 3], ["nativeCheckInputs", 53, 3], ["preCheck", 59, 3], ["disabledTestPaths", 64, 3], ["pythonImportsCheck", 69, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.41.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "google_cloud_pubsub",
           version: version,
           hash: "sha256-THtCwjwUV1Q2ZewWLXXguhsdTJitzJx1PzUXFk95N9c=",
@@ -50,13 +47,13 @@ export default nix.lambda((args) => (() => {
         protobuf,
       ], nix.sel(google_api_core, "optional-dependencies", "grpc")));
       const pythonRelaxDeps = nix.thunk(() => ["protobuf"]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, libcst: nix.thunk(() => [libcst]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], libcst: nix.thunk(() => [libcst]) }));
       const nativeCheckInputs = nix.thunk(() => [google_cloud_testutils, pytestCheckHook, pytest_asyncio]);
       const preCheck = "# prevent google directory from shadowing google imports\nrm -r google\n";
       const disabledTestPaths = nix.thunk(() => ["tests/unit/pubsub_v1"]);
       const pythonImportsCheck = nix.thunk(() => ["google.cloud.pubsub"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Google Cloud Pub/Sub API client library",
         homepage: "https://github.com/googleapis/google-cloud-python/tree/main/packages/google-cloud-pubsub",
         changelog: nix.thunk(() => nix.str`https://github.com/googleapis/google-cloud-python/blob/google-cloud-pubsub-v${version}/packages/google-cloud-pubsub/CHANGELOG.md`),
@@ -65,7 +62,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "fixup_pubsub_v1_keywords.py",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

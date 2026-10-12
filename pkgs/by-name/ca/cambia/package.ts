@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["description", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["maintainers", 27, 5]], [["description", 49, 7]], [["pname", 31, 5], ["version", 32, 13], ["src", 34, 5], ["postPatch", 35, 5], ["npmDepsHash", 40, 5], ["installPhase", 42, 5], ["meta", 48, 5]], [["name", 63, 7], ["url", 64, 7], ["hash", 65, 7]], [["extraArgs", 83, 7]], [["updateScript", 82, 5], ["frontend", 88, 13]], [["mainProgram", 92, 5]], [["pname", 55, 3], ["version", 56, 11], ["src", 56, 19], ["cargoHash", 58, 3], ["cargoPatches", 60, 3], ["postPatch", 69, 3], ["nativeBuildInputs", 73, 3], ["buildInputs", 77, 3], ["passthru", 81, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, buildNpmPackage: false, "cargo-tauri": false, fetchpatch: false, "nix-update-script": false, openssl: false, "pkg-config": false, rustPlatform: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["maintainers", 27, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 49, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 31, 5], ["version", 32, 13], ["src", 34, 5], ["postPatch", 35, 5], ["npmDepsHash", 40, 5], ["installPhase", 42, 5], ["meta", 48, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 63, 7], ["url", 64, 7], ["hash", 65, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["extraArgs", 83, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["updateScript", 82, 5], ["frontend", 88, 13]]);
-const pos$8 = nix.positions(here + "/package.nix", [["mainProgram", 92, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 55, 3], ["version", 56, 11], ["src", 56, 19], ["cargoHash", 58, 3], ["cargoPatches", 60, 3], ["postPatch", 69, 3], ["nativeBuildInputs", 73, 3], ["buildInputs", 77, 3], ["passthru", 81, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,14 +19,14 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const version = "0-unstable-2025-03-07";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "arg274",
       repo: "cambia",
       rev: "bef0975f72e15b925d881ab70d3bc556ecf4ff7f",
       hash: "sha256-4/GKvU3r4JpOKgkLgSOKEHnSoIsjgjQU6pay2deiIng=",
     }))));
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     description: "Compact disc ripper log checking utility",
     homepage: "https://github.com/arg274/cambia",
     license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -44,24 +36,24 @@ export default nix.lambda((args) => (() => {
     })()),
   }));
   const frontend = nix.thunk(() => nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cambia-frontend",
       version: version,
       src: nix.thunk(() => nix.str`${src}/web`),
       postPatch: "substituteInPlace tailwind.config.ts \\\n  --replace-fail \"import { cambiaTheme } from './cambia-theme'\" \\\n  \"import { cambiaTheme } from './cambia-theme.ts'\"\n",
       npmDepsHash: "sha256-U+2YfsC4u6rJdeMo2zxWiXGM3061MKCcFl0oZt0ug6o=",
       installPhase: "runHook preInstall\ncp -r build/ $out\nrunHook postInstall\n",
-      meta: nix.thunk(() => nix.update(meta, { [nix.POS]: pos$3, description: "Web UI for Cambia" })),
+      meta: nix.thunk(() => nix.update(meta, { [nix.POS]: $pos[2], description: "Web UI for Cambia" })),
     })));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "cambia",
       version: version,
       src: src,
       cargoHash: "sha256-dNgFQiJrakdP0ynyVcak6cKU02Z5dcw2nhh9XhlWsOg=",
       cargoPatches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "cargo.lock.patch",
             url: "https://github.com/arg274/cambia/commit/b47944fbaf4e631ede25c560a4d7e684a2ad5014.patch",
             hash: "sha256-y9WkEmzBaFJ0eHWK0hVmB6+IdWespp79N9lSuteZZAI=",
@@ -72,11 +64,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [openssl]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$6, extraArgs: nix.thunk(() => ["-s", "frontend"]) })))),
+        [nix.POS]: $pos[6],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[5], extraArgs: nix.thunk(() => ["-s", "frontend"]) })))),
         frontend: frontend,
       })),
-      meta: nix.thunk(() => nix.update(meta, { [nix.POS]: pos$8, mainProgram: "cambia" })),
+      meta: nix.thunk(() => nix.update(meta, { [nix.POS]: $pos[7], mainProgram: "cambia" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

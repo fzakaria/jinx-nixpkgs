@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 13, 5], ["url", 14, 5], ["hash", 15, 5]], [["description", 72, 5], ["longDescription", 73, 5], ["homepage", 83, 5], ["downloadPage", 84, 5], ["changelog", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["mainProgram", 88, 5], ["platforms", 89, 5], ["sourceProvenance", 93, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 18, 3], ["dontUnpack", 20, 3], ["installPhase", 22, 3], ["preFixup", 38, 3], ["dontStrip", 69, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 13, 5], ["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 72, 5], ["longDescription", 73, 5], ["homepage", 83, 5], ["downloadPage", 84, 5], ["changelog", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["mainProgram", 88, 5], ["platforms", 89, 5], ["sourceProvenance", 93, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 18, 3], ["dontUnpack", 20, 3], ["installPhase", 22, 3], ["preFixup", 38, 3], ["dontStrip", 69, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "github-copilot-intellij-agent";
       const version = "1.4.5.4049";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: nix.thunk(() => nix.str`${pname}-${version}-plugin.zip`),
           url: "https://plugins.jetbrains.com/plugin/download?updateId=454005",
           hash: "sha256-ibu3OcmtyLHuumhJQ6QipsNEIdEhvLUS7sb3xmnaR0U=",
@@ -75,7 +73,7 @@ fix_offset PRELUDE_POSITION
         const platforms = nix.thunk(() => ["x86_64-linux", "aarch64-darwin"]);
         const sourceProvenance = nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryNativeCode"))]);
         return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           description,
           longDescription,
           homepage,
@@ -89,7 +87,7 @@ fix_offset PRELUDE_POSITION
         };
       })());
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

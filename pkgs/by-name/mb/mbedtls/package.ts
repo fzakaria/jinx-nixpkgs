@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 7], ["hash", 20, 7]], [["version", 9, 3], ["hash", 10, 3], ["patches", 12, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, callPackage: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 7], ["hash", 20, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 9, 3], ["hash", 10, 3], ["patches", 12, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(callPackage, nix.path(here, "./generic.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: "3.6.7",
       hash: "sha256-t1ZPeFA3ftKaEIaXQ7RXZEsiOAYK4KSSm55SFr9g17A=",
       patches: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: "https://raw.githubusercontent.com/openwrt/openwrt/52b6c9247997e51a97f13bb9e94749bc34e2d52e/package/libs/mbedtls/patches/100-fix-gcc14-build.patch",
             hash: "sha256-20bxGoUHkrOEungN3SamYKNgj95pM8IjbisNRh68Wlw=",
           })))),

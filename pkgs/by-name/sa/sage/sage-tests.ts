@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/sage-tests.nix", [[["LC_ALL", 55, 5]], [["version", 29, 3], ["pname", 30, 3], ["src", 31, 11], ["nativeBuildInputs", 33, 3], ["buildInputs", 34, 3], ["dontUnpack", 39, 3], ["configurePhase", 40, 3], ["buildPhase", 41, 3], ["installPhase", 43, 3], ["env", 52, 3], ["__darwinAllowLocalNetworking", 59, 3], ["doInstallCheck", 60, 3], ["installCheckPhase", 61, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, pytest: false, "sage-with-env": false, makeWrapper: false, files: true, longTests: true, timeLimit: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/sage-tests.nix", [["LC_ALL", 55, 5]]);
-const pos$2 = nix.positions(here + "/sage-tests.nix", [["version", 29, 3], ["pname", 30, 3], ["src", 31, 11], ["nativeBuildInputs", 33, 3], ["buildInputs", 34, 3], ["dontUnpack", 39, 3], ["configurePhase", 40, 3], ["buildPhase", 41, 3], ["installPhase", 43, 3], ["env", 52, 3], ["__darwinAllowLocalNetworking", 59, 3], ["doInstallCheck", 60, 3], ["installCheckPhase", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const relpathToArg = (relpath) => nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk(() => nix.str`${src}/${relpath}`));
   const testFileList = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.builtins.map(relpathToArg, files))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: nix.thunk(() => nix.sel(src, "version")),
       pname: "sage-tests",
       src: src,
@@ -40,7 +39,7 @@ mkdir -p "$out/bin"
 # Like a symlink, but make sure that $0 points to the original.
 makeWrapper "${sage_with_env}/bin/sage" "$out/bin/sage"
 `),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$1, LC_ALL: "en_US.UTF-8" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: $pos[0], LC_ALL: "en_US.UTF-8" })))),
       __darwinAllowLocalNetworking: true,
       doInstallCheck: true,
       installCheckPhase: nix.thunk(() => nix.str`export HOME="$TMPDIR/sage-home"

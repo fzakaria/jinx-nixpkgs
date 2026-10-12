@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 32, 5], ["repo", 33, 5], ["rev", 34, 5], ["hash", 35, 5]], [["package", 82, 48]], [["onscripter", 81, 13], ["pkg-config", 82, 5]], [["tagFormat", 86, 5], ["tagPrefix", 87, 5], ["branch", 88, 5]], [["tests", 80, 12], ["updateScript", 85, 12]], [["description", 92, 5], ["homepage", 93, 5], ["pkgConfigModules", 94, 5], ["teams", 95, 5], ["license", 96, 5], ["platforms", 97, 24]], [["pname", 24, 3], ["version", 25, 3], ["src", 31, 3], ["postPatch", 41, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 54, 3], ["configureFlags", 65, 3], ["outputs", 72, 3], ["strictDeps", 77, 3], ["__structuredAttrs", 78, 3], ["passthru", 80, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { lib: false, SDL: false, fetchFromGitHub: false, fluidsynth: false, "libopenmpt-modplug": false, libogg: false, libvorbis: false, "pkg-config": false, libmpg123: false, libmikmod: false, flac: false, autoreconfHook: false, stdenv: false, unstableGitUpdater: false, onscripter: false, testers: false, enableSdltest: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 32, 5], ["repo", 33, 5], ["rev", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 82, 48]]);
-const pos$3 = nix.positions(here + "/package.nix", [["onscripter", 81, 13], ["pkg-config", 82, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tagFormat", 86, 5], ["tagPrefix", 87, 5], ["branch", 88, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 80, 12], ["updateScript", 85, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 92, 5], ["homepage", 93, 5], ["pkgConfigModules", 94, 5], ["teams", 95, 5], ["license", 96, 5], ["platforms", 97, 24]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 31, 3], ["postPatch", 41, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 54, 3], ["configureFlags", 65, 3], ["outputs", 72, 3], ["strictDeps", 77, 3], ["__structuredAttrs", 78, 3], ["passthru", 80, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const enableSdltest = nix.argOr($, "enableSdltest", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "SDL_mixer",
       version: "1.2.12-unstable-2026-09-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "libsdl-org",
           repo: "SDL_mixer",
           rev: "31fe14e9043e1a19caa42dce744b06bc0b648a56",
@@ -63,17 +57,17 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       __structuredAttrs: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           onscripter: onscripter,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             tagFormat: "release-1.*",
             tagPrefix: "release-",
             branch: "SDL-1.2",
@@ -82,7 +76,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(SDL, "meta"));
         return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "SDL multi-channel audio mixer library",
         homepage: "http://www.libsdl.org/projects/SDL_mixer/",
         pkgConfigModules: nix.thunk(() => ["SDL_mixer"]),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["hash", 21, 5]], [["url", 27, 7], ["hash", 28, 7]], [["oddjobd", 61, 26]], [["tests", 60, 12]], [["changelog", 65, 5], ["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 24, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 37, 3], ["configureFlags", 44, 3], ["postConfigure", 52, 3], ["doCheck", 58, 3], ["passthru", 60, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { autoreconfHook: false, dbus: false, fetchpatch: false, fetchurl: false, lib: false, libxml2: false, nixosTests: false, pam: false, "pkg-config": false, stdenv: false, systemd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 27, 7], ["hash", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["oddjobd", 61, 26]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 60, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["changelog", 65, 5], ["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 24, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 37, 3], ["configureFlags", 44, 3], ["postConfigure", 52, 3], ["doCheck", 58, 3], ["passthru", 60, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,17 +19,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const systemd = nix.arg($, "systemd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "oddjob",
       version: "0.34.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://pagure.io/oddjob/archive/oddjob-${nix.sel(finalAttrs, "version")}/oddjob-oddjob-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-SUOsMH55HtEsk5rX0CXK0apDObTj738FGOaL5xZRnIM=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://pagure.io/oddjob/c/f63287a35107385dcb6e04a4c742077c9d1eab86.patch",
             hash: "sha256-2mmw4pJhrIk4/47FM8zKH0dTQJWnntHPNmq8VAUWqJI=",
           })))),
@@ -51,11 +46,14 @@ export default nix.lambda((args) => (() => {
       postConfigure: "substituteInPlace src/oddjobd.c \\\n  --replace \"globals.selinux_enabled\" \"FALSE\"\n",
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, oddjobd: nix.thunk(() => nix.attr(nixosTests, "oddjobd")) })),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[2],
+          oddjobd: nix.thunk(() => nix.attr(nixosTests, "oddjobd")),
+        })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://pagure.io/oddjob/blob/oddjob-${nix.sel(finalAttrs, "version")}/f/ChangeLog`),
         description: "Odd Job Daemon",
         homepage: "https://pagure.io/oddjob",

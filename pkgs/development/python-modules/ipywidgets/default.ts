@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 23, 13], ["version", 23, 19], ["hash", 24, 5]], [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["build-system", 27, 3], ["dependencies", 29, 3], ["nativeCheckInputs", 37, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, fetchPypi: false, setuptools: false, comm: false, ipykernel: false, ipython: false, jsonschema: false, "jupyterlab-widgets": false, lib: false, pytestCheckHook: false, pytz: false, traitlets: false, widgetsnbextension: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 23, 13], ["version", 23, 19], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["build-system", 27, 3], ["dependencies", 29, 3], ["nativeCheckInputs", 37, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "8.1.8";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-YflpMGuV+F+6a2mGt/5F1zEk0dnjAjqAaHENR6Iupmg=",
@@ -36,13 +34,13 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [comm, ipython, jupyterlab_widgets, traitlets, widgetsnbextension]);
       const nativeCheckInputs = nix.thunk(() => [ipykernel, jsonschema, pytestCheckHook, pytz]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "IPython HTML widgets for Jupyter",
         homepage: "https://github.com/jupyter-widgets/ipywidgets",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 27, 5], ["hash", 28, 5]], [["homepage", 80, 5], ["description", 81, 5], ["longDescription", 82, 5], ["license", 96, 5], ["mainProgram", 97, 5], ["maintainers", 98, 5], ["platforms", 99, 27]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["outputs", 52, 3], ["strictDeps", 60, 3], ["postPatch", 62, 3], ["configureFlags", 68, 3], ["postInstall", 73, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoreconfHook: false, fontconfig: false, freetype: false, libx11: false, libxft: false, libxi: false, libxpm: false, libxrandr: false, libxt: false, libxtst: false, perl: false, "pkg-config": false, readline: false, texinfo: false, xorgproto: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 80, 5], ["description", 81, 5], ["longDescription", 82, 5], ["license", 96, 5], ["mainProgram", 97, 5], ["maintainers", 98, 5], ["platforms", 99, 27]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["outputs", 52, 3], ["strictDeps", 60, 3], ["postPatch", 62, 3], ["configureFlags", 68, 3], ["postInstall", 73, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const texinfo = nix.arg($, "texinfo");
   const xorgproto = nix.arg($, "xorgproto");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ratpoison",
       version: "1.4.9",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://savannah/ratpoison/ratpoison-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-2Y+kvgJezKRTxAf/MRqzlJ8p8g1tir7fjwcWuF/I0fE=",
         })))),
@@ -59,7 +57,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(libx11, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.nongnu.org/ratpoison/",
         description: "Simple mouse-free tiling window manager",
         longDescription: "Ratpoison is a simple window manager with no fat library\ndependencies, no fancy graphics, no window decorations, and no\nrodent dependence.  It is largely modelled after GNU Screen which\nhas done wonders in the virtual terminal market.\n\nThe screen can be split into non-overlapping frames.  All windows\nare kept maximized inside their frames to take full advantage of\nyour precious screen real estate.\n\nAll interaction with the window manager is done through keystrokes.\nRatpoison has a prefix map to minimize the key clobbering that\ncripples Emacs and other quality pieces of software.\n",

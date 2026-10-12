@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 30, 5], ["hash", 31, 5]], [["description", 84, 5], ["mainProgram", 85, 5], ["homepage", 86, 5], ["longDescription", 87, 5], ["license", 92, 5], ["platforms", 93, 5], ["maintainers", 94, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 42, 3], ["cmakeFlags", 76, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch2: false, cfitsio: false, cmake: false, "pkg-config": false, curl: false, eigen: false, gsl: false, "indi-full": false, kdePackages: false, libnova: false, libraw: false, libsecret: false, libxisf: false, opencv: false, stellarsolver: false, wcslib: false, xplanet: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 84, 5], ["mainProgram", 85, 5], ["homepage", 86, 5], ["longDescription", 87, 5], ["license", 92, 5], ["platforms", 93, 5], ["maintainers", 94, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 42, 3], ["cmakeFlags", 76, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const xplanet = nix.arg($, "xplanet");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "kstars",
       version: "3.8.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://kde/stable/kstars/${nix.sel(finalAttrs, "version")}/kstars-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-GPV4lEv7qAD3CRrvg1UNiY4MNr3f4pafe7h4B99g5bM=",
         })))),
@@ -95,7 +93,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Virtual planetarium astronomy software",
         mainProgram: "kstars",
         homepage: "https://kde.org/applications/education/org.kde.kstars",

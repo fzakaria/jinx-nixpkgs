@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["nativeBuildInputs", 10, 3]]]);
 const formals$1 = { args: { runCommand: false, python: false, plotly: false, pandas: false, kaleido: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tests.nix", [["nativeBuildInputs", 10, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const pandas = nix.arg($, "pandas");
   const kaleido = nix.arg($, "kaleido");
   return nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(kaleido, "pname")}-tests`), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       nativeBuildInputs: nix.thunk(() => [python, plotly, pandas, kaleido]),
     })), nix.thunk(() => nix.str`python3 ${nix.path(here, "./tests.py")}`));
 })(), formals$1);

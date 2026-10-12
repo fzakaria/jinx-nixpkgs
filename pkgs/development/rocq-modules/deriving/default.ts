@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["cases", 18, 9], ["out", 22, 17]], [["hash", 36, 19]], [["hash", 37, 19]], [["hash", 38, 19]], [["hash", 39, 19]], [["hash", 40, 19]], [["hash", 41, 19]], [["0.2.3", 36, 11], ["0.2.2", 37, 11], ["0.2.1", 38, 11], ["0.2.0", 39, 11], ["0.1.1", 40, 11], ["0.1.0", 41, 11]], [["description", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]], [["pname", 11, 3], ["owner", 12, 3], ["version", 14, 11], ["defaultVersion", 15, 3], ["releaseRev", 34, 3], ["release", 36, 3], ["propagatedBuildInputs", 43, 3], ["mlPlugin", 48, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, mkCoqDerivation: false, coq: false, version: true, ssreflect: false, stdlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["cases", 18, 9], ["out", 22, 17]]);
-const pos$2 = nix.positions(here + "/default.nix", [["hash", 36, 19]]);
-const pos$3 = nix.positions(here + "/default.nix", [["hash", 37, 19]]);
-const pos$4 = nix.positions(here + "/default.nix", [["hash", 38, 19]]);
-const pos$5 = nix.positions(here + "/default.nix", [["hash", 39, 19]]);
-const pos$6 = nix.positions(here + "/default.nix", [["hash", 40, 19]]);
-const pos$7 = nix.positions(here + "/default.nix", [["hash", 41, 19]]);
-const pos$8 = nix.positions(here + "/default.nix", [["0.2.3", 36, 11], ["0.2.2", 37, 11], ["0.2.1", 38, 11], ["0.2.0", 39, 11], ["0.1.1", 40, 11], ["0.1.0", 41, 11]]);
-const pos$9 = nix.positions(here + "/default.nix", [["description", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]]);
-const pos$10 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["owner", 12, 3], ["version", 14, 11], ["defaultVersion", 15, 3], ["releaseRev", 34, 3], ["release", 36, 3], ["propagatedBuildInputs", 43, 3], ["mlPlugin", 48, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const ssreflect = nix.arg($, "ssreflect");
   const stdlib = nix.arg($, "stdlib");
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "deriving",
       owner: "arthuraa",
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (coq_1) => (mc) => (out) => ({ [nix.POS]: pos$1, cases: nix.thunk(() => [coq_1, mc]), out: out });
+        const case$ = (coq_1) => (mc) => (out) => ({ [nix.POS]: $pos[0], cases: nix.thunk(() => [coq_1, mc]), out: out });
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => [
             nix.thunk(() => nix.sel(coq, "coq-version")),
@@ -40,36 +31,36 @@ export default nix.lambda((args) => (() => {
       })()),
       releaseRev: (v) => nix.str`v${v}`,
       release: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         "0.2.3": nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           hash: "sha256-LqrSlML5pA84FGY4C/xm1EKSgjDe+NaQCSFg2ggdPHE=",
         })),
         "0.2.2": nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           hash: "sha256-qsbyQ4spg5vVLZkechb2LoBazGjMh7pR9sSS0s7tXxs=",
         })),
         "0.2.1": nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           hash: "sha256-053bNa3rcy0fCs9CQoKPxDLXnKRHzteyClLDURpaZJo=",
         })),
         "0.2.0": nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           hash: "sha256-xPsuEayHstjF0PGFJZJ+5cm0oMUrpoGLXN23op97vjM=",
         })),
         "0.1.1": nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           hash: "sha256-Gu8aInLxTXfAFE0/gWRYI046Dx3Gv1j1+gx92v/UnPI=",
         })),
         "0.1.0": nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           hash: "sha256:11crnjm8hyis1qllkks3d7r07s1rfzwvyvpijya3s6iqfh8c7xwh",
         })),
       })),
       propagatedBuildInputs: nix.thunk(() => [ssreflect, stdlib]),
       mlPlugin: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Generic instances of MathComp classes",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "vbgl"))]),

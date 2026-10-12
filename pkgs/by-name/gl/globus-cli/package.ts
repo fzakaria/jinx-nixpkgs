@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["mainProgram", 72, 5], ["description", 73, 5], ["homepage", 74, 5], ["changelog", 75, 5], ["license", 76, 5], ["maintainers", 77, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["build-system", 21, 3], ["dependencies", 27, 3], ["pythonRelaxDeps", 36, 3], ["nativeBuildInputs", 41, 3], ["nativeCheckInputs", 43, 3], ["versionCheckProgramArg", 60, 3], ["postInstall", 62, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3Packages: false, installShellFiles: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["mainProgram", 72, 5], ["description", 73, 5], ["homepage", 74, 5], ["changelog", 75, 5], ["license", 76, 5], ["maintainers", 77, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["build-system", 21, 3], ["dependencies", 27, 3], ["pythonRelaxDeps", 36, 3], ["nativeBuildInputs", 41, 3], ["nativeCheckInputs", 43, 3], ["versionCheckProgramArg", 60, 3], ["postInstall", 62, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.41.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "globus",
           repo: "globus-cli",
           tag: version,
@@ -66,7 +64,7 @@ export default nix.lambda((args) => (() => {
       const versionCheckProgramArg = "version";
       const postInstall = "mkdir -p completions/{bash,zsh}\n$out/bin/globus --bash-completer > completions/bash/globus\n$out/bin/globus --zsh-completer > completions/zsh/_globus\ninstallShellCompletion \\\n  --bash completions/bash/globus \\\n  --zsh completions/zsh/_globus\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         mainProgram: "globus",
         description: "Command-line interface to Globus REST APIs, including the Transfer API and the Globus Auth API",
         homepage: "https://github.com/globus/globus-cli",
@@ -75,7 +73,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "richardjacton"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

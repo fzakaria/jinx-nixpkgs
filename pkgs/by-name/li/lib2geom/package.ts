@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["inkscape", 95, 15]], [["aarch64-cross", 99, 7]], [["tests", 94, 5]], [["description", 104, 5], ["homepage", 105, 5], ["license", 106, 5], ["maintainers", 110, 5], ["platforms", 111, 5]], [["pname", 20, 3], ["version", 21, 3], ["outputs", 23, 3], ["src", 28, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 41, 3], ["checkInputs", 49, 3], ["nativeCheckInputs", 53, 3], ["strictDeps", 57, 3], ["cmakeFlags", 59, 3], ["doCheck", 65, 3], ["dontUseNinjaCheck", 66, 3], ["disabledTests", 67, 3], ["passthru", 93, 3], ["meta", 103, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitLab: false, cmake: false, ninja: false, "pkg-config": false, boost: false, glib: false, gsl: false, cairo: false, "double-conversion": false, gtest: false, ctestCheckHook: false, lib: false, inkscape: false, pkgsCross: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["inkscape", 95, 15]]);
-const pos$3 = nix.positions(here + "/package.nix", [["aarch64-cross", 99, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 94, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 104, 5], ["homepage", 105, 5], ["license", 106, 5], ["maintainers", 110, 5], ["platforms", 111, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["outputs", 23, 3], ["src", 28, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 41, 3], ["checkInputs", 49, 3], ["nativeCheckInputs", 53, 3], ["strictDeps", 57, 3], ["cmakeFlags", 59, 3], ["doCheck", 65, 3], ["dontUseNinjaCheck", 66, 3], ["disabledTests", 67, 3], ["passthru", 93, 3], ["meta", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const inkscape = nix.arg($, "inkscape");
   const pkgsCross = nix.arg($, "pkgsCross");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "lib2geom",
       version: "1.4",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "inkscape",
           repo: "lib2geom",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -60,14 +55,14 @@ export default nix.lambda((args) => (() => {
           "ellipse-test",
         ])))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => nix.update({ [nix.POS]: pos$2, inkscape: inkscape }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(stdenv, "buildPlatform", "system"), "x86_64-linux")), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => nix.update({ [nix.POS]: $pos[1], inkscape: inkscape }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(stdenv, "buildPlatform", "system"), "x86_64-linux")), nix.thunk(() => ({
+            [nix.POS]: $pos[2],
             "aarch64-cross": nix.thunk(() => nix.sel(pkgsCross, "aarch64-multiplatform", "lib2geom")),
           }))))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Easy to use 2D geometry library in C++",
         homepage: "https://gitlab.com/inkscape/lib2geom",
         license: nix.thunk(() => [

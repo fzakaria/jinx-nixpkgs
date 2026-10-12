@@ -2,28 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["maintainers", 16, 8]], [["kernelParams", 21, 10]], [["enable", 29, 9], ["hostname", 30, 9]], [["enable", 26, 7], ["nginx", 28, 7], ["ldapConfigFile", 33, 7]], [["includes", 65, 23]], [["objectClass", 73, 15], ["olcDatabase", 77, 15], ["olcDbDirectory", 78, 15], ["olcSuffix", 79, 15], ["olcRootDN", 80, 15], ["olcRootPW", 81, 15]], [["attrs", 72, 13]], [["cn=schema", 65, 11], ["olcDatabase={1}mdb", 71, 11]], [["children", 64, 9]], [["enable", 62, 7], ["settings", 63, 7], ["declarativeContents", 86, 7]], [["netbox", 25, 14], ["openldap", 61, 14]], [["extraGroups", 124, 23]], [["nginx", 124, 17]], [["users", 124, 11]], [["allowedTCPPorts", 126, 25]], [["firewall", 126, 16]], [["boot", 21, 5], ["services", 25, 5], ["users", 124, 5], ["networking", 126, 5]], [["machine", 20, 14]], [["enable", 129, 27]], [["sshBackdoor", 129, 15]], [["name", 14, 3], ["meta", 16, 3], ["skipTypeCheck", 18, 3], ["containers", 20, 3], ["interactive", 129, 3], ["testScript", 131, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["maintainers", 16, 8]]);
-const pos$2 = nix.positions(here + "/default.nix", [["kernelParams", 21, 10]]);
-const pos$3 = nix.positions(here + "/default.nix", [["enable", 29, 9], ["hostname", 30, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["enable", 26, 7], ["nginx", 28, 7], ["ldapConfigFile", 33, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["includes", 65, 23]]);
-const pos$6 = nix.positions(here + "/default.nix", [["objectClass", 73, 15], ["olcDatabase", 77, 15], ["olcDbDirectory", 78, 15], ["olcSuffix", 79, 15], ["olcRootDN", 80, 15], ["olcRootPW", 81, 15]]);
-const pos$7 = nix.positions(here + "/default.nix", [["attrs", 72, 13]]);
-const pos$8 = nix.positions(here + "/default.nix", [["cn=schema", 65, 11], ["olcDatabase={1}mdb", 71, 11]]);
-const pos$9 = nix.positions(here + "/default.nix", [["children", 64, 9]]);
-const pos$10 = nix.positions(here + "/default.nix", [["enable", 62, 7], ["settings", 63, 7], ["declarativeContents", 86, 7]]);
-const pos$11 = nix.positions(here + "/default.nix", [["netbox", 25, 14], ["openldap", 61, 14]]);
-const pos$12 = nix.positions(here + "/default.nix", [["extraGroups", 124, 23]]);
-const pos$13 = nix.positions(here + "/default.nix", [["nginx", 124, 17]]);
-const pos$14 = nix.positions(here + "/default.nix", [["users", 124, 11]]);
-const pos$15 = nix.positions(here + "/default.nix", [["allowedTCPPorts", 126, 25]]);
-const pos$16 = nix.positions(here + "/default.nix", [["firewall", 126, 16]]);
-const pos$17 = nix.positions(here + "/default.nix", [["boot", 21, 5], ["services", 25, 5], ["users", 124, 5], ["networking", 126, 5]]);
-const pos$18 = nix.positions(here + "/default.nix", [["machine", 20, 14]]);
-const pos$19 = nix.positions(here + "/default.nix", [["enable", 129, 27]]);
-const pos$20 = nix.positions(here + "/default.nix", [["sshBackdoor", 129, 15]]);
-const pos$21 = nix.positions(here + "/default.nix", [["name", 14, 3], ["meta", 16, 3], ["skipTypeCheck", 18, 3], ["containers", 20, 3], ["interactive", 129, 3], ["testScript", 131, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,10 +17,10 @@ export default nix.lambda((args) => (() => {
   const testPassword = "verySecure";
   const testGroup = "netbox-users";
   return {
-    [nix.POS]: pos$21,
+    [nix.POS]: $pos[20],
     name: "netbox",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "minijackson"))];
@@ -48,16 +28,16 @@ export default nix.lambda((args) => (() => {
     })),
     skipTypeCheck: true,
     containers: nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$17,
-        boot: nix.thunk(() => ({ [nix.POS]: pos$2, kernelParams: nix.thunk(() => ["audit=1"]) })),
+        [nix.POS]: $pos[16],
+        boot: nix.thunk(() => ({ [nix.POS]: $pos[1], kernelParams: nix.thunk(() => ["audit=1"]) })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           netbox: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             enable: true,
-            nginx: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true, hostname: "localhost" })),
+            nginx: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true, hostname: "localhost" })),
             ldapConfigFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "ldap_config.py", nix.thunk(() => nix.str`import ldap
 from django_auth_ldap.config import LDAPSearch, PosixGroupType
 
@@ -84,14 +64,14 @@ AUTH_LDAP_FIND_GROUP_PERMS = True
 `))),
           })),
           openldap: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             enable: true,
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               children: nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 "cn=schema": nix.thunk(() => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   includes: nix.thunk(() => [
                     nix.thunk(() => nix.str`${nix.sel(pkgs, "openldap")}/etc/schema/core.ldif`),
                     nix.thunk(() => nix.str`${nix.sel(pkgs, "openldap")}/etc/schema/cosine.ldif`),
@@ -100,9 +80,9 @@ AUTH_LDAP_FIND_GROUP_PERMS = True
                   ]),
                 })),
                 "olcDatabase={1}mdb": nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   attrs: nix.thunk(() => ({
-                    [nix.POS]: pos$6,
+                    [nix.POS]: $pos[5],
                     objectClass: nix.thunk(() => ["olcDatabaseConfig", "olcMdbConfig"]),
                     olcDatabase: "{1}mdb",
                     olcDbDirectory: "/var/lib/openldap/db",
@@ -151,21 +131,21 @@ memberUid: ${testUser}
           })),
         })),
         users: nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           users: nix.thunk(() => ({
-            [nix.POS]: pos$13,
-            nginx: nix.thunk(() => ({ [nix.POS]: pos$12, extraGroups: nix.thunk(() => ["netbox"]) })),
+            [nix.POS]: $pos[12],
+            nginx: nix.thunk(() => ({ [nix.POS]: $pos[11], extraGroups: nix.thunk(() => ["netbox"]) })),
           })),
         })),
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$16,
-          firewall: nix.thunk(() => ({ [nix.POS]: pos$15, allowedTCPPorts: nix.thunk(() => [80n]) })),
+          [nix.POS]: $pos[15],
+          firewall: nix.thunk(() => ({ [nix.POS]: $pos[14], allowedTCPPorts: nix.thunk(() => [80n]) })),
         })),
       })),
     })),
     interactive: nix.thunk(() => ({
-      [nix.POS]: pos$20,
-      sshBackdoor: nix.thunk(() => ({ [nix.POS]: pos$19, enable: true })),
+      [nix.POS]: $pos[19],
+      sshBackdoor: nix.thunk(() => ({ [nix.POS]: $pos[18], enable: true })),
     })),
     testScript: nix.thunk(() => (() => {
       const changePassword = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "change-password.py", "from users.models import User\nu = User.objects.get(username='netbox')\nu.set_password('netbox')\nu.save()\n"));

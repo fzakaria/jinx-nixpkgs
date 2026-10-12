@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["description", 66, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["platforms", 70, 5], ["maintainers", 71, 5], ["mainProgram", 72, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["build-system", 33, 3], ["propagatedBuildInputs", 37, 3], ["dependencies", 43, 3], ["nativeCheckInputs", 50, 3], ["unittestFlagsArray", 60, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, djvulibre: false, "docbook-xsl-ns": false, glibcLocales: false, libxml2: false, libxml2Python: false, libxslt: false, "pkg-config": false, tesseract5: false, withCuneiform: true, cuneiform: false, withGocr: true, gocr: false, withOcrad: true, ocrad: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 66, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["platforms", 70, 5], ["maintainers", 71, 5], ["mainProgram", 72, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["build-system", 33, 3], ["propagatedBuildInputs", 37, 3], ["dependencies", 43, 3], ["nativeCheckInputs", 50, 3], ["unittestFlagsArray", 60, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.14";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "FriedrichFroebel",
           repo: "ocrodjvu",
           tag: version,
@@ -62,7 +60,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const unittestFlagsArray = nix.thunk(() => ["tests", "-v"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Wrapper for OCR systems that allows you to perform OCR on DjVu files",
         homepage: "https://github.com/FriedrichFroebel/ocrodjvu",
         changelog: nix.thunk(() => nix.str`https://github.com/FriedrichFroebel/ocrodjvu/blob/${version}/doc/changelog`),
@@ -75,7 +73,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "ocrodjvu",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["ndppd", 35, 43]], [["tests", 35, 12]], [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["platforms", 41, 5], ["mainProgram", 42, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["makeFlags", 22, 3], ["preConfigure", 26, 3], ["postInstall", 30, 3], ["passthru", 35, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, gzip: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ndppd", 35, 43]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 35, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["platforms", 41, 5], ["mainProgram", 42, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["makeFlags", 22, 3], ["preConfigure", 26, 3], ["postInstall", 30, 3], ["passthru", 35, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const gzip = nix.arg($, "gzip");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ndppd",
       version: "0.2.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "DanielAdolfsson",
           repo: "ndppd",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,11 +28,11 @@ export default nix.lambda((args) => (() => {
       preConfigure: "substituteInPlace Makefile --replace /bin/gzip gzip\n",
       postInstall: "mkdir -p $out/etc\ncp ndppd.conf-dist $out/etc/ndppd.conf\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, ndppd: nix.thunk(() => nix.attr(nixosTests, "ndppd")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], ndppd: nix.thunk(() => nix.attr(nixosTests, "ndppd")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Daemon that proxies NDP (Neighbor Discovery Protocol) messages between interfaces",
         homepage: "https://github.com/DanielAdolfsson/ndppd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["group", 18, 5], ["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["shortName", 78, 7], ["fullName", 79, 7]], [["description", 74, 5], ["homepage", 75, 5], ["mainProgram", 76, 5], ["license", 77, 5], ["teams", 81, 5], ["platforms", 82, 5]], [["version", 14, 3], ["pname", 15, 3], ["src", 17, 3], ["patches", 25, 3], ["postUnpack", 27, 3], ["nativeBuildInputs", 31, 3], ["configurePhase", 40, 3], ["postInstall", 56, 3], ["doInstallCheck", 61, 3], ["installCheckPhase", 62, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, makeWrapper: false, which: false, autoconf: false, help2man: false, file: false, pari: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["group", 18, 5], ["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["shortName", 78, 7], ["fullName", 79, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 74, 5], ["homepage", 75, 5], ["mainProgram", 76, 5], ["license", 77, 5], ["teams", 81, 5], ["platforms", 82, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 14, 3], ["pname", 15, 3], ["src", 17, 3], ["patches", 25, 3], ["postUnpack", 27, 3], ["nativeBuildInputs", 31, 3], ["configurePhase", 40, 3], ["postInstall", 56, 3], ["doInstallCheck", 61, 3], ["installCheckPhase", 62, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const file = nix.arg($, "file");
   const pari = nix.arg($, "pari");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "2.023.7",
       pname: "sympow",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           group: "rezozer",
           owner: "forks",
           repo: "sympow",
@@ -39,12 +36,12 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installCheckPhase: nix.thunk(() => nix.add("export HOME=$TMPDIR\n\"$out/bin/sympow\" -curve \"[1,2,3,4,5]\" -moddeg | grep 'Modular Degree is 464'\necho \"[1,-1,0,-79,289]\" | \"$out/bin/sympow\" -analrank | grep ^\"Analytic Rank is 4\"\n\"$out/bin/sympow\" -curve \"[1,-1,0,-79,289]\" -analrank | grep ^\"Analytic Rank is 4\"\n\"$out/bin/sympow\" -curve \"[0,1,1,-2,0]\" -analrank | grep ^\"Analytic Rank is 2\"\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64"))), "\"$out/bin/sympow\" -sp 2p16 -curve \"[1,2,3,4,5]\" | grep '8.3705'\n"))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Compute special values of symmetric power elliptic curve L-functions",
         homepage: "https://gitlab.com/rezozer/forks/sympow",
         mainProgram: "sympow",
         license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "mkLicense"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             shortName: "sympow",
             fullName: "Custom, BSD-like. See COPYING file.",
           })))),

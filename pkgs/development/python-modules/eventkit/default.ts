@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 16, 29], ["version", 16, 35], ["hash", 16, 43]], [["homepage", 21, 5], ["description", 22, 5], ["license", 23, 5], ["maintainers", 24, 5]], [["format", 13, 3], ["pname", 14, 11], ["version", 14, 17], ["src", 16, 3], ["propagatedBuildInputs", 18, 3], ["meta", 20, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, lib: false, fetchPypi: false, numpy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 16, 29], ["version", 16, 35], ["hash", 16, 43]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 21, 5], ["description", 22, 5], ["license", 23, 5], ["maintainers", 24, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["format", 13, 3], ["pname", 14, 11], ["version", 14, 17], ["src", 16, 3], ["propagatedBuildInputs", 18, 3], ["meta", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,14 +15,14 @@ export default nix.lambda((args) => (() => {
   const version = "1.0.3";
   const hash = "sha256-mUl/bzxjilD/dhby+M2Iexi7/zdl3BvYaBVU2xRnyTM=";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       format: "setuptools",
       pname: pname,
       version: version,
-      src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({ [nix.POS]: pos$1, pname: pname, version: version, hash: hash })))),
+      src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({ [nix.POS]: $pos[0], pname: pname, version: version, hash: hash })))),
       propagatedBuildInputs: nix.thunk(() => [numpy]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/erdewit/eventkit",
         description: "Event-driven data pipelines",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

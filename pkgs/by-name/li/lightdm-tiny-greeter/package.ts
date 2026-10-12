@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["sha256", 24, 5]], [["path", 55, 7], ["name", 56, 7]], [["xgreeters", 53, 12]], [["description", 61, 5], ["mainProgram", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["platforms", 65, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 31, 3], ["postUnpack", 37, 3], ["buildPhase", 41, 3], ["installPhase", 48, 3], ["passthru", 53, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, linkFarm: false, "lightdm-tiny-greeter": false, fetchFromGitHub: false, "pkg-config": false, lightdm: false, gtk3: false, glib: false, wrapGAppsHook3: false, config: false, conf: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["sha256", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["path", 55, 7], ["name", 56, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["xgreeters", 53, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 61, 5], ["mainProgram", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["platforms", 65, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 31, 3], ["postUnpack", 37, 3], ["buildPhase", 41, 3], ["installPhase", 48, 3], ["passthru", 53, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lightdm-tiny-greeter";
       const version = "1.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tobiohlala",
           repo: "lightdm-tiny-greeter",
           rev: version,
@@ -44,17 +40,17 @@ mv lightdm-tiny-greeter.desktop $out/share/xgreeters
 `);
       const installPhase = "substituteInPlace \"$out/share/xgreeters/lightdm-tiny-greeter.desktop\" \\\n  --replace \"Exec=lightdm-tiny-greeter\" \"Exec=$out/bin/lightdm-tiny-greeter\"\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         xgreeters: nix.thunk(() => nix.app(linkFarm, "lightdm-tiny-greeter-xgreeters", nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               path: nix.thunk(() => nix.str`${lightdm_tiny_greeter}/share/xgreeters/lightdm-tiny-greeter.desktop`),
               name: "lightdm-tiny-greeter.desktop",
             })),
           ]))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Tiny multi user lightdm greeter",
         mainProgram: "lightdm-tiny-greeter",
         homepage: "https://github.com/tobiohlala/lightdm-tiny-greeter",
@@ -62,7 +58,7 @@ mv lightdm-tiny-greeter.desktop $out/share/xgreeters
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

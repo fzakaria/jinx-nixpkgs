@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 30, 13], ["version", 30, 19], ["hash", 31, 5]], [["description", 86, 5], ["homepage", 87, 5], ["license", 88, 5], ["maintainers", 92, 5]], [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["build-system", 34, 3], ["dontUseCmakeConfigure", 43, 3], ["buildInputs", 45, 3], ["dependencies", 50, 3], ["nativeCheckInputs", 52, 3], ["pythonImportsCheck", 58, 3], ["preCheck", 60, 3], ["disabledTestMarks", 64, 3], ["disabledTests", 68, 3], ["__darwinAllowLocalNetworking", 83, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, isPyPy: false, cffi: false, cython: false, cmake: false, ninja: false, packaging: false, pathspec: false, "scikit-build-core": false, pytestCheckHook: false, tornado: false, libsodium: false, zeromq: false, "pytest-asyncio": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 30, 13], ["version", 30, 19], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 86, 5], ["homepage", 87, 5], ["license", 88, 5], ["maintainers", 92, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["build-system", 34, 3], ["dontUseCmakeConfigure", 43, 3], ["buildInputs", 45, 3], ["dependencies", 50, 3], ["nativeCheckInputs", 52, 3], ["pythonImportsCheck", 58, 3], ["preCheck", 60, 3], ["disabledTestMarks", 64, 3], ["disabledTests", 68, 3], ["__darwinAllowLocalNetworking", 83, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "27.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-rAdl49REVa223b9EF9zORg/ECgWXjAjv3ylIBy9ttUA=",
@@ -54,7 +52,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python bindings for ØMQ",
         homepage: "https://pyzmq.readthedocs.io/",
         license: nix.thunk(() => (() => {
@@ -67,7 +65,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

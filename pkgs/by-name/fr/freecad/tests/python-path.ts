@@ -2,13 +2,13 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/python-path.nix", [[["nativeBuildInputs", 14, 5]]]);
 const formals$1 = { args: { freecad: false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/python-path.nix", [["nativeBuildInputs", 14, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const freecad = nix.arg($, "freecad");
   const runCommand = nix.arg($, "runCommand");
-  return nix.app(runCommand, "freecad-test-console", nix.thunk(() => ({ [nix.POS]: pos$1, nativeBuildInputs: nix.thunk(() => [freecad]) })), "HOME=\"$(mktemp -d)\" PYTHONPATH=\"$(pwd)/test\" FreeCADCmd --log-file $out -c \"if not '$(pwd)/test' in sys.path: sys.exit(1)\" </dev/null\n");
+  return nix.app(runCommand, "freecad-test-console", nix.thunk(() => ({ [nix.POS]: $pos[0], nativeBuildInputs: nix.thunk(() => [freecad]) })), "HOME=\"$(mktemp -d)\" PYTHONPATH=\"$(pwd)/test\" FreeCADCmd --log-file $out -c \"if not '$(pwd)/test' in sys.path: sys.exit(1)\" </dev/null\n");
 })(), formals$1);
 //# sourceMappingURL=python-path.ts.map

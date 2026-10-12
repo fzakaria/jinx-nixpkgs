@@ -2,42 +2,36 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/zerobyte.nix", [[["maintainers", 4, 8]], [["BASE_URL", 11, 18]], [["enable", 10, 9], ["settings", 11, 9], ["environmentFile", 14, 9]], [["zerobyte", 9, 16]], [["services", 9, 7]], [["machine", 6, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 20, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/zerobyte.nix", [["maintainers", 4, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/zerobyte.nix", [["BASE_URL", 11, 18]]);
-const pos$3 = nix.positions(here + "/zerobyte.nix", [["enable", 10, 9], ["settings", 11, 9], ["environmentFile", 14, 9]]);
-const pos$4 = nix.positions(here + "/zerobyte.nix", [["zerobyte", 9, 16]]);
-const pos$5 = nix.positions(here + "/zerobyte.nix", [["services", 9, 7]]);
-const pos$6 = nix.positions(here + "/zerobyte.nix", [["machine", 6, 9]]);
-const pos$7 = nix.positions(here + "/zerobyte.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     name: "zerobyte",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "pbek"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             zerobyte: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               enable: true,
-              settings: nix.thunk(() => ({ [nix.POS]: pos$2, BASE_URL: "http://localhost:4096" })),
+              settings: nix.thunk(() => ({ [nix.POS]: $pos[1], BASE_URL: "http://localhost:4096" })),
               environmentFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "zerobyte.env", "APP_SECRET=94bad469e4b4e7c7f5a2b6a8c0d2e4f6a8b0c2d4e6f8a0b2c4d6e8f0a2b4c66e25\n")),
             })),
           })),

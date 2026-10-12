@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["NIX_CFLAGS_COMPILE", 49, 7]], [["settingsTemplate", 71, 5], ["tests", 72, 5], ["updateScript", 73, 5]], [["description", 80, 5], ["homepage", 81, 5], ["changelog", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["platforms", 85, 5], ["mainProgram", 86, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 35, 3], ["cmakeFlags", 45, 3], ["env", 49, 3], ["postPatch", 54, 3], ["passthru", 70, 3], ["doInstallCheck", 76, 3], ["nativeInstallCheckInputs", 77, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { cmake: false, fetchFromGitHub: false, gmp: false, lib: false, libidn2: false, libunistring: false, mbedtls_4: false, ncurses: false, nettle: false, "nix-update-script": false, nixosTests: false, readline: false, stdenv: false, versionCheckHook: false, xxd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 49, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["settingsTemplate", 71, 5], ["tests", 72, 5], ["updateScript", 73, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 80, 5], ["homepage", 81, 5], ["changelog", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["platforms", 85, 5], ["mainProgram", 86, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 35, 3], ["cmakeFlags", 45, 3], ["env", 49, 3], ["postPatch", 54, 3], ["passthru", 70, 3], ["doInstallCheck", 76, 3], ["nativeInstallCheckInputs", 77, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const xxd = nix.arg($, "xxd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "pihole-ftl",
       version: "6.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pi-hole",
           repo: "FTL",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +39,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "STATIC", nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isStatic")))),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: "-Wno-stringop-overread\n-Wno-unused-but-set-variable\n",
       })),
       postPatch: nix.thunk(() => nix.str`substituteInPlace src/version.c.in \\
@@ -61,7 +57,7 @@ substituteInPlace src/api/action.c \\
   --replace-fail "execv" "execvp"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         settingsTemplate: nix.path(here, "./pihole.toml"),
         tests: nix.thunk(() => nix.sel(nixosTests, "pihole-ftl")),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
@@ -69,7 +65,7 @@ substituteInPlace src/api/action.c \\
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Pi-hole FTL engine",
         homepage: "https://github.com/pi-hole/FTL",
         changelog: nix.thunk(() => nix.str`https://github.com/pi-hole/FTL/releases/tag/v${nix.sel(finalAttrs, "version")}`),

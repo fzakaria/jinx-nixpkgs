@@ -2,21 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]], [["CGO_ENABLED", 59, 7]], [["preCheck", 187, 11]], [["CGO_ENABLED", 195, 13]], [["env", 194, 11]], [["CI", 213, 13]], [["nativeCheckInputs", 208, 11], ["env", 209, 11], ["preCheck", 217, 11]], [["client", 184, 9], ["cmd", 185, 9], ["cmd/testwrapper", 193, 9], ["control", 198, 9], ["derp", 199, 9], ["drive", 200, 9], ["feature", 201, 9], ["ipn", 202, 9], ["k8s-operator", 203, 9], ["kube", 204, 9], ["net", 205, 9], ["ssh", 206, 9], ["tsnet", 221, 9], ["tstest", 222, 9], ["tsweb", 223, 9], ["types", 224, 9], ["util", 225, 9], ["wgengine", 226, 9]], [["pname", 240, 13], ["outputs", 241, 13], ["dontBuild", 242, 13], ["doCheck", 243, 13], ["checkPhase", 247, 13], ["installPhase", 266, 13], ["postInstall", 271, 13]], [["preCheck", 283, 9]], [["headscale", 277, 28], ["tailscale-nginx-auth", 278, 15], ["go-other", 279, 7]], [["tests", 177, 12]], [["homepage", 300, 5], ["description", 301, 5], ["changelog", 302, 5], ["license", 303, 5], ["mainProgram", 304, 5], ["maintainers", 305, 5]], [["pname", 29, 3], ["version", 30, 3], ["outputs", 32, 3], ["src", 37, 3], ["vendorHash", 44, 3], ["nativeBuildInputs", 46, 3], ["nativeCheckInputs", 51, 3], ["env", 59, 3], ["subPackages", 61, 3], ["ldflags", 68, 3], ["tags", 75, 3], ["preBuild", 80, 3], ["__darwinAllowLocalNetworking", 86, 3], ["doCheck", 89, 3], ["preCheck", 91, 3], ["checkFlags", 98, 3], ["postInstall", 139, 3], ["passthru", 177, 3], ["meta", 299, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGo127Module: false, fetchFromGitHub: false, makeWrapper: false, installShellFiles: false, getent: false, iproute2: false, iptables: false, shadow: false, procps: false, lsof: false, gitMinimal: false, openssh: false, unixtools: false, nixosTests: false, "tailscale-nginx-auth": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 59, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["preCheck", 187, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 195, 13]]);
-const pos$5 = nix.positions(here + "/package.nix", [["env", 194, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["CI", 213, 13]]);
-const pos$7 = nix.positions(here + "/package.nix", [["nativeCheckInputs", 208, 11], ["env", 209, 11], ["preCheck", 217, 11]]);
-const pos$8 = nix.positions(here + "/package.nix", [["client", 184, 9], ["cmd", 185, 9], ["cmd/testwrapper", 193, 9], ["control", 198, 9], ["derp", 199, 9], ["drive", 200, 9], ["feature", 201, 9], ["ipn", 202, 9], ["k8s-operator", 203, 9], ["kube", 204, 9], ["net", 205, 9], ["ssh", 206, 9], ["tsnet", 221, 9], ["tstest", 222, 9], ["tsweb", 223, 9], ["types", 224, 9], ["util", 225, 9], ["wgengine", 226, 9]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 240, 13], ["outputs", 241, 13], ["dontBuild", 242, 13], ["doCheck", 243, 13], ["checkPhase", 247, 13], ["installPhase", 266, 13], ["postInstall", 271, 13]]);
-const pos$10 = nix.positions(here + "/package.nix", [["preCheck", 283, 9]]);
-const pos$11 = nix.positions(here + "/package.nix", [["headscale", 277, 28], ["tailscale-nginx-auth", 278, 15], ["go-other", 279, 7]]);
-const pos$12 = nix.positions(here + "/package.nix", [["tests", 177, 12]]);
-const pos$13 = nix.positions(here + "/package.nix", [["homepage", 300, 5], ["description", 301, 5], ["changelog", 302, 5], ["license", 303, 5], ["mainProgram", 304, 5], ["maintainers", 305, 5]]);
-const pos$14 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["outputs", 32, 3], ["src", 37, 3], ["vendorHash", 44, 3], ["nativeBuildInputs", 46, 3], ["nativeCheckInputs", 51, 3], ["env", 59, 3], ["subPackages", 61, 3], ["ldflags", 68, 3], ["tags", 75, 3], ["preBuild", 80, 3], ["__darwinAllowLocalNetworking", 86, 3], ["doCheck", 89, 3], ["preCheck", 91, 3], ["checkFlags", 98, 3], ["postInstall", 139, 3], ["passthru", 177, 3], ["meta", 299, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const tailscale_nginx_auth = nix.arg($, "tailscale-nginx-auth");
   return nix.app(buildGo127Module, (finalAttrs) => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       pname: "tailscale",
       version: "1.104.1",
       outputs: nix.thunk(() => ["out", "derper"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tailscale",
           repo: "tailscale",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,7 +39,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-f9abuyk1qvVr6MPpfmHay6p/U/+8flm1SBmHGjZa1aU=",
       nativeBuildInputs: nix.thunk(() => [makeWrapper, installShellFiles]),
       nativeCheckInputs: nix.thunk(() => nix.concat([gitMinimal], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.thunk(() => nix.sel(unixtools, "netstat"))])))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_ENABLED: 0n })),
       subPackages: nix.thunk(() => ["cmd/derper", "cmd/derpprobe", "cmd/tailscaled", "cmd/get-authkey"]),
       ldflags: nix.thunk(() => [
         "-w",
@@ -96,18 +83,18 @@ substituteInPlace ./cmd/tailscaled/tailscale-wait-online.service --replace-fail 
 install -D -m0444 -t $out/lib/systemd/system ./cmd/tailscaled/{tailscaled.service,tailscale-online.target,tailscale-wait-online.service}
 `))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "local INSTALL=\"$out/bin/tailscale\"\ninstallShellCompletion --cmd tailscale \\\n  --bash <($out/bin/tailscale completion bash) \\\n  --fish <($out/bin/tailscale completion fish) \\\n  --zsh <($out/bin/tailscale completion zsh)\n"))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         tests: nix.thunk(() => (() => {
           const goTestGroups = nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             client: nix.thunk(() => ({})),
             cmd: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               preCheck: "chmod +x cmd/containerboot/test_tailscale{,d}.sh\npatchShebangs cmd/containerboot/test_tailscale{,d}.sh\n",
             })),
             "cmd/testwrapper": (old) => ({
-              [nix.POS]: pos$5,
-              env: nix.thunk(() => nix.update(nix.sel(old, "env"), { [nix.POS]: pos$4, CGO_ENABLED: 1n })),
+              [nix.POS]: $pos[4],
+              env: nix.thunk(() => nix.update(nix.sel(old, "env"), { [nix.POS]: $pos[3], CGO_ENABLED: 1n })),
             }),
             control: nix.thunk(() => ({})),
             derp: nix.thunk(() => ({})),
@@ -118,9 +105,9 @@ install -D -m0444 -t $out/lib/systemd/system ./cmd/tailscaled/{tailscaled.servic
             kube: nix.thunk(() => ({})),
             net: nix.thunk(() => ({})),
             ssh: (old) => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               nativeCheckInputs: nix.thunk(() => nix.concat(nix.sel(old, "nativeCheckInputs"), [openssh])),
-              env: nix.thunk(() => nix.update(nix.sel(old, "env"), { [nix.POS]: pos$6, CI: "true" })),
+              env: nix.thunk(() => nix.update(nix.sel(old, "env"), { [nix.POS]: $pos[5], CI: "true" })),
               preCheck: "export TAILSCALE_SSH_DEFAULT_PATH=\"$PATH\"\n",
             }),
             tsnet: nix.thunk(() => ({})),
@@ -134,7 +121,7 @@ install -D -m0444 -t $out/lib/systemd/system ./cmd/tailscaled/{tailscaled.servic
           const mkGoTests = (name) => (pattern) => (excludedDirs) => (overrides) => (() => {
             const excludeRegex = nix.thunk(() => nix.str`^tailscale\\.com/(${nix.app(nix.sel(lib, "concatMapStringsSep"), "|", nix.thunk(() => nix.sel(lib, "escapeRegex")), nix.thunk(() => nix.concat(["tool"], excludedDirs)))})(/|$)`);
             return nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (old) => nix.update({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 pname: nix.thunk(() => nix.str`${nix.sel(old, "pname")}-go-tests-${name}`),
                 outputs: nix.thunk(() => ["out"]),
                 dontBuild: true,
@@ -161,11 +148,11 @@ runHook postCheck
               }, nix.app(nix.sel(lib, "toFunction"), overrides, old)));
           })();
           return nix.update({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             headscale: nix.thunk(() => nix.attr(nixosTests, "headscale")),
             "tailscale-nginx-auth": tailscale_nginx_auth,
             "go-other": nix.thunk(() => nix.app(mkGoTests, "other", "./...", goTestDirs, nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 preCheck: "chmod -R u+w vendor\nrm -rf vendor\nln -s \"$goModules\" vendor\n",
               })))),
           }, nix.app(nix.sel(lib, "mapAttrs'"), (dir) => (overrides) => (() => {
@@ -176,7 +163,7 @@ runHook postCheck
         })()),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         homepage: "https://tailscale.com",
         description: "Node agent for Tailscale, a mesh VPN built on WireGuard",
         changelog: "https://tailscale.com/changelog#client",

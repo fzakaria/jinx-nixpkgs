@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["1.4.0", 24, 9], ["2.4.0", 25, 9]], [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["updateScript", 41, 12]], [["broken", 49, 5], ["homepage", 50, 5], ["description", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["teams", 54, 5]], [["pname", 15, 3], ["version", 16, 11], ["src", 18, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 37, 3], ["passthru", 41, 3], ["postPatch", 43, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cmake: false, qtbase: false, qttools: false, "lxqt-build-tools": false, wrapQtAppsHook: false, gitUpdater: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["1.4.0", 24, 9], ["2.4.0", 25, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 41, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["broken", 49, 5], ["homepage", 50, 5], ["description", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["teams", 54, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 11], ["src", 18, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 37, 3], ["passthru", 41, 3], ["postPatch", 43, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +21,12 @@ export default nix.lambda((args) => (() => {
       const pname = "qtermwidget";
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "lxqt",
           repo: "qtermwidget",
           rev: version_1,
           hash: nix.thunk(() => nix.sel({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             "1.4.0": "sha256-wYUOqAiBjnupX1ITbFMw7sAk42V37yDz9SrjVhE4FgU=",
             "2.4.0": "sha256-fTE39goab0md0koS28gRiQgnEumtR5/vTKgpM/wuCrk=",
           }, nix.key(nix.str`${version_1}`))),
@@ -38,12 +34,12 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [cmake, lxqt_build_tools, qttools, wrapQtAppsHook]);
       const buildInputs = nix.thunk(() => [qtbase]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       }));
       const postPatch = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(version_1, "1.4.0")), "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 3.1.0 FATAL_ERROR)\" \"cmake_minimum_required(VERSION 3.10)\"\n"));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         homepage: "https://github.com/lxqt/qtermwidget",
         description: "Terminal emulator widget for Qt, used by QTerminal",
@@ -55,7 +51,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "lxqt"))]),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version: version_1,
         src,

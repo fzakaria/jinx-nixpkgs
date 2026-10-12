@@ -2,42 +2,33 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/snid.nix", [[["listen", 13, 13], ["mode", 14, 13], ["backendCidrs", 15, 13]], [["imports", 11, 11], ["snid", 12, 11]], [["snid", 10, 25]], [["services", 10, 16]], [["allowedTCPPorts", 19, 29]], [["firewall", 19, 20]], [["system", 10, 9], ["networking", 19, 9]], [["machine", 7, 5]], [["maintainers", 30, 8]], [["_class", 3, 3], ["name", 4, 3], ["nodes", 6, 3], ["testScript", 23, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/snid.nix", [["listen", 13, 13], ["mode", 14, 13], ["backendCidrs", 15, 13]]);
-const pos$2 = nix.positions(here + "/snid.nix", [["imports", 11, 11], ["snid", 12, 11]]);
-const pos$3 = nix.positions(here + "/snid.nix", [["snid", 10, 25]]);
-const pos$4 = nix.positions(here + "/snid.nix", [["services", 10, 16]]);
-const pos$5 = nix.positions(here + "/snid.nix", [["allowedTCPPorts", 19, 29]]);
-const pos$6 = nix.positions(here + "/snid.nix", [["firewall", 19, 20]]);
-const pos$7 = nix.positions(here + "/snid.nix", [["system", 10, 9], ["networking", 19, 9]]);
-const pos$8 = nix.positions(here + "/snid.nix", [["machine", 7, 5]]);
-const pos$9 = nix.positions(here + "/snid.nix", [["maintainers", 30, 8]]);
-const pos$10 = nix.positions(here + "/snid.nix", [["_class", 3, 3], ["name", 4, 3], ["nodes", 6, 3], ["testScript", 23, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     _class: "nixosTest",
     name: "snid",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           system: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               snid: nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 imports: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "snid", "services", "default"))]),
                 snid: nix.thunk(() => ({
-                  [nix.POS]: pos$1,
+                  [nix.POS]: $pos[0],
                   listen: nix.thunk(() => ["tcp:8443"]),
                   mode: "tcp",
                   backendCidrs: nix.thunk(() => ["127.0.0.0/8"]),
@@ -46,15 +37,15 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$6,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$5, allowedTCPPorts: nix.thunk(() => [8443n]) })),
+            [nix.POS]: $pos[5],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[4], allowedTCPPorts: nix.thunk(() => [8443n]) })),
           })),
         };
       })(), formals$2),
     })),
     testScript: "start_all()\nmachine.wait_for_unit(\"multi-user.target\")\nmachine.wait_for_unit(\"snid.service\")\nmachine.wait_for_open_port(8443)\n",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "tomfitzhenry"))];

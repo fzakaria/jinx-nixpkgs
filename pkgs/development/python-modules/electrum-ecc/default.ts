@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 27, 5], ["version", 28, 13], ["hash", 29, 5]], [["ELECTRUM_ECC_DONT_COMPILE", 34, 5]], [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["build-system", 24, 3], ["src", 26, 3], ["env", 32, 3], ["postPatch", 37, 3], ["nativeCheckInputs", 45, 3], ["pythonImportsCheck", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, pkgs: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 27, 5], ["version", 28, 13], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["ELECTRUM_ECC_DONT_COMPILE", 34, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["build-system", 24, 3], ["src", 26, 3], ["env", 32, 3], ["postPatch", 37, 3], ["nativeCheckInputs", 45, 3], ["pythonImportsCheck", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +21,12 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const build_system = nix.thunk(() => [setuptools]);
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "electrum_ecc",
           version: version,
           hash: "sha256-lIaad94o7nm39+l0r1wgs5K5SZBYgKiyZQTiggJkQQY=",
         }))));
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, ELECTRUM_ECC_DONT_COMPILE: "1" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], ELECTRUM_ECC_DONT_COMPILE: "1" }));
       const postPatch = nix.thunk(() => nix.str`# remove bundled libsecp256k1
 rm -rf libsecp256k1/
 # use the system library instead
@@ -39,14 +36,14 @@ substituteInPlace ./src/electrum_ecc/ecc_fast.py \\
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["electrum_ecc"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Pure python ctypes wrapper for libsecp256k1",
         homepage: "https://github.com/spesmilo/electrum-ecc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["url", 38, 9], ["sha256", 39, 9]], [["name", 33, 7], ["desktopName", 34, 7], ["genericName", 35, 7], ["exec", 36, 7], ["icon", 37, 7], ["comment", 41, 7], ["categories", 42, 7]], [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["sourceProvenance", 67, 5], ["maintainers", 68, 5], ["platforms", 71, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 25, 3], ["dontUnpack", 29, 3], ["desktopItems", 31, 3], ["installPhase", 53, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, jre8: false, makeWrapper: false, makeDesktopItem: false, copyDesktopItems: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 38, 9], ["sha256", 39, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 33, 7], ["desktopName", 34, 7], ["genericName", 35, 7], ["exec", 36, 7], ["icon", 37, 7], ["comment", 41, 7], ["categories", 42, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["sourceProvenance", 67, 5], ["maintainers", 68, 5], ["platforms", 71, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 25, 3], ["dontUnpack", 29, 3], ["desktopItems", 31, 3], ["installPhase", 53, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "jflap";
       const version = "7.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.jflap.org/jflaptmp/july27-18/JFLAP${version}.jar`),
           sha256: "oiwJXdxWsYFj6Ovu7xZbOgTLVw8160a5YQUWbgbJlAY=",
         }))));
@@ -31,13 +27,13 @@ export default nix.lambda((args) => (() => {
       const dontUnpack = true;
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "jflap",
             desktopName: "jflap",
             genericName: "Formal language application",
             exec: "jflap",
             icon: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 url: "https://www.jflap.org/jflapLogo2.jpg",
                 sha256: "sha256-IiworHI+GT6Fm6B0E+FXnKe+hN8nZYPrxHGZFAcsWDw=",
               })))),
@@ -61,7 +57,7 @@ makeWrapper ${jre8}/bin/java $out/bin/jflap \\
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "GUI tool for experimenting with formal languages topics",
         homepage: "https://www.jflap.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -76,7 +72,7 @@ runHook postInstall
         platforms: nix.thunk(() => nix.sel(jre8, "meta", "platforms")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 11, 5], ["repo", 12, 5], ["tag", 13, 5], ["hash", 14, 5]], [["description", 18, 5], ["homepage", 19, 5], ["license", 20, 5], ["platforms", 21, 5], ["maintainers", 25, 5]], [["version", 31, 43], ["src", 31, 51], ["meta", 31, 55]], [["coolercontrol-ui-data", 34, 3], ["coolercontrold", 36, 3], ["coolercontrol-gui", 38, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitLab: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 11, 5], ["repo", 12, 5], ["tag", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 18, 5], ["homepage", 19, 5], ["license", 20, 5], ["platforms", 21, 5], ["maintainers", 25, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 31, 43], ["src", 31, 51], ["meta", 31, 55]]);
-const pos$4 = nix.positions(here + "/default.nix", [["coolercontrol-ui-data", 34, 3], ["coolercontrold", 36, 3], ["coolercontrol-gui", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,14 +12,14 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const version = "5.0.1";
   const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "coolercontrol",
       repo: "coolercontrol",
       tag: version,
       hash: "sha256-48hgLZ1tyojGJFsz9ZQKC03QMrUAFuH33Z/LOXYl/aI=",
     }))));
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     description: "Monitor and control your cooling devices",
     homepage: "https://gitlab.com/coolercontrol/coolercontrol",
     license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -35,9 +32,9 @@ export default nix.lambda((args) => (() => {
       ];
     })()),
   }));
-  const applySharedDetails = (drv) => nix.app(drv, nix.thunk(() => ({ [nix.POS]: pos$3, version: version, src: src, meta: meta })));
+  const applySharedDetails = (drv) => nix.app(drv, nix.thunk(() => ({ [nix.POS]: $pos[2], version: version, src: src, meta: meta })));
   return {
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     "coolercontrol-ui-data": nix.thunk(() => nix.app(applySharedDetails, nix.thunk(() => nix.app(callPackage, nix.path(here, "./coolercontrol-ui-data.nix"), nix.thunk(() => ({})))))),
     coolercontrold: nix.thunk(() => nix.app(applySharedDetails, nix.thunk(() => nix.app(callPackage, nix.path(here, "./coolercontrold.nix"), nix.thunk(() => ({})))))),
     "coolercontrol-gui": nix.thunk(() => nix.app(applySharedDetails, nix.thunk(() => nix.app(callPackage, nix.path(here, "./coolercontrol-gui.nix"), nix.thunk(() => ({})))))),

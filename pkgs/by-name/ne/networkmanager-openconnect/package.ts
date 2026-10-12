@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 30, 5], ["sha256", 31, 5]], [["kmod", 36, 15], ["openconnect", 36, 20]], [["packageName", 70, 7], ["attrPath", 71, 7], ["versionPolicy", 72, 7]], [["updateScript", 69, 5], ["networkManagerPlugin", 74, 5], ["networkManagerRuntimeDeps", 75, 5]], [["description", 79, 5], ["maintainers", 80, 35], ["teams", 80, 47], ["platforms", 80, 53], ["license", 81, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["patches", 34, 3], ["buildInputs", 40, 3], ["nativeBuildInputs", 55, 3], ["configureFlags", 62, 3], ["passthru", 68, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, replaceVars: false, glib: false, libxml2: false, openconnect: false, intltool: false, "pkg-config": false, networkmanager: false, gcr_3: false, libsecret: false, file: false, gtk3: false, webkitgtk_4_1: false, libnma: false, "libnma-gtk4": false, gtk4: false, withGnome: true, gnome: false, kmod: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 30, 5], ["sha256", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["kmod", 36, 15], ["openconnect", 36, 20]]);
-const pos$3 = nix.positions(here + "/package.nix", [["packageName", 70, 7], ["attrPath", 71, 7], ["versionPolicy", 72, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 69, 5], ["networkManagerPlugin", 74, 5], ["networkManagerRuntimeDeps", 75, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 79, 5], ["maintainers", 80, 35], ["teams", 80, 47], ["platforms", 80, 53], ["license", 81, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["patches", 34, 3], ["buildInputs", 40, 3], ["nativeBuildInputs", 55, 3], ["configureFlags", 62, 3], ["passthru", 68, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,12 +32,12 @@ export default nix.lambda((args) => (() => {
       const pname = "NetworkManager-openconnect";
       const version = "1.2.10";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/NetworkManager-openconnect/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/NetworkManager-openconnect-${version}.tar.xz`),
           sha256: "hEtr9k7K25e0pox3bbiapebuflm9JLAYAihAaGMTZGQ=",
         }))));
       const patches = nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, kmod: kmod, openconnect: openconnect })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ [nix.POS]: $pos[1], kmod: kmod, openconnect: openconnect })))),
       ]);
       const buildInputs = nix.thunk(() => nix.concat([libxml2, openconnect, networkmanager, webkitgtk_4_1], nix.app(nix.sel(lib, "optionals"), withGnome, nix.thunk(() => [gtk3, libnma, libnma_gtk4, gtk4, gcr_3, libsecret]))));
       const nativeBuildInputs = nix.thunk(() => [glib, intltool, pkg_config, file]);
@@ -52,9 +47,9 @@ export default nix.lambda((args) => (() => {
         "--enable-absolute-paths",
       ]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             packageName: pname,
             attrPath: "networkmanager-openconnect",
             versionPolicy: "odd-unstable",
@@ -65,7 +60,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(networkmanager, "meta"));
         return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "NetworkManager’s OpenConnect plugin",
         maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
         teams: nix.thunk(() => nix.attr(from, "teams")),
@@ -74,7 +69,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

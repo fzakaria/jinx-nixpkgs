@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/plugins.nix", [[["mkPulumiPackage", 11, 5], ["testResourceSchema", 12, 5], ["pulumiTestHook", 13, 5]], [["callPackage", 18, 22], ["directory", 19, 7]], [["pulumi-language-go", 22, 7], ["pulumi-language-nodejs", 23, 7], ["pulumi-language-python", 24, 7]], [["otherSplices", 9, 3], ["extra", 10, 3], ["f", 15, 3]]]);
 const formals$1 = { args: { lib: false, config: false, generateSplicesForMkScope: false, "makeScopeWithSplicing'": false, attributePathToSplice: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/plugins.nix", [["mkPulumiPackage", 11, 5], ["testResourceSchema", 12, 5], ["pulumiTestHook", 13, 5]]);
-const pos$2 = nix.positions(here + "/plugins.nix", [["callPackage", 18, 22], ["directory", 19, 7]]);
-const pos$3 = nix.positions(here + "/plugins.nix", [["pulumi-language-go", 22, 7], ["pulumi-language-nodejs", 23, 7], ["pulumi-language-python", 24, 7]]);
-const pos$4 = nix.positions(here + "/plugins.nix", [["otherSplices", 9, 3], ["extra", 10, 3], ["f", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,20 +13,20 @@ export default nix.lambda((args) => (() => {
   const makeScopeWithSplicing$ = nix.arg($, "makeScopeWithSplicing'");
   const attributePathToSplice = nix.argOr($, "attributePathToSplice", () => ["pulumiPackages"]);
   return nix.app(makeScopeWithSplicing$, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       otherSplices: nix.thunk(() => nix.app(generateSplicesForMkScope, attributePathToSplice)),
       extra: (self) => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         mkPulumiPackage: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./extra/mk-pulumi-package.nix"), nix.thunk(() => ({})))),
         testResourceSchema: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./extra/test-resource-schema.nix"), nix.thunk(() => ({})))),
         pulumiTestHook: nix.path(here, "./extra/pulumi-test-hook.sh"),
       }),
       f: (self) => nix.update(nix.app(nix.sel(lib, "packagesFromDirectoryRecursive"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           callPackage: nix.thunk(() => nix.attr(self, "callPackage")),
           directory: nix.path(here, "./plugins"),
         }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "pulumi-language-go": nix.thunk(() => nix.app(nix.sel(lib, "warnOnInstantiate"), "pulumi-language-go has been renamed to pulumi-go", nix.thunk(() => nix.sel(self, "pulumi-go")))),
           "pulumi-language-nodejs": nix.thunk(() => nix.app(nix.sel(lib, "warnOnInstantiate"), "pulumi-language-nodejs has been renamed to pulumi-nodejs", nix.thunk(() => nix.sel(self, "pulumi-nodejs")))),
           "pulumi-language-python": nix.thunk(() => nix.app(nix.sel(lib, "warnOnInstantiate"), "pulumi-language-python has been renamed to pulumi-python", nix.thunk(() => nix.sel(self, "pulumi-python")))),

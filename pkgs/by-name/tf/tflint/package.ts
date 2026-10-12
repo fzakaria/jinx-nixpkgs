@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["CGO_ENABLED", 28, 7]], [["name", 46, 9], ["paths", 47, 9]], [["nativeBuildInputs", 52, 9], ["version", 53, 30]], [["withPlugins", 41, 12]], [["description", 61, 5], ["mainProgram", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["vendorHash", 24, 3], ["doCheck", 26, 3], ["env", 28, 3], ["subPackages", 30, 3], ["ldflags", 32, 3], ["doInstallCheck", 37, 3], ["nativeInstallCheckInputs", 39, 3], ["passthru", 41, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, versionCheckHook: false, runCommand: false, makeWrapper: false, tflint: false, "tflint-plugins": false, symlinkJoin: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 46, 9], ["paths", 47, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 52, 9], ["version", 53, 30]]);
-const pos$5 = nix.positions(here + "/package.nix", [["withPlugins", 41, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 61, 5], ["mainProgram", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["vendorHash", 24, 3], ["doCheck", 26, 3], ["env", 28, 3], ["subPackages", 30, 3], ["ldflags", 32, 3], ["doInstallCheck", 37, 3], ["nativeInstallCheckInputs", 39, 3], ["passthru", 41, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const tflint_plugins = nix.arg($, "tflint-plugins");
   const symlinkJoin = nix.arg($, "symlinkJoin");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "tflint",
       version: "0.64.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "terraform-linters",
           repo: "tflint",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,22 +29,22 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-o59/JqIywhqKMkcyq/r1XRE9ldk/dE2v3Qj9IXq0G8s=",
       doCheck: false,
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_ENABLED: 0n })),
       subPackages: nix.thunk(() => ["."]),
       ldflags: nix.thunk(() => ["-s", "-w"]),
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         withPlugins: (plugins) => (() => {
           const actualPlugins = nix.thunk(() => nix.app(plugins, tflint_plugins));
           const pluginDir = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               name: "tflint-plugin-dir",
               paths: nix.thunk(() => [actualPlugins]),
             }))));
           return nix.app(runCommand, nix.thunk(() => nix.str`tflint-with-plugins-${nix.sel(finalAttrs, "version")}`), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               nativeBuildInputs: nix.thunk(() => [makeWrapper]),
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             })), nix.thunk(() => nix.str`makeWrapper ${tflint}/bin/tflint $out/bin/tflint \\
@@ -59,7 +53,7 @@ export default nix.lambda((args) => (() => {
         })(),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Terraform linter focused on possible errors, best practices, and so on",
         mainProgram: "tflint",
         homepage: "https://github.com/terraform-linters/tflint",

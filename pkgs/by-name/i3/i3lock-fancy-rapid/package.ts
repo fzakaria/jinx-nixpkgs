@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["description", 42, 5], ["homepage", 43, 5], ["maintainers", 44, 5], ["mainProgram", 45, 5], ["license", 46, 5], ["platforms", 47, 5]], [["pname", 10, 3], ["version", 11, 3], ["strictDeps", 13, 3], ["__structuredAttrs", 14, 3], ["src", 16, 3], ["buildInputs", 23, 3], ["propagatedBuildInputs", 25, 3], ["postPatch", 27, 3], ["installPhase", 32, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, libx11: false, i3lock: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 42, 5], ["homepage", 43, 5], ["maintainers", 44, 5], ["mainProgram", 45, 5], ["license", 46, 5], ["platforms", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["strictDeps", 13, 3], ["__structuredAttrs", 14, 3], ["src", 16, 3], ["buildInputs", 23, 3], ["propagatedBuildInputs", 25, 3], ["postPatch", 27, 3], ["installPhase", 32, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const i3lock = nix.arg($, "i3lock");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "i3lock-fancy-rapid",
       version: "0-unstable-2021-04-21",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "yvbbrjdr",
           repo: "i3lock-fancy-rapid",
           rev: "6eeebd4caa177b82fa5010b5e8828cce3f89fb97",
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
 `),
       installPhase: "runHook preInstall\n\ninstall -D i3lock-fancy-rapid $out/bin/i3lock-fancy-rapid\nln -s $out/bin/i3lock-fancy-rapid $out/bin/i3lock\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Faster implementation of i3lock-fancy",
         homepage: "https://github.com/yvbbrjdr/i3lock-fancy-rapid",
         maintainers: nix.thunk(() => (() => {

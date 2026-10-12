@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 47, 5], ["repo", 48, 5], ["tag", 49, 5], ["hash", 50, 5]], [["aiohttp", 75, 5], ["bedrock", 79, 5], ["vertex", 83, 5]], [["description", 138, 5], ["homepage", 139, 5], ["changelog", 140, 5], ["license", 141, 5], ["maintainers", 142, 5]], [["pname", 41, 3], ["version", 42, 3], ["pyproject", 43, 3], ["__structuredAttrs", 44, 3], ["src", 46, 3], ["postPatch", 53, 3], ["build-system", 58, 3], ["dependencies", 63, 3], ["optional-dependencies", 74, 3], ["nativeCheckInputs", 86, 3], ["pythonImportsCheck", 101, 3], ["disabledTests", 103, 3], ["disabledTestPaths", 127, 3], ["pytestFlags", 133, 3], ["meta", 137, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, stdenv: false, "hatch-fancy-pypi-readme": false, hatchling: false, anyio: false, distro: false, "docstring-parser": false, httpx2: false, jiter: false, pydantic: false, sniffio: false, "typing-extensions": false, "google-auth": false, boto3: false, botocore: false, aiohttp: false, "httpx-aiohttp": false, "dirty-equals": false, "http-snapshot": false, "inline-snapshot": false, "nest-asyncio": false, "pytest-asyncio": false, "pytest-xdist": false, pytestCheckHook: false, respx: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 47, 5], ["repo", 48, 5], ["tag", 49, 5], ["hash", 50, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["aiohttp", 75, 5], ["bedrock", 79, 5], ["vertex", 83, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 138, 5], ["homepage", 139, 5], ["changelog", 140, 5], ["license", 141, 5], ["maintainers", 142, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 41, 3], ["version", 42, 3], ["pyproject", 43, 3], ["__structuredAttrs", 44, 3], ["src", 46, 3], ["postPatch", 53, 3], ["build-system", 58, 3], ["dependencies", 63, 3], ["optional-dependencies", 74, 3], ["nativeCheckInputs", 86, 3], ["pythonImportsCheck", 101, 3], ["disabledTests", 103, 3], ["disabledTestPaths", 127, 3], ["pytestFlags", 133, 3], ["meta", 137, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,13 +36,13 @@ export default nix.lambda((args) => (() => {
   const respx = nix.arg($, "respx");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "anthropic",
       version: "1.6.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "anthropics",
           repo: "anthropic-sdk-python",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -64,7 +61,7 @@ export default nix.lambda((args) => (() => {
         typing_extensions,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         aiohttp: nix.thunk(() => [aiohttp, httpx_aiohttp]),
         bedrock: nix.thunk(() => [boto3, botocore]),
         vertex: nix.thunk(() => nix.concat([google_auth], nix.sel(google_auth, "optional-dependencies", "requests"))),
@@ -96,7 +93,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["tests/api_resources", "tests/lib/test_bedrock.py"]),
       pytestFlags: nix.thunk(() => ["-Wignore::DeprecationWarning"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Anthropic's safety-first language model APIs",
         homepage: "https://github.com/anthropics/anthropic-sdk-python",
         changelog: nix.thunk(() => nix.str`https://github.com/anthropics/anthropic-sdk-python/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -2,512 +2,12 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/switch-test.nix", [[["maintainers", 80, 5]], [["systemPackages", 90, 21]], [["isNormalUser", 96, 11], ["uid", 97, 11], ["linger", 98, 11]], [["usertest", 95, 21]], [["mutableUsers", 91, 15], ["users", 95, 15]], [["enable", 102, 26]], [["grub", 102, 21]], [["loader", 102, 14]], [["systemBuilderCommands", 106, 61]], [["system", 106, 54]], [["config", 106, 47]], [["configuration", 106, 33]], [["DefaultEnvironment", 111, 15]], [["Manager", 110, 63]], [["settings", 110, 54]], [["systemd", 110, 46]], [["configuration", 110, 32]], [["device", 115, 15], ["fsType", 116, 15]], [["/test", 114, 65]], [["fileSystems", 114, 53]], [["virtualisation", 114, 38]], [["configuration", 114, 24]], [["options", 121, 50]], [["/test", 121, 42]], [["fileSystems", 121, 30]], [["imports", 120, 15], ["virtualisation", 121, 15]], [["configuration", 119, 36]], [["device", 126, 50]], [["/test", 126, 42]], [["fileSystems", 126, 30]], [["imports", 125, 15], ["virtualisation", 126, 15]], [["configuration", 124, 35]], [["device", 130, 46]], [["/", 130, 42]], [["fileSystems", 130, 30]], [["virtualisation", 130, 15]], [["configuration", 129, 32]], [["device", 135, 17], ["fsType", 136, 17], ["options", 137, 17]], [["/testauto", 134, 42]], [["fileSystems", 134, 30]], [["virtualisation", 134, 15]], [["configuration", 133, 23]], [["device", 143, 17], ["size", 144, 17]], [["swapDevices", 141, 32]], [["configuration", 141, 18]], [["brokenInitInterface", 106, 13], ["modifiedSystemConf", 110, 13], ["addedMount", 114, 13], ["addedMountOptsModified", 119, 13], ["addedMountDevModified", 124, 13], ["storeMountModified", 129, 13], ["automount", 133, 13], ["swap", 141, 13]], [["Type", 154, 19], ["RemainAfterExit", 155, 19], ["ExecStart", 156, 19], ["ExecReload", 157, 19]], [["wantedBy", 152, 17], ["serviceConfig", 153, 17]], [["test", 151, 32]], [["services", 151, 23]], [["systemd", 151, 15]], [["configuration", 150, 27]], [["activatable", 163, 22]], [["Type", 167, 19], ["RemainAfterExit", 168, 19], ["ExecStart", 169, 19], ["ExecReload", 170, 19]], [["wantedBy", 165, 17], ["serviceConfig", 166, 17]], [["test", 164, 32]], [["services", 164, 23]], [["system", 163, 15], ["systemd", 164, 15]], [["configuration", 162, 51]], [["description", 177, 37]], [["test", 177, 32]], [["services", 177, 23]], [["imports", 176, 15], ["systemd", 177, 15]], [["configuration", 175, 47]], [["X-Test", 182, 51]], [["serviceConfig", 182, 37]], [["test", 182, 32]], [["services", 182, 23]], [["imports", 181, 15], ["systemd", 182, 15]], [["configuration", 180, 35]], [["stopIfChanged", 187, 37]], [["test", 187, 32]], [["services", 187, 23]], [["imports", 186, 15], ["systemd", 187, 15]], [["configuration", 185, 33]], [["ExecReload", 194, 31]], [["reloadIfChanged", 193, 17], ["serviceConfig", 194, 17]], [["test", 192, 32]], [["services", 192, 23]], [["imports", 191, 15], ["systemd", 192, 15]], [["configuration", 190, 33]], [["restartIfChanged", 200, 37]], [["test", 200, 32]], [["services", 200, 23]], [["imports", 199, 15], ["systemd", 200, 15]], [["configuration", 198, 36]], [["ExecStart", 205, 51]], [["serviceConfig", 205, 37]], [["test", 205, 32]], [["services", 205, 23]], [["imports", 204, 15], ["systemd", 205, 15]], [["configuration", 203, 34]], [["Type", 213, 19], ["Restart", 214, 19], ["RestartSec", 215, 19], ["ExecStart", 216, 19]], [["wantedBy", 211, 17], ["serviceConfig", 212, 17]], [["autorestart", 210, 32]], [["services", 210, 23]], [["systemd", 210, 15]], [["configuration", 208, 32]], [["ExecStart", 224, 17]], [["serviceConfig", 223, 44]], [["autorestart", 223, 32]], [["services", 223, 23]], [["imports", 222, 15], ["systemd", 223, 15]], [["configuration", 221, 39]], [["name", 232, 19], ["destination", 233, 19], ["text", 234, 19]], [["packages", 230, 23]], [["imports", 229, 15], ["systemd", 230, 15]], [["configuration", 228, 43]], [["name", 246, 19], ["destination", 247, 19], ["text", 248, 19]], [["packages", 244, 23]], [["imports", 243, 15], ["systemd", 244, 15]], [["configuration", 242, 52]], [["name", 260, 19], ["destination", 261, 19], ["text", 262, 19]], [["packages", 258, 23]], [["imports", 257, 15], ["systemd", 258, 15]], [["configuration", 256, 45]], [["X-Test", 272, 51]], [["serviceConfig", 272, 37]], [["test", 272, 32]], [["services", 272, 23]], [["imports", 271, 15], ["systemd", 272, 15]], [["configuration", 270, 39]], [["X-Test", 277, 51]], [["serviceConfig", 277, 37]], [["test", 277, 32]], [["services", 277, 23]], [["imports", 276, 15], ["systemd", 277, 15]], [["configuration", 275, 49]], [["X-Test2", 282, 51]], [["serviceConfig", 282, 37]], [["test", 282, 32]], [["services", 282, 23]], [["imports", 281, 15], ["systemd", 282, 15]], [["configuration", 280, 48]], [["reloadTriggers", 287, 37]], [["test", 287, 32]], [["services", 287, 23]], [["imports", 286, 15], ["systemd", 287, 15]], [["configuration", 285, 40]], [["reloadTriggers", 292, 37]], [["test", 292, 32]], [["services", 292, 23]], [["imports", 291, 15], ["systemd", 292, 15]], [["configuration", 290, 48]], [["X-Test", 299, 31]], [["reloadTriggers", 298, 17], ["serviceConfig", 299, 17]], [["test", 297, 32]], [["services", 297, 23]], [["imports", 296, 15], ["systemd", 297, 15]], [["configuration", 295, 64]], [["X-Test", 305, 51]], [["serviceConfig", 305, 37]], [["test", 305, 32]], [["services", 305, 23]], [["imports", 304, 15], ["systemd", 305, 15]], [["configuration", 303, 61]], [["Type", 312, 19], ["RemainAfterExit", 313, 19], ["ExecStart", 314, 19], ["ExecReload", 315, 19]], [["wantedBy", 310, 17], ["serviceConfig", 311, 17]], [["escaped\\x2ddash", 309, 32]], [["services", 309, 23]], [["systemd", 309, 15]], [["configuration", 308, 31]], [["X-Test", 322, 65]], [["serviceConfig", 322, 51]], [["escaped\\x2ddash", 322, 32]], [["services", 322, 23]], [["imports", 321, 15], ["systemd", 322, 15]], [["configuration", 320, 39]], [["ExecStart", 326, 51]], [["serviceConfig", 326, 37]], [["test", 326, 32]], [["services", 326, 23]], [["systemd", 326, 15]], [["configuration", 325, 36]], [["Type", 338, 19], ["RemainAfterExit", 339, 19], ["ExecStart", 340, 19]], [["wantedBy", 336, 17], ["serviceConfig", 337, 17]], [["-", 335, 32]], [["services", 335, 23]], [["systemd", 335, 15]], [["configuration", 334, 34]], [["ExecReload", 349, 31]], [["reloadIfChanged", 348, 17], ["serviceConfig", 349, 17]], [["-", 347, 32]], [["services", 347, 23]], [["imports", 346, 15], ["systemd", 347, 15]], [["configuration", 345, 42]], [["Type", 357, 19], ["RemainAfterExit", 358, 19], ["ExecStart", 359, 19], ["ExecReload", 360, 19]], [["wantedBy", 355, 17], ["serviceConfig", 356, 17]], [["Type", 367, 19], ["RemainAfterExit", 368, 19], ["ExecStart", 369, 19], ["ExecReload", 370, 19]], [["wantedBy", 364, 17], ["requires", 365, 17], ["serviceConfig", 366, 17]], [["required-service", 354, 32], ["test-service", 363, 32]], [["services", 354, 23]], [["systemd", 354, 15]], [["configuration", 353, 33]], [["X-Test", 377, 63]], [["serviceConfig", 377, 49]], [["reloadTriggers", 378, 45]], [["required-service", 377, 32], ["test-service", 378, 32]], [["services", 377, 23]], [["imports", 376, 15], ["systemd", 377, 15]], [["configuration", 375, 41]], [["RefuseManualStart", 383, 56]], [["unitConfig", 383, 45]], [["test-service", 383, 32]], [["services", 383, 23]], [["imports", 382, 15], ["systemd", 383, 15]], [["configuration", 381, 48]], [["Type", 388, 17], ["RemainAfterExit", 389, 17], ["ExecStart", 390, 17], ["ExecReload", 391, 17]], [["serviceConfig", 387, 48]], [["wantedBy", 394, 17], ["overrideStrategy", 395, 17]], [["wantedBy", 398, 17], ["overrideStrategy", 399, 17]], [["instantiated@", 387, 32], ["instantiated@one", 393, 32], ["instantiated@two", 397, 32]], [["services", 387, 23]], [["systemd", 387, 15]], [["configuration", 386, 30]], [["X-Test", 405, 62]], [["serviceConfig", 405, 48]], [["instantiated@", 405, 32]], [["services", 405, 23]], [["imports", 404, 15], ["systemd", 405, 15]], [["configuration", 403, 38]], [["Type", 413, 21], ["RemainAfterExit", 414, 21], ["ExecStart", 415, 21], ["ExecReload", 416, 21]], [["serviceConfig", 412, 19]], [["overrideStrategy", 420, 53]], [["stopIfChanged", 423, 19]], [["overrideStrategy", 426, 61]], [["reloadIfChanged", 429, 19]], [["overrideStrategy", 432, 60]], [["restartIfChanged", 435, 19]], [["overrideStrategy", 438, 57]], [["wantedBy", 441, 19]], [["overrideStrategy", 445, 19], ["wantedBy", 446, 19]], [["overrideStrategy", 451, 72]], [["stopIfChanged", 454, 19], ["wantedBy", 455, 19]], [["overrideStrategy", 459, 19], ["stopIfChanged", 460, 19], ["wantedBy", 461, 19]], [["simple-service", 410, 17], ["templated-simple-service@", 419, 17], ["templated-simple-service@instance", 420, 17], ["simple-restart-service", 422, 17], ["templated-simple-restart-service@", 425, 17], ["templated-simple-restart-service@instance", 426, 17], ["simple-reload-service", 428, 17], ["templated-simple-reload-service@", 431, 17], ["templated-simple-reload-service@instance", 432, 17], ["no-restart-service", 434, 17], ["templated-no-restart-service@", 437, 17], ["templated-no-restart-service@instance", 438, 17], ["reload-triggers", 440, 17], ["templated-reload-triggers@", 443, 17], ["templated-reload-triggers@instance", 444, 17], ["reload-triggers-and-restart-by-as", 449, 17], ["templated-reload-triggers-and-restart-by-as@", 450, 17], ["templated-reload-triggers-and-restart-by-as@instance", 451, 17], ["reload-triggers-and-restart", 453, 17], ["templated-reload-triggers-and-restart@", 457, 17], ["templated-reload-triggers-and-restart@instance", 458, 17]], [["services", 409, 23]], [["supportsDryActivation", 466, 17], ["deps", 467, 17], ["text", 468, 17]], [["restart-and-reload-test", 465, 40]], [["activationScripts", 465, 22]], [["systemd", 409, 15], ["system", 465, 15]], [["configuration", 408, 53]], [["X-Modified", 503, 74]], [["serviceConfig", 503, 60]], [["X-Modified", 506, 31]], [["overrideStrategy", 505, 17], ["serviceConfig", 506, 17]], [["reload-triggers-and-restart", 503, 32], ["templated-reload-triggers-and-restart@instance", 504, 32]], [["services", 503, 23]], [["imports", 502, 15], ["systemd", 503, 15]], [["configuration", 501, 62]], [["simpleService", 150, 13], ["simpleServiceSeparateActivationScript", 162, 13], ["simpleServiceDifferentDescription", 175, 13], ["simpleServiceModified", 180, 13], ["simpleServiceNostop", 185, 13], ["simpleServiceReload", 190, 13], ["simpleServiceNorestart", 198, 13], ["simpleServiceFailing", 203, 13], ["autorestartService", 208, 13], ["autorestartServiceFailing", 221, 13], ["simpleServiceWithExtraSection", 228, 13], ["simpleServiceWithExtraSectionOtherName", 242, 13], ["simpleServiceWithInstallSection", 256, 13], ["simpleServiceWithExtraKey", 270, 13], ["simpleServiceWithExtraKeyOtherValue", 275, 13], ["simpleServiceWithExtraKeyOtherName", 280, 13], ["simpleServiceReloadTrigger", 285, 13], ["simpleServiceReloadTriggerModified", 290, 13], ["simpleServiceReloadTriggerModifiedAndSomethingElse", 295, 13], ["simpleServiceReloadTriggerModifiedSomethingElse", 303, 13], ["unitWithBackslash", 308, 13], ["unitWithBackslashModified", 320, 13], ["unitWithMultilineValue", 325, 13], ["unitStartingWithDash", 334, 13], ["unitStartingWithDashModified", 345, 13], ["unitWithRequirement", 353, 13], ["unitWithRequirementModified", 375, 13], ["unitWithRequirementModifiedNostart", 381, 13], ["unitWithTemplate", 386, 13], ["unitWithTemplateModified", 403, 13], ["restart-and-reload-by-activation-script", 408, 13], ["restart-and-reload-by-activation-script-modified", 501, 13]], [["ExecStart", 517, 19], ["ExecReload", 518, 19]], [["description", 514, 17], ["stopIfChanged", 515, 17], ["serviceConfig", 516, 17]], [["socket-activated", 513, 32]], [["SocketMode", 524, 30]], [["wantedBy", 522, 17], ["listenStreams", 523, 17], ["socketConfig", 524, 17]], [["socket-activated", 521, 31]], [["services", 513, 23], ["sockets", 521, 23]], [["systemd", 513, 15]], [["configuration", 512, 27]], [["X-Test", 530, 63]], [["serviceConfig", 530, 49]], [["socket-activated", 530, 32]], [["services", 530, 23]], [["imports", 529, 15], ["systemd", 530, 15]], [["configuration", 528, 44]], [["stopIfChanged", 535, 49]], [["socket-activated", 535, 32]], [["services", 535, 23]], [["imports", 534, 15], ["systemd", 535, 15]], [["configuration", 533, 43]], [["stopIfChanged", 541, 17], ["reloadTriggers", 542, 17]], [["socket-activated", 540, 32]], [["services", 540, 23]], [["imports", 539, 15], ["systemd", 540, 15]], [["configuration", 538, 61]], [["Accept", 551, 19], ["SocketMode", 552, 19]], [["wantedBy", 548, 17], ["listenStreams", 549, 17], ["socketConfig", 550, 17]], [["accept-socket", 547, 31]], [["ExecStart", 557, 31]], [["description", 556, 17], ["serviceConfig", 557, 17]], [["accept-socket@", 555, 32]], [["sockets", 547, 23], ["services", 555, 23]], [["systemd", 547, 15]], [["configuration", 546, 27]], [["X-Test", 563, 63]], [["serviceConfig", 563, 49]], [["accept-socket@", 563, 32]], [["services", 563, 23]], [["imports", 562, 15], ["systemd", 563, 15]], [["configuration", 561, 44]], [["enable", 568, 48]], [["socket-activated", 568, 31]], [["wantedBy", 569, 49]], [["socket-activated", 569, 32]], [["sockets", 568, 23], ["services", 569, 23]], [["imports", 567, 15], ["systemd", 568, 15]], [["configuration", 566, 45]], [["description", 575, 19], ["what", 576, 19], ["type", 577, 19], ["where", 578, 19], ["options", 579, 19], ["wantedBy", 580, 19]], [["mounts", 573, 23]], [["systemd", 573, 15]], [["configuration", 572, 19]], [["description", 588, 19], ["what", 589, 19], ["type", 590, 19], ["where", 591, 19], ["options", 592, 19], ["wantedBy", 593, 19]], [["mounts", 586, 23]], [["systemd", 586, 15]], [["configuration", 585, 34]], [["description", 601, 19], ["what", 602, 19], ["type", 603, 19], ["where", 604, 19], ["options", 605, 19], ["wantedBy", 606, 19]], [["mounts", 599, 23]], [["systemd", 599, 15]], [["configuration", 598, 27]], [["OnCalendar", 614, 29]], [["wantedBy", 613, 17], ["timerConfig", 614, 17]], [["test-timer", 612, 30]], [["Type", 618, 19], ["ExecStart", 619, 19]], [["serviceConfig", 617, 17]], [["test-timer", 616, 32]], [["timers", 612, 23], ["services", 616, 23]], [["systemd", 612, 15]], [["configuration", 611, 19]], [["OnCalendar", 626, 53]], [["timerConfig", 626, 41]], [["test-timer", 626, 30]], [["timers", 626, 23]], [["imports", 625, 15], ["systemd", 626, 15]], [["configuration", 624, 27]], [["X-Test", 630, 55]], [["unitConfig", 630, 44]], [["hybrid-sleep", 630, 31]], [["targets", 630, 23]], [["systemd", 630, 15]], [["configuration", 629, 33]], [["wantedBy", 634, 43]], [["test-target", 634, 31]], [["ExecStart", 640, 31]], [["bindsTo", 639, 17], ["serviceConfig", 640, 17]], [["test-service", 638, 32]], [["targets", 634, 23], ["services", 638, 23]], [["systemd", 634, 15]], [["configuration", 633, 20]], [["X-Test", 646, 54]], [["unitConfig", 646, 43]], [["test-target", 646, 31]], [["targets", 646, 23]], [["imports", 645, 15], ["systemd", 646, 15]], [["configuration", 644, 28]], [["X-StopOnReconfiguration", 651, 54]], [["unitConfig", 651, 43]], [["test-target", 651, 31]], [["targets", 651, 23]], [["imports", 650, 15], ["systemd", 651, 15]], [["configuration", 649, 42]], [["PathExists", 657, 28]], [["wantedBy", 656, 17], ["pathConfig", 657, 17]], [["test-watch", 655, 29]], [["Type", 661, 19], ["RemainAfterExit", 662, 19], ["ExecStart", 663, 19]], [["serviceConfig", 660, 17]], [["test-watch", 659, 32]], [["paths", 655, 23], ["services", 659, 23]], [["systemd", 655, 15]], [["configuration", 654, 18]], [["PathExists", 670, 51]], [["pathConfig", 670, 40]], [["test-watch", 670, 29]], [["paths", 670, 23]], [["imports", 669, 15], ["systemd", 670, 15]], [["configuration", 668, 26]], [["MemoryMax", 674, 52]], [["sliceConfig", 674, 40]], [["testslice", 674, 30]], [["Type", 677, 19], ["RemainAfterExit", 678, 19], ["ExecStart", 679, 19], ["Slice", 680, 19]], [["serviceConfig", 676, 17]], [["testservice", 675, 32]], [["slices", 674, 23], ["services", 675, 23]], [["systemd", 674, 15]], [["configuration", 673, 19]], [["MemoryMax", 687, 52]], [["sliceConfig", 687, 40]], [["testslice", 687, 30]], [["slices", 687, 23]], [["imports", 686, 15], ["systemd", 687, 15]], [["configuration", 685, 27]], [["dbus", 695, 21], ["broker", 696, 21]], [["restartTriggers", 703, 49]], [["services", 703, 25]], [["systemd", 703, 17]], [["configuration", 690, 24]], [["simple-generator", 711, 36]], [["generators", 711, 25]], [["systemd", 711, 17]], [["configuration", 708, 24]], [["simple-socket", 512, 13], ["simple-socket-service-modified", 528, 13], ["simple-socket-stop-if-changed", 533, 13], ["simple-socket-stop-if-changed-and-reloadtrigger", 538, 13], ["accept-socket", 546, 13], ["accept-socket-service-modified", 561, 13], ["socket-activated-without-socket", 566, 13], ["mount", 572, 13], ["mountOptionsModified", 585, 13], ["mountModified", 598, 13], ["timer", 611, 13], ["timerModified", 624, 13], ["hybridSleepModified", 629, 13], ["target", 633, 13], ["targetModified", 644, 13], ["targetModifiedStopOnReconfig", 649, 13], ["path", 654, 13], ["pathModified", 668, 13], ["slice", 673, 13], ["sliceModified", 685, 13], ["dbusReload", 690, 13], ["generators", 708, 13]], [["Type", 725, 19], ["RemainAfterExit", 726, 19], ["ExecStart", 727, 19], ["ExecReload", 728, 19]], [["wantedBy", 723, 17], ["serviceConfig", 724, 17]], [["usertest", 722, 37]], [["services", 722, 28]], [["user", 722, 23]], [["systemd", 722, 15]], [["configuration", 721, 31]], [["X-Test", 735, 60]], [["serviceConfig", 735, 46]], [["usertest", 735, 37]], [["services", 735, 28]], [["user", 735, 23]], [["imports", 734, 15], ["systemd", 735, 15]], [["configuration", 733, 39]], [["stopIfChanged", 740, 46]], [["usertest", 740, 37]], [["services", 740, 28]], [["user", 740, 23]], [["imports", 739, 15], ["systemd", 740, 15]], [["configuration", 738, 37]], [["X-Test", 747, 31]], [["reloadIfChanged", 746, 17], ["serviceConfig", 747, 17]], [["usertest", 745, 37]], [["services", 745, 28]], [["user", 745, 23]], [["imports", 744, 15], ["systemd", 745, 15]], [["configuration", 743, 37]], [["reloadTriggers", 753, 46]], [["usertest", 753, 37]], [["services", 753, 28]], [["user", 753, 23]], [["imports", 752, 15], ["systemd", 753, 15]], [["configuration", 751, 44]], [["ExecStart", 758, 60]], [["serviceConfig", 758, 46]], [["usertest", 758, 37]], [["services", 758, 28]], [["user", 758, 23]], [["imports", 757, 15], ["systemd", 758, 15]], [["configuration", 756, 38]], [["Type", 768, 19], ["RemainAfterExit", 769, 19], ["ExecStart", 770, 19]], [["wantedBy", 766, 17], ["serviceConfig", 767, 17]], [["migrated", 765, 37]], [["services", 765, 28]], [["user", 765, 23]], [["systemd", 765, 15]], [["configuration", 764, 41]], [["fakeSdSwitch", 781, 44]], [["userActivationScripts", 781, 22]], [["imports", 780, 15], ["system", 781, 15]], [["configuration", 779, 40]], [["fakeSdSwitch", 796, 44]], [["userActivationScripts", 796, 22]], [["imports", 795, 15], ["system", 796, 15]], [["configuration", 794, 46]], [["ExecReload", 811, 31]], [["reloadIfChanged", 810, 17], ["serviceConfig", 811, 17]], [["migrated", 809, 37]], [["services", 809, 28]], [["user", 809, 23]], [["imports", 808, 15], ["systemd", 809, 15]], [["configuration", 807, 50]], [["restartIfChanged", 818, 46]], [["migrated", 818, 37]], [["services", 818, 28]], [["user", 818, 23]], [["imports", 817, 15], ["systemd", 818, 15]], [["configuration", 816, 49]], [["simpleUserService", 721, 13], ["simpleUserServiceModified", 733, 13], ["simpleUserServiceNostop", 738, 13], ["simpleUserServiceReload", 743, 13], ["simpleUserServiceReloadTrigger", 751, 13], ["simpleUserServiceFailing", 756, 13], ["userServiceMigratedShadowed", 764, 13], ["userServiceMigratedToNixos", 779, 13], ["userServiceMigratedToNixosNoStop", 794, 13], ["userServiceMigratedToNixosReloadOnly", 807, 13], ["userServiceMigratedToNixosNoRestart", 816, 13]], [["inhibitors", 823, 55]], [["switch", 823, 48]], [["system", 823, 41]], [["configuration", 823, 27]], [["foo", 826, 15], ["quz", 827, 15]], [["inhibitors", 825, 52]], [["switch", 825, 45]], [["system", 825, 38]], [["configuration", 825, 24]], [["foo", 831, 15], ["quz", 832, 15]], [["inhibitors", 830, 60]], [["switch", 830, 53]], [["system", 830, 46]], [["configuration", 830, 32]], [["foo", 836, 15], ["qux", 837, 15]], [["inhibitors", 835, 56]], [["switch", 835, 49]], [["system", 835, 42]], [["configuration", 835, 28]], [["no_inhibitors", 823, 13], ["inhibitors", 825, 13], ["inhibitors_changed", 830, 13], ["inhibitors_new", 835, 13]], [["environment", 90, 9], ["users", 91, 9], ["boot", 102, 9], ["specialisation", 104, 9]], [["enable", 843, 21]], [["succeeds", 845, 30]], [["switch", 843, 14], ["preSwitchChecks", 845, 14]], [["mutableUsers", 844, 13]], [["enable", 851, 24]], [["grub", 851, 19]], [["loader", 851, 12]], [["failEveryTime", 852, 72]], [["preSwitchChecks", 852, 56]], [["system", 852, 49]], [["configuration", 852, 35]], [["failsInTheMiddle", 856, 75]], [["preSwitchChecks", 856, 59]], [["system", 856, 52]], [["configuration", 856, 38]], [["failingCheck", 852, 22], ["failingMidCheck", 856, 22]], [["system", 843, 7], ["users", 844, 7], ["boot", 851, 7], ["specialisation", 852, 7]], [["machine", 87, 5], ["other", 842, 5]], [["dbus", 886, 11], ["broker", 887, 11]], [["name", 78, 3], ["meta", 79, 3], ["nodes", 86, 3], ["testScript", 864, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false, part: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/switch-test.nix", [["maintainers", 80, 5]]);
 const formals$2 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/switch-test.nix", [["systemPackages", 90, 21]]);
-const pos$3 = nix.positions(here + "/switch-test.nix", [["isNormalUser", 96, 11], ["uid", 97, 11], ["linger", 98, 11]]);
-const pos$4 = nix.positions(here + "/switch-test.nix", [["usertest", 95, 21]]);
-const pos$5 = nix.positions(here + "/switch-test.nix", [["mutableUsers", 91, 15], ["users", 95, 15]]);
-const pos$6 = nix.positions(here + "/switch-test.nix", [["enable", 102, 26]]);
-const pos$7 = nix.positions(here + "/switch-test.nix", [["grub", 102, 21]]);
-const pos$8 = nix.positions(here + "/switch-test.nix", [["loader", 102, 14]]);
-const pos$9 = nix.positions(here + "/switch-test.nix", [["systemBuilderCommands", 106, 61]]);
-const pos$10 = nix.positions(here + "/switch-test.nix", [["system", 106, 54]]);
-const pos$11 = nix.positions(here + "/switch-test.nix", [["config", 106, 47]]);
-const pos$12 = nix.positions(here + "/switch-test.nix", [["configuration", 106, 33]]);
-const pos$13 = nix.positions(here + "/switch-test.nix", [["DefaultEnvironment", 111, 15]]);
-const pos$14 = nix.positions(here + "/switch-test.nix", [["Manager", 110, 63]]);
-const pos$15 = nix.positions(here + "/switch-test.nix", [["settings", 110, 54]]);
-const pos$16 = nix.positions(here + "/switch-test.nix", [["systemd", 110, 46]]);
-const pos$17 = nix.positions(here + "/switch-test.nix", [["configuration", 110, 32]]);
-const pos$18 = nix.positions(here + "/switch-test.nix", [["device", 115, 15], ["fsType", 116, 15]]);
-const pos$19 = nix.positions(here + "/switch-test.nix", [["/test", 114, 65]]);
-const pos$20 = nix.positions(here + "/switch-test.nix", [["fileSystems", 114, 53]]);
-const pos$21 = nix.positions(here + "/switch-test.nix", [["virtualisation", 114, 38]]);
-const pos$22 = nix.positions(here + "/switch-test.nix", [["configuration", 114, 24]]);
-const pos$23 = nix.positions(here + "/switch-test.nix", [["options", 121, 50]]);
-const pos$24 = nix.positions(here + "/switch-test.nix", [["/test", 121, 42]]);
-const pos$25 = nix.positions(here + "/switch-test.nix", [["fileSystems", 121, 30]]);
-const pos$26 = nix.positions(here + "/switch-test.nix", [["imports", 120, 15], ["virtualisation", 121, 15]]);
-const pos$27 = nix.positions(here + "/switch-test.nix", [["configuration", 119, 36]]);
-const pos$28 = nix.positions(here + "/switch-test.nix", [["device", 126, 50]]);
-const pos$29 = nix.positions(here + "/switch-test.nix", [["/test", 126, 42]]);
-const pos$30 = nix.positions(here + "/switch-test.nix", [["fileSystems", 126, 30]]);
-const pos$31 = nix.positions(here + "/switch-test.nix", [["imports", 125, 15], ["virtualisation", 126, 15]]);
-const pos$32 = nix.positions(here + "/switch-test.nix", [["configuration", 124, 35]]);
-const pos$33 = nix.positions(here + "/switch-test.nix", [["device", 130, 46]]);
-const pos$34 = nix.positions(here + "/switch-test.nix", [["/", 130, 42]]);
-const pos$35 = nix.positions(here + "/switch-test.nix", [["fileSystems", 130, 30]]);
-const pos$36 = nix.positions(here + "/switch-test.nix", [["virtualisation", 130, 15]]);
-const pos$37 = nix.positions(here + "/switch-test.nix", [["configuration", 129, 32]]);
-const pos$38 = nix.positions(here + "/switch-test.nix", [["device", 135, 17], ["fsType", 136, 17], ["options", 137, 17]]);
-const pos$39 = nix.positions(here + "/switch-test.nix", [["/testauto", 134, 42]]);
-const pos$40 = nix.positions(here + "/switch-test.nix", [["fileSystems", 134, 30]]);
-const pos$41 = nix.positions(here + "/switch-test.nix", [["virtualisation", 134, 15]]);
-const pos$42 = nix.positions(here + "/switch-test.nix", [["configuration", 133, 23]]);
-const pos$43 = nix.positions(here + "/switch-test.nix", [["device", 143, 17], ["size", 144, 17]]);
-const pos$44 = nix.positions(here + "/switch-test.nix", [["swapDevices", 141, 32]]);
-const pos$45 = nix.positions(here + "/switch-test.nix", [["configuration", 141, 18]]);
-const pos$46 = nix.positions(here + "/switch-test.nix", [["brokenInitInterface", 106, 13], ["modifiedSystemConf", 110, 13], ["addedMount", 114, 13], ["addedMountOptsModified", 119, 13], ["addedMountDevModified", 124, 13], ["storeMountModified", 129, 13], ["automount", 133, 13], ["swap", 141, 13]]);
-const pos$47 = nix.positions(here + "/switch-test.nix", [["Type", 154, 19], ["RemainAfterExit", 155, 19], ["ExecStart", 156, 19], ["ExecReload", 157, 19]]);
-const pos$48 = nix.positions(here + "/switch-test.nix", [["wantedBy", 152, 17], ["serviceConfig", 153, 17]]);
-const pos$49 = nix.positions(here + "/switch-test.nix", [["test", 151, 32]]);
-const pos$50 = nix.positions(here + "/switch-test.nix", [["services", 151, 23]]);
-const pos$51 = nix.positions(here + "/switch-test.nix", [["systemd", 151, 15]]);
-const pos$52 = nix.positions(here + "/switch-test.nix", [["configuration", 150, 27]]);
-const pos$53 = nix.positions(here + "/switch-test.nix", [["activatable", 163, 22]]);
-const pos$54 = nix.positions(here + "/switch-test.nix", [["Type", 167, 19], ["RemainAfterExit", 168, 19], ["ExecStart", 169, 19], ["ExecReload", 170, 19]]);
-const pos$55 = nix.positions(here + "/switch-test.nix", [["wantedBy", 165, 17], ["serviceConfig", 166, 17]]);
-const pos$56 = nix.positions(here + "/switch-test.nix", [["test", 164, 32]]);
-const pos$57 = nix.positions(here + "/switch-test.nix", [["services", 164, 23]]);
-const pos$58 = nix.positions(here + "/switch-test.nix", [["system", 163, 15], ["systemd", 164, 15]]);
-const pos$59 = nix.positions(here + "/switch-test.nix", [["configuration", 162, 51]]);
-const pos$60 = nix.positions(here + "/switch-test.nix", [["description", 177, 37]]);
-const pos$61 = nix.positions(here + "/switch-test.nix", [["test", 177, 32]]);
-const pos$62 = nix.positions(here + "/switch-test.nix", [["services", 177, 23]]);
-const pos$63 = nix.positions(here + "/switch-test.nix", [["imports", 176, 15], ["systemd", 177, 15]]);
-const pos$64 = nix.positions(here + "/switch-test.nix", [["configuration", 175, 47]]);
-const pos$65 = nix.positions(here + "/switch-test.nix", [["X-Test", 182, 51]]);
-const pos$66 = nix.positions(here + "/switch-test.nix", [["serviceConfig", 182, 37]]);
-const pos$67 = nix.positions(here + "/switch-test.nix", [["test", 182, 32]]);
-const pos$68 = nix.positions(here + "/switch-test.nix", [["services", 182, 23]]);
-const pos$69 = nix.positions(here + "/switch-test.nix", [["imports", 181, 15], ["systemd", 182, 15]]);
-const pos$70 = nix.positions(here + "/switch-test.nix", [["configuration", 180, 35]]);
-const pos$71 = nix.positions(here + "/switch-test.nix", [["stopIfChanged", 187, 37]]);
-const pos$72 = nix.positions(here + "/switch-test.nix", [["test", 187, 32]]);
-const pos$73 = nix.positions(here + "/switch-test.nix", [["services", 187, 23]]);
-const pos$74 = nix.positions(here + "/switch-test.nix", [["imports", 186, 15], ["systemd", 187, 15]]);
-const pos$75 = nix.positions(here + "/switch-test.nix", [["configuration", 185, 33]]);
-const pos$76 = nix.positions(here + "/switch-test.nix", [["ExecReload", 194, 31]]);
-const pos$77 = nix.positions(here + "/switch-test.nix", [["reloadIfChanged", 193, 17], ["serviceConfig", 194, 17]]);
-const pos$78 = nix.positions(here + "/switch-test.nix", [["test", 192, 32]]);
-const pos$79 = nix.positions(here + "/switch-test.nix", [["services", 192, 23]]);
-const pos$80 = nix.positions(here + "/switch-test.nix", [["imports", 191, 15], ["systemd", 192, 15]]);
-const pos$81 = nix.positions(here + "/switch-test.nix", [["configuration", 190, 33]]);
-const pos$82 = nix.positions(here + "/switch-test.nix", [["restartIfChanged", 200, 37]]);
-const pos$83 = nix.positions(here + "/switch-test.nix", [["test", 200, 32]]);
-const pos$84 = nix.positions(here + "/switch-test.nix", [["services", 200, 23]]);
-const pos$85 = nix.positions(here + "/switch-test.nix", [["imports", 199, 15], ["systemd", 200, 15]]);
-const pos$86 = nix.positions(here + "/switch-test.nix", [["configuration", 198, 36]]);
-const pos$87 = nix.positions(here + "/switch-test.nix", [["ExecStart", 205, 51]]);
-const pos$88 = nix.positions(here + "/switch-test.nix", [["serviceConfig", 205, 37]]);
-const pos$89 = nix.positions(here + "/switch-test.nix", [["test", 205, 32]]);
-const pos$90 = nix.positions(here + "/switch-test.nix", [["services", 205, 23]]);
-const pos$91 = nix.positions(here + "/switch-test.nix", [["imports", 204, 15], ["systemd", 205, 15]]);
-const pos$92 = nix.positions(here + "/switch-test.nix", [["configuration", 203, 34]]);
-const pos$93 = nix.positions(here + "/switch-test.nix", [["Type", 213, 19], ["Restart", 214, 19], ["RestartSec", 215, 19], ["ExecStart", 216, 19]]);
-const pos$94 = nix.positions(here + "/switch-test.nix", [["wantedBy", 211, 17], ["serviceConfig", 212, 17]]);
-const pos$95 = nix.positions(here + "/switch-test.nix", [["autorestart", 210, 32]]);
-const pos$96 = nix.positions(here + "/switch-test.nix", [["services", 210, 23]]);
-const pos$97 = nix.positions(here + "/switch-test.nix", [["systemd", 210, 15]]);
-const pos$98 = nix.positions(here + "/switch-test.nix", [["configuration", 208, 32]]);
-const pos$99 = nix.positions(here + "/switch-test.nix", [["ExecStart", 224, 17]]);
-const pos$100 = nix.positions(here + "/switch-test.nix", [["serviceConfig", 223, 44]]);
-const pos$101 = nix.positions(here + "/switch-test.nix", [["autorestart", 223, 32]]);
-const pos$102 = nix.positions(here + "/switch-test.nix", [["services", 223, 23]]);
-const pos$103 = nix.positions(here + "/switch-test.nix", [["imports", 222, 15], ["systemd", 223, 15]]);
-const pos$104 = nix.positions(here + "/switch-test.nix", [["configuration", 221, 39]]);
-const pos$105 = nix.positions(here + "/switch-test.nix", [["name", 232, 19], ["destination", 233, 19], ["text", 234, 19]]);
-const pos$106 = nix.positions(here + "/switch-test.nix", [["packages", 230, 23]]);
-const pos$107 = nix.positions(here + "/switch-test.nix", [["imports", 229, 15], ["systemd", 230, 15]]);
-const pos$108 = nix.positions(here + "/switch-test.nix", [["configuration", 228, 43]]);
-const pos$109 = nix.positions(here + "/switch-test.nix", [["name", 246, 19], ["destination", 247, 19], ["text", 248, 19]]);
-const pos$110 = nix.positions(here + "/switch-test.nix", [["packages", 244, 23]]);
-const pos$111 = nix.positions(here + "/switch-test.nix", [["imports", 243, 15], ["systemd", 244, 15]]);
-const pos$112 = nix.positions(here + "/switch-test.nix", [["configuration", 242, 52]]);
-const pos$113 = nix.positions(here + "/switch-test.nix", [["name", 260, 19], ["destination", 261, 19], ["text", 262, 19]]);
-const pos$114 = nix.positions(here + "/switch-test.nix", [["packages", 258, 23]]);
-const pos$115 = nix.positions(here + "/switch-test.nix", [["imports", 257, 15], ["systemd", 258, 15]]);
-const pos$116 = nix.positions(here + "/switch-test.nix", [["configuration", 256, 45]]);
-const pos$117 = nix.positions(here + "/switch-test.nix", [["X-Test", 272, 51]]);
-const pos$118 = nix.positions(here + "/switch-test.nix", [["serviceConfig", 272, 37]]);
-const pos$119 = nix.positions(here + "/switch-test.nix", [["test", 272, 32]]);
-const pos$120 = nix.positions(here + "/switch-test.nix", [["services", 272, 23]]);
-const pos$121 = nix.positions(here + "/switch-test.nix", [["imports", 271, 15], ["systemd", 272, 15]]);
-const pos$122 = nix.positions(here + "/switch-test.nix", [["configuration", 270, 39]]);
-const pos$123 = nix.positions(here + "/switch-test.nix", [["X-Test", 277, 51]]);
-const pos$124 = nix.positions(here + "/switch-test.nix", [["serviceConfig", 277, 37]]);
-const pos$125 = nix.positions(here + "/switch-test.nix", [["test", 277, 32]]);
-const pos$126 = nix.positions(here + "/switch-test.nix", [["services", 277, 23]]);
-const pos$127 = nix.positions(here + "/switch-test.nix", [["imports", 276, 15], ["systemd", 277, 15]]);
-const pos$128 = nix.positions(here + "/switch-test.nix", [["configuration", 275, 49]]);
-const pos$129 = nix.positions(here + "/switch-test.nix", [["X-Test2", 282, 51]]);
-const pos$130 = nix.positions(here + "/switch-test.nix", [["serviceConfig", 282, 37]]);
-const pos$131 = nix.positions(here + "/switch-test.nix", [["test", 282, 32]]);
-const pos$132 = nix.positions(here + "/switch-test.nix", [["services", 282, 23]]);
-const pos$133 = nix.positions(here + "/switch-test.nix", [["imports", 281, 15], ["systemd", 282, 15]]);
-const pos$134 = nix.positions(here + "/switch-test.nix", [["configuration", 280, 48]]);
-const pos$135 = nix.positions(here + "/switch-test.nix", [["reloadTriggers", 287, 37]]);
-const pos$136 = nix.positions(here + "/switch-test.nix", [["test", 287, 32]]);
-const pos$137 = nix.positions(here + "/switch-test.nix", [["services", 287, 23]]);
-const pos$138 = nix.positions(here + "/switch-test.nix", [["imports", 286, 15], ["systemd", 287, 15]]);
-const pos$139 = nix.positions(here + "/switch-test.nix", [["configuration", 285, 40]]);
-const pos$140 = nix.positions(here + "/switch-test.nix", [["reloadTriggers", 292, 37]]);
-const pos$141 = nix.positions(here + "/switch-test.nix", [["test", 292, 32]]);
-const pos$142 = nix.positions(here + "/switch-test.nix", [["services", 292, 23]]);
-const pos$143 = nix.positions(here + "/switch-test.nix", [["imports", 291, 15], ["systemd", 292, 15]]);
-const pos$144 = nix.positions(here + "/switch-test.nix", [["configuration", 290, 48]]);
-const pos$145 = nix.positions(here + "/switch-test.nix", [["X-Test", 299, 31]]);
-const pos$146 = nix.positions(here + "/switch-test.nix", [["reloadTriggers", 298, 17], ["serviceConfig", 299, 17]]);
-const pos$147 = nix.positions(here + "/switch-test.nix", [["test", 297, 32]]);
-const pos$148 = nix.positions(here + "/switch-test.nix", [["services", 297, 23]]);
-const pos$149 = nix.positions(here + "/switch-test.nix", [["imports", 296, 15], ["systemd", 297, 15]]);
-const pos$150 = nix.positions(here + "/switch-test.nix", [["configuration", 295, 64]]);
-const pos$151 = nix.positions(here + "/switch-test.nix", [["X-Test", 305, 51]]);
-const pos$152 = nix.positions(here + "/switch-test.nix", [["serviceConfig", 305, 37]]);
-const pos$153 = nix.positions(here + "/switch-test.nix", [["test", 305, 32]]);
-const pos$154 = nix.positions(here + "/switch-test.nix", [["services", 305, 23]]);
-const pos$155 = nix.positions(here + "/switch-test.nix", [["imports", 304, 15], ["systemd", 305, 15]]);
-const pos$156 = nix.positions(here + "/switch-test.nix", [["configuration", 303, 61]]);
-const pos$157 = nix.positions(here + "/switch-test.nix", [["Type", 312, 19], ["RemainAfterExit", 313, 19], ["ExecStart", 314, 19], ["ExecReload", 315, 19]]);
-const pos$158 = nix.positions(here + "/switch-test.nix", [["wantedBy", 310, 17], ["serviceConfig", 311, 17]]);
-const pos$159 = nix.positions(here + "/switch-test.nix", [["escaped\\x2ddash", 309, 32]]);
-const pos$160 = nix.positions(here + "/switch-test.nix", [["services", 309, 23]]);
-const pos$161 = nix.positions(here + "/switch-test.nix", [["systemd", 309, 15]]);
-const pos$162 = nix.positions(here + "/switch-test.nix", [["configuration", 308, 31]]);
-const pos$163 = nix.positions(here + "/switch-test.nix", [["X-Test", 322, 65]]);
-const pos$164 = nix.positions(here + "/switch-test.nix", [["serviceConfig", 322, 51]]);
-const pos$165 = nix.positions(here + "/switch-test.nix", [["escaped\\x2ddash", 322, 32]]);
-const pos$166 = nix.positions(here + "/switch-test.nix", [["services", 322, 23]]);
-const pos$167 = nix.positions(here + "/switch-test.nix", [["imports", 321, 15], ["systemd", 322, 15]]);
-const pos$168 = nix.positions(here + "/switch-test.nix", [["configuration", 320, 39]]);
-const pos$169 = nix.positions(here + "/switch-test.nix", [["ExecStart", 326, 51]]);
-const pos$170 = nix.positions(here + "/switch-test.nix", [["serviceConfig", 326, 37]]);
-const pos$171 = nix.positions(here + "/switch-test.nix", [["test", 326, 32]]);
-const pos$172 = nix.positions(here + "/switch-test.nix", [["services", 326, 23]]);
-const pos$173 = nix.positions(here + "/switch-test.nix", [["systemd", 326, 15]]);
-const pos$174 = nix.positions(here + "/switch-test.nix", [["configuration", 325, 36]]);
-const pos$175 = nix.positions(here + "/switch-test.nix", [["Type", 338, 19], ["RemainAfterExit", 339, 19], ["ExecStart", 340, 19]]);
-const pos$176 = nix.positions(here + "/switch-test.nix", [["wantedBy", 336, 17], ["serviceConfig", 337, 17]]);
-const pos$177 = nix.positions(here + "/switch-test.nix", [["-", 335, 32]]);
-const pos$178 = nix.positions(here + "/switch-test.nix", [["services", 335, 23]]);
-const pos$179 = nix.positions(here + "/switch-test.nix", [["systemd", 335, 15]]);
-const pos$180 = nix.positions(here + "/switch-test.nix", [["configuration", 334, 34]]);
-const pos$181 = nix.positions(here + "/switch-test.nix", [["ExecReload", 349, 31]]);
-const pos$182 = nix.positions(here + "/switch-test.nix", [["reloadIfChanged", 348, 17], ["serviceConfig", 349, 17]]);
-const pos$183 = nix.positions(here + "/switch-test.nix", [["-", 347, 32]]);
-const pos$184 = nix.positions(here + "/switch-test.nix", [["services", 347, 23]]);
-const pos$185 = nix.positions(here + "/switch-test.nix", [["imports", 346, 15], ["systemd", 347, 15]]);
-const pos$186 = nix.positions(here + "/switch-test.nix", [["configuration", 345, 42]]);
-const pos$187 = nix.positions(here + "/switch-test.nix", [["Type", 357, 19], ["RemainAfterExit", 358, 19], ["ExecStart", 359, 19], ["ExecReload", 360, 19]]);
-const pos$188 = nix.positions(here + "/switch-test.nix", [["wantedBy", 355, 17], ["serviceConfig", 356, 17]]);
-const pos$189 = nix.positions(here + "/switch-test.nix", [["Type", 367, 19], ["RemainAfterExit", 368, 19], ["ExecStart", 369, 19], ["ExecReload", 370, 19]]);
-const pos$190 = nix.positions(here + "/switch-test.nix", [["wantedBy", 364, 17], ["requires", 365, 17], ["serviceConfig", 366, 17]]);
-const pos$191 = nix.positions(here + "/switch-test.nix", [["required-service", 354, 32], ["test-service", 363, 32]]);
-const pos$192 = nix.positions(here + "/switch-test.nix", [["services", 354, 23]]);
-const pos$193 = nix.positions(here + "/switch-test.nix", [["systemd", 354, 15]]);
-const pos$194 = nix.positions(here + "/switch-test.nix", [["configuration", 353, 33]]);
-const pos$195 = nix.positions(here + "/switch-test.nix", [["X-Test", 377, 63]]);
-const pos$196 = nix.positions(here + "/switch-test.nix", [["serviceConfig", 377, 49]]);
-const pos$197 = nix.positions(here + "/switch-test.nix", [["reloadTriggers", 378, 45]]);
-const pos$198 = nix.positions(here + "/switch-test.nix", [["required-service", 377, 32], ["test-service", 378, 32]]);
-const pos$199 = nix.positions(here + "/switch-test.nix", [["services", 377, 23]]);
-const pos$200 = nix.positions(here + "/switch-test.nix", [["imports", 376, 15], ["systemd", 377, 15]]);
-const pos$201 = nix.positions(here + "/switch-test.nix", [["configuration", 375, 41]]);
-const pos$202 = nix.positions(here + "/switch-test.nix", [["RefuseManualStart", 383, 56]]);
-const pos$203 = nix.positions(here + "/switch-test.nix", [["unitConfig", 383, 45]]);
-const pos$204 = nix.positions(here + "/switch-test.nix", [["test-service", 383, 32]]);
-const pos$205 = nix.positions(here + "/switch-test.nix", [["services", 383, 23]]);
-const pos$206 = nix.positions(here + "/switch-test.nix", [["imports", 382, 15], ["systemd", 383, 15]]);
-const pos$207 = nix.positions(here + "/switch-test.nix", [["configuration", 381, 48]]);
-const pos$208 = nix.positions(here + "/switch-test.nix", [["Type", 388, 17], ["RemainAfterExit", 389, 17], ["ExecStart", 390, 17], ["ExecReload", 391, 17]]);
-const pos$209 = nix.positions(here + "/switch-test.nix", [["serviceConfig", 387, 48]]);
-const pos$210 = nix.positions(here + "/switch-test.nix", [["wantedBy", 394, 17], ["overrideStrategy", 395, 17]]);
-const pos$211 = nix.positions(here + "/switch-test.nix", [["wantedBy", 398, 17], ["overrideStrategy", 399, 17]]);
-const pos$212 = nix.positions(here + "/switch-test.nix", [["instantiated@", 387, 32], ["instantiated@one", 393, 32], ["instantiated@two", 397, 32]]);
-const pos$213 = nix.positions(here + "/switch-test.nix", [["services", 387, 23]]);
-const pos$214 = nix.positions(here + "/switch-test.nix", [["systemd", 387, 15]]);
-const pos$215 = nix.positions(here + "/switch-test.nix", [["configuration", 386, 30]]);
-const pos$216 = nix.positions(here + "/switch-test.nix", [["X-Test", 405, 62]]);
-const pos$217 = nix.positions(here + "/switch-test.nix", [["serviceConfig", 405, 48]]);
-const pos$218 = nix.positions(here + "/switch-test.nix", [["instantiated@", 405, 32]]);
-const pos$219 = nix.positions(here + "/switch-test.nix", [["services", 405, 23]]);
-const pos$220 = nix.positions(here + "/switch-test.nix", [["imports", 404, 15], ["systemd", 405, 15]]);
-const pos$221 = nix.positions(here + "/switch-test.nix", [["configuration", 403, 38]]);
-const pos$222 = nix.positions(here + "/switch-test.nix", [["Type", 413, 21], ["RemainAfterExit", 414, 21], ["ExecStart", 415, 21], ["ExecReload", 416, 21]]);
-const pos$223 = nix.positions(here + "/switch-test.nix", [["serviceConfig", 412, 19]]);
-const pos$224 = nix.positions(here + "/switch-test.nix", [["overrideStrategy", 420, 53]]);
-const pos$225 = nix.positions(here + "/switch-test.nix", [["stopIfChanged", 423, 19]]);
-const pos$226 = nix.positions(here + "/switch-test.nix", [["overrideStrategy", 426, 61]]);
-const pos$227 = nix.positions(here + "/switch-test.nix", [["reloadIfChanged", 429, 19]]);
-const pos$228 = nix.positions(here + "/switch-test.nix", [["overrideStrategy", 432, 60]]);
-const pos$229 = nix.positions(here + "/switch-test.nix", [["restartIfChanged", 435, 19]]);
-const pos$230 = nix.positions(here + "/switch-test.nix", [["overrideStrategy", 438, 57]]);
-const pos$231 = nix.positions(here + "/switch-test.nix", [["wantedBy", 441, 19]]);
-const pos$232 = nix.positions(here + "/switch-test.nix", [["overrideStrategy", 445, 19], ["wantedBy", 446, 19]]);
-const pos$233 = nix.positions(here + "/switch-test.nix", [["overrideStrategy", 451, 72]]);
-const pos$234 = nix.positions(here + "/switch-test.nix", [["stopIfChanged", 454, 19], ["wantedBy", 455, 19]]);
-const pos$235 = nix.positions(here + "/switch-test.nix", [["overrideStrategy", 459, 19], ["stopIfChanged", 460, 19], ["wantedBy", 461, 19]]);
-const pos$236 = nix.positions(here + "/switch-test.nix", [["simple-service", 410, 17], ["templated-simple-service@", 419, 17], ["templated-simple-service@instance", 420, 17], ["simple-restart-service", 422, 17], ["templated-simple-restart-service@", 425, 17], ["templated-simple-restart-service@instance", 426, 17], ["simple-reload-service", 428, 17], ["templated-simple-reload-service@", 431, 17], ["templated-simple-reload-service@instance", 432, 17], ["no-restart-service", 434, 17], ["templated-no-restart-service@", 437, 17], ["templated-no-restart-service@instance", 438, 17], ["reload-triggers", 440, 17], ["templated-reload-triggers@", 443, 17], ["templated-reload-triggers@instance", 444, 17], ["reload-triggers-and-restart-by-as", 449, 17], ["templated-reload-triggers-and-restart-by-as@", 450, 17], ["templated-reload-triggers-and-restart-by-as@instance", 451, 17], ["reload-triggers-and-restart", 453, 17], ["templated-reload-triggers-and-restart@", 457, 17], ["templated-reload-triggers-and-restart@instance", 458, 17]]);
-const pos$237 = nix.positions(here + "/switch-test.nix", [["services", 409, 23]]);
-const pos$238 = nix.positions(here + "/switch-test.nix", [["supportsDryActivation", 466, 17], ["deps", 467, 17], ["text", 468, 17]]);
-const pos$239 = nix.positions(here + "/switch-test.nix", [["restart-and-reload-test", 465, 40]]);
-const pos$240 = nix.positions(here + "/switch-test.nix", [["activationScripts", 465, 22]]);
-const pos$241 = nix.positions(here + "/switch-test.nix", [["systemd", 409, 15], ["system", 465, 15]]);
-const pos$242 = nix.positions(here + "/switch-test.nix", [["configuration", 408, 53]]);
-const pos$243 = nix.positions(here + "/switch-test.nix", [["X-Modified", 503, 74]]);
-const pos$244 = nix.positions(here + "/switch-test.nix", [["serviceConfig", 503, 60]]);
-const pos$245 = nix.positions(here + "/switch-test.nix", [["X-Modified", 506, 31]]);
-const pos$246 = nix.positions(here + "/switch-test.nix", [["overrideStrategy", 505, 17], ["serviceConfig", 506, 17]]);
-const pos$247 = nix.positions(here + "/switch-test.nix", [["reload-triggers-and-restart", 503, 32], ["templated-reload-triggers-and-restart@instance", 504, 32]]);
-const pos$248 = nix.positions(here + "/switch-test.nix", [["services", 503, 23]]);
-const pos$249 = nix.positions(here + "/switch-test.nix", [["imports", 502, 15], ["systemd", 503, 15]]);
-const pos$250 = nix.positions(here + "/switch-test.nix", [["configuration", 501, 62]]);
-const pos$251 = nix.positions(here + "/switch-test.nix", [["simpleService", 150, 13], ["simpleServiceSeparateActivationScript", 162, 13], ["simpleServiceDifferentDescription", 175, 13], ["simpleServiceModified", 180, 13], ["simpleServiceNostop", 185, 13], ["simpleServiceReload", 190, 13], ["simpleServiceNorestart", 198, 13], ["simpleServiceFailing", 203, 13], ["autorestartService", 208, 13], ["autorestartServiceFailing", 221, 13], ["simpleServiceWithExtraSection", 228, 13], ["simpleServiceWithExtraSectionOtherName", 242, 13], ["simpleServiceWithInstallSection", 256, 13], ["simpleServiceWithExtraKey", 270, 13], ["simpleServiceWithExtraKeyOtherValue", 275, 13], ["simpleServiceWithExtraKeyOtherName", 280, 13], ["simpleServiceReloadTrigger", 285, 13], ["simpleServiceReloadTriggerModified", 290, 13], ["simpleServiceReloadTriggerModifiedAndSomethingElse", 295, 13], ["simpleServiceReloadTriggerModifiedSomethingElse", 303, 13], ["unitWithBackslash", 308, 13], ["unitWithBackslashModified", 320, 13], ["unitWithMultilineValue", 325, 13], ["unitStartingWithDash", 334, 13], ["unitStartingWithDashModified", 345, 13], ["unitWithRequirement", 353, 13], ["unitWithRequirementModified", 375, 13], ["unitWithRequirementModifiedNostart", 381, 13], ["unitWithTemplate", 386, 13], ["unitWithTemplateModified", 403, 13], ["restart-and-reload-by-activation-script", 408, 13], ["restart-and-reload-by-activation-script-modified", 501, 13]]);
-const pos$252 = nix.positions(here + "/switch-test.nix", [["ExecStart", 517, 19], ["ExecReload", 518, 19]]);
-const pos$253 = nix.positions(here + "/switch-test.nix", [["description", 514, 17], ["stopIfChanged", 515, 17], ["serviceConfig", 516, 17]]);
-const pos$254 = nix.positions(here + "/switch-test.nix", [["socket-activated", 513, 32]]);
-const pos$255 = nix.positions(here + "/switch-test.nix", [["SocketMode", 524, 30]]);
-const pos$256 = nix.positions(here + "/switch-test.nix", [["wantedBy", 522, 17], ["listenStreams", 523, 17], ["socketConfig", 524, 17]]);
-const pos$257 = nix.positions(here + "/switch-test.nix", [["socket-activated", 521, 31]]);
-const pos$258 = nix.positions(here + "/switch-test.nix", [["services", 513, 23], ["sockets", 521, 23]]);
-const pos$259 = nix.positions(here + "/switch-test.nix", [["systemd", 513, 15]]);
-const pos$260 = nix.positions(here + "/switch-test.nix", [["configuration", 512, 27]]);
-const pos$261 = nix.positions(here + "/switch-test.nix", [["X-Test", 530, 63]]);
-const pos$262 = nix.positions(here + "/switch-test.nix", [["serviceConfig", 530, 49]]);
-const pos$263 = nix.positions(here + "/switch-test.nix", [["socket-activated", 530, 32]]);
-const pos$264 = nix.positions(here + "/switch-test.nix", [["services", 530, 23]]);
-const pos$265 = nix.positions(here + "/switch-test.nix", [["imports", 529, 15], ["systemd", 530, 15]]);
-const pos$266 = nix.positions(here + "/switch-test.nix", [["configuration", 528, 44]]);
-const pos$267 = nix.positions(here + "/switch-test.nix", [["stopIfChanged", 535, 49]]);
-const pos$268 = nix.positions(here + "/switch-test.nix", [["socket-activated", 535, 32]]);
-const pos$269 = nix.positions(here + "/switch-test.nix", [["services", 535, 23]]);
-const pos$270 = nix.positions(here + "/switch-test.nix", [["imports", 534, 15], ["systemd", 535, 15]]);
-const pos$271 = nix.positions(here + "/switch-test.nix", [["configuration", 533, 43]]);
-const pos$272 = nix.positions(here + "/switch-test.nix", [["stopIfChanged", 541, 17], ["reloadTriggers", 542, 17]]);
-const pos$273 = nix.positions(here + "/switch-test.nix", [["socket-activated", 540, 32]]);
-const pos$274 = nix.positions(here + "/switch-test.nix", [["services", 540, 23]]);
-const pos$275 = nix.positions(here + "/switch-test.nix", [["imports", 539, 15], ["systemd", 540, 15]]);
-const pos$276 = nix.positions(here + "/switch-test.nix", [["configuration", 538, 61]]);
-const pos$277 = nix.positions(here + "/switch-test.nix", [["Accept", 551, 19], ["SocketMode", 552, 19]]);
-const pos$278 = nix.positions(here + "/switch-test.nix", [["wantedBy", 548, 17], ["listenStreams", 549, 17], ["socketConfig", 550, 17]]);
-const pos$279 = nix.positions(here + "/switch-test.nix", [["accept-socket", 547, 31]]);
-const pos$280 = nix.positions(here + "/switch-test.nix", [["ExecStart", 557, 31]]);
-const pos$281 = nix.positions(here + "/switch-test.nix", [["description", 556, 17], ["serviceConfig", 557, 17]]);
-const pos$282 = nix.positions(here + "/switch-test.nix", [["accept-socket@", 555, 32]]);
-const pos$283 = nix.positions(here + "/switch-test.nix", [["sockets", 547, 23], ["services", 555, 23]]);
-const pos$284 = nix.positions(here + "/switch-test.nix", [["systemd", 547, 15]]);
-const pos$285 = nix.positions(here + "/switch-test.nix", [["configuration", 546, 27]]);
-const pos$286 = nix.positions(here + "/switch-test.nix", [["X-Test", 563, 63]]);
-const pos$287 = nix.positions(here + "/switch-test.nix", [["serviceConfig", 563, 49]]);
-const pos$288 = nix.positions(here + "/switch-test.nix", [["accept-socket@", 563, 32]]);
-const pos$289 = nix.positions(here + "/switch-test.nix", [["services", 563, 23]]);
-const pos$290 = nix.positions(here + "/switch-test.nix", [["imports", 562, 15], ["systemd", 563, 15]]);
-const pos$291 = nix.positions(here + "/switch-test.nix", [["configuration", 561, 44]]);
-const pos$292 = nix.positions(here + "/switch-test.nix", [["enable", 568, 48]]);
-const pos$293 = nix.positions(here + "/switch-test.nix", [["socket-activated", 568, 31]]);
-const pos$294 = nix.positions(here + "/switch-test.nix", [["wantedBy", 569, 49]]);
-const pos$295 = nix.positions(here + "/switch-test.nix", [["socket-activated", 569, 32]]);
-const pos$296 = nix.positions(here + "/switch-test.nix", [["sockets", 568, 23], ["services", 569, 23]]);
-const pos$297 = nix.positions(here + "/switch-test.nix", [["imports", 567, 15], ["systemd", 568, 15]]);
-const pos$298 = nix.positions(here + "/switch-test.nix", [["configuration", 566, 45]]);
-const pos$299 = nix.positions(here + "/switch-test.nix", [["description", 575, 19], ["what", 576, 19], ["type", 577, 19], ["where", 578, 19], ["options", 579, 19], ["wantedBy", 580, 19]]);
-const pos$300 = nix.positions(here + "/switch-test.nix", [["mounts", 573, 23]]);
-const pos$301 = nix.positions(here + "/switch-test.nix", [["systemd", 573, 15]]);
-const pos$302 = nix.positions(here + "/switch-test.nix", [["configuration", 572, 19]]);
-const pos$303 = nix.positions(here + "/switch-test.nix", [["description", 588, 19], ["what", 589, 19], ["type", 590, 19], ["where", 591, 19], ["options", 592, 19], ["wantedBy", 593, 19]]);
-const pos$304 = nix.positions(here + "/switch-test.nix", [["mounts", 586, 23]]);
-const pos$305 = nix.positions(here + "/switch-test.nix", [["systemd", 586, 15]]);
-const pos$306 = nix.positions(here + "/switch-test.nix", [["configuration", 585, 34]]);
-const pos$307 = nix.positions(here + "/switch-test.nix", [["description", 601, 19], ["what", 602, 19], ["type", 603, 19], ["where", 604, 19], ["options", 605, 19], ["wantedBy", 606, 19]]);
-const pos$308 = nix.positions(here + "/switch-test.nix", [["mounts", 599, 23]]);
-const pos$309 = nix.positions(here + "/switch-test.nix", [["systemd", 599, 15]]);
-const pos$310 = nix.positions(here + "/switch-test.nix", [["configuration", 598, 27]]);
-const pos$311 = nix.positions(here + "/switch-test.nix", [["OnCalendar", 614, 29]]);
-const pos$312 = nix.positions(here + "/switch-test.nix", [["wantedBy", 613, 17], ["timerConfig", 614, 17]]);
-const pos$313 = nix.positions(here + "/switch-test.nix", [["test-timer", 612, 30]]);
-const pos$314 = nix.positions(here + "/switch-test.nix", [["Type", 618, 19], ["ExecStart", 619, 19]]);
-const pos$315 = nix.positions(here + "/switch-test.nix", [["serviceConfig", 617, 17]]);
-const pos$316 = nix.positions(here + "/switch-test.nix", [["test-timer", 616, 32]]);
-const pos$317 = nix.positions(here + "/switch-test.nix", [["timers", 612, 23], ["services", 616, 23]]);
-const pos$318 = nix.positions(here + "/switch-test.nix", [["systemd", 612, 15]]);
-const pos$319 = nix.positions(here + "/switch-test.nix", [["configuration", 611, 19]]);
-const pos$320 = nix.positions(here + "/switch-test.nix", [["OnCalendar", 626, 53]]);
-const pos$321 = nix.positions(here + "/switch-test.nix", [["timerConfig", 626, 41]]);
-const pos$322 = nix.positions(here + "/switch-test.nix", [["test-timer", 626, 30]]);
-const pos$323 = nix.positions(here + "/switch-test.nix", [["timers", 626, 23]]);
-const pos$324 = nix.positions(here + "/switch-test.nix", [["imports", 625, 15], ["systemd", 626, 15]]);
-const pos$325 = nix.positions(here + "/switch-test.nix", [["configuration", 624, 27]]);
-const pos$326 = nix.positions(here + "/switch-test.nix", [["X-Test", 630, 55]]);
-const pos$327 = nix.positions(here + "/switch-test.nix", [["unitConfig", 630, 44]]);
-const pos$328 = nix.positions(here + "/switch-test.nix", [["hybrid-sleep", 630, 31]]);
-const pos$329 = nix.positions(here + "/switch-test.nix", [["targets", 630, 23]]);
-const pos$330 = nix.positions(here + "/switch-test.nix", [["systemd", 630, 15]]);
-const pos$331 = nix.positions(here + "/switch-test.nix", [["configuration", 629, 33]]);
-const pos$332 = nix.positions(here + "/switch-test.nix", [["wantedBy", 634, 43]]);
-const pos$333 = nix.positions(here + "/switch-test.nix", [["test-target", 634, 31]]);
-const pos$334 = nix.positions(here + "/switch-test.nix", [["ExecStart", 640, 31]]);
-const pos$335 = nix.positions(here + "/switch-test.nix", [["bindsTo", 639, 17], ["serviceConfig", 640, 17]]);
-const pos$336 = nix.positions(here + "/switch-test.nix", [["test-service", 638, 32]]);
-const pos$337 = nix.positions(here + "/switch-test.nix", [["targets", 634, 23], ["services", 638, 23]]);
-const pos$338 = nix.positions(here + "/switch-test.nix", [["systemd", 634, 15]]);
-const pos$339 = nix.positions(here + "/switch-test.nix", [["configuration", 633, 20]]);
-const pos$340 = nix.positions(here + "/switch-test.nix", [["X-Test", 646, 54]]);
-const pos$341 = nix.positions(here + "/switch-test.nix", [["unitConfig", 646, 43]]);
-const pos$342 = nix.positions(here + "/switch-test.nix", [["test-target", 646, 31]]);
-const pos$343 = nix.positions(here + "/switch-test.nix", [["targets", 646, 23]]);
-const pos$344 = nix.positions(here + "/switch-test.nix", [["imports", 645, 15], ["systemd", 646, 15]]);
-const pos$345 = nix.positions(here + "/switch-test.nix", [["configuration", 644, 28]]);
-const pos$346 = nix.positions(here + "/switch-test.nix", [["X-StopOnReconfiguration", 651, 54]]);
-const pos$347 = nix.positions(here + "/switch-test.nix", [["unitConfig", 651, 43]]);
-const pos$348 = nix.positions(here + "/switch-test.nix", [["test-target", 651, 31]]);
-const pos$349 = nix.positions(here + "/switch-test.nix", [["targets", 651, 23]]);
-const pos$350 = nix.positions(here + "/switch-test.nix", [["imports", 650, 15], ["systemd", 651, 15]]);
-const pos$351 = nix.positions(here + "/switch-test.nix", [["configuration", 649, 42]]);
-const pos$352 = nix.positions(here + "/switch-test.nix", [["PathExists", 657, 28]]);
-const pos$353 = nix.positions(here + "/switch-test.nix", [["wantedBy", 656, 17], ["pathConfig", 657, 17]]);
-const pos$354 = nix.positions(here + "/switch-test.nix", [["test-watch", 655, 29]]);
-const pos$355 = nix.positions(here + "/switch-test.nix", [["Type", 661, 19], ["RemainAfterExit", 662, 19], ["ExecStart", 663, 19]]);
-const pos$356 = nix.positions(here + "/switch-test.nix", [["serviceConfig", 660, 17]]);
-const pos$357 = nix.positions(here + "/switch-test.nix", [["test-watch", 659, 32]]);
-const pos$358 = nix.positions(here + "/switch-test.nix", [["paths", 655, 23], ["services", 659, 23]]);
-const pos$359 = nix.positions(here + "/switch-test.nix", [["systemd", 655, 15]]);
-const pos$360 = nix.positions(here + "/switch-test.nix", [["configuration", 654, 18]]);
-const pos$361 = nix.positions(here + "/switch-test.nix", [["PathExists", 670, 51]]);
-const pos$362 = nix.positions(here + "/switch-test.nix", [["pathConfig", 670, 40]]);
-const pos$363 = nix.positions(here + "/switch-test.nix", [["test-watch", 670, 29]]);
-const pos$364 = nix.positions(here + "/switch-test.nix", [["paths", 670, 23]]);
-const pos$365 = nix.positions(here + "/switch-test.nix", [["imports", 669, 15], ["systemd", 670, 15]]);
-const pos$366 = nix.positions(here + "/switch-test.nix", [["configuration", 668, 26]]);
-const pos$367 = nix.positions(here + "/switch-test.nix", [["MemoryMax", 674, 52]]);
-const pos$368 = nix.positions(here + "/switch-test.nix", [["sliceConfig", 674, 40]]);
-const pos$369 = nix.positions(here + "/switch-test.nix", [["testslice", 674, 30]]);
-const pos$370 = nix.positions(here + "/switch-test.nix", [["Type", 677, 19], ["RemainAfterExit", 678, 19], ["ExecStart", 679, 19], ["Slice", 680, 19]]);
-const pos$371 = nix.positions(here + "/switch-test.nix", [["serviceConfig", 676, 17]]);
-const pos$372 = nix.positions(here + "/switch-test.nix", [["testservice", 675, 32]]);
-const pos$373 = nix.positions(here + "/switch-test.nix", [["slices", 674, 23], ["services", 675, 23]]);
-const pos$374 = nix.positions(here + "/switch-test.nix", [["systemd", 674, 15]]);
-const pos$375 = nix.positions(here + "/switch-test.nix", [["configuration", 673, 19]]);
-const pos$376 = nix.positions(here + "/switch-test.nix", [["MemoryMax", 687, 52]]);
-const pos$377 = nix.positions(here + "/switch-test.nix", [["sliceConfig", 687, 40]]);
-const pos$378 = nix.positions(here + "/switch-test.nix", [["testslice", 687, 30]]);
-const pos$379 = nix.positions(here + "/switch-test.nix", [["slices", 687, 23]]);
-const pos$380 = nix.positions(here + "/switch-test.nix", [["imports", 686, 15], ["systemd", 687, 15]]);
-const pos$381 = nix.positions(here + "/switch-test.nix", [["configuration", 685, 27]]);
 const formals$3 = { args: { config: false }, ellipsis: true };
-const pos$382 = nix.positions(here + "/switch-test.nix", [["dbus", 695, 21], ["broker", 696, 21]]);
-const pos$383 = nix.positions(here + "/switch-test.nix", [["restartTriggers", 703, 49]]);
-const pos$384 = nix.positions(here + "/switch-test.nix", [["services", 703, 25]]);
-const pos$385 = nix.positions(here + "/switch-test.nix", [["systemd", 703, 17]]);
-const pos$386 = nix.positions(here + "/switch-test.nix", [["configuration", 690, 24]]);
 const formals$4 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$387 = nix.positions(here + "/switch-test.nix", [["simple-generator", 711, 36]]);
-const pos$388 = nix.positions(here + "/switch-test.nix", [["generators", 711, 25]]);
-const pos$389 = nix.positions(here + "/switch-test.nix", [["systemd", 711, 17]]);
-const pos$390 = nix.positions(here + "/switch-test.nix", [["configuration", 708, 24]]);
-const pos$391 = nix.positions(here + "/switch-test.nix", [["simple-socket", 512, 13], ["simple-socket-service-modified", 528, 13], ["simple-socket-stop-if-changed", 533, 13], ["simple-socket-stop-if-changed-and-reloadtrigger", 538, 13], ["accept-socket", 546, 13], ["accept-socket-service-modified", 561, 13], ["socket-activated-without-socket", 566, 13], ["mount", 572, 13], ["mountOptionsModified", 585, 13], ["mountModified", 598, 13], ["timer", 611, 13], ["timerModified", 624, 13], ["hybridSleepModified", 629, 13], ["target", 633, 13], ["targetModified", 644, 13], ["targetModifiedStopOnReconfig", 649, 13], ["path", 654, 13], ["pathModified", 668, 13], ["slice", 673, 13], ["sliceModified", 685, 13], ["dbusReload", 690, 13], ["generators", 708, 13]]);
-const pos$392 = nix.positions(here + "/switch-test.nix", [["Type", 725, 19], ["RemainAfterExit", 726, 19], ["ExecStart", 727, 19], ["ExecReload", 728, 19]]);
-const pos$393 = nix.positions(here + "/switch-test.nix", [["wantedBy", 723, 17], ["serviceConfig", 724, 17]]);
-const pos$394 = nix.positions(here + "/switch-test.nix", [["usertest", 722, 37]]);
-const pos$395 = nix.positions(here + "/switch-test.nix", [["services", 722, 28]]);
-const pos$396 = nix.positions(here + "/switch-test.nix", [["user", 722, 23]]);
-const pos$397 = nix.positions(here + "/switch-test.nix", [["systemd", 722, 15]]);
-const pos$398 = nix.positions(here + "/switch-test.nix", [["configuration", 721, 31]]);
-const pos$399 = nix.positions(here + "/switch-test.nix", [["X-Test", 735, 60]]);
-const pos$400 = nix.positions(here + "/switch-test.nix", [["serviceConfig", 735, 46]]);
-const pos$401 = nix.positions(here + "/switch-test.nix", [["usertest", 735, 37]]);
-const pos$402 = nix.positions(here + "/switch-test.nix", [["services", 735, 28]]);
-const pos$403 = nix.positions(here + "/switch-test.nix", [["user", 735, 23]]);
-const pos$404 = nix.positions(here + "/switch-test.nix", [["imports", 734, 15], ["systemd", 735, 15]]);
-const pos$405 = nix.positions(here + "/switch-test.nix", [["configuration", 733, 39]]);
-const pos$406 = nix.positions(here + "/switch-test.nix", [["stopIfChanged", 740, 46]]);
-const pos$407 = nix.positions(here + "/switch-test.nix", [["usertest", 740, 37]]);
-const pos$408 = nix.positions(here + "/switch-test.nix", [["services", 740, 28]]);
-const pos$409 = nix.positions(here + "/switch-test.nix", [["user", 740, 23]]);
-const pos$410 = nix.positions(here + "/switch-test.nix", [["imports", 739, 15], ["systemd", 740, 15]]);
-const pos$411 = nix.positions(here + "/switch-test.nix", [["configuration", 738, 37]]);
-const pos$412 = nix.positions(here + "/switch-test.nix", [["X-Test", 747, 31]]);
-const pos$413 = nix.positions(here + "/switch-test.nix", [["reloadIfChanged", 746, 17], ["serviceConfig", 747, 17]]);
-const pos$414 = nix.positions(here + "/switch-test.nix", [["usertest", 745, 37]]);
-const pos$415 = nix.positions(here + "/switch-test.nix", [["services", 745, 28]]);
-const pos$416 = nix.positions(here + "/switch-test.nix", [["user", 745, 23]]);
-const pos$417 = nix.positions(here + "/switch-test.nix", [["imports", 744, 15], ["systemd", 745, 15]]);
-const pos$418 = nix.positions(here + "/switch-test.nix", [["configuration", 743, 37]]);
-const pos$419 = nix.positions(here + "/switch-test.nix", [["reloadTriggers", 753, 46]]);
-const pos$420 = nix.positions(here + "/switch-test.nix", [["usertest", 753, 37]]);
-const pos$421 = nix.positions(here + "/switch-test.nix", [["services", 753, 28]]);
-const pos$422 = nix.positions(here + "/switch-test.nix", [["user", 753, 23]]);
-const pos$423 = nix.positions(here + "/switch-test.nix", [["imports", 752, 15], ["systemd", 753, 15]]);
-const pos$424 = nix.positions(here + "/switch-test.nix", [["configuration", 751, 44]]);
-const pos$425 = nix.positions(here + "/switch-test.nix", [["ExecStart", 758, 60]]);
-const pos$426 = nix.positions(here + "/switch-test.nix", [["serviceConfig", 758, 46]]);
-const pos$427 = nix.positions(here + "/switch-test.nix", [["usertest", 758, 37]]);
-const pos$428 = nix.positions(here + "/switch-test.nix", [["services", 758, 28]]);
-const pos$429 = nix.positions(here + "/switch-test.nix", [["user", 758, 23]]);
-const pos$430 = nix.positions(here + "/switch-test.nix", [["imports", 757, 15], ["systemd", 758, 15]]);
-const pos$431 = nix.positions(here + "/switch-test.nix", [["configuration", 756, 38]]);
-const pos$432 = nix.positions(here + "/switch-test.nix", [["Type", 768, 19], ["RemainAfterExit", 769, 19], ["ExecStart", 770, 19]]);
-const pos$433 = nix.positions(here + "/switch-test.nix", [["wantedBy", 766, 17], ["serviceConfig", 767, 17]]);
-const pos$434 = nix.positions(here + "/switch-test.nix", [["migrated", 765, 37]]);
-const pos$435 = nix.positions(here + "/switch-test.nix", [["services", 765, 28]]);
-const pos$436 = nix.positions(here + "/switch-test.nix", [["user", 765, 23]]);
-const pos$437 = nix.positions(here + "/switch-test.nix", [["systemd", 765, 15]]);
-const pos$438 = nix.positions(here + "/switch-test.nix", [["configuration", 764, 41]]);
-const pos$439 = nix.positions(here + "/switch-test.nix", [["fakeSdSwitch", 781, 44]]);
-const pos$440 = nix.positions(here + "/switch-test.nix", [["userActivationScripts", 781, 22]]);
-const pos$441 = nix.positions(here + "/switch-test.nix", [["imports", 780, 15], ["system", 781, 15]]);
-const pos$442 = nix.positions(here + "/switch-test.nix", [["configuration", 779, 40]]);
-const pos$443 = nix.positions(here + "/switch-test.nix", [["fakeSdSwitch", 796, 44]]);
-const pos$444 = nix.positions(here + "/switch-test.nix", [["userActivationScripts", 796, 22]]);
-const pos$445 = nix.positions(here + "/switch-test.nix", [["imports", 795, 15], ["system", 796, 15]]);
-const pos$446 = nix.positions(here + "/switch-test.nix", [["configuration", 794, 46]]);
-const pos$447 = nix.positions(here + "/switch-test.nix", [["ExecReload", 811, 31]]);
-const pos$448 = nix.positions(here + "/switch-test.nix", [["reloadIfChanged", 810, 17], ["serviceConfig", 811, 17]]);
-const pos$449 = nix.positions(here + "/switch-test.nix", [["migrated", 809, 37]]);
-const pos$450 = nix.positions(here + "/switch-test.nix", [["services", 809, 28]]);
-const pos$451 = nix.positions(here + "/switch-test.nix", [["user", 809, 23]]);
-const pos$452 = nix.positions(here + "/switch-test.nix", [["imports", 808, 15], ["systemd", 809, 15]]);
-const pos$453 = nix.positions(here + "/switch-test.nix", [["configuration", 807, 50]]);
-const pos$454 = nix.positions(here + "/switch-test.nix", [["restartIfChanged", 818, 46]]);
-const pos$455 = nix.positions(here + "/switch-test.nix", [["migrated", 818, 37]]);
-const pos$456 = nix.positions(here + "/switch-test.nix", [["services", 818, 28]]);
-const pos$457 = nix.positions(here + "/switch-test.nix", [["user", 818, 23]]);
-const pos$458 = nix.positions(here + "/switch-test.nix", [["imports", 817, 15], ["systemd", 818, 15]]);
-const pos$459 = nix.positions(here + "/switch-test.nix", [["configuration", 816, 49]]);
-const pos$460 = nix.positions(here + "/switch-test.nix", [["simpleUserService", 721, 13], ["simpleUserServiceModified", 733, 13], ["simpleUserServiceNostop", 738, 13], ["simpleUserServiceReload", 743, 13], ["simpleUserServiceReloadTrigger", 751, 13], ["simpleUserServiceFailing", 756, 13], ["userServiceMigratedShadowed", 764, 13], ["userServiceMigratedToNixos", 779, 13], ["userServiceMigratedToNixosNoStop", 794, 13], ["userServiceMigratedToNixosReloadOnly", 807, 13], ["userServiceMigratedToNixosNoRestart", 816, 13]]);
-const pos$461 = nix.positions(here + "/switch-test.nix", [["inhibitors", 823, 55]]);
-const pos$462 = nix.positions(here + "/switch-test.nix", [["switch", 823, 48]]);
-const pos$463 = nix.positions(here + "/switch-test.nix", [["system", 823, 41]]);
-const pos$464 = nix.positions(here + "/switch-test.nix", [["configuration", 823, 27]]);
-const pos$465 = nix.positions(here + "/switch-test.nix", [["foo", 826, 15], ["quz", 827, 15]]);
-const pos$466 = nix.positions(here + "/switch-test.nix", [["inhibitors", 825, 52]]);
-const pos$467 = nix.positions(here + "/switch-test.nix", [["switch", 825, 45]]);
-const pos$468 = nix.positions(here + "/switch-test.nix", [["system", 825, 38]]);
-const pos$469 = nix.positions(here + "/switch-test.nix", [["configuration", 825, 24]]);
-const pos$470 = nix.positions(here + "/switch-test.nix", [["foo", 831, 15], ["quz", 832, 15]]);
-const pos$471 = nix.positions(here + "/switch-test.nix", [["inhibitors", 830, 60]]);
-const pos$472 = nix.positions(here + "/switch-test.nix", [["switch", 830, 53]]);
-const pos$473 = nix.positions(here + "/switch-test.nix", [["system", 830, 46]]);
-const pos$474 = nix.positions(here + "/switch-test.nix", [["configuration", 830, 32]]);
-const pos$475 = nix.positions(here + "/switch-test.nix", [["foo", 836, 15], ["qux", 837, 15]]);
-const pos$476 = nix.positions(here + "/switch-test.nix", [["inhibitors", 835, 56]]);
-const pos$477 = nix.positions(here + "/switch-test.nix", [["switch", 835, 49]]);
-const pos$478 = nix.positions(here + "/switch-test.nix", [["system", 835, 42]]);
-const pos$479 = nix.positions(here + "/switch-test.nix", [["configuration", 835, 28]]);
-const pos$480 = nix.positions(here + "/switch-test.nix", [["no_inhibitors", 823, 13], ["inhibitors", 825, 13], ["inhibitors_changed", 830, 13], ["inhibitors_new", 835, 13]]);
-const pos$481 = nix.positions(here + "/switch-test.nix", [["environment", 90, 9], ["users", 91, 9], ["boot", 102, 9], ["specialisation", 104, 9]]);
-const pos$482 = nix.positions(here + "/switch-test.nix", [["enable", 843, 21]]);
-const pos$483 = nix.positions(here + "/switch-test.nix", [["succeeds", 845, 30]]);
-const pos$484 = nix.positions(here + "/switch-test.nix", [["switch", 843, 14], ["preSwitchChecks", 845, 14]]);
-const pos$485 = nix.positions(here + "/switch-test.nix", [["mutableUsers", 844, 13]]);
-const pos$486 = nix.positions(here + "/switch-test.nix", [["enable", 851, 24]]);
-const pos$487 = nix.positions(here + "/switch-test.nix", [["grub", 851, 19]]);
-const pos$488 = nix.positions(here + "/switch-test.nix", [["loader", 851, 12]]);
-const pos$489 = nix.positions(here + "/switch-test.nix", [["failEveryTime", 852, 72]]);
-const pos$490 = nix.positions(here + "/switch-test.nix", [["preSwitchChecks", 852, 56]]);
-const pos$491 = nix.positions(here + "/switch-test.nix", [["system", 852, 49]]);
-const pos$492 = nix.positions(here + "/switch-test.nix", [["configuration", 852, 35]]);
-const pos$493 = nix.positions(here + "/switch-test.nix", [["failsInTheMiddle", 856, 75]]);
-const pos$494 = nix.positions(here + "/switch-test.nix", [["preSwitchChecks", 856, 59]]);
-const pos$495 = nix.positions(here + "/switch-test.nix", [["system", 856, 52]]);
-const pos$496 = nix.positions(here + "/switch-test.nix", [["configuration", 856, 38]]);
-const pos$497 = nix.positions(here + "/switch-test.nix", [["failingCheck", 852, 22], ["failingMidCheck", 856, 22]]);
-const pos$498 = nix.positions(here + "/switch-test.nix", [["system", 843, 7], ["users", 844, 7], ["boot", 851, 7], ["specialisation", 852, 7]]);
-const pos$499 = nix.positions(here + "/switch-test.nix", [["machine", 87, 5], ["other", 842, 5]]);
 const formals$5 = { args: { nodes: false }, ellipsis: true };
-const pos$500 = nix.positions(here + "/switch-test.nix", [["dbus", 886, 11], ["broker", 887, 11]]);
-const pos$501 = nix.positions(here + "/switch-test.nix", [["name", 78, 3], ["meta", 79, 3], ["nodes", 86, 3], ["testScript", 864, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -561,12 +61,12 @@ printf hello >&3
 exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils")), "cat")} <&3 >/dev/null
 `)));
   return {
-    [nix.POS]: pos$501,
+    [nix.POS]: $pos[500],
     name: nix.thunk(() => nix.str`switch-test-${part}`),
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "gleber")),
           nix.thunk(() => nix.lookup(w, "das_j")),
@@ -574,97 +74,97 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$499,
+      [nix.POS]: $pos[498],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         const lib_1 = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$481,
+          [nix.POS]: $pos[480],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "socat"))]),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             mutableUsers: false,
             users: nix.thunk(() => ({
-              [nix.POS]: pos$4,
-              usertest: nix.thunk(() => ({ [nix.POS]: pos$3, isNormalUser: true, uid: 1001n, linger: true })),
+              [nix.POS]: $pos[3],
+              usertest: nix.thunk(() => ({ [nix.POS]: $pos[2], isNormalUser: true, uid: 1001n, linger: true })),
             })),
           })),
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             loader: nix.thunk(() => ({
-              [nix.POS]: pos$7,
-              grub: nix.thunk(() => ({ [nix.POS]: pos$6, enable: false })),
+              [nix.POS]: $pos[6],
+              grub: nix.thunk(() => ({ [nix.POS]: $pos[5], enable: false })),
             })),
           })),
           specialisation: nix.thunk(() => nix.update(nix.app(forPart, "basics", nix.thunk(() => (() => {
               const brokenInitInterface = nix.thunk(() => ({
-                [nix.POS]: pos$12,
+                [nix.POS]: $pos[11],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$11,
+                  [nix.POS]: $pos[10],
                   config: nix.thunk(() => ({
-                    [nix.POS]: pos$10,
+                    [nix.POS]: $pos[9],
                     system: nix.thunk(() => ({
-                      [nix.POS]: pos$9,
+                      [nix.POS]: $pos[8],
                       systemBuilderCommands: "echo \"systemd 0\" > $out/init-interface-version\n",
                     })),
                   })),
                 })),
               }));
               const modifiedSystemConf = nix.thunk(() => ({
-                [nix.POS]: pos$17,
+                [nix.POS]: $pos[16],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$16,
+                  [nix.POS]: $pos[15],
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$15,
+                    [nix.POS]: $pos[14],
                     settings: nix.thunk(() => ({
-                      [nix.POS]: pos$14,
-                      Manager: nix.thunk(() => ({ [nix.POS]: pos$13, DefaultEnvironment: "XXX_SYSTEM=foo" })),
+                      [nix.POS]: $pos[13],
+                      Manager: nix.thunk(() => ({ [nix.POS]: $pos[12], DefaultEnvironment: "XXX_SYSTEM=foo" })),
                     })),
                   })),
                 })),
               }));
               const addedMount = nix.thunk(() => ({
-                [nix.POS]: pos$22,
+                [nix.POS]: $pos[21],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$21,
+                  [nix.POS]: $pos[20],
                   virtualisation: nix.thunk(() => ({
-                    [nix.POS]: pos$20,
+                    [nix.POS]: $pos[19],
                     fileSystems: nix.thunk(() => ({
-                      [nix.POS]: pos$19,
-                      "/test": nix.thunk(() => ({ [nix.POS]: pos$18, device: "tmpfs", fsType: "tmpfs" })),
+                      [nix.POS]: $pos[18],
+                      "/test": nix.thunk(() => ({ [nix.POS]: $pos[17], device: "tmpfs", fsType: "tmpfs" })),
                     })),
                   })),
                 })),
               }));
               const addedMountOptsModified = nix.thunk(() => ({
-                [nix.POS]: pos$27,
+                [nix.POS]: $pos[26],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$26,
+                  [nix.POS]: $pos[25],
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(addedMount, "configuration"))]),
                   virtualisation: nix.thunk(() => ({
-                    [nix.POS]: pos$25,
+                    [nix.POS]: $pos[24],
                     fileSystems: nix.thunk(() => ({
-                      [nix.POS]: pos$24,
-                      "/test": nix.thunk(() => ({ [nix.POS]: pos$23, options: nix.thunk(() => ["x-test"]) })),
+                      [nix.POS]: $pos[23],
+                      "/test": nix.thunk(() => ({ [nix.POS]: $pos[22], options: nix.thunk(() => ["x-test"]) })),
                     })),
                   })),
                 })),
               }));
               const addedMountDevModified = nix.thunk(() => ({
-                [nix.POS]: pos$32,
+                [nix.POS]: $pos[31],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$31,
+                  [nix.POS]: $pos[30],
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(addedMountOptsModified, "configuration"))]),
                   virtualisation: nix.thunk(() => ({
-                    [nix.POS]: pos$30,
+                    [nix.POS]: $pos[29],
                     fileSystems: nix.thunk(() => ({
-                      [nix.POS]: pos$29,
+                      [nix.POS]: $pos[28],
                       "/test": nix.thunk(() => ({
-                        [nix.POS]: pos$28,
+                        [nix.POS]: $pos[27],
                         device: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), "ramfs")),
                       })),
                     })),
@@ -672,15 +172,15 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })),
               }));
               const storeMountModified = nix.thunk(() => ({
-                [nix.POS]: pos$37,
+                [nix.POS]: $pos[36],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$36,
+                  [nix.POS]: $pos[35],
                   virtualisation: nix.thunk(() => ({
-                    [nix.POS]: pos$35,
+                    [nix.POS]: $pos[34],
                     fileSystems: nix.thunk(() => ({
-                      [nix.POS]: pos$34,
+                      [nix.POS]: $pos[33],
                       "/": nix.thunk(() => ({
-                        [nix.POS]: pos$33,
+                        [nix.POS]: $pos[32],
                         device: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), "auto")),
                       })),
                     })),
@@ -688,15 +188,15 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })),
               }));
               const automount = nix.thunk(() => ({
-                [nix.POS]: pos$42,
+                [nix.POS]: $pos[41],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$41,
+                  [nix.POS]: $pos[40],
                   virtualisation: nix.thunk(() => ({
-                    [nix.POS]: pos$40,
+                    [nix.POS]: $pos[39],
                     fileSystems: nix.thunk(() => ({
-                      [nix.POS]: pos$39,
+                      [nix.POS]: $pos[38],
                       "/testauto": nix.thunk(() => ({
-                        [nix.POS]: pos$38,
+                        [nix.POS]: $pos[37],
                         device: "tmpfs",
                         fsType: "tmpfs",
                         options: nix.thunk(() => ["x-systemd.automount"]),
@@ -706,14 +206,14 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })),
               }));
               const swap = nix.thunk(() => ({
-                [nix.POS]: pos$45,
+                [nix.POS]: $pos[44],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$44,
-                  swapDevices: nix.thunk(() => nix.app(nix.sel(lib_1, "mkVMOverride"), nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$43, device: "/swapfile", size: 1n }))]))),
+                  [nix.POS]: $pos[43],
+                  swapDevices: nix.thunk(() => nix.app(nix.sel(lib_1, "mkVMOverride"), nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[42], device: "/swapfile", size: 1n }))]))),
                 })),
               }));
               return {
-                [nix.POS]: pos$46,
+                [nix.POS]: $pos[45],
                 brokenInitInterface,
                 modifiedSystemConf,
                 addedMount,
@@ -725,18 +225,18 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
               };
             })())), nix.update(nix.app(forPart, "services", nix.thunk(() => (() => {
               const simpleService = nix.thunk(() => ({
-                [nix.POS]: pos$52,
+                [nix.POS]: $pos[51],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$51,
+                  [nix.POS]: $pos[50],
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$50,
+                    [nix.POS]: $pos[49],
                     services: nix.thunk(() => ({
-                      [nix.POS]: pos$49,
+                      [nix.POS]: $pos[48],
                       test: nix.thunk(() => ({
-                        [nix.POS]: pos$48,
+                        [nix.POS]: $pos[47],
                         wantedBy: nix.thunk(() => ["multi-user.target"]),
                         serviceConfig: nix.thunk(() => ({
-                          [nix.POS]: pos$47,
+                          [nix.POS]: $pos[46],
                           Type: "oneshot",
                           RemainAfterExit: true,
                           ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "coreutils")}/bin/true`),
@@ -748,19 +248,19 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })),
               }));
               const simpleServiceSeparateActivationScript = nix.thunk(() => ({
-                [nix.POS]: pos$59,
+                [nix.POS]: $pos[58],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$58,
-                  system: nix.thunk(() => ({ [nix.POS]: pos$53, activatable: false })),
+                  [nix.POS]: $pos[57],
+                  system: nix.thunk(() => ({ [nix.POS]: $pos[52], activatable: false })),
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$57,
+                    [nix.POS]: $pos[56],
                     services: nix.thunk(() => ({
-                      [nix.POS]: pos$56,
+                      [nix.POS]: $pos[55],
                       test: nix.thunk(() => ({
-                        [nix.POS]: pos$55,
+                        [nix.POS]: $pos[54],
                         wantedBy: nix.thunk(() => ["multi-user.target"]),
                         serviceConfig: nix.thunk(() => ({
-                          [nix.POS]: pos$54,
+                          [nix.POS]: $pos[53],
                           Type: "oneshot",
                           RemainAfterExit: true,
                           ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "coreutils")}/bin/true`),
@@ -772,64 +272,64 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })),
               }));
               const simpleServiceDifferentDescription = nix.thunk(() => ({
-                [nix.POS]: pos$64,
+                [nix.POS]: $pos[63],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$63,
+                  [nix.POS]: $pos[62],
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(simpleService, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$62,
+                    [nix.POS]: $pos[61],
                     services: nix.thunk(() => ({
-                      [nix.POS]: pos$61,
-                      test: nix.thunk(() => ({ [nix.POS]: pos$60, description: "Test unit" })),
+                      [nix.POS]: $pos[60],
+                      test: nix.thunk(() => ({ [nix.POS]: $pos[59], description: "Test unit" })),
                     })),
                   })),
                 })),
               }));
               const simpleServiceModified = nix.thunk(() => ({
-                [nix.POS]: pos$70,
+                [nix.POS]: $pos[69],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$69,
+                  [nix.POS]: $pos[68],
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(simpleService, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$68,
+                    [nix.POS]: $pos[67],
                     services: nix.thunk(() => ({
-                      [nix.POS]: pos$67,
+                      [nix.POS]: $pos[66],
                       test: nix.thunk(() => ({
-                        [nix.POS]: pos$66,
-                        serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$65, "X-Test": true })),
+                        [nix.POS]: $pos[65],
+                        serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[64], "X-Test": true })),
                       })),
                     })),
                   })),
                 })),
               }));
               const simpleServiceNostop = nix.thunk(() => ({
-                [nix.POS]: pos$75,
+                [nix.POS]: $pos[74],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$74,
+                  [nix.POS]: $pos[73],
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(simpleService, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$73,
+                    [nix.POS]: $pos[72],
                     services: nix.thunk(() => ({
-                      [nix.POS]: pos$72,
-                      test: nix.thunk(() => ({ [nix.POS]: pos$71, stopIfChanged: false })),
+                      [nix.POS]: $pos[71],
+                      test: nix.thunk(() => ({ [nix.POS]: $pos[70], stopIfChanged: false })),
                     })),
                   })),
                 })),
               }));
               const simpleServiceReload = nix.thunk(() => ({
-                [nix.POS]: pos$81,
+                [nix.POS]: $pos[80],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$80,
+                  [nix.POS]: $pos[79],
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(simpleService, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$79,
+                    [nix.POS]: $pos[78],
                     services: nix.thunk(() => ({
-                      [nix.POS]: pos$78,
+                      [nix.POS]: $pos[77],
                       test: nix.thunk(() => ({
-                        [nix.POS]: pos$77,
+                        [nix.POS]: $pos[76],
                         reloadIfChanged: true,
                         serviceConfig: nix.thunk(() => ({
-                          [nix.POS]: pos$76,
+                          [nix.POS]: $pos[75],
                           ExecReload: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "coreutils")}/bin/true`),
                         })),
                       })),
@@ -838,32 +338,32 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })),
               }));
               const simpleServiceNorestart = nix.thunk(() => ({
-                [nix.POS]: pos$86,
+                [nix.POS]: $pos[85],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$85,
+                  [nix.POS]: $pos[84],
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(simpleService, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$84,
+                    [nix.POS]: $pos[83],
                     services: nix.thunk(() => ({
-                      [nix.POS]: pos$83,
-                      test: nix.thunk(() => ({ [nix.POS]: pos$82, restartIfChanged: false })),
+                      [nix.POS]: $pos[82],
+                      test: nix.thunk(() => ({ [nix.POS]: $pos[81], restartIfChanged: false })),
                     })),
                   })),
                 })),
               }));
               const simpleServiceFailing = nix.thunk(() => ({
-                [nix.POS]: pos$92,
+                [nix.POS]: $pos[91],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$91,
+                  [nix.POS]: $pos[90],
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(simpleServiceModified, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$90,
+                    [nix.POS]: $pos[89],
                     services: nix.thunk(() => ({
-                      [nix.POS]: pos$89,
+                      [nix.POS]: $pos[88],
                       test: nix.thunk(() => ({
-                        [nix.POS]: pos$88,
+                        [nix.POS]: $pos[87],
                         serviceConfig: nix.thunk(() => ({
-                          [nix.POS]: pos$87,
+                          [nix.POS]: $pos[86],
                           ExecStart: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), nix.thunk(() => nix.str`${nix.sel(pkgs_1, "coreutils")}/bin/false`))),
                         })),
                       })),
@@ -872,18 +372,18 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })),
               }));
               const autorestartService = nix.thunk(() => ({
-                [nix.POS]: pos$98,
+                [nix.POS]: $pos[97],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$97,
+                  [nix.POS]: $pos[96],
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$96,
+                    [nix.POS]: $pos[95],
                     services: nix.thunk(() => ({
-                      [nix.POS]: pos$95,
+                      [nix.POS]: $pos[94],
                       autorestart: nix.thunk(() => ({
-                        [nix.POS]: pos$94,
+                        [nix.POS]: $pos[93],
                         wantedBy: nix.thunk(() => ["multi-user.target"]),
                         serviceConfig: nix.thunk(() => ({
-                          [nix.POS]: pos$93,
+                          [nix.POS]: $pos[92],
                           Type: "simple",
                           Restart: "always",
                           RestartSec: "20y",
@@ -895,18 +395,18 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })),
               }));
               const autorestartServiceFailing = nix.thunk(() => ({
-                [nix.POS]: pos$104,
+                [nix.POS]: $pos[103],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$103,
+                  [nix.POS]: $pos[102],
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(autorestartService, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$102,
+                    [nix.POS]: $pos[101],
                     services: nix.thunk(() => ({
-                      [nix.POS]: pos$101,
+                      [nix.POS]: $pos[100],
                       autorestart: nix.thunk(() => ({
-                        [nix.POS]: pos$100,
+                        [nix.POS]: $pos[99],
                         serviceConfig: nix.thunk(() => ({
-                          [nix.POS]: pos$99,
+                          [nix.POS]: $pos[98],
                           ExecStart: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), nix.thunk(() => nix.str`${nix.sel(pkgs_1, "coreutils")}/bin/false`))),
                         })),
                       })),
@@ -915,15 +415,15 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })),
               }));
               const simpleServiceWithExtraSection = nix.thunk(() => ({
-                [nix.POS]: pos$108,
+                [nix.POS]: $pos[107],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$107,
+                  [nix.POS]: $pos[106],
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(simpleServiceNostop, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$106,
+                    [nix.POS]: $pos[105],
                     packages: nix.thunk(() => [
                       nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeTextFile"), nix.thunk(() => ({
-                          [nix.POS]: pos$105,
+                          [nix.POS]: $pos[104],
                           name: "systemd-extra-section",
                           destination: "/etc/systemd/system/test.service",
                           text: "[X-Test]\nX-Test-Value=a\n",
@@ -933,15 +433,15 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })),
               }));
               const simpleServiceWithExtraSectionOtherName = nix.thunk(() => ({
-                [nix.POS]: pos$112,
+                [nix.POS]: $pos[111],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$111,
+                  [nix.POS]: $pos[110],
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(simpleServiceNostop, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$110,
+                    [nix.POS]: $pos[109],
                     packages: nix.thunk(() => [
                       nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeTextFile"), nix.thunk(() => ({
-                          [nix.POS]: pos$109,
+                          [nix.POS]: $pos[108],
                           name: "systemd-extra-section",
                           destination: "/etc/systemd/system/test.service",
                           text: "[X-Test2]\nX-Test-Value=a\n",
@@ -951,15 +451,15 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })),
               }));
               const simpleServiceWithInstallSection = nix.thunk(() => ({
-                [nix.POS]: pos$116,
+                [nix.POS]: $pos[115],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$115,
+                  [nix.POS]: $pos[114],
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(simpleServiceNostop, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$114,
+                    [nix.POS]: $pos[113],
                     packages: nix.thunk(() => [
                       nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeTextFile"), nix.thunk(() => ({
-                          [nix.POS]: pos$113,
+                          [nix.POS]: $pos[112],
                           name: "systemd-extra-section",
                           destination: "/etc/systemd/system/test.service",
                           text: "[Install]\nWantedBy=multi-user.target\n",
@@ -969,132 +469,132 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })),
               }));
               const simpleServiceWithExtraKey = nix.thunk(() => ({
-                [nix.POS]: pos$122,
+                [nix.POS]: $pos[121],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$121,
+                  [nix.POS]: $pos[120],
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(simpleServiceNostop, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$120,
+                    [nix.POS]: $pos[119],
                     services: nix.thunk(() => ({
-                      [nix.POS]: pos$119,
+                      [nix.POS]: $pos[118],
                       test: nix.thunk(() => ({
-                        [nix.POS]: pos$118,
-                        serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$117, "X-Test": "test" })),
+                        [nix.POS]: $pos[117],
+                        serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[116], "X-Test": "test" })),
                       })),
                     })),
                   })),
                 })),
               }));
               const simpleServiceWithExtraKeyOtherValue = nix.thunk(() => ({
-                [nix.POS]: pos$128,
+                [nix.POS]: $pos[127],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$127,
+                  [nix.POS]: $pos[126],
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(simpleServiceNostop, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$126,
+                    [nix.POS]: $pos[125],
                     services: nix.thunk(() => ({
-                      [nix.POS]: pos$125,
+                      [nix.POS]: $pos[124],
                       test: nix.thunk(() => ({
-                        [nix.POS]: pos$124,
-                        serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$123, "X-Test": "test2" })),
+                        [nix.POS]: $pos[123],
+                        serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[122], "X-Test": "test2" })),
                       })),
                     })),
                   })),
                 })),
               }));
               const simpleServiceWithExtraKeyOtherName = nix.thunk(() => ({
-                [nix.POS]: pos$134,
+                [nix.POS]: $pos[133],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$133,
+                  [nix.POS]: $pos[132],
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(simpleServiceNostop, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$132,
+                    [nix.POS]: $pos[131],
                     services: nix.thunk(() => ({
-                      [nix.POS]: pos$131,
+                      [nix.POS]: $pos[130],
                       test: nix.thunk(() => ({
-                        [nix.POS]: pos$130,
-                        serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$129, "X-Test2": "test" })),
+                        [nix.POS]: $pos[129],
+                        serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[128], "X-Test2": "test" })),
                       })),
                     })),
                   })),
                 })),
               }));
               const simpleServiceReloadTrigger = nix.thunk(() => ({
-                [nix.POS]: pos$139,
+                [nix.POS]: $pos[138],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$138,
+                  [nix.POS]: $pos[137],
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(simpleServiceNostop, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$137,
+                    [nix.POS]: $pos[136],
                     services: nix.thunk(() => ({
-                      [nix.POS]: pos$136,
-                      test: nix.thunk(() => ({ [nix.POS]: pos$135, reloadTriggers: nix.thunk(() => ["/dev/null"]) })),
+                      [nix.POS]: $pos[135],
+                      test: nix.thunk(() => ({ [nix.POS]: $pos[134], reloadTriggers: nix.thunk(() => ["/dev/null"]) })),
                     })),
                   })),
                 })),
               }));
               const simpleServiceReloadTriggerModified = nix.thunk(() => ({
-                [nix.POS]: pos$144,
+                [nix.POS]: $pos[143],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$143,
+                  [nix.POS]: $pos[142],
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(simpleServiceNostop, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$142,
+                    [nix.POS]: $pos[141],
                     services: nix.thunk(() => ({
-                      [nix.POS]: pos$141,
-                      test: nix.thunk(() => ({ [nix.POS]: pos$140, reloadTriggers: nix.thunk(() => ["/dev/zero"]) })),
+                      [nix.POS]: $pos[140],
+                      test: nix.thunk(() => ({ [nix.POS]: $pos[139], reloadTriggers: nix.thunk(() => ["/dev/zero"]) })),
                     })),
                   })),
                 })),
               }));
               const simpleServiceReloadTriggerModifiedAndSomethingElse = nix.thunk(() => ({
-                [nix.POS]: pos$150,
+                [nix.POS]: $pos[149],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$149,
+                  [nix.POS]: $pos[148],
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(simpleServiceNostop, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$148,
+                    [nix.POS]: $pos[147],
                     services: nix.thunk(() => ({
-                      [nix.POS]: pos$147,
+                      [nix.POS]: $pos[146],
                       test: nix.thunk(() => ({
-                        [nix.POS]: pos$146,
+                        [nix.POS]: $pos[145],
                         reloadTriggers: nix.thunk(() => ["/dev/zero"]),
-                        serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$145, "X-Test": "test" })),
+                        serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[144], "X-Test": "test" })),
                       })),
                     })),
                   })),
                 })),
               }));
               const simpleServiceReloadTriggerModifiedSomethingElse = nix.thunk(() => ({
-                [nix.POS]: pos$156,
+                [nix.POS]: $pos[155],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$155,
+                  [nix.POS]: $pos[154],
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(simpleServiceNostop, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$154,
+                    [nix.POS]: $pos[153],
                     services: nix.thunk(() => ({
-                      [nix.POS]: pos$153,
+                      [nix.POS]: $pos[152],
                       test: nix.thunk(() => ({
-                        [nix.POS]: pos$152,
-                        serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$151, "X-Test": "test" })),
+                        [nix.POS]: $pos[151],
+                        serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[150], "X-Test": "test" })),
                       })),
                     })),
                   })),
                 })),
               }));
               const unitWithBackslash = nix.thunk(() => ({
-                [nix.POS]: pos$162,
+                [nix.POS]: $pos[161],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$161,
+                  [nix.POS]: $pos[160],
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$160,
+                    [nix.POS]: $pos[159],
                     services: nix.thunk(() => ({
-                      [nix.POS]: pos$159,
+                      [nix.POS]: $pos[158],
                       "escaped\\x2ddash": nix.thunk(() => ({
-                        [nix.POS]: pos$158,
+                        [nix.POS]: $pos[157],
                         wantedBy: nix.thunk(() => ["multi-user.target"]),
                         serviceConfig: nix.thunk(() => ({
-                          [nix.POS]: pos$157,
+                          [nix.POS]: $pos[156],
                           Type: "oneshot",
                           RemainAfterExit: true,
                           ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "coreutils")}/bin/true`),
@@ -1106,34 +606,34 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })),
               }));
               const unitWithBackslashModified = nix.thunk(() => ({
-                [nix.POS]: pos$168,
+                [nix.POS]: $pos[167],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$167,
+                  [nix.POS]: $pos[166],
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(unitWithBackslash, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$166,
+                    [nix.POS]: $pos[165],
                     services: nix.thunk(() => ({
-                      [nix.POS]: pos$165,
+                      [nix.POS]: $pos[164],
                       "escaped\\x2ddash": nix.thunk(() => ({
-                        [nix.POS]: pos$164,
-                        serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$163, "X-Test": "test" })),
+                        [nix.POS]: $pos[163],
+                        serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[162], "X-Test": "test" })),
                       })),
                     })),
                   })),
                 })),
               }));
               const unitWithMultilineValue = nix.thunk(() => ({
-                [nix.POS]: pos$174,
+                [nix.POS]: $pos[173],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$173,
+                  [nix.POS]: $pos[172],
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$172,
+                    [nix.POS]: $pos[171],
                     services: nix.thunk(() => ({
-                      [nix.POS]: pos$171,
+                      [nix.POS]: $pos[170],
                       test: nix.thunk(() => ({
-                        [nix.POS]: pos$170,
+                        [nix.POS]: $pos[169],
                         serviceConfig: nix.thunk(() => ({
-                          [nix.POS]: pos$169,
+                          [nix.POS]: $pos[168],
                           ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "coreutils")}/bin/true \\
 # ignored
 ; ignored
@@ -1146,18 +646,18 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })),
               }));
               const unitStartingWithDash = nix.thunk(() => ({
-                [nix.POS]: pos$180,
+                [nix.POS]: $pos[179],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$179,
+                  [nix.POS]: $pos[178],
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$178,
+                    [nix.POS]: $pos[177],
                     services: nix.thunk(() => ({
-                      [nix.POS]: pos$177,
+                      [nix.POS]: $pos[176],
                       "-": nix.thunk(() => ({
-                        [nix.POS]: pos$176,
+                        [nix.POS]: $pos[175],
                         wantedBy: nix.thunk(() => ["multi-user.target"]),
                         serviceConfig: nix.thunk(() => ({
-                          [nix.POS]: pos$175,
+                          [nix.POS]: $pos[174],
                           Type: "oneshot",
                           RemainAfterExit: true,
                           ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "coreutils")}/bin/true`),
@@ -1168,19 +668,19 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })),
               }));
               const unitStartingWithDashModified = nix.thunk(() => ({
-                [nix.POS]: pos$186,
+                [nix.POS]: $pos[185],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$185,
+                  [nix.POS]: $pos[184],
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(unitStartingWithDash, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$184,
+                    [nix.POS]: $pos[183],
                     services: nix.thunk(() => ({
-                      [nix.POS]: pos$183,
+                      [nix.POS]: $pos[182],
                       "-": nix.thunk(() => ({
-                        [nix.POS]: pos$182,
+                        [nix.POS]: $pos[181],
                         reloadIfChanged: true,
                         serviceConfig: nix.thunk(() => ({
-                          [nix.POS]: pos$181,
+                          [nix.POS]: $pos[180],
                           ExecReload: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "coreutils")}/bin/true`),
                         })),
                       })),
@@ -1189,18 +689,18 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })),
               }));
               const unitWithRequirement = nix.thunk(() => ({
-                [nix.POS]: pos$194,
+                [nix.POS]: $pos[193],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$193,
+                  [nix.POS]: $pos[192],
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$192,
+                    [nix.POS]: $pos[191],
                     services: nix.thunk(() => ({
-                      [nix.POS]: pos$191,
+                      [nix.POS]: $pos[190],
                       "required-service": nix.thunk(() => ({
-                        [nix.POS]: pos$188,
+                        [nix.POS]: $pos[187],
                         wantedBy: nix.thunk(() => ["multi-user.target"]),
                         serviceConfig: nix.thunk(() => ({
-                          [nix.POS]: pos$187,
+                          [nix.POS]: $pos[186],
                           Type: "oneshot",
                           RemainAfterExit: true,
                           ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "coreutils")}/bin/true`),
@@ -1208,11 +708,11 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                         })),
                       })),
                       "test-service": nix.thunk(() => ({
-                        [nix.POS]: pos$190,
+                        [nix.POS]: $pos[189],
                         wantedBy: nix.thunk(() => ["multi-user.target"]),
                         requires: nix.thunk(() => ["required-service.service"]),
                         serviceConfig: nix.thunk(() => ({
-                          [nix.POS]: pos$189,
+                          [nix.POS]: $pos[188],
                           Type: "oneshot",
                           RemainAfterExit: true,
                           ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "coreutils")}/bin/true`),
@@ -1224,52 +724,52 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })),
               }));
               const unitWithRequirementModified = nix.thunk(() => ({
-                [nix.POS]: pos$201,
+                [nix.POS]: $pos[200],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$200,
+                  [nix.POS]: $pos[199],
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(unitWithRequirement, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$199,
+                    [nix.POS]: $pos[198],
                     services: nix.thunk(() => ({
-                      [nix.POS]: pos$198,
+                      [nix.POS]: $pos[197],
                       "required-service": nix.thunk(() => ({
-                        [nix.POS]: pos$196,
-                        serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$195, "X-Test": "test" })),
+                        [nix.POS]: $pos[195],
+                        serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[194], "X-Test": "test" })),
                       })),
-                      "test-service": nix.thunk(() => ({ [nix.POS]: pos$197, reloadTriggers: nix.thunk(() => ["test"]) })),
+                      "test-service": nix.thunk(() => ({ [nix.POS]: $pos[196], reloadTriggers: nix.thunk(() => ["test"]) })),
                     })),
                   })),
                 })),
               }));
               const unitWithRequirementModifiedNostart = nix.thunk(() => ({
-                [nix.POS]: pos$207,
+                [nix.POS]: $pos[206],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$206,
+                  [nix.POS]: $pos[205],
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(unitWithRequirement, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$205,
+                    [nix.POS]: $pos[204],
                     services: nix.thunk(() => ({
-                      [nix.POS]: pos$204,
+                      [nix.POS]: $pos[203],
                       "test-service": nix.thunk(() => ({
-                        [nix.POS]: pos$203,
-                        unitConfig: nix.thunk(() => ({ [nix.POS]: pos$202, RefuseManualStart: true })),
+                        [nix.POS]: $pos[202],
+                        unitConfig: nix.thunk(() => ({ [nix.POS]: $pos[201], RefuseManualStart: true })),
                       })),
                     })),
                   })),
                 })),
               }));
               const unitWithTemplate = nix.thunk(() => ({
-                [nix.POS]: pos$215,
+                [nix.POS]: $pos[214],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$214,
+                  [nix.POS]: $pos[213],
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$213,
+                    [nix.POS]: $pos[212],
                     services: nix.thunk(() => ({
-                      [nix.POS]: pos$212,
+                      [nix.POS]: $pos[211],
                       "instantiated@": nix.thunk(() => ({
-                        [nix.POS]: pos$209,
+                        [nix.POS]: $pos[208],
                         serviceConfig: nix.thunk(() => ({
-                          [nix.POS]: pos$208,
+                          [nix.POS]: $pos[207],
                           Type: "oneshot",
                           RemainAfterExit: true,
                           ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "coreutils")}/bin/true`),
@@ -1277,12 +777,12 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                         })),
                       })),
                       "instantiated@one": nix.thunk(() => ({
-                        [nix.POS]: pos$210,
+                        [nix.POS]: $pos[209],
                         wantedBy: nix.thunk(() => ["multi-user.target"]),
                         overrideStrategy: "asDropin",
                       })),
                       "instantiated@two": nix.thunk(() => ({
-                        [nix.POS]: pos$211,
+                        [nix.POS]: $pos[210],
                         wantedBy: nix.thunk(() => ["multi-user.target"]),
                         overrideStrategy: "asDropin",
                       })),
@@ -1291,33 +791,33 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })),
               }));
               const unitWithTemplateModified = nix.thunk(() => ({
-                [nix.POS]: pos$221,
+                [nix.POS]: $pos[220],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$220,
+                  [nix.POS]: $pos[219],
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(unitWithTemplate, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$219,
+                    [nix.POS]: $pos[218],
                     services: nix.thunk(() => ({
-                      [nix.POS]: pos$218,
+                      [nix.POS]: $pos[217],
                       "instantiated@": nix.thunk(() => ({
-                        [nix.POS]: pos$217,
-                        serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$216, "X-Test": "test" })),
+                        [nix.POS]: $pos[216],
+                        serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[215], "X-Test": "test" })),
                       })),
                     })),
                   })),
                 })),
               }));
               const restart_and_reload_by_activation_script = nix.thunk(() => ({
-                [nix.POS]: pos$242,
+                [nix.POS]: $pos[241],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$241,
+                  [nix.POS]: $pos[240],
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$237,
+                    [nix.POS]: $pos[236],
                     services: nix.thunk(() => (() => {
                       const simple_service = nix.thunk(() => ({
-                        [nix.POS]: pos$223,
+                        [nix.POS]: $pos[222],
                         serviceConfig: nix.thunk(() => ({
-                          [nix.POS]: pos$222,
+                          [nix.POS]: $pos[221],
                           Type: "oneshot",
                           RemainAfterExit: true,
                           ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "coreutils")}/bin/true`),
@@ -1325,40 +825,40 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                         })),
                       }));
                       const templated_simple_service$40 = simple_service;
-                      const templated_simple_service$40instance = nix.thunk(() => ({ [nix.POS]: pos$224, overrideStrategy: "asDropin" }));
-                      const simple_restart_service = nix.thunk(() => nix.update(simple_service, { [nix.POS]: pos$225, stopIfChanged: false }));
+                      const templated_simple_service$40instance = nix.thunk(() => ({ [nix.POS]: $pos[223], overrideStrategy: "asDropin" }));
+                      const simple_restart_service = nix.thunk(() => nix.update(simple_service, { [nix.POS]: $pos[224], stopIfChanged: false }));
                       const templated_simple_restart_service$40 = simple_restart_service;
-                      const templated_simple_restart_service$40instance = nix.thunk(() => ({ [nix.POS]: pos$226, overrideStrategy: "asDropin" }));
-                      const simple_reload_service = nix.thunk(() => nix.update(simple_service, { [nix.POS]: pos$227, reloadIfChanged: true }));
+                      const templated_simple_restart_service$40instance = nix.thunk(() => ({ [nix.POS]: $pos[225], overrideStrategy: "asDropin" }));
+                      const simple_reload_service = nix.thunk(() => nix.update(simple_service, { [nix.POS]: $pos[226], reloadIfChanged: true }));
                       const templated_simple_reload_service$40 = simple_reload_service;
-                      const templated_simple_reload_service$40instance = nix.thunk(() => ({ [nix.POS]: pos$228, overrideStrategy: "asDropin" }));
-                      const no_restart_service = nix.thunk(() => nix.update(simple_service, { [nix.POS]: pos$229, restartIfChanged: false }));
+                      const templated_simple_reload_service$40instance = nix.thunk(() => ({ [nix.POS]: $pos[227], overrideStrategy: "asDropin" }));
+                      const no_restart_service = nix.thunk(() => nix.update(simple_service, { [nix.POS]: $pos[228], restartIfChanged: false }));
                       const templated_no_restart_service$40 = no_restart_service;
-                      const templated_no_restart_service$40instance = nix.thunk(() => ({ [nix.POS]: pos$230, overrideStrategy: "asDropin" }));
-                      const reload_triggers = nix.thunk(() => nix.update(simple_service, { [nix.POS]: pos$231, wantedBy: nix.thunk(() => ["multi-user.target"]) }));
+                      const templated_no_restart_service$40instance = nix.thunk(() => ({ [nix.POS]: $pos[229], overrideStrategy: "asDropin" }));
+                      const reload_triggers = nix.thunk(() => nix.update(simple_service, { [nix.POS]: $pos[230], wantedBy: nix.thunk(() => ["multi-user.target"]) }));
                       const templated_reload_triggers$40 = simple_service;
                       const templated_reload_triggers$40instance = nix.thunk(() => ({
-                        [nix.POS]: pos$232,
+                        [nix.POS]: $pos[231],
                         overrideStrategy: "asDropin",
                         wantedBy: nix.thunk(() => ["multi-user.target"]),
                       }));
                       const reload_triggers_and_restart_by_as = simple_service;
                       const templated_reload_triggers_and_restart_by_as$40 = reload_triggers_and_restart_by_as;
-                      const templated_reload_triggers_and_restart_by_as$40instance = nix.thunk(() => ({ [nix.POS]: pos$233, overrideStrategy: "asDropin" }));
+                      const templated_reload_triggers_and_restart_by_as$40instance = nix.thunk(() => ({ [nix.POS]: $pos[232], overrideStrategy: "asDropin" }));
                       const reload_triggers_and_restart = nix.thunk(() => nix.update(simple_service, {
-                        [nix.POS]: pos$234,
+                        [nix.POS]: $pos[233],
                         stopIfChanged: false,
                         wantedBy: nix.thunk(() => ["multi-user.target"]),
                       }));
                       const templated_reload_triggers_and_restart$40 = simple_service;
                       const templated_reload_triggers_and_restart$40instance = nix.thunk(() => ({
-                        [nix.POS]: pos$235,
+                        [nix.POS]: $pos[234],
                         overrideStrategy: "asDropin",
                         stopIfChanged: false,
                         wantedBy: nix.thunk(() => ["multi-user.target"]),
                       }));
                       return {
-                        [nix.POS]: pos$236,
+                        [nix.POS]: $pos[235],
                         "simple-service": simple_service,
                         "templated-simple-service@": templated_simple_service$40,
                         "templated-simple-service@instance": templated_simple_service$40instance,
@@ -1384,11 +884,11 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                     })()),
                   })),
                   system: nix.thunk(() => ({
-                    [nix.POS]: pos$240,
+                    [nix.POS]: $pos[239],
                     activationScripts: nix.thunk(() => ({
-                      [nix.POS]: pos$239,
+                      [nix.POS]: $pos[238],
                       "restart-and-reload-test": nix.thunk(() => ({
-                        [nix.POS]: pos$238,
+                        [nix.POS]: $pos[237],
                         supportsDryActivation: true,
                         deps: [],
                         text: "if [ \"$NIXOS_ACTION\" = dry-activate ]; then\n  f=/run/nixos/dry-activation-restart-list\n  g=/run/nixos/dry-activation-reload-list\nelse\n  f=/run/nixos/activation-restart-list\n  g=/run/nixos/activation-reload-list\nfi\ncat <<EOF >> \"$f\"\nsimple-service.service\nsimple-restart-service.service\nsimple-reload-service.service\nno-restart-service.service\nreload-triggers-and-restart-by-as.service\ntemplated-simple-service@instance.service\ntemplated-simple-restart-service@instance.service\ntemplated-simple-reload-service@instance.service\ntemplated-no-restart-service@instance.service\ntemplated-reload-triggers-and-restart-by-as@instance.service\nEOF\n\ncat <<EOF >> \"$g\"\nreload-triggers.service\nreload-triggers-and-restart-by-as.service\nreload-triggers-and-restart.service\ntemplated-reload-triggers@instance.service\ntemplated-reload-triggers-and-restart-by-as@instance.service\ntemplated-reload-triggers-and-restart@instance.service\nEOF\n",
@@ -1398,31 +898,31 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })),
               }));
               const restart_and_reload_by_activation_script_modified = nix.thunk(() => ({
-                [nix.POS]: pos$250,
+                [nix.POS]: $pos[249],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$249,
+                  [nix.POS]: $pos[248],
                   imports: nix.thunk(() => [
                     nix.thunk(() => nix.sel(restart_and_reload_by_activation_script, "configuration")),
                   ]),
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$248,
+                    [nix.POS]: $pos[247],
                     services: nix.thunk(() => ({
-                      [nix.POS]: pos$247,
+                      [nix.POS]: $pos[246],
                       "reload-triggers-and-restart": nix.thunk(() => ({
-                        [nix.POS]: pos$244,
-                        serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$243, "X-Modified": "test" })),
+                        [nix.POS]: $pos[243],
+                        serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[242], "X-Modified": "test" })),
                       })),
                       "templated-reload-triggers-and-restart@instance": nix.thunk(() => ({
-                        [nix.POS]: pos$246,
+                        [nix.POS]: $pos[245],
                         overrideStrategy: "asDropin",
-                        serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$245, "X-Modified": "test" })),
+                        serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[244], "X-Modified": "test" })),
                       })),
                     })),
                   })),
                 })),
               }));
               return {
-                [nix.POS]: pos$251,
+                [nix.POS]: $pos[250],
                 simpleService,
                 simpleServiceSeparateActivationScript,
                 simpleServiceDifferentDescription,
@@ -1458,32 +958,32 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
               };
             })())), nix.update(nix.app(forPart, "units", nix.thunk(() => (() => {
               const simple_socket = nix.thunk(() => ({
-                [nix.POS]: pos$260,
+                [nix.POS]: $pos[259],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$259,
+                  [nix.POS]: $pos[258],
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$258,
+                    [nix.POS]: $pos[257],
                     services: nix.thunk(() => ({
-                      [nix.POS]: pos$254,
+                      [nix.POS]: $pos[253],
                       "socket-activated": nix.thunk(() => ({
-                        [nix.POS]: pos$253,
+                        [nix.POS]: $pos[252],
                         description: "A socket-activated service",
                         stopIfChanged: nix.thunk(() => nix.app(nix.sel(lib_1, "mkDefault"), false)),
                         serviceConfig: nix.thunk(() => ({
-                          [nix.POS]: pos$252,
+                          [nix.POS]: $pos[251],
                           ExecStart: socketTest,
                           ExecReload: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "coreutils")}/bin/true`),
                         })),
                       })),
                     })),
                     sockets: nix.thunk(() => ({
-                      [nix.POS]: pos$257,
+                      [nix.POS]: $pos[256],
                       "socket-activated": nix.thunk(() => ({
-                        [nix.POS]: pos$256,
+                        [nix.POS]: $pos[255],
                         wantedBy: nix.thunk(() => ["sockets.target"]),
                         listenStreams: nix.thunk(() => ["/run/test.sock"]),
                         socketConfig: nix.thunk(() => ({
-                          [nix.POS]: pos$255,
+                          [nix.POS]: $pos[254],
                           SocketMode: nix.thunk(() => nix.app(nix.sel(lib_1, "mkDefault"), "0777")),
                         })),
                       })),
@@ -1492,47 +992,47 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })),
               }));
               const simple_socket_service_modified = nix.thunk(() => ({
-                [nix.POS]: pos$266,
+                [nix.POS]: $pos[265],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$265,
+                  [nix.POS]: $pos[264],
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(simple_socket, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$264,
+                    [nix.POS]: $pos[263],
                     services: nix.thunk(() => ({
-                      [nix.POS]: pos$263,
+                      [nix.POS]: $pos[262],
                       "socket-activated": nix.thunk(() => ({
-                        [nix.POS]: pos$262,
-                        serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$261, "X-Test": "test" })),
+                        [nix.POS]: $pos[261],
+                        serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[260], "X-Test": "test" })),
                       })),
                     })),
                   })),
                 })),
               }));
               const simple_socket_stop_if_changed = nix.thunk(() => ({
-                [nix.POS]: pos$271,
+                [nix.POS]: $pos[270],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$270,
+                  [nix.POS]: $pos[269],
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(simple_socket, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$269,
+                    [nix.POS]: $pos[268],
                     services: nix.thunk(() => ({
-                      [nix.POS]: pos$268,
-                      "socket-activated": nix.thunk(() => ({ [nix.POS]: pos$267, stopIfChanged: true })),
+                      [nix.POS]: $pos[267],
+                      "socket-activated": nix.thunk(() => ({ [nix.POS]: $pos[266], stopIfChanged: true })),
                     })),
                   })),
                 })),
               }));
               const simple_socket_stop_if_changed_and_reloadtrigger = nix.thunk(() => ({
-                [nix.POS]: pos$276,
+                [nix.POS]: $pos[275],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$275,
+                  [nix.POS]: $pos[274],
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(simple_socket, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$274,
+                    [nix.POS]: $pos[273],
                     services: nix.thunk(() => ({
-                      [nix.POS]: pos$273,
+                      [nix.POS]: $pos[272],
                       "socket-activated": nix.thunk(() => ({
-                        [nix.POS]: pos$272,
+                        [nix.POS]: $pos[271],
                         stopIfChanged: true,
                         reloadTriggers: nix.thunk(() => ["test"]),
                       })),
@@ -1541,75 +1041,75 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })),
               }));
               const accept_socket = nix.thunk(() => ({
-                [nix.POS]: pos$285,
+                [nix.POS]: $pos[284],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$284,
+                  [nix.POS]: $pos[283],
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$283,
+                    [nix.POS]: $pos[282],
                     sockets: nix.thunk(() => ({
-                      [nix.POS]: pos$279,
+                      [nix.POS]: $pos[278],
                       "accept-socket": nix.thunk(() => ({
-                        [nix.POS]: pos$278,
+                        [nix.POS]: $pos[277],
                         wantedBy: nix.thunk(() => ["sockets.target"]),
                         listenStreams: nix.thunk(() => ["/run/accept-test.sock"]),
-                        socketConfig: nix.thunk(() => ({ [nix.POS]: pos$277, Accept: "yes", SocketMode: "0777" })),
+                        socketConfig: nix.thunk(() => ({ [nix.POS]: $pos[276], Accept: "yes", SocketMode: "0777" })),
                       })),
                     })),
                     services: nix.thunk(() => ({
-                      [nix.POS]: pos$282,
+                      [nix.POS]: $pos[281],
                       "accept-socket@": nix.thunk(() => ({
-                        [nix.POS]: pos$281,
+                        [nix.POS]: $pos[280],
                         description: "A per-connection socket-activated service",
-                        serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$280, ExecStart: acceptSocketTest })),
+                        serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[279], ExecStart: acceptSocketTest })),
                       })),
                     })),
                   })),
                 })),
               }));
               const accept_socket_service_modified = nix.thunk(() => ({
-                [nix.POS]: pos$291,
+                [nix.POS]: $pos[290],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$290,
+                  [nix.POS]: $pos[289],
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(accept_socket, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$289,
+                    [nix.POS]: $pos[288],
                     services: nix.thunk(() => ({
-                      [nix.POS]: pos$288,
+                      [nix.POS]: $pos[287],
                       "accept-socket@": nix.thunk(() => ({
-                        [nix.POS]: pos$287,
-                        serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$286, "X-Test": "test" })),
+                        [nix.POS]: $pos[286],
+                        serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[285], "X-Test": "test" })),
                       })),
                     })),
                   })),
                 })),
               }));
               const socket_activated_without_socket = nix.thunk(() => ({
-                [nix.POS]: pos$298,
+                [nix.POS]: $pos[297],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$297,
+                  [nix.POS]: $pos[296],
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(simple_socket, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$296,
+                    [nix.POS]: $pos[295],
                     sockets: nix.thunk(() => ({
-                      [nix.POS]: pos$293,
-                      "socket-activated": nix.thunk(() => ({ [nix.POS]: pos$292, enable: false })),
+                      [nix.POS]: $pos[292],
+                      "socket-activated": nix.thunk(() => ({ [nix.POS]: $pos[291], enable: false })),
                     })),
                     services: nix.thunk(() => ({
-                      [nix.POS]: pos$295,
-                      "socket-activated": nix.thunk(() => ({ [nix.POS]: pos$294, wantedBy: nix.thunk(() => ["multi-user.target"]) })),
+                      [nix.POS]: $pos[294],
+                      "socket-activated": nix.thunk(() => ({ [nix.POS]: $pos[293], wantedBy: nix.thunk(() => ["multi-user.target"]) })),
                     })),
                   })),
                 })),
               }));
               const mount = nix.thunk(() => ({
-                [nix.POS]: pos$302,
+                [nix.POS]: $pos[301],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$301,
+                  [nix.POS]: $pos[300],
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$300,
+                    [nix.POS]: $pos[299],
                     mounts: nix.thunk(() => [
                       nix.thunk(() => ({
-                        [nix.POS]: pos$299,
+                        [nix.POS]: $pos[298],
                         description: "Testmount",
                         what: "tmpfs",
                         type: "tmpfs",
@@ -1622,14 +1122,14 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })),
               }));
               const mountOptionsModified = nix.thunk(() => ({
-                [nix.POS]: pos$306,
+                [nix.POS]: $pos[305],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$305,
+                  [nix.POS]: $pos[304],
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$304,
+                    [nix.POS]: $pos[303],
                     mounts: nix.thunk(() => [
                       nix.thunk(() => ({
-                        [nix.POS]: pos$303,
+                        [nix.POS]: $pos[302],
                         description: "Testmount",
                         what: "tmpfs",
                         type: "tmpfs",
@@ -1642,14 +1142,14 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })),
               }));
               const mountModified = nix.thunk(() => ({
-                [nix.POS]: pos$310,
+                [nix.POS]: $pos[309],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$309,
+                  [nix.POS]: $pos[308],
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$308,
+                    [nix.POS]: $pos[307],
                     mounts: nix.thunk(() => [
                       nix.thunk(() => ({
-                        [nix.POS]: pos$307,
+                        [nix.POS]: $pos[306],
                         description: "Testmount",
                         what: "ramfs",
                         type: "ramfs",
@@ -1662,25 +1162,25 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })),
               }));
               const timer = nix.thunk(() => ({
-                [nix.POS]: pos$319,
+                [nix.POS]: $pos[318],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$318,
+                  [nix.POS]: $pos[317],
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$317,
+                    [nix.POS]: $pos[316],
                     timers: nix.thunk(() => ({
-                      [nix.POS]: pos$313,
+                      [nix.POS]: $pos[312],
                       "test-timer": nix.thunk(() => ({
-                        [nix.POS]: pos$312,
+                        [nix.POS]: $pos[311],
                         wantedBy: nix.thunk(() => ["timers.target"]),
-                        timerConfig: nix.thunk(() => ({ [nix.POS]: pos$311, OnCalendar: "@1395716396" })),
+                        timerConfig: nix.thunk(() => ({ [nix.POS]: $pos[310], OnCalendar: "@1395716396" })),
                       })),
                     })),
                     services: nix.thunk(() => ({
-                      [nix.POS]: pos$316,
+                      [nix.POS]: $pos[315],
                       "test-timer": nix.thunk(() => ({
-                        [nix.POS]: pos$315,
+                        [nix.POS]: $pos[314],
                         serviceConfig: nix.thunk(() => ({
-                          [nix.POS]: pos$314,
+                          [nix.POS]: $pos[313],
                           Type: "oneshot",
                           ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "coreutils")}/bin/true`),
                         })),
@@ -1690,18 +1190,18 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })),
               }));
               const timerModified = nix.thunk(() => ({
-                [nix.POS]: pos$325,
+                [nix.POS]: $pos[324],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$324,
+                  [nix.POS]: $pos[323],
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(timer, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$323,
+                    [nix.POS]: $pos[322],
                     timers: nix.thunk(() => ({
-                      [nix.POS]: pos$322,
+                      [nix.POS]: $pos[321],
                       "test-timer": nix.thunk(() => ({
-                        [nix.POS]: pos$321,
+                        [nix.POS]: $pos[320],
                         timerConfig: nix.thunk(() => ({
-                          [nix.POS]: pos$320,
+                          [nix.POS]: $pos[319],
                           OnCalendar: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), "Fri 2012-11-23 16:00:00")),
                         })),
                       })),
@@ -1710,38 +1210,38 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })),
               }));
               const hybridSleepModified = nix.thunk(() => ({
-                [nix.POS]: pos$331,
+                [nix.POS]: $pos[330],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$330,
+                  [nix.POS]: $pos[329],
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$329,
+                    [nix.POS]: $pos[328],
                     targets: nix.thunk(() => ({
-                      [nix.POS]: pos$328,
+                      [nix.POS]: $pos[327],
                       "hybrid-sleep": nix.thunk(() => ({
-                        [nix.POS]: pos$327,
-                        unitConfig: nix.thunk(() => ({ [nix.POS]: pos$326, "X-Test": true })),
+                        [nix.POS]: $pos[326],
+                        unitConfig: nix.thunk(() => ({ [nix.POS]: $pos[325], "X-Test": true })),
                       })),
                     })),
                   })),
                 })),
               }));
               const target = nix.thunk(() => ({
-                [nix.POS]: pos$339,
+                [nix.POS]: $pos[338],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$338,
+                  [nix.POS]: $pos[337],
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$337,
+                    [nix.POS]: $pos[336],
                     targets: nix.thunk(() => ({
-                      [nix.POS]: pos$333,
-                      "test-target": nix.thunk(() => ({ [nix.POS]: pos$332, wantedBy: nix.thunk(() => ["multi-user.target"]) })),
+                      [nix.POS]: $pos[332],
+                      "test-target": nix.thunk(() => ({ [nix.POS]: $pos[331], wantedBy: nix.thunk(() => ["multi-user.target"]) })),
                     })),
                     services: nix.thunk(() => ({
-                      [nix.POS]: pos$336,
+                      [nix.POS]: $pos[335],
                       "test-service": nix.thunk(() => ({
-                        [nix.POS]: pos$335,
+                        [nix.POS]: $pos[334],
                         bindsTo: nix.thunk(() => ["test-target.target"]),
                         serviceConfig: nix.thunk(() => ({
-                          [nix.POS]: pos$334,
+                          [nix.POS]: $pos[333],
                           ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "coreutils")}/bin/sleep infinity`),
                         })),
                       })),
@@ -1750,59 +1250,59 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })),
               }));
               const targetModified = nix.thunk(() => ({
-                [nix.POS]: pos$345,
+                [nix.POS]: $pos[344],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$344,
+                  [nix.POS]: $pos[343],
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(target, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$343,
+                    [nix.POS]: $pos[342],
                     targets: nix.thunk(() => ({
-                      [nix.POS]: pos$342,
+                      [nix.POS]: $pos[341],
                       "test-target": nix.thunk(() => ({
-                        [nix.POS]: pos$341,
-                        unitConfig: nix.thunk(() => ({ [nix.POS]: pos$340, "X-Test": true })),
+                        [nix.POS]: $pos[340],
+                        unitConfig: nix.thunk(() => ({ [nix.POS]: $pos[339], "X-Test": true })),
                       })),
                     })),
                   })),
                 })),
               }));
               const targetModifiedStopOnReconfig = nix.thunk(() => ({
-                [nix.POS]: pos$351,
+                [nix.POS]: $pos[350],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$350,
+                  [nix.POS]: $pos[349],
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(target, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$349,
+                    [nix.POS]: $pos[348],
                     targets: nix.thunk(() => ({
-                      [nix.POS]: pos$348,
+                      [nix.POS]: $pos[347],
                       "test-target": nix.thunk(() => ({
-                        [nix.POS]: pos$347,
-                        unitConfig: nix.thunk(() => ({ [nix.POS]: pos$346, "X-StopOnReconfiguration": true })),
+                        [nix.POS]: $pos[346],
+                        unitConfig: nix.thunk(() => ({ [nix.POS]: $pos[345], "X-StopOnReconfiguration": true })),
                       })),
                     })),
                   })),
                 })),
               }));
               const path = nix.thunk(() => ({
-                [nix.POS]: pos$360,
+                [nix.POS]: $pos[359],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$359,
+                  [nix.POS]: $pos[358],
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$358,
+                    [nix.POS]: $pos[357],
                     paths: nix.thunk(() => ({
-                      [nix.POS]: pos$354,
+                      [nix.POS]: $pos[353],
                       "test-watch": nix.thunk(() => ({
-                        [nix.POS]: pos$353,
+                        [nix.POS]: $pos[352],
                         wantedBy: nix.thunk(() => ["paths.target"]),
-                        pathConfig: nix.thunk(() => ({ [nix.POS]: pos$352, PathExists: "/testpath" })),
+                        pathConfig: nix.thunk(() => ({ [nix.POS]: $pos[351], PathExists: "/testpath" })),
                       })),
                     })),
                     services: nix.thunk(() => ({
-                      [nix.POS]: pos$357,
+                      [nix.POS]: $pos[356],
                       "test-watch": nix.thunk(() => ({
-                        [nix.POS]: pos$356,
+                        [nix.POS]: $pos[355],
                         serviceConfig: nix.thunk(() => ({
-                          [nix.POS]: pos$355,
+                          [nix.POS]: $pos[354],
                           Type: "oneshot",
                           RemainAfterExit: true,
                           ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "coreutils")}/bin/touch /testpath-modified`),
@@ -1813,18 +1313,18 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })),
               }));
               const pathModified = nix.thunk(() => ({
-                [nix.POS]: pos$366,
+                [nix.POS]: $pos[365],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$365,
+                  [nix.POS]: $pos[364],
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(path, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$364,
+                    [nix.POS]: $pos[363],
                     paths: nix.thunk(() => ({
-                      [nix.POS]: pos$363,
+                      [nix.POS]: $pos[362],
                       "test-watch": nix.thunk(() => ({
-                        [nix.POS]: pos$362,
+                        [nix.POS]: $pos[361],
                         pathConfig: nix.thunk(() => ({
-                          [nix.POS]: pos$361,
+                          [nix.POS]: $pos[360],
                           PathExists: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), "/testpath2")),
                         })),
                       })),
@@ -1833,24 +1333,24 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })),
               }));
               const slice = nix.thunk(() => ({
-                [nix.POS]: pos$375,
+                [nix.POS]: $pos[374],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$374,
+                  [nix.POS]: $pos[373],
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$373,
+                    [nix.POS]: $pos[372],
                     slices: nix.thunk(() => ({
-                      [nix.POS]: pos$369,
+                      [nix.POS]: $pos[368],
                       testslice: nix.thunk(() => ({
-                        [nix.POS]: pos$368,
-                        sliceConfig: nix.thunk(() => ({ [nix.POS]: pos$367, MemoryMax: "1" })),
+                        [nix.POS]: $pos[367],
+                        sliceConfig: nix.thunk(() => ({ [nix.POS]: $pos[366], MemoryMax: "1" })),
                       })),
                     })),
                     services: nix.thunk(() => ({
-                      [nix.POS]: pos$372,
+                      [nix.POS]: $pos[371],
                       testservice: nix.thunk(() => ({
-                        [nix.POS]: pos$371,
+                        [nix.POS]: $pos[370],
                         serviceConfig: nix.thunk(() => ({
-                          [nix.POS]: pos$370,
+                          [nix.POS]: $pos[369],
                           Type: "oneshot",
                           RemainAfterExit: true,
                           ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "coreutils")}/bin/true`),
@@ -1862,18 +1362,18 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })),
               }));
               const sliceModified = nix.thunk(() => ({
-                [nix.POS]: pos$381,
+                [nix.POS]: $pos[380],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$380,
+                  [nix.POS]: $pos[379],
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(slice, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$379,
+                    [nix.POS]: $pos[378],
                     slices: nix.thunk(() => ({
-                      [nix.POS]: pos$378,
+                      [nix.POS]: $pos[377],
                       testslice: nix.thunk(() => ({
-                        [nix.POS]: pos$377,
+                        [nix.POS]: $pos[376],
                         sliceConfig: nix.thunk(() => ({
-                          [nix.POS]: pos$376,
+                          [nix.POS]: $pos[375],
                           MemoryMax: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), null)),
                         })),
                       })),
@@ -1882,18 +1382,18 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })),
               }));
               const dbusReload = nix.thunk(() => ({
-                [nix.POS]: pos$386,
+                [nix.POS]: $pos[385],
                 configuration: nix.lambda((args_2) => (() => {
                   const $_2 = nix.formals(args_2, formals$3);
                   const config = nix.arg($_2, "config");
-                  const dbusService = nix.thunk(() => nix.sel({ [nix.POS]: pos$382, dbus: "dbus", broker: "dbus-broker" }, nix.key(nix.sel(config, "services", "dbus", "implementation"))));
+                  const dbusService = nix.thunk(() => nix.sel({ [nix.POS]: $pos[381], dbus: "dbus", broker: "dbus-broker" }, nix.key(nix.sel(config, "services", "dbus", "implementation"))));
                   return {
-                    [nix.POS]: pos$385,
+                    [nix.POS]: $pos[384],
                     systemd: nix.thunk(() => ({
-                      [nix.POS]: pos$384,
+                      [nix.POS]: $pos[383],
                       services: nix.thunk(() => nix.attrsDyn({}, [
                         [nix.force(dbusService), nix.thunk(() => ({
-                          [nix.POS]: pos$383,
+                          [nix.POS]: $pos[382],
                           restartTriggers: nix.thunk(() => [
                             nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "dbus-reload-dummy", "dbus reload dummy")),
                           ]),
@@ -1904,17 +1404,17 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils
                 })(), formals$3),
               }));
               const generators = nix.thunk(() => ({
-                [nix.POS]: pos$390,
+                [nix.POS]: $pos[389],
                 configuration: nix.lambda((args_2) => (() => {
                   const $_2 = nix.formals(args_2, formals$4);
                   const lib_2 = nix.arg($_2, "lib");
                   const pkgs_2 = nix.arg($_2, "pkgs");
                   return {
-                    [nix.POS]: pos$389,
+                    [nix.POS]: $pos[388],
                     systemd: nix.thunk(() => ({
-                      [nix.POS]: pos$388,
+                      [nix.POS]: $pos[387],
                       generators: nix.thunk(() => ({
-                        [nix.POS]: pos$387,
+                        [nix.POS]: $pos[386],
                         "simple-generator": nix.thunk(() => nix.app(nix.sel(pkgs_2, "writeShellScript"), "simple-generator", nix.thunk(() => nix.str`${nix.app(nix.sel(lib_2, "getExe'"), nix.thunk(() => nix.sel(pkgs_2, "coreutils")), "cat")} >$1/simple-generated.service <<EOF
 [Service]
 ExecStart=${nix.app(nix.sel(lib_2, "getExe'"), nix.thunk(() => nix.sel(pkgs_2, "coreutils")), "sleep")} infinity
@@ -1926,7 +1426,7 @@ EOF
                 })(), formals$4),
               }));
               return {
-                [nix.POS]: pos$391,
+                [nix.POS]: $pos[390],
                 "simple-socket": simple_socket,
                 "simple-socket-service-modified": simple_socket_service_modified,
                 "simple-socket-stop-if-changed": simple_socket_stop_if_changed,
@@ -1952,20 +1452,20 @@ EOF
               };
             })())), nix.update(nix.app(forPart, "user", nix.thunk(() => (() => {
               const simpleUserService = nix.thunk(() => ({
-                [nix.POS]: pos$398,
+                [nix.POS]: $pos[397],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$397,
+                  [nix.POS]: $pos[396],
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$396,
+                    [nix.POS]: $pos[395],
                     user: nix.thunk(() => ({
-                      [nix.POS]: pos$395,
+                      [nix.POS]: $pos[394],
                       services: nix.thunk(() => ({
-                        [nix.POS]: pos$394,
+                        [nix.POS]: $pos[393],
                         usertest: nix.thunk(() => ({
-                          [nix.POS]: pos$393,
+                          [nix.POS]: $pos[392],
                           wantedBy: nix.thunk(() => ["default.target"]),
                           serviceConfig: nix.thunk(() => ({
-                            [nix.POS]: pos$392,
+                            [nix.POS]: $pos[391],
                             Type: "oneshot",
                             RemainAfterExit: true,
                             ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "coreutils")}/bin/true`),
@@ -1978,19 +1478,19 @@ EOF
                 })),
               }));
               const simpleUserServiceModified = nix.thunk(() => ({
-                [nix.POS]: pos$405,
+                [nix.POS]: $pos[404],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$404,
+                  [nix.POS]: $pos[403],
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(simpleUserService, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$403,
+                    [nix.POS]: $pos[402],
                     user: nix.thunk(() => ({
-                      [nix.POS]: pos$402,
+                      [nix.POS]: $pos[401],
                       services: nix.thunk(() => ({
-                        [nix.POS]: pos$401,
+                        [nix.POS]: $pos[400],
                         usertest: nix.thunk(() => ({
-                          [nix.POS]: pos$400,
-                          serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$399, "X-Test": "1" })),
+                          [nix.POS]: $pos[399],
+                          serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[398], "X-Test": "1" })),
                         })),
                       })),
                     })),
@@ -1998,37 +1498,37 @@ EOF
                 })),
               }));
               const simpleUserServiceNostop = nix.thunk(() => ({
-                [nix.POS]: pos$411,
+                [nix.POS]: $pos[410],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$410,
+                  [nix.POS]: $pos[409],
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(simpleUserService, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$409,
+                    [nix.POS]: $pos[408],
                     user: nix.thunk(() => ({
-                      [nix.POS]: pos$408,
+                      [nix.POS]: $pos[407],
                       services: nix.thunk(() => ({
-                        [nix.POS]: pos$407,
-                        usertest: nix.thunk(() => ({ [nix.POS]: pos$406, stopIfChanged: false })),
+                        [nix.POS]: $pos[406],
+                        usertest: nix.thunk(() => ({ [nix.POS]: $pos[405], stopIfChanged: false })),
                       })),
                     })),
                   })),
                 })),
               }));
               const simpleUserServiceReload = nix.thunk(() => ({
-                [nix.POS]: pos$418,
+                [nix.POS]: $pos[417],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$417,
+                  [nix.POS]: $pos[416],
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(simpleUserService, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$416,
+                    [nix.POS]: $pos[415],
                     user: nix.thunk(() => ({
-                      [nix.POS]: pos$415,
+                      [nix.POS]: $pos[414],
                       services: nix.thunk(() => ({
-                        [nix.POS]: pos$414,
+                        [nix.POS]: $pos[413],
                         usertest: nix.thunk(() => ({
-                          [nix.POS]: pos$413,
+                          [nix.POS]: $pos[412],
                           reloadIfChanged: true,
-                          serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$412, "X-Test": "1" })),
+                          serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[411], "X-Test": "1" })),
                         })),
                       })),
                     })),
@@ -2036,37 +1536,37 @@ EOF
                 })),
               }));
               const simpleUserServiceReloadTrigger = nix.thunk(() => ({
-                [nix.POS]: pos$424,
+                [nix.POS]: $pos[423],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$423,
+                  [nix.POS]: $pos[422],
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(simpleUserService, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$422,
+                    [nix.POS]: $pos[421],
                     user: nix.thunk(() => ({
-                      [nix.POS]: pos$421,
+                      [nix.POS]: $pos[420],
                       services: nix.thunk(() => ({
-                        [nix.POS]: pos$420,
-                        usertest: nix.thunk(() => ({ [nix.POS]: pos$419, reloadTriggers: nix.thunk(() => ["/dev/null"]) })),
+                        [nix.POS]: $pos[419],
+                        usertest: nix.thunk(() => ({ [nix.POS]: $pos[418], reloadTriggers: nix.thunk(() => ["/dev/null"]) })),
                       })),
                     })),
                   })),
                 })),
               }));
               const simpleUserServiceFailing = nix.thunk(() => ({
-                [nix.POS]: pos$431,
+                [nix.POS]: $pos[430],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$430,
+                  [nix.POS]: $pos[429],
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(simpleUserService, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$429,
+                    [nix.POS]: $pos[428],
                     user: nix.thunk(() => ({
-                      [nix.POS]: pos$428,
+                      [nix.POS]: $pos[427],
                       services: nix.thunk(() => ({
-                        [nix.POS]: pos$427,
+                        [nix.POS]: $pos[426],
                         usertest: nix.thunk(() => ({
-                          [nix.POS]: pos$426,
+                          [nix.POS]: $pos[425],
                           serviceConfig: nix.thunk(() => ({
-                            [nix.POS]: pos$425,
+                            [nix.POS]: $pos[424],
                             ExecStart: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), nix.thunk(() => nix.str`${nix.sel(pkgs_1, "coreutils")}/bin/false`))),
                           })),
                         })),
@@ -2076,20 +1576,20 @@ EOF
                 })),
               }));
               const userServiceMigratedShadowed = nix.thunk(() => ({
-                [nix.POS]: pos$438,
+                [nix.POS]: $pos[437],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$437,
+                  [nix.POS]: $pos[436],
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$436,
+                    [nix.POS]: $pos[435],
                     user: nix.thunk(() => ({
-                      [nix.POS]: pos$435,
+                      [nix.POS]: $pos[434],
                       services: nix.thunk(() => ({
-                        [nix.POS]: pos$434,
+                        [nix.POS]: $pos[433],
                         migrated: nix.thunk(() => ({
-                          [nix.POS]: pos$433,
+                          [nix.POS]: $pos[432],
                           wantedBy: nix.thunk(() => ["default.target"]),
                           serviceConfig: nix.thunk(() => ({
-                            [nix.POS]: pos$432,
+                            [nix.POS]: $pos[431],
                             Type: "oneshot",
                             RemainAfterExit: true,
                             ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "runtimeShell")} -c 'echo nixos > %t/migrated-owner'`),
@@ -2101,14 +1601,14 @@ EOF
                 })),
               }));
               const userServiceMigratedToNixos = nix.thunk(() => ({
-                [nix.POS]: pos$442,
+                [nix.POS]: $pos[441],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$441,
+                  [nix.POS]: $pos[440],
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(userServiceMigratedShadowed, "configuration"))]),
                   system: nix.thunk(() => ({
-                    [nix.POS]: pos$440,
+                    [nix.POS]: $pos[439],
                     userActivationScripts: nix.thunk(() => ({
-                      [nix.POS]: pos$439,
+                      [nix.POS]: $pos[438],
                       fakeSdSwitch: nix.thunk(() => nix.str`if [ -e "$HOME/.config/systemd/user/migrated.service" ]; then
   rm -f "$HOME/.config/systemd/user/migrated.service"
   rm -f "$HOME/.config/systemd/user/default.target.wants/migrated.service"
@@ -2121,14 +1621,14 @@ fi
                 })),
               }));
               const userServiceMigratedToNixosNoStop = nix.thunk(() => ({
-                [nix.POS]: pos$446,
+                [nix.POS]: $pos[445],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$445,
+                  [nix.POS]: $pos[444],
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(userServiceMigratedShadowed, "configuration"))]),
                   system: nix.thunk(() => ({
-                    [nix.POS]: pos$444,
+                    [nix.POS]: $pos[443],
                     userActivationScripts: nix.thunk(() => ({
-                      [nix.POS]: pos$443,
+                      [nix.POS]: $pos[442],
                       fakeSdSwitch: nix.thunk(() => nix.str`if [ -e "$HOME/.config/systemd/user/migrated.service" ]; then
   rm -f "$HOME/.config/systemd/user/migrated.service"
   rm -f "$HOME/.config/systemd/user/default.target.wants/migrated.service"
@@ -2140,21 +1640,21 @@ fi
                 })),
               }));
               const userServiceMigratedToNixosReloadOnly = nix.thunk(() => ({
-                [nix.POS]: pos$453,
+                [nix.POS]: $pos[452],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$452,
+                  [nix.POS]: $pos[451],
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(userServiceMigratedToNixosNoStop, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$451,
+                    [nix.POS]: $pos[450],
                     user: nix.thunk(() => ({
-                      [nix.POS]: pos$450,
+                      [nix.POS]: $pos[449],
                       services: nix.thunk(() => ({
-                        [nix.POS]: pos$449,
+                        [nix.POS]: $pos[448],
                         migrated: nix.thunk(() => ({
-                          [nix.POS]: pos$448,
+                          [nix.POS]: $pos[447],
                           reloadIfChanged: true,
                           serviceConfig: nix.thunk(() => ({
-                            [nix.POS]: pos$447,
+                            [nix.POS]: $pos[446],
                             ExecReload: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "coreutils")}/bin/true`),
                           })),
                         })),
@@ -2164,24 +1664,24 @@ fi
                 })),
               }));
               const userServiceMigratedToNixosNoRestart = nix.thunk(() => ({
-                [nix.POS]: pos$459,
+                [nix.POS]: $pos[458],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$458,
+                  [nix.POS]: $pos[457],
                   imports: nix.thunk(() => [nix.thunk(() => nix.sel(userServiceMigratedToNixosNoStop, "configuration"))]),
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$457,
+                    [nix.POS]: $pos[456],
                     user: nix.thunk(() => ({
-                      [nix.POS]: pos$456,
+                      [nix.POS]: $pos[455],
                       services: nix.thunk(() => ({
-                        [nix.POS]: pos$455,
-                        migrated: nix.thunk(() => ({ [nix.POS]: pos$454, restartIfChanged: false })),
+                        [nix.POS]: $pos[454],
+                        migrated: nix.thunk(() => ({ [nix.POS]: $pos[453], restartIfChanged: false })),
                       })),
                     })),
                   })),
                 })),
               }));
               return {
-                [nix.POS]: pos$460,
+                [nix.POS]: $pos[459],
                 simpleUserService,
                 simpleUserServiceModified,
                 simpleUserServiceNostop,
@@ -2195,55 +1695,55 @@ fi
                 userServiceMigratedToNixosNoRestart,
               };
             })())), nix.app(forPart, "basics", nix.thunk(() => ({
-              [nix.POS]: pos$480,
+              [nix.POS]: $pos[479],
               no_inhibitors: nix.thunk(() => ({
-                [nix.POS]: pos$464,
+                [nix.POS]: $pos[463],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$463,
+                  [nix.POS]: $pos[462],
                   system: nix.thunk(() => ({
-                    [nix.POS]: pos$462,
+                    [nix.POS]: $pos[461],
                     switch: nix.thunk(() => ({
-                      [nix.POS]: pos$461,
+                      [nix.POS]: $pos[460],
                       inhibitors: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), nix.thunk(() => ({})))),
                     })),
                   })),
                 })),
               })),
               inhibitors: nix.thunk(() => ({
-                [nix.POS]: pos$469,
+                [nix.POS]: $pos[468],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$468,
+                  [nix.POS]: $pos[467],
                   system: nix.thunk(() => ({
-                    [nix.POS]: pos$467,
+                    [nix.POS]: $pos[466],
                     switch: nix.thunk(() => ({
-                      [nix.POS]: pos$466,
-                      inhibitors: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), nix.thunk(() => ({ [nix.POS]: pos$465, foo: "bar", quz: "bor" })))),
+                      [nix.POS]: $pos[465],
+                      inhibitors: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), nix.thunk(() => ({ [nix.POS]: $pos[464], foo: "bar", quz: "bor" })))),
                     })),
                   })),
                 })),
               })),
               inhibitors_changed: nix.thunk(() => ({
-                [nix.POS]: pos$474,
+                [nix.POS]: $pos[473],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$473,
+                  [nix.POS]: $pos[472],
                   system: nix.thunk(() => ({
-                    [nix.POS]: pos$472,
+                    [nix.POS]: $pos[471],
                     switch: nix.thunk(() => ({
-                      [nix.POS]: pos$471,
-                      inhibitors: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), nix.thunk(() => ({ [nix.POS]: pos$470, foo: "baz", quz: "boz" })))),
+                      [nix.POS]: $pos[470],
+                      inhibitors: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), nix.thunk(() => ({ [nix.POS]: $pos[469], foo: "baz", quz: "boz" })))),
                     })),
                   })),
                 })),
               })),
               inhibitors_new: nix.thunk(() => ({
-                [nix.POS]: pos$479,
+                [nix.POS]: $pos[478],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$478,
+                  [nix.POS]: $pos[477],
                   system: nix.thunk(() => ({
-                    [nix.POS]: pos$477,
+                    [nix.POS]: $pos[476],
                     switch: nix.thunk(() => ({
-                      [nix.POS]: pos$476,
-                      inhibitors: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), nix.thunk(() => ({ [nix.POS]: pos$475, foo: "bar", qux: "baz" })))),
+                      [nix.POS]: $pos[475],
+                      inhibitors: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), nix.thunk(() => ({ [nix.POS]: $pos[474], foo: "bar", qux: "baz" })))),
                     })),
                   })),
                 })),
@@ -2252,43 +1752,43 @@ fi
         };
       })(), formals$2),
       other: nix.thunk(() => ({
-        [nix.POS]: pos$498,
+        [nix.POS]: $pos[497],
         system: nix.thunk(() => ({
-          [nix.POS]: pos$484,
-          switch: nix.thunk(() => ({ [nix.POS]: pos$482, enable: true })),
+          [nix.POS]: $pos[483],
+          switch: nix.thunk(() => ({ [nix.POS]: $pos[481], enable: true })),
           preSwitchChecks: nix.thunk(() => ({
-            [nix.POS]: pos$483,
+            [nix.POS]: $pos[482],
             succeeds: "config=\"$1\"\naction=\"$2\"\necho \"this should succeed (config: $config, action: $action)\"\n[ \"$action\" == \"check\" ] || [ \"$action\" == \"test\" ]\n",
           })),
         })),
-        users: nix.thunk(() => ({ [nix.POS]: pos$485, mutableUsers: true })),
+        users: nix.thunk(() => ({ [nix.POS]: $pos[484], mutableUsers: true })),
         boot: nix.thunk(() => ({
-          [nix.POS]: pos$488,
+          [nix.POS]: $pos[487],
           loader: nix.thunk(() => ({
-            [nix.POS]: pos$487,
-            grub: nix.thunk(() => ({ [nix.POS]: pos$486, enable: false })),
+            [nix.POS]: $pos[486],
+            grub: nix.thunk(() => ({ [nix.POS]: $pos[485], enable: false })),
           })),
         })),
         specialisation: nix.thunk(() => ({
-          [nix.POS]: pos$497,
+          [nix.POS]: $pos[496],
           failingCheck: nix.thunk(() => ({
-            [nix.POS]: pos$492,
+            [nix.POS]: $pos[491],
             configuration: nix.thunk(() => ({
-              [nix.POS]: pos$491,
+              [nix.POS]: $pos[490],
               system: nix.thunk(() => ({
-                [nix.POS]: pos$490,
-                preSwitchChecks: nix.thunk(() => ({ [nix.POS]: pos$489, failEveryTime: "echo this will fail\nfalse\n" })),
+                [nix.POS]: $pos[489],
+                preSwitchChecks: nix.thunk(() => ({ [nix.POS]: $pos[488], failEveryTime: "echo this will fail\nfalse\n" })),
               })),
             })),
           })),
           failingMidCheck: nix.thunk(() => ({
-            [nix.POS]: pos$496,
+            [nix.POS]: $pos[495],
             configuration: nix.thunk(() => ({
-              [nix.POS]: pos$495,
+              [nix.POS]: $pos[494],
               system: nix.thunk(() => ({
-                [nix.POS]: pos$494,
+                [nix.POS]: $pos[493],
                 preSwitchChecks: nix.thunk(() => ({
-                  [nix.POS]: pos$493,
+                  [nix.POS]: $pos[492],
                   failsInTheMiddle: "echo before\nnonexistent-command\necho after\n",
                 })),
               })),
@@ -2309,7 +1809,7 @@ set -o pipefail
 exec env -i "$@" | tee /dev/stderr
 `)));
       const sortedUnits = (xs) => nix.app(nix.sel(lib, "concatStringsSep"), ", ", nix.thunk(() => nix.builtins.sort(nix.thunk(() => nix.builtins.lessThan), xs)));
-      const dbusService = nix.thunk(() => nix.sel({ [nix.POS]: pos$500, dbus: "dbus.service", broker: "dbus-broker.service" }, nix.key(nix.sel(nodes, "machine", "services", "dbus", "implementation"))));
+      const dbusService = nix.thunk(() => nix.sel({ [nix.POS]: $pos[499], dbus: "dbus.service", broker: "dbus-broker.service" }, nix.key(nix.sel(nodes, "machine", "services", "dbus", "implementation"))));
       const homeMigratedUnit = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "migrated.service", nix.thunk(() => nix.str`[Service]
 Type=oneshot
 RemainAfterExit=true

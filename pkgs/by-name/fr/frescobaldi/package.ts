@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["homepage", 48, 5], ["description", 49, 5], ["longDescription", 50, 5], ["license", 62, 5], ["maintainers", 63, 5], ["platforms", 64, 5], ["broken", 65, 5], ["mainProgram", 66, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["dependencies", 22, 3], ["buildInputs", 32, 3], ["nativeBuildInputs", 33, 3], ["build-system", 35, 3], ["doCheck", 40, 3], ["dontWrapQtApps", 42, 3], ["makeWrapperArgs", 43, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, python3Packages: false, lilypond: false, qt6: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 48, 5], ["description", 49, 5], ["longDescription", 50, 5], ["license", 62, 5], ["maintainers", 63, 5], ["platforms", 64, 5], ["broken", 65, 5], ["mainProgram", 66, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["dependencies", 22, 3], ["buildInputs", 32, 3], ["nativeBuildInputs", 33, 3], ["build-system", 35, 3], ["doCheck", 40, 3], ["dontWrapQtApps", 42, 3], ["makeWrapperArgs", 43, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.0.7";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "frescobaldi",
           repo: "frescobaldi",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -48,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const dontWrapQtApps = true;
       const makeWrapperArgs = nix.thunk(() => ["${qtWrapperArgs[@]}"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://frescobaldi.org/",
         description: "LilyPond sheet music text editor",
         longDescription: "Powerful text editor with syntax highlighting and automatic completion,\nMusic view with advanced Point & Click, Midi player to proof-listen\nLilyPond-generated MIDI files, Midi capturing to enter music,\nPowerful Score Wizard to quickly setup a music score, Snippet Manager\nto store and apply text snippets, templates or scripts, Use multiple\nversions of LilyPond, automatically selects the correct version, Built-in\nLilyPond documentation browser and built-in User Guide, Smart\nlayout-control functions like coloring specific objects in the PDF,\nMusicXML import, Modern user interface with configurable colors,\nfonts and keyboard shortcuts\n",
@@ -62,7 +60,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "frescobaldi",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

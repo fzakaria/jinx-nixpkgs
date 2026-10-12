@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mailman-hyperkitty.nix", [[["pname", 16, 26], ["version", 16, 32], ["hash", 17, 5]], [["mailman", 42, 43]], [["tests", 42, 12]], [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5]], [["pname", 11, 3], ["version", 12, 3], ["format", 13, 3], ["src", 15, 3], ["propagatedBuildInputs", 20, 3], ["nativeCheckInputs", 26, 3], ["checkPhase", 31, 3], ["doCheck", 36, 3], ["pythonImportsCheck", 38, 3], ["passthru", 42, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchPypi: false, mailman: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/mailman-hyperkitty.nix", [["pname", 16, 26], ["version", 16, 32], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/mailman-hyperkitty.nix", [["mailman", 42, 43]]);
-const pos$3 = nix.positions(here + "/mailman-hyperkitty.nix", [["tests", 42, 12]]);
-const pos$4 = nix.positions(here + "/mailman-hyperkitty.nix", [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5]]);
-const pos$5 = nix.positions(here + "/mailman-hyperkitty.nix", [["pname", 11, 3], ["version", 12, 3], ["format", 13, 3], ["src", 15, 3], ["propagatedBuildInputs", 20, 3], ["nativeCheckInputs", 26, 3], ["checkPhase", 31, 3], ["doCheck", 36, 3], ["pythonImportsCheck", 38, 3], ["passthru", 42, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const w = nix.withScope(nix.thunk(() => nix.sel(python3, "pkgs")), null);
   return nix.app(nix.lookup(w, "buildPythonPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "mailman-hyperkitty",
       version: "1.2.1",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-+Nad+8bMtYKJbUCpppRXqhB1zdbvvFXTTHlwJLQLzDg=",
@@ -42,11 +38,14 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["mailman_hyperkitty"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, mailman: nix.thunk(() => nix.attr(nixosTests, "mailman")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[1],
+          mailman: nix.thunk(() => nix.attr(nixosTests, "mailman")),
+        })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Mailman archiver plugin for HyperKitty",
         homepage: "https://gitlab.com/mailman/mailman-hyperkitty",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

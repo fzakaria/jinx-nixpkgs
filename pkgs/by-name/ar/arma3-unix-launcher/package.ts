@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["owner", 33, 9], ["repo", 34, 9], ["rev", 35, 9], ["hash", 36, 9]], [["owner", 42, 9], ["repo", 43, 9], ["rev", 44, 9], ["hash", 45, 9]], [["url", 49, 9], ["hash", 50, 9]], [["argparse_src", 32, 7], ["curlpp_src", 38, 7], ["fmt_src", 39, 7], ["nlohmann_json_src", 40, 7], ["pugixml_src", 41, 7], ["spdlog_src", 47, 7], ["steamworkssdk_src", 48, 7], ["doctest_src", 53, 7], ["trompeloeil_src", 54, 7]], [["steamRun", 59, 7]], [["homepage", 74, 5], ["description", 75, 5], ["license", 76, 5], ["maintainers", 82, 5], ["mainProgram", 83, 5], ["platforms", 84, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["nativeBuildInputs", 63, 3], ["cmakeFlags", 71, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cmake: false, curl: false, curlpp: false, srcOnly: false, fetchFromGitHub: false, fetchurl: false, fmt: false, nlohmann_json: false, qt5: false, spdlog: false, "steam-run": false, replaceVars: false, buildDayZLauncher: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 33, 9], ["repo", 34, 9], ["rev", 35, 9], ["hash", 36, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 42, 9], ["repo", 43, 9], ["rev", 44, 9], ["hash", 45, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 49, 9], ["hash", 50, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["argparse_src", 32, 7], ["curlpp_src", 38, 7], ["fmt_src", 39, 7], ["nlohmann_json_src", 40, 7], ["pugixml_src", 41, 7], ["spdlog_src", 47, 7], ["steamworkssdk_src", 48, 7], ["doctest_src", 53, 7], ["trompeloeil_src", 54, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["steamRun", 59, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["homepage", 74, 5], ["description", 75, 5], ["license", 76, 5], ["maintainers", 82, 5], ["mainProgram", 83, 5], ["platforms", 84, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["nativeBuildInputs", 63, 3], ["cmakeFlags", 71, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const replaceVars = nix.arg($, "replaceVars");
   const buildDayZLauncher = nix.argOr($, "buildDayZLauncher", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "arma3-unix-launcher",
       version: "420",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "muttleyxd",
           repo: "arma3-unix-launcher",
           tag: nix.thunk(() => nix.str`commit-${nix.sel(finalAttrs, "version")}`),
@@ -42,9 +35,9 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./dont_fetch_dependencies.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             argparse_src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 owner: "p-ranav",
                 repo: "argparse",
                 rev: "45664c4e9f05ff287731a9ff8b724d0c89fb6e77",
@@ -54,7 +47,7 @@ export default nix.lambda((args) => (() => {
             fmt_src: fmt,
             nlohmann_json_src: nlohmann_json,
             pugixml_src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 owner: "muttleyxd",
                 repo: "pugixml",
                 rev: "simple-build-for-a3ul",
@@ -62,7 +55,7 @@ export default nix.lambda((args) => (() => {
               })))),
             spdlog_src: spdlog,
             steamworkssdk_src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 url: "https://github.com/julianxhokaxhiu/SteamworksSDKCI/releases/download/1.53/SteamworksSDK-v1.53.0_x64.zip",
                 hash: "sha256-6PQGaPsaxBg/MHVWw2ynYW6LaNSrE9Rd9Q9ZLKFGPFA=",
               })))),
@@ -70,14 +63,14 @@ export default nix.lambda((args) => (() => {
             trompeloeil_src: null,
           })))),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./steam-run.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             steamRun: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), steam_run)),
           })))),
       ]),
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(qt5, "wrapQtAppsHook")), cmake, spdlog, curl, curlpp]),
       cmakeFlags: nix.thunk(() => nix.concat(["-Wno-dev"], nix.app(nix.sel(lib, "optionals"), buildDayZLauncher, nix.thunk(() => ["-DBUILD_DAYZ_LAUNCHER=ON"])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         homepage: "https://github.com/muttleyxd/arma3-unix-launcher/",
         description: "Clean, intuitive Arma 3 + DayZ SA Launcher",
         license: nix.thunk(() => (() => {

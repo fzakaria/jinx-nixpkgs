@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/celeste.nix", [[["name", 61, 9], ["gameUrl", 62, 9], ["upload", 63, 9], ["hash", 64, 9]], [["name", 82, 11], ["desktopName", 83, 11], ["genericName", 84, 11], ["comment", 85, 11], ["exec", 86, 11], ["icon", 87, 11], ["categories", 88, 11]], [["downloadPage", 163, 13], ["description", 163, 26], ["homepage", 164, 5], ["license", 165, 5], ["sourceProvenance", 166, 5], ["maintainers", 167, 5], ["platforms", 168, 5]], [["pname", 55, 3], ["version", 56, 3], ["src", 58, 3], ["dontUnpack", 68, 3], ["nativeBuildInputs", 70, 3], ["desktopItems", 76, 3], ["postInstall", 92, 3], ["dontPatchELF", 150, 3], ["dontStrip", 151, 3], ["dontPatchShebangs", 152, 3], ["postFixup", 153, 3], ["meta", 162, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchItchIo: false, makeWrapper: false, copyDesktopItems: false, makeDesktopItem: false, unzip: false, yq: false, "dotnet-runtime_8": false, everest: false, executableName: true, desktopItems: true, withEverest: true, overrideSrc: true, writableDir: true, launchFlags: true, launchEnv: true, everestLogFilename: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/celeste.nix", [["name", 61, 9], ["gameUrl", 62, 9], ["upload", 63, 9], ["hash", 64, 9]]);
-const pos$2 = nix.positions(here + "/celeste.nix", [["name", 82, 11], ["desktopName", 83, 11], ["genericName", 84, 11], ["comment", 85, 11], ["exec", 86, 11], ["icon", 87, 11], ["categories", 88, 11]]);
-const pos$3 = nix.positions(here + "/celeste.nix", [["downloadPage", 163, 13], ["description", 163, 26], ["homepage", 164, 5], ["license", 165, 5], ["sourceProvenance", 166, 5], ["maintainers", 167, 5], ["platforms", 168, 5]]);
-const pos$4 = nix.positions(here + "/celeste.nix", [["pname", 55, 3], ["version", 56, 3], ["src", 58, 3], ["dontUnpack", 68, 3], ["nativeBuildInputs", 70, 3], ["desktopItems", 76, 3], ["postInstall", 92, 3], ["dontPatchELF", 150, 3], ["dontStrip", 151, 3], ["dontPatchShebangs", 152, 3], ["postFixup", 153, 3], ["meta", 162, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,11 +36,11 @@ EVEREST_TMPDIR=${writableDir}
 ${launchEnv}
 `));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "celeste-unwrapped",
       version: version,
       src: nix.thunk(() => (nix.asBool(nix.eq(overrideSrc, null)) ? nix.app(fetchItchIo, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: "celeste-linux.zip",
           gameUrl: downloadPage,
           upload: "12748042",
@@ -53,7 +50,7 @@ ${launchEnv}
       nativeBuildInputs: nix.thunk(() => [unzip, yq, makeWrapper, copyDesktopItems]),
       desktopItems: nix.thunk(() => (nix.asBool(!nix.eq(desktopItems, null)) ? nix.force(desktopItems) : [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "Celeste",
             desktopName: "Celeste",
             genericName: "Celeste",
@@ -109,7 +106,7 @@ ln -s "${writableDir}"/{Mods,LogHistory,CrashLogs,${everestLogFilename}} -t ${ph
 `)), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(writableDir, null)), nix.thunk(() => nix.str`ln -s "${writableDir}/log.txt" -t ${phome}
 `)))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         downloadPage: downloadPage,
         description: description,
         homepage: "https://www.celestegame.com",

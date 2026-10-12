@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 15, 5], ["path", 16, 5]], [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5], ["fetchSubmodules", 30, 5]], [["rev-prefix", 67, 40]], [["updateScript", 67, 12]], [["homepage", 70, 5], ["description", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["cargoHash", 33, 3], ["buildNoDefaultFeatures", 35, 3], ["buildFeatures", 36, 3], ["nativeBuildInputs", 40, 3], ["nativeInstallCheckInputs", 44, 3], ["doInstallCheck", 47, 3], ["postInstall", 49, 3], ["doCheck", 58, 3], ["passthru", 67, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, linkFarm: false, makeWrapper: false, rustPlatform: false, "tree-sitter-grammars": false, gitUpdater: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 15, 5], ["path", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5], ["fetchSubmodules", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["rev-prefix", 67, 40]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 67, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 70, 5], ["description", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["cargoHash", 33, 3], ["buildNoDefaultFeatures", 35, 3], ["buildFeatures", 36, 3], ["nativeBuildInputs", 40, 3], ["nativeInstallCheckInputs", 44, 3], ["doInstallCheck", 47, 3], ["postInstall", 49, 3], ["doCheck", 58, 3], ["passthru", 67, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const gitUpdater = nix.arg($, "gitUpdater");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const grammarToAttrSet = (drv) => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     name: nix.thunk(() => nix.add(nix.add("lib", nix.app(nix.sel(lib, "strings", "removeSuffix"), "-grammar", nix.thunk(() => nix.app(nix.sel(lib, "strings", "getName"), drv)))), ".so")),
     path: nix.thunk(() => nix.str`${drv}/parser`),
   });
@@ -30,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "diffsitter";
       const version = "0.8.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "afnanenayet",
           repo: "diffsitter",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -52,11 +47,11 @@ wrapProgram "$out/bin/diffsitter" \\
 `);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], "rev-prefix": "v" })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/afnanenayet/diffsitter",
         description: "Tree-sitter based AST difftool to get meaningful semantic diffs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -66,7 +61,7 @@ wrapProgram "$out/bin/diffsitter" \\
         })()),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

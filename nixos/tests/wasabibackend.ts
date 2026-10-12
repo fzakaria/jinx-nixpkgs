@@ -2,60 +2,49 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wasabibackend.nix", [[["maintainers", 5, 5]], [["user", 16, 13], ["port", 17, 13]], [["enable", 13, 11], ["network", 14, 11], ["rpc", 15, 11]], [["passwordHMAC", 24, 19]], [["alice", 24, 13]], [["users", 23, 15]], [["enable", 21, 11], ["testnet", 22, 11], ["rpc", 23, 11]], [["testnet", 20, 27]], [["wasabibackend", 12, 18], ["bitcoind", 20, 18]], [["services", 12, 9]], [["machine", 9, 5]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 30, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/wasabibackend.nix", [["maintainers", 5, 5]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/wasabibackend.nix", [["user", 16, 13], ["port", 17, 13]]);
-const pos$3 = nix.positions(here + "/wasabibackend.nix", [["enable", 13, 11], ["network", 14, 11], ["rpc", 15, 11]]);
-const pos$4 = nix.positions(here + "/wasabibackend.nix", [["passwordHMAC", 24, 19]]);
-const pos$5 = nix.positions(here + "/wasabibackend.nix", [["alice", 24, 13]]);
-const pos$6 = nix.positions(here + "/wasabibackend.nix", [["users", 23, 15]]);
-const pos$7 = nix.positions(here + "/wasabibackend.nix", [["enable", 21, 11], ["testnet", 22, 11], ["rpc", 23, 11]]);
-const pos$8 = nix.positions(here + "/wasabibackend.nix", [["testnet", 20, 27]]);
-const pos$9 = nix.positions(here + "/wasabibackend.nix", [["wasabibackend", 12, 18], ["bitcoind", 20, 18]]);
-const pos$10 = nix.positions(here + "/wasabibackend.nix", [["services", 12, 9]]);
-const pos$11 = nix.positions(here + "/wasabibackend.nix", [["machine", 9, 5]]);
-const pos$12 = nix.positions(here + "/wasabibackend.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     name: "wasabibackend",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "mmahut"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             wasabibackend: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               enable: true,
               network: "testnet",
-              rpc: nix.thunk(() => ({ [nix.POS]: pos$2, user: "alice", port: 18332n })),
+              rpc: nix.thunk(() => ({ [nix.POS]: $pos[1], user: "alice", port: 18332n })),
             })),
             bitcoind: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               testnet: nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 enable: true,
                 testnet: true,
                 rpc: nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   users: nix.thunk(() => ({
-                    [nix.POS]: pos$5,
+                    [nix.POS]: $pos[4],
                     alice: nix.thunk(() => ({
-                      [nix.POS]: pos$4,
+                      [nix.POS]: $pos[3],
                       passwordHMAC: "e7096bc21da60b29ecdbfcdb2c3acc62$f948e61cb587c399358ed99c6ed245a41460b4bf75125d8330c9f6fcc13d7ae7",
                     })),
                   })),

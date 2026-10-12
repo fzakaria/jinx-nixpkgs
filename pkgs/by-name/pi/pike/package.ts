@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 53, 7], ["hash", 54, 7]], [["description", 101, 7], ["longDescription", 102, 7], ["homepage", 107, 7], ["license", 108, 7], ["maintainers", 115, 7], ["platforms", 116, 7], ["mainProgram", 117, 7]], [["pname", 48, 5], ["version", 49, 5], ["src", 51, 5], ["nativeBuildInputs", 57, 5], ["buildInputs", 63, 5], ["autoPatchelfIgnoreMissingDeps", 73, 5], ["dontBuild", 78, 5], ["dontConfigure", 79, 5], ["installPhase", 81, 5], ["meta", 100, 5]], [["owner", 126, 5], ["repo", 127, 5], ["tag", 128, 5], ["hash", 129, 5]], [["RUNPIKE", 177, 5], ["PIKE", 178, 5]], [["allowedVersions", 193, 40]], [["updateScript", 193, 12]], [["description", 196, 5], ["longDescription", 197, 5], ["homepage", 202, 5], ["license", 203, 5], ["maintainers", 210, 5], ["platforms", 212, 5], ["mainProgram", 213, 5]], [["pname", 122, 3], ["version", 123, 3], ["src", 125, 3], ["nativeBuildInputs", 132, 3], ["buildInputs", 142, 3], ["preConfigure", 170, 3], ["env", 176, 3], ["configureFlags", 181, 3], ["makeFlags", 191, 3], ["passthru", 193, 3], ["meta", 195, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchurl: false, "pkg-config": false, autoconf: false, automake: false, libtool: false, bison: false, flex: false, gmp: false, pcre: false, nettle: false, libjpeg: false, libpng: false, libtiff: false, freetype: false, sqlite: false, libmysqlclient: false, postgresql: false, openssl: false, zlib: false, bzip2: false, gdbm: false, libffi: false, expat: false, libxml2: false, libxslt: false, gtk3: false, pango: false, cairo: false, glib: false, SDL2: false, libGL: false, dpkg: false, autoPatchelfHook: false, ncurses: false, libnsl: false, "libxcrypt-legacy": false, gitUpdater: false, makeBinaryWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 53, 7], ["hash", 54, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 101, 7], ["longDescription", 102, 7], ["homepage", 107, 7], ["license", 108, 7], ["maintainers", 115, 7], ["platforms", 116, 7], ["mainProgram", 117, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 48, 5], ["version", 49, 5], ["src", 51, 5], ["nativeBuildInputs", 57, 5], ["buildInputs", 63, 5], ["autoPatchelfIgnoreMissingDeps", 73, 5], ["dontBuild", 78, 5], ["dontConfigure", 79, 5], ["installPhase", 81, 5], ["meta", 100, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 126, 5], ["repo", 127, 5], ["tag", 128, 5], ["hash", 129, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["RUNPIKE", 177, 5], ["PIKE", 178, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["allowedVersions", 193, 40]]);
-const pos$7 = nix.positions(here + "/package.nix", [["updateScript", 193, 12]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 196, 5], ["longDescription", 197, 5], ["homepage", 202, 5], ["license", 203, 5], ["maintainers", 210, 5], ["platforms", 212, 5], ["mainProgram", 213, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 122, 3], ["version", 123, 3], ["src", 125, 3], ["nativeBuildInputs", 132, 3], ["buildInputs", 142, 3], ["preConfigure", 170, 3], ["env", 176, 3], ["configureFlags", 181, 3], ["makeFlags", 191, 3], ["passthru", 193, 3], ["meta", 195, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -57,11 +49,11 @@ export default nix.lambda((args) => (() => {
   const gitUpdater = nix.arg($, "gitUpdater");
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   const pike_bootstrap = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pike-bootstrap",
       version: "8.0.1956",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://deb.debian.org/debian/pool/main/p/pike8.0/pike8.0-core_${nix.sel(finalAttrs, "version")}-1_amd64.deb`),
           hash: "sha256-kDaP7GZOW9Wlzg9dSxi+Q8IYduIZneWSsFqRfNh1NFQ=",
         })))),
@@ -72,7 +64,7 @@ export default nix.lambda((args) => (() => {
       dontConfigure: true,
       installPhase: "runHook preInstall\nmkdir -p $out\ncp -r usr/* $out/\n\n# The binary should be in bin/pike8.0\nif [ -f $out/bin/pike8.0 ]; then\n  ln -s pike8.0 $out/bin/pike\nfi\n\n# Fix broken symlinks to Debian license files\nrm -f $out/lib/pike8.0/modules/Tools.pmod/Legal.pmod/License.pmod/*.txt || true\n\n# Create wrapper to set proper paths\nwrapProgram $out/bin/pike8.0 \\\n  --set PIKE_MODULE_PATH \"$out/lib/pike8.0/modules\" \\\n  --add-flags \"-m$out/lib/pike8.0/master.pike\"\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Pike programming language bootstrap",
         longDescription: "Pike is a dynamic programming language with a syntax similar to Java and C.\nIt is simple to learn, does not require long compilation passes and has\npowerful built-in data types allowing simple and really fast data manipulation.\n",
         homepage: "https://pike.lysator.liu.se/",
@@ -93,11 +85,11 @@ export default nix.lambda((args) => (() => {
       })),
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "pike",
       version: "8.0.2042",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "pikelang",
           repo: "Pike",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -132,7 +124,7 @@ export default nix.lambda((args) => (() => {
       ]),
       preConfigure: "patchShebangs .\ncd src\n./run_autoconfig\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         RUNPIKE: nix.thunk(() => nix.str`${pike_bootstrap}/bin/pike`),
         PIKE: nix.thunk(() => nix.str`${pike_bootstrap}/bin/pike`),
       })),
@@ -147,11 +139,11 @@ export default nix.lambda((args) => (() => {
       ]),
       makeFlags: nix.thunk(() => ["INSTALLARGS=--traditional"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$6, allowedVersions: "^8\\..*" })))),
+        [nix.POS]: $pos[6],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[5], allowedVersions: "^8\\..*" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Pike programming language",
         longDescription: "Pike is a dynamic programming language with a syntax similar to Java and C.\nIt is simple to learn, does not require long compilation passes and has\npowerful built-in data types allowing simple and really fast data manipulation.\n",
         homepage: "https://pike.lysator.liu.se/",

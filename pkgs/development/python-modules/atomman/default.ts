@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["description", 83, 5], ["homepage", 84, 5], ["changelog", 85, 5], ["license", 86, 5], ["maintainers", 87, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["postPatch", 34, 3], ["build-system", 40, 3], ["dependencies", 46, 3], ["pythonRelaxDeps", 59, 3], ["preCheck", 61, 3], ["nativeCheckInputs", 69, 3], ["disabledTests", 75, 3], ["pythonImportsCheck", 80, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, cython: false, datamodeldict: false, fetchFromGitHub: false, matplotlib: false, numericalunits: false, numpy: false, pandas: false, phonopy: false, potentials: false, pytestCheckHook: false, requests: false, scipy: false, setuptools: false, toolz: false, writableTmpDirAsHomeHook: false, xmltodict: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 83, 5], ["homepage", 84, 5], ["changelog", 85, 5], ["license", 86, 5], ["maintainers", 87, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["postPatch", 34, 3], ["build-system", 40, 3], ["dependencies", 46, 3], ["pythonRelaxDeps", 59, 3], ["preCheck", 61, 3], ["nativeCheckInputs", 69, 3], ["disabledTests", 75, 3], ["pythonImportsCheck", 80, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const xmltodict = nix.arg($, "xmltodict");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "atomman",
       version: "1.5.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "usnistgov",
           repo: "atomman",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,7 +57,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_unique_shifts_prototype"]),
       pythonImportsCheck: nix.thunk(() => ["atomman"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Atomistic Manipulation Toolkit",
         homepage: "https://github.com/usnistgov/atomman/",
         changelog: nix.thunk(() => nix.str`https://github.com/usnistgov/atomman/blob/${nix.sel(finalAttrs, "src", "tag")}/UPDATES.rst`),

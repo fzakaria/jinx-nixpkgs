@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["url", 22, 5], ["hash", 23, 5]], [["packages", 39, 7], ["targetPackages", 40, 7]], [["homepage", 58, 5], ["description", 59, 5], ["mainProgram", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["platforms", 66, 5]], [["pname", 27, 3], ["src", 28, 11], ["version", 28, 15], ["projectFile", 29, 3], ["executables", 30, 3], ["nugetDeps", 32, 3], ["dotnet-sdk", 33, 3], ["nativeBuildInputs", 43, 3], ["linkNuGetPackagesAndSources", 45, 3], ["useDotnetFromEnv", 46, 3], ["postPatch", 48, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchFromGitHub: false, buildDotnetModule: false, dotnetCorePackages: false, go: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 22, 5], ["hash", 23, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["packages", 39, 7], ["targetPackages", 40, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 58, 5], ["description", 59, 5], ["mainProgram", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["platforms", 66, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["src", 28, 11], ["version", 28, 15], ["projectFile", 29, 3], ["executables", 30, 3], ["nugetDeps", 32, 3], ["dotnet-sdk", 33, 3], ["nativeBuildInputs", 43, 3], ["linkNuGetPackagesAndSources", 45, 3], ["useDotnetFromEnv", 46, 3], ["postPatch", 48, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,19 +17,19 @@ export default nix.lambda((args) => (() => {
   const version = "4.8.0";
   const templatesVersion = "3.1.1648";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "Azure",
       repo: "azure-functions-core-tools",
       tag: version,
       hash: "sha256-OY2FPzST1ejU+OPccv7Qvd8cM3gtiiL2CQNj2APDIx0=",
     }))));
   const templates = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: nix.thunk(() => nix.str`https://cdn.functions.azure.com/public/TemplatesApi/${templatesVersion}.zip`),
       hash: "sha256-YYKBwd69TIHQKF1r8BzlzIyDLJBcCqtAbK3FhNvA+5s=",
     }))));
   return nix.app(buildDotnetModule, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "azure-functions-core-tools",
       src: src,
       version: version,
@@ -46,7 +42,7 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.sel(dotnetCorePackages, "sdk_8_0")),
           ])));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         packages: nix.thunk(() => nix.attr(from, "packages")),
         targetPackages: nix.thunk(() => nix.attr(from, "targetPackages")),
       };
@@ -62,7 +58,7 @@ substituteInPlace src/Cli/func/Common/CommandChecker.cs \\
   --replace-fail "CheckExitCode(\\"/bin/bash" "CheckExitCode(\\"${nix.sel(stdenv, "shell")}"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/Azure/azure-functions-core-tools",
         description: "Command line tools for Azure Functions",
         mainProgram: "func",

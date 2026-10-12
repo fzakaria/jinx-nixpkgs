@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 46, 7], ["repo", 47, 7], ["rev", 48, 7], ["hash", 49, 7], ["fetchSubmodules", 50, 7]], [["GIT_CONFIG_COUNT", 53, 9], ["GIT_CONFIG_KEY_0", 54, 9], ["GIT_CONFIG_VALUE_0", 55, 9]], [["type", 60, 7], ["name", 61, 7], ["desktopName", 62, 7], ["comment", 63, 7], ["icon", 64, 7], ["exec", 65, 7], ["categories", 66, 7]], [["NIX_LDFLAGS", 158, 7]], [["description", 170, 5], ["homepage", 171, 5], ["mainProgram", 172, 5], ["platforms", 173, 5], ["license", 174, 5], ["maintainers", 175, 5]], [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["desktopItems", 58, 3], ["nativeBuildInputs", 73, 3], ["buildInputs", 81, 3], ["cmakeFlags", 110, 3], ["patchPhase", 115, 3], ["cmakeBuildType", 126, 3], ["strictDeps", 128, 3], ["preBuild", 130, 3], ["installPhase", 137, 3], ["env", 158, 3], ["meta", 169, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, lib: false, cmake: false, "pkg-config": false, "alsa-lib": false, copyDesktopItems: false, makeDesktopItem: false, imagemagick: false, libxtst: false, libxrandr: false, libxinerama: false, libxdmcp: false, libxcursor: false, libxcomposite: false, libx11: false, xvfb: false, freetype: false, expat: false, libGL: false, libjack2: false, curl: false, webkitgtk_4_1: false, "libsysprof-capture": false, pcre2: false, "util-linux": false, libselinux: false, libsepol: false, libthai: false, libxkbcommon: false, libdatrie: false, libepoxy: false, lerc: false, sqlite: false, ninja: false, enableVST2: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 46, 7], ["repo", 47, 7], ["rev", 48, 7], ["hash", 49, 7], ["fetchSubmodules", 50, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["GIT_CONFIG_COUNT", 53, 9], ["GIT_CONFIG_KEY_0", 54, 9], ["GIT_CONFIG_VALUE_0", 55, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["type", 60, 7], ["name", 61, 7], ["desktopName", 62, 7], ["comment", 63, 7], ["icon", 64, 7], ["exec", 65, 7], ["categories", 66, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 158, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 170, 5], ["homepage", 171, 5], ["mainProgram", 172, 5], ["platforms", 173, 5], ["license", 174, 5], ["maintainers", 175, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["desktopItems", 58, 3], ["nativeBuildInputs", 73, 3], ["buildInputs", 81, 3], ["cmakeFlags", 110, 3], ["patchPhase", 115, 3], ["cmakeBuildType", 126, 3], ["strictDeps", 128, 3], ["preBuild", 130, 3], ["installPhase", 137, 3], ["env", 158, 3], ["meta", 169, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -49,25 +44,25 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const enableVST2 = nix.argOr($, "enableVST2", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "socalabs-sid",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(nix.sel(nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "FigBug",
           repo: "SID",
           rev: "bb826fdea39da0804c53d81d35bea29aeff4436d",
           hash: "sha256-6IStysItOS7EltTCqdyo9vrsnSA1YYoN4y8Bjv1fhNk=",
           fetchSubmodules: true,
         }))), "overrideAttrs"), (_) => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           GIT_CONFIG_COUNT: 1n,
           GIT_CONFIG_KEY_0: "url.https://github.com/.insteadOf",
           GIT_CONFIG_VALUE_0: "git@github.com:",
         }))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             type: "Application",
             name: "socalabs-sid",
             desktopName: "Socalabs SID",
@@ -139,7 +134,7 @@ magick $src/plugin/Resources/icon.png -resize 256x256 $out/share/icons/hicolor/2
 runHook postInstall
 `),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-lX11",
             "-lXext",
@@ -152,7 +147,7 @@ runHook postInstall
           ]))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Socalabs Commodore 64 SID Emulation Plugin",
         homepage: "https://socalabs.com/synths/commodore-64-sid/",
         mainProgram: "SID",

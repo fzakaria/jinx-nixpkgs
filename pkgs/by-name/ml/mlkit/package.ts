@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["description", 57, 5], ["homepage", 58, 5], ["changelog", 59, 5], ["license", 60, 5], ["platforms", 61, 5], ["maintainers", 64, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["buildFlags", 25, 3], ["installTargets", 33, 3], ["doCheck", 39, 3], ["dontCheckForBrokenSymlinks", 43, 3], ["checkPhase", 45, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, mlton: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 57, 5], ["homepage", 58, 5], ["changelog", 59, 5], ["license", 60, 5], ["platforms", 61, 5], ["maintainers", 64, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["buildFlags", 25, 3], ["installTargets", 33, 3], ["doCheck", 39, 3], ["dontCheckForBrokenSymlinks", 43, 3], ["checkPhase", 45, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const mlton = nix.arg($, "mlton");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mlkit",
       version: "4.7.22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "melsman",
           repo: "mlkit",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       dontCheckForBrokenSymlinks: true,
       checkPhase: "runHook preCheck\necho ==== Running MLKit test suite: test ====\nmake -C test_dev test\necho ==== Running MLKit test suite: test_prof ====\nmake -C test_dev test_prof\necho ==== Running Barry test suite ====\nmake -C test/barry\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Standard ML Compiler and Toolkit",
         homepage: "https://elsman.com/mlkit/",
         changelog: nix.thunk(() => nix.str`https://github.com/melsman/mlkit/blob/v${nix.sel(finalAttrs, "version")}/NEWS.md`),

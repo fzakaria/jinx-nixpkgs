@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["url", 34, 7], ["hash", 35, 7]], [["LANG", 60, 7]], [["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["platforms", 76, 5], ["mainProgram", 77, 5], ["maintainers", 78, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["buildInputs", 39, 3], ["nativeBuildInputs", 55, 3], ["env", 60, 3], ["qmakeFlags", 62, 3], ["postInstall", 64, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, fetchpatch2: false, eigen: false, hidapi: false, libopus: false, libpulseaudio: false, portaudio: false, qt6: false, qt6Packages: false, rtaudio: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 34, 7], ["hash", 35, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["LANG", 60, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["platforms", 76, 5], ["mainProgram", 77, 5], ["maintainers", 78, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["buildInputs", 39, 3], ["nativeBuildInputs", 55, 3], ["env", 60, 3], ["qmakeFlags", 62, 3], ["postInstall", 64, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const qt6Packages = nix.arg($, "qt6Packages");
   const rtaudio = nix.arg($, "rtaudio");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "wfview",
       version: "2.23",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "eliggett",
           repo: "wfview",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +33,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./remove-hard-encodings.patch"),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitlab.com/Cryolitia/wfview/-/commit/b26c898c219df8935dcb85969465ed995f64d875.patch",
             hash: "sha256-KXWz6gdaPewq+RLhhkZT3CYz6yqbVXMubAUfabhgqX0=",
           })))),
@@ -61,11 +57,11 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.lookup(w, "qmake")),
         ];
       })()),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, LANG: "C.UTF-8" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], LANG: "C.UTF-8" })),
       qmakeFlags: nix.thunk(() => ["wfview.pro"]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -pv $out/Applications\nmv -v \"$out/bin/wfview.app\" $out/Applications\n\n# wrap executable to $out/bin\nmakeWrapper \"$out/Applications/wfview.app/Contents/MacOS/wfview\" \"$out/bin/wfview\"\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Open-source software for the control of modern Icom radios",
         homepage: "https://wfview.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

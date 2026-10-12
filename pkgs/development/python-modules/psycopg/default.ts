@@ -2,20 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]], [["libpq", 49, 7], ["libc", 50, 7]], [["changelog", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]], [["description", 98, 7]], [["pname", 62, 5], ["version", 63, 13], ["pyproject", 63, 21], ["src", 63, 31], ["patches", 66, 13], ["postPatch", 69, 5], ["build-system", 76, 5], ["nativeBuildInputs", 81, 5], ["buildInputs", 86, 5], ["postInstall", 90, 5], ["doCheck", 95, 5], ["meta", 97, 5]], [["description", 125, 7]], [["pname", 103, 5], ["version", 104, 13], ["pyproject", 104, 21], ["src", 104, 31], ["patches", 107, 13], ["postPatch", 110, 5], ["build-system", 114, 5], ["dependencies", 116, 5], ["dontCheckPythonMetadata", 119, 5], ["doCheck", 122, 5], ["meta", 124, 5]], [["c", 177, 5], ["pool", 178, 5]], [["url", 194, 7], ["hash", 195, 7]], [["LIBPQ_DOCS_FILE", 193, 5], ["postgresqlEnableTCP", 197, 5], ["PGUSER", 198, 5], ["PGDATABASE", 199, 5]], [["c", 246, 5], ["pool", 247, 5]], [["description", 251, 5]], [["pname", 132, 5], ["version", 133, 5], ["pyproject", 134, 5], ["src", 135, 5], ["outputs", 138, 3], ["sphinxRoot", 145, 3], ["patches", 147, 11], ["postPatch", 150, 3], ["build-system", 154, 3], ["nativeBuildInputs", 158, 3], ["propagatedBuildInputs", 165, 3], ["pythonImportsCheck", 170, 3], ["optional-dependencies", 176, 3], ["nativeCheckInputs", 181, 3], ["env", 191, 3], ["preCheck", 202, 3], ["disabledTests", 209, 3], ["disabledTestPaths", 221, 3], ["pytestFlags", 230, 3], ["disabledTestMarks", 234, 3], ["postCheck", 241, 3], ["passthru", 245, 3], ["meta", 250, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, fetchurl: false, nukeReferences: false, python: false, replaceVars: false, libpq: false, setuptools: false, "typing-extensions": false, cython: false, furo: false, shapely: false, sphinxHook: false, "sphinx-autodoc-typehints": false, anyio: false, pproxy: false, pytestCheckHook: false, postgresql: false, postgresqlTestHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["libpq", 49, 7], ["libc", 50, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 98, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 62, 5], ["version", 63, 13], ["pyproject", 63, 21], ["src", 63, 31], ["patches", 66, 13], ["postPatch", 69, 5], ["build-system", 76, 5], ["nativeBuildInputs", 81, 5], ["buildInputs", 86, 5], ["postInstall", 90, 5], ["doCheck", 95, 5], ["meta", 97, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 125, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 103, 5], ["version", 104, 13], ["pyproject", 104, 21], ["src", 104, 31], ["patches", 107, 13], ["postPatch", 110, 5], ["build-system", 114, 5], ["dependencies", 116, 5], ["dontCheckPythonMetadata", 119, 5], ["doCheck", 122, 5], ["meta", 124, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["c", 177, 5], ["pool", 178, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["url", 194, 7], ["hash", 195, 7]]);
-const pos$10 = nix.positions(here + "/default.nix", [["LIBPQ_DOCS_FILE", 193, 5], ["postgresqlEnableTCP", 197, 5], ["PGUSER", 198, 5], ["PGDATABASE", 199, 5]]);
-const pos$11 = nix.positions(here + "/default.nix", [["c", 246, 5], ["pool", 247, 5]]);
-const pos$12 = nix.positions(here + "/default.nix", [["description", 251, 5]]);
-const pos$13 = nix.positions(here + "/default.nix", [["pname", 132, 5], ["version", 133, 5], ["pyproject", 134, 5], ["src", 135, 5], ["outputs", 138, 3], ["sphinxRoot", 145, 3], ["patches", 147, 11], ["postPatch", 150, 3], ["build-system", 154, 3], ["nativeBuildInputs", 158, 3], ["propagatedBuildInputs", 165, 3], ["pythonImportsCheck", 170, 3], ["optional-dependencies", 176, 3], ["nativeCheckInputs", 181, 3], ["env", 191, 3], ["preCheck", 202, 3], ["disabledTests", 209, 3], ["disabledTestPaths", 221, 3], ["pytestFlags", 230, 3], ["disabledTestMarks", 234, 3], ["postCheck", 241, 3], ["passthru", 245, 3], ["meta", 250, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,7 +32,7 @@ export default nix.lambda((args) => (() => {
   const version = "3.3.5";
   const pyproject = true;
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "psycopg",
       repo: "psycopg",
       tag: version,
@@ -52,13 +40,13 @@ export default nix.lambda((args) => (() => {
     }))));
   const patches = nix.thunk(() => [
     nix.thunk(() => nix.app(replaceVars, nix.path(here, "./ctypes.patch"), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         libpq: nix.thunk(() => nix.str`${libpq}/lib/libpq${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
         libc: nix.thunk(() => nix.str`${nix.sel(stdenv, "cc", "libc")}/lib/libc.so.6`),
       })))),
   ]);
   const baseMeta = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     changelog: nix.thunk(() => nix.str`https://github.com/psycopg/psycopg/blob/${version}/docs/news.rst#current-release`),
     homepage: "https://github.com/psycopg/psycopg",
     license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),
@@ -68,7 +56,7 @@ export default nix.lambda((args) => (() => {
     })()),
   }));
   const psycopg_c = nix.thunk(() => nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: nix.thunk(() => nix.str`${pname}-c`),
       version: version,
       pyproject: pyproject,
@@ -81,10 +69,10 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`nuke-refs $out/${nix.sel(python, "sitePackages")}/psycopg_c/{pq.c,_psycopg.c}
 `),
       doCheck: false,
-      meta: nix.thunk(() => nix.update(baseMeta, { [nix.POS]: pos$4, description: "C optimisation distribution for Psycopg" })),
+      meta: nix.thunk(() => nix.update(baseMeta, { [nix.POS]: $pos[3], description: "C optimisation distribution for Psycopg" })),
     }))));
   const psycopg_pool = nix.thunk(() => nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: nix.thunk(() => nix.str`${pname}-pool`),
       version: version,
       pyproject: pyproject,
@@ -95,7 +83,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [typing_extensions]),
       dontCheckPythonMetadata: true,
       doCheck: false,
-      meta: nix.thunk(() => nix.update(baseMeta, { [nix.POS]: pos$6, description: "Connection Pool for Psycopg" })),
+      meta: nix.thunk(() => nix.update(baseMeta, { [nix.POS]: $pos[5], description: "Connection Pool for Psycopg" })),
     }))));
   return nix.app(buildPythonPackage, nix.thunk(() => (() => {
       const pname_1 = pname;
@@ -111,15 +99,15 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [psycopg_c, typing_extensions]);
       const pythonImportsCheck = nix.thunk(() => ["psycopg", "psycopg_c", "psycopg_pool"]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         c: nix.thunk(() => [psycopg_c]),
         pool: nix.thunk(() => [psycopg_pool]),
       }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([anyio, pproxy, pytestCheckHook, postgresql], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), postgresqlTestHook), nix.concat(nix.sel(optional_dependencies, "c"), nix.sel(optional_dependencies, "pool")))));
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         LIBPQ_DOCS_FILE: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             url: "https://raw.githubusercontent.com/postgres/postgres/496a1dc44bf1261053da9b3f7e430769754298b4/doc/src/sgml/libpq.sgml",
             hash: "sha256-JwtCngkoi9pb0pqIdNgukY8GbG5pUDZvrGAHZqjFOw4",
           })))),
@@ -144,10 +132,10 @@ export default nix.lambda((args) => (() => {
       const pytestFlags = nix.thunk(() => ["-ocache_dir=.cache"]);
       const disabledTestMarks = nix.thunk(() => ["refcount", "timing", "flakey", "slow"]);
       const postCheck = "cd psycopg\n";
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$11, c: psycopg_c, pool: psycopg_pool }));
-      const meta = nix.thunk(() => nix.update(baseMeta, { [nix.POS]: pos$12, description: "PostgreSQL database adapter for Python" }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[10], c: psycopg_c, pool: psycopg_pool }));
+      const meta = nix.thunk(() => nix.update(baseMeta, { [nix.POS]: $pos[11], description: "PostgreSQL database adapter for Python" }));
       return {
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         pname: pname_1,
         version: version_1,
         pyproject: pyproject_1,

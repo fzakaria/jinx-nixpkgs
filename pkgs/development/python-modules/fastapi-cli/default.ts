@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 7], ["repo", 23, 7], ["tag", 24, 7], ["hash", 25, 7]], [["standard", 38, 7], ["standard-no-fastapi-cloud-cli", 43, 7]], [["doCheck", 51, 56]], [["pytest", 51, 20]], [["tests", 51, 14]], [["description", 65, 7], ["homepage", 66, 7], ["changelog", 67, 7], ["mainProgram", 68, 7], ["license", 69, 7], ["maintainers", 70, 7], ["priority", 74, 7]], [["pname", 17, 5], ["version", 18, 5], ["pyproject", 19, 5], ["src", 21, 5], ["build-system", 28, 5], ["dependencies", 30, 5], ["optional-dependencies", 37, 5], ["doCheck", 49, 5], ["passthru", 51, 5], ["nativeCheckInputs", 53, 5], ["disabledTests", 60, 5], ["pythonImportsCheck", 62, 5], ["meta", 64, 5]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "pdm-backend": false, "rich-toolkit": false, typer: false, uvicorn: false, pytestCheckHook: false, rich: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 7], ["repo", 23, 7], ["tag", 24, 7], ["hash", 25, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["standard", 38, 7], ["standard-no-fastapi-cloud-cli", 43, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["doCheck", 51, 56]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pytest", 51, 20]]);
-const pos$5 = nix.positions(here + "/default.nix", [["tests", 51, 14]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 65, 7], ["homepage", 66, 7], ["changelog", 67, 7], ["mainProgram", 68, 7], ["license", 69, 7], ["maintainers", 70, 7], ["priority", 74, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 17, 5], ["version", 18, 5], ["pyproject", 19, 5], ["src", 21, 5], ["build-system", 28, 5], ["dependencies", 30, 5], ["optional-dependencies", 37, 5], ["doCheck", 49, 5], ["passthru", 51, 5], ["nativeCheckInputs", 53, 5], ["disabledTests", 60, 5], ["pythonImportsCheck", 62, 5], ["meta", 64, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.24";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fastapi",
           repo: "fastapi-cli",
           tag: version,
@@ -36,23 +30,23 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [pdm_backend]);
       const dependencies = nix.thunk(() => nix.concat([rich_toolkit, typer, uvicorn], nix.sel(uvicorn, "optional-dependencies", "standard")));
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         standard: nix.thunk(() => nix.concat([uvicorn], nix.sel(uvicorn, "optional-dependencies", "standard"))),
         "standard-no-fastapi-cloud-cli": nix.thunk(() => nix.concat([uvicorn], nix.sel(uvicorn, "optional-dependencies", "standard"))),
       }));
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          pytest: nix.thunk(() => nix.app(nix.sel(self, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$3, doCheck: true })))),
+          [nix.POS]: $pos[3],
+          pytest: nix.thunk(() => nix.app(nix.sel(self, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[2], doCheck: true })))),
         })),
       }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook, rich], nix.sel(optional_dependencies, "standard")));
       const disabledTests = nix.thunk(() => ["test_script"]);
       const pythonImportsCheck = nix.thunk(() => ["fastapi_cli"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Run and manage FastAPI apps from the command line with FastAPI CLI",
         homepage: "https://github.com/fastapi/fastapi-cli",
         changelog: nix.thunk(() => nix.str`https://github.com/fastapi/fastapi-cli/releases/tag/${nix.sel(src, "tag")}`),
@@ -62,7 +56,7 @@ export default nix.lambda((args) => (() => {
         priority: 10n,
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         pyproject,

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["platforms", 37, 5], ["maintainers", 38, 5], ["broken", 39, 5]], [["pname", 11, 3], ["version", 12, 27], ["src", 12, 35], ["sourceRoot", 14, 3], ["hardeningDisable", 16, 3], ["preConfigure", 18, 3], ["makeFlags", 22, 3], ["nativeBuildInputs", 31, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, kernel: false, kernelModuleMakeFlags: false, bash: false, "lenovo-legion": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["platforms", 37, 5], ["maintainers", 38, 5], ["broken", 39, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 27], ["src", 12, 35], ["sourceRoot", 14, 3], ["hardeningDisable", 16, 3], ["preConfigure", 18, 3], ["makeFlags", 22, 3], ["nativeBuildInputs", 31, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const bash = nix.arg($, "bash");
   const lenovo_legion = nix.arg($, "lenovo-legion");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "lenovo-legion-module",
       version: nix.thunk(() => nix.attr(lenovo_legion, "version")),
       src: nix.thunk(() => nix.attr(lenovo_legion, "src")),
@@ -32,7 +31,7 @@ export default nix.lambda((args) => (() => {
       ])),
       nativeBuildInputs: nix.thunk(() => nix.sel(kernel, "moduleBuildDependencies")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Linux kernel module for controlling fan and power in Lenovo Legion laptops",
         homepage: "https://github.com/johnfanv2/LenovoLegionLinux",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

@@ -2,23 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 48, 5], ["repo", 49, 5], ["rev", 50, 5], ["hash", 51, 5]], [["owner", 56, 7], ["repo", 57, 7], ["tag", 58, 7], ["hash", 59, 7]], [["src", 55, 5], ["patches", 61, 5]], [["owner", 67, 5], ["repo", 68, 5], ["rev", 69, 5], ["hash", 70, 5]], [["owner", 74, 5], ["repo", 75, 5], ["rev", 76, 5], ["hash", 77, 5]], [["name", 81, 5], ["text", 82, 5]], [["owner", 90, 7], ["repo", 91, 7], ["tag", 92, 7], ["hash", 93, 7]], [["src", 89, 5], ["patches", 95, 5]], [["owner", 101, 5], ["repo", 102, 5], ["tag", 103, 5], ["hash", 104, 5]], [["owner", 108, 5], ["repo", 109, 5], ["tag", 110, 5], ["hash", 111, 5]], [["owner", 118, 5], ["repo", 119, 5], ["tag", 120, 5], ["hash", 121, 5], ["fetchSubmodules", 122, 5], ["deepClone", 123, 5], ["postFetch", 124, 5]], [["name", 140, 7], ["url", 141, 7], ["stripLen", 142, 7], ["extraPrefix", 143, 7], ["hash", 144, 7]], [["NIX_CFLAGS_COMPILE", 206, 7]], [["name", 282, 7], ["icon", 283, 7], ["exec", 284, 7], ["comment", 285, 7], ["genericName", 286, 7], ["desktopName", 287, 7], ["categories", 288, 7]], [["homepage", 293, 5], ["description", 294, 5], ["mainProgram", 295, 5], ["platforms", 296, 5], ["maintainers", 297, 5], ["license", 298, 5]], [["pname", 115, 3], ["version", 116, 3], ["src", 117, 3], ["patches", 133, 3], ["nativeBuildInputs", 148, 3], ["buildInputs", 166, 3], ["cmakeFlags", 188, 3], ["env", 206, 3], ["strictDeps", 208, 3], ["dontAddPrefix", 210, 3], ["hardeningDisable", 213, 3], ["preConfigure", 215, 3], ["postPatch", 223, 3], ["postBuild", 230, 3], ["preInstall", 239, 3], ["postInstall", 244, 3], ["fixupPhase", 276, 3], ["desktopItems", 280, 3], ["meta", 292, 3]]]);
 const formals$1 = { args: { stdenv: false, cmake: false, "lsb-release": false, ninja: false, lib: false, fetchFromGitHub: false, fetchurl: false, copyDesktopItems: false, makeDesktopItem: false, python3: false, glew: false, boost: false, SDL2: false, SDL2_net: false, "pkg-config": false, libpulseaudio: false, libpng: false, imagemagick: false, zenity: false, makeWrapper: false, darwin: false, libicns: false, libzip: false, nlohmann_json: false, "tinyxml-2": false, spdlog: false, stb: false, writeTextFile: false, fixDarwinDylibNames: false, applyPatches: false, shipwright: false, libopus: false, opusfile: false, libogg: false, libvorbis: false, bzip2: false, libx11: false, sdl_gamecontrollerdb: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 48, 5], ["repo", 49, 5], ["rev", 50, 5], ["hash", 51, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 56, 7], ["repo", 57, 7], ["tag", 58, 7], ["hash", 59, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 55, 5], ["patches", 61, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 67, 5], ["repo", 68, 5], ["rev", 69, 5], ["hash", 70, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 74, 5], ["repo", 75, 5], ["rev", 76, 5], ["hash", 77, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 81, 5], ["text", 82, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["owner", 90, 7], ["repo", 91, 7], ["tag", 92, 7], ["hash", 93, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["src", 89, 5], ["patches", 95, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["owner", 101, 5], ["repo", 102, 5], ["tag", 103, 5], ["hash", 104, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["owner", 108, 5], ["repo", 109, 5], ["tag", 110, 5], ["hash", 111, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["owner", 118, 5], ["repo", 119, 5], ["tag", 120, 5], ["hash", 121, 5], ["fetchSubmodules", 122, 5], ["deepClone", 123, 5], ["postFetch", 124, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["name", 140, 7], ["url", 141, 7], ["stripLen", 142, 7], ["extraPrefix", 143, 7], ["hash", 144, 7]]);
-const pos$13 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 206, 7]]);
-const pos$14 = nix.positions(here + "/package.nix", [["name", 282, 7], ["icon", 283, 7], ["exec", 284, 7], ["comment", 285, 7], ["genericName", 286, 7], ["desktopName", 287, 7], ["categories", 288, 7]]);
-const pos$15 = nix.positions(here + "/package.nix", [["homepage", 293, 5], ["description", 294, 5], ["mainProgram", 295, 5], ["platforms", 296, 5], ["maintainers", 297, 5], ["license", 298, 5]]);
-const pos$16 = nix.positions(here + "/package.nix", [["pname", 115, 3], ["version", 116, 3], ["src", 117, 3], ["patches", 133, 3], ["nativeBuildInputs", 148, 3], ["buildInputs", 166, 3], ["cmakeFlags", 188, 3], ["env", 206, 3], ["strictDeps", 208, 3], ["dontAddPrefix", 210, 3], ["hardeningDisable", 213, 3], ["preConfigure", 215, 3], ["postPatch", 223, 3], ["postBuild", 230, 3], ["preInstall", 239, 3], ["postInstall", 244, 3], ["fixupPhase", 276, 3], ["desktopItems", 280, 3], ["meta", 292, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -62,16 +47,16 @@ export default nix.lambda((args) => (() => {
   const sdl_gamecontrollerdb = nix.arg($, "sdl_gamecontrollerdb");
   const fetchpatch = nix.arg($, "fetchpatch");
   const dr_libs = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "mackron",
       repo: "dr_libs",
       rev: "da35f9d6c7374a95353fd1df1d394d44ab66cf01",
       hash: "sha256-ydFhQ8LTYDBnRTuETtfWwIHZpRciWfqGsZC6SuViEn0=",
     }))));
   const imgui$ = nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "ocornut",
           repo: "imgui",
           tag: "v1.91.9b-docking",
@@ -82,28 +67,28 @@ export default nix.lambda((args) => (() => {
       ]),
     }))));
   const libgfxd = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       owner: "glankk",
       repo: "libgfxd",
       rev: "008f73dca8ebc9151b205959b17773a19c5bd0da",
       hash: "sha256-AmHAa3/cQdh7KAMFOtz5TQpcM6FqO9SppmDpKPTjTt8=",
     }))));
   const prism = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       owner: "KiritoDv",
       repo: "prism-processor",
       rev: "bbcbc7e3f890a5806b579361e7aa0336acd547e7",
       hash: "sha256-jRPwO1Vub0cH12YMlME6kd8zGzKmcfIrIJZYpQJeOks=",
     }))));
   const stb_impl = nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       name: "stb_impl.c",
       text: "#define STB_IMAGE_IMPLEMENTATION\n#include \"stb_image.h\"\n",
     }))));
   const stormlib$ = nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           owner: "ladislav-zezula",
           repo: "StormLib",
           tag: "v9.25",
@@ -114,25 +99,25 @@ export default nix.lambda((args) => (() => {
       ]),
     }))));
   const thread_pool = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       owner: "bshoshany",
       repo: "thread-pool",
       tag: "v4.1.0",
       hash: "sha256-zhRFEmPYNFLqQCfvdAaG5VBNle9Qm8FepIIIrT9sh88=",
     }))));
   const metalcpp = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       owner: "briaguya-ai",
       repo: "single-header-metal-cpp",
       tag: "macOS13_iOS16",
       hash: "sha256-CSYIpmq478bla2xoPL/cGYKIWAeiORxyFFZr0+ixd7I",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       pname: "shipwright",
       version: "9.2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           owner: "harbourmasters",
           repo: "shipwright",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -145,7 +130,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./darwin-fixes.patch"),
         nix.path(here, "./disable-downloading-stb_image.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             name: "libultraship-fix-gcc16.patch",
             url: "https://github.com/Kenix3/libultraship/commit/42ecb8ed48e4b15c21fe2e0d7e34cb5c02efa23d.patch",
             stripLen: 1n,
@@ -188,7 +173,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "FETCHCONTENT_SOURCE_DIR_SPDLOG", nix.thunk(() => nix.str`${spdlog}`))),
         ])))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-Wno-int-conversion -Wno-implicit-int -Wno-elaborated-enum-base")),
       })),
       strictDeps: true,
@@ -237,7 +222,7 @@ codesign -f -s - $out/Applications/soh.app/Contents/MacOS/soh
 `))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             name: "soh",
             icon: "soh",
             exec: "soh",
@@ -248,7 +233,7 @@ codesign -f -s - $out/Applications/soh.app/Contents/MacOS/soh
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         homepage: "https://github.com/HarbourMasters/Shipwright",
         description: "PC port of Ocarina of Time with modern controls, widescreen, high-resolution, and more",
         mainProgram: "soh",

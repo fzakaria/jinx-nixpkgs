@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 25, 5], ["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["leaveDotGit", 29, 5], ["sha256", 30, 5]], [["qtbase", 38, 21], ["qtdeclarative", 38, 28], ["qttools", 38, 42]], [["src", 146, 28], ["version", 146, 32], ["sourceRoot", 147, 7], ["pname", 148, 7], ["nativeBuildInputs", 149, 7], ["postPatch", 150, 7], ["installPhase", 160, 7]], [["bitmask-root", 145, 5]], [["description", 173, 5], ["longDescription", 174, 5], ["homepage", 186, 5], ["license", 187, 5], ["maintainers", 188, 5], ["platforms", 190, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 24, 3], ["vendorHash", 32, 3], ["patches", 34, 3], ["postPatch", 45, 3], ["nativeBuildInputs", 70, 3], ["buildInputs", 83, 3], ["qmakeFlags", 92, 3], ["preConfigure", 96, 3], ["buildPhase", 110, 3], ["postInstall", 126, 3], ["doCheck", 140, 3], ["passthru", 142, 3], ["meta", 172, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, replaceVars: false, git: false, fetchFromGitLab: false, buildGoModule: false, python3: false, python3Packages: false, "pkg-config": false, openvpn: false, cmake: false, which: false, iproute2: false, iptables: false, procps: false, qt6: false, provider: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 25, 5], ["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["leaveDotGit", 29, 5], ["sha256", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["qtbase", 38, 21], ["qtdeclarative", 38, 28], ["qttools", 38, 42]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 146, 28], ["version", 146, 32], ["sourceRoot", 147, 7], ["pname", 148, 7], ["nativeBuildInputs", 149, 7], ["postPatch", 150, 7], ["installPhase", 160, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["bitmask-root", 145, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 173, 5], ["longDescription", 174, 5], ["homepage", 186, 5], ["license", 187, 5], ["maintainers", 188, 5], ["platforms", 190, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 24, 3], ["vendorHash", 32, 3], ["patches", 34, 3], ["postPatch", 45, 3], ["nativeBuildInputs", 70, 3], ["buildInputs", 83, 3], ["qmakeFlags", 92, 3], ["preConfigure", 96, 3], ["buildPhase", 110, 3], ["postInstall", 126, 3], ["doCheck", 140, 3], ["passthru", 142, 3], ["meta", 172, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const qt6 = nix.arg($, "qt6");
   const provider = nix.argOr($, "provider", () => "riseup");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: nix.thunk(() => nix.str`${provider}-vpn`),
       version: "0.24.8",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "0xacab.org",
           owner: "leap",
           repo: "bitmask-vpn",
@@ -45,7 +40,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: null,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix_paths.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             qtbase: nix.thunk(() => nix.attr(qt6, "qtbase")),
             qtdeclarative: nix.thunk(() => nix.attr(qt6, "qtdeclarative")),
             qttools: nix.thunk(() => nix.attr(qt6, "qttools")),
@@ -118,9 +113,9 @@ install -m 444 -D providers/${provider}/assets/icon.svg $out/share/icons/hicolor
 `)))),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         "bitmask-root": nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/helpers`),
@@ -139,7 +134,7 @@ substituteInPlace se.leap.bitmask.policy \\
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Generic VPN client by LEAP",
         longDescription: nix.thunk(() => nix.str`Bitmask, by LEAP (LEAP Encryption Access Project),
 is an application to provide easy and secure encrypted communication

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 17, 5], ["homepage", 18, 5], ["platforms", 21, 5], ["license", 23, 5]], [["url", 27, 5], ["sha256", 28, 5]], [["pname", 13, 3], ["version", 14, 3], ["meta", 16, 3], ["src", 26, 3], ["libPath", 31, 3], ["installPhase", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, gcc: false, libGLU: false, libx11: false, libxext: false, libxcursor: false, libpulseaudio: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 17, 5], ["homepage", 18, 5], ["platforms", 21, 5], ["license", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 27, 5], ["sha256", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["meta", 16, 3], ["src", 26, 3], ["libPath", 31, 3], ["installPhase", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,18 +17,18 @@ export default nix.lambda((args) => (() => {
   const libxcursor = nix.arg($, "libxcursor");
   const libpulseaudio = nix.arg($, "libpulseaudio");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "scrolls",
       version: "2015-10-13",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Strategy collectible card game",
         homepage: "https://scrolls.com/",
         platforms: nix.thunk(() => ["x86_64-linux"]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
       })),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "https://download.scrolls.com/client/linux.tar.gz",
           sha256: "ead1fd14988aa07041fedfa7f845c756cd5077a5a402d85bfb749cb669ececec",
         })))),

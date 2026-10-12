@@ -2,19 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/common.nix", [[["upstream-info", 31, 23]], [["src", 60, 5], ["sourceRoot", 63, 5], ["hash", 64, 5]], [["src", 75, 5], ["hash", 76, 5], ["missingHashes", 77, 5]], [["NIX_CFLAGS_COMPILE", 98, 5], ["ELECTRON_OUT_DIR", 100, 5]], [["is_component_build", 200, 5], ["is_official_build", 201, 5], ["rtc_use_h264", 202, 5], ["is_component_ffmpeg", 203, 5], ["is_electron_build", 206, 5], ["root_extra_deps", 207, 5], ["node_module_version", 208, 5], ["v8_promise_internal_field_count", 209, 5], ["v8_embedder_string", 210, 5], ["v8_enable_snapshot_native_code_counters", 211, 5], ["v8_enable_javascript_promise_hooks", 212, 5], ["enable_cdm_host_verification", 213, 5], ["proprietary_codecs", 214, 5], ["ffmpeg_branding", 215, 5], ["enable_printing", 216, 5], ["angle_enable_vulkan_validation_layers", 217, 5], ["dawn_enable_vulkan_validation_layers", 218, 5], ["enable_pseudolocales", 219, 5], ["allow_runtime_configurable_key_storage", 220, 5], ["enable_cet_shadow_stack", 221, 5], ["is_cfi", 222, 5], ["enable_dangling_raw_ptr_checks", 223, 5], ["enable_dangling_raw_ptr_feature_flag", 224, 5], ["v8_enable_private_mapping_fork_optimization", 225, 5], ["v8_expose_public_symbols", 226, 5], ["enable_linux_installer", 227, 5], ["enable_pdf_save_to_drive", 228, 5], ["node_openssl_path", 229, 5]], [["enterprise_cloud_content_analysis", 232, 5]], [["enable_widevine", 237, 5], ["override_electron_version", 238, 5]], [["info", 274, 13]], [["description", 278, 5], ["homepage", 279, 5], ["platforms", 280, 5], ["license", 281, 5], ["teams", 282, 5], ["mainProgram", 283, 5], ["hydraPlatforms", 284, 5], ["timeout", 290, 5]], [["packageName", 32, 3], ["version", 33, 18], ["buildTargets", 35, 3], ["outputs", 40, 3], ["moveToDev", 46, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 57, 3], ["npmDeps", 59, 3], ["npmRoot", 67, 3], ["missingHashes", 69, 3], ["yarnOfflineCache", 74, 3], ["dontYarnBerryInstallDeps", 84, 3], ["gclientDeps", 86, 11], ["unpackPhase", 87, 3], ["sourceRoot", 88, 3], ["env", 90, 3], ["src", 103, 3], ["patches", 105, 3], ["postPatch", 113, 3], ["preConfigure", 190, 3], ["gnFlags", 198, 3], ["installPhase", 241, 3], ["postFixup", 253, 3], ["requiredSystemFeatures", 271, 3], ["passthru", 273, 3], ["meta", 277, 3]], [["dist", 297, 9]], [["passthru", 296, 7]]]);
 const formals$1 = { args: { lib: false, stdenv: false, chromium: false, fetchNpmDeps: false, fetchpatch: false, pkgsBuildHost: false, gclient2nix: false, nodejs: false, npmHooks: false, "yarn-berry_4": false, unzip: false, writers: false, substitute: false, libnotify: false, libpulseaudio: false, libsecret: false, pipewire: false, "speechd-minimal": false, info: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/common.nix", [["upstream-info", 31, 23]]);
-const pos$2 = nix.positions(here + "/common.nix", [["src", 60, 5], ["sourceRoot", 63, 5], ["hash", 64, 5]]);
-const pos$3 = nix.positions(here + "/common.nix", [["src", 75, 5], ["hash", 76, 5], ["missingHashes", 77, 5]]);
-const pos$4 = nix.positions(here + "/common.nix", [["NIX_CFLAGS_COMPILE", 98, 5], ["ELECTRON_OUT_DIR", 100, 5]]);
-const pos$5 = nix.positions(here + "/common.nix", [["is_component_build", 200, 5], ["is_official_build", 201, 5], ["rtc_use_h264", 202, 5], ["is_component_ffmpeg", 203, 5], ["is_electron_build", 206, 5], ["root_extra_deps", 207, 5], ["node_module_version", 208, 5], ["v8_promise_internal_field_count", 209, 5], ["v8_embedder_string", 210, 5], ["v8_enable_snapshot_native_code_counters", 211, 5], ["v8_enable_javascript_promise_hooks", 212, 5], ["enable_cdm_host_verification", 213, 5], ["proprietary_codecs", 214, 5], ["ffmpeg_branding", 215, 5], ["enable_printing", 216, 5], ["angle_enable_vulkan_validation_layers", 217, 5], ["dawn_enable_vulkan_validation_layers", 218, 5], ["enable_pseudolocales", 219, 5], ["allow_runtime_configurable_key_storage", 220, 5], ["enable_cet_shadow_stack", 221, 5], ["is_cfi", 222, 5], ["enable_dangling_raw_ptr_checks", 223, 5], ["enable_dangling_raw_ptr_feature_flag", 224, 5], ["v8_enable_private_mapping_fork_optimization", 225, 5], ["v8_expose_public_symbols", 226, 5], ["enable_linux_installer", 227, 5], ["enable_pdf_save_to_drive", 228, 5], ["node_openssl_path", 229, 5]]);
-const pos$6 = nix.positions(here + "/common.nix", [["enterprise_cloud_content_analysis", 232, 5]]);
-const pos$7 = nix.positions(here + "/common.nix", [["enable_widevine", 237, 5], ["override_electron_version", 238, 5]]);
-const pos$8 = nix.positions(here + "/common.nix", [["info", 274, 13]]);
-const pos$9 = nix.positions(here + "/common.nix", [["description", 278, 5], ["homepage", 279, 5], ["platforms", 280, 5], ["license", 281, 5], ["teams", 282, 5], ["mainProgram", 283, 5], ["hydraPlatforms", 284, 5], ["timeout", 290, 5]]);
-const pos$10 = nix.positions(here + "/common.nix", [["packageName", 32, 3], ["version", 33, 18], ["buildTargets", 35, 3], ["outputs", 40, 3], ["moveToDev", 46, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 57, 3], ["npmDeps", 59, 3], ["npmRoot", 67, 3], ["missingHashes", 69, 3], ["yarnOfflineCache", 74, 3], ["dontYarnBerryInstallDeps", 84, 3], ["gclientDeps", 86, 11], ["unpackPhase", 87, 3], ["sourceRoot", 88, 3], ["env", 90, 3], ["src", 103, 3], ["patches", 105, 3], ["postPatch", 113, 3], ["preConfigure", 190, 3], ["gnFlags", 198, 3], ["installPhase", 241, 3], ["postFixup", 253, 3], ["requiredSystemFeatures", 271, 3], ["passthru", 273, 3], ["meta", 277, 3]]);
-const pos$11 = nix.positions(here + "/common.nix", [["dist", 297, 9]]);
-const pos$12 = nix.positions(here + "/common.nix", [["passthru", 296, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,10 +29,10 @@ export default nix.lambda((args) => (() => {
   const gclientDeps = nix.thunk(() => nix.app(nix.sel(gclient2nix, "importGclientDeps"), nix.thunk(() => nix.sel(info, "deps"))));
   const yarn_berry = yarn_berry_4;
   return nix.app(nix.sel(nix.app(nix.sel(nix.app(nix.sel(chromium, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       "upstream-info": nix.thunk(() => nix.sel(info, "chromium")),
     }))), "mkDerivation"), (base) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       packageName: "electron",
       version: nix.thunk(() => nix.attr(info, "version")),
       buildTargets: nix.thunk(() => ["electron:copy_node_headers", "electron:electron_dist_zip"]),
@@ -62,12 +51,12 @@ export default nix.lambda((args) => (() => {
           const src = nix.thunk(() => nix.sel(gclientDeps, "src", "path"));
           const sourceRoot = nix.thunk(() => nix.str`${nix.sel(src, "name")}/third_party/node`);
           const hash = nix.thunk(() => nix.sel(info, "chromium_npm_hash"));
-          return { [nix.POS]: pos$2, src, sourceRoot, hash };
+          return { [nix.POS]: $pos[1], src, sourceRoot, hash };
         })()))),
       npmRoot: "third_party/node",
       missingHashes: nix.thunk(() => (nix.asBool(nix.has(nix.sel(info, "electron_yarn_data"), "missing_hashes")) ? nix.app(nix.sel(writers, "writeJSON"), "missing-hashes.json", nix.thunk(() => nix.sel(info, "electron_yarn_data", "missing_hashes"))) : null)),
       yarnOfflineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           src: nix.thunk(() => nix.sel(gclientDeps, "src/electron", "path")),
           hash: nix.thunk(() => nix.sel(info, "electron_yarn_data", "hash")),
           missingHashes: nix.thunk(() => (nix.asBool(nix.has(nix.sel(info, "electron_yarn_data"), "missing_hashes")) ? nix.app(nix.sel(writers, "writeJSON"), "missing-hashes.json", nix.thunk(() => nix.sel(info, "electron_yarn_data", "missing_hashes"))) : null)),
@@ -77,7 +66,7 @@ export default nix.lambda((args) => (() => {
       unpackPhase: null,
       sourceRoot: "src",
       env: nix.thunk(() => nix.update(nix.sel(base, "env"), {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add(nix.sel(base, "env", "NIX_CFLAGS_COMPILE"), " -Wno-deprecated")),
         ELECTRON_OUT_DIR: "Release",
       })),
@@ -183,7 +172,7 @@ echo 'checkout_clusterfuzz_data = false' >> build/config/gclient_args.gni
         const enable_pdf_save_to_drive = false;
         const node_openssl_path = "//third_party/boringssl";
         return {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           is_component_build,
           is_official_build,
           rtc_use_h264,
@@ -213,8 +202,8 @@ echo 'checkout_clusterfuzz_data = false' >> build/config/gclient_args.gni
           enable_pdf_save_to_drive,
           node_openssl_path,
         };
-      })(), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(info, "version")), "43")), nix.thunk(() => ({ [nix.POS]: pos$6, enterprise_cloud_content_analysis: false }))), {
-        [nix.POS]: pos$7,
+      })(), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(info, "version")), "43")), nix.thunk(() => ({ [nix.POS]: $pos[5], enterprise_cloud_content_analysis: false }))), {
+        [nix.POS]: $pos[6],
         enable_widevine: false,
         override_electron_version: nix.thunk(() => nix.sel(info, "version")),
       }))),
@@ -234,9 +223,9 @@ echo 'checkout_clusterfuzz_data = false' >> build/config/gclient_args.gni
 `);
       })()),
       requiredSystemFeatures: nix.thunk(() => ["big-parallel"]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$8, info: info })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[7], info: info })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Cross platform desktop application shell",
         homepage: "https://github.com/electron/electron",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
@@ -247,9 +236,9 @@ echo 'checkout_clusterfuzz_data = false' >> build/config/gclient_args.gni
         timeout: 172800n,
       })),
     })), "overrideAttrs"), (finalAttrs) => (prevAttrs) => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       passthru: nix.thunk(() => nix.update(nix.sel(prevAttrs, "passthru"), {
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         dist: nix.thunk(() => nix.add(nix.sel(finalAttrs, "finalPackage"), "/libexec/electron")),
       })),
     }));

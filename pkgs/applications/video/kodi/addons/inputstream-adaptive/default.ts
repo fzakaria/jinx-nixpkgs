@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["homepage", 63, 5], ["description", 64, 5], ["platforms", 65, 5], ["license", 66, 5], ["teams", 67, 5]], [["pname", 24, 3], ["namespace", 25, 3], ["version", 26, 3], ["src", 28, 3], ["extraCMakeFlags", 35, 3], ["extraNativeBuildInputs", 40, 3], ["extraBuildInputs", 42, 3], ["extraRuntimeDependencies", 47, 3], ["extraInstallPhase", 54, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, rel: false, addonDir: false, buildKodiBinaryAddon: false, fetchFromGitHub: false, pugixml: false, glib: false, nspr: false, nss: false, gtest: false, rapidjson: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 63, 5], ["description", 64, 5], ["platforms", 65, 5], ["license", 66, 5], ["teams", 67, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["namespace", 25, 3], ["version", 26, 3], ["src", 28, 3], ["extraCMakeFlags", 35, 3], ["extraNativeBuildInputs", 40, 3], ["extraBuildInputs", 42, 3], ["extraRuntimeDependencies", 47, 3], ["extraInstallPhase", 54, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const gtest = nix.arg($, "gtest");
   const rapidjson = nix.arg($, "rapidjson");
   const bento4 = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "xbmc",
       repo: "Bento4",
       tag: nix.thunk(() => nix.str`1.6.0-641-3-${rel}`),
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const namespace = "inputstream.adaptive";
       const version = "21.5.18";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "xbmc",
           repo: "inputstream.adaptive",
           tag: nix.thunk(() => nix.str`${version}-${rel}`),
@@ -58,7 +55,7 @@ export default nix.lambda((args) => (() => {
 `;
       })());
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/xbmc/inputstream.adaptive",
         description: "Kodi inputstream addon for several manifest types",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
@@ -66,7 +63,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "kodi"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         namespace,
         version,

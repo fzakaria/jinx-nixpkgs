@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["lib", 42, 5], ["requireFile", 43, 13], ["lang", 43, 25]], [["description", 161, 5], ["homepage", 162, 5], ["sourceProvenance", 163, 5], ["license", 164, 5], ["maintainers", 165, 5], ["platforms", 166, 5]], [["pname", 48, 3], ["version", 50, 18], ["src", 50, 26], ["nativeBuildInputs", 52, 3], ["dontWrapQtApps", 57, 3], ["buildInputs", 59, 3], ["autoPatchelfIgnoreMissingDeps", 94, 3], ["ldpath", 96, 3], ["unpackPhase", 102, 3], ["installPhase", 109, 3], ["preferLocalBuild", 155, 3], ["dontStrip", 158, 3], ["meta", 160, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, autoPatchelfHook: false, requireFile: false, "alsa-lib": false, dbus: false, fontconfig: false, freetype: false, gcc: false, glib: false, installShellFiles: false, libssh2: false, ncurses: false, opencv4: false, openssl: false, unixodbc: false, xkeyboard_config: false, libxtst: false, libxrender: false, libxrandr: false, libxmu: false, libxi: false, libxfixes: false, libxext: false, libxcursor: false, libx11: false, libsm: false, libice: false, libxcb: false, zlib: false, libxml2: false, libuuid: false, lang: true, libGL: false, libGLU: false, libsForQt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["lib", 42, 5], ["requireFile", 43, 13], ["lang", 43, 25]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 161, 5], ["homepage", 162, 5], ["sourceProvenance", 163, 5], ["license", 164, 5], ["maintainers", 165, 5], ["platforms", 166, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 48, 3], ["version", 50, 18], ["src", 50, 26], ["nativeBuildInputs", 52, 3], ["dontWrapQtApps", 57, 3], ["buildInputs", 59, 3], ["autoPatchelfIgnoreMissingDeps", 94, 3], ["ldpath", 96, 3], ["unpackPhase", 102, 3], ["installPhase", 109, 3], ["preferLocalBuild", 155, 3], ["dontStrip", 158, 3], ["meta", 160, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
   const libGL = nix.arg($, "libGL");
   const libGLU = nix.arg($, "libGLU");
   const libsForQt5 = nix.arg($, "libsForQt5");
-  const l10n = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./l10ns.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib, requireFile: requireFile, lang: lang }))));
+  const l10n = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./l10ns.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib, requireFile: requireFile, lang: lang }))));
   const dirName = "WolframEngine";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname = "wolfram-engine";
@@ -143,7 +141,7 @@ installManPage $out/libexec/${dirName}/SystemFiles/SystemDocumentation/Unix/*
       const preferLocalBuild = true;
       const dontStrip = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Wolfram Engine computational software system",
         homepage: "https://www.wolfram.com/engine/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -158,7 +156,7 @@ installManPage $out/libexec/${dirName}/SystemFiles/SystemDocumentation/Unix/*
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

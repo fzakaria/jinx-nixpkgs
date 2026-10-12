@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nvidia-libs.nix", [[["LOCALBASE", 41, 7], ["VKICD_PATH", 42, 7], ["VKLAYERS_PATH", 43, 7], ["EGL_GLVND_JSON_PATH", 44, 7], ["EGL_EXTERNAL_PLATFORM_JSON_PATH", 45, 7]], [["path", 19, 3], ["pname", 20, 3], ["src", 21, 27], ["version", 21, 31], ["extraNativeBuildInputs", 23, 3], ["buildInputs", 26, 3], ["env", 41, 3], ["postPatch", 47, 3], ["dontBuild", 53, 3], ["installPhase", 54, 3]]]);
 const formals$1 = { args: { mkDerivation: false, "nvidia-driver": false, autoPatchelfHook: false, libxext: false, libx11: false, freetype: false, gtk2: false, gtk3: false, cairo: false, pango: false, fontconfig: false, glib: false, libintl: false, libdrm: false, libgbm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/nvidia-libs.nix", [["LOCALBASE", 41, 7], ["VKICD_PATH", 42, 7], ["VKLAYERS_PATH", 43, 7], ["EGL_GLVND_JSON_PATH", 44, 7], ["EGL_EXTERNAL_PLATFORM_JSON_PATH", 45, 7]]);
-const pos$2 = nix.positions(here + "/nvidia-libs.nix", [["path", 19, 3], ["pname", 20, 3], ["src", 21, 27], ["version", 21, 31], ["extraNativeBuildInputs", 23, 3], ["buildInputs", 26, 3], ["env", 41, 3], ["postPatch", 47, 3], ["dontBuild", 53, 3], ["installPhase", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const libdrm = nix.arg($, "libdrm");
   const libgbm = nix.arg($, "libgbm");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       path: "...",
       pname: "nvidia-libs",
       src: nix.thunk(() => nix.attr(nvidia_driver, "src")),
@@ -45,7 +44,7 @@ export default nix.lambda((args) => (() => {
         libx11,
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         LOCALBASE: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}`),
         VKICD_PATH: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/vulkan/icd.d`),
         VKLAYERS_PATH: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/vulkan/implicit_layer.d`),

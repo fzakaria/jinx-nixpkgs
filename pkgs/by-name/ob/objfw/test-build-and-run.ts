@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test-build-and-run.nix", [[["name", 8, 3], ["buildInputs", 9, 3], ["src", 11, 3], ["buildPhase", 19, 3], ["checkPhase", 32, 3], ["doCheck", 37, 3], ["installPhase", 39, 3]]]);
 const formals$1 = { args: { clangStdenv: false, objfw: false, writeTextDir: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/test-build-and-run.nix", [["name", 8, 3], ["buildInputs", 9, 3], ["src", 11, 3], ["buildPhase", 19, 3], ["checkPhase", 32, 3], ["doCheck", 37, 3], ["installPhase", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const objfw = nix.arg($, "objfw");
   const writeTextDir = nix.arg($, "writeTextDir");
   return nix.app(nix.sel(clangStdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "ObjFW test",
       buildInputs: nix.thunk(() => [objfw]),
       src: nix.thunk(() => nix.app(writeTextDir, "helloworld.m", "#import <ObjFW/ObjFW.h>\nint main() {\n    OFLog(@\"Hello world from objc\");\n    return 0;\n}\n")),

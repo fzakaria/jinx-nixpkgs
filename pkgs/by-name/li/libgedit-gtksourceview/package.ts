@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 31, 5], ["group", 32, 5], ["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["forceFetchGit", 36, 5], ["hash", 37, 5]], [["ignoredVersions", 70, 40]], [["updateScript", 70, 12]], [["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["platforms", 77, 5]], [["pname", 21, 3], ["version", 22, 3], ["outputs", 24, 3], ["src", 30, 3], ["patches", 40, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 56, 3], ["propagatedBuildInputs", 62, 3], ["passthru", 70, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, "docbook-xsl-nons": false, "gobject-introspection": false, "gtk-doc": false, meson: false, ninja: false, "pkg-config": false, "libgedit-amtk": false, "libgedit-gfls": false, libxml2: false, glib: false, gtk3: false, "shared-mime-info": false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 31, 5], ["group", 32, 5], ["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["forceFetchGit", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ignoredVersions", 70, 40]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 70, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["platforms", 77, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["outputs", 24, 3], ["src", 30, 3], ["patches", 40, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 56, 3], ["propagatedBuildInputs", 62, 3], ["passthru", 70, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const shared_mime_info = nix.arg($, "shared-mime-info");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "libgedit-gtksourceview",
       version: "299.7.1",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           group: "World",
           owner: "gedit",
@@ -47,11 +43,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libgedit_amtk, libgedit_gfls, libxml2]),
       propagatedBuildInputs: nix.thunk(() => [glib, gtk3, shared_mime_info]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, ignoredVersions: "(alpha|beta|rc).*" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], ignoredVersions: "(alpha|beta|rc).*" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Source code editing widget for GTK",
         homepage: "https://gitlab.gnome.org/World/gedit/libgedit-gtksourceview",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

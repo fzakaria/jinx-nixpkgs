@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 20, 5]], [["name", 30, 5], ["exec", 31, 5], ["icon", 32, 5], ["comment", 33, 5], ["desktopName", 34, 5], ["genericName", 35, 5], ["categories", 36, 5], ["mimeTypes", 41, 5]], [["description", 72, 5], ["longDescription", 73, 5], ["homepage", 80, 5], ["sourceProvenance", 81, 5], ["license", 82, 5], ["platforms", 83, 5], ["maintainers", 84, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 27, 3], ["desktopItems", 29, 3], ["dontBuild", 44, 3], ["installPhase", 46, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, unzip: false, jre: false, coreutils: false, makeDesktopItem: false, copyDesktopItems: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 30, 5], ["exec", 31, 5], ["icon", 32, 5], ["comment", 33, 5], ["desktopName", 34, 5], ["genericName", 35, 5], ["categories", 36, 5], ["mimeTypes", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 72, 5], ["longDescription", 73, 5], ["homepage", 80, 5], ["sourceProvenance", 81, 5], ["license", 82, 5], ["platforms", 83, 5], ["maintainers", 84, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 27, 3], ["desktopItems", 29, 3], ["dontBuild", 44, 3], ["installPhase", 46, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,18 +16,18 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "basex",
       version: "12.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://files.basex.org/releases/${nix.sel(finalAttrs, "version")}/BaseX${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(finalAttrs, "version")))}.zip`),
           hash: "sha256-qIaAy05V5JUZ+YuuesFecCvdpCYoZm0/dWFnInpHvKE=",
         })))),
       nativeBuildInputs: nix.thunk(() => [unzip, copyDesktopItems]),
       buildInputs: nix.thunk(() => [jre]),
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "basex",
             exec: "basexgui %f",
             icon: nix.thunk(() => nix.str`${nix.path(here, "./basex.svg")}`),
@@ -65,7 +62,7 @@ done
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "XML database and XPath/XQuery processor",
         longDescription: "BaseX is a very fast and light-weight, yet powerful XML database and\nXPath/XQuery processor, including support for the latest W3C Full Text\nand Update Recommendations. It supports large XML instances and offers a\nhighly interactive front-end (basexgui). Apart from two local standalone\nmodes, BaseX offers a client/server architecture.\n",
         homepage: "https://basex.org/",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["NIX_CFLAGS_COMPILE", 14, 7]], [["url", 17, 5], ["sha256", 18, 5]], [["url", 26, 5], ["sha256", 27, 5]], [["description", 64, 5], ["longDescription", 65, 5], ["homepage", 92, 5], ["license", 93, 5], ["platforms", 94, 5], ["maintainers", 95, 5]], [["pname", 10, 3], ["version", 11, 3], ["env", 14, 3], ["src", 16, 3], ["patches", 21, 3], ["debian", 25, 3], ["nativeBuildInputs", 30, 3], ["postPatch", 35, 3], ["preBuild", 46, 3], ["installPhase", 52, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchzip: false, quilt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 14, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 26, 5], ["sha256", 27, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 64, 5], ["longDescription", 65, 5], ["homepage", 92, 5], ["license", 93, 5], ["platforms", 94, 5], ["maintainers", 95, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["env", 14, 3], ["src", 16, 3], ["patches", 21, 3], ["debian", 25, 3], ["nativeBuildInputs", 30, 3], ["postPatch", 35, 3], ["preBuild", 46, 3], ["installPhase", 52, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const quilt = nix.arg($, "quilt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ucspi-tcp",
       version: "0.88",
-      env: nix.thunk(() => ({ [nix.POS]: pos$1, NIX_CFLAGS_COMPILE: "-std=gnu89" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[0], NIX_CFLAGS_COMPILE: "-std=gnu89" })),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://cr.yp.to/ucspi-tcp/ucspi-tcp-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "171yl9kfm8w7l17dfxild99mbf877a9k5zg8yysgb1j8nz51a1ja",
         })))),
       patches: nix.thunk(() => [nix.path(here, "./remove-setuid.patch")]),
       debian: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: "http://ftp.de.debian.org/debian/pool/main/u/ucspi-tcp/ucspi-tcp_0.88-11.debian.tar.xz",
           sha256: "0x8h46wkm62dvyj1acsffcl4s06k5zh6139qxib3zzhk716hv5xg",
         })))),
@@ -37,7 +33,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "echo \"$out\" > conf-home\n\necho \"int main() { return 0; }\" > chkshsgr.c\n",
       installPhase: "mkdir -p \"$out/bin\"\nmkdir -p \"$out/share/man/man1\"\n\n# run the newly built installer\n./install\n\n# Install Debian man pages (upstream has none)\ncp $debian/ucspi-tcp-man/*.1 \"$out/share/man/man1\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Command-line tools for building TCP client-server applications",
         longDescription: "tcpserver waits for incoming connections and, for each connection, runs a\nprogram of your choice. Your program receives environment variables\nshowing the local and remote host names, IP addresses, and port numbers.\n\ntcpserver offers a concurrency limit to protect you from running out of\nprocesses and memory. When you are handling 40 (by default) simultaneous\nconnections, tcpserver smoothly defers acceptance of new connections.\n\ntcpserver also provides TCP access control features, similar to\ntcp-wrappers/tcpd's hosts.allow but much faster. Its access control rules\nare compiled into a hashed format with cdb, so it can easily deal with\nthousands of different hosts.\n\nThis package includes a recordio tool that monitors all the input and\noutput of a server.\n\ntcpclient makes a TCP connection and runs a program of your choice. It\nsets up the same environment variables as tcpserver.\n\nThis package includes several sample clients built on top of tcpclient:\nwho@, date@, finger@, http@, tcpcat, and mconnect.\n\ntcpserver and tcpclient conform to UCSPI, the UNIX Client-Server Program\nInterface, using the TCP protocol. UCSPI tools are available for several\ndifferent networks.\n",
         homepage: "http://cr.yp.to/ucspi-tcp.html",

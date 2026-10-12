@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/kglobalaccel.nix", [[["pname", 18, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 23, 3], ["outputs", 34, 3], ["propagatedBuildInputs", 38, 3]]]);
 const formals$1 = { args: { mkDerivation: false, cmake: false, "extra-cmake-modules": false, kconfig: false, kcoreaddons: false, kcrash: false, kdbusaddons: false, kservice: false, kwindowsystem: false, qtbase: false, qttools: false, qtx11extras: false, libxdmcp: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/kglobalaccel.nix", [["pname", 18, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 23, 3], ["outputs", 34, 3], ["propagatedBuildInputs", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const qtx11extras = nix.arg($, "qtx11extras");
   const libxdmcp = nix.arg($, "libxdmcp");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "kglobalaccel",
       nativeBuildInputs: nix.thunk(() => [cmake, extra_cmake_modules]),
       buildInputs: nix.thunk(() => [

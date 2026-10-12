@@ -2,8 +2,8 @@
 import * as nix from "../../../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 10, 3], ["src", 12, 3], ["strictDeps", 14, 3], ["nativeBuildInputs", 16, 3], ["installPhase", 21, 3], ["__structuredAttrs", 26, 3]]]);
 const formals$1 = { args: { stdenv: false, swift: false, swiftpm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 10, 3], ["src", 12, 3], ["strictDeps", 14, 3], ["nativeBuildInputs", 16, 3], ["installPhase", 21, 3], ["__structuredAttrs", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const swift = nix.arg($, "swift");
   const swiftpm = nix.arg($, "swiftpm");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "swift-test-differentiation",
       src: nix.path(here, "./src"),
       strictDeps: true,

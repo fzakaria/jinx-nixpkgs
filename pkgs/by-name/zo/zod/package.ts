@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["hash", 24, 5]], [["NIX_LDFLAGS", 43, 5]], [["version", 47, 7], ["src", 48, 7], ["postPatch", 49, 7], ["nativeBuildInputs", 50, 7], ["buildInputs", 51, 7], ["hardeningDisable", 52, 7], ["env", 53, 7], ["pname", 55, 5], ["enableParallelBuilding", 56, 5], ["preBuild", 57, 5], ["installPhase", 58, 5]], [["version", 66, 7], ["src", 67, 7], ["postPatch", 68, 7], ["nativeBuildInputs", 69, 7], ["buildInputs", 70, 7], ["hardeningDisable", 71, 7], ["env", 72, 7], ["pname", 74, 5], ["enableParallelBuilding", 75, 5], ["preBuild", 76, 5], ["makeFlags", 77, 5], ["installPhase", 78, 5]], [["scalingFactor", 100, 17]], [["version", 86, 7], ["src", 87, 7], ["nativeBuildInputs", 88, 7], ["buildInputs", 89, 7], ["zod_engine", 90, 7], ["zod_map_editor", 91, 7], ["pname", 93, 5], ["patches", 98, 5], ["postPatch", 103, 5], ["preBuild", 108, 5], ["installPhase", 109, 5]], [["description", 134, 5], ["homepage", 135, 5], ["maintainers", 136, 5], ["license", 137, 5], ["platforms", 138, 5]], [["pname", 126, 11], ["version", 126, 17], ["paths", 127, 3], ["meta", 133, 3]]]);
 const formals$1 = { args: { lib: false, config: false, fetchzip: false, stdenv: false, SDL: false, SDL_image: false, SDL_ttf: false, SDL_mixer: false, libmysqlclient: false, wxwidgets_3_2: false, symlinkJoin: false, runCommandLocal: false, makeWrapper: false, coreutils: false, scalingFactor: true, replaceVars: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 47, 7], ["src", 48, 7], ["postPatch", 49, 7], ["nativeBuildInputs", 50, 7], ["buildInputs", 51, 7], ["hardeningDisable", 52, 7], ["env", 53, 7], ["pname", 55, 5], ["enableParallelBuilding", 56, 5], ["preBuild", 57, 5], ["installPhase", 58, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 66, 7], ["src", 67, 7], ["postPatch", 68, 7], ["nativeBuildInputs", 69, 7], ["buildInputs", 70, 7], ["hardeningDisable", 71, 7], ["env", 72, 7], ["pname", 74, 5], ["enableParallelBuilding", 75, 5], ["preBuild", 76, 5], ["makeFlags", 77, 5], ["installPhase", 78, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["scalingFactor", 100, 17]]);
-const pos$6 = nix.positions(here + "/package.nix", [["version", 86, 7], ["src", 87, 7], ["nativeBuildInputs", 88, 7], ["buildInputs", 89, 7], ["zod_engine", 90, 7], ["zod_map_editor", 91, 7], ["pname", 93, 5], ["patches", 98, 5], ["postPatch", 103, 5], ["preBuild", 108, 5], ["installPhase", 109, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 134, 5], ["homepage", 135, 5], ["maintainers", 136, 5], ["license", 137, 5], ["platforms", 138, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 126, 11], ["version", 126, 17], ["paths", 127, 3], ["meta", 133, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const pname = "zod-engine";
   const version = "2011-09-06";
   const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`mirror://sourceforge/zod/linux_releases/zod_linux-${version}.tar.gz`),
       hash: "sha256-8HQdtr69IUxXcU5mJEShHWfkEK5pfiTRO2Bn6pRJ+wQ=",
     }))));
@@ -42,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const buildInputs = nix.thunk(() => [SDL, SDL_image, SDL_ttf, SDL_mixer, libmysqlclient, wxwidgets_3_2, coreutils]);
   const hardeningDisable = nix.thunk(() => ["format"]);
   const env = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     NIX_LDFLAGS: nix.thunk(() => nix.str`-L${libmysqlclient}/lib/mysql`),
   }));
   const zod_engine = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: version,
       src: src,
       postPatch: postPatch,
@@ -63,7 +56,7 @@ wrapProgram $out/bin/zod --chdir "${zod_assets}/usr/lib/commander-zod"
 `),
     }))));
   const zod_map_editor = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: version,
       src: src,
       postPatch: postPatch,
@@ -81,7 +74,7 @@ wrapProgram $out/bin/zod_map_editor --chdir "${zod_assets}/usr/lib/commander-zod
 `),
     }))));
   const zod_launcher = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       version: version,
       src: src,
       nativeBuildInputs: nativeBuildInputs,
@@ -90,7 +83,7 @@ wrapProgram $out/bin/zod_map_editor --chdir "${zod_assets}/usr/lib/commander-zod
       zod_map_editor: zod_map_editor,
       pname: "zod-engine-launcher",
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0002-add-scaling-factor-to-source.patch"), nix.thunk(() => ({ [nix.POS]: pos$5, scalingFactor: scalingFactor })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0002-add-scaling-factor-to-source.patch"), nix.thunk(() => ({ [nix.POS]: $pos[4], scalingFactor: scalingFactor })))),
       ]),
       postPatch: "substituteInPlace zod_launcher_src/zod_launcherFrm.cpp \\\n  --replace 'message = wxT(\"./zod\");' 'message = wxT(\"zod\");' \\\n  --replace \"check.replace(i,1,1,'_');\" \"check.replace(i,1,1,(wxUniChar)'_');\"\n",
       preBuild: "cd zod_launcher_src",
@@ -106,12 +99,12 @@ for map in ${src}/blank_maps/*; do
 done
 `)));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: pname,
       version: version,
       paths: nix.thunk(() => [zod_engine, zod_launcher, zod_map_editor, zod_assets]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Multiplayer remake of ZED",
         homepage: "https://zod.sourceforge.net/",
         maintainers: nix.thunk(() => (() => {

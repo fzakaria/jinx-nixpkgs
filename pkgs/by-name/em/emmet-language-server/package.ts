@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["pname", 29, 26], ["version", 29, 32], ["src", 29, 40], ["pnpm", 30, 13], ["fetcherVersion", 31, 5], ["hash", 32, 5]], [["smoke", 68, 11]], [["updateScript", 66, 5], ["tests", 68, 5]], [["description", 85, 5], ["homepage", 86, 5], ["changelog", 87, 5], ["license", 88, 5], ["maintainers", 89, 5], ["mainProgram", 92, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["pnpmDeps", 28, 3], ["nativeBuildInputs", 35, 3], ["preInstall", 43, 3], ["installPhase", 52, 3], ["passthru", 65, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, "nodejs-slim": false, pnpm_11: false, fetchPnpmDeps: false, pnpmConfigHook: false, pnpmBuildHook: false, fetchFromGitHub: false, "nix-update-script": false, runCommand: false, "emmet-language-server": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 29, 26], ["version", 29, 32], ["src", 29, 40], ["pnpm", 30, 13], ["fetcherVersion", 31, 5], ["hash", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["smoke", 68, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 66, 5], ["tests", 68, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 85, 5], ["homepage", 86, 5], ["changelog", 87, 5], ["license", 88, 5], ["maintainers", 89, 5], ["mainProgram", 92, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["pnpmDeps", 28, 3], ["nativeBuildInputs", 35, 3], ["preInstall", 43, 3], ["installPhase", 52, 3], ["passthru", 65, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,18 +20,18 @@ export default nix.lambda((args) => (() => {
   const emmet_language_server = nix.arg($, "emmet-language-server");
   const pnpm = pnpm_11;
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "emmet-language-server",
       version: "2.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "olrtg",
           repo: "emmet-language-server",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-EY/xfrf6sGnZPbkbf9msauOoZ0h0EjLSwQC0aiS/Kco=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -48,10 +43,10 @@ export default nix.lambda((args) => (() => {
       preInstall: "CI=true pnpm --ignore-scripts --prod prune\nfind -type f \\( -name \"*.ts\" -o -name \"*.map\" \\) -exec rm -rf {} +\n# https://github.com/pnpm/pnpm/issues/3645\nfind node_modules -xtype l -delete\n\nrm node_modules/.modules.yaml\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out/{bin,lib/emmet-language-server}\nmv {node_modules,dist} $out/lib/emmet-language-server\n\nchmod +x $out/lib/emmet-language-server/dist/index.js\npatchShebangs $out/lib/emmet-language-server/dist/index.js\nln -s $out/lib/emmet-language-server/dist/index.js $out/bin/emmet-language-server\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           smoke: nix.thunk(() => nix.app(runCommand, "emmet-language-server-smoke-test", nix.thunk(() => ({})), nix.thunk(() => nix.str`INIT_REQUEST='{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"processId":null,"rootUri":"file:///tmp","workspaceFolders":[{"uri":"file:///tmp","name":"test"}],"capabilities":{}}}'
 CONTENT_LENGTH=\${#INIT_REQUEST}
 
@@ -68,7 +63,7 @@ touch $out
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Language server for emmet.io",
         homepage: "https://github.com/olrtg/emmet-language-server",
         changelog: nix.thunk(() => nix.str`https://github.com/olrtg/emmet-language-server/releases/tag/v${nix.sel(finalAttrs, "version")}`),

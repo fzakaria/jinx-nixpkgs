@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 28, 5], ["hash", 29, 5]], [["url", 42, 7], ["hash", 43, 7]], [["PYTHON_CONFIG", 92, 5]], [["NIX_LDFLAGS", 98, 9]], [["package", 108, 5]], [["pkg-config", 107, 18]], [["tests", 107, 12]], [["broken", 112, 5], ["description", 113, 5], ["homepage", 114, 5], ["license", 115, 5], ["pkgConfigModules", 116, 5], ["platforms", 117, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["outputs", 32, 3], ["patches", 37, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 58, 3], ["preConfigure", 71, 3], ["wafPath", 76, 3], ["wafConfigureFlags", 78, 3], ["env", 88, 3], ["stripDebugList", 101, 3], ["passthru", 107, 3], ["meta", 111, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, python3: false, "pkg-config": false, readline: false, tdb: false, talloc: false, tevent: false, popt: false, libxslt: false, "docbook-xsl-nons": false, docbook_xml_dtd_42: false, cmocka: false, wafHook: false, buildPackages: false, libxcrypt: false, testers: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 42, 7], ["hash", 43, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["PYTHON_CONFIG", 92, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 98, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["package", 108, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pkg-config", 107, 18]]);
-const pos$7 = nix.positions(here + "/package.nix", [["tests", 107, 12]]);
-const pos$8 = nix.positions(here + "/package.nix", [["broken", 112, 5], ["description", 113, 5], ["homepage", 114, 5], ["license", 115, 5], ["pkgConfigModules", 116, 5], ["platforms", 117, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["outputs", 32, 3], ["patches", 37, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 58, 3], ["preConfigure", 71, 3], ["wafPath", 76, 3], ["wafConfigureFlags", 78, 3], ["env", 88, 3], ["stripDebugList", 101, 3], ["passthru", 107, 3], ["meta", 111, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,18 +27,18 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "ldb",
       version: "2.9.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://samba/ldb/ldb-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-0VWIQALHnbscPYZC+LEBPy5SCzru/W6WQSrexbjWy8A=",
         })))),
       outputs: nix.thunk(() => ["out", "dev"]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitlab.com/samba-team/samba/-/commit/04e0fb9b2d1d87516f1331096c78e8355b4fa9f3.patch",
             hash: "sha256-sBqtVwGBXseCAMlv3QaiSYQmOw7H4cAJwc0Ey5yD6Os=",
           })))),
@@ -72,20 +64,20 @@ export default nix.lambda((args) => (() => {
           "--cross-compile",
           nix.thunk(() => nix.str`--cross-execute=${nix.app(nix.sel(stdenv, "hostPlatform", "emulator"), buildPackages)}`),
         ])))),
-      env: nix.thunk(() => nix.update({ [nix.POS]: pos$3, PYTHON_CONFIG: "/invalid" }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "bintools", "isLLVM")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(stdenv, "cc", "bintools", "version")), "17")))), nix.thunk(() => ({ [nix.POS]: pos$4, NIX_LDFLAGS: "--undefined-version" }))))),
+      env: nix.thunk(() => nix.update({ [nix.POS]: $pos[2], PYTHON_CONFIG: "/invalid" }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "bintools", "isLLVM")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(stdenv, "cc", "bintools", "version")), "17")))), nix.thunk(() => ({ [nix.POS]: $pos[3], NIX_LDFLAGS: "--undefined-version" }))))),
       stripDebugList: nix.thunk(() => ["bin", "lib", "modules"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "LDAP-like embedded database",
         homepage: "https://ldb.samba.org/",

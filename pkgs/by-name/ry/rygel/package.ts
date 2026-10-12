@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 50, 5], ["hash", 51, 5]], [["packageName", 118, 7], ["versionPolicy", 119, 7]], [["withGtk", 121, 30]], [["updateScript", 117, 5], ["noGtk", 121, 5]], [["description", 125, 5], ["homepage", 126, 5], ["changelog", 127, 5], ["license", 128, 5], ["teams", 129, 5], ["platforms", 130, 5]], [["pname", 40, 3], ["version", 41, 3], ["outputs", 44, 3], ["src", 49, 3], ["patches", 54, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 72, 3], ["mesonFlags", 102, 3], ["doCheck", 110, 3], ["postPatch", 112, 3], ["passthru", 116, 3], ["meta", 124, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, "docbook-xsl-nons": false, meson: false, ninja: false, "pkg-config": false, vala: false, gettext: false, libxml2: false, libxslt: false, "gobject-introspection": false, wrapGAppsHook4: false, wrapGAppsNoGuiHook: false, python3: false, "gdk-pixbuf": false, glib: false, gssdp_1_6: false, gupnp_1_6: false, "gupnp-av": false, "gupnp-dlna": false, gst_all_1: false, libgee: false, libsoup_3: false, libx11: false, withGtk: true, gtk4: false, libmediaart: false, pipewire: false, sqlite: false, systemd: false, tinysparql: false, "shared-mime-info": false, gnome: false, rygel: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 50, 5], ["hash", 51, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 118, 7], ["versionPolicy", 119, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["withGtk", 121, 30]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 117, 5], ["noGtk", 121, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 125, 5], ["homepage", 126, 5], ["changelog", 127, 5], ["license", 128, 5], ["teams", 129, 5], ["platforms", 130, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 40, 3], ["version", 41, 3], ["outputs", 44, 3], ["src", 49, 3], ["patches", 54, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 72, 3], ["mesonFlags", 102, 3], ["doCheck", 110, 3], ["postPatch", 112, 3], ["passthru", 116, 3], ["meta", 124, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -48,12 +43,12 @@ export default nix.lambda((args) => (() => {
   const gnome = nix.arg($, "gnome");
   const rygel = nix.arg($, "rygel");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "rygel",
       version: "45.2",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/rygel/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/rygel-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-IOV7cLFahl133Dj594arxSxksRH+X5OKYsKNcS3xMx0=",
         })))),
@@ -108,12 +103,12 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       postPatch: "patchShebangs data/xml/process-xml.py\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "rygel", versionPolicy: "odd-unstable" })))),
-        noGtk: nix.thunk(() => nix.app(nix.sel(rygel, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, withGtk: false })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "rygel", versionPolicy: "odd-unstable" })))),
+        noGtk: nix.thunk(() => nix.app(nix.sel(rygel, "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], withGtk: false })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Home media solution (UPnP AV MediaServer) that allows you to easily share audio, video and pictures to other devices",
         homepage: "https://gitlab.gnome.org/GNOME/rygel",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/rygel/-/blob/rygel-${nix.sel(finalAttrs, "version")}/NEWS?ref_type=tags`),

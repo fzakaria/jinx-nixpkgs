@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 23, 5], ["version", 24, 13], ["hash", 25, 5]], [["broken", 91, 5], ["description", 92, 5], ["homepage", 93, 5], ["license", 94, 5], ["maintainers", 95, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["build-system", 28, 3], ["postPatch", 33, 3], ["propagatedBuildInputs", 53, 3], ["nativeBuildInputs", 55, 3], ["nativeCheckInputs", 57, 3], ["pythonImportsCheck", 63, 3], ["unittestFlagsArray", 65, 3], ["preCheck", 75, 3], ["postInstall", 86, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, distutils: false, pyyaml: false, openssh: false, unittestCheckHook: false, installShellFiles: false, bc: false, hostname: false, bash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 23, 5], ["version", 24, 13], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["broken", 91, 5], ["description", 92, 5], ["homepage", 93, 5], ["license", 94, 5], ["maintainers", 95, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["build-system", 28, 3], ["postPatch", 33, 3], ["propagatedBuildInputs", 53, 3], ["nativeBuildInputs", 55, 3], ["nativeCheckInputs", 57, 3], ["pythonImportsCheck", 63, 3], ["unittestFlagsArray", 65, 3], ["preCheck", 75, 3], ["postInstall", 86, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.9.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "ClusterShell",
           version: version,
           hash: "sha256-4oTA5rP+CgzWvmffcd+/aqMhGIlz22g6BX9WN1UvvIw=",
@@ -59,7 +57,7 @@ done
       const preCheck = "rm tests/CLIClushTest.py\nrm tests/TreeWorkerTest.py\nrm tests/TaskDistantMixin.py\nrm tests/TaskDistantTest.py\nrm tests/TaskDistantPdshMixin.py\nrm tests/TaskDistantPdshTest.py\nrm tests/TaskRLimitsTest.py\nrm tests/TreeGatewayTest.py\n";
       const postInstall = "installShellCompletion --bash bash_completion.d/*\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Scalable Python framework for cluster administration",
         homepage: "https://cea-hpc.github.io/clustershell",
@@ -67,7 +65,7 @@ done
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "alexvorobiev"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

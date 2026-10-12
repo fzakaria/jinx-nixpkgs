@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["ELECTRON_SKIP_BINARY_DOWNLOAD", 69, 5], ["NODE_OPTIONS", 70, 5], ["OPENCODE_CHANNEL", 71, 5], ["MODELS_DEV_API_JSON", 72, 5], ["OPENCODE_DISABLE_MODELS_FETCH", 73, 5]], [["name", 132, 5], ["desktopName", 133, 5], ["exec", 134, 5], ["icon", 135, 5], ["startupWMClass", 136, 5], ["categories", 137, 5], ["mimeTypes", 138, 5]], [["description", 184, 5], ["homepage", 185, 5], ["changelog", 186, 29], ["platforms", 186, 39], ["license", 187, 5], ["mainProgram", 188, 5], ["maintainers", 189, 5]], [["pname", 23, 3], ["version", 25, 5], ["src", 26, 5], ["node_modules", 27, 5], ["patches", 28, 5], ["__structuredAttrs", 31, 3], ["strictDeps", 32, 3], ["autoPatchelfIgnoreMissingDeps", 36, 3], ["postPatch", 38, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 64, 3], ["env", 68, 3], ["configurePhase", 76, 3], ["preBuild", 86, 3], ["buildPhase", 98, 3], ["desktopItems", 131, 3], ["installPhase", 141, 3], ["meta", 183, 3]]]);
 const formals$1 = { args: { autoPatchelfHook: false, bun: false, copyDesktopItems: false, electron_42: false, lib: false, makeBinaryWrapper: false, makeDesktopItem: false, "models-dev": false, nodejs: false, opencode: false, stdenv: false, stdenvNoCC: false, writableTmpDirAsHomeHook: false, commandLineArgs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 69, 5], ["NODE_OPTIONS", 70, 5], ["OPENCODE_CHANNEL", 71, 5], ["MODELS_DEV_API_JSON", 72, 5], ["OPENCODE_DISABLE_MODELS_FETCH", 73, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 132, 5], ["desktopName", 133, 5], ["exec", 134, 5], ["icon", 135, 5], ["startupWMClass", 136, 5], ["categories", 137, 5], ["mimeTypes", 138, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 184, 5], ["homepage", 185, 5], ["changelog", 186, 29], ["platforms", 186, 39], ["license", 187, 5], ["mainProgram", 188, 5], ["maintainers", 189, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 25, 5], ["src", 26, 5], ["node_modules", 27, 5], ["patches", 28, 5], ["__structuredAttrs", 31, 3], ["strictDeps", 32, 3], ["autoPatchelfIgnoreMissingDeps", 36, 3], ["postPatch", 38, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 64, 3], ["env", 68, 3], ["configurePhase", 76, 3], ["preBuild", 86, 3], ["buildPhase", 98, 3], ["desktopItems", 131, 3], ["installPhase", 141, 3], ["meta", 183, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const commandLineArgs = nix.argOr($, "commandLineArgs", () => "");
   const electron = electron_42;
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "opencode-desktop",
       version: nix.thunk(() => nix.attr(opencode, "version")),
       src: nix.thunk(() => nix.attr(opencode, "src")),
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(stdenv, "cc", "cc")))),
         ]))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         ELECTRON_SKIP_BINARY_DOWNLOAD: "1",
         NODE_OPTIONS: "--max-old-space-size=4096",
         OPENCODE_CHANNEL: "prod",
@@ -89,7 +86,7 @@ cd ../..
 runHook postBuild
 `),
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isLinux")), nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "ai.opencode.desktop",
             desktopName: "OpenCode",
             exec: "opencode-desktop %U",
@@ -132,7 +129,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), electron)} $out/bin/opencode-deskt
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(opencode, "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "AI coding agent desktop client",
         homepage: "https://opencode.ai",
         changelog: nix.thunk(() => nix.attr(from, "changelog")),

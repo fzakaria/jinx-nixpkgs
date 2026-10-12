@@ -2,42 +2,12 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/saunafs.nix", [[["memorySize", 9, 22]], [["enable", 12, 9], ["openFirewall", 13, 9], ["exports", 14, 9]], [["master", 11, 24]], [["saunafs", 11, 16]], [["virtualisation", 9, 7], ["services", 11, 7]], [["serial", 26, 39]], [["deviceExtraOpts", 26, 23]], [["size", 25, 11], ["driveConfig", 26, 11]], [["emptyDiskImages", 23, 22]], [["device", 32, 11], ["fsType", 33, 11], ["autoFormat", 34, 11]], [["/data", 31, 9]], [["HDD_LEAVE_SPACE_DEFAULT", 46, 20]], [["openFirewall", 41, 11], ["enable", 42, 11], ["hdds", 43, 11], ["settings", 46, 11]], [["masterHost", 39, 9], ["chunkserver", 40, 9]], [["saunafs", 38, 16]], [["virtualisation", 23, 7], ["fileSystems", 30, 7], ["services", 38, 7]], [["enable", 56, 20]], [["masterHost", 55, 9], ["metalogger", 56, 9]], [["saunafs", 54, 16]], [["services", 54, 7]], [["enable", 63, 31]], [["client", 63, 24]], [["saunafs", 63, 16]], [["enable", 65, 23]], [["requires", 76, 11], ["after", 77, 11], ["wantedBy", 78, 11], ["type", 79, 11], ["what", 80, 11], ["where", 81, 11]], [["network", 65, 15], ["mounts", 74, 15]], [["useDHCP", 70, 9], ["useNetworkd", 71, 9]], [["services", 63, 7], ["systemd", 65, 7], ["networking", 69, 7]], [["maintainers", 90, 8]], [["master", 93, 13], ["metalogger", 93, 20], ["chunkserver1", 94, 5], ["chunkserver2", 95, 5], ["client1", 96, 5], ["client2", 97, 5]], [["name", 88, 3], ["meta", 90, 3], ["nodes", 92, 3], ["testScript", 100, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/saunafs.nix", [["memorySize", 9, 22]]);
-const pos$2 = nix.positions(here + "/saunafs.nix", [["enable", 12, 9], ["openFirewall", 13, 9], ["exports", 14, 9]]);
-const pos$3 = nix.positions(here + "/saunafs.nix", [["master", 11, 24]]);
-const pos$4 = nix.positions(here + "/saunafs.nix", [["saunafs", 11, 16]]);
-const pos$5 = nix.positions(here + "/saunafs.nix", [["virtualisation", 9, 7], ["services", 11, 7]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$6 = nix.positions(here + "/saunafs.nix", [["serial", 26, 39]]);
-const pos$7 = nix.positions(here + "/saunafs.nix", [["deviceExtraOpts", 26, 23]]);
-const pos$8 = nix.positions(here + "/saunafs.nix", [["size", 25, 11], ["driveConfig", 26, 11]]);
-const pos$9 = nix.positions(here + "/saunafs.nix", [["emptyDiskImages", 23, 22]]);
-const pos$10 = nix.positions(here + "/saunafs.nix", [["device", 32, 11], ["fsType", 33, 11], ["autoFormat", 34, 11]]);
-const pos$11 = nix.positions(here + "/saunafs.nix", [["/data", 31, 9]]);
-const pos$12 = nix.positions(here + "/saunafs.nix", [["HDD_LEAVE_SPACE_DEFAULT", 46, 20]]);
-const pos$13 = nix.positions(here + "/saunafs.nix", [["openFirewall", 41, 11], ["enable", 42, 11], ["hdds", 43, 11], ["settings", 46, 11]]);
-const pos$14 = nix.positions(here + "/saunafs.nix", [["masterHost", 39, 9], ["chunkserver", 40, 9]]);
-const pos$15 = nix.positions(here + "/saunafs.nix", [["saunafs", 38, 16]]);
-const pos$16 = nix.positions(here + "/saunafs.nix", [["virtualisation", 23, 7], ["fileSystems", 30, 7], ["services", 38, 7]]);
 const formals$4 = { args: { pkgs: false }, ellipsis: true };
-const pos$17 = nix.positions(here + "/saunafs.nix", [["enable", 56, 20]]);
-const pos$18 = nix.positions(here + "/saunafs.nix", [["masterHost", 55, 9], ["metalogger", 56, 9]]);
-const pos$19 = nix.positions(here + "/saunafs.nix", [["saunafs", 54, 16]]);
-const pos$20 = nix.positions(here + "/saunafs.nix", [["services", 54, 7]]);
 const formals$5 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$21 = nix.positions(here + "/saunafs.nix", [["enable", 63, 31]]);
-const pos$22 = nix.positions(here + "/saunafs.nix", [["client", 63, 24]]);
-const pos$23 = nix.positions(here + "/saunafs.nix", [["saunafs", 63, 16]]);
-const pos$24 = nix.positions(here + "/saunafs.nix", [["enable", 65, 23]]);
-const pos$25 = nix.positions(here + "/saunafs.nix", [["requires", 76, 11], ["after", 77, 11], ["wantedBy", 78, 11], ["type", 79, 11], ["what", 80, 11], ["where", 81, 11]]);
-const pos$26 = nix.positions(here + "/saunafs.nix", [["network", 65, 15], ["mounts", 74, 15]]);
-const pos$27 = nix.positions(here + "/saunafs.nix", [["useDHCP", 70, 9], ["useNetworkd", 71, 9]]);
-const pos$28 = nix.positions(here + "/saunafs.nix", [["services", 63, 7], ["systemd", 65, 7], ["networking", 69, 7]]);
-const pos$29 = nix.positions(here + "/saunafs.nix", [["maintainers", 90, 8]]);
-const pos$30 = nix.positions(here + "/saunafs.nix", [["master", 93, 13], ["metalogger", 93, 20], ["chunkserver1", 94, 5], ["chunkserver2", 95, 5], ["client1", 96, 5], ["client2", 97, 5]]);
-const pos$31 = nix.positions(here + "/saunafs.nix", [["name", 88, 3], ["meta", 90, 3], ["nodes", 92, 3], ["testScript", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -47,14 +17,14 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const pkgs_1 = nix.arg($_1, "pkgs");
     return {
-      [nix.POS]: pos$5,
-      virtualisation: nix.thunk(() => ({ [nix.POS]: pos$1, memorySize: 1024n })),
+      [nix.POS]: $pos[4],
+      virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[0], memorySize: 1024n })),
       services: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         saunafs: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           master: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             enable: true,
             openFirewall: true,
             exports: nix.thunk(() => ["* / rw,alldirs,maproot=0:0"]),
@@ -67,40 +37,40 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$3);
     const pkgs_1 = nix.arg($_1, "pkgs");
     return {
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       virtualisation: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         emptyDiskImages: nix.thunk(() => [
           nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             size: 4096n,
             driveConfig: nix.thunk(() => ({
-              [nix.POS]: pos$7,
-              deviceExtraOpts: nix.thunk(() => ({ [nix.POS]: pos$6, serial: "data" })),
+              [nix.POS]: $pos[6],
+              deviceExtraOpts: nix.thunk(() => ({ [nix.POS]: $pos[5], serial: "data" })),
             })),
           })),
         ]),
       })),
       fileSystems: nix.thunk(() => nix.app(nix.sel(pkgs_1, "lib", "mkVMOverride"), nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           "/data": nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             device: "/dev/disk/by-id/virtio-data",
             fsType: "ext4",
             autoFormat: true,
           })),
         })))),
       services: nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         saunafs: nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           masterHost: "master",
           chunkserver: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             openFirewall: true,
             enable: true,
             hdds: nix.thunk(() => ["/data"]),
-            settings: nix.thunk(() => ({ [nix.POS]: pos$12, HDD_LEAVE_SPACE_DEFAULT: "100M" })),
+            settings: nix.thunk(() => ({ [nix.POS]: $pos[11], HDD_LEAVE_SPACE_DEFAULT: "100M" })),
           })),
         })),
       })),
@@ -110,13 +80,13 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$4);
     const pkgs_1 = nix.arg($_1, "pkgs");
     return {
-      [nix.POS]: pos$20,
+      [nix.POS]: $pos[19],
       services: nix.thunk(() => ({
-        [nix.POS]: pos$19,
+        [nix.POS]: $pos[18],
         saunafs: nix.thunk(() => ({
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           masterHost: "master",
-          metalogger: nix.thunk(() => ({ [nix.POS]: pos$17, enable: true })),
+          metalogger: nix.thunk(() => ({ [nix.POS]: $pos[16], enable: true })),
         })),
       })),
     };
@@ -126,20 +96,20 @@ export default nix.lambda((args) => (() => {
     const pkgs_1 = nix.arg($_1, "pkgs");
     const lib_1 = nix.arg($_1, "lib");
     return {
-      [nix.POS]: pos$28,
+      [nix.POS]: $pos[27],
       services: nix.thunk(() => ({
-        [nix.POS]: pos$23,
+        [nix.POS]: $pos[22],
         saunafs: nix.thunk(() => ({
-          [nix.POS]: pos$22,
-          client: nix.thunk(() => ({ [nix.POS]: pos$21, enable: true })),
+          [nix.POS]: $pos[21],
+          client: nix.thunk(() => ({ [nix.POS]: $pos[20], enable: true })),
         })),
       })),
       systemd: nix.thunk(() => ({
-        [nix.POS]: pos$26,
-        network: nix.thunk(() => ({ [nix.POS]: pos$24, enable: true })),
+        [nix.POS]: $pos[25],
+        network: nix.thunk(() => ({ [nix.POS]: $pos[23], enable: true })),
         mounts: nix.thunk(() => [
           nix.thunk(() => ({
-            [nix.POS]: pos$25,
+            [nix.POS]: $pos[24],
             requires: nix.thunk(() => ["network-online.target"]),
             after: nix.thunk(() => ["network-online.target"]),
             wantedBy: nix.thunk(() => ["remote-fs.target"]),
@@ -149,18 +119,18 @@ export default nix.lambda((args) => (() => {
           })),
         ]),
       })),
-      networking: nix.thunk(() => ({ [nix.POS]: pos$27, useDHCP: false, useNetworkd: true })),
+      networking: nix.thunk(() => ({ [nix.POS]: $pos[26], useDHCP: false, useNetworkd: true })),
     };
   })(), formals$5);
   return {
-    [nix.POS]: pos$31,
+    [nix.POS]: $pos[30],
     name: "saunafs",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$29,
+      [nix.POS]: $pos[28],
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "markuskowa"))]),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$30,
+      [nix.POS]: $pos[29],
       master: master,
       metalogger: metalogger,
       chunkserver1: chunkserver,

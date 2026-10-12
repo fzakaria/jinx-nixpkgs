@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["with-hooks", 54, 5], ["with-hooks-cpu", 59, 5]], [["description", 111, 5], ["homepage", 112, 5], ["changelog", 113, 5], ["license", 114, 5], ["maintainers", 115, 5]], [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["src", 35, 3], ["build-system", 42, 3], ["dependencies", 46, 3], ["optional-dependencies", 53, 3], ["preCheck", 66, 3], ["nativeCheckInputs", 72, 3], ["disabledTests", 80, 3], ["disabledTestPaths", 104, 3], ["meta", 110, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, config: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, numpy: false, "scikit-learn": false, torch: false, tqdm: false, faiss: false, tensorboard: false, "pytest-xdist": false, pytestCheckHook: false, torchvision: false, writableTmpDirAsHomeHook: false, cudaSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["with-hooks", 54, 5], ["with-hooks-cpu", 59, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 111, 5], ["homepage", 112, 5], ["changelog", 113, 5], ["license", 114, 5], ["maintainers", 115, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["src", 35, 3], ["build-system", 42, 3], ["dependencies", 46, 3], ["optional-dependencies", 53, 3], ["preCheck", 66, 3], ["nativeCheckInputs", 72, 3], ["disabledTests", 80, 3], ["disabledTestPaths", 104, 3], ["meta", 110, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.9.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "KevinMusgrave",
           repo: "pytorch-metric-learning",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [numpy, torch, scikit_learn, tqdm]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         "with-hooks": nix.thunk(() => [faiss, tensorboard]),
         "with-hooks-cpu": nix.thunk(() => [faiss, tensorboard]),
       }));
@@ -69,7 +66,7 @@ export default nix.lambda((args) => (() => {
         ]))));
       const disabledTestPaths = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["tests/testers/", "tests/utils/"])));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Metric learning library for PyTorch",
         homepage: "https://github.com/KevinMusgrave/pytorch-metric-learning",
         changelog: nix.thunk(() => nix.str`https://github.com/KevinMusgrave/pytorch-metric-learning/releases/tag/${nix.sel(src, "tag")}`),
@@ -80,7 +77,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

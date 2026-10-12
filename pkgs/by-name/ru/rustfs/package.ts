@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 7], ["repo", 28, 7], ["tag", 29, 7], ["hash", 30, 7]], [["pname", 34, 28], ["version", 34, 34], ["src", 34, 42], ["pnpm", 35, 15], ["fetcherVersion", 36, 7], ["hash", 37, 7]], [["pname", 21, 5], ["version", 22, 5], ["__structuredAttrs", 23, 5], ["__darwinAllowLocalNetworking", 24, 5], ["src", 26, 5], ["pnpmDeps", 33, 5], ["nativeBuildInputs", 40, 5], ["buildPhase", 46, 5], ["installPhase", 50, 5]], [["owner", 63, 5], ["repo", 64, 5], ["tag", 65, 5], ["hash", 66, 5]], [["RUSTFLAGS", 83, 7]], [["rustfs", 93, 28]], [["name", 97, 7], ["runtimeInputs", 98, 7], ["text", 99, 7]], [["tests", 92, 5], ["updateScript", 96, 5]], [["description", 107, 5], ["homepage", 108, 5], ["changelog", 109, 5], ["license", 110, 5], ["maintainers", 111, 5], ["mainProgram", 115, 5]], [["pname", 58, 3], ["version", 59, 3], ["__structuredAttrs", 60, 3], ["src", 62, 3], ["postPatch", 69, 3], ["cargoHash", 74, 3], ["nativeBuildInputs", 76, 3], ["console", 81, 11], ["env", 83, 3], ["cargoBuildFlags", 86, 3], ["doCheck", 89, 3], ["passthru", 91, 3], ["meta", 106, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchPnpmDeps: false, pnpm_11: false, pnpmConfigHook: false, nodejs: false, rustPlatform: false, protobuf: false, cacert: false, "nix-update": false, nixosTests: false, writeShellApplication: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 7], ["repo", 28, 7], ["tag", 29, 7], ["hash", 30, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 34, 28], ["version", 34, 34], ["src", 34, 42], ["pnpm", 35, 15], ["fetcherVersion", 36, 7], ["hash", 37, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 21, 5], ["version", 22, 5], ["__structuredAttrs", 23, 5], ["__darwinAllowLocalNetworking", 24, 5], ["src", 26, 5], ["pnpmDeps", 33, 5], ["nativeBuildInputs", 40, 5], ["buildPhase", 46, 5], ["installPhase", 50, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 63, 5], ["repo", 64, 5], ["tag", 65, 5], ["hash", 66, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["RUSTFLAGS", 83, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["rustfs", 93, 28]]);
-const pos$7 = nix.positions(here + "/package.nix", [["name", 97, 7], ["runtimeInputs", 98, 7], ["text", 99, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["tests", 92, 5], ["updateScript", 96, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 107, 5], ["homepage", 108, 5], ["changelog", 109, 5], ["license", 110, 5], ["maintainers", 111, 5], ["mainProgram", 115, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 58, 3], ["version", 59, 3], ["__structuredAttrs", 60, 3], ["src", 62, 3], ["postPatch", 69, 3], ["cargoHash", 74, 3], ["nativeBuildInputs", 76, 3], ["console", 81, 11], ["env", 83, 3], ["cargoBuildFlags", 86, 3], ["doCheck", 89, 3], ["passthru", 91, 3], ["meta", 106, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,20 +22,20 @@ export default nix.lambda((args) => (() => {
   const writeShellApplication = nix.arg($, "writeShellApplication");
   const pnpm = pnpm_11;
   const console = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "rustfs-console",
       version: "0.1.34",
       __structuredAttrs: true,
       __darwinAllowLocalNetworking: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rustfs",
           repo: "console",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-YAgdW8X3ioChFuGvP0zwwy3oHacWEcK85URu4TMBznM=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -57,12 +48,12 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\ncp -r out/. $out/\nrunHook postInstall\n",
     })));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "rustfs",
       version: "1.0.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "rustfs",
           repo: "rustfs",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -74,21 +65,21 @@ cp -rL ${nix.sel(finalAttrs, "console")} ./rustfs/static
       cargoHash: "sha256-yWCc5UUbkKI6+HC1qu0rGdw8VLLfm4kwNY9lzOKnKMk=",
       nativeBuildInputs: nix.thunk(() => [protobuf, cacert]),
       console: console,
-      env: nix.thunk(() => ({ [nix.POS]: pos$5, RUSTFLAGS: "--cfg tokio_unstable" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[4], RUSTFLAGS: "--cfg tokio_unstable" })),
       cargoBuildFlags: "-p rustfs",
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$6, rustfs: nix.thunk(() => nix.attr(nixosTests, "rustfs")) })),
+        [nix.POS]: $pos[7],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[5], rustfs: nix.thunk(() => nix.attr(nixosTests, "rustfs")) })),
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               name: "rustfs-update-script",
               runtimeInputs: nix.thunk(() => [nix_update]),
               text: "nix-update rustfs\nnix-update rustfs.console\n",
             })))))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "S3-compatible high-performance object storage system supporting migration and coexistence with other S3-compatible platforms such as MinIO and Ceph",
         homepage: "https://github.com/rustfs/rustfs",
         changelog: nix.thunk(() => nix.str`https://github.com/rustfs/rustfs/releases/tag/${nix.sel(finalAttrs, "version")}`),

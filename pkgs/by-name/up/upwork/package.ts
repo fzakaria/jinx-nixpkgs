@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 51, 5], ["url", 52, 5], ["sha256", 53, 5]], [["description", 128, 5], ["homepage", 129, 5], ["sourceProvenance", 130, 5], ["license", 131, 5], ["platforms", 132, 5], ["maintainers", 133, 5]], [["pname", 47, 3], ["version", 48, 3], ["src", 50, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 62, 3], ["libPath", 102, 3], ["dontWrapGApps", 104, 3], ["installPhase", 106, 3], ["meta", 127, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, requireFile: false, dpkg: false, wrapGAppsHook3: false, autoPatchelfHook: false, "alsa-lib": false, atk: false, "at-spi2-atk": false, "at-spi2-core": false, cairo: false, cups: false, dbus: false, expat: false, fontconfig: false, freetype: false, "gdk-pixbuf": false, glib: false, gtk3: false, libcxx: false, libdrm: false, libnotify: false, libpulseaudio: false, libuuid: false, libx11: false, libxcb: false, libxcomposite: false, libxcursor: false, libxdamage: false, libxext: false, libxfixes: false, libxi: false, libxrandr: false, libxrender: false, libxscrnsaver: false, libxtst: false, libgbm: false, nspr: false, nss: false, openssl: false, pango: false, systemd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 51, 5], ["url", 52, 5], ["sha256", 53, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 128, 5], ["homepage", 129, 5], ["sourceProvenance", 130, 5], ["license", 131, 5], ["platforms", 132, 5], ["maintainers", 133, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 47, 3], ["version", 48, 3], ["src", 50, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 62, 3], ["libPath", 102, 3], ["dontWrapGApps", 104, 3], ["installPhase", 106, 3], ["meta", 127, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -55,7 +53,7 @@ export default nix.lambda((args) => (() => {
       const pname = "upwork";
       const version = "5.8.0.35";
       const src = nix.thunk(() => nix.app(requireFile, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: nix.thunk(() => nix.str`${pname}_${version}_amd64.deb`),
           url: "https://www.upwork.com/ab/downloads/os/linux/",
           sha256: "sha256-Suv23TL6l5HhkOSRT56LpFRZJxuSLYVc1uT6he8j7O0=",
@@ -122,7 +120,7 @@ makeWrapper $out/opt/Upwork/upwork \\
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Online freelancing platform desktop application for time tracking",
         homepage: "https://www.upwork.com/ab/downloads/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -137,7 +135,7 @@ runHook postInstall
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

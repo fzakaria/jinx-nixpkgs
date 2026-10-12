@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 47, 5], ["sha256", 48, 5]], [["mousetweaks", 52, 46]], [["url", 58, 7], ["hash", 59, 7]], [["url", 62, 7], ["hash", 63, 7]], [["url", 68, 7], ["hash", 69, 7]], [["homepage", 194, 5], ["description", 195, 5], ["maintainers", 196, 5], ["license", 197, 5]], [["pname", 42, 3], ["version", 43, 3], ["format", 44, 3], ["src", 46, 3], ["patches", 51, 3], ["nativeBuildInputs", 75, 3], ["buildInputs", 83, 3], ["pythonPath", 101, 3], ["propagatedUserEnvPkgs", 110, 3], ["nativeCheckInputs", 112, 3], ["doCheck", 127, 3], ["preBuild", 129, 3], ["installPhase", 178, 3], ["postFixup", 189, 3], ["meta", 193, 3]]]);
 const formals$1 = { args: { fetchurl: false, fetchpatch: false, stdenv: false, lib: false, replaceVars: false, aspellWithDicts: false, "at-spi2-core": true, atspiSupport: true, bash: false, glib: false, dconf: false, "gobject-introspection": false, "gsettings-desktop-schemas": false, gtk3: false, hunspell: false, hunspellDicts: false, intltool: false, isocodes: false, libappindicator: false, "libcanberra-gtk3": false, mousetweaks: false, udev: false, libxkbcommon: false, "pkg-config": false, procps: false, python3: false, wrapGAppsHook3: false, libxtst: false, libxkbfile: false, yelp: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 47, 5], ["sha256", 48, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["mousetweaks", 52, 46]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 58, 7], ["hash", 59, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 62, 7], ["hash", 63, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 68, 7], ["hash", 69, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 194, 5], ["description", 195, 5], ["maintainers", 196, 5], ["license", 197, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 42, 3], ["version", 43, 3], ["format", 44, 3], ["src", 46, 3], ["patches", 51, 3], ["nativeBuildInputs", 75, 3], ["buildInputs", 83, 3], ["pythonPath", 101, 3], ["propagatedUserEnvPkgs", 110, 3], ["nativeCheckInputs", 112, 3], ["doCheck", 127, 3], ["preBuild", 129, 3], ["installPhase", 178, 3], ["postFixup", 189, 3], ["meta", 193, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -46,30 +40,30 @@ export default nix.lambda((args) => (() => {
   const customHunspell = nix.thunk(() => nix.app(nix.sel(hunspell, "withDicts"), (di) => [nix.thunk(() => nix.sel(di, "en-us"))]));
   const majorVersion = "1.4";
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "onboard",
       version: nix.thunk(() => nix.str`${majorVersion}.1`),
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://launchpad.net/onboard/${majorVersion}/${nix.sel(finalAttrs, "version")}/+download/onboard-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0r9q38ikmr4in4dwqd8m9gh9xjbgxnfxglnjbfcapw8ybfnf3jh1",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, mousetweaks: mousetweaks })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ [nix.POS]: $pos[1], mousetweaks: mousetweaks })))),
         nix.path(here, "./hunspell-use-xdg-datadirs.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/void-linux/void-packages/raw/1be95325d320122efd5dedf7437839cfcca01f7a/srcpkgs/onboard/patches/python-3.12.patch",
             hash: "sha256-Lw5wlaWFlP5rFlEWmlPo5Ux8idrmhET/X9yiu+2Akkk=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://github.com/void-linux/void-packages/raw/1be95325d320122efd5dedf7437839cfcca01f7a/srcpkgs/onboard/patches/thread-state.patch",
             hash: "sha256-fJfxD7HshroiEVkaKVBGV7py8tdOhbcprcmBQNuxR9U=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: "https://github.com/void-linux/void-packages/raw/9ef46bf26ac5acc1af5809f11c97b19c5e2233ed/srcpkgs/onboard/patches/fix-brokenformat.patch",
             hash: "sha256-r9mvJNWpPR1gsayuSSLpzIuafEKqtADYklre0Ju+KOM=",
           })))),
@@ -175,7 +169,7 @@ runHook postInstall
 `),
       postFixup: "rm -rf  $out/share/icons/ubuntu-mono-*\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://launchpad.net/onboard",
         description: "Onscreen keyboard useful for tablet PC users and for mobility impaired users",
         maintainers: [],

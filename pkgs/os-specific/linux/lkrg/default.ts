@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["description", 47, 5], ["longDescription", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5], ["broken", 53, 5]], [["name", 14, 3], ["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["hardeningDisable", 25, 3], ["nativeBuildInputs", 27, 3], ["makeFlags", 29, 3], ["enableParallelBuilding", 33, 3], ["dontConfigure", 34, 3], ["prePatch", 36, 3], ["installPhase", 40, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, kernel: false, kernelModuleMakeFlags: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 47, 5], ["longDescription", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5], ["broken", 53, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 14, 3], ["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["hardeningDisable", 25, 3], ["nativeBuildInputs", 27, 3], ["makeFlags", 29, 3], ["enableParallelBuilding", 33, 3], ["dontConfigure", 34, 3], ["prePatch", 36, 3], ["installPhase", 40, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const kernelModuleMakeFlags = nix.arg($, "kernelModuleMakeFlags");
   const isKernelRT = nix.thunk(() => (nix.asBool(nix.has(nix.sel(kernel, "structuredExtraConfig"), "PREEMPT_RT")) && nix.asBool(nix.eq(nix.sel(kernel, "structuredExtraConfig", "PREEMPT_RT"), nix.sel(lib, "kernel", "yes")))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}-${nix.sel(kernel, "version")}`),
       pname: "lkrg",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lkrg-org",
           repo: "lkrg",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +38,7 @@ install -D lkrg.ko $out/lib/modules/${nix.sel(kernel, "modDirVersion")}/extra/lk
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "LKRG Linux Kernel module",
         longDescription: "LKRG performs runtime integrity checking of the Linux kernel and detection of security vulnerability exploits against the kernel.",
         homepage: "https://lkrg.org/",

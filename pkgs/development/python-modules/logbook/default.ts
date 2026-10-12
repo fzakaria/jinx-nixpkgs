@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["pname", 44, 26], ["version", 44, 32], ["src", 44, 40], ["hash", 45, 5]], [["execnet", 49, 5], ["sqlalchemy", 50, 5], ["redis", 51, 5], ["zmq", 52, 5], ["compression", 53, 5], ["jinja", 54, 5], ["all", 55, 5]], [["description", 82, 5], ["homepage", 83, 5], ["changelog", 84, 5], ["license", 85, 5], ["maintainers", 86, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["build-system", 32, 3], ["nativeBuildInputs", 37, 3], ["cargoDeps", 43, 3], ["optional-dependencies", 48, 3], ["nativeCheckInputs", 65, 3], ["__darwinAllowLocalNetworking", 72, 3], ["pythonImportsCheck", 74, 3], ["disabledTests", 76, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, brotli: false, buildPythonPackage: false, cargo: false, execnet: false, fetchFromGitHub: false, jinja2: false, pytestCheckHook: false, "pytest-rerunfailures": false, pyzmq: false, redis: false, rustc: false, rustPlatform: false, setuptools: false, "setuptools-rust": false, sqlalchemy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 44, 26], ["version", 44, 32], ["src", 44, 40], ["hash", 45, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["execnet", 49, 5], ["sqlalchemy", 50, 5], ["redis", 51, 5], ["zmq", 52, 5], ["compression", 53, 5], ["jinja", 54, 5], ["all", 55, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 82, 5], ["homepage", 83, 5], ["changelog", 84, 5], ["license", 85, 5], ["maintainers", 86, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["build-system", 32, 3], ["nativeBuildInputs", 37, 3], ["cargoDeps", 43, 3], ["optional-dependencies", 48, 3], ["nativeCheckInputs", 65, 3], ["__darwinAllowLocalNetworking", 72, 3], ["pythonImportsCheck", 74, 3], ["disabledTests", 76, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const setuptools_rust = nix.arg($, "setuptools-rust");
   const sqlalchemy = nix.arg($, "sqlalchemy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "logbook",
       version: "1.9.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "getlogbook",
           repo: "logbook",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -42,14 +38,14 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools, setuptools_rust]),
       nativeBuildInputs: nix.thunk(() => [cargo, rustc, nix.thunk(() => nix.sel(rustPlatform, "cargoSetupHook"))]),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-xIjcK69rwtE86DfvD9qXEn8MDIvU0Dl+d4Fmw9BUuCM=",
         })))),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         execnet: nix.thunk(() => [execnet]),
         sqlalchemy: nix.thunk(() => [sqlalchemy]),
         redis: nix.thunk(() => [redis]),
@@ -63,7 +59,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["logbook"]),
       disabledTests: nix.thunk(() => ["test_redis_handler"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Logging replacement for Python",
         homepage: "https://logbook.readthedocs.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/getlogbook/logbook/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES`),

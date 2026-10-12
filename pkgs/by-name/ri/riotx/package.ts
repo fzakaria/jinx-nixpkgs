@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["hash", 19, 5]], [["changelog", 59, 5], ["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["mainProgram", 63, 5], ["platforms", 64, 5], ["sourceProvenance", 65, 5], ["teams", 66, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 27, 3], ["installPhase", 29, 3], ["postInstall", 49, 3], ["__structuredAttrs", 55, 3], ["strictDeps", 56, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { coreutils: false, fetchzip: false, findutils: false, gnused: false, installShellFiles: false, jre_headless: false, lib: false, makeWrapper: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 59, 5], ["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["mainProgram", 63, 5], ["platforms", 64, 5], ["sourceProvenance", 65, 5], ["teams", 66, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 27, 3], ["installPhase", 29, 3], ["postInstall", 49, 3], ["__structuredAttrs", 55, 3], ["strictDeps", 56, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "riotx",
       version: "1.15.1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/redis/riotx-dist/releases/download/v${nix.sel(finalAttrs, "version")}/riotx-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-IotoZsbwttfrb2I4bqPf/MPzZOThNazovz9U7qJ2i7s=",
         })))),
@@ -45,7 +43,7 @@ runHook postInstall
       __structuredAttrs: true,
       strictDeps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/redis/riotx-dist/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Data integration tool for Redis Cloud and Redis Software",
         homepage: "https://redis.github.io/riotx",

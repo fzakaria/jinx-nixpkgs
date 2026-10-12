@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["stripRoot", 20, 5], ["hash", 21, 5]], [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5], ["platforms", 38, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 18, 3], ["nativeBuildInputs", 24, 3], ["outputs", 25, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false, installFonts: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["stripRoot", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5], ["platforms", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 18, 3], ["nativeBuildInputs", 24, 3], ["outputs", 25, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "victor-mono";
       const version = "1.5.6";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/rubjo/victor-mono/raw/v${version}/public/VictorMonoAll.zip`),
           stripRoot: false,
           hash: "sha256-PnCCU7PO+XcxUk445sU5xVl8XqdSPJighjtDTqI6qiw=",
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [installFonts]);
       const outputs = nix.thunk(() => ["out", "webfont"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Free programming font with cursive italics and ligatures",
         homepage: "https://rubjo.github.io/victor-mono",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { [nix.POS]: pos$3, pname, version, src, nativeBuildInputs, outputs, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, nativeBuildInputs, outputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

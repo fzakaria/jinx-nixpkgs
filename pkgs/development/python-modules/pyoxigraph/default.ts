@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["fetchSubmodules", 23, 5], ["hash", 24, 5]], [["pname", 28, 26], ["version", 28, 32], ["src", 28, 40], ["hash", 29, 5]], [["description", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["license", 63, 5], ["maintainers", 67, 5], ["platforms", 68, 5]], [["pname", 13, 3], ["pyproject", 14, 3], ["version", 15, 3], ["__structuredAttrs", 17, 3], ["src", 19, 3], ["cargoDeps", 27, 3], ["buildAndTestSubdir", 32, 3], ["nativeBuildInputs", 34, 3], ["dependencies", 41, 3], ["nativeCheckInputs", 43, 3], ["pythonImportsCheck", 45, 3], ["disabledTests", 47, 3], ["disabledTestPaths", 51, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "apple-sdk_15": false, buildPythonPackage: false, fetchFromGitHub: false, "pkg-config": false, pytestCheckHook: false, rustPlatform: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["fetchSubmodules", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 28, 26], ["version", 28, 32], ["src", 28, 40], ["hash", 29, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["license", 63, 5], ["maintainers", 67, 5], ["platforms", 68, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["pyproject", 14, 3], ["version", 15, 3], ["__structuredAttrs", 17, 3], ["src", 19, 3], ["cargoDeps", 27, 3], ["buildAndTestSubdir", 32, 3], ["nativeBuildInputs", 34, 3], ["dependencies", 41, 3], ["nativeCheckInputs", 43, 3], ["pythonImportsCheck", 45, 3], ["disabledTests", 47, 3], ["disabledTestPaths", 51, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pyoxigraph",
       pyproject: true,
       version: "0.5.9",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "oxigraph",
           repo: "oxigraph",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-I5NI1IoK+FPCmUUcLdyzBao7tuB8XIycPYQ6slYCtJc=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -57,7 +54,7 @@ export default nix.lambda((args) => (() => {
         "oxrocksdb-sys/rocksdb/tools",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "SPARQL graph database",
         homepage: "https://github.com/oxigraph/oxigraph",
         changelog: nix.thunk(() => nix.str`https://github.com/oxigraph/oxigraph/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["url", 63, 7], ["hash", 64, 7], ["excludes", 66, 7]], [["fail2ban", 103, 43]], [["tests", 103, 12]], [["homepage", 106, 5], ["description", 107, 5], ["changelog", 108, 5], ["license", 109, 5], ["maintainers", 110, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["__structuredAttrs", 16, 3], ["src", 18, 3], ["outputs", 25, 3], ["build-system", 40, 3], ["nativeBuildInputs", 42, 3], ["dependencies", 44, 3], ["preConfigure", 51, 3], ["doCheck", 58, 3], ["patches", 60, 3], ["preInstall", 70, 3], ["postInstall", 77, 3], ["passthru", 103, 3], ["meta", 105, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, python3: false, installShellFiles: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 63, 7], ["hash", 64, 7], ["excludes", 66, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["fail2ban", 103, 43]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 103, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 106, 5], ["description", 107, 5], ["changelog", 108, 5], ["license", 109, 5], ["maintainers", 110, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["__structuredAttrs", 16, 3], ["src", 18, 3], ["outputs", 25, 3], ["build-system", 40, 3], ["nativeBuildInputs", 42, 3], ["dependencies", 44, 3], ["preConfigure", 51, 3], ["doCheck", 58, 3], ["patches", 60, 3], ["preInstall", 70, 3], ["postInstall", 77, 3], ["passthru", 103, 3], ["meta", 105, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "fail2ban",
       version: "1.1.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fail2ban",
           repo: "fail2ban",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -49,7 +44,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/fail2ban/fail2ban/commit/403df4a91c8ad8f235a3cb9e17d0cc4d29c2dafd.patch",
             hash: "sha256-HI/9qaB+TMbRu/2NPwV+kVcYK03YNnzcD+iaBOlM20w=",
             excludes: nix.thunk(() => ["ChangeLog"]),
@@ -82,14 +77,14 @@ rm -r "${sitePackages}/usr"
 `)));
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           fail2ban: nix.thunk(() => nix.attr(nixosTests, "fail2ban")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://www.fail2ban.org/",
         description: "Program that scans log files for repeated failing login attempts and bans IP addresses",
         changelog: nix.thunk(() => nix.str`https://github.com/fail2ban/fail2ban/blob/${nix.sel(finalAttrs, "src", "tag")}/ChangeLog`),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 52, 13], ["version", 52, 19], ["hash", 53, 5]], [["name", 59, 7], ["url", 60, 7], ["hash", 61, 7]], [["description", 130, 5], ["homepage", 131, 5], ["changelog", 132, 5], ["license", 133, 5], ["maintainers", 134, 5], ["mainProgram", 135, 5]], [["pname", 47, 3], ["version", 48, 3], ["pyproject", 49, 3], ["src", 51, 3], ["patches", 56, 3], ["build-system", 65, 3], ["dependencies", 67, 3], ["nativeCheckInputs", 102, 3], ["disabledTests", 109, 3], ["disabledTestPaths", 120, 3], ["__darwinAllowLocalNetworking", 125, 3], ["pythonImportsCheck", 127, 3], ["meta", 129, 3]]]);
 const formals$1 = { args: { lib: false, aiohttp: false, babel: false, blinker: false, buildPythonPackage: false, docutils: false, doit: false, feedparser: false, fetchpatch: false, fetchPypi: false, freezegun: false, "ghp-import": false, hsluv: false, html5lib: false, ipykernel: false, jinja2: false, lxml: false, mako: false, markdown: false, micawber: false, mock: false, natsort: false, notebook: false, phpserialize: false, piexif: false, pillow: false, pygal: false, pygments: false, pyphen: false, pyrss2gen: false, pytestCheckHook: false, "pytest-cov-stub": false, "python-dateutil": false, requests: false, "ruamel-yaml": false, setuptools: false, stdenv: false, toml: false, typogrify: false, unidecode: false, watchdog: false, yapsy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 52, 13], ["version", 52, 19], ["hash", 53, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 59, 7], ["url", 60, 7], ["hash", 61, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 130, 5], ["homepage", 131, 5], ["changelog", 132, 5], ["license", 133, 5], ["maintainers", 134, 5], ["mainProgram", 135, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 47, 3], ["version", 48, 3], ["pyproject", 49, 3], ["src", 51, 3], ["patches", 56, 3], ["build-system", 65, 3], ["dependencies", 67, 3], ["nativeCheckInputs", 102, 3], ["disabledTests", 109, 3], ["disabledTestPaths", 120, 3], ["__darwinAllowLocalNetworking", 125, 3], ["pythonImportsCheck", 127, 3], ["meta", 129, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -57,14 +54,14 @@ export default nix.lambda((args) => (() => {
       const version = "8.3.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-Y219b/wqsk9MJknoaV+LtWBOMJFT6ktgt4b6yuA6scc=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "python-3.14.patch",
             url: "https://github.com/getnikola/nikola/commit/635366b64149055844f2d2ef6070b456bd4ba245.patch",
             hash: "sha256-TmrYHEIvC8ZKngBJnnKcyU5S4kjzIjLk7KKm72hXx1A=",
@@ -118,7 +115,7 @@ export default nix.lambda((args) => (() => {
       const __darwinAllowLocalNetworking = true;
       const pythonImportsCheck = nix.thunk(() => ["nikola"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Static website and blog generator",
         homepage: "https://getnikola.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/getnikola/nikola/blob/v${version}/CHANGES.txt`),
@@ -130,7 +127,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "nikola",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

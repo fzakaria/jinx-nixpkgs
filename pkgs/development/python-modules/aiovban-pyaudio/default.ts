@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["cli", 29, 5]], [["changelog", 38, 5], ["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 28]], [["pname", 12, 3], ["version", 13, 21], ["pyproject", 13, 29], ["src", 13, 39], ["sourceRoot", 15, 3], ["build-system", 17, 3], ["dependencies", 19, 3], ["pythonImportsCheck", 24, 3], ["optional-dependencies", 28, 3], ["__structuredAttrs", 35, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, setproctitle: false, uvloop: false, aiovban: false, buildPythonPackage: false, pyaudio: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["cli", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 38, 5], ["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 28]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 21], ["pyproject", 13, 29], ["src", 13, 39], ["sourceRoot", 15, 3], ["build-system", 17, 3], ["dependencies", 19, 3], ["pythonImportsCheck", 24, 3], ["optional-dependencies", 28, 3], ["__structuredAttrs", 35, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const pyaudio = nix.arg($, "pyaudio");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "aiovban-pyaudio",
       version: nix.thunk(() => nix.attr(aiovban, "version")),
       pyproject: nix.thunk(() => nix.attr(aiovban, "pyproject")),
@@ -26,12 +24,12 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [aiovban, pyaudio]),
       pythonImportsCheck: nix.thunk(() => ["aiovban_pyaudio"]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$1, cli: nix.thunk(() => [setproctitle, uvloop]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[0], cli: nix.thunk(() => [setproctitle, uvloop]) })),
       __structuredAttrs: true,
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(aiovban, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/wmbest2/aiovban/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "PyAudio wrapper for aiovban",
         homepage: "https://github.com/wmbest2/aiovban/tree/main/aiovban_pyaudio",

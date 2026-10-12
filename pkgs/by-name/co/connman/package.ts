@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 78, 5], ["hash", 79, 5]], [["name", 84, 7], ["url", 85, 7], ["hash", 86, 7]], [["name", 89, 7], ["url", 90, 7], ["hash", 91, 7]], [["url", 97, 7], ["hash", 98, 7]], [["connman", 188, 18]], [["tests", 188, 12]], [["description", 191, 5], ["homepage", 192, 5], ["license", 193, 5], ["mainProgram", 194, 5], ["maintainers", 195, 5], ["platforms", 196, 5]], [["pname", 74, 3], ["version", 75, 3], ["src", 77, 3], ["patches", 82, 3], ["nativeBuildInputs", 102, 3], ["buildInputs", 108, 3], ["postPatch", 124, 3], ["configureFlags", 128, 3], ["doCheck", 186, 3], ["passthru", 188, 3], ["meta", 190, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, autoreconfHook: false, dbus: false, file: false, glib: false, gnutls: false, iptables: false, libmnl: false, libnftnl: false, nixosTests: false, openconnect: false, openvpn: false, "pkg-config": false, polkit: false, ppp: false, pptp: false, readline: false, vpnc: false, dnsType: true, enableBluetooth: true, enableClient: true, enableDatafiles: true, enableDundee: true, enableEthernet: true, enableGadget: true, enableHh2serialGps: true, enableIospm: true, enableL2tp: true, enableLoopback: true, enableNeard: true, enableNetworkManager: true, enableNetworkManagerCompatibility: true, enableOfono: true, enableOpenconnect: true, enableOpenvpn: true, enablePacrunner: true, enablePolkit: true, enablePptp: true, enableStats: true, enableTist: true, enableTools: true, enableVpnc: true, enableWifi: true, enableWireguard: true, enableWispr: true, firewallType: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 78, 5], ["hash", 79, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 84, 7], ["url", 85, 7], ["hash", 86, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 89, 7], ["url", 90, 7], ["hash", 91, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 97, 7], ["hash", 98, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["connman", 188, 18]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 188, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 191, 5], ["homepage", 192, 5], ["license", 193, 5], ["mainProgram", 194, 5], ["maintainers", 195, 5], ["platforms", 196, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 74, 3], ["version", 75, 3], ["src", 77, 3], ["patches", 82, 3], ["nativeBuildInputs", 102, 3], ["buildInputs", 108, 3], ["postPatch", 124, 3], ["configureFlags", 128, 3], ["doCheck", 186, 3], ["passthru", 188, 3], ["meta", 190, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -70,30 +63,30 @@ export default nix.lambda((args) => (() => {
   nix.assert_(nix.app(nix.sel(lib, "asserts", "assertOneOf"), "firewallType", firewallType, nix.thunk(() => ["iptables", "nftables"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/co/connman/package.nix:65:1");
   nix.assert_(nix.app(nix.sel(lib, "asserts", "assertOneOf"), "dnsType", dnsType, nix.thunk(() => ["internal", "systemd-resolved"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/co/connman/package.nix:69:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "connman",
       version: "1.43",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://kernel/linux/network/connman/connman-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-ElfOvjJ+eQC34rhMD7MwqpCBXkVYmM0vlB9DCO0r47w=",
         })))),
       patches: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "CVE-2025-32366.patch",
             url: "https://git.kernel.org/pub/scm/network/connman/connman.git/patch/?id=8d3be0285f1d4667bfe85dba555c663eb3d704b4",
             hash: "sha256-kPb4pZVWvnvTUcpc4wRc8x/pMUTXGIywj3w8IYKRTBs=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "CVE-2025-32743.patch",
             url: "https://git.kernel.org/pub/scm/network/connman/connman.git/patch/?id=d90b911f6760959bdf1393c39fe8d1118315490f",
             hash: "sha256-odkjYC/iM6dTIJx2WM/KKotXdTtgv8NMFNJMzx5+YU4=",
           })))),
       ], nix.app(optionals, nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               url: "https://git.alpinelinux.org/aports/plain/community/connman/libresolv.patch?id=e393ea84386878cbde3cccadd36a30396e357d1e",
               hash: "sha256-7Q1bp8rD/gGVYUqnIXqjr9vypR8jlC926p3KYWl9kLw=",
             })))),
@@ -147,11 +140,11 @@ export default nix.lambda((args) => (() => {
       ])))),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$5, connman: nix.thunk(() => nix.sel(nixosTests, "connman")) })),
+        [nix.POS]: $pos[5],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[4], connman: nix.thunk(() => nix.sel(nixosTests, "connman")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Daemon for managing internet connections",
         homepage: "https://git.kernel.org/pub/scm/network/connman/connman.git/about/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

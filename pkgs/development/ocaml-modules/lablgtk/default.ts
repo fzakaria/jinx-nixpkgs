@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 11], ["repo", 24, 11], ["rev", 25, 11], ["sha256", 26, 11]], [["version", 21, 9], ["src", 22, 9], ["env", 28, 9], ["buildInputs", 29, 9]], [["url", 35, 11], ["sha256", 36, 11]], [["NIX_CFLAGS_COMPILE", 42, 13]], [["version", 33, 9], ["src", 34, 9], ["env", 42, 9]], [["url", 55, 7], ["hash", 56, 7]], [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["mainProgram", 85, 5], ["platforms", 86, 26]], [["pname", 49, 3], ["version", 50, 19], ["src", 50, 27], ["env", 50, 31], ["patches", 53, 3], ["nativeBuildInputs", 60, 3], ["buildInputs", 65, 3], ["configureFlags", 67, 3], ["buildFlags", 68, 3], ["preInstall", 70, 3], ["dontStrip", 75, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchFromGitHub: false, fetchpatch: false, ocaml: false, findlib: false, "pkg-config": false, gtk2: false, "camlp-streams": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 11], ["repo", 24, 11], ["rev", 25, 11], ["sha256", 26, 11]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 21, 9], ["src", 22, 9], ["env", 28, 9], ["buildInputs", 29, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 35, 11], ["sha256", 36, 11]]);
-const pos$4 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 42, 13]]);
-const pos$5 = nix.positions(here + "/default.nix", [["version", 33, 9], ["src", 34, 9], ["env", 42, 9]]);
-const pos$6 = nix.positions(here + "/default.nix", [["url", 55, 7], ["hash", 56, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["mainProgram", 85, 5], ["platforms", 86, 26]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pname", 49, 3], ["version", 50, 19], ["src", 50, 27], ["env", 50, 31], ["patches", 53, 3], ["nativeBuildInputs", 60, 3], ["buildInputs", 65, 3], ["configureFlags", 67, 3], ["buildFlags", 68, 3], ["preInstall", 70, 3], ["dontStrip", 75, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +22,7 @@ export default nix.lambda((args) => (() => {
     return (nix.asBool(nix.app(check, "4.06")) ? (() => {
       const version = "2.18.13";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "garrigue",
           repo: "lablgtk",
           rev: version,
@@ -37,27 +30,27 @@ export default nix.lambda((args) => (() => {
         }))));
       const env = nix.thunk(() => ({}));
       const buildInputs = nix.thunk(() => [camlp_streams]);
-      return { [nix.POS]: pos$2, version, src, env, buildInputs };
+      return { [nix.POS]: $pos[1], version, src, env, buildInputs };
     })() : (nix.asBool(nix.app(check, "3.12")) ? {
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       version: "2.18.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: "https://forge.ocamlcore.org/frs/download.php/1627/lablgtk-2.18.5.tar.gz",
           sha256: "0cyj6sfdvzx8hw7553lhgwc0krlgvlza0ph3dk9gsxy047dm3wib",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$4, NIX_CFLAGS_COMPILE: "-fcommon" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[3], NIX_CFLAGS_COMPILE: "-fcommon" })),
     } : nix.builtins.throw(nix.thunk(() => nix.str`lablgtk is not available for OCaml ${nix.sel(ocaml, "version")}`))));
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-lablgtk`),
       version: nix.thunk(() => nix.attr(param, "version")),
       src: nix.thunk(() => nix.attr(param, "src")),
       env: nix.thunk(() => nix.attr(param, "env")),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             url: "https://github.com/garrigue/lablgtk/commit/c9717249954d1713815d435c84f9953a685af4be.patch",
             hash: "sha256-jxmcAIIpdee7sPKfeLAijBnwgKDTjXuiWlh6c9rs+18=",
           })))),
@@ -75,7 +68,7 @@ export OCAMLPATH=$out/lib/ocaml/${nix.sel(ocaml, "version")}/site-lib/:$OCAMLPAT
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "OCaml interface to GTK",
         homepage: "http://lablgtk.forge.ocamlcore.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

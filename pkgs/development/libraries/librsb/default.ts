@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 28, 5], ["sha256", 29, 5]], [["NIX_CFLAGS_COMPILE", 49, 5], ["FCFLAGS", 53, 5]], [["homepage", 87, 5], ["description", 88, 5], ["longDescription", 89, 5], ["license", 99, 5], ["maintainers", 100, 5], ["platforms", 101, 5], ["broken", 103, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["configureFlags", 35, 3], ["env", 48, 3], ["enableParallelBuilding", 59, 3], ["nativeBuildInputs", 61, 3], ["preBuild", 77, 3], ["nativeCheckInputs", 81, 3], ["checkTarget", 84, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, gfortran: false, "pkg-config": false, libtool: false, m4: false, gnum4: false, file: false, memHierarchy: true, blas: false, zlib: false, openmpi: false, help2man: false, doxygen: false, octave: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 28, 5], ["sha256", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 49, 5], ["FCFLAGS", 53, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 87, 5], ["description", 88, 5], ["longDescription", 89, 5], ["license", 99, 5], ["maintainers", 100, 5], ["platforms", 101, 5], ["broken", 103, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["configureFlags", 35, 3], ["env", 48, 3], ["enableParallelBuilding", 59, 3], ["nativeBuildInputs", 61, 3], ["preBuild", 77, 3], ["nativeCheckInputs", 81, 3], ["checkTarget", 84, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pname = "librsb";
       const version = "1.3.0.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/${pname}/${pname}-${version}.tar.gz`),
           sha256: "sha256-GMb8RD+hz9KoEQ99S4jVu8tJO56Fs6YgFLi7V6hI4E8=",
         }))));
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--with-memhinfo=${memHierarchy}`),
       ]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-fPIC", "-Ofast"]))),
         FCFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-fPIC", "-Ofast"]))),
       }));
@@ -69,7 +66,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [octave]);
       const checkTarget = "tests";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://librsb.sourceforge.net/",
         description: "Shared memory parallel sparse matrix and sparse BLAS library",
         longDescription: "Library for sparse matrix computations featuring the Recursive Sparse\nBlocks (RSB) matrix format. This format allows cache efficient and\nmulti-threaded (that is, shared memory parallel) operations on large\nsparse matrices.\nlibrsb implements the Sparse BLAS standard, as specified in the BLAS\nForum documents.\nContains libraries and header files for developing applications that\nwant to make use of librsb.\n",
@@ -82,7 +79,7 @@ export default nix.lambda((args) => (() => {
         broken: true,
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 47, 5], ["repo", 48, 5], ["tag", 49, 5], ["hash", 50, 5]], [["azure", 69, 5], ["gcs", 74, 5], ["github", 75, 5], ["hdfs", 76, 5], ["s3", 77, 5]], [["description", 120, 5], ["homepage", 121, 5], ["changelog", 122, 5], ["license", 123, 5], ["maintainers", 124, 5], ["mainProgram", 125, 5]], [["pname", 42, 3], ["version", 43, 3], ["pyproject", 44, 3], ["src", 46, 3], ["build-system", 53, 3], ["dependencies", 55, 3], ["optional-dependencies", 68, 3], ["nativeCheckInputs", 80, 3], ["pythonImportsCheck", 92, 3], ["disabledTests", 94, 3], ["disabledTestPaths", 106, 3], ["__darwinAllowLocalNetworking", 117, 3], ["meta", 119, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, ansicolors: false, click: false, entrypoints: false, nbclient: false, nbformat: false, pyyaml: false, requests: false, tenacity: false, tqdm: false, pythonAtLeast: false, aiohttp: false, "azure-datalake-store": false, "azure-identity": false, "azure-storage-blob": false, gcsfs: false, pygithub: false, pyarrow: false, boto3: false, ipykernel: false, moto: false, "pytest-mock": false, pytestCheckHook: false, versionCheckHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 47, 5], ["repo", 48, 5], ["tag", 49, 5], ["hash", 50, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["azure", 69, 5], ["gcs", 74, 5], ["github", 75, 5], ["hdfs", 76, 5], ["s3", 77, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 120, 5], ["homepage", 121, 5], ["changelog", 122, 5], ["license", 123, 5], ["maintainers", 124, 5], ["mainProgram", 125, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 42, 3], ["version", 43, 3], ["pyproject", 44, 3], ["src", 46, 3], ["build-system", 53, 3], ["dependencies", 55, 3], ["optional-dependencies", 68, 3], ["nativeCheckInputs", 80, 3], ["pythonImportsCheck", 92, 3], ["disabledTests", 94, 3], ["disabledTestPaths", 106, 3], ["__darwinAllowLocalNetworking", 117, 3], ["meta", 119, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nteract",
           repo: "papermill",
           tag: version,
@@ -63,7 +60,7 @@ export default nix.lambda((args) => (() => {
         tqdm,
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.12")), nix.thunk(() => [aiohttp]))));
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         azure: nix.thunk(() => [azure_datalake_store, azure_identity, azure_storage_blob]),
         gcs: nix.thunk(() => [gcsfs]),
         github: nix.thunk(() => [pygithub]),
@@ -87,7 +84,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Parametrize and run Jupyter and interact with notebooks",
         homepage: "https://github.com/nteract/papermill",
         changelog: "https://papermill.readthedocs.io/en/latest/changelog.html",
@@ -96,7 +93,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "papermill",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

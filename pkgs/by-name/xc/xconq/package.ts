@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["sha256", 24, 5]], [["CXXFLAGS", 47, 7]], [["description", 81, 5], ["maintainers", 82, 5], ["platforms", 83, 5], ["license", 84, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 28, 3], ["configureFlags", 41, 3], ["env", 47, 3], ["enableParallelBuilding", 53, 3], ["hardeningDisable", 55, 3], ["patchPhase", 57, 3], ["postInstall", 74, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, cpio: false, xorgproto: false, libx11: false, libxmu: false, libxaw: false, libxt: false, tcl: false, tk: false, libxext: false, fontconfig: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["sha256", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CXXFLAGS", 47, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 81, 5], ["maintainers", 82, 5], ["platforms", 83, 5], ["license", 84, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 28, 3], ["configureFlags", 41, 3], ["env", 47, 3], ["enableParallelBuilding", 53, 3], ["hardeningDisable", 55, 3], ["patchPhase", 57, 3], ["postInstall", 74, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const fontconfig = nix.arg($, "fontconfig");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "xconq",
       version: "7.5.0-0pre.0.20050612",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/xconq/xconq/xconq-${nix.sel(finalAttrs, "version")}/xconq-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1za78yx57mgwcmmi33wx3533yz1x093dnqis8q2qmqivxav51lca",
         })))),
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--with-tkconfig=${tk}/lib`),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         CXXFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-std=c++11", "-DUSE_INTERP_RESULT", "-Wno-writable-strings"]))),
       })),
       enableParallelBuilding: true,
@@ -52,7 +49,7 @@ export default nix.lambda((args) => (() => {
 done
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Programmable turn-based strategy game",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

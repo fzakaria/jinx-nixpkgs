@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 26, 5], ["hash", 27, 5]], [["packageName", 51, 7]], [["updateScript", 50, 5]], [["homepage", 56, 5], ["description", 57, 5], ["mainProgram", 58, 5], ["maintainers", 59, 5], ["license", 60, 5], ["platforms", 61, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["buildInputs", 30, 3], ["nativeBuildInputs", 39, 3], ["passthru", 49, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "desktop-file-utils": false, gettext: false, gtkmm4: false, itstool: false, libadwaita: false, libsecret: false, libuuid: false, libxml2: false, libxslt: false, meson: false, ninja: false, "pkg-config": false, wrapGAppsHook4: false, gnome: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 51, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 50, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 56, 5], ["description", 57, 5], ["mainProgram", 58, 5], ["maintainers", 59, 5], ["license", 60, 5], ["platforms", 61, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["buildInputs", 30, 3], ["nativeBuildInputs", 39, 3], ["passthru", 49, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gnote";
       const version = "50.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnote/${nix.app(nix.sel(lib, "versions", "major"), version)}/gnote-${version}.tar.xz`),
           hash: "sha256-vtc0VUrPMXuSK3RiNprlLbzNzV9NInFMJnxeMFW9mLI=",
         }))));
@@ -47,11 +43,11 @@ export default nix.lambda((args) => (() => {
         wrapGAppsHook4,
       ]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: pname })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: pname })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://gitlab.gnome.org/GNOME/gnote",
         description: "Note taking application",
         mainProgram: "gnote",
@@ -63,7 +59,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

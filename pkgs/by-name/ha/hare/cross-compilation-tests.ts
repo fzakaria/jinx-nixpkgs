@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cross-compilation-tests.nix", [[["nativeBuildInputs", 18, 5]]]);
 const formals$1 = { args: { lib: false, file: false, hare: false, runCommand: false, writeText: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/cross-compilation-tests.nix", [["nativeBuildInputs", 18, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const writeText = nix.arg($, "writeText");
   const archs = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.builtins.map(nix.thunk(() => nix.app(nix.sel(lib, "removeSuffix"), "-linux")), nix.thunk(() => nix.builtins.filter(nix.thunk(() => nix.app(nix.sel(lib, "hasSuffix"), "-linux")), nix.thunk(() => nix.sel(hare, "meta", "platforms"))))))));
   const mainDotHare = nix.thunk(() => nix.app(writeText, "main.ha", "export fn main() void = void;\n"));
-  return nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(hare, "pname")}-cross-compilation-test`), nix.thunk(() => ({ [nix.POS]: pos$1, nativeBuildInputs: nix.thunk(() => [hare, file]) })), nix.thunk(() => nix.str`HARECACHE="$(mktemp -d)"
+  return nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(hare, "pname")}-cross-compilation-test`), nix.thunk(() => ({ [nix.POS]: $pos[0], nativeBuildInputs: nix.thunk(() => [hare, file]) })), nix.thunk(() => nix.str`HARECACHE="$(mktemp -d)"
 export HARECACHE
 readonly binprefix="bin"
 for a in ${archs}; do

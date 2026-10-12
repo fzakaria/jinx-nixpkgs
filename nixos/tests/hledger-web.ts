@@ -2,23 +2,10 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/hledger-web.nix", [[["maintainers", 14, 8]], [["host", 21, 11], ["port", 22, 11], ["enable", 23, 11], ["allow", 24, 11]], [["hledger-web", 20, 18]], [["allowedTCPPorts", 26, 29]], [["firewall", 26, 20]], [["preStart", 27, 38]], [["hledger-web", 27, 26]], [["services", 27, 17]], [["services", 20, 9], ["networking", 26, 9], ["systemd", 27, 9]], [["serveApi", 35, 30]], [["hledger-web", 35, 18]], [["imports", 34, 9], ["services", 35, 9]], [["server", 17, 5], ["apiserver", 31, 5]], [["name", 13, 3], ["meta", 14, 3], ["nodes", 16, 3], ["testScript", 39, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/hledger-web.nix", [["maintainers", 14, 8]]);
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/hledger-web.nix", [["host", 21, 11], ["port", 22, 11], ["enable", 23, 11], ["allow", 24, 11]]);
-const pos$3 = nix.positions(here + "/hledger-web.nix", [["hledger-web", 20, 18]]);
-const pos$4 = nix.positions(here + "/hledger-web.nix", [["allowedTCPPorts", 26, 29]]);
-const pos$5 = nix.positions(here + "/hledger-web.nix", [["firewall", 26, 20]]);
-const pos$6 = nix.positions(here + "/hledger-web.nix", [["preStart", 27, 38]]);
-const pos$7 = nix.positions(here + "/hledger-web.nix", [["hledger-web", 27, 26]]);
-const pos$8 = nix.positions(here + "/hledger-web.nix", [["services", 27, 17]]);
-const pos$9 = nix.positions(here + "/hledger-web.nix", [["services", 20, 9], ["networking", 26, 9], ["systemd", 27, 9]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$10 = nix.positions(here + "/hledger-web.nix", [["serveApi", 35, 30]]);
-const pos$11 = nix.positions(here + "/hledger-web.nix", [["hledger-web", 35, 18]]);
-const pos$12 = nix.positions(here + "/hledger-web.nix", [["imports", 34, 9], ["services", 35, 9]]);
-const pos$13 = nix.positions(here + "/hledger-web.nix", [["server", 17, 5], ["apiserver", 31, 5]]);
-const pos$14 = nix.positions(here + "/hledger-web.nix", [["name", 13, 3], ["meta", 14, 3], ["nodes", 16, 3], ["testScript", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,10 +13,10 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const journal = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "test.journal", "2010/01/10 Loan\n    assets:cash                 500$\n    income:loan                -500$\n2010/01/10 NixOS Foundation donation\n    expenses:donation           250$\n    assets:cash                -250$\n"));
   return {
-    [nix.POS]: pos$14,
+    [nix.POS]: $pos[13],
     name: "hledger-web",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "marijanp"))];
@@ -41,11 +28,11 @@ export default nix.lambda((args) => (() => {
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             "hledger-web": nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               host: "127.0.0.1",
               port: 5000n,
               enable: true,
@@ -53,18 +40,18 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             firewall: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(config, "services", "hledger-web", "port"))]),
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               "hledger-web": nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 preStart: nix.thunk(() => nix.str`ln -s ${journal} /var/lib/hledger-web/.hledger.journal
 `),
               })),
@@ -75,15 +62,15 @@ export default nix.lambda((args) => (() => {
       const apiserver = nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return {
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           imports: nix.thunk(() => [server]),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$11,
-            "hledger-web": nix.thunk(() => ({ [nix.POS]: pos$10, serveApi: true })),
+            [nix.POS]: $pos[10],
+            "hledger-web": nix.thunk(() => ({ [nix.POS]: $pos[9], serveApi: true })),
           })),
         };
       })(), formals$3);
-      return { [nix.POS]: pos$13, server, apiserver };
+      return { [nix.POS]: $pos[12], server, apiserver };
     })()),
     testScript: "start_all()\n\nserver.wait_for_unit(\"hledger-web.service\")\nserver.wait_for_open_port(5000)\nwith subtest(\"Check if web UI is accessible\"):\n    page = server.succeed(\"curl -L http://127.0.0.1:5000\")\n    assert \".hledger.journal\" in page\n\napiserver.wait_for_unit(\"hledger-web.service\")\napiserver.wait_for_open_port(5000)\nwith subtest(\"Check if the JSON API is served\"):\n    transactions = apiserver.succeed(\"curl -L http://127.0.0.1:5000/transactions\")\n    assert \"NixOS Foundation donation\" in transactions\n",
   };

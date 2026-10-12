@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 9, 3], ["extraBuildInputs", 11, 3]]]);
 const formals$1 = { args: { mkKdeDerivation: false, qtdeclarative: false, qtmultimedia: false, qrencode: false, libdmtx: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["extraBuildInputs", 11, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const qrencode = nix.arg($, "qrencode");
   const libdmtx = nix.arg($, "libdmtx");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "prison",
       extraBuildInputs: nix.thunk(() => [qtdeclarative, qtmultimedia, qrencode, libdmtx]),
     })));

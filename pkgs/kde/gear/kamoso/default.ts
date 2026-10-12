@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["qt6Support", 15, 44]], [["pname", 9, 3], ["extraNativeBuildInputs", 11, 3], ["extraBuildInputs", 12, 3], ["qtWrapperArgs", 19, 3], ["preFixup", 21, 3]]]);
 const formals$1 = { args: { mkKdeDerivation: false, "pkg-config": false, "kirigami-addons": false, gst_all_1: false, frei0r: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["qt6Support", 15, 44]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["extraNativeBuildInputs", 11, 3], ["extraBuildInputs", 12, 3], ["qtWrapperArgs", 19, 3], ["preFixup", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const gst_all_1 = nix.arg($, "gst_all_1");
   const frei0r = nix.arg($, "frei0r");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "kamoso",
       extraNativeBuildInputs: nix.thunk(() => [pkg_config]),
       extraBuildInputs: nix.thunk(() => [
         kirigami_addons,
         nix.thunk(() => nix.sel(gst_all_1, "gst-plugins-base")),
-        nix.thunk(() => nix.app(nix.sel(gst_all_1, "gst-plugins-good", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, qt6Support: true })))),
+        nix.thunk(() => nix.app(nix.sel(gst_all_1, "gst-plugins-good", "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], qt6Support: true })))),
         nix.thunk(() => nix.sel(gst_all_1, "gst-plugins-bad")),
       ]),
       qtWrapperArgs: nix.thunk(() => [nix.thunk(() => nix.str`--set FREI0R_PATH ${frei0r}/lib/frei0r-1`)]),

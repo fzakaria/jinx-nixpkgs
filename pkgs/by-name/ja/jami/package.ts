@@ -2,22 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 69, 5], ["owner", 70, 5], ["repo", 71, 5], ["rev", 72, 5], ["hash", 73, 5], ["fetchSubmodules", 74, 5]], [["url", 79, 7], ["hash", 80, 7]], [["url", 84, 7], ["hash", 85, 7], ["revert", 86, 7]], [["owner", 94, 7], ["repo", 95, 7], ["rev", 96, 7], ["hash", 97, 7]], [["version", 91, 5], ["src", 93, 5], ["configureFlags", 100, 5], ["buildInputs", 125, 5]], [["enableProxyServerAndClient", 129, 5], ["enablePushNotifications", 130, 5]], [["domain", 138, 7], ["owner", 139, 7], ["repo", 140, 7], ["rev", 141, 7], ["hash", 142, 7]], [["description", 183, 7], ["license", 184, 7], ["platforms", 185, 7], ["maintainers", 186, 7]], [["pname", 134, 5], ["version", 135, 5], ["src", 137, 5], ["postPatch", 145, 5], ["nativeBuildInputs", 152, 5], ["buildInputs", 157, 5], ["cmakeFlags", 172, 5], ["meta", 182, 5]], [["owner", 191, 5], ["repo", 192, 5], ["rev", 193, 5], ["hash", 194, 5], ["fetchSubmodules", 195, 5]], [["NIX_LDFLAGS", 280, 7]], [["rev-prefix", 292, 33]], [["updateScript", 292, 5], ["pjsip-jami", 293, 13], ["dhtnet", 293, 24]], [["homepage", 297, 5], ["description", 298, 5], ["mainProgram", 299, 5], ["license", 300, 5], ["platforms", 301, 5], ["maintainers", 302, 5]], [["pname", 65, 3], ["version", 66, 3], ["src", 68, 3], ["patches", 77, 3], ["pjsip-jami", 90, 3], ["opendht-jami", 128, 3], ["dhtnet", 133, 3], ["qwindowkit-src", 190, 3], ["postPatch", 198, 3], ["preConfigure", 205, 3], ["dontWrapGApps", 209, 3], ["nativeBuildInputs", 211, 3], ["buildInputs", 222, 3], ["cmakeFlags", 276, 3], ["env", 280, 3], ["qtWrapperArgs", 282, 3], ["preFixup", 287, 3], ["passthru", 291, 3], ["meta", 296, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, "pkg-config": false, fetchFromGitLab: false, fetchpatch: false, gitUpdater: false, ffmpeg_6: false, ninja: false, "alsa-lib": false, asio: false, dbus: false, "sdbus-cpp_2": false, fmt: false, gmp: false, gnutls: false, llhttp: false, jsoncpp: false, libarchive: false, libgit2: false, libjack2: false, libnatpmp: false, libpulseaudio: false, libupnp: false, "msgpack-cxx": false, openssl: false, restinio: false, secp256k1: false, simdutf: false, speex: false, udev: false, "webrtc-audio-processing_0_3": false, "yaml-cpp": false, zlib: false, "expected-lite": false, cmake: false, git: false, networkmanager: false, python3: false, libnotify: false, md4c: false, "html-tidy": false, hunspell: false, qrencode: false, qt6Packages: false, wrapGAppsHook3: false, "zxing-cpp": false, withWebengine: true, fetchFromGitHub: false, pjsip: false, opendht: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 69, 5], ["owner", 70, 5], ["repo", 71, 5], ["rev", 72, 5], ["hash", 73, 5], ["fetchSubmodules", 74, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 79, 7], ["hash", 80, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 84, 7], ["hash", 85, 7], ["revert", 86, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 94, 7], ["repo", 95, 7], ["rev", 96, 7], ["hash", 97, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 91, 5], ["src", 93, 5], ["configureFlags", 100, 5], ["buildInputs", 125, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["enableProxyServerAndClient", 129, 5], ["enablePushNotifications", 130, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["domain", 138, 7], ["owner", 139, 7], ["repo", 140, 7], ["rev", 141, 7], ["hash", 142, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 183, 7], ["license", 184, 7], ["platforms", 185, 7], ["maintainers", 186, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 134, 5], ["version", 135, 5], ["src", 137, 5], ["postPatch", 145, 5], ["nativeBuildInputs", 152, 5], ["buildInputs", 157, 5], ["cmakeFlags", 172, 5], ["meta", 182, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["owner", 191, 5], ["repo", 192, 5], ["rev", 193, 5], ["hash", 194, 5], ["fetchSubmodules", 195, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 280, 7]]);
-const pos$12 = nix.positions(here + "/package.nix", [["rev-prefix", 292, 33]]);
-const pos$13 = nix.positions(here + "/package.nix", [["updateScript", 292, 5], ["pjsip-jami", 293, 13], ["dhtnet", 293, 24]]);
-const pos$14 = nix.positions(here + "/package.nix", [["homepage", 297, 5], ["description", 298, 5], ["mainProgram", 299, 5], ["license", 300, 5], ["platforms", 301, 5], ["maintainers", 302, 5]]);
-const pos$15 = nix.positions(here + "/package.nix", [["pname", 65, 3], ["version", 66, 3], ["src", 68, 3], ["patches", 77, 3], ["pjsip-jami", 90, 3], ["opendht-jami", 128, 3], ["dhtnet", 133, 3], ["qwindowkit-src", 190, 3], ["postPatch", 198, 3], ["preConfigure", 205, 3], ["dontWrapGApps", 209, 3], ["nativeBuildInputs", 211, 3], ["buildInputs", 222, 3], ["cmakeFlags", 276, 3], ["env", 280, 3], ["qtWrapperArgs", 282, 3], ["preFixup", 287, 3], ["passthru", 291, 3], ["meta", 296, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -75,7 +61,7 @@ export default nix.lambda((args) => (() => {
       const pname = "jami";
       const version = "20260811.0";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "git.jami.net",
           owner: "savoirfairelinux",
           repo: "jami-client-qt",
@@ -85,22 +71,22 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitlab.archlinux.org/archlinux/packaging/packages/jami-qt/-/raw/20260717.0-2/zxing-cpp-3.patch",
             hash: "sha256-fTGrsdeC3kN277DvSuKyR5fMZhtBmk1nsL2BbeHYjTY=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://git.jami.net/savoirfairelinux/jami-client-qt/-/commit/b97eb85af48b36008a9d619077965d6284660031.patch",
             hash: "sha256-2gY4cqWg5FY6Q6j6V/x3IMWN3AP8RThjZdxYI+ktLI4=",
             revert: true,
           })))),
       ]);
       const pjsip_jami = nix.thunk(() => nix.app(nix.sel(pjsip, "overrideAttrs"), (old) => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           version: "sfl-2.15-unstable-2025-09-18",
           src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               owner: "savoirfairelinux",
               repo: "pjproject",
               rev: "3a92a7ee340dbc1f4730fcaf32acac9a54cacf1b",
@@ -132,16 +118,16 @@ export default nix.lambda((args) => (() => {
           buildInputs: nix.thunk(() => nix.concat(nix.sel(old, "buildInputs"), [gnutls])),
         })));
       const opendht_jami = nix.thunk(() => nix.app(nix.sel(opendht, "override"), nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           enableProxyServerAndClient: true,
           enablePushNotifications: true,
         }))));
       const dhtnet = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           pname: "dhtnet",
           version: "unstable-2026-08-11",
           src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               domain: "git.jami.net",
               owner: "savoirfairelinux",
               repo: "dhtnet",
@@ -178,7 +164,7 @@ export default nix.lambda((args) => (() => {
             "-DBUILD_EXAMPLE=Off",
           ]),
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             description: "Lightweight Peer-to-Peer Communication Library",
             license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
             platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
@@ -186,7 +172,7 @@ export default nix.lambda((args) => (() => {
           })),
         }))));
       const qwindowkit_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           owner: "atraczyk",
           repo: "qwindowkit",
           rev: "c5c7da2163dfcba144e09a905ee98f920d9d94e7",
@@ -265,17 +251,17 @@ substituteInPlace CMakeLists.txt \\
       const cmakeFlags = nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "DWITH_WEBENGINE", withWebengine)),
       ]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$11, NIX_LDFLAGS: "-lz" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[10], NIX_LDFLAGS: "-lz" }));
       const qtWrapperArgs = nix.thunk(() => ["--set-default QT_QPA_PLATFORM xcb"]);
       const preFixup = "qtWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$13,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$12, "rev-prefix": "stable/" })))),
+        [nix.POS]: $pos[12],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[11], "rev-prefix": "stable/" })))),
         "pjsip-jami": pjsip_jami,
         dhtnet: dhtnet,
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         homepage: "https://jami.net/",
         description: "Free and universal communication platform that respects the privacy and freedoms of its users",
         mainProgram: "jami",
@@ -284,7 +270,7 @@ substituteInPlace CMakeLists.txt \\
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "linsui"))]),
       }));
       return {
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         pname,
         version,
         src,

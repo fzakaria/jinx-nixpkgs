@@ -2,58 +2,44 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/vm-variant.nix", [[["stateVersion", 12, 16]], [["device", 14, 11], ["fsType", 15, 11]], [["/", 13, 21]], [["device", 17, 26]], [["grub", 17, 21]], [["loader", 17, 14]], [["hostPlatform", 18, 17]], [["hostName", 19, 45]], [["networking", 19, 34]], [["hostName", 20, 59]], [["networking", 20, 48]], [["vmVariant", 19, 24], ["vmVariantWithBootLoader", 20, 24]], [["system", 12, 9], ["fileSystems", 13, 9], ["boot", 17, 9], ["nixpkgs", 18, 9], ["virtualisation", 19, 9]], [["system", 9, 5], ["modules", 10, 5]], [["name", 29, 3], ["paths", 30, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/vm-variant.nix", [["stateVersion", 12, 16]]);
-const pos$2 = nix.positions(here + "/vm-variant.nix", [["device", 14, 11], ["fsType", 15, 11]]);
-const pos$3 = nix.positions(here + "/vm-variant.nix", [["/", 13, 21]]);
-const pos$4 = nix.positions(here + "/vm-variant.nix", [["device", 17, 26]]);
-const pos$5 = nix.positions(here + "/vm-variant.nix", [["grub", 17, 21]]);
-const pos$6 = nix.positions(here + "/vm-variant.nix", [["loader", 17, 14]]);
-const pos$7 = nix.positions(here + "/vm-variant.nix", [["hostPlatform", 18, 17]]);
-const pos$8 = nix.positions(here + "/vm-variant.nix", [["hostName", 19, 45]]);
-const pos$9 = nix.positions(here + "/vm-variant.nix", [["networking", 19, 34]]);
-const pos$10 = nix.positions(here + "/vm-variant.nix", [["hostName", 20, 59]]);
-const pos$11 = nix.positions(here + "/vm-variant.nix", [["networking", 20, 48]]);
-const pos$12 = nix.positions(here + "/vm-variant.nix", [["vmVariant", 19, 24], ["vmVariantWithBootLoader", 20, 24]]);
-const pos$13 = nix.positions(here + "/vm-variant.nix", [["system", 12, 9], ["fileSystems", 13, 9], ["boot", 17, 9], ["nixpkgs", 18, 9], ["virtualisation", 19, 9]]);
-const pos$14 = nix.positions(here + "/vm-variant.nix", [["system", 9, 5], ["modules", 10, 5]]);
-const pos$15 = nix.positions(here + "/vm-variant.nix", [["name", 29, 3], ["paths", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const evalConfig = nix.thunk(() => nix.builtins.import(nix.path(here, "../lib/eval-config.nix")));
   const nixos = nix.thunk(() => nix.app(evalConfig, nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       system: null,
       modules: nix.thunk(() => [
         nix.thunk(() => ({
-          [nix.POS]: pos$13,
-          system: nix.thunk(() => ({ [nix.POS]: pos$1, stateVersion: "25.05" })),
+          [nix.POS]: $pos[12],
+          system: nix.thunk(() => ({ [nix.POS]: $pos[0], stateVersion: "25.05" })),
           fileSystems: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            "/": nix.thunk(() => ({ [nix.POS]: pos$2, device: "/dev/null", fsType: "none" })),
+            [nix.POS]: $pos[2],
+            "/": nix.thunk(() => ({ [nix.POS]: $pos[1], device: "/dev/null", fsType: "none" })),
           })),
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             loader: nix.thunk(() => ({
-              [nix.POS]: pos$5,
-              grub: nix.thunk(() => ({ [nix.POS]: pos$4, device: "nodev" })),
+              [nix.POS]: $pos[4],
+              grub: nix.thunk(() => ({ [nix.POS]: $pos[3], device: "nodev" })),
             })),
           })),
           nixpkgs: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             hostPlatform: nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "system")),
           })),
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             vmVariant: nix.thunk(() => ({
-              [nix.POS]: pos$9,
-              networking: nix.thunk(() => ({ [nix.POS]: pos$8, hostName: "vm" })),
+              [nix.POS]: $pos[8],
+              networking: nix.thunk(() => ({ [nix.POS]: $pos[7], hostName: "vm" })),
             })),
             vmVariantWithBootLoader: nix.thunk(() => ({
-              [nix.POS]: pos$11,
-              networking: nix.thunk(() => ({ [nix.POS]: pos$10, hostName: "vm-w-bl" })),
+              [nix.POS]: $pos[10],
+              networking: nix.thunk(() => ({ [nix.POS]: $pos[9], hostName: "vm-w-bl" })),
             })),
           })),
         })),
@@ -63,7 +49,7 @@ export default nix.lambda((args) => (() => {
   nix.assert_(nix.eq(nix.sel(nixos, "config", "virtualisation", "vmVariantWithBootLoader", "networking", "hostName"), "vm-w-bl"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/tests/vm-variant.nix:26:1");
   nix.assert_(nix.eq(nix.sel(nixos, "config", "networking", "hostName"), "nixos"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/tests/vm-variant.nix:27:1");
   return nix.app(nix.sel(pkgs, "symlinkJoin"), nix.thunk(() => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       name: "nixos-test-vm-variant-drvs",
       paths: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(nixos, "config", "system", "build")), null);

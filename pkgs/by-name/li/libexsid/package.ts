@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]], [["url", 27, 7], ["hash", 28, 7]], [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["outputs", 32, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 40, 3], ["enableParallelBuilding", 42, 3], ["installTargets", 44, 3], ["postInstall", 46, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, fetchpatch: false, autoreconfHook: false, "pkg-config": false, docSupport: true, doxygen: false, libftdi1: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 27, 7], ["hash", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["outputs", 32, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 40, 3], ["enableParallelBuilding", 42, 3], ["installTargets", 44, 3], ["postInstall", 46, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const doxygen = nix.arg($, "doxygen");
   const libftdi1 = nix.arg($, "libftdi1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libexsid",
       version: "2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "libsidplayfp",
           repo: "exsid-driver",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/libsidplayfp/exsid-driver/commit/99bfaf25f73f96d588a38a4309fa5f18c364f4d4.patch",
             hash: "sha256-wg/oJieejyXiP5Ff9FRfACNELUt5021kXS1/zT7dMgA=",
           })))),
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
       installTargets: nix.thunk(() => nix.concat(["install"], nix.app(nix.sel(lib, "optional"), docSupport, "doc"))),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), docSupport, "mkdir -p $doc/share/libexsid/doc\ncp -r docs/html $doc/share/libexsid/doc/\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Driver for exSID USB",
         homepage: "http://hacks.slashdirt.org/hw/exsid/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

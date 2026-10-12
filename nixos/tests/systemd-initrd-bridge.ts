@@ -2,96 +2,66 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/systemd-initrd-bridge.nix", [[["maintainers", 4, 8]], [["Type", 24, 25]], [["before", 21, 11], ["wantedBy", 22, 11], ["script", 23, 11], ["serviceConfig", 24, 11]], [["boot-blocker", 20, 38]], [["enable", 18, 29], ["services", 20, 29]], [["enable", 19, 29]], [["systemd", 18, 21], ["network", 19, 21]], [["initrd", 18, 14]], [["interfaces", 38, 32]], [["br0", 38, 28]], [["address", 46, 15], ["prefixLength", 47, 15]], [["addresses", 44, 20]], [["ipv4", 44, 15]], [["br0", 44, 11]], [["primaryIPAddress", 27, 20], ["bridges", 38, 20], ["interfaces", 43, 20]], [["vlan", 30, 11], ["assignIP", 31, 11]], [["vlan", 34, 11], ["assignIP", 35, 11]], [["eth1", 29, 35], ["eth2", 33, 35]], [["interfaces", 29, 24]], [["boot", 18, 9], ["networking", 27, 9], ["virtualisation", 29, 9]], [["vlans", 54, 22]], [["virtualisation", 54, 7]], [["vlans", 60, 24]], [["address", 64, 13], ["prefixLength", 65, 13]], [["addresses", 62, 41]], [["ipv4", 62, 36]], [["eth1", 62, 31]], [["primaryIPAddress", 61, 20], ["interfaces", 62, 20]], [["virtualisation", 60, 9], ["networking", 61, 9]], [["bridge", 15, 5], ["a", 53, 5], ["b", 57, 5]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 14, 3], ["testScript", 71, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/systemd-initrd-bridge.nix", [["maintainers", 4, 8]]);
 const formals$2 = { args: { config: false, lib: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/systemd-initrd-bridge.nix", [["Type", 24, 25]]);
-const pos$3 = nix.positions(here + "/systemd-initrd-bridge.nix", [["before", 21, 11], ["wantedBy", 22, 11], ["script", 23, 11], ["serviceConfig", 24, 11]]);
-const pos$4 = nix.positions(here + "/systemd-initrd-bridge.nix", [["boot-blocker", 20, 38]]);
-const pos$5 = nix.positions(here + "/systemd-initrd-bridge.nix", [["enable", 18, 29], ["services", 20, 29]]);
-const pos$6 = nix.positions(here + "/systemd-initrd-bridge.nix", [["enable", 19, 29]]);
-const pos$7 = nix.positions(here + "/systemd-initrd-bridge.nix", [["systemd", 18, 21], ["network", 19, 21]]);
-const pos$8 = nix.positions(here + "/systemd-initrd-bridge.nix", [["initrd", 18, 14]]);
-const pos$9 = nix.positions(here + "/systemd-initrd-bridge.nix", [["interfaces", 38, 32]]);
-const pos$10 = nix.positions(here + "/systemd-initrd-bridge.nix", [["br0", 38, 28]]);
-const pos$11 = nix.positions(here + "/systemd-initrd-bridge.nix", [["address", 46, 15], ["prefixLength", 47, 15]]);
-const pos$12 = nix.positions(here + "/systemd-initrd-bridge.nix", [["addresses", 44, 20]]);
-const pos$13 = nix.positions(here + "/systemd-initrd-bridge.nix", [["ipv4", 44, 15]]);
-const pos$14 = nix.positions(here + "/systemd-initrd-bridge.nix", [["br0", 44, 11]]);
-const pos$15 = nix.positions(here + "/systemd-initrd-bridge.nix", [["primaryIPAddress", 27, 20], ["bridges", 38, 20], ["interfaces", 43, 20]]);
-const pos$16 = nix.positions(here + "/systemd-initrd-bridge.nix", [["vlan", 30, 11], ["assignIP", 31, 11]]);
-const pos$17 = nix.positions(here + "/systemd-initrd-bridge.nix", [["vlan", 34, 11], ["assignIP", 35, 11]]);
-const pos$18 = nix.positions(here + "/systemd-initrd-bridge.nix", [["eth1", 29, 35], ["eth2", 33, 35]]);
-const pos$19 = nix.positions(here + "/systemd-initrd-bridge.nix", [["interfaces", 29, 24]]);
-const pos$20 = nix.positions(here + "/systemd-initrd-bridge.nix", [["boot", 18, 9], ["networking", 27, 9], ["virtualisation", 29, 9]]);
-const pos$21 = nix.positions(here + "/systemd-initrd-bridge.nix", [["vlans", 54, 22]]);
-const pos$22 = nix.positions(here + "/systemd-initrd-bridge.nix", [["virtualisation", 54, 7]]);
 const formals$3 = { args: { config: false }, ellipsis: true };
-const pos$23 = nix.positions(here + "/systemd-initrd-bridge.nix", [["vlans", 60, 24]]);
-const pos$24 = nix.positions(here + "/systemd-initrd-bridge.nix", [["address", 64, 13], ["prefixLength", 65, 13]]);
-const pos$25 = nix.positions(here + "/systemd-initrd-bridge.nix", [["addresses", 62, 41]]);
-const pos$26 = nix.positions(here + "/systemd-initrd-bridge.nix", [["ipv4", 62, 36]]);
-const pos$27 = nix.positions(here + "/systemd-initrd-bridge.nix", [["eth1", 62, 31]]);
-const pos$28 = nix.positions(here + "/systemd-initrd-bridge.nix", [["primaryIPAddress", 61, 20], ["interfaces", 62, 20]]);
-const pos$29 = nix.positions(here + "/systemd-initrd-bridge.nix", [["virtualisation", 60, 9], ["networking", 61, 9]]);
-const pos$30 = nix.positions(here + "/systemd-initrd-bridge.nix", [["bridge", 15, 5], ["a", 53, 5], ["b", 57, 5]]);
-const pos$31 = nix.positions(here + "/systemd-initrd-bridge.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 14, 3], ["testScript", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$31,
+    [nix.POS]: $pos[30],
     name: "systemd-initrd-bridge",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "majiir"))]),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$30,
+      [nix.POS]: $pos[29],
       bridge: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const lib_1 = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$20,
+          [nix.POS]: $pos[19],
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             initrd: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               systemd: nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 enable: true,
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   "boot-blocker": nix.thunk(() => ({
-                    [nix.POS]: pos$3,
+                    [nix.POS]: $pos[2],
                     before: nix.thunk(() => ["initrd.target"]),
                     wantedBy: nix.thunk(() => ["initrd.target"]),
                     script: "sleep infinity",
-                    serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$2, Type: "oneshot" })),
+                    serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[1], Type: "oneshot" })),
                   })),
                 })),
               })),
-              network: nix.thunk(() => ({ [nix.POS]: pos$6, enable: true })),
+              network: nix.thunk(() => ({ [nix.POS]: $pos[5], enable: true })),
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             primaryIPAddress: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), nix.thunk(() => nix.str`192.168.1.${nix.builtins.toString(nix.thunk(() => nix.sel(config, "virtualisation", "test", "nodeNumber")))}`))),
             bridges: nix.thunk(() => ({
-              [nix.POS]: pos$10,
-              br0: nix.thunk(() => ({ [nix.POS]: pos$9, interfaces: nix.thunk(() => ["eth1", "eth2"]) })),
+              [nix.POS]: $pos[9],
+              br0: nix.thunk(() => ({ [nix.POS]: $pos[8], interfaces: nix.thunk(() => ["eth1", "eth2"]) })),
             })),
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               br0: nix.thunk(() => ({
-                [nix.POS]: pos$13,
+                [nix.POS]: $pos[12],
                 ipv4: nix.thunk(() => ({
-                  [nix.POS]: pos$12,
+                  [nix.POS]: $pos[11],
                   addresses: nix.thunk(() => [
                     nix.thunk(() => ({
-                      [nix.POS]: pos$11,
+                      [nix.POS]: $pos[10],
                       address: nix.thunk(() => nix.sel(config, "networking", "primaryIPAddress")),
                       prefixLength: 24n,
                     })),
@@ -101,37 +71,37 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$19,
+            [nix.POS]: $pos[18],
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$18,
-              eth1: nix.thunk(() => ({ [nix.POS]: pos$16, vlan: 1n, assignIP: false })),
-              eth2: nix.thunk(() => ({ [nix.POS]: pos$17, vlan: 2n, assignIP: false })),
+              [nix.POS]: $pos[17],
+              eth1: nix.thunk(() => ({ [nix.POS]: $pos[15], vlan: 1n, assignIP: false })),
+              eth2: nix.thunk(() => ({ [nix.POS]: $pos[16], vlan: 2n, assignIP: false })),
             })),
           })),
         };
       })(), formals$2),
       a: nix.thunk(() => ({
-        [nix.POS]: pos$22,
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$21, vlans: nix.thunk(() => [1n]) })),
+        [nix.POS]: $pos[21],
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[20], vlans: nix.thunk(() => [1n]) })),
       })),
       b: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const config = nix.arg($_1, "config");
         return {
-          [nix.POS]: pos$29,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$23, vlans: nix.thunk(() => [2n]) })),
+          [nix.POS]: $pos[28],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[22], vlans: nix.thunk(() => [2n]) })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$28,
+            [nix.POS]: $pos[27],
             primaryIPAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => nix.str`192.168.1.${nix.builtins.toString(nix.thunk(() => nix.sel(config, "virtualisation", "test", "nodeNumber")))}`))),
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$27,
+              [nix.POS]: $pos[26],
               eth1: nix.thunk(() => ({
-                [nix.POS]: pos$26,
+                [nix.POS]: $pos[25],
                 ipv4: nix.thunk(() => ({
-                  [nix.POS]: pos$25,
+                  [nix.POS]: $pos[24],
                   addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => [
                       nix.thunk(() => ({
-                        [nix.POS]: pos$24,
+                        [nix.POS]: $pos[23],
                         address: nix.thunk(() => nix.sel(config, "networking", "primaryIPAddress")),
                         prefixLength: 24n,
                       })),

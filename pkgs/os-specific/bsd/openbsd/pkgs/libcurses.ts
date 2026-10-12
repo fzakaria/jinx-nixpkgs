@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libcurses.nix", [[["path", 7, 3], ["makeFlags", 9, 3]]]);
 const formals$1 = { args: { lib: false, mkDerivation: false, buildPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libcurses.nix", [["path", 7, 3], ["makeFlags", 9, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const mkDerivation = nix.arg($, "mkDerivation");
   const buildPackages = nix.arg($, "buildPackages");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       path: "lib/libcurses",
       makeFlags: nix.thunk(() => [
         nix.thunk(() => nix.str`AWK=${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(buildPackages, "gawk")))}/bin/awk`),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/build-composer-project.nix", [[["composer", 74, 19], ["patches", 76, 13], ["pname", 77, 13], ["src", 78, 13], ["vendorHash", 79, 13], ["version", 80, 13], ["composerLock", 83, 11], ["composerNoDev", 84, 11], ["composerNoPlugins", 85, 11], ["composerNoScripts", 86, 11], ["composerStrictValidation", 87, 11]], [["updateScript", 92, 9]], [["platforms", 98, 9]], [["composerLock", 17, 7], ["composerNoDev", 18, 7], ["composerNoPlugins", 19, 7], ["composerNoScripts", 20, 7], ["composerStrictValidation", 21, 7], ["nativeBuildInputs", 23, 7], ["buildInputs", 29, 7], ["patches", 31, 7], ["strictDeps", 32, 7], ["configurePhase", 35, 7], ["buildPhase", 42, 7], ["doCheck", 49, 7], ["checkPhase", 50, 7], ["installPhase", 57, 7], ["doInstallCheck", 64, 7], ["installCheckPhase", 65, 7], ["composerRepository", 72, 7], ["passthru", 91, 7], ["meta", 97, 7]]]);
 const formals$1 = { args: { "nix-update-script": false, stdenvNoCC: false, lib: false, php: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/build-composer-project.nix", [["composer", 74, 19], ["patches", 76, 13], ["pname", 77, 13], ["src", 78, 13], ["vendorHash", 79, 13], ["version", 80, 13], ["composerLock", 83, 11], ["composerNoDev", 84, 11], ["composerNoPlugins", 85, 11], ["composerNoScripts", 86, 11], ["composerStrictValidation", 87, 11]]);
-const pos$2 = nix.positions(here + "/build-composer-project.nix", [["updateScript", 92, 9]]);
-const pos$3 = nix.positions(here + "/build-composer-project.nix", [["platforms", 98, 9]]);
-const pos$4 = nix.positions(here + "/build-composer-project.nix", [["composerLock", 17, 7], ["composerNoDev", 18, 7], ["composerNoPlugins", 19, 7], ["composerNoScripts", 20, 7], ["composerStrictValidation", 21, 7], ["nativeBuildInputs", 23, 7], ["buildInputs", 29, 7], ["patches", 31, 7], ["strictDeps", 32, 7], ["configurePhase", 35, 7], ["buildPhase", 42, 7], ["doCheck", 49, 7], ["checkPhase", 50, 7], ["installPhase", 57, 7], ["doInstallCheck", 64, 7], ["installCheckPhase", 65, 7], ["composerRepository", 72, 7], ["passthru", 91, 7], ["meta", 97, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +15,7 @@ export default nix.lambda((args) => (() => {
     const phpDrv = nix.thunk(() => nix.selOr(finalAttrs, () => nix.force(php), "php"));
     const composer = nix.thunk(() => nix.selOr(finalAttrs, () => nix.sel(phpDrv, "packages", "composer-local-repo-plugin"), "composer"));
     return {
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       composerLock: nix.thunk(() => nix.selOr(previousAttrs, () => null, "composerLock")),
       composerNoDev: nix.thunk(() => nix.selOr(previousAttrs, () => true, "composerNoDev")),
       composerNoPlugins: nix.thunk(() => nix.selOr(previousAttrs, () => true, "composerNoPlugins")),
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: nix.thunk(() => nix.selOr(previousAttrs, () => false, "doInstallCheck")),
       installCheckPhase: nix.thunk(() => nix.selOr(previousAttrs, () => "runHook preInstallCheck\n\nrunHook postInstallCheck\n", "installCheckPhase")),
       composerRepository: nix.thunk(() => nix.selOr(previousAttrs, () => nix.app(nix.sel(phpDrv, "mkComposerRepository"), nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             composer: composer,
             patches: nix.thunk(() => nix.attr(finalAttrs, "patches")),
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
@@ -54,11 +51,11 @@ export default nix.lambda((args) => (() => {
             composerStrictValidation: nix.thunk(() => nix.selOr(previousAttrs, () => true, "composerStrictValidation")),
           }))), "composerRepository")),
       passthru: nix.thunk(() => nix.update(nix.selOr(previousAttrs, () => ({}), "passthru"), {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.selOr(previousAttrs, () => (nix.asBool(nix.eq(nix.sel(finalAttrs, "composerRepository", "composerLock"), null)) ? nix.app(nix_update_script, nix.thunk(() => ({}))) : null), "passthru", "updateScript")),
       })),
       meta: nix.thunk(() => nix.update(nix.selOr(previousAttrs, () => ({}), "meta"), {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       })),
     };

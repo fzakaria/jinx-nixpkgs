@@ -2,12 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["python3Packages", 19, 5]], [["octave", 28, 17], ["python", 29, 9], ["nativeBuildInputs", 36, 9]], [["pname", 49, 7], ["version", 50, 24], ["src", 52, 7], ["nativeBuildInputs", 54, 7], ["strictDeps", 55, 7], ["dontConfigure", 57, 7], ["dontInstall", 58, 7], ["buildPhase", 60, 7]], [["displayName", 66, 5], ["argv", 67, 5], ["language", 72, 5], ["logo32", 73, 5], ["logo64", 74, 5]], [["launcher", 25, 3], ["sizedLogo", 46, 3], ["definition", 65, 3]]]);
 const formals$1 = { args: { stdenv: false, callPackage: false, runCommand: false, makeWrapper: false, octave: false, imagemagick: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["python3Packages", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["octave", 28, 17], ["python", 29, 9], ["nativeBuildInputs", 36, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 49, 7], ["version", 50, 24], ["src", 52, 7], ["nativeBuildInputs", 54, 7], ["strictDeps", 55, 7], ["dontConfigure", 57, 7], ["dontInstall", 58, 7], ["buildPhase", 60, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["displayName", 66, 5], ["argv", 67, 5], ["language", 72, 5], ["logo32", 73, 5], ["logo64", 74, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["launcher", 25, 3], ["sizedLogo", 46, 3], ["definition", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,10 +14,13 @@ export default nix.lambda((args) => (() => {
   const octave = nix.arg($, "octave");
   const imagemagick = nix.arg($, "imagemagick");
   const python3 = nix.arg($, "python3");
-  const kernel = nix.thunk(() => nix.app(callPackage, nix.path(here, "./kernel.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, python3Packages: nix.thunk(() => nix.sel(python3, "pkgs")) }))));
+  const kernel = nix.thunk(() => nix.app(callPackage, nix.path(here, "./kernel.nix"), nix.thunk(() => ({
+      [nix.POS]: $pos[0],
+      python3Packages: nix.thunk(() => nix.sel(python3, "pkgs")),
+    }))));
   return (() => {
     const launcher = nix.thunk(() => nix.app(runCommand, "octave-kernel-launcher", nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         octave: octave,
         python: nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (ps) => [
             nix.thunk(() => nix.sel(ps, "traitlets")),
@@ -33,7 +32,7 @@ export default nix.lambda((args) => (() => {
         nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       })), "mkdir -p $out/bin\n\nmakeWrapper $python/bin/python $out/bin/octave-kernel \\\n  --add-flags \"-m octave_kernel\" \\\n  --suffix PATH : $octave/bin\n"));
     const sizedLogo = (size) => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname: nix.thunk(() => nix.str`octave-logo-${size}x${size}.png`),
         version: nix.thunk(() => nix.attr(octave, "version")),
         src: nix.thunk(() => nix.sel(octave, "src")),
@@ -45,7 +44,7 @@ export default nix.lambda((args) => (() => {
 `),
       })));
     const definition = nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       displayName: "Octave",
       argv: nix.thunk(() => [
         nix.thunk(() => nix.str`${launcher}/bin/octave-kernel`),
@@ -56,7 +55,7 @@ export default nix.lambda((args) => (() => {
       logo32: nix.thunk(() => nix.app(sizedLogo, "32")),
       logo64: nix.thunk(() => nix.app(sizedLogo, "64")),
     }));
-    return { [nix.POS]: pos$5, launcher, sizedLogo, definition };
+    return { [nix.POS]: $pos[4], launcher, sizedLogo, definition };
   })();
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

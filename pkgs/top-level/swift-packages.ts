@@ -2,25 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/swift-packages.nix", [[["swift-corelibs-libdispatch", 23, 13], ["swift-foundation", 24, 13], ["swift-testing", 25, 13], ["enableRepl", 26, 13]], [["swift-driver", 31, 13]], [["bootstrapStage", 20, 17], ["buildSwiftPackages", 20, 32], ["swift", 21, 9]], [["pname", 38, 11]], [["stdlib", 36, 9], ["swift-driver", 37, 9]], [["swift_release", 41, 62]], [["swift_sources", 42, 62]], [["swift", 66, 63]], [["lib", 64, 13], ["swiftPackages", 64, 17], ["bootstrapStage", 65, 5], ["buildSwiftPackages", 66, 5]], [["lib", 70, 13], ["swiftPackages", 70, 17], ["bootstrapStage", 71, 5], ["buildSwiftPackages", 72, 5]], [["pname", 82, 9], ["version", 83, 9], ["buildCommand", 85, 9]], [["swift-corelibs-libdispatch", 101, 9], ["swift-driver", 102, 9], ["swift-foundation", 103, 9], ["swift-testing", 104, 9], ["enableRepl", 105, 9]], [["bootstrapStage", 92, 7], ["buildSwiftPackages", 94, 7], ["llvm_libtool", 96, 15], ["llvmPackages_upstream", 98, 7], ["swift-minimal", 100, 7], ["swift_sources", 108, 7]], [["stdenv", 113, 7], ["swift_release", 114, 7]], [["swift-driver", 122, 34]], [["swift-unwrapped", 118, 7], ["swiftNoSwiftDriver", 119, 7], ["Dispatch", 123, 7], ["Foundation", 124, 7], ["XCTest", 125, 7]], [["otherSplices", 77, 11], ["extra", 78, 3], ["f", 110, 3]]]);
 const formals$1 = { args: { lib: false, bootstrapStage: false, buildSwiftPackages: false, swiftPackages: false, swift_release: true, swift_sources: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/swift-packages.nix", [["swift-corelibs-libdispatch", 23, 13], ["swift-foundation", 24, 13], ["swift-testing", 25, 13], ["enableRepl", 26, 13]]);
-const pos$2 = nix.positions(here + "/swift-packages.nix", [["swift-driver", 31, 13]]);
-const pos$3 = nix.positions(here + "/swift-packages.nix", [["bootstrapStage", 20, 17], ["buildSwiftPackages", 20, 32], ["swift", 21, 9]]);
-const pos$4 = nix.positions(here + "/swift-packages.nix", [["pname", 38, 11]]);
-const pos$5 = nix.positions(here + "/swift-packages.nix", [["stdlib", 36, 9], ["swift-driver", 37, 9]]);
-const pos$6 = nix.positions(here + "/swift-packages.nix", [["swift_release", 41, 62]]);
-const pos$7 = nix.positions(here + "/swift-packages.nix", [["swift_sources", 42, 62]]);
 const formals$2 = { args: { lib: false, config: false, clangStdenv: false, generateSplicesForMkScope: false, llvmPackages: false, "makeScopeWithSplicing'": false, stdenvNoCC: false, swiftPackages: false, otherSplices: true }, ellipsis: false };
-const pos$8 = nix.positions(here + "/swift-packages.nix", [["swift", 66, 63]]);
-const pos$9 = nix.positions(here + "/swift-packages.nix", [["lib", 64, 13], ["swiftPackages", 64, 17], ["bootstrapStage", 65, 5], ["buildSwiftPackages", 66, 5]]);
-const pos$10 = nix.positions(here + "/swift-packages.nix", [["lib", 70, 13], ["swiftPackages", 70, 17], ["bootstrapStage", 71, 5], ["buildSwiftPackages", 72, 5]]);
-const pos$11 = nix.positions(here + "/swift-packages.nix", [["pname", 82, 9], ["version", 83, 9], ["buildCommand", 85, 9]]);
-const pos$12 = nix.positions(here + "/swift-packages.nix", [["swift-corelibs-libdispatch", 101, 9], ["swift-driver", 102, 9], ["swift-foundation", 103, 9], ["swift-testing", 104, 9], ["enableRepl", 105, 9]]);
-const pos$13 = nix.positions(here + "/swift-packages.nix", [["bootstrapStage", 92, 7], ["buildSwiftPackages", 94, 7], ["llvm_libtool", 96, 15], ["llvmPackages_upstream", 98, 7], ["swift-minimal", 100, 7], ["swift_sources", 108, 7]]);
-const pos$14 = nix.positions(here + "/swift-packages.nix", [["stdenv", 113, 7], ["swift_release", 114, 7]]);
-const pos$15 = nix.positions(here + "/swift-packages.nix", [["swift-driver", 122, 34]]);
-const pos$16 = nix.positions(here + "/swift-packages.nix", [["swift-unwrapped", 118, 7], ["swiftNoSwiftDriver", 119, 7], ["Dispatch", 123, 7], ["Foundation", 124, 7], ["XCTest", 125, 7]]);
-const pos$17 = nix.positions(here + "/swift-packages.nix", [["otherSplices", 77, 11], ["extra", 78, 3], ["f", 110, 3]]);
 
 export default nix.thunk(() => (() => {
   const autoCalledPackages = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./by-name-overlay.nix")), nix.path(here, "../development/compilers/swift/by-name")));
@@ -34,24 +18,24 @@ export default nix.thunk(() => (() => {
     const swift_release = nix.argOr($, "swift_release", () => null);
     const swift_sources = nix.argOr($, "swift_sources", () => null);
     return nix.app(nix.sel(swiftPackages, "overrideScope"), (final) => (prev) => nix.update({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         bootstrapStage: bootstrapStage,
         buildSwiftPackages: buildSwiftPackages,
         swift: nix.thunk(() => nix.app(nix.sel(prev, "swift", "override"), nix.thunk(() => nix.update({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             "swift-corelibs-libdispatch": null,
             "swift-foundation": null,
             "swift-testing": null,
             enableRepl: false,
-          }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(bootstrapStage, 0n)), nix.thunk(() => ({ [nix.POS]: pos$2, "swift-driver": null }))))))),
+          }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(bootstrapStage, 0n)), nix.thunk(() => ({ [nix.POS]: $pos[1], "swift-driver": null }))))))),
       }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(bootstrapStage, 2n)), nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           stdlib: null,
           "swift-driver": nix.thunk(() => nix.app(nix.sel(prev, "swift-driver", "overrideAttrs"), (old) => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               pname: nix.thunk(() => nix.str`early-${nix.sel(old, "pname")}`),
             }))),
-        }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(swift_release, null)), nix.thunk(() => ({ [nix.POS]: pos$6, swift_release: swift_release }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(swift_sources, null)), nix.thunk(() => ({ [nix.POS]: pos$7, swift_sources: swift_sources })))))));
+        }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(swift_release, null)), nix.thunk(() => ({ [nix.POS]: $pos[5], swift_release: swift_release }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(swift_sources, null)), nix.thunk(() => ({ [nix.POS]: $pos[6], swift_sources: swift_sources })))))));
   })(), formals$1);
   return nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$2);
@@ -65,25 +49,25 @@ export default nix.thunk(() => (() => {
     const swiftPackages = nix.arg($, "swiftPackages");
     const otherSplices = nix.argOr($, "otherSplices", () => nix.app(generateSplicesForMkScope, "swiftPackages"));
     const bootstrapStage0SwiftPackages = nix.thunk(() => nix.app(mkBootstrapSwiftPackages, nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         lib: lib,
         swiftPackages: swiftPackages,
         bootstrapStage: 0n,
-        buildSwiftPackages: nix.thunk(() => nix.app(nix.sel(swiftPackages, "overrideScope"), (_) => (__1) => ({ [nix.POS]: pos$8, swift: null }))),
+        buildSwiftPackages: nix.thunk(() => nix.app(nix.sel(swiftPackages, "overrideScope"), (_) => (__1) => ({ [nix.POS]: $pos[7], swift: null }))),
       }))));
     const bootstrapStage1SwiftPackages = nix.thunk(() => nix.app(mkBootstrapSwiftPackages, nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         lib: lib,
         swiftPackages: swiftPackages,
         bootstrapStage: 1n,
         buildSwiftPackages: bootstrapStage0SwiftPackages,
       }))));
     return nix.app(makeScopeWithSplicing$, nix.thunk(() => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         otherSplices: otherSplices,
         extra: (self) => (() => {
           const llvm_libtool = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               pname: "libtool",
               version: nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), nix.thunk(() => nix.sel(llvmPackages, "llvm")))),
               buildCommand: nix.thunk(() => nix.str`mkdir -p "$out/bin"
@@ -91,13 +75,13 @@ ln -s ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(llvmPackages, "
 `),
             }))));
           return {
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             bootstrapStage: 2n,
             buildSwiftPackages: bootstrapStage1SwiftPackages,
             llvm_libtool: llvm_libtool,
             llvmPackages_upstream: llvmPackages,
             "swift-minimal": nix.thunk(() => nix.app(nix.sel(self, "swift", "override"), nix.thunk(() => ({
-                [nix.POS]: pos$12,
+                [nix.POS]: $pos[11],
                 "swift-corelibs-libdispatch": null,
                 "swift-driver": null,
                 "swift-foundation": null,
@@ -107,10 +91,10 @@ ln -s ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(llvmPackages, "
             swift_sources: swift_sources_6_2,
           };
         })(),
-        f: nix.thunk(() => nix.app(nix.sel(lib, "extends"), autoCalledPackages, (self) => nix.update({ [nix.POS]: pos$14, stdenv: clangStdenv, swift_release: "6.2.4" }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-              [nix.POS]: pos$16,
+        f: nix.thunk(() => nix.app(nix.sel(lib, "extends"), autoCalledPackages, (self) => nix.update({ [nix.POS]: $pos[13], stdenv: clangStdenv, swift_release: "6.2.4" }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
+              [nix.POS]: $pos[15],
               "swift-unwrapped": nix.thunk(() => nix.app(nix.sel(lib, "warnOnInstantiate"), "Swift is no longer wrapped. Use `swift` directly.", nix.thunk(() => nix.sel(self, "swift")))),
-              swiftNoSwiftDriver: nix.thunk(() => nix.app(nix.sel(lib, "warnOnInstantiate"), "swiftNoSwiftDriver is an alias. Override `swift` and set `swift-driver` to `null` instead.", nix.thunk(() => nix.app(nix.sel(self, "swift", "override"), nix.thunk(() => ({ [nix.POS]: pos$15, "swift-driver": null })))))),
+              swiftNoSwiftDriver: nix.thunk(() => nix.app(nix.sel(lib, "warnOnInstantiate"), "swiftNoSwiftDriver is an alias. Override `swift` and set `swift-driver` to `null` instead.", nix.thunk(() => nix.app(nix.sel(self, "swift", "override"), nix.thunk(() => ({ [nix.POS]: $pos[14], "swift-driver": null })))))),
               Dispatch: nix.thunk(() => nix.app(nix.sel(lib, "warnOnInstantiate"), "Dispatch has been renamed to swift-corelibs-libdispatch. It is also now included in the default Swift SDK and no longer needs referenced as a separate package.", nix.thunk(() => nix.sel(self, "swift-corelibs-libdispatch")))),
               Foundation: nix.thunk(() => nix.app(nix.sel(lib, "warnOnInstantiate"), "Foundation has been renamed to swift-corelibs-foundation. It is also now included in the default Swift SDK and no longer needs referenced as a separate package.", nix.thunk(() => nix.sel(self, "swift-corelibs-foundation")))),
               XCTest: nix.thunk(() => nix.app(nix.sel(lib, "warnOnInstantiate"), "XCTest has been renamed to swift-corelibs-xctest. It is also now included in the default Swift SDK and no longer needs referenced as a separate package.", nix.thunk(() => nix.sel(self, "swift-corelibs-xctest")))),

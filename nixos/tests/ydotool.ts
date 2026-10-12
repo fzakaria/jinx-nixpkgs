@@ -2,58 +2,14 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ydotool.nix", [[["extraGroups", 29, 27]], [["alice", 29, 21]], [["users", 29, 15]], [["enable", 31, 26]], [["ydotool", 31, 18]], [["autologinUser", 33, 24]], [["getty", 33, 18]], [["imports", 27, 9], ["users", 29, 9], ["programs", 31, 9], ["services", 33, 9]], [["machine", 26, 13]], [["maintainers", 48, 12]], [["name", 22, 7], ["enableOCR", 24, 7], ["nodes", 26, 7], ["testScript", 36, 7], ["meta", 48, 7]], [["extraGroups", 71, 29]], [["alice", 71, 23]], [["users", 71, 17]], [["enable", 73, 28]], [["ydotool", 73, 20]], [["enable", 76, 13], ["user", 77, 13]], [["auto", 75, 39]], [["displayManager", 75, 24]], [["enable", 80, 46]], [["dwm", 80, 42]], [["windowManager", 80, 28]], [["defaultSession", 81, 35]], [["xserver", 80, 20], ["displayManager", 81, 20]], [["imports", 65, 11], ["users", 71, 11], ["programs", 73, 11], ["test-support", 75, 11], ["services", 80, 11]], [["machine", 62, 13]], [["maintainers", 98, 12]], [["name", 58, 7], ["enableOCR", 60, 7], ["nodes", 62, 7], ["testScript", 84, 7], ["meta", 98, 7]], [["enable", 118, 13], ["user", 119, 13], ["program", 124, 25]], [["cage", 117, 20]], [["enable", 122, 28]], [["ydotool", 122, 20]], [["imports", 115, 11], ["services", 117, 11], ["programs", 122, 11]], [["machine", 112, 13]], [["maintainers", 140, 12]], [["name", 108, 7], ["enableOCR", 110, 7], ["nodes", 112, 7], ["testScript", 127, 7], ["meta", 140, 7]], [["enable", 162, 13], ["group", 163, 13]], [["ydotool", 161, 20]], [["isNormalUser", 168, 15], ["extraGroups", 169, 15]], [["isNormalUser", 171, 39]], [["users", 166, 17]], [["programs", 161, 11], ["users", 166, 11]], [["maintainers", 189, 14]], [["name", 158, 17], ["nodes", 160, 9], ["testScript", 175, 9], ["meta", 189, 9]], [["headless", 19, 3], ["x11", 55, 3], ["wayland", 105, 3], ["customGroup", 147, 3]]]);
 const formals$1 = { args: { runTest: false, lib: false }, ellipsis: false };
 const formals$2 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/ydotool.nix", [["extraGroups", 29, 27]]);
-const pos$2 = nix.positions(here + "/ydotool.nix", [["alice", 29, 21]]);
-const pos$3 = nix.positions(here + "/ydotool.nix", [["users", 29, 15]]);
-const pos$4 = nix.positions(here + "/ydotool.nix", [["enable", 31, 26]]);
-const pos$5 = nix.positions(here + "/ydotool.nix", [["ydotool", 31, 18]]);
-const pos$6 = nix.positions(here + "/ydotool.nix", [["autologinUser", 33, 24]]);
-const pos$7 = nix.positions(here + "/ydotool.nix", [["getty", 33, 18]]);
-const pos$8 = nix.positions(here + "/ydotool.nix", [["imports", 27, 9], ["users", 29, 9], ["programs", 31, 9], ["services", 33, 9]]);
-const pos$9 = nix.positions(here + "/ydotool.nix", [["machine", 26, 13]]);
-const pos$10 = nix.positions(here + "/ydotool.nix", [["maintainers", 48, 12]]);
-const pos$11 = nix.positions(here + "/ydotool.nix", [["name", 22, 7], ["enableOCR", 24, 7], ["nodes", 26, 7], ["testScript", 36, 7], ["meta", 48, 7]]);
 const formals$3 = { args: { config: false, lib: false }, ellipsis: true };
 const formals$4 = { args: { lib: false }, ellipsis: true };
-const pos$12 = nix.positions(here + "/ydotool.nix", [["extraGroups", 71, 29]]);
-const pos$13 = nix.positions(here + "/ydotool.nix", [["alice", 71, 23]]);
-const pos$14 = nix.positions(here + "/ydotool.nix", [["users", 71, 17]]);
-const pos$15 = nix.positions(here + "/ydotool.nix", [["enable", 73, 28]]);
-const pos$16 = nix.positions(here + "/ydotool.nix", [["ydotool", 73, 20]]);
-const pos$17 = nix.positions(here + "/ydotool.nix", [["enable", 76, 13], ["user", 77, 13]]);
-const pos$18 = nix.positions(here + "/ydotool.nix", [["auto", 75, 39]]);
-const pos$19 = nix.positions(here + "/ydotool.nix", [["displayManager", 75, 24]]);
-const pos$20 = nix.positions(here + "/ydotool.nix", [["enable", 80, 46]]);
-const pos$21 = nix.positions(here + "/ydotool.nix", [["dwm", 80, 42]]);
-const pos$22 = nix.positions(here + "/ydotool.nix", [["windowManager", 80, 28]]);
-const pos$23 = nix.positions(here + "/ydotool.nix", [["defaultSession", 81, 35]]);
-const pos$24 = nix.positions(here + "/ydotool.nix", [["xserver", 80, 20], ["displayManager", 81, 20]]);
-const pos$25 = nix.positions(here + "/ydotool.nix", [["imports", 65, 11], ["users", 71, 11], ["programs", 73, 11], ["test-support", 75, 11], ["services", 80, 11]]);
-const pos$26 = nix.positions(here + "/ydotool.nix", [["machine", 62, 13]]);
-const pos$27 = nix.positions(here + "/ydotool.nix", [["maintainers", 98, 12]]);
-const pos$28 = nix.positions(here + "/ydotool.nix", [["name", 58, 7], ["enableOCR", 60, 7], ["nodes", 62, 7], ["testScript", 84, 7], ["meta", 98, 7]]);
 const formals$5 = { args: { lib: false }, ellipsis: true };
 const formals$6 = { args: { pkgs: false }, ellipsis: true };
-const pos$29 = nix.positions(here + "/ydotool.nix", [["enable", 118, 13], ["user", 119, 13], ["program", 124, 25]]);
-const pos$30 = nix.positions(here + "/ydotool.nix", [["cage", 117, 20]]);
-const pos$31 = nix.positions(here + "/ydotool.nix", [["enable", 122, 28]]);
-const pos$32 = nix.positions(here + "/ydotool.nix", [["ydotool", 122, 20]]);
-const pos$33 = nix.positions(here + "/ydotool.nix", [["imports", 115, 11], ["services", 117, 11], ["programs", 122, 11]]);
-const pos$34 = nix.positions(here + "/ydotool.nix", [["machine", 112, 13]]);
-const pos$35 = nix.positions(here + "/ydotool.nix", [["maintainers", 140, 12]]);
-const pos$36 = nix.positions(here + "/ydotool.nix", [["name", 108, 7], ["enableOCR", 110, 7], ["nodes", 112, 7], ["testScript", 127, 7], ["meta", 140, 7]]);
 const formals$7 = { args: { lib: false }, ellipsis: true };
-const pos$37 = nix.positions(here + "/ydotool.nix", [["enable", 162, 13], ["group", 163, 13]]);
-const pos$38 = nix.positions(here + "/ydotool.nix", [["ydotool", 161, 20]]);
-const pos$39 = nix.positions(here + "/ydotool.nix", [["isNormalUser", 168, 15], ["extraGroups", 169, 15]]);
-const pos$40 = nix.positions(here + "/ydotool.nix", [["isNormalUser", 171, 39]]);
-const pos$41 = nix.positions(here + "/ydotool.nix", [["users", 166, 17]]);
-const pos$42 = nix.positions(here + "/ydotool.nix", [["programs", 161, 11], ["users", 166, 11]]);
-const pos$43 = nix.positions(here + "/ydotool.nix", [["maintainers", 189, 14]]);
-const pos$44 = nix.positions(here + "/ydotool.nix", [["name", 158, 17], ["nodes", 160, 9], ["testScript", 175, 9], ["meta", 189, 9]]);
-const pos$45 = nix.positions(here + "/ydotool.nix", [["headless", 19, 3], ["x11", 55, 3], ["wayland", 105, 3], ["customGroup", 147, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -65,33 +21,33 @@ export default nix.lambda((args) => (() => {
 `));
   const asUser = "def as_user(cmd: str):\n    \"\"\"\n    Return a shell command for running a shell command as a specific user.\n    \"\"\"\n    return f\"sudo -u alice -i {cmd}\"\n";
   return {
-    [nix.POS]: pos$45,
+    [nix.POS]: $pos[44],
     headless: nix.thunk(() => nix.app(runTest, nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const lib_1 = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           name: "headless",
           enableOCR: true,
           nodes: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             machine: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
               users: nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 users: nix.thunk(() => ({
-                  [nix.POS]: pos$2,
-                  alice: nix.thunk(() => ({ [nix.POS]: pos$1, extraGroups: nix.thunk(() => ["ydotool"]) })),
+                  [nix.POS]: $pos[1],
+                  alice: nix.thunk(() => ({ [nix.POS]: $pos[0], extraGroups: nix.thunk(() => ["ydotool"]) })),
                 })),
               })),
               programs: nix.thunk(() => ({
-                [nix.POS]: pos$5,
-                ydotool: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
+                [nix.POS]: $pos[4],
+                ydotool: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: true })),
               })),
               services: nix.thunk(() => ({
-                [nix.POS]: pos$7,
-                getty: nix.thunk(() => ({ [nix.POS]: pos$6, autologinUser: "alice" })),
+                [nix.POS]: $pos[6],
+                getty: nix.thunk(() => ({ [nix.POS]: $pos[5], autologinUser: "alice" })),
               })),
             })),
           })),
@@ -106,7 +62,7 @@ machine.wait_for_file("/tmp/output")
 machine.wait_until_succeeds("grep '${textInput}' /tmp/output") # text input
 `)),
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             maintainers: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib_1, "maintainers")), null);
               return [
@@ -122,50 +78,50 @@ machine.wait_until_succeeds("grep '${textInput}' /tmp/output") # text input
         const config = nix.arg($_1, "config");
         const lib_1 = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$28,
+          [nix.POS]: $pos[27],
           name: "x11",
           enableOCR: true,
           nodes: nix.thunk(() => ({
-            [nix.POS]: pos$26,
+            [nix.POS]: $pos[25],
             machine: nix.lambda((args_2) => (() => {
               const $_2 = nix.formals(args_2, formals$4);
               const lib_2 = nix.arg($_2, "lib");
               return {
-                [nix.POS]: pos$25,
+                [nix.POS]: $pos[24],
                 imports: nix.thunk(() => [
                   nix.path(here, "./common/user-account.nix"),
                   nix.path(here, "./common/auto.nix"),
                   nix.path(here, "./common/x11.nix"),
                 ]),
                 users: nix.thunk(() => ({
-                  [nix.POS]: pos$14,
+                  [nix.POS]: $pos[13],
                   users: nix.thunk(() => ({
-                    [nix.POS]: pos$13,
-                    alice: nix.thunk(() => ({ [nix.POS]: pos$12, extraGroups: nix.thunk(() => ["ydotool"]) })),
+                    [nix.POS]: $pos[12],
+                    alice: nix.thunk(() => ({ [nix.POS]: $pos[11], extraGroups: nix.thunk(() => ["ydotool"]) })),
                   })),
                 })),
                 programs: nix.thunk(() => ({
-                  [nix.POS]: pos$16,
-                  ydotool: nix.thunk(() => ({ [nix.POS]: pos$15, enable: true })),
+                  [nix.POS]: $pos[15],
+                  ydotool: nix.thunk(() => ({ [nix.POS]: $pos[14], enable: true })),
                 })),
                 "test-support": nix.thunk(() => ({
-                  [nix.POS]: pos$19,
+                  [nix.POS]: $pos[18],
                   displayManager: nix.thunk(() => ({
-                    [nix.POS]: pos$18,
-                    auto: nix.thunk(() => ({ [nix.POS]: pos$17, enable: true, user: "alice" })),
+                    [nix.POS]: $pos[17],
+                    auto: nix.thunk(() => ({ [nix.POS]: $pos[16], enable: true, user: "alice" })),
                   })),
                 })),
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$24,
+                  [nix.POS]: $pos[23],
                   xserver: nix.thunk(() => ({
-                    [nix.POS]: pos$22,
+                    [nix.POS]: $pos[21],
                     windowManager: nix.thunk(() => ({
-                      [nix.POS]: pos$21,
-                      dwm: nix.thunk(() => ({ [nix.POS]: pos$20, enable: true })),
+                      [nix.POS]: $pos[20],
+                      dwm: nix.thunk(() => ({ [nix.POS]: $pos[19], enable: true })),
                     })),
                   })),
                   displayManager: nix.thunk(() => ({
-                    [nix.POS]: pos$23,
+                    [nix.POS]: $pos[22],
                     defaultSession: nix.thunk(() => nix.app(nix.sel(lib_2, "mkForce"), "none+dwm")),
                   })),
                 })),
@@ -185,7 +141,7 @@ machine.wait_for_file("/tmp/output")
 machine.wait_until_succeeds("grep '${textInput}' /tmp/output") # text input
 `)),
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$27,
+            [nix.POS]: $pos[26],
             maintainers: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib_1, "maintainers")), null);
               return [
@@ -200,29 +156,29 @@ machine.wait_until_succeeds("grep '${textInput}' /tmp/output") # text input
         const $_1 = nix.formals(args_1, formals$5);
         const lib_1 = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$36,
+          [nix.POS]: $pos[35],
           name: "wayland",
           enableOCR: true,
           nodes: nix.thunk(() => ({
-            [nix.POS]: pos$34,
+            [nix.POS]: $pos[33],
             machine: nix.lambda((args_2) => (() => {
               const $_2 = nix.formals(args_2, formals$6);
               const pkgs = nix.arg($_2, "pkgs");
               return {
-                [nix.POS]: pos$33,
+                [nix.POS]: $pos[32],
                 imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$30,
+                  [nix.POS]: $pos[29],
                   cage: nix.thunk(() => ({
-                    [nix.POS]: pos$29,
+                    [nix.POS]: $pos[28],
                     enable: true,
                     user: "alice",
                     program: nix.thunk(() => nix.app(inputBox, pkgs)),
                   })),
                 })),
                 programs: nix.thunk(() => ({
-                  [nix.POS]: pos$32,
-                  ydotool: nix.thunk(() => ({ [nix.POS]: pos$31, enable: true })),
+                  [nix.POS]: $pos[31],
+                  ydotool: nix.thunk(() => ({ [nix.POS]: $pos[30], enable: true })),
                 })),
               };
             })(), formals$6),
@@ -239,7 +195,7 @@ machine.wait_for_file("/tmp/output")
 machine.wait_until_succeeds("grep '${textInput}' /tmp/output") # text input
 `),
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$35,
+            [nix.POS]: $pos[34],
             maintainers: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib_1, "maintainers")), null);
               return [
@@ -260,24 +216,24 @@ machine.wait_until_succeeds("grep '${textInput}' /tmp/output") # text input
           const $_1 = nix.formals(args_1, formals$7);
           const lib_1 = nix.arg($_1, "lib");
           return {
-            [nix.POS]: pos$44,
+            [nix.POS]: $pos[43],
             name: name,
             nodes: nix.thunk(() => nix.attrsDyn({}, [
               [nix.str`${nodeName}`, nix.thunk(() => ({
-                [nix.POS]: pos$42,
+                [nix.POS]: $pos[41],
                 programs: nix.thunk(() => ({
-                  [nix.POS]: pos$38,
-                  ydotool: nix.thunk(() => ({ [nix.POS]: pos$37, enable: true, group: groupName })),
+                  [nix.POS]: $pos[37],
+                  ydotool: nix.thunk(() => ({ [nix.POS]: $pos[36], enable: true, group: groupName })),
                 })),
                 users: nix.thunk(() => ({
-                  [nix.POS]: pos$41,
+                  [nix.POS]: $pos[40],
                   users: nix.thunk(() => nix.attrsDyn({}, [
                     [nix.str`${insideGroupUsername}`, nix.thunk(() => ({
-                      [nix.POS]: pos$39,
+                      [nix.POS]: $pos[38],
                       isNormalUser: true,
                       extraGroups: nix.thunk(() => [groupName]),
                     }))],
-                    [nix.str`${outsideGroupUsername}`, nix.thunk(() => ({ [nix.POS]: pos$40, isNormalUser: true }))],
+                    [nix.str`${outsideGroupUsername}`, nix.thunk(() => ({ [nix.POS]: $pos[39], isNormalUser: true }))],
                   ])),
                 })),
               }))],
@@ -295,7 +251,7 @@ ${nodeName}.succeed("sudo --login --user=${insideGroupUsername} ydotool type 'He
 ${nodeName}.fail("sudo --login --user=${outsideGroupUsername} ydotool type 'Hello, World!'")
 `),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$43,
+              [nix.POS]: $pos[42],
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib_1, "maintainers")), null);
                 return [nix.thunk(() => nix.lookup(w, "l0b0"))];

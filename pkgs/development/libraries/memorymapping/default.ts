@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]], [["homepage", 40, 5], ["description", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["platforms", 46, 5], ["broken", 47, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["dontConfigure", 18, 3], ["buildPhase", 20, 3], ["installPhase", 30, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 40, 5], ["description", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["platforms", 46, 5], ["broken", 47, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["dontConfigure", 18, 3], ["buildPhase", 20, 3], ["installPhase", 30, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "memorymapping",
       version: "unstable-2014-02-20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "NimbusKit",
           repo: "memorymapping",
           rev: "fc285afe13cb9d56a40c647b8ed6d6bd40636af7",
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\n$CC -c src/fmemopen.c\n$AR rcs libmemorymapping.a fmemopen.o\nsed -e '1i#include <stdio.h>' -i src/fmemopen.h\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\ninstall -D libmemorymapping.a \"$out\"/lib/libmemorymapping.a\ninstall -D src/fmemopen.h \"$out\"/include/fmemopen.h\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://nimbuskit.github.io/memorymapping/",
         description: "fmemopen for Mac OS and iOS",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

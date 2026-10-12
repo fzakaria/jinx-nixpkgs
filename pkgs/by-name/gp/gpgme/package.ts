@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 36, 5], ["hash", 37, 5]], [["NIX_CFLAGS_COMPILE", 83, 7]], [["package", 103, 7], ["versionCheck", 104, 7]], [["gpa", 101, 13], ["pkg-config", 102, 5], ["python", 106, 5], ["qt5", 107, 5], ["qt6", 108, 5]], [["tests", 100, 12]], [["homepage", 112, 5], ["changelog", 113, 5], ["description", 114, 5], ["longDescription", 115, 5], ["license", 121, 5], ["pkgConfigModules", 125, 5], ["platforms", 129, 5], ["maintainers", 130, 5]], [["pname", 24, 3], ["version", 25, 3], ["outputs", 27, 3], ["outputBin", 33, 3], ["src", 35, 3], ["postPatch", 40, 3], ["patches", 46, 3], ["nativeBuildInputs", 52, 3], ["propagatedBuildInputs", 59, 3], ["nativeCheckInputs", 66, 3], ["depsBuildBuild", 68, 3], ["dontWrapQtApps", 70, 3], ["configureFlags", 72, 3], ["env", 83, 3], ["enableParallelBuilding", 88, 3], ["makeFlags", 91, 3], ["doCheck", 93, 3], ["checkFlags", 95, 3], ["passthru", 100, 3], ["meta", 111, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoreconfHook: false, "libgpg-error": false, gnupg: false, "pkg-config": false, glib: false, pth: false, libassuan: false, which: false, texinfo: false, buildPackages: false, gpa: false, libsForQt5: false, qt6Packages: false, python3: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 83, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 103, 7], ["versionCheck", 104, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["gpa", 101, 13], ["pkg-config", 102, 5], ["python", 106, 5], ["qt5", 107, 5], ["qt6", 108, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 100, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 112, 5], ["changelog", 113, 5], ["description", 114, 5], ["longDescription", 115, 5], ["license", 121, 5], ["pkgConfigModules", 125, 5], ["platforms", 129, 5], ["maintainers", 130, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["outputs", 27, 3], ["outputBin", 33, 3], ["src", 35, 3], ["postPatch", 40, 3], ["patches", 46, 3], ["nativeBuildInputs", 52, 3], ["propagatedBuildInputs", 59, 3], ["nativeCheckInputs", 66, 3], ["depsBuildBuild", 68, 3], ["dontWrapQtApps", 70, 3], ["configureFlags", 72, 3], ["env", 83, 3], ["enableParallelBuilding", 88, 3], ["makeFlags", 91, 3], ["doCheck", 93, 3], ["checkFlags", 95, 3], ["passthru", 100, 3], ["meta", 111, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,13 +26,13 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "gpgme",
       version: "2.2.0",
       outputs: nix.thunk(() => ["out", "dev", "info"]),
       outputBin: "dev",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnupg/gpgme/gpgme-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-cWDoDoTa/QDZVshIkcUzu3qxampU++FXSy86zwSWl3s=",
         })))),
@@ -55,7 +49,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--with-libassuan-prefix=${nix.sel(libassuan, "dev")}`),
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["--disable-gpg-test"])))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "is32bit")), "-D_FILE_OFFSET_BITS=64")))),
       })),
       enableParallelBuilding: true,
@@ -63,12 +57,12 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkFlags: nix.thunk(() => ["-C", "tests"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           gpa: gpa,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               versionCheck: true,
             })))),
@@ -78,7 +72,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://gnupg.org/software/gpgme/index.html",
         changelog: nix.thunk(() => nix.str`https://dev.gnupg.org/source/gpgme/browse/master/NEWS;gpgme-${nix.sel(finalAttrs, "version")}?as=remarkup`),
         description: "Library for making GnuPG easier to use",

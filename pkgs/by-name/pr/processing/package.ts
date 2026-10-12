@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["java", 17, 32]], [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["sha256", 29, 5]], [["pname", 58, 13], ["data", 59, 5]], [["description", 130, 5], ["homepage", 131, 5], ["license", 132, 5], ["mainProgram", 136, 5], ["platforms", 137, 5], ["maintainers", 138, 5], ["sourceProvenance", 139, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["patches", 32, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 49, 3], ["mitmCache", 57, 3], ["gradleFlags", 62, 3], ["gradleBuildTask", 64, 3], ["gradleUpdateTask", 65, 3], ["enableParallelUpdating", 66, 3], ["gradleUpdateScript", 69, 3], ["dontWrapGApps", 78, 3], ["postPatch", 80, 3], ["buildPhase", 89, 3], ["installPhase", 97, 3], ["postFixup", 125, 3], ["meta", 129, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, makeWrapper: false, gradle_8: false, jdk17: false, jogl: false, rsync: false, stripJavaArchivesHook: false, wrapGAppsHook3: false, libGL: false, libxxf86vm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["java", 17, 32]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["sha256", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 58, 13], ["data", 59, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 130, 5], ["homepage", 131, 5], ["license", 132, 5], ["mainProgram", 136, 5], ["platforms", 137, 5], ["maintainers", 138, 5], ["sourceProvenance", 139, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["patches", 32, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 49, 3], ["mitmCache", 57, 3], ["gradleFlags", 62, 3], ["gradleBuildTask", 64, 3], ["gradleUpdateTask", 65, 3], ["enableParallelUpdating", 66, 3], ["gradleUpdateScript", 69, 3], ["dontWrapGApps", 78, 3], ["postPatch", 80, 3], ["buildPhase", 89, 3], ["installPhase", 97, 3], ["postFixup", 125, 3], ["meta", 129, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,14 +19,14 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const libGL = nix.arg($, "libGL");
   const libxxf86vm = nix.arg($, "libxxf86vm");
-  const gradle = nix.thunk(() => nix.app(nix.sel(gradle_8, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, java: jdk17 }))));
+  const gradle = nix.thunk(() => nix.app(nix.sel(gradle_8, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], java: jdk17 }))));
   const jdk = jdk17;
   const buildNumber = "1310";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname = "processing";
       const version = "4.4.10";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "processing",
           repo: "processing4",
           rev: nix.thunk(() => nix.str`processing-${buildNumber}-${version}`),
@@ -43,7 +39,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const nativeBuildInputs = nix.thunk(() => [gradle, makeWrapper, stripJavaArchivesHook, wrapGAppsHook3]);
       const buildInputs = nix.thunk(() => [jdk, jogl, rsync, libGL, libxxf86vm]);
-      const mitmCache = nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({ [nix.POS]: pos$3, pname: pname, data: nix.path(here, "./deps.json") }))));
+      const mitmCache = nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({ [nix.POS]: $pos[2], pname: pname, data: nix.path(here, "./deps.json") }))));
       const gradleFlags = nix.thunk(() => ["-Dfile.encoding=utf-8"]);
       const gradleBuildTask = "createDistributable";
       const gradleUpdateTask = "createDistributable";
@@ -81,7 +77,7 @@ runHook postInstall
 `);
       const postFixup = "ln -s $out/bin/Processing $out/bin/processing\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Language and IDE for electronic arts",
         homepage: "https://processing.org",
         license: nix.thunk(() => (() => {
@@ -106,7 +102,7 @@ runHook postInstall
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

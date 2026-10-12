@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 94, 5], ["sha256", 95, 5]], [["nixos-public-inbox", 179, 5]], [["tests", 178, 12]], [["homepage", 183, 5], ["license", 184, 5], ["maintainers", 185, 5], ["platforms", 189, 5]], [["pname", 90, 3], ["version", 91, 3], ["src", 93, 3], ["outputs", 98, 3], ["postConfigure", 104, 3], ["nativeBuildInputs", 111, 3], ["buildInputs", 113, 3], ["doCheck", 137, 3], ["nativeCheckInputs", 138, 3], ["preCheck", 152, 3], ["installTargets", 159, 3], ["postInstall", 160, 3], ["passthru", 178, 3], ["meta", 182, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, makeWrapper: false, nixosTests: false, buildPerlPackage: false, coreutils: false, curl: false, git: false, gnumake: false, highlight: false, libgit2: false, libxcrypt: false, man: false, openssl: false, "pkg-config": false, sqlite: false, xapian: false, AnyURIEscape: false, DBDSQLite: false, DBI: false, EmailAddressXS: false, EmailMIME: false, IOSocketSSL: false, IPCRun: false, Inline: false, InlineC: false, LinuxInotify2: false, MailIMAPClient: false, ParseRecDescent: false, Plack: false, PlackMiddlewareReverseProxy: false, PlackTestExternalServer: false, Xapian: false, TimeDate: false, URI: false, XMLTreePP: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 94, 5], ["sha256", 95, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["nixos-public-inbox", 179, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 178, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["homepage", 183, 5], ["license", 184, 5], ["maintainers", 185, 5], ["platforms", 189, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 90, 3], ["version", 91, 3], ["src", 93, 3], ["outputs", 98, 3], ["postConfigure", 104, 3], ["nativeBuildInputs", 111, 3], ["buildInputs", 113, 3], ["doCheck", 137, 3], ["nativeCheckInputs", 138, 3], ["preCheck", 152, 3], ["installTargets", 159, 3], ["postInstall", 160, 3], ["passthru", 178, 3], ["meta", 182, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -54,7 +50,7 @@ export default nix.lambda((args) => (() => {
       const pname = "public-inbox";
       const version = "2.1.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://public-inbox.org/public-inbox.git/snapshot/public-inbox-${version}.tar.gz`),
           sha256: "sha256-A9qHiOYuJOUjDqu46gpyBule43FsgQEH0F7maZUjbes=",
         }))));
@@ -108,14 +104,14 @@ done
 mv sa_config $sa_config
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "nixos-public-inbox": nix.thunk(() => nix.sel(nixosTests, "public-inbox")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://public-inbox.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),
         maintainers: nix.thunk(() => (() => {
@@ -128,7 +124,7 @@ mv sa_config $sa_config
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

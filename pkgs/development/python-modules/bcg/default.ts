@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["name", 34, 7], ["url", 35, 7], ["hash", 36, 7]], [["homepage", 61, 5], ["description", 62, 5], ["mainProgram", 63, 5], ["platforms", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["__structuredAttrs", 22, 3], ["src", 24, 3], ["patches", 31, 3], ["postPatch", 39, 3], ["build-system", 44, 3], ["dependencies", 46, 3], ["pythonImportsCheck", 58, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, setuptools: false, appdirs: false, click: false, "click-log": false, looseversion: false, "paho-mqtt": false, pyaml: false, pyserial: false, schema: false, simplejson: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 34, 7], ["url", 35, 7], ["hash", 36, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 61, 5], ["description", 62, 5], ["mainProgram", 63, 5], ["platforms", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["__structuredAttrs", 22, 3], ["src", 24, 3], ["patches", 31, 3], ["postPatch", 39, 3], ["build-system", 44, 3], ["dependencies", 46, 3], ["pythonImportsCheck", 58, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const schema = nix.arg($, "schema");
   const simplejson = nix.arg($, "simplejson");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "bcg",
       version: "1.17.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hardwario",
           repo: "bch-gateway",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "bcg-fix-import-with-Python-3.12.patch",
             url: "https://github.com/hardwario/bch-gateway/pull/19/commits/1314c892992d8914802b6c42602c39f6a1418fca.patch",
             hash: "sha256-dNiBppXjPSMUe2yiiSc9gGbAc8l4mI41wWq+g7PkD/Y=",
@@ -62,7 +59,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["bcg"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/hardwario/bch-gateway",
         description: "HARDWARIO Gateway (Python Application «bcg»)",
         mainProgram: "bcg",

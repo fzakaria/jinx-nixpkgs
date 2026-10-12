@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["extraArgs", 52, 7]], [["updateScript", 51, 5]], [["fancyName", 56, 5], ["driver", 57, 5]], [["homepage", 61, 5], ["description", 62, 5], ["license", 63, 5], ["platforms", 64, 5], ["teams", 65, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["buildInputs", 30, 3], ["nativeBuildInputs", 37, 3], ["strictDeps", 41, 3], ["configureFlags", 43, 3], ["passthru", 50, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { autoreconfHook: false, fetchFromGitHub: false, lib: false, libpq: false, "nix-update-script": false, openssl: false, stdenv: false, withLibiodbc: true, libiodbc: false, withUnixODBC: true, unixodbc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 52, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 51, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["fancyName", 56, 5], ["driver", 57, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 61, 5], ["description", 62, 5], ["license", 63, 5], ["platforms", 64, 5], ["teams", 65, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["buildInputs", 30, 3], ["nativeBuildInputs", 37, 3], ["strictDeps", 41, 3], ["configureFlags", 43, 3], ["passthru", 50, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const unixodbc = nix.arg($, "unixodbc");
   nix.assert_(nix.app(nix.sel(lib, "xor"), withLibiodbc, withUnixODBC), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ps/psqlodbc/package.nix:17:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "psqlodbc",
       version: "18.00.0003",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "postgresql-interfaces",
           repo: "psqlodbc",
           tag: nix.thunk(() => nix.str`REL-${nix.app(nix.sel(lib, "replaceString"), ".", "_", nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -43,14 +38,14 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--with-libpq=${nix.app(nix.sel(lib, "getDev"), libpq)}`),
       ], nix.concat(nix.app(nix.sel(lib, "optional"), withLibiodbc, nix.thunk(() => nix.str`--with-iodbc=${libiodbc}`)), nix.app(nix.sel(lib, "optional"), withUnixODBC, nix.thunk(() => nix.str`--with-unixodbc=${unixodbc}`))))),
       passthru: nix.thunk(() => nix.update({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex=^REL-(\\d+)_(\\d+)_(\\d+)$"]),
           })))),
-      }, nix.app(nix.sel(lib, "optionalAttrs"), withUnixODBC, nix.thunk(() => ({ [nix.POS]: pos$4, fancyName: "PostgreSQL", driver: "lib/psqlodbcw.so" }))))),
+      }, nix.app(nix.sel(lib, "optionalAttrs"), withUnixODBC, nix.thunk(() => ({ [nix.POS]: $pos[3], fancyName: "PostgreSQL", driver: "lib/psqlodbcw.so" }))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://odbc.postgresql.org/",
         description: "ODBC driver for PostgreSQL",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2")),

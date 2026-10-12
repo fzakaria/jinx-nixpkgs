@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["free", 18, 9], ["unfree", 19, 9]], [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5], ["postFetch", 26, 5]], [["NIX_CFLAGS_COMPILE", 57, 7]], [["updateScript", 74, 12]], [["homepage", 77, 5], ["description", 78, 5], ["license", 79, 5], ["maintainers", 91, 5], ["platforms", 95, 5], ["mainProgram", 96, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["postPatch", 33, 3], ["preConfigure", 49, 3], ["enableParallelBuilding", 56, 3], ["env", 57, 3], ["makeFlags", 59, 3], ["outputs", 66, 3], ["setupHook", 73, 3], ["passthru", 74, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, enableUnfree: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["free", 18, 9], ["unfree", 19, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5], ["postFetch", 26, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 57, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 74, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 77, 5], ["description", 78, 5], ["license", 79, 5], ["maintainers", 91, 5], ["platforms", 95, 5], ["mainProgram", 96, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["postPatch", 33, 3], ["preConfigure", 49, 3], ["enableParallelBuilding", 56, 3], ["env", 57, 3], ["makeFlags", 59, 3], ["outputs", 66, 3], ["setupHook", 73, 3], ["passthru", 74, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,16 +12,16 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const enableUnfree = nix.argOr($, "enableUnfree", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "p7zip",
       version: "17.06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "p7zip-project",
           repo: "p7zip",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           sha256: nix.thunk(() => nix.sel({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             free: "sha256-NHlacZFal4xMYyFMshibeAw86cS1RXXyXweXKFHQAT8=",
             unfree: "sha256-kSJHgnuUxO9DJwSOE1hffp9PfU39V+VE87I3CpeRGiY=",
           }, nix.key((nix.asBool(enableUnfree) ? "unfree" : "free")))),
@@ -39,7 +34,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: nix.thunk(() => nix.add("buildFlags=all3\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "cp makefile.macosx_llvm_64bits makefile.machine\n"))),
       enableParallelBuilding: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-Wno-error=c++11-narrowing")),
       })),
       makeFlags: nix.thunk(() => [
@@ -50,9 +45,9 @@ export default nix.lambda((args) => (() => {
       ]),
       outputs: nix.thunk(() => ["out", "lib", "doc", "man"]),
       setupHook: nix.path(here, "./setup-hook.sh"),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/p7zip-project/p7zip",
         description: "New p7zip fork with additional codecs and improvements (forked from https://sourceforge.net/projects/p7zip/)",
         license: nix.thunk(() => (() => {

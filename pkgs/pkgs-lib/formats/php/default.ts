@@ -2,32 +2,23 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["null", 12, 11], ["bool", 13, 11], ["int", 14, 11], ["float", 15, 11], ["string", 16, 11], ["set", 17, 11], ["list", 18, 11]], [["mixed_array", 47, 11], ["raw", 48, 11]], [["description", 63, 11]], [["list", 73, 29], ["set", 73, 34]], [["_phpType", 72, 11], ["value", 73, 11]], [["_phpType", 76, 11], ["value", 77, 11]], [["mkMixedArray", 71, 9], ["mkRaw", 75, 9]], [["name", 84, 19], ["text", 85, 11]], [["type", 68, 15], ["lib", 70, 7], ["generate", 81, 7]], [["format", 4, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: false };
 const formals$2 = { args: { finalVariable: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["null", 12, 11], ["bool", 13, 11], ["int", 14, 11], ["float", 15, 11], ["string", 16, 11], ["set", 17, 11], ["list", 18, 11]]);
 const formals$3 = { args: { list: false, set: false }, ellipsis: false };
 const formals$4 = { args: { value: false, _phpType: false }, ellipsis: false };
-const pos$2 = nix.positions(here + "/default.nix", [["mixed_array", 47, 11], ["raw", 48, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 63, 11]]);
-const pos$4 = nix.positions(here + "/default.nix", [["list", 73, 29], ["set", 73, 34]]);
-const pos$5 = nix.positions(here + "/default.nix", [["_phpType", 72, 11], ["value", 73, 11]]);
-const pos$6 = nix.positions(here + "/default.nix", [["_phpType", 76, 11], ["value", 77, 11]]);
-const pos$7 = nix.positions(here + "/default.nix", [["mkMixedArray", 71, 9], ["mkRaw", 75, 9]]);
-const pos$8 = nix.positions(here + "/default.nix", [["name", 84, 19], ["text", 85, 11]]);
-const pos$9 = nix.positions(here + "/default.nix", [["type", 68, 15], ["lib", 70, 7], ["generate", 81, 7]]);
-const pos$10 = nix.positions(here + "/default.nix", [["format", 4, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     format: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const finalVariable = nix.argOr($_1, "finalVariable", () => null);
       const toPHP = (value) => nix.selOr({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         null: "null",
         bool: nix.thunk(() => (nix.asBool(value) ? "true" : "false")),
         int: nix.thunk(() => nix.builtins.toString(value)),
@@ -56,7 +47,7 @@ export default nix.lambda((args) => (() => {
         const value = nix.arg($_2, "value");
         const _phpType = nix.arg($_2, "_phpType");
         return nix.sel({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           mixed_array: nix.thunk(() => nix.app(mixedArray, value)),
           raw: value,
         }, nix.key(nix.force(_phpType)));
@@ -70,22 +61,22 @@ export default nix.lambda((args) => (() => {
               nix.thunk(() => nix.lookup(w, "str")),
               nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), type)),
               nix.thunk(() => nix.app(nix.lookup(w, "listOf"), type)),
-            ])))), { [nix.POS]: pos$3, description: "PHP value" });
+            ])))), { [nix.POS]: $pos[2], description: "PHP value" });
       })());
       return {
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         type: type,
         lib: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           mkMixedArray: (list_1) => (set) => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             _phpType: "mixed_array",
-            value: nix.thunk(() => ({ [nix.POS]: pos$4, list: list_1, set: set })),
+            value: nix.thunk(() => ({ [nix.POS]: $pos[3], list: list_1, set: set })),
           }),
-          mkRaw: (raw) => ({ [nix.POS]: pos$6, _phpType: "raw", value: raw }),
+          mkRaw: (raw) => ({ [nix.POS]: $pos[5], _phpType: "raw", value: raw }),
         })),
         generate: (name) => (value) => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             name: name,
             text: nix.thunk(() => (() => {
               const phpHeader = "<?php\ndeclare(strict_types=1);\n";

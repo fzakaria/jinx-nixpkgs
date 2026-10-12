@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 7], ["hash", 17, 7]], [["url", 20, 7], ["hash", 21, 7]], [["x86_64-linux", 15, 5], ["aarch64-darwin", 19, 5]], [["src", 28, 13], ["pname", 28, 17], ["version", 28, 23]], [["description", 32, 5], ["mainProgram", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["platforms", 40, 5], ["changelog", 44, 5]], [["updateScript", 55, 14]], [["src", 49, 7], ["pname", 50, 7], ["version", 51, 7], ["meta", 52, 7], ["passthru", 55, 5], ["extraInstallCommands", 57, 5], ["extraPkgs", 64, 5]], [["updateScript", 78, 14]], [["src", 72, 7], ["pname", 73, 7], ["version", 74, 7], ["meta", 75, 7], ["passthru", 78, 5], ["sourceRoot", 80, 5], ["nativeBuildInputs", 81, 5], ["installPhase", 86, 5]]]);
 const formals$1 = { args: { appimageTools: false, lib: false, fetchurl: false, stdenvNoCC: false, makeWrapper: false, _7zz: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 7], ["hash", 17, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 20, 7], ["hash", 21, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["x86_64-linux", 15, 5], ["aarch64-darwin", 19, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["src", 28, 13], ["pname", 28, 17], ["version", 28, 23]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 32, 5], ["mainProgram", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["platforms", 40, 5], ["changelog", 44, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 55, 14]]);
-const pos$7 = nix.positions(here + "/package.nix", [["src", 49, 7], ["pname", 50, 7], ["version", 51, 7], ["meta", 52, 7], ["passthru", 55, 5], ["extraInstallCommands", 57, 5], ["extraPkgs", 64, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["updateScript", 78, 14]]);
-const pos$9 = nix.positions(here + "/package.nix", [["src", 72, 7], ["pname", 73, 7], ["version", 74, 7], ["meta", 75, 7], ["passthru", 78, 5], ["sourceRoot", 80, 5], ["nativeBuildInputs", 81, 5], ["installPhase", 86, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,22 +16,22 @@ export default nix.lambda((args) => (() => {
   const pname = "electron-mail";
   const version = "5.3.10";
   const sources = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: nix.thunk(() => nix.str`https://github.com/vladimiry/ElectronMail/releases/download/v${version}/electron-mail-${version}-linux-x86_64.AppImage`),
         hash: "sha256-dzWp1HsFHGurzxqzLcNsUvcSEFcuushcwtUL+ogOoAg=",
       })))),
     "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: nix.thunk(() => nix.str`https://github.com/vladimiry/ElectronMail/releases/download/v${version}/electron-mail-${version}-mac-arm64.dmg`),
         hash: "sha256-eGOpOBZ/6CSBaFFXxD0tYdhWPCTwR9n+/stsEH7vR2U=",
       })))),
   }));
   const src = nix.thunk(() => nix.sel(sources, nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system"))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$4, src: src, pname: pname, version: version }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[3], src: src, pname: pname, version: version }))));
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     description: "Unofficial Election-based ProtonMail desktop client",
     mainProgram: "electron-mail",
     homepage: "https://github.com/vladimiry/ElectronMail",
@@ -55,12 +47,12 @@ export default nix.lambda((args) => (() => {
     changelog: nix.thunk(() => nix.str`https://github.com/vladimiry/ElectronMail/releases/tag/v${version}`),
   }));
   const linux = nix.thunk(() => nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       src: src,
       pname: pname,
       version: version,
       meta: meta,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$6, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[5], updateScript: nix.path(here, "./update.sh") })),
       extraInstallCommands: nix.thunk(() => nix.str`install -m 444 -D ${appimageContents}/${pname}.desktop -t $out/share/applications
 substituteInPlace $out/share/applications/${pname}.desktop \\
   --replace-fail 'Exec=AppRun' 'Exec=${pname}'
@@ -72,12 +64,12 @@ cp -r ${appimageContents}/usr/share/icons $out/share
       ],
     }))));
   const darwin = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       src: src,
       pname: pname,
       version: version,
       meta: meta,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$8, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[7], updateScript: nix.path(here, "./update.sh") })),
       sourceRoot: ".",
       nativeBuildInputs: nix.thunk(() => [_7zz, makeWrapper]),
       installPhase: nix.thunk(() => nix.str`runHook preInstall

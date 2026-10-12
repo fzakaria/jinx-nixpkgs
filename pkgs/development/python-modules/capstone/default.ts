@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["homepage", 43, 5], ["license", 44, 5], ["description", 45, 5], ["maintainers", 46, 5]], [["pname", 10, 3], ["version", 11, 3], ["format", 12, 3], ["src", 14, 3], ["sourceRoot", 15, 3], ["postPatch", 19, 3], ["setupPyBuildFlags", 27, 3], ["propagatedBuildInputs", 32, 3], ["checkPhase", 34, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, capstone: false, stdenv: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["homepage", 43, 5], ["license", 44, 5], ["description", 45, 5], ["maintainers", 46, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["format", 12, 3], ["src", 14, 3], ["sourceRoot", 15, 3], ["postPatch", 19, 3], ["setupPyBuildFlags", 27, 3], ["propagatedBuildInputs", 32, 3], ["checkPhase", 34, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +26,7 @@ substituteInPlace setup.py --replace manylinux1 manylinux2014
       const propagatedBuildInputs = nix.thunk(() => [setuptools]);
       const checkPhase = "mv capstone capstone.hidden\npushd tests\n  patchShebangs test_*\n  make -f ../Makefile check\npopd\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: "http://www.capstone-engine.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsdOriginal")),
         description: "Python bindings for Capstone disassembly engine",
@@ -40,7 +39,7 @@ substituteInPlace setup.py --replace manylinux1 manylinux2014
         })()),
       }));
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname,
         version,
         format,

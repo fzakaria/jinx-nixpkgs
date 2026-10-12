@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["pname", 43, 5], ["version", 44, 26], ["src", 44, 34], ["nativeBuildInputs", 46, 5], ["buildPhase", 54, 5], ["installPhase", 64, 5], ["postFixup", 72, 5], ["outputHashMode", 77, 5], ["outputHash", 78, 5]], [["pname", 82, 5], ["version", 83, 26], ["src", 83, 34], ["npmDepsHash", 85, 5], ["sourceRoot", 87, 5], ["buildPhase", 89, 5], ["installPhase", 97, 5]], [["package", 128, 27]], [["olivetin", 128, 18]], [["services", 128, 9]], [["module", 127, 7]], [["olivetin", 126, 11]], [["tests", 126, 5], ["releaseSeries", 131, 5], ["updateScript", 132, 5]], [["description", 136, 5], ["homepage", 137, 5], ["downloadPage", 138, 5], ["changelog", 139, 5], ["license", 140, 5], ["maintainers", 141, 5], ["mainProgram", 142, 5], ["knownVulnerabilities", 143, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["modRoot", 30, 3], ["vendorHash", 32, 3], ["ldflags", 34, 3], ["__darwinAllowLocalNetworking", 40, 3], ["gen", 42, 3], ["webui", 81, 3], ["nativeBuildInputs", 107, 3], ["preBuild", 109, 3], ["postInstall", 117, 3], ["nativeInstallCheckInputs", 121, 3], ["versionCheckProgramArg", 122, 3], ["doInstallCheck", 123, 3], ["passthru", 125, 3], ["meta", 135, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildGoModule: false, stdenvNoCC: false, writableTmpDirAsHomeHook: false, buf: false, "protoc-gen-go": false, "protoc-gen-go-grpc": false, "grpc-gateway": false, buildNpmPackage: false, installShellFiles: false, versionCheckHook: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 43, 5], ["version", 44, 26], ["src", 44, 34], ["nativeBuildInputs", 46, 5], ["buildPhase", 54, 5], ["installPhase", 64, 5], ["postFixup", 72, 5], ["outputHashMode", 77, 5], ["outputHash", 78, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 82, 5], ["version", 83, 26], ["src", 83, 34], ["npmDepsHash", 85, 5], ["sourceRoot", 87, 5], ["buildPhase", 89, 5], ["installPhase", 97, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["package", 128, 27]]);
-const pos$5 = nix.positions(here + "/package.nix", [["olivetin", 128, 18]]);
-const pos$6 = nix.positions(here + "/package.nix", [["services", 128, 9]]);
-const pos$7 = nix.positions(here + "/package.nix", [["module", 127, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["olivetin", 126, 11]]);
-const pos$9 = nix.positions(here + "/package.nix", [["tests", 126, 5], ["releaseSeries", 131, 5], ["updateScript", 132, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["description", 136, 5], ["homepage", 137, 5], ["downloadPage", 138, 5], ["changelog", 139, 5], ["license", 140, 5], ["maintainers", 141, 5], ["mainProgram", 142, 5], ["knownVulnerabilities", 143, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["modRoot", 30, 3], ["vendorHash", 32, 3], ["ldflags", 34, 3], ["__darwinAllowLocalNetworking", 40, 3], ["gen", 42, 3], ["webui", 81, 3], ["nativeBuildInputs", 107, 3], ["preBuild", 109, 3], ["postInstall", 117, 3], ["nativeInstallCheckInputs", 121, 3], ["versionCheckProgramArg", 122, 3], ["doInstallCheck", 123, 3], ["passthru", 125, 3], ["meta", 135, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       pname: "olivetin",
       version: "2025.11.25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "OliveTin",
           repo: "OliveTin",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -51,7 +41,7 @@ export default nix.lambda((args) => (() => {
       ]),
       __darwinAllowLocalNetworking: true,
       gen: nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: "olivetin-gen",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -69,7 +59,7 @@ export default nix.lambda((args) => (() => {
           outputHash: "sha256-fTsJE9ymtJ0TU2OhXLE+XfEOckFMG7IPi0IHHAmN84s=",
         })))),
       webui: nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: "olivetin-webui",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -90,17 +80,17 @@ substituteInPlace internal/httpservers/webuiServer_test.go \\
       versionCheckProgramArg: "-version",
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           olivetin: nix.thunk(() => nix.app(nix.sel(nixosTests, "olivetin", "extendNixOS"), nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               module: nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   olivetin: nix.thunk(() => ({
-                    [nix.POS]: pos$4,
+                    [nix.POS]: $pos[3],
                     package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
                   })),
                 })),
@@ -111,7 +101,7 @@ substituteInPlace internal/httpservers/webuiServer_test.go \\
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         description: "Gives safe and simple access to predefined shell commands from a web interface",
         homepage: "https://www.olivetin.app/",
         downloadPage: "https://github.com/OliveTin/OliveTin",

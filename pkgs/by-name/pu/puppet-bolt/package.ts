@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["dontPatchShebangs", 22, 7]], [["bolt", 19, 5]], [["package", 33, 7], ["version", 34, 7]], [["version", 32, 11]], [["tests", 32, 5], ["updateScript", 36, 5]], [["description", 40, 5], ["homepage", 41, 5], ["changelog", 42, 5], ["license", 43, 5], ["mainProgram", 44, 5], ["maintainers", 45, 5], ["platforms", 49, 5]], [["pname", 12, 3], ["gemdir", 14, 3], ["exes", 15, 3], ["nativeBuildInputs", 16, 3], ["gemConfig", 18, 3], ["postBuild", 26, 3], ["passthru", 31, 3], ["meta", 39, 3]], [["name", 53, 5]]]);
 const formals$1 = { args: { bundlerApp: false, defaultGemConfig: false, bundlerUpdateScript: false, lib: false, makeWrapper: false, "puppet-bolt": false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["dontPatchShebangs", 22, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["bolt", 19, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 33, 7], ["version", 34, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 32, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 32, 5], ["updateScript", 36, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 40, 5], ["homepage", 41, 5], ["changelog", 42, 5], ["license", 43, 5], ["mainProgram", 44, 5], ["maintainers", 45, 5], ["platforms", 49, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["gemdir", 14, 3], ["exes", 15, 3], ["nativeBuildInputs", 16, 3], ["gemConfig", 18, 3], ["postBuild", 26, 3], ["passthru", 31, 3], ["meta", 39, 3]]);
-const pos$8 = nix.positions(here + "/package.nix", [["name", 53, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,22 +15,22 @@ export default nix.lambda((args) => (() => {
   const puppet_bolt = nix.arg($, "puppet-bolt");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(nix.app(bundlerApp, nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "bolt",
       gemdir: nix.path(here, "./."),
       exes: nix.thunk(() => ["bolt"]),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       gemConfig: nix.thunk(() => nix.update(defaultGemConfig, {
-        [nix.POS]: pos$2,
-        bolt: (attrs) => ({ [nix.POS]: pos$1, dontPatchShebangs: true }),
+        [nix.POS]: $pos[1],
+        bolt: (attrs) => ({ [nix.POS]: $pos[0], dontPatchShebangs: true }),
       })),
       postBuild: "# Set BOLT_GEM=1 to remove warning\nwrapProgram $out/bin/bolt --set BOLT_GEM 1\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: puppet_bolt,
               version: nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./gemset.nix")), "bolt", "version")),
             })))),
@@ -45,7 +38,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "puppet-bolt")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Execute commands remotely over SSH and WinRM",
         homepage: "https://github.com/puppetlabs/bolt",
         changelog: "https://github.com/puppetlabs/bolt/blob/main/CHANGELOG.md",
@@ -61,7 +54,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       })),
     }))), "overrideAttrs"), (old) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       name: nix.thunk(() => nix.str`puppet-bolt-${nix.sel(nix.builtins.import(nix.path(here, "./gemset.nix")), "bolt", "version")}`),
     }));
 })(), formals$1);

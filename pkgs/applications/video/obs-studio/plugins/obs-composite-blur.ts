@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/obs-composite-blur.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["name", 28, 7], ["url", 29, 7], ["hash", 30, 7]], [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5]], [["pname", 11, 3], ["version", 12, 3], ["__structuredAttrs", 14, 3], ["strictDeps", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["buildInputs", 34, 3], ["nativeBuildInputs", 38, 3], ["postInstall", 42, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, "obs-studio": false, cmake: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/obs-composite-blur.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/obs-composite-blur.nix", [["name", 28, 7], ["url", 29, 7], ["hash", 30, 7]]);
-const pos$3 = nix.positions(here + "/obs-composite-blur.nix", [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5]]);
-const pos$4 = nix.positions(here + "/obs-composite-blur.nix", [["pname", 11, 3], ["version", 12, 3], ["__structuredAttrs", 14, 3], ["strictDeps", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["buildInputs", 34, 3], ["nativeBuildInputs", 38, 3], ["postInstall", 42, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const obs_studio = nix.arg($, "obs-studio");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "obs-composite-blur",
       version: "1.5.2",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "FiniteSingularity",
           repo: "obs-composite-blur",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix-strrchr-discarded-qualifiers.patch",
             url: "https://github.com/FiniteSingularity/obs-composite-blur/commit/4773875d2ac1335f752b31ca4fb16229bff1a4aa.patch",
             hash: "sha256-V9Mt48a4dALX3t4nXz45tNtKrlEgznjdyPeXYPMpGno=",
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       postInstall: "rm -rf \"$out/share\"\nmkdir -p \"$out/share/obs\"\nmv \"$out/data/obs-plugins\" \"$out/share/obs\"\nrm -rf \"$out/obs-plugins\" \"$out/data\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Comprehensive blur plugin for OBS that provides several different blur algorithms, and proper compositing",
         homepage: "https://github.com/FiniteSingularity/obs-composite-blur",
         changelog: nix.thunk(() => nix.str`https://github.com/FiniteSingularity/obs-composite-blur/releases/tag/v${nix.sel(finalAttrs, "version")}`),

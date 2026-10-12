@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 7], ["hash", 19, 7]], [["pname", 15, 5], ["version", 16, 5], ["src", 17, 5], ["buildInputs", 21, 5], ["propagatedBuildInputs", 22, 5]], [["owner", 47, 5], ["repo", 48, 5], ["tag", 52, 5], ["hash", 53, 5]], [["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["platforms", 81, 5]], [["pname", 43, 3], ["version", 44, 3], ["src", 46, 3], ["outputs", 56, 3], ["buildInputs", 61, 3], ["nativeBuildInputs", 62, 3], ["postPatch", 64, 3], ["doInstallCheck", 68, 3], ["installCheckPhase", 69, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchurl: false, perl: false, autoreconfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 7], ["hash", 19, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 15, 5], ["version", 16, 5], ["src", 17, 5], ["buildInputs", 21, 5], ["propagatedBuildInputs", 22, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 47, 5], ["repo", 48, 5], ["tag", 52, 5], ["hash", 53, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["platforms", 81, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 43, 3], ["version", 44, 3], ["src", 46, 3], ["outputs", 56, 3], ["buildInputs", 61, 3], ["nativeBuildInputs", 62, 3], ["postPatch", 64, 3], ["doInstallCheck", 68, 3], ["installCheckPhase", 69, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "Mojo-Log-Clearable";
       const version = "1.001";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://cpan/authors/id/D/DB/DBOOK/Mojo-Log-Clearable-${version}.tar.gz`),
           hash: "sha256-guBqKdWemc4mC/xp77Wd7qeV2iRqY4wrQ5NRsHtsCnI=",
         }))));
@@ -37,7 +33,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.lookup(w_1, "ClassMethodModifiers")),
         ];
       })());
-      return { [nix.POS]: pos$2, pname, version, src, buildInputs, propagatedBuildInputs };
+      return { [nix.POS]: $pos[1], pname, version, src, buildInputs, propagatedBuildInputs };
     })())));
   const perl$ = nix.thunk(() => nix.app(nix.sel(perl, "withPackages"), (p) => (() => {
       const w = nix.withScope(p, null);
@@ -53,11 +49,11 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "znapzend",
       version: "0.23.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "oetiker",
           repo: "znapzend",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -70,7 +66,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installCheckPhase: "$out/bin/znapzend --version\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "High performance open source ZFS backup with mbuffer and ssh support",
         homepage: "https://www.znapzend.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

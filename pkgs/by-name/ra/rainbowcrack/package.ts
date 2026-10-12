@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["description", 45, 5], ["homepage", 46, 5], ["maintainers", 47, 5], ["license", 48, 5], ["mainProgram", 49, 5], ["sourceProvenance", 50, 5], ["platforms", 51, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 24, 3], ["dontConfigure", 26, 3], ["dontBuild", 28, 3], ["unpackPhase", 30, 3], ["installPhase", 35, 3], ["runtimeDependencies", 42, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, alglib: false, unzip: false, autoPatchelfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 45, 5], ["homepage", 46, 5], ["maintainers", 47, 5], ["license", 48, 5], ["mainProgram", 49, 5], ["sourceProvenance", 50, 5], ["platforms", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 24, 3], ["dontConfigure", 26, 3], ["dontBuild", 28, 3], ["unpackPhase", 30, 3], ["installPhase", 35, 3], ["runtimeDependencies", 42, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "rainbowcrack";
       const version = "1.8";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://project-rainbowcrack.com/rainbowcrack-${version}-linux64.zip`),
           hash: "sha256-xMC9teHiDvBY/VHV63TsNQjdcuLqHGeXUyjHvRTO9HQ=",
         }))));
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const installPhase = "install -Dm644 $out/rainbowcrack-1.8-linux64/*.txt $out/share/rainbowcrack\ninstall -Dm755 $out/rainbowcrack-1.8-linux64/rt* $out/rainbowcrack-1.8-linux64/rcrack $out/bin\nchmod +x $out/bin/*\nrm -rf $out/rainbowcrack-1.8-linux64\n";
       const runtimeDependencies = nix.thunk(() => [alglib]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Rainbow table generator used for password cracking",
         homepage: "http://project-rainbowcrack.com",
         maintainers: nix.thunk(() => (() => {
@@ -49,7 +47,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => ["x86_64-linux64"]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

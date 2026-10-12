@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/1.8.nix", [[["url", 20, 5], ["sha256", 21, 5]], [["NIX_CFLAGS_COMPILE", 69, 5]], [["effectiveVersion", 97, 5], ["siteCcacheDir", 98, 5], ["siteDir", 99, 5]], [["homepage", 103, 5], ["description", 104, 5], ["longDescription", 105, 5], ["license", 113, 5], ["maintainers", 114, 5], ["platforms", 115, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["outputs", 24, 3], ["setOutputFlags", 29, 3], ["configureFlags", 32, 3], ["depsBuildBuild", 39, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 47, 3], ["propagatedBuildInputs", 51, 3], ["patches", 61, 3], ["env", 68, 3], ["preBuild", 72, 3], ["postInstall", 76, 3], ["doCheck", 91, 3], ["doInstallCheck", 92, 3], ["setupHook", 94, 3], ["passthru", 96, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, buildPackages: false, gawk: false, gmp: false, libtool: false, makeWrapper: false, "pkg-config": false, pkgsBuildBuild: false, readline: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/1.8.nix", [["url", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/1.8.nix", [["NIX_CFLAGS_COMPILE", 69, 5]]);
-const pos$3 = nix.positions(here + "/1.8.nix", [["effectiveVersion", 97, 5], ["siteCcacheDir", 98, 5], ["siteDir", 99, 5]]);
-const pos$4 = nix.positions(here + "/1.8.nix", [["homepage", 103, 5], ["description", 104, 5], ["longDescription", 105, 5], ["license", 113, 5], ["maintainers", 114, 5], ["platforms", 115, 5]]);
-const pos$5 = nix.positions(here + "/1.8.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["outputs", 24, 3], ["setOutputFlags", 29, 3], ["configureFlags", 32, 3], ["depsBuildBuild", 39, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 47, 3], ["propagatedBuildInputs", 51, 3], ["patches", 61, 3], ["env", 68, 3], ["preBuild", 72, 3], ["postInstall", 76, 3], ["doCheck", 91, 3], ["doInstallCheck", 92, 3], ["setupHook", 94, 3], ["passthru", 96, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "guile";
       const version = "1.8.8";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnu/${pname}/${pname}-${version}.tar.gz`),
           sha256: "0l200a0v7h8bh0cwz6v7hc13ds39cgqsmfrks55b1rbj5vniyiy3",
         }))));
@@ -38,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [libtool, readline]);
       const propagatedBuildInputs = nix.thunk(() => [gmp, libtool]);
       const patches = nix.thunk(() => [nix.path(here, "./cpp-4.5.patch"), nix.path(here, "./CVE-2016-8605.patch")]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-std=gnu17" }));
       const preBuild = "sed -e '/lt_dlinit/a  lt_dladdsearchdir(\"'$out/lib'\");' -i libguile/dynl.c\n";
       const postInstall = nix.thunk(() => nix.add(nix.str`wrapProgram $out/bin/guile-snarf --prefix PATH : "${gawk}/bin"
 `, nix.str`sed -i "$out/lib/pkgconfig/guile"-*.pc    \\
@@ -48,13 +44,13 @@ export default nix.lambda((args) => (() => {
       const doInstallCheck = doCheck;
       const setupHook = nix.path(here, "./setup-hook-1.8.sh");
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         effectiveVersion: nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), version)),
         siteCcacheDir: "lib/guile/site-ccache",
         siteDir: "share/guile/site",
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://www.gnu.org/software/guile/",
         description: "Embeddable Scheme implementation",
         longDescription: "GNU Guile is an implementation of the Scheme programming language, with\nsupport for many SRFIs, packaged for use in a wide variety of\nenvironments.  In addition to implementing the R5RS Scheme standard and a\nlarge subset of R6RS, Guile includes a module system, full access to POSIX\nsystem calls, networking support, multiple threads, dynamic linking, a\nforeign function call interface, and powerful string processing.\n",
@@ -66,7 +62,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/runtime.nix", [[["url", 16, 5], ["hash", 17, 5]], [["homepage", 32, 5], ["description", 33, 5], ["license", 34, 5], ["maintainers", 35, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 15, 3], ["minimalOCamlVersion", 20, 3], ["propagatedBuildInputs", 22, 3], ["checkInputs", 28, 3], ["doCheck", 29, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, buildDunePackage: false, cmdliner: false, ipaddr: false, logs: false, lwt: false, alcotest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/runtime.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/runtime.nix", [["homepage", 32, 5], ["description", 33, 5], ["license", 34, 5], ["maintainers", 35, 5]]);
-const pos$3 = nix.positions(here + "/runtime.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 15, 3], ["minimalOCamlVersion", 20, 3], ["propagatedBuildInputs", 22, 3], ["checkInputs", 28, 3], ["doCheck", 29, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const lwt = nix.arg($, "lwt");
   const alcotest = nix.arg($, "alcotest");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mirage-runtime",
       version: "4.10.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/mirage/mirage/releases/download/v${nix.sel(finalAttrs, "version")}/mirage-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256:4184cbc7e51b0dcdcf4345c98818c34129ff42879ef091e54849faa57b29d397",
         })))),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [alcotest]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/mirage/mirage",
         description: "Base MirageOS runtime library, part of every MirageOS unikernel",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

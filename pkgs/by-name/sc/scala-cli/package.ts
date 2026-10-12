@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 48, 7], ["hash", 49, 23]], [["homepage", 87, 5], ["changelog", 88, 5], ["downloadPage", 89, 5], ["sourceProvenance", 90, 5], ["license", 91, 5], ["description", 92, 5], ["mainProgram", 93, 5], ["maintainers", 94, 5], ["platforms", 98, 13]], [["command", 103, 7], ["supportedFeatures", 104, 7]], [["package", 108, 7], ["command", 109, 7]], [["nativeBuildInputs", 115, 11]], [["version", 107, 11], ["completions", 112, 11]], [["updateScript", 102, 5], ["tests", 107, 5]], [["pname", 26, 11], ["version", 26, 17], ["nativeBuildInputs", 27, 3], ["buildInputs", 32, 3], ["src", 41, 3], ["unpackPhase", 51, 3], ["installPhase", 57, 3], ["dontAutoPatchelf", 67, 3], ["postFixup", 69, 3], ["meta", 86, 3], ["passthru", 101, 3]]]);
 const formals$1 = { args: { stdenv: false, coreutils: false, lib: false, installShellFiles: false, zlib: false, autoPatchelfHook: false, fetchurl: false, makeWrapper: false, callPackage: false, jre: false, testers: false, runCommand: false, zsh: false, fish: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 48, 7], ["hash", 49, 23]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 87, 5], ["changelog", 88, 5], ["downloadPage", 89, 5], ["sourceProvenance", 90, 5], ["license", 91, 5], ["description", 92, 5], ["mainProgram", 93, 5], ["maintainers", 94, 5], ["platforms", 98, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["command", 103, 7], ["supportedFeatures", 104, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["package", 108, 7], ["command", 109, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 115, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["version", 107, 11], ["completions", 112, 11]]);
-const pos$7 = nix.positions(here + "/package.nix", [["updateScript", 102, 5], ["tests", 107, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 26, 11], ["version", 26, 17], ["nativeBuildInputs", 27, 3], ["buildInputs", 32, 3], ["src", 41, 3], ["unpackPhase", 51, 3], ["installPhase", 57, 3], ["dontAutoPatchelf", 67, 3], ["postFixup", 69, 3], ["meta", 86, 3], ["passthru", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +28,7 @@ export default nix.lambda((args) => (() => {
   const assets = nix.thunk(() => nix.attr(sources, "assets"));
   const platforms = nix.thunk(() => nix.builtins.attrNames(assets));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: pname,
       version: version,
       nativeBuildInputs: nix.thunk(() => nix.concat([installShellFiles, makeWrapper], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), autoPatchelfHook))),
@@ -47,7 +40,7 @@ export default nix.lambda((args) => (() => {
       src: nix.thunk(() => (() => {
         const asset = nix.thunk(() => nix.selOr(assets, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported platform ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.str`${nix.sel(stdenv, "hostPlatform", "system")}`)));
         return nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`https://github.com/${repo}/releases/download/v${version}/${nix.sel(asset, "asset")}`),
             hash: nix.thunk(() => nix.attr(asset, "hash")),
           })));
@@ -63,7 +56,7 @@ runHook postInstall
       dontAutoPatchelf: true,
       postFixup: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "autoPatchelf $out\n"), "# hack to ensure the completion function looks right\n# as $0 is used to generate the compdef directive\nmkdir temp\ncp $out/bin/.scala-cli-wrapped temp/scala-cli\nPATH=\"./temp:$PATH\"\n\ninstallShellCompletion --cmd scala-cli \\\n  --bash <(scala-cli completions bash) \\\n  --zsh <(scala-cli completions zsh) \\\n  --fish <(scala-cli completions fish)\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://scala-cli.virtuslab.org",
         changelog: nix.thunk(() => nix.str`https://github.com/${repo}/releases/tag/v${version}`),
         downloadPage: nix.thunk(() => nix.str`https://github.com/VirtusLab/scala-cli/releases/v${version}`),
@@ -84,20 +77,20 @@ runHook postInstall
         platforms: platforms,
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         updateScript: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           command: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(callPackage, nix.path(here, "./update.nix"), nix.thunk(() => ({})))))),
           supportedFeatures: nix.thunk(() => ["commit"]),
         })),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "scala-cli version --offline",
             })))),
-          completions: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${pname}-completions`), nix.thunk(() => ({ [nix.POS]: pos$5, nativeBuildInputs: nix.thunk(() => [zsh, fish]) })), nix.thunk(() => nix.str`share=${nix.sel(finalAttrs, "finalPackage")}/share
+          completions: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${pname}-completions`), nix.thunk(() => ({ [nix.POS]: $pos[4], nativeBuildInputs: nix.thunk(() => [zsh, fish]) })), nix.thunk(() => nix.str`share=${nix.sel(finalAttrs, "finalPackage")}/share
 
 bash -n "$share/bash-completion/completions/scala-cli.bash"
 zsh -n "$share/zsh/site-functions/_scala-cli"

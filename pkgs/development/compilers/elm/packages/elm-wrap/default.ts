@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["changelog", 43, 5], ["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["mainProgram", 48, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 28, 3], ["nativeCheckInputs", 32, 3], ["doCheck", 36, 3], ["checkPhase", 37, 3], ["buildFlags", 39, 3], ["installFlags", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, hostname: false, rsync: false, zip: false, curl: false, python3: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 43, 5], ["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["mainProgram", 48, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 28, 3], ["nativeCheckInputs", 32, 3], ["doCheck", 36, 3], ["checkPhase", 37, 3], ["buildFlags", 39, 3], ["installFlags", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "elm-wrap";
       const version = "1.0.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dsimunic",
           repo: "elm-wrap",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const buildFlags = nix.thunk(() => ["RELEASE_VERSION=1"]);
       const installFlags = nix.thunk(() => ["PREFIX=$(out)"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/dsimunic/elm-wrap/blob/${version}/CHANGELOG.md`),
         description: "This utility is a comprehensive package management solution for Elm programming language packages and code. It wraps Elm compiler and intercepts its package management commands like install to augment them with support for custom package registries and policies.",
         homepage: "https://elm-wrap.dev/",
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "wrap",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

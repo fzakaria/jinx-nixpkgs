@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 18, 3], ["buildInputs", 20, 3], ["nativeBuildInputs", 25, 3], ["makeFlags", 27, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libopensmtpd: false, openssl: false, mandoc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 18, 3], ["buildInputs", 20, 3], ["nativeBuildInputs", 25, 3], ["makeFlags", 27, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const mandoc = nix.arg($, "mandoc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "opensmtpd-filter-dkimsign",
       version: "0.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://imperialat.at/releases/filter-dkimsign-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-O18NtAuSNg82uKnUx+R4h3e1IBSElTrFWBBkr2AYNsM=",
         })))),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
         "BINDIR=/libexec/smtpd/",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "OpenSMTPD filter for DKIM signing",
         homepage: "http://imperialat.at/dev/filter-dkimsign/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 26, 5], ["hash", 27, 5]], [["url", 30, 5], ["hash", 31, 5]], [["url", 34, 5], ["hash", 35, 5]], [["owner", 46, 5], ["repo", 47, 5], ["tag", 48, 5], ["hash", 49, 5]], [["updateScript", 101, 12]], [["description", 104, 5], ["longDescription", 105, 5], ["homepage", 122, 5], ["changelog", 123, 5], ["license", 124, 5], ["maintainers", 125, 5], ["mainProgram", 126, 5], ["platforms", 127, 5]], [["pname", 39, 3], ["version", 40, 3], ["__structuredAttrs", 42, 3], ["strictDeps", 43, 3], ["src", 45, 3], ["postPatch", 52, 3], ["nativeBuildInputs", 67, 3], ["buildInputs", 72, 3], ["postInstall", 87, 3], ["doInstallCheck", 98, 3], ["nativeInstallCheckInputs", 99, 3], ["passthru", 101, 3], ["meta", 103, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchurl: false, cmake: false, argtable: false, enet: false, libconfuse: false, libnatpmp: false, libepoxy: false, libpng: false, libxmp: false, miniupnpc: false, opusfile: false, SDL2: false, SDL2_mixer: false, unzip: false, zlib: false, "nix-update-script": false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 30, 5], ["hash", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 34, 5], ["hash", 35, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 46, 5], ["repo", 47, 5], ["tag", 48, 5], ["hash", 49, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 101, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 104, 5], ["longDescription", 105, 5], ["homepage", 122, 5], ["changelog", 123, 5], ["license", 124, 5], ["maintainers", 125, 5], ["mainProgram", 126, 5], ["platforms", 127, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 39, 3], ["version", 40, 3], ["__structuredAttrs", 42, 3], ["strictDeps", 43, 3], ["src", 45, 3], ["postPatch", 52, 3], ["nativeBuildInputs", 67, 3], ["buildInputs", 72, 3], ["postInstall", 87, 3], ["doInstallCheck", 98, 3], ["nativeInstallCheckInputs", 99, 3], ["passthru", 101, 3], ["meta", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,28 +28,28 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const assets = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://www.omf2097.com/pub/files/omf/openomf-assets.zip",
       hash: "sha256-3kcseGrfnmGL9LcaXyy4W7CwkPJ9orMAjzBUU6jepn0=",
     }))));
   const icons = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: "https://www.omf2097.com/pub/files/omf/openomf-icons.zip",
       hash: "sha256-8LWmrkY3ZiXcuVe0Zj90RQFUTwM27dJ4ev9TiBGoVk0=",
     }))));
   const musicRemixes = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       url: "https://github.com/omf2097/openomf-music-mod/releases/download/1.0/openomf-mods-1.0.zip",
       hash: "sha256-uiaM6n+dDcTeBNNnypEWXPNG8Xac1JQXCTfVkORfvi0=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "openomf",
       version: "0.8.6",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "omf2097",
           repo: "openomf",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -101,11 +95,11 @@ install -Dm644 $src/resources/flatpak/org.openomf.OpenOMF.desktop $out/share/app
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "One Must Fall 2097 Remake",
         longDescription: "OpenOMF is an open-source remake of the 1994 DOS fighting game One Must\nFall 2097 by Diversions Entertainment. It reimplements the original\nengine from scratch, uses the original (now freeware) game assets, and\nadds modern conveniences such as online netplay.\n\nIncludes remixed music mod. To add other mods: drop its .zip file\ninto the user mods directory as-is; it does not need to be extracted.\n\nThe user mods directory is <state>/mods, where <state> is resolved at\nlaunch in the following order.\n\n  1. $OPENOMF_STATE_PATH, if set\n  2. $XDG_STATE_HOME, if set\n     (e.g. ~/.local/state, giving ~/.local/state/mods)\n  3. SDL's preference path, ~/.local/share/OpenOMF/mods\n",
         homepage: "https://www.openomf.org",

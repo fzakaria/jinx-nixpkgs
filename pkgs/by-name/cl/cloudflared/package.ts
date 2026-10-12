@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["version", 76, 60]], [["tests", 76, 5], ["updateScript", 77, 5]], [["description", 81, 5], ["longDescription", 82, 5], ["homepage", 96, 5], ["downloadPage", 97, 5], ["changelog", 98, 5], ["license", 99, 5], ["platforms", 100, 5], ["maintainers", 101, 5], ["mainProgram", 110, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["ldflags", 23, 3], ["preCheck", 30, 3], ["doCheck", 73, 3], ["passthru", 75, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, callPackage: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 76, 60]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 76, 5], ["updateScript", 77, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 81, 5], ["longDescription", 82, 5], ["homepage", 96, 5], ["downloadPage", 97, 5], ["changelog", 98, 5], ["license", 99, 5], ["platforms", 100, 5], ["maintainers", 101, 5], ["mainProgram", 110, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["ldflags", 23, 3], ["preCheck", 30, 3], ["doCheck", 73, 3], ["passthru", 75, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "cloudflared",
       version: "2026.9.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cloudflare",
           repo: "cloudflared",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,12 +34,15 @@ export default nix.lambda((args) => (() => {
       preCheck: "# Workaround for: sshgen_test.go:74: mkdir /homeless-shelter/.cloudflared: no such file or directory\nexport HOME=\"$(mktemp -d)\"\n\n# Workaround for: origin_icmp_proxy_test.go:46:\n#   cannot create ICMPv4 proxy: socket: permission denied nor ICMPv6 proxy: socket: permission denied\nsubstituteInPlace \"ingress/origin_icmp_proxy_test.go\" \\\n  --replace-warn \"TestICMPRouterEcho\" \"SkipICMPRouterEcho\"\n\n# Workaround for: origin_icmp_proxy_test.go:110:\n#   cannot create ICMPv4 proxy: socket: permission denied nor ICMPv6 proxy: socket: permission denied\nsubstituteInPlace \"ingress/origin_icmp_proxy_test.go\" \\\n  --replace-warn \"TestConcurrentRequestsToSameDst\" \"SkipConcurrentRequestsToSameDst\"\n\n# Workaround for: origin_icmp_proxy_test.go:242:\n#   cannot create ICMPv4 proxy: socket: permission denied nor ICMPv6 proxy: socket: permission denied\nsubstituteInPlace \"ingress/origin_icmp_proxy_test.go\" \\\n  --replace-warn \"TestICMPRouterRejectNotEcho\" \"SkipICMPRouterRejectNotEcho\"\n\n# Workaround for: origin_icmp_proxy_test.go:108:\n#   Received unexpected error: cannot create ICMPv4 proxy: Group ID 100 is not between ping group 65534 to 65534 nor ICMPv6 proxy: socket: permission denied\nsubstituteInPlace \"ingress/origin_icmp_proxy_test.go\" \\\n  --replace-warn \"TestTraceICMPRouterEcho\" \"SkipTraceICMPRouterEcho\"\n\n# Workaround for: icmp_posix_test.go:28: socket: permission denied\nsubstituteInPlace \"ingress/icmp_posix_test.go\" \\\n  --replace-warn \"TestFunnelIdleTimeout\" \"SkipFunnelIdleTimeout\"\n\n# Workaround for: icmp_posix_test.go:88: Received unexpected error: Group ID 100 is not between ping group 65534 to 65534\nsubstituteInPlace \"ingress/icmp_posix_test.go\" \\\n  --replace-warn \"TestReuseFunnel\" \"SkipReuseFunnel\"\n\n# Workaround for: manager_test.go:197:\n#   Should be false\nsubstituteInPlace \"datagramsession/manager_test.go\" \\\n  --replace-warn \"TestManagerCtxDoneCloseSessions\" \"SkipManagerCtxDoneCloseSessions\"\n\n# Workaround for: curves_test.go:121:\n#   Should be true\nsubstituteInPlace \"crypto/curves_test.go\" \\\n  --replace-warn \"TestSupportedCurvesNegotiation\" \"SkipSupportedCurvesNegotiation\"\n",
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, version: nix.thunk(() => nix.attr(finalAttrs, "version")) })))),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({
+            [nix.POS]: $pos[1],
+            version: nix.thunk(() => nix.attr(finalAttrs, "version")),
+          })))),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Client for various Cloudflare services, including Tunnel, Access, and DNS over HTTPS",
         longDescription: "Contains the command-line client for Cloudflare Tunnel, a tunneling daemon that proxies traffic from the Cloudflare network to your origins.\nThis daemon sits between Cloudflare network and your origin (e.g. a webserver). Cloudflare attracts client requests and sends them to you\nvia this daemon, without requiring you to poke holes on your firewall --- your origin can remain as closed as possible.\nExtensive documentation can be found in the [Cloudflare Tunnel section](https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel) of the Cloudflare Docs.\nAll usages related with proxying to your origins are available under `cloudflared tunnel help`.\n\nYou can also use `cloudflared` to access Tunnel origins (that are protected with `cloudflared tunnel`) for TCP traffic\nat Layer 4 (i.e., not HTTP/websocket), which is relevant for use cases such as SSH, RDP, etc.\nSuch usages are available under `cloudflared access help`.\n\nYou can instead use [WARP client](https://developers.cloudflare.com/cloudflare-one/team-and-resources/devices/warp/) (`pkgs.cloudflare-warp` or `services.cloudflare-warp` on NixOS)\nto access private origins behind Tunnels for Layer 4 traffic without requiring `cloudflared access` commands on the client side.\n",
         homepage: "https://www.cloudflare.com/products/tunnel",

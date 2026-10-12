@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["package", 84, 35]], [["updateScript", 83, 5], ["tests", 84, 5]], [["homepage", 97, 5], ["description", 98, 5], ["license", 99, 5], ["mainProgram", 100, 5], ["maintainers", 101, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["pythonRelaxDeps", 22, 3], ["dependencies", 24, 3], ["build-system", 45, 3], ["nativeCheckInputs", 47, 3], ["disabledTests", 55, 3], ["passthru", 82, 3], ["preBuild", 87, 3], ["meta", 96, 3]]]);
 const formals$1 = { args: { lib: false, python313Packages: false, fetchFromGitHub: false, "nix-update-script": false, testers: false, icloudpd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 84, 35]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 83, 5], ["tests", 84, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 97, 5], ["description", 98, 5], ["license", 99, 5], ["mainProgram", 100, 5], ["maintainers", 101, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["pythonRelaxDeps", 22, 3], ["dependencies", 24, 3], ["build-system", 45, 3], ["nativeCheckInputs", 47, 3], ["disabledTests", 55, 3], ["passthru", 82, 3], ["preBuild", 87, 3], ["meta", 96, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const icloudpd = nix.arg($, "icloudpd");
   return nix.app(nix.sel(python313Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "icloudpd",
       version: "1.32.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "icloud-photos-downloader",
           repo: "icloud_photos_downloader",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -92,9 +88,9 @@ export default nix.lambda((args) => (() => {
         "test_missing_directory",
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-        tests: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: icloudpd })))),
+        tests: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: icloudpd })))),
       })),
       preBuild: nix.thunk(() => nix.str`substituteInPlace pyproject.toml \\
   --replace-fail "setuptools==80.9.0" "setuptools" \\
@@ -104,7 +100,7 @@ substituteInPlace src/foundation/__init__.py \\
   --replace-fail "0.0.1" "${nix.sel(finalAttrs, "version")}"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/icloud-photos-downloader/icloud_photos_downloader",
         description: "iCloud Photos Downloader",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

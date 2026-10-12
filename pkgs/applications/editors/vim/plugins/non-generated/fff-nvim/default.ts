@@ -2,14 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["OPENSSL_NO_VENDOR", 77, 7], ["RUSTFLAGS", 80, 7]], [["pname", 24, 5], ["version", 25, 13], ["src", 25, 21], ["cargoHash", 27, 5], ["cargoBuildFlags", 29, 5], ["cargoCheckFlags", 36, 5], ["nativeBuildInputs", 43, 5], ["dontUseZigConfigure", 51, 5], ["dontUseZigBuild", 52, 5], ["dontUseZigCheck", 53, 5], ["dontUseZigInstall", 54, 5], ["nativeCheckInputs", 57, 5], ["sandboxProfile", 60, 5], ["buildInputs", 64, 5], ["checkFlags", 68, 5], ["env", 76, 5]], [["attrPath", 102, 7]], [["updateScript", 101, 5], ["fff-nvim-lib", 106, 13]], [["description", 110, 5], ["homepage", 111, 5], ["license", 112, 5], ["maintainers", 113, 5]], [["pname", 85, 3], ["version", 86, 11], ["src", 86, 19], ["postPatch", 88, 3], ["nvimSkipModules", 95, 3], ["passthru", 100, 3], ["meta", 109, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, rustPlatform: false, "nix-update-script": false, openssl: false, perl: false, zig: false, gitMinimal: false, "pkg-config": false, stdenv: false, vimUtils: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["OPENSSL_NO_VENDOR", 77, 7], ["RUSTFLAGS", 80, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 24, 5], ["version", 25, 13], ["src", 25, 21], ["cargoHash", 27, 5], ["cargoBuildFlags", 29, 5], ["cargoCheckFlags", 36, 5], ["nativeBuildInputs", 43, 5], ["dontUseZigConfigure", 51, 5], ["dontUseZigBuild", 52, 5], ["dontUseZigCheck", 53, 5], ["dontUseZigInstall", 54, 5], ["nativeCheckInputs", 57, 5], ["sandboxProfile", 60, 5], ["buildInputs", 64, 5], ["checkFlags", 68, 5], ["env", 76, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["attrPath", 102, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["updateScript", 101, 5], ["fff-nvim-lib", 106, 13]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 110, 5], ["homepage", 111, 5], ["license", 112, 5], ["maintainers", 113, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 85, 3], ["version", 86, 11], ["src", 86, 19], ["postPatch", 88, 3], ["nvimSkipModules", 95, 3], ["passthru", 100, 3], ["meta", 109, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,14 +21,14 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const version = "0.10.3";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "dmtrKovalenko",
       repo: "fff",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-pE4DsaCvlvgTKJtyV8uGhAQvbJpxpgXlIkoVh8I15qw=",
     }))));
   const fff_nvim_lib = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "fff-nvim-lib",
       version: version,
       src: src,
@@ -60,13 +54,13 @@ export default nix.lambda((args) => (() => {
         "--skip=drop_during_post_scan_does_not_crash",
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         OPENSSL_NO_VENDOR: true,
         RUSTFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-C link-arg=-undefined -C link-arg=dynamic_lookup")),
       })),
     }))));
   return nix.app(nix.sel(vimUtils, "buildVimPlugin"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "fff.nvim",
       version: version,
       src: src,
@@ -77,12 +71,12 @@ export default nix.lambda((args) => (() => {
 `),
       nvimSkipModules: nix.thunk(() => ["empty_config"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, attrPath: "vimPlugins.fff-nvim.fff-nvim-lib" })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[3], attrPath: "vimPlugins.fff-nvim.fff-nvim-lib" })))),
         "fff-nvim-lib": fff_nvim_lib,
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Fast Fuzzy File Finder for Neovim",
         homepage: "https://github.com/dmtrKovalenko/fff",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 28, 7], ["buildFlags", 30, 7], ["nativeBuildInputs", 32, 7], ["buildInputs", 36, 7], ["postFixup", 56, 7], ["description", 65, 7]], [["pname", 72, 7], ["releaseFile", 73, 7], ["buildFlags", 75, 7], ["buildInputs", 77, 7], ["postFixup", 82, 7], ["description", 87, 7]], [["pname", 94, 7], ["buildFlags", 96, 7], ["buildInputs", 98, 7], ["description", 102, 7]], [["fteqw", 26, 3], ["fteqw-dedicated", 70, 3], ["fteqcc", 92, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, gzip: false, libvorbis: false, libmad: false, SDL2: false, SDL2_mixer: false, libpng: false, "alsa-lib": false, gnutls: false, zlib: false, libjpeg: false, "vulkan-loader": false, "vulkan-headers": false, speex: false, libopus: false, libxscrnsaver: false, libxcb: false, libxrandr: false, libxcursor: false, libGL: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 28, 7], ["buildFlags", 30, 7], ["nativeBuildInputs", 32, 7], ["buildInputs", 36, 7], ["postFixup", 56, 7], ["description", 65, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 72, 7], ["releaseFile", 73, 7], ["buildFlags", 75, 7], ["buildInputs", 77, 7], ["postFixup", 82, 7], ["description", 87, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 94, 7], ["buildFlags", 96, 7], ["buildInputs", 98, 7], ["description", 102, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["fteqw", 26, 3], ["fteqw-dedicated", 70, 3], ["fteqcc", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
   const libxcursor = nix.arg($, "libxcursor");
   const libGL = nix.arg($, "libGL");
   return {
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     fteqw: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")), nix.thunk(() => nix.update((() => {
         const pname = "fteqw";
         const buildFlags = nix.thunk(() => ["m-rel"]);
@@ -67,7 +64,7 @@ export default nix.lambda((args) => (() => {
 `);
         const description = "Hybrid and versatile game engine";
         return {
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname,
           buildFlags,
           nativeBuildInputs,
@@ -86,7 +83,7 @@ export default nix.lambda((args) => (() => {
 `);
         const description = "Dedicated server for FTEQW";
         return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname,
           releaseFile,
           buildFlags,
@@ -96,7 +93,7 @@ export default nix.lambda((args) => (() => {
         };
       })(), attrs)))),
     fteqcc: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")), nix.thunk(() => nix.update({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname: "fteqcc",
         buildFlags: nix.thunk(() => ["qcc-rel"]),
         buildInputs: nix.thunk(() => [zlib]),

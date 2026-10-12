@@ -2,11 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["license", 37, 7], ["maintainers", 41, 15], ["teams", 41, 27], ["sourceProvenance", 42, 7]], [["url", 31, 13], ["meta", 36, 5]], [["patches", 28, 11], ["src", 30, 3], ["prePatch", 48, 3]]]);
 const formals$1 = { args: { fetchurl: false, fetchzip: false, applyPatches: false, lib: false }, ellipsis: true };
 const formals$2 = { args: { name: true, url: false, hash: true, sha256: true, sha512: true, appName: true, appVersion: true, license: false, patches: true, description: true, longDescription: true, homepage: true, maintainers: true, teams: true, unpack: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["license", 37, 7], ["maintainers", 41, 15], ["teams", 41, 27], ["sourceProvenance", 42, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 31, 13], ["meta", 36, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["patches", 28, 11], ["src", 30, 3], ["prePatch", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,13 +30,13 @@ export default nix.lambda((args) => (() => {
     const teams = nix.argOr($_1, "teams", () => []);
     const unpack = nix.argOr($_1, "unpack", () => false);
     return nix.app(applyPatches, nix.thunk(() => nix.attrsDyn({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         patches: patches,
         src: nix.thunk(() => nix.app((nix.asBool(unpack) ? nix.force(fetchzip) : nix.force(fetchurl)), nix.thunk(() => nix.attrsDyn({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: url,
             meta: nix.thunk(() => nix.attrsDyn({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               license: nix.thunk(() => nix.sel(lib, "licenses", nix.key(nix.force(license)))),
               maintainers: maintainers,
               teams: teams,

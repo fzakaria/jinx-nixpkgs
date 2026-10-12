@@ -2,59 +2,47 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/audit-testsuite.nix", [[["maintainers", 11, 5]], [["extraLocales", 19, 12]], [["enable", 21, 23]], [["backlogLimit", 23, 22]], [["active", 27, 25]], [["af_unix", 27, 17]], [["num_logs", 29, 11], ["disk_full_action", 30, 11]], [["enable", 26, 9], ["plugins", 27, 9], ["settings", 28, 9]], [["polkit", 21, 16], ["audit", 23, 16], ["auditd", 25, 16]], [["systemPackages", 34, 19]], [["i18n", 19, 7], ["security", 21, 7], ["environment", 34, 7]], [["machine", 14, 9]], [["name", 8, 3], ["meta", 10, 3], ["nodes", 14, 3], ["testScript", 37, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/audit-testsuite.nix", [["maintainers", 11, 5]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/audit-testsuite.nix", [["extraLocales", 19, 12]]);
-const pos$3 = nix.positions(here + "/audit-testsuite.nix", [["enable", 21, 23]]);
-const pos$4 = nix.positions(here + "/audit-testsuite.nix", [["backlogLimit", 23, 22]]);
-const pos$5 = nix.positions(here + "/audit-testsuite.nix", [["active", 27, 25]]);
-const pos$6 = nix.positions(here + "/audit-testsuite.nix", [["af_unix", 27, 17]]);
-const pos$7 = nix.positions(here + "/audit-testsuite.nix", [["num_logs", 29, 11], ["disk_full_action", 30, 11]]);
-const pos$8 = nix.positions(here + "/audit-testsuite.nix", [["enable", 26, 9], ["plugins", 27, 9], ["settings", 28, 9]]);
-const pos$9 = nix.positions(here + "/audit-testsuite.nix", [["polkit", 21, 16], ["audit", 23, 16], ["auditd", 25, 16]]);
-const pos$10 = nix.positions(here + "/audit-testsuite.nix", [["systemPackages", 34, 19]]);
-const pos$11 = nix.positions(here + "/audit-testsuite.nix", [["i18n", 19, 7], ["security", 21, 7], ["environment", 34, 7]]);
-const pos$12 = nix.positions(here + "/audit-testsuite.nix", [["machine", 14, 9]]);
-const pos$13 = nix.positions(here + "/audit-testsuite.nix", [["name", 8, 3], ["meta", 10, 3], ["nodes", 14, 3], ["testScript", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     name: "audit-testsuite",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "grimmauld"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$11,
-          i18n: nix.thunk(() => ({ [nix.POS]: pos$2, extraLocales: nix.thunk(() => ["en_DK.UTF-8/UTF-8"]) })),
+          [nix.POS]: $pos[10],
+          i18n: nix.thunk(() => ({ [nix.POS]: $pos[1], extraLocales: nix.thunk(() => ["en_DK.UTF-8/UTF-8"]) })),
           security: nix.thunk(() => ({
-            [nix.POS]: pos$9,
-            polkit: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
-            audit: nix.thunk(() => ({ [nix.POS]: pos$4, backlogLimit: 8192n })),
+            [nix.POS]: $pos[8],
+            polkit: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true })),
+            audit: nix.thunk(() => ({ [nix.POS]: $pos[3], backlogLimit: 8192n })),
             auditd: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               enable: true,
               plugins: nix.thunk(() => ({
-                [nix.POS]: pos$6,
-                af_unix: nix.thunk(() => ({ [nix.POS]: pos$5, active: true })),
+                [nix.POS]: $pos[5],
+                af_unix: nix.thunk(() => ({ [nix.POS]: $pos[4], active: true })),
               })),
-              settings: nix.thunk(() => ({ [nix.POS]: pos$7, num_logs: 4n, disk_full_action: "rotate" })),
+              settings: nix.thunk(() => ({ [nix.POS]: $pos[6], num_logs: 4n, disk_full_action: "rotate" })),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "audit", "testsuite", "runner"))]),
           })),
         };

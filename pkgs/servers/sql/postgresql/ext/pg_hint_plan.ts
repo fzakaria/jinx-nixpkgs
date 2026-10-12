@@ -2,17 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/pg_hint_plan.nix", [[["version", 11, 7], ["hash", 12, 7]], [["version", 15, 7], ["hash", 16, 7]], [["version", 19, 7], ["hash", 20, 7]], [["version", 23, 7], ["hash", 24, 7]], [["version", 27, 7], ["hash", 28, 7]], [["18", 10, 5], ["17", 14, 5], ["16", 18, 5], ["15", 22, 5], ["14", 26, 5]], [["version", 34, 7], ["hash", 35, 7]], [["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["hash", 48, 22]], [["broken", 59, 5], ["description", 60, 5], ["homepage", 61, 5], ["maintainers", 62, 5], ["platforms", 63, 5], ["license", 64, 5]], [["pname", 39, 3], ["version", 40, 20], ["src", 42, 3], ["postPatch", 51, 3], ["enableUpdateScript", 56, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, postgresql: false, postgresqlBuildExtension: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/pg_hint_plan.nix", [["version", 11, 7], ["hash", 12, 7]]);
-const pos$2 = nix.positions(here + "/pg_hint_plan.nix", [["version", 15, 7], ["hash", 16, 7]]);
-const pos$3 = nix.positions(here + "/pg_hint_plan.nix", [["version", 19, 7], ["hash", 20, 7]]);
-const pos$4 = nix.positions(here + "/pg_hint_plan.nix", [["version", 23, 7], ["hash", 24, 7]]);
-const pos$5 = nix.positions(here + "/pg_hint_plan.nix", [["version", 27, 7], ["hash", 28, 7]]);
-const pos$6 = nix.positions(here + "/pg_hint_plan.nix", [["18", 10, 5], ["17", 14, 5], ["16", 18, 5], ["15", 22, 5], ["14", 26, 5]]);
-const pos$7 = nix.positions(here + "/pg_hint_plan.nix", [["version", 34, 7], ["hash", 35, 7]]);
-const pos$8 = nix.positions(here + "/pg_hint_plan.nix", [["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["hash", 48, 22]]);
-const pos$9 = nix.positions(here + "/pg_hint_plan.nix", [["broken", 59, 5], ["description", 60, 5], ["homepage", 61, 5], ["maintainers", 62, 5], ["platforms", 63, 5], ["license", 64, 5]]);
-const pos$10 = nix.positions(here + "/pg_hint_plan.nix", [["pname", 39, 3], ["version", 40, 20], ["src", 42, 3], ["postPatch", 51, 3], ["enableUpdateScript", 56, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,44 +12,44 @@ export default nix.lambda((args) => (() => {
   const postgresql = nix.arg($, "postgresql");
   const postgresqlBuildExtension = nix.arg($, "postgresqlBuildExtension");
   const sources = nix.thunk(() => ({
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     "18": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       version: "1.8.0",
       hash: "sha256-QsDppGN5TE7CSii3mNmwqT/riNNjyRTJk6d6Xcf0JMw=",
     })),
     "17": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: "1.7.1",
       hash: "sha256-9GKqyrNpi80I4WWIiRN8zeXBm5bkRuzOWrZVfpYOzag=",
     })),
     "16": nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "1.6.2",
       hash: "sha256-WMmtnuGOvLwtiEmgHpYURC1k5NmkBiDg+PnQCIZp7Sk=",
     })),
     "15": nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "1.5.3",
       hash: "sha256-jkU0zt1waPTdFrBLAxYNvlo+RwdhCtKQq7iqAuxthNA=",
     })),
     "14": nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       version: "1.4.4",
       hash: "sha256-8rJ4Ck0Axf9zKhOXaJ4EA/M783YZRLuWx+GMGccadVo=",
     })),
   }));
   const source = nix.thunk(() => nix.selOr(sources, () => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       version: "",
       hash: nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`Source for pg_hint_plan is not available for ${nix.sel(postgresql, "version")}`))),
     }), nix.key(nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(postgresql, "version"))))));
   return nix.app(postgresqlBuildExtension, nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "pg_hint_plan",
       version: nix.thunk(() => nix.attr(source, "version")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           owner: "ossc-db",
           repo: "pg_hint_plan",
           tag: nix.thunk(() => nix.str`REL${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(postgresql, "version")))}_${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(source, "version")))}`),
@@ -67,7 +58,7 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(postgresql, "version")), "14")), "# https://github.com/ossc-db/pg_hint_plan/commit/e9e564ad59b8bd4a03e0f13b95b5122712e573e6\nsubstituteInPlace Makefile --replace \"LDFLAGS+=-Wl,--build-id\" \"\"\n")),
       enableUpdateScript: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         broken: nix.thunk(() => !nix.asBool(nix.builtins.elem(nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(postgresql, "version")))), nix.thunk(() => nix.builtins.attrNames(sources))))),
         description: "Extension to tweak PostgreSQL execution plans using so-called 'hints' in SQL comments",
         homepage: "https://github.com/ossc-db/pg_hint_plan",

@@ -2,187 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 39, 5], ["hash", 40, 5]], [["homepage", 158, 11], ["description", 159, 11], ["license", 160, 11], ["maintainers", 161, 11]], [["pname", 70, 9], ["version", 72, 9], ["src", 74, 9], ["patches", 76, 9], ["postPatch", 78, 9], ["nativeBuildInputs", 96, 9], ["depsBuildBuild", 113, 9], ["buildInputs", 114, 9], ["hardeningDisable", 116, 9], ["enableParallelBuilding", 118, 9], ["makeFlags", 120, 9], ["configurePhase", 127, 9], ["installPhase", 137, 9], ["dontStrip", 153, 9], ["__structuredAttrs", 155, 9], ["meta", 157, 9]], [["platforms", 182, 15]], [["tools/efivar.py", 219, 7]], [["defconfig", 178, 5], ["installDir", 179, 5], ["hardeningDisable", 180, 5], ["dontStrip", 181, 5], ["extraMeta", 182, 5], ["crossTools", 184, 5], ["extraMakeFlags", 185, 5], ["outputs", 192, 5], ["postInstall", 197, 5], ["filesToInstall", 206, 5], ["pythonScriptsToInstall", 218, 5]], [["platforms", 227, 15]], [["defconfig", 226, 5], ["extraMeta", 227, 5], ["filesToInstall", 228, 5]], [["platforms", 233, 15]], [["defconfig", 232, 5], ["extraMeta", 233, 5], ["filesToInstall", 234, 5]], [["platforms", 240, 7], ["broken", 241, 7]], [["defconfig", 238, 5], ["extraMeta", 239, 5], ["filesToInstall", 243, 5]], [["platforms", 251, 15]], [["defconfig", 250, 5], ["extraMeta", 251, 5], ["filesToInstall", 252, 5]], [["platforms", 258, 15]], [["defconfig", 256, 5], ["filesToInstall", 257, 5], ["extraMeta", 258, 5]], [["platforms", 263, 15]], [["defconfig", 262, 5], ["extraMeta", 263, 5], ["filesToInstall", 264, 5]], [["platforms", 269, 15]], [["BL31", 271, 7], ["SCP", 272, 7]], [["defconfig", 268, 5], ["extraMeta", 269, 5], ["env", 270, 5], ["filesToInstall", 274, 5]], [["platforms", 280, 15]], [["defconfig", 279, 5], ["extraMeta", 280, 5], ["filesToInstall", 281, 5]], [["platforms", 286, 15]], [["BL31", 288, 7], ["ROCKCHIP_TPL", 289, 7]], [["defconfig", 285, 5], ["extraMeta", 286, 5], ["env", 287, 5], ["filesToInstall", 291, 5]], [["platforms", 300, 15]], [["defconfig", 299, 5], ["extraMeta", 300, 5], ["filesToInstall", 301, 5]], [["platforms", 306, 15]], [["defconfig", 305, 5], ["extraMeta", 306, 5], ["filesToInstall", 307, 5]], [["platforms", 312, 15]], [["defconfig", 311, 5], ["extraMeta", 312, 5], ["filesToInstall", 313, 5], ["postInstall", 320, 5]], [["license", 333, 14]], [["owner", 329, 9], ["repo", 330, 9], ["rev", 331, 9], ["sha256", 332, 9], ["meta", 333, 9]], [["broken", 339, 9], ["longDescription", 340, 9], ["platforms", 349, 9]], [["defconfig", 337, 7], ["extraMeta", 338, 7], ["filesToInstall", 351, 7], ["postBuild", 352, 7]], [["platforms", 380, 7], ["license", 381, 7]], [["BL31", 383, 9]], [["defconfig", 377, 5], ["extraMeta", 379, 5], ["env", 383, 5], ["filesToInstall", 384, 5]], [["platforms", 392, 15]], [["BL31", 394, 7], ["ROCKCHIP_TPL", 395, 7]], [["defconfig", 391, 5], ["extraMeta", 392, 5], ["env", 393, 5], ["filesToInstall", 397, 5]], [["platforms", 407, 15]], [["BL31", 409, 7], ["ROCKCHIP_TPL", 410, 7]], [["defconfig", 406, 5], ["extraMeta", 407, 5], ["env", 408, 5], ["filesToInstall", 412, 5]], [["platforms", 420, 15]], [["defconfig", 419, 5], ["extraMeta", 420, 5], ["filesToInstall", 421, 5]], [["license", 434, 14]], [["owner", 430, 9], ["repo", 431, 9], ["rev", 432, 9], ["sha256", 433, 9], ["meta", 434, 9]], [["longDescription", 440, 9], ["platforms", 450, 9]], [["defconfig", 438, 7], ["extraMeta", 439, 7], ["filesToInstall", 452, 7], ["postBuild", 457, 7]], [["platforms", 489, 15]], [["defconfig", 488, 5], ["extraMeta", 489, 5], ["filesToInstall", 490, 5]], [["platforms", 495, 15]], [["BL31", 497, 7], ["SCP", 498, 7]], [["defconfig", 494, 5], ["extraMeta", 495, 5], ["env", 496, 5], ["filesToInstall", 500, 5]], [["platforms", 505, 15]], [["BL31", 507, 7], ["SCP", 509, 7]], [["defconfig", 504, 5], ["extraMeta", 505, 5], ["env", 506, 5], ["filesToInstall", 511, 5]], [["platforms", 516, 15]], [["BL31", 518, 7], ["ROCKCHIP_TPL", 519, 7]], [["defconfig", 515, 5], ["extraMeta", 516, 5], ["env", 517, 5], ["filesToInstall", 521, 5]], [["platforms", 531, 15]], [["BL31", 533, 7], ["ROCKCHIP_TPL", 534, 7]], [["defconfig", 530, 5], ["extraMeta", 531, 5], ["env", 532, 5], ["filesToInstall", 536, 5]], [["platforms", 546, 15]], [["BL31", 548, 7], ["ROCKCHIP_TPL", 549, 7]], [["defconfig", 545, 5], ["extraMeta", 546, 5], ["env", 547, 5], ["filesToInstall", 551, 5]], [["platforms", 561, 15]], [["defconfig", 560, 5], ["extraMeta", 561, 5], ["filesToInstall", 562, 5]], [["platforms", 567, 15]], [["BL31", 569, 7], ["SCP", 570, 7]], [["defconfig", 566, 5], ["extraMeta", 567, 5], ["env", 568, 5], ["filesToInstall", 572, 5]], [["platforms", 577, 15]], [["defconfig", 576, 5], ["extraMeta", 577, 5], ["filesToInstall", 578, 5]], [["platforms", 583, 15]], [["BL31", 584, 9]], [["defconfig", 582, 5], ["extraMeta", 583, 5], ["env", 584, 5], ["filesToInstall", 585, 5]], [["platforms", 590, 15]], [["BL31", 594, 9]], [["defconfig", 589, 5], ["extraMeta", 590, 5], ["env", 594, 5], ["filesToInstall", 595, 5]], [["platforms", 600, 15]], [["BL31", 602, 7], ["SCP", 603, 7]], [["defconfig", 599, 5], ["extraMeta", 600, 5], ["env", 601, 5], ["filesToInstall", 605, 5]], [["platforms", 610, 15]], [["ROCKCHIP_TPL", 612, 7], ["BL31", 613, 7]], [["defconfig", 609, 5], ["extraMeta", 610, 5], ["env", 611, 5], ["filesToInstall", 615, 5]], [["platforms", 625, 15]], [["defconfig", 624, 5], ["extraMeta", 625, 5], ["filesToInstall", 626, 5]], [["platforms", 631, 15]], [["BL31", 633, 7], ["SCP", 634, 7]], [["defconfig", 630, 5], ["extraMeta", 631, 5], ["env", 632, 5], ["filesToInstall", 636, 5]], [["platforms", 641, 15]], [["BL31", 643, 7], ["SCP", 644, 7]], [["defconfig", 640, 5], ["extraMeta", 641, 5], ["env", 642, 5], ["filesToInstall", 646, 5]], [["platforms", 651, 15]], [["BL31", 653, 7], ["SCP", 654, 7]], [["defconfig", 650, 5], ["extraMeta", 651, 5], ["env", 652, 5], ["filesToInstall", 656, 5]], [["platforms", 661, 15]], [["BL31", 662, 9]], [["defconfig", 660, 5], ["extraMeta", 661, 5], ["env", 662, 5], ["filesToInstall", 663, 5]], [["platforms", 671, 15]], [["defconfig", 670, 5], ["extraMeta", 671, 5], ["filesToInstall", 672, 5]], [["platforms", 677, 15]], [["defconfig", 676, 5], ["extraMeta", 677, 5], ["filesToInstall", 678, 5]], [["platforms", 683, 15]], [["defconfig", 682, 5], ["extraMeta", 683, 5], ["filesToInstall", 684, 5]], [["platforms", 695, 15]], [["defconfig", 688, 5], ["extraConfig", 689, 5], ["extraMeta", 695, 5], ["filesToInstall", 699, 5]], [["platforms", 710, 15]], [["defconfig", 703, 5], ["extraConfig", 704, 5], ["extraMeta", 710, 5], ["filesToInstall", 711, 5]], [["platforms", 716, 15]], [["BL31", 718, 7], ["ROCKCHIP_TPL", 719, 7]], [["defconfig", 715, 5], ["extraMeta", 716, 5], ["env", 717, 5], ["filesToInstall", 721, 5]], [["platforms", 732, 15]], [["BL31", 734, 7], ["ROCKCHIP_TPL", 735, 7]], [["defconfig", 731, 5], ["extraMeta", 732, 5], ["env", 733, 5], ["filesToInstall", 737, 5]], [["platforms", 746, 15]], [["defconfig", 745, 5], ["extraMeta", 746, 5], ["filesToInstall", 747, 5]], [["platforms", 752, 15]], [["defconfig", 751, 5], ["extraMeta", 752, 5], ["filesToInstall", 753, 5]], [["platforms", 758, 15]], [["defconfig", 757, 5], ["extraMeta", 758, 5], ["filesToInstall", 759, 5]], [["platforms", 764, 15]], [["defconfig", 763, 5], ["extraMeta", 764, 5], ["filesToInstall", 765, 5]], [["platforms", 770, 15]], [["defconfig", 769, 5], ["extraMeta", 770, 5], ["filesToInstall", 771, 5]], [["platforms", 776, 15]], [["defconfig", 775, 5], ["extraMeta", 776, 5], ["filesToInstall", 777, 5]], [["platforms", 782, 15]], [["defconfig", 781, 5], ["extraMeta", 782, 5], ["filesToInstall", 783, 5]], [["platforms", 788, 15]], [["defconfig", 787, 5], ["extraMeta", 788, 5], ["filesToInstall", 789, 5]], [["platforms", 794, 15]], [["BL31", 797, 7], ["ROCKCHIP_TPL", 798, 7]], [["defconfig", 793, 5], ["extraMeta", 794, 5], ["strictDeps", 795, 5], ["env", 796, 5], ["filesToInstall", 800, 5]], [["platforms", 811, 15]], [["BL31", 812, 9]], [["defconfig", 810, 5], ["extraMeta", 811, 5], ["env", 812, 5], ["filesToInstall", 813, 5]], [["platforms", 821, 15]], [["BL31", 823, 7], ["ROCKCHIP_TPL", 824, 7]], [["defconfig", 820, 5], ["extraMeta", 821, 5], ["env", 822, 5], ["filesToInstall", 826, 5]], [["platforms", 836, 15]], [["BL31", 838, 7], ["ROCKCHIP_TPL", 839, 7]], [["defconfig", 835, 5], ["extraMeta", 836, 5], ["env", 837, 5], ["filesToInstall", 841, 5]], [["platforms", 850, 15]], [["BL31", 851, 9]], [["defconfig", 849, 5], ["extraMeta", 850, 5], ["env", 851, 5], ["filesToInstall", 852, 5]], [["longDescription", 860, 15], ["platforms", 875, 15]], [["BL31", 876, 9]], [["extraMeta", 860, 5], ["prePatch", 870, 5], ["defconfig", 874, 5], ["env", 876, 5], ["filesToInstall", 877, 5]], [["platforms", 886, 15]], [["BL31", 887, 9]], [["defconfig", 885, 5], ["extraMeta", 886, 5], ["env", 887, 5], ["filesToInstall", 888, 5]], [["platforms", 897, 15]], [["BL31", 898, 9]], [["defconfig", 896, 5], ["extraMeta", 897, 5], ["env", 898, 5], ["filesToInstall", 899, 5]], [["platforms", 907, 15]], [["BL31", 913, 9]], [["defconfig", 906, 5], ["extraMeta", 907, 5], ["filesToInstall", 908, 5], ["env", 913, 5]], [["platforms", 919, 7], ["broken", 920, 7]], [["defconfig", 917, 5], ["extraMeta", 918, 5], ["filesToInstall", 922, 5]], [["platforms", 927, 15]], [["BL31", 929, 7], ["SCP", 930, 7]], [["defconfig", 926, 5], ["extraMeta", 927, 5], ["env", 928, 5], ["filesToInstall", 932, 5]], [["platforms", 937, 15]], [["BL31", 939, 7], ["ROCKCHIP_TPL", 940, 7]], [["defconfig", 936, 5], ["extraMeta", 937, 5], ["env", 938, 5], ["filesToInstall", 942, 5]], [["platforms", 951, 15], ["longDescription", 957, 15]], [["defconfig", 950, 5], ["extraMeta", 951, 5], ["filesToInstall", 952, 5], ["buildFlags", 953, 5], ["extraConfig", 954, 5]], [["platforms", 970, 15]], [["OPENSBI", 971, 9]], [["defconfig", 969, 5], ["extraMeta", 970, 5], ["env", 971, 5], ["filesToInstall", 972, 5]], [["platforms", 980, 15]], [["defconfig", 979, 5], ["extraMeta", 980, 5], ["filesToInstall", 981, 5]], [["platforms", 989, 15]], [["BL31", 990, 9]], [["defconfig", 988, 5], ["extraMeta", 989, 5], ["env", 990, 5], ["filesToInstall", 991, 5]], [["buildUBoot", 175, 11], ["ubootTools", 177, 3], ["ubootPythonTools", 223, 3], ["ubootA20OlinuxinoLime", 225, 3], ["ubootA20OlinuxinoLime2EMMC", 231, 3], ["ubootAmx335xEVM", 237, 3], ["ubootBananaPi", 249, 3], ["ubootBananaPim2Zero", 255, 3], ["ubootBananaPim3", 261, 3], ["ubootBananaPim64", 267, 3], ["ubootClearfog", 278, 3], ["ubootCM3588NAS", 284, 3], ["ubootCubieboard2", 298, 3], ["ubootGuruplug", 304, 3], ["ubootJetsonTK1", 310, 3], ["ubootLibreTechCC", 326, 3], ["ubootNanoPCT4", 376, 3], ["ubootNanoPCT6", 390, 3], ["ubootNanoPiR5S", 405, 3], ["ubootNovena", 418, 3], ["ubootOdroidC2", 427, 3], ["ubootOdroidXU3", 487, 3], ["ubootOlimexA64Olinuxino", 493, 3], ["ubootOlimexA64Teres1", 503, 3], ["ubootOrangePi5", 514, 3], ["ubootOrangePi5Max", 529, 3], ["ubootOrangePi5Plus", 544, 3], ["ubootOrangePiPc", 559, 3], ["ubootOrangePiZeroPlus2H5", 565, 3], ["ubootOrangePiZero", 575, 3], ["ubootOrangePiZero2", 581, 3], ["ubootOrangePiZero3", 588, 3], ["ubootOrangePi3", 598, 3], ["ubootOrangePi3B", 608, 3], ["ubootPcduino3Nano", 623, 3], ["ubootPine64", 629, 3], ["ubootPine64LTS", 639, 3], ["ubootPinebook", 649, 3], ["ubootPinebookPro", 659, 3], ["ubootQemuAarch64", 669, 3], ["ubootQemuArm", 675, 3], ["ubootQemuRiscv64Smode", 681, 3], ["ubootQemuX86", 687, 3], ["ubootQemuX86_64", 702, 3], ["ubootQuartz64B", 714, 3], ["ubootRadxaZero3W", 730, 3], ["ubootRaspberryPi", 744, 3], ["ubootRaspberryPiAarch64", 750, 3], ["ubootRaspberryPi2", 756, 3], ["ubootRaspberryPi3_32bit", 762, 3], ["ubootRaspberryPi3_64bit", 768, 3], ["ubootRaspberryPi4_32bit", 774, 3], ["ubootRaspberryPi4_64bit", 780, 3], ["ubootRaspberryPiZero", 786, 3], ["ubootRock3C", 792, 3], ["ubootRock4CPlus", 809, 3], ["ubootRock5ModelB", 819, 3], ["ubootRock5ModelC", 834, 3], ["ubootRock64", 848, 3], ["ubootRock64v2", 859, 3], ["ubootRockPiE", 884, 3], ["ubootRockPro64", 895, 3], ["ubootROCPCRK3399", 905, 3], ["ubootSheevaplug", 916, 3], ["ubootSopine", 925, 3], ["ubootTuringRK1", 935, 3], ["ubootUtilite", 949, 3], ["ubootVisionFive2", 968, 3], ["ubootWandboard", 978, 3], ["ubootRockPi4", 987, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, bc: false, bison: false, dtc: false, fetchFromGitHub: false, fetchpatch: false, fetchurl: false, flex: false, gnutls: false, installShellFiles: false, libuuid: false, "meson-tools": false, ncurses: false, openssl: false, rkbin: false, swig: false, which: false, python3: false, perl: false, armTrustedFirmwareAllwinner: false, armTrustedFirmwareAllwinnerH6: false, armTrustedFirmwareAllwinnerH616: false, armTrustedFirmwareRK3328: false, armTrustedFirmwareRK3399: false, armTrustedFirmwareRK3568: false, armTrustedFirmwareRK3588: false, armTrustedFirmwareS905: false, opensbi: false, buildPackages: false, callPackages: false, darwin: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 39, 5], ["hash", 40, 5]]);
 const formals$2 = { args: { version: true, src: true, filesToInstall: false, pythonScriptsToInstall: true, installDir: true, defconfig: false, extraConfig: true, extraPatches: true, extraMakeFlags: true, extraMeta: true, crossTools: true, stdenv: true }, ellipsis: true };
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 158, 11], ["description", 159, 11], ["license", 160, 11], ["maintainers", 161, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 70, 9], ["version", 72, 9], ["src", 74, 9], ["patches", 76, 9], ["postPatch", 78, 9], ["nativeBuildInputs", 96, 9], ["depsBuildBuild", 113, 9], ["buildInputs", 114, 9], ["hardeningDisable", 116, 9], ["enableParallelBuilding", 118, 9], ["makeFlags", 120, 9], ["configurePhase", 127, 9], ["installPhase", 137, 9], ["dontStrip", 153, 9], ["__structuredAttrs", 155, 9], ["meta", 157, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["platforms", 182, 15]]);
-const pos$5 = nix.positions(here + "/default.nix", [["tools/efivar.py", 219, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["defconfig", 178, 5], ["installDir", 179, 5], ["hardeningDisable", 180, 5], ["dontStrip", 181, 5], ["extraMeta", 182, 5], ["crossTools", 184, 5], ["extraMakeFlags", 185, 5], ["outputs", 192, 5], ["postInstall", 197, 5], ["filesToInstall", 206, 5], ["pythonScriptsToInstall", 218, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["platforms", 227, 15]]);
-const pos$8 = nix.positions(here + "/default.nix", [["defconfig", 226, 5], ["extraMeta", 227, 5], ["filesToInstall", 228, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["platforms", 233, 15]]);
-const pos$10 = nix.positions(here + "/default.nix", [["defconfig", 232, 5], ["extraMeta", 233, 5], ["filesToInstall", 234, 5]]);
-const pos$11 = nix.positions(here + "/default.nix", [["platforms", 240, 7], ["broken", 241, 7]]);
-const pos$12 = nix.positions(here + "/default.nix", [["defconfig", 238, 5], ["extraMeta", 239, 5], ["filesToInstall", 243, 5]]);
-const pos$13 = nix.positions(here + "/default.nix", [["platforms", 251, 15]]);
-const pos$14 = nix.positions(here + "/default.nix", [["defconfig", 250, 5], ["extraMeta", 251, 5], ["filesToInstall", 252, 5]]);
-const pos$15 = nix.positions(here + "/default.nix", [["platforms", 258, 15]]);
-const pos$16 = nix.positions(here + "/default.nix", [["defconfig", 256, 5], ["filesToInstall", 257, 5], ["extraMeta", 258, 5]]);
-const pos$17 = nix.positions(here + "/default.nix", [["platforms", 263, 15]]);
-const pos$18 = nix.positions(here + "/default.nix", [["defconfig", 262, 5], ["extraMeta", 263, 5], ["filesToInstall", 264, 5]]);
-const pos$19 = nix.positions(here + "/default.nix", [["platforms", 269, 15]]);
-const pos$20 = nix.positions(here + "/default.nix", [["BL31", 271, 7], ["SCP", 272, 7]]);
-const pos$21 = nix.positions(here + "/default.nix", [["defconfig", 268, 5], ["extraMeta", 269, 5], ["env", 270, 5], ["filesToInstall", 274, 5]]);
-const pos$22 = nix.positions(here + "/default.nix", [["platforms", 280, 15]]);
-const pos$23 = nix.positions(here + "/default.nix", [["defconfig", 279, 5], ["extraMeta", 280, 5], ["filesToInstall", 281, 5]]);
-const pos$24 = nix.positions(here + "/default.nix", [["platforms", 286, 15]]);
-const pos$25 = nix.positions(here + "/default.nix", [["BL31", 288, 7], ["ROCKCHIP_TPL", 289, 7]]);
-const pos$26 = nix.positions(here + "/default.nix", [["defconfig", 285, 5], ["extraMeta", 286, 5], ["env", 287, 5], ["filesToInstall", 291, 5]]);
-const pos$27 = nix.positions(here + "/default.nix", [["platforms", 300, 15]]);
-const pos$28 = nix.positions(here + "/default.nix", [["defconfig", 299, 5], ["extraMeta", 300, 5], ["filesToInstall", 301, 5]]);
-const pos$29 = nix.positions(here + "/default.nix", [["platforms", 306, 15]]);
-const pos$30 = nix.positions(here + "/default.nix", [["defconfig", 305, 5], ["extraMeta", 306, 5], ["filesToInstall", 307, 5]]);
-const pos$31 = nix.positions(here + "/default.nix", [["platforms", 312, 15]]);
-const pos$32 = nix.positions(here + "/default.nix", [["defconfig", 311, 5], ["extraMeta", 312, 5], ["filesToInstall", 313, 5], ["postInstall", 320, 5]]);
-const pos$33 = nix.positions(here + "/default.nix", [["license", 333, 14]]);
-const pos$34 = nix.positions(here + "/default.nix", [["owner", 329, 9], ["repo", 330, 9], ["rev", 331, 9], ["sha256", 332, 9], ["meta", 333, 9]]);
-const pos$35 = nix.positions(here + "/default.nix", [["broken", 339, 9], ["longDescription", 340, 9], ["platforms", 349, 9]]);
-const pos$36 = nix.positions(here + "/default.nix", [["defconfig", 337, 7], ["extraMeta", 338, 7], ["filesToInstall", 351, 7], ["postBuild", 352, 7]]);
-const pos$37 = nix.positions(here + "/default.nix", [["platforms", 380, 7], ["license", 381, 7]]);
-const pos$38 = nix.positions(here + "/default.nix", [["BL31", 383, 9]]);
-const pos$39 = nix.positions(here + "/default.nix", [["defconfig", 377, 5], ["extraMeta", 379, 5], ["env", 383, 5], ["filesToInstall", 384, 5]]);
-const pos$40 = nix.positions(here + "/default.nix", [["platforms", 392, 15]]);
-const pos$41 = nix.positions(here + "/default.nix", [["BL31", 394, 7], ["ROCKCHIP_TPL", 395, 7]]);
-const pos$42 = nix.positions(here + "/default.nix", [["defconfig", 391, 5], ["extraMeta", 392, 5], ["env", 393, 5], ["filesToInstall", 397, 5]]);
-const pos$43 = nix.positions(here + "/default.nix", [["platforms", 407, 15]]);
-const pos$44 = nix.positions(here + "/default.nix", [["BL31", 409, 7], ["ROCKCHIP_TPL", 410, 7]]);
-const pos$45 = nix.positions(here + "/default.nix", [["defconfig", 406, 5], ["extraMeta", 407, 5], ["env", 408, 5], ["filesToInstall", 412, 5]]);
-const pos$46 = nix.positions(here + "/default.nix", [["platforms", 420, 15]]);
-const pos$47 = nix.positions(here + "/default.nix", [["defconfig", 419, 5], ["extraMeta", 420, 5], ["filesToInstall", 421, 5]]);
-const pos$48 = nix.positions(here + "/default.nix", [["license", 434, 14]]);
-const pos$49 = nix.positions(here + "/default.nix", [["owner", 430, 9], ["repo", 431, 9], ["rev", 432, 9], ["sha256", 433, 9], ["meta", 434, 9]]);
-const pos$50 = nix.positions(here + "/default.nix", [["longDescription", 440, 9], ["platforms", 450, 9]]);
-const pos$51 = nix.positions(here + "/default.nix", [["defconfig", 438, 7], ["extraMeta", 439, 7], ["filesToInstall", 452, 7], ["postBuild", 457, 7]]);
-const pos$52 = nix.positions(here + "/default.nix", [["platforms", 489, 15]]);
-const pos$53 = nix.positions(here + "/default.nix", [["defconfig", 488, 5], ["extraMeta", 489, 5], ["filesToInstall", 490, 5]]);
-const pos$54 = nix.positions(here + "/default.nix", [["platforms", 495, 15]]);
-const pos$55 = nix.positions(here + "/default.nix", [["BL31", 497, 7], ["SCP", 498, 7]]);
-const pos$56 = nix.positions(here + "/default.nix", [["defconfig", 494, 5], ["extraMeta", 495, 5], ["env", 496, 5], ["filesToInstall", 500, 5]]);
-const pos$57 = nix.positions(here + "/default.nix", [["platforms", 505, 15]]);
-const pos$58 = nix.positions(here + "/default.nix", [["BL31", 507, 7], ["SCP", 509, 7]]);
-const pos$59 = nix.positions(here + "/default.nix", [["defconfig", 504, 5], ["extraMeta", 505, 5], ["env", 506, 5], ["filesToInstall", 511, 5]]);
-const pos$60 = nix.positions(here + "/default.nix", [["platforms", 516, 15]]);
-const pos$61 = nix.positions(here + "/default.nix", [["BL31", 518, 7], ["ROCKCHIP_TPL", 519, 7]]);
-const pos$62 = nix.positions(here + "/default.nix", [["defconfig", 515, 5], ["extraMeta", 516, 5], ["env", 517, 5], ["filesToInstall", 521, 5]]);
-const pos$63 = nix.positions(here + "/default.nix", [["platforms", 531, 15]]);
-const pos$64 = nix.positions(here + "/default.nix", [["BL31", 533, 7], ["ROCKCHIP_TPL", 534, 7]]);
-const pos$65 = nix.positions(here + "/default.nix", [["defconfig", 530, 5], ["extraMeta", 531, 5], ["env", 532, 5], ["filesToInstall", 536, 5]]);
-const pos$66 = nix.positions(here + "/default.nix", [["platforms", 546, 15]]);
-const pos$67 = nix.positions(here + "/default.nix", [["BL31", 548, 7], ["ROCKCHIP_TPL", 549, 7]]);
-const pos$68 = nix.positions(here + "/default.nix", [["defconfig", 545, 5], ["extraMeta", 546, 5], ["env", 547, 5], ["filesToInstall", 551, 5]]);
-const pos$69 = nix.positions(here + "/default.nix", [["platforms", 561, 15]]);
-const pos$70 = nix.positions(here + "/default.nix", [["defconfig", 560, 5], ["extraMeta", 561, 5], ["filesToInstall", 562, 5]]);
-const pos$71 = nix.positions(here + "/default.nix", [["platforms", 567, 15]]);
-const pos$72 = nix.positions(here + "/default.nix", [["BL31", 569, 7], ["SCP", 570, 7]]);
-const pos$73 = nix.positions(here + "/default.nix", [["defconfig", 566, 5], ["extraMeta", 567, 5], ["env", 568, 5], ["filesToInstall", 572, 5]]);
-const pos$74 = nix.positions(here + "/default.nix", [["platforms", 577, 15]]);
-const pos$75 = nix.positions(here + "/default.nix", [["defconfig", 576, 5], ["extraMeta", 577, 5], ["filesToInstall", 578, 5]]);
-const pos$76 = nix.positions(here + "/default.nix", [["platforms", 583, 15]]);
-const pos$77 = nix.positions(here + "/default.nix", [["BL31", 584, 9]]);
-const pos$78 = nix.positions(here + "/default.nix", [["defconfig", 582, 5], ["extraMeta", 583, 5], ["env", 584, 5], ["filesToInstall", 585, 5]]);
-const pos$79 = nix.positions(here + "/default.nix", [["platforms", 590, 15]]);
-const pos$80 = nix.positions(here + "/default.nix", [["BL31", 594, 9]]);
-const pos$81 = nix.positions(here + "/default.nix", [["defconfig", 589, 5], ["extraMeta", 590, 5], ["env", 594, 5], ["filesToInstall", 595, 5]]);
-const pos$82 = nix.positions(here + "/default.nix", [["platforms", 600, 15]]);
-const pos$83 = nix.positions(here + "/default.nix", [["BL31", 602, 7], ["SCP", 603, 7]]);
-const pos$84 = nix.positions(here + "/default.nix", [["defconfig", 599, 5], ["extraMeta", 600, 5], ["env", 601, 5], ["filesToInstall", 605, 5]]);
-const pos$85 = nix.positions(here + "/default.nix", [["platforms", 610, 15]]);
-const pos$86 = nix.positions(here + "/default.nix", [["ROCKCHIP_TPL", 612, 7], ["BL31", 613, 7]]);
-const pos$87 = nix.positions(here + "/default.nix", [["defconfig", 609, 5], ["extraMeta", 610, 5], ["env", 611, 5], ["filesToInstall", 615, 5]]);
-const pos$88 = nix.positions(here + "/default.nix", [["platforms", 625, 15]]);
-const pos$89 = nix.positions(here + "/default.nix", [["defconfig", 624, 5], ["extraMeta", 625, 5], ["filesToInstall", 626, 5]]);
-const pos$90 = nix.positions(here + "/default.nix", [["platforms", 631, 15]]);
-const pos$91 = nix.positions(here + "/default.nix", [["BL31", 633, 7], ["SCP", 634, 7]]);
-const pos$92 = nix.positions(here + "/default.nix", [["defconfig", 630, 5], ["extraMeta", 631, 5], ["env", 632, 5], ["filesToInstall", 636, 5]]);
-const pos$93 = nix.positions(here + "/default.nix", [["platforms", 641, 15]]);
-const pos$94 = nix.positions(here + "/default.nix", [["BL31", 643, 7], ["SCP", 644, 7]]);
-const pos$95 = nix.positions(here + "/default.nix", [["defconfig", 640, 5], ["extraMeta", 641, 5], ["env", 642, 5], ["filesToInstall", 646, 5]]);
-const pos$96 = nix.positions(here + "/default.nix", [["platforms", 651, 15]]);
-const pos$97 = nix.positions(here + "/default.nix", [["BL31", 653, 7], ["SCP", 654, 7]]);
-const pos$98 = nix.positions(here + "/default.nix", [["defconfig", 650, 5], ["extraMeta", 651, 5], ["env", 652, 5], ["filesToInstall", 656, 5]]);
-const pos$99 = nix.positions(here + "/default.nix", [["platforms", 661, 15]]);
-const pos$100 = nix.positions(here + "/default.nix", [["BL31", 662, 9]]);
-const pos$101 = nix.positions(here + "/default.nix", [["defconfig", 660, 5], ["extraMeta", 661, 5], ["env", 662, 5], ["filesToInstall", 663, 5]]);
-const pos$102 = nix.positions(here + "/default.nix", [["platforms", 671, 15]]);
-const pos$103 = nix.positions(here + "/default.nix", [["defconfig", 670, 5], ["extraMeta", 671, 5], ["filesToInstall", 672, 5]]);
-const pos$104 = nix.positions(here + "/default.nix", [["platforms", 677, 15]]);
-const pos$105 = nix.positions(here + "/default.nix", [["defconfig", 676, 5], ["extraMeta", 677, 5], ["filesToInstall", 678, 5]]);
-const pos$106 = nix.positions(here + "/default.nix", [["platforms", 683, 15]]);
-const pos$107 = nix.positions(here + "/default.nix", [["defconfig", 682, 5], ["extraMeta", 683, 5], ["filesToInstall", 684, 5]]);
-const pos$108 = nix.positions(here + "/default.nix", [["platforms", 695, 15]]);
-const pos$109 = nix.positions(here + "/default.nix", [["defconfig", 688, 5], ["extraConfig", 689, 5], ["extraMeta", 695, 5], ["filesToInstall", 699, 5]]);
-const pos$110 = nix.positions(here + "/default.nix", [["platforms", 710, 15]]);
-const pos$111 = nix.positions(here + "/default.nix", [["defconfig", 703, 5], ["extraConfig", 704, 5], ["extraMeta", 710, 5], ["filesToInstall", 711, 5]]);
-const pos$112 = nix.positions(here + "/default.nix", [["platforms", 716, 15]]);
-const pos$113 = nix.positions(here + "/default.nix", [["BL31", 718, 7], ["ROCKCHIP_TPL", 719, 7]]);
-const pos$114 = nix.positions(here + "/default.nix", [["defconfig", 715, 5], ["extraMeta", 716, 5], ["env", 717, 5], ["filesToInstall", 721, 5]]);
-const pos$115 = nix.positions(here + "/default.nix", [["platforms", 732, 15]]);
-const pos$116 = nix.positions(here + "/default.nix", [["BL31", 734, 7], ["ROCKCHIP_TPL", 735, 7]]);
-const pos$117 = nix.positions(here + "/default.nix", [["defconfig", 731, 5], ["extraMeta", 732, 5], ["env", 733, 5], ["filesToInstall", 737, 5]]);
-const pos$118 = nix.positions(here + "/default.nix", [["platforms", 746, 15]]);
-const pos$119 = nix.positions(here + "/default.nix", [["defconfig", 745, 5], ["extraMeta", 746, 5], ["filesToInstall", 747, 5]]);
-const pos$120 = nix.positions(here + "/default.nix", [["platforms", 752, 15]]);
-const pos$121 = nix.positions(here + "/default.nix", [["defconfig", 751, 5], ["extraMeta", 752, 5], ["filesToInstall", 753, 5]]);
-const pos$122 = nix.positions(here + "/default.nix", [["platforms", 758, 15]]);
-const pos$123 = nix.positions(here + "/default.nix", [["defconfig", 757, 5], ["extraMeta", 758, 5], ["filesToInstall", 759, 5]]);
-const pos$124 = nix.positions(here + "/default.nix", [["platforms", 764, 15]]);
-const pos$125 = nix.positions(here + "/default.nix", [["defconfig", 763, 5], ["extraMeta", 764, 5], ["filesToInstall", 765, 5]]);
-const pos$126 = nix.positions(here + "/default.nix", [["platforms", 770, 15]]);
-const pos$127 = nix.positions(here + "/default.nix", [["defconfig", 769, 5], ["extraMeta", 770, 5], ["filesToInstall", 771, 5]]);
-const pos$128 = nix.positions(here + "/default.nix", [["platforms", 776, 15]]);
-const pos$129 = nix.positions(here + "/default.nix", [["defconfig", 775, 5], ["extraMeta", 776, 5], ["filesToInstall", 777, 5]]);
-const pos$130 = nix.positions(here + "/default.nix", [["platforms", 782, 15]]);
-const pos$131 = nix.positions(here + "/default.nix", [["defconfig", 781, 5], ["extraMeta", 782, 5], ["filesToInstall", 783, 5]]);
-const pos$132 = nix.positions(here + "/default.nix", [["platforms", 788, 15]]);
-const pos$133 = nix.positions(here + "/default.nix", [["defconfig", 787, 5], ["extraMeta", 788, 5], ["filesToInstall", 789, 5]]);
-const pos$134 = nix.positions(here + "/default.nix", [["platforms", 794, 15]]);
-const pos$135 = nix.positions(here + "/default.nix", [["BL31", 797, 7], ["ROCKCHIP_TPL", 798, 7]]);
-const pos$136 = nix.positions(here + "/default.nix", [["defconfig", 793, 5], ["extraMeta", 794, 5], ["strictDeps", 795, 5], ["env", 796, 5], ["filesToInstall", 800, 5]]);
-const pos$137 = nix.positions(here + "/default.nix", [["platforms", 811, 15]]);
-const pos$138 = nix.positions(here + "/default.nix", [["BL31", 812, 9]]);
-const pos$139 = nix.positions(here + "/default.nix", [["defconfig", 810, 5], ["extraMeta", 811, 5], ["env", 812, 5], ["filesToInstall", 813, 5]]);
-const pos$140 = nix.positions(here + "/default.nix", [["platforms", 821, 15]]);
-const pos$141 = nix.positions(here + "/default.nix", [["BL31", 823, 7], ["ROCKCHIP_TPL", 824, 7]]);
-const pos$142 = nix.positions(here + "/default.nix", [["defconfig", 820, 5], ["extraMeta", 821, 5], ["env", 822, 5], ["filesToInstall", 826, 5]]);
-const pos$143 = nix.positions(here + "/default.nix", [["platforms", 836, 15]]);
-const pos$144 = nix.positions(here + "/default.nix", [["BL31", 838, 7], ["ROCKCHIP_TPL", 839, 7]]);
-const pos$145 = nix.positions(here + "/default.nix", [["defconfig", 835, 5], ["extraMeta", 836, 5], ["env", 837, 5], ["filesToInstall", 841, 5]]);
-const pos$146 = nix.positions(here + "/default.nix", [["platforms", 850, 15]]);
-const pos$147 = nix.positions(here + "/default.nix", [["BL31", 851, 9]]);
-const pos$148 = nix.positions(here + "/default.nix", [["defconfig", 849, 5], ["extraMeta", 850, 5], ["env", 851, 5], ["filesToInstall", 852, 5]]);
-const pos$149 = nix.positions(here + "/default.nix", [["longDescription", 860, 15], ["platforms", 875, 15]]);
-const pos$150 = nix.positions(here + "/default.nix", [["BL31", 876, 9]]);
-const pos$151 = nix.positions(here + "/default.nix", [["extraMeta", 860, 5], ["prePatch", 870, 5], ["defconfig", 874, 5], ["env", 876, 5], ["filesToInstall", 877, 5]]);
-const pos$152 = nix.positions(here + "/default.nix", [["platforms", 886, 15]]);
-const pos$153 = nix.positions(here + "/default.nix", [["BL31", 887, 9]]);
-const pos$154 = nix.positions(here + "/default.nix", [["defconfig", 885, 5], ["extraMeta", 886, 5], ["env", 887, 5], ["filesToInstall", 888, 5]]);
-const pos$155 = nix.positions(here + "/default.nix", [["platforms", 897, 15]]);
-const pos$156 = nix.positions(here + "/default.nix", [["BL31", 898, 9]]);
-const pos$157 = nix.positions(here + "/default.nix", [["defconfig", 896, 5], ["extraMeta", 897, 5], ["env", 898, 5], ["filesToInstall", 899, 5]]);
-const pos$158 = nix.positions(here + "/default.nix", [["platforms", 907, 15]]);
-const pos$159 = nix.positions(here + "/default.nix", [["BL31", 913, 9]]);
-const pos$160 = nix.positions(here + "/default.nix", [["defconfig", 906, 5], ["extraMeta", 907, 5], ["filesToInstall", 908, 5], ["env", 913, 5]]);
-const pos$161 = nix.positions(here + "/default.nix", [["platforms", 919, 7], ["broken", 920, 7]]);
-const pos$162 = nix.positions(here + "/default.nix", [["defconfig", 917, 5], ["extraMeta", 918, 5], ["filesToInstall", 922, 5]]);
-const pos$163 = nix.positions(here + "/default.nix", [["platforms", 927, 15]]);
-const pos$164 = nix.positions(here + "/default.nix", [["BL31", 929, 7], ["SCP", 930, 7]]);
-const pos$165 = nix.positions(here + "/default.nix", [["defconfig", 926, 5], ["extraMeta", 927, 5], ["env", 928, 5], ["filesToInstall", 932, 5]]);
-const pos$166 = nix.positions(here + "/default.nix", [["platforms", 937, 15]]);
-const pos$167 = nix.positions(here + "/default.nix", [["BL31", 939, 7], ["ROCKCHIP_TPL", 940, 7]]);
-const pos$168 = nix.positions(here + "/default.nix", [["defconfig", 936, 5], ["extraMeta", 937, 5], ["env", 938, 5], ["filesToInstall", 942, 5]]);
-const pos$169 = nix.positions(here + "/default.nix", [["platforms", 951, 15], ["longDescription", 957, 15]]);
-const pos$170 = nix.positions(here + "/default.nix", [["defconfig", 950, 5], ["extraMeta", 951, 5], ["filesToInstall", 952, 5], ["buildFlags", 953, 5], ["extraConfig", 954, 5]]);
-const pos$171 = nix.positions(here + "/default.nix", [["platforms", 970, 15]]);
-const pos$172 = nix.positions(here + "/default.nix", [["OPENSBI", 971, 9]]);
-const pos$173 = nix.positions(here + "/default.nix", [["defconfig", 969, 5], ["extraMeta", 970, 5], ["env", 971, 5], ["filesToInstall", 972, 5]]);
-const pos$174 = nix.positions(here + "/default.nix", [["platforms", 980, 15]]);
-const pos$175 = nix.positions(here + "/default.nix", [["defconfig", 979, 5], ["extraMeta", 980, 5], ["filesToInstall", 981, 5]]);
-const pos$176 = nix.positions(here + "/default.nix", [["platforms", 989, 15]]);
-const pos$177 = nix.positions(here + "/default.nix", [["BL31", 990, 9]]);
-const pos$178 = nix.positions(here + "/default.nix", [["defconfig", 988, 5], ["extraMeta", 989, 5], ["env", 990, 5], ["filesToInstall", 991, 5]]);
-const pos$179 = nix.positions(here + "/default.nix", [["buildUBoot", 175, 11], ["ubootTools", 177, 3], ["ubootPythonTools", 223, 3], ["ubootA20OlinuxinoLime", 225, 3], ["ubootA20OlinuxinoLime2EMMC", 231, 3], ["ubootAmx335xEVM", 237, 3], ["ubootBananaPi", 249, 3], ["ubootBananaPim2Zero", 255, 3], ["ubootBananaPim3", 261, 3], ["ubootBananaPim64", 267, 3], ["ubootClearfog", 278, 3], ["ubootCM3588NAS", 284, 3], ["ubootCubieboard2", 298, 3], ["ubootGuruplug", 304, 3], ["ubootJetsonTK1", 310, 3], ["ubootLibreTechCC", 326, 3], ["ubootNanoPCT4", 376, 3], ["ubootNanoPCT6", 390, 3], ["ubootNanoPiR5S", 405, 3], ["ubootNovena", 418, 3], ["ubootOdroidC2", 427, 3], ["ubootOdroidXU3", 487, 3], ["ubootOlimexA64Olinuxino", 493, 3], ["ubootOlimexA64Teres1", 503, 3], ["ubootOrangePi5", 514, 3], ["ubootOrangePi5Max", 529, 3], ["ubootOrangePi5Plus", 544, 3], ["ubootOrangePiPc", 559, 3], ["ubootOrangePiZeroPlus2H5", 565, 3], ["ubootOrangePiZero", 575, 3], ["ubootOrangePiZero2", 581, 3], ["ubootOrangePiZero3", 588, 3], ["ubootOrangePi3", 598, 3], ["ubootOrangePi3B", 608, 3], ["ubootPcduino3Nano", 623, 3], ["ubootPine64", 629, 3], ["ubootPine64LTS", 639, 3], ["ubootPinebook", 649, 3], ["ubootPinebookPro", 659, 3], ["ubootQemuAarch64", 669, 3], ["ubootQemuArm", 675, 3], ["ubootQemuRiscv64Smode", 681, 3], ["ubootQemuX86", 687, 3], ["ubootQemuX86_64", 702, 3], ["ubootQuartz64B", 714, 3], ["ubootRadxaZero3W", 730, 3], ["ubootRaspberryPi", 744, 3], ["ubootRaspberryPiAarch64", 750, 3], ["ubootRaspberryPi2", 756, 3], ["ubootRaspberryPi3_32bit", 762, 3], ["ubootRaspberryPi3_64bit", 768, 3], ["ubootRaspberryPi4_32bit", 774, 3], ["ubootRaspberryPi4_64bit", 780, 3], ["ubootRaspberryPiZero", 786, 3], ["ubootRock3C", 792, 3], ["ubootRock4CPlus", 809, 3], ["ubootRock5ModelB", 819, 3], ["ubootRock5ModelC", 834, 3], ["ubootRock64", 848, 3], ["ubootRock64v2", 859, 3], ["ubootRockPiE", 884, 3], ["ubootRockPro64", 895, 3], ["ubootROCPCRK3399", 905, 3], ["ubootSheevaplug", 916, 3], ["ubootSopine", 925, 3], ["ubootTuringRK1", 935, 3], ["ubootUtilite", 949, 3], ["ubootVisionFive2", 968, 3], ["ubootWandboard", 978, 3], ["ubootRockPi4", 987, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -221,7 +43,7 @@ export default nix.lambda((args) => (() => {
   const darwin = nix.arg($, "darwin");
   const defaultVersion = "2026.07";
   const defaultSrc = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://ftp.denx.de/pub/u-boot/u-boot-${defaultVersion}.tar.bz2`),
       hash: "sha256-eOi/w4L+OI+bVaodr4xWNSKgN3ebXUw0nRQV44HxJD4=",
     }))));
@@ -242,7 +64,7 @@ export default nix.lambda((args) => (() => {
       const crossTools = nix.argOr($_1, "crossTools", () => false);
       const stdenv_1 = nix.argOr($_1, "stdenv", () => nix.sel(pkgs, "stdenv"));
       return nix.app(nix.sel(stdenv_1, "mkDerivation"), nix.thunk(() => nix.update({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: nix.thunk(() => nix.str`uboot-${defconfig}`),
           version: nix.thunk(() => (nix.asBool(nix.eq(src, null)) ? defaultVersion : nix.force(version))),
           src: nix.thunk(() => (nix.asBool(nix.eq(src, null)) ? nix.force(defaultSrc) : nix.force(src))),
@@ -299,7 +121,7 @@ runHook postInstall
           dontStrip: true,
           __structuredAttrs: true,
           meta: nix.thunk(() => nix.update({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             homepage: "https://www.denx.de/wiki/U-Boot/",
             description: "Boot loader for embedded systems",
             license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -311,16 +133,16 @@ runHook postInstall
         }, nix.builtins.removeAttrs(args_2, nix.thunk(() => ["extraMeta", "pythonScriptsToInstall"])))));
     })(), formals$2)));
   return {
-    [nix.POS]: pos$179,
+    [nix.POS]: $pos[178],
     buildUBoot: buildUBoot,
     ubootTools: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         defconfig: "tools-only_defconfig",
         installDir: "$out/bin",
         hardeningDisable: [],
         dontStrip: false,
         extraMeta: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         })),
         crossTools: true,
@@ -339,115 +161,115 @@ runHook postInstall
           "tools/mkeficapsule",
         ]),
         pythonScriptsToInstall: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           "tools/efivar.py": nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (ps) => [nix.thunk(() => nix.sel(ps, "pyopenssl"))])),
         })),
       })))),
     ubootPythonTools: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.app(callPackages, nix.path(here, "./python.nix"), nix.thunk(() => ({})))))),
     ubootA20OlinuxinoLime: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         defconfig: "A20-OLinuXino-Lime_defconfig",
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$7, platforms: nix.thunk(() => ["armv7l-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[6], platforms: nix.thunk(() => ["armv7l-linux"]) })),
         filesToInstall: nix.thunk(() => ["u-boot-sunxi-with-spl.bin"]),
       })))),
     ubootA20OlinuxinoLime2EMMC: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         defconfig: "A20-OLinuXino-Lime2-eMMC_defconfig",
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$9, platforms: nix.thunk(() => ["armv7l-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[8], platforms: nix.thunk(() => ["armv7l-linux"]) })),
         filesToInstall: nix.thunk(() => ["u-boot-sunxi-with-spl.bin"]),
       })))),
     ubootAmx335xEVM: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         defconfig: "am335x_evm_defconfig",
         extraMeta: nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           platforms: nix.thunk(() => ["armv7l-linux"]),
           broken: true,
         })),
         filesToInstall: nix.thunk(() => ["MLO", "u-boot.img"]),
       })))),
     ubootBananaPi: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         defconfig: "Bananapi_defconfig",
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$13, platforms: nix.thunk(() => ["armv7l-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[12], platforms: nix.thunk(() => ["armv7l-linux"]) })),
         filesToInstall: nix.thunk(() => ["u-boot-sunxi-with-spl.bin"]),
       })))),
     ubootBananaPim2Zero: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         defconfig: "bananapi_m2_zero_defconfig",
         filesToInstall: nix.thunk(() => ["u-boot-sunxi-with-spl.bin"]),
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$15, platforms: nix.thunk(() => ["armv7l-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[14], platforms: nix.thunk(() => ["armv7l-linux"]) })),
       })))),
     ubootBananaPim3: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$18,
+        [nix.POS]: $pos[17],
         defconfig: "Sinovoip_BPI_M3_defconfig",
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$17, platforms: nix.thunk(() => ["armv7l-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[16], platforms: nix.thunk(() => ["armv7l-linux"]) })),
         filesToInstall: nix.thunk(() => ["u-boot-sunxi-with-spl.bin"]),
       })))),
     ubootBananaPim64: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$21,
+        [nix.POS]: $pos[20],
         defconfig: "bananapi_m64_defconfig",
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$19, platforms: nix.thunk(() => ["aarch64-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[18], platforms: nix.thunk(() => ["aarch64-linux"]) })),
         env: nix.thunk(() => ({
-          [nix.POS]: pos$20,
+          [nix.POS]: $pos[19],
           BL31: nix.thunk(() => nix.str`${armTrustedFirmwareAllwinner}/bl31.bin`),
           SCP: "/dev/null",
         })),
         filesToInstall: nix.thunk(() => ["u-boot-sunxi-with-spl.bin"]),
       })))),
     ubootClearfog: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$23,
+        [nix.POS]: $pos[22],
         defconfig: "clearfog_defconfig",
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$22, platforms: nix.thunk(() => ["armv7l-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[21], platforms: nix.thunk(() => ["armv7l-linux"]) })),
         filesToInstall: nix.thunk(() => ["u-boot-with-spl.kwb"]),
       })))),
     ubootCM3588NAS: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$26,
+        [nix.POS]: $pos[25],
         defconfig: "cm3588-nas-rk3588_defconfig",
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$24, platforms: nix.thunk(() => ["aarch64-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[23], platforms: nix.thunk(() => ["aarch64-linux"]) })),
         env: nix.thunk(() => ({
-          [nix.POS]: pos$25,
+          [nix.POS]: $pos[24],
           BL31: nix.thunk(() => nix.str`${armTrustedFirmwareRK3588}/bl31.elf`),
           ROCKCHIP_TPL: nix.thunk(() => nix.sel(rkbin, "TPL_RK3588")),
         })),
         filesToInstall: nix.thunk(() => ["u-boot.itb", "idbloader.img", "u-boot-rockchip.bin"]),
       })))),
     ubootCubieboard2: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$28,
+        [nix.POS]: $pos[27],
         defconfig: "Cubieboard2_defconfig",
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$27, platforms: nix.thunk(() => ["armv7l-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[26], platforms: nix.thunk(() => ["armv7l-linux"]) })),
         filesToInstall: nix.thunk(() => ["u-boot-sunxi-with-spl.bin"]),
       })))),
     ubootGuruplug: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$30,
+        [nix.POS]: $pos[29],
         defconfig: "guruplug_defconfig",
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$29, platforms: nix.thunk(() => ["armv5tel-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[28], platforms: nix.thunk(() => ["armv5tel-linux"]) })),
         filesToInstall: nix.thunk(() => ["u-boot.bin"]),
       })))),
     ubootJetsonTK1: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$32,
+        [nix.POS]: $pos[31],
         defconfig: "jetson-tk1_defconfig",
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$31, platforms: nix.thunk(() => ["armv7l-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[30], platforms: nix.thunk(() => ["armv7l-linux"]) })),
         filesToInstall: nix.thunk(() => ["u-boot", "u-boot.dtb", "u-boot-dtb-tegra.bin", "u-boot-nodtb-tegra.bin"]),
         postInstall: "mkdir -p $out/spl\ncp spl/u-boot-spl $out/spl/\n",
       })))),
     ubootLibreTechCC: nix.thunk(() => (() => {
       const firmwareImagePkg = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$34,
+          [nix.POS]: $pos[33],
           owner: "LibreELEC",
           repo: "amlogic-boot-fip",
           rev: "4369a138ca24c5ab932b8cbd1af4504570b709df",
           sha256: "sha256-mGRUwdh3nW4gBwWIYHJGjzkezHxABwcwk/1gVRis7Tc=",
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$33,
+            [nix.POS]: $pos[32],
             license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributableFirmware")),
           })),
         }))));
       return nix.app(buildUBoot, nix.thunk(() => ({
-          [nix.POS]: pos$36,
+          [nix.POS]: $pos[35],
           defconfig: "libretech-cc_defconfig",
           extraMeta: nix.thunk(() => ({
-            [nix.POS]: pos$35,
+            [nix.POS]: $pos[34],
             broken: nix.thunk(() => !nix.eq(nix.sel(stdenv, "buildPlatform", "system"), "x86_64-linux")),
             longDescription: "Boot loader for the Libre Computer AML-S905X-CC.\n\nFlashing instructions:\n```sh\ndd if=u-boot.gxl.sd.bin of=<sdcard> conv=fsync,notrunc bs=512 skip=1 seek=1\ndd if=u-boot.gxl.sd.bin of=<sdcard> conv=fsync,notrunc bs=1 count=444\n```\n",
             platforms: nix.thunk(() => ["aarch64-linux"]),
@@ -477,25 +299,25 @@ bash -e blx_fix.sh bl30.bin zero bl30_zero.bin bl301.bin bl301_zero.bin bl30_new
         })));
     })()),
     ubootNanoPCT4: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$39,
+        [nix.POS]: $pos[38],
         defconfig: "nanopc-t4-rk3399_defconfig",
         extraMeta: nix.thunk(() => ({
-          [nix.POS]: pos$37,
+          [nix.POS]: $pos[36],
           platforms: nix.thunk(() => ["aarch64-linux"]),
           license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributableFirmware")),
         })),
         env: nix.thunk(() => ({
-          [nix.POS]: pos$38,
+          [nix.POS]: $pos[37],
           BL31: nix.thunk(() => nix.str`${armTrustedFirmwareRK3399}/bl31.elf`),
         })),
         filesToInstall: nix.thunk(() => ["u-boot.itb", "idbloader.img"]),
       })))),
     ubootNanoPCT6: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$42,
+        [nix.POS]: $pos[41],
         defconfig: "nanopc-t6-rk3588_defconfig",
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$40, platforms: nix.thunk(() => ["aarch64-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[39], platforms: nix.thunk(() => ["aarch64-linux"]) })),
         env: nix.thunk(() => ({
-          [nix.POS]: pos$41,
+          [nix.POS]: $pos[40],
           BL31: nix.thunk(() => nix.str`${armTrustedFirmwareRK3588}/bl31.elf`),
           ROCKCHIP_TPL: nix.thunk(() => nix.sel(rkbin, "TPL_RK3588")),
         })),
@@ -507,39 +329,39 @@ bash -e blx_fix.sh bl30.bin zero bl30_zero.bin bl301.bin bl301_zero.bin bl30_new
         ]),
       })))),
     ubootNanoPiR5S: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$45,
+        [nix.POS]: $pos[44],
         defconfig: "nanopi-r5s-rk3568_defconfig",
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$43, platforms: nix.thunk(() => ["aarch64-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[42], platforms: nix.thunk(() => ["aarch64-linux"]) })),
         env: nix.thunk(() => ({
-          [nix.POS]: pos$44,
+          [nix.POS]: $pos[43],
           BL31: nix.thunk(() => nix.sel(rkbin, "BL31_RK3568")),
           ROCKCHIP_TPL: nix.thunk(() => nix.sel(rkbin, "TPL_RK3568")),
         })),
         filesToInstall: nix.thunk(() => ["idbloader.img", "u-boot.itb"]),
       })))),
     ubootNovena: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$47,
+        [nix.POS]: $pos[46],
         defconfig: "novena_defconfig",
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$46, platforms: nix.thunk(() => ["armv7l-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[45], platforms: nix.thunk(() => ["armv7l-linux"]) })),
         filesToInstall: nix.thunk(() => ["u-boot-dtb.img", "SPL"]),
       })))),
     ubootOdroidC2: nix.thunk(() => (() => {
       const firmwareBlobs = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$49,
+          [nix.POS]: $pos[48],
           owner: "armbian",
           repo: "odroidc2-blobs",
           rev: "47c5aac4bcac6f067cebe76e41fb9924d45b429c",
           sha256: "1ns0a130yxnxysia8c3q2fgyjp9k0nkr689dxk88qh2vnibgchnp",
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$48,
+            [nix.POS]: $pos[47],
             license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributableFirmware")),
           })),
         }))));
       return nix.app(buildUBoot, nix.thunk(() => ({
-          [nix.POS]: pos$51,
+          [nix.POS]: $pos[50],
           defconfig: "odroid-c2_defconfig",
           extraMeta: nix.thunk(() => ({
-            [nix.POS]: pos$50,
+            [nix.POS]: $pos[49],
             longDescription: "Boot loader for the Hardkernel ODROID-C2.\n\nFlashing instructions:\n```sh\ndd if=bl1.bin.hardkernel of=<device> conv=fsync bs=1 count=442\ndd if=bl1.bin.hardkernel of=<device> conv=fsync bs=512 skip=1 seek=1\ndd if=u-boot.gxbb of=<device> conv=fsync bs=512 seek=97\n```\n",
             platforms: nix.thunk(() => ["aarch64-linux"]),
           })),
@@ -578,39 +400,39 @@ dd if=u-boot.img of=u-boot.gxbb bs=512 skip=96
         })));
     })()),
     ubootOdroidXU3: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$53,
+        [nix.POS]: $pos[52],
         defconfig: "odroid-xu3_defconfig",
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$52, platforms: nix.thunk(() => ["armv7l-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[51], platforms: nix.thunk(() => ["armv7l-linux"]) })),
         filesToInstall: nix.thunk(() => ["u-boot-dtb.bin"]),
       })))),
     ubootOlimexA64Olinuxino: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$56,
+        [nix.POS]: $pos[55],
         defconfig: "a64-olinuxino-emmc_defconfig",
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$54, platforms: nix.thunk(() => ["aarch64-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[53], platforms: nix.thunk(() => ["aarch64-linux"]) })),
         env: nix.thunk(() => ({
-          [nix.POS]: pos$55,
+          [nix.POS]: $pos[54],
           BL31: nix.thunk(() => nix.str`${armTrustedFirmwareAllwinner}/bl31.bin`),
           SCP: "/dev/null",
         })),
         filesToInstall: nix.thunk(() => ["u-boot-sunxi-with-spl.bin"]),
       })))),
     ubootOlimexA64Teres1: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$59,
+        [nix.POS]: $pos[58],
         defconfig: "teres_i_defconfig",
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$57, platforms: nix.thunk(() => ["aarch64-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[56], platforms: nix.thunk(() => ["aarch64-linux"]) })),
         env: nix.thunk(() => ({
-          [nix.POS]: pos$58,
+          [nix.POS]: $pos[57],
           BL31: nix.thunk(() => nix.str`${armTrustedFirmwareAllwinner}/bl31.bin`),
           SCP: "/dev/null",
         })),
         filesToInstall: nix.thunk(() => ["u-boot-sunxi-with-spl.bin"]),
       })))),
     ubootOrangePi5: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$62,
+        [nix.POS]: $pos[61],
         defconfig: "orangepi-5-rk3588s_defconfig",
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$60, platforms: nix.thunk(() => ["aarch64-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[59], platforms: nix.thunk(() => ["aarch64-linux"]) })),
         env: nix.thunk(() => ({
-          [nix.POS]: pos$61,
+          [nix.POS]: $pos[60],
           BL31: nix.thunk(() => nix.str`${armTrustedFirmwareRK3588}/bl31.elf`),
           ROCKCHIP_TPL: nix.thunk(() => nix.sel(rkbin, "TPL_RK3588")),
         })),
@@ -622,11 +444,11 @@ dd if=u-boot.img of=u-boot.gxbb bs=512 skip=96
         ]),
       })))),
     ubootOrangePi5Max: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$65,
+        [nix.POS]: $pos[64],
         defconfig: "orangepi-5-max-rk3588_defconfig",
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$63, platforms: nix.thunk(() => ["aarch64-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[62], platforms: nix.thunk(() => ["aarch64-linux"]) })),
         env: nix.thunk(() => ({
-          [nix.POS]: pos$64,
+          [nix.POS]: $pos[63],
           BL31: nix.thunk(() => nix.str`${armTrustedFirmwareRK3588}/bl31.elf`),
           ROCKCHIP_TPL: nix.thunk(() => nix.sel(rkbin, "TPL_RK3588")),
         })),
@@ -638,11 +460,11 @@ dd if=u-boot.img of=u-boot.gxbb bs=512 skip=96
         ]),
       })))),
     ubootOrangePi5Plus: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$68,
+        [nix.POS]: $pos[67],
         defconfig: "orangepi-5-plus-rk3588_defconfig",
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$66, platforms: nix.thunk(() => ["aarch64-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[65], platforms: nix.thunk(() => ["aarch64-linux"]) })),
         env: nix.thunk(() => ({
-          [nix.POS]: pos$67,
+          [nix.POS]: $pos[66],
           BL31: nix.thunk(() => nix.str`${armTrustedFirmwareRK3588}/bl31.elf`),
           ROCKCHIP_TPL: nix.thunk(() => nix.sel(rkbin, "TPL_RK3588")),
         })),
@@ -654,65 +476,65 @@ dd if=u-boot.img of=u-boot.gxbb bs=512 skip=96
         ]),
       })))),
     ubootOrangePiPc: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$70,
+        [nix.POS]: $pos[69],
         defconfig: "orangepi_pc_defconfig",
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$69, platforms: nix.thunk(() => ["armv7l-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[68], platforms: nix.thunk(() => ["armv7l-linux"]) })),
         filesToInstall: nix.thunk(() => ["u-boot-sunxi-with-spl.bin"]),
       })))),
     ubootOrangePiZeroPlus2H5: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$73,
+        [nix.POS]: $pos[72],
         defconfig: "orangepi_zero_plus2_defconfig",
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$71, platforms: nix.thunk(() => ["aarch64-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[70], platforms: nix.thunk(() => ["aarch64-linux"]) })),
         env: nix.thunk(() => ({
-          [nix.POS]: pos$72,
+          [nix.POS]: $pos[71],
           BL31: nix.thunk(() => nix.str`${armTrustedFirmwareAllwinner}/bl31.bin`),
           SCP: "/dev/null",
         })),
         filesToInstall: nix.thunk(() => ["u-boot-sunxi-with-spl.bin"]),
       })))),
     ubootOrangePiZero: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$75,
+        [nix.POS]: $pos[74],
         defconfig: "orangepi_zero_defconfig",
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$74, platforms: nix.thunk(() => ["armv7l-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[73], platforms: nix.thunk(() => ["armv7l-linux"]) })),
         filesToInstall: nix.thunk(() => ["u-boot-sunxi-with-spl.bin"]),
       })))),
     ubootOrangePiZero2: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$78,
+        [nix.POS]: $pos[77],
         defconfig: "orangepi_zero2_defconfig",
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$76, platforms: nix.thunk(() => ["aarch64-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[75], platforms: nix.thunk(() => ["aarch64-linux"]) })),
         env: nix.thunk(() => ({
-          [nix.POS]: pos$77,
+          [nix.POS]: $pos[76],
           BL31: nix.thunk(() => nix.str`${armTrustedFirmwareAllwinnerH616}/bl31.bin`),
         })),
         filesToInstall: nix.thunk(() => ["u-boot-sunxi-with-spl.bin"]),
       })))),
     ubootOrangePiZero3: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$81,
+        [nix.POS]: $pos[80],
         defconfig: "orangepi_zero3_defconfig",
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$79, platforms: nix.thunk(() => ["aarch64-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[78], platforms: nix.thunk(() => ["aarch64-linux"]) })),
         env: nix.thunk(() => ({
-          [nix.POS]: pos$80,
+          [nix.POS]: $pos[79],
           BL31: nix.thunk(() => nix.str`${armTrustedFirmwareAllwinnerH616}/bl31.bin`),
         })),
         filesToInstall: nix.thunk(() => ["u-boot-sunxi-with-spl.bin"]),
       })))),
     ubootOrangePi3: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$84,
+        [nix.POS]: $pos[83],
         defconfig: "orangepi_3_defconfig",
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$82, platforms: nix.thunk(() => ["aarch64-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[81], platforms: nix.thunk(() => ["aarch64-linux"]) })),
         env: nix.thunk(() => ({
-          [nix.POS]: pos$83,
+          [nix.POS]: $pos[82],
           BL31: nix.thunk(() => nix.str`${armTrustedFirmwareAllwinnerH6}/bl31.bin`),
           SCP: "/dev/null",
         })),
         filesToInstall: nix.thunk(() => ["u-boot-sunxi-with-spl.bin"]),
       })))),
     ubootOrangePi3B: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$87,
+        [nix.POS]: $pos[86],
         defconfig: "orangepi-3b-rk3566_defconfig",
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$85, platforms: nix.thunk(() => ["aarch64-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[84], platforms: nix.thunk(() => ["aarch64-linux"]) })),
         env: nix.thunk(() => ({
-          [nix.POS]: pos$86,
+          [nix.POS]: $pos[85],
           ROCKCHIP_TPL: nix.thunk(() => nix.sel(rkbin, "TPL_RK3568")),
           BL31: nix.thunk(() => nix.sel(rkbin, "BL31_RK3568")),
         })),
@@ -724,95 +546,95 @@ dd if=u-boot.img of=u-boot.gxbb bs=512 skip=96
         ]),
       })))),
     ubootPcduino3Nano: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$89,
+        [nix.POS]: $pos[88],
         defconfig: "Linksprite_pcDuino3_Nano_defconfig",
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$88, platforms: nix.thunk(() => ["armv7l-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[87], platforms: nix.thunk(() => ["armv7l-linux"]) })),
         filesToInstall: nix.thunk(() => ["u-boot-sunxi-with-spl.bin"]),
       })))),
     ubootPine64: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$92,
+        [nix.POS]: $pos[91],
         defconfig: "pine64_plus_defconfig",
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$90, platforms: nix.thunk(() => ["aarch64-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[89], platforms: nix.thunk(() => ["aarch64-linux"]) })),
         env: nix.thunk(() => ({
-          [nix.POS]: pos$91,
+          [nix.POS]: $pos[90],
           BL31: nix.thunk(() => nix.str`${armTrustedFirmwareAllwinner}/bl31.bin`),
           SCP: "/dev/null",
         })),
         filesToInstall: nix.thunk(() => ["u-boot-sunxi-with-spl.bin"]),
       })))),
     ubootPine64LTS: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$95,
+        [nix.POS]: $pos[94],
         defconfig: "pine64-lts_defconfig",
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$93, platforms: nix.thunk(() => ["aarch64-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[92], platforms: nix.thunk(() => ["aarch64-linux"]) })),
         env: nix.thunk(() => ({
-          [nix.POS]: pos$94,
+          [nix.POS]: $pos[93],
           BL31: nix.thunk(() => nix.str`${armTrustedFirmwareAllwinner}/bl31.bin`),
           SCP: "/dev/null",
         })),
         filesToInstall: nix.thunk(() => ["u-boot-sunxi-with-spl.bin"]),
       })))),
     ubootPinebook: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$98,
+        [nix.POS]: $pos[97],
         defconfig: "pinebook_defconfig",
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$96, platforms: nix.thunk(() => ["aarch64-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[95], platforms: nix.thunk(() => ["aarch64-linux"]) })),
         env: nix.thunk(() => ({
-          [nix.POS]: pos$97,
+          [nix.POS]: $pos[96],
           BL31: nix.thunk(() => nix.str`${armTrustedFirmwareAllwinner}/bl31.bin`),
           SCP: "/dev/null",
         })),
         filesToInstall: nix.thunk(() => ["u-boot-sunxi-with-spl.bin"]),
       })))),
     ubootPinebookPro: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$101,
+        [nix.POS]: $pos[100],
         defconfig: "pinebook-pro-rk3399_defconfig",
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$99, platforms: nix.thunk(() => ["aarch64-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[98], platforms: nix.thunk(() => ["aarch64-linux"]) })),
         env: nix.thunk(() => ({
-          [nix.POS]: pos$100,
+          [nix.POS]: $pos[99],
           BL31: nix.thunk(() => nix.str`${armTrustedFirmwareRK3399}/bl31.elf`),
         })),
         filesToInstall: nix.thunk(() => ["u-boot.itb", "idbloader.img"]),
       })))),
     ubootQemuAarch64: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$103,
+        [nix.POS]: $pos[102],
         defconfig: "qemu_arm64_defconfig",
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$102, platforms: nix.thunk(() => ["aarch64-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[101], platforms: nix.thunk(() => ["aarch64-linux"]) })),
         filesToInstall: nix.thunk(() => ["u-boot.bin"]),
       })))),
     ubootQemuArm: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$105,
+        [nix.POS]: $pos[104],
         defconfig: "qemu_arm_defconfig",
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$104, platforms: nix.thunk(() => ["armv7l-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[103], platforms: nix.thunk(() => ["armv7l-linux"]) })),
         filesToInstall: nix.thunk(() => ["u-boot.bin"]),
       })))),
     ubootQemuRiscv64Smode: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$107,
+        [nix.POS]: $pos[106],
         defconfig: "qemu-riscv64_smode_defconfig",
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$106, platforms: nix.thunk(() => ["riscv64-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[105], platforms: nix.thunk(() => ["riscv64-linux"]) })),
         filesToInstall: nix.thunk(() => ["u-boot.bin"]),
       })))),
     ubootQemuX86: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$109,
+        [nix.POS]: $pos[108],
         defconfig: "qemu-x86_defconfig",
         extraConfig: "CONFIG_USB_UHCI_HCD=y\nCONFIG_USB_EHCI_HCD=y\nCONFIG_USB_EHCI_GENERIC=y\nCONFIG_USB_XHCI_HCD=y\n",
         extraMeta: nix.thunk(() => ({
-          [nix.POS]: pos$108,
+          [nix.POS]: $pos[107],
           platforms: nix.thunk(() => ["i686-linux", "x86_64-linux"]),
         })),
         filesToInstall: nix.thunk(() => ["u-boot.rom"]),
       })))),
     ubootQemuX86_64: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$111,
+        [nix.POS]: $pos[110],
         defconfig: "qemu-x86_64_defconfig",
         extraConfig: "CONFIG_USB_UHCI_HCD=y\nCONFIG_USB_EHCI_HCD=y\nCONFIG_USB_EHCI_GENERIC=y\nCONFIG_USB_XHCI_HCD=y\n",
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$110, platforms: nix.thunk(() => ["x86_64-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[109], platforms: nix.thunk(() => ["x86_64-linux"]) })),
         filesToInstall: nix.thunk(() => ["u-boot.rom"]),
       })))),
     ubootQuartz64B: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$114,
+        [nix.POS]: $pos[113],
         defconfig: "quartz64-b-rk3566_defconfig",
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$112, platforms: nix.thunk(() => ["aarch64-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[111], platforms: nix.thunk(() => ["aarch64-linux"]) })),
         env: nix.thunk(() => ({
-          [nix.POS]: pos$113,
+          [nix.POS]: $pos[112],
           BL31: nix.thunk(() => nix.str`${armTrustedFirmwareRK3568}/bl31.elf`),
           ROCKCHIP_TPL: nix.thunk(() => nix.sel(rkbin, "TPL_RK3566")),
         })),
@@ -825,71 +647,71 @@ dd if=u-boot.img of=u-boot.gxbb bs=512 skip=96
         ]),
       })))),
     ubootRadxaZero3W: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$117,
+        [nix.POS]: $pos[116],
         defconfig: "radxa-zero-3-rk3566_defconfig",
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$115, platforms: nix.thunk(() => ["aarch64-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[114], platforms: nix.thunk(() => ["aarch64-linux"]) })),
         env: nix.thunk(() => ({
-          [nix.POS]: pos$116,
+          [nix.POS]: $pos[115],
           BL31: nix.thunk(() => nix.str`${armTrustedFirmwareRK3568}/bl31.elf`),
           ROCKCHIP_TPL: nix.thunk(() => nix.sel(rkbin, "TPL_RK3566")),
         })),
         filesToInstall: nix.thunk(() => ["idbloader.img", "u-boot.itb", "u-boot-rockchip.bin"]),
       })))),
     ubootRaspberryPi: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$119,
+        [nix.POS]: $pos[118],
         defconfig: "rpi_defconfig",
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$118, platforms: nix.thunk(() => ["armv6l-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[117], platforms: nix.thunk(() => ["armv6l-linux"]) })),
         filesToInstall: nix.thunk(() => ["u-boot.bin"]),
       })))),
     ubootRaspberryPiAarch64: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$121,
+        [nix.POS]: $pos[120],
         defconfig: "rpi_arm64_defconfig",
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$120, platforms: nix.thunk(() => ["aarch64-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[119], platforms: nix.thunk(() => ["aarch64-linux"]) })),
         filesToInstall: nix.thunk(() => ["u-boot.bin"]),
       })))),
     ubootRaspberryPi2: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$123,
+        [nix.POS]: $pos[122],
         defconfig: "rpi_2_defconfig",
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$122, platforms: nix.thunk(() => ["armv7l-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[121], platforms: nix.thunk(() => ["armv7l-linux"]) })),
         filesToInstall: nix.thunk(() => ["u-boot.bin"]),
       })))),
     ubootRaspberryPi3_32bit: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$125,
+        [nix.POS]: $pos[124],
         defconfig: "rpi_3_32b_defconfig",
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$124, platforms: nix.thunk(() => ["armv7l-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[123], platforms: nix.thunk(() => ["armv7l-linux"]) })),
         filesToInstall: nix.thunk(() => ["u-boot.bin"]),
       })))),
     ubootRaspberryPi3_64bit: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$127,
+        [nix.POS]: $pos[126],
         defconfig: "rpi_3_defconfig",
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$126, platforms: nix.thunk(() => ["aarch64-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[125], platforms: nix.thunk(() => ["aarch64-linux"]) })),
         filesToInstall: nix.thunk(() => ["u-boot.bin"]),
       })))),
     ubootRaspberryPi4_32bit: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$129,
+        [nix.POS]: $pos[128],
         defconfig: "rpi_4_32b_defconfig",
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$128, platforms: nix.thunk(() => ["armv7l-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[127], platforms: nix.thunk(() => ["armv7l-linux"]) })),
         filesToInstall: nix.thunk(() => ["u-boot.bin"]),
       })))),
     ubootRaspberryPi4_64bit: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$131,
+        [nix.POS]: $pos[130],
         defconfig: "rpi_4_defconfig",
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$130, platforms: nix.thunk(() => ["aarch64-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[129], platforms: nix.thunk(() => ["aarch64-linux"]) })),
         filesToInstall: nix.thunk(() => ["u-boot.bin"]),
       })))),
     ubootRaspberryPiZero: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$133,
+        [nix.POS]: $pos[132],
         defconfig: "rpi_0_w_defconfig",
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$132, platforms: nix.thunk(() => ["armv6l-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[131], platforms: nix.thunk(() => ["armv6l-linux"]) })),
         filesToInstall: nix.thunk(() => ["u-boot.bin"]),
       })))),
     ubootRock3C: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$136,
+        [nix.POS]: $pos[135],
         defconfig: "rock-3c-rk3566_defconfig",
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$134, platforms: nix.thunk(() => ["aarch64-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[133], platforms: nix.thunk(() => ["aarch64-linux"]) })),
         strictDeps: true,
         env: nix.thunk(() => ({
-          [nix.POS]: pos$135,
+          [nix.POS]: $pos[134],
           BL31: nix.thunk(() => nix.str`${armTrustedFirmwareRK3568}/bl31.elf`),
           ROCKCHIP_TPL: nix.thunk(() => nix.sel(rkbin, "TPL_RK3566")),
         })),
@@ -902,21 +724,21 @@ dd if=u-boot.img of=u-boot.gxbb bs=512 skip=96
         ]),
       })))),
     ubootRock4CPlus: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$139,
+        [nix.POS]: $pos[138],
         defconfig: "rock-4c-plus-rk3399_defconfig",
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$137, platforms: nix.thunk(() => ["aarch64-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[136], platforms: nix.thunk(() => ["aarch64-linux"]) })),
         env: nix.thunk(() => ({
-          [nix.POS]: pos$138,
+          [nix.POS]: $pos[137],
           BL31: nix.thunk(() => nix.str`${armTrustedFirmwareRK3399}/bl31.elf`),
         })),
         filesToInstall: nix.thunk(() => ["u-boot.itb", "idbloader.img"]),
       })))),
     ubootRock5ModelB: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$142,
+        [nix.POS]: $pos[141],
         defconfig: "rock5b-rk3588_defconfig",
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$140, platforms: nix.thunk(() => ["aarch64-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[139], platforms: nix.thunk(() => ["aarch64-linux"]) })),
         env: nix.thunk(() => ({
-          [nix.POS]: pos$141,
+          [nix.POS]: $pos[140],
           BL31: nix.thunk(() => nix.str`${armTrustedFirmwareRK3588}/bl31.elf`),
           ROCKCHIP_TPL: nix.thunk(() => nix.sel(rkbin, "TPL_RK3588")),
         })),
@@ -928,108 +750,108 @@ dd if=u-boot.img of=u-boot.gxbb bs=512 skip=96
         ]),
       })))),
     ubootRock5ModelC: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$145,
+        [nix.POS]: $pos[144],
         defconfig: "rock-5c-rk3588s_defconfig",
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$143, platforms: nix.thunk(() => ["aarch64-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[142], platforms: nix.thunk(() => ["aarch64-linux"]) })),
         env: nix.thunk(() => ({
-          [nix.POS]: pos$144,
+          [nix.POS]: $pos[143],
           BL31: nix.thunk(() => nix.str`${armTrustedFirmwareRK3588}/bl31.elf`),
           ROCKCHIP_TPL: nix.thunk(() => nix.sel(rkbin, "TPL_RK3588")),
         })),
         filesToInstall: nix.thunk(() => ["u-boot.itb", "idbloader.img", "u-boot-rockchip.bin"]),
       })))),
     ubootRock64: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$148,
+        [nix.POS]: $pos[147],
         defconfig: "rock64-rk3328_defconfig",
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$146, platforms: nix.thunk(() => ["aarch64-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[145], platforms: nix.thunk(() => ["aarch64-linux"]) })),
         env: nix.thunk(() => ({
-          [nix.POS]: pos$147,
+          [nix.POS]: $pos[146],
           BL31: nix.thunk(() => nix.str`${armTrustedFirmwareRK3328}/bl31.elf`),
         })),
         filesToInstall: nix.thunk(() => ["u-boot.itb", "idbloader.img", "u-boot-rockchip.bin"]),
       })))),
     ubootRock64v2: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$151,
+        [nix.POS]: $pos[150],
         extraMeta: nix.thunk(() => ({
-          [nix.POS]: pos$149,
+          [nix.POS]: $pos[148],
           longDescription: "Boot loader for the Pine64 Rock64 V2.\n\nA special build with much lower memory frequency (666 vs 1600 MT/s) which\nmakes ROCK64 V2 boards stable. This is necessary because the DDR3 routing\non that revision is marginal and not unconditionally stable at the specified\nfrequency. If your ROCK64 is unstable you can try this u-boot variant to\nsee if it works better for you. The only disadvantage is lowered memory\nbandwidth.\n",
           platforms: nix.thunk(() => ["aarch64-linux"]),
         })),
         prePatch: "substituteInPlace arch/arm/dts/rk3328-rock64-u-boot.dtsi \\\n  --replace rk3328-sdram-lpddr3-1600.dtsi rk3328-sdram-lpddr3-666.dtsi\n",
         defconfig: "rock64-rk3328_defconfig",
         env: nix.thunk(() => ({
-          [nix.POS]: pos$150,
+          [nix.POS]: $pos[149],
           BL31: nix.thunk(() => nix.str`${armTrustedFirmwareRK3328}/bl31.elf`),
         })),
         filesToInstall: nix.thunk(() => ["u-boot.itb", "idbloader.img", "u-boot-rockchip.bin"]),
       })))),
     ubootRockPiE: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$154,
+        [nix.POS]: $pos[153],
         defconfig: "rock-pi-e-rk3328_defconfig",
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$152, platforms: nix.thunk(() => ["aarch64-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[151], platforms: nix.thunk(() => ["aarch64-linux"]) })),
         env: nix.thunk(() => ({
-          [nix.POS]: pos$153,
+          [nix.POS]: $pos[152],
           BL31: nix.thunk(() => nix.str`${armTrustedFirmwareRK3328}/bl31.elf`),
         })),
         filesToInstall: nix.thunk(() => ["u-boot.itb", "idbloader.img", "u-boot-rockchip.bin"]),
       })))),
     ubootRockPro64: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$157,
+        [nix.POS]: $pos[156],
         defconfig: "rockpro64-rk3399_defconfig",
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$155, platforms: nix.thunk(() => ["aarch64-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[154], platforms: nix.thunk(() => ["aarch64-linux"]) })),
         env: nix.thunk(() => ({
-          [nix.POS]: pos$156,
+          [nix.POS]: $pos[155],
           BL31: nix.thunk(() => nix.str`${armTrustedFirmwareRK3399}/bl31.elf`),
         })),
         filesToInstall: nix.thunk(() => ["u-boot.itb", "idbloader.img"]),
       })))),
     ubootROCPCRK3399: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$160,
+        [nix.POS]: $pos[159],
         defconfig: "roc-pc-rk3399_defconfig",
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$158, platforms: nix.thunk(() => ["aarch64-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[157], platforms: nix.thunk(() => ["aarch64-linux"]) })),
         filesToInstall: nix.thunk(() => ["spl/u-boot-spl.bin", "u-boot.itb", "idbloader.img"]),
         env: nix.thunk(() => ({
-          [nix.POS]: pos$159,
+          [nix.POS]: $pos[158],
           BL31: nix.thunk(() => nix.str`${armTrustedFirmwareRK3399}/bl31.elf`),
         })),
       })))),
     ubootSheevaplug: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$162,
+        [nix.POS]: $pos[161],
         defconfig: "sheevaplug_defconfig",
         extraMeta: nix.thunk(() => ({
-          [nix.POS]: pos$161,
+          [nix.POS]: $pos[160],
           platforms: nix.thunk(() => ["armv5tel-linux"]),
           broken: true,
         })),
         filesToInstall: nix.thunk(() => ["u-boot.kwb"]),
       })))),
     ubootSopine: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$165,
+        [nix.POS]: $pos[164],
         defconfig: "sopine_baseboard_defconfig",
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$163, platforms: nix.thunk(() => ["aarch64-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[162], platforms: nix.thunk(() => ["aarch64-linux"]) })),
         env: nix.thunk(() => ({
-          [nix.POS]: pos$164,
+          [nix.POS]: $pos[163],
           BL31: nix.thunk(() => nix.str`${armTrustedFirmwareAllwinner}/bl31.bin`),
           SCP: "/dev/null",
         })),
         filesToInstall: nix.thunk(() => ["u-boot-sunxi-with-spl.bin"]),
       })))),
     ubootTuringRK1: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$168,
+        [nix.POS]: $pos[167],
         defconfig: "turing-rk1-rk3588_defconfig",
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$166, platforms: nix.thunk(() => ["aarch64-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[165], platforms: nix.thunk(() => ["aarch64-linux"]) })),
         env: nix.thunk(() => ({
-          [nix.POS]: pos$167,
+          [nix.POS]: $pos[166],
           BL31: nix.thunk(() => nix.str`${armTrustedFirmwareRK3588}/bl31.elf`),
           ROCKCHIP_TPL: nix.thunk(() => nix.sel(rkbin, "TPL_RK3588")),
         })),
         filesToInstall: nix.thunk(() => ["u-boot.itb", "idbloader.img", "u-boot-rockchip.bin"]),
       })))),
     ubootUtilite: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$170,
+        [nix.POS]: $pos[169],
         defconfig: "cm_fx6_defconfig",
         extraMeta: nix.thunk(() => ({
-          [nix.POS]: pos$169,
+          [nix.POS]: $pos[168],
           platforms: nix.thunk(() => ["armv7l-linux"]),
           longDescription: "Boot loader for the CompuLab CM-FX6.\n\nFlashing instructions:\n```\nsata init; load sata 0 $loadaddr u-boot-with-nand-spl.imx\nsf probe; sf update $loadaddr 0 80000\n```\n",
         })),
@@ -1038,27 +860,27 @@ dd if=u-boot.img of=u-boot.gxbb bs=512 skip=96
         extraConfig: "CONFIG_CMD_SETEXPR=y\n",
       })))),
     ubootVisionFive2: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$173,
+        [nix.POS]: $pos[172],
         defconfig: "starfive_visionfive2_defconfig",
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$171, platforms: nix.thunk(() => ["riscv64-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[170], platforms: nix.thunk(() => ["riscv64-linux"]) })),
         env: nix.thunk(() => ({
-          [nix.POS]: pos$172,
+          [nix.POS]: $pos[171],
           OPENSBI: nix.thunk(() => nix.str`${opensbi}/share/opensbi/lp64/generic/firmware/fw_dynamic.bin`),
         })),
         filesToInstall: nix.thunk(() => ["spl/u-boot-spl.bin.normal.out", "u-boot.itb"]),
       })))),
     ubootWandboard: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$175,
+        [nix.POS]: $pos[174],
         defconfig: "wandboard_defconfig",
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$174, platforms: nix.thunk(() => ["armv7l-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[173], platforms: nix.thunk(() => ["armv7l-linux"]) })),
         filesToInstall: nix.thunk(() => ["u-boot.img", "SPL"]),
       })))),
     ubootRockPi4: nix.thunk(() => nix.app(buildUBoot, nix.thunk(() => ({
-        [nix.POS]: pos$178,
+        [nix.POS]: $pos[177],
         defconfig: "rock-pi-4-rk3399_defconfig",
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$176, platforms: nix.thunk(() => ["aarch64-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[175], platforms: nix.thunk(() => ["aarch64-linux"]) })),
         env: nix.thunk(() => ({
-          [nix.POS]: pos$177,
+          [nix.POS]: $pos[176],
           BL31: nix.thunk(() => nix.str`${armTrustedFirmwareRK3399}/bl31.elf`),
         })),
         filesToInstall: nix.thunk(() => ["u-boot.itb", "idbloader.img"]),

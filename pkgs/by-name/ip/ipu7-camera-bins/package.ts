@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["repo", 15, 5], ["owner", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["sourceProvenance", 65, 5], ["maintainers", 68, 5], ["platforms", 72, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["__structuredAttrs", 21, 3], ["strictDeps", 22, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 28, 3], ["installPhase", 34, 3], ["postFixup", 46, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoPatchelfHook: false, expat: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["repo", 15, 5], ["owner", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["sourceProvenance", 65, 5], ["maintainers", 68, 5], ["platforms", 72, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["__structuredAttrs", 21, 3], ["strictDeps", 22, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 28, 3], ["installPhase", 34, 3], ["postFixup", 46, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const expat = nix.arg($, "expat");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ipu7-camera-bins",
       version: "20260629_1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "ipu7-camera-bins",
           owner: "intel",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -49,7 +47,7 @@ for pcfile in $out/lib/pkgconfig/*.pc; do
 done
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "IPU firmware and proprietary image processing libraries",
         homepage: "https://github.com/intel/ipu7-camera-bins",
         license: nix.thunk(() => nix.sel(lib, "licenses", "issl")),

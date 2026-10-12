@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/batpipe.nix", [[["flags", 15, 5]], [["description", 25, 8]], [["name", 9, 3], ["dependencies", 10, 3], ["shellInit", 14, 3], ["patches", 18, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildBatExtrasPkg: false, less: false, procps: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/batpipe.nix", [["flags", 15, 5]]);
-const pos$2 = nix.positions(here + "/batpipe.nix", [["description", 25, 8]]);
-const pos$3 = nix.positions(here + "/batpipe.nix", [["name", 9, 3], ["dependencies", 10, 3], ["shellInit", 14, 3], ["patches", 18, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const less = nix.arg($, "less");
   const procps = nix.arg($, "procps");
   return nix.app(buildBatExtrasPkg, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "batpipe",
       dependencies: nix.thunk(() => [less, procps]),
-      shellInit: nix.thunk(() => ({ [nix.POS]: pos$1, flags: [] })),
+      shellInit: nix.thunk(() => ({ [nix.POS]: $pos[0], flags: [] })),
       patches: nix.thunk(() => nix.concat([nix.path(here, "../patches/batpipe-skip-outdated-test.patch")], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.path(here, "../patches/batpipe-skip-detection-tests.patch")])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Less (and soon bat) preprocessor for viewing more types of files in the terminal",
       })),
     })));

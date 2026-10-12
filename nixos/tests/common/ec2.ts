@@ -2,21 +2,18 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ec2.nix", [[["pkgs", 6, 51]], [["name", 23, 9], ["buildCommand", 24, 9]], [["name", 42, 7], ["nodes", 43, 7], ["testScript", 44, 7], ["meta", 95, 15]], [["imdsServer", 9, 11], ["makeEc2Test", 11, 3]]]);
 const formals$1 = { args: { pkgs: false, makeTest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/ec2.nix", [["pkgs", 6, 51]]);
 const formals$2 = { args: { name: false, image: false, userData: true, script: false, hostname: true, sshPublicKey: true, meta: true }, ellipsis: false };
-const pos$2 = nix.positions(here + "/ec2.nix", [["name", 23, 9], ["buildCommand", 24, 9]]);
-const pos$3 = nix.positions(here + "/ec2.nix", [["name", 42, 7], ["nodes", 43, 7], ["testScript", 44, 7], ["meta", 95, 15]]);
-const pos$4 = nix.positions(here + "/ec2.nix", [["imdsServer", 9, 11], ["makeEc2Test", 11, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const makeTest = nix.arg($, "makeTest");
   const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib")), null);
-  const imdsServer = nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./imds-server.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, pkgs: pkgs }))));
+  const imdsServer = nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./imds-server.nix"), nix.thunk(() => ({ [nix.POS]: $pos[0], pkgs: pkgs }))));
   return {
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     imdsServer: imdsServer,
     makeEc2Test: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
@@ -28,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const sshPublicKey = nix.argOr($_1, "sshPublicKey", () => null);
       const meta = nix.argOr($_1, "meta", () => ({}));
       const metaData = nix.thunk(() => nix.app(nix.sel(pkgs, "stdenv", "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: "metadata",
           buildCommand: nix.thunk(() => nix.add(nix.str`mkdir -p $out/1.0/meta-data
 ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => !nix.eq(userData, null)), nix.thunk(() => nix.str`ln -s ${nix.app(nix.sel(pkgs, "writeText"), "userData", userData)} $out/1.0/user-data`))}
@@ -42,7 +39,7 @@ ln -s ${nix.app(nix.sel(pkgs, "writeText"), "sshPublicKey", sshPublicKey)} $out/
         }))));
       const indentLines = (str) => nix.app(nix.lookup(w, "concatLines"), nix.thunk(() => nix.app(nix.builtins.map, (s) => nix.add("  ", s), nix.thunk(() => nix.app(nix.lookup(w, "splitString"), "\n", str)))));
       return nix.app(makeTest, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           name: nix.thunk(() => nix.add("ec2-", name)),
           nodes: nix.thunk(() => ({})),
           testScript: nix.thunk(() => nix.add(nix.add(nix.str`import os

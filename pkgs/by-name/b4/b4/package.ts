@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 15, 26], ["version", 15, 32], ["hash", 16, 5]], [["url", 37, 7], ["rev", 38, 7], ["hash", 39, 7], ["fetchSubmodules", 40, 7]], [["src-misc", 36, 5]], [["homepage", 45, 5], ["license", 46, 5], ["description", 47, 5], ["mainProgram", 48, 5], ["maintainers", 49, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["doCheck", 20, 3], ["build-system", 22, 3], ["propagatedBuildInputs", 26, 3], ["passthru", 35, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchPypi: false, fetchgit: false, patatt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 15, 26], ["version", 15, 32], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 37, 7], ["rev", 38, 7], ["hash", 39, 7], ["fetchSubmodules", 40, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src-misc", 36, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 45, 5], ["license", 46, 5], ["description", 47, 5], ["mainProgram", 48, 5], ["maintainers", 49, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["doCheck", 20, 3], ["build-system", 22, 3], ["propagatedBuildInputs", 26, 3], ["passthru", 35, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const fetchgit = nix.arg($, "fetchgit");
   const patatt = nix.arg($, "patatt");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "b4",
       version: "0.15.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-uBXyrtIohxjP4qFMdkIaALxPCRjqMrRd0WRcmZ/dpp0=",
@@ -44,9 +40,9 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         "src-misc": nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://git.kernel.org/pub/scm/utils/b4/b4.git",
             rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
             hash: "sha256-NjYL3RKQpjDkU98qbXyl/cvLTJYVAfIowm8E2Rg8AgI=",
@@ -54,7 +50,7 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://git.kernel.org/pub/scm/utils/b4/b4.git/about",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         description: "Helper utility to work with patches made available via a public-inbox archive",

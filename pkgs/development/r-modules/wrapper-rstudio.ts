@@ -2,8 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wrapper-rstudio.nix", [[["pname", 15, 23], ["version", 15, 29], ["preferLocalBuild", 16, 5], ["allowSubstitutes", 17, 5], ["nativeBuildInputs", 19, 5], ["dontWrapQtApps", 20, 5], ["buildInputs", 22, 5], ["fixLibsR", 37, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, runCommand: false, R: false, rstudio: false, makeBinaryWrapper: false, recommendedPackages: false, packages: false, fontconfig: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/wrapper-rstudio.nix", [["pname", 15, 23], ["version", 15, 29], ["preferLocalBuild", 16, 5], ["allowSubstitutes", 17, 5], ["nativeBuildInputs", 19, 5], ["dontWrapQtApps", 20, 5], ["buildInputs", 22, 5], ["fixLibsR", 37, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const packages = nix.arg($, "packages");
   const fontconfig = nix.arg($, "fontconfig");
   return nix.app(runCommand, nix.thunk(() => nix.add(nix.sel(rstudio, "name"), "-wrapper")), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: nix.thunk(() => nix.attr(rstudio, "pname")),
       version: nix.thunk(() => nix.attr(rstudio, "version")),
       preferLocalBuild: true,

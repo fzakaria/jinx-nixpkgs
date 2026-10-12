@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 18, 13], ["version", 18, 19], ["sha256", 19, 5]], [["description", 33, 5], ["mainProgram", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["broken", 39, 5]], [["version", 11, 3], ["format", 12, 3], ["pname", 13, 3], ["nativeCheckInputs", 15, 3], ["src", 17, 3], ["postPatch", 22, 3], ["checkPhase", 28, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, buildPythonPackage: false, fetchPypi: false, bash: false, which: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 18, 13], ["version", 18, 19], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 33, 5], ["mainProgram", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["broken", 39, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 11, 3], ["format", 12, 3], ["pname", 13, 3], ["nativeCheckInputs", 15, 3], ["src", 17, 3], ["postPatch", 22, 3], ["checkPhase", 28, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "cram";
       const nativeCheckInputs = nix.thunk(() => [which]);
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           sha256: "0bvz6fwdi55rkrz3f50zsy35gvvwhlppki2yml5bj5ffy9d499vx",
@@ -32,7 +30,7 @@ substituteInPlace tests/test.t \\
 `);
       const checkPhase = "scripts/cram tests\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Simple testing framework for command line applications",
         mainProgram: "cram",
         homepage: "https://bitheap.org/cram/",
@@ -44,7 +42,7 @@ substituteInPlace tests/test.t \\
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isi686")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         version,
         format,
         pname,

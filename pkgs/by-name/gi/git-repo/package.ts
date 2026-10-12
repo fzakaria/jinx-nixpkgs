@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["updateScript", 58, 5]], [["description", 62, 5], ["longDescription", 63, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 75, 5], ["mainProgram", 76, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 27, 3], ["postPatch", 29, 3], ["installPhase", 35, 3], ["postFixup", 45, 3], ["passthru", 57, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitiles: false, makeWrapper: false, python3: false, git: false, gnupg: false, less: false, openssh: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 58, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 62, 5], ["longDescription", 63, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 75, 5], ["mainProgram", 76, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 27, 3], ["postPatch", 29, 3], ["installPhase", 35, 3], ["postFixup", 45, 3], ["passthru", 57, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const less = nix.arg($, "less");
   const openssh = nix.arg($, "openssh");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "git-repo",
       version: "2.68.1",
       src: nix.thunk(() => nix.app(fetchFromGitiles, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://android.googlesource.com/tools/repo",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-RtwxFBshaY80aK3X0wkZjhrMLKSxbfq/1gY3R2B8mrA=",
@@ -37,9 +34,9 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.str`wrapProgram $out/bin/repo --prefix PATH ":" \\
   "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [git, gnupg, less, openssh]))}"
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Android's repo management tool",
         longDescription: "Repo is a Python script based on Git that helps manage many Git\nrepositories, does the uploads to revision control systems, and automates\nparts of the development workflow. Repo is not meant to replace Git, only\nto make it easier to work with Git.\n",
         homepage: "https://android.googlesource.com/tools/repo",

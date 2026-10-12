@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 21, 5], ["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["name", 78, 7], ["desktopName", 79, 7], ["type", 80, 7], ["comment", 81, 7], ["exec", 82, 7], ["icon", 83, 7], ["terminal", 84, 7]], [["updateScript", 88, 12]], [["description", 91, 5], ["homepage", 92, 5], ["license", 93, 5], ["platforms", 94, 5], ["maintainers", 95, 5], ["mainProgram", 96, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["cargoHash", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 42, 3], ["doCheck", 45, 3], ["installPhase", 47, 3], ["postInstall", 62, 3], ["preFixup", 70, 3], ["desktopItems", 76, 3], ["passthru", 88, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, "cargo-bundle": false, copyDesktopItems: false, fetchFromGitea: false, ffmpeg: false, imagemagick: false, libadwaita: false, makeDesktopItem: false, "nix-update-script": false, "pkg-config": false, wrapGAppsHook4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 21, 5], ["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 78, 7], ["desktopName", 79, 7], ["type", 80, 7], ["comment", 81, 7], ["exec", 82, 7], ["icon", 83, 7], ["terminal", 84, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 88, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 91, 5], ["homepage", 92, 5], ["license", 93, 5], ["platforms", 94, 5], ["maintainers", 95, 5], ["mainProgram", 96, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["cargoHash", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 42, 3], ["doCheck", 45, 3], ["installPhase", 47, 3], ["postInstall", 62, 3], ["preFixup", 70, 3], ["desktopItems", 76, 3], ["passthru", 88, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "tyrolienne",
       version: "1.2.4",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "git.uku3lig.net",
           owner: "uku",
           repo: "tyrolienne",
@@ -60,7 +56,7 @@ runHook postInstall
 `))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "net.uku3lig.tyrolienne",
             desktopName: "Tyrolienne",
             type: "Application",
@@ -71,11 +67,11 @@ runHook postInstall
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Simple tool to convert, upload, and embed videos to Zipline",
         homepage: "https://git.uku3lig.net/uku/tyrolienne",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 18, 5], ["hash", 19, 5], ["fetchSubmodules", 20, 5]], [["description", 75, 5], ["mainProgram", 76, 5], ["homepage", 77, 5], ["license", 78, 5], ["platforms", 79, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 28, 3], ["dontWrapQtApps", 36, 3], ["preConfigure", 38, 3], ["qmakeFlags", 42, 3], ["postInstall", 53, 3], ["preFixup", 70, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, libsForQt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 18, 5], ["hash", 19, 5], ["fetchSubmodules", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 75, 5], ["mainProgram", 76, 5], ["homepage", 77, 5], ["license", 78, 5], ["platforms", 79, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 28, 3], ["dontWrapQtApps", 36, 3], ["preConfigure", 38, 3], ["qmakeFlags", 42, 3], ["postInstall", 53, 3], ["preFixup", 70, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const libsForQt5 = nix.arg($, "libsForQt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "communi",
       version: "3.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "communi",
           repo: "communi-desktop",
           rev: "5d813dc6e64a623cd5d78f024c8a0720a5155a28",
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "# Nix qmake does not add the bundle rpath by default.\ninstall_name_tool \\\n  -add_rpath @executable_path/../Frameworks \\\n  $out/Applications/Communi.app/Contents/MacOS/Communi\n\n# Do not remove until wrapQtAppsHook doesn't wrap dylibs in app bundles anymore\nwrapQtApp $out/Applications/Communi.app/Contents/MacOS/Communi\n" : "substituteInPlace \"$out/share/applications/communi.desktop\" \\\n  --replace \"/usr/bin\" \"$out/bin\"\n")),
       preFixup: "rm -rf lib\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Simple and elegant cross-platform IRC client",
         mainProgram: "communi",
         homepage: "https://github.com/communi/communi-desktop",

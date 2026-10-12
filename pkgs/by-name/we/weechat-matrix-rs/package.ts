@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["nativeBuildInputs", 45, 9]], [["load-plugin", 42, 18]], [["tests", 42, 12]], [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["cargoHash", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 31, 3], ["postInstall", 37, 3], ["passthru", 42, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, weechat: false, openssl: false, sqlite: false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 45, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["load-plugin", 42, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 42, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["cargoHash", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 31, 3], ["postInstall", 37, 3], ["passthru", 42, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const runCommand = nix.arg($, "runCommand");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "weechat-matrix-rs",
       version: "0-unstable-2026-07-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "poljar",
           repo: "weechat-matrix-rs",
           rev: "f987e71a46827b8e69112cfb8e5977cf59fc313a",
@@ -39,10 +34,10 @@ export default nix.lambda((args) => (() => {
 mv $out/lib/libmatrix${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")} $out/lib/weechat/plugins/matrix${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          "load-plugin": nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-test-load`), nix.thunk(() => ({ [nix.POS]: pos$2, nativeBuildInputs: nix.thunk(() => [weechat]) })), nix.thunk(() => nix.str`weechat -t -d "$(mktemp -d)" \\
+          [nix.POS]: $pos[2],
+          "load-plugin": nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-test-load`), nix.thunk(() => ({ [nix.POS]: $pos[1], nativeBuildInputs: nix.thunk(() => [weechat]) })), nix.thunk(() => nix.str`weechat -t -d "$(mktemp -d)" \\
  --run-command "/plugin load ${nix.sel(finalAttrs, "finalPackage")}/lib/weechat/plugins/matrix${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")} ; /quit" \\
  2>&1 | tee log
 if grep -q 'Plugin "matrix" loaded' log; then
@@ -56,7 +51,7 @@ fi
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Rust plugin for WeeChat to communicate over Matrix",
         homepage: "https://github.com/poljar/weechat-matrix-rs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

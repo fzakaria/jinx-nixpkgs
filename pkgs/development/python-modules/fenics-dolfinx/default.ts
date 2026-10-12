@@ -2,19 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["withParmetis", 51, 62]], [["slepc", 48, 7], ["adios2", 49, 7], ["kahip", 50, 7], ["dolfinx", 51, 7]], [["mpi", 99, 49]], [["scalarType", 121, 40]], [["petsc4py", 121, 9]], [["complex", 120, 7]], [["mpi", 126, 40]], [["petsc4py", 126, 9]], [["mpich", 125, 7]], [["tests", 119, 5]], [["homepage", 132, 5], ["downloadPage", 133, 5], ["description", 134, 5], ["changelog", 135, 5], ["license", 136, 5], ["platforms", 140, 5], ["maintainers", 141, 5]], [["version", 57, 5], ["src", 58, 5], ["pname", 60, 3], ["pyproject", 61, 3], ["pythonRelaxDeps", 63, 3], ["preConfigure", 67, 3], ["dontUseCmakeConfigure", 71, 3], ["build-system", 73, 3], ["nativeBuildInputs", 78, 3], ["buildInputs", 85, 3], ["dependencies", 89, 3], ["nativeCheckInputs", 102, 3], ["preCheck", 110, 3], ["pythonImportsCheck", 114, 3], ["passthru", 118, 3], ["meta", 131, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, "scikit-build-core": false, nanobind: false, cmake: false, ninja: false, "pkg-config": false, dolfinx: false, numpy: false, cffi: false, mpi4py: false, petsc4py: false, slepc4py: false, adios2: false, kahip: false, "fenics-ffcx": false, "fenics-basix": false, "fenics-ufl": false, scipy: false, matplotlib: false, pytestCheckHook: false, writableTmpDirAsHomeHook: false, mpiCheckPhaseHook: false, withParmetis: true, "fenics-dolfinx": false, mpich: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["withParmetis", 51, 62]]);
-const pos$2 = nix.positions(here + "/default.nix", [["slepc", 48, 7], ["adios2", 49, 7], ["kahip", 50, 7], ["dolfinx", 51, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["mpi", 99, 49]]);
-const pos$4 = nix.positions(here + "/default.nix", [["scalarType", 121, 40]]);
-const pos$5 = nix.positions(here + "/default.nix", [["petsc4py", 121, 9]]);
-const pos$6 = nix.positions(here + "/default.nix", [["complex", 120, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["mpi", 126, 40]]);
-const pos$8 = nix.positions(here + "/default.nix", [["petsc4py", 126, 9]]);
-const pos$9 = nix.positions(here + "/default.nix", [["mpich", 125, 7]]);
-const pos$10 = nix.positions(here + "/default.nix", [["tests", 119, 5]]);
-const pos$11 = nix.positions(here + "/default.nix", [["homepage", 132, 5], ["downloadPage", 133, 5], ["description", 134, 5], ["changelog", 135, 5], ["license", 136, 5], ["platforms", 140, 5], ["maintainers", 141, 5]]);
-const pos$12 = nix.positions(here + "/default.nix", [["version", 57, 5], ["src", 58, 5], ["pname", 60, 3], ["pyproject", 61, 3], ["pythonRelaxDeps", 63, 3], ["preConfigure", 67, 3], ["dontUseCmakeConfigure", 71, 3], ["build-system", 73, 3], ["nativeBuildInputs", 78, 3], ["buildInputs", 85, 3], ["dependencies", 89, 3], ["nativeCheckInputs", 102, 3], ["preCheck", 110, 3], ["pythonImportsCheck", 114, 3], ["passthru", 118, 3], ["meta", 131, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -46,14 +35,14 @@ export default nix.lambda((args) => (() => {
   const fenics_dolfinx = nix.arg($, "fenics-dolfinx");
   const mpich = nix.arg($, "mpich");
   const fenicsPackages = nix.thunk(() => nix.app(nix.sel(petsc4py, "petscPackages", "overrideScope"), (final) => (prev) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       slepc: nix.thunk(() => nix.app(nix.sel(final, "callPackage"), nix.thunk(() => nix.sel(slepc4py, "override")), nix.thunk(() => ({})))),
       adios2: nix.thunk(() => nix.app(nix.sel(final, "callPackage"), nix.thunk(() => nix.sel(adios2, "override")), nix.thunk(() => ({})))),
       kahip: nix.thunk(() => nix.app(nix.sel(final, "callPackage"), nix.thunk(() => nix.sel(kahip, "override")), nix.thunk(() => ({})))),
-      dolfinx: nix.thunk(() => nix.app(nix.sel(final, "callPackage"), nix.thunk(() => nix.sel(dolfinx, "override")), nix.thunk(() => ({ [nix.POS]: pos$1, withParmetis: withParmetis })))),
+      dolfinx: nix.thunk(() => nix.app(nix.sel(final, "callPackage"), nix.thunk(() => nix.sel(dolfinx, "override")), nix.thunk(() => ({ [nix.POS]: $pos[0], withParmetis: withParmetis })))),
     })));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       version: nix.thunk(() => nix.attr(dolfinx, "version")),
       src: nix.thunk(() => nix.attr(dolfinx, "src")),
       pname: "fenics-dolfinx",
@@ -74,7 +63,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(fenicsPackages, "slepc")),
         nix.thunk(() => nix.sel(fenicsPackages, "adios2")),
         nix.thunk(() => nix.sel(fenicsPackages, "kahip")),
-        nix.thunk(() => nix.app(nix.sel(mpi4py, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, mpi: nix.thunk(() => nix.attr(fenicsPackages, "mpi")) })))),
+        nix.thunk(() => nix.app(nix.sel(mpi4py, "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], mpi: nix.thunk(() => nix.attr(fenicsPackages, "mpi")) })))),
       ]),
       nativeCheckInputs: nix.thunk(() => [
         scipy,
@@ -86,23 +75,23 @@ export default nix.lambda((args) => (() => {
       preCheck: "cd test\n",
       pythonImportsCheck: nix.thunk(() => ["dolfinx"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         tests: nix.thunk(() => nix.update({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           complex: nix.thunk(() => nix.app(nix.sel(fenics_dolfinx, "override"), nix.thunk(() => ({
-              [nix.POS]: pos$5,
-              petsc4py: nix.thunk(() => nix.app(nix.sel(petsc4py, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, scalarType: "complex" })))),
+              [nix.POS]: $pos[4],
+              petsc4py: nix.thunk(() => nix.app(nix.sel(petsc4py, "override"), nix.thunk(() => ({ [nix.POS]: $pos[3], scalarType: "complex" })))),
             })))),
         }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             mpich: nix.thunk(() => nix.app(nix.sel(fenics_dolfinx, "override"), nix.thunk(() => ({
-                [nix.POS]: pos$8,
-                petsc4py: nix.thunk(() => nix.app(nix.sel(petsc4py, "override"), nix.thunk(() => ({ [nix.POS]: pos$7, mpi: mpich })))),
+                [nix.POS]: $pos[7],
+                petsc4py: nix.thunk(() => nix.app(nix.sel(petsc4py, "override"), nix.thunk(() => ({ [nix.POS]: $pos[6], mpi: mpich })))),
               })))),
           }))))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         homepage: "https://fenicsproject.org",
         downloadPage: "https://github.com/fenics/dolfinx",
         description: "Computational environment of FEniCSx and implements the FEniCS Problem Solving Environment in C++ and Python",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 16, 5], ["version", 17, 13], ["sha256", 18, 5]], [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5]], [["pname", 9, 3], ["version", 10, 3], ["format", 11, 3], ["buildInputs", 13, 3], ["src", 15, 3], ["preConfigure", 21, 3], ["doCheck", 27, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, odpic: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 16, 5], ["version", 17, 13], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["format", 11, 3], ["buildInputs", 13, 3], ["src", 15, 3], ["preConfigure", 21, 3], ["doCheck", 27, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const buildInputs = nix.thunk(() => [odpic]);
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "cx_Oracle",
           version: version,
           sha256: "3b2d215af4441463c97ea469b9cc307460739f89fdfa8ea222ea3518f1a424d9",
@@ -29,13 +27,13 @@ export ODPIC_LIB_DIR="${odpic}/lib"
 `);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python interface to Oracle",
         homepage: "https://oracle.github.io/python-cx_Oracle",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["x86_64-linux", 16, 7], ["aarch64-linux", 17, 7], ["aarch64-darwin", 18, 7]], [["x86_64-linux", 25, 7], ["aarch64-linux", 26, 7], ["aarch64-darwin", 27, 7]], [["name", 38, 5], ["url", 39, 5], ["hash", 40, 13]], [["updateScript", 63, 12]], [["description", 66, 5], ["longDescription", 67, 5], ["homepage", 75, 5], ["downloadPage", 76, 5], ["changelog", 77, 5], ["license", 78, 5], ["maintainers", 79, 5], ["mainProgram", 80, 5], ["platforms", 81, 5], ["sourceProvenance", 86, 5]], [["pname", 35, 3], ["version", 36, 3], ["src", 37, 3], ["nativeBuildInputs", 43, 3], ["dontUnpack", 45, 3], ["dontConfigure", 46, 3], ["dontBuild", 47, 3], ["installPhase", 49, 3], ["nativeInstallCheckInputs", 57, 3], ["versionCheckProgram", 60, 3], ["doInstallCheck", 61, 3], ["passthru", 63, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, gzip: false, autoPatchelfHook: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["x86_64-linux", 16, 7], ["aarch64-linux", 17, 7], ["aarch64-darwin", 18, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["x86_64-linux", 25, 7], ["aarch64-linux", 26, 7], ["aarch64-darwin", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 38, 5], ["url", 39, 5], ["hash", 40, 13]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 63, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 66, 5], ["longDescription", 67, 5], ["homepage", 75, 5], ["downloadPage", 76, 5], ["changelog", 77, 5], ["license", 78, 5], ["maintainers", 79, 5], ["mainProgram", 80, 5], ["platforms", 81, 5], ["sourceProvenance", 86, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 35, 3], ["version", 36, 3], ["src", 37, 3], ["nativeBuildInputs", 43, 3], ["dontUnpack", 45, 3], ["dontConfigure", 46, 3], ["dontBuild", 47, 3], ["installPhase", 49, 3], ["nativeInstallCheckInputs", 57, 3], ["versionCheckProgram", 60, 3], ["doInstallCheck", 61, 3], ["passthru", 63, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,24 +17,24 @@ export default nix.lambda((args) => (() => {
   const system = nix.thunk(() => nix.attr(from, "system"));
   const throwSystem = nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${system}`)));
   const plat = nix.thunk(() => nix.selOr({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "x86_64-linux": "linux_x64",
     "aarch64-linux": "linux_arm",
     "aarch64-darwin": "macos_arm",
   }, () => nix.force(throwSystem), nix.key(nix.force(system))));
   const hash = nix.thunk(() => nix.selOr({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     "x86_64-linux": "sha256-hx5q0JRwvmE63uOpht7+6d7/jCLeknrj2RwiiMkBllc=",
     "aarch64-linux": "sha256-r0gGxwhVkQ5MLTmcrBCJpKfsizAJLJYPw1VdfiHJ3i8=",
     "aarch64-darwin": "sha256-c0BDLK1ilDOdNYbOqzFNoJFeBUlWI7/+z7HaosM/D4o=",
   }, () => nix.force(throwSystem), nix.key(nix.force(system))));
   const bin = "$out/bin/codeium_language_server";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "codeium",
       version: "2.12.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}.gz`),
           url: nix.thunk(() => nix.str`https://github.com/Exafunction/codeium/releases/download/language-server-v${nix.sel(finalAttrs, "version")}/language_server_${plat}.gz`),
           hash: hash,
@@ -57,7 +52,7 @@ runHook postInstall
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/codeium_language_server`),
       doInstallCheck: true,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => (() => {
         const description = "Codeium language server";
         const longDescription = "Codeium proprietary language server, patched for Nix(OS) compatibility.\nbin/language_server_x must be symlinked into the plugin directory, replacing the existing binary.\nFor example:\n```shell\nln -s \"$(which codeium_language_server)\" /home/a/.local/share/JetBrains/Rider2023.1/codeium/662505c9b23342478d971f66a530cd102ae35df7/language_server_linux_x64\n```\n";
@@ -73,7 +68,7 @@ runHook postInstall
         const platforms = nix.thunk(() => ["aarch64-darwin", "aarch64-linux", "x86_64-linux"]);
         const sourceProvenance = nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryNativeCode"))]);
         return {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           description,
           longDescription,
           homepage,

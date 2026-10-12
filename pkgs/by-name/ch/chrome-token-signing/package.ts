@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]], [["description", 47, 5], ["mainProgram", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 26, 3], ["dontUseQmakeConfigure", 30, 3], ["patchPhase", 32, 3], ["installPhase", 39, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, qt5: false, pcsclite: false, opensc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 47, 5], ["mainProgram", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 26, 3], ["dontUseQmakeConfigure", 30, 3], ["patchPhase", 32, 3], ["installPhase", 39, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "chrome-token-signing";
       const version = "1.1.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "open-eid",
           repo: "chrome-token-signing",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -36,7 +34,7 @@ substituteInPlace host-shared/PKCS11Path.cpp \\
 `);
       const installPhase = "install -D -t $out/bin host-linux/chrome-token-signing\n# TODO: wire these up\ninstall -D -t $out/etc/chromium/native-messaging-hosts host-linux/ee.ria.esteid.json\ninstall -D -t $out/lib/mozilla/native-messaging-hosts host-linux/ff/ee.ria.esteid.json\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Chrome and Firefox extension for signing with your eID on the web",
         mainProgram: "chrome-token-signing",
         homepage: "https://github.com/open-eid/chrome-token-signing/wiki",
@@ -45,7 +43,7 @@ substituteInPlace host-shared/PKCS11Path.cpp \\
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

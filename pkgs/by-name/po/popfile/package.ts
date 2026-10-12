@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5], ["stripRoot", 16, 5]], [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["platforms", 65, 5]], [["version", 10, 3], ["pname", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 20, 3], ["installPhase", 39, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, makeWrapper: false, perlPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5], ["stripRoot", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["platforms", 65, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 10, 3], ["pname", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 20, 3], ["installPhase", 39, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const perlPackages = nix.arg($, "perlPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "1.1.3",
       pname: "popfile",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://getpopfile.org/downloads/popfile-${nix.sel(finalAttrs, "version")}.zip`),
           sha256: "0gcib9j7zxk8r2vb5dbdz836djnyfza36vi8215nxcdfx1xc7l63",
           stripRoot: false,
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       })()),
       installPhase: "mkdir -p $out/bin\n# I user `cd` rather than `cp $out/* ...` b/c the * breaks syntax\n# highlighting in emacs for me.\ncd $src\ncp -r * $out/bin\ncd $out/bin\nchmod +x *.pl\n\nfind $out -name '*.pl' -executable | while read path; do\n  wrapProgram \"$path\" \\\n    --prefix PERL5LIB : $PERL5LIB:$out/bin \\\n    --set POPFILE_ROOT $out/bin \\\n    --run 'export POPFILE_USER=${POPFILE_USER:-$HOME/.popfile}' \\\n    --run 'test -d \"$POPFILE_USER\" || mkdir -m 0700 -p \"$POPFILE_USER\"'\ndone\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Email classification system that automatically sorts messages and fights spam",
         homepage: "https://getpopfile.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

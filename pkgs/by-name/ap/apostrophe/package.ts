@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["domain", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["owner", 34, 5], ["repo", 35, 5], ["tag", 39, 5], ["hash", 40, 5]], [["reveal-js", 104, 13], ["updateScript", 105, 5]], [["homepage", 109, 5], ["description", 110, 5], ["license", 111, 5], ["platforms", 112, 5], ["maintainers", 113, 5], ["teams", 116, 5], ["mainProgram", 117, 5]], [["version", 47, 11], ["src", 47, 19], ["pname", 48, 3], ["pyproject", 49, 3], ["postPatch", 51, 3], ["preConfigure", 64, 3], ["nativeBuildInputs", 69, 3], ["buildInputs", 78, 3], ["dependencies", 85, 3], ["dontWrapGApps", 93, 3], ["preFixup", 95, 3], ["passthru", 103, 3], ["meta", 108, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitLab: false, gtksourceview5: false, libspelling: false, fetchFromGitHub: false, python312Packages: false, mathjax: false, meson: false, ninja: false, "pkg-config": false, wrapGAppsHook4: false, "desktop-file-utils": false, "gobject-introspection": false, libadwaita: false, webkitgtk_6_0: false, texliveMedium: false, "shared-mime-info": false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["domain", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["reveal-js", 104, 13], ["updateScript", 105, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 109, 5], ["description", 110, 5], ["license", 111, 5], ["platforms", 112, 5], ["maintainers", 113, 5], ["teams", 116, 5], ["mainProgram", 117, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 47, 11], ["src", 47, 19], ["pname", 48, 3], ["pyproject", 49, 3], ["postPatch", 51, 3], ["preConfigure", 64, 3], ["nativeBuildInputs", 69, 3], ["buildInputs", 78, 3], ["dependencies", 85, 3], ["dontWrapGApps", 93, 3], ["preFixup", 95, 3], ["passthru", 103, 3], ["meta", 108, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +27,7 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const version = "3.4";
   const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "World",
       repo: "apostrophe",
       domain: "gitlab.gnome.org",
@@ -39,14 +35,14 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-Sj5Y4QPMYavdXbU+iVv76qOFNhgBjAeX9+/TvQHZzeI=",
     }))));
   const reveal_js = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       owner: "hakimel",
       repo: "reveal.js",
       tag: "5.1.0",
       hash: "sha256-L6KVBw20K67lHT07Ws+ZC2DwdURahqyuyjAaK0kTgN0=",
     }))));
   return nix.app(nix.sel(python312Packages, "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       version: version,
       src: src,
       pname: "apostrophe",
@@ -84,12 +80,12 @@ cp -r ${reveal_js} $out/share/apostrophe/libs/reveal.js
 )
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         "reveal-js": reveal_js,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://gitlab.gnome.org/World/apostrophe",
         description: "Distraction free Markdown editor for GNU/Linux",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

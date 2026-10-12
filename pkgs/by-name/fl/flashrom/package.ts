@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 25, 5], ["hash", 26, 5]], [["NIX_CFLAGS_COMPILE", 67, 5]], [["homepage", 71, 5], ["description", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["platforms", 75, 5], ["mainProgram", 76, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 37, 3], ["postPatch", 46, 3], ["mesonFlags", 51, 3], ["doCheck", 59, 3], ["doInstallCheck", 60, 3], ["postInstall", 62, 3], ["env", 66, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { fetchurl: false, stdenv: false, "bash-completion": false, cmocka: false, lib: false, libftdi1: false, libjaylink: false, libusb1: false, openssl: false, meson: false, ninja: false, pciutils: false, "pkg-config": false, sphinx: false, jlinkSupport: true, git: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 67, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 71, 5], ["description", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["platforms", 75, 5], ["mainProgram", 76, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 37, 3], ["postPatch", 46, 3], ["mesonFlags", 51, 3], ["doCheck", 59, 3], ["doInstallCheck", 60, 3], ["postInstall", 62, 3], ["env", 66, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const jlinkSupport = nix.argOr($, "jlinkSupport", () => false);
   const git = nix.arg($, "git");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "flashrom",
       version: "1.8.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.flashrom.org/releases/flashrom-v${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-ZUycYXRcJQzTtczQ5W/EPudpgPkqXgeEIEIGOdZpdaI=",
         })))),
@@ -48,9 +45,9 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       doInstallCheck: true,
       postInstall: "install -Dm644 $NIX_BUILD_TOP/$sourceRoot/util/flashrom_udev.rules $out/lib/udev/rules.d/flashrom.rules\n",
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isClang")) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))))), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-gnu-folding-constant" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isClang")) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))))), nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-Wno-gnu-folding-constant" })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.flashrom.org",
         description: "Utility for reading, writing, erasing and verifying flash ROM chips",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

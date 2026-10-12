@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["updateScript", 79, 12]], [["changelog", 82, 5], ["description", 83, 5], ["homepage", 84, 5], ["license", 85, 5], ["mainProgram", 86, 5], ["maintainers", 87, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["vendorHash", 23, 3], ["checkFlags", 25, 3], ["proxyVendor", 42, 3], ["tags", 44, 3], ["subPackages", 49, 3], ["nativeBuildInputs", 51, 3], ["ldflags", 53, 3], ["postInstall", 59, 3], ["nativeInstallCheckInputs", 72, 3], ["doInstallCheck", 75, 3], ["versionCheckProgram", 76, 3], ["versionCheckProgramArg", 77, 3], ["passthru", 79, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, buildGo127Module: false, fetchFromGitHub: false, installShellFiles: false, buildPackages: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 79, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 82, 5], ["description", 83, 5], ["homepage", 84, 5], ["license", 85, 5], ["mainProgram", 86, 5], ["maintainers", 87, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["vendorHash", 23, 3], ["checkFlags", 25, 3], ["proxyVendor", 42, 3], ["tags", 44, 3], ["subPackages", 49, 3], ["nativeBuildInputs", 51, 3], ["ldflags", 53, 3], ["postInstall", 59, 3], ["nativeInstallCheckInputs", 72, 3], ["doInstallCheck", 75, 3], ["versionCheckProgram", 76, 3], ["versionCheckProgramArg", 77, 3], ["passthru", 79, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGo127Module, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "hugo",
       version: "0.167.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gohugoio",
           repo: "hugo",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -60,11 +57,11 @@ installShellCompletion --cmd hugo \\
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/${nix.sel(finalAttrs, "meta", "mainProgram")}`),
       versionCheckProgramArg: "version",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/gohugoio/hugo/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Fast and modern static website engine",
         homepage: "https://gohugo.io",

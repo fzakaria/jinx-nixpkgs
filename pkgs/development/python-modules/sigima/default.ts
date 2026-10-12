@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 56, 5], ["repo", 57, 5], ["tag", 58, 5], ["hash", 59, 5]], [["dev", 79, 5], ["doc", 89, 5], ["opencv", 104, 5], ["qt", 107, 5], ["test", 112, 5]], [["description", 132, 5], ["homepage", 133, 5], ["changelog", 134, 5], ["license", 135, 5], ["maintainers", 136, 5], ["teams", 137, 5]], [["pname", 49, 3], ["version", 50, 3], ["pyproject", 51, 3], ["__darwinAllowLocalNetworking", 52, 3], ["__structuredAttrs", 53, 3], ["src", 55, 3], ["build-system", 62, 3], ["dependencies", 66, 3], ["optional-dependencies", 78, 3], ["nativeCheckInputs", 118, 3], ["pythonRelaxDeps", 122, 3], ["pythonImportsCheck", 127, 3], ["meta", 131, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, guidata: false, makefun: false, numpy: false, packaging: false, pandas: false, pywavelets: false, "scikit-image": false, scipy: false, "typing-extensions": false, babel: false, build: false, coverage: false, "pre-commit": false, pylint: false, ruff: false, wheel: false, matplotlib: false, "myst-nb": false, "myst-parser": false, "opencv-python-headless": false, plotpy: false, "pydata-sphinx-theme": false, pyqt5: false, qtpy: false, sphinx: false, "sphinx-copybutton": false, "sphinx-design": false, "sphinx-gallery": false, "sphinx-intl": false, pytest: false, "pytest-xvfb": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 56, 5], ["repo", 57, 5], ["tag", 58, 5], ["hash", 59, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["dev", 79, 5], ["doc", 89, 5], ["opencv", 104, 5], ["qt", 107, 5], ["test", 112, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 132, 5], ["homepage", 133, 5], ["changelog", 134, 5], ["license", 135, 5], ["maintainers", 136, 5], ["teams", 137, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 49, 3], ["version", 50, 3], ["pyproject", 51, 3], ["__darwinAllowLocalNetworking", 52, 3], ["__structuredAttrs", 53, 3], ["src", 55, 3], ["build-system", 62, 3], ["dependencies", 66, 3], ["optional-dependencies", 78, 3], ["nativeCheckInputs", 118, 3], ["pythonRelaxDeps", 122, 3], ["pythonImportsCheck", 127, 3], ["meta", 131, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -47,14 +44,14 @@ export default nix.lambda((args) => (() => {
   const pytest_xvfb = nix.arg($, "pytest-xvfb");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "sigima",
       version: "1.2.0",
       pyproject: true,
       __darwinAllowLocalNetworking: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "DataLab-Platform",
           repo: "Sigima",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -73,7 +70,7 @@ export default nix.lambda((args) => (() => {
         typing_extensions,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         dev: nix.thunk(() => [babel, build, coverage, pre_commit, pylint, ruff, setuptools, wheel]),
         doc: nix.thunk(() => [
           matplotlib,
@@ -98,7 +95,7 @@ export default nix.lambda((args) => (() => {
       pythonRelaxDeps: nix.thunk(() => ["numpy", "scipy"]),
       pythonImportsCheck: nix.thunk(() => ["sigima"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Scientific computing engine for 1D signals and 2D images",
         homepage: "https://github.com/DataLab-Platform/Sigima",
         changelog: nix.thunk(() => nix.str`https://github.com/DataLab-Platform/Sigima/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

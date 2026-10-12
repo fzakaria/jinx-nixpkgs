@@ -2,10 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/make-bootstrap-tools.nix", [[["nativeBuildInputs", 40, 9], ["allowedReferences", 44, 9], ["strictDeps", 45, 9]], [["nativeBuildInputs", 90, 5]], [["unpack", 89, 3]]]);
 const formals$1 = { args: { pkgs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/make-bootstrap-tools.nix", [["nativeBuildInputs", 40, 9], ["allowedReferences", 44, 9], ["strictDeps", 45, 9]]);
-const pos$2 = nix.positions(here + "/make-bootstrap-tools.nix", [["nativeBuildInputs", 90, 5]]);
-const pos$3 = nix.positions(here + "/make-bootstrap-tools.nix", [["unpack", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
     const newlib_cygwin = nix.thunk(() => nix.attr(from_1, "newlib-cygwin"));
     const w32api = nix.thunk(() => nix.attr(from_1, "w32api"));
     return nix.app(runCommand, "unpacked", nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         nativeBuildInputs: nix.thunk(() => [nukeReferences]),
         allowedReferences: [],
         strictDeps: true,
@@ -83,8 +81,8 @@ find "$out" -print0 | xargs -0 nuke-refs -e "$out"
 `));
   })());
   return {
-    [nix.POS]: pos$3,
-    unpack: nix.thunk(() => nix.app(runCommand, "unpack.nar.xz", nix.thunk(() => ({ [nix.POS]: pos$2, nativeBuildInputs: nix.thunk(() => [dumpnar]) })), nix.thunk(() => nix.str`dumpnar ${unpacked} | xz -9 -e -T $NIX_BUILD_CORES >$out`))),
+    [nix.POS]: $pos[2],
+    unpack: nix.thunk(() => nix.app(runCommand, "unpack.nar.xz", nix.thunk(() => ({ [nix.POS]: $pos[1], nativeBuildInputs: nix.thunk(() => [dumpnar]) })), nix.thunk(() => nix.str`dumpnar ${unpacked} | xz -9 -e -T $NIX_BUILD_CORES >$out`))),
   };
 })(), formals$1);
 //# sourceMappingURL=make-bootstrap-tools.ts.map

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]], [["name", 75, 7], ["exec", 76, 7], ["icon", 77, 7], ["desktopName", 78, 7], ["categories", 79, 7], ["comment", 83, 7]], [["homepage", 92, 5], ["description", 93, 5], ["license", 94, 5], ["platforms", 95, 5], ["maintainers", 96, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["build-system", 32, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 39, 3], ["dependencies", 50, 3], ["dontWrapGApps", 62, 3], ["dontWrapQtApps", 63, 3], ["preFixup", 64, 3], ["doCheck", 71, 3], ["desktopItems", 73, 3], ["postInstall", 87, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, python3Packages: false, hackrf: false, "rtl-sdr": false, airspy: false, limesuite: false, libiio: false, libbladeRF: false, makeDesktopItem: false, copyDesktopItems: false, qt5: false, wrapGAppsHook3: false, USRPSupport: true, uhd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 75, 7], ["exec", 76, 7], ["icon", 77, 7], ["desktopName", 78, 7], ["categories", 79, 7], ["comment", 83, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 92, 5], ["description", 93, 5], ["license", 94, 5], ["platforms", 95, 5], ["maintainers", 96, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["build-system", 32, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 39, 3], ["dependencies", 50, 3], ["dontWrapGApps", 62, 3], ["dontWrapQtApps", 63, 3], ["preFixup", 64, 3], ["doCheck", 71, 3], ["desktopItems", 73, 3], ["postInstall", 87, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const USRPSupport = nix.argOr($, "USRPSupport", () => false);
   const uhd = nix.arg($, "uhd");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "urh",
       version: "2.9.8-unstable-2025-07-31",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jopohl",
           repo: "urh",
           rev: "4979a5c94d7c0c728fa2ff3fda8f564e6ed6c7b4",
@@ -63,7 +60,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "urh",
             exec: "urh",
             icon: "urh",
@@ -74,7 +71,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "install -Dm644 data/icons/appicon.png $out/share/icons/hicolor/512x512/apps/urh.png\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/jopohl/urh",
         description: "Universal Radio Hacker: investigate wireless protocols like a boss",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

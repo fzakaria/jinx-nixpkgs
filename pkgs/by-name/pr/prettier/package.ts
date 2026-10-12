@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 85, 7], ["sha256", 86, 7]], [["pname", 101, 9], ["version", 102, 9], ["src", 103, 9], ["patches", 104, 9], ["pnpm", 107, 15], ["fetcherVersion", 108, 7], ["hash", 109, 7]], [["description", 130, 7], ["homepage", 131, 7], ["license", 132, 7]], [["pname", 81, 5], ["version", 82, 5], ["src", 84, 5], ["nativeBuildInputs", 89, 5], ["patches", 95, 5], ["pnpmDeps", 99, 5], ["buildPhase", 112, 5], ["installPhase", 117, 5], ["doCheck", 126, 5], ["doInstallCheck", 127, 5], ["meta", 129, 5]], [["owner", 141, 5], ["repo", 142, 5], ["tag", 143, 5], ["hash", 144, 5]], [["src", 151, 26], ["missingHashes", 151, 30], ["hash", 152, 5]], [["updateScript", 199, 12]], [["changelog", 202, 5], ["description", 203, 5], ["homepage", 204, 5], ["license", 205, 5], ["mainProgram", 206, 5], ["maintainers", 207, 5]], [["pname", 137, 3], ["version", 138, 3], ["src", 140, 3], ["missingHashes", 147, 3], ["offlineCache", 149, 3], ["nativeBuildInputs", 156, 3], ["installPhase", 162, 3], ["doInstallCheck", 196, 3], ["nativeInstallCheckInputs", 197, 3], ["passthru", 199, 3], ["meta", 201, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, fetchPnpmDeps: false, lib: false, fetchurl: false, makeBinaryWrapper: false, nodejs: false, pnpmConfigHook: false, pnpm_11: false, stdenv: false, versionCheckHook: false, "yarn-berry": false, plugins: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 85, 7], ["sha256", 86, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 101, 9], ["version", 102, 9], ["src", 103, 9], ["patches", 104, 9], ["pnpm", 107, 15], ["fetcherVersion", 108, 7], ["hash", 109, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 130, 7], ["homepage", 131, 7], ["license", 132, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 81, 5], ["version", 82, 5], ["src", 84, 5], ["nativeBuildInputs", 89, 5], ["patches", 95, 5], ["pnpmDeps", 99, 5], ["buildPhase", 112, 5], ["installPhase", 117, 5], ["doCheck", 126, 5], ["doInstallCheck", 127, 5], ["meta", 129, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 141, 5], ["repo", 142, 5], ["tag", 143, 5], ["hash", 144, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["src", 151, 26], ["missingHashes", 151, 30], ["hash", 152, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["updateScript", 199, 12]]);
-const pos$8 = nix.positions(here + "/package.nix", [["changelog", 202, 5], ["description", 203, 5], ["homepage", 204, 5], ["license", 205, 5], ["mainProgram", 206, 5], ["maintainers", 207, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 137, 3], ["version", 138, 3], ["src", 140, 3], ["missingHashes", 147, 3], ["offlineCache", 149, 3], ["nativeBuildInputs", 156, 3], ["installPhase", 162, 3], ["doInstallCheck", 196, 3], ["nativeInstallCheckInputs", 197, 3], ["passthru", 199, 3], ["meta", 201, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -56,18 +48,18 @@ pathAbsoluteFallback -> ${pathAbsoluteFallback}
   })();
   const yarnHash = "sha256-ItLl8OwgeVahBtMvI2z8uA9EvPgS3tNWG8Q/uHGtDy0=";
   const prettier_oxc_wasm_parser = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "binding-wasm32-wasi",
       version: "0.139.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://registry.npmjs.org/@oxc-parser/${nix.sel(finalAttrs, "pname")}/-/${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}.tgz`),
           sha256: "sha256-mQYWVK52hHi3gsXKpPxK7liQEg16wxKjY2hjkX9NPZE=",
         })))),
       nativeBuildInputs: nix.thunk(() => [nodejs, pnpmConfigHook, pnpm]),
       patches: nix.thunk(() => [nix.path(here, "./pnpm-lock_prettier-oxc-wasm-parser.patch")]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -81,18 +73,18 @@ pathAbsoluteFallback -> ${pathAbsoluteFallback}
       doCheck: false,
       doInstallCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Oxc Parser Node API",
         homepage: "https://oxc.rs/docs/guide/usage/parser",
         license: "MIT",
       })),
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "prettier",
       version: "3.9.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           owner: "prettier",
           repo: "prettier",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -100,7 +92,7 @@ pathAbsoluteFallback -> ${pathAbsoluteFallback}
         })))),
       missingHashes: nix.path(here, "./missing-hashes.json"),
       offlineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           missingHashes: nix.thunk(() => nix.attr(finalAttrs, "missingHashes")),
           hash: yarnHash,
@@ -137,9 +129,9 @@ makeBinaryWrapper "${nix.app(nix.sel(lib, "getExe"), nodejs)}" "$out/bin/prettie
 `))), "runHook postInstall\n")),
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$7, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[6], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         changelog: nix.thunk(() => nix.str`https://github.com/prettier/prettier/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),
         description: "Code formatter",
         homepage: "https://prettier.io/",

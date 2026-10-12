@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["NIX_CFLAGS_COMPILE", 18, 7]], [["description", 39, 5], ["mainProgram", 40, 5], ["license", 41, 5]], [["pname", 12, 3], ["nativeBuildInputs", 14, 3], ["env", 18, 3], ["propagatedBuildInputs", 31, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { bctoolbox: false, belr: false, lib: false, libantlr3c: false, stdenv: false, zlib: false, python3: false, mkLinphoneDerivation: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 18, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 39, 5], ["mainProgram", 40, 5], ["license", 41, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["nativeBuildInputs", 14, 3], ["env", 18, 3], ["propagatedBuildInputs", 31, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const mkLinphoneDerivation = nix.arg($, "mkLinphoneDerivation");
   return nix.app(mkLinphoneDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "belle-sip",
       nativeBuildInputs: nix.thunk(() => [python3]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat([
             "-Wno-error=cast-function-type",
             "-Wno-error=deprecated-declarations",
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       })),
       propagatedBuildInputs: nix.thunk(() => [libantlr3c, bctoolbox, belr, zlib]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Modern library implementing SIP (RFC 3261) transport, transaction and dialog layers. Part of the Linphone project",
         mainProgram: "belle_sip_tester",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

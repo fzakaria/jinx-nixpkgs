@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/grs.nix", [[["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["sha256", 42, 5]], [["description", 131, 5], ["longDescription", 132, 5], ["homepage", 138, 5], ["downloadPage", 139, 5], ["license", 140, 5], ["platforms", 141, 5], ["maintainers", 142, 5], ["mainProgram", 143, 5]], [["pname", 34, 3], ["version", 35, 11], ["format", 36, 3], ["src", 38, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 46, 3], ["propagatedBuildInputs", 48, 3], ["checkInputs", 83, 3], ["postPatch", 89, 3], ["postInstall", 111, 3], ["postFixup", 119, 3], ["doCheck", 124, 3], ["postCheck", 126, 3], ["meta", 130, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, python3: false, zbar: false, secp256k1: false, enableQt: true, qt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/grs.nix", [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["sha256", 42, 5]]);
-const pos$2 = nix.positions(here + "/grs.nix", [["description", 131, 5], ["longDescription", 132, 5], ["homepage", 138, 5], ["downloadPage", 139, 5], ["license", 140, 5], ["platforms", 141, 5], ["maintainers", 142, 5], ["mainProgram", 143, 5]]);
-const pos$3 = nix.positions(here + "/grs.nix", [["pname", 34, 3], ["version", 35, 11], ["format", 36, 3], ["src", 38, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 46, 3], ["propagatedBuildInputs", 48, 3], ["checkInputs", 83, 3], ["postPatch", 89, 3], ["postInstall", 111, 3], ["postFixup", 119, 3], ["doCheck", 124, 3], ["postCheck", 126, 3], ["meta", 130, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const libsecp256k1_name = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? "libsecp256k1.so.{v}" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "libsecp256k1.{v}.dylib" : nix.str`libsecp256k1${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`)));
   const libzbar_name = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? "libzbar.so.0" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "libzbar.0.dylib" : nix.str`libzbar${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`)));
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "electrum-grs",
       version: version,
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Groestlcoin",
           repo: "electrum-grs",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -87,7 +85,7 @@ substituteInPlace ./electrum_grs/ecc_fast.py \\
       doCheck: false,
       postCheck: "$out/bin/electrum-grs help >/dev/null\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Lightweight Groestlcoin wallet",
         longDescription: "An easy-to-use Groestlcoin client featuring wallets generated from\nmnemonic seeds (in addition to other, more advanced, wallet options)\nand the ability to perform transactions without downloading a copy\nof the blockchain.\n",
         homepage: "https://groestlcoin.org/",

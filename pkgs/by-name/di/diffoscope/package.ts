@@ -2,16 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["tag", 98, 13], ["hash", 99, 13]], [["version", 96, 19], ["src", 97, 11], ["postPatch", 102, 11]], [["tlsh", 90, 7]], [["self", 86, 5], ["packageOverrides", 87, 5]], [["url", 119, 5], ["hash", 120, 5]], [["updateScript", 329, 5]], [["description", 342, 5], ["longDescription", 343, 5], ["homepage", 353, 5], ["changelog", 354, 5], ["license", 355, 5], ["maintainers", 356, 5], ["platforms", 360, 5], ["mainProgram", 361, 5]], [["pname", 114, 3], ["version", 115, 3], ["pyproject", 116, 3], ["src", 118, 3], ["outputs", 123, 3], ["patches", 128, 3], ["postPatch", 133, 3], ["nativeBuildInputs", 138, 3], ["build-system", 144, 3], ["pythonPath", 161, 3], ["nativeCheckInputs", 266, 3], ["pytestFlags", 268, 3], ["preCheck", 273, 3], ["makeWrapperArgs", 278, 3], ["postInstall", 287, 3], ["disabledTests", 292, 3], ["disabledTestPaths", 318, 3], ["passthru", 328, 3], ["meta", 341, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, aapt: false, abootimg: false, acl: false, apksigcopier: false, apksigner: false, apktool: false, asar: false, "binutils-unwrapped-all-targets": false, bzip2: false, cbfstool: false, cdrkit: false, colord: false, colordiff: false, coreutils: false, cpio: false, db: false, diffutils: false, docutils: false, dtc: false, e2fsprogs: false, enableBloat: true, enjarify: false, fetchurl: false, ffmpeg: false, file: false, findutils: false, "fontforge-fonttools": false, fpc: false, gettext: false, ghc: false, ghostscriptX: false, giflib: false, gnumeric: false, gnupg: false, gnutar: false, gzip: false, hdf5: false, help2man: false, html2text: false, imagemagick: false, installShellFiles: false, jdk8: false, libarchive: false, libcaca: false, libxmlb: false, llvm: false, lz4: false, lzip: false, mono: false, "ocaml-ng": false, odt2txt: false, oggvideotools: false, openssh: false, openssl: false, p7zip: false, pdftk: false, perl: false, pgpdump: false, "poppler-utils": false, procyon: false, python3: false, qemu: false, R: false, sng: false, sqlite: false, "squashfs-tools": false, systemdUkify: false, tcpdump: false, ubootTools: false, unzip: false, wabt: false, xmlbeans: false, xxd: false, xz: false, zip: false, zstd: false, writeScript: false }, ellipsis: false };
 const formals$2 = { args: { src: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/package.nix", [["tag", 98, 13], ["hash", 99, 13]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 96, 19], ["src", 97, 11], ["postPatch", 102, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tlsh", 90, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["self", 86, 5], ["packageOverrides", 87, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 119, 5], ["hash", 120, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 329, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 342, 5], ["longDescription", 343, 5], ["homepage", 353, 5], ["changelog", 354, 5], ["license", 355, 5], ["maintainers", 356, 5], ["platforms", 360, 5], ["mainProgram", 361, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 114, 3], ["version", 115, 3], ["pyproject", 116, 3], ["src", 118, 3], ["outputs", 123, 3], ["patches", 128, 3], ["postPatch", 133, 3], ["nativeBuildInputs", 138, 3], ["build-system", 144, 3], ["pythonPath", 161, 3], ["nativeCheckInputs", 266, 3], ["pytestFlags", 268, 3], ["preCheck", 273, 3], ["makeWrapperArgs", 278, 3], ["postInstall", 287, 3], ["disabledTests", 292, 3], ["disabledTestPaths", 318, 3], ["passthru", 328, 3], ["meta", 341, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -95,19 +88,19 @@ export default nix.lambda((args) => (() => {
   const zstd = nix.arg($, "zstd");
   const writeScript = nix.arg($, "writeScript");
   const python = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       self: python,
       packageOverrides: (final) => (prev) => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tlsh: nix.thunk(() => nix.app(nix.sel(prev, "tlsh", "overridePythonAttrs"), nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$2);
             const src = nix.arg($_1, "src");
             const version = "3.19.1";
             return {
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               version: version,
               src: nix.thunk(() => nix.app(nix.sel(src, "override"), nix.thunk(() => ({
-                  [nix.POS]: pos$1,
+                  [nix.POS]: $pos[0],
                   tag: version,
                   hash: "sha256-ZYEjT/yShfA4+zpbGOtaFOx1nSSOWPtMvskPhHv3c9U=",
                 })))),
@@ -123,7 +116,7 @@ export default nix.lambda((args) => (() => {
       const version = "332";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           url: nix.thunk(() => nix.str`https://diffoscope.org/archive/diffoscope-${version}.tar.bz2`),
           hash: "sha256-eNmrIxt0yQlby20WRXgKBVXZ2jNnNLpksOvr25dXJvI=",
         }))));
@@ -271,7 +264,7 @@ export DYLD_LIBRARY_PATH="${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk((
           "tests/comparators/test_sockets.py",
         ])));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(writeScript, "update-diffoscope", nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p curl pcre2 common-updater-scripts
 
@@ -283,7 +276,7 @@ update-source-version ${pname} "$newVersion"
 `))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Perform in-depth comparison of files, archives, and directories",
         longDescription: "diffoscope will try to get to the bottom of what makes files or directories\ndifferent. It will recursively unpack archives of many kinds and transform\nvarious binary formats into more human readable form to compare them. It can\ncompare two tarballs, ISO images, or PDF just as easily. The differences can\nbe shown in a text or HTML report.\n\ndiffoscope is developed as part of the \"reproducible builds\" Debian\nproject and was formerly known as \"debbindiff\".\n",
         homepage: "https://diffoscope.org/",
@@ -300,7 +293,7 @@ update-source-version ${pname} "$newVersion"
         mainProgram: "diffoscope",
       }));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname,
         version,
         pyproject,

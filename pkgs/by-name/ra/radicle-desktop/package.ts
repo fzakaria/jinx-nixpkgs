@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["seed", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5], ["leaveDotGit", 36, 5], ["postFetch", 37, 5]], [["src", 55, 26], ["hash", 56, 5]], [["owner", 62, 5], ["repo", 63, 5], ["tag", 64, 5], ["hash", 65, 5]], [["HW_RELEASE", 69, 5], ["PLAYWRIGHT_BROWSERS_PATH", 70, 5], ["PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD", 71, 5], ["PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS", 72, 5]], [["env", 125, 26], ["updateScript", 126, 5]], [["description", 130, 5], ["homepage", 131, 5], ["changelog", 132, 5], ["license", 133, 5], ["platforms", 134, 5], ["teams", 135, 5], ["maintainers", 136, 5], ["mainProgram", 137, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["postPatch", 43, 3], ["npmDeps", 54, 3], ["cargoHash", 59, 3], ["twemojiAssets", 61, 3], ["env", 68, 3], ["nativeBuildInputs", 75, 3], ["buildInputs", 83, 3], ["preBuild", 91, 3], ["nativeCheckInputs", 95, 3], ["checkPhase", 104, 3], ["__darwinAllowLocalNetworking", 122, 3], ["passthru", 124, 3], ["meta", 129, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, "cargo-tauri": false, fetchFromRadicle: false, git: false, glib: false, gtk3: false, fetchNpmDeps: false, npmHooks: false, lib: false, libsoup_3: false, nodejs: false, openssh: false, openssl: false, "pkg-config": false, "playwright-driver": false, "radicle-node": false, rustPlatform: false, webkitgtk_4_1: false, wrapGAppsHook4: false, rustfmt: false, clippy: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["seed", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5], ["leaveDotGit", 36, 5], ["postFetch", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 55, 26], ["hash", 56, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 62, 5], ["repo", 63, 5], ["tag", 64, 5], ["hash", 65, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["HW_RELEASE", 69, 5], ["PLAYWRIGHT_BROWSERS_PATH", 70, 5], ["PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD", 71, 5], ["PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS", 72, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["env", 125, 26], ["updateScript", 126, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 130, 5], ["homepage", 131, 5], ["changelog", 132, 5], ["license", 133, 5], ["platforms", 134, 5], ["teams", 135, 5], ["maintainers", 136, 5], ["mainProgram", 137, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["postPatch", 43, 3], ["npmDeps", 54, 3], ["cargoHash", 59, 3], ["twemojiAssets", 61, 3], ["env", 68, 3], ["nativeBuildInputs", 75, 3], ["buildInputs", 83, 3], ["preBuild", 91, 3], ["nativeCheckInputs", 95, 3], ["checkPhase", 104, 3], ["__darwinAllowLocalNetworking", 122, 3], ["passthru", 124, 3], ["meta", 129, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const clippy = nix.arg($, "clippy");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "radicle-desktop",
       version: "0.17.0",
       src: nix.thunk(() => nix.app(fetchFromRadicle, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           seed: "seed.radicle.dev",
           repo: "z4D5UCArafTzTQpDZNQRuqswh3ury",
           tag: nix.thunk(() => nix.str`releases/${nix.sel(finalAttrs, "version")}`),
@@ -59,20 +53,20 @@ substituteInPlace scripts/check-rs \\
   --replace-fail "-Dwarnings" ""
 `),
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-gVKDUPkChjsZZS5+h1jfMuLekY40WRsvbxwqEw1IuTM=",
         })))),
       cargoHash: "sha256-ZkcnktTbvbiAPra+wgrm/xILZp1YBpsj0UFZ/AFzx1U=",
       twemojiAssets: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "twitter",
           repo: "twemoji",
           tag: "v14.0.2",
           hash: "sha256-YoOnZ5uVukzi/6bLi22Y8U5TpplPzB7ji42l+/ys5xI=",
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         HW_RELEASE: "nixpkgs",
         PLAYWRIGHT_BROWSERS_PATH: nix.thunk(() => nix.sel(playwright_driver, "browsers")),
         PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: true,
@@ -106,12 +100,12 @@ runHook postCheck
 `),
       __darwinAllowLocalNetworking: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         env: nix.thunk(() => nix.attr(finalAttrs, "env")),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Radicle desktop app",
         homepage: "https://radicle.network/nodes/seed.radicle.dev/rad:z4D5UCArafTzTQpDZNQRuqswh3ury",
         changelog: "https://radicle.network/nodes/seed.radicle.dev/rad:z4D5UCArafTzTQpDZNQRuqswh3ury/tree/CHANGELOG.md",

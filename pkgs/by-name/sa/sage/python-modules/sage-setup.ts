@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/sage-setup.nix", [[["description", 27, 5], ["homepage", 28, 5], ["license", 29, 5], ["teams", 30, 5]], [["version", 11, 3], ["format", 12, 3], ["pname", 13, 3], ["src", 14, 3], ["nativeBuildInputs", 16, 3], ["buildInputs", 17, 3], ["propagatedBuildInputs", 18, 3], ["preBuild", 20, 3], ["doCheck", 24, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, "sage-src": false, cython: false, jinja2: false, pkgconfig: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/sage-setup.nix", [["description", 27, 5], ["homepage", 28, 5], ["license", 29, 5], ["teams", 30, 5]]);
-const pos$2 = nix.positions(here + "/sage-setup.nix", [["version", 11, 3], ["format", 12, 3], ["pname", 13, 3], ["src", 14, 3], ["nativeBuildInputs", 16, 3], ["buildInputs", 17, 3], ["propagatedBuildInputs", 18, 3], ["preBuild", 20, 3], ["doCheck", 24, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,14 +24,14 @@ export default nix.lambda((args) => (() => {
       const preBuild = "cd pkgs/sage-setup\n";
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Build system of the Sage library",
         homepage: "https://www.sagemath.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "sage"))]),
       }));
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         version,
         format,
         pname,

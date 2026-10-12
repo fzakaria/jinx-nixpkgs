@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generated-backend-package.nix", [[["url", 34, 5], ["sha256", 35, 5], ["rev", 36, 5], ["fetchSubmodules", 37, 5]], [["pname", 31, 3], ["version", 32, 3], ["src", 33, 3], ["isLibrary", 39, 3], ["isExecutable", 40, 3], ["libraryHaskellDepends", 41, 3], ["executableHaskellDepends", 61, 3], ["testHaskellDepends", 72, 3], ["testToolDepends", 81, 3], ["doHaddock", 82, 3], ["jailbreak", 83, 3], ["homepage", 84, 3], ["description", 85, 3], ["license", 86, 3], ["mainProgram", 87, 3]]]);
 const formals$1 = { args: { mkDerivation: false, "ansi-wl-pprint": false, base: false, "base64-bytestring": false, binary: false, bytestring: false, containers: false, directory: false, "edit-distance": false, fetchgit: false, filepath: false, "ghc-prim": false, haskeline: false, hspec: false, "hspec-discover": false, "indexed-traversable": false, lib: false, mtl: false, prettyprinter: false, process: false, "raw-strings-qq": false, scientific: false, text: false, "utf8-string": false, vector: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/generated-backend-package.nix", [["url", 34, 5], ["sha256", 35, 5], ["rev", 36, 5], ["fetchSubmodules", 37, 5]]);
-const pos$2 = nix.positions(here + "/generated-backend-package.nix", [["pname", 31, 3], ["version", 32, 3], ["src", 33, 3], ["isLibrary", 39, 3], ["isExecutable", 40, 3], ["libraryHaskellDepends", 41, 3], ["executableHaskellDepends", 61, 3], ["testHaskellDepends", 72, 3], ["testToolDepends", 81, 3], ["doHaddock", 82, 3], ["jailbreak", 83, 3], ["homepage", 84, 3], ["description", 85, 3], ["license", 86, 3], ["mainProgram", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const utf8_string = nix.arg($, "utf8-string");
   const vector = nix.arg($, "vector");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "gren",
       version: "0.6.6",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://github.com/gren-lang/compiler.git",
           sha256: "02hin22kyh2zgxn2fklnfa60iw3ppfr3xnv4z7r39vkf6c2q7fhq",
           rev: "03c52374f82036e7a3276a94e345a4aa98738b9b",

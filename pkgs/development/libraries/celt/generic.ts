@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generic.nix", [[["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5], ["platforms", 38, 5]], [["pname", 15, 3], ["version", 16, 11], ["src", 18, 11], ["outputs", 20, 3], ["prePatch", 25, 11], ["buildInputs", 27, 3], ["doCheck", 29, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, version: false, src: false, liboggSupport: true, libogg: true, prePatch: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/generic.nix", [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5], ["platforms", 38, 5]]);
-const pos$2 = nix.positions(here + "/generic.nix", [["pname", 15, 3], ["version", 16, 11], ["src", 18, 11], ["outputs", 20, 3], ["prePatch", 25, 11], ["buildInputs", 27, 3], ["doCheck", 29, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const libogg = nix.argOr($, "libogg", () => null);
   const prePatch = nix.argOr($, "prePatch", () => "");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "celt",
       version: version,
       src: src,
@@ -25,7 +24,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([], nix.app(nix.sel(lib, "optional"), liboggSupport, libogg))),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Ultra-low delay audio codec",
         homepage: "https://gitlab.xiph.org/xiph/celt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

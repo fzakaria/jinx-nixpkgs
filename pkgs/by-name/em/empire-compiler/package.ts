@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["package", 30, 7], ["command", 31, 7], ["version", 32, 7]], [["version", 29, 11]], [["updateScript", 28, 5], ["tests", 29, 5]], [["homepage", 37, 5], ["license", 38, 5], ["platforms", 39, 5], ["description", 40, 5], ["maintainers", 41, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["dotnet-sdk", 21, 3], ["dotnet-runtime", 22, 3], ["nugetDeps", 23, 3], ["projectFile", 25, 3], ["passthru", 27, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, buildDotnetModule: false, dotnetCorePackages: false, lib: false, testers: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 30, 7], ["command", 31, 7], ["version", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 29, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 28, 5], ["tests", 29, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 37, 5], ["license", 38, 5], ["platforms", 39, 5], ["description", 40, 5], ["maintainers", 41, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["dotnet-sdk", 21, 3], ["dotnet-runtime", 22, 3], ["nugetDeps", 23, 3], ["projectFile", 25, 3], ["passthru", 27, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "empire-compiler",
       version: "2.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bc-security",
           repo: "empire-compiler",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,12 +29,12 @@ export default nix.lambda((args) => (() => {
       nugetDeps: nix.path(here, "./deps.json"),
       projectFile: "EmpireCompiler/EmpireCompiler.csproj",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "EmpireCompiler --version",
               version: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}`),
@@ -47,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/BC-SECURITY/Empire-Compiler",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), ["aarch64-darwin"])),

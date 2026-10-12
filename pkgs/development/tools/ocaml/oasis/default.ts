@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 17, 5], ["hash", 18, 5]], [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["mainProgram", 56, 5], ["broken", 57, 5], ["platforms", 58, 26]], [["version", 13, 3], ["pname", 14, 3], ["src", 16, 3], ["createFindlibDestdir", 21, 3], ["strictDeps", 23, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 33, 3], ["configurePhase", 35, 3], ["buildPhase", 40, 3], ["installPhase", 45, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, ocaml: false, findlib: false, ocamlbuild: false, ocamlmod: false, ocamlify: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["mainProgram", 56, 5], ["broken", 57, 5], ["platforms", 58, 26]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 13, 3], ["pname", 14, 3], ["src", 16, 3], ["createFindlibDestdir", 21, 3], ["strictDeps", 23, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 33, 3], ["configurePhase", 35, 3], ["buildPhase", 40, 3], ["installPhase", 45, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const ocamlmod = nix.arg($, "ocamlmod");
   const ocamlify = nix.arg($, "ocamlify");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "0.4.11",
       pname: "ocaml-oasis",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://download.ocamlcore.org/oasis/oasis/0.4.11/oasis-0.4.11.tar.gz",
           hash: "sha256-GLc97vTtbpqDM38ks7vi3tZSaLP/cwn8wA0l5X4dwS4=",
         })))),
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Configure, build and install system for OCaml projects",
         homepage: "https://github.com/ocaml/oasis",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

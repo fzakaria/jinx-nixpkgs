@@ -2,13 +2,12 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["target", 5, 3]], [["pname", 8, 5], ["postInstall", 9, 5]]]);
 const formals$1 = { args: { syncthing: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["target", 5, 3]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 8, 5], ["postInstall", 9, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const syncthing = nix.arg($, "syncthing");
-  return nix.app(nix.sel(nix.app(nix.sel(syncthing, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, target: "stdiscosrv" }))), "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: "syncthing-discovery", postInstall: "" })));
+  return nix.app(nix.sel(nix.app(nix.sel(syncthing, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], target: "stdiscosrv" }))), "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[1], pname: "syncthing-discovery", postInstall: "" })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -2,62 +2,51 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nvmetcfg.nix", [[["maintainers", 6, 5]], [["kernelModules", 13, 14]], [["systemPackages", 14, 21]], [["allowedTCPPorts", 15, 29]], [["firewall", 15, 20]], [["emptyDiskImages", 16, 24]], [["boot", 13, 9], ["environment", 14, 9], ["networking", 15, 9], ["virtualisation", 16, 9]], [["kernelModules", 21, 14]], [["systemPackages", 22, 21]], [["boot", 21, 9], ["environment", 22, 9]], [["server", 10, 5], ["client", 18, 5]], [["name", 3, 3], ["meta", 5, 3], ["nodes", 9, 3], ["testScript", 26, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/nvmetcfg.nix", [["maintainers", 6, 5]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/nvmetcfg.nix", [["kernelModules", 13, 14]]);
-const pos$3 = nix.positions(here + "/nvmetcfg.nix", [["systemPackages", 14, 21]]);
-const pos$4 = nix.positions(here + "/nvmetcfg.nix", [["allowedTCPPorts", 15, 29]]);
-const pos$5 = nix.positions(here + "/nvmetcfg.nix", [["firewall", 15, 20]]);
-const pos$6 = nix.positions(here + "/nvmetcfg.nix", [["emptyDiskImages", 16, 24]]);
-const pos$7 = nix.positions(here + "/nvmetcfg.nix", [["boot", 13, 9], ["environment", 14, 9], ["networking", 15, 9], ["virtualisation", 16, 9]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$8 = nix.positions(here + "/nvmetcfg.nix", [["kernelModules", 21, 14]]);
-const pos$9 = nix.positions(here + "/nvmetcfg.nix", [["systemPackages", 22, 21]]);
-const pos$10 = nix.positions(here + "/nvmetcfg.nix", [["boot", 21, 9], ["environment", 22, 9]]);
-const pos$11 = nix.positions(here + "/nvmetcfg.nix", [["server", 10, 5], ["client", 18, 5]]);
-const pos$12 = nix.positions(here + "/nvmetcfg.nix", [["name", 3, 3], ["meta", 5, 3], ["nodes", 9, 3], ["testScript", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     name: "nvmetcfg",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "nickcao"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$7,
-          boot: nix.thunk(() => ({ [nix.POS]: pos$2, kernelModules: nix.thunk(() => ["nvmet"]) })),
+          [nix.POS]: $pos[6],
+          boot: nix.thunk(() => ({ [nix.POS]: $pos[1], kernelModules: nix.thunk(() => ["nvmet"]) })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "nvmetcfg"))]),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$5,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$4, allowedTCPPorts: nix.thunk(() => [4420n]) })),
+            [nix.POS]: $pos[4],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[3], allowedTCPPorts: nix.thunk(() => [4420n]) })),
           })),
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$6, emptyDiskImages: nix.thunk(() => [512n]) })),
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[5], emptyDiskImages: nix.thunk(() => [512n]) })),
         };
       })(), formals$2),
       client: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$10,
-          boot: nix.thunk(() => ({ [nix.POS]: pos$8, kernelModules: nix.thunk(() => ["nvme-fabrics"]) })),
+          [nix.POS]: $pos[9],
+          boot: nix.thunk(() => ({ [nix.POS]: $pos[7], kernelModules: nix.thunk(() => ["nvme-fabrics"]) })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "nvme-cli"))]),
           })),
         };

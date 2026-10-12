@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["shapely", 38, 5]], [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 16, 3], ["postPatch", 23, 3], ["build-system", 33, 3], ["optional-dependencies", 37, 3], ["nativeCheckInputs", 41, 3], ["pythonImportsCheck", 43, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "poetry-core": false, shapely: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["shapely", 38, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 16, 3], ["postPatch", 23, 3], ["build-system", 33, 3], ["optional-dependencies", 37, 3], ["nativeCheckInputs", 41, 3], ["pythonImportsCheck", 43, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kageurufu",
           repo: "cancelobject-preprocessor",
           tag: version,
@@ -29,11 +26,11 @@ export default nix.lambda((args) => (() => {
         }))));
       const postPatch = "sed -i \"/^addopts/d\" pyproject.toml\n\ncat >> pyproject.toml << EOF\n[build-system]\nrequires = [\"poetry-core\"]\nbuild-backend = \"poetry.core.masonry.api\"\nEOF\n";
       const build_system = nix.thunk(() => [poetry_core]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, shapely: nix.thunk(() => [shapely]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], shapely: nix.thunk(() => [shapely]) }));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["preprocess_cancellation"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Klipper GCode Preprocessor for Object Cancellation",
         homepage: "https://github.com/kageurufu/cancelobject-preprocessor",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

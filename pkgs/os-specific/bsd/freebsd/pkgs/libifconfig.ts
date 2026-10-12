@@ -2,15 +2,15 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libifconfig.nix", [[["path", 3, 3], ["extraPaths", 4, 3], ["LUA", 8, 3]]]);
 const formals$1 = { args: { mkDerivation: false, buildPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libifconfig.nix", [["path", 3, 3], ["extraPaths", 4, 3], ["LUA", 8, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const mkDerivation = nix.arg($, "mkDerivation");
   const buildPackages = nix.arg($, "buildPackages");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       path: "lib/libifconfig",
       extraPaths: nix.thunk(() => ["tools/lua", "lib/libc/Versions.def"]),
       LUA: nix.thunk(() => nix.str`${nix.sel(buildPackages, "lua")}/bin/lua`),

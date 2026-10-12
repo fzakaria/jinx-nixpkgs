@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["tag", 13, 5], ["hash", 14, 5]], [["homepage", 43, 5], ["description", 44, 5], ["teams", 45, 5], ["maintainers", 47, 5], ["license", 48, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["vendorHash", 17, 3], ["nativeBuildInputs", 19, 3], ["preBuild", 24, 3], ["subPackages", 34, 3], ["doCheck", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { fetchgit: false, lib: false, recutils: false, buildGoModule: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["tag", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 43, 5], ["description", 44, 5], ["teams", 45, 5], ["maintainers", 47, 5], ["license", 48, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["vendorHash", 17, 3], ["nativeBuildInputs", 19, 3], ["preBuild", 24, 3], ["subPackages", 34, 3], ["doCheck", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const recutils = nix.arg($, "recutils");
   const buildGoModule = nix.arg($, "buildGoModule");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "taldir",
       version: "1.0.5",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git-www.taler.net/taldir.git",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-ZKNkMV0IV6E+yCQeabGXpIQclx1S4YEgFn4whGXTaks=",
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       subPackages: nix.thunk(() => ["cmd/taldir-cli", "cmd/taldir-server"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://git-www.taler.net/taldir.git",
         description: "Directory service to resolve wallet mailboxes by messenger addresses",
         teams: nix.thunk(() => (() => {

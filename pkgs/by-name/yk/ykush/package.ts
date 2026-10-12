@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["run-only", 36, 5]], [["tests", 34, 12]], [["description", 42, 5], ["longDescription", 43, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["mainProgram", 53, 5], ["platforms", 54, 5]], [["pname", 10, 3], ["version", 11, 3], ["buildInputs", 13, 3], ["src", 15, 3], ["installPhase", 22, 3], ["nativeInstallCheckInputs", 31, 3], ["doInstallCheck", 32, 3], ["passthru", 34, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, libusb1: false, runCommand: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["run-only", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 34, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 42, 5], ["longDescription", 43, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["mainProgram", 53, 5], ["platforms", 54, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["buildInputs", 13, 3], ["src", 15, 3], ["installPhase", 22, 3], ["nativeInstallCheckInputs", 31, 3], ["doInstallCheck", 32, 3], ["passthru", 34, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ykushcmd",
       version: "1.4.0",
       buildInputs: nix.thunk(() => [libusb1]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "yepkit",
           repo: "ykush",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,15 +35,15 @@ runHook postInstall
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "run-only": nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-test`), nix.thunk(() => nix.str`${finalAttrs}/bin/ykushcmd -h | grep YKUSHCMD
 `))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Control utility for YepKit USB hubs",
         longDescription: "controls the features of YepKit USB hubs, allowing one to arbitrarily\nturn ports on and off and otherwise control the hub.\n",
         homepage: "https://github.com/Yepkit/ykush",

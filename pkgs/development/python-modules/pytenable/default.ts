@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["description", 94, 5], ["homepage", 95, 5], ["changelog", 96, 5], ["license", 97, 5], ["maintainers", 98, 5]], [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["src", 35, 3], ["postPatch", 42, 3], ["build-system", 48, 3], ["nativeBuildInputs", 50, 3], ["dependencies", 52, 3], ["nativeCheckInputs", 70, 3], ["disabledTestPaths", 79, 3], ["disabledTests", 84, 3], ["pythonImportsCheck", 91, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { lib: false, arrow: false, buildPythonPackage: false, cryptography: false, defusedxml: false, fetchFromGitHub: false, gql: false, "graphql-core": false, marshmallow: false, "pydantic-extra-types": false, pydantic: false, pyprojectVersionPatchHook: false, "pytest-cov-stub": false, "pytest-datafiles": false, "pytest-vcr": false, pytestCheckHook: false, "python-box": false, "python-dateutil": false, "requests-pkcs12": false, "requests-toolbelt": false, requests: false, responses: false, restfly: false, semver: false, setuptools: false, "typing-extensions": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 94, 5], ["homepage", 95, 5], ["changelog", 96, 5], ["license", 97, 5], ["maintainers", 98, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["src", 35, 3], ["postPatch", 42, 3], ["build-system", 48, 3], ["nativeBuildInputs", 50, 3], ["dependencies", 52, 3], ["nativeCheckInputs", 70, 3], ["disabledTestPaths", 79, 3], ["disabledTests", 84, 3], ["pythonImportsCheck", 91, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,12 +34,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const typing_extensions = nix.arg($, "typing-extensions");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pytenable",
       version: "26.8.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tenable",
           repo: "pyTenable",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -79,7 +77,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_assets_list_vcr", "test_events_list_vcr", "test_session_ssl_error"]),
       pythonImportsCheck: nix.thunk(() => ["tenable"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python library for the Tenable.io and TenableSC API",
         homepage: "https://github.com/tenable/pyTenable",
         changelog: nix.thunk(() => nix.str`https://github.com/tenable/pyTenable/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

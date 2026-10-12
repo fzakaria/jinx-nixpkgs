@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/daemon.nix", [[["description", 52, 5], ["homepage", 54, 7], ["license", 55, 7], ["maintainers", 56, 7], ["platforms", 57, 7]], [["pname", 20, 3], ["src", 22, 22], ["version", 22, 26], ["postPatch", 24, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 35, 3], ["dontBuild", 37, 3], ["doInstallCheck", 39, 3], ["installPhase", 41, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { stdenv: false, usbrelay: false, python3: false, installShellFiles: false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/daemon.nix", [["description", 52, 5], ["homepage", 54, 7], ["license", 55, 7], ["maintainers", 56, 7], ["platforms", 57, 7]]);
-const pos$2 = nix.positions(here + "/daemon.nix", [["pname", 20, 3], ["src", 22, 22], ["version", 22, 26], ["postPatch", 24, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 35, 3], ["dontBuild", 37, 3], ["doInstallCheck", 39, 3], ["installPhase", 41, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +20,7 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "usbrelayd",
       src: nix.thunk(() => nix.attr(usbrelay, "src")),
       version: nix.thunk(() => nix.attr(usbrelay, "version")),
@@ -37,7 +36,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(usbrelay, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "USB Relay MQTT service",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),

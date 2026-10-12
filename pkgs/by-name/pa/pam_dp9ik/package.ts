@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 23, 5], ["longDescription", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["maintainers", 27, 5], ["platforms", 28, 5]], [["src", 10, 23], ["version", 10, 27], ["enableParallelBuilding", 10, 35], ["pname", 12, 3], ["strictDeps", 14, 3], ["nativeBuildInputs", 15, 3], ["buildInputs", 16, 3], ["buildFlags", 18, 3], ["installFlags", 19, 3], ["installTargets", 20, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { lib: false, tlsclient: false, stdenv: false, "pkg-config": false, pam: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 23, 5], ["longDescription", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["maintainers", 27, 5], ["platforms", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 10, 23], ["version", 10, 27], ["enableParallelBuilding", 10, 35], ["pname", 12, 3], ["strictDeps", 14, 3], ["nativeBuildInputs", 15, 3], ["buildInputs", 16, 3], ["buildFlags", 18, 3], ["installFlags", 19, 3], ["installTargets", 20, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const pam = nix.arg($, "pam");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       src: nix.thunk(() => nix.attr(tlsclient, "src")),
       version: nix.thunk(() => nix.attr(tlsclient, "version")),
       enableParallelBuilding: nix.thunk(() => nix.attr(tlsclient, "enableParallelBuilding")),
@@ -26,7 +25,7 @@ export default nix.lambda((args) => (() => {
       installFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       installTargets: "pam.install",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "dp9ik pam module",
         longDescription: "Uses tlsclient to authenticate users against a 9front auth server",
         homepage: "https://git.sr.ht/~moody/tlsclient",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 38, 5], ["owner", 39, 5], ["repo", 40, 5], ["rev", 41, 5], ["hash", 42, 5]], [["description", 125, 5], ["homepage", 126, 5], ["license", 127, 5], ["teams", 128, 5], ["platforms", 129, 5]], [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["patches", 45, 3], ["strictDeps", 51, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 68, 3], ["nativeInstallCheckInputs", 85, 3], ["mesonFlags", 91, 3], ["postPatch", 105, 3], ["doInstallCheck", 115, 3], ["installCheckPhase", 116, 3], ["meta", 124, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, fetchpatch: false, glib: false, libgudev: false, ppp: false, gettext: false, "pkg-config": false, libxslt: false, python3: false, libmbim: false, libqmi: false, "bash-completion": false, meson: false, ninja: false, vala: false, dbus: false, bash: false, "gobject-introspection": false, udevCheckHook: false, buildPackages: false, withIntrospection: true, polkit: false, withPolkit: true, systemdLibs: false, withSystemd: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 38, 5], ["owner", 39, 5], ["repo", 40, 5], ["rev", 41, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 125, 5], ["homepage", 126, 5], ["license", 127, 5], ["teams", 128, 5], ["platforms", 129, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["patches", 45, 3], ["strictDeps", 51, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 68, 3], ["nativeInstallCheckInputs", 85, 3], ["mesonFlags", 91, 3], ["postPatch", 105, 3], ["doInstallCheck", 115, 3], ["installCheckPhase", 116, 3], ["meta", 124, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const pname = "modemmanager";
       const version = "1.24.2";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.freedesktop.org",
           owner: "mobile-broadband",
           repo: "ModemManager",
@@ -78,7 +76,7 @@ mesonCheckPhase
 runHook postInstallCheck
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "WWAN modem manager, part of NetworkManager",
         homepage: "https://www.freedesktop.org/wiki/Software/ModemManager/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -86,7 +84,7 @@ runHook postInstallCheck
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

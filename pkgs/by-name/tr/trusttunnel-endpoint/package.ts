@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["BORING_BSSL_PATH", 40, 5], ["BORING_BSSL_INCLUDE_PATH", 41, 5]], [["updateScript", 57, 12]], [["description", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["mainProgram", 65, 5]], [["pname", 12, 3], ["version", 13, 3], ["__structuredAttrs", 14, 3], ["src", 16, 3], ["cargoPatches", 23, 3], ["cargoHash", 31, 3], ["postPatch", 33, 3], ["env", 39, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 48, 3], ["nativeCheckInputs", 52, 3], ["passthru", 57, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "nix-update-script": false, boringssl: false, cacert: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["BORING_BSSL_PATH", 40, 5], ["BORING_BSSL_INCLUDE_PATH", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 57, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["mainProgram", 65, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["__structuredAttrs", 14, 3], ["src", 16, 3], ["cargoPatches", 23, 3], ["cargoHash", 31, 3], ["postPatch", 33, 3], ["env", 39, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 48, 3], ["nativeCheckInputs", 52, 3], ["passthru", 57, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const cacert = nix.arg($, "cacert");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "trusttunnel-endpoint",
       version: "1.1.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "TrustTunnel",
           repo: "TrustTunnel",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +30,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-wZbyro1ozP+h/o8MocgI8FxeJHfEzessWfNObfc4CEg=",
       postPatch: "substituteInPlace $cargoDepsCopy/*/boring-sys-*/build/main.rs $cargoDepsCopy/*/quiche-*/src/build.rs \\\n  --replace-fail \"cargo:rustc-link-lib=static=crypto\" \"cargo:rustc-link-lib=dylib=crypto\" \\\n  --replace-fail \"cargo:rustc-link-lib=static=ssl\" \"cargo:rustc-link-lib=dylib=ssl\"\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         BORING_BSSL_PATH: boringssl,
         BORING_BSSL_INCLUDE_PATH: nix.thunk(() => nix.str`${nix.sel(boringssl, "dev")}/include`),
       })),
@@ -42,11 +38,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [boringssl]),
       nativeCheckInputs: nix.thunk(() => [cacert, python3]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Modern, fast and obfuscated VPN protocol - endpoint component",
         homepage: "https://github.com/TrustTunnel/TrustTunnel",
         changelog: nix.thunk(() => nix.str`https://github.com/TrustTunnel/TrustTunnel/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

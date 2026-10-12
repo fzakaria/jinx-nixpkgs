@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["pname", 69, 7], ["version", 70, 28], ["src", 72, 7], ["vendorHash", 74, 7], ["buildInputs", 76, 7], ["nativeBuildInputs", 77, 7], ["postInstall", 79, 7], ["subPackages", 84, 7]], [["ncps", 89, 9], ["ncps-custom-sqlite-directory", 90, 9], ["ncps-custom-storage-local", 91, 9], ["ncps-ha-pg-redis", 92, 9], ["ncps-ha-pg-redis-cdc", 93, 9]], [["dbmate-wrapper", 68, 5], ["tests", 87, 5], ["updateScript", 97, 5]], [["description", 101, 5], ["homepage", 102, 5], ["license", 103, 5], ["mainProgram", 104, 5], ["maintainers", 105, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["vendorHash", 27, 3], ["ldflags", 29, 3], ["excludedPackages", 33, 3], ["buildInputs", 38, 3], ["nativeBuildInputs", 40, 3], ["postInstall", 45, 3], ["doCheck", 63, 3], ["checkFlags", 65, 3], ["passthru", 67, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { buildGoModule: false, curl: false, dbmate: false, fetchFromGitHub: false, jq: false, lib: false, makeWrapper: false, "nix-update-script": false, nixosTests: false, python3: false, writeShellScriptBin: false, xz: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 69, 7], ["version", 70, 28], ["src", 72, 7], ["vendorHash", 74, 7], ["buildInputs", 76, 7], ["nativeBuildInputs", 77, 7], ["postInstall", 79, 7], ["subPackages", 84, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["ncps", 89, 9], ["ncps-custom-sqlite-directory", 90, 9], ["ncps-custom-storage-local", 91, 9], ["ncps-ha-pg-redis", 92, 9], ["ncps-ha-pg-redis-cdc", 93, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["dbmate-wrapper", 68, 5], ["tests", 87, 5], ["updateScript", 97, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 101, 5], ["homepage", 102, 5], ["license", 103, 5], ["mainProgram", 104, 5], ["maintainers", 105, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["vendorHash", 27, 3], ["ldflags", 29, 3], ["excludedPackages", 33, 3], ["buildInputs", 38, 3], ["nativeBuildInputs", 40, 3], ["postInstall", 45, 3], ["doCheck", 63, 3], ["checkFlags", 65, 3], ["passthru", 67, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const writeShellScriptBin = nix.arg($, "writeShellScriptBin");
   const xz = nix.arg($, "xz");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "ncps",
       version: "0.9.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kalbasit",
           repo: "ncps",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,9 +56,9 @@ makeWrapper ${nix.sel(finalAttrs, "passthru", "dbmate-wrapper")}/bin/dbmate-wrap
       doCheck: true,
       checkFlags: nix.thunk(() => ["-race"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         "dbmate-wrapper": nix.thunk(() => nix.app(buildGoModule, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             pname: "ncps-dbmate-wrapper",
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/nix/dbmate-wrapper/src`),
@@ -76,7 +71,7 @@ wrapProgram $out/bin/dbmate-wrapper --set DBMATE_BIN ${nix.app(nix.sel(lib, "get
             subPackages: nix.thunk(() => ["."]),
           })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           ncps: nix.thunk(() => nix.attr(nixosTests, "ncps")),
           "ncps-custom-sqlite-directory": nix.thunk(() => nix.attr(nixosTests, "ncps-custom-sqlite-directory")),
           "ncps-custom-storage-local": nix.thunk(() => nix.attr(nixosTests, "ncps-custom-storage-local")),
@@ -86,7 +81,7 @@ wrapProgram $out/bin/dbmate-wrapper --set DBMATE_BIN ${nix.app(nix.sel(lib, "get
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Nix binary cache proxy service",
         homepage: "https://github.com/kalbasit/ncps",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

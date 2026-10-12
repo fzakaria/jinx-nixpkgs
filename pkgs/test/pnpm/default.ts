@@ -2,9 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["web", 16, 34], ["idp-web", 16, 38]], [["pnpm-empty-lockfile", 8, 3], ["pnpm-fixup-state-db", 9, 3], ["pnpm-workspaces", 10, 3], ["pnpm_11_v4", 11, 3], ["pnpm_12_v4", 12, 3], ["opencloud", 15, 3]]]);
 const formals$1 = { args: { callPackage: false, lib: false, opencloud: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["web", 16, 34], ["idp-web", 16, 38]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pnpm-empty-lockfile", 8, 3], ["pnpm-fixup-state-db", 9, 3], ["pnpm-workspaces", 10, 3], ["pnpm_11_v4", 11, 3], ["pnpm_12_v4", 12, 3], ["opencloud", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const opencloud = nix.arg($, "opencloud");
   return {
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     "pnpm-empty-lockfile": nix.thunk(() => nix.app(callPackage, nix.path(here, "./pnpm-empty-lockfile"), nix.thunk(() => ({})))),
     "pnpm-fixup-state-db": nix.thunk(() => nix.app(callPackage, nix.path(here, "./pnpm-fixup-state-db"), nix.thunk(() => ({})))),
     "pnpm-workspaces": nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.app(callPackage, nix.path(here, "./pnpm-workspaces"), nix.thunk(() => ({})))))),
@@ -21,7 +20,7 @@ export default nix.lambda((args) => (() => {
     opencloud: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(opencloud, "passthru"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         web: nix.thunk(() => nix.attr(from, "web")),
         "idp-web": nix.thunk(() => nix.attr(from, "idp-web")),
       };

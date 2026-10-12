@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["description", 117, 5], ["changelog", 118, 5], ["homepage", 119, 5], ["license", 120, 5], ["maintainers", 121, 5]], [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["__structuredAttrs", 34, 3], ["src", 36, 3], ["postPatch", 43, 3], ["build-system", 48, 3], ["nativeBuildInputs", 54, 3], ["dontUseCmakeConfigure", 58, 3], ["dependencies", 60, 3], ["pythonImportsCheck", 70, 3], ["preCheck", 73, 3], ["nativeCheckInputs", 77, 3], ["disabledTestPaths", 82, 3], ["disabledTests", 87, 3], ["meta", 116, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, pybind11: false, setuptools: false, "setuptools-scm": false, cmake: false, ninja: false, cloudpickle: false, "importlib-metadata": false, numpy: false, orjson: false, packaging: false, pyvers: false, torch: false, h5py: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 117, 5], ["changelog", 118, 5], ["homepage", 119, 5], ["license", 120, 5], ["maintainers", 121, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["__structuredAttrs", 34, 3], ["src", 36, 3], ["postPatch", 43, 3], ["build-system", 48, 3], ["nativeBuildInputs", 54, 3], ["dontUseCmakeConfigure", 58, 3], ["dependencies", 60, 3], ["pythonImportsCheck", 70, 3], ["preCheck", 73, 3], ["nativeCheckInputs", 77, 3], ["disabledTestPaths", 82, 3], ["disabledTests", 87, 3], ["meta", 116, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,13 +26,13 @@ export default nix.lambda((args) => (() => {
   const h5py = nix.arg($, "h5py");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tensordict",
       version: "0.14.2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pytorch",
           repo: "tensordict",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -63,7 +61,7 @@ export default nix.lambda((args) => (() => {
           "test_multiprocessing",
         ]))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Pytorch dedicated tensor container",
         changelog: nix.thunk(() => nix.str`https://github.com/pytorch/tensordict/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         homepage: "https://github.com/pytorch/tensordict",

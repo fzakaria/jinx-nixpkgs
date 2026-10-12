@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cellservdb.nix", [[["description", 15, 5], ["homepage", 16, 5], ["maintainers", 17, 5], ["license", 21, 5]], [["pname", 9, 3], ["version", 10, 11], ["url", 11, 3], ["hash", 12, 3], ["meta", 14, 3]]]);
 const formals$1 = { args: { fetchurl: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/cellservdb.nix", [["description", 15, 5], ["homepage", 16, 5], ["maintainers", 17, 5], ["license", 21, 5]]);
-const pos$2 = nix.positions(here + "/cellservdb.nix", [["pname", 9, 3], ["version", 10, 11], ["url", 11, 3], ["hash", 12, 3], ["meta", 14, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,13 +11,13 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const version = "2025-08-16";
   return nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "cellservdb",
       version: version,
       url: nix.thunk(() => nix.str`https://grand.central.org/dl/cellservdb/CellServDB.${version}`),
       hash: "sha256-Rb6DBb9to7x5ya2ywx+wTls2c9GQmV0v5z9rmZ78dDs=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "GRAND.CENTRAL.ORG Public CellServDB",
         homepage: "https://grand.central.org/csdb.html",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "quentin"))]),

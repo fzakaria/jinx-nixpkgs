@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["description", 91, 5], ["homepage", 92, 5], ["downloadPage", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["mainProgram", 96, 5], ["badPlatforms", 97, 5]], [["pname", 17, 3], ["version", 18, 3], ["outputs", 20, 3], ["src", 27, 3], ["patches", 35, 3], ["postPatch", 40, 3], ["strictDeps", 54, 3], ["cmakeFlags", 56, 3], ["nativeBuildInputs", 60, 3], ["buildInputs", 65, 3], ["doCheck", 73, 3], ["disabledTests", 74, 3], ["nativeCheckInputs", 78, 3], ["postInstall", 83, 3], ["doInstallCheck", 87, 3], ["nativeInstallCheckInputs", 88, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, cmake: false, gfortran: false, libelf: false, libiberty: false, libbfd: false, libopcodes: false, otf2: false, ctestCheckHook: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 91, 5], ["homepage", 92, 5], ["downloadPage", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["mainProgram", 96, 5], ["badPlatforms", 97, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["outputs", 20, 3], ["src", 27, 3], ["patches", 35, 3], ["postPatch", 40, 3], ["strictDeps", 54, 3], ["cmakeFlags", 56, 3], ["nativeBuildInputs", 60, 3], ["buildInputs", 65, 3], ["doCheck", 73, 3], ["disabledTests", 74, 3], ["nativeCheckInputs", 78, 3], ["postInstall", 83, 3], ["doInstallCheck", 87, 3], ["nativeInstallCheckInputs", 88, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const ctestCheckHook = nix.arg($, "ctestCheckHook");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "eztrace",
       version: "2.1.1",
       outputs: nix.thunk(() => ["out", "dev", "lib", "man"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "eztrace",
           repo: "eztrace",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -62,7 +60,7 @@ patchShebangs test
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tool that aims at generating automatically execution trace from HPC programs",
         homepage: "https://eztrace.gitlab.io/eztrace/index.html",
         downloadPage: "https://gitlab.com/eztrace/eztrace/",

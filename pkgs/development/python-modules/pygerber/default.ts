@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["hash", 46, 5]], [["language_server", 60, 5], ["svg", 64, 5], ["pygments", 65, 5], ["shapely", 66, 5], ["all", 67, 5]], [["optional-dependencies", 59, 12]], [["description", 104, 5], ["homepage", 105, 5], ["changelog", 106, 5], ["license", 107, 5], ["maintainers", 108, 5]], [["pname", 38, 3], ["version", 39, 3], ["pyproject", 40, 3], ["src", 42, 3], ["build-system", 49, 3], ["dependencies", 50, 3], ["passthru", 59, 3], ["nativeCheckInputs", 76, 3], ["disabledTestPaths", 88, 3], ["disabledTests", 94, 3], ["pytestFlags", 99, 3], ["pythonImportsCheck", 101, 3], ["meta", 103, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, "poetry-core": false, numpy: false, click: false, pillow: false, pydantic: false, pyparsing: false, "typing-extensions": false, pygls: false, lsprotocol: false, drawsvg: false, pygments: false, shapely: false, filelock: false, dulwich: false, tzlocal: false, "pytest-xdist": false, "pytest-lsp": false, "pytest-asyncio": false, "pytest-mock": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["hash", 46, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["language_server", 60, 5], ["svg", 64, 5], ["pygments", 65, 5], ["shapely", 66, 5], ["all", 67, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["optional-dependencies", 59, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 104, 5], ["homepage", 105, 5], ["changelog", 106, 5], ["license", 107, 5], ["maintainers", 108, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 38, 3], ["version", 39, 3], ["pyproject", 40, 3], ["src", 42, 3], ["build-system", 49, 3], ["dependencies", 50, 3], ["passthru", 59, 3], ["nativeCheckInputs", 76, 3], ["disabledTestPaths", 88, 3], ["disabledTests", 94, 3], ["pytestFlags", 99, 3], ["pythonImportsCheck", 101, 3], ["meta", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.4.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Argmaster",
           repo: "pygerber",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -49,9 +45,9 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [poetry_core]);
       const dependencies = nix.thunk(() => [numpy, click, pillow, pydantic, pyparsing, typing_extensions]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         "optional-dependencies": nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           language_server: nix.thunk(() => [pygls, lsprotocol]),
           svg: nix.thunk(() => [drawsvg]),
           pygments: nix.thunk(() => [pygments]),
@@ -78,7 +74,7 @@ export default nix.lambda((args) => (() => {
       const pytestFlags = nix.thunk(() => ["--override-ini=required_plugins="]);
       const pythonImportsCheck = nix.thunk(() => ["pygerber"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Implementation of the Gerber X3/X2 format, based on Ucamco's The Gerber Layer Format Specification",
         homepage: "https://github.com/Argmaster/pygerber",
         changelog: "https://argmaster.github.io/pygerber/stable/Changelog.html",
@@ -89,7 +85,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["updateScript", 66, 5]], [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["teams", 73, 5], ["platforms", 74, 5], ["mainProgram", 75, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 49, 3], ["passthru", 65, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "nix-update-script": false, meson: false, ninja: false, "pkg-config": false, vala: false, accountsservice: false, dbus: false, "desktop-file-utils": false, fwupd: false, "gdk-pixbuf": false, geoclue2: false, gexiv2_0_10: false, glib: false, "gnome-settings-daemon": false, "gobject-introspection": false, gtk3: false, granite: false, libgee: false, packagekit: false, systemdLibs: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 66, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["teams", 73, 5], ["platforms", 74, 5], ["mainProgram", 75, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 49, 3], ["passthru", 65, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const pname = "elementary-settings-daemon";
       const version = "8.5.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "elementary",
           repo: "settings-daemon",
           tag: version,
@@ -69,11 +66,11 @@ export default nix.lambda((args) => (() => {
         systemdLibs,
       ]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Settings daemon for Pantheon",
         homepage: "https://github.com/elementary/settings-daemon",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -82,7 +79,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "io.elementary.settings-daemon",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

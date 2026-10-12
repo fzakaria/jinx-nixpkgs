@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 41, 5], ["repo", 42, 5], ["rev", 43, 5], ["sha256", 44, 5]], [["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5], ["mainProgram", 56, 5]], [["pname", 19, 3], ["version", 20, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 27, 3], ["preBuild", 37, 3], ["src", 40, 3], ["preConfigure", 46, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoconf: false, automake: false, libtool: false, "pkg-config": false, asciidoc: false, libxslt: false, libxml2: false, docbook_xml_dtd_45: false, docbook_xsl: false, libarchive: false, xz: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 41, 5], ["repo", 42, 5], ["rev", 43, 5], ["sha256", 44, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5], ["mainProgram", 56, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 27, 3], ["preBuild", 37, 3], ["src", 40, 3], ["preConfigure", 46, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const libarchive = nix.arg($, "libarchive");
   const xz = nix.arg($, "xz");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pixz",
       version: "1.0.7",
       nativeBuildInputs: nix.thunk(() => [pkg_config, autoconf, automake]),
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       ]),
       preBuild: "echo \"XML_CATALOG_FILES='$XML_CATALOG_FILES'\"\n",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vasi",
           repo: "pixz",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })))),
       preConfigure: "./autogen.sh\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Parallel compressor/decompressor for xz format",
         homepage: "https://github.com/vasi/pixz",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

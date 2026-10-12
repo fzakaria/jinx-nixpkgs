@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 111, 5], ["repo", 112, 5], ["rev", 113, 5], ["sha256", 114, 5]], [["DETERMINISTIC_BUILD", 236, 5], ["PYTHONHASHSEED", 237, 5]], [["glusterfs", 261, 5]], [["tests", 260, 12]], [["description", 265, 5], ["homepage", 266, 5], ["license", 267, 5], ["maintainers", 268, 5], ["platforms", 269, 5]], [["pname", 107, 3], ["version", 108, 3], ["src", 110, 3], ["buildInputs", 116, 11], ["propagatedBuildInputs", 116, 23], ["patches", 118, 3], ["postPatch", 129, 3], ["preConfigure", 151, 3], ["configureFlags", 158, 3], ["nativeBuildInputs", 162, 3], ["makeFlags", 173, 3], ["enableParallelBuilding", 175, 3], ["postInstall", 177, 3], ["postFixup", 182, 3], ["doInstallCheck", 226, 3], ["env", 228, 3], ["installCheckPhase", 240, 3], ["passthru", 260, 3], ["meta", 264, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fuse3: false, bison: false, flex: false, openssl: false, python3: false, ncurses: false, readline: false, autoconf: false, automake: false, libtool: false, "pkg-config": false, zlib: false, libaio: false, libxml2: false, acl: false, sqlite: false, liburcu: false, liburing: false, attr: false, makeWrapper: false, coreutils: false, gnused: false, gnugrep: false, which: false, openssh: false, gawk: false, findutils: false, "util-linux": false, lvm2: false, "btrfs-progs": false, e2fsprogs: false, xfsprogs: false, systemd: false, rsync: false, getent: false, "rpcsvc-proto": false, libtirpc: false, gperftools: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 111, 5], ["repo", 112, 5], ["rev", 113, 5], ["sha256", 114, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["DETERMINISTIC_BUILD", 236, 5], ["PYTHONHASHSEED", 237, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["glusterfs", 261, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 260, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 265, 5], ["homepage", 266, 5], ["license", 267, 5], ["maintainers", 268, 5], ["platforms", 269, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 107, 3], ["version", 108, 3], ["src", 110, 3], ["buildInputs", 116, 11], ["propagatedBuildInputs", 116, 23], ["patches", 118, 3], ["postPatch", 129, 3], ["preConfigure", 151, 3], ["configureFlags", 158, 3], ["nativeBuildInputs", 162, 3], ["makeFlags", 173, 3], ["enableParallelBuilding", 175, 3], ["postInstall", 177, 3], ["postFixup", 182, 3], ["doInstallCheck", 226, 3], ["env", 228, 3], ["installCheckPhase", 240, 3], ["passthru", 260, 3], ["meta", 264, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -98,11 +93,11 @@ export default nix.lambda((args) => (() => {
     xfsprogs,
   ]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "glusterfs",
       version: "11.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gluster",
           repo: "glusterfs",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -184,17 +179,17 @@ wrapProgram $out/libexec/glusterfs/glusterfind/brickfind.py --set PATH "$GLUSTER
 wrapProgram $out/libexec/glusterfs/glusterfind/changelog.py --set PATH "$GLUSTER_PATH" --set PYTHONPATH "$GLUSTER_PYTHONPATH" --set LD_LIBRARY_PATH "$GLUSTER_LD_LIBRARY_PATH"
 `),
       doInstallCheck: true,
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, DETERMINISTIC_BUILD: 1n, PYTHONHASHSEED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], DETERMINISTIC_BUILD: 1n, PYTHONHASHSEED: 0n })),
       installCheckPhase: "# Tests that the above programs work without import errors.\n# For testing it manually in a shell you may want to substitute `$out` with `$(dirname $(readlink -f $(which gluster)))/../`.\n$out/bin/glusterd --help\n# $out/bin/gluster help # can't do this because even `gluster help` tries to write to `/var/log/glusterfs/cli.log`\n$out/bin/gluster-eventsapi --help\n$out/bin/gluster-georep-sshkey --help\n$out/bin/gluster-mountbroker --help\n$out/bin/glusterfind --help\n# gfid_to_path.py doesn't accept --help, and it requires different arguments\n# (a dir as single argument) than the usage prints when stdin is not a TTY.\n# The `echo \"\"` is just so that stdin is not a TTY even if you try this line\n# on a real TTY for testing purposes.\necho \"\" | (mkdir -p nix-test-dir-for-gfid_to_path && touch b && $out/libexec/glusterfs/gfind_missing_files/gfid_to_path.py nix-test-dir-for-gfid_to_path)\n$out/share/glusterfs/scripts/eventsdash.py --help\n\n# this gets falsely loaded as module by glusterfind\nrm -r $out/bin/conf.py\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           glusterfs: nix.thunk(() => nix.sel(nixosTests, "glusterfs")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Distributed storage system",
         homepage: "https://www.gluster.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),

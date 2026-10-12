@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/darwin.nix", [[["lib", 48, 42], ["fetchFromGitLab", 48, 46]], [["driverLink", 137, 5], ["llvmpipeHook", 139, 5]], [["pname", 52, 5], ["version", 53, 5], ["src", 54, 5], ["meta", 55, 5], ["patches", 58, 3], ["outputs", 63, 3], ["nativeBuildInputs", 68, 3], ["buildInputs", 83, 3], ["mesonAutoFeatures", 102, 3], ["mesonFlags", 104, 3], ["mesonBuildType", 129, 3], ["postFixup", 131, 3], ["passthru", 135, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, "apple-sdk_26": false, bison: false, darwinMinVersionHook: false, flex: false, glslang: false, libpng: false, libxml2: false, llvmPackages: false, meson: false, ninja: false, "pkg-config": false, python3Packages: false, libxfixes: false, libxext: false, libx11: false, libxcb: false, libxshmfence: false, "mesa-libclc": false, "spirv-llvm-translator": false, "spirv-tools": false, zlib: false, eglPlatforms: true, galliumDrivers: true, vulkanDrivers: true, vulkanLayers: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/darwin.nix", [["lib", 48, 42], ["fetchFromGitLab", 48, 46]]);
-const pos$2 = nix.positions(here + "/darwin.nix", [["driverLink", 137, 5], ["llvmpipeHook", 139, 5]]);
-const pos$3 = nix.positions(here + "/darwin.nix", [["pname", 52, 5], ["version", 53, 5], ["src", 54, 5], ["meta", 55, 5], ["patches", 58, 3], ["outputs", 63, 3], ["nativeBuildInputs", 68, 3], ["buildInputs", 83, 3], ["mesonAutoFeatures", 102, 3], ["mesonFlags", 104, 3], ["mesonBuildType", 129, 3], ["postFixup", 131, 3], ["passthru", 135, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,9 +35,9 @@ export default nix.lambda((args) => (() => {
   const galliumDrivers = nix.argOr($, "galliumDrivers", () => ["llvmpipe", "softpipe"]);
   const vulkanDrivers = nix.argOr($, "vulkanDrivers", () => ["kosmickrisp"]);
   const vulkanLayers = nix.argOr($, "vulkanLayers", () => ["anti-lag", "intel-nullhw", "overlay", "screenshot", "vram-report-limit"]);
-  const common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib, fetchFromGitLab: fetchFromGitLab }))));
+  const common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib, fetchFromGitLab: fetchFromGitLab }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: nix.thunk(() => nix.attr(common, "pname")),
       version: nix.thunk(() => nix.attr(common, "version")),
       src: nix.thunk(() => nix.attr(common, "src")),
@@ -96,7 +94,7 @@ export default nix.lambda((args) => (() => {
       mesonBuildType: "release",
       postFixup: "install_name_tool -add_rpath \"$out/lib\" \"$out/lib/libGL.dylib\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         driverLink: nix.thunk(() => nix.builtins.throw("driverLink not supported on darwin")),
         llvmpipeHook: null,
       })),

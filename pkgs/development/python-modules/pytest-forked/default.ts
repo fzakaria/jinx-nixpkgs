@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["name", 32, 7], ["url", 33, 7], ["hash", 34, 7]], [["changelog", 68, 5], ["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["maintainers", 72, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 46, 3], ["propagatedBuildInputs", 48, 3], ["nativeCheckInputs", 50, 3], ["disabledTests", 55, 3], ["setupHook", 65, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, pythonAtLeast: false, fetchFromGitHub: false, fetchpatch2: false, setuptools: false, "setuptools-scm": false, wheel: false, py: false, pytest: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 32, 7], ["url", 33, 7], ["hash", 34, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 68, 5], ["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["maintainers", 72, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 46, 3], ["propagatedBuildInputs", 48, 3], ["nativeCheckInputs", 50, 3], ["disabledTests", 55, 3], ["setupHook", 65, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pytest-dev",
           repo: "pytest-forked",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "pytest8-compat.patch",
             url: "https://github.com/pytest-dev/pytest-forked/commit/b2742322d39ebda97d5170922520f3bb9c73f614.patch",
             hash: "sha256-tTRW0p3tOotQMtjjJ6RUKdynsAnKRz0RAV8gAUHiNNA=",
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => (nix.asBool((nix.asBool((nix.asBool(nix.app(pythonAtLeast, "3.12")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")))) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))) ? ["test_xfail"] : null));
       const setupHook = nix.path(here, "./setup-hook.sh");
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/pytest-dev/pytest-forked/blob/${nix.sel(src, "rev")}/CHANGELOG.rst`),
         description: "Run tests in isolated forked subprocesses",
         homepage: "https://github.com/pytest-dev/pytest-forked",
@@ -60,7 +57,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

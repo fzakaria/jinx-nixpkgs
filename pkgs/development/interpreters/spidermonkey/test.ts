@@ -2,13 +2,13 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test.nix", [[["nativeBuildInputs", 5, 5]]]);
 const formals$1 = { args: { runCommand: false, spidermonkey: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/test.nix", [["nativeBuildInputs", 5, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const runCommand = nix.arg($, "runCommand");
   const spidermonkey = nix.arg($, "spidermonkey");
-  return nix.app(runCommand, "spidermonkey-test-run", nix.thunk(() => ({ [nix.POS]: pos$1, nativeBuildInputs: nix.thunk(() => [spidermonkey]) })), "diff -U3 --color=auto <(js <(echo \"console.log('Hello, world\\!')\")) <(echo 'Hello, world!')\ntouch $out\n");
+  return nix.app(runCommand, "spidermonkey-test-run", nix.thunk(() => ({ [nix.POS]: $pos[0], nativeBuildInputs: nix.thunk(() => [spidermonkey]) })), "diff -U3 --color=auto <(js <(echo \"console.log('Hello, world\\!')\")) <(echo 'Hello, world!')\ntouch $out\n");
 })(), formals$1);
 //# sourceMappingURL=test.ts.map

@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/3.4.nix", [[["url", 12, 5], ["sha256", 13, 5]], [["description", 32, 5], ["longDescription", 33, 5], ["homepage", 40, 5], ["sourceProvenance", 41, 5], ["license", 42, 5], ["platforms", 43, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 11, 3], ["dontUnpack", 16, 3], ["installPhase", 18, 3], ["jre", 29, 11], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, jre: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/3.4.nix", [["url", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/3.4.nix", [["description", 32, 5], ["longDescription", 33, 5], ["homepage", 40, 5], ["sourceProvenance", 41, 5], ["license", 42, 5], ["platforms", 43, 5]]);
-const pos$3 = nix.positions(here + "/3.4.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 11, 3], ["dontUnpack", 16, 3], ["installPhase", 18, 3], ["jre", 29, 11], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "antlr";
       const version = "3.4";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.antlr3.org/download/antlr-${version}-complete.jar`),
           sha256: "1xqbam8vf04q5fasb0m2n1pn5dbp2yw763sj492ncq04c5mqcglx",
         }))));
@@ -33,7 +31,7 @@ ln -s "$out/bin/antlr"{,3}
 `);
       const jre_1 = jre;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Powerful parser generator",
         longDescription: "ANTLR (ANother Tool for Language Recognition) is a powerful parser\ngenerator for reading, processing, executing, or translating structured\ntext or binary files. It's widely used to build languages, tools, and\nframeworks. From a grammar, ANTLR generates a parser that can build and\nwalk parse trees.\n",
         homepage: "https://www.antlr.org/",
@@ -45,7 +43,7 @@ ln -s "$out/bin/antlr"{,3}
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

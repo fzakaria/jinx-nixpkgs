@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 13, 5], ["hash", 14, 5], ["stripRoot", 15, 5]], [["homepage", 43, 5], ["description", 44, 5], ["license", 45, 5], ["platforms", 46, 5], ["maintainers", 47, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 18, 3], ["strictDeps", 19, 3], ["makeFlags", 21, 3], ["unpackPhase", 27, 3], ["prePatch", 32, 3], ["postPatch", 37, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchzip: false, kernel: false, kernelModuleMakeFlags: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 13, 5], ["hash", 14, 5], ["stripRoot", 15, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 43, 5], ["description", 44, 5], ["license", 45, 5], ["platforms", 46, 5], ["maintainers", 47, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 18, 3], ["strictDeps", 19, 3], ["makeFlags", 21, 3], ["unpackPhase", 27, 3], ["prePatch", 32, 3], ["postPatch", 37, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const kernelModuleMakeFlags = nix.arg($, "kernelModuleMakeFlags");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "hpuefi-mod",
       version: "3.05",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://ftp.hp.com/pub/softpaq/sp150501-151000/sp150953.tgz",
           hash: "sha256-ofzqu5Y2g+QU0myJ4SF39ZJGXH1zXzX1Ys2FhXVTQKE=",
           stripRoot: false,
@@ -37,7 +35,7 @@ cd hpuefi-mod-${nix.sel(finalAttrs, "version")}
       prePatch: "substituteInPlace \"Makefile\" \\\n  --replace-fail depmod \\#\n",
       postPatch: "substituteInPlace hpuefi.h \\\n  --replace-fail '&((p)->flags)' '(unsigned long *)&((p)->flags)'\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://ftp.hp.com/pub/caps-softpaq/cmit/linuxtools/HP_LinuxTools.html",
         description: "Kernel module for managing BIOS settings and updating BIOS firmware on supported HP computers",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

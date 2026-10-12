@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["typescript", 30, 7]], [["yarnLock", 35, 5], ["hash", 36, 5]], [["package", 83, 7]], [["version", 82, 11]], [["tests", 82, 5], ["updateScript", 85, 5]], [["changelog", 89, 5], ["description", 90, 5], ["homepage", 91, 5], ["license", 92, 5], ["mainProgram", 96, 5], ["maintainers", 97, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["offlineCache", 34, 3], ["nativeBuildInputs", 39, 3], ["configurePhase", 47, 3], ["buildPhase", 59, 3], ["installPhase", 67, 3], ["passthru", 81, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchYarnDeps: false, "fixup-yarn-lock": false, makeWrapper: false, nodejs: false, "prefetch-yarn-deps": false, replaceVars: false, yarn: false, testers: false, typescript_5: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["typescript", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["yarnLock", 35, 5], ["hash", 36, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["package", 83, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 82, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 82, 5], ["updateScript", 85, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["changelog", 89, 5], ["description", 90, 5], ["homepage", 91, 5], ["license", 92, 5], ["mainProgram", 96, 5], ["maintainers", 97, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["offlineCache", 34, 3], ["nativeBuildInputs", 39, 3], ["configurePhase", 47, 3], ["buildPhase", 59, 3], ["installPhase", 67, 3], ["passthru", 81, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const typescript_5 = nix.arg($, "typescript_5");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "typescript-language-server",
       version: "5.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "typescript-language-server",
           repo: "typescript-language-server",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,12 +33,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./default-fallbackTsserverPath.diff"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             typescript: nix.thunk(() => nix.str`${typescript_5}/lib/node_modules/typescript/lib/tsserver.js`),
           })))),
       ]),
       offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           yarnLock: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/yarn.lock`),
           hash: "sha256-68aXoafE/wc1iS7HHwF7g/i8ZREoTj4bV/RL3XYc0Rs=",
         })))),
@@ -65,18 +58,18 @@ makeWrapper "${nodejs}/bin/node" "$out/bin/typescript-language-server" \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         changelog: nix.thunk(() => nix.str`https://github.com/typescript-language-server/typescript-language-server/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Language Server Protocol implementation for TypeScript using tsserver",
         homepage: "https://github.com/typescript-language-server/typescript-language-server",

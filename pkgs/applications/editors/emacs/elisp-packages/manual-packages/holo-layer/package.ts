@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 37, 5], ["repo", 38, 5], ["rev", 39, 5], ["hash", 40, 5]], [["updateScript", 63, 12]], [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]], [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["packageRequires", 43, 3], ["postPatch", 48, 3], ["files", 54, 3], ["passthru", 63, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, melpaBuild: false, fetchFromGitHub: false, python3: false, "markdown-mode": false, posframe: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 37, 5], ["repo", 38, 5], ["rev", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 63, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["packageRequires", 43, 3], ["postPatch", 48, 3], ["files", 54, 3], ["passthru", 63, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +28,11 @@ export default nix.lambda((args) => (() => {
   })();
   const pythonEnv = nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), pythonPkgs));
   return nix.app(melpaBuild, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "holo-layer",
       version: "0-unstable-2025-08-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "manateelazycat",
           repo: "holo-layer",
           rev: "6584d8057a264f199e0cf6e90095fa63d36e6049",
@@ -48,11 +45,11 @@ export default nix.lambda((args) => (() => {
 `),
       files: "(\"*.el\"\n \"*.py\"\n \"icon_cache\"\n \"plugin\"\n \"resources\"\n \"swaymsg-treefetch\")\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Display and animation extension for Emacs",
         homepage: "https://github.com/manateelazycat/holo-layer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

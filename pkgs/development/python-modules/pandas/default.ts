@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 70, 7], ["repo", 71, 7], ["tag", 72, 7], ["postFetch", 73, 7], ["hash", 76, 7]], [["aws", 117, 11], ["clipboard", 118, 11], ["compression", 122, 11], ["computation", 123, 11], ["excel", 127, 11], ["feather", 134, 11], ["fss", 135, 11], ["gcp", 136, 11], ["hdf5", 140, 11], ["html", 144, 11], ["mysql", 149, 11], ["output_formatting", 153, 11], ["parquet", 157, 11], ["performance", 158, 11], ["plot", 163, 11], ["postgresql", 164, 11], ["spss", 168, 11], ["sql-other", 169, 11], ["xml", 170, 11]], [["all", 173, 19]], [["doCheck", 178, 7]], [["pytest", 177, 20]], [["tests", 177, 14]], [["changelog", 253, 7], ["description", 254, 7], ["downloadPage", 255, 7], ["homepage", 256, 7], ["license", 257, 7], ["longDescription", 258, 7], ["maintainers", 263, 7]], [["pname", 65, 5], ["version", 66, 5], ["pyproject", 67, 5], ["src", 69, 5], ["postPatch", 90, 5], ["build-system", 95, 5], ["enableParallelBuilding", 105, 5], ["dependencies", 107, 5], ["optional-dependencies", 114, 5], ["doCheck", 175, 5], ["passthru", 177, 5], ["nativeCheckInputs", 181, 5], ["dontUsePytestXdist", 198, 5], ["__darwinAllowLocalNetworking", 200, 5], ["pytestFlags", 202, 5], ["disabledTestMarks", 208, 5], ["disabledTests", 217, 5], ["preCheck", 234, 5], ["pythonImportsCheck", 248, 5], ["meta", 250, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, cython: false, "meson-python": false, meson: false, "pkg-config": false, versioneer: false, wheel: false, numpy: false, "python-dateutil": false, pytz: false, tzdata: false, beautifulsoup4: false, bottleneck: false, blosc2: false, fsspec: false, gcsfs: false, html5lib: false, jinja2: false, lxml: false, matplotlib: false, numba: false, numexpr: false, odfpy: false, openpyxl: false, psycopg2: false, pyarrow: false, pymysql: false, pyqt5: false, pyreadstat: false, pyxlsb: false, qtpy: false, s3fs: false, scipy: false, sqlalchemy: false, tables: false, tabulate: false, xarray: false, xlrd: false, xlsxwriter: false, zstandard: false, adv_cmds: false, glibc: false, hypothesis: false, pytestCheckHook: false, "pytest-xdist": false, "pytest-asyncio": false, python: false, runtimeShell: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 70, 7], ["repo", 71, 7], ["tag", 72, 7], ["postFetch", 73, 7], ["hash", 76, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["aws", 117, 11], ["clipboard", 118, 11], ["compression", 122, 11], ["computation", 123, 11], ["excel", 127, 11], ["feather", 134, 11], ["fss", 135, 11], ["gcp", 136, 11], ["hdf5", 140, 11], ["html", 144, 11], ["mysql", 149, 11], ["output_formatting", 153, 11], ["parquet", 157, 11], ["performance", 158, 11], ["plot", 163, 11], ["postgresql", 164, 11], ["spss", 168, 11], ["sql-other", 169, 11], ["xml", 170, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["all", 173, 19]]);
-const pos$4 = nix.positions(here + "/default.nix", [["doCheck", 178, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pytest", 177, 20]]);
-const pos$6 = nix.positions(here + "/default.nix", [["tests", 177, 14]]);
-const pos$7 = nix.positions(here + "/default.nix", [["changelog", 253, 7], ["description", 254, 7], ["downloadPage", 255, 7], ["homepage", 256, 7], ["license", 257, 7], ["longDescription", 258, 7], ["maintainers", 263, 7]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pname", 65, 5], ["version", 66, 5], ["pyproject", 67, 5], ["src", 69, 5], ["postPatch", 90, 5], ["build-system", 95, 5], ["enableParallelBuilding", 105, 5], ["dependencies", 107, 5], ["optional-dependencies", 114, 5], ["doCheck", 175, 5], ["passthru", 177, 5], ["nativeCheckInputs", 181, 5], ["dontUsePytestXdist", 198, 5], ["__darwinAllowLocalNetworking", 200, 5], ["pytestFlags", 202, 5], ["disabledTestMarks", 208, 5], ["disabledTests", 217, 5], ["preCheck", 234, 5], ["pythonImportsCheck", 248, 5], ["meta", 250, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -70,7 +63,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.0.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pandas-dev",
           repo: "pandas",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -84,7 +77,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [numpy, python_dateutil, pytz, tzdata]);
       const optional_dependencies = nix.thunk(() => (() => {
         const extras = nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           aws: nix.thunk(() => [s3fs]),
           clipboard: nix.thunk(() => [pyqt5, qtpy]),
           compression: nix.thunk(() => [zstandard]),
@@ -106,16 +99,16 @@ export default nix.lambda((args) => (() => {
           xml: nix.thunk(() => [lxml]),
         }));
         return nix.update(extras, {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           all: nix.thunk(() => nix.app(nix.sel(lib, "concatLists"), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), extras)))),
         });
       })());
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
-          pytest: nix.thunk(() => nix.app(nix.sel(pandas, "overridePythonAttrs"), (_) => ({ [nix.POS]: pos$4, doCheck: true }))),
+          [nix.POS]: $pos[4],
+          pytest: nix.thunk(() => nix.app(nix.sel(pandas, "overridePythonAttrs"), (_) => ({ [nix.POS]: $pos[3], doCheck: true }))),
         })),
       }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([hypothesis, pytest_asyncio, pytest_xdist, pytestCheckHook], nix.concat(nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [glibc])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [adv_cmds]))))));
@@ -134,7 +127,7 @@ export PATH=$(pwd):$PATH
 `))));
       const pythonImportsCheck = nix.thunk(() => ["pandas"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         changelog: "https://pandas.pydata.org/docs/whatsnew/index.html",
         description: "Powerful data structures for data analysis, time series, and statistics",
         downloadPage: "https://github.com/pandas-dev/pandas",
@@ -147,7 +140,7 @@ export PATH=$(pwd):$PATH
         })()),
       }));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname,
         version,
         pyproject,

@@ -2,23 +2,18 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/bitbox-bridge.nix", [[["maintainers", 8, 8]], [["enable", 15, 7], ["port", 16, 7], ["runOnMount", 17, 7]], [["bitbox-bridge", 14, 14]], [["services", 14, 5]], [["machine", 13, 9]], [["name", 7, 3], ["meta", 8, 3], ["nodes", 13, 3], ["testScript", 21, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/bitbox-bridge.nix", [["maintainers", 8, 8]]);
-const pos$2 = nix.positions(here + "/bitbox-bridge.nix", [["enable", 15, 7], ["port", 16, 7], ["runOnMount", 17, 7]]);
-const pos$3 = nix.positions(here + "/bitbox-bridge.nix", [["bitbox-bridge", 14, 14]]);
-const pos$4 = nix.positions(here + "/bitbox-bridge.nix", [["services", 14, 5]]);
-const pos$5 = nix.positions(here + "/bitbox-bridge.nix", [["machine", 13, 9]]);
-const pos$6 = nix.positions(here + "/bitbox-bridge.nix", [["name", 7, 3], ["meta", 8, 3], ["nodes", 13, 3], ["testScript", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const testPort = 8179n;
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     name: "bitbox-bridge",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -28,12 +23,12 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          "bitbox-bridge": nix.thunk(() => ({ [nix.POS]: pos$2, enable: true, port: testPort, runOnMount: false })),
+          [nix.POS]: $pos[2],
+          "bitbox-bridge": nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true, port: testPort, runOnMount: false })),
         })),
       })),
     })),

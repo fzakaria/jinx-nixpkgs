@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["description", 37, 5], ["downloadPage", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 18, 3], ["buildInputs", 23, 3], ["configureFlags", 28, 3], ["tclRequiresCheck", 32, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, mkTclDerivation: false, fetchzip: false, libffi: false, libuuid: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 37, 5], ["downloadPage", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 18, 3], ["buildInputs", 23, 3], ["configureFlags", 28, 3], ["tclRequiresCheck", 32, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const libffi = nix.arg($, "libffi");
   const libuuid = nix.arg($, "libuuid");
   return nix.app(mkTclDerivation, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "cffi",
       version: "2.0.3",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/magicsplat/cffi/cffi${nix.sel(finalAttrs, "version")}-src.tar.gz`),
           hash: "sha256-IcoDZu2P+yafntDNeDZS3NSwFuRgZgIBZCLhCdIY+6g=",
         })))),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--disable-staticffi"]),
       tclRequiresCheck: nix.thunk(() => ["cffi"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Foreign function interface (FFI) extension for Tcl",
         downloadPage: "https://sourceforge.net/projects/magicsplat/files/cffi",
         homepage: "https://cffi.magicsplat.com/",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 42, 5], ["hash", 43, 5]], [["homepage", 133, 5], ["license", 134, 5], ["description", 138, 5], ["maintainers", 139, 5], ["platforms", 140, 5]], [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["postPatch", 46, 3], ["outputs", 56, 3], ["separateDebugInfo", 63, 3], ["nativeBuildInputs", 65, 3], ["buildInputs", 73, 3], ["patches", 94, 3], ["cmakeFlags", 98, 3], ["propagatedBuildInputs", 125, 3], ["enableParallelBuilding", 130, 3], ["meta", 132, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, "pkg-config": false, cmake: false, fetchurl: false, zlib: false, bzip2: false, file: false, elfutils: false, libarchive: false, readline: false, audit: false, popt: false, xz: false, python3: false, lua: false, llvmPackages: false, sqlite: false, zstd: false, libcap: false, darwinMinVersionHook: false, openssl: false, "rpm-sequoia": false, gettext: false, systemd: false, bubblewrap: false, autoconf: false, gnupg: false, disableUnshare: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 42, 5], ["hash", 43, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 133, 5], ["license", 134, 5], ["description", 138, 5], ["maintainers", 139, 5], ["platforms", 140, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["postPatch", 46, 3], ["outputs", 56, 3], ["separateDebugInfo", 63, 3], ["nativeBuildInputs", 65, 3], ["buildInputs", 73, 3], ["patches", 94, 3], ["cmakeFlags", 98, 3], ["propagatedBuildInputs", 125, 3], ["enableParallelBuilding", 130, 3], ["meta", 132, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const pname = "rpm";
       const version = "4.20.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://ftp.osuosl.org/pub/rpm/releases/rpm-${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}.x/rpm-${version}.tar.bz2`),
           hash: "sha256-UmR+EmODZFM6tnHLyOSFyW+fCIidk/4O0QSmYyZhEk8=",
         }))));
@@ -80,7 +78,7 @@ sed -i 's#PATHS ENV MYPATH#PATHS ENV PATH#' CMakeLists.txt
       const propagatedBuildInputs = nix.thunk(() => nix.concat([popt], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), elfutils)), elfutils)));
       const enableParallelBuilding = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.rpm.org/",
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
@@ -94,7 +92,7 @@ sed -i 's#PATHS ENV MYPATH#PATHS ENV PATH#' CMakeLists.txt
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

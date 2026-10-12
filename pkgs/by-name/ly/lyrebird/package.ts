@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 14, 5], ["exec", 15, 5], ["icon", 16, 5], ["desktopName", 17, 5], ["genericName", 18, 5], ["categories", 19, 5]], [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["sha256", 36, 5]], [["description", 75, 5], ["mainProgram", 76, 5], ["homepage", 77, 5], ["license", 78, 5], ["maintainers", 79, 5], ["platforms", 80, 5]], [["pname", 26, 3], ["version", 27, 3], ["pyproject", 29, 3], ["doCheck", 30, 3], ["src", 32, 3], ["propagatedBuildInputs", 39, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 49, 3], ["dontWrapGApps", 54, 3], ["makeWrapperArgs", 55, 3], ["installPhase", 67, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { python3Packages: false, lib: false, fetchFromGitHub: false, makeDesktopItem: false, wrapGAppsHook3: false, gtk3: false, "gobject-introspection": false, sox: false, pulseaudio: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 14, 5], ["exec", 15, 5], ["icon", 16, 5], ["desktopName", 17, 5], ["genericName", 18, 5], ["categories", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["sha256", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 75, 5], ["mainProgram", 76, 5], ["homepage", 77, 5], ["license", 78, 5], ["maintainers", 79, 5], ["platforms", 80, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["pyproject", 29, 3], ["doCheck", 30, 3], ["src", 32, 3], ["propagatedBuildInputs", 39, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 49, 3], ["dontWrapGApps", 54, 3], ["makeWrapperArgs", 55, 3], ["installPhase", 67, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const sox = nix.arg($, "sox");
   const pulseaudio = nix.arg($, "pulseaudio");
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "lyrebird",
       exec: "lyrebird",
       icon: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/lyrebird/icon.png`),
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = false;
       const doCheck = false;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "lyrebird-voice-changer",
           repo: "lyrebird",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -62,7 +59,7 @@ cp -at $out/share/applications/ ${desktopItem}
 install -Dm755 app.py $out/bin/lyrebird
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Simple and powerful voice changer for Linux, written in GTK 3",
         mainProgram: "lyrebird",
         homepage: "https://github.com/lyrebird-voice-changer/lyrebird",
@@ -74,7 +71,7 @@ install -Dm755 app.py $out/bin/lyrebird
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

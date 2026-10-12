@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 7], ["repo", 21, 7], ["tag", 22, 7], ["hash", 23, 7], ["name", 24, 7]], [["owner", 27, 7], ["repo", 28, 7], ["rev", 29, 7], ["hash", 30, 7], ["name", 31, 7]], [["updateScript", 98, 12]], [["description", 101, 5], ["longDescription", 102, 5], ["homepage", 106, 5], ["changelog", 107, 5], ["license", 108, 5], ["maintainers", 109, 5], ["platforms", 110, 5], ["mainProgram", 111, 5]], [["pname", 15, 3], ["version", 16, 3], ["srcs", 18, 3], ["sourceRoot", 34, 3], ["postUnpack", 36, 3], ["postPatch", 40, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 54, 3], ["mesonFlags", 59, 3], ["postBuild", 63, 3], ["installPhase", 69, 3], ["nativeInstallCheckInputs", 84, 3], ["installCheckPhase", 90, 3], ["doInstallCheck", 96, 3], ["passthru", 98, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, meson: false, ninja: false, "pkg-config": false, python3: false, qt6Packages: false, radare2: false, "xvfb-run": false, writableTmpDirAsHomeHook: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 7], ["repo", 21, 7], ["tag", 22, 7], ["hash", 23, 7], ["name", 24, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 27, 7], ["repo", 28, 7], ["rev", 29, 7], ["hash", 30, 7], ["name", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 98, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 101, 5], ["longDescription", 102, 5], ["homepage", 106, 5], ["changelog", 107, 5], ["license", 108, 5], ["maintainers", 109, 5], ["platforms", 110, 5], ["mainProgram", 111, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["srcs", 18, 3], ["sourceRoot", 34, 3], ["postUnpack", 36, 3], ["postPatch", 40, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 54, 3], ["mesonFlags", 59, 3], ["postBuild", 63, 3], ["installPhase", 69, 3], ["nativeInstallCheckInputs", 84, 3], ["installCheckPhase", 90, 3], ["doInstallCheck", 96, 3], ["passthru", 98, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "iaito",
       version: "6.2.0",
       srcs: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: "radareorg",
             repo: "iaito",
             tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +32,7 @@ export default nix.lambda((args) => (() => {
             name: "main",
           })))),
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             owner: "radareorg",
             repo: "iaito-translations",
             rev: "e66b3a962a7fc7dfd730764180011ecffbb206bf",
@@ -65,9 +61,9 @@ xvfb-run -a ${nix.builtins.placeholder("out")}/bin/iaito -v | grep "${nix.sel(fi
 runHook postCheck
 `),
       doInstallCheck: true,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Official radare2 GUI",
         longDescription: "iaito is the official graphical interface for radare2, a libre reverse\nengineering framework.\n",
         homepage: "https://radare.org/n/iaito.html",

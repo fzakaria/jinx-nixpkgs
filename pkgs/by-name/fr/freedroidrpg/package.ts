@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 30, 5], ["hash", 31, 5]], [["SDL_CONFIG", 60, 7]], [["description", 65, 5], ["mainProgram", 66, 5], ["longDescription", 68, 5], ["homepage", 101, 5], ["license", 103, 5], ["maintainers", 105, 5], ["platforms", 106, 5], ["hydraPlatforms", 107, 5]], [["pname", 26, 3], ["version", 27, 11], ["src", 29, 3], ["patches", 34, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 45, 3], ["env", 60, 3], ["enableParallelBuilding", 62, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { fetchurl: false, lib: false, stdenv: false, "pkg-config": false, gettext: false, glew: false, python3: false, SDL: false, SDL_image: false, SDL_gfx: false, SDL_mixer: false, libogg: false, libvorbis: false, lua5_3: false, libjpeg: false, libpng: false, zlib: false, libiconv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["SDL_CONFIG", 60, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 65, 5], ["mainProgram", 66, 5], ["longDescription", 68, 5], ["homepage", 101, 5], ["license", 103, 5], ["maintainers", 105, 5], ["platforms", 106, 5], ["hydraPlatforms", 107, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 11], ["src", 29, 3], ["patches", 34, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 45, 3], ["env", 60, 3], ["enableParallelBuilding", 62, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const libiconv = nix.arg($, "libiconv");
   const version = "1.0";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "freedroidrpg",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`ftp://ftp.osuosl.org/pub/freedroid/freedroidRPG-${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/freedroidRPG-${version}.tar.gz`),
           hash: "sha256-eZW3C1lCSOoU0bTvWVOXpgGDAxyZFjsBwainDM7zu88=",
         })))),
@@ -54,12 +51,12 @@ export default nix.lambda((args) => (() => {
         zlib,
       ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), libiconv))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         SDL_CONFIG: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.app(nix.sel(lib, "getDev"), SDL)), "sdl-config")),
       })),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Isometric 3D RPG similar to game Diablo",
         mainProgram: "freedroidRPG",
         longDescription: "<para>\n  FreedroidRPG is an original isometric 3D role playing game\n  taking place in the future, on Earth. It features action and\n  dialogs.\n</para>\n<para>\n  The game tells the story of a world destroyed by a conflict between\n  robots and their human masters. Play as Tux in a quest to save the\n  world from the murderous rebel bots who know no mercy. You get to\n  choose which path you wish to follow, and freedom of choice is\n  everywhere in the game.\n</para>\n<para>\n  FreedroidRPG features a real time combat system with melee and\n  ranged weapons, fairly similar to the proprietary game Diablo.\n  There is an innovative system of programs that can be run in order\n  to take control of enemy robots, alter their behavior, or improve one's\n  characteristics. You can use over 50 different kinds of items and\n  fight countless enemies on your way to your destiny. An advanced\n  dialog system provides story background and immersive role\n  playing situations.\n</para>\n<para>\n  The game is complete, fully playable, and can provide about\n  12 hours of fun. It is still being actively developed, and\n  help is welcome in many areas. People having - or trying to acquire -\n  programming, map editing, or writing skills will find FreedroidRPG\n  to be an exciting, fast-moving project in which they can fully\n  express their creativity.\n</para>\n",

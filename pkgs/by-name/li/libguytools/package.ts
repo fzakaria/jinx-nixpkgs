@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["description", 49, 5], ["mainProgram", 50, 5], ["homepage", 51, 5], ["maintainers", 52, 5], ["platforms", 53, 5], ["license", 54, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["qmakeFlags", 17, 3], ["enableParallelBuilding", 22, 3], ["nativeBuildInputs", 24, 3], ["dontWrapQtApps", 28, 3], ["buildInputs", 29, 3], ["postPatch", 31, 3], ["preConfigure", 36, 3], ["installPhase", 40, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libsForQt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 49, 5], ["mainProgram", 50, 5], ["homepage", 51, 5], ["maintainers", 52, 5], ["platforms", 53, 5], ["license", 54, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["qmakeFlags", 17, 3], ["enableParallelBuilding", 22, 3], ["nativeBuildInputs", 24, 3], ["dontWrapQtApps", 28, 3], ["buildInputs", 29, 3], ["postPatch", 31, 3], ["preConfigure", 36, 3], ["installPhase", 40, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const libsForQt5 = nix.arg($, "libsForQt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libguytools",
       version: "2.1.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/libguytools/libguytools/LatestSource/tools-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-eVYvjo2wKW2g9/9hL9nbQa1FRWDMMqMHok0V/adPHVY=",
         })))),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "./create_version_file.sh\n",
       installPhase: "runHook preInstall\nmkdir -p $out\ncp -r lib $out/\ncp -r include $out/\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Small programming toolbox",
         mainProgram: "libguytools",
         homepage: "https://libguytools.sourceforge.io",

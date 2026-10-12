@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["src", 53, 19], ["nativeBuildInputs", 54, 11]], [["supportedFeatures", 64, 11]], [["command", 68, 9], ["supportedFeatures", 75, 9]], [["pubspecSource", 50, 5], ["updateScript", 59, 5]], [["description", 81, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["license", 84, 5], ["mainProgram", 85, 5], ["platforms", 86, 5], ["maintainers", 87, 5]], [["pname", 24, 3], ["version", 25, 11], ["src", 25, 19], ["pubspecLock", 27, 3], ["gitHashes", 29, 3], ["flutterBuildFlags", 31, 3], ["runtimeDependencies", 39, 3], ["extraWrapProgramArgs", 41, 3], ["postInstall", 43, 3], ["passthru", 49, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { cwtch: false, fetchgit: false, flutter344: false, lib: false, tor: false, "_experimental-update-script-combinators": false, "nix-update-script": false, runCommand: false, "yq-go": false, dart: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 53, 19], ["nativeBuildInputs", 54, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["supportedFeatures", 64, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["command", 68, 9], ["supportedFeatures", 75, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pubspecSource", 50, 5], ["updateScript", 59, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 81, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["license", 84, 5], ["mainProgram", 85, 5], ["platforms", 86, 5], ["maintainers", 87, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 11], ["src", 25, 19], ["pubspecLock", 27, 3], ["gitHashes", 29, 3], ["flutterBuildFlags", 31, 3], ["runtimeDependencies", 39, 3], ["extraWrapProgramArgs", 41, 3], ["postInstall", 43, 3], ["passthru", 49, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const dart = nix.arg($, "dart");
   const version = "1.17.1";
   const src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://git.openprivacy.ca/cwtch.im/cwtch-ui",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-oWU3E1WM/gzOcW4c0pdXbEhiHIivItZx0FiZ/LZZQu8=",
     }))));
   return nix.app(nix.sel(flutter344, "buildFlutterApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "cwtch-ui",
       version: version,
       src: src,
@@ -47,13 +41,13 @@ export default nix.lambda((args) => (() => {
       extraWrapProgramArgs: nix.thunk(() => nix.str`--prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [tor]))}`),
       postInstall: "mkdir -p $out/share/applications\nsubstitute linux/cwtch.template.desktop \"$out/share/applications/cwtch.desktop\" \\\n  --replace-fail PREFIX \"$out\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        pubspecSource: nix.thunk(() => nix.app(runCommand, "pubspec.lock.json", nix.thunk(() => ({ [nix.POS]: pos$2, src: src, nativeBuildInputs: nix.thunk(() => [yq_go]) })), "yq eval --output-format=json --prettyPrint $src/pubspec.lock > \"$out\"\n")),
+        [nix.POS]: $pos[4],
+        pubspecSource: nix.thunk(() => nix.app(runCommand, "pubspec.lock.json", nix.thunk(() => ({ [nix.POS]: $pos[1], src: src, nativeBuildInputs: nix.thunk(() => [yq_go]) })), "yq eval --output-format=json --prettyPrint $src/pubspec.lock > \"$out\"\n")),
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
             nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-            nix.thunk(() => nix.update(nix.app(nix.sel(_experimental_update_script_combinators, "copyAttrOutputToFile"), "cwtch-ui.pubspecSource", nix.path(here, "./pubspec.lock.json")), { [nix.POS]: pos$3, supportedFeatures: [] })),
+            nix.thunk(() => nix.update(nix.app(nix.sel(_experimental_update_script_combinators, "copyAttrOutputToFile"), "cwtch-ui.pubspecSource", nix.path(here, "./pubspec.lock.json")), { [nix.POS]: $pos[2], supportedFeatures: [] })),
             nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               command: nix.thunk(() => [
                 nix.thunk(() => nix.sel(dart, "fetchGitHashesScript")),
                 "--input",
@@ -66,7 +60,7 @@ export default nix.lambda((args) => (() => {
           ]))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Messaging app built on the cwtch decentralized, privacy-preserving, multi-party messaging protocol",
         homepage: "https://cwtch.im/",
         changelog: "https://docs.cwtch.im/changelog",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 7], ["repo", 18, 7], ["rev", 19, 7], ["hash", 20, 7]], [["render", 46, 15], ["renderText", 46, 22]], [["description", 50, 7], ["mainProgram", 51, 7], ["homepage", 52, 7], ["license", 53, 7], ["maintainers", 54, 7], ["platforms", 55, 7]], [["pname", 13, 5], ["version", 14, 13], ["src", 16, 5], ["postPatch", 23, 5], ["doCheck", 29, 5], ["doInstallCheck", 30, 5], ["checkPhase", 32, 5], ["installPhase", 36, 5], ["installCheckPhase", 41, 5], ["passthru", 45, 5], ["meta", 49, 5]], [["shabScript", 68, 17]]]);
 const formals$1 = { args: { bash: false, stdenv: false, lib: false, runCommand: false, writeText: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 7], ["repo", 18, 7], ["rev", 19, 7], ["hash", 20, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["render", 46, 15], ["renderText", 46, 22]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 50, 7], ["mainProgram", 51, 7], ["homepage", 52, 7], ["license", 53, 7], ["maintainers", 54, 7], ["platforms", 55, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 5], ["version", 14, 13], ["src", 16, 5], ["postPatch", 23, 5], ["doCheck", 29, 5], ["doInstallCheck", 30, 5], ["checkPhase", 32, 5], ["installPhase", 36, 5], ["installCheckPhase", 41, 5], ["passthru", 45, 5], ["meta", 49, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["shabScript", 68, 17]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const version = "1.0.0";
   const shab = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "shab",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "zimbatm",
           repo: "shab",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -35,9 +31,9 @@ export default nix.lambda((args) => (() => {
       checkPhase: "./test.sh\n",
       installPhase: "mkdir -p $out/bin\ncp ./shab $out/bin/shab\n",
       installCheckPhase: "[[ \"$(echo 'Hello $entity' | entity=world $out/bin/shab)\" == 'Hello world' ]]\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, render: render, renderText: renderText })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], render: render, renderText: renderText })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Bash templating language",
         mainProgram: "shab",
         homepage: "https://github.com/zimbatm/shab",
@@ -50,7 +46,7 @@ export default nix.lambda((args) => (() => {
       })),
     }))));
   const render = (shabScript) => (parameters) => (() => {
-    const extraParams = nix.thunk(() => ({ [nix.POS]: pos$5, shabScript: shabScript }));
+    const extraParams = nix.thunk(() => ({ [nix.POS]: $pos[4], shabScript: shabScript }));
     return nix.app(runCommand, "out", nix.thunk(() => nix.update(parameters, extraParams)), nix.thunk(() => nix.str`${shab}/bin/shab "$shabScript" >$out
 `));
   })();

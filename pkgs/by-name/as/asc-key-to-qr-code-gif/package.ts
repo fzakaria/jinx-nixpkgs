@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["homepage", 47, 5], ["description", 48, 5], ["license", 49, 5], ["mainProgram", 50, 5], ["platforms", 51, 5], ["maintainers", 52, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["dontBuild", 22, 3], ["postPatch", 24, 3], ["installPhase", 39, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, imagemagick: false, qrencode: false, testQR: true, zbar: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 47, 5], ["description", 48, 5], ["license", 49, 5], ["mainProgram", 50, 5], ["platforms", 51, 5], ["maintainers", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["dontBuild", 22, 3], ["postPatch", 24, 3], ["installPhase", 39, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const zbar = nix.argOr($, "zbar", () => null);
   nix.assert_((!nix.asBool(testQR) || nix.asBool(!nix.eq(zbar, false))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/as/asc-key-to-qr-code-gif/package.nix:10:1");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "asc-key-to-qr-code-gif",
       version: "0-unstable-2019-01-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "yishilin14",
           repo: "asc-key-to-qr-code-gif",
           rev: "5d36a1bada8646ae0f61b04356e62ba5ef10a1aa",
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
       })()),
       installPhase: "runHook preInstall\nmkdir -p $out/bin\ncp asc-to-gif.sh $out/bin/asc-to-gif\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/yishilin14/asc-key-to-qr-code-gif",
         description: "Convert ASCII-armored PGP keys to animated QR code",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

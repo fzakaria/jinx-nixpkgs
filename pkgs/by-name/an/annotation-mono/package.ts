@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 11, 5], ["hash", 12, 5], ["stripRoot", 13, 5]], [["homepage", 27, 5], ["description", 28, 5], ["license", 29, 5], ["platforms", 30, 5], ["maintainers", 31, 5]], [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["installPhase", 16, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 11, 5], ["hash", 12, 5], ["stripRoot", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 27, 5], ["description", 28, 5], ["license", 29, 5], ["platforms", 30, 5], ["maintainers", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["installPhase", 16, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,18 +11,18 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "annotation-mono",
       version: "0.4",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/qwerasd205/AnnotationMono/releases/download/v${nix.sel(finalAttrs, "version")}/AnnotationMono_v${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-6DEYTYAENNY/5oD9us9f7VtPae/it7qrFC3/UT1J+Qg=",
           stripRoot: false,
         })))),
       installPhase: "runHook preInstall\n\ninstall -D -m444 -t $out/share/fonts/truetype $src/dist/ttf/*.ttf\ninstall -D -m444 -t $out/share/fonts/truetype $src/dist/variable/AnnotationMono-VF.ttf\ninstall -D -m444 -t $out/share/fonts/opentype $src/dist/otf/*.otf\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/qwerasd205/AnnotationMono",
         description: "Lovingly crafted handwriting-style monospace font",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

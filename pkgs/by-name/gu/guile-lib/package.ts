@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 18, 5]], [["homepage", 54, 5], ["description", 55, 5], ["longDescription", 56, 5], ["license", 62, 5], ["maintainers", 63, 5], ["platforms", 64, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["strictDeps", 21, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 27, 3], ["postPatch", 32, 3], ["preAutoreconf", 39, 3], ["makeFlags", 43, 3], ["doCheck", 45, 3], ["preCheck", 47, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoreconfHook: false, gettext: false, guile: false, "pkg-config": false, texinfo: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 54, 5], ["description", 55, 5], ["longDescription", 56, 5], ["license", 62, 5], ["maintainers", 63, 5], ["platforms", 64, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["strictDeps", 21, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 27, 3], ["postPatch", 32, 3], ["preAutoreconf", 39, 3], ["makeFlags", 43, 3], ["doCheck", 45, 3], ["preCheck", 47, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const texinfo = nix.arg($, "texinfo");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "guile-lib",
       version: "0.2.8.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://savannah/guile-lib/guile-lib-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-E3TC2Dnmoz0ZDNHavZx/h3U/g4T1W4ZvPhQhVcIrSbE=",
         })))),
@@ -39,7 +37,7 @@ export LD_LIBRARY_PATH=\\
 "$(dirname $(echo ${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(stdenv, "cc", "cc")))}/lib*/libgcc_s.so))\${LD_LIBRARY_PATH:+:}$LD_LIBRARY_PATH"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.nongnu.org/guile-lib/",
         description: "Collection of useful Guile Scheme modules",
         longDescription: "guile-lib is intended as an accumulation place for pure-scheme Guile\nmodules, allowing for people to cooperate integrating their generic Guile\nmodules into a coherent library.  Think \"a down-scaled, limited-scope CPAN\nfor Guile\".\n",

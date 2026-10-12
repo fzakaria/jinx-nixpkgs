@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["esphome", 38, 5], ["remote", 39, 5]], [["description", 51, 5], ["homepage", 52, 5], ["changelog", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["postPatch", 26, 3], ["nativeBuildInputs", 31, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["optional-dependencies", 37, 3], ["nativeCheckInputs", 42, 3], ["pythonImportsCheck", 48, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "uv-build": false, serialx: false, aiowebostv: false, pyprojectVersionPatchHook: false, "pytest-asyncio": false, "pytest-timeout": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["esphome", 38, 5], ["remote", 39, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 51, 5], ["homepage", 52, 5], ["changelog", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["postPatch", 26, 3], ["nativeBuildInputs", 31, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["optional-dependencies", 37, 3], ["nativeCheckInputs", 42, 3], ["pythonImportsCheck", 48, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pytest_timeout = nix.arg($, "pytest-timeout");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "lg-rs232-tv",
       version: "1.2.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "home-assistant-libs",
           repo: "lg-rs232-tv",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,14 +34,14 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [uv_build]),
       dependencies: nix.thunk(() => [serialx]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         esphome: nix.thunk(() => nix.sel(serialx, "optional-dependencies", "esphome")),
         remote: nix.thunk(() => [aiowebostv]),
       })),
       nativeCheckInputs: nix.thunk(() => [pytest_asyncio, pytest_timeout, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["lg_rs232_tv"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Async library to control LG TVs over RS232",
         homepage: "https://github.com/home-assistant-libs/lg-rs232-tv",
         changelog: nix.thunk(() => nix.str`https://github.com/home-assistant-libs/lg-rs232-tv/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

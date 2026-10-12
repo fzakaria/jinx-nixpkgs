@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["grpc", 52, 5], ["protobuf", 61, 5], ["tracing", 62, 5]], [["description", 131, 5], ["homepage", 132, 5], ["changelog", 133, 5], ["license", 134, 5], ["maintainers", 135, 5]], [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["sourceRoot", 38, 3], ["build-system", 40, 3], ["dependencies", 42, 3], ["optional-dependencies", 51, 3], ["nativeCheckInputs", 65, 3], ["enabledTestPaths", 74, 3], ["disabledTests", 79, 3], ["disabledTestPaths", 111, 3], ["preCheck", 120, 3], ["pythonImportsCheck", 128, 3], ["meta", 130, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "google-api-core": false, "google-auth": false, "google-cloud-core": false, "google-cloud-iam": false, "google-cloud-kms": false, "google-cloud-testutils": false, "google-crc32c": false, "google-resumable-media": false, "grpc-google-iam-v1": false, grpcio: false, "grpcio-status": false, mock: false, "opentelemetry-api": false, "proto-plus": false, protobuf: false, pytestCheckHook: false, "pytest-asyncio": false, requests: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["grpc", 52, 5], ["protobuf", 61, 5], ["tracing", 62, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 131, 5], ["homepage", 132, 5], ["changelog", 133, 5], ["license", 134, 5], ["maintainers", 135, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["sourceRoot", 38, 3], ["build-system", 40, 3], ["dependencies", 42, 3], ["optional-dependencies", 51, 3], ["nativeCheckInputs", 65, 3], ["enabledTestPaths", 74, 3], ["disabledTests", 79, 3], ["disabledTestPaths", 111, 3], ["preCheck", 120, 3], ["pythonImportsCheck", 128, 3], ["meta", 130, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.12.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "googleapis",
           repo: "google-cloud-python",
           tag: nix.thunk(() => nix.str`google-cloud-storage-v${version}`),
@@ -54,7 +51,7 @@ export default nix.lambda((args) => (() => {
         requests,
       ]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         grpc: nix.thunk(() => nix.concat([
           google_api_core,
           grpc_google_iam_v1,
@@ -116,7 +113,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "# prevent google directory from shadowing google imports\nrm -r google\n\n# requires docker and network\nrm tests/conformance/test_conformance.py\n";
       const pythonImportsCheck = nix.thunk(() => ["google.cloud.storage"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Google Cloud Storage API client library",
         homepage: "https://github.com/googleapis/google-cloud-python/tree/main/packages/google-cloud-storage",
         changelog: nix.thunk(() => nix.str`https://github.com/googleapis/google-cloud-python/blob/${nix.sel(src, "tag")}/packages/google-cloud-storage/CHANGELOG.md`),
@@ -127,7 +124,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

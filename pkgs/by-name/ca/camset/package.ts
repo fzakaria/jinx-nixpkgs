@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["name", 48, 7], ["exec", 49, 7], ["icon", 50, 7], ["comment", 51, 7], ["desktopName", 52, 7], ["categories", 53, 7], ["type", 57, 7]], [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 24, 3], ["nativeBuildInputs", 26, 3], ["dependencies", 32, 3], ["dontWrapGApps", 37, 3], ["preFixup", 39, 3], ["desktopItems", 46, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { python3Packages: false, fetchFromGitHub: false, copyDesktopItems: false, makeDesktopItem: false, "gobject-introspection": false, "v4l-utils": false, wrapGAppsHook3: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 48, 7], ["exec", 49, 7], ["icon", 50, 7], ["comment", 51, 7], ["desktopName", 52, 7], ["categories", 53, 7], ["type", 57, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 24, 3], ["nativeBuildInputs", 26, 3], ["dependencies", 32, 3], ["dontWrapGApps", 37, 3], ["preFixup", 39, 3], ["desktopItems", 46, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "camset",
       version: "0-unstable-2023-05-20",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "azeam",
           repo: "camset",
           rev: "b813ba9b1d29f2d46fad268df67bf3615a324f3e",
@@ -50,7 +47,7 @@ export default nix.lambda((args) => (() => {
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "camset",
             exec: "camset",
             icon: "camera",
@@ -61,7 +58,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "GUI for Video4Linux adjustments of webcams",
         homepage: "https://github.com/azeam/camset",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

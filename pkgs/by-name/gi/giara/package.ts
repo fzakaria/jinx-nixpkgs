@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 26, 5], ["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]], [["description", 71, 5], ["maintainers", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["platforms", 75, 5], ["mainProgram", 76, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 43, 3], ["pythonPath", 52, 3], ["postPatch", 62, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitLab: false, meson: false, "gobject-introspection": false, "pkg-config": false, ninja: false, python3: false, wrapGAppsHook4: false, gtk4: false, "gdk-pixbuf": false, webkitgtk_4_1: false, gtksourceview5: false, "glib-networking": false, libadwaita: false, appstream: false, "blueprint-compiler": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 26, 5], ["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 71, 5], ["maintainers", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["platforms", 75, 5], ["mainProgram", 76, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 43, 3], ["pythonPath", 52, 3], ["postPatch", 62, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const appstream = nix.arg($, "appstream");
   const blueprint_compiler = nix.arg($, "blueprint-compiler");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "giara",
       version: "1.1.0",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           owner: "World",
           repo: "giara",
@@ -62,7 +60,7 @@ export default nix.lambda((args) => (() => {
       })()),
       postPatch: "substituteInPlace meson_post_install.py \\\n  --replace \"gtk-update-icon-cache\" \"gtk4-update-icon-cache\"\n# blueprint-compiler expects \"profile\" to be a string.\nsubstituteInPlace data/ui/headerbar.blp \\\n  --replace \"item { custom: profile; }\" 'item { custom: \"profile\"; }'\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Reddit app, built with Python, GTK and Handy; Created with mobile Linux in mind",
         maintainers: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

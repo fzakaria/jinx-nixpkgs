@@ -2,16 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 9], ["repo", 23, 9], ["rev", 24, 9], ["sha256", 25, 9]], [["url", 36, 11], ["sha256", 37, 11]], [["url", 40, 11], ["sha256", 41, 11]], [["NIX_CFLAGS_COMPILE", 50, 11]], [["homepage", 57, 9], ["description", 58, 17], ["platforms", 59, 9], ["license", 60, 9], ["maintainers", 61, 9]], [["pname", 18, 15], ["version", 19, 7], ["src", 21, 7], ["nativeBuildInputs", 28, 7], ["buildInputs", 29, 15], ["patches", 32, 7], ["env", 50, 7], ["preConfigure", 52, 7], ["meta", 56, 7]], [["pname", 67, 5], ["subdir", 68, 5], ["description", 69, 5]], [["libprom", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, libmicrohttpd: false }, ellipsis: false };
 const formals$2 = { args: { pname: false, subdir: false, buildInputs: true, description: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 9], ["repo", 23, 9], ["rev", 24, 9], ["sha256", 25, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 36, 11], ["sha256", 37, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 40, 11], ["sha256", 41, 11]]);
-const pos$4 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 50, 11]]);
-const pos$5 = nix.positions(here + "/default.nix", [["homepage", 57, 9], ["description", 58, 17], ["platforms", 59, 9], ["license", 60, 9], ["maintainers", 61, 9]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 18, 15], ["version", 19, 7], ["src", 21, 7], ["nativeBuildInputs", 28, 7], ["buildInputs", 29, 15], ["patches", 32, 7], ["env", 50, 7], ["preConfigure", 52, 7], ["meta", 56, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 67, 5], ["subdir", 68, 5], ["description", 69, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["libprom", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +24,7 @@ export default nix.lambda((args) => (() => {
         const pname_1 = pname;
         const version = "0.1.1";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: "digitalocean",
             repo: "prometheus-client-c",
             rev: nix.thunk(() => nix.str`v${version}`),
@@ -41,21 +34,21 @@ export default nix.lambda((args) => (() => {
         const buildInputs_1 = buildInputs;
         const patches = nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               url: "https://github.com/digitalocean/prometheus-client-c/commit/5fcedeb506b7d47dd7bab35797f2c3f23db6fe10.patch",
               sha256: "10hzg8v5jcgxz224kdq0nha9vs78wz098b0ys7gig2iwgrg018fy",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               url: "https://github.com/digitalocean/prometheus-client-c/commit/0c15e7e45ad0c3726593591fdd7d8f2fde845fe3.patch",
               sha256: "06899v1xz3lpsdxww4p3q7pv8nrymnibncdc472056znr5fidlp0",
             })))),
         ]);
-        const env = nix.thunk(() => ({ [nix.POS]: pos$4, NIX_CFLAGS_COMPILE: "-fcommon" }));
+        const env = nix.thunk(() => ({ [nix.POS]: $pos[3], NIX_CFLAGS_COMPILE: "-fcommon" }));
         const preConfigure = nix.thunk(() => nix.str`cd ${subdir}
 `);
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           homepage: "https://github.com/digitalocean/prometheus-client-c/",
           description: description,
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
@@ -63,7 +56,7 @@ export default nix.lambda((args) => (() => {
           maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "cfsmp3"))]),
         }));
         return {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           pname: pname_1,
           version,
           src,
@@ -77,9 +70,9 @@ export default nix.lambda((args) => (() => {
       })()));
   })(), formals$2);
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     libprom: nix.thunk(() => nix.app(build, nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname: "libprom",
         subdir: "prom",
         description: "Prometheus Client in C",

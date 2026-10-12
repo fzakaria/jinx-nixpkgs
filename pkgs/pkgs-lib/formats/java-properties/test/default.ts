@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["foo", 20, 5], ["empty value", 21, 5], ["typical.dot.syntax", 22, 5], ["", 23, 5], ["1", 24, 5], ["#", 25, 5], ["!", 26, 5], ["!a", 27, 5], ["!b", 28, 5], ["dos paths", 29, 5], ["a \t\nb", 30, 5], ["angry \t\nkey", 31, 5], ["this=not", 40, 5], ["nor = this", 41, 5], ["all stuff", 42, 5], ["unicode big brain", 43, 5], ["ütf-8", 44, 5], ["الجبر", 46, 5]], [["LANG", 79, 7]], [["name", 51, 3], ["nativeBuildInputs", 52, 3], ["__structuredAttrs", 56, 3], ["strictDeps", 57, 3], ["properties", 60, 3], ["expected", 63, 3], ["src", 75, 3], ["env", 79, 3], ["buildPhase", 80, 3], ["doCheck", 83, 3], ["checkPhase", 84, 3], ["installPhase", 89, 3]]]);
 const formals$1 = { args: { formats: false, glibcLocales: false, jdk: false, lib: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["foo", 20, 5], ["empty value", 21, 5], ["typical.dot.syntax", 22, 5], ["", 23, 5], ["1", 24, 5], ["#", 25, 5], ["!", 26, 5], ["!a", 27, 5], ["!b", 28, 5], ["dos paths", 29, 5], ["a \t\nb", 30, 5], ["angry \t\nkey", 31, 5], ["this=not", 40, 5], ["nor = this", 41, 5], ["all stuff", 42, 5], ["unicode big brain", 43, 5], ["ütf-8", 44, 5], ["الجبر", 46, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["LANG", 79, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 51, 3], ["nativeBuildInputs", 52, 3], ["__structuredAttrs", 56, 3], ["strictDeps", 57, 3], ["properties", 60, 3], ["expected", 63, 3], ["src", 75, 3], ["env", 79, 3], ["buildPhase", 80, 3], ["doCheck", 83, 3], ["checkPhase", 84, 3], ["installPhase", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const mapAttrs = nix.thunk(() => nix.attr(lib, "mapAttrs"));
   const javaProperties = nix.thunk(() => nix.app(nix.sel(formats, "javaProperties"), nix.thunk(() => ({}))));
   const input = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     foo: "bar",
     "empty value": "",
     "typical.dot.syntax": "com.sun.awt",
@@ -47,7 +45,7 @@ value
     "الجبر": "أكثر من مجرد أرقام",
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: nix.thunk(() => nix.str`pkgs.formats.javaProperties-test-${nix.sel(jdk, "name")}`),
       nativeBuildInputs: nix.thunk(() => [jdk, glibcLocales]),
       __structuredAttrs: true,
@@ -60,7 +58,7 @@ ${value}
 
 `, input)))))),
       src: nix.thunk(() => nix.app(nix.sel(lib, "sources", "sourceByGlobs"), nix.path(here, "./."), nix.thunk(() => ["**/*.java"]))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, LANG: "en_US.UTF-8" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], LANG: "en_US.UTF-8" })),
       buildPhase: "javac Main.java\n",
       doCheck: true,
       checkPhase: "cat -v $properties\njava Main $properties >actual\ndiff -U3 <(printf \"%s\" \"$expected\") actual\n",

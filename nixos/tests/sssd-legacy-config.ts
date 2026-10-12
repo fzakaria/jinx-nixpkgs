@@ -2,35 +2,30 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/sssd-legacy-config.nix", [[["maintainers", 7, 7]], [["enable", 10, 7], ["config", 11, 7]], [["sssd", 9, 28]], [["services", 9, 19]], [["machine", 9, 11]], [["name", 5, 5], ["meta", 6, 5], ["nodes", 9, 5], ["testScript", 30, 5]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/sssd-legacy-config.nix", [["maintainers", 7, 7]]);
-const pos$2 = nix.positions(here + "/sssd-legacy-config.nix", [["enable", 10, 7], ["config", 11, 7]]);
-const pos$3 = nix.positions(here + "/sssd-legacy-config.nix", [["sssd", 9, 28]]);
-const pos$4 = nix.positions(here + "/sssd-legacy-config.nix", [["services", 9, 19]]);
-const pos$5 = nix.positions(here + "/sssd-legacy-config.nix", [["machine", 9, 11]]);
-const pos$6 = nix.positions(here + "/sssd-legacy-config.nix", [["name", 5, 5], ["meta", 6, 5], ["nodes", 9, 5], ["testScript", 30, 5]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")), nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     const pkgs = nix.arg($, "pkgs");
     return {
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       name: "sssd-legacy-config",
       meta: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return {
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "bbigras"))]),
         };
       })()),
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         machine: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             sssd: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               enable: true,
               config: "[sssd]\nservices = nss, pam\ndomains = shadowutils\n\n[nss]\n\n[pam]\n\n[domain/shadowutils]\nid_provider = proxy\nproxy_lib_name = files\nauth_provider = proxy\nproxy_pam_target = sssd-shadowutils\nproxy_fast_alias = True\n",
             })),

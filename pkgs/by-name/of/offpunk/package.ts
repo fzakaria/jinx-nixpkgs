@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["changelog", 72, 5], ["description", 73, 5], ["longDescription", 74, 5], ["homepage", 83, 5], ["license", 84, 5], ["mainProgram", 85, 5], ["maintainers", 86, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 27, 3], ["nativeBuildInputs", 29, 3], ["dependencies", 34, 3], ["pythonRemoveDeps", 59, 3], ["postInstall", 64, 3], ["doInstallCheck", 68, 3], ["nativeInstallCheckInputs", 69, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { fetchFromSourcehut: false, file: false, gettext: false, installShellFiles: false, less: false, lib: false, python3Packages: false, timg: false, versionCheckHook: false, "xdg-utils": false, xsel: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 72, 5], ["description", 73, 5], ["longDescription", 74, 5], ["homepage", 83, 5], ["license", 84, 5], ["mainProgram", 85, 5], ["maintainers", 86, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 27, 3], ["nativeBuildInputs", 29, 3], ["dependencies", 34, 3], ["pythonRemoveDeps", 59, 3], ["postInstall", 64, 3], ["doInstallCheck", 68, 3], ["nativeInstallCheckInputs", 69, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const xdg_utils = nix.arg($, "xdg-utils");
   const xsel = nix.arg($, "xsel");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "offpunk",
       version: "3.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "~lioploum",
           repo: "offpunk",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +53,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://git.sr.ht/~lioploum/offpunk/tree/v${nix.sel(finalAttrs, "version")}/item/CHANGELOG`),
         description: "CLI and offline-first smolnet browser/feed reader",
         longDescription: "Offpunk allows you to browse the Web, Gemini, Gopher and\nsubscribe to RSS feeds without leaving your terminal and while\nbeing offline.\n\nThe goal of Offpunk is to be able to synchronise your content\nonce (a day, a week, a month) and then browse/organise it while\nstaying disconnected.\n",

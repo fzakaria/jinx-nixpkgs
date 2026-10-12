@@ -2,12 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["gmenu_path", 24, 7]], [["extensionUuid", 36, 5], ["extensionPortalSlug", 37, 5]], [["description", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["homepage", 44, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["buildInputs", 28, 3], ["makeFlags", 33, 3], ["passthru", 35, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, glib: false, gettext: false, replaceVars: false, "gnome-menus": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["gmenu_path", 24, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["extensionUuid", 36, 5], ["extensionPortalSlug", 37, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["homepage", 44, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["buildInputs", 28, 3], ["makeFlags", 33, 3], ["passthru", 35, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gnome-shell-extension-arcmenu";
       const version = "69.2";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "arcmenu",
           repo: "ArcMenu",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -30,7 +26,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix_gmenu.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             gmenu_path: nix.thunk(() => nix.str`${gnome_menus}/lib/girepository-1.0`),
           })))),
       ]);
@@ -39,12 +35,12 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`INSTALLBASE=${nix.builtins.placeholder("out")}/share/gnome-shell/extensions`),
       ]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         extensionUuid: "arcmenu@arcmenu.com",
         extensionPortalSlug: "arcmenu",
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Application menu for GNOME Shell, designed to provide a more traditional user experience and workflow",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         maintainers: nix.thunk(() => (() => {
@@ -54,7 +50,7 @@ export default nix.lambda((args) => (() => {
         homepage: "https://gitlab.com/arcmenu/ArcMenu",
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

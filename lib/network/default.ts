@@ -2,16 +2,13 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["lib", 3, 44]], [["address", 54, 17], ["prefixLength", 54, 25]], [["fromString", 43, 5], ["mkEUI64Suffix", 78, 5]], [["ipv6", 14, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["lib", 3, 44]]);
-const pos$2 = nix.positions(here + "/default.nix", [["address", 54, 17], ["prefixLength", 54, 25]]);
-const pos$3 = nix.positions(here + "/default.nix", [["fromString", 43, 5], ["mkEUI64Suffix", 78, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["ipv6", 14, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./internal.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib }))));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./internal.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib }))));
   const _ipv6 = nix.thunk(() => nix.attr(from, "_ipv6"));
   const from_1 = nix.thunk(() => nix.sel(lib, "strings"));
   const match = nix.thunk(() => nix.attr(from_1, "match"));
@@ -25,15 +22,15 @@ export default nix.lambda((args) => (() => {
   const from_3 = nix.thunk(() => nix.sel(lib, "lists"));
   const elemAt = nix.thunk(() => nix.attr(from_3, "elemAt"));
   return {
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     ipv6: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       fromString: (addr) => (() => {
         const splittedAddr = nix.thunk(() => nix.app(nix.sel(_ipv6, "split"), addr));
         const addrInternal = nix.thunk(() => nix.sel(splittedAddr, "address"));
         const prefixLength = nix.thunk(() => nix.sel(splittedAddr, "prefixLength"));
         const address = nix.thunk(() => nix.app(nix.sel(_ipv6, "toStringFromExpandedIp"), addrInternal));
-        return { [nix.POS]: pos$2, address: address, prefixLength: prefixLength };
+        return { [nix.POS]: $pos[1], address: address, prefixLength: prefixLength };
       })(),
       mkEUI64Suffix: (mac) => nix.app(pipe, mac, nix.thunk(() => [
           nix.thunk(() => nix.app(match, "^([0-9A-Fa-f]{2})[-:.]?([0-9A-Fa-f]{2})[-:.]?([0-9A-Fa-f]{2})[-:.]?([0-9A-Fa-f]{2})[-:.]?([0-9A-Fa-f]{2})[-:.]?([0-9A-Fa-f]{2})$")),

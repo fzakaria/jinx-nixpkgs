@@ -2,9 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/dhall-packages.nix", [[["lib", 40, 67]], [["callPackage", 32, 9], ["buildDhallPackage", 33, 9], ["buildDhallGitHubPackage", 34, 9], ["buildDhallDirectoryPackage", 35, 9], ["buildDhallUrl", 36, 9], ["generateDhallDirectoryPackage", 37, 9], ["lib", 40, 7], ["dhall-cloudformation", 42, 7], ["dhall-grafana", 44, 7], ["dhall-kubernetes", 46, 7], ["Prelude", 48, 7]]]);
 const formals$1 = { args: { lib: false, newScope: false, overrides: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/dhall-packages.nix", [["lib", 40, 67]]);
-const pos$2 = nix.positions(here + "/dhall-packages.nix", [["callPackage", 32, 9], ["buildDhallPackage", 33, 9], ["buildDhallGitHubPackage", 34, 9], ["buildDhallDirectoryPackage", 35, 9], ["buildDhallUrl", 36, 9], ["generateDhallDirectoryPackage", 37, 9], ["lib", 40, 7], ["dhall-cloudformation", 42, 7], ["dhall-grafana", 44, 7], ["dhall-kubernetes", 46, 7], ["Prelude", 48, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,14 +18,14 @@ export default nix.lambda((args) => (() => {
     const buildDhallUrl = nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/interpreters/dhall/build-dhall-url.nix"), nix.thunk(() => ({}))));
     const generateDhallDirectoryPackage = nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/interpreters/dhall/generate-dhall-directory-package.nix"), nix.thunk(() => ({}))));
     return {
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       callPackage: callPackage,
       buildDhallPackage: buildDhallPackage,
       buildDhallGitHubPackage: buildDhallGitHubPackage,
       buildDhallDirectoryPackage: buildDhallDirectoryPackage,
       buildDhallUrl: buildDhallUrl,
       generateDhallDirectoryPackage: generateDhallDirectoryPackage,
-      lib: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../development/dhall-modules/lib.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib })))),
+      lib: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../development/dhall-modules/lib.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib })))),
       "dhall-cloudformation": nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/dhall-modules/dhall-cloudformation.nix"), nix.thunk(() => ({})))),
       "dhall-grafana": nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/dhall-modules/dhall-grafana.nix"), nix.thunk(() => ({})))),
       "dhall-kubernetes": nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/dhall-modules/dhall-kubernetes.nix"), nix.thunk(() => ({})))),

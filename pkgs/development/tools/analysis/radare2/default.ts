@@ -2,14 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["hash", 38, 5]], [["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]], [["owner", 49, 5], ["repo", 50, 5], ["rev", 51, 5], ["hash", 52, 5]], [["owner", 60, 5], ["repo", 61, 5], ["tag", 62, 5], ["hash", 63, 5]], [["updateScript", 144, 12]], [["description", 147, 5], ["longDescription", 148, 5], ["homepage", 163, 5], ["changelog", 164, 5], ["license", 165, 5], ["maintainers", 169, 5], ["mainProgram", 176, 5], ["platforms", 177, 5]], [["pname", 56, 3], ["version", 57, 3], ["src", 59, 3], ["mesonFlags", 66, 3], ["enableParallelBuilding", 78, 3], ["depsBuildBuild", 80, 3], ["strictDeps", 82, 3], ["nativeBuildInputs", 84, 3], ["buildInputs", 91, 3], ["propagatedBuildInputs", 112, 3], ["postUnpack", 119, 3], ["postFixup", 136, 3], ["nativeInstallCheckInputs", 140, 3], ["versionCheckProgramArg", 141, 3], ["doInstallCheck", 142, 3], ["passthru", 144, 3], ["meta", 146, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, buildPackages: false, capstone: false, file: false, gtk2: false, gtkdialog: false, libewf: false, "libusb-compat-0_1": false, libuv: false, libzip: false, lua: false, lz4: false, meson: false, ninja: false, openssl: false, perl: false, "pkg-config": false, python3: false, readline: false, ruby: false, versionCheckHook: false, vte: false, xxhash: false, zlib: false, zydis: false, useX11: true, rubyBindings: true, luaBindings: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["owner", 49, 5], ["repo", 50, 5], ["rev", 51, 5], ["hash", 52, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["owner", 60, 5], ["repo", 61, 5], ["tag", 62, 5], ["hash", 63, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["updateScript", 144, 12]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 147, 5], ["longDescription", 148, 5], ["homepage", 163, 5], ["changelog", 164, 5], ["license", 165, 5], ["maintainers", 169, 5], ["mainProgram", 176, 5], ["platforms", 177, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 56, 3], ["version", 57, 3], ["src", 59, 3], ["mesonFlags", 66, 3], ["enableParallelBuilding", 78, 3], ["depsBuildBuild", 80, 3], ["strictDeps", 82, 3], ["nativeBuildInputs", 84, 3], ["buildInputs", 91, 3], ["propagatedBuildInputs", 112, 3], ["postUnpack", 119, 3], ["postFixup", 136, 3], ["nativeInstallCheckInputs", 140, 3], ["versionCheckProgramArg", 141, 3], ["doInstallCheck", 142, 3], ["passthru", 144, 3], ["meta", 146, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,32 +38,32 @@ export default nix.lambda((args) => (() => {
   const rubyBindings = nix.argOr($, "rubyBindings", () => false);
   const luaBindings = nix.argOr($, "luaBindings", () => false);
   const binaryninja = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "Vector35",
       repo: "binaryninja-api",
       rev: "ba13f6ec7d0ce9a18a03a1c895fb72d18e03014a",
       hash: "sha256-ApBDmrepz27ioEjtqgdGzGF0tPkDghp7dA8L9eHHW6w=",
     }))));
   const sdb = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       owner: "radareorg",
       repo: "sdb",
       tag: "2.5.0",
       hash: "sha256-TSZGAzryZcVHJPnCx7zrP1+nschsOm1zmkCJyqA4kbk=",
     }))));
   const qjs = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       owner: "quickjs-ng",
       repo: "quickjs",
       rev: "9d15fb60b67c45fd0de413bb49e48f8dacebac16",
       hash: "sha256-TH139/44X2FPUTqEdqB09QSUE+QJhudnA+dQF8f8BN0=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "radare2",
       version: "6.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "radareorg",
           repo: "radare2",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -124,9 +118,9 @@ popd
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "-v",
       doInstallCheck: true,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[4], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "UNIX-like reverse engineering framework and command-line toolset",
         longDescription: "r2 is a complete rewrite of radare. It provides a set of libraries, tools\nand plugins to ease reverse engineering tasks. Distributed mostly under\nLGPLv3, each plugin can have different licenses.\n\nThe radare project started as a simple command-line hexadecimal editor\nfocused on forensics. Today, r2 is a featureful low-level command-line\ntool with support for scripting with the embedded JavaScript interpreter\nor via r2pipe.\n\nr2 can edit files on local hard drives, view kernel memory, and debug\nprograms locally or via a remote gdb/windbg servers. r2's wide\narchitecture support allows you to analyze, emulate, debug, modify, and\ndisassemble any binary.\n",
         homepage: "https://radare.org",

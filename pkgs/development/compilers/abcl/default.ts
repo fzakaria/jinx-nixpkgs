@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 26, 5], ["hash", 27, 5]], [["updateScript", 61, 12]], [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["mainProgram", 70, 5], ["teams", 71, 5], ["platforms", 72, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildPhase", 40, 3], ["installPhase", 50, 3], ["passthru", 61, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, writeShellScriptBin: false, fetchurl: false, ant: false, openjdk17: false, makeWrapper: false, stripJavaArchivesHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 61, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["mainProgram", 70, 5], ["teams", 71, 5], ["platforms", 72, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildPhase", 40, 3], ["installPhase", 50, 3], ["passthru", 61, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,20 +18,20 @@ export default nix.lambda((args) => (() => {
   const jdk = openjdk17;
   const fakeHostname = nix.thunk(() => nix.app(writeShellScriptBin, "hostname", "echo nix-builder.localdomain\n"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "abcl",
       version: "1.9.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://common-lisp.net/project/armedbear/releases/${nix.sel(finalAttrs, "version")}/abcl-src-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-uwShIj06mGCS4BD/2tE69QQp1VwagYdL8wIvlDa/sv8=",
         })))),
       nativeBuildInputs: nix.thunk(() => [ant, jdk, fakeHostname, makeWrapper, stripJavaArchivesHook]),
       buildPhase: "runHook preBuild\n\nant \\\n  -Dabcl.runtime.jar.path=\"$out/lib/abcl/abcl.jar\" \\\n  -Dadditional.jars=\"$out/lib/abcl/abcl-contrib.jar\"\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nmkdir -p \"$out\"/{share/doc/abcl,lib/abcl}\ncp -r README COPYING CHANGES examples/  \"$out/share/doc/abcl/\"\ncp -r dist/*.jar contrib/ \"$out/lib/abcl/\"\ninstall -Dm555 abcl -t $out/bin\n\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "JVM-based Common Lisp implementation",
         homepage: "https://common-lisp.net/project/armedbear/",
         license: nix.thunk(() => (() => {

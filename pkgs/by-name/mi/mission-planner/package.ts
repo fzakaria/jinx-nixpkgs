@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 15, 5], ["exec", 16, 5], ["icon", 17, 5], ["comment", 18, 5], ["desktopName", 19, 5], ["genericName", 20, 5]], [["url", 28, 5], ["sha256", 29, 5]], [["AOT_FILES", 49, 7]], [["description", 75, 5], ["mainProgram", 76, 5], ["longDescription", 77, 5], ["homepage", 82, 5], ["sourceProvenance", 83, 5], ["license", 84, 5], ["maintainers", 85, 5], ["platforms", 86, 5]], [["pname", 24, 11], ["version", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 32, 3], ["unpackPhase", 39, 3], ["env", 49, 3], ["buildPhase", 54, 3], ["installPhase", 63, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeDesktopItem: false, makeWrapper: false, unzip: false, mono: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 15, 5], ["exec", 16, 5], ["icon", 17, 5], ["comment", 18, 5], ["desktopName", 19, 5], ["genericName", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 28, 5], ["sha256", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["AOT_FILES", 49, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 75, 5], ["mainProgram", 76, 5], ["longDescription", 77, 5], ["homepage", 82, 5], ["sourceProvenance", 83, 5], ["license", 84, 5], ["maintainers", 85, 5], ["platforms", 86, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 24, 11], ["version", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 32, 3], ["unpackPhase", 39, 3], ["env", 49, 3], ["buildPhase", 54, 3], ["installPhase", 63, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const gitUpdater = nix.arg($, "gitUpdater");
   const pname = "mission-planner";
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: pname,
       exec: pname,
       icon: pname,
@@ -33,14 +29,14 @@ export default nix.lambda((args) => (() => {
       const pname_1 = pname;
       const version = "1.3.83";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://firmware.ardupilot.org/Tools/MissionPlanner/MissionPlanner-${version}.zip`),
           sha256: "sha256-/zaU96kDjK91ZUUEndeu9049DY/jWG6HqogQRXBN1vk=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [makeWrapper, mono, unzip]);
       const unpackPhase = "runHook preUnpack\n\nmkdir -p source\ncd source\nunzip -q $src\n\nrunHook postUnpack\n";
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         AOT_FILES: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["MissionPlanner.exe", "MissionPlanner.*.dll"]))),
       }));
       const buildPhase = "runHook preBuild\nfor file in $AOT_FILES\ndo\n  mono --aot $file\ndone\nrunHook postBuild\n";
@@ -54,7 +50,7 @@ makeWrapper ${mono}/bin/mono $out/bin/mission-planner \\
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "ArduPilot ground station",
         mainProgram: "mission-planner",
         longDescription: "Full-featured ground station application for the ArduPilot open source\nautopilot project.  Lets you both flash, configure and control ArduPilot\nPlane, Copter and Rover targets.\n",
@@ -71,7 +67,7 @@ runHook postInstall
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname: pname_1,
         version,
         src,

@@ -2,14 +2,14 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["condaPatchelfLibs", 7, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["condaPatchelfLibs", 7, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     condaPatchelfLibs: nix.thunk(() => nix.builtins.map((p) => nix.selOr(p, () => nix.force(p), "lib"), nix.thunk(() => (() => {
         const w = nix.withScope(pkgs, null);
         return [

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 7], ["repo", 24, 7], ["rev", 25, 7], ["hash", 26, 7]], [["url", 31, 7], ["hash", 32, 7]], [["homepage", 59, 7], ["description", 60, 7], ["license", 61, 7], ["platforms", 62, 7], ["maintainers", 63, 7]], [["pname", 19, 5], ["version", 20, 5], ["src", 22, 5], ["patches", 30, 5], ["nativeBuildInputs", 35, 5], ["buildInputs", 40, 5], ["postInstall", 52, 5], ["meta", 58, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, autoreconfHook: false, gettext: false, perl: false, "pkg-config": false, libxml2: false, pango: false, cairo: false, groff: false, tcl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 7], ["repo", 24, 7], ["rev", 25, 7], ["hash", 26, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 31, 7], ["hash", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 59, 7], ["description", 60, 7], ["license", 61, 7], ["platforms", 62, 7], ["maintainers", 63, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 5], ["version", 20, 5], ["src", 22, 5], ["patches", 30, 5], ["nativeBuildInputs", 35, 5], ["buildInputs", 40, 5], ["postInstall", 52, 5], ["meta", 58, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,18 +21,18 @@ export default nix.lambda((args) => (() => {
   const groff = nix.arg($, "groff");
   const tcl = nix.arg($, "tcl");
   return nix.app(nix.sel(perl, "pkgs", "toPerlModule"), nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname: "rrdtool",
         version: "1.9.0",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: "oetiker",
             repo: "rrdtool-1.x",
             rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
             hash: "sha256-CPbSu1mosNlfj2nqiNVH14a5C5njkfvJM8ix3X3aP8E=",
           })))),
         patches: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               url: "https://github.com/oetiker/rrdtool-1.x/pull/1262.patch",
               hash: "sha256-aP0rmDlILn6VC8Tg7HpRXbxL9+KD/PRTbXnbQ7HgPEg=",
             })))))),
@@ -46,7 +43,7 @@ mkdir -p $out/${nix.sel(perl, "libPrefix")}
 mv $out/lib/perl/5* $out/${nix.sel(perl, "libPrefix")}
 `),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           homepage: "https://oss.oetiker.ch/rrdtool/",
           description: "High performance logging in Round Robin Databases",
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

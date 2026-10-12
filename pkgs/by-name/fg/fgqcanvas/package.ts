@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["homepage", 47, 5], ["description", 48, 5], ["license", 49, 5], ["platforms", 50, 5], ["maintainers", 51, 5], ["mainProgram", 52, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 26, 3], ["configurePhase", 30, 3], ["installPhase", 39, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { fetchgit: false, "pkg-config": false, stdenv: false, lib: false, qt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 47, 5], ["description", 48, 5], ["license", 49, 5], ["platforms", 50, 5], ["maintainers", 51, 5], ["mainProgram", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 26, 3], ["configurePhase", 30, 3], ["installPhase", 39, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const qt5 = nix.arg($, "qt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "fgqcanvas",
       version: "0-unstable-2024-02-11",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.code.sf.net/p/flightgear/flightgear",
           rev: "3168828949d6b42959ccee6c202b8895493edb2b",
           hash: "sha256-QiIMkrzaB/ljVf6c+RJNFWKLZa84cIjYPO5nxEFDqjg=",
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       configurePhase: "runHook preConfigure\ncd utils/fgqcanvas/\nmkdir -p build\ncd build\nqmake -makefile ../fgcanvas.pro CONFIG+=\"release\" QMAKE_CXXFLAGS+=' -Wno-deprecated-copy -Wno-deprecated -Wno-deprecated-declarations'\nrunHook postConfigure\n",
       installPhase: "runHook preInstall\nmkdir -p $out/bin\nmv fgqcanvas $out/bin/\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://sourceforge.net/p/flightgear/flightgear/ci/next/tree/utils/fgqcanvas/README.md",
         description: "Qt-based remote canvas application for FlightGear",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

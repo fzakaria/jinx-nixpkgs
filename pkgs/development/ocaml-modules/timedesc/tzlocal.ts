@@ -2,22 +2,21 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tzlocal.nix", [[["description", 12, 5]], [["pname", 7, 3], ["version", 9, 22], ["src", 9, 30], ["sourceRoot", 9, 34], ["meta", 11, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, timedesc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tzlocal.nix", [["description", 12, 5]]);
-const pos$2 = nix.positions(here + "/tzlocal.nix", [["pname", 7, 3], ["version", 9, 22], ["src", 9, 30], ["sourceRoot", 9, 34], ["meta", 11, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const timedesc = nix.arg($, "timedesc");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "timedesc-tzlocal",
       version: nix.thunk(() => nix.attr(timedesc, "version")),
       src: nix.thunk(() => nix.attr(timedesc, "src")),
       sourceRoot: nix.thunk(() => nix.attr(timedesc, "sourceRoot")),
       meta: nix.thunk(() => nix.update(nix.sel(timedesc, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Virtual library for Timedesc local time zone detection backends",
       })),
     })));

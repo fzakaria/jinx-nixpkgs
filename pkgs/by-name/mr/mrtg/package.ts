@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 25, 5], ["sha256", 26, 5]], [["name", 45, 7], ["url", 46, 7], ["hash", 47, 7], ["excludes", 48, 7], ["stripLen", 49, 7], ["extraPrefix", 50, 7]], [["NIX_CFLAGS_LINK", 54, 7]], [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["platforms", 69, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 31, 3], ["patches", 39, 3], ["env", 54, 3], ["postInstall", 56, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, makeWrapper: false, fetchurl: false, fetchpatch: false, perl: false, gd: false, rrdtool: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 25, 5], ["sha256", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 45, 7], ["url", 46, 7], ["hash", 47, 7], ["excludes", 48, 7], ["stripLen", 49, 7], ["extraPrefix", 50, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_LINK", 54, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["platforms", 69, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 31, 3], ["patches", 39, 3], ["env", 54, 3], ["postInstall", 56, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +23,11 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "mrtg",
       version: "2.17.10",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://oss.oetiker.ch/mrtg/pub/mrtg-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-x/EcteIXpQDYfuO10mxYqGUu28DTKRaIu3krAQ+uQ6w=",
         })))),
@@ -40,7 +36,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./configure-long-long-format-gcc14.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix-gcc15.patch",
             url: "https://github.com/oetiker/mrtg/commit/a64a83210643114b3a892e70ce07ded5bd5de054.patch",
             hash: "sha256-9k16WrCAETuk5DJf5pmeXFHc4AZD9Acmtq/7P24tpwc=",
@@ -49,10 +45,10 @@ export default nix.lambda((args) => (() => {
             extraPrefix: "",
           })))),
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_LINK: "-lm" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_CFLAGS_LINK: "-lm" })),
       postInstall: "# mrtg wants plain C locale\nwrapProgram $out/bin/mrtg  --set LANG C\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Multi Router Traffic Grapher",
         homepage: "https://oss.oetiker.ch/mrtg/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

@@ -2,86 +2,51 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/appservice-irc.nix", [[["maintainers", 8, 5]], [["name", 18, 22]], [["compress", 35, 21], ["names", 36, 21]], [["compress", 39, 21], ["names", 40, 21]], [["bind_addresses", 29, 17], ["port", 32, 17], ["resources", 33, 17], ["tls", 43, 17], ["type", 44, 17]], [["database", 18, 13], ["app_service_config_files", 19, 13], ["enable_registration", 21, 13], ["enable_registration_without_verification", 24, 13], ["listeners", 26, 13]], [["enable", 16, 11], ["settings", 17, 11]], [["matrix-synapse", 15, 18]], [["allowedTCPPorts", 50, 29]], [["firewall", 50, 20]], [["services", 15, 9], ["networking", 50, 9]], [["configuration", 14, 30]], [["running", 14, 22]], [["specialisation", 14, 7]], [["enable", 56, 9], ["config", 57, 9]], [["ngircd", 55, 16]], [["allowedTCPPorts", 71, 27]], [["firewall", 71, 18]], [["services", 55, 7], ["networking", 71, 7]], [["url", 82, 24], ["domain", 83, 24]], [["enabled", 90, 19], ["aliasTemplate", 91, 19]], [["name", 87, 17], ["port", 88, 17], ["dynamicChannels", 89, 17]], [["ircd", 86, 23]], [["publicUrl", 95, 17], ["ttl", 96, 17]], [["servers", 86, 15], ["mediaProxy", 94, 15]], [["homeserver", 82, 13], ["ircService", 85, 13]], [["enable", 78, 11], ["registrationUrl", 79, 11], ["settings", 81, 11]], [["matrix-appservice-irc", 77, 18]], [["allowedTCPPorts", 102, 29]], [["firewall", 102, 20]], [["services", 77, 9], ["networking", 102, 9]], [["libraries", 111, 15], ["flakeIgnore", 112, 15]], [["systemPackages", 108, 21]], [["environment", 108, 9]], [["homeserver", 12, 5], ["ircd", 54, 5], ["appservice", 74, 5], ["client", 105, 5]], [["name", 6, 3], ["meta", 7, 3], ["nodes", 11, 3], ["testScript", 210, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/appservice-irc.nix", [["maintainers", 8, 5]]);
-const pos$2 = nix.positions(here + "/appservice-irc.nix", [["name", 18, 22]]);
-const pos$3 = nix.positions(here + "/appservice-irc.nix", [["compress", 35, 21], ["names", 36, 21]]);
-const pos$4 = nix.positions(here + "/appservice-irc.nix", [["compress", 39, 21], ["names", 40, 21]]);
-const pos$5 = nix.positions(here + "/appservice-irc.nix", [["bind_addresses", 29, 17], ["port", 32, 17], ["resources", 33, 17], ["tls", 43, 17], ["type", 44, 17]]);
-const pos$6 = nix.positions(here + "/appservice-irc.nix", [["database", 18, 13], ["app_service_config_files", 19, 13], ["enable_registration", 21, 13], ["enable_registration_without_verification", 24, 13], ["listeners", 26, 13]]);
-const pos$7 = nix.positions(here + "/appservice-irc.nix", [["enable", 16, 11], ["settings", 17, 11]]);
-const pos$8 = nix.positions(here + "/appservice-irc.nix", [["matrix-synapse", 15, 18]]);
-const pos$9 = nix.positions(here + "/appservice-irc.nix", [["allowedTCPPorts", 50, 29]]);
-const pos$10 = nix.positions(here + "/appservice-irc.nix", [["firewall", 50, 20]]);
-const pos$11 = nix.positions(here + "/appservice-irc.nix", [["services", 15, 9], ["networking", 50, 9]]);
-const pos$12 = nix.positions(here + "/appservice-irc.nix", [["configuration", 14, 30]]);
-const pos$13 = nix.positions(here + "/appservice-irc.nix", [["running", 14, 22]]);
-const pos$14 = nix.positions(here + "/appservice-irc.nix", [["specialisation", 14, 7]]);
-const pos$15 = nix.positions(here + "/appservice-irc.nix", [["enable", 56, 9], ["config", 57, 9]]);
-const pos$16 = nix.positions(here + "/appservice-irc.nix", [["ngircd", 55, 16]]);
-const pos$17 = nix.positions(here + "/appservice-irc.nix", [["allowedTCPPorts", 71, 27]]);
-const pos$18 = nix.positions(here + "/appservice-irc.nix", [["firewall", 71, 18]]);
-const pos$19 = nix.positions(here + "/appservice-irc.nix", [["services", 55, 7], ["networking", 71, 7]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$20 = nix.positions(here + "/appservice-irc.nix", [["url", 82, 24], ["domain", 83, 24]]);
-const pos$21 = nix.positions(here + "/appservice-irc.nix", [["enabled", 90, 19], ["aliasTemplate", 91, 19]]);
-const pos$22 = nix.positions(here + "/appservice-irc.nix", [["name", 87, 17], ["port", 88, 17], ["dynamicChannels", 89, 17]]);
-const pos$23 = nix.positions(here + "/appservice-irc.nix", [["ircd", 86, 23]]);
-const pos$24 = nix.positions(here + "/appservice-irc.nix", [["publicUrl", 95, 17], ["ttl", 96, 17]]);
-const pos$25 = nix.positions(here + "/appservice-irc.nix", [["servers", 86, 15], ["mediaProxy", 94, 15]]);
-const pos$26 = nix.positions(here + "/appservice-irc.nix", [["homeserver", 82, 13], ["ircService", 85, 13]]);
-const pos$27 = nix.positions(here + "/appservice-irc.nix", [["enable", 78, 11], ["registrationUrl", 79, 11], ["settings", 81, 11]]);
-const pos$28 = nix.positions(here + "/appservice-irc.nix", [["matrix-appservice-irc", 77, 18]]);
-const pos$29 = nix.positions(here + "/appservice-irc.nix", [["allowedTCPPorts", 102, 29]]);
-const pos$30 = nix.positions(here + "/appservice-irc.nix", [["firewall", 102, 20]]);
-const pos$31 = nix.positions(here + "/appservice-irc.nix", [["services", 77, 9], ["networking", 102, 9]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$32 = nix.positions(here + "/appservice-irc.nix", [["libraries", 111, 15], ["flakeIgnore", 112, 15]]);
-const pos$33 = nix.positions(here + "/appservice-irc.nix", [["systemPackages", 108, 21]]);
-const pos$34 = nix.positions(here + "/appservice-irc.nix", [["environment", 108, 9]]);
-const pos$35 = nix.positions(here + "/appservice-irc.nix", [["homeserver", 12, 5], ["ircd", 54, 5], ["appservice", 74, 5], ["client", 105, 5]]);
-const pos$36 = nix.positions(here + "/appservice-irc.nix", [["name", 6, 3], ["meta", 7, 3], ["nodes", 11, 3], ["testScript", 210, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const homeserverUrl = "http://homeserver:8008";
   return {
-    [nix.POS]: pos$36,
+    [nix.POS]: $pos[35],
     name: "matrix-appservice-irc",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => nix.sel(pkgs, "matrix-appservice-irc", "meta", "maintainers")),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$35,
+      [nix.POS]: $pos[34],
       homeserver: nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         specialisation: nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           running: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             configuration: nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 "matrix-synapse": nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   enable: true,
                   settings: nix.thunk(() => ({
-                    [nix.POS]: pos$6,
-                    database: nix.thunk(() => ({ [nix.POS]: pos$2, name: "sqlite3" })),
+                    [nix.POS]: $pos[5],
+                    database: nix.thunk(() => ({ [nix.POS]: $pos[1], name: "sqlite3" })),
                     app_service_config_files: nix.thunk(() => ["/registration.yml"]),
                     enable_registration: true,
                     enable_registration_without_verification: true,
                     listeners: nix.thunk(() => [
                       nix.thunk(() => ({
-                        [nix.POS]: pos$5,
+                        [nix.POS]: $pos[4],
                         bind_addresses: nix.thunk(() => ["0.0.0.0"]),
                         port: 8008n,
                         resources: nix.thunk(() => [
-                          nix.thunk(() => ({ [nix.POS]: pos$3, compress: true, names: nix.thunk(() => ["client"]) })),
-                          nix.thunk(() => ({ [nix.POS]: pos$4, compress: false, names: nix.thunk(() => ["federation"]) })),
+                          nix.thunk(() => ({ [nix.POS]: $pos[2], compress: true, names: nix.thunk(() => ["client"]) })),
+                          nix.thunk(() => ({ [nix.POS]: $pos[3], compress: false, names: nix.thunk(() => ["federation"]) })),
                         ]),
                         tls: false,
                         type: "http",
@@ -91,61 +56,61 @@ export default nix.lambda((args) => (() => {
                 })),
               })),
               networking: nix.thunk(() => ({
-                [nix.POS]: pos$10,
-                firewall: nix.thunk(() => ({ [nix.POS]: pos$9, allowedTCPPorts: nix.thunk(() => [8008n]) })),
+                [nix.POS]: $pos[9],
+                firewall: nix.thunk(() => ({ [nix.POS]: $pos[8], allowedTCPPorts: nix.thunk(() => [8008n]) })),
               })),
             })),
           })),
         })),
       })),
       ircd: nix.thunk(() => ({
-        [nix.POS]: pos$19,
+        [nix.POS]: $pos[18],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           ngircd: nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             enable: true,
             config: "[Global]\n  Name = ircd.ircd\n  Info = Server Info Text\n  AdminInfo1 = _\n\n[Channel]\n  Name = #test\n  Topic = a cool place\n\n[Options]\n  PAM = no\n",
           })),
         })),
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$18,
-          firewall: nix.thunk(() => ({ [nix.POS]: pos$17, allowedTCPPorts: nix.thunk(() => [6667n]) })),
+          [nix.POS]: $pos[17],
+          firewall: nix.thunk(() => ({ [nix.POS]: $pos[16], allowedTCPPorts: nix.thunk(() => [6667n]) })),
         })),
       })),
       appservice: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$31,
+          [nix.POS]: $pos[30],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$28,
+            [nix.POS]: $pos[27],
             "matrix-appservice-irc": nix.thunk(() => ({
-              [nix.POS]: pos$27,
+              [nix.POS]: $pos[26],
               enable: true,
               registrationUrl: "http://appservice:8009",
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$26,
-                homeserver: nix.thunk(() => ({ [nix.POS]: pos$20, url: homeserverUrl, domain: "homeserver" })),
+                [nix.POS]: $pos[25],
+                homeserver: nix.thunk(() => ({ [nix.POS]: $pos[19], url: homeserverUrl, domain: "homeserver" })),
                 ircService: nix.thunk(() => ({
-                  [nix.POS]: pos$25,
+                  [nix.POS]: $pos[24],
                   servers: nix.thunk(() => ({
-                    [nix.POS]: pos$23,
+                    [nix.POS]: $pos[22],
                     ircd: nix.thunk(() => ({
-                      [nix.POS]: pos$22,
+                      [nix.POS]: $pos[21],
                       name: "IRCd",
                       port: 6667n,
-                      dynamicChannels: nix.thunk(() => ({ [nix.POS]: pos$21, enabled: true, aliasTemplate: "#irc_$CHANNEL" })),
+                      dynamicChannels: nix.thunk(() => ({ [nix.POS]: $pos[20], enabled: true, aliasTemplate: "#irc_$CHANNEL" })),
                     })),
                   })),
-                  mediaProxy: nix.thunk(() => ({ [nix.POS]: pos$24, publicUrl: "http://localhost:11111/media", ttl: 0n })),
+                  mediaProxy: nix.thunk(() => ({ [nix.POS]: $pos[23], publicUrl: "http://localhost:11111/media", ttl: 0n })),
                 })),
               })),
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$30,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$29, allowedTCPPorts: nix.thunk(() => [8009n]) })),
+            [nix.POS]: $pos[29],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[28], allowedTCPPorts: nix.thunk(() => [8009n]) })),
           })),
         };
       })(), formals$2),
@@ -153,12 +118,12 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$34,
+          [nix.POS]: $pos[33],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$33,
+            [nix.POS]: $pos[32],
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(pkgs_1, "writers", "writePython3Bin"), "do_test", nix.thunk(() => ({
-                  [nix.POS]: pos$32,
+                  [nix.POS]: $pos[31],
                   libraries: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "python3Packages", "matrix-nio"))]),
                   flakeIgnore: nix.thunk(() => ["E501"]),
                 })), "import sys\nimport socket\nimport functools\nfrom time import sleep\nimport asyncio\n\nfrom nio import AsyncClient, RoomMessageText, JoinResponse\n\n\nasync def matrix_room_message_text_callback(matrix: AsyncClient, msg: str, _r, e):\n    print(\"Received matrix text message: \", e)\n    if msg in e.body:\n        print(\"Received hi from IRC\")\n        await matrix.close()\n        exit(0)  # Actual exit point\n\n\nclass IRC:\n    def __init__(self):\n        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n        sock.connect((\"ircd\", 6667))\n        sock.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)\n        sock.send(b\"USER bob bob bob :bob\\n\")\n        sock.send(b\"NICK bob\\n\")\n        self.sock = sock\n\n    def join(self, room: str):\n        self.sock.send(f\"JOIN {room}\\n\".encode())\n\n    def privmsg(self, room: str, msg: str):\n        self.sock.send(f\"PRIVMSG {room} :{msg}\\n\".encode())\n\n    def expect_msg(self, body: str):\n        buffer = \"\"\n        while True:\n            buf = self.sock.recv(1024).decode()\n            buffer += buf\n            if body in buffer:\n                return\n\n\nasync def run(homeserver: str):\n    irc = IRC()\n\n    matrix = AsyncClient(homeserver)\n    response = await matrix.register(\"alice\", \"foobar\")\n    print(\"Matrix register response: \", response)\n\n    response = await matrix.join(\"#irc_#test:homeserver\")\n    print(\"Matrix join room response:\", response)\n    assert isinstance(response, JoinResponse)\n    room_id = response.room_id\n\n    irc.join(\"#test\")\n    # FIXME: what are we waiting on here? Matrix? IRC? Both?\n    # 10s seem bad for busy hydra machines.\n    sleep(10)\n\n    # Exchange messages\n    print(\"Sending text message to matrix room\")\n    response = await matrix.room_send(\n        room_id=room_id,\n        message_type=\"m.room.message\",\n        content={\"msgtype\": \"m.text\", \"body\": \"hi from matrix\"},\n    )\n    print(\"Matrix room send response: \", response)\n    irc.privmsg(\"#test\", \"hi from irc\")\n\n    print(\"Waiting for the matrix message to appear on the IRC side...\")\n    irc.expect_msg(\"hi from matrix\")\n\n    callback = functools.partial(\n        matrix_room_message_text_callback, matrix, \"hi from irc\"\n    )\n    matrix.add_event_callback(callback, RoomMessageText)\n\n    print(\"Waiting for matrix message...\")\n    await matrix.sync_forever()\n\n    exit(1)  # Unreachable\n\n\nif __name__ == \"__main__\":\n    asyncio.run(run(sys.argv[1]))\n")),

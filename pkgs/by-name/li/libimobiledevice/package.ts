@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["updateScript", 59, 12]], [["homepage", 62, 5], ["description", 63, 5], ["longDescription", 64, 5], ["license", 76, 5], ["platforms", 77, 5], ["maintainers", 78, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["preAutoreconf", 29, 3], ["configureFlags", 33, 3], ["nativeBuildInputs", 35, 3], ["propagatedBuildInputs", 40, 3], ["strictDeps", 49, 3], ["__structuredAttrs", 50, 3], ["outputs", 52, 3], ["enableParallelBuilding", 57, 3], ["passthru", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, autoreconfHook: false, "pkg-config": false, openssl: false, libgcrypt: false, libplist: false, libtasn1: false, libtatsu: false, libusbmuxd: false, "libimobiledevice-glue": false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 59, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 62, 5], ["description", 63, 5], ["longDescription", 64, 5], ["license", 76, 5], ["platforms", 77, 5], ["maintainers", 78, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["preAutoreconf", 29, 3], ["configureFlags", 33, 3], ["nativeBuildInputs", 35, 3], ["propagatedBuildInputs", 40, 3], ["strictDeps", 49, 3], ["__structuredAttrs", 50, 3], ["outputs", 52, 3], ["enableParallelBuilding", 57, 3], ["passthru", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const libimobiledevice_glue = nix.arg($, "libimobiledevice-glue");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libimobiledevice",
       version: "1.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "libimobiledevice",
           repo: "libimobiledevice",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,11 +42,11 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "dev"]),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/libimobiledevice/libimobiledevice",
         description: "Software library that talks the protocols to support iPhone®, iPod Touch® and iPad® devices on Linux",
         longDescription: "libimobiledevice is a software library that talks the protocols to support\niPhone®, iPod Touch® and iPad® devices on Linux. Unlike other projects, it\ndoes not depend on using any existing proprietary libraries and does not\nrequire jailbreaking. It allows other software to easily access the\ndevice's filesystem, retrieve information about the device and it's\ninternals, backup/restore the device, manage SpringBoard® icons, manage\ninstalled applications, retrieve addressbook/calendars/notes and bookmarks\nand synchronize music and video to the device. The library is in\ndevelopment since August 2007 with the goal to bring support for these\ndevices to the Linux Desktop.\n",

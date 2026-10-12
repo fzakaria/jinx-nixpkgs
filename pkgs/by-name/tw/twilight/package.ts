@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]], [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["platforms", 37, 5], ["maintainers", 38, 5], ["mainProgram", 39, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["buildInputs", 22, 3], ["installPhase", 29, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, libGL: false, libGLU: false, libglut: false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["platforms", 37, 5], ["maintainers", 38, 5], ["mainProgram", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["buildInputs", 22, 3], ["installPhase", 29, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "twilight";
       const version = "unstable-2018-04-19";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tweakoz",
           repo: "twilight",
           rev: "43f21d15c2a8923c9d707bdf3789f480bfd4b36d",
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [libGL, libGLU, libglut, libx11]);
       const installPhase = "install -Dm755 twilight $out/bin/twilight\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Redo of IRIX twilight backdrop in old school OpenGL",
         homepage: nix.thunk(() => nix.sel(src, "meta", "homepage")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
         mainProgram: "twilight",
       }));
-      return { [nix.POS]: pos$3, pname, version, src, buildInputs, installPhase, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, buildInputs, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

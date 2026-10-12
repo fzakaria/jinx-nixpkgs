@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["package", 75, 7], ["command", 76, 7]], [["version", 74, 11]], [["tests", 74, 5], ["updateScript", 78, 5]], [["description", 82, 5], ["homepage", 83, 5], ["changelog", 84, 5], ["license", 85, 5], ["longDescription", 86, 5], ["mainProgram", 98, 5], ["maintainers", 99, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["pythonRelaxDeps", 22, 3], ["build-system", 24, 3], ["dependencies", 26, 3], ["nativeCheckInputs", 37, 3], ["disabledTestPaths", 42, 3], ["disabledTests", 67, 3], ["passthru", 73, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, "elasticsearch-curator": false, fetchFromGitHub: false, "nix-update-script": false, python3: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 75, 7], ["command", 76, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 74, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 74, 5], ["updateScript", 78, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 82, 5], ["homepage", 83, 5], ["changelog", 84, 5], ["license", 85, 5], ["longDescription", 86, 5], ["mainProgram", 98, 5], ["maintainers", 99, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["pythonRelaxDeps", 22, 3], ["build-system", 24, 3], ["dependencies", 26, 3], ["nativeCheckInputs", 37, 3], ["disabledTestPaths", 42, 3], ["disabledTests", 67, 3], ["passthru", 73, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "elasticsearch-curator",
       version: "8.0.21",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "elastic",
           repo: "curator",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -80,11 +75,11 @@ export default nix.lambda((args) => (() => {
       ]),
       disabledTests: nix.thunk(() => ["test_api_key_not_set", "test_api_key_set"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: elasticsearch_curator,
               command: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), elasticsearch_curator)} --version`),
             })))),
@@ -92,7 +87,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Curate, or manage, your Elasticsearch indices and snapshots",
         homepage: "https://github.com/elastic/curator",
         changelog: nix.thunk(() => nix.str`https://github.com/elastic/curator/releases/tag/v${nix.sel(finalAttrs, "version")}`),

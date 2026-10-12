@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["CGO_ENABLED", 21, 7]], [["updateScript", 35, 12]], [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["platforms", 57, 5], ["mainProgram", 58, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["env", 21, 3], ["vendorHash", 23, 3], ["ldflags", 25, 3], ["preBuild", 31, 3], ["passthru", 35, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, writeShellScript: false, "nix-update": false, nix: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 21, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 35, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["platforms", 57, 5], ["mainProgram", 58, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["env", 21, 3], ["vendorHash", 23, 3], ["ldflags", 25, 3], ["preBuild", 31, 3], ["passthru", 35, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const nix_update = nix.arg($, "nix-update");
   const nix$ = nix.arg($, "nix");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "hyprspace",
       version: "0.15.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hyprspace",
           repo: "hyprspace",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-DmcfR8hA0IsFVEJPZ50jL81u3rw0ieVReTDDC8fTREQ=",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: "0" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_ENABLED: "0" })),
       vendorHash: "sha256-Pkj4q5v35JWwd4OPqj3AX8QLdrjnceT+90sioK5+VvQ=",
       ldflags: nix.thunk(() => [
         "-s",
@@ -38,7 +34,7 @@ export default nix.lambda((args) => (() => {
       preBuild: nix.thunk(() => nix.str`ln -s ${nix.path(here, "./config_generated.go")} ./schema/config_generated.go
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update", nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix_update)} hyprspace
 nix () {
   ${nix.app(nix.sel(lib, "getExe"), nix$)} --extra-experimental-features 'flakes nix-command' "$@"
@@ -53,7 +49,7 @@ cat "$(
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Lightweight VPN Built on top of Libp2p for Truly Distributed Networks",
         homepage: "https://github.com/hyprspace/hyprspace",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

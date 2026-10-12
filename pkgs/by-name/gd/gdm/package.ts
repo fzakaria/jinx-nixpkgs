@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["icon", 40, 5]], [["url", 55, 5], ["hash", 56, 5]], [["url", 104, 7], ["hash", 105, 7], ["revert", 106, 7]], [["coreutils", 112, 9], ["plymouth", 113, 9], ["dbus", 114, 9], ["xorgserver", 116, 7]], [["DESTDIR", 179, 5]], [["packageName", 185, 41]], [["profile", 191, 7]], [["updateScript", 185, 5], ["dconfDb", 187, 5], ["dconfProfile", 188, 5], ["tests", 190, 5]], [["description", 202, 5], ["homepage", 203, 5], ["changelog", 204, 5], ["license", 205, 5], ["teams", 206, 5], ["platforms", 207, 5]], [["pname", 46, 3], ["version", 47, 3], ["outputs", 49, 3], ["src", 54, 3], ["mesonFlags", 59, 3], ["nativeBuildInputs", 70, 3], ["buildInputs", 81, 3], ["patches", 99, 3], ["postPatch", 136, 3], ["doInstallCheck", 148, 3], ["preInstall", 150, 3], ["postInstall", 154, 3], ["env", 172, 3], ["separateDebugInfo", 182, 3], ["passthru", 184, 3], ["meta", 201, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, replaceVars: false, meson: false, ninja: false, "pkg-config": false, glib: false, "json-glib": false, itstool: false, accountsservice: false, libx11: false, libxdmcp: false, libxcb: false, gnome: false, systemd: false, dconf: false, gtk3: false, pam: false, libgudev: false, libselinux: false, keyutils: false, audit: false, "gobject-introspection": false, plymouth: false, polkit: false, coreutils: false, "xorg-server": false, dbus: false, "nixos-icons": false, runCommand: false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["icon", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 55, 5], ["hash", 56, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 104, 7], ["hash", 105, 7], ["revert", 106, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["coreutils", 112, 9], ["plymouth", 113, 9], ["dbus", 114, 9], ["xorgserver", 116, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["DESTDIR", 179, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["packageName", 185, 41]]);
-const pos$7 = nix.positions(here + "/package.nix", [["profile", 191, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["updateScript", 185, 5], ["dconfDb", 187, 5], ["dconfProfile", 188, 5], ["tests", 190, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 202, 5], ["homepage", 203, 5], ["changelog", 204, 5], ["license", 205, 5], ["teams", 206, 5], ["platforms", 207, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 46, 3], ["version", 47, 3], ["outputs", 49, 3], ["src", 54, 3], ["mesonFlags", 59, 3], ["nativeBuildInputs", 70, 3], ["buildInputs", 81, 3], ["patches", 99, 3], ["postPatch", 136, 3], ["doInstallCheck", 148, 3], ["preInstall", 150, 3], ["postInstall", 154, 3], ["env", 172, 3], ["separateDebugInfo", 182, 3], ["passthru", 184, 3], ["meta", 201, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -50,16 +41,16 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   const override = nix.thunk(() => nix.app(replaceVars, nix.path(here, "./org.gnome.login-screen.gschema.override"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       icon: nix.thunk(() => nix.str`${nixos_icons}/share/icons/hicolor/scalable/apps/nix-snowflake-white.svg`),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "gdm",
       version: "50.2",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gdm/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gdm-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-ikZ55Hzd/osKG9nTg2BC3raPs+Gw5+Yt/QYx3FtvxUE=",
         })))),
@@ -101,13 +92,13 @@ export default nix.lambda((args) => (() => {
       ]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://gitlab.gnome.org/GNOME/gdm/-/commit/ccecd9c975d04da80db4cd547b67a1a94fa83292.patch",
             hash: "sha256-5hKS9wjjhuSAYwXct5vS0dPbmPRIINJoLC0Zm1naz6Q=",
             revert: true,
           })))),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             coreutils: coreutils,
             plymouth: plymouth,
             dbus: dbus,
@@ -138,16 +129,16 @@ rmdir --parents --ignore-fail-on-non-empty "$DESTDIR${nix.builtins.storeDir}"
 # We are setting DESTDIR so the post-install script does not compile the schemas.
 glib-compile-schemas "$out/share/glib-2.0/schemas"
 `),
-      env: nix.thunk(() => ({ [nix.POS]: pos$5, DESTDIR: "dest" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[4], DESTDIR: "dest" })),
       separateDebugInfo: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$6, packageName: "gdm" })))),
+        [nix.POS]: $pos[7],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[5], packageName: "gdm" })))),
         dconfDb: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}/share/gdm/greeter-dconf-defaults`),
         dconfProfile: nix.thunk(() => nix.str`user-db:user
 file-db:${nix.sel(finalAttrs, "passthru", "dconfDb")}`),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           profile: nix.thunk(() => nix.app(runCommand, "gdm-profile-test", nix.thunk(() => ({})), nix.thunk(() => nix.str`if test "${nix.sel(finalAttrs, "passthru", "dconfProfile")}" != "$(cat ${nix.sel(finalAttrs, "finalPackage")}/share/dconf/profile/gdm)"; then
   echo "GDM dconf profile changed, please update gdm.nix"
   exit 1
@@ -157,7 +148,7 @@ touch $out
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Program that manages graphical display servers and handles graphical user logins",
         homepage: "https://gitlab.gnome.org/GNOME/gdm",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/gdm/-/blob/${nix.sel(finalAttrs, "version")}/NEWS?ref_type=tags`),

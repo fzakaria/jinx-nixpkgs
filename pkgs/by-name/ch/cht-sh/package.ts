@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]], [["url", 49, 5]], [["updateScript", 48, 12]], [["description", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["homepage", 59, 5], ["mainProgram", 60, 5]], [["pname", 14, 3], ["version", 15, 3], ["nativeBuildInputs", 17, 3], ["src", 19, 3], ["postPatch", 27, 3], ["installPhase", 29, 3], ["passthru", 48, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, unstableGitUpdater: false, makeWrapper: false, curl: false, ncurses: false, rlwrap: false, xsel: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 48, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["homepage", 59, 5], ["mainProgram", 60, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["nativeBuildInputs", 17, 3], ["src", 19, 3], ["postPatch", 27, 3], ["installPhase", 29, 3], ["passthru", 48, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const rlwrap = nix.arg($, "rlwrap");
   const xsel = nix.arg($, "xsel");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "cht.sh",
       version: "0-unstable-2026-09-22",
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "chubin",
           repo: "cheat.sh",
           rev: "06af0000259bde1a347da368225c5962d7ffed3e",
@@ -44,11 +40,11 @@ wrapProgram "$out/bin/cht.sh" \\
   --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [curl, rlwrap, ncurses, xsel]))}"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, url: "https://github.com/chubin/cheat.sh.git" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], url: "https://github.com/chubin/cheat.sh.git" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "CLI client for cheat.sh, a community driven cheat sheet",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {

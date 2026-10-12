@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["withPython", 8, 5], ["python3", 9, 5], ["python3Packages", 10, 5]]]);
 const formals$1 = { args: { toPythonModule: false, pkgs: false, python: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["withPython", 8, 5], ["python3", 9, 5], ["python3Packages", 10, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const python = nix.arg($, "python");
   return nix.app(toPythonModule, nix.thunk(() => nix.app(nix.sel(pkgs, "nlopt", "override"), nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         withPython: true,
         python3: python,
         python3Packages: nix.thunk(() => nix.sel(python, "pkgs")),

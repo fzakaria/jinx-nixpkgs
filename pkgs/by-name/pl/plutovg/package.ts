@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["package", 36, 7], ["versionCheck", 37, 7]], [["package", 40, 7], ["moduleNames", 41, 7], ["versionCheck", 42, 7]], [["pkg-config", 35, 5], ["cmake-config", 39, 5]], [["tests", 34, 12]], [["homepage", 47, 5], ["changelog", 48, 5], ["description", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["pkgConfigModules", 52, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cmakeFlags", 20, 3], ["nativeBuildInputs", 30, 3], ["passthru", 34, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, testers: false, fontFaceCache: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 36, 7], ["versionCheck", 37, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 40, 7], ["moduleNames", 41, 7], ["versionCheck", 42, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pkg-config", 35, 5], ["cmake-config", 39, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 34, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 47, 5], ["changelog", 48, 5], ["description", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["pkgConfigModules", 52, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cmakeFlags", 20, 3], ["nativeBuildInputs", 30, 3], ["passthru", 34, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const fontFaceCache = nix.argOr($, "fontFaceCache", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "plutovg",
       version: "1.3.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sammycage",
           repo: "plutovg",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,16 +32,16 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               versionCheck: true,
             })))),
           "cmake-config": nix.thunk(() => nix.app(nix.sel(testers, "hasCmakeConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               moduleNames: nix.thunk(() => ["plutovg"]),
               versionCheck: true,
@@ -55,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://github.com/sammycage/plutovg/",
         changelog: nix.thunk(() => nix.str`https://github.com/sammycage/plutovg/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Tiny 2D vector graphics library in C",

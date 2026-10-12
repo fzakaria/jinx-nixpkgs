@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["fetchSubmodules", 22, 5], ["hash", 23, 5]], [["description", 51, 5], ["mainProgram", 52, 5], ["longDescription", 53, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["cargoHash", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 34, 3], ["postInstall", 41, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitLab: false, rustPlatform: false, "pkg-config": false, "gtk3-x11": false, atk: false, glib: false, librsvg: false, "gdk-pixbuf": false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["fetchSubmodules", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 51, 5], ["mainProgram", 52, 5], ["longDescription", 53, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["cargoHash", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 34, 3], ["postInstall", 41, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const gdk_pixbuf = nix.arg($, "gdk-pixbuf");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pizarra",
       version: "1.7.5",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "categulario",
           repo: "pizarra-gtk",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gtk3_x11, atk, glib, librsvg]),
       postInstall: "install -Dm444 res/icons/tk.categulario.pizarra.svg $out/share/icons/hicolor/scalable/apps/pizarra.svg\ninstall -Dm444 res/pizarra.desktop -t $out/share/applications\nsubstituteInPlace $out/share/applications/pizarra.desktop \\\n  --replace \"TryExec=/usr/bin/\" \"TryExec=\" \\\n  --replace \"Exec=/usr/bin/\" \"Exec=\" \\\n  --replace \"Icon=/usr/share/icons/hicolor/scalable/apps/pizarra.svg\" \"Icon=pizarra\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Simple blackboard written in GTK",
         mainProgram: "pizarra",
         longDescription: "A simple endless blackboard.\nContains various features, such as:\n- Pencil\n- Rectangle\n- Ellipse\n- Line\n- Text\n- Grids\n",

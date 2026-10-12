@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]], [["NIX_CFLAGS_COMPILE", 51, 5]], [["chipass", 151, 28]], [["tests", 150, 5], ["updateScript", 153, 5]], [["description", 157, 5], ["longDescription", 158, 5], ["homepage", 161, 5], ["changelog", 162, 5], ["license", 163, 5], ["mainProgram", 164, 5], ["maintainers", 165, 5], ["platforms", 168, 5]], [["pname", 37, 3], ["version", 38, 3], ["src", 40, 3], ["strictDeps", 47, 3], ["__structuredAttrs", 48, 3], ["env", 50, 3], ["postPatch", 61, 3], ["cmakeFlags", 66, 3], ["doCheck", 82, 3], ["checkPhase", 83, 3], ["nativeBuildInputs", 106, 3], ["dontWrapGApps", 116, 3], ["preFixup", 117, 3], ["postInstall", 121, 3], ["buildInputs", 133, 3], ["passthru", 149, 3], ["meta", 156, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromCodeberg: false, appstream: false, asciidoctor: false, botan3: false, cmake: false, libargon2: false, libusb1: false, libxtst: false, minizip: false, "nix-update-script": false, pcsclite: false, "pkg-config": false, qrencode: false, qt6Packages: false, readline: false, wrapGAppsHook3: false, zlib: false, "zxcvbn-c": false, withChiPassBrowser: true, withChiPassBrowserPasskeys: true, withChiPassFDOSecrets: true, withChiPassKeeShare: true, withChiPassNetworking: true, withChiPassSSHAgent: true, withChiPassX11: true, withChiPassYubiKey: true, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["chipass", 151, 28]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 150, 5], ["updateScript", 153, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 157, 5], ["longDescription", 158, 5], ["homepage", 161, 5], ["changelog", 162, 5], ["license", 163, 5], ["mainProgram", 164, 5], ["maintainers", 165, 5], ["platforms", 168, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 37, 3], ["version", 38, 3], ["src", 40, 3], ["strictDeps", 47, 3], ["__structuredAttrs", 48, 3], ["env", 50, 3], ["postPatch", 61, 3], ["cmakeFlags", 66, 3], ["doCheck", 82, 3], ["checkPhase", 83, 3], ["nativeBuildInputs", 106, 3], ["dontWrapGApps", 116, 3], ["preFixup", 117, 3], ["postInstall", 121, 3], ["buildInputs", 133, 3], ["passthru", 149, 3], ["meta", 156, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,11 +37,11 @@ export default nix.lambda((args) => (() => {
   const withChiPassYubiKey = nix.argOr($, "withChiPassYubiKey", () => true);
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "chipass",
       version: "2026.09.0",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ChiPass",
           repo: "ChiPass",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +50,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       __structuredAttrs: true,
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
               "-Wno-old-style-cast",
               "-Wno-error",
@@ -123,12 +118,15 @@ substituteAll "${nix.path(here, "./chromium-native-messaging-host.json")}" "$out
         zxcvbn_c,
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, chipass: nix.thunk(() => nix.attr(nixosTests, "chipass")) })),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[2],
+          chipass: nix.thunk(() => nix.attr(nixosTests, "chipass")),
+        })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "A cross-platform password manager for people with extremely high demands on secure personal data management",
         longDescription: "ChiPass is a modern, secure, and open-source password manager that stores and manages your most sensitive information. You can run ChiPass on Windows, macOS, and Linux systems. ChiPass is for people with extremely high demands of secure personal data management. It saves many different types of information, such as usernames, passwords, URLs, attachments, and notes in an offline, encrypted file that can be stored in any location, including private and public cloud solutions. For easy identification and management, user-defined titles and icons can be specified for entries. In addition, entries are sorted into customizable groups. An integrated search function allows you to use advanced patterns to easily find any entry in your database. A customizable, fast, and easy-to-use password generator utility allows you to create passwords with any combination of characters or easy to remember passphrases.\n",
         homepage: "https://chipass.org",

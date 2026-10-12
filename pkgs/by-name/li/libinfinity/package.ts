@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 32, 7], ["sha256", 33, 7]], [["infinoted", 76, 7]], [["homepage", 80, 7], ["description", 81, 7], ["mainProgram", 82, 7], ["license", 83, 7], ["maintainers", 84, 7], ["platforms", 85, 7], ["broken", 87, 7]], [["pname", 29, 5], ["version", 30, 5], ["src", 31, 5], ["outputs", 36, 5], ["nativeBuildInputs", 44, 5], ["buildInputs", 51, 5], ["propagatedBuildInputs", 63, 5], ["configureFlags", 65, 5], ["passthru", 75, 5], ["meta", 79, 5]]]);
 const formals$1 = { args: { gtkWidgets: true, avahiSupport: true, lib: false, stdenv: false, fetchurl: false, "pkg-config": false, glib: false, libxml2: false, gnutls: false, gsasl: false, "gobject-introspection": false, gtk3: true, "gtk-doc": false, docbook_xsl: false, docbook_xml_dtd_412: false, avahi: true, libdaemon: false, libidn: false, gss: false, libintl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 32, 7], ["sha256", 33, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["infinoted", 76, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 80, 7], ["description", 81, 7], ["mainProgram", 82, 7], ["license", 83, 7], ["maintainers", 84, 7], ["platforms", 85, 7], ["broken", 87, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 29, 5], ["version", 30, 5], ["src", 31, 5], ["outputs", 36, 5], ["nativeBuildInputs", 44, 5], ["buildInputs", 51, 5], ["propagatedBuildInputs", 63, 5], ["configureFlags", 65, 5], ["passthru", 75, 5], ["meta", 79, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libinfinity";
       const version = "0.7.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/gobby/libinfinity/releases/download/${version}/libinfinity-${version}.tar.gz`),
           sha256: "17i3g61hxz9pzl3ryd1yr15142r25m06jfzjrpdy7ic1b8vjjw3f",
         }))));
@@ -54,11 +51,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "withFeature"), avahiSupport, "avahi")),
       ]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         infinoted: nix.thunk(() => nix.str`${nix.sel(self, "bin")}/bin/infinoted-${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}`),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://gobby.github.io/",
         description: "Implementation of the Infinote protocol written in GObject-based C",
         mainProgram: "infinoted-0.7",
@@ -71,7 +68,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

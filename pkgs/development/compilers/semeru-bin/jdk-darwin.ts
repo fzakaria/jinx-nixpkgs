@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/jdk-darwin.nix", [[["sourcePerArch", 10, 20]], [["sourcePerArch", 11, 20]], [["sourcePerArch", 12, 21]], [["sourcePerArch", 13, 21]], [["sourcePerArch", 14, 21]], [["sourcePerArch", 15, 21]], [["sourcePerArch", 16, 21]], [["sourcePerArch", 17, 21]], [["jdk-8", 10, 3], ["jre-8", 11, 3], ["jdk-11", 12, 3], ["jre-11", 13, 3], ["jdk-17", 14, 3], ["jre-17", 15, 3], ["jdk-21", 16, 3], ["jre-21", 17, 3]]]);
 const formals$1 = { args: { lib: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/jdk-darwin.nix", [["sourcePerArch", 10, 20]]);
-const pos$2 = nix.positions(here + "/jdk-darwin.nix", [["sourcePerArch", 11, 20]]);
-const pos$3 = nix.positions(here + "/jdk-darwin.nix", [["sourcePerArch", 12, 21]]);
-const pos$4 = nix.positions(here + "/jdk-darwin.nix", [["sourcePerArch", 13, 21]]);
-const pos$5 = nix.positions(here + "/jdk-darwin.nix", [["sourcePerArch", 14, 21]]);
-const pos$6 = nix.positions(here + "/jdk-darwin.nix", [["sourcePerArch", 15, 21]]);
-const pos$7 = nix.positions(here + "/jdk-darwin.nix", [["sourcePerArch", 16, 21]]);
-const pos$8 = nix.positions(here + "/jdk-darwin.nix", [["sourcePerArch", 17, 21]]);
-const pos$9 = nix.positions(here + "/jdk-darwin.nix", [["jdk-8", 10, 3], ["jre-8", 11, 3], ["jdk-11", 12, 3], ["jre-11", 13, 3], ["jdk-17", 14, 3], ["jre-17", 15, 3], ["jdk-21", 16, 3], ["jre-21", 17, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,37 +12,37 @@ export default nix.lambda((args) => (() => {
   const sources = nix.thunk(() => nix.sel(nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./sources.json")), "openj9", "mac"));
   const common = (opts) => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./jdk-darwin-base.nix")), opts)), nix.thunk(() => ({})));
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     "jdk-8": nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         sourcePerArch: nix.thunk(() => nix.sel(sources, "jdk", "openjdk8")),
       })))),
     "jre-8": nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         sourcePerArch: nix.thunk(() => nix.sel(sources, "jre", "openjdk8")),
       })))),
     "jdk-11": nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         sourcePerArch: nix.thunk(() => nix.sel(sources, "jdk", "openjdk11")),
       })))),
     "jre-11": nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         sourcePerArch: nix.thunk(() => nix.sel(sources, "jre", "openjdk11")),
       })))),
     "jdk-17": nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         sourcePerArch: nix.thunk(() => nix.sel(sources, "jdk", "openjdk17")),
       })))),
     "jre-17": nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         sourcePerArch: nix.thunk(() => nix.sel(sources, "jre", "openjdk17")),
       })))),
     "jdk-21": nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         sourcePerArch: nix.thunk(() => nix.sel(sources, "jdk", "openjdk21")),
       })))),
     "jre-21": nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         sourcePerArch: nix.thunk(() => nix.sel(sources, "jre", "openjdk21")),
       })))),
   };

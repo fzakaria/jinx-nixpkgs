@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/alcotest.nix", [[["pname", 10, 3], ["src", 12, 19], ["version", 12, 23], ["meta", 12, 31], ["propagatedBuildInputs", 14, 3], ["doCheck", 19, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, lib: false, ocaml: false, junit: false, alcotest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/alcotest.nix", [["pname", 10, 3], ["src", 12, 19], ["version", 12, 23], ["meta", 12, 31], ["propagatedBuildInputs", 14, 3], ["doCheck", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const junit = nix.arg($, "junit");
   const alcotest = nix.arg($, "alcotest");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "junit_alcotest",
       src: nix.thunk(() => nix.attr(junit, "src")),
       version: nix.thunk(() => nix.attr(junit, "version")),

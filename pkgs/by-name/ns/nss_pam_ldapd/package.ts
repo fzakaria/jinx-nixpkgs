@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["sha256", 19, 5]], [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["platforms", 58, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 22, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 32, 3], ["preConfigure", 38, 3], ["configureFlags", 42, 3], ["postInstall", 50, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, makeWrapper: false, autoreconfHook: false, openldap: false, python3: false, pam: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["platforms", 58, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 22, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 32, 3], ["preConfigure", 38, 3], ["configureFlags", 42, 3], ["postInstall", 50, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const pam = nix.arg($, "pam");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "nss-pam-ldapd",
       version: "0.9.13",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://arthurdejong.org/nss-pam-ldapd/nss-pam-ldapd-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-4BeE4Xy1M7tmvQYB4gXnhSY0RcPC33pvkCMqtBMccW0=",
         })))),
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "wrapProgram $out/sbin/nslcd --prefix LD_LIBRARY_PATH \":\" $out/lib\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "LDAP identity and authentication for NSS/PAM",
         homepage: "https://arthurdejong.org/nss-pam-ldapd/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["outputsToInstall", 53, 5], ["platforms", 54, 5], ["broken", 55, 5]], [["name", 11, 3], ["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 23, 3], ["makeFlags", 27, 3], ["outputs", 38, 3], ["installPhase", 43, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, kernel: false, kernelModuleMakeFlags: false, stdenv: false, fetchFromCodeberg: false, libgcrypt: false, lvm2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["outputsToInstall", 53, 5], ["platforms", 54, 5], ["broken", 55, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 11, 3], ["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 23, 3], ["makeFlags", 27, 3], ["outputs", 38, 3], ["installPhase", 43, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const libgcrypt = nix.arg($, "libgcrypt");
   const lvm2 = nix.arg($, "lvm2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}-${nix.sel(kernel, "version")}`),
       pname: "shufflecake",
       version: "0.5.8",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "shufflecake",
           repo: "shufflecake-c",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
 install -Dm555 shufflecake $bin/shufflecake
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Plausible deniability (hidden storage) layer for Linux",
         homepage: "https://shufflecake.net",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 59, 5], ["repo", 60, 5], ["tag", 61, 5], ["hash", 62, 5]], [["NIX_CFLAGS_COMPILE", 94, 7]], [["tigervnc", 218, 18]], [["tests", 218, 12]], [["homepage", 221, 5], ["license", 222, 5], ["description", 223, 5], ["maintainers", 224, 5], ["platforms", 225, 5], ["priority", 227, 5], ["mainProgram", 228, 5]], [["version", 55, 3], ["pname", 56, 3], ["src", 58, 3], ["postPatch", 65, 3], ["dontUseCmakeBuildDir", 83, 3], ["cmakeFlags", 85, 3], ["env", 94, 3], ["postBuild", 98, 3], ["postInstall", 131, 3], ["buildInputs", 157, 3], ["nativeBuildInputs", 196, 3], ["propagatedBuildInputs", 216, 3], ["passthru", 218, 3], ["meta", 220, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "xorg-server": false, "util-macros": false, "tab-window-manager": false, libxtst: false, libxrandr: false, libxi: false, libxft: false, libxfont_2: false, libxext: false, libxdamage: false, libx11: false, libsm: false, libice: false, "font-util": false, xsetroot: false, xorgproto: false, xkbcomp: false, xauth: false, libxkbfile: false, libpciaccess: false, xkeyboard_config: false, zlib: false, libjpeg_turbo: false, pixman: false, fltk: false, cmake: false, gettext: false, libtool: false, libGLU: false, gnutls: false, gawk: false, pam: false, nettle: false, xterm: false, openssh: false, perl: false, makeWrapper: false, nixosTests: false, ffmpeg: false, autoconf: false, automake: false, libuuid: false, libxkbcommon: false, pipewire: false, wayland: false, "wayland-scanner": false, waylandSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 59, 5], ["repo", 60, 5], ["tag", 61, 5], ["hash", 62, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 94, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tigervnc", 218, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 218, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 221, 5], ["license", 222, 5], ["description", 223, 5], ["maintainers", 224, 5], ["platforms", 225, 5], ["priority", 227, 5], ["mainProgram", 228, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["version", 55, 3], ["pname", 56, 3], ["src", 58, 3], ["postPatch", 65, 3], ["dontUseCmakeBuildDir", 83, 3], ["cmakeFlags", 85, 3], ["env", 94, 3], ["postBuild", 98, 3], ["postInstall", 131, 3], ["buildInputs", 157, 3], ["nativeBuildInputs", 196, 3], ["propagatedBuildInputs", 216, 3], ["passthru", 218, 3], ["meta", 220, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -63,11 +58,11 @@ export default nix.lambda((args) => (() => {
   const wayland_scanner = nix.arg($, "wayland-scanner");
   const waylandSupport = nix.argOr($, "waylandSupport", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       version: "1.16.2",
       pname: "tigervnc",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "TigerVNC",
           repo: "tigervnc",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -88,7 +83,7 @@ source_top="$(pwd)"
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "ENABLE_WAYLAND", waylandSupport)),
         ])))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=array-bounds"]))),
       })),
       postBuild: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.str`export NIX_CFLAGS_COMPILE="$NIX_CFLAGS_COMPILE -Wno-error=int-to-pointer-cast -Wno-error=pointer-to-int-cast"
@@ -150,11 +145,14 @@ wrapProgram $out/bin/vncserver \\
       nativeBuildInputs: nix.thunk(() => nix.concat([cmake, gettext, autoconf, automake], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.concat([font_util, libtool, makeWrapper, util_macros, zlib], nix.concat(nix.sel(xorg_server, "nativeBuildInputs"), nix.app(nix.sel(lib, "optionals"), waylandSupport, nix.thunk(() => [wayland_scanner])))))))),
       propagatedBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.sel(xorg_server, "propagatedBuildInputs")))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, tigervnc: nix.thunk(() => nix.sel(nixosTests, "tigervnc")) })),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[2],
+          tigervnc: nix.thunk(() => nix.sel(nixosTests, "tigervnc")),
+        })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://tigervnc.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         description: "Fork of tightVNC, made in cooperation with VirtualGL",

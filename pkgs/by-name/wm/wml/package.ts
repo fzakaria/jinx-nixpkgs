@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["owner", 37, 5], ["repo", 38, 5], ["rev", 39, 5], ["hash", 40, 5]], [["description", 71, 5], ["homepage", 72, 5], ["downloadPage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["mainProgram", 77, 5], ["platforms", 78, 5]], [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["sourceRoot", 43, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 51, 3], ["preConfigure", 57, 3], ["preFixup", 61, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { cmake: false, fetchFromGitHub: false, lib: false, lynx: false, makeBinaryWrapper: false, ncurses: false, pcre2: false, perl: false, perlPackages: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 37, 5], ["repo", 38, 5], ["rev", 39, 5], ["hash", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 71, 5], ["homepage", 72, 5], ["downloadPage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["mainProgram", 77, 5], ["platforms", 78, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["sourceRoot", 43, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 51, 3], ["preConfigure", 57, 3], ["preFixup", 61, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const perlPackages = nix.arg($, "perlPackages");
   const stdenv = nix.arg($, "stdenv");
   const shlomif_cmake_modules = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "shlomif",
       repo: "shlomif-cmake-modules",
       rev: "2fa3e9be1a1df74ad0e10f0264bfa60e1e3a755c",
@@ -42,11 +39,11 @@ export default nix.lambda((args) => (() => {
     ];
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "wml",
       version: "2.32.0-unstable-2026-05-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "thewml",
           repo: "website-meta-language",
           rev: "673e78b37887f4d40c422759d634913c52e7334d",
@@ -65,7 +62,7 @@ for f in $(find $out/bin/ -type f -executable); do
 done
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Offline HTML preprocessor",
         homepage: "https://www.shlomifish.org/open-source/projects/website-meta-language/",
         downloadPage: "https://github.com/thewml/website-meta-language/releases",

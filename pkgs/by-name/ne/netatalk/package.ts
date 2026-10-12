@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 45, 5], ["hash", 46, 5]], [["description", 126, 5], ["homepage", 127, 5], ["license", 128, 5], ["platforms", 129, 5], ["maintainers", 130, 5]], [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 60, 3], ["mesonFlags", 92, 3], ["postPatch", 111, 3], ["preConfigure", 119, 3], ["enableParallelBuilding", 123, 3], ["meta", 125, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, acl: false, autoreconfHook: false, avahi: false, bstring: false, db: false, libevent: false, libgcrypt: false, libiconv: false, openssl: false, pam: false, perl: false, "pkg-config": false, meson: false, ninja: false, file: false, cracklib: false, cups: false, libtirpc: false, openldap: false, glib: false, dbus: false, iniparser: false, pandoc: false, sqlite: false, talloc: false, xapian: false, flex: false, bison: false, dconf: false, localsearch: false, tinysparql: false, xapianSupport: true, localsearchSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 45, 5], ["hash", 46, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 126, 5], ["homepage", 127, 5], ["license", 128, 5], ["platforms", 129, 5], ["maintainers", 130, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 60, 3], ["mesonFlags", 92, 3], ["postPatch", 111, 3], ["preConfigure", 119, 3], ["enableParallelBuilding", 123, 3], ["meta", 125, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -46,11 +44,11 @@ export default nix.lambda((args) => (() => {
   const xapianSupport = nix.argOr($, "xapianSupport", () => false);
   const localsearchSupport = nix.argOr($, "localsearchSupport", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "netatalk",
       version: "4.6.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/netatalk/netatalk/netatalk-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-yXQS9/S7u/qSJmT1K51qX3UoK5mlL+BGMTS7R3/qcV4=",
         })))),
@@ -95,7 +93,7 @@ export default nix.lambda((args) => (() => {
 `))),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Apple Filing Protocol Server",
         homepage: "https://netatalk.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

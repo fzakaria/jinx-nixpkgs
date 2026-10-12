@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 57, 5], ["sha256", 58, 5]], [["name", 67, 7], ["url", 68, 7], ["hash", 69, 7]], [["name", 77, 9], ["url", 78, 9], ["hash", 79, 9], ["stripLen", 80, 9]], [["homepage", 181, 5], ["description", 182, 5], ["maintainers", 183, 5], ["platforms", 185, 5], ["license", 189, 5]], [["pname", 53, 3], ["version", 54, 3], ["src", 56, 3], ["patches", 61, 3], ["postPatch", 73, 3], ["nativeBuildInputs", 100, 3], ["buildInputs", 107, 3], ["dontWrapQtApps", 139, 3], ["buildCommand", 141, 3], ["meta", 180, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, fetchpatch: false, cmake: false, "pkg-config": false, zlib: false, gettext: false, libvdpau: false, libva: false, libxv: false, sqlite: false, yasm: false, freetype: false, fontconfig: false, fribidi: false, makeWrapper: false, libxext: false, libGLU: false, "alsa-lib": false, withX265: true, x265: false, withX264: true, x264: false, withXvid: true, xvidcore: false, withLAME: true, lame: false, withFAAC: true, faac: false, withVorbis: true, libvorbis: false, withPulse: true, libpulseaudio: false, withFAAD: true, faad2: false, withOpus: true, libopus: false, withVPX: true, libvpx: false, withQT: true, libsForQt5: false, withCLI: true, default: true, withPlugins: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 57, 5], ["sha256", 58, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 67, 7], ["url", 68, 7], ["hash", 69, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 77, 9], ["url", 78, 9], ["hash", 79, 9], ["stripLen", 80, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 181, 5], ["description", 182, 5], ["maintainers", 183, 5], ["platforms", 185, 5], ["license", 189, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 53, 3], ["version", 54, 3], ["src", 56, 3], ["patches", 61, 3], ["postPatch", 73, 3], ["nativeBuildInputs", 100, 3], ["buildInputs", 107, 3], ["dontWrapQtApps", 139, 3], ["buildCommand", 141, 3], ["meta", 180, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -59,11 +55,11 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(!nix.eq(default$, "qt5")) || nix.asBool(nix.eq(default$, "cli"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/av/avidemux/package.nix:49:1");
   nix.assert_((!nix.asBool(!nix.asBool(withQT)) || nix.asBool(!nix.eq(default$, "qt5"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/av/avidemux/package.nix:50:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "avidemux",
       version: "2.8.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/avidemux/avidemux/${nix.sel(finalAttrs, "version")}/avidemux_${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-d9m9yoaDzlfBkradIHz6t8+Sp3Wc4PY/o3tcjkKtPaI=",
         })))),
@@ -71,14 +67,14 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./dynamic_install_dir.patch"),
         nix.path(here, "./bootstrap_logging.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix_build_with_x265_4_1.patch",
             url: "https://github.com/mean00/avidemux2/commit/c16d32a67cdb012db093472ad3776713939a30d1.patch",
             hash: "sha256-5QqocvYaY/phyvSX2lhTzeAi+z9Wgqs+ITR0cXReps4=",
           })))),
       ]),
       postPatch: nix.thunk(() => nix.str`cp ${nix.app(fetchpatch, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           name: "binutils-2.41.patch",
           url: "https://git.ffmpeg.org/gitweb/ffmpeg.git/patch/effadce6c756247ea8bae32dc13bb3e6f464f0eb",
           hash: "sha256-s9PcYbt0mFb2wvgMcFL1J+2OS6Sxyd2wYkGzLr2qd9M=",
@@ -156,7 +152,7 @@ fixupPhase
 `;
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "http://fixounet.free.fr/avidemux/",
         description: "Free video editor designed for simple video editing tasks",
         maintainers: [],

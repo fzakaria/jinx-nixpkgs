@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 15, 5], ["mainProgram", 16, 5]], [["pname", 8, 3], ["subPackages", 9, 3], ["passthru", 12, 3], ["meta", 14, 3]]]);
 const formals$1 = { args: { lib: false, mattermost: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 15, 5], ["mainProgram", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["subPackages", 9, 3], ["passthru", 12, 3], ["meta", 14, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const mattermost = nix.arg($, "mattermost");
   return nix.app(nix.sel(nix.app(nix.sel(mattermost, "override"), args_1), "withoutTests", "server", "overrideAttrs"), (prev) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "mmctl",
       subPackages: nix.thunk(() => ["cmd/mmctl"]),
       passthru: nix.thunk(() => nix.app(nix.sel(lib, "removeAttrs"), nix.thunk(() => nix.sel(prev, "passthru")), nix.thunk(() => ["updateScript"]))),
       meta: nix.thunk(() => nix.update(nix.sel(prev, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Remote CLI tool for Mattermost",
         mainProgram: "mmctl",
       })),

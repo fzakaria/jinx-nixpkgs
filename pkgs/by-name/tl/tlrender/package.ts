@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 59, 5], ["repo", 60, 5], ["tag", 61, 5], ["hash", 62, 5]], [["description", 141, 5], ["longDescription", 142, 5], ["homepage", 150, 5], ["license", 151, 5], ["maintainers", 152, 5], ["platforms", 153, 5]], [["pname", 55, 3], ["version", 56, 3], ["src", 58, 3], ["patches", 65, 3], ["postPatch", 70, 3], ["nativeBuildInputs", 84, 3], ["buildInputs", 89, 3], ["cmakeFlags", 118, 3], ["doCheck", 138, 3], ["meta", 140, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cmake: false, fetchFromGitHub: false, "pkg-config": false, bzip2: false, "feather-tk": false, ffmpeg_7: false, freetype: false, glfw: false, imath: false, libGL: false, libjpeg: false, libtiff: false, libpng: false, lunasvg: false, "minizip-ng": false, nasm: false, "nativefiledialog-extended": false, nlohmann_json: false, opencolorio: false, openexr: false, openssl: false, opentimelineio: false, openusd: false, plutovg: false, SDL2: false, sdl3: false, xz: false, zlib: false, zstd: false, enableNet: true, enableOcio: true, enableSdl2: true, enableSdl3: true, enableJpeg: true, enableTiff: true, enableStb: true, enablePng: true, enableOpenexr: true, enableFfmpeg: true, enableUsd: true, enableShared: true, enableProgram: true, enableExamples: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 59, 5], ["repo", 60, 5], ["tag", 61, 5], ["hash", 62, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 141, 5], ["longDescription", 142, 5], ["homepage", 150, 5], ["license", 151, 5], ["maintainers", 152, 5], ["platforms", 153, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 55, 3], ["version", 56, 3], ["src", 58, 3], ["patches", 65, 3], ["postPatch", 70, 3], ["nativeBuildInputs", 84, 3], ["buildInputs", 89, 3], ["cmakeFlags", 118, 3], ["doCheck", 138, 3], ["meta", 140, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -55,11 +53,11 @@ export default nix.lambda((args) => (() => {
   const enableProgram = nix.argOr($, "enableProgram", () => true);
   const enableExamples = nix.argOr($, "enableExamples", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tlrender",
       version: "0.10.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "grizzlypeak3d",
           repo: "tlRender",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -105,7 +103,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Open source library for building playback and review applications",
         longDescription: "An open source library for building playback and review applications for\nvisual effects, film, and animation.\n\nThe library can render and playback timelines with multiple video clips,\nimage sequences, audio clips, and transitions. Examples are provided for\nintegrating the library with Qt and OpenGL applications.\n",
         homepage: "https://github.com/grizzlypeak3d/tlRender",

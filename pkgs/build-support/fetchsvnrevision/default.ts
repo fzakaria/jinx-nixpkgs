@@ -2,10 +2,10 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 5, 7], ["dummy", 6, 7]]);
+const $pos = nix.positions(here + "/default.nix", [[["nativeBuildInputs", 5, 7], ["dummy", 6, 7]]]);
 
 export default (runCommand) => (subversion) => (repository) => nix.builtins.import(nix.thunk(() => nix.app(runCommand, "head-revision", nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       nativeBuildInputs: nix.thunk(() => [subversion]),
       dummy: nix.thunk(() => nix.builtins.currentTime),
     })), nix.thunk(() => nix.str`rev=$(echo p | svn ls -v --depth empty  ${repository} |awk '{ print $1 }')

@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["repo", 16, 5], ["owner", 17, 5], ["sha256", 18, 5], ["rev", 19, 5]], [["homepage", 53, 24], ["description", 54, 5], ["mainProgram", 55, 5], ["maintainers", 56, 5], ["license", 57, 5], ["platforms", 58, 24]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["postPatch", 22, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 34, 3], ["buildFlags", 39, 3], ["installFlags", 43, 3], ["outputs", 47, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, vdr: false, "util-linux": false, groff: false, perl: false, pcre2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["repo", 16, 5], ["owner", 17, 5], ["sha256", 18, 5], ["rev", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 53, 24], ["description", 54, 5], ["mainProgram", 55, 5], ["maintainers", 56, 5], ["license", 57, 5], ["platforms", 58, 24]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["postPatch", 22, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 34, 3], ["buildFlags", 39, 3], ["installFlags", 43, 3], ["outputs", 47, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "vdr-epgsearch";
       const version = "2.4.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "vdr-plugin-epgsearch",
           owner: "vdr-projects",
           sha256: "sha256-+csxlLBSIKiYIjgEPj0IUP8wZX9zuOM26cgA99uZ3EA=",
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
         const from = nix.thunk(() => nix.sel(src, "meta"));
         const from_1 = nix.thunk(() => nix.sel(vdr, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: "Searchtimer and replacement of the VDR program menu",
         mainProgram: "createcats",
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

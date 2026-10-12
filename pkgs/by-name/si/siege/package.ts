@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["NIX_LDFLAGS", 20, 7], ["NIX_CFLAGS_COMPILE", 21, 7]], [["CFLAGS", 25, 7]], [["description", 43, 5], ["homepage", 44, 5], ["changelog", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["platforms", 48, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["env", 18, 3], ["buildInputs", 28, 3], ["prePatch", 33, 3], ["configureFlags", 37, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, openssl: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 20, 7], ["NIX_CFLAGS_COMPILE", 21, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["CFLAGS", 25, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 43, 5], ["homepage", 44, 5], ["changelog", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["platforms", 48, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["env", 18, 3], ["buildInputs", 28, 3], ["prePatch", 33, 3], ["configureFlags", 37, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,19 +13,19 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "siege",
       version: "4.2.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.joedog.org/siege/siege-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-eK9IL8ZV8c9ycP28MXFYHtTLMWMAn39PBW/Ct+LSRFM=",
         })))),
       env: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-lgcc_s"]))),
           NIX_CFLAGS_COMPILE: "-std=gnu17",
-        }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({ [nix.POS]: pos$3, CFLAGS: "-Wno-int-conversion" }))))),
+        }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({ [nix.POS]: $pos[2], CFLAGS: "-Wno-int-conversion" }))))),
       buildInputs: nix.thunk(() => [openssl, zlib]),
       prePatch: "sed -i -e 's/u_int32_t/uint32_t/g' -e '1i#include <stdint.h>' src/hash.c\n",
       configureFlags: nix.thunk(() => [
@@ -37,7 +33,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--with-zlib=${nix.sel(zlib, "dev")}`),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "HTTP load tester",
         homepage: "https://www.joedog.org/siege-home/",
         changelog: nix.thunk(() => nix.str`https://github.com/JoeDog/siege/blob/v${nix.sel(finalAttrs, "version")}/ChangeLog`),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["cli", 39, 25]], [["description", 62, 5], ["mainProgram", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["pythonRelaxDeps", 31, 3], ["propagatedBuildInputs", 33, 3], ["optional-dependencies", 39, 3], ["nativeCheckInputs", 44, 3], ["disabledTestPaths", 49, 3], ["disabledTests", 54, 3], ["pythonImportsCheck", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, click: false, fetchFromGitHub: false, mashumaro: false, orjson: false, "paho-mqtt": false, "poetry-core": false, "pytest-asyncio": false, pytestCheckHook: false, tabulate: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["cli", 39, 25]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 62, 5], ["mainProgram", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["pythonRelaxDeps", 31, 3], ["propagatedBuildInputs", 33, 3], ["optional-dependencies", 39, 3], ["nativeCheckInputs", 44, 3], ["disabledTestPaths", 49, 3], ["disabledTests", 54, 3], ["pythonImportsCheck", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.9.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pschmitt",
           repo: "roombapy",
           tag: version,
@@ -35,13 +32,13 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [poetry_core]);
       const pythonRelaxDeps = nix.thunk(() => ["orjson"]);
       const propagatedBuildInputs = nix.thunk(() => [mashumaro, orjson, paho_mqtt]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, cli: nix.thunk(() => [click, tabulate]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], cli: nix.thunk(() => [click, tabulate]) }));
       const nativeCheckInputs = nix.thunk(() => [pytest_asyncio, pytestCheckHook]);
       const disabledTestPaths = nix.thunk(() => ["tests/test_discovery.py"]);
       const disabledTests = nix.thunk(() => ["test_roomba_connect"]);
       const pythonImportsCheck = nix.thunk(() => ["roombapy"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python program and library to control Wi-Fi enabled iRobot Roombas",
         mainProgram: "roombapy",
         homepage: "https://github.com/pschmitt/roombapy",
@@ -50,7 +47,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

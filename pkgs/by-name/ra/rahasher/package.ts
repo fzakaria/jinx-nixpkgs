@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["fetchSubmodules", 16, 5], ["hash", 17, 5]], [["updateScript", 69, 12]], [["description", 72, 5], ["longDescription", 73, 5], ["homepage", 80, 5], ["changelog", 81, 5], ["license", 82, 5], ["platforms", 83, 5], ["mainProgram", 84, 5], ["maintainers", 85, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["postPatch", 26, 3], ["strictDeps", 50, 3], ["__structuredAttrs", 51, 3], ["makeFlags", 53, 3], ["enableParallelBuilding", 59, 3], ["installPhase", 63, 3], ["passthru", 69, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["fetchSubmodules", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 69, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 72, 5], ["longDescription", 73, 5], ["homepage", 80, 5], ["changelog", 81, 5], ["license", 82, 5], ["platforms", 83, 5], ["mainProgram", 84, 5], ["maintainers", 85, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["postPatch", 26, 3], ["strictDeps", 50, 3], ["__structuredAttrs", 51, 3], ["makeFlags", 53, 3], ["enableParallelBuilding", 59, 3], ["installPhase", 63, 3], ["passthru", 69, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "rahasher",
       version: "1.8.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "LeXofLeviafan",
           repo: "RAHasher",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -54,11 +51,11 @@ EOF
       enableParallelBuilding: true,
       installPhase: "runHook preInstall\ninstall -Dm755 bin*/RAHasher $out/bin/RAHasher\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "CLI utility for verifying ROM checksums with hashing methods used by RetroAchievements",
         longDescription: "RAHasher computes ROM/disc checksums using the same hashing methods as\nRetroAchievements (via the bundled rcheevos library), so you can look\nup or verify RetroAchievements-compatible hashes for your ROM\ncollection from the command line. It's a CLI-friendly derivative of\nRALibretro's built-in hasher, and supports CHD disc images.\n",
         homepage: "https://github.com/LeXofLeviafan/RAHasher",

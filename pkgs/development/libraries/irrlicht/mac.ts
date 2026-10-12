@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mac.nix", [[["fetchzip", 10, 42]], [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]], [["homepage", 42, 5], ["license", 43, 5], ["description", 44, 5], ["platforms", 45, 5], ["broken", 46, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["postUnpack", 24, 3], ["patches", 29, 3], ["cmakeFlags", 31, 3], ["nativeBuildInputs", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, fetchFromGitHub: false, cmake: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/mac.nix", [["fetchzip", 10, 42]]);
-const pos$2 = nix.positions(here + "/mac.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]]);
-const pos$3 = nix.positions(here + "/mac.nix", [["homepage", 42, 5], ["license", 43, 5], ["description", 44, 5], ["platforms", 45, 5], ["broken", 46, 5]]);
-const pos$4 = nix.positions(here + "/mac.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["postUnpack", 24, 3], ["patches", 29, 3], ["cmakeFlags", 31, 3], ["nativeBuildInputs", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const cmake = nix.arg($, "cmake");
-  const common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, fetchzip: fetchzip }))));
+  const common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], fetchzip: fetchzip }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "irrlicht-mac",
       version: nix.thunk(() => nix.sel(common, "version")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "quiark",
           repo: "IrrlichtCMake",
           rev: "523a5e6ef84be67c3014f7b822b97acfced536ce",
@@ -40,7 +37,7 @@ chmod -R 777 $sourceRoot
       ]),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://irrlicht.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),
         description: "Open source high performance realtime 3D engine written in C++",

@@ -2,14 +2,14 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/meta.nix", [[["homepage", 3, 3], ["description", 4, 11], ["license", 5, 3], ["maintainers", 12, 3], ["platforms", 20, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/meta.nix", [["homepage", 3, 3], ["description", 4, 11], ["license", 5, 3], ["maintainers", 12, 3], ["platforms", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return (description) => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     homepage: "https://ceph.io/en/",
     description: description,
     license: nix.thunk(() => (() => {

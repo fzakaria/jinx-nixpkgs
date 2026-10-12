@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 28, 5], ["group", 29, 5], ["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["forceFetchGit", 33, 5], ["hash", 34, 5]], [["ignoredVersions", 58, 40]], [["updateScript", 58, 12]], [["homepage", 61, 5], ["description", 62, 5], ["maintainers", 63, 5], ["license", 64, 5], ["platforms", 65, 5]], [["pname", 18, 3], ["version", 19, 3], ["outputs", 21, 3], ["src", 27, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 49, 3], ["propagatedBuildInputs", 53, 3], ["passthru", 58, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, "docbook-xsl-nons": false, "gobject-introspection": false, "gtk-doc": false, meson: false, ninja: false, "pkg-config": false, mesonEmulatorHook: false, gtk3: false, glib: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 28, 5], ["group", 29, 5], ["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["forceFetchGit", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ignoredVersions", 58, 40]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 58, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 61, 5], ["description", 62, 5], ["maintainers", 63, 5], ["license", 64, 5], ["platforms", 65, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["outputs", 21, 3], ["src", 27, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 49, 3], ["propagatedBuildInputs", 53, 3], ["passthru", 58, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "libgedit-gfls",
       version: "0.4.2",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           group: "World",
           owner: "gedit",
@@ -43,11 +39,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gtk3]),
       propagatedBuildInputs: nix.thunk(() => [glib]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, ignoredVersions: "(alpha|beta|rc).*" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], ignoredVersions: "(alpha|beta|rc).*" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://gitlab.gnome.org/World/gedit/libgedit-gfls",
         description: "Module dedicated to file loading and saving",
         maintainers: nix.thunk(() => (() => {

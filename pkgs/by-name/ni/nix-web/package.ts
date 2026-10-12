@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["NIX_WEB_BUILD_NIX_CLI_PATH", 45, 7]], [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["platforms", 51, 5], ["maintainers", 52, 5], ["mainProgram", 53, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["cargoHash", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 32, 3], ["postPatch", 34, 3], ["postInstall", 38, 3], ["cargoBuildFlags", 42, 3], ["cargoTestFlags", 43, 3], ["env", 45, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromCodeberg: false, "pkg-config": false, openssl: false, nixVersions: false, nixPackage: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_WEB_BUILD_NIX_CLI_PATH", 45, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["platforms", 51, 5], ["maintainers", 52, 5], ["mainProgram", 53, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["cargoHash", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 32, 3], ["postPatch", 34, 3], ["postInstall", 38, 3], ["cargoBuildFlags", 42, 3], ["cargoTestFlags", 43, 3], ["env", 45, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const nixPackage = nix.argOr($, "nixPackage", () => nix.sel(nixVersions, "stable"));
   const cargoFlags = nix.thunk(() => ["-p", "nix-web"]);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "nix-web",
       version: "0.4.2",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gorgon",
           repo: "gorgon",
           rev: nix.thunk(() => nix.str`nix-web-v${nix.sel(finalAttrs, "version")}`),
@@ -38,11 +35,11 @@ export default nix.lambda((args) => (() => {
       cargoBuildFlags: cargoFlags,
       cargoTestFlags: cargoFlags,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_WEB_BUILD_NIX_CLI_PATH: nix.thunk(() => nix.str`${nixPackage}/bin/nix`),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Web interface for the Nix store",
         homepage: "https://codeberg.org/gorgon/gorgon/src/branch/main/nix-web",
         license: nix.thunk(() => nix.sel(lib, "licenses", "eupl12")),

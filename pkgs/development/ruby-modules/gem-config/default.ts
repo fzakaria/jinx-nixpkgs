@@ -2,156 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["sha256", 135, 12]], [["pname", 133, 5], ["gemName", 134, 5], ["source", 135, 5], ["type", 136, 5], ["version", 137, 5]], [["mainProgram", 143, 10]], [["meta", 143, 5]], [["dependencies", 147, 5], ["nativeBuildInputs", 148, 5], ["propagatedBuildInputs", 154, 5]], [["preFixup", 169, 7], ["postFixup", 170, 7]], [["nativeBuildInputs", 179, 5], ["buildInputs", 180, 5]], [["nativeBuildInputs", 192, 5], ["buildInputs", 193, 5]], [["buildInputs", 204, 5]], [["nativeBuildInputs", 212, 5], ["buildInputs", 213, 5]], [["dependencies", 217, 5]], [["dependencies", 221, 5]], [["dependencies", 225, 5]], [["dependencies", 229, 5]], [["dependencies", 233, 5]], [["dependencies", 237, 5]], [["dependencies", 241, 5]], [["dependencies", 245, 5]], [["buildInputs", 249, 5]], [["url", 259, 9], ["hash", 260, 9]], [["dontBuild", 253, 5], ["buildInputs", 254, 5], ["patches", 255, 5]], [["USE_SYSTEM_GECODE", 267, 7]], [["env", 266, 5], ["postInstall", 269, 5]], [["hardeningDisable", 276, 5]], [["dontBuild", 281, 5], ["buildInputs", 282, 5], ["patches", 283, 5]], [["dontBuild", 291, 5], ["postPatch", 292, 5]], [["buildFlags", 299, 5]], [["postInstall", 308, 7]], [["dontBuild", 315, 5], ["preBuild", 316, 5]], [["postInstall", 325, 5]], [["FREEDESKTOP_MIME_TYPES_PATH", 333, 7]], [["env", 332, 5]], [["postInstall", 338, 5]], [["buildFlags", 345, 5], ["dontBuild", 348, 5], ["postPatch", 349, 5]], [["buildInputs", 356, 5]], [["dontBuild", 360, 5], ["buildInputs", 361, 5], ["postPatch", 362, 5]], [["buildFlags", 369, 5], ["buildInputs", 370, 5]], [["nativeBuildInputs", 374, 5], ["buildInputs", 375, 5]], [["buildInputs", 379, 5]], [["nativeBuildInputs", 383, 5], ["propagatedBuildInputs", 389, 5]], [["nativeBuildInputs", 397, 5], ["propagatedBuildInputs", 403, 5]], [["buildInputs", 412, 5], ["nativeBuildInputs", 413, 5], ["buildFlags", 414, 5]], [["nativeBuildInputs", 418, 5], ["buildInputs", 423, 5]], [["priority", 435, 33]], [["meta", 435, 28]], [["url", 444, 13], ["sha256", 445, 13]], [["dontBuild", 440, 7], ["postPatch", 441, 7]], [["mainProgram", 452, 10]], [["meta", 452, 5]], [["url", 462, 13], ["sha256", 463, 13]], [["dontBuild", 458, 7], ["postPatch", 459, 7]], [["url", 474, 13], ["sha256", 475, 13]], [["dontBuild", 470, 7], ["postPatch", 471, 7]], [["mainProgram", 482, 10]], [["meta", 482, 5]], [["nativeBuildInputs", 486, 5], ["buildInputs", 487, 5]], [["nativeBuildInputs", 500, 5], ["buildInputs", 505, 5], ["propagatedBuildInputs", 511, 5], ["dontStrip", 534, 5]], [["nativeBuildInputs", 538, 5], ["propagatedBuildInputs", 539, 5]], [["dontBuild", 549, 5], ["postPatch", 550, 5]], [["hardeningDisable", 561, 7]], [["NIX_CFLAGS_COMPILE", 577, 7]], [["name", 581, 9], ["url", 582, 9], ["decode", 583, 9], ["stripLen", 584, 9], ["extraPrefix", 585, 9], ["hash", 586, 9]], [["nativeBuildInputs", 565, 5], ["buildInputs", 574, 5], ["hardeningDisable", 575, 5], ["env", 576, 5], ["patches", 579, 5], ["dontBuild", 589, 5], ["postPatch", 590, 5]], [["dontBuild", 607, 5], ["postPatch", 608, 5], ["postInstall", 614, 5]], [["buildInputs", 620, 5]], [["NIX_CFLAGS_COMPILE", 631, 9]], [["dontBuild", 626, 5], ["patches", 627, 5], ["env", 631, 5]], [["NIX_CFLAGS_COMPILE", 642, 9]], [["buildFlags", 638, 5], ["env", 642, 5]], [["buildInputs", 646, 5]], [["postInstall", 653, 5]], [["propagatedBuildInputs", 662, 5]], [["buildFlags", 666, 5]], [["nativeBuildInputs", 677, 5], ["buildInputs", 687, 5], ["strictDeps", 696, 5], ["dontUseCmakeConfigure", 699, 5], ["postInstall", 701, 5], ["postFixup", 711, 5]], [["buildInputs", 738, 5], ["postInstall", 739, 5]], [["buildFlags", 746, 5]], [["preInstall", 753, 5]], [["buildInputs", 759, 5]], [["buildInputs", 767, 5]], [["buildInputs", 775, 5], ["buildFlags", 776, 5]], [["buildFlags", 786, 9]], [["broken", 808, 14]], [["buildInputs", 803, 9], ["meta", 808, 9]], [["buildInputs", 820, 7]], [["dontBuild", 824, 5], ["postPatch", 825, 5]], [["NIX_CFLAGS_COMPILE", 838, 9]], [["broken", 844, 10]], [["buildInputs", 833, 5], ["env", 838, 5], ["dontBuild", 843, 5], ["meta", 844, 5]], [["nativeBuildInputs", 848, 5], ["buildInputs", 852, 5], ["propagatedBuildInputs", 867, 5]], [["buildInputs", 874, 5]], [["buildInputs", 878, 5]], [["buildFlags", 887, 5], ["nativeBuildInputs", 888, 5], ["buildInputs", 889, 5]], [["buildInputs", 893, 5], ["buildFlags", 897, 5]], [["buildInputs", 901, 5], ["nativeBuildInputs", 902, 5]], [["buildInputs", 906, 5]], [["buildInputs", 910, 5]], [["buildInputs", 914, 5]], [["mainProgram", 918, 10]], [["meta", 918, 5]], [["mainProgram", 922, 10]], [["meta", 922, 5]], [["buildInputs", 926, 5]], [["buildInputs", 932, 7], ["buildFlags", 936, 7]], [["postInstall", 943, 9]], [["dontBuild", 951, 9], ["postPatch", 952, 9]], [["buildInputs", 960, 5], ["buildFlags", 961, 5]], [["buildInputs", 967, 5]], [["mainProgram", 971, 10]], [["meta", 971, 5]], [["nativeBuildInputs", 975, 5], ["buildInputs", 976, 5]], [["mainProgram", 983, 10]], [["meta", 983, 5]], [["buildInputs", 987, 5]], [["mainProgram", 991, 10]], [["meta", 991, 5]], [["nativeBuildInputs", 995, 5], ["buildInputs", 996, 5], ["buildFlags", 997, 5]], [["NIX_CFLAGS_COMPILE", 1005, 9]], [["buildInputs", 1004, 5], ["env", 1005, 5]], [["buildInputs", 1009, 5], ["buildFlags", 1010, 5], ["dontBuild", 1014, 5], ["postPatch", 1015, 5]], [["postInstall", 1024, 5]], [["nativeBuildInputs", 1038, 5], ["buildInputs", 1044, 5], ["dontUseCmakeConfigure", 1049, 5], ["buildFlags", 1050, 5]], [["dontBuild", 1057, 7], ["postPatch", 1058, 7], ["preConfigure", 1061, 7]], [["SASS_LIBSASS_PATH", 1071, 7]], [["nativeBuildInputs", 1068, 5], ["dontBuild", 1069, 5], ["env", 1070, 5], ["postPatch", 1073, 5]], [["dontBuild", 1081, 5], ["postPatch", 1082, 5]], [["dontBuild", 1092, 7], ["postPatch", 1093, 7]], [["buildInputs", 1099, 5]], [["buildInputs", 1103, 5]], [["buildInputs", 1107, 5]], [["nativeBuildInputs", 1114, 9], ["buildInputs", 1115, 9], ["buildFlags", 1116, 9]], [["NIX_CFLAGS_COMPILE", 1126, 13]], [["buildFlags", 1122, 9], ["env", 1126, 9]], [["dontBuild", 1133, 5], ["postPatch", 1134, 5]], [["buildInputs", 1141, 5]], [["buildInputs", 1145, 5]], [["nativeBuildInputs", 1149, 5], ["buildInputs", 1153, 5]], [["mainProgram", 1157, 10]], [["meta", 1157, 5]], [["buildInputs", 1161, 5]], [["buildInputs", 1165, 5]], [["dontBuild", 1171, 7], ["postPatch", 1172, 7]], [["buildInputs", 1187, 5]], [["mainProgram", 1194, 10]], [["meta", 1194, 5]], [["dontBuild", 1199, 5], ["nativeBuildInputs", 1200, 5], ["buildInputs", 1205, 5], ["postPatch", 1209, 5], ["preInstall", 1212, 5]], [["buildInputs", 1218, 5]], [["buildInputs", 1222, 5]], [["ZenTest", 142, 3], ["atk", 146, 3], ["bundler", 161, 3], ["cairo", 178, 3], ["cairo-gobject", 191, 3], ["charlock_holmes", 203, 3], ["cld3", 211, 3], ["cocoapods-acknowledgements", 216, 3], ["cocoapods-deploy", 220, 3], ["cocoapods-disable-podfile-validations", 224, 3], ["cocoapods-generate", 228, 3], ["cocoapods-git_url_rewriter", 232, 3], ["cocoapods-keys", 236, 3], ["cocoapods-open", 240, 3], ["cocoapods-try-release-fix", 244, 3], ["curb", 248, 3], ["curses", 252, 3], ["dep-selector-libgecode", 265, 3], ["digest-sha3", 275, 3], ["rdiscount", 279, 3], ["ethon", 290, 3], ["exiv2", 298, 3], ["fog-dnsimple", 305, 3], ["redis-rack", 314, 3], ["ffi-rzmq-core", 324, 3], ["mimemagic", 331, 3], ["mini_magick", 337, 3], ["mini_racer", 344, 3], ["do_sqlite3", 355, 3], ["eventmachine", 359, 3], ["exif", 368, 3], ["ffi", 373, 3], ["fiddle", 378, 3], ["gdk_pixbuf2", 382, 3], ["gdk3", 396, 3], ["gpgme", 411, 3], ["gio2", 417, 3], ["gitlab-markup", 435, 3], ["gitlab-pg_query", 437, 3], ["parser", 451, 3], ["pg_query", 455, 3], ["prettier", 481, 3], ["glib2", 485, 3], ["gtk3", 499, 3], ["gobject-introspection", 537, 3], ["gollum", 548, 3], ["google-protobuf", 556, 3], ["grpc", 564, 3], ["h3", 604, 3], ["hiredis-client", 619, 3], ["hpricot", 625, 3], ["iconv", 637, 3], ["idn-ruby", 645, 3], ["jekyll", 652, 3], ["execjs", 661, 3], ["libxml-ruby", 665, 3], ["mathematical", 676, 3], ["magic", 737, 3], ["maxmind_geoip2", 745, 3], ["metasploit-framework", 752, 3], ["mysql", 758, 3], ["mysql2", 766, 3], ["ncursesw", 774, 3], ["nokogiri", 782, 3], ["openssl", 813, 3], ["opus-ruby", 823, 3], ["ovirt-engine-sdk", 832, 3], ["pango", 847, 3], ["patron", 873, 3], ["pcaprub", 877, 3], ["pg", 881, 3], ["rszr", 892, 3], ["prawn-gmagick", 900, 3], ["psych", 905, 3], ["puma", 909, 3], ["pygments.rb", 913, 3], ["rack", 917, 3], ["railties", 921, 3], ["rainbow", 925, 3], ["rbczmq", 929, 3], ["rbnacl", 939, 3], ["re2", 959, 3], ["readline-ext", 966, 3], ["rest-client", 970, 3], ["rmagick", 974, 3], ["rouge", 982, 3], ["rpam2", 986, 3], ["rspec-core", 990, 3], ["ruby-libvirt", 994, 3], ["ruby-lxc", 1003, 3], ["ruby-terminfo", 1008, 3], ["ruby-vips", 1023, 3], ["rugged", 1037, 3], ["rbtrace", 1053, 3], ["sassc", 1067, 3], ["sass-embedded", 1079, 3], ["scrypt", 1089, 3], ["semian", 1098, 3], ["sequel_pg", 1102, 3], ["snappy", 1106, 3], ["sqlite3", 1110, 3], ["rb-readline", 1132, 3], ["taglib-ruby", 1140, 3], ["timfel-krb5-auth", 1144, 3], ["tiny_tds", 1148, 3], ["treetop", 1156, 3], ["trilogy", 1160, 3], ["typhoeus", 1164, 3], ["tzinfo", 1168, 3], ["uuid4r", 1186, 3], ["whois", 1193, 3], ["xapian-ruby", 1197, 3], ["zlib", 1217, 3], ["zookeeper", 1221, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, fetchpatch: false, fetchpatch2: false, writeScript: false, ruby: false, libkrb5: false, libxml2: false, libxslt: false, stdenv: false, which: false, libiconv: false, libpq: false, "nodejs-slim": false, clang: false, sqlite: false, zlib: false, imagemagick: false, lasem: false, "pkg-config": false, ncurses: false, xapian: false, gpgme: false, "util-linux": false, readline: false, tzdata: false, icu: false, libffi: false, libdeflate: false, xz: false, zstd: false, libwebp: false, cmake: false, libssh2: false, openssl: false, libmysqlclient: false, git: false, perl: false, pcre2: false, gecode_3: false, curl: false, libsodium: false, snappy: false, libossp_uuid: false, lxc: false, libpcap: false, libxtst: false, libxdmcp: false, "libpthread-stubs": false, gtk3: false, lerc: false, buildRubyGem: false, cairo: false, expat: false, re2: false, rake: false, "gobject-introspection": false, "gdk-pixbuf": false, zeromq: false, czmq: false, graphicsmagick: false, libcxx: false, file: false, libvirt: false, glib: false, vips: false, taglib: false, libopus: false, "linux-pam": false, libidn: false, protobuf: false, fribidi: false, harfbuzz: false, bison: false, h3_3: false, flex: false, pango: false, python3: false, patchelf: false, binutils: false, freetds: false, wrapGAppsHook3: false, atk: false, bundler: false, libsass: false, "dart-sass": false, libexif: false, libselinux: false, libsepol: false, "shared-mime-info": false, libthai: false, libdatrie: false, DarwinTools: false, cctools: false, libtool: false, discount: false, exiv2: false, libepoxy: false, libxkbcommon: false, libmaxminddb: false, libyaml: false, cargo: false, rustc: false, rustPlatform: false, "libsysprof-capture": false, imlib2: false, autoSignDarwinBinariesHook: false, systemd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["sha256", 135, 12]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 133, 5], ["gemName", 134, 5], ["source", 135, 5], ["type", 136, 5], ["version", 137, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["mainProgram", 143, 10]]);
-const pos$4 = nix.positions(here + "/default.nix", [["meta", 143, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["dependencies", 147, 5], ["nativeBuildInputs", 148, 5], ["propagatedBuildInputs", 154, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["preFixup", 169, 7], ["postFixup", 170, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 179, 5], ["buildInputs", 180, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 192, 5], ["buildInputs", 193, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["buildInputs", 204, 5]]);
-const pos$10 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 212, 5], ["buildInputs", 213, 5]]);
-const pos$11 = nix.positions(here + "/default.nix", [["dependencies", 217, 5]]);
-const pos$12 = nix.positions(here + "/default.nix", [["dependencies", 221, 5]]);
-const pos$13 = nix.positions(here + "/default.nix", [["dependencies", 225, 5]]);
-const pos$14 = nix.positions(here + "/default.nix", [["dependencies", 229, 5]]);
-const pos$15 = nix.positions(here + "/default.nix", [["dependencies", 233, 5]]);
-const pos$16 = nix.positions(here + "/default.nix", [["dependencies", 237, 5]]);
-const pos$17 = nix.positions(here + "/default.nix", [["dependencies", 241, 5]]);
-const pos$18 = nix.positions(here + "/default.nix", [["dependencies", 245, 5]]);
-const pos$19 = nix.positions(here + "/default.nix", [["buildInputs", 249, 5]]);
-const pos$20 = nix.positions(here + "/default.nix", [["url", 259, 9], ["hash", 260, 9]]);
-const pos$21 = nix.positions(here + "/default.nix", [["dontBuild", 253, 5], ["buildInputs", 254, 5], ["patches", 255, 5]]);
-const pos$22 = nix.positions(here + "/default.nix", [["USE_SYSTEM_GECODE", 267, 7]]);
-const pos$23 = nix.positions(here + "/default.nix", [["env", 266, 5], ["postInstall", 269, 5]]);
-const pos$24 = nix.positions(here + "/default.nix", [["hardeningDisable", 276, 5]]);
-const pos$25 = nix.positions(here + "/default.nix", [["dontBuild", 281, 5], ["buildInputs", 282, 5], ["patches", 283, 5]]);
-const pos$26 = nix.positions(here + "/default.nix", [["dontBuild", 291, 5], ["postPatch", 292, 5]]);
-const pos$27 = nix.positions(here + "/default.nix", [["buildFlags", 299, 5]]);
-const pos$28 = nix.positions(here + "/default.nix", [["postInstall", 308, 7]]);
-const pos$29 = nix.positions(here + "/default.nix", [["dontBuild", 315, 5], ["preBuild", 316, 5]]);
-const pos$30 = nix.positions(here + "/default.nix", [["postInstall", 325, 5]]);
-const pos$31 = nix.positions(here + "/default.nix", [["FREEDESKTOP_MIME_TYPES_PATH", 333, 7]]);
-const pos$32 = nix.positions(here + "/default.nix", [["env", 332, 5]]);
-const pos$33 = nix.positions(here + "/default.nix", [["postInstall", 338, 5]]);
-const pos$34 = nix.positions(here + "/default.nix", [["buildFlags", 345, 5], ["dontBuild", 348, 5], ["postPatch", 349, 5]]);
-const pos$35 = nix.positions(here + "/default.nix", [["buildInputs", 356, 5]]);
-const pos$36 = nix.positions(here + "/default.nix", [["dontBuild", 360, 5], ["buildInputs", 361, 5], ["postPatch", 362, 5]]);
-const pos$37 = nix.positions(here + "/default.nix", [["buildFlags", 369, 5], ["buildInputs", 370, 5]]);
-const pos$38 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 374, 5], ["buildInputs", 375, 5]]);
-const pos$39 = nix.positions(here + "/default.nix", [["buildInputs", 379, 5]]);
-const pos$40 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 383, 5], ["propagatedBuildInputs", 389, 5]]);
-const pos$41 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 397, 5], ["propagatedBuildInputs", 403, 5]]);
-const pos$42 = nix.positions(here + "/default.nix", [["buildInputs", 412, 5], ["nativeBuildInputs", 413, 5], ["buildFlags", 414, 5]]);
-const pos$43 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 418, 5], ["buildInputs", 423, 5]]);
-const pos$44 = nix.positions(here + "/default.nix", [["priority", 435, 33]]);
-const pos$45 = nix.positions(here + "/default.nix", [["meta", 435, 28]]);
-const pos$46 = nix.positions(here + "/default.nix", [["url", 444, 13], ["sha256", 445, 13]]);
-const pos$47 = nix.positions(here + "/default.nix", [["dontBuild", 440, 7], ["postPatch", 441, 7]]);
-const pos$48 = nix.positions(here + "/default.nix", [["mainProgram", 452, 10]]);
-const pos$49 = nix.positions(here + "/default.nix", [["meta", 452, 5]]);
-const pos$50 = nix.positions(here + "/default.nix", [["url", 462, 13], ["sha256", 463, 13]]);
-const pos$51 = nix.positions(here + "/default.nix", [["dontBuild", 458, 7], ["postPatch", 459, 7]]);
-const pos$52 = nix.positions(here + "/default.nix", [["url", 474, 13], ["sha256", 475, 13]]);
-const pos$53 = nix.positions(here + "/default.nix", [["dontBuild", 470, 7], ["postPatch", 471, 7]]);
-const pos$54 = nix.positions(here + "/default.nix", [["mainProgram", 482, 10]]);
-const pos$55 = nix.positions(here + "/default.nix", [["meta", 482, 5]]);
-const pos$56 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 486, 5], ["buildInputs", 487, 5]]);
-const pos$57 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 500, 5], ["buildInputs", 505, 5], ["propagatedBuildInputs", 511, 5], ["dontStrip", 534, 5]]);
-const pos$58 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 538, 5], ["propagatedBuildInputs", 539, 5]]);
-const pos$59 = nix.positions(here + "/default.nix", [["dontBuild", 549, 5], ["postPatch", 550, 5]]);
-const pos$60 = nix.positions(here + "/default.nix", [["hardeningDisable", 561, 7]]);
-const pos$61 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 577, 7]]);
-const pos$62 = nix.positions(here + "/default.nix", [["name", 581, 9], ["url", 582, 9], ["decode", 583, 9], ["stripLen", 584, 9], ["extraPrefix", 585, 9], ["hash", 586, 9]]);
-const pos$63 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 565, 5], ["buildInputs", 574, 5], ["hardeningDisable", 575, 5], ["env", 576, 5], ["patches", 579, 5], ["dontBuild", 589, 5], ["postPatch", 590, 5]]);
-const pos$64 = nix.positions(here + "/default.nix", [["dontBuild", 607, 5], ["postPatch", 608, 5], ["postInstall", 614, 5]]);
-const pos$65 = nix.positions(here + "/default.nix", [["buildInputs", 620, 5]]);
-const pos$66 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 631, 9]]);
-const pos$67 = nix.positions(here + "/default.nix", [["dontBuild", 626, 5], ["patches", 627, 5], ["env", 631, 5]]);
-const pos$68 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 642, 9]]);
-const pos$69 = nix.positions(here + "/default.nix", [["buildFlags", 638, 5], ["env", 642, 5]]);
-const pos$70 = nix.positions(here + "/default.nix", [["buildInputs", 646, 5]]);
-const pos$71 = nix.positions(here + "/default.nix", [["postInstall", 653, 5]]);
-const pos$72 = nix.positions(here + "/default.nix", [["propagatedBuildInputs", 662, 5]]);
-const pos$73 = nix.positions(here + "/default.nix", [["buildFlags", 666, 5]]);
-const pos$74 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 677, 5], ["buildInputs", 687, 5], ["strictDeps", 696, 5], ["dontUseCmakeConfigure", 699, 5], ["postInstall", 701, 5], ["postFixup", 711, 5]]);
-const pos$75 = nix.positions(here + "/default.nix", [["buildInputs", 738, 5], ["postInstall", 739, 5]]);
-const pos$76 = nix.positions(here + "/default.nix", [["buildFlags", 746, 5]]);
-const pos$77 = nix.positions(here + "/default.nix", [["preInstall", 753, 5]]);
-const pos$78 = nix.positions(here + "/default.nix", [["buildInputs", 759, 5]]);
-const pos$79 = nix.positions(here + "/default.nix", [["buildInputs", 767, 5]]);
-const pos$80 = nix.positions(here + "/default.nix", [["buildInputs", 775, 5], ["buildFlags", 776, 5]]);
-const pos$81 = nix.positions(here + "/default.nix", [["buildFlags", 786, 9]]);
-const pos$82 = nix.positions(here + "/default.nix", [["broken", 808, 14]]);
-const pos$83 = nix.positions(here + "/default.nix", [["buildInputs", 803, 9], ["meta", 808, 9]]);
-const pos$84 = nix.positions(here + "/default.nix", [["buildInputs", 820, 7]]);
-const pos$85 = nix.positions(here + "/default.nix", [["dontBuild", 824, 5], ["postPatch", 825, 5]]);
-const pos$86 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 838, 9]]);
-const pos$87 = nix.positions(here + "/default.nix", [["broken", 844, 10]]);
-const pos$88 = nix.positions(here + "/default.nix", [["buildInputs", 833, 5], ["env", 838, 5], ["dontBuild", 843, 5], ["meta", 844, 5]]);
-const pos$89 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 848, 5], ["buildInputs", 852, 5], ["propagatedBuildInputs", 867, 5]]);
-const pos$90 = nix.positions(here + "/default.nix", [["buildInputs", 874, 5]]);
-const pos$91 = nix.positions(here + "/default.nix", [["buildInputs", 878, 5]]);
-const pos$92 = nix.positions(here + "/default.nix", [["buildFlags", 887, 5], ["nativeBuildInputs", 888, 5], ["buildInputs", 889, 5]]);
-const pos$93 = nix.positions(here + "/default.nix", [["buildInputs", 893, 5], ["buildFlags", 897, 5]]);
-const pos$94 = nix.positions(here + "/default.nix", [["buildInputs", 901, 5], ["nativeBuildInputs", 902, 5]]);
-const pos$95 = nix.positions(here + "/default.nix", [["buildInputs", 906, 5]]);
-const pos$96 = nix.positions(here + "/default.nix", [["buildInputs", 910, 5]]);
-const pos$97 = nix.positions(here + "/default.nix", [["buildInputs", 914, 5]]);
-const pos$98 = nix.positions(here + "/default.nix", [["mainProgram", 918, 10]]);
-const pos$99 = nix.positions(here + "/default.nix", [["meta", 918, 5]]);
-const pos$100 = nix.positions(here + "/default.nix", [["mainProgram", 922, 10]]);
-const pos$101 = nix.positions(here + "/default.nix", [["meta", 922, 5]]);
-const pos$102 = nix.positions(here + "/default.nix", [["buildInputs", 926, 5]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$103 = nix.positions(here + "/default.nix", [["buildInputs", 932, 7], ["buildFlags", 936, 7]]);
-const pos$104 = nix.positions(here + "/default.nix", [["postInstall", 943, 9]]);
-const pos$105 = nix.positions(here + "/default.nix", [["dontBuild", 951, 9], ["postPatch", 952, 9]]);
-const pos$106 = nix.positions(here + "/default.nix", [["buildInputs", 960, 5], ["buildFlags", 961, 5]]);
-const pos$107 = nix.positions(here + "/default.nix", [["buildInputs", 967, 5]]);
-const pos$108 = nix.positions(here + "/default.nix", [["mainProgram", 971, 10]]);
-const pos$109 = nix.positions(here + "/default.nix", [["meta", 971, 5]]);
-const pos$110 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 975, 5], ["buildInputs", 976, 5]]);
-const pos$111 = nix.positions(here + "/default.nix", [["mainProgram", 983, 10]]);
-const pos$112 = nix.positions(here + "/default.nix", [["meta", 983, 5]]);
-const pos$113 = nix.positions(here + "/default.nix", [["buildInputs", 987, 5]]);
-const pos$114 = nix.positions(here + "/default.nix", [["mainProgram", 991, 10]]);
-const pos$115 = nix.positions(here + "/default.nix", [["meta", 991, 5]]);
-const pos$116 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 995, 5], ["buildInputs", 996, 5], ["buildFlags", 997, 5]]);
-const pos$117 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 1005, 9]]);
-const pos$118 = nix.positions(here + "/default.nix", [["buildInputs", 1004, 5], ["env", 1005, 5]]);
-const pos$119 = nix.positions(here + "/default.nix", [["buildInputs", 1009, 5], ["buildFlags", 1010, 5], ["dontBuild", 1014, 5], ["postPatch", 1015, 5]]);
-const pos$120 = nix.positions(here + "/default.nix", [["postInstall", 1024, 5]]);
-const pos$121 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 1038, 5], ["buildInputs", 1044, 5], ["dontUseCmakeConfigure", 1049, 5], ["buildFlags", 1050, 5]]);
-const pos$122 = nix.positions(here + "/default.nix", [["dontBuild", 1057, 7], ["postPatch", 1058, 7], ["preConfigure", 1061, 7]]);
-const pos$123 = nix.positions(here + "/default.nix", [["SASS_LIBSASS_PATH", 1071, 7]]);
-const pos$124 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 1068, 5], ["dontBuild", 1069, 5], ["env", 1070, 5], ["postPatch", 1073, 5]]);
-const pos$125 = nix.positions(here + "/default.nix", [["dontBuild", 1081, 5], ["postPatch", 1082, 5]]);
-const pos$126 = nix.positions(here + "/default.nix", [["dontBuild", 1092, 7], ["postPatch", 1093, 7]]);
-const pos$127 = nix.positions(here + "/default.nix", [["buildInputs", 1099, 5]]);
-const pos$128 = nix.positions(here + "/default.nix", [["buildInputs", 1103, 5]]);
-const pos$129 = nix.positions(here + "/default.nix", [["buildInputs", 1107, 5]]);
-const pos$130 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 1114, 9], ["buildInputs", 1115, 9], ["buildFlags", 1116, 9]]);
-const pos$131 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 1126, 13]]);
-const pos$132 = nix.positions(here + "/default.nix", [["buildFlags", 1122, 9], ["env", 1126, 9]]);
-const pos$133 = nix.positions(here + "/default.nix", [["dontBuild", 1133, 5], ["postPatch", 1134, 5]]);
-const pos$134 = nix.positions(here + "/default.nix", [["buildInputs", 1141, 5]]);
-const pos$135 = nix.positions(here + "/default.nix", [["buildInputs", 1145, 5]]);
-const pos$136 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 1149, 5], ["buildInputs", 1153, 5]]);
-const pos$137 = nix.positions(here + "/default.nix", [["mainProgram", 1157, 10]]);
-const pos$138 = nix.positions(here + "/default.nix", [["meta", 1157, 5]]);
-const pos$139 = nix.positions(here + "/default.nix", [["buildInputs", 1161, 5]]);
-const pos$140 = nix.positions(here + "/default.nix", [["buildInputs", 1165, 5]]);
-const pos$141 = nix.positions(here + "/default.nix", [["dontBuild", 1171, 7], ["postPatch", 1172, 7]]);
-const pos$142 = nix.positions(here + "/default.nix", [["buildInputs", 1187, 5]]);
-const pos$143 = nix.positions(here + "/default.nix", [["mainProgram", 1194, 10]]);
-const pos$144 = nix.positions(here + "/default.nix", [["meta", 1194, 5]]);
-const pos$145 = nix.positions(here + "/default.nix", [["dontBuild", 1199, 5], ["nativeBuildInputs", 1200, 5], ["buildInputs", 1205, 5], ["postPatch", 1209, 5], ["preInstall", 1212, 5]]);
-const pos$146 = nix.positions(here + "/default.nix", [["buildInputs", 1218, 5]]);
-const pos$147 = nix.positions(here + "/default.nix", [["buildInputs", 1222, 5]]);
-const pos$148 = nix.positions(here + "/default.nix", [["ZenTest", 142, 3], ["atk", 146, 3], ["bundler", 161, 3], ["cairo", 178, 3], ["cairo-gobject", 191, 3], ["charlock_holmes", 203, 3], ["cld3", 211, 3], ["cocoapods-acknowledgements", 216, 3], ["cocoapods-deploy", 220, 3], ["cocoapods-disable-podfile-validations", 224, 3], ["cocoapods-generate", 228, 3], ["cocoapods-git_url_rewriter", 232, 3], ["cocoapods-keys", 236, 3], ["cocoapods-open", 240, 3], ["cocoapods-try-release-fix", 244, 3], ["curb", 248, 3], ["curses", 252, 3], ["dep-selector-libgecode", 265, 3], ["digest-sha3", 275, 3], ["rdiscount", 279, 3], ["ethon", 290, 3], ["exiv2", 298, 3], ["fog-dnsimple", 305, 3], ["redis-rack", 314, 3], ["ffi-rzmq-core", 324, 3], ["mimemagic", 331, 3], ["mini_magick", 337, 3], ["mini_racer", 344, 3], ["do_sqlite3", 355, 3], ["eventmachine", 359, 3], ["exif", 368, 3], ["ffi", 373, 3], ["fiddle", 378, 3], ["gdk_pixbuf2", 382, 3], ["gdk3", 396, 3], ["gpgme", 411, 3], ["gio2", 417, 3], ["gitlab-markup", 435, 3], ["gitlab-pg_query", 437, 3], ["parser", 451, 3], ["pg_query", 455, 3], ["prettier", 481, 3], ["glib2", 485, 3], ["gtk3", 499, 3], ["gobject-introspection", 537, 3], ["gollum", 548, 3], ["google-protobuf", 556, 3], ["grpc", 564, 3], ["h3", 604, 3], ["hiredis-client", 619, 3], ["hpricot", 625, 3], ["iconv", 637, 3], ["idn-ruby", 645, 3], ["jekyll", 652, 3], ["execjs", 661, 3], ["libxml-ruby", 665, 3], ["mathematical", 676, 3], ["magic", 737, 3], ["maxmind_geoip2", 745, 3], ["metasploit-framework", 752, 3], ["mysql", 758, 3], ["mysql2", 766, 3], ["ncursesw", 774, 3], ["nokogiri", 782, 3], ["openssl", 813, 3], ["opus-ruby", 823, 3], ["ovirt-engine-sdk", 832, 3], ["pango", 847, 3], ["patron", 873, 3], ["pcaprub", 877, 3], ["pg", 881, 3], ["rszr", 892, 3], ["prawn-gmagick", 900, 3], ["psych", 905, 3], ["puma", 909, 3], ["pygments.rb", 913, 3], ["rack", 917, 3], ["railties", 921, 3], ["rainbow", 925, 3], ["rbczmq", 929, 3], ["rbnacl", 939, 3], ["re2", 959, 3], ["readline-ext", 966, 3], ["rest-client", 970, 3], ["rmagick", 974, 3], ["rouge", 982, 3], ["rpam2", 986, 3], ["rspec-core", 990, 3], ["ruby-libvirt", 994, 3], ["ruby-lxc", 1003, 3], ["ruby-terminfo", 1008, 3], ["ruby-vips", 1023, 3], ["rugged", 1037, 3], ["rbtrace", 1053, 3], ["sassc", 1067, 3], ["sass-embedded", 1079, 3], ["scrypt", 1089, 3], ["semian", 1098, 3], ["sequel_pg", 1102, 3], ["snappy", 1106, 3], ["sqlite3", 1110, 3], ["rb-readline", 1132, 3], ["taglib-ruby", 1140, 3], ["timfel-krb5-auth", 1144, 3], ["tiny_tds", 1148, 3], ["treetop", 1156, 3], ["trilogy", 1160, 3], ["typhoeus", 1164, 3], ["tzinfo", 1168, 3], ["uuid4r", 1186, 3], ["whois", 1193, 3], ["xapian-ruby", 1197, 3], ["zlib", 1217, 3], ["zookeeper", 1221, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -265,24 +118,24 @@ export default nix.lambda((args) => (() => {
   const autoSignDarwinBinariesHook = nix.arg($, "autoSignDarwinBinariesHook");
   const systemd = nix.arg($, "systemd");
   const rainbow_rake = nix.thunk(() => nix.app(buildRubyGem, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "rake",
       gemName: "rake",
       source: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         sha256: "01j8fc9bqjnrsxbppncai05h43315vmz9fwg28qdsgcjw9ck1d7n",
       })),
       type: "gem",
       version: "12.0.0",
     }))));
   return {
-    [nix.POS]: pos$148,
+    [nix.POS]: $pos[147],
     ZenTest: (attrs) => ({
-      [nix.POS]: pos$4,
-      meta: nix.thunk(() => ({ [nix.POS]: pos$3, mainProgram: "zentest" })),
+      [nix.POS]: $pos[3],
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[2], mainProgram: "zentest" })),
     }),
     atk: (attrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       dependencies: nix.thunk(() => nix.concat(nix.sel(attrs, "dependencies"), ["gobject-introspection"])),
       nativeBuildInputs: nix.thunk(() => nix.concat([rake, bundler, pkg_config], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [DarwinTools])))),
       propagatedBuildInputs: nix.thunk(() => [gobject_introspection, wrapGAppsHook3, atk]),
@@ -290,7 +143,7 @@ export default nix.lambda((args) => (() => {
     bundler: (attrs) => (() => {
       const templates = nix.thunk(() => nix.str`${nix.sel(attrs, "ruby", "gemPath")}/gems/${nix.sel(attrs, "gemName")}-${nix.sel(attrs, "version")}/lib/bundler/templates/`);
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         preFixup: nix.thunk(() => nix.str`chmod -x $out/${templates}/Executable`),
         postFixup: nix.thunk(() => nix.str`chmod +x $out/${templates}/Executable
 
@@ -300,200 +153,200 @@ sed -i -e "s/activate_bin_path/bin_path/g" $out/bin/bundle
       };
     })(),
     cairo: (attrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       nativeBuildInputs: nix.thunk(() => nix.concat([pkg_config], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [DarwinTools])))),
       buildInputs: nix.thunk(() => [cairo, expat, glib, libsysprof_capture, pcre2, libpthread_stubs, libxdmcp]),
     }),
     "cairo-gobject": (attrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       nativeBuildInputs: nix.thunk(() => nix.concat([pkg_config], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [DarwinTools])))),
       buildInputs: nix.thunk(() => [cairo, expat, libsysprof_capture, pcre2, libpthread_stubs, libxdmcp]),
     }),
-    charlock_holmes: (attrs) => ({ [nix.POS]: pos$9, buildInputs: nix.thunk(() => [which, icu, zlib]) }),
+    charlock_holmes: (attrs) => ({ [nix.POS]: $pos[8], buildInputs: nix.thunk(() => [which, icu, zlib]) }),
     cld3: (attrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [protobuf]),
     }),
     "cocoapods-acknowledgements": (attrs) => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       dependencies: nix.thunk(() => nix.concat(nix.sel(attrs, "dependencies"), ["cocoapods"])),
     }),
-    "cocoapods-deploy": (attrs) => ({ [nix.POS]: pos$12, dependencies: nix.thunk(() => ["cocoapods"]) }),
-    "cocoapods-disable-podfile-validations": (attrs) => ({ [nix.POS]: pos$13, dependencies: nix.thunk(() => ["cocoapods"]) }),
+    "cocoapods-deploy": (attrs) => ({ [nix.POS]: $pos[11], dependencies: nix.thunk(() => ["cocoapods"]) }),
+    "cocoapods-disable-podfile-validations": (attrs) => ({ [nix.POS]: $pos[12], dependencies: nix.thunk(() => ["cocoapods"]) }),
     "cocoapods-generate": (attrs) => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       dependencies: nix.thunk(() => nix.concat(nix.sel(attrs, "dependencies"), ["cocoapods"])),
     }),
-    "cocoapods-git_url_rewriter": (attrs) => ({ [nix.POS]: pos$15, dependencies: nix.thunk(() => ["cocoapods"]) }),
+    "cocoapods-git_url_rewriter": (attrs) => ({ [nix.POS]: $pos[14], dependencies: nix.thunk(() => ["cocoapods"]) }),
     "cocoapods-keys": (attrs) => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       dependencies: nix.thunk(() => nix.concat(nix.sel(attrs, "dependencies"), ["cocoapods"])),
     }),
-    "cocoapods-open": (attrs) => ({ [nix.POS]: pos$17, dependencies: nix.thunk(() => ["cocoapods"]) }),
-    "cocoapods-try-release-fix": (attrs) => ({ [nix.POS]: pos$18, dependencies: nix.thunk(() => ["cocoapods"]) }),
-    curb: (attrs) => ({ [nix.POS]: pos$19, buildInputs: nix.thunk(() => [curl]) }),
+    "cocoapods-open": (attrs) => ({ [nix.POS]: $pos[16], dependencies: nix.thunk(() => ["cocoapods"]) }),
+    "cocoapods-try-release-fix": (attrs) => ({ [nix.POS]: $pos[17], dependencies: nix.thunk(() => ["cocoapods"]) }),
+    curb: (attrs) => ({ [nix.POS]: $pos[18], buildInputs: nix.thunk(() => [curl]) }),
     curses: (attrs) => ({
-      [nix.POS]: pos$21,
+      [nix.POS]: $pos[20],
       dontBuild: false,
       buildInputs: nix.thunk(() => [ncurses]),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(attrs, "version")), "1.4.5")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-              [nix.POS]: pos$20,
+              [nix.POS]: $pos[19],
               url: "https://github.com/ruby/curses/commit/13e00d07c3aaed83d5f138cf268cc33c9f025d0e.patch?full_index=1",
               hash: "sha256-ZJ2egqj3Uwmi4KrF79dtwczpwUqFCp52/xQYUymYDmc=",
             })))),
         ]))),
     }),
     "dep-selector-libgecode": (attrs) => ({
-      [nix.POS]: pos$23,
-      env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), { [nix.POS]: pos$22, USE_SYSTEM_GECODE: true })),
+      [nix.POS]: $pos[22],
+      env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), { [nix.POS]: $pos[21], USE_SYSTEM_GECODE: true })),
       postInstall: nix.thunk(() => nix.str`installPath=$(cat $out/nix-support/gem-meta/install-path)
 sed -i $installPath/lib/dep-selector-libgecode.rb -e 's@VENDORED_GECODE_DIR =.*@VENDORED_GECODE_DIR = "${gecode_3}"@'
 `),
     }),
-    "digest-sha3": (attrs) => ({ [nix.POS]: pos$24, hardeningDisable: nix.thunk(() => ["format"]) }),
+    "digest-sha3": (attrs) => ({ [nix.POS]: $pos[23], hardeningDisable: nix.thunk(() => ["format"]) }),
     rdiscount: (attrs) => ({
-      [nix.POS]: pos$25,
+      [nix.POS]: $pos[24],
       dontBuild: false,
       buildInputs: nix.thunk(() => [discount]),
       patches: nix.thunk(() => [nix.path(here, "./rdiscount-use-nixpkgs-libmarkdown.patch")]),
     }),
     ethon: (attrs) => ({
-      [nix.POS]: pos$26,
+      [nix.POS]: $pos[25],
       dontBuild: false,
       postPatch: nix.thunk(() => nix.str`substituteInPlace lib/ethon/curls/settings.rb \\
   --replace "libcurl" "${nix.sel(curl, "out")}/lib/libcurl${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}"
 `),
     }),
     exiv2: (attrs) => ({
-      [nix.POS]: pos$27,
+      [nix.POS]: $pos[26],
       buildFlags: nix.thunk(() => [
         nix.thunk(() => nix.str`--with-exiv2-lib=${exiv2}/lib`),
         nix.thunk(() => nix.str`--with-exiv2-include=${nix.sel(exiv2, "dev")}/include`),
       ]),
     }),
     "fog-dnsimple": (attrs) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(attrs, "version")), "1.0.1")), nix.thunk(() => ({
-        [nix.POS]: pos$28,
+        [nix.POS]: $pos[27],
         postInstall: "cd $(cat $out/nix-support/gem-meta/install-path)\nrm {$out/bin,bin,../../bin}/{setup,console}\n",
       }))),
     "redis-rack": (attrs) => ({
-      [nix.POS]: pos$29,
+      [nix.POS]: $pos[28],
       dontBuild: false,
       preBuild: "exec 3>&1\noutput=\"$(gem build $gemspec | tee >(cat - >&3))\"\nexec 3>&-\nsed -i 's!\"rake\".freeze!!' $gemspec\n",
     }),
     "ffi-rzmq-core": (attrs) => ({
-      [nix.POS]: pos$30,
+      [nix.POS]: $pos[29],
       postInstall: nix.thunk(() => nix.str`installPath=$(cat $out/nix-support/gem-meta/install-path)
 sed -i $installPath/lib/ffi-rzmq-core/libzmq.rb -e 's@inside_gem =.*@inside_gem = "${zeromq}/lib"@'
 `),
     }),
     mimemagic: (attrs) => ({
-      [nix.POS]: pos$32,
+      [nix.POS]: $pos[31],
       env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), {
-        [nix.POS]: pos$31,
+        [nix.POS]: $pos[30],
         FREEDESKTOP_MIME_TYPES_PATH: nix.thunk(() => nix.str`${shared_mime_info}/share/mime/packages/freedesktop.org.xml`),
       })),
     }),
     mini_magick: (attrs) => ({
-      [nix.POS]: pos$33,
+      [nix.POS]: $pos[32],
       postInstall: nix.thunk(() => nix.str`installPath=$(cat $out/nix-support/gem-meta/install-path)
 echo -e "\\nENV['PATH'] += ':${graphicsmagick}/bin'\\n" >> $installPath/lib/mini_magick/configuration.rb
 `),
     }),
     mini_racer: (attrs) => ({
-      [nix.POS]: pos$34,
+      [nix.POS]: $pos[33],
       buildFlags: nix.thunk(() => [nix.thunk(() => nix.str`--with-v8-dir="${nix.sel(nodejs_slim, "libv8")}"`)]),
       dontBuild: false,
       postPatch: "substituteInPlace ext/mini_racer_extension/extconf.rb \\\n  --replace Libv8.configure_makefile '$CPPFLAGS += \" -x c++\"; Libv8.configure_makefile'\n",
     }),
-    do_sqlite3: (attrs) => ({ [nix.POS]: pos$35, buildInputs: nix.thunk(() => [sqlite]) }),
+    do_sqlite3: (attrs) => ({ [nix.POS]: $pos[34], buildInputs: nix.thunk(() => [sqlite]) }),
     eventmachine: (attrs) => ({
-      [nix.POS]: pos$36,
+      [nix.POS]: $pos[35],
       dontBuild: false,
       buildInputs: nix.thunk(() => [openssl]),
       postPatch: "substituteInPlace ext/em.cpp \\\n  --replace 'if (bind (' 'if (::bind ('\n",
     }),
     exif: (attrs) => ({
-      [nix.POS]: pos$37,
+      [nix.POS]: $pos[36],
       buildFlags: nix.thunk(() => [nix.thunk(() => nix.str`--with-exif-dir=${libexif}`)]),
       buildInputs: nix.thunk(() => [libexif]),
     }),
     ffi: (attrs) => ({
-      [nix.POS]: pos$38,
+      [nix.POS]: $pos[37],
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libffi]),
     }),
-    fiddle: (attrs) => ({ [nix.POS]: pos$39, buildInputs: nix.thunk(() => [libffi]) }),
+    fiddle: (attrs) => ({ [nix.POS]: $pos[38], buildInputs: nix.thunk(() => [libffi]) }),
     gdk_pixbuf2: (attrs) => ({
-      [nix.POS]: pos$40,
+      [nix.POS]: $pos[39],
       nativeBuildInputs: nix.thunk(() => nix.concat([pkg_config, bundler, rake], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [DarwinTools])))),
       propagatedBuildInputs: nix.thunk(() => [gobject_introspection, wrapGAppsHook3, gdk_pixbuf]),
     }),
     gdk3: (attrs) => ({
-      [nix.POS]: pos$41,
+      [nix.POS]: $pos[40],
       nativeBuildInputs: nix.thunk(() => nix.concat([pkg_config, bundler, rake], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [DarwinTools])))),
       propagatedBuildInputs: nix.thunk(() => [gobject_introspection, wrapGAppsHook3, gdk_pixbuf, cairo]),
     }),
     gpgme: (attrs) => ({
-      [nix.POS]: pos$42,
+      [nix.POS]: $pos[41],
       buildInputs: nix.thunk(() => [gpgme]),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildFlags: nix.thunk(() => ["--use-system-libraries"]),
     }),
     gio2: (attrs) => ({
-      [nix.POS]: pos$43,
+      [nix.POS]: $pos[42],
       nativeBuildInputs: nix.thunk(() => nix.concat([pkg_config, gobject_introspection], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [DarwinTools])))),
       buildInputs: nix.thunk(() => nix.concat([glib, libsysprof_capture, pcre2], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [util_linux, libselinux, libsepol])))),
     }),
     "gitlab-markup": (attrs) => ({
-      [nix.POS]: pos$45,
-      meta: nix.thunk(() => ({ [nix.POS]: pos$44, priority: 1n })),
+      [nix.POS]: $pos[44],
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[43], priority: 1n })),
     }),
     "gitlab-pg_query": (attrs) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(attrs, "version"), "1.3.1")), nix.thunk(() => ({
-        [nix.POS]: pos$47,
+        [nix.POS]: $pos[46],
         dontBuild: false,
         postPatch: nix.thunk(() => nix.str`sed -i "s;'https://codeload.github.com.*';'${nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$46,
+            [nix.POS]: $pos[45],
             url: "https://codeload.github.com/lfittl/libpg_query/tar.gz/10-1.0.3",
             sha256: "0jfij8apzxsdabl70j42xgd5f3ka1gdcrk764nccp66164gpcchk",
           })))}';" ext/pg_query/extconf.rb
 `),
       }))),
     parser: (attrs) => ({
-      [nix.POS]: pos$49,
-      meta: nix.thunk(() => ({ [nix.POS]: pos$48, mainProgram: "ruby-parse" })),
+      [nix.POS]: $pos[48],
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[47], mainProgram: "ruby-parse" })),
     }),
     pg_query: (attrs) => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(attrs, "version"), "2.0.2")), nix.thunk(() => ({
-        [nix.POS]: pos$51,
+        [nix.POS]: $pos[50],
         dontBuild: false,
         postPatch: nix.thunk(() => nix.str`sed -i "s;'https://codeload.github.com.*';'${nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$50,
+            [nix.POS]: $pos[49],
             url: "https://codeload.github.com/lfittl/libpg_query/tar.gz/13-2.0.2",
             sha256: "0ms2s6hmy8qyzv4g1hj4i2p5fws1v8lrj73b2knwbp2ipd45yj7y",
           })))}';" ext/pg_query/extconf.rb
 `),
       }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(attrs, "version"), "1.3.0")), nix.thunk(() => ({
-        [nix.POS]: pos$53,
+        [nix.POS]: $pos[52],
         dontBuild: false,
         postPatch: nix.thunk(() => nix.str`sed -i "s;'https://codeload.github.com.*';'${nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$52,
+            [nix.POS]: $pos[51],
             url: "https://codeload.github.com/lfittl/libpg_query/tar.gz/10-1.0.4",
             sha256: "0f0kshhai0pnkqj0w4kgz3fssnvwidllc31n1fysxjjzdqlr1k48",
           })))}';" ext/pg_query/extconf.rb
 `),
       })))),
     prettier: (attrs) => ({
-      [nix.POS]: pos$55,
-      meta: nix.thunk(() => ({ [nix.POS]: pos$54, mainProgram: "rbprettier" })),
+      [nix.POS]: $pos[54],
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[53], mainProgram: "rbprettier" })),
     }),
     glib2: (attrs) => ({
-      [nix.POS]: pos$56,
+      [nix.POS]: $pos[55],
       nativeBuildInputs: nix.thunk(() => nix.concat([pkg_config], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [DarwinTools])))),
       buildInputs: nix.thunk(() => nix.concat([glib, libsysprof_capture, pcre2], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [util_linux, libselinux, libsepol])))),
     }),
     gtk3: (attrs) => ({
-      [nix.POS]: pos$57,
+      [nix.POS]: $pos[56],
       nativeBuildInputs: nix.thunk(() => nix.concat([binutils, pkg_config], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [DarwinTools])))),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [util_linux, libselinux, libsepol, systemd]))),
       propagatedBuildInputs: nix.thunk(() => [
@@ -522,30 +375,30 @@ echo -e "\\nENV['PATH'] += ':${graphicsmagick}/bin'\\n" >> $installPath/lib/mini
       dontStrip: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
     }),
     "gobject-introspection": (attrs) => ({
-      [nix.POS]: pos$58,
+      [nix.POS]: $pos[57],
       nativeBuildInputs: nix.thunk(() => nix.concat([pkg_config], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [DarwinTools])))),
       propagatedBuildInputs: nix.thunk(() => [gobject_introspection, wrapGAppsHook3, glib, pcre2, libsysprof_capture]),
     }),
     gollum: (attrs) => ({
-      [nix.POS]: pos$59,
+      [nix.POS]: $pos[58],
       dontBuild: false,
       postPatch: nix.thunk(() => nix.str`substituteInPlace bin/gollum \\
   --replace "/usr/bin/env -S ruby" "${ruby}/bin/ruby"
 `),
     }),
-    "google-protobuf": (attrs) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(attrs, "version")), "3.25.0")), nix.thunk(() => ({ [nix.POS]: pos$60, hardeningDisable: nix.thunk(() => ["format"]) }))),
+    "google-protobuf": (attrs) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(attrs, "version")), "3.25.0")), nix.thunk(() => ({ [nix.POS]: $pos[59], hardeningDisable: nix.thunk(() => ["format"]) }))),
     grpc: (attrs) => ({
-      [nix.POS]: pos$63,
+      [nix.POS]: $pos[62],
       nativeBuildInputs: nix.thunk(() => nix.concat([pkg_config], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), cctools), nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(attrs, "version")), "1.53.0")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")))) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), autoSignDarwinBinariesHook)))),
       buildInputs: nix.thunk(() => [openssl]),
       hardeningDisable: nix.thunk(() => ["format"]),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(attrs, "version")), "1.68.1")), nix.thunk(() => ({
-          [nix.POS]: pos$61,
+          [nix.POS]: $pos[60],
           NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
         })))),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(attrs, "version")), "1.65.0")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$62,
+              [nix.POS]: $pos[61],
               name: "gcc-14-fixes.patch",
               url: "https://boringssl.googlesource.com/boringssl/+/c70190368c7040c37c1d655f0690bcde2b109a0d%5E%21/?format=TEXT",
               decode: "base64 -d",
@@ -558,7 +411,7 @@ echo -e "\\nENV['PATH'] += ':${graphicsmagick}/bin'\\n" >> $installPath/lib/mini
       postPatch: nix.thunk(() => nix.add("substituteInPlace Makefile \\\n  --replace '-Wno-invalid-source-encoding' \"\"\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(attrs, "version")), "1.53.0")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")))), "# For < v1.48.0\nsubstituteInPlace src/ruby/ext/grpc/extconf.rb \\\n  --replace \"ENV['AR'] = 'libtool -o' if RUBY_PLATFORM =~ /darwin/\" \"\"\n# For >= v1.48.0\nsubstituteInPlace src/ruby/ext/grpc/extconf.rb \\\n  --replace 'apple_toolchain = ' 'apple_toolchain = false && '\n"))),
     }),
     h3: (attrs) => ({
-      [nix.POS]: pos$64,
+      [nix.POS]: $pos[63],
       dontBuild: false,
       postPatch: nix.thunk(() => nix.str`substituteInPlace ext/h3/Makefile \\
   --replace-fail 'cd src; cmake . -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DBUILD_SHARED_LIBS=true -DBUILD_FILTERS=OFF -DBUILD_BENCHMARKS=OFF -DENABLE_LINTING=OFF; make' ':'
@@ -568,40 +421,40 @@ substituteInPlace lib/h3/bindings/base.rb \\
       postInstall: nix.thunk(() => nix.str`rm -rf $out/${nix.sel(ruby, "gemPath")}/gems/h3-${nix.sel(attrs, "version")}/ext/h3/src
 `),
     }),
-    "hiredis-client": (attrs) => ({ [nix.POS]: pos$65, buildInputs: nix.thunk(() => [openssl]) }),
+    "hiredis-client": (attrs) => ({ [nix.POS]: $pos[64], buildInputs: nix.thunk(() => [openssl]) }),
     hpricot: (attrs) => ({
-      [nix.POS]: pos$67,
+      [nix.POS]: $pos[66],
       dontBuild: false,
       patches: nix.thunk(() => [
         nix.path(here, "./hpricot-fix-incompatible-function-pointer-conversion.patch"),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$66,
+        [nix.POS]: $pos[65],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=incompatible-pointer-types", "-Wno-error=int-conversion"]))),
       })),
     }),
     iconv: (attrs) => ({
-      [nix.POS]: pos$69,
+      [nix.POS]: $pos[68],
       buildFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [
           nix.thunk(() => nix.str`--with-iconv-dir=${nix.app(nix.sel(lib, "getLib"), libiconv)}`),
           nix.thunk(() => nix.str`--with-iconv-include=${nix.app(nix.sel(lib, "getDev"), libiconv)}/include`),
         ]))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$68,
+        [nix.POS]: $pos[67],
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       })),
     }),
-    "idn-ruby": (attrs) => ({ [nix.POS]: pos$70, buildInputs: nix.thunk(() => [libidn]) }),
+    "idn-ruby": (attrs) => ({ [nix.POS]: $pos[69], buildInputs: nix.thunk(() => [libidn]) }),
     jekyll: (attrs) => ({
-      [nix.POS]: pos$71,
+      [nix.POS]: $pos[70],
       postInstall: "installPath=$(cat $out/nix-support/gem-meta/install-path)\nsed -i $installPath/lib/jekyll/commands/new.rb \\\n    -e 's@Exec.run(\"bundle\", \"install\"@Exec.run(\"true\"@' \\\n    -e 's@FileUtils.cp_r site_template + \"/.\", path@FileUtils.cp_r site_template + \"/.\", path; FileUtils.chmod_R \"u+w\", path@'\n",
     }),
     execjs: (attrs) => ({
-      [nix.POS]: pos$72,
+      [nix.POS]: $pos[71],
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(nodejs_slim, "libv8"))]),
     }),
     "libxml-ruby": (attrs) => ({
-      [nix.POS]: pos$73,
+      [nix.POS]: $pos[72],
       buildFlags: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.str`--with-xml2-lib=${nix.sel(libxml2, "out")}/lib`),
         nix.thunk(() => nix.str`--with-xml2-include=${nix.sel(libxml2, "dev")}/include/libxml2`),
@@ -611,7 +464,7 @@ substituteInPlace lib/h3/bindings/base.rb \\
         ])))),
     }),
     mathematical: (attrs) => ({
-      [nix.POS]: pos$74,
+      [nix.POS]: $pos[73],
       nativeBuildInputs: nix.thunk(() => [ruby, cmake, bison, flex, pkg_config, python3, patchelf]),
       buildInputs: nix.thunk(() => [cairo, fribidi, gdk_pixbuf, glib, libxml2, pango]),
       strictDeps: true,
@@ -632,30 +485,30 @@ install_name_tool -change @rpath/liblasem.dylib "${nix.app(nix.sel(lib, "getLib"
 `)))),
     }),
     magic: (attrs) => ({
-      [nix.POS]: pos$75,
+      [nix.POS]: $pos[74],
       buildInputs: nix.thunk(() => [file]),
       postInstall: nix.thunk(() => nix.str`installPath=$(cat $out/nix-support/gem-meta/install-path)
 sed -e 's@ENV\\["MAGIC_LIB"\\] ||@ENV\\["MAGIC_LIB"\\] || "${file}/lib/libmagic.so" ||@' -i $installPath/lib/magic/api.rb
 `),
     }),
     maxmind_geoip2: (attrs) => ({
-      [nix.POS]: pos$76,
+      [nix.POS]: $pos[75],
       buildFlags: nix.thunk(() => [
         nix.thunk(() => nix.str`--with-maxminddb-lib=${libmaxminddb}/lib`),
         nix.thunk(() => nix.str`--with-maxminddb-include=${libmaxminddb}/include`),
       ]),
     }),
-    "metasploit-framework": (attrs) => ({ [nix.POS]: pos$77, preInstall: "export HOME=$TMPDIR\n" }),
+    "metasploit-framework": (attrs) => ({ [nix.POS]: $pos[76], preInstall: "export HOME=$TMPDIR\n" }),
     mysql: (attrs) => ({
-      [nix.POS]: pos$78,
+      [nix.POS]: $pos[77],
       buildInputs: nix.thunk(() => [libmysqlclient, zlib, openssl]),
     }),
     mysql2: (attrs) => ({
-      [nix.POS]: pos$79,
+      [nix.POS]: $pos[78],
       buildInputs: nix.thunk(() => [libmysqlclient, zlib, openssl]),
     }),
     ncursesw: (attrs) => ({
-      [nix.POS]: pos$80,
+      [nix.POS]: $pos[79],
       buildInputs: nix.thunk(() => [ncurses]),
       buildFlags: nix.thunk(() => [
         nix.thunk(() => nix.str`--with-cflags=-I${nix.sel(ncurses, "dev")}/include`),
@@ -663,7 +516,7 @@ sed -e 's@ENV\\["MAGIC_LIB"\\] ||@ENV\\["MAGIC_LIB"\\] || "${file}/lib/libmagic.
       ]),
     }),
     nokogiri: (attrs) => nix.update({
-      [nix.POS]: pos$81,
+      [nix.POS]: $pos[80],
       buildFlags: nix.thunk(() => nix.concat([
         "--use-system-libraries",
         nix.thunk(() => nix.str`--with-zlib-lib=${nix.sel(zlib, "out")}/lib`),
@@ -679,19 +532,19 @@ sed -e 's@ENV\\["MAGIC_LIB"\\] ||@ENV\\["MAGIC_LIB"\\] || "${file}/lib/libmagic.
           nix.thunk(() => nix.str`--with-opt-include=${libiconv}/include`),
         ])))),
     }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-        [nix.POS]: pos$83,
+        [nix.POS]: $pos[82],
         buildInputs: nix.thunk(() => [libxml2]),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$82,
+          [nix.POS]: $pos[81],
           broken: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(attrs, "version")), "1.16.0")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(libxml2, "version")), "2.12")))),
         })),
       })))),
     openssl: (attrs) => (() => {
       nix.assert_((nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(attrs, "version")), "3.0.0")) || nix.asBool(nix.builtins.throw("OpenSSL 1.1 is EOL and the corresponding Ruby gem was removed."))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/ruby-modules/gem-config/default.nix:816:5");
-      return { [nix.POS]: pos$84, buildInputs: nix.thunk(() => [openssl]) };
+      return { [nix.POS]: $pos[83], buildInputs: nix.thunk(() => [openssl]) };
     })(),
     "opus-ruby": (attrs) => ({
-      [nix.POS]: pos$85,
+      [nix.POS]: $pos[84],
       dontBuild: false,
       postPatch: nix.thunk(() => nix.str`substituteInPlace lib/opus-ruby.rb \\
   --replace "ffi_lib 'opus'" \\
@@ -699,10 +552,10 @@ sed -e 's@ENV\\["MAGIC_LIB"\\] ||@ENV\\["MAGIC_LIB"\\] || "${file}/lib/libmagic.
 `),
     }),
     "ovirt-engine-sdk": (attrs) => ({
-      [nix.POS]: pos$88,
+      [nix.POS]: $pos[87],
       buildInputs: nix.thunk(() => [curl, libxml2]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$86,
+        [nix.POS]: $pos[85],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-Wno-error=implicit-function-declaration",
             "-Wno-error=incompatible-pointer-types",
@@ -711,12 +564,12 @@ sed -e 's@ENV\\["MAGIC_LIB"\\] ||@ENV\\["MAGIC_LIB"\\] || "${file}/lib/libmagic.
       })),
       dontBuild: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$87,
+        [nix.POS]: $pos[86],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       })),
     }),
     pango: (attrs) => ({
-      [nix.POS]: pos$89,
+      [nix.POS]: $pos[88],
       nativeBuildInputs: nix.thunk(() => nix.concat([pkg_config], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [DarwinTools])))),
       buildInputs: nix.thunk(() => nix.concat([
         libdatrie,
@@ -730,52 +583,52 @@ sed -e 's@ENV\\["MAGIC_LIB"\\] ||@ENV\\["MAGIC_LIB"\\] || "${file}/lib/libmagic.
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libselinux, libsepol, util_linux])))),
       propagatedBuildInputs: nix.thunk(() => [gobject_introspection, wrapGAppsHook3]),
     }),
-    patron: (attrs) => ({ [nix.POS]: pos$90, buildInputs: nix.thunk(() => [curl]) }),
-    pcaprub: (attrs) => ({ [nix.POS]: pos$91, buildInputs: nix.thunk(() => [libpcap]) }),
+    patron: (attrs) => ({ [nix.POS]: $pos[89], buildInputs: nix.thunk(() => [curl]) }),
+    pcaprub: (attrs) => ({ [nix.POS]: $pos[90], buildInputs: nix.thunk(() => [libpcap]) }),
     pg: (attrs) => ({
-      [nix.POS]: pos$92,
+      [nix.POS]: $pos[91],
       buildFlags: nix.thunk(() => ["--with-pg-config=ignore"]),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libpq]),
     }),
     rszr: (attrs) => ({
-      [nix.POS]: pos$93,
+      [nix.POS]: $pos[92],
       buildInputs: nix.thunk(() => [imlib2, nix.thunk(() => nix.sel(imlib2, "dev"))]),
       buildFlags: nix.thunk(() => ["--without-imlib2-config"]),
     }),
     "prawn-gmagick": (attrs) => ({
-      [nix.POS]: pos$94,
+      [nix.POS]: $pos[93],
       buildInputs: nix.thunk(() => [graphicsmagick]),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
     }),
-    psych: (attrs) => ({ [nix.POS]: pos$95, buildInputs: nix.thunk(() => [libyaml]) }),
-    puma: (attrs) => ({ [nix.POS]: pos$96, buildInputs: nix.thunk(() => [openssl]) }),
-    "pygments.rb": (attrs) => ({ [nix.POS]: pos$97, buildInputs: nix.thunk(() => [python3]) }),
+    psych: (attrs) => ({ [nix.POS]: $pos[94], buildInputs: nix.thunk(() => [libyaml]) }),
+    puma: (attrs) => ({ [nix.POS]: $pos[95], buildInputs: nix.thunk(() => [openssl]) }),
+    "pygments.rb": (attrs) => ({ [nix.POS]: $pos[96], buildInputs: nix.thunk(() => [python3]) }),
     rack: (attrs) => ({
-      [nix.POS]: pos$99,
-      meta: nix.thunk(() => ({ [nix.POS]: pos$98, mainProgram: "rackup" })),
+      [nix.POS]: $pos[98],
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[97], mainProgram: "rackup" })),
     }),
     railties: (attrs) => ({
-      [nix.POS]: pos$101,
-      meta: nix.thunk(() => ({ [nix.POS]: pos$100, mainProgram: "rails" })),
+      [nix.POS]: $pos[100],
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[99], mainProgram: "rails" })),
     }),
-    rainbow: (attrs) => ({ [nix.POS]: pos$102, buildInputs: nix.thunk(() => [rainbow_rake]) }),
+    rainbow: (attrs) => ({ [nix.POS]: $pos[101], buildInputs: nix.thunk(() => [rainbow_rake]) }),
     rbczmq: nix.lambda((args_2) => (() => {
       const $_1 = nix.formals(args_2, formals$2);
       return {
-        [nix.POS]: pos$103,
+        [nix.POS]: $pos[102],
         buildInputs: nix.thunk(() => [zeromq, czmq]),
         buildFlags: nix.thunk(() => ["--with-system-libs"]),
       };
     })(), formals$2),
     rbnacl: (spec) => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(spec, "version")), "6.0.0")) ? {
-      [nix.POS]: pos$104,
+      [nix.POS]: $pos[103],
       postInstall: nix.thunk(() => nix.str`sed -i $(cat $out/nix-support/gem-meta/install-path)/lib/rbnacl.rb -e "2a \\
 RBNACL_LIBSODIUM_GEM_LIB_PATH = '${nix.sel(libsodium, "out")}/lib/libsodium${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}'
 "
 `),
     } : {
-      [nix.POS]: pos$105,
+      [nix.POS]: $pos[104],
       dontBuild: false,
       postPatch: nix.thunk(() => nix.str`substituteInPlace lib/rbnacl/sodium.rb \\
   --replace 'ffi_lib ["sodium"' \\
@@ -783,31 +636,31 @@ RBNACL_LIBSODIUM_GEM_LIB_PATH = '${nix.sel(libsodium, "out")}/lib/libsodium${nix
 `),
     }),
     re2: (attrs) => ({
-      [nix.POS]: pos$106,
+      [nix.POS]: $pos[105],
       buildInputs: nix.thunk(() => [re2]),
       buildFlags: nix.thunk(() => ["--enable-system-libraries"]),
     }),
-    "readline-ext": (attrs) => ({ [nix.POS]: pos$107, buildInputs: nix.thunk(() => [readline]) }),
+    "readline-ext": (attrs) => ({ [nix.POS]: $pos[106], buildInputs: nix.thunk(() => [readline]) }),
     "rest-client": (attrs) => ({
-      [nix.POS]: pos$109,
-      meta: nix.thunk(() => ({ [nix.POS]: pos$108, mainProgram: "restclient" })),
+      [nix.POS]: $pos[108],
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[107], mainProgram: "restclient" })),
     }),
     rmagick: (attrs) => ({
-      [nix.POS]: pos$110,
+      [nix.POS]: $pos[109],
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [imagemagick, which]),
     }),
     rouge: (attrs) => ({
-      [nix.POS]: pos$112,
-      meta: nix.thunk(() => ({ [nix.POS]: pos$111, mainProgram: "rougify" })),
+      [nix.POS]: $pos[111],
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[110], mainProgram: "rougify" })),
     }),
-    rpam2: (attrs) => ({ [nix.POS]: pos$113, buildInputs: nix.thunk(() => [linux_pam]) }),
+    rpam2: (attrs) => ({ [nix.POS]: $pos[112], buildInputs: nix.thunk(() => [linux_pam]) }),
     "rspec-core": (attrs) => ({
-      [nix.POS]: pos$115,
-      meta: nix.thunk(() => ({ [nix.POS]: pos$114, mainProgram: "rspec" })),
+      [nix.POS]: $pos[114],
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[113], mainProgram: "rspec" })),
     }),
     "ruby-libvirt": (attrs) => ({
-      [nix.POS]: pos$116,
+      [nix.POS]: $pos[115],
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libvirt]),
       buildFlags: nix.thunk(() => [
@@ -816,15 +669,15 @@ RBNACL_LIBSODIUM_GEM_LIB_PATH = '${nix.sel(libsodium, "out")}/lib/libsodium${nix
       ]),
     }),
     "ruby-lxc": (attrs) => ({
-      [nix.POS]: pos$118,
+      [nix.POS]: $pos[117],
       buildInputs: nix.thunk(() => [lxc]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$117,
+        [nix.POS]: $pos[116],
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       })),
     }),
     "ruby-terminfo": (attrs) => ({
-      [nix.POS]: pos$119,
+      [nix.POS]: $pos[118],
       buildInputs: nix.thunk(() => [ncurses]),
       buildFlags: nix.thunk(() => [
         nix.thunk(() => nix.str`--with-cflags=-I${nix.sel(ncurses, "dev")}/include`),
@@ -834,7 +687,7 @@ RBNACL_LIBSODIUM_GEM_LIB_PATH = '${nix.sel(libsodium, "out")}/lib/libsodium${nix
       postPatch: "substituteInPlace extconf.rb --replace 'rubyio.h' 'ruby/io.h'\nsubstituteInPlace terminfo.c \\\n  --replace 'rubyio.h' 'ruby/io.h' \\\n  --replace 'rb_cData' 'rb_cObject'\n",
     }),
     "ruby-vips": (attrs) => ({
-      [nix.POS]: pos$120,
+      [nix.POS]: $pos[119],
       postInstall: nix.thunk(() => nix.str`cd "$(cat $out/nix-support/gem-meta/install-path)"
 
 substituteInPlace lib/vips.rb \\
@@ -847,30 +700,30 @@ substituteInPlace lib/vips.rb \\
 `),
     }),
     rugged: (attrs) => ({
-      [nix.POS]: pos$121,
+      [nix.POS]: $pos[120],
       nativeBuildInputs: nix.thunk(() => nix.concat([cmake, pkg_config, which], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), libiconv))),
       buildInputs: nix.thunk(() => [openssl, libssh2, zlib]),
       dontUseCmakeConfigure: true,
       buildFlags: nix.thunk(() => ["--with-ssh"]),
     }),
     rbtrace: (attrs) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isRiscV64")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isLoongArch64")))), nix.thunk(() => ({
-        [nix.POS]: pos$122,
+        [nix.POS]: $pos[121],
         dontBuild: false,
         postPatch: "tar -xzf ext/src/msgpack-1.1.0.tar.gz -C ext/src\n",
         preConfigure: "tar -czf ext/src/msgpack-1.1.0.tar.gz -C ext/src msgpack-1.1.0\nrm -r ext/src/msgpack-1.1.0\n",
       }))),
     sassc: (attrs) => ({
-      [nix.POS]: pos$124,
+      [nix.POS]: $pos[123],
       nativeBuildInputs: nix.thunk(() => [rake]),
       dontBuild: false,
       env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), {
-        [nix.POS]: pos$123,
+        [nix.POS]: $pos[122],
         SASS_LIBSASS_PATH: nix.thunk(() => nix.builtins.toString(libsass)),
       })),
       postPatch: "substituteInPlace lib/sassc/native.rb \\\n  --replace 'gem_root = spec.gem_dir' 'gem_root = File.join(__dir__, \"../../\")'\n",
     }),
     "sass-embedded": (attrs) => ({
-      [nix.POS]: pos$125,
+      [nix.POS]: $pos[124],
       dontBuild: false,
       postPatch: nix.thunk(() => nix.str`substituteInPlace ext/sass/Rakefile \\
   --replace \\'dart-sass/sass\\' \\'${dart_sass}/bin/sass\\' \\
@@ -878,54 +731,54 @@ substituteInPlace lib/vips.rb \\
 `),
     }),
     scrypt: (attrs) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-        [nix.POS]: pos$126,
+        [nix.POS]: $pos[125],
         dontBuild: false,
         postPatch: "sed -i -e \"s/-arch i386//\" Rakefile ext/scrypt/Rakefile\n",
       }))),
-    semian: (attrs) => ({ [nix.POS]: pos$127, buildInputs: nix.thunk(() => [openssl]) }),
-    sequel_pg: (attrs) => ({ [nix.POS]: pos$128, buildInputs: nix.thunk(() => [libpq]) }),
+    semian: (attrs) => ({ [nix.POS]: $pos[126], buildInputs: nix.thunk(() => [openssl]) }),
+    sequel_pg: (attrs) => ({ [nix.POS]: $pos[127], buildInputs: nix.thunk(() => [libpq]) }),
     snappy: (attrs) => ({
-      [nix.POS]: pos$129,
+      [nix.POS]: $pos[128],
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(args_1, "snappy"))]),
     }),
     sqlite3: (attrs) => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(attrs, "version")), "1.5.0")) ? {
-      [nix.POS]: pos$130,
+      [nix.POS]: $pos[129],
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [sqlite]),
       buildFlags: nix.thunk(() => ["--enable-system-libraries"]),
     } : {
-      [nix.POS]: pos$132,
+      [nix.POS]: $pos[131],
       buildFlags: nix.thunk(() => [
         nix.thunk(() => nix.str`--with-sqlite3-include=${nix.sel(sqlite, "dev")}/include`),
         nix.thunk(() => nix.str`--with-sqlite3-lib=${nix.sel(sqlite, "out")}/lib`),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$131,
+        [nix.POS]: $pos[130],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=incompatible-pointer-types", "-Wno-error=int-conversion"]))),
       })),
     }),
     "rb-readline": (attrs) => ({
-      [nix.POS]: pos$133,
+      [nix.POS]: $pos[132],
       dontBuild: false,
       postPatch: nix.thunk(() => nix.str`substituteInPlace lib/rbreadline.rb \\
   --replace 'infocmp' '${ncurses}/bin/infocmp'
 `),
     }),
-    "taglib-ruby": (attrs) => ({ [nix.POS]: pos$134, buildInputs: nix.thunk(() => [taglib]) }),
-    "timfel-krb5-auth": (attrs) => ({ [nix.POS]: pos$135, buildInputs: nix.thunk(() => [libkrb5]) }),
+    "taglib-ruby": (attrs) => ({ [nix.POS]: $pos[133], buildInputs: nix.thunk(() => [taglib]) }),
+    "timfel-krb5-auth": (attrs) => ({ [nix.POS]: $pos[134], buildInputs: nix.thunk(() => [libkrb5]) }),
     tiny_tds: (attrs) => ({
-      [nix.POS]: pos$136,
+      [nix.POS]: $pos[135],
       nativeBuildInputs: nix.thunk(() => [pkg_config, openssl]),
       buildInputs: nix.thunk(() => [freetds]),
     }),
     treetop: (attrs) => ({
-      [nix.POS]: pos$138,
-      meta: nix.thunk(() => ({ [nix.POS]: pos$137, mainProgram: "tt" })),
+      [nix.POS]: $pos[137],
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[136], mainProgram: "tt" })),
     }),
-    trilogy: (attrs) => ({ [nix.POS]: pos$139, buildInputs: nix.thunk(() => [openssl]) }),
-    typhoeus: (attrs) => ({ [nix.POS]: pos$140, buildInputs: nix.thunk(() => [curl]) }),
+    trilogy: (attrs) => ({ [nix.POS]: $pos[138], buildInputs: nix.thunk(() => [openssl]) }),
+    typhoeus: (attrs) => ({ [nix.POS]: $pos[139], buildInputs: nix.thunk(() => [curl]) }),
     tzinfo: (attrs) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(attrs, "version")), "1.0")), nix.thunk(() => ({
-        [nix.POS]: pos$141,
+        [nix.POS]: $pos[140],
         dontBuild: false,
         postPatch: nix.thunk(() => (() => {
           const path = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(attrs, "version")), "2.0")) ? "lib/tzinfo/data_sources/zoneinfo_data_source.rb" : "lib/tzinfo/zoneinfo_data_source.rb"));
@@ -934,13 +787,13 @@ substituteInPlace lib/vips.rb \\
 `;
         })()),
       }))),
-    uuid4r: (attrs) => ({ [nix.POS]: pos$142, buildInputs: nix.thunk(() => [which, libossp_uuid]) }),
+    uuid4r: (attrs) => ({ [nix.POS]: $pos[141], buildInputs: nix.thunk(() => [which, libossp_uuid]) }),
     whois: (attrs) => ({
-      [nix.POS]: pos$144,
-      meta: nix.thunk(() => ({ [nix.POS]: pos$143, mainProgram: "whoisrb" })),
+      [nix.POS]: $pos[143],
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[142], mainProgram: "whoisrb" })),
     }),
     "xapian-ruby": (attrs) => ({
-      [nix.POS]: pos$145,
+      [nix.POS]: $pos[144],
       dontBuild: false,
       nativeBuildInputs: nix.thunk(() => [rake, pkg_config, bundler]),
       buildInputs: nix.thunk(() => [xapian, zlib]),
@@ -949,9 +802,9 @@ substituteInPlace lib/vips.rb \\
       preInstall: nix.thunk(() => nix.str`export XAPIAN_CONFIG=${xapian}/bin/xapian-config
 `),
     }),
-    zlib: (attrs) => ({ [nix.POS]: pos$146, buildInputs: nix.thunk(() => [zlib]) }),
+    zlib: (attrs) => ({ [nix.POS]: $pos[145], buildInputs: nix.thunk(() => [zlib]) }),
     zookeeper: (attrs) => ({
-      [nix.POS]: pos$147,
+      [nix.POS]: $pos[146],
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [cctools]))),
     }),
   };

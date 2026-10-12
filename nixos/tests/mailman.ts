@@ -2,64 +2,46 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mailman.nix", [[["systemPackages", 8, 19]], [["enable", 11, 30]], [["enable", 10, 24], ["serve", 11, 24], ["siteOwner", 12, 24], ["webHosts", 13, 24]], [["mydestination", 17, 9], ["relay_domains", 21, 9], ["local_recipient_maps", 22, 9], ["transport_maps", 26, 9]], [["main", 16, 33]], [["enable", 15, 24], ["settings", 16, 24]], [["mailman", 10, 16], ["postfix", 15, 16]], [["isNormalUser", 30, 9]], [["user", 29, 19]], [["users", 29, 13]], [["memorySize", 33, 22]], [["restApiPassFile", 36, 26]], [["mailman", 36, 18]], [["services", 36, 9]], [["configuration", 35, 44]], [["restApiPassFileSystem", 35, 22]], [["environment", 8, 7], ["services", 10, 7], ["users", 29, 7], ["virtualisation", 33, 7], ["specialisation", 35, 7]], [["machine", 5, 9]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 40, 3]]]);
 const formals$1 = { args: {  }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/mailman.nix", [["systemPackages", 8, 19]]);
-const pos$2 = nix.positions(here + "/mailman.nix", [["enable", 11, 30]]);
-const pos$3 = nix.positions(here + "/mailman.nix", [["enable", 10, 24], ["serve", 11, 24], ["siteOwner", 12, 24], ["webHosts", 13, 24]]);
-const pos$4 = nix.positions(here + "/mailman.nix", [["mydestination", 17, 9], ["relay_domains", 21, 9], ["local_recipient_maps", 22, 9], ["transport_maps", 26, 9]]);
-const pos$5 = nix.positions(here + "/mailman.nix", [["main", 16, 33]]);
-const pos$6 = nix.positions(here + "/mailman.nix", [["enable", 15, 24], ["settings", 16, 24]]);
-const pos$7 = nix.positions(here + "/mailman.nix", [["mailman", 10, 16], ["postfix", 15, 16]]);
-const pos$8 = nix.positions(here + "/mailman.nix", [["isNormalUser", 30, 9]]);
-const pos$9 = nix.positions(here + "/mailman.nix", [["user", 29, 19]]);
-const pos$10 = nix.positions(here + "/mailman.nix", [["users", 29, 13]]);
-const pos$11 = nix.positions(here + "/mailman.nix", [["memorySize", 33, 22]]);
-const pos$12 = nix.positions(here + "/mailman.nix", [["restApiPassFile", 36, 26]]);
-const pos$13 = nix.positions(here + "/mailman.nix", [["mailman", 36, 18]]);
-const pos$14 = nix.positions(here + "/mailman.nix", [["services", 36, 9]]);
-const pos$15 = nix.positions(here + "/mailman.nix", [["configuration", 35, 44]]);
-const pos$16 = nix.positions(here + "/mailman.nix", [["restApiPassFileSystem", 35, 22]]);
-const pos$17 = nix.positions(here + "/mailman.nix", [["environment", 8, 7], ["services", 10, 7], ["users", 29, 7], ["virtualisation", 33, 7], ["specialisation", 35, 7]]);
-const pos$18 = nix.positions(here + "/mailman.nix", [["machine", 5, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$19 = nix.positions(here + "/mailman.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    [nix.POS]: pos$19,
+    [nix.POS]: $pos[18],
     name: "mailman",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [nix.thunk(() => nix.lookup(w, "mailutils"))];
             })()),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             mailman: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               enable: true,
-              serve: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+              serve: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
               siteOwner: "postmaster@example.com",
               webHosts: nix.thunk(() => ["example.com"]),
             })),
             postfix: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 main: nix.thunk(() => ({
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   mydestination: nix.thunk(() => ["example.com", "example.net"]),
                   relay_domains: nix.thunk(() => ["hash:/var/lib/mailman/data/postfix_domains"]),
                   local_recipient_maps: nix.thunk(() => ["hash:/var/lib/mailman/data/postfix_lmtp", "proxy:unix:passwd.byname"]),
@@ -69,22 +51,22 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$9,
-              user: nix.thunk(() => ({ [nix.POS]: pos$8, isNormalUser: true })),
+              [nix.POS]: $pos[8],
+              user: nix.thunk(() => ({ [nix.POS]: $pos[7], isNormalUser: true })),
             })),
           })),
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$11, memorySize: 2048n })),
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[10], memorySize: 2048n })),
           specialisation: nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             restApiPassFileSystem: nix.thunk(() => ({
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$14,
+                [nix.POS]: $pos[13],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$13,
-                  mailman: nix.thunk(() => ({ [nix.POS]: pos$12, restApiPassFile: "/var/lib/mailman/pass" })),
+                  [nix.POS]: $pos[12],
+                  mailman: nix.thunk(() => ({ [nix.POS]: $pos[11], restApiPassFile: "/var/lib/mailman/pass" })),
                 })),
               })),
             })),

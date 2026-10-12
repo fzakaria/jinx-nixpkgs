@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 19, 5], ["version", 20, 13], ["hash", 21, 5]], [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["longDescription", 67, 5], ["license", 70, 5], ["maintainers", 71, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["postPatch", 24, 3], ["build-system", 29, 3], ["dependencies", 31, 3], ["nativeCheckInputs", 36, 3], ["disabledTestPaths", 41, 3], ["disabledTests", 46, 3], ["pythonImportsCheck", 61, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, botocore: false, buildPythonPackage: false, fetchPypi: false, "pytest-cov-stub": false, pytestCheckHook: false, pythonAtLeast: false, setuptools: false, "setuptools-scm": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 19, 5], ["version", 20, 13], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["longDescription", 67, 5], ["license", 70, 5], ["maintainers", 71, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["postPatch", 24, 3], ["build-system", 29, 3], ["dependencies", 31, 3], ["nativeCheckInputs", 36, 3], ["disabledTestPaths", 41, 3], ["disabledTests", 46, 3], ["pythonImportsCheck", 61, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.2.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "aws_secretsmanager_caching",
           version: version,
           hash: "sha256-sDS6cVSgt9l1/SXhu5gFkiSUtv0GMunhF+GruGjzoGs=",
@@ -48,7 +46,7 @@ export default nix.lambda((args) => (() => {
         ])));
       const pythonImportsCheck = nix.thunk(() => ["aws_secretsmanager_caching"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Client-side AWS secrets manager caching library",
         homepage: "https://github.com/aws/aws-secretsmanager-caching-python",
         changelog: nix.thunk(() => nix.str`https://github.com/aws/aws-secretsmanager-caching-python/releases/tag/v${version}`),
@@ -60,7 +58,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

@@ -2,31 +2,11 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/canaille.nix", [[["maintainers", 8, 8]], [["SERVER_NAME", 19, 11]], [["enable", 14, 9], ["secretKeyFile", 15, 9], ["settings", 18, 9]], [["enableACME", 24, 9], ["sslCertificate", 25, 9], ["sslCertificateKey", 26, 9]], [["virtualHosts", 23, 22]], [["canaille", 13, 16], ["nginx", 23, 16]], [["::1", 29, 24]], [["allowedTCPPorts", 30, 27]], [["hosts", 29, 18], ["firewall", 30, 18]], [["shell", 35, 28]], [["canaille", 35, 19]], [["users", 35, 13]], [["certificateFiles", 37, 20]], [["pki", 37, 16]], [["services", 13, 7], ["networking", 29, 7], ["users", 35, 7], ["security", 37, 7]], [["hosts", 43, 18]], [["certificateFiles", 44, 20]], [["pki", 44, 16]], [["networking", 43, 7], ["security", 44, 7]], [["server", 10, 9], ["client", 40, 9]], [["name", 7, 3], ["meta", 8, 3], ["nodes", 10, 3], ["testScript", 47, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/canaille.nix", [["maintainers", 8, 8]]);
 const formals$2 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/canaille.nix", [["SERVER_NAME", 19, 11]]);
-const pos$3 = nix.positions(here + "/canaille.nix", [["enable", 14, 9], ["secretKeyFile", 15, 9], ["settings", 18, 9]]);
-const pos$4 = nix.positions(here + "/canaille.nix", [["enableACME", 24, 9], ["sslCertificate", 25, 9], ["sslCertificateKey", 26, 9]]);
-const pos$5 = nix.positions(here + "/canaille.nix", [["virtualHosts", 23, 22]]);
-const pos$6 = nix.positions(here + "/canaille.nix", [["canaille", 13, 16], ["nginx", 23, 16]]);
-const pos$7 = nix.positions(here + "/canaille.nix", [["::1", 29, 24]]);
-const pos$8 = nix.positions(here + "/canaille.nix", [["allowedTCPPorts", 30, 27]]);
-const pos$9 = nix.positions(here + "/canaille.nix", [["hosts", 29, 18], ["firewall", 30, 18]]);
-const pos$10 = nix.positions(here + "/canaille.nix", [["shell", 35, 28]]);
-const pos$11 = nix.positions(here + "/canaille.nix", [["canaille", 35, 19]]);
-const pos$12 = nix.positions(here + "/canaille.nix", [["users", 35, 13]]);
-const pos$13 = nix.positions(here + "/canaille.nix", [["certificateFiles", 37, 20]]);
-const pos$14 = nix.positions(here + "/canaille.nix", [["pki", 37, 16]]);
-const pos$15 = nix.positions(here + "/canaille.nix", [["services", 13, 7], ["networking", 29, 7], ["users", 35, 7], ["security", 37, 7]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$16 = nix.positions(here + "/canaille.nix", [["hosts", 43, 18]]);
-const pos$17 = nix.positions(here + "/canaille.nix", [["certificateFiles", 44, 20]]);
-const pos$18 = nix.positions(here + "/canaille.nix", [["pki", 44, 16]]);
-const pos$19 = nix.positions(here + "/canaille.nix", [["networking", 43, 7], ["security", 44, 7]]);
-const pos$20 = nix.positions(here + "/canaille.nix", [["server", 10, 9], ["client", 40, 9]]);
 const formals$4 = { args: {  }, ellipsis: true };
-const pos$21 = nix.positions(here + "/canaille.nix", [["name", 7, 3], ["meta", 8, 3], ["nodes", 10, 3], ["testScript", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,36 +14,36 @@ export default nix.lambda((args) => (() => {
   const certs = nix.thunk(() => nix.builtins.import(nix.path(here, "./common/acme/server/snakeoil-certs.nix")));
   const domain = nix.thunk(() => nix.attr(certs, "domain"));
   return {
-    [nix.POS]: pos$21,
+    [nix.POS]: $pos[20],
     name: "canaille",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "erictapen"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$20,
+      [nix.POS]: $pos[19],
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         const lib = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             canaille: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               enable: true,
               secretKeyFile: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "canaille-secret-key", "this is not a secret key\n")),
-              settings: nix.thunk(() => ({ [nix.POS]: pos$2, SERVER_NAME: domain })),
+              settings: nix.thunk(() => ({ [nix.POS]: $pos[1], SERVER_NAME: domain })),
             })),
             nginx: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`${domain}`, nix.thunk(() => ({
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   enableACME: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), false)),
                   sslCertificate: nix.thunk(() => nix.sel(certs, nix.key(nix.str`${domain}`), "cert")),
                   sslCertificateKey: nix.thunk(() => nix.sel(certs, nix.key(nix.str`${domain}`), "key")),
@@ -72,27 +52,27 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             hosts: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               "::1": nix.thunk(() => [nix.thunk(() => nix.str`${domain}`)]),
             })),
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$8, allowedTCPPorts: nix.thunk(() => [80n, 443n]) })),
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[7], allowedTCPPorts: nix.thunk(() => [80n, 443n]) })),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               canaille: nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 shell: nix.thunk(() => nix.sel(pkgs_1, "bashInteractive")),
               })),
             })),
           })),
           security: nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             pki: nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               certificateFiles: nix.thunk(() => [nix.thunk(() => nix.sel(certs, "ca", "cert"))]),
             })),
           })),
@@ -102,17 +82,17 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const nodes = nix.arg($_1, "nodes");
         return {
-          [nix.POS]: pos$19,
+          [nix.POS]: $pos[18],
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             hosts: nix.thunk(() => nix.attrsDyn({}, [
               [nix.str`${nix.sel(nodes, "server", "networking", "primaryIPAddress")}`, nix.thunk(() => [nix.thunk(() => nix.str`${domain}`)])],
             ])),
           })),
           security: nix.thunk(() => ({
-            [nix.POS]: pos$18,
+            [nix.POS]: $pos[17],
             pki: nix.thunk(() => ({
-              [nix.POS]: pos$17,
+              [nix.POS]: $pos[16],
               certificateFiles: nix.thunk(() => [nix.thunk(() => nix.sel(certs, "ca", "cert"))]),
             })),
           })),

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["CGO_ENABLED", 37, 7]], [["package", 50, 7], ["command", 51, 7], ["version", 52, 7]], [["version", 49, 5]], [["tests", 48, 12]], [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["mainProgram", 63, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["proxyVendor", 24, 3], ["subPackages", 26, 3], ["ldflags", 31, 3], ["env", 37, 3], ["nativeBuildInputs", 39, 3], ["postInstall", 41, 3], ["passthru", 48, 3], ["__darwinAllowLocalNetworking", 56, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { stdenv: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, lib: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 37, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 50, 7], ["command", 51, 7], ["version", 52, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 49, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 48, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["mainProgram", 63, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["proxyVendor", 24, 3], ["subPackages", 26, 3], ["ldflags", 31, 3], ["env", 37, 3], ["nativeBuildInputs", 39, 3], ["postInstall", 41, 3], ["passthru", 48, 3], ["__darwinAllowLocalNetworking", 56, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const testers = nix.arg($, "testers");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "egctl",
       version: "1.9.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "envoyproxy",
           repo: "gateway",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,15 +32,15 @@ export default nix.lambda((args) => (() => {
         "-w",
         nix.thunk(() => nix.str`-X github.com/envoyproxy/gateway/internal/cmd/version.envoyGatewayVersion=v${nix.sel(finalAttrs, "version")}`),
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_ENABLED: 0n })),
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "$out/bin/egctl completion bash >egctl.bash\n$out/bin/egctl completion fish >egctl.fish\n$out/bin/egctl completion zsh >egctl.zsh\ninstallShellCompletion egctl.{bash,fish,zsh}\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "egctl version --remote=false",
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +49,7 @@ export default nix.lambda((args) => (() => {
       })),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Command-line utility for operating Envoy Gateway",
         homepage: "https://gateway.envoyproxy.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

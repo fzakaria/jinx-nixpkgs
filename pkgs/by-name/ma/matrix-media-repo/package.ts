@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 7], ["repo", 17, 7], ["rev", 18, 7], ["hash", 19, 7]], [["src", 15, 5], ["patches", 21, 5]], [["pname", 29, 5], ["version", 30, 13], ["src", 30, 21], ["vendorHash", 30, 25], ["subPackages", 32, 5]], [["description", 70, 5], ["homepage", 71, 5], ["changelog", 72, 5], ["license", 73, 5], ["mainProgram", 74, 5]], [["pname", 40, 5], ["version", 41, 5], ["src", 42, 5], ["vendorHash", 43, 5], ["nativeBuildInputs", 46, 3], ["buildInputs", 51, 3], ["preBuild", 56, 3], ["ldflags", 60, 3], ["doCheck", 67, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, applyPatches: false, fetchFromGitHub: false, "pkg-config": false, libde265: false, libheif: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 7], ["repo", 17, 7], ["rev", 18, 7], ["hash", 19, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 15, 5], ["patches", 21, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 29, 5], ["version", 30, 13], ["src", 30, 21], ["vendorHash", 30, 25], ["subPackages", 32, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 70, 5], ["homepage", 71, 5], ["changelog", 72, 5], ["license", 73, 5], ["mainProgram", 74, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 40, 5], ["version", 41, 5], ["src", 42, 5], ["vendorHash", 43, 5], ["nativeBuildInputs", 46, 3], ["buildInputs", 51, 3], ["preBuild", 56, 3], ["ldflags", 60, 3], ["doCheck", 67, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,9 +17,9 @@ export default nix.lambda((args) => (() => {
   const pname = "matrix-media-repo";
   const version = "1.3.8";
   const src = nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "t2bot",
           repo: "matrix-media-repo",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -33,7 +29,7 @@ export default nix.lambda((args) => (() => {
     }))));
   const vendorHash = "sha256-AzWZGhqJlHC9MI2jv6Z54C8OqGZIZm8CPqoaLwbtyA8=";
   const asset_compiler = nix.thunk(() => nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: nix.thunk(() => nix.str`${pname}-compile_assets`),
       version: version,
       src: src,
@@ -41,7 +37,7 @@ export default nix.lambda((args) => (() => {
       subPackages: nix.thunk(() => ["cmd/utilities/compile_assets"]),
     }))));
   return nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: pname,
       version: version,
       src: src,
@@ -57,7 +53,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Highly configurable multi-domain media repository for Matrix",
         homepage: "https://github.com/t2bot/matrix-media-repo",
         changelog: nix.thunk(() => nix.str`https://github.com/t2bot/matrix-media-repo/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),

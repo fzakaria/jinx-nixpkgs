@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["sha256", 22, 5], ["stripRoot", 23, 5]], [["NIX_CFLAGS_COMPILE", 42, 5]], [["description", 65, 5], ["mainProgram", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 32, 3], ["env", 41, 3], ["postPatch", 46, 3], ["preConfigure", 51, 3], ["configureFlags", 55, 3], ["preFixup", 59, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, "pkg-config": false, glib: false, libwnck: false, libnotify: false, libtool: false, "dbus-glib": false, makeWrapper: false, "gnome-common": false, "gsettings-desktop-schemas": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["sha256", 22, 5], ["stripRoot", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 65, 5], ["mainProgram", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 32, 3], ["env", 41, 3], ["postPatch", 46, 3], ["preConfigure", 51, 3], ["configureFlags", 55, 3], ["preFixup", 59, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,24 +20,24 @@ export default nix.lambda((args) => (() => {
   const gnome_common = nix.arg($, "gnome-common");
   const gsettings_desktop_schemas = nix.arg($, "gsettings-desktop-schemas");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "notify-osd",
       version: "0.9.35+20.04.20191129",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://launchpad.net/ubuntu/+archive/primary/+files/notify-osd_${nix.sel(finalAttrs, "version")}.orig.tar.gz`),
           sha256: "sha256-aSU83HoWhHZtob8NFHFYNUIIZAecvQ/p0z62KMlQNCU=",
           stripRoot: false,
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config, makeWrapper, libtool]),
       buildInputs: nix.thunk(() => [glib, libwnck, libnotify, dbus_glib, gsettings_desktop_schemas, gnome_common]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-fpermissive" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-fpermissive" })),
       postPatch: "substituteInPlace src/stack.c \\\n  --replace-fail \"g_memdup\" \"g_memdup2\"\n",
       preConfigure: "NOCONFIGURE=1 ./autogen.sh\n",
       configureFlags: nix.thunk(() => ["--libexecdir=$(out)/bin"]),
       preFixup: "wrapProgram \"$out/bin/notify-osd\" \\\n  --prefix XDG_DATA_DIRS : \"$GSETTINGS_SCHEMAS_PATH\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Daemon that displays passive pop-up notifications",
         mainProgram: "notify-osd",
         homepage: "https://launchpad.net/notify-osd",

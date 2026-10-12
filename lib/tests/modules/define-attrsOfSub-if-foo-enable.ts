@@ -2,18 +2,19 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/define-attrsOfSub-if-foo-enable.nix", [[["enable", 5, 9]], [["foo", 5, 5]], [["attrsOfSub", 4, 3]]]);
 const formals$1 = { args: { config: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/define-attrsOfSub-if-foo-enable.nix", [["enable", 5, 9]]);
-const pos$2 = nix.positions(here + "/define-attrsOfSub-if-foo-enable.nix", [["foo", 5, 5]]);
-const pos$3 = nix.positions(here + "/define-attrsOfSub-if-foo-enable.nix", [["attrsOfSub", 4, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const config = nix.arg($, "config");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$3,
-    attrsOfSub: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "enable")), nix.thunk(() => ({ [nix.POS]: pos$2, foo: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })) })))),
+    [nix.POS]: $pos[2],
+    attrsOfSub: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "enable")), nix.thunk(() => ({
+        [nix.POS]: $pos[1],
+        foo: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true })),
+      })))),
   };
 })(), formals$1);
 //# sourceMappingURL=define-attrsOfSub-if-foo-enable.ts.map

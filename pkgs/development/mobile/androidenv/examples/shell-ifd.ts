@@ -2,26 +2,21 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/shell-ifd.nix", [[["allowUnfree", 4, 12]], [["config", 4, 5]], [["pkgs", 14, 13], ["licenseAccepted", 14, 18]], [["packages", 19, 7], ["images", 20, 7], ["addons", 29, 7]], [["repoXmls", 18, 5]], [["name", 39, 3], ["packages", 40, 3], ["LANG", 46, 3], ["LC_ALL", 47, 3], ["JAVA_HOME", 48, 3], ["ANDROID_HOME", 50, 3], ["shellHook", 52, 3]]]);
 const formals$1 = { args: { pkgs: true, licenseAccepted: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/shell-ifd.nix", [["allowUnfree", 4, 12]]);
-const pos$2 = nix.positions(here + "/shell-ifd.nix", [["config", 4, 5]]);
-const pos$3 = nix.positions(here + "/shell-ifd.nix", [["pkgs", 14, 13], ["licenseAccepted", 14, 18]]);
-const pos$4 = nix.positions(here + "/shell-ifd.nix", [["packages", 19, 7], ["images", 20, 7], ["addons", 29, 7]]);
-const pos$5 = nix.positions(here + "/shell-ifd.nix", [["repoXmls", 18, 5]]);
-const pos$6 = nix.positions(here + "/shell-ifd.nix", [["name", 39, 3], ["packages", 40, 3], ["LANG", 46, 3], ["LC_ALL", 47, 3], ["JAVA_HOME", 48, 3], ["ANDROID_HOME", 50, 3], ["shellHook", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../../../..")), nix.thunk(() => ({
-      [nix.POS]: pos$2,
-      config: nix.thunk(() => ({ [nix.POS]: pos$1, allowUnfree: true })),
+      [nix.POS]: $pos[1],
+      config: nix.thunk(() => ({ [nix.POS]: $pos[0], allowUnfree: true })),
     }))));
   const licenseAccepted = nix.argOr($, "licenseAccepted", () => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "../license.nix"), nix.thunk(() => ({}))));
-  const androidEnv = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./.."), nix.thunk(() => ({ [nix.POS]: pos$3, pkgs: pkgs, licenseAccepted: licenseAccepted }))));
+  const androidEnv = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./.."), nix.thunk(() => ({ [nix.POS]: $pos[2], pkgs: pkgs, licenseAccepted: licenseAccepted }))));
   const sdkArgs = nix.thunk(() => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     repoXmls: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       packages: nix.thunk(() => [nix.path(here, "../xml/repository2-3.xml")]),
       images: nix.thunk(() => [
         nix.path(here, "../xml/android-sys-img2-3.xml"),
@@ -40,7 +35,7 @@ export default nix.lambda((args) => (() => {
   const platformTools = nix.thunk(() => nix.sel(androidComposition, "platform-tools"));
   const jdk = nix.thunk(() => nix.sel(pkgs, "jdk"));
   return nix.app(nix.sel(pkgs, "mkShell"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       name: "androidenv-example-ifd-demo",
       packages: nix.thunk(() => [androidSdk, platformTools, jdk]),
       LANG: "C.UTF-8",

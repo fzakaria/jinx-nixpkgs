@@ -2,14 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["arch", 18, 9], ["hash", 19, 9]], [["arch", 22, 9], ["hash", 23, 9]], [["arch", 26, 9], ["hash", 27, 9]], [["x86_64-linux", 17, 7], ["aarch64-linux", 21, 7], ["aarch64-darwin", 25, 7]], [["name", 35, 5], ["publisher", 36, 5], ["version", 37, 5], ["hash", 38, 23], ["arch", 38, 28]], [["changelog", 129, 5], ["description", 130, 5], ["downloadPage", 131, 5], ["license", 132, 5], ["maintainers", 133, 5], ["platforms", 134, 5]], [["mktplcRef", 34, 3], ["sourceRoot", 40, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 46, 3], ["postPatch", 56, 3], ["preFixup", 65, 3], ["meta", 128, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "vscode-utils": false, autoPatchelfHook: false, icu: false, openssl: false, libz: false, glibc: false, libxml2: false, libkrb5: false, patchelf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["arch", 18, 9], ["hash", 19, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["arch", 22, 9], ["hash", 23, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["arch", 26, 9], ["hash", 27, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["x86_64-linux", 17, 7], ["aarch64-linux", 21, 7], ["aarch64-darwin", 25, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["name", 35, 5], ["publisher", 36, 5], ["version", 37, 5], ["hash", 38, 23], ["arch", 38, 28]]);
-const pos$6 = nix.positions(here + "/default.nix", [["changelog", 129, 5], ["description", 130, 5], ["downloadPage", 131, 5], ["license", 132, 5], ["maintainers", 133, 5], ["platforms", 134, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["mktplcRef", 34, 3], ["sourceRoot", 40, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 46, 3], ["postPatch", 56, 3], ["preFixup", 65, 3], ["meta", 128, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,27 +19,27 @@ export default nix.lambda((args) => (() => {
   const libkrb5 = nix.arg($, "libkrb5");
   const patchelf = nix.arg($, "patchelf");
   const extInfo = nix.thunk(() => nix.selOr({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     "x86_64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       arch: "linux-x64",
       hash: "sha256-N3W/cvqAzf7Z9jMjiHN9zWrHXZjIqD1RnuZbZ/yQx8g=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       arch: "linux-arm64",
       hash: "sha256-1zz9xrMALIOXzMpArWSwO12WmRE+0ldbIwUFH1G2GQI=",
     })),
     "aarch64-darwin": nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       arch: "darwin-arm64",
       hash: "sha256-F4CsyiX46SpjilJNV+qYps1JAw09pVruLmW+muN9/B4=",
     })),
   }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       mktplcRef: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         name: "csdevkit",
         publisher: "ms-dotnettools",
         version: "3.10.14",
@@ -114,7 +108,7 @@ ln -s "${nix.app(nix.sel(lib, "getLib"), libxml2)}/lib/libxml2.so" "$out/lib/lib
 )
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         changelog: "https://marketplace.visualstudio.com/items/ms-dotnettools.csdevkit/changelog",
         description: "Official Visual Studio Code extension for C# from Microsoft",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 40, 5], ["repo", 41, 5], ["rev", 42, 5], ["sha256", 43, 5]], [["description", 62, 5], ["homepage", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 5], ["license", 66, 5], ["mainProgram", 67, 5]], [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["cargoHash", 46, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 55, 3], ["postFixup", 57, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, rustPlatform: false, installShellFiles: false, makeWrapper: false, "pkg-config": false, python3: false, libGL: false, libx11: false, libxcursor: false, libxi: false, libxrandr: false, libxxf86vm: false, libxcb: false, libxkbcommon: false, wayland: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 40, 5], ["repo", 41, 5], ["rev", 42, 5], ["sha256", 43, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 62, 5], ["homepage", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 5], ["license", 66, 5], ["mainProgram", 67, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["cargoHash", 46, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 55, 3], ["postFixup", 57, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const wayland = nix.arg($, "wayland");
   const rpathLibs = nix.thunk(() => nix.concat([libGL, libx11, libxcursor, libxi, libxrandr, libxxf86vm, libxcb], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libxkbcommon, wayland]))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "emulsion",
       version: "12.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ArturKovacs",
           repo: "emulsion",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +42,7 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.str`patchelf --set-rpath "${nix.app(nix.sel(lib, "makeLibraryPath"), rpathLibs)}" $out/bin/emulsion
 `))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Fast and minimalistic image viewer",
         homepage: "https://arturkovacs.github.io/emulsion-website/",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "magnetophon"))]),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 46, 5], ["repo", 47, 5], ["tag", 48, 5], ["hash", 49, 5]], [["atari", 62, 5], ["box2d", 63, 5], ["classic-control", 67, 5], ["mujoco", 68, 5], ["toy-text", 73, 5], ["jax", 74, 5], ["torch", 80, 5], ["array-api", 84, 5], ["other", 88, 5]], [["description", 137, 5], ["homepage", 138, 5], ["changelog", 139, 5], ["license", 140, 5], ["maintainers", 141, 5]], [["pname", 40, 3], ["version", 41, 3], ["pyproject", 42, 3], ["__structuredAttrs", 43, 3], ["src", 45, 3], ["build-system", 52, 3], ["dependencies", 54, 3], ["optional-dependencies", 61, 3], ["pythonImportsCheck", 96, 3], ["nativeCheckInputs", 98, 3], ["doCheck", 110, 3], ["disabledTestPaths", 112, 3], ["preCheck", 126, 3], ["disabledTests", 130, 3], ["meta", 136, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, cloudpickle: false, "farama-notifications": false, numpy: false, "typing-extensions": false, "ale-py": false, "array-api-compat": false, flax: false, imageio: false, jax: false, jaxlib: false, matplotlib: false, moviepy: false, mujoco: false, opencv4: false, packaging: false, pybox2d: false, "pygame-ce": false, seaborn: false, torch: false, dill: false, pytestCheckHook: false, scipy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 46, 5], ["repo", 47, 5], ["tag", 48, 5], ["hash", 49, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["atari", 62, 5], ["box2d", 63, 5], ["classic-control", 67, 5], ["mujoco", 68, 5], ["toy-text", 73, 5], ["jax", 74, 5], ["torch", 80, 5], ["array-api", 84, 5], ["other", 88, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 137, 5], ["homepage", 138, 5], ["changelog", 139, 5], ["license", 140, 5], ["maintainers", 141, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 40, 3], ["version", 41, 3], ["pyproject", 42, 3], ["__structuredAttrs", 43, 3], ["src", 45, 3], ["build-system", 52, 3], ["dependencies", 54, 3], ["optional-dependencies", 61, 3], ["pythonImportsCheck", 96, 3], ["nativeCheckInputs", 98, 3], ["doCheck", 110, 3], ["disabledTestPaths", 112, 3], ["preCheck", 126, 3], ["disabledTests", 130, 3], ["meta", 136, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,13 +35,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const scipy = nix.arg($, "scipy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gymnasium",
       version: "1.4.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Farama-Foundation",
           repo: "gymnasium",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,7 +50,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [cloudpickle, farama_notifications, numpy, typing_extensions]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         atari: nix.thunk(() => [ale_py]),
         box2d: nix.thunk(() => [pybox2d, pygame_ce]),
         "classic-control": nix.thunk(() => [pygame_ce]),
@@ -78,7 +75,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "export SDL_VIDEODRIVER=dummy\n",
       disabledTests: nix.thunk(() => ["test_render_mode"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Standard API for reinforcement learning and a diverse set of reference environments (formerly Gym)",
         homepage: "https://github.com/Farama-Foundation/Gymnasium",
         changelog: nix.thunk(() => nix.str`https://github.com/Farama-Foundation/Gymnasium/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

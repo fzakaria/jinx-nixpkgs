@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["name", 33, 7], ["exec", 34, 7], ["comment", 35, 7], ["desktopName", 36, 7], ["genericName", 37, 7], ["categories", 38, 7]], [["description", 53, 5], ["homepage", 54, 5], ["mainProgram", 55, 5], ["license", 56, 5], ["downloadPage", 63, 5], ["maintainers", 64, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["desktopItems", 31, 3], ["installPhase", 42, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, zip: false, love: false, makeWrapper: false, makeDesktopItem: false, copyDesktopItems: false, "strip-nondeterminism": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 33, 7], ["exec", 34, 7], ["comment", 35, 7], ["desktopName", 36, 7], ["genericName", 37, 7], ["categories", 38, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 53, 5], ["homepage", 54, 5], ["mainProgram", 55, 5], ["license", 56, 5], ["downloadPage", 63, 5], ["maintainers", 64, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["desktopItems", 31, 3], ["installPhase", 42, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const strip_nondeterminism = nix.arg($, "strip-nondeterminism");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "wireworld",
       version: "unstable-2023-05-09",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "blinry",
           repo: "wireworld",
           rev: "03b82bf5d604d6d4ad3c07b224583de6c396fd17",
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [copyDesktopItems, makeWrapper, strip_nondeterminism, zip]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "Wireworld",
             exec: "Wireworld",
             comment: "",
@@ -51,7 +48,7 @@ makeWrapper ${love}/bin/love $out/bin/Wireworld \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Fascinating electronics logic puzzles, game where you'll learn how to build clocks, diodes, and logic gates",
         homepage: "https://gitlab.com/blinry/wireworld",
         mainProgram: "Wireworld",

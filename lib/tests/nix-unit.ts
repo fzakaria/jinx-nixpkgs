@@ -2,22 +2,21 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nix-unit.nix", [[["owner", 6, 5], ["repo", 7, 5], ["rev", 10, 5], ["hash", 11, 5]], [["nativeBuildInputs", 16, 5]]]);
 const formals$1 = { args: { pkgs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/nix-unit.nix", [["owner", 6, 5], ["repo", 7, 5], ["rev", 10, 5], ["hash", 11, 5]]);
-const pos$2 = nix.positions(here + "/nix-unit.nix", [["nativeBuildInputs", 16, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({}))));
   const prevNixpkgs = nix.thunk(() => nix.app(nix.sel(pkgs, "fetchFromGitHub"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "nixos",
       repo: "nixpkgs",
       rev: "bcf94dd3f07189b7475d823c8d67d08b58289905",
       hash: "sha256-MuMiIY3MX5pFSOCvutmmRhV6RD0R3CG0Hmazkg8cMFI=",
     }))));
   return nix.app(nix.sel(pkgs, "runCommand"), "lib-cross-eval-merge-v2", nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "nix-unit"))]),
     })), nix.thunk(() => nix.str`export HOME=$TMPDIR
 nix-unit --eval-store "$HOME" ${nix.path(here, "./checkAndMergeCompat.nix")} \\

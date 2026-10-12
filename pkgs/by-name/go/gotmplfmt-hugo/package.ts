@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5], ["leaveDotGit", 22, 5], ["postFetch", 23, 5]], [["package", 46, 5], ["version", 47, 5]], [["version", 45, 18]], [["updateScript", 44, 12], ["tests", 45, 12]], [["description", 51, 5], ["homepage", 52, 5], ["changelog", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["mainProgram", 58, 5]], [["pname", 11, 3], ["version", 12, 3], ["__structuredAttrs", 13, 3], ["src", 15, 3], ["vendorHash", 32, 3], ["ldflags", 34, 3], ["preBuild", 39, 3], ["passthru", 44, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, "nix-update-script": false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5], ["leaveDotGit", 22, 5], ["postFetch", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 46, 5], ["version", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 45, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 44, 12], ["tests", 45, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 51, 5], ["homepage", 52, 5], ["changelog", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["mainProgram", 58, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["__structuredAttrs", 13, 3], ["src", 15, 3], ["vendorHash", 32, 3], ["ldflags", 34, 3], ["preBuild", 39, 3], ["passthru", 44, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const testers = nix.arg($, "testers");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "gotmplfmt-hugo",
       version: "0.5.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gohugoio",
           repo: "gotmplfmt",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,19 +33,19 @@ export default nix.lambda((args) => (() => {
       ]),
       preBuild: "ldflags+=\" -X main.commit=$(cat COMMIT)\"\nldflags+=\" -X main.date=$(cat SOURCE_DATE_EPOCH)\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               version: nix.thunk(() => nix.sel(finalAttrs, "src", "tag")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Format Go templates",
         homepage: "https://github.com/gohugoio/gotmplfmt",
         changelog: nix.thunk(() => nix.str`https://github.com/gohugoio/gotmplfmt/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

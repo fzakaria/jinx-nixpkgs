@@ -2,23 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["8.1", 24, 9], ["8.2", 25, 9], ["8.3", 26, 9], ["8.4", 27, 9], ["8.5", 28, 9]], [["platform", 22, 7], ["hash", 23, 7]], [["8.1", 34, 9], ["8.2", 35, 9], ["8.3", 36, 9], ["8.4", 37, 9], ["8.5", 38, 9]], [["platform", 32, 7], ["hash", 33, 7]], [["8.1", 44, 9], ["8.2", 45, 9], ["8.3", 46, 9], ["8.4", 47, 9], ["8.5", 48, 9]], [["platform", 42, 7], ["hash", 43, 7]], [["aarch64-darwin", 21, 5], ["aarch64-linux", 31, 5], ["x86_64-linux", 41, 5]], [["url", 56, 7], ["sha256", 62, 7]], [["system", 73, 5], ["phpMajor", 74, 5]], [["smokeTest", 136, 11]], [["system", 176, 23], ["phpMajor", 177, 23]], [["src", 175, 21]], [["tests", 136, 5], ["updateScript", 143, 5], ["updateables", 164, 5]], [["description", 187, 5], ["changelog", 188, 5], ["homepage", 189, 5], ["sourceProvenance", 190, 5], ["license", 191, 5], ["maintainers", 192, 5], ["platforms", 196, 5]], [["version", 68, 11], ["pname", 69, 3], ["extensionName", 70, 3], ["src", 72, 3], ["nativeBuildInputs", 76, 3], ["buildInputs", 77, 3], ["internalDeps", 84, 3], ["installPhase", 85, 3], ["passthru", 135, 3], ["meta", 186, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, php: false, openssl: false, hiredis: false, libck: false, zstd: false, lz4: false, autoPatchelfHook: false, writeShellScript: false, runCommand: false, curl: false, "common-updater-scripts": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["8.1", 24, 9], ["8.2", 25, 9], ["8.3", 26, 9], ["8.4", 27, 9], ["8.5", 28, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["platform", 22, 7], ["hash", 23, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["8.1", 34, 9], ["8.2", 35, 9], ["8.3", 36, 9], ["8.4", 37, 9], ["8.5", 38, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["platform", 32, 7], ["hash", 33, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["8.1", 44, 9], ["8.2", 45, 9], ["8.3", 46, 9], ["8.4", 47, 9], ["8.5", 48, 9]]);
-const pos$6 = nix.positions(here + "/default.nix", [["platform", 42, 7], ["hash", 43, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["aarch64-darwin", 21, 5], ["aarch64-linux", 31, 5], ["x86_64-linux", 41, 5]]);
 const formals$2 = { args: { system: false, phpMajor: false }, ellipsis: false };
-const pos$8 = nix.positions(here + "/default.nix", [["url", 56, 7], ["sha256", 62, 7]]);
-const pos$9 = nix.positions(here + "/default.nix", [["system", 73, 5], ["phpMajor", 74, 5]]);
-const pos$10 = nix.positions(here + "/default.nix", [["smokeTest", 136, 11]]);
-const pos$11 = nix.positions(here + "/default.nix", [["system", 176, 23], ["phpMajor", 177, 23]]);
-const pos$12 = nix.positions(here + "/default.nix", [["src", 175, 21]]);
-const pos$13 = nix.positions(here + "/default.nix", [["tests", 136, 5], ["updateScript", 143, 5], ["updateables", 164, 5]]);
-const pos$14 = nix.positions(here + "/default.nix", [["description", 187, 5], ["changelog", 188, 5], ["homepage", 189, 5], ["sourceProvenance", 190, 5], ["license", 191, 5], ["maintainers", 192, 5], ["platforms", 196, 5]]);
-const pos$15 = nix.positions(here + "/default.nix", [["version", 68, 11], ["pname", 69, 3], ["extensionName", 70, 3], ["src", 72, 3], ["nativeBuildInputs", 76, 3], ["buildInputs", 77, 3], ["internalDeps", 84, 3], ["installPhase", 85, 3], ["passthru", 135, 3], ["meta", 186, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const common_updater_scripts = nix.arg($, "common-updater-scripts");
   const version = "0.40.0";
   const hashes = nix.thunk(() => ({
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     "aarch64-darwin": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       platform: "darwin-arm64",
       hash: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         "8.1": "sha256-pwqus2P17DirEGqwbe5CqlIZ+InPrIHbUUbcgLli8rc=",
         "8.2": "sha256-IeoOYVnp0sWD+Ww/d8DwDemqXv/6neEWE3g2txHEuEg=",
         "8.3": "OQAErtNtCIpNmz2YbfhLJ9ueH7mhZa6j1YtcuH00Ob8=",
@@ -52,10 +38,10 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     "aarch64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       platform: "debian-aarch64+libssl3",
       hash: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         "8.1": "sha256-r6rV05ZLsi2SvFqONtYk2IIrkdbTZqsClruTMpcOOas=",
         "8.2": "sha256-SsHqRS3Bq4N10c06zEoVZXTv5+bfkcDgCRdntcoyD/k=",
         "8.3": "sha256-yQunez9xOyhGYqFKHKWtdK8BiGPz3JIyDnsfqGthIYs=",
@@ -64,10 +50,10 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     "x86_64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       platform: "debian-x86-64+libssl3",
       hash: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         "8.1": "sha256-KgyAPCLLtmeMa5X3Akuf0nR51aSQS6+RpNYO3U4Zdp0=",
         "8.2": "sha256-zSl141iQ3Vfb5JmeRacFZhBcfEKQuW9rld9O2c8HRvU=",
         "8.3": "sha256-kdd4k6xdbbNuIk/DBTufxqH8j+4Z2xgzG4Z/c7PfKFs=",
@@ -81,18 +67,18 @@ export default nix.lambda((args) => (() => {
     const system = nix.arg($_1, "system");
     const phpMajor = nix.arg($_1, "phpMajor");
     return nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         url: nix.thunk(() => nix.add(nix.add(nix.add(nix.add(nix.str`https://builds.r2.relay.so/v${version}/relay-v${version}-php`, phpMajor), "-"), nix.sel(hashes, nix.key(nix.force(system)), "platform")), ".tar.gz")),
         sha256: nix.thunk(() => nix.selOr(hashes, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported PHP version for relay ${phpMajor} on ${system}`)), nix.key(nix.force(system)), "hash", nix.key(nix.force(phpMajor)))),
       })));
   })(), formals$2);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       version: version,
       pname: "relay",
       extensionName: "relay",
       src: nix.thunk(() => nix.app(makeSource, nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           system: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "system")),
           phpMajor: nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(php, "version")))),
         })))),
@@ -118,9 +104,9 @@ export default nix.lambda((args) => (() => {
 done
 ` : "")), "# Random UUID that's required by the extension. Can be anything, but must be different from default.\nsed -i \"s/00000000-0000-0000-0000-000000000000/aced680f-30e9-40cc-a868-390ead14ba0c/\" $out/lib/php/extensions/relay.so\nchmod -w $out/lib/php/extensions/relay.so\n\nrunHook postInstall\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           smokeTest: nix.thunk(() => nix.app(runCommand, "php-relay-smoke-test", nix.thunk(() => ({})), nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), php)} \\
   -d extension=${nix.sel(finalAttrs, "finalPackage")}/lib/php/extensions/relay.so \\
   -r 'exit(extension_loaded("relay") ? 0 : 1);'
@@ -141,16 +127,16 @@ for source in ${nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => n
 done
 `))),
         updateables: nix.thunk(() => nix.builtins.listToAttrs(nix.thunk(() => nix.app(nix.sel(lib, "collect"), (attrs) => nix.has(attrs, "name"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsRecursive"), (path) => (_value) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "_", path)))), nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (attrs) => ({
-                    [nix.POS]: pos$12,
+                    [nix.POS]: $pos[11],
                     src: nix.thunk(() => nix.app(makeSource, nix.thunk(() => ({
-                        [nix.POS]: pos$11,
+                        [nix.POS]: $pos[10],
                         system: nix.thunk(() => nix.builtins.head(path)),
                         phpMajor: nix.thunk(() => nix.builtins.head(nix.thunk(() => nix.builtins.tail(nix.thunk(() => nix.builtins.tail(path)))))),
                       })))),
                   })))), nix.thunk(() => nix.app(nix.sel(lib, "filterAttrsRecursive"), (name) => (_value) => !nix.eq(name, "platform"), hashes)))))))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         description: "Next-generation Redis extension for PHP",
         changelog: nix.thunk(() => nix.str`https://github.com/cachewerk/relay/releases/tag/v${version}`),
         homepage: "https://relay.so/",

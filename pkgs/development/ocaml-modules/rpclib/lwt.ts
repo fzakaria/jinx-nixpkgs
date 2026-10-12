@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/lwt.nix", [[["description", 27, 5]], [["pname", 11, 3], ["version", 12, 20], ["src", 12, 28], ["propagatedBuildInputs", 14, 3], ["checkInputs", 19, 3], ["doCheck", 24, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, rpclib: false, lwt: false, "alcotest-lwt": false, ppx_deriving_rpc: false, yojson: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/lwt.nix", [["description", 27, 5]]);
-const pos$2 = nix.positions(here + "/lwt.nix", [["pname", 11, 3], ["version", 12, 20], ["src", 12, 28], ["propagatedBuildInputs", 14, 3], ["checkInputs", 19, 3], ["doCheck", 24, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const ppx_deriving_rpc = nix.arg($, "ppx_deriving_rpc");
   const yojson = nix.arg($, "yojson");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "rpclib-lwt",
       version: nix.thunk(() => nix.attr(rpclib, "version")),
       src: nix.thunk(() => nix.attr(rpclib, "src")),
@@ -23,7 +22,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [alcotest_lwt, ppx_deriving_rpc, yojson]),
       doCheck: true,
       meta: nix.thunk(() => nix.update(nix.sel(rpclib, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Library to deal with RPCs in OCaml - Lwt interface",
       })),
     })));

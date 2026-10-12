@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["python3", 41, 26]], [["changelog", 61, 5], ["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]], [["pname", 24, 3], ["pyproject", 25, 3], ["version", 27, 22], ["src", 27, 30], ["sourceRoot", 29, 3], ["build-system", 31, 3], ["dontUseCmakeConfigure", 38, 3], ["buildInputs", 40, 3], ["pythonImportsCheck", 55, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { bzip2: false, cmake: false, curl: false, buildPythonPackage: false, fmt: false, lib: false, libmamba: false, libsolv: false, "msgpack-c": false, ninja: false, nlohmann_json: false, pybind11: false, python: false, reproc: false, "scikit-build-core": false, spdlog: false, "tl-expected": false, "yaml-cpp": false, zstd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["python3", 41, 26]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 61, 5], ["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["pyproject", 25, 3], ["version", 27, 22], ["src", 27, 30], ["sourceRoot", 29, 3], ["build-system", 31, 3], ["dontUseCmakeConfigure", 38, 3], ["buildInputs", 40, 3], ["pythonImportsCheck", 55, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [cmake, ninja, pybind11, scikit_build_core]);
       const dontUseCmakeConfigure = true;
       const buildInputs = nix.thunk(() => [
-        nix.thunk(() => nix.app(nix.sel(libmamba, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, python3: python })))),
+        nix.thunk(() => nix.app(nix.sel(libmamba, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], python3: python })))),
         bzip2,
         curl,
         fmt,
@@ -52,7 +50,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["libmambapy", "libmambapy.bindings"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/mamba-org/mamba/blob/${nix.sel(src, "tag")}/libmambapy/CHANGELOG.md`),
         description: "Python library for the fast Cross-Platform Package Manager",
         homepage: "https://github.com/mamba-org/mamba",
@@ -60,7 +58,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "ericthemagician"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         pyproject,
         version,

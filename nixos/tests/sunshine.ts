@@ -2,56 +2,45 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/sunshine.nix", [[["broken", 6, 5], ["maintainers", 7, 5], ["timeout", 8, 5]], [["memorySize", 18, 22]], [["capture", 24, 11], ["encoder", 25, 11], ["output_name", 26, 11]], [["enable", 21, 9], ["openFirewall", 22, 9], ["settings", 23, 9]], [["sunshine", 20, 16]], [["systemPackages", 30, 19]], [["imports", 14, 7], ["virtualisation", 18, 7], ["services", 20, 7], ["environment", 30, 7]], [["enable", 45, 9], ["capSysNice", 46, 9]], [["moonlight-qt", 44, 16]], [["imports", 40, 7], ["programs", 44, 7]], [["sunshine", 11, 9], ["moonlight", 37, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 11, 3], ["enableOCR", 51, 3], ["testScript", 53, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/sunshine.nix", [["broken", 6, 5], ["maintainers", 7, 5], ["timeout", 8, 5]]);
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/sunshine.nix", [["memorySize", 18, 22]]);
-const pos$3 = nix.positions(here + "/sunshine.nix", [["capture", 24, 11], ["encoder", 25, 11], ["output_name", 26, 11]]);
-const pos$4 = nix.positions(here + "/sunshine.nix", [["enable", 21, 9], ["openFirewall", 22, 9], ["settings", 23, 9]]);
-const pos$5 = nix.positions(here + "/sunshine.nix", [["sunshine", 20, 16]]);
-const pos$6 = nix.positions(here + "/sunshine.nix", [["systemPackages", 30, 19]]);
-const pos$7 = nix.positions(here + "/sunshine.nix", [["imports", 14, 7], ["virtualisation", 18, 7], ["services", 20, 7], ["environment", 30, 7]]);
 const formals$3 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$8 = nix.positions(here + "/sunshine.nix", [["enable", 45, 9], ["capSysNice", 46, 9]]);
-const pos$9 = nix.positions(here + "/sunshine.nix", [["moonlight-qt", 44, 16]]);
-const pos$10 = nix.positions(here + "/sunshine.nix", [["imports", 40, 7], ["programs", 44, 7]]);
-const pos$11 = nix.positions(here + "/sunshine.nix", [["sunshine", 11, 9], ["moonlight", 37, 9]]);
-const pos$12 = nix.positions(here + "/sunshine.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 11, 3], ["enableOCR", 51, 3], ["testScript", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     name: "sunshine",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       broken: nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "isAarch64")),
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "devusb"))]),
       timeout: 600n,
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       sunshine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           imports: nix.thunk(() => [nix.path(here, "./common/x11.nix")]),
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, memorySize: 4096n })),
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[1], memorySize: 4096n })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             sunshine: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               enable: true,
               openFirewall: true,
-              settings: nix.thunk(() => ({ [nix.POS]: pos$3, capture: "x11", encoder: "software", output_name: 0n })),
+              settings: nix.thunk(() => ({ [nix.POS]: $pos[2], capture: "x11", encoder: "software", output_name: 0n })),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs_1, null);
               return [
@@ -67,11 +56,11 @@ export default nix.lambda((args) => (() => {
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           imports: nix.thunk(() => [nix.path(here, "./common/x11.nix")]),
           programs: nix.thunk(() => ({
-            [nix.POS]: pos$9,
-            "moonlight-qt": nix.thunk(() => ({ [nix.POS]: pos$8, enable: true, capSysNice: true })),
+            [nix.POS]: $pos[8],
+            "moonlight-qt": nix.thunk(() => ({ [nix.POS]: $pos[7], enable: true, capSysNice: true })),
           })),
         };
       })(), formals$3),

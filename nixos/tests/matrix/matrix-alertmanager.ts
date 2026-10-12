@@ -2,62 +2,40 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/matrix-alertmanager.nix", [[["maintainers", 11, 8]], [["name", 20, 22]], [["compress", 35, 21], ["names", 36, 21]], [["compress", 39, 21], ["names", 40, 21]], [["bind_addresses", 29, 17], ["port", 32, 17], ["resources", 33, 17], ["tls", 43, 17], ["type", 44, 17], ["x_forwarded", 45, 17]], [["database", 20, 13], ["tls_certificate_path", 21, 13], ["tls_private_key_path", 22, 13], ["enable_registration", 23, 13], ["enable_registration_without_verification", 24, 13], ["registration_shared_secret", 25, 13], ["listeners", 26, 13]], [["enable", 18, 11], ["settings", 19, 11]], [["matrix-synapse", 17, 18]], [["allowedTCPPorts", 51, 29]], [["firewall", 51, 20]], [["libraries", 69, 15]], [["systemPackages", 53, 21]], [["services", 17, 9], ["networking", 51, 9], ["environment", 53, 9]], [["source", 91, 36]], [["source", 92, 37]], [["token-file", 91, 25], ["secret-file", 92, 25]], [["etc", 91, 21]], [["receivers", 104, 15], ["roomId", 105, 15]], [["enable", 94, 11], ["tokenFile", 95, 11], ["secretFile", 96, 11], ["homeserverUrl", 97, 11], ["matrixRooms", 102, 11], ["matrixUser", 108, 11]], [["matrix-alertmanager", 93, 18]], [["environment", 91, 9], ["services", 93, 9]], [["homeserver", 14, 5], ["matrix_alertmanager", 88, 5]], [["name", 10, 3], ["meta", 11, 3], ["nodes", 13, 3], ["testScript", 113, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/matrix-alertmanager.nix", [["maintainers", 11, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/matrix-alertmanager.nix", [["name", 20, 22]]);
-const pos$3 = nix.positions(here + "/matrix-alertmanager.nix", [["compress", 35, 21], ["names", 36, 21]]);
-const pos$4 = nix.positions(here + "/matrix-alertmanager.nix", [["compress", 39, 21], ["names", 40, 21]]);
-const pos$5 = nix.positions(here + "/matrix-alertmanager.nix", [["bind_addresses", 29, 17], ["port", 32, 17], ["resources", 33, 17], ["tls", 43, 17], ["type", 44, 17], ["x_forwarded", 45, 17]]);
-const pos$6 = nix.positions(here + "/matrix-alertmanager.nix", [["database", 20, 13], ["tls_certificate_path", 21, 13], ["tls_private_key_path", 22, 13], ["enable_registration", 23, 13], ["enable_registration_without_verification", 24, 13], ["registration_shared_secret", 25, 13], ["listeners", 26, 13]]);
-const pos$7 = nix.positions(here + "/matrix-alertmanager.nix", [["enable", 18, 11], ["settings", 19, 11]]);
-const pos$8 = nix.positions(here + "/matrix-alertmanager.nix", [["matrix-synapse", 17, 18]]);
-const pos$9 = nix.positions(here + "/matrix-alertmanager.nix", [["allowedTCPPorts", 51, 29]]);
-const pos$10 = nix.positions(here + "/matrix-alertmanager.nix", [["firewall", 51, 20]]);
-const pos$11 = nix.positions(here + "/matrix-alertmanager.nix", [["libraries", 69, 15]]);
-const pos$12 = nix.positions(here + "/matrix-alertmanager.nix", [["systemPackages", 53, 21]]);
-const pos$13 = nix.positions(here + "/matrix-alertmanager.nix", [["services", 17, 9], ["networking", 51, 9], ["environment", 53, 9]]);
 const formals$3 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$14 = nix.positions(here + "/matrix-alertmanager.nix", [["source", 91, 36]]);
-const pos$15 = nix.positions(here + "/matrix-alertmanager.nix", [["source", 92, 37]]);
-const pos$16 = nix.positions(here + "/matrix-alertmanager.nix", [["token-file", 91, 25], ["secret-file", 92, 25]]);
-const pos$17 = nix.positions(here + "/matrix-alertmanager.nix", [["etc", 91, 21]]);
-const pos$18 = nix.positions(here + "/matrix-alertmanager.nix", [["receivers", 104, 15], ["roomId", 105, 15]]);
-const pos$19 = nix.positions(here + "/matrix-alertmanager.nix", [["enable", 94, 11], ["tokenFile", 95, 11], ["secretFile", 96, 11], ["homeserverUrl", 97, 11], ["matrixRooms", 102, 11], ["matrixUser", 108, 11]]);
-const pos$20 = nix.positions(here + "/matrix-alertmanager.nix", [["matrix-alertmanager", 93, 18]]);
-const pos$21 = nix.positions(here + "/matrix-alertmanager.nix", [["environment", 91, 9], ["services", 93, 9]]);
-const pos$22 = nix.positions(here + "/matrix-alertmanager.nix", [["homeserver", 14, 5], ["matrix_alertmanager", 88, 5]]);
-const pos$23 = nix.positions(here + "/matrix-alertmanager.nix", [["name", 10, 3], ["meta", 11, 3], ["nodes", 13, 3], ["testScript", 113, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const secret_files = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommandLocal"), "secret-files", nix.thunk(() => ({})), "mkdir -p $out\necho -n faketoken > $out/token.txt\necho -n wontbeused > $out/secret.txt\n"));
   return {
-    [nix.POS]: pos$23,
+    [nix.POS]: $pos[22],
     name: "matrix-alertmanager",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "erethon"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$22,
+      [nix.POS]: $pos[21],
       homeserver: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             "matrix-synapse": nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$6,
-                database: nix.thunk(() => ({ [nix.POS]: pos$2, name: "sqlite3" })),
+                [nix.POS]: $pos[5],
+                database: nix.thunk(() => ({ [nix.POS]: $pos[1], name: "sqlite3" })),
                 tls_certificate_path: "../common/acme/server/acme.test.cert.pem",
                 tls_private_key_path: "../common/acme/server/acme.test.key.pem",
                 enable_registration: true,
@@ -65,12 +43,12 @@ export default nix.lambda((args) => (() => {
                 registration_shared_secret: "supersecret-registration",
                 listeners: nix.thunk(() => [
                   nix.thunk(() => ({
-                    [nix.POS]: pos$5,
+                    [nix.POS]: $pos[4],
                     bind_addresses: nix.thunk(() => ["0.0.0.0"]),
                     port: 8448n,
                     resources: nix.thunk(() => [
-                      nix.thunk(() => ({ [nix.POS]: pos$3, compress: true, names: nix.thunk(() => ["client"]) })),
-                      nix.thunk(() => ({ [nix.POS]: pos$4, compress: false, names: nix.thunk(() => ["federation"]) })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[2], compress: true, names: nix.thunk(() => ["client"]) })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[3], compress: false, names: nix.thunk(() => ["federation"]) })),
                     ]),
                     tls: false,
                     type: "http",
@@ -81,11 +59,11 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$10,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$9, allowedTCPPorts: nix.thunk(() => [8448n]) })),
+            [nix.POS]: $pos[9],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[8], allowedTCPPorts: nix.thunk(() => [8448n]) })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeShellScriptBin"), "register_alertmanager_user", nix.thunk(() => nix.str`exec ${nix.sel(pkgs_1, "matrix-synapse")}/bin/register_new_matrix_user \\
   -u alertmanager \\
@@ -95,7 +73,7 @@ export default nix.lambda((args) => (() => {
   http://localhost:8448
 `))),
               nix.thunk(() => nix.app(nix.sel(pkgs_1, "writers", "writePython3Bin"), "hardcode_matrix_values", nix.thunk(() => ({
-                  [nix.POS]: pos$11,
+                  [nix.POS]: $pos[10],
                   libraries: nix.thunk(() => (() => {
                     const w = nix.withScope(nix.thunk(() => nix.sel(pkgs_1, "python3Packages")), null);
                     return [nix.thunk(() => nix.lookup(w, "sqlite-utils"))];
@@ -110,32 +88,32 @@ export default nix.lambda((args) => (() => {
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$21,
+          [nix.POS]: $pos[20],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             etc: nix.thunk(() => ({
-              [nix.POS]: pos$16,
+              [nix.POS]: $pos[15],
               "token-file": nix.thunk(() => ({
-                [nix.POS]: pos$14,
+                [nix.POS]: $pos[13],
                 source: nix.thunk(() => nix.str`${secret_files}/token.txt`),
               })),
               "secret-file": nix.thunk(() => ({
-                [nix.POS]: pos$15,
+                [nix.POS]: $pos[14],
                 source: nix.thunk(() => nix.str`${secret_files}/secret.txt`),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$20,
+            [nix.POS]: $pos[19],
             "matrix-alertmanager": nix.thunk(() => ({
-              [nix.POS]: pos$19,
+              [nix.POS]: $pos[18],
               enable: true,
               tokenFile: nix.thunk(() => nix.str`/etc/${nix.sel(config, "environment", "etc", "token-file", "target")}`),
               secretFile: nix.thunk(() => nix.str`/etc/${nix.sel(config, "environment", "etc", "secret-file", "target")}`),
               homeserverUrl: "http://homeserver:8448",
               matrixRooms: nix.thunk(() => [
                 nix.thunk(() => ({
-                  [nix.POS]: pos$18,
+                  [nix.POS]: $pos[17],
                   receivers: nix.thunk(() => ["matrix"]),
                   roomId: "!room_id:homeserver",
                 })),

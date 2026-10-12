@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["maintainers", 68, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["cargoHash", 25, 3], ["buildInputs", 27, 3], ["nativeBuildInputs", 34, 3], ["buildFeatures", 41, 3], ["doInstallCheck", 43, 3], ["postInstall", 45, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, rustPlatform: false, installShellFiles: false, "pkg-config": false, libpulseaudio: false, dbus: false, openssl: false, "speechd-minimal": false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["maintainers", 68, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["cargoHash", 25, 3], ["buildInputs", 27, 3], ["nativeBuildInputs", 34, 3], ["buildFeatures", 41, 3], ["doInstallCheck", 43, 3], ["postInstall", 45, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const speechd_minimal = nix.arg($, "speechd-minimal");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "goxlr-utility",
       version: "1.2.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "GoXLR-on-Linux",
           repo: "goxlr-utility",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       postInstall: "install -Dm644 \"50-goxlr.rules\" \"$out/etc/udev/rules.d/50-goxlr.rules\"\ninstall -Dm644 \"daemon/resources/goxlr-utility.png\" \"$out/share/icons/hicolor/48x48/apps/goxlr-utility.png\"\ninstall -Dm644 \"daemon/resources/goxlr-utility.svg\" \"$out/share/icons/hicolor/scalable/apps/goxlr-utility.svg\"\ninstall -Dm644 \"daemon/resources/goxlr-utility-large.png\" \"$out/share/icons/hicolor/128x128/apps/goxlr-utility.png\"\ninstall -Dm644 \"daemon/resources/goxlr-utility.desktop\" \"$out/share/applications/goxlr-utility.desktop\"\nsubstituteInPlace $out/share/applications/goxlr-utility.desktop \\\n  --replace-fail /usr/bin $out/bin\n\ncompletions_dir=$(dirname $(find target -name 'goxlr-client.bash' | head -n 1))\ninstallShellCompletion --bash $completions_dir/goxlr-client.bash\ninstallShellCompletion --fish $completions_dir/goxlr-client.fish\ninstallShellCompletion --zsh  $completions_dir/_goxlr-client\ncompletions_dir=$(dirname $(find target -name 'goxlr-daemon.bash' | head -n 1))\ninstallShellCompletion --bash $completions_dir/goxlr-daemon.bash\ninstallShellCompletion --fish $completions_dir/goxlr-daemon.fish\ninstallShellCompletion --zsh  $completions_dir/_goxlr-daemon\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Unofficial GoXLR App replacement for Linux, Windows and MacOS",
         homepage: "https://github.com/GoXLR-on-Linux/goxlr-utility",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

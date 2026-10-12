@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 24, 9], ["hash", 25, 9]], [["version", 29, 9], ["hash", 30, 9]], [["version", 34, 9], ["hash", 35, 9], ["propagatedBuildInputs", 36, 9]], [["url", 53, 5], ["hash", 54, 21]], [["run", 70, 24]], [["homepage", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["description", 76, 5], ["platforms", 77, 26]], [["pname", 49, 3], ["version", 50, 19], ["src", 52, 3], ["nativeBuildInputs", 57, 3], ["propagatedBuildInputs", 62, 3], ["strictDeps", 64, 3], ["buildPhase", 66, 3], ["createFindlibDestdir", 67, 3], ["installPhase", 68, 3], ["passthru", 70, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, ocaml: false, findlib: false, ocamlbuild: false, result: false, opaline: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 24, 9], ["hash", 25, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 29, 9], ["hash", 30, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 34, 9], ["hash", 35, 9], ["propagatedBuildInputs", 36, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["url", 53, 5], ["hash", 54, 21]]);
-const pos$5 = nix.positions(here + "/default.nix", [["run", 70, 24]]);
-const pos$6 = nix.positions(here + "/default.nix", [["homepage", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["description", 76, 5], ["platforms", 77, 26]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 49, 3], ["version", 50, 19], ["src", 52, 3], ["nativeBuildInputs", 57, 3], ["propagatedBuildInputs", 62, 3], ["strictDeps", 64, 3], ["buildPhase", 66, 3], ["createFindlibDestdir", 67, 3], ["installPhase", 68, 3], ["passthru", 70, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,15 +16,15 @@ export default nix.lambda((args) => (() => {
   const result = nix.arg($, "result");
   const opaline = nix.arg($, "opaline");
   const param = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.05")) ? {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     version: "1.1.0",
     hash: "sha256-rS2n9eoqRKclaOy5W1ezaquItfnhH/ee+2TkFvF3FOA=",
   } : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.03")) ? {
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     version: "1.0.3",
     hash: "sha256:0b77gsz9bqby8v77kfi4lans47x9p2lmzanzwins5r29maphb8y6",
   } : {
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     version: "1.0.0",
     hash: "sha256:1df61vw6v5bg2mys045682ggv058yqkqb67w7r2gz85crs04d5fw",
     propagatedBuildInputs: nix.thunk(() => [result]),
@@ -40,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const pname = nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-topkg`);
       const version = nix.thunk(() => nix.attr(param, "version"));
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           url: nix.thunk(() => nix.str`https://erratique.ch/software/topkg/releases/topkg-${version}.tbz`),
           hash: nix.thunk(() => nix.attr(param, "hash")),
         }))));
@@ -50,11 +44,11 @@ export default nix.lambda((args) => (() => {
       const buildPhase = nix.thunk(() => nix.str`${run} build`);
       const createFindlibDestdir = true;
       const installPhase = nix.thunk(() => nix.str`${opaline}/bin/opaline -prefix $out -libdir $OCAMLFIND_DESTDIR`);
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$5, run: run }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[4], run: run }));
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://erratique.ch/software/topkg",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "vbgl"))]),
@@ -63,7 +57,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         src,

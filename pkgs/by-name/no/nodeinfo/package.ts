@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5]], [["CGO_ENABLED", 25, 7]], [["mainProgram", 28, 5], ["description", 29, 5], ["homepage", 30, 5], ["changelog", 31, 5], ["license", 32, 5], ["maintainers", 33, 5]], [["pname", 7, 3], ["version", 8, 3], ["vendorHash", 9, 3], ["src", 11, 3], ["modRoot", 18, 3], ["tags", 19, 3], ["ldflags", 20, 3], ["env", 25, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromCodeberg: false, buildGoModule: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 25, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["mainProgram", 28, 5], ["description", 29, 5], ["homepage", 30, 5], ["changelog", 31, 5], ["license", 32, 5], ["maintainers", 33, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 3], ["vendorHash", 9, 3], ["src", 11, 3], ["modRoot", 18, 3], ["tags", 19, 3], ["ldflags", 20, 3], ["env", 25, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromCodeberg = nix.arg($, "fetchFromCodeberg");
   const buildGoModule = nix.arg($, "buildGoModule");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "nodeinfo",
       version: "1.0.0",
       vendorHash: "sha256-P0klk3YWa2qprCUNUjiuF+Akxh246WCu4vwUAZmSDCw=",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "thefederationinfo",
           repo: "nodeinfo-go",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,9 +25,9 @@ export default nix.lambda((args) => (() => {
       modRoot: "./cli",
       tags: nix.thunk(() => ["extension"]),
       ldflags: nix.thunk(() => ["-s", "-w"]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_ENABLED: 0n })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         mainProgram: "nodeinfo",
         description: "Command line tool to query nodeinfo based on a given domain",
         homepage: "https://codeberg.org/thefederationinfo/nodeinfo-go",

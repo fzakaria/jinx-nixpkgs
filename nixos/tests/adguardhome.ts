@@ -2,135 +2,86 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/adguardhome.nix", [["enable", 6, 28]]);
-const pos$2 = nix.positions(here + "/adguardhome.nix", [["adguardhome", 6, 16]]);
-const pos$3 = nix.positions(here + "/adguardhome.nix", [["services", 6, 7]]);
-const pos$4 = nix.positions(here + "/adguardhome.nix", [["enable", 11, 9], ["settings", 13, 9]]);
-const pos$5 = nix.positions(here + "/adguardhome.nix", [["adguardhome", 10, 16]]);
-const pos$6 = nix.positions(here + "/adguardhome.nix", [["services", 10, 7]]);
-const pos$7 = nix.positions(here + "/adguardhome.nix", [["schema_version", 21, 18]]);
-const pos$8 = nix.positions(here + "/adguardhome.nix", [["enable", 19, 9], ["settings", 21, 9]]);
-const pos$9 = nix.positions(here + "/adguardhome.nix", [["adguardhome", 18, 16]]);
-const pos$10 = nix.positions(here + "/adguardhome.nix", [["services", 18, 7]]);
-const pos$11 = nix.positions(here + "/adguardhome.nix", [["file", 29, 22]]);
-const pos$12 = nix.positions(here + "/adguardhome.nix", [["log", 29, 18]]);
-const pos$13 = nix.positions(here + "/adguardhome.nix", [["enable", 27, 9], ["settings", 29, 9]]);
-const pos$14 = nix.positions(here + "/adguardhome.nix", [["adguardhome", 26, 16]]);
-const pos$15 = nix.positions(here + "/adguardhome.nix", [["services", 26, 7]]);
-const pos$16 = nix.positions(here + "/adguardhome.nix", [["bootstrap_dns", 41, 15]]);
-const pos$17 = nix.positions(here + "/adguardhome.nix", [["insecure_enabled", 42, 20]]);
-const pos$18 = nix.positions(here + "/adguardhome.nix", [["doh", 42, 16]]);
-const pos$19 = nix.positions(here + "/adguardhome.nix", [["dns", 41, 11], ["http", 42, 11]]);
-const pos$20 = nix.positions(here + "/adguardhome.nix", [["enable", 35, 9], ["host", 37, 9], ["mutableSettings", 38, 9], ["port", 39, 9], ["settings", 40, 9]]);
-const pos$21 = nix.positions(here + "/adguardhome.nix", [["adguardhome", 34, 16]]);
-const pos$22 = nix.positions(here + "/adguardhome.nix", [["services", 34, 7]]);
-const pos$23 = nix.positions(here + "/adguardhome.nix", [["bootstrap_dns", 52, 22]]);
-const pos$24 = nix.positions(here + "/adguardhome.nix", [["dns", 52, 18]]);
-const pos$25 = nix.positions(here + "/adguardhome.nix", [["enable", 49, 9], ["mutableSettings", 51, 9], ["settings", 52, 9]]);
-const pos$26 = nix.positions(here + "/adguardhome.nix", [["adguardhome", 48, 16]]);
-const pos$27 = nix.positions(here + "/adguardhome.nix", [["services", 48, 7]]);
+const $pos = nix.positions(here + "/adguardhome.nix", [[["enable", 6, 28]], [["adguardhome", 6, 16]], [["services", 6, 7]], [["enable", 11, 9], ["settings", 13, 9]], [["adguardhome", 10, 16]], [["services", 10, 7]], [["schema_version", 21, 18]], [["enable", 19, 9], ["settings", 21, 9]], [["adguardhome", 18, 16]], [["services", 18, 7]], [["file", 29, 22]], [["log", 29, 18]], [["enable", 27, 9], ["settings", 29, 9]], [["adguardhome", 26, 16]], [["services", 26, 7]], [["bootstrap_dns", 41, 15]], [["insecure_enabled", 42, 20]], [["doh", 42, 16]], [["dns", 41, 11], ["http", 42, 11]], [["enable", 35, 9], ["host", 37, 9], ["mutableSettings", 38, 9], ["port", 39, 9], ["settings", 40, 9]], [["adguardhome", 34, 16]], [["services", 34, 7]], [["bootstrap_dns", 52, 22]], [["dns", 52, 18]], [["enable", 49, 9], ["mutableSettings", 51, 9], ["settings", 52, 9]], [["adguardhome", 48, 16]], [["services", 48, 7]], [["vlans", 59, 24]], [["address", 69, 19], ["prefixLength", 70, 19]], [["address", 76, 19], ["prefixLength", 77, 19]], [["addresses", 67, 15], ["routes", 74, 15]], [["useDHCP", 65, 13], ["ipv4", 66, 13]], [["eth1", 64, 22]], [["allowedUDPPorts", 84, 20]], [["useDHCP", 63, 11], ["interfaces", 64, 11], ["firewall", 84, 11]], [["bootstrap_dns", 95, 17]], [["gateway_ip", 102, 17], ["range_start", 103, 17], ["range_end", 104, 17], ["subnet_mask", 105, 17]], [["enabled", 98, 15], ["interface_name", 99, 15], ["local_domain_name", 100, 15], ["dhcpv4", 101, 15]], [["dns", 95, 13], ["dhcp", 96, 13]], [["enable", 91, 11], ["allowDHCP", 92, 11], ["mutableSettings", 93, 11], ["settings", 94, 11]], [["adguardhome", 90, 18]], [["virtualisation", 59, 9], ["networking", 61, 9], ["services", 90, 9]], [["vlans", 115, 24]], [["addresses", 119, 18]], [["useDHCP", 118, 13], ["ipv4", 119, 13]], [["eth1", 117, 22]], [["interfaces", 117, 11]], [["virtualisation", 115, 9], ["networking", 116, 9]], [["nullConf", 5, 5], ["emptyConf", 9, 5], ["schemaVersionBefore23", 17, 5], ["syslogConf", 25, 5], ["declarativeConf", 33, 5], ["mixedConf", 47, 5], ["dhcpConf", 56, 5], ["client", 112, 5]], [["name", 2, 3], ["nodes", 4, 3], ["testScript", 125, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$28 = nix.positions(here + "/adguardhome.nix", [["vlans", 59, 24]]);
-const pos$29 = nix.positions(here + "/adguardhome.nix", [["address", 69, 19], ["prefixLength", 70, 19]]);
-const pos$30 = nix.positions(here + "/adguardhome.nix", [["address", 76, 19], ["prefixLength", 77, 19]]);
-const pos$31 = nix.positions(here + "/adguardhome.nix", [["addresses", 67, 15], ["routes", 74, 15]]);
-const pos$32 = nix.positions(here + "/adguardhome.nix", [["useDHCP", 65, 13], ["ipv4", 66, 13]]);
-const pos$33 = nix.positions(here + "/adguardhome.nix", [["eth1", 64, 22]]);
-const pos$34 = nix.positions(here + "/adguardhome.nix", [["allowedUDPPorts", 84, 20]]);
-const pos$35 = nix.positions(here + "/adguardhome.nix", [["useDHCP", 63, 11], ["interfaces", 64, 11], ["firewall", 84, 11]]);
-const pos$36 = nix.positions(here + "/adguardhome.nix", [["bootstrap_dns", 95, 17]]);
-const pos$37 = nix.positions(here + "/adguardhome.nix", [["gateway_ip", 102, 17], ["range_start", 103, 17], ["range_end", 104, 17], ["subnet_mask", 105, 17]]);
-const pos$38 = nix.positions(here + "/adguardhome.nix", [["enabled", 98, 15], ["interface_name", 99, 15], ["local_domain_name", 100, 15], ["dhcpv4", 101, 15]]);
-const pos$39 = nix.positions(here + "/adguardhome.nix", [["dns", 95, 13], ["dhcp", 96, 13]]);
-const pos$40 = nix.positions(here + "/adguardhome.nix", [["enable", 91, 11], ["allowDHCP", 92, 11], ["mutableSettings", 93, 11], ["settings", 94, 11]]);
-const pos$41 = nix.positions(here + "/adguardhome.nix", [["adguardhome", 90, 18]]);
-const pos$42 = nix.positions(here + "/adguardhome.nix", [["virtualisation", 59, 9], ["networking", 61, 9], ["services", 90, 9]]);
 const formals$2 = { args: { lib: false }, ellipsis: true };
-const pos$43 = nix.positions(here + "/adguardhome.nix", [["vlans", 115, 24]]);
-const pos$44 = nix.positions(here + "/adguardhome.nix", [["addresses", 119, 18]]);
-const pos$45 = nix.positions(here + "/adguardhome.nix", [["useDHCP", 118, 13], ["ipv4", 119, 13]]);
-const pos$46 = nix.positions(here + "/adguardhome.nix", [["eth1", 117, 22]]);
-const pos$47 = nix.positions(here + "/adguardhome.nix", [["interfaces", 117, 11]]);
-const pos$48 = nix.positions(here + "/adguardhome.nix", [["virtualisation", 115, 9], ["networking", 116, 9]]);
-const pos$49 = nix.positions(here + "/adguardhome.nix", [["nullConf", 5, 5], ["emptyConf", 9, 5], ["schemaVersionBefore23", 17, 5], ["syslogConf", 25, 5], ["declarativeConf", 33, 5], ["mixedConf", 47, 5], ["dhcpConf", 56, 5], ["client", 112, 5]]);
-const pos$50 = nix.positions(here + "/adguardhome.nix", [["name", 2, 3], ["nodes", 4, 3], ["testScript", 125, 3]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$50,
+  [nix.POS]: $pos[49],
   name: "adguardhome",
   nodes: nix.thunk(() => ({
-    [nix.POS]: pos$49,
+    [nix.POS]: $pos[48],
     nullConf: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       services: nix.thunk(() => ({
-        [nix.POS]: pos$2,
-        adguardhome: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
+        [nix.POS]: $pos[1],
+        adguardhome: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true })),
       })),
     })),
     emptyConf: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       services: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        adguardhome: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true, settings: nix.thunk(() => ({})) })),
+        [nix.POS]: $pos[4],
+        adguardhome: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: true, settings: nix.thunk(() => ({})) })),
       })),
     })),
     schemaVersionBefore23: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       services: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         adguardhome: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           enable: true,
-          settings: nix.thunk(() => ({ [nix.POS]: pos$7, schema_version: 20n })),
+          settings: nix.thunk(() => ({ [nix.POS]: $pos[6], schema_version: 20n })),
         })),
       })),
     })),
     syslogConf: nix.thunk(() => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       services: nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         adguardhome: nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           enable: true,
           settings: nix.thunk(() => ({
-            [nix.POS]: pos$12,
-            log: nix.thunk(() => ({ [nix.POS]: pos$11, file: "syslog" })),
+            [nix.POS]: $pos[11],
+            log: nix.thunk(() => ({ [nix.POS]: $pos[10], file: "syslog" })),
           })),
         })),
       })),
     })),
     declarativeConf: nix.thunk(() => ({
-      [nix.POS]: pos$22,
+      [nix.POS]: $pos[21],
       services: nix.thunk(() => ({
-        [nix.POS]: pos$21,
+        [nix.POS]: $pos[20],
         adguardhome: nix.thunk(() => ({
-          [nix.POS]: pos$20,
+          [nix.POS]: $pos[19],
           enable: true,
           host: "127.0.0.1",
           mutableSettings: false,
           port: 43074n,
           settings: nix.thunk(() => ({
-            [nix.POS]: pos$19,
-            dns: nix.thunk(() => ({ [nix.POS]: pos$16, bootstrap_dns: nix.thunk(() => ["127.0.0.1"]) })),
+            [nix.POS]: $pos[18],
+            dns: nix.thunk(() => ({ [nix.POS]: $pos[15], bootstrap_dns: nix.thunk(() => ["127.0.0.1"]) })),
             http: nix.thunk(() => ({
-              [nix.POS]: pos$18,
-              doh: nix.thunk(() => ({ [nix.POS]: pos$17, insecure_enabled: true })),
+              [nix.POS]: $pos[17],
+              doh: nix.thunk(() => ({ [nix.POS]: $pos[16], insecure_enabled: true })),
             })),
           })),
         })),
       })),
     })),
     mixedConf: nix.thunk(() => ({
-      [nix.POS]: pos$27,
+      [nix.POS]: $pos[26],
       services: nix.thunk(() => ({
-        [nix.POS]: pos$26,
+        [nix.POS]: $pos[25],
         adguardhome: nix.thunk(() => ({
-          [nix.POS]: pos$25,
+          [nix.POS]: $pos[24],
           enable: true,
           mutableSettings: true,
           settings: nix.thunk(() => ({
-            [nix.POS]: pos$24,
-            dns: nix.thunk(() => ({ [nix.POS]: pos$23, bootstrap_dns: nix.thunk(() => ["127.0.0.1"]) })),
+            [nix.POS]: $pos[23],
+            dns: nix.thunk(() => ({ [nix.POS]: $pos[22], bootstrap_dns: nix.thunk(() => ["127.0.0.1"]) })),
           })),
         })),
       })),
@@ -139,46 +90,46 @@ export default nix.thunk(() => ({
       const $ = nix.formals(args, formals$1);
       const lib = nix.arg($, "lib");
       return {
-        [nix.POS]: pos$42,
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$28, vlans: nix.thunk(() => [1n]) })),
+        [nix.POS]: $pos[41],
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[27], vlans: nix.thunk(() => [1n]) })),
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$35,
+          [nix.POS]: $pos[34],
           useDHCP: false,
           interfaces: nix.thunk(() => ({
-            [nix.POS]: pos$33,
+            [nix.POS]: $pos[32],
             eth1: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => ({
-                [nix.POS]: pos$32,
+                [nix.POS]: $pos[31],
                 useDHCP: false,
                 ipv4: nix.thunk(() => ({
-                  [nix.POS]: pos$31,
+                  [nix.POS]: $pos[30],
                   addresses: nix.thunk(() => [
-                    nix.thunk(() => ({ [nix.POS]: pos$29, address: "10.0.10.1", prefixLength: 24n })),
+                    nix.thunk(() => ({ [nix.POS]: $pos[28], address: "10.0.10.1", prefixLength: 24n })),
                   ]),
                   routes: nix.thunk(() => [
-                    nix.thunk(() => ({ [nix.POS]: pos$30, address: "10.0.10.0", prefixLength: 24n })),
+                    nix.thunk(() => ({ [nix.POS]: $pos[29], address: "10.0.10.0", prefixLength: 24n })),
                   ]),
                 })),
               })))),
           })),
-          firewall: nix.thunk(() => ({ [nix.POS]: pos$34, allowedUDPPorts: nix.thunk(() => [67n, 68n]) })),
+          firewall: nix.thunk(() => ({ [nix.POS]: $pos[33], allowedUDPPorts: nix.thunk(() => [67n, 68n]) })),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$41,
+          [nix.POS]: $pos[40],
           adguardhome: nix.thunk(() => ({
-            [nix.POS]: pos$40,
+            [nix.POS]: $pos[39],
             enable: true,
             allowDHCP: true,
             mutableSettings: false,
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$39,
-              dns: nix.thunk(() => ({ [nix.POS]: pos$36, bootstrap_dns: nix.thunk(() => ["127.0.0.1"]) })),
+              [nix.POS]: $pos[38],
+              dns: nix.thunk(() => ({ [nix.POS]: $pos[35], bootstrap_dns: nix.thunk(() => ["127.0.0.1"]) })),
               dhcp: nix.thunk(() => ({
-                [nix.POS]: pos$38,
+                [nix.POS]: $pos[37],
                 enabled: true,
                 interface_name: "eth1",
                 local_domain_name: "lan",
                 dhcpv4: nix.thunk(() => ({
-                  [nix.POS]: pos$37,
+                  [nix.POS]: $pos[36],
                   gateway_ip: "10.0.10.1",
                   range_start: "10.0.10.100",
                   range_end: "10.0.10.101",
@@ -194,17 +145,17 @@ export default nix.thunk(() => ({
       const $ = nix.formals(args, formals$2);
       const lib = nix.arg($, "lib");
       return {
-        [nix.POS]: pos$48,
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$43, vlans: nix.thunk(() => [1n]) })),
+        [nix.POS]: $pos[47],
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[42], vlans: nix.thunk(() => [1n]) })),
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$47,
+          [nix.POS]: $pos[46],
           interfaces: nix.thunk(() => ({
-            [nix.POS]: pos$46,
+            [nix.POS]: $pos[45],
             eth1: nix.thunk(() => ({
-              [nix.POS]: pos$45,
+              [nix.POS]: $pos[44],
               useDHCP: true,
               ipv4: nix.thunk(() => ({
-                [nix.POS]: pos$44,
+                [nix.POS]: $pos[43],
                 addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), [])),
               })),
             })),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 24, 5], ["hash", 25, 5]], [["description", 54, 5], ["longDescription", 55, 5], ["homepage", 70, 5], ["license", 71, 5], ["maintainers", 72, 5]], [["pname", 18, 3], ["version", 19, 3], ["minimalOCamlVersion", 21, 3], ["src", 23, 3], ["buildInputs", 28, 3], ["propagatedBuildInputs", 30, 3], ["buildPhase", 33, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, fetchzip: false, ocaml: false, topkg: false, buildTopkgPackage: false, withBrr: true, brr: false, withBytesrw: true, bytesrw: false, withCmdliner: true, cmdliner: false, withTypegist: true, typegist: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 54, 5], ["longDescription", 55, 5], ["homepage", 70, 5], ["license", 71, 5], ["maintainers", 72, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["minimalOCamlVersion", 21, 3], ["src", 23, 3], ["buildInputs", 28, 3], ["propagatedBuildInputs", 30, 3], ["buildPhase", 33, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.0";
       const minimalOCamlVersion = "4.14.0";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://erratique.ch/software/jsont/releases/jsont-${version}.tbz`),
           hash: "sha256-2L7YaPXn4PzGl/3XwuwvpQTr4aiS85Hm1HNofuaK7DY=",
         }))));
@@ -47,7 +45,7 @@ ${nix.sel(topkg, "run")} build ${nix.app(nix.sel(lib, "escapeShellArgs"), nix.th
 runHook postBuild
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Declarative JSON data manipulation",
         longDescription: "Jsont is an OCaml library for declarative JSON data manipulation. it\nprovides:\n\n• Combinators for describing JSON data using the OCaml values of your\n  choice. The descriptions can be used by generic functions to decode,\n  encode, query and update JSON data without having to construct a\n  generic JSON representation\n• A JSON codec with optional text location tracking and best-effort\n  layout preservation. The codec is compatible with effect-based\n  concurrency.\n\nThe descriptions are independent from the codec and can be used by\nthird-party processors or codecs.\n",
         homepage: "https://erratique.ch/software/jsont",
@@ -58,7 +56,7 @@ runHook postBuild
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         minimalOCamlVersion,

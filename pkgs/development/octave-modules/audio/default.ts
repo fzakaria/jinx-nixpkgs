@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["sha256", 21, 5]], [["extraArgs", 50, 47]], [["updateScript", 50, 12]], [["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["description", 56, 5], ["platforms", 57, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["propagatedBuildInputs", 29, 3], ["preAutoreconf", 39, 3], ["postAutoreconf", 46, 3], ["passthru", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { buildOctavePackage: false, lib: false, fetchFromGitHub: false, "nix-update-script": false, jack2: false, "alsa-lib": false, rtmidi: false, "pkg-config": false, autoreconfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["extraArgs", 50, 47]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 50, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["description", 56, 5], ["platforms", 57, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["propagatedBuildInputs", 29, 3], ["preAutoreconf", 39, 3], ["postAutoreconf", 46, 3], ["passthru", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "audio";
       const version = "2.0.12";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gnu-octave",
           repo: "octave-audio",
           tag: nix.thunk(() => nix.str`release-${version}`),
@@ -35,14 +31,14 @@ export default nix.lambda((args) => (() => {
       const preAutoreconf = "pushd src\n# Upstream's bootstrap script uses wget to fetch config.guess & config.sub\n# and has them committed to the repository. We must remove them so autoreconf\n# actually fires for our environment.\nrm config.*\n";
       const postAutoreconf = "popd\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex=release-(.*)"]),
           })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://gnu-octave.github.io/packages/audio/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         maintainers: nix.thunk(() => (() => {
@@ -53,7 +49,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

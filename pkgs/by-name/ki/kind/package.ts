@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["rev", 18, 5], ["owner", 19, 5], ["repo", 20, 5], ["hash", 21, 5]], [["url", 30, 7], ["hash", 31, 7]], [["CGO_ENABLED", 41, 7]], [["package", 57, 7]], [["version", 56, 11]], [["tests", 56, 5], ["updateScript", 59, 5]], [["description", 63, 5], ["homepage", 64, 5], ["maintainers", 65, 5], ["license", 68, 5], ["mainProgram", 69, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["vendorHash", 35, 3], ["nativeBuildInputs", 37, 3], ["subPackages", 39, 3], ["env", 41, 3], ["ldflags", 43, 3], ["postInstall", 48, 3], ["passthru", 55, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, fetchpatch: false, installShellFiles: false, testers: false, "nix-update-script": false, kind: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["rev", 18, 5], ["owner", 19, 5], ["repo", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 30, 7], ["hash", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 41, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["package", 57, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 56, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 56, 5], ["updateScript", 59, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 63, 5], ["homepage", 64, 5], ["maintainers", 65, 5], ["license", 68, 5], ["mainProgram", 69, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["vendorHash", 35, 3], ["nativeBuildInputs", 37, 3], ["subPackages", 39, 3], ["env", 41, 3], ["ldflags", 43, 3], ["postInstall", 48, 3], ["passthru", 55, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const kind = nix.arg($, "kind");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "kind",
       version: "0.32.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           owner: "kubernetes-sigs",
           repo: "kind",
@@ -37,7 +30,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./kernel-module-path.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/kubernetes-sigs/kind/commit/9a24e6c1ae3d59f8de052ee5c3842820450a369a.patch",
             hash: "sha256-BP2Ub8b1GA7V0CGvhcoGuHRm7u+IMRTmN3mDc2rePnY=",
           })))),
@@ -45,19 +38,19 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-tRpylYpEGF6XqtBl7ESYlXKEEAt+Jws4x4VlUVW8SNI=",
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       subPackages: nix.thunk(() => ["."]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], CGO_ENABLED: 0n })),
       ldflags: nix.thunk(() => ["-s", "-w"]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd kind \\\n  --bash <($out/bin/kind completion bash) \\\n  --fish <($out/bin/kind completion fish) \\\n  --zsh <($out/bin/kind completion zsh)\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$4, package: kind })))),
+          [nix.POS]: $pos[4],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[3], package: kind })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Kubernetes IN Docker - local clusters for testing Kubernetes",
         homepage: "https://github.com/kubernetes-sigs/kind",
         maintainers: nix.thunk(() => (() => {

@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generated.nix", [[["pname", 8, 3], ["version", 9, 3], ["src", 10, 3], ["isLibrary", 11, 3], ["isExecutable", 12, 3], ["executableHaskellDepends", 13, 3], ["description", 14, 3], ["license", 15, 3], ["mainProgram", 16, 3]]]);
 const formals$1 = { args: { mkDerivation: false, base: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/generated.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 10, 3], ["isLibrary", 11, 3], ["isExecutable", 12, 3], ["executableHaskellDepends", 13, 3], ["description", 14, 3], ["license", 15, 3], ["mainProgram", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const base = nix.arg($, "base");
   const lib = nix.arg($, "lib");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "local",
       version: "0.1.0.0",
       src: nix.path(here, "./local"),

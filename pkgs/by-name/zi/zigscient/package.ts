@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["description", 36, 5], ["mainProgram", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["platforms", 43, 5]], [["pname", 9, 3], ["version", 10, 3], ["strictDeps", 12, 3], ["__structuredAttrs", 13, 3], ["zigBuildFlags", 15, 3], ["preBuild", 20, 3], ["deps", 25, 3], ["nativeBuildInputs", 26, 3], ["src", 28, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, callPackage: false, zig_0_17: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 36, 5], ["mainProgram", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["platforms", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["strictDeps", 12, 3], ["__structuredAttrs", 13, 3], ["zigBuildFlags", 15, 3], ["preBuild", 20, 3], ["deps", 25, 3], ["nativeBuildInputs", 26, 3], ["src", 28, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const zig_0_17 = nix.arg($, "zig_0_17");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "zigscient",
       version: "0.17.0",
       strictDeps: true,
@@ -29,14 +27,14 @@ export default nix.lambda((args) => (() => {
       deps: nix.thunk(() => nix.app(callPackage, nix.path(here, "./deps_0_17.nix"), nix.thunk(() => ({})))),
       nativeBuildInputs: nix.thunk(() => [zig_0_17]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "llogick",
           repo: "zigscient",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-tWgUZm9kW8B/tCIx5g2N4mVRiqKxLy+YuxBv0iSvLds=",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Zig Language Server - A drop-in alternative to ZLS",
         mainProgram: "zigscient",
         homepage: "https://github.com/llogick/zigscient",

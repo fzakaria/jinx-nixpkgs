@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test-runtime-compilation.nix", [[["teams", 35, 5]], [["name", 13, 11], ["testedPackage", 14, 3], ["sandboxPaths", 16, 3], ["nativeBuildInputs", 22, 3], ["testScript", 29, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, makeImpureTest: false, writableTmpDirAsHomeHook: false, miopen: false, clr: false, "rocm-smi": false, name: false, testScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/test-runtime-compilation.nix", [["teams", 35, 5]]);
-const pos$2 = nix.positions(here + "/test-runtime-compilation.nix", [["name", 13, 11], ["testedPackage", 14, 3], ["sandboxPaths", 16, 3], ["nativeBuildInputs", 22, 3], ["testScript", 29, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const name = nix.arg($, "name");
   const testScript = nix.arg($, "testScript");
   return nix.app(makeImpureTest, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: name,
       testedPackage: "rocmPackages.miopen",
       sandboxPaths: nix.thunk(() => ["/sys", "/dev/dri", "/dev/kfd"]),
@@ -26,7 +25,7 @@ export default nix.lambda((args) => (() => {
 ${testScript}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "rocm"))]),
       })),
     })));

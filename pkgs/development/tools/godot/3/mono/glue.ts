@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/glue.nix", [[["python3Packages", 10, 5]], [["scons", 9, 3]], [["homepage", 71, 9]], [["pname", 15, 7], ["godotBuildDescription", 16, 7], ["godotBuildPlatform", 17, 7], ["sconsFlags", 19, 7], ["nativeBuildInputs", 25, 7], ["patches", 27, 7], ["outputs", 58, 7], ["installPhase", 60, 7], ["meta", 70, 7]]]);
 const formals$1 = { args: { godot3: false, mono: false, scons: false, python311Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/glue.nix", [["python3Packages", 10, 5]]);
-const pos$2 = nix.positions(here + "/glue.nix", [["scons", 9, 3]]);
-const pos$3 = nix.positions(here + "/glue.nix", [["homepage", 71, 9]]);
-const pos$4 = nix.positions(here + "/glue.nix", [["pname", 15, 7], ["godotBuildDescription", 16, 7], ["godotBuildPlatform", 17, 7], ["sconsFlags", 19, 7], ["nativeBuildInputs", 25, 7], ["patches", 27, 7], ["outputs", 58, 7], ["installPhase", 60, 7], ["meta", 70, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,10 +12,10 @@ export default nix.lambda((args) => (() => {
   const scons = nix.arg($, "scons");
   const python311Packages = nix.arg($, "python311Packages");
   return nix.app(nix.sel(nix.app(nix.sel(godot3, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
-      scons: nix.thunk(() => nix.app(nix.sel(scons, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, python3Packages: python311Packages })))),
+      [nix.POS]: $pos[1],
+      scons: nix.thunk(() => nix.app(nix.sel(scons, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], python3Packages: python311Packages })))),
     }))), "overrideAttrs"), (self) => (base) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "godot3-mono-glue",
       godotBuildDescription: "mono glue",
       godotBuildPlatform: "server",
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out"]),
       installPhase: "runHook preInstall\n\nglue=\"$out\"/modules/mono/glue\nmkdir -p \"$glue\"\nbin/godot_server.x11.opt.tools.*.mono --generate-mono-glue \"$glue\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => nix.update(nix.sel(base, "meta"), {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://docs.godotengine.org/en/stable/development/compiling/compiling_with_mono.html#generate-the-glue",
       })),
     }));

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["fetchSubmodules", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["preInstall", 65, 5], ["hash", 72, 5]], [["installPhase", 80, 5]], [["fcitx5", 134, 26]], [["tests", 133, 12]], [["description", 138, 5], ["homepage", 139, 5], ["license", 140, 5], ["maintainers", 148, 5], ["platforms", 153, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 36, 3], ["postPatch", 41, 3], ["bazel", 48, 3], ["removeRulesCC", 49, 3], ["dontAddBazelOpts", 50, 3], ["bazelFlags", 52, 3], ["bazelTargets", 59, 3], ["fetchAttrs", 64, 3], ["preConfigure", 75, 3], ["buildAttrs", 79, 3], ["passthru", 133, 3], ["meta", 137, 3]]]);
 const formals$1 = { args: { bazel_7: false, buildBazelPackage: false, fcitx5: false, fetchFromGitHub: false, gettext: false, lib: false, mozc: false, nixosTests: false, "pkg-config": false, protobuf_27: false, python3: false, stdenv: false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["fetchSubmodules", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["preInstall", 65, 5], ["hash", 72, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["installPhase", 80, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["fcitx5", 134, 26]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 133, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 138, 5], ["homepage", 139, 5], ["license", 140, 5], ["maintainers", 148, 5], ["platforms", 153, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 36, 3], ["postPatch", 41, 3], ["bazel", 48, 3], ["removeRulesCC", 49, 3], ["dontAddBazelOpts", 50, 3], ["bazelFlags", 52, 3], ["bazelTargets", 59, 3], ["fetchAttrs", 64, 3], ["preConfigure", 75, 3], ["buildAttrs", 79, 3], ["passthru", 133, 3], ["meta", 137, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const unzip = nix.arg($, "unzip");
   return nix.app(buildBazelPackage, nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "fcitx5-mozc",
       version: "2.30.5544.102",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fcitx",
           repo: "mozc",
           fetchSubmodules: true,
@@ -51,21 +45,21 @@ sed -i -e 's|^\\(LINUX_MOZC_SERVER_DIR = \\).\\+|\\1"${mozc}/lib/mozc"|' src/con
       bazelFlags: nix.thunk(() => ["--config", "oss_linux", "--compilation_mode", "opt"]),
       bazelTargets: nix.thunk(() => ["unix/fcitx5:fcitx5-mozc.so", "unix/icons"]),
       fetchAttrs: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         preInstall: "# Remove reference to buildInput\nrm -rf $bazelOut/external/fcitx5\n# Remove reference to the host platform\nrm -rv \"$bazelOut\"/external/host_platform\n",
         hash: "sha256-ZjrXMQwxlaU5YGZtBZ+D2XBQHnOk+zV+a9cmkf3U5NU=",
       })),
       preConfigure: "cd src\n",
       buildAttrs: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         installPhase: "runHook preInstall\n\ninstall -Dm444 ../LICENSE $out/share/licenses/fcitx5-mozc/LICENSE\ninstall -Dm444 data/installer/credits_en.html $out/share/licenses/fcitx5-mozc/Submodules\n\ninstall -Dm555 bazel-bin/unix/fcitx5/fcitx5-mozc.so $out/lib/fcitx5/fcitx5-mozc.so\ninstall -Dm444 unix/fcitx5/mozc-addon.conf $out/share/fcitx5/addon/mozc.conf\ninstall -Dm444 unix/fcitx5/mozc.conf $out/share/fcitx5/inputmethod/mozc.conf\n\nfor pofile in unix/fcitx5/po/*.po; do\n  filename=$(basename $pofile)\n  lang=${filename/.po/}\n  mofile=${pofile/.po/.mo}\n  msgfmt $pofile -o $mofile\n  install -Dm444 $mofile $out/share/locale/$lang/LC_MESSAGES/fcitx5-mozc.mo\ndone\n\nmsgfmt --xml -d unix/fcitx5/po/ --template unix/fcitx5/org.fcitx.Fcitx5.Addon.Mozc.metainfo.xml.in -o unix/fcitx5/org.fcitx.Fcitx5.Addon.Mozc.metainfo.xml\ninstall -Dm444 unix/fcitx5/org.fcitx.Fcitx5.Addon.Mozc.metainfo.xml $out/share/metainfo/org.fcitx.Fcitx5.Addon.Mozc.metainfo.xml\n\ncd bazel-bin/unix\n\nunzip -o icons.zip\n\n# These are relative symlinks, they will always resolve to files within $out\n\ninstall -Dm444 mozc.png $out/share/icons/hicolor/128x128/apps/org.fcitx.Fcitx5.fcitx_mozc.png\nln -s org.fcitx.Fcitx5.fcitx_mozc.png $out/share/icons/hicolor/128x128/apps/fcitx_mozc.png\n\nfor svg in \\\n  alpha_full.svg \\\n  alpha_half.svg \\\n  direct.svg \\\n  hiragana.svg \\\n  katakana_full.svg \\\n  katakana_half.svg \\\n  outlined/dictionary.svg \\\n  outlined/properties.svg \\\n  outlined/tool.svg\ndo\n  name=$(basename -- $svg)\n  path=$out/share/icons/hicolor/scalable/apps\n  prefix=org.fcitx.Fcitx5.fcitx_mozc\n\n  install -Dm444 $svg $path/$prefix_$name\n  ln -s $prefix_$name $path/fcitx_mozc_$name\ndone\n\nrunHook postInstall\n",
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({ [nix.POS]: pos$4, fcitx5: nix.thunk(() => nix.attr(nixosTests, "fcitx5")) })))),
+        [nix.POS]: $pos[4],
+        tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({ [nix.POS]: $pos[3], fcitx5: nix.thunk(() => nix.attr(nixosTests, "fcitx5")) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Mozc - a Japanese Input Method Editor designed for multi-platform",
         homepage: "https://github.com/fcitx/mozc",
         license: nix.thunk(() => (() => {

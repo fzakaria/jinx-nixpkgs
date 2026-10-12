@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/intel-graphics-compiler.nix", [[["name", 28, 7], ["owner", 29, 7], ["repo", 30, 7], ["tag", 31, 7], ["hash", 32, 7]], [["name", 35, 7], ["owner", 36, 7], ["repo", 37, 7], ["tag", 38, 7], ["hash", 39, 7]], [["name", 42, 7], ["owner", 43, 7], ["repo", 44, 7], ["tag", 45, 7], ["hash", 46, 7]], [["name", 49, 7], ["owner", 50, 7], ["repo", 51, 7], ["tag", 52, 7], ["hash", 53, 7]], [["name", 56, 7], ["owner", 57, 7], ["repo", 58, 7], ["tag", 59, 7], ["hash", 60, 7]], [["intel-compute-runtime", 145, 13]], [["tests", 144, 12]], [["description", 149, 5], ["homepage", 150, 5], ["changelog", 151, 5], ["license", 152, 5], ["platforms", 153, 5], ["maintainers", 154, 5]], [["pname", 21, 3], ["version", 22, 3], ["srcs", 26, 3], ["patches", 64, 3], ["sourceRoot", 81, 3], ["cmakeDir", 83, 3], ["postUnpack", 85, 3], ["postPatch", 90, 3], ["nativeBuildInputs", 111, 3], ["buildInputs", 126, 3], ["strictDeps", 131, 3], ["doCheck", 134, 3], ["cmakeFlags", 136, 3], ["passthru", 144, 3], ["meta", 148, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, ninja: false, git: false, bison: false, flex: false, zlib: false, "intel-compute-runtime": false, python3: false, "spirv-tools": false, "spirv-headers": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/intel-graphics-compiler.nix", [["name", 28, 7], ["owner", 29, 7], ["repo", 30, 7], ["tag", 31, 7], ["hash", 32, 7]]);
-const pos$2 = nix.positions(here + "/intel-graphics-compiler.nix", [["name", 35, 7], ["owner", 36, 7], ["repo", 37, 7], ["tag", 38, 7], ["hash", 39, 7]]);
-const pos$3 = nix.positions(here + "/intel-graphics-compiler.nix", [["name", 42, 7], ["owner", 43, 7], ["repo", 44, 7], ["tag", 45, 7], ["hash", 46, 7]]);
-const pos$4 = nix.positions(here + "/intel-graphics-compiler.nix", [["name", 49, 7], ["owner", 50, 7], ["repo", 51, 7], ["tag", 52, 7], ["hash", 53, 7]]);
-const pos$5 = nix.positions(here + "/intel-graphics-compiler.nix", [["name", 56, 7], ["owner", 57, 7], ["repo", 58, 7], ["tag", 59, 7], ["hash", 60, 7]]);
-const pos$6 = nix.positions(here + "/intel-graphics-compiler.nix", [["intel-compute-runtime", 145, 13]]);
-const pos$7 = nix.positions(here + "/intel-graphics-compiler.nix", [["tests", 144, 12]]);
-const pos$8 = nix.positions(here + "/intel-graphics-compiler.nix", [["description", 149, 5], ["homepage", 150, 5], ["changelog", 151, 5], ["license", 152, 5], ["platforms", 153, 5], ["maintainers", 154, 5]]);
-const pos$9 = nix.positions(here + "/intel-graphics-compiler.nix", [["pname", 21, 3], ["version", 22, 3], ["srcs", 26, 3], ["patches", 64, 3], ["sourceRoot", 81, 3], ["cmakeDir", 83, 3], ["postUnpack", 85, 3], ["postPatch", 90, 3], ["nativeBuildInputs", 111, 3], ["buildInputs", 126, 3], ["strictDeps", 131, 3], ["doCheck", 134, 3], ["cmakeFlags", 136, 3], ["passthru", 144, 3], ["meta", 148, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.34.4";
       const srcs = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             name: "igc",
             owner: "intel",
             repo: "intel-graphics-compiler",
@@ -42,7 +34,7 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-w20nrn3wo9Dvv3BILYBzuJTTLXqcWaRAF7SiPtryhwk=",
           })))),
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "llvm-project",
             owner: "llvm",
             repo: "llvm-project",
@@ -50,7 +42,7 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-fspqSReX+VD+Nl/Cfq+tDcdPtnQPV1IRopNDfd5VtUs=",
           })))),
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "vc-intrinsics",
             owner: "intel",
             repo: "vc-intrinsics",
@@ -58,7 +50,7 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-ozc1w3V5RqWHwqNHuefZJMN8RAYxrJxH9bd1BEqxfiQ=",
           })))),
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "opencl-clang",
             owner: "intel",
             repo: "opencl-clang",
@@ -66,7 +58,7 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-ema1jTNMHs3pUituVb1NPllc6cA8eYJHtDOjuEzIDWM=",
           })))),
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "llvm-spirv",
             owner: "KhronosGroup",
             repo: "SPIRV-LLVM-Translator",
@@ -127,11 +119,11 @@ substituteInPlace igc/external/llvm/llvm_preferred_version.cmake \\
         "-Wno-dev",
       ]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$7,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$6, "intel-compute-runtime": intel_compute_runtime })),
+        [nix.POS]: $pos[6],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[5], "intel-compute-runtime": intel_compute_runtime })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "LLVM-based compiler for OpenCL targeting Intel Gen graphics hardware",
         homepage: "https://github.com/intel/intel-graphics-compiler",
         changelog: nix.thunk(() => nix.str`https://github.com/intel/intel-graphics-compiler/releases/tag/v${version}`),
@@ -143,7 +135,7 @@ substituteInPlace igc/external/llvm/llvm_preferred_version.cmake \\
         })()),
       }));
       return {
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         pname,
         version,
         srcs,

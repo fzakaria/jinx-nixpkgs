@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 40, 5], ["sha256", 41, 5]], [["packageName", 81, 7], ["versionPolicy", 82, 7]], [["updateScript", 80, 5]], [["description", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["maintainers", 90, 5], ["platforms", 93, 5], ["mainProgram", 94, 5]], [["pname", 28, 3], ["version", 29, 3], ["outputs", 31, 3], ["src", 39, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 56, 3], ["mesonFlags", 70, 3], ["postFixup", 74, 3], ["passthru", 79, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, meson: false, ninja: false, "gobject-introspection": false, gnutls: false, cairo: false, glib: false, "pkg-config": false, cyrus_sasl: false, pulseaudioSupport: true, libpulseaudio: false, gmp: false, gtk3: false, vala: false, gettext: false, perl: false, python3: false, "gi-docgen": false, gnome: false, "gdk-pixbuf": false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 40, 5], ["sha256", 41, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 81, 7], ["versionPolicy", 82, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 80, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["maintainers", 90, 5], ["platforms", 93, 5], ["mainProgram", 94, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["outputs", 31, 3], ["src", 39, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 56, 3], ["mesonFlags", 70, 3], ["postFixup", 74, 3], ["passthru", 79, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,12 +31,12 @@ export default nix.lambda((args) => (() => {
   const gdk_pixbuf = nix.arg($, "gdk-pixbuf");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gtk-vnc",
       version: "1.5.0",
       outputs: nix.thunk(() => ["out", "bin", "man", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gtk-vnc/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gtk-vnc-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "wL60dHUorZMdpDrMVnxqAZD3/GJEZVce2czs4Cw03SM=",
         })))),
@@ -59,11 +55,11 @@ export default nix.lambda((args) => (() => {
       mesonFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(pulseaudioSupport)), nix.thunk(() => ["-Dpulseaudio=disabled"]))),
       postFixup: "# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput \"share/doc\" \"$devdoc\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "gtk-vnc", versionPolicy: "none" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "gtk-vnc", versionPolicy: "none" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "GTK VNC widget",
         homepage: "https://gitlab.gnome.org/GNOME/gtk-vnc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),

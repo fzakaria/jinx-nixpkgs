@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["description", 29, 5], ["license", 30, 5], ["maintainers", 31, 5], ["platforms", 32, 5], ["homepage", 33, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 12, 3], ["buildInputs", 16, 3], ["nativeBuildInputs", 20, 3], ["configureFlags", 23, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, autoreconfHook: false, fetchurl: false, gmp: false, blas: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 29, 5], ["license", 30, 5], ["maintainers", 31, 5], ["platforms", 32, 5], ["homepage", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 12, 3], ["buildInputs", 16, 3], ["nativeBuildInputs", 20, 3], ["configureFlags", 23, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const gmp = nix.arg($, "gmp");
   const blas = nix.arg($, "blas");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "iml",
       version: "1.0.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.cs.uwaterloo.ca/~astorjoh/iml-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "0akwhhz9b40bz6lrfxpamp7r7wkk48p455qbn04mfnl9a1l6db8x",
         })))),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
         "--with-cblas=-lblas",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Algorithms for computing exact solutions to dense systems of linear equations over the integers",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "raskin"))]),

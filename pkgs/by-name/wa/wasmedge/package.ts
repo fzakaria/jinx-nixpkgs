@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["url", 39, 7], ["hash", 40, 7]], [["package", 69, 9]], [["version", 68, 7]], [["tests", 67, 5], ["updateScript", 72, 5]], [["homepage", 76, 5], ["description", 77, 5], ["changelog", 78, 5], ["license", 79, 5], ["mainProgram", 80, 5], ["maintainers", 81, 5], ["platforms", 82, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["strictDeps", 29, 3], ["__structuredAttrs", 30, 3], ["patches", 32, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 49, 3], ["cmakeFlags", 58, 3], ["postPatch", 62, 3], ["passthru", 66, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, boost: false, cmake: false, fetchFromGitHub: false, fetchpatch: false, libffi: false, libxml2: false, llvmPackages: false, spdlog: false, testers: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 39, 7], ["hash", 40, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 69, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 68, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 67, 5], ["updateScript", 72, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 76, 5], ["description", 77, 5], ["changelog", 78, 5], ["license", 79, 5], ["mainProgram", 80, 5], ["maintainers", 81, 5], ["platforms", 82, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["strictDeps", 29, 3], ["__structuredAttrs", 30, 3], ["patches", 32, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 49, 3], ["cmakeFlags", 58, 3], ["postPatch", 62, 3], ["passthru", 66, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const stdenv = nix.thunk(() => nix.sel(llvmPackages, "stdenv"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "wasmedge",
       version: "0.17.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "WasmEdge",
           repo: "WasmEdge",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +34,7 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/WasmEdge/WasmEdge/commit/41a01b6b4f40defbac0dd551663c542cdcf9ae76.patch",
             hash: "sha256-g8EOz/dldPN7oM9+IKfwGCqMQgD8FnsT2w2WsyLdR60=",
           })))),
@@ -57,18 +51,18 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["-DWASMEDGE_FORCE_DISABLE_LTO=ON"]))),
       postPatch: "echo -n $version > VERSION\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://wasmedge.org/",
         description: "Lightweight, high-performance, and extensible WebAssembly runtime for cloud native, edge, and decentralized applications",
         changelog: nix.thunk(() => nix.str`https://github.com/WasmEdge/WasmEdge/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

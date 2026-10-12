@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 47, 5], ["repo", 48, 5], ["tag", 49, 5], ["hash", 50, 5], ["fetchSubmodules", 51, 5]], [["customPython", 123, 12], ["updateScript", 179, 5], ["tests", 180, 5]], [["VG_GIT_VERSION", 131, 5], ["NIX_CFLAGS_COMPILE", 133, 5]], [["description", 198, 5], ["homepage", 199, 5], ["changelog", 200, 5], ["mainProgram", 201, 5], ["license", 202, 5], ["platforms", 204, 5], ["maintainers", 205, 5], ["teams", 206, 5]], [["pname", 43, 3], ["version", 44, 3], ["src", 46, 3], ["postPatch", 54, 3], ["dontUseCmake", 80, 3], ["dontConfigure", 81, 3], ["enableParallelBuilding", 82, 3], ["__structuredAttrs", 84, 3], ["strictDeps", 85, 3], ["nativeBuildInputs", 87, 3], ["buildInputs", 105, 3], ["passthru", 123, 3], ["env", 129, 3], ["makeFlags", 140, 3], ["preBuild", 146, 3], ["installPhase", 153, 3], ["fixupPhase", 164, 3], ["meta", 197, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "nix-update-script": false, runCommand: false, autoconf: false, automake: false, bison: false, cmake: false, flex: false, gettext: false, hostname: false, libtool: false, perl: false, "pkg-config": false, python3: false, "util-linux": false, which: false, boost: false, bzip2: false, cairo: false, curl: false, expat: false, jansson: false, libxdmcp: false, ncurses: false, openssl: false, protobuf: false, xz: false, zlib: false, zstd: false, graphviz: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 47, 5], ["repo", 48, 5], ["tag", 49, 5], ["hash", 50, 5], ["fetchSubmodules", 51, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["customPython", 123, 12], ["updateScript", 179, 5], ["tests", 180, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["VG_GIT_VERSION", 131, 5], ["NIX_CFLAGS_COMPILE", 133, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 198, 5], ["homepage", 199, 5], ["changelog", 200, 5], ["mainProgram", 201, 5], ["license", 202, 5], ["platforms", 204, 5], ["maintainers", 205, 5], ["teams", 206, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 43, 3], ["version", 44, 3], ["src", 46, 3], ["postPatch", 54, 3], ["dontUseCmake", 80, 3], ["dontConfigure", 81, 3], ["enableParallelBuilding", 82, 3], ["__structuredAttrs", 84, 3], ["strictDeps", 85, 3], ["nativeBuildInputs", 87, 3], ["buildInputs", 105, 3], ["passthru", 123, 3], ["env", 129, 3], ["makeFlags", 140, 3], ["preBuild", 146, 3], ["installPhase", 153, 3], ["fixupPhase", 164, 3], ["meta", 197, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,11 +40,11 @@ export default nix.lambda((args) => (() => {
   const zstd = nix.arg($, "zstd");
   const graphviz = nix.arg($, "graphviz");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "vg",
       version: "1.75.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vgteam",
           repo: "vg",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -113,7 +109,7 @@ popd
         zstd,
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libxdmcp])))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         customPython: nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (ps) => (() => {
             const w = nix.withScope(ps, null);
             return [nix.thunk(() => nix.lookup(w, "pybind11"))];
@@ -135,7 +131,7 @@ ${graphviz}/bin/dot -Tpng x.dot -o $out
 `))),
       })),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         VG_GIT_VERSION: nix.thunk(() => nix.sel(finalAttrs, "src", "tag")),
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-Wno-error=stringop-overflow",
@@ -148,7 +144,7 @@ ${graphviz}/bin/dot -Tpng x.dot -o $out
       installPhase: "runHook preInstall\n\nmkdir -p $out/{bin,lib}\n\ncp bin/* $out/bin/\ncp -R lib/lib{handlegraph,vgio,hts,deflate}.so* $out/lib/\n\nrunHook postInstall\n",
       fixupPhase: "runHook preFixup\n\nfor bin in $out/bin/* ; do\n  patchelf --allowed-rpath-prefixes /nix/store --shrink-rpath $bin\n  patchelf --set-rpath \"$out/lib:$(patchelf --print-rpath $bin)\" $bin\ndone\n\n# remove debugging symbols that make the binary bloated in size\nstrip -d $out/bin/vg\n\nrunHook postFixup\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Tools for working with genome variation graphs",
         homepage: "https://github.com/vgteam/vg",
         changelog: nix.thunk(() => nix.str`https://github.com/vgteam/vg/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

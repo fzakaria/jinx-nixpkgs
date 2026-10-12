@@ -2,22 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["x86_64-linux", 28, 7], ["aarch64-linux", 29, 7]], [["cp311", 41, 9], ["cp312", 42, 9], ["cp313", 43, 9], ["cp314", 44, 9]], [["cp311", 47, 9], ["cp312", 48, 9], ["cp313", 49, 9], ["cp314", 50, 9]], [["x86_64-linux", 40, 7], ["aarch64-linux", 46, 7]], [["cp311", 55, 9], ["cp312", 56, 9], ["cp313", 57, 9], ["cp314", 58, 9]], [["cp311", 61, 9], ["cp312", 62, 9], ["cp313", 63, 9], ["cp314", 64, 9]], [["x86_64-linux", 54, 7], ["aarch64-linux", 60, 7]], [["cp311", 69, 9], ["cp312", 70, 9], ["cp313", 71, 9], ["cp314", 72, 9]], [["cp311", 75, 9], ["cp312", 76, 9], ["cp313", 77, 9], ["cp314", 78, 9]], [["x86_64-linux", 68, 7], ["aarch64-linux", 74, 7]], [["base", 39, 5], ["cu12", 53, 5], ["cu13", 67, 5], ["core", 81, 5]], [["pname", 87, 7], ["version", 88, 15], ["platform", 88, 23], ["format", 89, 7], ["dist", 90, 7], ["python", 91, 7], ["abi", 92, 7], ["hash", 93, 7]], [["pname", 102, 5], ["version", 103, 13], ["format", 104, 5], ["python", 105, 5], ["dist", 106, 5], ["hash", 107, 5]], [["description", 189, 5], ["homepage", 190, 5], ["changelog", 191, 5], ["sourceProvenance", 192, 5], ["license", 193, 5], ["maintainers", 194, 5], ["platforms", 195, 5]], [["pname", 111, 3], ["version", 112, 11], ["format", 113, 3], ["__structuredAttrs", 114, 3], ["src", 116, 3], ["pythonRemoveDeps", 118, 3], ["pythonRelaxDeps", 128, 3], ["dependencies", 131, 3], ["nativeBuildInputs", 138, 3], ["autoPatchelfIgnoreMissingDeps", 144, 3], ["postInstall", 151, 3], ["pythonImportsCheck", 183, 3], ["doCheck", 186, 3], ["meta", 188, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchPypi: false, python: false, cudaPackages: false, autoAddDriverRunpath: false, autoPatchelfHook: false, unzip: false, "cuda-bindings": false, numpy: false, protobuf: false, "typing-extensions": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["x86_64-linux", 28, 7], ["aarch64-linux", 29, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["cp311", 41, 9], ["cp312", 42, 9], ["cp313", 43, 9], ["cp314", 44, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["cp311", 47, 9], ["cp312", 48, 9], ["cp313", 49, 9], ["cp314", 50, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["x86_64-linux", 40, 7], ["aarch64-linux", 46, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["cp311", 55, 9], ["cp312", 56, 9], ["cp313", 57, 9], ["cp314", 58, 9]]);
-const pos$6 = nix.positions(here + "/default.nix", [["cp311", 61, 9], ["cp312", 62, 9], ["cp313", 63, 9], ["cp314", 64, 9]]);
-const pos$7 = nix.positions(here + "/default.nix", [["x86_64-linux", 54, 7], ["aarch64-linux", 60, 7]]);
-const pos$8 = nix.positions(here + "/default.nix", [["cp311", 69, 9], ["cp312", 70, 9], ["cp313", 71, 9], ["cp314", 72, 9]]);
-const pos$9 = nix.positions(here + "/default.nix", [["cp311", 75, 9], ["cp312", 76, 9], ["cp313", 77, 9], ["cp314", 78, 9]]);
-const pos$10 = nix.positions(here + "/default.nix", [["x86_64-linux", 68, 7], ["aarch64-linux", 74, 7]]);
-const pos$11 = nix.positions(here + "/default.nix", [["base", 39, 5], ["cu12", 53, 5], ["cu13", 67, 5], ["core", 81, 5]]);
-const pos$12 = nix.positions(here + "/default.nix", [["pname", 87, 7], ["version", 88, 15], ["platform", 88, 23], ["format", 89, 7], ["dist", 90, 7], ["python", 91, 7], ["abi", 92, 7], ["hash", 93, 7]]);
-const pos$13 = nix.positions(here + "/default.nix", [["pname", 102, 5], ["version", 103, 13], ["format", 104, 5], ["python", 105, 5], ["dist", 106, 5], ["hash", 107, 5]]);
-const pos$14 = nix.positions(here + "/default.nix", [["description", 189, 5], ["homepage", 190, 5], ["changelog", 191, 5], ["sourceProvenance", 192, 5], ["license", 193, 5], ["maintainers", 194, 5], ["platforms", 195, 5]]);
-const pos$15 = nix.positions(here + "/default.nix", [["pname", 111, 3], ["version", 112, 11], ["format", 113, 3], ["__structuredAttrs", 114, 3], ["src", 116, 3], ["pythonRemoveDeps", 118, 3], ["pythonRelaxDeps", 128, 3], ["dependencies", 131, 3], ["nativeBuildInputs", 138, 3], ["autoPatchelfIgnoreMissingDeps", 144, 3], ["postInstall", 151, 3], ["pythonImportsCheck", 183, 3], ["doCheck", 186, 3], ["meta", 188, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,25 +24,25 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(stdenv, "hostPlatform"));
   const system = nix.thunk(() => nix.attr(from, "system"));
   const platform = nix.thunk(() => nix.selOr({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "x86_64-linux": "manylinux_2_28_x86_64",
     "aarch64-linux": "manylinux_2_28_aarch64",
   }, () => nix.builtins.throw(nix.thunk(() => nix.str`nvidia-cutlass-dsl-libs-base is not supported on ${system}`)), nix.key(nix.force(system))));
   const pyShortVersion = nix.thunk(() => nix.str`cp${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(python, "pythonVersion")))}`);
   const ctk = nix.thunk(() => nix.str`cu${nix.sel(cudaPackages, "cudaMajorVersion")}`);
   const hashes = nix.thunk(() => ({
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     base: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       "x86_64-linux": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         cp311: "sha256-Qx42SLhK1KgajTsfp+RFMmy1pSTmT2witNGRp2RVvfk=",
         cp312: "sha256-wrZ9rKv8kF5NEyeE/khIZH9AsLl7HN3jzkpIJkJTa4Q=",
         cp313: "sha256-YQl8XDVeHkL4Ux79To6tC6Ya4atrC5rPy/LKZls9rlo=",
         cp314: "sha256-B3ZQb2ZuHGg0qKkZXvICmXM64BPSNHJoKVZb5dhQmUI=",
       })),
       "aarch64-linux": nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         cp311: "sha256-KY5zrQ8bBITkuEOOnarjhzKmytyfQCNHXlsMKGiYWro=",
         cp312: "sha256-6GxVpQEKft/AZ2SKdcsp0MW9Z9dSEBaM9Qew0OTRW6c=",
         cp313: "sha256-BmWOaR6xBHyDvki6UBv3Py6n7N2MHuX58m21h5COQ+0=",
@@ -64,16 +50,16 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     cu12: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       "x86_64-linux": nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         cp311: "sha256-83/L2UqtZrAW3OpIPbUN2w/Kq3EwxTjfIO8p3e64uoU=",
         cp312: "sha256-yKD5OhzeQUBGlrMZTdH1icbzp7QmvKvpeEX4/pb5SfU=",
         cp313: "sha256-s0qTPN4eXPLfHzz9eO+9VITqM90Ml74gHAV+For3nBA=",
         cp314: "sha256-BvU99K2hQEO0WZk6bcRp0FBa2aFE0QG19ARhpYqOgOM=",
       })),
       "aarch64-linux": nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         cp311: "sha256-SdVW8r4YjXWBD6jFR60V26QGhROKwn1UQYRBgqxJVak=",
         cp312: "sha256-9Xo5VcF7fc1UcqpHxGUT5fORThMl/DCK/KG5BjqPiXs=",
         cp313: "sha256-d2hKhhkRlbLW619wiLub8l5F21jOtEqcAv+weHu5X7k=",
@@ -81,16 +67,16 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     cu13: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       "x86_64-linux": nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         cp311: "sha256-gT7hn4yLbTkoSiSumd2am0lrM8mScLLPlUjnn0kXhAU=",
         cp312: "sha256-IMFOFhJcuONryZR6nwpXpmD0RlE2Uze5EchKveSWf18=",
         cp313: "sha256-L4b+jRp+9RC4U6OADL8yRAGhL9x3DMz0rF4gqdDH0b0=",
         cp314: "sha256-Z9NjqWA869uEdpi8b8GLwUupT1wPRcILETijFuBox74=",
       })),
       "aarch64-linux": nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         cp311: "sha256-eq9DgKM4rjbFNRL2a4lHDebuHwTzgWOonNJebe6S/oc=",
         cp312: "sha256-5nW/BNxskffE1VQGmbegMfK4tEzSaHsywgiS8RL34Nk=",
         cp313: "sha256-odI870RnXmOCXD9ddz57QiiALKFV6rYcC8XlUcrzWtI=",
@@ -100,7 +86,7 @@ export default nix.lambda((args) => (() => {
     core: "sha256-xlZiq8mrGP2ZfFdUeJVzaSjlWfRiS74qoaqRQY6gFMo=",
   }));
   const fetchLibsWheel = (flavor) => nix.app(fetchPypi, nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       pname: nix.thunk(() => nix.str`nvidia_cutlass_dsl_libs_${flavor}`),
       version: version,
       platform: platform,
@@ -111,7 +97,7 @@ export default nix.lambda((args) => (() => {
       hash: nix.thunk(() => nix.selOr(hashes, () => nix.builtins.throw(nix.thunk(() => nix.str`No ${flavor} hash specified for '${system}.${pyShortVersion}'`)), nix.key(nix.force(flavor)), nix.key(nix.force(system)), nix.key(nix.force(pyShortVersion)))),
     })));
   const coreWheel = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       pname: "nvidia_cutlass_dsl_libs_core",
       version: version,
       format: "wheel",
@@ -120,7 +106,7 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-xlZiq8mrGP2ZfFdUeJVzaSjlWfRiS74qoaqRQY6gFMo=",
     }))));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       pname: "nvidia-cutlass-dsl-libs-base",
       version: version,
       format: "wheel",
@@ -145,7 +131,7 @@ done
       pythonImportsCheck: nix.thunk(() => ["cutlass"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         description: "Bundled MLIR/CUDA runtime libraries and Python sources for the NVIDIA CUTLASS DSL",
         homepage: "https://github.com/NVIDIA/cutlass",
         changelog: nix.thunk(() => nix.str`https://github.com/NVIDIA/cutlass/blob/v${version}/CHANGELOG.md`),

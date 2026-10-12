@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 20, 5], ["hash", 21, 5]], [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["mainProgram", 45, 5]], [["version", 16, 3], ["pname", 17, 3], ["src", 19, 3], ["buildInputs", 24, 3], ["propagatedBuildInputs", 25, 3], ["checkInputs", 29, 3], ["doCheck", 38, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, buildDunePackage: false, "dune-configurator": false, optint: false, fmt: false, rresult: false, bos: false, fpath: false, astring: false, alcotest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["mainProgram", 45, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 16, 3], ["pname", 17, 3], ["src", 19, 3], ["buildInputs", 24, 3], ["propagatedBuildInputs", 25, 3], ["checkInputs", 29, 3], ["doCheck", 38, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const astring = nix.arg($, "astring");
   const alcotest = nix.arg($, "alcotest");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "0.5.4",
       pname: "checkseum",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/mirage/checkseum/releases/download/v${nix.sel(finalAttrs, "version")}/checkseum-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-CfltUNvXTofKRqC+XvvlP1+I2rAFTz0P+QQPgOkWp/A=",
         })))),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [alcotest, bos, astring, fmt, fpath, rresult]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "ADLER-32 and CRC32C Cyclic Redundancy Check",
         homepage: "https://github.com/mirage/checkseum",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

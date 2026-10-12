@@ -2,10 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 23, 7], ["builder", 24, 7], ["nativeBuildInputs", 25, 7], ["strictDeps", 27, 7], ["__structuredAttrs", 28, 7], ["impureEnvVars", 30, 7], ["subrepoClause", 32, 7], ["outputHashAlgo", 34, 7], ["outputHashMode", 35, 7], ["outputHash", 36, 7], ["url", 49, 15], ["rev", 49, 19], ["hash", 49, 23], ["preferLocalBuild", 50, 15]], [["constructDrv", 8, 3], ["extendDrvArgs", 10, 3], ["inheritFunctionArgs", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, mercurial: false }, ellipsis: false };
 const formals$2 = { args: { name: true, url: false, rev: true, sha256: true, hash: true, fetchSubrepos: true, preferLocalBuild: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 23, 7], ["builder", 24, 7], ["nativeBuildInputs", 25, 7], ["strictDeps", 27, 7], ["__structuredAttrs", 28, 7], ["impureEnvVars", 30, 7], ["subrepoClause", 32, 7], ["outputHashAlgo", 34, 7], ["outputHashMode", 35, 7], ["outputHash", 36, 7], ["url", 49, 15], ["rev", 49, 19], ["hash", 49, 23], ["preferLocalBuild", 50, 15]]);
-const pos$2 = nix.positions(here + "/default.nix", [["constructDrv", 8, 3], ["extendDrvArgs", 10, 3], ["inheritFunctionArgs", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const mercurial = nix.arg($, "mercurial");
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       constructDrv: nix.thunk(() => nix.sel(stdenvNoCC, "mkDerivation")),
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
@@ -25,7 +24,7 @@ export default nix.lambda((args) => (() => {
         const fetchSubrepos = nix.argOr($_1, "fetchSubrepos", () => false);
         const preferLocalBuild = nix.argOr($_1, "preferLocalBuild", () => true);
         return {
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: nix.thunk(() => nix.add("hg-archive", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(name, null)), nix.thunk(() => nix.str`-${name}`)))),
           builder: nix.path(here, "./builder.sh"),
           nativeBuildInputs: nix.thunk(() => [mercurial]),

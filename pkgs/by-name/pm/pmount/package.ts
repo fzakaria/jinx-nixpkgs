@@ -2,20 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["sha256", 24, 5]], [["name", 33, 19], ["hash", 33, 24], ["url", 34, 11]], [["name", 39, 9], ["hash", 40, 9]], [["name", 43, 9], ["hash", 44, 9]], [["name", 47, 9], ["hash", 48, 9]], [["name", 51, 9], ["hash", 52, 9]], [["name", 55, 9], ["hash", 56, 9]], [["name", 59, 9], ["hash", 60, 9]], [["name", 63, 9], ["hash", 64, 9]], [["name", 67, 9], ["hash", 68, 9]], [["homepage", 98, 5], ["description", 99, 5], ["license", 100, 5], ["platforms", 101, 5], ["maintainers", 102, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 27, 3], ["nativeBuildInputs", 72, 3], ["buildInputs", 76, 3], ["configureFlags", 78, 3], ["postConfigure", 88, 3], ["doCheck", 95, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, intltool: false, ntfs3g: false, "util-linux": false, cryptsetup: false, mediaDir: true, lockDir: true, whiteList: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["sha256", 24, 5]]);
 const formals$2 = { args: { name: false, hash: false }, ellipsis: false };
-const pos$2 = nix.positions(here + "/package.nix", [["name", 33, 19], ["hash", 33, 24], ["url", 34, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 39, 9], ["hash", 40, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 43, 9], ["hash", 44, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 47, 9], ["hash", 48, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 51, 9], ["hash", 52, 9]]);
-const pos$7 = nix.positions(here + "/package.nix", [["name", 55, 9], ["hash", 56, 9]]);
-const pos$8 = nix.positions(here + "/package.nix", [["name", 59, 9], ["hash", 60, 9]]);
-const pos$9 = nix.positions(here + "/package.nix", [["name", 63, 9], ["hash", 64, 9]]);
-const pos$10 = nix.positions(here + "/package.nix", [["name", 67, 9], ["hash", 68, 9]]);
-const pos$11 = nix.positions(here + "/package.nix", [["homepage", 98, 5], ["description", 99, 5], ["license", 100, 5], ["platforms", 101, 5], ["maintainers", 102, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 27, 3], ["nativeBuildInputs", 72, 3], ["buildInputs", 76, 3], ["configureFlags", 78, 3], ["postConfigure", 88, 3], ["doCheck", 95, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const whiteList = nix.argOr($, "whiteList", () => "/etc/pmount.allow");
   nix.assert_(nix.app(nix.sel(lib, "hasSuffix"), "/", mediaDir), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/pm/pmount/package.nix:16:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       pname: "pmount",
       version: "0.9.23",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://debian/pool/main/p/pmount/pmount_${nix.sel(finalAttrs, "version")}.orig.tar.bz2`),
           sha256: "db38fc290b710e8e9e9d442da2fb627d41e13b3ee80326c15cc2595ba00ea036",
         })))),
@@ -46,7 +35,7 @@ export default nix.lambda((args) => (() => {
           const name = nix.arg($_1, "name");
           const hash = nix.arg($_1, "hash");
           return nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               name: name,
               hash: hash,
               url: nix.thunk(() => nix.str`https://salsa.debian.org/debian/pmount/-/raw/430e4634aa7a2e6a5a91852c5b0fd3698b186000/debian/patches/${name}`),
@@ -54,42 +43,42 @@ export default nix.lambda((args) => (() => {
         })(), formals$2);
         return nix.builtins.map(fetchDebPatch, nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               name: "02-fix-spelling-binary-errors.patch",
               hash: "sha256-ukGHDqsG3Eo/0bhv2GPwX0N6uZOI+3BowMY+l1wtd9o=",
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               name: "03-fix-spelling-manpage-error.patch",
               hash: "sha256-rsa3t165+yWBOnRV3SnOMmYSuNuydZtnOdydUzcjDaQ=",
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               name: "04-fix-implicit-function-declaration.patch",
               hash: "sha256-Le8gVIW72oZGymN7gM5uOGNEhrzOTirnilNedUkSpco=",
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               name: "05-exfat-support.patch",
               hash: "sha256-Yl9QuA8tMIej4nQIbYibcUVFJdgnVaN+34/xoJp5NbU=",
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               name: "06-C99-implicit-function-declaration-fixes.patch",
               hash: "sha256-xFFfl9BkBqbUSAKaJwvKNgHyWbxUO5wKyEpwz3anwdM=",
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               name: "07-Add-probing-for-Btrfs.patch",
               hash: "sha256-9SKyLAVmZTGgsAi9aCxkw1OzWVcegoZy2DaupiS9kPA=",
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               name: "08-Support-btlkOpen-alongside-of-luksOpen.patch",
               hash: "sha256-2PJky3lRUKkOB2Js86XN8gqmYMxpsUbLJ39XnrirCDw=",
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               name: "09-Probe-for-f2fs.patch",
               hash: "sha256-VMnrSEaIPwEfbUi+Q88vQdSBQgq4+jJ19Bjc/ueemnw=",
             })),
@@ -109,7 +98,7 @@ export default nix.lambda((args) => (() => {
       postConfigure: "# etc/Mafile.am is hardcoded and it does not respect the --prefix option.\nsubstituteInPlace ./etc/Makefile --replace DESTDIR prefix\n# Do not change ownership & Do not add the set user ID bit\nsubstituteInPlace ./src/Makefile --replace '-o root -g root -m 4755 ' '-m 755 '\n",
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         homepage: "https://salsa.debian.org/debian/pmount",
         description: "Mount removable devices as normal user",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

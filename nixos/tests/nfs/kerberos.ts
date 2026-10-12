@@ -2,87 +2,63 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/kerberos.nix", [[["nfs.test", 8, 22]], [["default_realm", 9, 21]], [["admin_server", 11, 11], ["kdc", 12, 11]], [["NFS.TEST", 10, 16]], [["domain_realm", 8, 9], ["libdefaults", 9, 9], ["realms", 10, 9]], [["enable", 6, 7], ["settings", 7, 7]], [["krb5", 5, 14]], [["isNormalUser", 24, 9], ["name", 25, 9], ["uid", 26, 9]], [["alice", 23, 13]], [["users", 23, 7]], [["extraHosts", 41, 22], ["domain", 42, 22], ["hostName", 43, 22]], [["device", 47, 15], ["fsType", 48, 15], ["options", 49, 15]], [["/data", 46, 13]], [["fileSystems", 45, 26]], [["security", 39, 19], ["users", 39, 28], ["networking", 41, 11], ["virtualisation", 45, 11]], [["allowedTCPPorts", 67, 31]], [["extraHosts", 63, 22], ["domain", 64, 22], ["hostName", 65, 22], ["firewall", 67, 22]], [["access", 78, 17], ["principal", 79, 17]], [["acl", 76, 24]], [["NFS.TEST", 76, 13]], [["enable", 74, 36], ["realms", 75, 36]], [["*", 88, 15]], [["/data", 87, 13]], [["enable", 84, 31], ["createMountPoints", 85, 31], ["exports", 86, 31]], [["server", 84, 24]], [["kerberos_server", 74, 20], ["nfs", 84, 20]], [["security", 61, 19], ["users", 61, 28], ["networking", 63, 11], ["services", 74, 11]], [["client", 36, 7], ["server", 58, 7]], [["maintainers", 152, 10]], [["name", 33, 5], ["nodes", 35, 5], ["testScript", 99, 5], ["meta", 152, 5]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/kerberos.nix", [["nfs.test", 8, 22]]);
-const pos$2 = nix.positions(here + "/kerberos.nix", [["default_realm", 9, 21]]);
-const pos$3 = nix.positions(here + "/kerberos.nix", [["admin_server", 11, 11], ["kdc", 12, 11]]);
-const pos$4 = nix.positions(here + "/kerberos.nix", [["NFS.TEST", 10, 16]]);
-const pos$5 = nix.positions(here + "/kerberos.nix", [["domain_realm", 8, 9], ["libdefaults", 9, 9], ["realms", 10, 9]]);
-const pos$6 = nix.positions(here + "/kerberos.nix", [["enable", 6, 7], ["settings", 7, 7]]);
-const pos$7 = nix.positions(here + "/kerberos.nix", [["krb5", 5, 14]]);
-const pos$8 = nix.positions(here + "/kerberos.nix", [["isNormalUser", 24, 9], ["name", 25, 9], ["uid", 26, 9]]);
-const pos$9 = nix.positions(here + "/kerberos.nix", [["alice", 23, 13]]);
-const pos$10 = nix.positions(here + "/kerberos.nix", [["users", 23, 7]]);
 const formals$2 = { args: { lib: false }, ellipsis: true };
-const pos$11 = nix.positions(here + "/kerberos.nix", [["extraHosts", 41, 22], ["domain", 42, 22], ["hostName", 43, 22]]);
-const pos$12 = nix.positions(here + "/kerberos.nix", [["device", 47, 15], ["fsType", 48, 15], ["options", 49, 15]]);
-const pos$13 = nix.positions(here + "/kerberos.nix", [["/data", 46, 13]]);
-const pos$14 = nix.positions(here + "/kerberos.nix", [["fileSystems", 45, 26]]);
-const pos$15 = nix.positions(here + "/kerberos.nix", [["security", 39, 19], ["users", 39, 28], ["networking", 41, 11], ["virtualisation", 45, 11]]);
 const formals$3 = { args: { lib: false }, ellipsis: true };
-const pos$16 = nix.positions(here + "/kerberos.nix", [["allowedTCPPorts", 67, 31]]);
-const pos$17 = nix.positions(here + "/kerberos.nix", [["extraHosts", 63, 22], ["domain", 64, 22], ["hostName", 65, 22], ["firewall", 67, 22]]);
-const pos$18 = nix.positions(here + "/kerberos.nix", [["access", 78, 17], ["principal", 79, 17]]);
-const pos$19 = nix.positions(here + "/kerberos.nix", [["acl", 76, 24]]);
-const pos$20 = nix.positions(here + "/kerberos.nix", [["NFS.TEST", 76, 13]]);
-const pos$21 = nix.positions(here + "/kerberos.nix", [["enable", 74, 36], ["realms", 75, 36]]);
-const pos$22 = nix.positions(here + "/kerberos.nix", [["*", 88, 15]]);
-const pos$23 = nix.positions(here + "/kerberos.nix", [["/data", 87, 13]]);
-const pos$24 = nix.positions(here + "/kerberos.nix", [["enable", 84, 31], ["createMountPoints", 85, 31], ["exports", 86, 31]]);
-const pos$25 = nix.positions(here + "/kerberos.nix", [["server", 84, 24]]);
-const pos$26 = nix.positions(here + "/kerberos.nix", [["kerberos_server", 74, 20], ["nfs", 84, 20]]);
-const pos$27 = nix.positions(here + "/kerberos.nix", [["security", 61, 19], ["users", 61, 28], ["networking", 63, 11], ["services", 74, 11]]);
-const pos$28 = nix.positions(here + "/kerberos.nix", [["client", 36, 7], ["server", 58, 7]]);
-const pos$29 = nix.positions(here + "/kerberos.nix", [["maintainers", 152, 10]]);
-const pos$30 = nix.positions(here + "/kerberos.nix", [["name", 33, 5], ["nodes", 35, 5], ["testScript", 99, 5], ["meta", 152, 5]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../make-test-python.nix")), nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     const pkgs = nix.arg($, "pkgs");
     const lib = nix.arg($, "lib");
     const security = nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       krb5: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         enable: true,
         settings: nix.thunk(() => ({
-          [nix.POS]: pos$5,
-          domain_realm: nix.thunk(() => ({ [nix.POS]: pos$1, "nfs.test": "NFS.TEST" })),
-          libdefaults: nix.thunk(() => ({ [nix.POS]: pos$2, default_realm: "NFS.TEST" })),
+          [nix.POS]: $pos[4],
+          domain_realm: nix.thunk(() => ({ [nix.POS]: $pos[0], "nfs.test": "NFS.TEST" })),
+          libdefaults: nix.thunk(() => ({ [nix.POS]: $pos[1], default_realm: "NFS.TEST" })),
           realms: nix.thunk(() => ({
-            [nix.POS]: pos$4,
-            "NFS.TEST": nix.thunk(() => ({ [nix.POS]: pos$3, admin_server: "server.nfs.test", kdc: "server.nfs.test" })),
+            [nix.POS]: $pos[3],
+            "NFS.TEST": nix.thunk(() => ({ [nix.POS]: $pos[2], admin_server: "server.nfs.test", kdc: "server.nfs.test" })),
           })),
         })),
       })),
     }));
     const hosts = "192.168.1.1 client.nfs.test\n192.168.1.2 server.nfs.test\n";
     const users = nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       users: nix.thunk(() => ({
-        [nix.POS]: pos$9,
-        alice: nix.thunk(() => ({ [nix.POS]: pos$8, isNormalUser: true, name: "alice", uid: 1000n })),
+        [nix.POS]: $pos[8],
+        alice: nix.thunk(() => ({ [nix.POS]: $pos[7], isNormalUser: true, name: "alice", uid: 1000n })),
       })),
     }));
     return {
-      [nix.POS]: pos$30,
+      [nix.POS]: $pos[29],
       name: "nfsv4-with-kerberos",
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$28,
+        [nix.POS]: $pos[27],
         client: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const lib_1 = nix.arg($_1, "lib");
           return {
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             security: security,
             users: users,
-            networking: nix.thunk(() => ({ [nix.POS]: pos$11, extraHosts: hosts, domain: "nfs.test", hostName: "client" })),
+            networking: nix.thunk(() => ({
+              [nix.POS]: $pos[10],
+              extraHosts: hosts,
+              domain: "nfs.test",
+              hostName: "client",
+            })),
             virtualisation: nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               fileSystems: nix.thunk(() => ({
-                [nix.POS]: pos$13,
+                [nix.POS]: $pos[12],
                 "/data": nix.thunk(() => ({
-                  [nix.POS]: pos$12,
+                  [nix.POS]: $pos[11],
                   device: "server.nfs.test:/",
                   fsType: "nfs",
                   options: nix.thunk(() => ["nfsvers=4", "sec=krb5p", "noauto"]),
@@ -95,44 +71,44 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
           const $_1 = nix.formals(args_1, formals$3);
           const lib_1 = nix.arg($_1, "lib");
           return {
-            [nix.POS]: pos$27,
+            [nix.POS]: $pos[26],
             security: security,
             users: users,
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$17,
+              [nix.POS]: $pos[16],
               extraHosts: hosts,
               domain: "nfs.test",
               hostName: "server",
               firewall: nix.thunk(() => ({
-                [nix.POS]: pos$16,
+                [nix.POS]: $pos[15],
                 allowedTCPPorts: nix.thunk(() => [111n, 2049n, 88n, 749n]),
               })),
             })),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$26,
+              [nix.POS]: $pos[25],
               kerberos_server: nix.thunk(() => ({
-                [nix.POS]: pos$21,
+                [nix.POS]: $pos[20],
                 enable: true,
                 realms: nix.thunk(() => ({
-                  [nix.POS]: pos$20,
+                  [nix.POS]: $pos[19],
                   "NFS.TEST": nix.thunk(() => ({
-                    [nix.POS]: pos$19,
+                    [nix.POS]: $pos[18],
                     acl: nix.thunk(() => [
-                      nix.thunk(() => ({ [nix.POS]: pos$18, access: "all", principal: "admin/admin" })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[17], access: "all", principal: "admin/admin" })),
                     ]),
                   })),
                 })),
               })),
               nfs: nix.thunk(() => ({
-                [nix.POS]: pos$25,
+                [nix.POS]: $pos[24],
                 server: nix.thunk(() => ({
-                  [nix.POS]: pos$24,
+                  [nix.POS]: $pos[23],
                   enable: true,
                   createMountPoints: true,
                   exports: nix.thunk(() => ({
-                    [nix.POS]: pos$23,
+                    [nix.POS]: $pos[22],
                     "/data": nix.thunk(() => ({
-                      [nix.POS]: pos$22,
+                      [nix.POS]: $pos[21],
                       "*": nix.thunk(() => ["rw", "no_root_squash", "fsid=0", "sec=krb5p"]),
                     })),
                   })),
@@ -144,7 +120,7 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
       })),
       testScript: "server.succeed(\"mkdir -p /data/alice\")\nserver.succeed(\"chown alice:users /data/alice\")\n\n# set up kerberos database\nserver.succeed(\n    \"kdb5_util create -s -r NFS.TEST -P master_key\",\n    \"systemctl restart kadmind.service kdc.service\",\n)\nserver.wait_for_unit(\"kadmind.service\")\nserver.wait_for_unit(\"kdc.service\")\n\n# create principals\nserver.succeed(\n    \"kadmin.local add_principal -randkey nfs/server.nfs.test\",\n    \"kadmin.local add_principal -randkey nfs/client.nfs.test\",\n    \"kadmin.local add_principal -pw admin_pw admin/admin\",\n    \"kadmin.local add_principal -pw alice_pw alice\",\n)\n\n# add principals to server keytab\nserver.succeed(\"kadmin.local ktadd nfs/server.nfs.test\")\nserver.succeed(\"systemctl start rpc-gssd.service rpc-svcgssd.service\")\nserver.wait_for_unit(\"rpc-gssd.service\")\nserver.wait_for_unit(\"rpc-svcgssd.service\")\n\nclient.systemctl(\"start network-online.target\")\nclient.wait_for_unit(\"network-online.target\")\n\n# add principals to client keytab\nclient.succeed(\"echo admin_pw | kadmin -p admin/admin ktadd nfs/client.nfs.test\")\nclient.succeed(\"systemctl start rpc-gssd.service\")\nclient.wait_for_unit(\"rpc-gssd.service\")\n\nwith subtest(\"nfs share mounts\"):\n    client.succeed(\"systemctl restart data.mount\")\n    client.wait_for_unit(\"data.mount\")\n\nwith subtest(\"permissions on nfs share are enforced\"):\n    client.fail(\"su alice -c 'ls /data'\")\n    client.succeed(\"su alice -c 'echo alice_pw | kinit'\")\n    client.succeed(\"su alice -c 'ls /data'\")\n\n    client.fail(\"su alice -c 'echo bla >> /data/foo'\")\n    client.succeed(\"su alice -c 'echo bla >> /data/alice/foo'\")\n    server.succeed(\"test -e /data/alice/foo\")\n\nwith subtest(\"uids/gids are mapped correctly on nfs share\"):\n    ids = client.succeed(\"stat -c '%U %G' /data/alice\").split()\n    expected = [\"alice\", \"users\"]\n    assert ids == expected, f\"ids incorrect: got {ids} expected {expected}\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$29,
+        [nix.POS]: $pos[28],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "dblsaiko"))]),
       })),
     };

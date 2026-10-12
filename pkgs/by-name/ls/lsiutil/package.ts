@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["homepage", 42, 5], ["description", 43, 5], ["license", 44, 5], ["platforms", 45, 5], ["maintainers", 46, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["postPatch", 18, 3], ["buildPhase", 24, 3], ["installPhase", 32, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, kmod: false, coreutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 42, 5], ["description", 43, 5], ["license", 44, 5], ["platforms", 45, 5], ["maintainers", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["postPatch", 18, 3], ["buildPhase", 24, 3], ["installPhase", 32, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lsiutil";
       const version = "1.72";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/exactassembly/meta-xa-stm/raw/f96cf6e13f3c9c980f5651510dd96279b9b2af4f/recipes-support/lsiutil/files/lsiutil-${version}.tar.gz`),
           sha256: "sha256-aTi+EogY1aDWYq3anjRkjz1mzINVfUPQbOPHthxrvS4=",
         }))));
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const buildPhase = "runHook preBuild\n\ngcc -Wall -O lsiutil.c -o lsiutil\n\nrunHook postBuild\n";
       const installPhase = "runHook preInstall\n\nmkdir -p \"$out/bin\"\ninstall -Dm755 lsiutil \"$out/bin/lsiutil\"\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/exactassembly/meta-xa-stm/tree/master/recipes-support/lsiutil/files",
         description: "Configuration utility for MPT adapters (FC, SCSI, and SAS/SATA)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

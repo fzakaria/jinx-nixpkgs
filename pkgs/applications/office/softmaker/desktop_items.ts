@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/desktop_items.nix", [[["name", 9, 5], ["desktopName", 10, 5], ["icon", 11, 5], ["categories", 12, 5], ["exec", 13, 5], ["tryExec", 14, 5], ["mimeTypes", 15, 5], ["startupWMClass", 38, 5]], [["name", 42, 5], ["desktopName", 43, 5], ["icon", 44, 5], ["categories", 45, 5], ["exec", 46, 5], ["tryExec", 47, 5], ["mimeTypes", 48, 5], ["startupWMClass", 65, 5]], [["name", 69, 5], ["desktopName", 70, 5], ["icon", 71, 5], ["categories", 72, 5], ["exec", 73, 5], ["tryExec", 74, 5], ["mimeTypes", 75, 5], ["startupWMClass", 98, 5]], [["planmaker", 8, 3], ["presentations", 41, 3], ["textmaker", 68, 3]]]);
 const formals$1 = { args: { makeDesktopItem: false, pname: false, suiteName: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/desktop_items.nix", [["name", 9, 5], ["desktopName", 10, 5], ["icon", 11, 5], ["categories", 12, 5], ["exec", 13, 5], ["tryExec", 14, 5], ["mimeTypes", 15, 5], ["startupWMClass", 38, 5]]);
-const pos$2 = nix.positions(here + "/desktop_items.nix", [["name", 42, 5], ["desktopName", 43, 5], ["icon", 44, 5], ["categories", 45, 5], ["exec", 46, 5], ["tryExec", 47, 5], ["mimeTypes", 48, 5], ["startupWMClass", 65, 5]]);
-const pos$3 = nix.positions(here + "/desktop_items.nix", [["name", 69, 5], ["desktopName", 70, 5], ["icon", 71, 5], ["categories", 72, 5], ["exec", 73, 5], ["tryExec", 74, 5], ["mimeTypes", 75, 5], ["startupWMClass", 98, 5]]);
-const pos$4 = nix.positions(here + "/desktop_items.nix", [["planmaker", 8, 3], ["presentations", 41, 3], ["textmaker", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,9 +11,9 @@ export default nix.lambda((args) => (() => {
   const pname = nix.arg($, "pname");
   const suiteName = nix.arg($, "suiteName");
   return {
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     planmaker: nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: nix.thunk(() => nix.str`${pname}-planmaker`),
         desktopName: nix.thunk(() => nix.str`${suiteName} PlanMaker`),
         icon: nix.thunk(() => nix.str`${pname}-pml`),
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
         startupWMClass: "pm",
       })))),
     presentations: nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name: nix.thunk(() => nix.str`${pname}-presentations`),
         desktopName: nix.thunk(() => nix.str`${suiteName} Presentations`),
         icon: nix.thunk(() => nix.str`${pname}-prl`),
@@ -76,7 +73,7 @@ export default nix.lambda((args) => (() => {
         startupWMClass: "pr",
       })))),
     textmaker: nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         name: nix.thunk(() => nix.str`${pname}-textmaker`),
         desktopName: nix.thunk(() => nix.str`${suiteName} TextMaker`),
         icon: nix.thunk(() => nix.str`${pname}-tml`),

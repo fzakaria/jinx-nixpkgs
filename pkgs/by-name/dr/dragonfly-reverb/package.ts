@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5], ["fetchSubmodules", 26, 5]], [["homepage", 96, 5], ["description", 97, 5], ["maintainers", 98, 5], ["license", 102, 5], ["platforms", 103, 5], ["badPlatforms", 104, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["postPatch", 29, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 47, 3], ["installPhase", 53, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, libjack2: false, libGL: false, "pkg-config": false, libx11: false, buildStandalone: true, buildVST3: true, buildLV2: true, buildCLAP: true, buildVST2: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5], ["fetchSubmodules", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 96, 5], ["description", 97, 5], ["maintainers", 98, 5], ["license", 102, 5], ["platforms", 103, 5], ["badPlatforms", 104, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["postPatch", 29, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 47, 3], ["installPhase", 53, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const buildCLAP = nix.argOr($, "buildCLAP", () => true);
   const buildVST2 = nix.argOr($, "buildVST2", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dragonfly-reverb",
       version: "3.2.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "michaelwillis",
           repo: "dragonfly-reverb",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -74,7 +72,7 @@ popd
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/michaelwillis/dragonfly-reverb",
         description: "Hall-style reverb based on freeverb3 algorithms",
         maintainers: nix.thunk(() => (() => {

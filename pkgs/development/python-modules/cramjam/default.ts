@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["pname", 29, 26], ["src", 29, 32], ["version", 29, 36], ["hash", 30, 5]], [["CI", 49, 5]], [["description", 65, 5], ["homepage", 66, 5], ["changelog", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["__structuredAttrs", 19, 3], ["src", 21, 3], ["cargoDeps", 28, 3], ["nativeBuildInputs", 33, 3], ["nativeCheckInputs", 39, 3], ["env", 46, 3], ["disabledTests", 52, 3], ["disabledTestPaths", 58, 3], ["pythonImportsCheck", 62, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pyprojectVersionPatchHook: false, rustPlatform: false, hypothesis: false, numpy: false, "pytest-xdist": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 29, 26], ["src", 29, 32], ["version", 29, 36], ["hash", 30, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["CI", 49, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 65, 5], ["homepage", 66, 5], ["changelog", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["__structuredAttrs", 19, 3], ["src", 21, 3], ["cargoDeps", 28, 3], ["nativeBuildInputs", 33, 3], ["nativeCheckInputs", 39, 3], ["env", 46, 3], ["disabledTests", 52, 3], ["disabledTestPaths", 58, 3], ["pythonImportsCheck", 62, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,20 +17,20 @@ export default nix.lambda((args) => (() => {
   const pytest_xdist = nix.arg($, "pytest-xdist");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "cramjam",
       version: "2.13.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "milesgranger",
           repo: "cramjam",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-sdmIcRSy2nJcqV9NGzBYt0J6R9Qs7zkVfXFG9CqoMs4=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -46,12 +42,12 @@ export default nix.lambda((args) => (() => {
         pyprojectVersionPatchHook,
       ]),
       nativeCheckInputs: nix.thunk(() => [hypothesis, numpy, pytest_xdist, pytestCheckHook]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, CI: true })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], CI: true })),
       disabledTests: nix.thunk(() => ["test_variants_decompress_into"]),
       disabledTestPaths: nix.thunk(() => ["benchmarks/test_bench.py"]),
       pythonImportsCheck: nix.thunk(() => ["cramjam"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Thin Python bindings to de/compression algorithms in Rust",
         homepage: "https://github.com/milesgranger/pyrus-cramjam",
         changelog: nix.thunk(() => nix.str`https://github.com/milesgranger/cramjam/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

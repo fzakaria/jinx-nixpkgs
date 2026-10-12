@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["updateScript", 54, 12]], [["name", 62, 7], ["exec", 63, 7], ["icon", 64, 7], ["desktopName", 65, 7], ["genericName", 66, 7], ["comment", 67, 7], ["categories", 68, 7]], [["description", 75, 5], ["longDescription", 76, 5], ["homepage", 80, 5], ["changelog", 81, 5], ["mainProgram", 82, 5], ["license", 83, 5], ["maintainers", 84, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["cargoHash", 32, 3], ["nativeBuildInputs", 34, 3], ["runtimeDependencies", 39, 3], ["nativeInstallCheckInputs", 52, 3], ["doInstallCheck", 53, 3], ["passthru", 54, 3], ["postInstall", 56, 3], ["desktopItems", 60, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, "nix-update-script": false, rustPlatform: false, fetchFromGitHub: false, versionCheckHook: false, autoPatchelfHook: false, wayland: false, libxkbcommon: false, libx11: false, libxcursor: false, libxi: false, libxrandr: false, libxcb: false, libGL: false, stdenv: false, makeDesktopItem: false, copyDesktopItems: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 54, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 62, 7], ["exec", 63, 7], ["icon", 64, 7], ["desktopName", 65, 7], ["genericName", 66, 7], ["comment", 67, 7], ["categories", 68, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 75, 5], ["longDescription", 76, 5], ["homepage", 80, 5], ["changelog", 81, 5], ["mainProgram", 82, 5], ["license", 83, 5], ["maintainers", 84, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["cargoHash", 32, 3], ["nativeBuildInputs", 34, 3], ["runtimeDependencies", 39, 3], ["nativeInstallCheckInputs", 52, 3], ["doInstallCheck", 53, 3], ["passthru", 54, 3], ["postInstall", 56, 3], ["desktopItems", 60, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "oklch-color-picker",
       version: "2.4.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "eero-lehtinen",
           repo: "oklch-color-picker",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,14 +41,14 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       postInstall: nix.thunk(() => nix.str`install -Dm444 assets/icon.png $out/share/icons/hicolor/512x512/apps/${nix.sel(finalAttrs, "meta", "mainProgram")}.png
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: nix.thunk(() => nix.sel(finalAttrs, "meta", "mainProgram")),
             exec: nix.thunk(() => nix.sel(finalAttrs, "meta", "mainProgram")),
             icon: nix.thunk(() => nix.sel(finalAttrs, "meta", "mainProgram")),
@@ -63,7 +59,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Color picker for Oklch",
         longDescription: "A standalone color picker application using the Oklch\ncolorspace (based on Oklab)\n",
         homepage: "https://github.com/eero-lehtinen/oklch-color-picker",

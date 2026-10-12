@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["http", 46, 5], ["logfire", 51, 5]], [["description", 74, 5], ["homepage", 75, 5], ["changelog", 76, 5], ["license", 77, 5], ["maintainers", 78, 5]], [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["__structuredAttrs", 28, 3], ["src", 30, 3], ["build-system", 37, 3], ["dependencies", 41, 3], ["optional-dependencies", 45, 3], ["pythonImportsCheck", 57, 3], ["nativeCheckInputs", 59, 3], ["disabledTests", 66, 3], ["__darwinAllowLocalNetworking", 71, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "pdm-backend": false, pydantic: false, h2: false, httpx: false, "opentelemetry-sdk": false, websockets: false, "pytest-asyncio": false, pytestCheckHook: false, uvicorn: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["http", 46, 5], ["logfire", 51, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 74, 5], ["homepage", 75, 5], ["changelog", 76, 5], ["license", 77, 5], ["maintainers", 78, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["__structuredAttrs", 28, 3], ["src", 30, 3], ["build-system", 37, 3], ["dependencies", 41, 3], ["optional-dependencies", 45, 3], ["pythonImportsCheck", 57, 3], ["nativeCheckInputs", 59, 3], ["disabledTests", 66, 3], ["__darwinAllowLocalNetworking", 71, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const uvicorn = nix.arg($, "uvicorn");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "agent-client-protocol",
       version: "0.12.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "agentclientprotocol",
           repo: "python-sdk",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [pdm_backend]),
       dependencies: nix.thunk(() => [pydantic]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         http: nix.thunk(() => [h2, httpx, websockets]),
         logfire: nix.thunk(() => [opentelemetry_sdk]),
       })),
@@ -47,7 +44,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_spawn_agent_process_roundtrip"]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python SDK for ACP clients and agents",
         homepage: "https://github.com/agentclientprotocol/python-sdk",
         changelog: nix.thunk(() => nix.str`https://github.com/agentclientprotocol/python-sdk/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

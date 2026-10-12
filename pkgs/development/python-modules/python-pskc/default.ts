@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["defuse", 38, 5], ["lxml", 39, 5], ["signature", 40, 5]], [["changelog", 66, 5], ["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 28, 3], ["dependencies", 32, 3], ["optional-dependencies", 37, 3], ["nativeCheckInputs", 43, 3], ["preCheck", 49, 3], ["disabledTestPaths", 53, 3], ["pythonImportsCheck", 63, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, fetchFromGitHub: false, lib: false, cryptography: false, defusedxml: false, lxml: false, "pytest-cov-stub": false, pytestCheckHook: false, "python-dateutil": false, setuptools: false, signxml: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["defuse", 38, 5], ["lxml", 39, 5], ["signature", 40, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 66, 5], ["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 28, 3], ["dependencies", 32, 3], ["optional-dependencies", 37, 3], ["nativeCheckInputs", 43, 3], ["preCheck", 49, 3], ["disabledTestPaths", 53, 3], ["pythonImportsCheck", 63, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.4-unstable-2026-07-18";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "arthurdejong",
           repo: "python-pskc",
           rev: "6bcd0274db24467f7c9c410b31461228f70d6620",
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [cryptography, python_dateutil]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         defuse: nix.thunk(() => [defusedxml]),
         lxml: nix.thunk(() => [lxml]),
         signature: nix.thunk(() => [signxml]),
@@ -53,7 +50,7 @@ export default nix.lambda((args) => (() => {
         ])));
       const pythonImportsCheck = nix.thunk(() => ["pskc"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/arthurdejong/python-pskc/releases/tag/${version}`),
         description: "Python module for handling PSKC files",
         homepage: "https://github.com/arthurdejong/python-pskc",
@@ -61,7 +58,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/openpaperwork-core.nix", [[["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["platforms", 62, 5]], [["pname", 19, 3], ["version", 20, 39], ["src", 20, 47], ["pyproject", 21, 3], ["sourceRoot", 23, 3], ["disabled", 26, 3], ["patchPhase", 28, 3], ["propagatedBuildInputs", 33, 3], ["nativeBuildInputs", 40, 3], ["preBuild", 46, 3], ["preCheck", 50, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, lib: false, callPackage: false, isPy3k: false, isPyPy: false, distro: false, setuptools: false, psutil: false, certifi: false, "setuptools-scm": false, pkgs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/openpaperwork-core.nix", [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["platforms", 62, 5]]);
-const pos$2 = nix.positions(here + "/openpaperwork-core.nix", [["pname", 19, 3], ["version", 20, 39], ["src", 20, 47], ["pyproject", 21, 3], ["sourceRoot", 23, 3], ["disabled", 26, 3], ["patchPhase", 28, 3], ["propagatedBuildInputs", 33, 3], ["nativeBuildInputs", 40, 3], ["preBuild", 46, 3], ["preCheck", 50, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +21,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(buildPythonPackage, (finalAttrs) => (() => {
       const from = nix.thunk(() => nix.app(callPackage, nix.path(here, "./src.nix"), nix.thunk(() => ({}))));
       return {
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "openpaperwork-core",
       version: nix.thunk(() => nix.attr(from, "version")),
       src: nix.thunk(() => nix.attr(from, "src")),
@@ -39,7 +38,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "make l10n_compile\n",
       preCheck: "export HOME=$(mktemp -d)\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Backend part of Paperwork (Python API, no UI)",
         homepage: "https://openpaper.work/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

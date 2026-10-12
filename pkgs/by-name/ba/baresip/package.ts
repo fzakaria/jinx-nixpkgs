@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 38, 5], ["repo", 39, 5], ["rev", 40, 5], ["hash", 41, 5]], [["NIX_CFLAGS_COMPILE", 107, 7]], [["description", 184, 5], ["homepage", 185, 5], ["maintainers", 186, 5], ["mainProgram", 190, 5], ["license", 191, 5], ["platforms", 192, 5]], [["version", 34, 3], ["pname", 35, 3], ["src", 37, 3], ["patches", 44, 3], ["prePatch", 48, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 59, 3], ["cmakeFlags", 90, 3], ["makeFlags", 98, 3], ["enableParallelBuilding", 105, 3], ["env", 107, 3], ["installCheckPhase", 115, 3], ["meta", 183, 3]]]);
 const formals$1 = { args: { SDL2: false, "alsa-lib": false, cairo: false, celt: false, cmake: false, fetchFromGitHub: false, ffmpeg: false, glib: false, gsm: false, gst_all_1: false, gtk3: false, lib: false, libre: false, librem: false, libsndfile: false, libuuid: false, libv4l: false, libvpx: false, mpg123: false, openssl: false, pipewire: false, "pkg-config": false, portaudio: false, spandsp3: false, speex: false, srtp: false, stdenv: false, zlib: false, dbusSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 38, 5], ["repo", 39, 5], ["rev", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 107, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 184, 5], ["homepage", 185, 5], ["maintainers", 186, 5], ["mainProgram", 190, 5], ["license", 191, 5], ["platforms", 192, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 34, 3], ["pname", 35, 3], ["src", 37, 3], ["patches", 44, 3], ["prePatch", 48, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 59, 3], ["cmakeFlags", 90, 3], ["makeFlags", 98, 3], ["enableParallelBuilding", 105, 3], ["env", 107, 3], ["installCheckPhase", 115, 3], ["meta", 183, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,11 +37,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const dbusSupport = nix.argOr($, "dbusSupport", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "4.11.0",
       pname: "baresip",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "baresip",
           repo: "baresip",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -95,7 +92,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => nix.concat(["PREFIX=$(out)", "CCACHE_DISABLE=1"], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "cc", "cc"), null)), nix.thunk(() => nix.str`SYSROOT_ALT=${nix.sel(stdenv, "cc", "cc")}`)), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "cc", "libc"), null)), nix.thunk(() => nix.str`SYSROOT=${nix.sel(stdenv, "cc", "libc")}`))))),
       enableParallelBuilding: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${librem}/include/rem -I${gsm}/include/gsm
 -DHAVE_INTTYPES_H -D__GLIBC__
 -D__need_timeval -D__need_timespec -D__need_time_t
@@ -168,7 +165,7 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (m) => nix.str`test -x $out
 runHook postInstallCheck
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Modular SIP User-Agent with audio and video support",
         homepage: "https://github.com/baresip/baresip",
         maintainers: nix.thunk(() => (() => {

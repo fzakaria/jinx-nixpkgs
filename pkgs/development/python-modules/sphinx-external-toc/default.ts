@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 19, 13], ["pname", 20, 5], ["hash", 21, 5]], [["description", 36, 5], ["mainProgram", 37, 5], ["homepage", 38, 5], ["changelog", 39, 5], ["license", 40, 5], ["maintainers", 41, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 24, 3], ["propagatedBuildInputs", 26, 3], ["pythonImportsCheck", 33, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, "flit-core": false, click: false, pyyaml: false, sphinx: false, "sphinx-multitoc-numbering": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 19, 13], ["pname", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 36, 5], ["mainProgram", 37, 5], ["homepage", 38, 5], ["changelog", 39, 5], ["license", 40, 5], ["maintainers", 41, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 24, 3], ["propagatedBuildInputs", 26, 3], ["pythonImportsCheck", 33, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: version,
           pname: "sphinx_external_toc",
           hash: "sha256-+BgzhlAG9rSpslUKJHSm49fn8ssjuiMwkmBXfqZVUvY=",
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [click, pyyaml, sphinx, sphinx_multitoc_numbering]);
       const pythonImportsCheck = nix.thunk(() => ["sphinx_external_toc"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Sphinx extension that allows the site-map to be defined in a single YAML file",
         mainProgram: "sphinx-etoc",
         homepage: "https://github.com/executablebooks/sphinx-external-toc",
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

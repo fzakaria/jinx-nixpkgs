@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5], ["postFetch", 34, 5]], [["attrPath", 147, 7], ["extraArgs", 148, 7]], [["attrPath", 151, 7], ["extraArgs", 152, 7]], [["updateScript", 145, 12]], [["homepage", 157, 5], ["description", 158, 5], ["changelog", 159, 5], ["license", 160, 5], ["maintainers", 172, 5], ["platforms", 175, 5], ["broken", 176, 5], ["mainProgram", 177, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 39, 3], ["outputs", 46, 3], ["makeFlags", 51, 3], ["strictDeps", 72, 3], ["__structuredAttrs", 73, 3], ["enableParallelBuilding", 75, 3], ["postPatch", 77, 3], ["buildPhase", 85, 3], ["installPhase", 115, 3], ["setupHook", 144, 3], ["passthru", 145, 3], ["meta", 156, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, makeWrapper: false, "asmc-linux": false, useAsmc: true, uasm: false, useUasm: true, "_experimental-update-script-combinators": false, "nix-update-script": false, enableUnfree: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5], ["postFetch", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["attrPath", 147, 7], ["extraArgs", 148, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["attrPath", 151, 7], ["extraArgs", 152, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 145, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 157, 5], ["description", 158, 5], ["changelog", 159, 5], ["license", 160, 5], ["maintainers", 172, 5], ["platforms", 175, 5], ["broken", 176, 5], ["mainProgram", 177, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 39, 3], ["outputs", 46, 3], ["makeFlags", 51, 3], ["strictDeps", 72, 3], ["__structuredAttrs", 73, 3], ["enableParallelBuilding", 75, 3], ["postPatch", 77, 3], ["buildPhase", 85, 3], ["installPhase", 115, 3], ["setupHook", 144, 3], ["passthru", 145, 3], ["meta", 156, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const enableUnfree = nix.argOr($, "enableUnfree", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "7zip-zstd",
       version: "26.02-v1.5.7-R2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mcmilk",
           repo: "7-Zip-zstd",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -82,22 +77,22 @@ runHook postInstall
       })()),
       setupHook: nix.path(here, "./setup-hook.sh"),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
             nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 attrPath: "_7zip-zstd",
                 extraArgs: nix.thunk(() => ["--use-github-releases"]),
               })))),
             nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 attrPath: "_7zip-zstd-rar",
                 extraArgs: nix.thunk(() => ["--version=skip"]),
               })))),
           ]))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/mcmilk/7-Zip-zstd",
         description: "7-Zip with support for Brotli, Fast-LZMA2, Lizard, LZ4, LZ5 and Zstandard",
         changelog: nix.thunk(() => nix.str`https://github.com/mcmilk/7-Zip-zstd/releases/tag/v${nix.sel(finalAttrs, "version")}`),

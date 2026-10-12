@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 59, 5], ["repo", 60, 5], ["tag", 61, 5], ["hash", 62, 5]], [["LC_ALL", 144, 7]], [["description", 183, 5], ["longDescription", 184, 5], ["homepage", 197, 5], ["license", 198, 5], ["maintainers", 199, 5], ["broken", 200, 5]], [["pname", 49, 3], ["version", 50, 3], ["pyproject", 51, 3], ["outputs", 53, 3], ["src", 58, 3], ["patches", 66, 3], ["build-system", 68, 3], ["postPatch", 70, 3], ["nativeBuildInputs", 76, 3], ["buildInputs", 86, 3], ["dependencies", 114, 3], ["nativeCheckInputs", 130, 3], ["env", 144, 3], ["preCheck", 146, 3], ["checkPhase", 151, 3], ["preFixup", 178, 3], ["meta", 182, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, tag: true, gettext: false, "gobject-introspection": false, wrapGAppsHook3: false, writableTmpDirAsHomeHook: false, "adwaita-icon-theme": false, "gdk-pixbuf": false, glib: false, "glib-networking": false, gtk3: false, gtksourceview3: false, kakasi: false, keybinder3: false, libappindicator: false, libmodplug: false, librsvg: false, libsoup_3: false, withDbusPython: true, withMusicBrainzNgs: true, withPahoMqtt: true, withPypresence: true, withSoco: true, withGstPlugins: true, withGstreamerBackend: true, gst_all_1: false, withXineBackend: true, "xine-lib": false, dbus: false, glibcLocales: false, "hicolor-icon-theme": false, python3: false, "xvfb-run": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 59, 5], ["repo", 60, 5], ["tag", 61, 5], ["hash", 62, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["LC_ALL", 144, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 183, 5], ["longDescription", 184, 5], ["homepage", 197, 5], ["license", 198, 5], ["maintainers", 199, 5], ["broken", 200, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 49, 3], ["version", 50, 3], ["pyproject", 51, 3], ["outputs", 53, 3], ["src", 58, 3], ["patches", 66, 3], ["build-system", 68, 3], ["postPatch", 70, 3], ["nativeBuildInputs", 76, 3], ["buildInputs", 86, 3], ["dependencies", 114, 3], ["nativeCheckInputs", 130, 3], ["env", 144, 3], ["preCheck", 146, 3], ["checkPhase", 151, 3], ["preFixup", 178, 3], ["meta", 182, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -46,13 +43,13 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const xvfb_run = nix.arg($, "xvfb-run");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: nix.thunk(() => nix.str`quodlibet${tag}`),
       version: "4.7.1",
       pyproject: true,
       outputs: nix.thunk(() => ["out", "doc"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "quodlibet",
           repo: "quodlibet",
           tag: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
@@ -117,7 +114,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.lookup(w_3, "pytest-xdist")),
         ];
       })())),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, LC_ALL: "en_US.UTF-8" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], LC_ALL: "en_US.UTF-8" })),
       preCheck: nix.thunk(() => nix.str`export GDK_PIXBUF_MODULE_FILE=${librsvg}/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache
 export XDG_DATA_DIRS="$out/share:${gtk3}/share/gsettings-schemas/${nix.sel(gtk3, "name")}:$XDG_ICON_DIRS:$XDG_DATA_DIRS"
 `),
@@ -141,7 +138,7 @@ runHook postCheck
       preFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(kakasi, null)), nix.thunk(() => nix.str`gappsWrapperArgs+=(--prefix PATH : ${nix.app(nix.sel(lib, "getBin"), kakasi)})
 `))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "GTK-based audio player written in Python, using the Mutagen tagging library",
         longDescription: "Quod Libet is a GTK-based audio player written in Python, using\nthe Mutagen tagging library. It's designed around the idea that\nyou know how to organize your music better than we do. It lets\nyou make playlists based on regular expressions (don't worry,\nregular searches work too). It lets you display and edit any\ntags you want in the file. And it lets you do this for all the\nfile formats it supports. Quod Libet easily scales to libraries\nof thousands (or even tens of thousands) of songs. It also\nsupports most of the features you expect from a modern media\nplayer, like Unicode support, tag editing, Replay Gain, podcasts\n& internet radio, and all major audio formats.\n",
         homepage: "https://quodlibet.readthedocs.io/en/latest",

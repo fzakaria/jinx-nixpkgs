@@ -2,13 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["repo", 15, 5], ["owner", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["name", 25, 11], ["paths", 26, 11]], [["env", 23, 7]], [["scripts", 39, 12]], [["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["description", 51, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["postPatch", 35, 3], ["passthru", 39, 3], ["installPhase", 41, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, replaceVars: false, buildEnv: false, fetchFromGitHub: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["repo", 15, 5], ["owner", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 25, 11], ["paths", 26, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["env", 23, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["scripts", 39, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["description", 51, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["postPatch", 35, 3], ["passthru", 39, 3], ["installPhase", 41, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "wee-slack",
       version: "2.11.0-unstable-2026-01-07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "wee-slack",
           owner: "wee-slack",
           rev: "08a9cd05d482772e79d879e0b99ddd66a94d979d",
@@ -31,9 +26,9 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./libpath.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             env: nix.thunk(() => nix.str`${nix.app(buildEnv, nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 name: "wee-slack-env",
                 paths: nix.thunk(() => (() => {
                   const w = nix.withScope(python3Packages, null);
@@ -44,10 +39,10 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./load_weemoji_path.patch"),
       ]),
       postPatch: "substituteInPlace wee_slack.py --subst-var out\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, scripts: nix.thunk(() => ["wee_slack.py"]) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], scripts: nix.thunk(() => ["wee_slack.py"]) })),
       installPhase: "mkdir -p $out/share\ncp wee_slack.py $out/share/wee_slack.py\ninstall -D -m 0444 weemoji.json $out/share/wee-slack/weemoji.json\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/wee-slack/wee-slack",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],

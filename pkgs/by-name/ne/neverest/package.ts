@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]], [["description", 58, 5], ["mainProgram", 59, 5], ["homepage", 60, 5], ["changelog", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["broken", 65, 5]], [["buildNoDefaultFeatures", 19, 11], ["buildFeatures", 19, 34], ["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["cargoHash", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["doCheck", 42, 3], ["postInstall", 44, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, stdenv: false, "pkg-config": false, installShellFiles: false, installShellCompletions: true, installManPages: true, notmuch: false, buildNoDefaultFeatures: true, buildFeatures: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 58, 5], ["mainProgram", 59, 5], ["homepage", 60, 5], ["changelog", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["broken", 65, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["buildNoDefaultFeatures", 19, 11], ["buildFeatures", 19, 34], ["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["cargoHash", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["doCheck", 42, 3], ["postInstall", 44, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const buildNoDefaultFeatures = nix.argOr($, "buildNoDefaultFeatures", () => false);
   const buildFeatures = nix.argOr($, "buildFeatures", () => []);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       buildNoDefaultFeatures: buildNoDefaultFeatures,
       buildFeatures: buildFeatures,
       pname: "neverest",
       version: "1.0.0-beta",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pimalaya",
           repo: "neverest",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       postInstall: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), installManPages, "mkdir -p $out/man\n$out/bin/neverest man $out/man\ninstallManPage $out/man/*\n"), nix.app(nix.sel(lib, "optionalString"), installShellCompletions, "installShellCompletion --cmd neverest \\\n  --bash <($out/bin/neverest completion bash) \\\n  --fish <($out/bin/neverest completion fish) \\\n  --zsh <($out/bin/neverest completion zsh)\n"))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "CLI to synchronize, backup and restore emails",
         mainProgram: "neverest",
         homepage: nix.thunk(() => nix.str`https://pimalaya.org/neverest/cli/v${nix.sel(finalAttrs, "version")}/`),

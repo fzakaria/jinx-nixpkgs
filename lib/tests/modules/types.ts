@@ -2,91 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/types.nix", [[["type", 17, 30]], [["type", 18, 31]], [["typeName", 21, 59]], [["type", 21, 7]], [["typeName", 26, 11], ["nullable", 27, 11]], [["type", 24, 7]], [["pathInStore", 17, 5], ["externalPath", 18, 5], ["nullableValue", 20, 5], ["structuredValue", 23, 5], ["assertions", 32, 5]], [["ok1", 35, 17], ["ok2", 36, 17], ["ok3", 37, 17], ["bad1", 38, 17], ["bad2", 39, 17], ["bad3", 40, 17], ["bad4", 41, 17], ["bad5", 42, 17]], [["bad1", 43, 18], ["bad2", 44, 18], ["bad3", 45, 18], ["bad4", 46, 18], ["bad5", 47, 18], ["ok1", 48, 18], ["ok2", 49, 18]], [["foo", 59, 7]], [["bar", 61, 30]], [["null", 52, 19], ["bool", 53, 19], ["int", 54, 19], ["float", 55, 19], ["str", 56, 19], ["path", 57, 19], ["attrs", 58, 19], ["list", 61, 19], ["lambda", 62, 19], ["mixed", 63, 19]], [["null", 69, 21]], [["freeformType", 91, 22]], [["message", 126, 33]], [["absolute", 129, 11]], [["freeformType", 138, 11]], [["elemType", 149, 27]], [["elemType", 150, 27]], [["elemType", 151, 27]], [["elemType", 153, 22]], [["elemType", 155, 27]], [["elemType", 156, 27]], [["elemType", 158, 22]], [["elemType", 161, 22]], [["elemType", 165, 11], ["lazy", 166, 11]], [["elemType", 171, 11], ["lazy", 172, 11]], [["message", 251, 37]], [["absolute", 254, 11]], [["message", 293, 32]], [["absolute", 294, 34]], [["absolute", 435, 26]], [["inStore", 436, 26]], [["absolute", 439, 11], ["inStore", 440, 11]], [["absolute", 442, 26]], [["absolute", 443, 26]], [["inStore", 444, 26]], [["inStore", 445, 26]], [["freeformType", 456, 22]], [["freeformType", 459, 22]], [["freeformType", 462, 22]], [["freeformType", 465, 22]], [["freeformType", 467, 27]], [["freeformType", 469, 22]], [["freeformType", 472, 22]], [["freeformType", 475, 22]], [["freeformType", 478, 22]], [["type", 481, 54]], [["foo", 481, 37]], [["options", 481, 29]], [["freeformType", 484, 24]], [["freeformType", 487, 24]], [["freeformType", 490, 24]], [["freeformType", 493, 24]], [["freeformType", 496, 40]], [["modules", 496, 26]], [["freeformType", 499, 40]], [["modules", 499, 26]], [["freeformType", 502, 40]], [["modules", 502, 26]], [["freeformType", 505, 40]], [["modules", 505, 26]], [["freeformType", 508, 40]], [["modules", 508, 26]], [["freeformType", 511, 40]], [["modules", 511, 26]], [["freeformType", 514, 40]], [["modules", 514, 26]], [["freeformType", 517, 40]], [["modules", 517, 26]], [["freeformType", 520, 40]], [["modules", 520, 26]], [["freeformType", 523, 40]], [["modules", 523, 26]], [["modules", 525, 31]], [["modules", 528, 11], ["description", 529, 11]], [["modules", 533, 11], ["description", 534, 11]], [["message", 539, 24]], [["message", 540, 24]], [["message", 541, 24]], [["message", 542, 24]], [["message", 543, 24]], [["pathInStore", 35, 5], ["externalPath", 43, 5], ["nullableValue", 52, 5], ["structuredValue", 69, 5], ["assertions", 71, 5]], [["options", 16, 3], ["config", 34, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/types.nix", [["type", 17, 30]]);
-const pos$2 = nix.positions(here + "/types.nix", [["type", 18, 31]]);
-const pos$3 = nix.positions(here + "/types.nix", [["typeName", 21, 59]]);
-const pos$4 = nix.positions(here + "/types.nix", [["type", 21, 7]]);
-const pos$5 = nix.positions(here + "/types.nix", [["typeName", 26, 11], ["nullable", 27, 11]]);
-const pos$6 = nix.positions(here + "/types.nix", [["type", 24, 7]]);
-const pos$7 = nix.positions(here + "/types.nix", [["pathInStore", 17, 5], ["externalPath", 18, 5], ["nullableValue", 20, 5], ["structuredValue", 23, 5], ["assertions", 32, 5]]);
-const pos$8 = nix.positions(here + "/types.nix", [["ok1", 35, 17], ["ok2", 36, 17], ["ok3", 37, 17], ["bad1", 38, 17], ["bad2", 39, 17], ["bad3", 40, 17], ["bad4", 41, 17], ["bad5", 42, 17]]);
-const pos$9 = nix.positions(here + "/types.nix", [["bad1", 43, 18], ["bad2", 44, 18], ["bad3", 45, 18], ["bad4", 46, 18], ["bad5", 47, 18], ["ok1", 48, 18], ["ok2", 49, 18]]);
-const pos$10 = nix.positions(here + "/types.nix", [["foo", 59, 7]]);
-const pos$11 = nix.positions(here + "/types.nix", [["bar", 61, 30]]);
-const pos$12 = nix.positions(here + "/types.nix", [["null", 52, 19], ["bool", 53, 19], ["int", 54, 19], ["float", 55, 19], ["str", 56, 19], ["path", 57, 19], ["attrs", 58, 19], ["list", 61, 19], ["lambda", 62, 19], ["mixed", 63, 19]]);
-const pos$13 = nix.positions(here + "/types.nix", [["null", 69, 21]]);
-const pos$14 = nix.positions(here + "/types.nix", [["freeformType", 91, 22]]);
-const pos$15 = nix.positions(here + "/types.nix", [["message", 126, 33]]);
-const pos$16 = nix.positions(here + "/types.nix", [["absolute", 129, 11]]);
-const pos$17 = nix.positions(here + "/types.nix", [["freeformType", 138, 11]]);
-const pos$18 = nix.positions(here + "/types.nix", [["elemType", 149, 27]]);
-const pos$19 = nix.positions(here + "/types.nix", [["elemType", 150, 27]]);
-const pos$20 = nix.positions(here + "/types.nix", [["elemType", 151, 27]]);
-const pos$21 = nix.positions(here + "/types.nix", [["elemType", 153, 22]]);
-const pos$22 = nix.positions(here + "/types.nix", [["elemType", 155, 27]]);
-const pos$23 = nix.positions(here + "/types.nix", [["elemType", 156, 27]]);
-const pos$24 = nix.positions(here + "/types.nix", [["elemType", 158, 22]]);
-const pos$25 = nix.positions(here + "/types.nix", [["elemType", 161, 22]]);
-const pos$26 = nix.positions(here + "/types.nix", [["elemType", 165, 11], ["lazy", 166, 11]]);
-const pos$27 = nix.positions(here + "/types.nix", [["elemType", 171, 11], ["lazy", 172, 11]]);
-const pos$28 = nix.positions(here + "/types.nix", [["message", 251, 37]]);
-const pos$29 = nix.positions(here + "/types.nix", [["absolute", 254, 11]]);
-const pos$30 = nix.positions(here + "/types.nix", [["message", 293, 32]]);
-const pos$31 = nix.positions(here + "/types.nix", [["absolute", 294, 34]]);
-const pos$32 = nix.positions(here + "/types.nix", [["absolute", 435, 26]]);
-const pos$33 = nix.positions(here + "/types.nix", [["inStore", 436, 26]]);
-const pos$34 = nix.positions(here + "/types.nix", [["absolute", 439, 11], ["inStore", 440, 11]]);
-const pos$35 = nix.positions(here + "/types.nix", [["absolute", 442, 26]]);
-const pos$36 = nix.positions(here + "/types.nix", [["absolute", 443, 26]]);
-const pos$37 = nix.positions(here + "/types.nix", [["inStore", 444, 26]]);
-const pos$38 = nix.positions(here + "/types.nix", [["inStore", 445, 26]]);
-const pos$39 = nix.positions(here + "/types.nix", [["freeformType", 456, 22]]);
-const pos$40 = nix.positions(here + "/types.nix", [["freeformType", 459, 22]]);
-const pos$41 = nix.positions(here + "/types.nix", [["freeformType", 462, 22]]);
-const pos$42 = nix.positions(here + "/types.nix", [["freeformType", 465, 22]]);
-const pos$43 = nix.positions(here + "/types.nix", [["freeformType", 467, 27]]);
-const pos$44 = nix.positions(here + "/types.nix", [["freeformType", 469, 22]]);
-const pos$45 = nix.positions(here + "/types.nix", [["freeformType", 472, 22]]);
-const pos$46 = nix.positions(here + "/types.nix", [["freeformType", 475, 22]]);
-const pos$47 = nix.positions(here + "/types.nix", [["freeformType", 478, 22]]);
-const pos$48 = nix.positions(here + "/types.nix", [["type", 481, 54]]);
-const pos$49 = nix.positions(here + "/types.nix", [["foo", 481, 37]]);
-const pos$50 = nix.positions(here + "/types.nix", [["options", 481, 29]]);
-const pos$51 = nix.positions(here + "/types.nix", [["freeformType", 484, 24]]);
-const pos$52 = nix.positions(here + "/types.nix", [["freeformType", 487, 24]]);
-const pos$53 = nix.positions(here + "/types.nix", [["freeformType", 490, 24]]);
-const pos$54 = nix.positions(here + "/types.nix", [["freeformType", 493, 24]]);
-const pos$55 = nix.positions(here + "/types.nix", [["freeformType", 496, 40]]);
-const pos$56 = nix.positions(here + "/types.nix", [["modules", 496, 26]]);
-const pos$57 = nix.positions(here + "/types.nix", [["freeformType", 499, 40]]);
-const pos$58 = nix.positions(here + "/types.nix", [["modules", 499, 26]]);
-const pos$59 = nix.positions(here + "/types.nix", [["freeformType", 502, 40]]);
-const pos$60 = nix.positions(here + "/types.nix", [["modules", 502, 26]]);
-const pos$61 = nix.positions(here + "/types.nix", [["freeformType", 505, 40]]);
-const pos$62 = nix.positions(here + "/types.nix", [["modules", 505, 26]]);
-const pos$63 = nix.positions(here + "/types.nix", [["freeformType", 508, 40]]);
-const pos$64 = nix.positions(here + "/types.nix", [["modules", 508, 26]]);
-const pos$65 = nix.positions(here + "/types.nix", [["freeformType", 511, 40]]);
-const pos$66 = nix.positions(here + "/types.nix", [["modules", 511, 26]]);
-const pos$67 = nix.positions(here + "/types.nix", [["freeformType", 514, 40]]);
-const pos$68 = nix.positions(here + "/types.nix", [["modules", 514, 26]]);
-const pos$69 = nix.positions(here + "/types.nix", [["freeformType", 517, 40]]);
-const pos$70 = nix.positions(here + "/types.nix", [["modules", 517, 26]]);
-const pos$71 = nix.positions(here + "/types.nix", [["freeformType", 520, 40]]);
-const pos$72 = nix.positions(here + "/types.nix", [["modules", 520, 26]]);
-const pos$73 = nix.positions(here + "/types.nix", [["freeformType", 523, 40]]);
-const pos$74 = nix.positions(here + "/types.nix", [["modules", 523, 26]]);
-const pos$75 = nix.positions(here + "/types.nix", [["modules", 525, 31]]);
-const pos$76 = nix.positions(here + "/types.nix", [["modules", 528, 11], ["description", 529, 11]]);
-const pos$77 = nix.positions(here + "/types.nix", [["modules", 533, 11], ["description", 534, 11]]);
-const pos$78 = nix.positions(here + "/types.nix", [["message", 539, 24]]);
-const pos$79 = nix.positions(here + "/types.nix", [["message", 540, 24]]);
-const pos$80 = nix.positions(here + "/types.nix", [["message", 541, 24]]);
-const pos$81 = nix.positions(here + "/types.nix", [["message", 542, 24]]);
-const pos$82 = nix.positions(here + "/types.nix", [["message", 543, 24]]);
-const pos$83 = nix.positions(here + "/types.nix", [["pathInStore", 35, 5], ["externalPath", 43, 5], ["nullableValue", 52, 5], ["structuredValue", 69, 5], ["assertions", 71, 5]]);
-const pos$84 = nix.positions(here + "/types.nix", [["options", 16, 3], ["config", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -95,31 +12,31 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   return {
-    [nix.POS]: pos$84,
+    [nix.POS]: $pos[83],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pathInStore: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           type: nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.sel(types, "pathInStore")))),
         })))),
       externalPath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           type: nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.sel(types, "externalPath")))),
         })))),
       nullableValue: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "serializableValueWith"), nix.thunk(() => ({ [nix.POS]: pos$3, typeName: "VAL" })))))),
+          [nix.POS]: $pos[3],
+          type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "serializableValueWith"), nix.thunk(() => ({ [nix.POS]: $pos[2], typeName: "VAL" })))))),
         })))),
       structuredValue: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$6,
-          type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "serializableValueWith"), nix.thunk(() => ({ [nix.POS]: pos$5, typeName: "VAL", nullable: false })))))),
+          [nix.POS]: $pos[5],
+          type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "serializableValueWith"), nix.thunk(() => ({ [nix.POS]: $pos[4], typeName: "VAL", nullable: false })))))),
         })))),
       assertions: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({})))),
     })),
     config: nix.thunk(() => ({
-      [nix.POS]: pos$83,
+      [nix.POS]: $pos[82],
       pathInStore: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         ok1: nix.thunk(() => nix.str`${storeDir}/0lz9p8xhf89kb1c1kk6jxrzskaiygnlh-bash-5.2-p15.drv`),
         ok2: nix.thunk(() => nix.str`${storeDir}/0fb3ykw9r5hpayd05sr0cizwadzq1d8q-bash-5.2-p15`),
         ok3: nix.thunk(() => nix.str`${storeDir}/0fb3ykw9r5hpayd05sr0cizwadzq1d8q-bash-5.2-p15/bin/bash`),
@@ -130,7 +47,7 @@ export default nix.lambda((args) => (() => {
         bad5: "/foo/bar",
       })),
       externalPath: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         bad1: nix.thunk(() => nix.str`${storeDir}/0lz9p8xhf89kb1c1kk6jxrzskaiygnlh-bash-5.2-p15.drv`),
         bad2: nix.thunk(() => nix.str`${storeDir}/0fb3ykw9r5hpayd05sr0cizwadzq1d8q-bash-5.2-p15`),
         bad3: nix.thunk(() => nix.str`${storeDir}/0fb3ykw9r5hpayd05sr0cizwadzq1d8q-bash-5.2-p15/bin/bash`),
@@ -140,19 +57,19 @@ export default nix.lambda((args) => (() => {
         ok2: "/",
       })),
       nullableValue: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         null: null,
         bool: true,
         int: 1n,
         float: 1.1,
         str: "foo",
         path: nix.path(here, "./."),
-        attrs: nix.thunk(() => ({ [nix.POS]: pos$10, foo: 1n })),
-        list: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$11, bar: nix.thunk(() => [1n]) }))]),
+        attrs: nix.thunk(() => ({ [nix.POS]: $pos[9], foo: 1n })),
+        list: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[10], bar: nix.thunk(() => [1n]) }))]),
         lambda: (x) => nix.force(x),
         mixed: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [null, "foo"]))),
       })),
-      structuredValue: nix.thunk(() => ({ [nix.POS]: pos$13, null: null })),
+      structuredValue: nix.thunk(() => ({ [nix.POS]: $pos[12], null: null })),
       assertions: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
         nix.assert_(nix.eq(nix.sel(nix.lookup(w, "str"), "description"), "string"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:74:7");
@@ -166,7 +83,7 @@ export default nix.lambda((args) => (() => {
           ])), "description"), "(attribute set of string) or signed integer or boolean"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:78:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "enum"), nix.thunk(() => [true, null, false])), "description"), "one of true, <null>, false"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:84:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             freeformType: nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "str")))),
           }))), "description"), "open submodule of attribute set of string"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:90:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "int"))), "description"), "attribute set of signed integer"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:94:7");
@@ -184,50 +101,50 @@ export default nix.lambda((args) => (() => {
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "functionTo"), nix.thunk(() => nix.lookup(w, "str"))))), "description"), "attribute set of function that evaluates to a(n) string"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:120:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "passwdEntry"), nix.thunk(() => nix.lookup(w, "str"))))), "description"), "attribute set of (string, not containing newlines or colons)"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:122:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "uniq"), nix.thunk(() => nix.lookup(w, "str"))))), "description"), "attribute set of string"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:125:7");
-        nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "unique"), nix.thunk(() => ({ [nix.POS]: pos$15, message: "test" })), nix.thunk(() => nix.lookup(w, "str"))))), "description"), "attribute set of string"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:126:7");
-        nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "pathWith"), nix.thunk(() => ({ [nix.POS]: pos$16, absolute: true }))))), "description"), "attribute set of absolute path"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:127:7");
+        nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "unique"), nix.thunk(() => ({ [nix.POS]: $pos[14], message: "test" })), nix.thunk(() => nix.lookup(w, "str"))))), "description"), "attribute set of string"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:126:7");
+        nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "pathWith"), nix.thunk(() => ({ [nix.POS]: $pos[15], absolute: true }))))), "description"), "attribute set of absolute path"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:127:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "separatedString"), ","))), "description"), "attribute set of strings concatenated with \",\""), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:131:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "loaOf"), nix.thunk(() => nix.lookup(w, "str"))))), "description"), "attribute set of attribute set of string"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:133:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "lazyAttrsOf"), nix.thunk(() => nix.lookup(w, "str"))))), "description"), "attribute set of lazy attribute set of string"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:134:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({}))))), "description"), "attribute set of (submodule)"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:135:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-              [nix.POS]: pos$17,
+              [nix.POS]: $pos[16],
               freeformType: nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "str")))),
             }))))), "description"), "attribute set of (open submodule of attribute set of string)"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:136:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "addCheck"), nix.thunk(() => nix.lookup(w, "str")), (x) => true))), "description"), "attribute set of string"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:140:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "enum"), []))), "description"), "attribute set of impossible (empty enum)"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:141:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.sel(nix.lookup(w, "ints"), "u32"))), "description"), "attribute set of 32 bit unsigned integer; between 0 and 4294967295 (both inclusive)"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:142:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.sel(nix.lookup(w, "numbers"), "positive"))), "description"), "attribute set of (positive integer or floating point number, meaning >0)"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:145:7");
-        nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "attrsWith"), nix.thunk(() => ({ [nix.POS]: pos$18, elemType: nix.thunk(() => nix.lookup(w, "str")) }))), "description"), "attribute set of string"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:149:7");
-        nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "attrsWith"), nix.thunk(() => ({ [nix.POS]: pos$19, elemType: nix.thunk(() => nix.lookup(w, "int")) }))), "description"), "attribute set of signed integer"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:150:7");
-        nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "attrsWith"), nix.thunk(() => ({ [nix.POS]: pos$20, elemType: nix.thunk(() => nix.lookup(w, "bool")) }))), "description"), "attribute set of boolean"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:151:7");
+        nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "attrsWith"), nix.thunk(() => ({ [nix.POS]: $pos[17], elemType: nix.thunk(() => nix.lookup(w, "str")) }))), "description"), "attribute set of string"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:149:7");
+        nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "attrsWith"), nix.thunk(() => ({ [nix.POS]: $pos[18], elemType: nix.thunk(() => nix.lookup(w, "int")) }))), "description"), "attribute set of signed integer"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:150:7");
+        nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "attrsWith"), nix.thunk(() => ({ [nix.POS]: $pos[19], elemType: nix.thunk(() => nix.lookup(w, "bool")) }))), "description"), "attribute set of boolean"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:151:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "attrsWith"), nix.thunk(() => ({
-            [nix.POS]: pos$21,
+            [nix.POS]: $pos[20],
             elemType: nix.thunk(() => nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "int")), nix.thunk(() => nix.lookup(w, "str")))),
           }))), "description"), "attribute set of (signed integer or string)"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:152:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "attrsWith"), nix.thunk(() => ({
-            [nix.POS]: pos$22,
+            [nix.POS]: $pos[21],
             elemType: nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")))),
           }))), "description"), "attribute set of (null or string)"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:155:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "attrsWith"), nix.thunk(() => ({
-            [nix.POS]: pos$23,
+            [nix.POS]: $pos[22],
             elemType: nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))),
           }))), "description"), "attribute set of list of string"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:156:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "attrsWith"), nix.thunk(() => ({
-            [nix.POS]: pos$24,
+            [nix.POS]: $pos[23],
             elemType: nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "int")))),
           }))), "description"), "attribute set of attribute set of signed integer"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:157:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "attrsWith"), nix.thunk(() => ({
-            [nix.POS]: pos$25,
+            [nix.POS]: $pos[24],
             elemType: nix.thunk(() => nix.sel(nix.lookup(w, "ints"), "positive")),
           }))), "description"), "attribute set of (positive integer, meaning >0)"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:160:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "attrsWith"), nix.thunk(() => ({
-            [nix.POS]: pos$26,
+            [nix.POS]: $pos[25],
             elemType: nix.thunk(() => nix.lookup(w, "str")),
             lazy: true,
           }))), "description"), "lazy attribute set of string"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:163:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "attrsWith"), nix.thunk(() => ({
-            [nix.POS]: pos$27,
+            [nix.POS]: $pos[26],
             elemType: nix.thunk(() => nix.lookup(w, "str")),
             lazy: false,
           }))), "description"), "attribute set of string"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:169:7");
@@ -272,8 +189,8 @@ export default nix.lambda((args) => (() => {
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "bool")), nix.thunk(() => nix.app(nix.lookup(w, "functionTo"), nix.thunk(() => nix.lookup(w, "str"))))), "description"), "boolean or function that evaluates to a(n) string"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:245:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "bool")), nix.thunk(() => nix.app(nix.lookup(w, "passwdEntry"), nix.thunk(() => nix.lookup(w, "str"))))), "description"), "boolean or (string, not containing newlines or colons)"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:247:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "bool")), nix.thunk(() => nix.app(nix.lookup(w, "uniq"), nix.thunk(() => nix.lookup(w, "str"))))), "description"), "boolean or string"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:250:7");
-        nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "bool")), nix.thunk(() => nix.app(nix.lookup(w, "unique"), nix.thunk(() => ({ [nix.POS]: pos$28, message: "test" })), nix.thunk(() => nix.lookup(w, "str"))))), "description"), "boolean or string"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:251:7");
-        nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "bool")), nix.thunk(() => nix.app(nix.lookup(w, "pathWith"), nix.thunk(() => ({ [nix.POS]: pos$29, absolute: true }))))), "description"), "boolean or absolute path"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:252:7");
+        nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "bool")), nix.thunk(() => nix.app(nix.lookup(w, "unique"), nix.thunk(() => ({ [nix.POS]: $pos[27], message: "test" })), nix.thunk(() => nix.lookup(w, "str"))))), "description"), "boolean or string"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:251:7");
+        nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "bool")), nix.thunk(() => nix.app(nix.lookup(w, "pathWith"), nix.thunk(() => ({ [nix.POS]: $pos[28], absolute: true }))))), "description"), "boolean or absolute path"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:252:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "bool")), nix.thunk(() => nix.app(nix.lookup(w, "separatedString"), ","))), "description"), "boolean or strings concatenated with \",\""), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:256:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "bool")), nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "str"))))), "description"), "boolean or attribute set of string"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:258:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "bool")), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str"))))), "description"), "boolean or list of string"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:259:7");
@@ -292,8 +209,8 @@ export default nix.lambda((args) => (() => {
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.app(nix.lookup(w, "functionTo"), nix.thunk(() => nix.lookup(w, "str")))), nix.thunk(() => nix.lookup(w, "bool"))), "description"), "(function that evaluates to a(n) string) or boolean"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:287:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.app(nix.lookup(w, "passwdEntry"), nix.thunk(() => nix.lookup(w, "str")))), nix.thunk(() => nix.lookup(w, "bool"))), "description"), "string, not containing newlines or colons, or boolean"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:289:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.app(nix.lookup(w, "uniq"), nix.thunk(() => nix.lookup(w, "str")))), nix.thunk(() => nix.lookup(w, "bool"))), "description"), "string or boolean"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:292:7");
-        nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.app(nix.lookup(w, "unique"), nix.thunk(() => ({ [nix.POS]: pos$30, message: "test" })), nix.thunk(() => nix.lookup(w, "str")))), nix.thunk(() => nix.lookup(w, "bool"))), "description"), "string or boolean"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:293:7");
-        nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.app(nix.lookup(w, "pathWith"), nix.thunk(() => ({ [nix.POS]: pos$31, absolute: true })))), nix.thunk(() => nix.lookup(w, "bool"))), "description"), "absolute path or boolean"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:294:7");
+        nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.app(nix.lookup(w, "unique"), nix.thunk(() => ({ [nix.POS]: $pos[29], message: "test" })), nix.thunk(() => nix.lookup(w, "str")))), nix.thunk(() => nix.lookup(w, "bool"))), "description"), "string or boolean"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:293:7");
+        nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.app(nix.lookup(w, "pathWith"), nix.thunk(() => ({ [nix.POS]: $pos[30], absolute: true })))), nix.thunk(() => nix.lookup(w, "bool"))), "description"), "absolute path or boolean"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:294:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.app(nix.lookup(w, "separatedString"), ",")), nix.thunk(() => nix.lookup(w, "bool"))), "description"), "strings concatenated with \",\" or boolean"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:295:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "str")))), nix.thunk(() => nix.lookup(w, "bool"))), "description"), "(attribute set of string) or boolean"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:297:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))), nix.thunk(() => nix.lookup(w, "bool"))), "description"), "(list of string) or boolean"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:298:7");
@@ -396,13 +313,13 @@ export default nix.lambda((args) => (() => {
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "passwdEntry"), nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "int"))))), "description"), "(attribute set of signed integer), not containing newlines or colons"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:428:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "passwdEntry"), nix.thunk(() => nix.sel(nix.lookup(w, "ints"), "positive"))), "description"), "(positive integer, meaning >0), not containing newlines or colons"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:431:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "pathWith"), nix.thunk(() => ({}))), "description"), "path"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:434:7");
-        nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "pathWith"), nix.thunk(() => ({ [nix.POS]: pos$32, absolute: true }))), "description"), "absolute path"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:435:7");
-        nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "pathWith"), nix.thunk(() => ({ [nix.POS]: pos$33, inStore: true }))), "description"), "path in the Nix store"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:436:7");
-        nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "pathWith"), nix.thunk(() => ({ [nix.POS]: pos$34, absolute: true, inStore: true }))), "description"), "absolute path in the Nix store"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:437:7");
-        nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "pathWith"), nix.thunk(() => ({ [nix.POS]: pos$35, absolute: false }))), "description"), "relative path"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:442:7");
-        nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "pathWith"), nix.thunk(() => ({ [nix.POS]: pos$36, absolute: null }))), "description"), "path"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:443:7");
-        nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "pathWith"), nix.thunk(() => ({ [nix.POS]: pos$37, inStore: false }))), "description"), "path not in the Nix store"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:444:7");
-        nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "pathWith"), nix.thunk(() => ({ [nix.POS]: pos$38, inStore: null }))), "description"), "path"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:445:7");
+        nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "pathWith"), nix.thunk(() => ({ [nix.POS]: $pos[31], absolute: true }))), "description"), "absolute path"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:435:7");
+        nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "pathWith"), nix.thunk(() => ({ [nix.POS]: $pos[32], inStore: true }))), "description"), "path in the Nix store"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:436:7");
+        nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "pathWith"), nix.thunk(() => ({ [nix.POS]: $pos[33], absolute: true, inStore: true }))), "description"), "absolute path in the Nix store"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:437:7");
+        nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "pathWith"), nix.thunk(() => ({ [nix.POS]: $pos[34], absolute: false }))), "description"), "relative path"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:442:7");
+        nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "pathWith"), nix.thunk(() => ({ [nix.POS]: $pos[35], absolute: null }))), "description"), "path"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:443:7");
+        nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "pathWith"), nix.thunk(() => ({ [nix.POS]: $pos[36], inStore: false }))), "description"), "path not in the Nix store"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:444:7");
+        nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "pathWith"), nix.thunk(() => ({ [nix.POS]: $pos[37], inStore: null }))), "description"), "path"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:445:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "separatedString"), ""), "description"), "strings concatenated with \"\""), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:446:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "separatedString"), ","), "description"), "strings concatenated with \",\""), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:447:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "separatedString"), "\n"), "description"), "strings concatenated with \"\\n\""), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:448:7");
@@ -411,177 +328,177 @@ export default nix.lambda((args) => (() => {
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "strMatching"), "[0-9]{3}-[0-9]{2}-[0-9]{4}"), "description"), "string matching the pattern [0-9]{3}-[0-9]{2}-[0-9]{4}"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:451:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "strMatching"), ".*\\.txt"), "description"), "string matching the pattern .*\\.txt"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:454:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-            [nix.POS]: pos$39,
+            [nix.POS]: $pos[38],
             freeformType: nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "int")))),
           }))), "description"), "open submodule of attribute set of signed integer"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:455:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-            [nix.POS]: pos$40,
+            [nix.POS]: $pos[39],
             freeformType: nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "bool")))),
           }))), "description"), "open submodule of attribute set of boolean"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:458:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-            [nix.POS]: pos$41,
+            [nix.POS]: $pos[40],
             freeformType: nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "int")), nix.thunk(() => nix.lookup(w, "str")))))),
           }))), "description"), "open submodule of attribute set of (signed integer or string)"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:461:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-            [nix.POS]: pos$42,
+            [nix.POS]: $pos[41],
             freeformType: nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")))))),
           }))), "description"), "open submodule of attribute set of (null or string)"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:464:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-            [nix.POS]: pos$43,
+            [nix.POS]: $pos[42],
             freeformType: nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))),
           }))), "description"), "open submodule of list of string"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:467:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-            [nix.POS]: pos$44,
+            [nix.POS]: $pos[43],
             freeformType: nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.sel(nix.lookup(w, "ints"), "positive")))),
           }))), "description"), "open submodule of attribute set of (positive integer, meaning >0)"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:468:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-            [nix.POS]: pos$45,
+            [nix.POS]: $pos[44],
             freeformType: nix.thunk(() => nix.app(nix.lookup(w, "lazyAttrsOf"), nix.thunk(() => nix.lookup(w, "str")))),
           }))), "description"), "open submodule of lazy attribute set of string"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:471:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-            [nix.POS]: pos$46,
+            [nix.POS]: $pos[45],
             freeformType: nix.thunk(() => nix.app(nix.lookup(w, "lazyAttrsOf"), nix.thunk(() => nix.lookup(w, "int")))),
           }))), "description"), "open submodule of lazy attribute set of signed integer"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:474:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-            [nix.POS]: pos$47,
+            [nix.POS]: $pos[46],
             freeformType: nix.thunk(() => nix.app(nix.lookup(w, "lazyAttrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))))),
           }))), "description"), "open submodule of lazy attribute set of list of string"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:477:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({}))), "description"), "submodule"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:480:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "submodule"), nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$50,
+              [nix.POS]: $pos[49],
               options: nix.thunk(() => ({
-                [nix.POS]: pos$49,
-                foo: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$48, type: nix.thunk(() => nix.lookup(w, "str")) })))),
+                [nix.POS]: $pos[48],
+                foo: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: $pos[47], type: nix.thunk(() => nix.lookup(w, "str")) })))),
               })),
             })),
           ])), "description"), "submodule"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:481:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "submodule"), []), "description"), "submodule"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:482:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "submodule"), nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$51,
+              [nix.POS]: $pos[50],
               freeformType: nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "str")))),
             })),
           ])), "description"), "open submodule of attribute set of string"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:483:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "submodule"), nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$52,
+              [nix.POS]: $pos[51],
               freeformType: nix.thunk(() => nix.app(nix.lookup(w, "lazyAttrsOf"), nix.thunk(() => nix.lookup(w, "str")))),
             })),
           ])), "description"), "open submodule of lazy attribute set of string"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:486:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "submodule"), nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$53,
+              [nix.POS]: $pos[52],
               freeformType: nix.thunk(() => nix.app(nix.lookup(w, "lazyAttrsOf"), nix.thunk(() => nix.lookup(w, "int")))),
             })),
           ])), "description"), "open submodule of lazy attribute set of signed integer"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:489:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "submodule"), nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$54,
+              [nix.POS]: $pos[53],
               freeformType: nix.thunk(() => nix.app(nix.lookup(w, "lazyAttrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "int")), nix.thunk(() => nix.lookup(w, "str")))))),
             })),
           ])), "description"), "open submodule of lazy attribute set of (signed integer or string)"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:492:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "submoduleWith"), nix.thunk(() => ({
-            [nix.POS]: pos$56,
+            [nix.POS]: $pos[55],
             modules: nix.thunk(() => [
               nix.thunk(() => ({
-                [nix.POS]: pos$55,
+                [nix.POS]: $pos[54],
                 freeformType: nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "str")))),
               })),
             ]),
           }))), "description"), "open submodule of attribute set of string"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:495:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "submoduleWith"), nix.thunk(() => ({
-            [nix.POS]: pos$58,
+            [nix.POS]: $pos[57],
             modules: nix.thunk(() => [
               nix.thunk(() => ({
-                [nix.POS]: pos$57,
+                [nix.POS]: $pos[56],
                 freeformType: nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "int")))),
               })),
             ]),
           }))), "description"), "open submodule of attribute set of signed integer"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:498:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "submoduleWith"), nix.thunk(() => ({
-            [nix.POS]: pos$60,
+            [nix.POS]: $pos[59],
             modules: nix.thunk(() => [
               nix.thunk(() => ({
-                [nix.POS]: pos$59,
+                [nix.POS]: $pos[58],
                 freeformType: nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "bool")))),
               })),
             ]),
           }))), "description"), "open submodule of attribute set of boolean"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:501:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "submoduleWith"), nix.thunk(() => ({
-            [nix.POS]: pos$62,
+            [nix.POS]: $pos[61],
             modules: nix.thunk(() => [
               nix.thunk(() => ({
-                [nix.POS]: pos$61,
+                [nix.POS]: $pos[60],
                 freeformType: nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "int")), nix.thunk(() => nix.lookup(w, "str")))))),
               })),
             ]),
           }))), "description"), "open submodule of attribute set of (signed integer or string)"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:504:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "submoduleWith"), nix.thunk(() => ({
-            [nix.POS]: pos$64,
+            [nix.POS]: $pos[63],
             modules: nix.thunk(() => [
               nix.thunk(() => ({
-                [nix.POS]: pos$63,
+                [nix.POS]: $pos[62],
                 freeformType: nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")))))),
               })),
             ]),
           }))), "description"), "open submodule of attribute set of (null or string)"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:507:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "submoduleWith"), nix.thunk(() => ({
-            [nix.POS]: pos$66,
+            [nix.POS]: $pos[65],
             modules: nix.thunk(() => [
               nix.thunk(() => ({
-                [nix.POS]: pos$65,
+                [nix.POS]: $pos[64],
                 freeformType: nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))),
               })),
             ]),
           }))), "description"), "open submodule of list of string"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:510:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "submoduleWith"), nix.thunk(() => ({
-            [nix.POS]: pos$68,
+            [nix.POS]: $pos[67],
             modules: nix.thunk(() => [
               nix.thunk(() => ({
-                [nix.POS]: pos$67,
+                [nix.POS]: $pos[66],
                 freeformType: nix.thunk(() => nix.app(nix.lookup(w, "lazyAttrsOf"), nix.thunk(() => nix.lookup(w, "str")))),
               })),
             ]),
           }))), "description"), "open submodule of lazy attribute set of string"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:513:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "submoduleWith"), nix.thunk(() => ({
-            [nix.POS]: pos$70,
+            [nix.POS]: $pos[69],
             modules: nix.thunk(() => [
               nix.thunk(() => ({
-                [nix.POS]: pos$69,
+                [nix.POS]: $pos[68],
                 freeformType: nix.thunk(() => nix.app(nix.lookup(w, "lazyAttrsOf"), nix.thunk(() => nix.lookup(w, "int")))),
               })),
             ]),
           }))), "description"), "open submodule of lazy attribute set of signed integer"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:516:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "submoduleWith"), nix.thunk(() => ({
-            [nix.POS]: pos$72,
+            [nix.POS]: $pos[71],
             modules: nix.thunk(() => [
               nix.thunk(() => ({
-                [nix.POS]: pos$71,
+                [nix.POS]: $pos[70],
                 freeformType: nix.thunk(() => nix.app(nix.lookup(w, "lazyAttrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "int")), nix.thunk(() => nix.lookup(w, "str")))))),
               })),
             ]),
           }))), "description"), "open submodule of lazy attribute set of (signed integer or string)"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:519:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "submoduleWith"), nix.thunk(() => ({
-            [nix.POS]: pos$74,
+            [nix.POS]: $pos[73],
             modules: nix.thunk(() => [
               nix.thunk(() => ({
-                [nix.POS]: pos$73,
+                [nix.POS]: $pos[72],
                 freeformType: nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.sel(nix.lookup(w, "ints"), "positive")))),
               })),
             ]),
           }))), "description"), "open submodule of attribute set of (positive integer, meaning >0)"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:522:7");
-        nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "submoduleWith"), nix.thunk(() => ({ [nix.POS]: pos$75, modules: [] }))), "description"), "submodule"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:525:7");
-        nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "submoduleWith"), nix.thunk(() => ({ [nix.POS]: pos$76, modules: [], description: "custom" }))), "description"), "custom"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:526:7");
-        nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "submoduleWith"), nix.thunk(() => ({ [nix.POS]: pos$77, modules: [], description: "custom module" }))), "description"), "custom module"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:531:7");
+        nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "submoduleWith"), nix.thunk(() => ({ [nix.POS]: $pos[74], modules: [] }))), "description"), "submodule"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:525:7");
+        nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "submoduleWith"), nix.thunk(() => ({ [nix.POS]: $pos[75], modules: [], description: "custom" }))), "description"), "custom"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:526:7");
+        nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "submoduleWith"), nix.thunk(() => ({ [nix.POS]: $pos[76], modules: [], description: "custom module" }))), "description"), "custom module"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:531:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "uniq"), nix.thunk(() => nix.lookup(w, "str"))), "description"), "string"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:536:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "uniq"), nix.thunk(() => nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "int")), nix.thunk(() => nix.lookup(w, "str"))))), "description"), "signed integer or string"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:537:7");
         nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "uniq"), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str"))))), "description"), "list of string"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:538:7");
-        nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "unique"), nix.thunk(() => ({ [nix.POS]: pos$78, message: "test" })), nix.thunk(() => nix.lookup(w, "str"))), "description"), "string"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:539:7");
-        nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "unique"), nix.thunk(() => ({ [nix.POS]: pos$79, message: "" })), nix.thunk(() => nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "int")), nix.thunk(() => nix.lookup(w, "str"))))), "description"), "signed integer or string"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:540:7");
-        nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "unique"), nix.thunk(() => ({ [nix.POS]: pos$80, message: "custom" })), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str"))))), "description"), "list of string"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:541:7");
-        nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "unique"), nix.thunk(() => ({ [nix.POS]: pos$81, message: "test" })), nix.thunk(() => nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "int")), nix.thunk(() => nix.lookup(w, "str"))))), "description"), "signed integer or string"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:542:7");
-        nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "unique"), nix.thunk(() => ({ [nix.POS]: pos$82, message: "test" })), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str"))))), "description"), "list of string"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:543:7");
+        nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "unique"), nix.thunk(() => ({ [nix.POS]: $pos[77], message: "test" })), nix.thunk(() => nix.lookup(w, "str"))), "description"), "string"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:539:7");
+        nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "unique"), nix.thunk(() => ({ [nix.POS]: $pos[78], message: "" })), nix.thunk(() => nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "int")), nix.thunk(() => nix.lookup(w, "str"))))), "description"), "signed integer or string"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:540:7");
+        nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "unique"), nix.thunk(() => ({ [nix.POS]: $pos[79], message: "custom" })), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str"))))), "description"), "list of string"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:541:7");
+        nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "unique"), nix.thunk(() => ({ [nix.POS]: $pos[80], message: "test" })), nix.thunk(() => nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "int")), nix.thunk(() => nix.lookup(w, "str"))))), "description"), "signed integer or string"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:542:7");
+        nix.assert_(nix.eq(nix.sel(nix.app(nix.lookup(w, "unique"), nix.thunk(() => ({ [nix.POS]: $pos[81], message: "test" })), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str"))))), "description"), "list of string"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:543:7");
         nix.assert_(nix.eq(nix.sel(nix.lookup(w, "json"), "description"), "JSON value"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:545:7");
         nix.assert_(nix.eq(nix.sel(nix.lookup(w, "toml"), "description"), "TOML value"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types.nix:546:7");
         return "ok";

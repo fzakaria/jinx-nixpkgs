@@ -2,43 +2,34 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/headless.nix", [[["enable", 8, 41]], [["enable", 9, 40]], [["enable", 10, 33]], [["enable", 11, 30]], [["serial-getty@ttyS0", 8, 20], ["serial-getty@hvc0", 9, 20], ["getty@tty1", 10, 20], ["autovt@", 11, 20]], [["services", 8, 11], ["enableEmergencyMode", 22, 11]], [["splashImage", 25, 20]], [["grub", 25, 15]], [["kernelParams", 14, 8], ["loader", 25, 8]], [["systemd", 8, 3], ["boot", 14, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/headless.nix", [["enable", 8, 41]]);
-const pos$2 = nix.positions(here + "/headless.nix", [["enable", 9, 40]]);
-const pos$3 = nix.positions(here + "/headless.nix", [["enable", 10, 33]]);
-const pos$4 = nix.positions(here + "/headless.nix", [["enable", 11, 30]]);
-const pos$5 = nix.positions(here + "/headless.nix", [["serial-getty@ttyS0", 8, 20], ["serial-getty@hvc0", 9, 20], ["getty@tty1", 10, 20], ["autovt@", 11, 20]]);
-const pos$6 = nix.positions(here + "/headless.nix", [["services", 8, 11], ["enableEmergencyMode", 22, 11]]);
-const pos$7 = nix.positions(here + "/headless.nix", [["splashImage", 25, 20]]);
-const pos$8 = nix.positions(here + "/headless.nix", [["grub", 25, 15]]);
-const pos$9 = nix.positions(here + "/headless.nix", [["kernelParams", 14, 8], ["loader", 25, 8]]);
-const pos$10 = nix.positions(here + "/headless.nix", [["systemd", 8, 3], ["boot", 14, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     systemd: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       services: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         "serial-getty@ttyS0": nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
         })),
-        "serial-getty@hvc0": nix.thunk(() => ({ [nix.POS]: pos$2, enable: false })),
-        "getty@tty1": nix.thunk(() => ({ [nix.POS]: pos$3, enable: false })),
-        "autovt@": nix.thunk(() => ({ [nix.POS]: pos$4, enable: false })),
+        "serial-getty@hvc0": nix.thunk(() => ({ [nix.POS]: $pos[1], enable: false })),
+        "getty@tty1": nix.thunk(() => ({ [nix.POS]: $pos[2], enable: false })),
+        "autovt@": nix.thunk(() => ({ [nix.POS]: $pos[3], enable: false })),
       })),
       enableEmergencyMode: false,
     })),
     boot: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       kernelParams: nix.thunk(() => ["panic=1", "boot.panic_on_fail", "vga=0x317", "nomodeset"]),
       loader: nix.thunk(() => ({
-        [nix.POS]: pos$8,
-        grub: nix.thunk(() => ({ [nix.POS]: pos$7, splashImage: null })),
+        [nix.POS]: $pos[7],
+        grub: nix.thunk(() => ({ [nix.POS]: $pos[6], splashImage: null })),
       })),
     })),
   };

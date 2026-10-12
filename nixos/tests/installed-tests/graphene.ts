@@ -2,13 +2,13 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/graphene.nix", [[["tested", 4, 3]]]);
 const formals$1 = { args: { pkgs: false, makeInstalledTest: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/graphene.nix", [["tested", 4, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const makeInstalledTest = nix.arg($, "makeInstalledTest");
-  return nix.app(makeInstalledTest, nix.thunk(() => ({ [nix.POS]: pos$1, tested: nix.thunk(() => nix.sel(pkgs, "graphene")) })));
+  return nix.app(makeInstalledTest, nix.thunk(() => ({ [nix.POS]: $pos[0], tested: nix.thunk(() => nix.sel(pkgs, "graphene")) })));
 })(), formals$1);
 //# sourceMappingURL=graphene.ts.map

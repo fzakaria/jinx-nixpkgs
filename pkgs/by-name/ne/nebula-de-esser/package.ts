@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["description", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["platforms", 83, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["cargoHash", 31, 3], ["__structuredAttrs", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 42, 3], ["cargoBuildFlags", 55, 3], ["postBuild", 60, 3], ["installPhase", 64, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, libGL: false, libx11: false, libxcursor: false, libxrandr: false, libxinerama: false, libxi: false, libxcb: false, libxkbcommon: false, fontconfig: false, freetype: false, autoPatchelfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["platforms", 83, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["cargoHash", 31, 3], ["__structuredAttrs", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 42, 3], ["cargoBuildFlags", 55, 3], ["postBuild", 60, 3], ["installPhase", 64, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const freetype = nix.arg($, "freetype");
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "nebula-de-esser",
       version: "3.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "subhankardas15071992-cloud",
           repo: "Nebula-De-Esser",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -64,7 +62,7 @@ cp -r "target/bundled/Nebula De-Esser.vst3" "$vst3Dir/"
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Nebula De-Esser - Rust de-esser plugin for CLAP and VST3",
         homepage: "https://github.com/subhankardas15071992-cloud/Nebula-De-Esser",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

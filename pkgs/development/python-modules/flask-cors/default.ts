@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["aiobotocore", 45, 13], ["moto", 45, 25]], [["tests", 44, 12]], [["description", 49, 5], ["homepage", 50, 5], ["changelog", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 28, 3], ["dependencies", 33, 3], ["pythonImportsCheck", 38, 3], ["nativeCheckInputs", 40, 3], ["passthru", 44, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildPythonPackage: false, flask: false, werkzeug: false, pytestCheckHook: false, setuptools: false, "setuptools-scm": false, aiobotocore: false, moto: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["aiobotocore", 45, 13], ["moto", 45, 25]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 44, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 49, 5], ["homepage", 50, 5], ["changelog", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 28, 3], ["dependencies", 33, 3], ["pythonImportsCheck", 38, 3], ["nativeCheckInputs", 40, 3], ["passthru", 44, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const aiobotocore = nix.arg($, "aiobotocore");
   const moto = nix.arg($, "moto");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "flask-cors",
       version: "6.0.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "corydolphin",
           repo: "flask-cors",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,11 +34,11 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["flask_cors"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, aiobotocore: aiobotocore, moto: moto })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], aiobotocore: aiobotocore, moto: moto })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Flask extension adding a decorator for CORS support",
         homepage: "https://github.com/corydolphin/flask-cors",
         changelog: nix.thunk(() => nix.str`https://github.com/corydolphin/flask-cors/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

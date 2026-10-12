@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]], [["description", 50, 5], ["license", 51, 5], ["homepage", 52, 5]], [["pname", 11, 3], ["version", 12, 3], ["minimalOCamlVersion", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["postPatch", 24, 3], ["nativeBuildInputs", 41, 3], ["propagatedBuildInputs", 43, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildDunePackage: false, core: false, core_unix: true, "pkg-config": false, sqlite: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 50, 5], ["license", 51, 5], ["homepage", 52, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["minimalOCamlVersion", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["postPatch", 24, 3], ["nativeBuildInputs", 41, 3], ["propagatedBuildInputs", 43, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const sqlite = nix.arg($, "sqlite");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "hack_parallel",
       version: "1.0.1",
       minimalOCamlVersion: "4.08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rvantonder",
           repo: "hack_parallel",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       propagatedBuildInputs: nix.thunk(() => [core, core_unix, sqlite]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Core parallel and shared memory library used by Hack, Flow, and Pyre",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/rvantonder/hack_parallel",

@@ -2,16 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["homepage", 44, 9]], [["position", 48, 9]], [["rev", 80, 15], ["tag", 81, 15], ["deepClone", 82, 15], ["fetchSubmodules", 83, 15], ["sparseCheckout", 84, 15], ["fetchLFS", 85, 15], ["url", 87, 13]], [["leaveDotGit", 89, 64]], [["gitRepoUrl", 95, 23]], [["url", 92, 13], ["extension", 93, 13], ["passthru", 94, 13]], [["name", 101, 17]], [["meta", 106, 5], ["owner", 107, 13], ["repo", 107, 19], ["tag", 107, 24], ["rev", 108, 5]]]);
 const formals$1 = { args: { lib: false, repoRevToNameMaybe: false, fetchgit: false, fetchzip: false }, ellipsis: false };
 const formals$2 = { args: { owner: false, repo: false, tag: true, rev: true, name: true, fetchSubmodules: true, leaveDotGit: true, deepClone: true, forceFetchGit: true, fetchLFS: true, rootDir: true, sparseCheckout: true, meta: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["homepage", 44, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["position", 48, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["rev", 80, 15], ["tag", 81, 15], ["deepClone", 82, 15], ["fetchSubmodules", 83, 15], ["sparseCheckout", 84, 15], ["fetchLFS", 85, 15], ["url", 87, 13]]);
-const pos$4 = nix.positions(here + "/default.nix", [["leaveDotGit", 89, 64]]);
-const pos$5 = nix.positions(here + "/default.nix", [["gitRepoUrl", 95, 23]]);
-const pos$6 = nix.positions(here + "/default.nix", [["url", 92, 13], ["extension", 93, 13], ["passthru", 94, 13]]);
-const pos$7 = nix.positions(here + "/default.nix", [["name", 101, 17]]);
-const pos$8 = nix.positions(here + "/default.nix", [["meta", 106, 5], ["owner", 107, 13], ["repo", 107, 19], ["tag", 107, 24], ["rev", 108, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,10 +32,10 @@ export default nix.lambda((args) => (() => {
       const position = nix.thunk(() => (nix.asBool(!nix.eq(nix.selOr(args_2, () => null, "meta", "description"), null)) ? nix.builtins.unsafeGetAttrPos("description", nix.thunk(() => nix.sel(args_2, "meta"))) : (nix.asBool(!nix.eq(tag, null)) ? nix.builtins.unsafeGetAttrPos("tag", args_2) : nix.builtins.unsafeGetAttrPos("rev", args_2))));
       const baseUrl = nix.thunk(() => nix.str`https://bitbucket.org/${owner}/${repo}`);
       const newMeta = nix.thunk(() => nix.update(meta, nix.update({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: nix.thunk(() => nix.selOr(meta, () => nix.force(baseUrl), "homepage")),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(position, null)), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           position: nix.thunk(() => nix.str`${nix.sel(position, "file")}:${nix.builtins.toString(nix.thunk(() => nix.sel(position, "line")))}`),
         }))))));
       const gitRepoUrl = nix.thunk(() => nix.str`${baseUrl}.git`);
@@ -51,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const useFetchGit = nix.thunk(() => (nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool(fetchSubmodules) || nix.asBool(nix.eq(leaveDotGit, true)))) || nix.asBool(deepClone))) || nix.asBool(forceFetchGit))) || nix.asBool(fetchLFS))) || nix.asBool(!nix.eq(rootDir, "")))) || nix.asBool(!nix.eq(sparseCheckout, []))));
       const fetcher = nix.thunk(() => (nix.asBool(useFetchGit) ? nix.force(fetchgit) : nix.force(fetchzip)));
       const fetcherArgs = nix.thunk(() => nix.update((nix.asBool(useFetchGit) ? nix.update({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         rev: rev,
         tag: tag,
         deepClone: deepClone,
@@ -59,14 +52,14 @@ export default nix.lambda((args) => (() => {
         sparseCheckout: sparseCheckout,
         fetchLFS: fetchLFS,
         url: gitRepoUrl,
-      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(leaveDotGit, null)), nix.thunk(() => ({ [nix.POS]: pos$4, leaveDotGit: leaveDotGit })))) : {
-        [nix.POS]: pos$6,
+      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(leaveDotGit, null)), nix.thunk(() => ({ [nix.POS]: $pos[3], leaveDotGit: leaveDotGit })))) : {
+        [nix.POS]: $pos[5],
         url: nix.thunk(() => nix.str`https://bitbucket.org/${owner}/${repo}/get/${revWithTag}.tar.gz`),
         extension: "tar.gz",
-        passthru: nix.thunk(() => ({ [nix.POS]: pos$5, gitRepoUrl: gitRepoUrl })),
-      }), nix.update(passthruAttrs, { [nix.POS]: pos$7, name: name })));
+        passthru: nix.thunk(() => ({ [nix.POS]: $pos[4], gitRepoUrl: gitRepoUrl })),
+      }), nix.update(passthruAttrs, { [nix.POS]: $pos[6], name: name })));
       return nix.update(nix.app(fetcher, fetcherArgs), {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         meta: newMeta,
         owner: owner,
         repo: repo,

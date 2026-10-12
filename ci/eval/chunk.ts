@@ -2,9 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/chunk.nix", [[["path", 19, 13], ["includeBroken", 20, 13], ["systems", 20, 27], ["attrPathsDisallowedForInternalUse", 21, 29], ["extraNixpkgsConfig", 22, 5]], [["recurseForDerivations", 39, 17]]]);
 const formals$1 = { args: { lib: true, path: true, preEvalFile: false, chunkSize: false, myChunk: false, includeBroken: false, systems: false, extraNixpkgsConfigJson: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/chunk.nix", [["path", 19, 13], ["includeBroken", 20, 13], ["systems", 20, 27], ["attrPathsDisallowedForInternalUse", 21, 29], ["extraNixpkgsConfig", 22, 5]]);
-const pos$2 = nix.positions(here + "/chunk.nix", [["recurseForDerivations", 39, 17]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const preEvalResult = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), preEvalFile));
   const myAttrpaths = nix.thunk(() => nix.app(nix.sel(lib, "sublist"), nix.thunk(() => nix.mul(chunkSize, myChunk)), chunkSize, nix.thunk(() => nix.sel(preEvalResult, "paths"))));
   const unfiltered = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./outpaths.nix")), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       path: path,
       includeBroken: includeBroken,
       systems: systems,
@@ -27,7 +26,7 @@ export default nix.lambda((args) => (() => {
       extraNixpkgsConfig: nix.thunk(() => nix.builtins.fromJSON(extraNixpkgsConfigJson)),
     }))));
   const filtered = nix.thunk(() => (() => {
-    const recurse = (index) => (paths) => (attrs) => nix.app(nix.sel(lib, "mapAttrs"), (name) => (values) => (nix.asBool(nix.has(attrs, nix.key(nix.force(name)))) ? (nix.asBool(nix.app(nix.sel(lib, "any"), (value) => nix.le(nix.app(nix.sel(lib, "length"), value), nix.add(index, 1n)), values)) ? nix.sel(attrs, nix.key(nix.force(name))) : nix.update(nix.app(recurse, nix.thunk(() => nix.add(index, 1n)), values, nix.thunk(() => nix.sel(attrs, nix.key(nix.force(name))))), { [nix.POS]: pos$2, recurseForDerivations: true })) : null), nix.thunk(() => nix.app(nix.sel(lib, "groupBy"), (a) => nix.app(nix.sel(lib, "elemAt"), a, index), paths)));
+    const recurse = (index) => (paths) => (attrs) => nix.app(nix.sel(lib, "mapAttrs"), (name) => (values) => (nix.asBool(nix.has(attrs, nix.key(nix.force(name)))) ? (nix.asBool(nix.app(nix.sel(lib, "any"), (value) => nix.le(nix.app(nix.sel(lib, "length"), value), nix.add(index, 1n)), values)) ? nix.sel(attrs, nix.key(nix.force(name))) : nix.update(nix.app(recurse, nix.thunk(() => nix.add(index, 1n)), values, nix.thunk(() => nix.sel(attrs, nix.key(nix.force(name))))), { [nix.POS]: $pos[1], recurseForDerivations: true })) : null), nix.thunk(() => nix.app(nix.sel(lib, "groupBy"), (a) => nix.app(nix.sel(lib, "elemAt"), a, index), paths)));
     return nix.app(recurse, 0n, myAttrpaths, unfiltered);
   })());
   return nix.force(filtered);

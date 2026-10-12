@@ -2,14 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["name", 30, 5], ["src", 31, 26], ["hash", 32, 5]], [["npmDeps", 29, 7]], [["extraArgs", 69, 40]], [["updateScript", 69, 5], ["eafPythonDeps", 70, 5]], [["description", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["maintainers", 84, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["env", 29, 3], ["nativeBuildInputs", 35, 3], ["postPatch", 40, 3], ["postBuild", 50, 3], ["files", 54, 3], ["postInstall", 61, 3], ["passthru", 68, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, melpaBuild: false, fetchFromGitHub: false, delta: false, ripgrep: false, nodejs: false, fetchNpmDeps: false, npmHooks: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 30, 5], ["src", 31, 26], ["hash", 32, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["npmDeps", 29, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["extraArgs", 69, 40]]);
-const pos$5 = nix.positions(here + "/default.nix", [["updateScript", 69, 5], ["eafPythonDeps", 70, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["maintainers", 84, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["env", 29, 3], ["nativeBuildInputs", 35, 3], ["postPatch", 40, 3], ["postBuild", 50, 3], ["files", 54, 3], ["postInstall", 61, 3], ["passthru", 68, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,20 +17,20 @@ export default nix.lambda((args) => (() => {
   const npmHooks = nix.arg($, "npmHooks");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(melpaBuild, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "eaf-git",
       version: "0-unstable-2025-07-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "emacs-eaf",
           repo: "eaf-git",
           rev: "24c3887075630a21d0a53ddb95b01ef70694f03a",
           hash: "sha256-ggxgwMTk46WDLKxrNkzX3pSO/yLoLTJVH08T4o70fEM=",
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-npm-deps`),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             hash: "sha256-kbFnPZlFqoE1Q/KKVW5ZI4HPPWsIjXA/jne2jw7BeEc=",
@@ -59,8 +53,8 @@ cp -r node_modules $LISPDIR/
 cp -r dist $LISPDIR/
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[3], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
         eafPythonDeps: (ps) => (() => {
           const w = nix.withScope(ps, null);
           return [
@@ -73,7 +67,7 @@ cp -r dist $LISPDIR/
         })(),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Git client for the EAF",
         homepage: "https://github.com/emacs-eaf/eaf-git",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["description", 63, 5], ["mainProgram", 64, 5], ["longDescription", 65, 5], ["license", 69, 5], ["homepage", 70, 5], ["platforms", 71, 5], ["maintainers", 72, 5]], [["version", 11, 3], ["pname", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 20, 3], ["dontUnpack", 22, 3], ["installPhase", 24, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, perl: false, perlPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 63, 5], ["mainProgram", 64, 5], ["longDescription", 65, 5], ["license", 69, 5], ["homepage", 70, 5], ["platforms", 71, 5], ["maintainers", 72, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 11, 3], ["pname", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 20, 3], ["dontUnpack", 22, 3], ["installPhase", 24, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const perlPackages = nix.arg($, "perlPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "4.1.3",
       pname: "kpcli",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/kpcli/kpcli-${nix.sel(finalAttrs, "version")}.pl`),
           hash: "sha256-yRNj5OB/NSGoZ/aNtgLJW1PcFn5DZu5/8lQlK0F2xi8=",
         })))),
@@ -61,7 +59,7 @@ makeWrapper $out/share/kpcli.pl $out/bin/kpcli --set PERL5LIB \\
       })()}"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "KeePass Command Line Interface",
         mainProgram: "kpcli",
         longDescription: "KeePass Command Line Interface (CLI) / interactive shell.\nUse this program to access and manage your KeePass 1.x or 2.x databases from a Unix-like command line.\n",

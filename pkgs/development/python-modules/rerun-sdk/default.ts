@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 220, 5], ["changelog", 222, 7], ["homepage", 223, 7], ["license", 224, 7], ["maintainers", 225, 7], ["mainProgram", 227, 5]], [["pname", 35, 3], ["pyproject", 36, 3], ["__structuredAttrs", 37, 3], ["src", 40, 5], ["version", 41, 5], ["cargoDeps", 42, 5], ["postPatch", 45, 3], ["nativeBuildInputs", 82, 3], ["dependencies", 89, 3], ["buildAndTestSubdir", 98, 3], ["postInstall", 105, 3], ["pythonImportsCheck", 110, 3], ["nativeCheckInputs", 112, 3], ["addDlopenRunpaths", 126, 19], ["addDlopenRunpathsPhase", 126, 37], ["postPhases", 127, 3], ["pytestFlags", 129, 3], ["disabledTests", 135, 3], ["disabledTestPaths", 175, 3], ["__darwinAllowLocalNetworking", 217, 3], ["meta", 219, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, pkgs: false, buildPythonPackage: false, rerun: false, python: false, rustPlatform: false, attrs: false, numpy: false, pillow: false, psutil: false, pyarrow: false, "typing-extensions": false, av: false, datafusion: false, "inline-snapshot": false, polars: false, pytestCheckHook: false, "rerun-notebook": false, semver: false, syrupy: false, tomli: false, torch: false, torchvision: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 220, 5], ["changelog", 222, 7], ["homepage", 223, 7], ["license", 224, 7], ["maintainers", 225, 7], ["mainProgram", 227, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 35, 3], ["pyproject", 36, 3], ["__structuredAttrs", 37, 3], ["src", 40, 5], ["version", 41, 5], ["cargoDeps", 42, 5], ["postPatch", 45, 3], ["nativeBuildInputs", 82, 3], ["dependencies", 89, 3], ["buildAndTestSubdir", 98, 3], ["postInstall", 105, 3], ["pythonImportsCheck", 110, 3], ["nativeCheckInputs", 112, 3], ["addDlopenRunpaths", 126, 19], ["addDlopenRunpathsPhase", 126, 37], ["postPhases", 127, 3], ["pytestFlags", 129, 3], ["disabledTests", 135, 3], ["disabledTestPaths", 175, 3], ["__darwinAllowLocalNetworking", 217, 3], ["meta", 219, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +32,7 @@ export default nix.lambda((args) => (() => {
   const torch = nix.arg($, "torch");
   const torchvision = nix.arg($, "torchvision");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "rerun-sdk",
       pyproject: true,
       __structuredAttrs: true,
@@ -114,7 +113,7 @@ ln -s rerun_sdk/rerun $out/${nix.sel(python, "sitePackages")}/rerun
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(rerun, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Python bindings for `rerun` (an interactive visualization tool for stream data)",
         changelog: nix.thunk(() => nix.attr(from, "changelog")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),

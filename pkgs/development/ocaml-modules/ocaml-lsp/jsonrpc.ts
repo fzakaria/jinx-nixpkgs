@@ -2,25 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/jsonrpc.nix", [[["name", 35, 9], ["minimalOCamlVersion", 36, 9], ["sha256", 37, 9]], [["name", 40, 9], ["minimalOCamlVersion", 41, 9], ["sha256", 42, 9]], [["name", 45, 9], ["minimalOCamlVersion", 46, 9], ["sha256", 47, 9]], [["name", 50, 9], ["minimalOCamlVersion", 51, 9], ["sha256", 52, 9]], [["name", 55, 9], ["minimalOCamlVersion", 56, 9], ["sha256", 57, 9]], [["name", 60, 9], ["minimalOCamlVersion", 61, 9], ["sha256", 62, 9]], [["name", 65, 9], ["minimalOCamlVersion", 66, 9], ["sha256", 67, 9]], [["name", 70, 9], ["minimalOCamlVersion", 71, 9], ["sha256", 72, 9]], [["name", 75, 9], ["minimalOCamlVersion", 76, 9], ["sha256", 77, 9]], [["name", 80, 9], ["minimalOCamlVersion", 81, 9], ["sha256", 82, 9]], [["name", 85, 9], ["minimalOCamlVersion", 86, 9], ["sha256", 87, 9]], [["name", 90, 9], ["minimalOCamlVersion", 91, 9], ["sha256", 92, 9]], [["name", 95, 9], ["minimalOCamlVersion", 96, 9], ["sha256", 97, 9]], [["1.27.0", 34, 7], ["1.26.0", 39, 7], ["1.25.0", 44, 7], ["1.24.0", 49, 7], ["1.23.1", 54, 7], ["1.22.0", 59, 7], ["1.21.0", 64, 7], ["1.18.0", 69, 7], ["1.17.0", 74, 7], ["1.14.2", 79, 7], ["1.10.5", 84, 7], ["1.9.0", 89, 7], ["1.4.1", 94, 7]], [["url", 107, 5], ["sha256", 108, 22]], [["url", 125, 11], ["includes", 126, 11], ["hash", 127, 11]], [["description", 155, 5], ["license", 156, 5], ["platforms", 157, 5], ["maintainers", 158, 5]], [["pname", 104, 3], ["version", 105, 11], ["src", 106, 3], ["patches", 115, 3], ["minimalOCamlVersion", 131, 20], ["buildInputs", 133, 3], ["propagatedBuildInputs", 143, 3], ["meta", 154, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, "stdlib-shims": false, ppx_yojson_conv_lib: false, "ocaml-syntax-shims": false, yojson: false, result: false, fetchurl: false, fetchpatch2: false, lib: false, ocaml: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/jsonrpc.nix", [["name", 35, 9], ["minimalOCamlVersion", 36, 9], ["sha256", 37, 9]]);
-const pos$2 = nix.positions(here + "/jsonrpc.nix", [["name", 40, 9], ["minimalOCamlVersion", 41, 9], ["sha256", 42, 9]]);
-const pos$3 = nix.positions(here + "/jsonrpc.nix", [["name", 45, 9], ["minimalOCamlVersion", 46, 9], ["sha256", 47, 9]]);
-const pos$4 = nix.positions(here + "/jsonrpc.nix", [["name", 50, 9], ["minimalOCamlVersion", 51, 9], ["sha256", 52, 9]]);
-const pos$5 = nix.positions(here + "/jsonrpc.nix", [["name", 55, 9], ["minimalOCamlVersion", 56, 9], ["sha256", 57, 9]]);
-const pos$6 = nix.positions(here + "/jsonrpc.nix", [["name", 60, 9], ["minimalOCamlVersion", 61, 9], ["sha256", 62, 9]]);
-const pos$7 = nix.positions(here + "/jsonrpc.nix", [["name", 65, 9], ["minimalOCamlVersion", 66, 9], ["sha256", 67, 9]]);
-const pos$8 = nix.positions(here + "/jsonrpc.nix", [["name", 70, 9], ["minimalOCamlVersion", 71, 9], ["sha256", 72, 9]]);
-const pos$9 = nix.positions(here + "/jsonrpc.nix", [["name", 75, 9], ["minimalOCamlVersion", 76, 9], ["sha256", 77, 9]]);
-const pos$10 = nix.positions(here + "/jsonrpc.nix", [["name", 80, 9], ["minimalOCamlVersion", 81, 9], ["sha256", 82, 9]]);
-const pos$11 = nix.positions(here + "/jsonrpc.nix", [["name", 85, 9], ["minimalOCamlVersion", 86, 9], ["sha256", 87, 9]]);
-const pos$12 = nix.positions(here + "/jsonrpc.nix", [["name", 90, 9], ["minimalOCamlVersion", 91, 9], ["sha256", 92, 9]]);
-const pos$13 = nix.positions(here + "/jsonrpc.nix", [["name", 95, 9], ["minimalOCamlVersion", 96, 9], ["sha256", 97, 9]]);
-const pos$14 = nix.positions(here + "/jsonrpc.nix", [["1.27.0", 34, 7], ["1.26.0", 39, 7], ["1.25.0", 44, 7], ["1.24.0", 49, 7], ["1.23.1", 54, 7], ["1.22.0", 59, 7], ["1.21.0", 64, 7], ["1.18.0", 69, 7], ["1.17.0", 74, 7], ["1.14.2", 79, 7], ["1.10.5", 84, 7], ["1.9.0", 89, 7], ["1.4.1", 94, 7]]);
-const pos$15 = nix.positions(here + "/jsonrpc.nix", [["url", 107, 5], ["sha256", 108, 22]]);
-const pos$16 = nix.positions(here + "/jsonrpc.nix", [["url", 125, 11], ["includes", 126, 11], ["hash", 127, 11]]);
-const pos$17 = nix.positions(here + "/jsonrpc.nix", [["description", 155, 5], ["license", 156, 5], ["platforms", 157, 5], ["maintainers", 158, 5]]);
-const pos$18 = nix.positions(here + "/jsonrpc.nix", [["pname", 104, 3], ["version", 105, 11], ["src", 106, 3], ["patches", 115, 3], ["minimalOCamlVersion", 131, 20], ["buildInputs", 133, 3], ["propagatedBuildInputs", 143, 3], ["meta", 154, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,98 +19,98 @@ export default nix.lambda((args) => (() => {
   const ocaml = nix.arg($, "ocaml");
   const version = nix.argOr($, "version", () => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "5.5")) ? "1.27.0" : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "5.4")) ? "1.26.0" : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "5.3")) ? "1.23.1" : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "5.2")) ? "1.21.0" : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.14")) ? "1.18.0" : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.13")) ? "1.10.5" : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.12")) ? "1.9.0" : "1.4.1"))))))));
   const params = nix.thunk(() => nix.sel({
-    [nix.POS]: pos$14,
+    [nix.POS]: $pos[13],
     "1.27.0": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "lsp",
       minimalOCamlVersion: "5.3",
       sha256: "sha256-BDrNaSP4pcuq2RVFI1cKsTlzuu72mOK1VTIT3WN5JxU=",
     })),
     "1.26.0": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "lsp",
       minimalOCamlVersion: "5.3",
       sha256: "sha256-tMgQ1mZKW/F1pvmUbIDIzCsY5GqYWTTBRQss4IDkaDI=",
     })),
     "1.25.0": nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "lsp",
       minimalOCamlVersion: "5.3",
       sha256: "sha256-4xXSvvP4lwmtJXCEaSeZblT/ja/OJRGIgWq5fO8h8CA=",
     })),
     "1.24.0": nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       name: "lsp",
       minimalOCamlVersion: "5.3",
       sha256: "sha256-TVoaIVf2EvbALY+DjZferKX4GyOt08XOpcts7Ot7N1c=",
     })),
     "1.23.1": nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       name: "lsp",
       minimalOCamlVersion: "5.3",
       sha256: "sha256-x0fjlAJmOeogRGfoWd6T6o6ZWNv0T3gNyyoYl8VtdXE=",
     })),
     "1.22.0": nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       name: "lsp",
       minimalOCamlVersion: "5.2",
       sha256: "sha256-UZ3DV30V3CIQ3vpYBIGnQ1eRGNUGk7aRuxDLyCA/tYE=",
     })),
     "1.21.0": nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       name: "lsp",
       minimalOCamlVersion: "5.2",
       sha256: "sha256-Z4cDN/8j0NK6Q3dL+1io/eBJd+o32k0txQDtC1fO9xc=",
     })),
     "1.18.0": nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       name: "lsp",
       minimalOCamlVersion: "4.14",
       sha256: "sha256-tZ2kPM/S/9J3yeX2laDjnHLA144b8svy9iwae32nXwM=",
     })),
     "1.17.0": nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       name: "lsp",
       minimalOCamlVersion: "4.14",
       sha256: "sha256-j7i71xfu/SYItNg0WBBbZg4N46ETTcj8IWrmWdTRlgA=",
     })),
     "1.14.2": nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       name: "lsp",
       minimalOCamlVersion: "4.14",
       sha256: "sha256-1R+HYaGbPLGDs5DMN3jmnrZFMhMmPUHgF+s+yNzIVJQ=",
     })),
     "1.10.5": nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       name: "jsonrpc",
       minimalOCamlVersion: "4.13",
       sha256: "sha256-TeJS6t1ruWhWPvWNatrnSUWI6T17XKiosHLYizBDDcw=",
     })),
     "1.9.0": nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       name: "jsonrpc",
       minimalOCamlVersion: "4.12",
       sha256: "sha256:1ac44n6g3rf84gvhcca545avgf9vpkwkkkm0s8ipshfhp4g4jikh",
     })),
     "1.4.1": nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       name: "jsonrpc",
       minimalOCamlVersion: "4.06",
       sha256: "1ssyazc0yrdng98cypwa9m3nzfisdzpp7hqnx684rqj8f0g3gs6f",
     })),
   }, nix.key(nix.str`${version}`)));
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       pname: "jsonrpc",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           url: nix.thunk(() => nix.str`https://github.com/ocaml/ocaml-lsp/releases/download/${version}/${nix.sel(params, "name")}-${version}.tbz`),
           sha256: nix.thunk(() => nix.attr(params, "sha256")),
         })))),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "elem"), version, nix.thunk(() => ["1.17.0", "1.18.0", "1.21.0", "1.22.0"]))), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-              [nix.POS]: pos$16,
+              [nix.POS]: $pos[15],
               url: "https://github.com/ocaml/ocaml-lsp/commit/ce94e15c1afcef409a07f9feb99029b4a762eaa3.patch?full_index=1",
               includes: nix.thunk(() => ["jsonrpc/src/*"]),
               hash: "sha256-HUClUbFYwRvhELbJ5g8DYlxPIaHb0NTc7WSLlfuqkSk=",
@@ -137,7 +120,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "1.7.0")) ? [] : [yojson, stdlib_shims, ocaml_syntax_shims])),
       propagatedBuildInputs: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "1.17.0")) ? [yojson] : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "1.7.0")) ? [] : [ppx_yojson_conv_lib, result]))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         description: "Jsonrpc protocol implementation in OCaml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

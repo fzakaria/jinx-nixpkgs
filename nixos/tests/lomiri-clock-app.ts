@@ -2,47 +2,36 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/lomiri-clock-app.nix", [[["maintainers", 4, 8]], [["enable", 11, 24]], [["xserver", 11, 16]], [["UITK_ICON_THEME", 19, 11]], [["text", 24, 34]], [["icewm/prefoverride", 24, 13]], [["systemPackages", 14, 9], ["variables", 18, 9], ["etc", 24, 9]], [["supportedLocales", 29, 12]], [["packages", 31, 13]], [["imports", 9, 7], ["services", 11, 7], ["environment", 13, 7], ["i18n", 29, 7], ["fonts", 31, 7]], [["machine", 6, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["enableOCR", 37, 3], ["testScript", 39, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/lomiri-clock-app.nix", [["maintainers", 4, 8]]);
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/lomiri-clock-app.nix", [["enable", 11, 24]]);
-const pos$3 = nix.positions(here + "/lomiri-clock-app.nix", [["xserver", 11, 16]]);
-const pos$4 = nix.positions(here + "/lomiri-clock-app.nix", [["UITK_ICON_THEME", 19, 11]]);
-const pos$5 = nix.positions(here + "/lomiri-clock-app.nix", [["text", 24, 34]]);
-const pos$6 = nix.positions(here + "/lomiri-clock-app.nix", [["icewm/prefoverride", 24, 13]]);
-const pos$7 = nix.positions(here + "/lomiri-clock-app.nix", [["systemPackages", 14, 9], ["variables", 18, 9], ["etc", 24, 9]]);
-const pos$8 = nix.positions(here + "/lomiri-clock-app.nix", [["supportedLocales", 29, 12]]);
-const pos$9 = nix.positions(here + "/lomiri-clock-app.nix", [["packages", 31, 13]]);
-const pos$10 = nix.positions(here + "/lomiri-clock-app.nix", [["imports", 9, 7], ["services", 11, 7], ["environment", 13, 7], ["i18n", 29, 7], ["fonts", 31, 7]]);
-const pos$11 = nix.positions(here + "/lomiri-clock-app.nix", [["machine", 6, 9]]);
-const pos$12 = nix.positions(here + "/lomiri-clock-app.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["enableOCR", 37, 3], ["testScript", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     name: "lomiri-clock-app-standalone",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => nix.sel(lib, "teams", "lomiri", "members")),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           imports: nix.thunk(() => [nix.path(here, "./common/x11.nix")]),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            xserver: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+            [nix.POS]: $pos[2],
+            xserver: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(pkgs_1, "lomiri")), null);
               return [
@@ -50,15 +39,15 @@ export default nix.lambda((args) => (() => {
                 nix.thunk(() => nix.lookup(w, "lomiri-clock-app")),
               ];
             })()),
-            variables: nix.thunk(() => ({ [nix.POS]: pos$4, UITK_ICON_THEME: "suru" })),
+            variables: nix.thunk(() => ({ [nix.POS]: $pos[3], UITK_ICON_THEME: "suru" })),
             etc: nix.thunk(() => ({
-              [nix.POS]: pos$6,
-              "icewm/prefoverride": nix.thunk(() => ({ [nix.POS]: pos$5, text: "DesktopBackgroundColor=#FFFFFF\n" })),
+              [nix.POS]: $pos[5],
+              "icewm/prefoverride": nix.thunk(() => ({ [nix.POS]: $pos[4], text: "DesktopBackgroundColor=#FFFFFF\n" })),
             })),
           })),
-          i18n: nix.thunk(() => ({ [nix.POS]: pos$8, supportedLocales: nix.thunk(() => ["all"]) })),
+          i18n: nix.thunk(() => ({ [nix.POS]: $pos[7], supportedLocales: nix.thunk(() => ["all"]) })),
           fonts: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             packages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs_1, null);
               return [nix.thunk(() => nix.lookup(w, "ubuntu-classic"))];

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["fetchSubmodules", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["tuxclocker-without-unfree", 58, 15]], [["tests", 57, 5], ["updateScript", 60, 5]], [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 39, 3], ["postInstall", 45, 3], ["mesonFlags", 52, 3], ["passthru", 56, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, boost: false, fetchFromGitHub: false, git: false, makeWrapper: false, meson: false, ninja: false, "pkg-config": false, python3: false, qt5: false, "tuxclocker-plugins": false, "tuxclocker-without-unfree": false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["fetchSubmodules", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["tuxclocker-without-unfree", 58, 15]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 57, 5], ["updateScript", 60, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 39, 3], ["postInstall", 45, 3], ["mesonFlags", 52, 3], ["passthru", 56, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const tuxclocker_without_unfree = nix.arg($, "tuxclocker-without-unfree");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "tuxclocker",
       version: "1.5.1-unstable-2026-08-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Lurkki14",
           repo: "tuxclocker",
           fetchSubmodules: true,
@@ -57,12 +53,12 @@ export default nix.lambda((args) => (() => {
 `),
       mesonFlags: nix.thunk(() => ["-Dplugins=false"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, "tuxclocker-without-unfree": tuxclocker_without_unfree })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], "tuxclocker-without-unfree": tuxclocker_without_unfree })),
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Qt overclocking tool for GNU/Linux",
         homepage: "https://github.com/Lurkki14/tuxclocker",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

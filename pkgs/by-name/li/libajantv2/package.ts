@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["ajantv2", 65, 29]], [["tests", 64, 12]], [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["platforms", 73, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 23, 3], ["outputs", 30, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 40, 3], ["cmakeFlags", 45, 3], ["postInstall", 49, 3], ["passthru", 64, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cmake: false, ninja: false, "pkg-config": false, mbedtls: false, udev: false, linuxPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ajantv2", 65, 29]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 64, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["platforms", 73, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 23, 3], ["outputs", 30, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 40, 3], ["cmakeFlags", 45, 3], ["postInstall", 49, 3], ["passthru", 64, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const udev = nix.arg($, "udev");
   const linuxPackages = nix.arg($, "linuxPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "libajantv2",
       version: "17.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "aja-video",
           repo: "libajantv2",
           rev: nix.thunk(() => nix.str`ntv2_${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -57,14 +53,14 @@ Cflags: -I\\\${includedir} -I\\\${includedir}/ajantv2/includes -I\\\${includedir
 EOF
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           ajantv2: nix.thunk(() => nix.attr(linuxPackages, "ajantv2")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "AJA NTV2 Open Source Static Libs and Headers for building applications that only wish to statically link against",
         homepage: "https://github.com/aja-video/libajantv2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

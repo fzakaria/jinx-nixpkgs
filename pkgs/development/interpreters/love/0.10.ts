@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/0.10.nix", [[["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["sha256", 33, 5]], [["NIX_CFLAGS_COMPILE", 65, 7]], [["homepage", 68, 5], ["description", 69, 5], ["mainProgram", 70, 5], ["license", 71, 5], ["platforms", 72, 5], ["maintainers", 73, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 41, 3], ["preConfigure", 59, 3], ["configureFlags", 61, 3], ["env", 65, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, SDL2: false, libGLU: false, libGL: false, openal: false, luajit: false, freetype: false, physfs: false, libmodplug: false, mpg123: false, libvorbis: false, libogg: false, libtheora: false, which: false, autoconf: false, automake: false, libtool: false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/0.10.nix", [["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["sha256", 33, 5]]);
-const pos$2 = nix.positions(here + "/0.10.nix", [["NIX_CFLAGS_COMPILE", 65, 7]]);
-const pos$3 = nix.positions(here + "/0.10.nix", [["homepage", 68, 5], ["description", 69, 5], ["mainProgram", 70, 5], ["license", 71, 5], ["platforms", 72, 5], ["maintainers", 73, 5]]);
-const pos$4 = nix.positions(here + "/0.10.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 41, 3], ["preConfigure", 59, 3], ["configureFlags", 61, 3], ["env", 65, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const pname = "love";
       const version = "0.10.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "love2d",
           repo: "love",
           rev: version,
@@ -61,9 +58,9 @@ export default nix.lambda((args) => (() => {
       ]);
       const preConfigure = "$shell ./platform/unix/automagic";
       const configureFlags = nix.thunk(() => ["--with-lua=luajit"]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-DluaL_reg=luaL_Reg" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-DluaL_reg=luaL_Reg" }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://love2d.org",
         description: "Lua-based 2D game engine/scripting language",
         mainProgram: "love",
@@ -72,7 +69,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "raskin"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

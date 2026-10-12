@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["NIX_CFLAGS_COMPILE", 42, 7]], [["updateScript", 44, 12]], [["homepage", 52, 5], ["description", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5], ["mainProgram", 57, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 33, 3], ["env", 42, 3], ["passthru", 44, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, gnused: false, lib: false, "nix-update": false, "pkg-config": false, writeShellScript: false, glib: false, gtk3: false, wrapGAppsHook3: false, libticonv: false, libtifiles2: false, libticables2: false, libticalcs2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 42, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 44, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 52, 5], ["description", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5], ["mainProgram", 57, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 33, 3], ["env", 42, 3], ["passthru", 44, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const libticables2 = nix.arg($, "libticables2");
   const libticalcs2 = nix.arg($, "libticalcs2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "tilem",
       version: "2.1-unstable-2025-11-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kuba160",
           repo: "tilem-gtk3",
           rev: "64b9a38a4460abf52bf09ab28dffdc3784f002a3",
@@ -39,11 +35,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, wrapGAppsHook3]),
       buildInputs: nix.thunk(() => [glib, gtk3, libticonv, libtifiles2, libticables2, libticalcs2]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-lm"]))),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update-tilem", nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix_update)} "$UPDATE_NIX_ATTR_PATH" --version=branch
 ${nix.app(nix.sel(lib, "getExe"), gnused)} -i -E \\
   's/version = "0-unstable-([0-9-]+)";/version = "2.1-unstable-\\1";/' \\
@@ -51,7 +47,7 @@ ${nix.app(nix.sel(lib, "getExe"), gnused)} -i -E \\
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/kuba160/tilem-gtk3",
         description: "Emulator and debugger for Texas Instruments Z80-based graphing calculators",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

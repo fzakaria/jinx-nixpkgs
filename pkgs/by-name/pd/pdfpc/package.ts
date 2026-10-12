@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["repo", 38, 5], ["owner", 39, 5], ["tag", 40, 5], ["hash", 41, 5]], [["gtkSupport", 66, 36]], [["updateScript", 80, 12]], [["description", 83, 5], ["mainProgram", 84, 5], ["homepage", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["platforms", 88, 5]], [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["nativeBuildInputs", 44, 3], ["cmakeFlags", 53, 3], ["buildInputs", 54, 3], ["passthru", 80, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, vala: false, gtk3: false, libgee: false, poppler: false, "libpthread-stubs": false, gst_all_1: false, "gobject-introspection": false, wrapGAppsHook3: false, qrencode: false, webkitgtk_4_1: false, discount: false, "json-glib": false, "nix-update-script": false, libsoup_3: false, librsvg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["repo", 38, 5], ["owner", 39, 5], ["tag", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["gtkSupport", 66, 36]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 80, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 83, 5], ["mainProgram", 84, 5], ["homepage", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["platforms", 88, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["nativeBuildInputs", 44, 3], ["cmakeFlags", 53, 3], ["buildInputs", 54, 3], ["passthru", 80, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const gst_plugins_good = nix.thunk(() => nix.attr(gst_all_1, "gst-plugins-good"));
   const gst_libav = nix.thunk(() => nix.attr(gst_all_1, "gst-libav"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "pdfpc",
       version: "4.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "pdfpc",
           owner: "pdfpc",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,7 +47,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => (() => {
         const platformBuildInputs = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? [librsvg] : [libpthread_stubs, webkitgtk_4_1]));
         return nix.concat([
-          nix.thunk(() => nix.app(nix.sel(gst_plugins_good, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, gtkSupport: true })))),
+          nix.thunk(() => nix.app(nix.sel(gst_plugins_good, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], gtkSupport: true })))),
           discount,
           gst_libav,
           gst_plugins_base,
@@ -65,11 +61,11 @@ export default nix.lambda((args) => (() => {
         ], platformBuildInputs);
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Presenter console with multi-monitor support for PDF files",
         mainProgram: "pdfpc",
         homepage: "https://pdfpc.github.io/",

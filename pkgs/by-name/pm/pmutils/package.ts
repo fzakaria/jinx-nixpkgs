@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 35, 5], ["sha256", 36, 5]], [["homepage", 65, 5], ["description", 66, 5], ["license", 67, 5], ["platforms", 68, 5]], [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["configureFlags", 39, 3], ["preConfigure", 41, 3], ["postInstall", 55, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, coreutils: false, gnugrep: false, "util-linux": false, kmod: false, procps: false, kbd: false, dbus: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 35, 5], ["sha256", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 65, 5], ["description", 66, 5], ["license", 67, 5], ["platforms", 68, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["configureFlags", 39, 3], ["preConfigure", 41, 3], ["postInstall", 55, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const binPath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutils, gnugrep, util_linux, kmod, procps, kbd, dbus])));
   const sbinPath = nix.thunk(() => nix.app(nix.sel(lib, "makeSearchPathOutput"), "bin", "sbin", nix.thunk(() => [procps])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pm-utils",
       version: "1.4.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://pm-utils.freedesktop.org/releases/pm-utils-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "02qc6zaf7ams6qcc470fwb6jvr4abv3lrlx16clqpn36501rkn4f",
         })))),
@@ -45,7 +43,7 @@ substituteInPlace pm/sleep.d/90clock --replace /sbin/hwclock hwclock
 `),
       postInstall: "# Remove some hooks that have doubtful usefulness.  See\n# http://zinc.canonical.com/~cking/power-benchmarking/pm-utils-results/results.txt.\n# In particular, journal-commit breaks things if you have\n# read-only bind mounts, since it ends up remounting the\n# underlying filesystem read-only.\nrm $out/lib/pm-utils/power.d/{journal-commit,readahead}\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://pm-utils.freedesktop.org/wiki/",
         description: "Small collection of scripts that handle suspend and resume on behalf of HAL",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

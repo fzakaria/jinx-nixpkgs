@@ -2,13 +2,10 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["nativeBuildInputs", 51, 9], ["impureEnvVars", 55, 17], ["outputHashMode", 56, 9], ["outputHashAlgo", 58, 9], ["outputHash", 59, 9]], [["name", 61, 49]], [["NETRC", 62, 48]], [["env", 62, 44]]]);
 const formals$1 = { args: { runCommand: false, lib: false, python3: false, cacert: false }, ellipsis: false };
 const formals$2 = { args: { pname: false, url: true, urls: true, file: false, hash: false, name: true, cacert: true }, ellipsis: false };
 const formals$3 = { args: { prefix: false, path: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 51, 9], ["impureEnvVars", 55, 17], ["outputHashMode", 56, 9], ["outputHashAlgo", 58, 9], ["outputHash", 59, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 61, 49]]);
-const pos$3 = nix.positions(here + "/default.nix", [["NETRC", 62, 48]]);
-const pos$4 = nix.positions(here + "/default.nix", [["env", 62, 44]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -45,15 +42,15 @@ export default nix.lambda((args) => (() => {
       const netrc_file = nix.thunk(() => (nix.asBool(!nix.eq(pathParts, [])) ? nix.sel(nix.app(head, pathParts), "path") : ""));
       nix.assert_(!nix.eq(urls$, []), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/fetchpypilegacy/default.nix:47:3");
       return nix.app(runCommand, file, nix.thunk(() => nix.update({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           nativeBuildInputs: nix.thunk(() => [python3, cacert_1]),
           impureEnvVars: impureEnvVars,
           outputHashMode: "flat",
           outputHashAlgo: nix.thunk(() => (nix.asBool(nix.eq(hash, "")) ? "sha256" : null)),
           outputHash: hash,
-        }, nix.update(nix.app(optionalAttrs, nix.thunk(() => !nix.eq(name, null)), nix.thunk(() => ({ [nix.POS]: pos$2, name: name }))), nix.app(optionalAttrs, nix.thunk(() => !nix.asBool(inPureEvalMode)), nix.thunk(() => ({
-            [nix.POS]: pos$4,
-            env: nix.thunk(() => ({ [nix.POS]: pos$3, NETRC: netrc_file })),
+        }, nix.update(nix.app(optionalAttrs, nix.thunk(() => !nix.eq(name, null)), nix.thunk(() => ({ [nix.POS]: $pos[1], name: name }))), nix.app(optionalAttrs, nix.thunk(() => !nix.asBool(inPureEvalMode)), nix.thunk(() => ({
+            [nix.POS]: $pos[3],
+            env: nix.thunk(() => ({ [nix.POS]: $pos[2], NETRC: netrc_file })),
           })))))), nix.thunk(() => nix.str`python ${nix.path(here, "./fetch-legacy.py")} ${nix.app(concatStringsSep, " ", nix.thunk(() => nix.builtins.map((url_1) => nix.str`--url ${nix.app(escapeShellArg, url_1)}`, urls$)))} --pname ${pname} --filename ${file}
 mv ${file} $out
 `));

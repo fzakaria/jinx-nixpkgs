@@ -2,44 +2,37 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tsm-client-gui.nix", [[["tcpserveraddress", 24, 11], ["nodename", 25, 11], ["passworddir", 26, 11]], [["testserver", 22, 17]], [["enable", 19, 9], ["package", 20, 9], ["defaultServername", 21, 9], ["servers", 22, 9]], [["tsmClient", 18, 16]], [["imports", 17, 7], ["programs", 18, 7]], [["machine", 14, 9]], [["maintainers", 58, 8]], [["name", 10, 3], ["enableOCR", 12, 3], ["nodes", 14, 3], ["testScript", 31, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/tsm-client-gui.nix", [["tcpserveraddress", 24, 11], ["nodename", 25, 11], ["passworddir", 26, 11]]);
-const pos$2 = nix.positions(here + "/tsm-client-gui.nix", [["testserver", 22, 17]]);
-const pos$3 = nix.positions(here + "/tsm-client-gui.nix", [["enable", 19, 9], ["package", 20, 9], ["defaultServername", 21, 9], ["servers", 22, 9]]);
-const pos$4 = nix.positions(here + "/tsm-client-gui.nix", [["tsmClient", 18, 16]]);
-const pos$5 = nix.positions(here + "/tsm-client-gui.nix", [["imports", 17, 7], ["programs", 18, 7]]);
-const pos$6 = nix.positions(here + "/tsm-client-gui.nix", [["machine", 14, 9]]);
-const pos$7 = nix.positions(here + "/tsm-client-gui.nix", [["maintainers", 58, 8]]);
-const pos$8 = nix.positions(here + "/tsm-client-gui.nix", [["name", 10, 3], ["enableOCR", 12, 3], ["nodes", 14, 3], ["testScript", 31, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     name: "tsm-client",
     enableOCR: true,
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           imports: nix.thunk(() => [nix.path(here, "./common/x11.nix")]),
           programs: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             tsmClient: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               enable: true,
               package: nix.thunk(() => nix.sel(pkgs_1, "tsm-client-withGui")),
               defaultServername: "testserver",
               servers: nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 testserver: nix.thunk(() => ({
-                  [nix.POS]: pos$1,
+                  [nix.POS]: $pos[0],
                   tcpserveraddress: "192.0.0.8",
                   nodename: "SOME-NODE",
                   passworddir: "/tmp",
@@ -52,7 +45,7 @@ export default nix.lambda((args) => (() => {
     })),
     testScript: "machine.succeed(\"which dsmj\")  # fail early if this is missing\nmachine.wait_for_x()\nmachine.execute(\"DSM_LOG=/tmp dsmj -optfile=/dev/null >&2 &\")\n\n# does it report the \"TCP/IP connection failure\" error code?\nmachine.wait_for_window(\"IBM Storage Protect\")\nmachine.wait_for_text(\"ANS2610S\")\nmachine.send_key(\"esc\")\n\n# it asks to continue to restore a local backupset now;\n# \"yes\" (return) leads to the main application window\nmachine.wait_for_text(\"backupset\")\nmachine.send_key(\"ret\")\n\n# main window: navigate to \"Connection Information\"\nmachine.wait_for_text(\"Welcome\")\nmachine.send_key(\"alt-f\")  # \"File\" menu\nmachine.send_key(\"c\")  # \"Connection Information\"\n\n# \"Connection Information\" dialog box\nmachine.wait_for_window(\"Connection Information\")\nmachine.wait_for_text(\"SOME-NODE\")\n\nmachine.shutdown()\n",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "yarny"))]),
     })),
   };

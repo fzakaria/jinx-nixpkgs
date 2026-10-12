@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/addon-outlook.nix", [[["version", 25, 26], ["src", 25, 34], ["sourceRoot", 25, 38], ["hash", 26, 5]], [["description", 40, 5]], [["pname", 11, 3], ["src", 12, 11], ["version", 12, 15], ["sourceRoot", 14, 3], ["nativeBuildInputs", 16, 3], ["buildInputs", 20, 3], ["npmDeps", 24, 3], ["npmBuildScript", 28, 3], ["installPhase", 30, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { src: false, version: false, meta: false, fetchNpmDeps: false, buildNpmPackage: false, "pkg-config": false, libsecret: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/addon-outlook.nix", [["version", 25, 26], ["src", 25, 34], ["sourceRoot", 25, 38], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/addon-outlook.nix", [["description", 40, 5]]);
-const pos$3 = nix.positions(here + "/addon-outlook.nix", [["pname", 11, 3], ["src", 12, 11], ["version", 12, 15], ["sourceRoot", 14, 3], ["nativeBuildInputs", 16, 3], ["buildInputs", 20, 3], ["npmDeps", 24, 3], ["npmBuildScript", 28, 3], ["installPhase", 30, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libsecret = nix.arg($, "libsecret");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "lasuite-meet-addon-outlook",
       src: src,
       version: version,
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libsecret]),
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           sourceRoot: nix.thunk(() => nix.attr(finalAttrs, "sourceRoot")),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       npmBuildScript: "build",
       installPhase: "runHook preInstall\n\ncp -r dist $out\ncp manifest.xml $out\n\nrunHook postInstall\n",
       meta: nix.thunk(() => nix.update(meta, {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Microsoft Outlook add-in support for LaSuite Meet",
       })),
     }));

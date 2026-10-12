@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["CGO_ENABLED", 21, 7]], [["updateScript", 33, 12]], [["description", 41, 5], ["homepage", 42, 5], ["changelog", 43, 5], ["license", 44, 5], ["mainProgram", 45, 5], ["maintainers", 46, 5], ["platforms", 49, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["vendorHash", 19, 3], ["env", 21, 3], ["ldflags", 22, 3], ["subPackages", 27, 3], ["postInstall", 31, 3], ["passthru", 33, 3], ["doCheck", 38, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildGoModule: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 21, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 33, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 41, 5], ["homepage", 42, 5], ["changelog", 43, 5], ["license", 44, 5], ["mainProgram", 45, 5], ["maintainers", 46, 5], ["platforms", 49, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["vendorHash", 19, 3], ["env", 21, 3], ["ldflags", 22, 3], ["subPackages", 27, 3], ["postInstall", 31, 3], ["passthru", 33, 3], ["doCheck", 38, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,18 +12,18 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "tweag-credential-helper",
       version: "0.0.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tweag",
           repo: "credential-helper",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-7Aja88JAhBIL5m1I7GEVjHnVA1rAoAr/7JN8GVQ90w8=",
         })))),
       vendorHash: "sha256-LVXHCRgRop2wdNU/NG5FFVYf5iiQRSPoRSX7B7r2tuI=",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: "0" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_ENABLED: "0" })),
       ldflags: nix.thunk(() => [
         "-s",
         nix.thunk(() => nix.str`-X main.version=${nix.sel(finalAttrs, "version")}`),
@@ -35,12 +31,12 @@ export default nix.lambda((args) => (() => {
       subPackages: nix.thunk(() => ["cmd/credential-helper"]),
       postInstall: "mv $out/bin/credential-helper $out/bin/tweag-credential-helper",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Credential helper framework and agent for Bazel and similar tools implementing the credential-helper spec",
         homepage: "https://github.com/tweag/credential-helper",
         changelog: nix.thunk(() => nix.str`https://github.com/tweag/credential-helper/releases/tag/v${nix.sel(finalAttrs, "version")}`),

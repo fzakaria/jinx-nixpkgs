@@ -2,14 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["OPENSSL_NO_VENDOR", 34, 9]], [["pname", 21, 5], ["version", 22, 13], ["src", 22, 21], ["cargoHash", 24, 5], ["nativeBuildInputs", 26, 5], ["buildInputs", 28, 5], ["prePatch", 30, 5], ["env", 34, 5], ["cargoBuildFlags", 36, 5], ["doCheck", 39, 5]], [["extraArgs", 68, 7], ["attrPath", 69, 7]], [["updateScript", 67, 5], ["sg-nvim-rust", 73, 13]], [["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5]], [["pname", 43, 3], ["version", 44, 11], ["src", 44, 19], ["checkInputs", 46, 3], ["dependencies", 51, 3], ["postInstall", 53, 3], ["nvimSkipModules", 58, 3], ["passthru", 66, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, "nix-update-script": false, openssl: false, "pkg-config": false, rustPlatform: false, vimPlugins: false, vimUtils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["OPENSSL_NO_VENDOR", 34, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 21, 5], ["version", 22, 13], ["src", 22, 21], ["cargoHash", 24, 5], ["nativeBuildInputs", 26, 5], ["buildInputs", 28, 5], ["prePatch", 30, 5], ["env", 34, 5], ["cargoBuildFlags", 36, 5], ["doCheck", 39, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["extraArgs", 68, 7], ["attrPath", 69, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["updateScript", 67, 5], ["sg-nvim-rust", 73, 13]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 43, 3], ["version", 44, 11], ["src", 44, 19], ["checkInputs", 46, 3], ["dependencies", 51, 3], ["postInstall", 53, 3], ["nvimSkipModules", 58, 3], ["passthru", 66, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,14 +17,14 @@ export default nix.lambda((args) => (() => {
   const vimUtils = nix.arg($, "vimUtils");
   const version = "1.1.0-unstable-2025-01-21";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "sourcegraph",
       repo: "sg.nvim",
       rev: "775f22b75a9826eabf69b0094dd1d51d619fe552",
       hash: "sha256-i5g+pzxB8pAORLbr1wlYWUTsrJJmVj9UwlCg8pU3Suw=",
     }))));
   const sg_nvim_rust = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "sg-nvim-rust",
       version: version,
       src: src,
@@ -38,12 +32,12 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [openssl]),
       prePatch: "rm .cargo/config.toml\n",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: true })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], OPENSSL_NO_VENDOR: true })),
       cargoBuildFlags: nix.thunk(() => ["--workspace"]),
       doCheck: false,
     }))));
   return nix.app(nix.sel(vimUtils, "buildVimPlugin"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "sg.nvim",
       version: version,
       src: src,
@@ -60,16 +54,16 @@ ln -s ${sg_nvim_rust}/{bin,lib}/* $out/target/debug
 `),
       nvimSkipModules: nix.thunk(() => ["sg.cody.fuzzy", "sg.health"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             extraArgs: nix.thunk(() => ["--version=branch"]),
             attrPath: "vimPlugins.sg-nvim.sg-nvim-rust",
           })))),
         "sg-nvim-rust": sg_nvim_rust,
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Neovim plugin designed to emulate the behaviour of the Cursor AI IDE",
         homepage: "https://github.com/sourcegraph/sg.nvim/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

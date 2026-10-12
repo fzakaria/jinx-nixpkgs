@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["version", 13, 40]], [["ppxlib", 13, 7]], [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["description", 79, 5], ["mainProgram", 80, 5], ["homepage", 81, 5], ["changelog", 82, 5], ["license", 83, 5], ["platforms", 84, 5], ["maintainers", 85, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["makeFlags", 33, 3], ["strictDeps", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 44, 3], ["installPhase", 63, 3], ["nativeInstallCheckInputs", 72, 3], ["versionCheckProgramArg", 75, 3], ["doInstallCheck", 76, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "ocaml-ng": false, dune: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["version", 13, 40]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ppxlib", 13, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 79, 5], ["mainProgram", 80, 5], ["homepage", 81, 5], ["changelog", 82, 5], ["license", 83, 5], ["platforms", 84, 5], ["maintainers", 85, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["makeFlags", 33, 3], ["strictDeps", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 44, 3], ["installPhase", 63, 3], ["nativeInstallCheckInputs", 72, 3], ["versionCheckProgramArg", 75, 3], ["doInstallCheck", 76, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,15 +14,15 @@ export default nix.lambda((args) => (() => {
   const dune = nix.arg($, "dune");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const ocamlPackages = nix.thunk(() => nix.app(nix.sel(ocaml_ng, "ocamlPackages_5_3", "overrideScope"), (self) => (super$) => ({
-      [nix.POS]: pos$2,
-      ppxlib: nix.thunk(() => nix.app(nix.sel(super$, "ppxlib", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, version: "0.34.0" })))),
+      [nix.POS]: $pos[1],
+      ppxlib: nix.thunk(() => nix.app(nix.sel(super$, "ppxlib", "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], version: "0.34.0" })))),
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "flow",
       version: "0.318.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "facebook",
           repo: "flow",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -66,7 +62,7 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "--version",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Static type checker for JavaScript",
         mainProgram: "flow",
         homepage: "https://flow.org/",

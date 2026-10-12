@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["modules", 15, 5]], [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]], [["pname", 54, 26], ["data", 55, 5]], [["name", 94, 7], ["exec", 95, 7], ["icon", 96, 7], ["desktopName", 97, 7], ["comment", 98, 7], ["categories", 99, 7]], [["description", 108, 5], ["homepage", 109, 5], ["changelog", 110, 5], ["longDescription", 111, 5], ["license", 114, 5], ["maintainers", 115, 5], ["platforms", 119, 5], ["mainProgram", 120, 5]], [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["gradleBuildTask", 44, 3], ["nativeBuildInputs", 46, 3], ["mitmCache", 53, 3], ["__darwinAllowLocalNetworking", 58, 3], ["gradleFlags", 60, 3], ["postPatch", 62, 3], ["installPhase", 77, 3], ["desktopItems", 92, 3], ["meta", 107, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, makeWrapper: false, makeDesktopItem: false, jdk25: false, gradle_9: false, copyDesktopItems: false, jre25_minimal: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["modules", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 54, 26], ["data", 55, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 94, 7], ["exec", 95, 7], ["icon", 96, 7], ["desktopName", 97, 7], ["comment", 98, 7], ["categories", 99, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 108, 5], ["homepage", 109, 5], ["changelog", 110, 5], ["longDescription", 111, 5], ["license", 114, 5], ["maintainers", 115, 5], ["platforms", 119, 5], ["mainProgram", 120, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["gradleBuildTask", 44, 3], ["nativeBuildInputs", 46, 3], ["mitmCache", 53, 3], ["__darwinAllowLocalNetworking", 58, 3], ["gradleFlags", 60, 3], ["postPatch", 62, 3], ["installPhase", 77, 3], ["desktopItems", 92, 3], ["meta", 107, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const jre25_minimal = nix.arg($, "jre25_minimal");
   const jre = nix.thunk(() => nix.app(nix.sel(jre25_minimal, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       modules: nix.thunk(() => [
         "java.base",
         "java.compiler",
@@ -41,11 +36,11 @@ export default nix.lambda((args) => (() => {
       ]),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "freerouting",
       version: "2.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "freerouting",
           repo: "freerouting",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +49,7 @@ export default nix.lambda((args) => (() => {
       gradleBuildTask: "dist",
       nativeBuildInputs: nix.thunk(() => [makeWrapper, jdk25, gradle_9, copyDesktopItems]),
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle_9, "fetchDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           data: nix.path(here, "./deps.json"),
         })))),
@@ -88,7 +83,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: nix.thunk(() => nix.sel(finalAttrs, "pname")),
             exec: "freerouting",
             icon: "freerouting",
@@ -98,7 +93,7 @@ runHook postInstall
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Advanced PCB auto-router",
         homepage: "https://www.freerouting.org",
         changelog: nix.thunk(() => nix.str`https://github.com/freerouting/freerouting/releases/tag/v${nix.sel(finalAttrs, "version")}`),

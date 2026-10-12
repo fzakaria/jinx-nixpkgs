@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 50, 5], ["repo", 51, 5], ["tag", 52, 5], ["hash", 53, 5], ["fetchSubmodules", 54, 5]], [["NIX_LDFLAGS", 123, 7]], [["homepage", 155, 5], ["description", 156, 5], ["longDescription", 157, 5], ["platforms", 162, 5], ["license", 163, 5], ["maintainers", 164, 5]], [["pname", 46, 3], ["version", 47, 3], ["src", 49, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 66, 3], ["cmakeFlags", 107, 3], ["env", 123, 3], ["runtimeDependencies", 134, 3], ["installPhase", 146, 3], ["meta", 154, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, cmake: false, ninja: false, clangStdenv: false, "pkg-config": false, "alsa-lib": false, avahi: false, "avahi-compat": false, bluez: false, boost: false, fmt: false, ffmpeg: false, fftw: false, flac: false, git: false, gnutls: false, lame: false, libcoap: false, libjack2: false, libopus: false, libsamplerate: false, libsndfile: false, libvorbis: false, lilv: false, lv2: false, mpg123: false, pipewire: false, portaudio: false, qt6: false, "rapidfuzz-cpp": false, re2: false, rubberband: false, snappy: false, SDL2: false, spdlog: false, suil: false, udev: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 50, 5], ["repo", 51, 5], ["tag", 52, 5], ["hash", 53, 5], ["fetchSubmodules", 54, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 123, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 155, 5], ["description", 156, 5], ["longDescription", 157, 5], ["platforms", 162, 5], ["license", 163, 5], ["maintainers", 164, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 46, 3], ["version", 47, 3], ["src", 49, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 66, 3], ["cmakeFlags", 107, 3], ["env", 123, 3], ["runtimeDependencies", 134, 3], ["installPhase", 146, 3], ["meta", 154, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -49,11 +46,11 @@ export default nix.lambda((args) => (() => {
   const suil = nix.arg($, "suil");
   const udev = nix.arg($, "udev");
   return nix.app(nix.sel(clangStdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ossia-score",
       version: "3.8.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ossia",
           repo: "score",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -121,7 +118,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-DSuil_INCLUDE_DIR=${suil}/include/suil-0`),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-lasound",
             "-llilv-0",
@@ -136,7 +133,7 @@ export default nix.lambda((args) => (() => {
       runtimeDependencies: nix.thunk(() => [alsa_lib, avahi, avahi_compat, bluez, fftw, lilv, suil, pipewire, udev]),
       installPhase: "runHook preInstall\n\ncmake -DCMAKE_INSTALL_DO_STRIP=1 -DCOMPONENT=OssiaScore -P cmake_install.cmake\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://ossia.io/score/about.html",
         description: "Sequencer for audio-visual artists",
         longDescription: "ossia score is a sequencer for audio-visual artists, designed to enable\nthe creation of interactive shows, museum installations, intermedia\ndigital artworks, interactive music and more in an intuitive user interface.\n",

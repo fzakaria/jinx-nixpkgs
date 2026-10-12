@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["openbao", 62, 36], ["openbao-agent", 62, 44]], [["extraArgs", 64, 7]], [["ui", 61, 5], ["tests", 62, 5], ["updateScript", 63, 5]], [["homepage", 72, 5], ["description", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["mainProgram", 76, 5], ["maintainers", 77, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["vendorHash", 24, 3], ["proxyVendor", 26, 3], ["subPackages", 28, 3], ["tags", 30, 3], ["ldflags", 32, 3], ["postConfigure", 39, 3], ["nativeBuildInputs", 43, 3], ["postInstall", 47, 3], ["nativeInstallCheckInputs", 54, 3], ["versionCheckProgram", 57, 3], ["doInstallCheck", 58, 3], ["passthru", 60, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildGo127Module: false, installShellFiles: false, versionCheckHook: false, "nix-update-script": false, nixosTests: false, callPackage: false, withUi: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["openbao", 62, 36], ["openbao-agent", 62, 44]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 64, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["ui", 61, 5], ["tests", 62, 5], ["updateScript", 63, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 72, 5], ["description", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["mainProgram", 76, 5], ["maintainers", 77, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["vendorHash", 24, 3], ["proxyVendor", 26, 3], ["subPackages", 28, 3], ["tags", 30, 3], ["ldflags", 32, 3], ["postConfigure", 39, 3], ["nativeBuildInputs", 43, 3], ["postInstall", 47, 3], ["nativeInstallCheckInputs", 54, 3], ["versionCheckProgram", 57, 3], ["doInstallCheck", 58, 3], ["passthru", 60, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const withUi = nix.argOr($, "withUi", () => true);
   return nix.app(buildGo127Module, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "openbao",
       version: "2.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "openbao",
           repo: "openbao",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,17 +45,17 @@ export default nix.lambda((args) => (() => {
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/bao`),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         ui: nix.thunk(() => nix.app(callPackage, nix.path(here, "./ui.nix"), nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           openbao: nix.thunk(() => nix.attr(nixosTests, "openbao")),
           "openbao-agent": nix.thunk(() => nix.attr(nixosTests, "openbao-agent")),
         })),
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--subpackage", "ui"]) })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[2], extraArgs: nix.thunk(() => ["--subpackage", "ui"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://www.openbao.org/",
         description: "Open source, community-driven fork of Vault managed by the Linux Foundation",
         changelog: nix.thunk(() => nix.str`https://github.com/openbao/openbao/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["sha256", 18, 5]], [["homepage", 43, 5], ["description", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["mainProgram", 47, 5], ["platforms", 50, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 16, 3], ["sourceRoot", 21, 3], ["installFlags", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 30, 3], ["enableParallelBuilding", 34, 3], ["postInstall", 37, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, "pkg-config": false, gtk3: false, librsvg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 43, 5], ["description", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["mainProgram", 47, 5], ["platforms", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 16, 3], ["sourceRoot", 21, 3], ["installFlags", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 30, 3], ["enableParallelBuilding", 34, 3], ["postInstall", 37, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const librsvg = nix.arg($, "librsvg");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "howl",
       version: "0.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/howl-editor/howl/releases/download/${nix.sel(finalAttrs, "version")}/howl-${nix.sel(finalAttrs, "version")}.tgz`),
           sha256: "1qc58l3rkr37cj6vhf8c7bnwbz93nscyraz7jxqwjq6k4gj0cjw3",
         })))),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       postInstall: "wrapProgram $out/bin/howl \\\n  --set GDK_PIXBUF_MODULE_FILE \"$GDK_PIXBUF_MODULE_FILE\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://howl.io/",
         description: "General purpose, fast and lightweight editor with a keyboard-centric minimalistic user interface",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

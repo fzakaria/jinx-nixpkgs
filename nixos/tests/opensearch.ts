@@ -2,24 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/opensearch.nix", [[["maintainers", 8, 14]], [["memorySize", 12, 28]], [["enable", 13, 33]], [["opensearch", 13, 22]], [["virtualisation", 12, 13], ["services", 13, 13]], [["machine", 10, 15]], [["name", 7, 9], ["meta", 8, 9], ["nodes", 10, 9], ["testScript", 18, 9]], [["dataDir", 33, 25], ["user", 34, 25], ["group", 35, 25]], [["opensearch", 33, 14]], [["rules", 36, 22]], [["tmpfiles", 36, 13]], [["open_search", 40, 14]], [["description", 42, 9], ["group", 43, 9], ["isSystemUser", 44, 9]], [["open_search", 41, 13]], [["groups", 40, 7], ["users", 41, 7]], [["services", 33, 5], ["systemd", 36, 5], ["users", 39, 5]], [["opensearch", 31, 3], ["opensearchCustomPathAndUser", 32, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/opensearch.nix", [["maintainers", 8, 14]]);
-const pos$2 = nix.positions(here + "/opensearch.nix", [["memorySize", 12, 28]]);
-const pos$3 = nix.positions(here + "/opensearch.nix", [["enable", 13, 33]]);
-const pos$4 = nix.positions(here + "/opensearch.nix", [["opensearch", 13, 22]]);
-const pos$5 = nix.positions(here + "/opensearch.nix", [["virtualisation", 12, 13], ["services", 13, 13]]);
-const pos$6 = nix.positions(here + "/opensearch.nix", [["machine", 10, 15]]);
-const pos$7 = nix.positions(here + "/opensearch.nix", [["name", 7, 9], ["meta", 8, 9], ["nodes", 10, 9], ["testScript", 18, 9]]);
-const pos$8 = nix.positions(here + "/opensearch.nix", [["dataDir", 33, 25], ["user", 34, 25], ["group", 35, 25]]);
-const pos$9 = nix.positions(here + "/opensearch.nix", [["opensearch", 33, 14]]);
-const pos$10 = nix.positions(here + "/opensearch.nix", [["rules", 36, 22]]);
-const pos$11 = nix.positions(here + "/opensearch.nix", [["tmpfiles", 36, 13]]);
-const pos$12 = nix.positions(here + "/opensearch.nix", [["open_search", 40, 14]]);
-const pos$13 = nix.positions(here + "/opensearch.nix", [["description", 42, 9], ["group", 43, 9], ["isSystemUser", 44, 9]]);
-const pos$14 = nix.positions(here + "/opensearch.nix", [["open_search", 41, 13]]);
-const pos$15 = nix.positions(here + "/opensearch.nix", [["groups", 40, 7], ["users", 41, 7]]);
-const pos$16 = nix.positions(here + "/opensearch.nix", [["services", 33, 5], ["systemd", 36, 5], ["users", 39, 5]]);
-const pos$17 = nix.positions(here + "/opensearch.nix", [["opensearch", 31, 3], ["opensearchCustomPathAndUser", 32, 3]]);
 
 export default nix.thunk(() => (() => {
   const opensearchTest = (extraSettings) => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")), nix.lambda((args) => (() => {
@@ -27,18 +11,18 @@ export default nix.thunk(() => (() => {
       const pkgs = nix.arg($, "pkgs");
       const lib = nix.arg($, "lib");
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         name: "opensearch",
-        meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
+        meta: nix.thunk(() => ({ [nix.POS]: $pos[0], maintainers: [] })),
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           machine: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
               nix.thunk(() => ({
-                [nix.POS]: pos$5,
-                virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, memorySize: 2048n })),
+                [nix.POS]: $pos[4],
+                virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[1], memorySize: 2048n })),
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$4,
-                  opensearch: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
+                  [nix.POS]: $pos[3],
+                  opensearch: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true })),
                 })),
               })),
               extraSettings,
@@ -48,33 +32,33 @@ export default nix.thunk(() => (() => {
       };
     })(), formals$1));
   return {
-    [nix.POS]: pos$17,
+    [nix.POS]: $pos[16],
     opensearch: nix.thunk(() => nix.app(opensearchTest, nix.thunk(() => ({})))),
     opensearchCustomPathAndUser: nix.thunk(() => nix.app(opensearchTest, nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           opensearch: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             dataDir: "/var/opensearch_test",
             user: "open_search",
             group: "open_search",
           })),
         })),
         systemd: nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           tmpfiles: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             rules: nix.thunk(() => ["d /var/opensearch_test 0700 open_search open_search -"]),
           })),
         })),
         users: nix.thunk(() => ({
-          [nix.POS]: pos$15,
-          groups: nix.thunk(() => ({ [nix.POS]: pos$12, open_search: nix.thunk(() => ({})) })),
+          [nix.POS]: $pos[14],
+          groups: nix.thunk(() => ({ [nix.POS]: $pos[11], open_search: nix.thunk(() => ({})) })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             open_search: nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               description: "OpenSearch daemon user",
               group: "open_search",
               isSystemUser: true,

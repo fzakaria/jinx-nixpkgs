@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["hash", 20, 5]], [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5], ["fetchSubmodules", 32, 5]], [["PNAME", 60, 9], ["PKG_FILE", 61, 9], ["GITHUB_REPOSITORY", 62, 9], ["NNUE_FILE", 63, 9], ["NNUE_HASH", 64, 9]], [["name", 50, 7], ["runtimeInputs", 52, 7], ["runtimeEnv", 59, 7], ["text", 67, 7]], [["updateScript", 49, 5]], [["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["platforms", 79, 5], ["mainProgram", 83, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["postPatch", 35, 3], ["cargoHash", 40, 3], ["nativeInstallCheckInputs", 42, 3], ["doInstallCheck", 45, 3], ["versionCheckProgram", 46, 3], ["passthru", 48, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, fetchurl: false, versionCheckHook: false, writeShellApplication: false, curl: false, jq: false, "nix-update": false, "common-updater-scripts": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5], ["fetchSubmodules", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["PNAME", 60, 9], ["PKG_FILE", 61, 9], ["GITHUB_REPOSITORY", 62, 9], ["NNUE_FILE", 63, 9], ["NNUE_HASH", 64, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 50, 7], ["runtimeInputs", 52, 7], ["runtimeEnv", 59, 7], ["text", 67, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 49, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["platforms", 79, 5], ["mainProgram", 83, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["postPatch", 35, 3], ["cargoHash", 40, 3], ["nativeInstallCheckInputs", 42, 3], ["doInstallCheck", 45, 3], ["versionCheckProgram", 46, 3], ["passthru", 48, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,16 +20,16 @@ export default nix.lambda((args) => (() => {
   const nnueFile = "nn-89cb98a217f7.nnue";
   const nnueHash = "sha256-icuYohf3IBR8coYXYQl76koEKJl90iDsioGlYkMbu+Y=";
   const nnue = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://tests.stockfishchess.org/api/nn/${nnueFile}`),
       hash: nnueHash,
     }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "fishnet",
       version: "2.14.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "lichess-org",
           repo: "fishnet",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,13 +44,13 @@ cp -v '${nnue}' 'Fairy-Stockfish/src/${nnueFile}'
       doInstallCheck: true,
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/${nix.sel(finalAttrs, "meta", "mainProgram")}`),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               name: nix.thunk(() => nix.str`update-${nix.sel(finalAttrs, "pname")}`),
               runtimeInputs: nix.thunk(() => [curl, jq, nix_update, common_updater_scripts]),
               runtimeEnv: nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 PNAME: nix.thunk(() => nix.sel(finalAttrs, "pname")),
                 PKG_FILE: nix.thunk(() => nix.builtins.toString(nix.path(here, "./package.nix"))),
                 GITHUB_REPOSITORY: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "owner")}/${nix.sel(finalAttrs, "src", "repo")}`),
@@ -67,7 +61,7 @@ cp -v '${nnue}' 'Fairy-Stockfish/src/${nnueFile}'
             })))))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Distributed Stockfish analysis for lichess.org",
         homepage: "https://github.com/lichess-org/fishnet",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

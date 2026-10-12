@@ -2,14 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/presets.nix", [[["CPPFLAGS", 11, 9], ["BUILD_CONFIG_NAME", 12, 9]], [["env", 10, 7]], [["CPPFLAGS", 17, 21]], [["CPPFLAGS", 22, 19]], [["CPPFLAGS", 24, 13]], [["arduino-esp8266", 17, 5], ["arduino-esp32", 22, 5], ["esp-idf", 24, 5]]]);
 const formals$1 = { args: { lib: false, mkspiffs: false }, ellipsis: false };
 const formals$2 = { args: { CPPFLAGS: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/presets.nix", [["CPPFLAGS", 11, 9], ["BUILD_CONFIG_NAME", 12, 9]]);
-const pos$2 = nix.positions(here + "/presets.nix", [["env", 10, 7]]);
-const pos$3 = nix.positions(here + "/presets.nix", [["CPPFLAGS", 17, 21]]);
-const pos$4 = nix.positions(here + "/presets.nix", [["CPPFLAGS", 22, 19]]);
-const pos$5 = nix.positions(here + "/presets.nix", [["CPPFLAGS", 24, 13]]);
-const pos$6 = nix.positions(here + "/presets.nix", [["arduino-esp8266", 17, 5], ["arduino-esp32", 22, 5], ["esp-idf", 24, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,21 +14,21 @@ export default nix.lambda((args) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const CPPFLAGS = nix.arg($_1, "CPPFLAGS");
       return nix.app(nix.sel(mkspiffs, "overrideAttrs"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           env: nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             CPPFLAGS: nix.thunk(() => nix.builtins.toString(CPPFLAGS)),
             BUILD_CONFIG_NAME: nix.thunk(() => nix.str`-${name}`),
           })),
         })));
     })(), formals$2), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       "arduino-esp8266": nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         CPPFLAGS: nix.thunk(() => ["-DSPIFFS_USE_MAGIC_LENGTH=0", "-DSPIFFS_ALIGNED_OBJECT_INDEX_TABLES=1"]),
       })),
-      "arduino-esp32": nix.thunk(() => ({ [nix.POS]: pos$4, CPPFLAGS: nix.thunk(() => ["-DSPIFFS_OBJ_META_LEN=4"]) })),
-      "esp-idf": nix.thunk(() => ({ [nix.POS]: pos$5, CPPFLAGS: nix.thunk(() => ["-DSPIFFS_OBJ_META_LEN=4"]) })),
+      "arduino-esp32": nix.thunk(() => ({ [nix.POS]: $pos[3], CPPFLAGS: nix.thunk(() => ["-DSPIFFS_OBJ_META_LEN=4"]) })),
+      "esp-idf": nix.thunk(() => ({ [nix.POS]: $pos[4], CPPFLAGS: nix.thunk(() => ["-DSPIFFS_OBJ_META_LEN=4"]) })),
     })));
 })(), formals$1);
 //# sourceMappingURL=presets.ts.map

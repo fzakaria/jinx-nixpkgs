@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 7], ["hash", 24, 7]], [["url", 27, 7], ["hash", 28, 7]], [["url", 31, 7], ["hash", 32, 7]], [["x86_64-linux", 22, 5], ["aarch64-linux", 26, 5], ["aarch64-darwin", 30, 5]], [["url", 37, 90], ["hash", 37, 94]], [["updateScript", 41, 5]], [["src", 55, 13]], [["description", 59, 5], ["longDescription", 60, 5], ["homepage", 63, 5], ["license", 64, 5], ["sourceProvenance", 65, 5], ["maintainers", 66, 5], ["platforms", 67, 5], ["mainProgram", 68, 5]], [["stdenvNoCC", 75, 7], ["pname", 76, 7], ["version", 77, 7], ["src", 78, 7], ["passthru", 79, 7], ["meta", 80, 7], ["_7zz", 81, 7], ["autoSignDarwinBinariesHook", 83, 5]], [["pname", 88, 7], ["version", 89, 7], ["src", 90, 7], ["passthru", 91, 7], ["meta", 92, 7], ["appimageTools", 93, 7], ["makeWrapper", 94, 7]]]);
 const formals$1 = { args: { stdenv: false, stdenvNoCC: false, fetchurl: false, lib: false, appimageTools: false, makeWrapper: false, _7zz: false, darwin: false, writeShellScript: false, "nix-update": false, jq: false, "common-updater-scripts": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 7], ["hash", 24, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 27, 7], ["hash", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 31, 7], ["hash", 32, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["x86_64-linux", 22, 5], ["aarch64-linux", 26, 5], ["aarch64-darwin", 30, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 37, 90], ["hash", 37, 94]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 41, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["src", 55, 13]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 59, 5], ["longDescription", 60, 5], ["homepage", 63, 5], ["license", 64, 5], ["sourceProvenance", 65, 5], ["maintainers", 66, 5], ["platforms", 67, 5], ["mainProgram", 68, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["stdenvNoCC", 75, 7], ["pname", 76, 7], ["version", 77, 7], ["src", 78, 7], ["passthru", 79, 7], ["meta", 80, 7], ["_7zz", 81, 7], ["autoSignDarwinBinariesHook", 83, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 88, 7], ["version", 89, 7], ["src", 90, 7], ["passthru", 91, 7], ["meta", 92, 7], ["appimageTools", 93, 7], ["makeWrapper", 94, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,19 +22,19 @@ export default nix.lambda((args) => (() => {
   const pname = "freelens-bin";
   const version = "1.10.3";
   const sources = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     "x86_64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://github.com/freelensapp/freelens/releases/download/v${version}/Freelens-${version}-linux-amd64.AppImage`),
       hash: "sha256-W+RokOsT4WdVm4Yrmm8kbu7ApydhwLPpGmRjKTI1gek=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: nix.thunk(() => nix.str`https://github.com/freelensapp/freelens/releases/download/v${version}/Freelens-${version}-linux-arm64.AppImage`),
       hash: "sha256-2aAw90YfTPDkiehj1ziurBeILEuEOmbJeUV2d7Bbmo4=",
     })),
     "aarch64-darwin": nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       url: nix.thunk(() => nix.str`https://github.com/freelensapp/freelens/releases/download/v${version}/Freelens-${version}-macos-arm64.dmg`),
       hash: "sha256-rjPhHV24WNofZK4sT3yjg1eGeAvLKvAuVf51bwiQBBk=",
     })),
@@ -51,13 +42,13 @@ export default nix.lambda((args) => (() => {
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "system")}`)), nix.key(nix.sel(stdenv, "system"))));
       return {
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       url: nix.thunk(() => nix.attr(from, "url")),
       hash: nix.thunk(() => nix.attr(from, "hash")),
     };
     })())));
   const passthru = nix.thunk(() => nix.update({
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     updateScript: nix.thunk(() => nix.app(writeShellScript, "update-freelens-bin", nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix_update)} freelens-bin --override-filename pkgs/by-name/fr/freelens-bin/package.nix
 latestVersion=$(nix eval --log-format raw --raw --file default.nix freelens-bin.version)
 if [[ "$latestVersion" == "$UPDATE_NIX_OLD_VERSION" ]]; then
@@ -69,9 +60,9 @@ for system in $systems; do
   ${nix.app(nix.sel(lib, "getExe'"), common_updater_scripts, "update-source-version")} freelens-bin $latestVersion $hash --system=$system --ignore-same-version --ignore-same-hash
 done
 `))),
-  }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({ [nix.POS]: pos$7, src: src })))));
+  }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({ [nix.POS]: $pos[6], src: src })))));
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     description: "Free IDE for Kubernetes",
     longDescription: "Freelens is a free and open-source user interface designed for managing Kubernetes clusters. It provides a standalone application compatible with macOS, Windows, and Linux operating systems, making it accessible to a wide range of users. The application aims to simplify the complexities of Kubernetes management by offering an intuitive and user-friendly interface.\n",
     homepage: "https://github.com/freelensapp/freelens/",
@@ -88,7 +79,7 @@ done
     mainProgram: "freelens",
   }));
   return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(nix.builtins.import(nix.path(here, "./darwin.nix")), nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       stdenvNoCC: stdenvNoCC,
       pname: pname,
       version: version,
@@ -98,7 +89,7 @@ done
       _7zz: _7zz,
       autoSignDarwinBinariesHook: nix.thunk(() => nix.sel(darwin, "autoSignDarwinBinariesHook")),
     }))) : nix.app(nix.builtins.import(nix.path(here, "./linux.nix")), nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: pname,
       version: version,
       src: src,

@@ -2,19 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/8_4.nix", [[["url", 57, 7], ["hash", 58, 7]], [["openssl", 91, 32]], [["homepage", 172, 7], ["description", 173, 7], ["license", 178, 7], ["maintainers", 179, 7], ["platforms", 183, 7]], [["mysqlVersion", 187, 7]], [["version", 54, 5], ["src", 56, 5], ["nativeBuildInputs", 61, 5], ["patches", 73, 5], ["postPatch", 79, 5], ["buildInputs", 89, 5], ["outputs", 121, 5], ["cmakeFlags", 127, 5], ["postInstall", 159, 5], ["meta", 171, 5], ["passthru", 186, 5]], [["mainProgram", 205, 9]], [["pname", 198, 7], ["cmakeFlags", 199, 7], ["meta", 204, 7]], [["mainProgram", 263, 7]], [["percona-server", 271, 13]], [["url", 274, 9], ["rev-prefix", 275, 9], ["allowedVersions", 276, 9]], [["client", 267, 15], ["connector-c", 268, 7], ["server", 269, 7], ["mysqlVersion", 270, 34], ["tests", 271, 7], ["updateScript", 273, 7]], [["pname", 219, 5], ["postInstall", 221, 5], ["meta", 262, 5], ["passthru", 266, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, gitUpdater: false, bison: false, cmake: false, "pkg-config": false, boost: false, icu: false, libedit: false, libevent: false, lz4: false, ncurses: false, openssl: false, perl: false, protobuf: false, re2: false, readline: false, zlib: false, zstd: false, libfido2: false, numactl: false, cctools: false, developer_cmds: false, libtirpc: false, "rpcsvc-proto": false, curl: false, DarwinTools: false, nixosTests: false, coreutils: false, procps: false, gnused: false, gnugrep: false, hostname: false, makeWrapper: false, systemd: false, cyrus_sasl: false, gnumake: false, openldap: false, withJemalloc: true, withTcmalloc: true, jemalloc: false, gperftools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/8_4.nix", [["url", 57, 7], ["hash", 58, 7]]);
-const pos$2 = nix.positions(here + "/8_4.nix", [["openssl", 91, 32]]);
-const pos$3 = nix.positions(here + "/8_4.nix", [["homepage", 172, 7], ["description", 173, 7], ["license", 178, 7], ["maintainers", 179, 7], ["platforms", 183, 7]]);
-const pos$4 = nix.positions(here + "/8_4.nix", [["mysqlVersion", 187, 7]]);
-const pos$5 = nix.positions(here + "/8_4.nix", [["version", 54, 5], ["src", 56, 5], ["nativeBuildInputs", 61, 5], ["patches", 73, 5], ["postPatch", 79, 5], ["buildInputs", 89, 5], ["outputs", 121, 5], ["cmakeFlags", 127, 5], ["postInstall", 159, 5], ["meta", 171, 5], ["passthru", 186, 5]]);
-const pos$6 = nix.positions(here + "/8_4.nix", [["mainProgram", 205, 9]]);
-const pos$7 = nix.positions(here + "/8_4.nix", [["pname", 198, 7], ["cmakeFlags", 199, 7], ["meta", 204, 7]]);
-const pos$8 = nix.positions(here + "/8_4.nix", [["mainProgram", 263, 7]]);
-const pos$9 = nix.positions(here + "/8_4.nix", [["percona-server", 271, 13]]);
-const pos$10 = nix.positions(here + "/8_4.nix", [["url", 274, 9], ["rev-prefix", 275, 9], ["allowedVersions", 276, 9]]);
-const pos$11 = nix.positions(here + "/8_4.nix", [["client", 267, 15], ["connector-c", 268, 7], ["server", 269, 7], ["mysqlVersion", 270, 34], ["tests", 271, 7], ["updateScript", 273, 7]]);
-const pos$12 = nix.positions(here + "/8_4.nix", [["pname", 219, 5], ["postInstall", 221, 5], ["meta", 262, 5], ["passthru", 266, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -63,10 +52,10 @@ export default nix.lambda((args) => (() => {
   const gperftools = nix.arg($, "gperftools");
   nix.assert_(!nix.asBool((nix.asBool(withJemalloc) && nix.asBool(withTcmalloc))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/servers/sql/percona-server/8_4.nix:49:1");
   const common = (finalAttrs) => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     version: "8.4.10-10",
     src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: nix.thunk(() => nix.str`https://downloads.percona.com/downloads/Percona-Server-${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/Percona-Server-${nix.sel(finalAttrs, "version")}/source/tarball/percona-server-${nix.sel(finalAttrs, "version")}.tar.gz`),
         hash: "sha256-IjHeflYc3AMd6hNXDEYegXm14wjyt9hX3gIVtOQzauU=",
       })))),
@@ -85,7 +74,7 @@ substituteInPlace storage/rocksdb/get_rocksdb_files.sh --replace "make --" "${gn
 `),
     buildInputs: nix.thunk(() => nix.concat([
       boost,
-      nix.thunk(() => nix.app(nix.sel(curl, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, openssl: openssl })))),
+      nix.thunk(() => nix.app(nix.sel(curl, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], openssl: openssl })))),
       icu,
       libedit,
       libevent,
@@ -130,7 +119,7 @@ so=${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}
 ln -s libperconaserverclient$so $out/lib/libmysqlclient_r$so
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "# support files are installed to an incorrect path `nix/store`<systemd-store-path>`,\n# see cmake/systemd.cmake. These are: service units, tmpfiles rules\n# But we do not need these anyways.\nrm -r \"$out\"/nix/\n"))),
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       homepage: "https://www.percona.com/software/mysql-database/percona-server",
       description: "A free, fully compatible, enhanced, open source drop-in replacement for\nMySQL® that provides superior performance, scalability and instrumentation.\nLong-term support release.\n",
       license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -141,23 +130,23 @@ ln -s libperconaserverclient$so $out/lib/libmysqlclient_r$so
       platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
     })),
     passthru: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       mysqlVersion: nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))),
     })),
   });
   const client = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => (() => {
       const common$ = nix.thunk(() => nix.app(common, finalAttrs));
       return nix.update(common$, {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname: "percona-client",
         cmakeFlags: nix.thunk(() => nix.concat(nix.sel(common$, "cmakeFlags"), ["-DWITHOUT_SERVER=ON", "-DINSTALL_MYSQLSHAREDIR=share/mysql-client"])),
-        meta: nix.thunk(() => nix.update(nix.sel(common$, "meta"), { [nix.POS]: pos$6, mainProgram: "mysql" })),
+        meta: nix.thunk(() => nix.update(nix.sel(common$, "meta"), { [nix.POS]: $pos[5], mainProgram: "mysql" })),
       });
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => (() => {
       const common$ = nix.thunk(() => nix.app(common, finalAttrs));
       return nix.update(common$, {
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         pname: "percona-server",
         postInstall: nix.thunk(() => nix.add(nix.add(nix.sel(common$, "postInstall"), nix.str`
 wrapProgram $out/bin/mysqld_safe --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutils, procps, gnugrep, gnused, hostname]))}
@@ -166,21 +155,21 @@ wrapProgram $out/bin/ps_mysqld_helper --prefix PATH : ${nix.app(nix.sel(lib, "ma
 wrapProgram $out/bin/ps-admin --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutils, gnugrep]))}
 `), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.str`wrapProgram $out/bin/mysqld_multi --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutils, gnugrep]))}
 `)))),
-        meta: nix.thunk(() => nix.update(nix.sel(common$, "meta"), { [nix.POS]: pos$8, mainProgram: "mysqld" })),
+        meta: nix.thunk(() => nix.update(nix.sel(common$, "meta"), { [nix.POS]: $pos[7], mainProgram: "mysqld" })),
         passthru: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(common$, "passthru"));
           return {
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           client: client,
           "connector-c": nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
           server: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
           mysqlVersion: nix.thunk(() => nix.attr(from, "mysqlVersion")),
           tests: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             "percona-server": nix.thunk(() => nix.sel(nixosTests, "mysql", nix.key(nix.str`percona-server_${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}_${nix.app(nix.sel(lib, "versions", "minor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}`))),
           })),
           updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               url: "https://github.com/percona/percona-server",
               "rev-prefix": "Percona-Server-",
               allowedVersions: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}\\.${nix.app(nix.sel(lib, "versions", "minor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}\\..+`),

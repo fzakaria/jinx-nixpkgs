@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["sha256", 22, 5]], [["packageName", 34, 7], ["attrPath", 35, 7], ["versionPolicy", 36, 7]], [["updateScript", 33, 5]], [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5]], [["pname", 12, 3], ["version", 13, 3], ["outputs", 15, 3], ["src", 20, 3], ["nativeBuildInputs", 24, 3], ["propagatedBuildInputs", 25, 3], ["enableParallelBuilding", 30, 3], ["passthru", 32, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, goocanvas_2: false, gtkmm3: false, gnome: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 34, 7], ["attrPath", 35, 7], ["versionPolicy", 36, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 33, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["outputs", 15, 3], ["src", 20, 3], ["nativeBuildInputs", 24, 3], ["propagatedBuildInputs", 25, 3], ["enableParallelBuilding", 30, 3], ["passthru", 32, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.90.11";
       const outputs = nix.thunk(() => ["out", "dev"]);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/goocanvasmm/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/goocanvasmm-${version}.tar.xz`),
           sha256: "0vpdfrj59nwzwj8bk4s0h05iyql62pxjzsxh72g3vry07s3i3zw0",
         }))));
@@ -31,16 +27,16 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [gtkmm3, goocanvas_2]);
       const enableParallelBuilding = true;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             packageName: pname,
             attrPath: "goocanvasmm2",
             versionPolicy: "none",
           })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "C++ bindings for GooCanvas",
         homepage: "https://gitlab.gnome.org/Archive/goocanvasmm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2")),
@@ -48,7 +44,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         outputs,

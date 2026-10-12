@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["version", 23, 26], ["pname", 25, 5], ["src", 26, 5], ["npmDepsHash", 28, 5], ["installPhase", 30, 5]], [["extraArgs", 44, 5]], [["updateScript", 43, 12]], [["mainProgram", 51, 5], ["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["platforms", 56, 5], ["maintainers", 57, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["ui", 22, 3], ["preBuild", 38, 3], ["passthru", 43, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, buildNpmPackage: false, fetchFromGitHub: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 23, 26], ["pname", 25, 5], ["src", 26, 5], ["npmDepsHash", 28, 5], ["installPhase", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 44, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 43, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["mainProgram", 51, 5], ["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["platforms", 56, 5], ["maintainers", 57, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["ui", 22, 3], ["preBuild", 38, 3], ["passthru", 43, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "pyrra",
       version: "0.10.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pyrra-dev",
           repo: "pyrra",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-/IKzAsA3/2ygW7RocxFq4KmJj1z8ZSdx7wyxWeULet8=",
       ui: nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-ui`),
           src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/ui`),
@@ -41,11 +36,11 @@ export default nix.lambda((args) => (() => {
 cp -r ${nix.sel(finalAttrs, "ui")}/share/pyrra/ui/* ui/build
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--subpackage", "ui"]) })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[2], extraArgs: nix.thunk(() => ["--subpackage", "ui"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         mainProgram: "pyrra",
         description: "Making SLOs with Prometheus manageable, accessible, and easy to use for everyone!",
         homepage: "https://github.com/pyrra-dev/pyrra",

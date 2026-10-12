@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["mailcatcher", 18, 43]], [["updateScript", 17, 12], ["tests", 18, 12]], [["description", 21, 5], ["homepage", 22, 5], ["license", 23, 5], ["maintainers", 24, 5], ["platforms", 28, 5]], [["pname", 10, 3], ["gemdir", 11, 3], ["exes", 12, 3], ["passthru", 17, 3], ["meta", 20, 3]]]);
 const formals$1 = { args: { ruby: false, lib: false, bundlerApp: false, bundlerUpdateScript: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["mailcatcher", 18, 43]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 17, 12], ["tests", 18, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 21, 5], ["homepage", 22, 5], ["license", 23, 5], ["maintainers", 24, 5], ["platforms", 28, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["gemdir", 11, 3], ["exes", 12, 3], ["passthru", 17, 3], ["meta", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,20 +13,20 @@ export default nix.lambda((args) => (() => {
   const bundlerUpdateScript = nix.arg($, "bundlerUpdateScript");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(bundlerApp, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "mailcatcher",
       gemdir: nix.path(here, "./."),
       exes: nix.thunk(() => ["mailcatcher", "catchmail"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "mailcatcher")),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           mailcatcher: nix.thunk(() => nix.attr(nixosTests, "mailcatcher")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "SMTP server and web interface to locally test outbound emails",
         homepage: "https://mailcatcher.me/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["yarnLock", 25, 5], ["hash", 26, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 29, 7]], [["name", 102, 5], ["exec", 103, 5], ["icon", 104, 5], ["desktopName", 105, 5], ["genericName", 106, 5], ["comment", 107, 5], ["categories", 108, 5], ["startupWMClass", 109, 5]], [["description", 113, 5], ["longDescription", 114, 5], ["homepage", 121, 5], ["license", 122, 5], ["maintainers", 123, 5], ["platforms", 126, 5], ["mainProgram", 127, 5]], [["pname", 17, 3], ["version", 18, 21], ["slang", 18, 29], ["src", 18, 35], ["__structuredAttrs", 20, 3], ["sourceRoot", 22, 3], ["yarnOfflineCache", 24, 3], ["env", 29, 3], ["strictDeps", 31, 3], ["nativeBuildInputs", 33, 3], ["postPatch", 45, 3], ["buildPhase", 51, 3], ["installPhase", 77, 3], ["desktopItems", 101, 3], ["meta", 112, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchYarnDeps: false, yarn: false, "fixup-yarn-lock": false, yarnConfigHook: false, nodejs_24: false, electron: false, "frama-c": false, makeWrapper: false, makeBinaryWrapper: false, makeDesktopItem: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["yarnLock", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 102, 5], ["exec", 103, 5], ["icon", 104, 5], ["desktopName", 105, 5], ["genericName", 106, 5], ["comment", 107, 5], ["categories", 108, 5], ["startupWMClass", 109, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 113, 5], ["longDescription", 114, 5], ["homepage", 121, 5], ["license", 122, 5], ["maintainers", 123, 5], ["platforms", 126, 5], ["mainProgram", 127, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 21], ["slang", 18, 29], ["src", 18, 35], ["__structuredAttrs", 20, 3], ["sourceRoot", 22, 3], ["yarnOfflineCache", 24, 3], ["env", 29, 3], ["strictDeps", 31, 3], ["nativeBuildInputs", 33, 3], ["postPatch", 45, 3], ["buildPhase", 51, 3], ["installPhase", 77, 3], ["desktopItems", 101, 3], ["meta", 112, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "frama-c-gui",
       version: nix.thunk(() => nix.attr(frama_c, "version")),
       slang: nix.thunk(() => nix.attr(frama_c, "slang")),
@@ -32,11 +28,11 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/ivette`),
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           yarnLock: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/ivette/yarn.lock`),
           hash: "sha256-fEwgsoJWQvzeDq3GTp0ngNu+oj1BogH1bwU5rMeRDjQ=",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => nix.concat([yarnConfigHook, nodejs_24, yarn], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [makeWrapper])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [makeBinaryWrapper]))))),
       postPatch: nix.thunk(() => nix.str`substituteInPlace src/frama-c/server.ts \\
@@ -79,7 +75,7 @@ makeWrapper '${electron}/bin/electron' "$out/bin/frama-c-gui" \\
   --inherit-argv0
 `))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/Applications\ncp -r dist/mac*/'Frama-C GUI.app' \"$out/Applications/Frama-C GUI.app\"\nmakeWrapper \"$out/Applications/Frama-C GUI.app/Contents/MacOS/Frama-C GUI\" \"$out/bin/frama-c-gui\"\n")), "runHook postInstall\n")),
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "frama-c-gui",
             exec: "frama-c-gui",
             icon: "frama-c-gui",
@@ -90,7 +86,7 @@ makeWrapper '${electron}/bin/electron' "$out/bin/frama-c-gui" \\
             startupWMClass: "Frama-C GUI",
           })))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Graphical User Interface for Frama-C",
         longDescription: "Ivette is the Graphical User Interface (GUI) of Frama-C. It\nenables exploring code, augmented with several navigation tools\nand highlighting modes; it allows launching, parametrizing and\nvisualizing analyses; and it allows combining them seamlessly,\ntaking full advantage of the multi-paradigm approach.\n",
         homepage: "https://www.frama-c.com/html/ivette.html",

@@ -2,26 +2,11 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/postgresql-replication.nix", [[["maintainers", 15, 14]], [["wal_level", 26, 19], ["max_wal_senders", 27, 19], ["max_replication_slots", 28, 19]], [["replication", 37, 35]], [["name", 36, 21], ["ensureClauses", 37, 21]], [["package", 22, 25], ["enable", 23, 17], ["enableTCPIP", 24, 17], ["settings", 25, 17], ["authentication", 30, 17], ["ensureUsers", 34, 17]], [["postgresql", 21, 24]], [["allowedTCPPorts", 41, 35]], [["firewall", 41, 26]], [["services", 21, 15], ["networking", 41, 15]], [["hot_standby", 51, 19], ["primary_conninfo", 52, 19], ["primary_slot_name", 53, 19]], [["package", 48, 25], ["enable", 49, 17], ["settings", 50, 17]], [["postgresql", 47, 24]], [["services", 47, 15]], [["primary", 18, 11], ["replica", 44, 11]], [["name", 14, 9], ["meta", 15, 9], ["nodes", 17, 9], ["testScript", 59, 9]], [["makeTestFor", 127, 20]]]);
 const formals$1 = { args: { runTest: false, genTests: false }, ellipsis: true };
 const formals$2 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/postgresql-replication.nix", [["maintainers", 15, 14]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/postgresql-replication.nix", [["wal_level", 26, 19], ["max_wal_senders", 27, 19], ["max_replication_slots", 28, 19]]);
-const pos$3 = nix.positions(here + "/postgresql-replication.nix", [["replication", 37, 35]]);
-const pos$4 = nix.positions(here + "/postgresql-replication.nix", [["name", 36, 21], ["ensureClauses", 37, 21]]);
-const pos$5 = nix.positions(here + "/postgresql-replication.nix", [["package", 22, 25], ["enable", 23, 17], ["enableTCPIP", 24, 17], ["settings", 25, 17], ["authentication", 30, 17], ["ensureUsers", 34, 17]]);
-const pos$6 = nix.positions(here + "/postgresql-replication.nix", [["postgresql", 21, 24]]);
-const pos$7 = nix.positions(here + "/postgresql-replication.nix", [["allowedTCPPorts", 41, 35]]);
-const pos$8 = nix.positions(here + "/postgresql-replication.nix", [["firewall", 41, 26]]);
-const pos$9 = nix.positions(here + "/postgresql-replication.nix", [["services", 21, 15], ["networking", 41, 15]]);
 const formals$4 = { args: { nodes: false }, ellipsis: true };
-const pos$10 = nix.positions(here + "/postgresql-replication.nix", [["hot_standby", 51, 19], ["primary_conninfo", 52, 19], ["primary_slot_name", 53, 19]]);
-const pos$11 = nix.positions(here + "/postgresql-replication.nix", [["package", 48, 25], ["enable", 49, 17], ["settings", 50, 17]]);
-const pos$12 = nix.positions(here + "/postgresql-replication.nix", [["postgresql", 47, 24]]);
-const pos$13 = nix.positions(here + "/postgresql-replication.nix", [["services", 47, 15]]);
-const pos$14 = nix.positions(here + "/postgresql-replication.nix", [["primary", 18, 11], ["replica", 44, 11]]);
-const pos$15 = nix.positions(here + "/postgresql-replication.nix", [["name", 14, 9], ["meta", 15, 9], ["nodes", 17, 9], ["testScript", 59, 9]]);
-const pos$16 = nix.positions(here + "/postgresql-replication.nix", [["makeTestFor", 127, 20]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,30 +16,30 @@ export default nix.lambda((args) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const lib = nix.arg($_1, "lib");
       return {
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         name: nix.thunk(() => nix.str`postgresql-replication-${nix.sel(package$, "name")}`),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           maintainers: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w, "bouk"))];
           })()),
         })),
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           primary: nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$3);
             return {
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 postgresql: nix.thunk(() => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   package: package$,
                   enable: true,
                   enableTCPIP: true,
                   settings: nix.thunk(() => ({
-                    [nix.POS]: pos$2,
+                    [nix.POS]: $pos[1],
                     wal_level: "replica",
                     max_wal_senders: 10n,
                     max_replication_slots: 10n,
@@ -62,16 +47,16 @@ export default nix.lambda((args) => (() => {
                   authentication: "local replication postgres peer\nhost replication replication all trust\n",
                   ensureUsers: nix.thunk(() => [
                     nix.thunk(() => ({
-                      [nix.POS]: pos$4,
+                      [nix.POS]: $pos[3],
                       name: "replication",
-                      ensureClauses: nix.thunk(() => ({ [nix.POS]: pos$3, replication: true })),
+                      ensureClauses: nix.thunk(() => ({ [nix.POS]: $pos[2], replication: true })),
                     })),
                   ]),
                 })),
               })),
               networking: nix.thunk(() => ({
-                [nix.POS]: pos$8,
-                firewall: nix.thunk(() => ({ [nix.POS]: pos$7, allowedTCPPorts: nix.thunk(() => [5432n]) })),
+                [nix.POS]: $pos[7],
+                firewall: nix.thunk(() => ({ [nix.POS]: $pos[6], allowedTCPPorts: nix.thunk(() => [5432n]) })),
               })),
             };
           })(), formals$3),
@@ -79,15 +64,15 @@ export default nix.lambda((args) => (() => {
             const $_2 = nix.formals(args_2, formals$4);
             const nodes = nix.arg($_2, "nodes");
             return {
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$12,
+                [nix.POS]: $pos[11],
                 postgresql: nix.thunk(() => ({
-                  [nix.POS]: pos$11,
+                  [nix.POS]: $pos[10],
                   package: package$,
                   enable: true,
                   settings: nix.thunk(() => ({
-                    [nix.POS]: pos$10,
+                    [nix.POS]: $pos[9],
                     hot_standby: "on",
                     primary_conninfo: nix.thunk(() => nix.str`host=${nix.sel(nodes, "primary", "networking", "primaryIPAddress")} user=replication`),
                     primary_slot_name: "replica_slot",
@@ -163,6 +148,6 @@ replica.shutdown()
 `),
       };
     })(), formals$2));
-  return nix.app(genTests, nix.thunk(() => ({ [nix.POS]: pos$16, makeTestFor: makeTestFor })));
+  return nix.app(genTests, nix.thunk(() => ({ [nix.POS]: $pos[15], makeTestFor: makeTestFor })));
 })(), formals$1);
 //# sourceMappingURL=postgresql-replication.ts.map

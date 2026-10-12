@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["homepage", 57, 5], ["description", 59, 7], ["changelog", 60, 7], ["license", 61, 7], ["teams", 62, 7]], [["pname", 17, 3], ["pyproject", 18, 3], ["version", 21, 5], ["src", 22, 5], ["postPatch", 25, 3], ["sourceRoot", 37, 3], ["build-system", 39, 3], ["dependencies", 41, 3], ["pythonImportsCheck", 50, 3], ["nativeCheckInputs", 52, 3], ["enabledTestPaths", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, liboprf: false, setuptools: false, "ble-serial": false, pyserial: false, "pyserial-asyncio": false, pysodium: false, pyudev: false, securestring: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["homepage", 57, 5], ["description", 59, 7], ["changelog", 60, 7], ["license", 61, 7], ["teams", 62, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["pyproject", 18, 3], ["version", 21, 5], ["src", 22, 5], ["postPatch", 25, 3], ["sourceRoot", 37, 3], ["build-system", 39, 3], ["dependencies", 41, 3], ["pythonImportsCheck", 50, 3], ["nativeCheckInputs", 52, 3], ["enabledTestPaths", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const securestring = nix.arg($, "securestring");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "pyoprf",
       pyproject: true,
       version: nix.thunk(() => nix.attr(liboprf, "version")),
@@ -44,7 +43,7 @@ substituteInPlace pyoprf/noisexk.py \\
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(liboprf, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: "https://github.com/stef/liboprf/tree/master/python",
         description: nix.thunk(() => nix.attr(from, "description")),
         changelog: nix.thunk(() => nix.attr(from, "changelog")),

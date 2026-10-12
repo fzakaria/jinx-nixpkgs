@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["NIX_CFLAGS_COMPILE", 60, 7]], [["description", 85, 5], ["homepage", 86, 5], ["changelog", 87, 5], ["license", 90, 5], ["platforms", 91, 5], ["maintainers", 92, 5], ["mainProgram", 93, 5]], [["pname", 21, 3], ["version", 22, 3], ["outputs", 24, 3], ["src", 30, 3], ["patches", 37, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 51, 3], ["env", 60, 3], ["configureFlags", 66, 3], ["installFlags", 75, 3], ["enableParallelBuilding", 79, 3], ["nativeInstallCheckInputs", 81, 3], ["doInstallCheck", 82, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, autoreconfHook: false, bison: false, fetchFromGitHub: false, flex: false, libmemcached: false, libpq: false, libxcrypt: false, openldap: false, openssl: false, pam: false, versionCheckHook: false, enableLdap: true, enableMemcached: true, enablePam: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 60, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 85, 5], ["homepage", 86, 5], ["changelog", 87, 5], ["license", 90, 5], ["platforms", 91, 5], ["maintainers", 92, 5], ["mainProgram", 93, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["outputs", 24, 3], ["src", 30, 3], ["patches", 37, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 51, 3], ["env", 60, 3], ["configureFlags", 66, 3], ["installFlags", 75, 3], ["enableParallelBuilding", 79, 3], ["nativeInstallCheckInputs", 81, 3], ["doInstallCheck", 82, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const enableMemcached = nix.argOr($, "enableMemcached", () => true);
   const enablePam = nix.argOr($, "enablePam", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pgpool",
       version: "4.7.2",
       outputs: nix.thunk(() => ["out", "dev", "lib"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pgpool",
           repo: "pgpool2",
           tag: nix.thunk(() => nix.str`V${nix.app(nix.sel(lib, "replaceString"), ".", "_", nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, bison, flex]),
       buildInputs: nix.thunk(() => nix.concat([libpq, libxcrypt, openssl], nix.concat(nix.app(nix.sel(lib, "optional"), enableLdap, openldap), nix.concat(nix.app(nix.sel(lib, "optional"), enableMemcached, libmemcached), nix.app(nix.sel(lib, "optional"), enablePam, pam))))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ["-Wno-error=implicit-function-declaration"]))))),
       })),
       configureFlags: nix.thunk(() => [
@@ -61,7 +58,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Middleware that works between PostgreSQL servers and PostgreSQL clients",
         homepage: "https://pgpool.net/",
         changelog: nix.thunk(() => nix.str`https://www.pgpool.net/docs/latest/en/html/release-${nix.app(nix.sel(lib, "replaceString"), ".", "-", nix.thunk(() => nix.sel(finalAttrs, "version")))}.html`),

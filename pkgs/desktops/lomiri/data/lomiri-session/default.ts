@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]], [["providedSessions", 100, 5], ["tests", 105, 5], ["updateScript", 106, 5]], [["description", 110, 5], ["homepage", 111, 5], ["changelog", 112, 5], ["license", 113, 5], ["mainProgram", 114, 5], ["teams", 115, 5], ["platforms", 116, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["patches", 33, 3], ["postPatch", 35, 3], ["strictDeps", 48, 3], ["__structuredAttrs", 50, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 60, 3], ["dontWrapGApps", 70, 3], ["cmakeFlags", 72, 3], ["postInstall", 77, 3], ["preFixup", 81, 3], ["postFixup", 95, 3], ["passthru", 99, 3], ["meta", 109, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, fetchFromGitLab: false, gitUpdater: false, nixosTests: false, bash: false, cmake: false, dbus: false, deviceinfo: false, glib: false, "inotify-tools": false, lomiri: false, "lomiri-schemas": false, makeWrapper: false, "pkg-config": false, systemd: false, wrapGAppsHook4: false, "xdg-user-dirs": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["providedSessions", 100, 5], ["tests", 105, 5], ["updateScript", 106, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 110, 5], ["homepage", 111, 5], ["changelog", 112, 5], ["license", 113, 5], ["mainProgram", 114, 5], ["teams", 115, 5], ["platforms", 116, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["patches", 33, 3], ["postPatch", 35, 3], ["strictDeps", 48, 3], ["__structuredAttrs", 50, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 60, 3], ["dontWrapGApps", 70, 3], ["cmakeFlags", 72, 3], ["postInstall", 77, 3], ["preFixup", 81, 3], ["postFixup", 95, 3], ["passthru", 99, 3], ["meta", 109, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   const xdg_user_dirs = nix.arg($, "xdg-user-dirs");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "lomiri-session",
       version: "0.4",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ubports",
           repo: "development/core/lomiri-session",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -65,13 +62,13 @@ substituteInPlace desktop/dm-lomiri-session.in \\
 `),
       postFixup: "wrapGApp $out/bin/lomiri-session\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         providedSessions: nix.thunk(() => ["lomiri"]),
         tests: nix.thunk(() => nix.sel(nixosTests, "lomiri")),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Integrates Lomiri desktop/touch sessions into display / session managers",
         homepage: "https://gitlab.com/ubports/development/core/lomiri-session",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/ubports/development/core/lomiri-session/-/blob/${nix.sel(finalAttrs, "version")}/ChangeLog`),

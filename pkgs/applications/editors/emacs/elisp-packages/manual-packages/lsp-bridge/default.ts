@@ -2,14 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 39, 5], ["repo", 40, 5], ["rev", 41, 5], ["hash", 42, 5]], [["python", 49, 7]], [["url", 54, 7], ["revert", 55, 7], ["hash", 56, 7]], [["hardcodeZeroVersion", 102, 48]], [["updateScript", 102, 12]], [["description", 105, 5], ["homepage", 106, 5], ["license", 107, 5], ["maintainers", 108, 5]], [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["patches", 45, 3], ["packageRequires", 60, 3], ["checkInputs", 65, 3], ["nativeCheckInputs", 70, 3], ["files", 80, 3], ["doCheck", 89, 3], ["checkPhase", 90, 3], ["__darwinAllowLocalNetworking", 100, 3], ["passthru", 102, 3], ["meta", 104, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, melpaBuild: false, fetchFromGitHub: false, replaceVars: false, fetchpatch: false, acm: false, "markdown-mode": false, basedpyright: false, git: false, go: false, gopls: false, tempel: false, unstableGitUpdater: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 39, 5], ["repo", 40, 5], ["rev", 41, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["python", 49, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 54, 7], ["revert", 55, 7], ["hash", 56, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["hardcodeZeroVersion", 102, 48]]);
-const pos$5 = nix.positions(here + "/default.nix", [["updateScript", 102, 12]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 105, 5], ["homepage", 106, 5], ["license", 107, 5], ["maintainers", 108, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["patches", 45, 3], ["packageRequires", 60, 3], ["checkInputs", 65, 3], ["nativeCheckInputs", 70, 3], ["files", 80, 3], ["doCheck", 89, 3], ["checkPhase", 90, 3], ["__darwinAllowLocalNetworking", 100, 3], ["passthru", 102, 3], ["meta", 104, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,20 +37,20 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(melpaBuild, nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "lsp-bridge",
       version: "0-unstable-2026-06-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "manateelazycat",
           repo: "lsp-bridge",
           rev: "a302f869abe498f1d1431c5f2d54f15ca9b83c8d",
           hash: "sha256-OdCiY5qUEQSbDAZqcXhgy7Sz1XWn0sipyiKkOVeDA/w=",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-dependencies.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, python: nix.thunk(() => nix.sel(python, "interpreter")) })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-dependencies.patch"), nix.thunk(() => ({ [nix.POS]: $pos[1], python: nix.thunk(() => nix.sel(python, "interpreter")) })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/manateelazycat/lsp-bridge/commit/a999c8432817a806ed9ad74b5e918ab9612bd09b.patch",
             revert: true,
             hash: "sha256-NK6hooWn78Hk26tcQbIwUiiJuQ/hhlbLK+pgiZT//fI=",
@@ -70,11 +64,11 @@ export default nix.lambda((args) => (() => {
       checkPhase: "runHook preCheck\n\nmkfifo test.log\ncat < test.log &\npython -m test.test\n\nrunHook postCheck\n",
       __darwinAllowLocalNetworking: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$4, hardcodeZeroVersion: true })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[3], hardcodeZeroVersion: true })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Blazingly fast LSP client for Emacs",
         homepage: "https://github.com/manateelazycat/lsp-bridge",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

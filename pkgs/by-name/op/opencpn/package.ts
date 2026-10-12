@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 56, 5], ["repo", 57, 5], ["rev", 58, 5], ["hash", 59, 5]], [["NIX_CFLAGS_COMPILE", 139, 7]], [["description", 154, 5], ["maintainers", 155, 5], ["platforms", 159, 5], ["license", 160, 5], ["homepage", 161, 5]], [["pname", 52, 3], ["version", 53, 3], ["src", 55, 3], ["patches", 62, 3], ["postPatch", 65, 3], ["nativeBuildInputs", 69, 3], ["buildInputs", 83, 3], ["cmakeFlags", 131, 3], ["env", 139, 3], ["postInstall", 145, 3], ["doCheck", 151, 3], ["meta", 153, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, darwin: false, "alsa-utils": false, "at-spi2-core": false, cmake: false, curl: false, dbus: false, elfutils: false, fetchFromGitHub: false, flac: false, gitMinimal: false, wrapGAppsHook3: false, glew: false, gtest: false, jasper: false, lame: false, libGLU: false, libarchive: false, libdatrie: false, libepoxy: false, libexif: false, libogg: false, libopus: false, libselinux: false, libsepol: false, libsndfile: false, libthai: false, libunarr: false, libusb1: false, libvorbis: false, libxkbcommon: false, "lsb-release": false, lz4: false, libmpg123: false, makeWrapper: false, "pkg-config": false, portaudio: false, rapidjson: false, shapelib: false, sqlite: false, tinyxml: false, "util-linux": false, wxwidgets_3_2: false, libxtst: false, libxdmcp: false, xz: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 56, 5], ["repo", 57, 5], ["rev", 58, 5], ["hash", 59, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 139, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 154, 5], ["maintainers", 155, 5], ["platforms", 159, 5], ["license", 160, 5], ["homepage", 161, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 52, 3], ["version", 53, 3], ["src", 55, 3], ["patches", 62, 3], ["postPatch", 65, 3], ["nativeBuildInputs", 69, 3], ["buildInputs", 83, 3], ["cmakeFlags", 131, 3], ["env", 139, 3], ["postInstall", 145, 3], ["doCheck", 151, 3], ["meta", 153, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -58,11 +55,11 @@ export default nix.lambda((args) => (() => {
   const libxdmcp = nix.arg($, "libxdmcp");
   const xz = nix.arg($, "xz");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "opencpn",
       version: "5.14.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "OpenCPN",
           repo: "OpenCPN",
           rev: nix.thunk(() => nix.str`Release_${nix.sel(finalAttrs, "version")}`),
@@ -100,13 +97,13 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.str`-DOCPN_TARGET_TUPLE=unknown;unknown;${nix.sel(stdenv, "hostPlatform", "linuxArch")}`),
         ])))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86"))), nix.thunk(() => ["-DSQUISH_USE_SSE=0"]))))),
       })),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/Applications\nmv $out/bin/OpenCPN.app $out/Applications\nmakeWrapper $out/Applications/OpenCPN.app/Contents/MacOS/OpenCPN $out/bin/opencpn\n")),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Concise ChartPlotter/Navigator",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

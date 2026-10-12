@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/unwrapped.nix", [[["package", 122, 9]], [["name", 126, 9], ["script", 127, 9], ["nativeBuildInputs", 137, 9]], [["wrapped", 121, 7], ["prelude", 125, 7]], [["idris2", 144, 50]], [["idris2", 143, 7], ["idris2Packages", 144, 7]], [["idris2-unwrapped", 152, 9], ["extraPackages", 153, 9]], [["libidris2_support", 119, 13], ["tests", 120, 5], ["chez", 147, 5], ["withPackages", 149, 5], ["updateScript", 156, 5]], [["description", 160, 5], ["mainProgram", 161, 5], ["homepage", 162, 5], ["changelog", 163, 5], ["license", 164, 5], ["maintainers", 165, 5], ["platforms", 170, 5]], [["pname", 33, 3], ["version", 34, 3], ["src", 35, 3], ["postPatch", 37, 3], ["strictDeps", 56, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 63, 3], ["enableParallelBuilding", 69, 3], ["makeFlags", 71, 3], ["buildFlags", 78, 3], ["doCheck", 85, 3], ["checkTarget", 86, 3], ["nativeCheckInputs", 87, 3], ["checkFlags", 91, 3], ["installTargets", 100, 3], ["postInstall", 102, 3], ["passthru", 118, 3], ["meta", 159, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, chez: false, "chez-racket": false, clang: false, gmp: false, installShellFiles: false, gambit: false, nodejs: false, zsh: false, callPackage: false, idris2Packages: false, testers: false, libidris2_support: false, "idris2-version": false, "idris2-src": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/unwrapped.nix", [["package", 122, 9]]);
-const pos$2 = nix.positions(here + "/unwrapped.nix", [["name", 126, 9], ["script", 127, 9], ["nativeBuildInputs", 137, 9]]);
-const pos$3 = nix.positions(here + "/unwrapped.nix", [["wrapped", 121, 7], ["prelude", 125, 7]]);
-const pos$4 = nix.positions(here + "/unwrapped.nix", [["idris2", 144, 50]]);
-const pos$5 = nix.positions(here + "/unwrapped.nix", [["idris2", 143, 7], ["idris2Packages", 144, 7]]);
-const pos$6 = nix.positions(here + "/unwrapped.nix", [["idris2-unwrapped", 152, 9], ["extraPackages", 153, 9]]);
-const pos$7 = nix.positions(here + "/unwrapped.nix", [["libidris2_support", 119, 13], ["tests", 120, 5], ["chez", 147, 5], ["withPackages", 149, 5], ["updateScript", 156, 5]]);
-const pos$8 = nix.positions(here + "/unwrapped.nix", [["description", 160, 5], ["mainProgram", 161, 5], ["homepage", 162, 5], ["changelog", 163, 5], ["license", 164, 5], ["maintainers", 165, 5], ["platforms", 170, 5]]);
-const pos$9 = nix.positions(here + "/unwrapped.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 35, 3], ["postPatch", 37, 3], ["strictDeps", 56, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 63, 3], ["enableParallelBuilding", 69, 3], ["makeFlags", 71, 3], ["buildFlags", 78, 3], ["doCheck", 85, 3], ["checkTarget", 86, 3], ["nativeCheckInputs", 87, 3], ["checkFlags", 91, 3], ["installTargets", 100, 3], ["postInstall", 102, 3], ["passthru", 118, 3], ["meta", 159, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,7 +29,7 @@ export default nix.lambda((args) => (() => {
   const libsupportShare = nix.thunk(() => nix.app(nix.sel(lib, "makeSearchPath"), "share", nix.thunk(() => [libidris2_support])));
   const platformChez = nix.thunk(() => (nix.asBool((nix.asBool(nix.eq(nix.sel(stdenv, "system"), "x86_64-linux")) || nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(chez, "version")), "10.0.0")))) ? nix.force(chez) : nix.force(chez_racket)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "idris2",
       version: idris2_version,
       src: idris2_src,
@@ -86,16 +78,16 @@ patchShebangs --build tests
       installTargets: "install-idris2",
       postInstall: nix.thunk(() => nix.add("# Remove existing idris2 wrapper that sets incorrect LD_LIBRARY_PATH\nrm $out/bin/idris2\n\n# The only thing we need from idris2_app is the actual binary, which is a Chez\n# scheme object and for some reason *.so on darwin too\nmv $out/bin/idris2_app/idris2.so $out/bin/idris2\n\nrm -rf $out/bin/idris2_app\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd idris2 \\\n  --bash <($out/bin/idris2 --bash-completion-script idris2)\n"))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         libidris2_support: libidris2_support,
         tests: nix.thunk(() => nix.update({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           wrapped: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               package: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "withPackages"), (p) => [nix.thunk(() => nix.sel(p, "idris2Api"))])),
             })))),
           prelude: nix.thunk(() => nix.app(nix.sel(testers, "runCommand"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               name: "idris2-prelude-wrapped",
               script: "local packages=$(idris2 --list-packages)\n\nif ! [[ $packages =~ \"contrib\" ]]; then\n  exit 1\nfi\n\ntouch \"$out\"\n",
               nativeBuildInputs: nix.thunk(() => [
@@ -103,23 +95,23 @@ patchShebangs --build tests
               ]),
             })))),
         }, nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             idris2: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "withPackages"), (_) => [])),
             idris2Packages: nix.thunk(() => nix.app(nix.sel(idris2Packages, "override"), nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 idris2: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               })))),
           }))))),
         chez: platformChez,
         withPackages: (f) => nix.app(callPackage, nix.path(here, "./wrapped.nix"), nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             "idris2-unwrapped": nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             extraPackages: nix.thunk(() => nix.app(f, idris2Packages)),
           }))),
         updateScript: nix.path(here, "./update.nu"),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Purely functional programming language with first class types",
         mainProgram: "idris2",
         homepage: "https://github.com/idris-lang/Idris2",

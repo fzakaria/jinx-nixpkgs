@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 25, 7], ["hash", 26, 7]], [["url", 29, 7], ["hash", 30, 7]], [["url", 33, 7], ["hash", 34, 7]], [["x86_64-linux", 24, 5], ["aarch64-linux", 28, 5], ["aarch64-darwin", 32, 5]], [["homepage", 79, 5], ["description", 80, 5], ["longDescription", 81, 5], ["maintainers", 82, 5], ["teams", 86, 5], ["license", 87, 5], ["sourceProvenance", 88, 5]], [["jetbrains-libdbm", 40, 11], ["fsnotifier", 40, 28], ["pname", 42, 3], ["wmClass", 44, 3], ["product", 45, 3], ["version", 48, 3], ["buildNumber", 49, 3], ["src", 52, 3], ["jdk", 55, 3], ["nativeBuildInputs", 61, 3], ["buildInputs", 63, 3], ["meta", 78, 3]], [["postInstall", 96, 5]]]);
 const formals$1 = { args: { dotnetCorePackages: false, expat: false, fetchurl: false, fsnotifier: false, jetbrains: false, "jetbrains-libdbm": false, lib: false, "libxcrypt-legacy": false, libxml2: false, "lttng-ust_2_12": false, musl: false, openssl: false, python3: false, stdenv: false, xz: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 25, 7], ["hash", 26, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 29, 7], ["hash", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 33, 7], ["hash", 34, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["x86_64-linux", 24, 5], ["aarch64-linux", 28, 5], ["aarch64-darwin", 32, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 79, 5], ["description", 80, 5], ["longDescription", 81, 5], ["maintainers", 82, 5], ["teams", 86, 5], ["license", 87, 5], ["sourceProvenance", 88, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["jetbrains-libdbm", 40, 11], ["fsnotifier", 40, 28], ["pname", 42, 3], ["wmClass", 44, 3], ["product", 45, 3], ["version", 48, 3], ["buildNumber", 49, 3], ["src", 52, 3], ["jdk", 55, 3], ["nativeBuildInputs", 61, 3], ["buildInputs", 63, 3], ["meta", 78, 3]]);
-const pos$7 = nix.positions(here + "/package.nix", [["postInstall", 96, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,25 +24,25 @@ export default nix.lambda((args) => (() => {
   const xz = nix.arg($, "xz");
   const system = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "system"));
   const urls = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     "x86_64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://download.jetbrains.com/cpp/CLion-2026.2.0.1.tar.gz",
       hash: "sha256-3/SNgt6bpr0aIQWmTJnvkgftdZE0M5wcE/LDS1Hk4R0=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: "https://download.jetbrains.com/cpp/CLion-2026.2.0.1-aarch64.tar.gz",
       hash: "sha256-IG2U2v9mTk+GCbB9jJVoX5hKju37+DfqRiMtxu8b8bo=",
     })),
     "aarch64-darwin": nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       url: "https://download.jetbrains.com/cpp/CLion-2026.2.0.1-aarch64.dmg",
       hash: "sha256-nkkJ80rc1bApEBMZT0ZjZQcnhkzAG3i1p9GhQUA4gT4=",
     })),
   }));
   return nix.app(nix.sel(nix.app(nix.sel(jetbrains, "mkJetBrainsProduct"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       "jetbrains-libdbm": jetbrains_libdbm,
       fsnotifier: fsnotifier,
       pname: "clion",
@@ -61,7 +55,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [nix.thunk(() => nix.sel(jetbrains, "sharedLibsHook"))]))),
       buildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [python3, openssl, libxcrypt_legacy, lttng_ust_2_12, musl])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch")))), nix.thunk(() => [expat, libxml2, xz])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://www.jetbrains.com/clion/",
         description: "C/C++ IDE from JetBrains",
         longDescription: "Enhancing productivity for every C and C++ developer on Linux, macOS and Windows.",
@@ -77,7 +71,7 @@ export default nix.lambda((args) => (() => {
         sourceProvenance: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryNativeCode"))] : [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryBytecode"))])),
       })),
     }))), "overrideAttrs"), (attrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       postInstall: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "postInstall"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.str`for dir in $out/clion/plugins/clion-radler/DotFiles/linux-*; do
   rm -rf $dir/dotnet
   ln -s ${nix.sel(dotnetCorePackages, "sdk_10_0-source")}/share/dotnet $dir/dotnet

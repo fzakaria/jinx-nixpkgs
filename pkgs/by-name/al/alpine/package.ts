@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["NIX_CFLAGS_COMPILE", 46, 7]], [["rev-prefix", 54, 40]], [["updateScript", 54, 12]], [["description", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 63, 5], ["homepage", 64, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["depsBuildBuild", 26, 3], ["buildInputs", 28, 3], ["hardeningDisable", 38, 3], ["configureFlags", 40, 3], ["env", 46, 3], ["passthru", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, buildPackages: false, ncurses: false, tcl: false, openssl: false, pam: false, libkrb5: false, openldap: false, libxcrypt: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 46, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["rev-prefix", 54, 40]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 54, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 63, 5], ["homepage", 64, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["depsBuildBuild", 26, 3], ["buildInputs", 28, 3], ["hardeningDisable", 38, 3], ["configureFlags", 40, 3], ["env", 46, 3], ["passthru", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libxcrypt = nix.arg($, "libxcrypt");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "alpine",
       version: "2.29.99",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://repo.or.cz/alpine.git",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-h/6HSqEmMZAjVtDJ+9MqM1WYBalthl0mfsC1/f4OmOw=",
@@ -43,15 +38,15 @@ export default nix.lambda((args) => (() => {
         "--with-c-client-target=slx",
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-incompatible-pointer-types", "-std=gnu17"]))),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Console mail reader",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: nix.thunk(() => (() => {

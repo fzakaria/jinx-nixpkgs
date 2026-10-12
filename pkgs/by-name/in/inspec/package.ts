@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["package", 21, 7], ["command", 22, 7], ["version", 23, 46]], [["version", 20, 11]], [["updateScript", 19, 5], ["tests", 20, 5]], [["description", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["maintainers", 31, 5], ["mainProgram", 32, 5]], [["pname", 11, 3], ["gemdir", 12, 3], ["ruby", 14, 3], ["exes", 16, 3], ["passthru", 18, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, ruby_3_4: false, bundlerApp: false, bundlerUpdateScript: false, inspec: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["package", 21, 7], ["command", 22, 7], ["version", 23, 46]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 20, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 19, 5], ["tests", 20, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["maintainers", 31, 5], ["mainProgram", 32, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["gemdir", 12, 3], ["ruby", 14, 3], ["exes", 16, 3], ["passthru", 18, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,20 +14,20 @@ export default nix.lambda((args) => (() => {
   const inspec = nix.arg($, "inspec");
   const testers = nix.arg($, "testers");
   return nix.app(bundlerApp, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "inspec",
       gemdir: nix.path(here, "./."),
       ruby: ruby_3_4,
       exes: nix.thunk(() => ["inspec"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "inspec")),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./gemset.nix")), "inspec"));
               return {
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               package: inspec,
               command: "inspec version",
               version: nix.thunk(() => nix.attr(from, "version")),
@@ -40,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Open-source testing framework for infrastructure with a human- and machine-readable language for specifying compliance, security and policy requirements",
         homepage: "https://inspec.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

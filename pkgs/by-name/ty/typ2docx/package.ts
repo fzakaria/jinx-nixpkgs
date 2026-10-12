@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["url", 26, 5], ["hash", 27, 5]], [["pname", 32, 7], ["version", 33, 7], ["src", 34, 7], ["postPatch", 35, 7], ["hash", 37, 5]], [["updateScript", 78, 12]], [["description", 81, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["license", 84, 5], ["maintainers", 85, 5], ["mainProgram", 86, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["lockFile", 25, 3], ["cargoDeps", 30, 3], ["postPatch", 40, 3], ["nativeBuildInputs", 44, 3], ["build-system", 50, 3], ["dependencies", 54, 3], ["buildInputs", 63, 3], ["makeWrapperArgs", 67, 3], ["passthru", 78, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, fetchurl: false, rustPlatform: false, "pkg-config": false, openssl: false, pandoc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 26, 5], ["hash", 27, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 32, 7], ["version", 33, 7], ["src", 34, 7], ["postPatch", 35, 7], ["hash", 37, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 78, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 81, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["license", 84, 5], ["maintainers", 85, 5], ["mainProgram", 86, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["lockFile", 25, 3], ["cargoDeps", 30, 3], ["postPatch", 40, 3], ["nativeBuildInputs", 44, 3], ["build-system", 50, 3], ["dependencies", 54, 3], ["buildInputs", 63, 3], ["makeWrapperArgs", 67, 3], ["passthru", 78, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,19 +20,19 @@ export default nix.lambda((args) => (() => {
       const version = "0.8.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sghng",
           repo: "typ2docx",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-8Jb13qiS+dpyfJS4m2T6STzORs1VzRKwC8GGgEwiVtU=",
         }))));
       const lockFile = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://github.com/sghng/typ2docx/releases/download/v${version}/Cargo.lock`),
           hash: "sha256-irWv7+uqNyyq42JVLSy9WQz78ynYVsYuQ8fk5nardWw=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: pname,
           version: version,
           src: src,
@@ -77,9 +72,9 @@ export default nix.lambda((args) => (() => {
         ":",
         "$PYTHONPATH",
       ]);
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[3], updateScript: nix.path(here, "./update.sh") }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Convert Math-Rich Typst Project to Microsoft Word Format",
         homepage: "https://github.com/sghng/typ2docx",
         changelog: nix.thunk(() => nix.str`https://github.com/sghng/typ2docx/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -91,7 +86,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "typ2docx",
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         pyproject,

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 7], ["repo", 18, 7], ["rev", 19, 7], ["hash", 20, 7]], [["url", 26, 9], ["hash", 27, 9]], [["src", 16, 5], ["patches", 22, 5]], [["description", 45, 5], ["mainProgram", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 5]], [["pname", 10, 3], ["version", 11, 3], ["excludedPackages", 13, 3], ["src", 15, 3], ["proxyVendor", 32, 3], ["vendorHash", 33, 3], ["ldflags", 35, 3], ["checkFlags", 40, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, fetchpatch: false, applyPatches: false, buildGoModule: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 7], ["repo", 18, 7], ["rev", 19, 7], ["hash", 20, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 26, 9], ["hash", 27, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 16, 5], ["patches", 22, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 45, 5], ["mainProgram", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["excludedPackages", 13, 3], ["src", 15, 3], ["proxyVendor", 32, 3], ["vendorHash", 33, 3], ["ldflags", 35, 3], ["checkFlags", 40, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const applyPatches = nix.arg($, "applyPatches");
   const buildGoModule = nix.arg($, "buildGoModule");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "goconvey",
       version: "1.8.1-unstable-2024-03-06",
       excludedPackages: "web/server/watch/integration_testing",
       src: nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               owner: "smartystreets",
               repo: "goconvey",
               rev: "a50310f1e3e53e63e2d23eb904f853aa388a5988",
@@ -32,7 +28,7 @@ export default nix.lambda((args) => (() => {
             })))),
           patches: nix.thunk(() => [
             nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 url: "https://github.com/smartystreets/goconvey/commit/a8d73b2e5380902ab6caa6716ad69c324f390a2d.patch",
                 hash: "sha256-4JZs4/kxt3KP21q4U8mpBJkueVmRsCsKqST1Cn6ySN8=",
               })))),
@@ -43,7 +39,7 @@ export default nix.lambda((args) => (() => {
       ldflags: nix.thunk(() => ["-s", "-w"]),
       checkFlags: nix.thunk(() => ["-short"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Go testing in the browser. Integrates with `go test`. Write behavioral tests in Go",
         mainProgram: "goconvey",
         homepage: "https://github.com/smartystreets/goconvey",

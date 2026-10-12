@@ -2,17 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["postFetch", 34, 5], ["hash", 44, 5]], [["objdump", 60, 7]], [["isClang", 120, 11], ["isGNU", 121, 11], ["isCcache", 122, 11]], [["hardeningUnsupportedFlagsByTargetPlatform", 125, 11], ["hardeningUnsupportedFlags", 126, 11]], [["mainProgram", 172, 38]], [["pname", 117, 9], ["version", 118, 30], ["passthru", 119, 9], ["lib", 128, 9], ["nativeBuildInputs", 129, 9], ["buildCommand", 132, 9], ["meta", 171, 9]], [["links", 114, 5], ["updateScript", 176, 5]], [["description", 180, 5], ["homepage", 181, 5], ["downloadPage", 182, 5], ["changelog", 183, 5], ["license", 186, 5], ["maintainers", 187, 5], ["platforms", 191, 5], ["mainProgram", 192, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["outputs", 47, 3], ["patches", 52, 3], ["postPatch", 64, 3], ["strictDeps", 69, 3], ["nativeBuildInputs", 71, 3], ["buildInputs", 77, 3], ["cmakeFlags", 84, 3], ["doCheck", 86, 3], ["nativeCheckInputs", 88, 3], ["checkInputs", 97, 3], ["disabledTests", 101, 3], ["passthru", 111, 3], ["meta", 179, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, replaceVars: false, binutils: false, asciidoctor: false, cmake: false, perl: false, fmt: false, hiredis: false, xxhash: false, zstd: false, bashInteractive: false, doctest: false, xcodebuild: false, makeWrapper: false, ctestCheckHook: false, writableTmpDirAsHomeHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["postFetch", 34, 5], ["hash", 44, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["objdump", 60, 7]]);
 const formals$2 = { args: { unwrappedCC: false, extraConfig: false }, ellipsis: false };
-const pos$3 = nix.positions(here + "/package.nix", [["isClang", 120, 11], ["isGNU", 121, 11], ["isCcache", 122, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["hardeningUnsupportedFlagsByTargetPlatform", 125, 11], ["hardeningUnsupportedFlags", 126, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["mainProgram", 172, 38]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 117, 9], ["version", 118, 30], ["passthru", 119, 9], ["lib", 128, 9], ["nativeBuildInputs", 129, 9], ["buildCommand", 132, 9], ["meta", 171, 9]]);
-const pos$7 = nix.positions(here + "/package.nix", [["links", 114, 5], ["updateScript", 176, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 180, 5], ["homepage", 181, 5], ["downloadPage", 182, 5], ["changelog", 183, 5], ["license", 186, 5], ["maintainers", 187, 5], ["platforms", 191, 5], ["mainProgram", 192, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["outputs", 47, 3], ["patches", 52, 3], ["postPatch", 64, 3], ["strictDeps", 69, 3], ["nativeBuildInputs", 71, 3], ["buildInputs", 77, 3], ["cmakeFlags", 84, 3], ["doCheck", 86, 3], ["nativeCheckInputs", 88, 3], ["checkInputs", 97, 3], ["disabledTests", 101, 3], ["passthru", 111, 3], ["meta", 179, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "ccache",
       version: "4.14.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ccache",
           repo: "ccache",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +42,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "man"]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-objdump-path.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             objdump: nix.thunk(() => nix.str`${nix.sel(binutils, "bintools")}/bin/${nix.sel(binutils, "targetPrefix")}objdump`),
           })))),
       ]),
@@ -64,22 +56,22 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [doctest]),
       disabledTests: nix.thunk(() => nix.concat(["test.fileclone", "test.trim_dir"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test.basedir", "test.multi_arch", "test.nocpp2"])))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         links: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const unwrappedCC = nix.arg($_1, "unwrappedCC");
           const extraConfig = nix.arg($_1, "extraConfig");
           return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               pname: "ccache-links",
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               passthru: nix.thunk(() => nix.update({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 isClang: nix.thunk(() => nix.selOr(unwrappedCC, () => false, "isClang")),
                 isGNU: nix.thunk(() => nix.selOr(unwrappedCC, () => false, "isGNU")),
                 isCcache: true,
               }, nix.builtins.intersectAttrs(nix.thunk(() => ({
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   hardeningUnsupportedFlagsByTargetPlatform: null,
                   hardeningUnsupportedFlags: null,
                 })), unwrappedCC))),
@@ -118,7 +110,7 @@ done
               meta: nix.thunk(() => (() => {
                 const from = nix.thunk(() => nix.sel(unwrappedCC, "meta"));
                 return {
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 mainProgram: nix.thunk(() => nix.attr(from, "mainProgram")),
               };
               })()),
@@ -127,7 +119,7 @@ done
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Compiler cache for fast recompilation of C/C++ code",
         homepage: "https://ccache.dev",
         downloadPage: "https://ccache.dev/download.html",

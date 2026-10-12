@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["doCheck", 53, 5]], [["pytest", 52, 18]], [["tests", 52, 12]], [["description", 57, 5], ["homepage", 58, 5], ["changelog", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["__structuredAttrs", 24, 3], ["src", 26, 3], ["build-system", 33, 3], ["dependencies", 37, 3], ["pythonImportsCheck", 41, 3], ["nativeCheckInputs", 43, 3], ["enabledTestPaths", 48, 3], ["doCheck", 51, 3], ["passthru", 52, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, "snakemake-interface-common": false, pytestCheckHook: false, "snakemake-logger-plugin-rich": false, "snakemake-interface-logger-plugins": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["doCheck", 53, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pytest", 52, 18]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 52, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 57, 5], ["homepage", 58, 5], ["changelog", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["__structuredAttrs", 24, 3], ["src", 26, 3], ["build-system", 33, 3], ["dependencies", 37, 3], ["pythonImportsCheck", 41, 3], ["nativeCheckInputs", 43, 3], ["enabledTestPaths", 48, 3], ["doCheck", 51, 3], ["passthru", 52, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const snakemake_logger_plugin_rich = nix.arg($, "snakemake-logger-plugin-rich");
   const snakemake_interface_logger_plugins = nix.arg($, "snakemake-interface-logger-plugins");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "snakemake-interface-logger-plugins",
       version: "2.1.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "snakemake",
           repo: "snakemake-interface-logger-plugins",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,14 +35,14 @@ export default nix.lambda((args) => (() => {
       enabledTestPaths: nix.thunk(() => ["tests/tests.py"]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          pytest: nix.thunk(() => nix.app(nix.sel(snakemake_interface_logger_plugins, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$2, doCheck: true })))),
+          [nix.POS]: $pos[2],
+          pytest: nix.thunk(() => nix.app(nix.sel(snakemake_interface_logger_plugins, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[1], doCheck: true })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Stable interface for interactions between Snakemake and its logger plugins",
         homepage: "https://github.com/snakemake/snakemake-interface-logger-plugins",
         changelog: nix.thunk(() => nix.str`https://github.com/snakemake/snakemake-interface-logger-plugins/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

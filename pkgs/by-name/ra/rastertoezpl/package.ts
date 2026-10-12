@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["name", 14, 5], ["hash", 15, 5]], [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5], ["platforms", 36, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 18, 3], ["configureFlags", 20, 3], ["postInstall", 25, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, cups: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["name", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5], ["platforms", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 18, 3], ["configureFlags", 20, 3], ["postInstall", 25, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const cups = nix.arg($, "cups");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "rastertoezpl",
       version: "1.1.12",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://godex.s3-accelerate.amazonaws.com/tWHDYruxWFM98frjWNTE,g.file?v01",
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}-source.tar.gz`),
           hash: "sha256-iBhM8Mht/XncWU75cd485WK5GZtJNv78yMsFsD0eKWQ=",
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "mkdir -p $out/lib/cups/filter\nln -s $out/libexec/rastertoezpl/rastertoezpl $out/lib/cups/filter/rastertoezpl\ngzip -9n $out/share/cups/model/godex/*.ppd\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "CUPS driver for GODEX printers",
         homepage: "https://www.godexintl.com/downloads",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

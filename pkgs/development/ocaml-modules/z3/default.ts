@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["ocamlBindings", 13, 7], ["ocaml", 14, 15], ["findlib", 14, 21], ["zarith", 14, 29]], [["description", 43, 5], ["broken", 44, 5]], [["pname", 21, 3], ["version", 22, 27], ["dontUnpack", 24, 3], ["installPhase", 26, 3], ["nativeBuildInputs", 34, 3], ["propagatedBuildInputs", 35, 3], ["strictDeps", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, ocaml: false, findlib: false, zarith: false, z3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["ocamlBindings", 13, 7], ["ocaml", 14, 15], ["findlib", 14, 21], ["zarith", 14, 29]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 43, 5], ["broken", 44, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 27], ["dontUnpack", 24, 3], ["installPhase", 26, 3], ["nativeBuildInputs", 34, 3], ["propagatedBuildInputs", 35, 3], ["strictDeps", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const zarith = nix.arg($, "zarith");
   const z3 = nix.arg($, "z3");
   const z3_with_ocaml = nix.thunk(() => nix.app(nix.sel(z3, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       ocamlBindings: true,
       ocaml: ocaml,
       findlib: findlib,
       zarith: zarith,
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-z3`),
       version: nix.thunk(() => nix.attr(z3_with_ocaml, "version")),
       dontUnpack: true,
@@ -37,7 +35,7 @@ runHook postInstall
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(z3_with_ocaml, "lib")), zarith]),
       strictDeps: true,
       meta: nix.thunk(() => nix.update(nix.sel(z3, "meta"), {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Z3 Theorem Prover (OCaml API)",
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(ocaml, "version")), "4.08")),
       })),

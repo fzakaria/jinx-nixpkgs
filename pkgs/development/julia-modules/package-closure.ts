@@ -2,8 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package-closure.nix", [[["buildInputs", 68, 5]]]);
 const formals$1 = { args: { lib: false, julia: false, python3: false, runCommand: false, augmentedRegistry: false, packageNames: false, packageOverrides: false, packageImplications: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package-closure.nix", [["buildInputs", 68, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -61,7 +61,7 @@ open(ENV["out"], "w") do io
 end
 `;
   return nix.app(runCommand, "julia-package-closure.yml", nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       buildInputs: nix.thunk(() => [
         julia,
         nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (ps) => (() => {

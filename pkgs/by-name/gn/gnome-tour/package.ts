@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 28, 5], ["hash", 29, 5]], [["packageName", 62, 7]], [["updateScript", 61, 5]], [["homepage", 67, 5], ["changelog", 68, 5], ["description", 69, 5], ["mainProgram", 70, 5], ["teams", 71, 5], ["license", 72, 5], ["platforms", 73, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["cargoVendorDir", 32, 3], ["depsBuildBuild", 34, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 53, 3], ["passthru", 60, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, gettext: false, meson: false, ninja: false, fetchurl: false, "pkg-config": false, gtk4: false, glib: false, "desktop-file-utils": false, "appstream-glib": false, wrapGAppsHook4: false, python3: false, gnome: false, libadwaita: false, librsvg: false, rustc: false, cargo: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 62, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 61, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 67, 5], ["changelog", 68, 5], ["description", 69, 5], ["mainProgram", 70, 5], ["teams", 71, 5], ["license", 72, 5], ["platforms", 73, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["cargoVendorDir", 32, 3], ["depsBuildBuild", 34, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 53, 3], ["passthru", 60, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const rustc = nix.arg($, "rustc");
   const cargo = nix.arg($, "cargo");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gnome-tour",
       version: "50.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-tour/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-tour-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-bOEYcDGjZb8iagzRRvF7R3Pn7UUIg/fNUC9ez0MrUyU=",
         })))),
@@ -57,11 +53,11 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [glib, gtk4, libadwaita, librsvg]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "gnome-tour" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "gnome-tour" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://gitlab.gnome.org/GNOME/gnome-tour",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/gnome-tour/-/blob/${nix.sel(finalAttrs, "version")}/NEWS?ref_type=tags`),
         description: "GNOME Greeter & Tour",

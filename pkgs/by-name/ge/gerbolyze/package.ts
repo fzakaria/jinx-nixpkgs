@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5], ["fetchSubmodules", 17, 5]], [["description", 33, 7], ["homepage", 34, 7], ["license", 35, 7], ["maintainers", 36, 7], ["mainProgram", 37, 7], ["platforms", 38, 7]], [["version", 21, 13], ["src", 21, 21], ["pname", 22, 5], ["sourceRoot", 24, 5], ["preInstall", 26, 5], ["installFlags", 30, 5], ["meta", 32, 5]], [["rev-prefix", 88, 5]], [["updateScript", 87, 12]], [["description", 92, 5], ["homepage", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["mainProgram", 96, 5], ["platforms", 97, 5]], [["version", 43, 11], ["src", 43, 19], ["pname", 44, 3], ["pyproject", 45, 3], ["build-system", 47, 3], ["pythonRemoveDeps", 49, 3], ["dependencies", 55, 3], ["pythonImportsCheck", 65, 3], ["nativeCheckInputs", 67, 3], ["makeWrapperArgs", 73, 3], ["preCheck", 82, 3], ["passthru", 87, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, python3Packages: false, fetchFromGitHub: false, gitUpdater: false, resvg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5], ["fetchSubmodules", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 33, 7], ["homepage", 34, 7], ["license", 35, 7], ["maintainers", 36, 7], ["mainProgram", 37, 7], ["platforms", 38, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 21, 13], ["src", 21, 21], ["pname", 22, 5], ["sourceRoot", 24, 5], ["preInstall", 26, 5], ["installFlags", 30, 5], ["meta", 32, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["rev-prefix", 88, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 87, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 92, 5], ["homepage", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["mainProgram", 96, 5], ["platforms", 97, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["version", 43, 11], ["src", 43, 19], ["pname", 44, 3], ["pyproject", 45, 3], ["build-system", 47, 3], ["pythonRemoveDeps", 49, 3], ["dependencies", 55, 3], ["pythonImportsCheck", 65, 3], ["nativeCheckInputs", 67, 3], ["makeWrapperArgs", 73, 3], ["preCheck", 82, 3], ["passthru", 87, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const resvg = nix.arg($, "resvg");
   const version = "3.2.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "jaseg",
       repo: "gerbolyze",
       tag: nix.thunk(() => nix.str`v${version}`),
@@ -36,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const preInstall = "mkdir -p $out/bin\n";
       const installFlags = nix.thunk(() => ["PREFIX=$(out)"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "SVG-flatten SVG downconverter",
         homepage: "https://github.com/jaseg/gerbolyze",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),
@@ -48,7 +42,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         version: version_1,
         src: src_1,
         pname,
@@ -59,7 +53,7 @@ export default nix.lambda((args) => (() => {
       };
     })())));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       version: version,
       src: src,
       pname: "gerbolyze",
@@ -94,11 +88,11 @@ export default nix.lambda((args) => (() => {
   --replace-fail "'gerbolyze'" "'${nix.builtins.placeholder("out")}/bin/gerbolyze'"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$4, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[3], "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Directly render SVG overlays into Gerber and Excellon files",
         homepage: "https://github.com/jaseg/gerbolyze",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

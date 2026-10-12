@@ -2,22 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/openxr.nix", [[["user", 13, 36]], [["auto", 13, 31]], [["displayManager", 13, 16]], [["wantedBy", 15, 5], ["after", 16, 5]], [["xdg-desktop-autostart", 14, 24]], [["SIMULATED_ENABLE", 30, 7], ["SIMULATED_LEFT", 31, 7], ["SIMULATED_RIGHT", 32, 7], ["XRT_COMPOSITOR_FORCE_XCB", 34, 7], ["XRT_COMPOSITOR_XCB_FULLSCREEN", 36, 7]], [["requires", 27, 5], ["environment", 28, 5]], [["monado", 26, 25]], [["targets", 14, 16], ["services", 26, 16]], [["user", 14, 11]], [["enable", 19, 21]], [["graphics", 19, 12]], [["enable", 22, 5], ["defaultRuntime", 23, 5], ["forceDefaultRuntime", 24, 5]], [["monado", 21, 12]], [["imports", 9, 3], ["test-support", 13, 3], ["systemd", 14, 3], ["hardware", 19, 3], ["services", 21, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false, config: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/openxr.nix", [["user", 13, 36]]);
-const pos$2 = nix.positions(here + "/openxr.nix", [["auto", 13, 31]]);
-const pos$3 = nix.positions(here + "/openxr.nix", [["displayManager", 13, 16]]);
-const pos$4 = nix.positions(here + "/openxr.nix", [["wantedBy", 15, 5], ["after", 16, 5]]);
-const pos$5 = nix.positions(here + "/openxr.nix", [["xdg-desktop-autostart", 14, 24]]);
-const pos$6 = nix.positions(here + "/openxr.nix", [["SIMULATED_ENABLE", 30, 7], ["SIMULATED_LEFT", 31, 7], ["SIMULATED_RIGHT", 32, 7], ["XRT_COMPOSITOR_FORCE_XCB", 34, 7], ["XRT_COMPOSITOR_XCB_FULLSCREEN", 36, 7]]);
-const pos$7 = nix.positions(here + "/openxr.nix", [["requires", 27, 5], ["environment", 28, 5]]);
-const pos$8 = nix.positions(here + "/openxr.nix", [["monado", 26, 25]]);
-const pos$9 = nix.positions(here + "/openxr.nix", [["targets", 14, 16], ["services", 26, 16]]);
-const pos$10 = nix.positions(here + "/openxr.nix", [["user", 14, 11]]);
-const pos$11 = nix.positions(here + "/openxr.nix", [["enable", 19, 21]]);
-const pos$12 = nix.positions(here + "/openxr.nix", [["graphics", 19, 12]]);
-const pos$13 = nix.positions(here + "/openxr.nix", [["enable", 22, 5], ["defaultRuntime", 23, 5], ["forceDefaultRuntime", 24, 5]]);
-const pos$14 = nix.positions(here + "/openxr.nix", [["monado", 21, 12]]);
-const pos$15 = nix.positions(here + "/openxr.nix", [["imports", 9, 3], ["test-support", 13, 3], ["systemd", 14, 3], ["hardware", 19, 3], ["services", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,34 +11,34 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const config = nix.arg($, "config");
   return {
-    [nix.POS]: pos$15,
+    [nix.POS]: $pos[14],
     imports: nix.thunk(() => [nix.path(here, "./user-account.nix"), nix.path(here, "./x11.nix")]),
     "test-support": nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       displayManager: nix.thunk(() => ({
-        [nix.POS]: pos$2,
-        auto: nix.thunk(() => ({ [nix.POS]: pos$1, user: "alice" })),
+        [nix.POS]: $pos[1],
+        auto: nix.thunk(() => ({ [nix.POS]: $pos[0], user: "alice" })),
       })),
     })),
     systemd: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       user: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         targets: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           "xdg-desktop-autostart": nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             wantedBy: nix.thunk(() => ["graphical-session.target"]),
             after: nix.thunk(() => ["graphical-session.target"]),
           })),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           monado: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             requires: nix.thunk(() => ["graphical-session.target"]),
             environment: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               SIMULATED_ENABLE: "1",
               SIMULATED_LEFT: "simple",
               SIMULATED_RIGHT: "simple",
@@ -64,13 +50,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     hardware: nix.thunk(() => ({
-      [nix.POS]: pos$12,
-      graphics: nix.thunk(() => ({ [nix.POS]: pos$11, enable: true })),
+      [nix.POS]: $pos[11],
+      graphics: nix.thunk(() => ({ [nix.POS]: $pos[10], enable: true })),
     })),
     services: nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       monado: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         enable: true,
         defaultRuntime: true,
         forceDefaultRuntime: true,

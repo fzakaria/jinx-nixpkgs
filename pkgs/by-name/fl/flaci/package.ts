@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 21, 5]], [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["mainProgram", 50, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["env", 20, 3], ["npmDepsHash", 24, 3], ["nativeBuildInputs", 26, 3], ["dontNpmBuild", 29, 3], ["installPhase", 31, 3], ["dontWrapGApps", 43, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, makeWrapper: false, electron: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 21, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["mainProgram", 50, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["env", 20, 3], ["npmDepsHash", 24, 3], ["nativeBuildInputs", 26, 3], ["dontNpmBuild", 29, 3], ["installPhase", 31, 3], ["dontWrapGApps", 43, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const electron = nix.arg($, "electron");
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "flaci",
       version: "0-unstable-2024-12-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gitmh",
           repo: "FLACI",
           rev: "cc03bb2b4c8cf205d04936cc2110acd34397b789",
           hash: "sha256-Wgkxlz4d1KNoPL9290D1qIbOqUYW/iAIWE9YL35Tfno=",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], ELECTRON_SKIP_BINARY_DOWNLOAD: 1n })),
       npmDepsHash: "sha256-6X4R6D9GAe4DiIXCT62xKbHhLqdTE/BLlXJQKwt8oaQ=",
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       dontNpmBuild: true,
@@ -42,7 +39,7 @@ runHook postInstall
 `),
       dontWrapGApps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Create and test formal languages with automaton and create diagrams for them",
         homepage: "https://flaci.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["hash", 46, 5]], [["startup", 198, 7]], [["lomiri", 201, 7]], [["ayatana-indicators", 192, 5], ["tests", 197, 5], ["updateScript", 203, 5]], [["description", 207, 5], ["longDescription", 208, 5], ["homepage", 212, 5], ["changelog", 213, 5], ["license", 214, 5], ["teams", 215, 5], ["platforms", 218, 5]], [["pname", 39, 3], ["version", 40, 3], ["src", 42, 3], ["postPatch", 49, 3], ["strictDeps", 61, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 74, 3], ["nativeCheckInputs", 116, 3], ["checkInputs", 123, 3], ["dontWrapQtApps", 128, 3], ["cmakeFlags", 130, 3], ["doCheck", 154, 3], ["enableParallelChecking", 156, 3], ["preCheck", 158, 3], ["preFixup", 173, 3], ["passthru", 191, 3], ["meta", 206, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, gitUpdater: false, nixosTests: false, "ayatana-indicator-messages": false, cmake: false, dbus: false, "dbus-test-runner": false, "evolution-data-server": false, kdePackages: false, glib: false, gst_all_1: false, gtest: false, intltool: false, "libaccounts-glib": false, "libayatana-common": false, libical: false, mkcal: false, libnotify: false, libsForQt5: false, libuuid: false, lomiri: false, "pkg-config": false, "properties-cpp": false, python3: false, systemdLibs: false, tzdata: false, wrapGAppsHook3: false, enableLomiriFeatures: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["hash", 46, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["startup", 198, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["lomiri", 201, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["ayatana-indicators", 192, 5], ["tests", 197, 5], ["updateScript", 203, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 207, 5], ["longDescription", 208, 5], ["homepage", 212, 5], ["changelog", 213, 5], ["license", 214, 5], ["teams", 215, 5], ["platforms", 218, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 39, 3], ["version", 40, 3], ["src", 42, 3], ["postPatch", 49, 3], ["strictDeps", 61, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 74, 3], ["nativeCheckInputs", 116, 3], ["checkInputs", 123, 3], ["dontWrapQtApps", 128, 3], ["cmakeFlags", 130, 3], ["doCheck", 154, 3], ["enableParallelChecking", 156, 3], ["preCheck", 158, 3], ["preFixup", 173, 3], ["passthru", 191, 3], ["meta", 206, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,11 +39,11 @@ export default nix.lambda((args) => (() => {
   const enableLomiriFeatures = nix.argOr($, "enableLomiriFeatures", () => false);
   const edsDataDir = nix.thunk(() => nix.str`${evolution_data_server}/share`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: nix.thunk(() => nix.str`${(nix.asBool(enableLomiriFeatures) ? "lomiri" : "ayatana")}-indicator-datetime`),
       version: "26.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "AyatanaIndicators",
           repo: "ayatana-indicator-datetime",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -129,21 +124,21 @@ substituteInPlace src/CMakeLists.txt \\
       preFixup: nix.thunk(() => nix.add(nix.add("gappsWrapperArgs+=(\n", (nix.asBool(enableLomiriFeatures) ? "\"${qtWrapperArgs[@]}\"\n" : nix.str`--prefix XDG_DATA_DIRS : "${edsDataDir}"
 `)), ")\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         "ayatana-indicators": nix.thunk(() => nix.attrsDyn({}, [
           [nix.str`${(nix.asBool(enableLomiriFeatures) ? "lomiri" : "ayatana")}-indicator-datetime`, nix.thunk(() => [nix.thunk(() => (nix.asBool(enableLomiriFeatures) ? "lomiri" : "ayatana"))])],
         ])),
         tests: nix.thunk(() => nix.update({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           startup: nix.thunk(() => nix.sel(nixosTests, "ayatana-indicators")),
         }, nix.app(nix.sel(lib, "optionalAttrs"), enableLomiriFeatures, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             lomiri: nix.thunk(() => nix.sel(nixosTests, "lomiri", "desktop-ayatana-indicator-datetime")),
           }))))),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Ayatana Indicator providing clock and calendar",
         longDescription: "This Ayatana Indicator provides a combined calendar, clock, alarm and\nevent management tool.\n",
         homepage: "https://github.com/AyatanaIndicators/ayatana-indicator-datetime",

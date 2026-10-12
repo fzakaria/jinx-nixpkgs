@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 23, 5], ["hash", 24, 5]], [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 27, 3], ["postPatch", 29, 3], ["propagatedBuildInputs", 34, 3], ["nativeCheckInputs", 39, 3], ["disabledTests", 46, 3], ["pythonRelaxDeps", 51, 3], ["pythonImportsCheck", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pytestCheckHook: false, matplotlib: false, numpy: false, pendulum: false, pillow: false, "poetry-core": false, pyquaternion: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 27, 3], ["postPatch", 29, 3], ["propagatedBuildInputs", 34, 3], ["nativeCheckInputs", 39, 3], ["disabledTests", 46, 3], ["pythonRelaxDeps", 51, 3], ["pythonImportsCheck", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const poetry_core = nix.arg($, "poetry-core");
   const pyquaternion = nix.arg($, "pyquaternion");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "bbox",
       version: "0.9.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "varunagrawal",
           repo: "bbox",
           rev: "d3f07ed0e38b6015cf4181e3b3edae6a263f8565",
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       pythonRelaxDeps: nix.thunk(() => ["numpy"]),
       pythonImportsCheck: nix.thunk(() => ["bbox"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python library for 2D/3D bounding boxes",
         homepage: "https://github.com/varunagrawal/bbox",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

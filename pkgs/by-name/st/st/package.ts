@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 26, 5], ["hash", 27, 5]], [["test", 76, 11]], [["url", 78, 7]], [["tests", 76, 5], ["updateScript", 77, 5]], [["homepage", 83, 5], ["description", 84, 5], ["license", 85, 5], ["maintainers", 86, 5], ["platforms", 87, 5], ["mainProgram", 88, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["outputs", 30, 3], ["patches", 35, 11], ["configFile", 37, 3], ["postPatch", 39, 3], ["strictDeps", 49, 3], ["makeFlags", 51, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 61, 3], ["preInstall", 67, 3], ["installFlags", 73, 3], ["passthru", 75, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, "pkg-config": false, fontconfig: false, freetype: false, libx11: false, libxft: false, ncurses: false, writeText: false, config: false, conf: true, patches: true, extraLibs: true, nixosTests: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["test", 76, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 78, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 76, 5], ["updateScript", 77, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 83, 5], ["description", 84, 5], ["license", 85, 5], ["maintainers", 86, 5], ["platforms", 87, 5], ["mainProgram", 88, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["outputs", 30, 3], ["patches", 35, 11], ["configFile", 37, 3], ["postPatch", 39, 3], ["strictDeps", 49, 3], ["makeFlags", 51, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 61, 3], ["preInstall", 67, 3], ["installFlags", 73, 3], ["passthru", 75, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "st",
       version: "0.9.3",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://dl.suckless.org/st/st-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-Xr1JtaOMVgn+zsD39LFjP/0dkYkvaAXbEcYb3ptgYLA=",
         })))),
@@ -50,15 +45,15 @@ export default nix.lambda((args) => (() => {
       preInstall: "export TERMINFO=$terminfo/share/terminfo\nmkdir -p $TERMINFO $out/nix-support\necho \"$terminfo\" >> $out/nix-support/propagated-user-env-packages\n",
       installFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           test: nix.thunk(() => nix.sel(nixosTests, "terminal-emulators", "st")),
         })),
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, url: "git://git.suckless.org/st" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], url: "git://git.suckless.org/st" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://st.suckless.org/",
         description: "Simple Terminal for X from Suckless.org Community",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

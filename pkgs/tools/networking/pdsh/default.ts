@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 19, 5], ["sha256", 20, 5]], [["homepage", 54, 5], ["description", 55, 5], ["license", 56, 5], ["longDescription", 58, 5], ["platforms", 67, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["buildInputs", 23, 3], ["nativeBuildInputs", 30, 3], ["postPatch", 33, 3], ["preConfigure", 37, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoreconfHook: false, perl: false, readline: false, rsh: false, ssh: false, slurm: false, slurmSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 54, 5], ["description", 55, 5], ["license", 56, 5], ["longDescription", 58, 5], ["platforms", 67, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["buildInputs", 23, 3], ["nativeBuildInputs", 30, 3], ["postPatch", 33, 3], ["preConfigure", 37, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pdsh";
       const version = "2.36";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/chaos/pdsh/releases/download/pdsh-${version}/pdsh-${version}.tar.gz`),
           sha256: "sha256-pmEJXOUd1fsF45jPXQ4dYxVxI5WEQfbTUSvPGn0lxRc=",
         }))));
@@ -46,7 +44,7 @@ export default nix.lambda((args) => (() => {
 )
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/chaos/pdsh",
         description: "High-performance, parallel remote shell utility",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -54,7 +52,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["complete", 47, 5]], [["description", 58, 5], ["license", 59, 5], ["homepage", 60, 5]], [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 36, 3], ["propagatedBuildInputs", 41, 3], ["optional-dependencies", 46, 3], ["nativeCheckInputs", 55, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, versioneer: false, locket: false, toolz: false, blosc2: false, numpy: false, pandas: false, pyzmq: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["complete", 47, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 58, 5], ["license", 59, 5], ["homepage", 60, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 36, 3], ["propagatedBuildInputs", 41, 3], ["optional-dependencies", 46, 3], ["nativeCheckInputs", 55, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.4.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dask",
           repo: "partd",
           tag: version,
@@ -35,16 +32,19 @@ export default nix.lambda((args) => (() => {
         }))));
       const nativeBuildInputs = nix.thunk(() => [setuptools, versioneer]);
       const propagatedBuildInputs = nix.thunk(() => [locket, toolz]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, complete: nix.thunk(() => [blosc2, numpy, pandas, pyzmq]) }));
+      const optional_dependencies = nix.thunk(() => ({
+        [nix.POS]: $pos[1],
+        complete: nix.thunk(() => [blosc2, numpy, pandas, pyzmq]),
+      }));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Appendable key-value storage",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         homepage: "https://github.com/dask/partd/",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

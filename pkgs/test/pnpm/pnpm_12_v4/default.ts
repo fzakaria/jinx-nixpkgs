@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 21, 26], ["version", 21, 32], ["src", 21, 40], ["pnpm", 22, 13], ["fetcherVersion", 23, 5], ["hash", 24, 5]], [["license", 56, 5], ["mainProgram", 57, 5], ["maintainers", 58, 25]], [["pname", 15, 3], ["version", 16, 18], ["src", 18, 3], ["pnpmDeps", 20, 3], ["nativeBuildInputs", 27, 3], ["buildPhase", 34, 3], ["installPhase", 42, 3], ["__structuredAttrs", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { fetchPnpmDeps: false, lib: false, makeShellWrapper: false, "nodejs-slim": false, pnpmConfigHook: false, pnpm_12: false, stdenv: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 21, 26], ["version", 21, 32], ["src", 21, 40], ["pnpm", 22, 13], ["fetcherVersion", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["license", 56, 5], ["mainProgram", 57, 5], ["maintainers", 58, 25]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 18], ["src", 18, 3], ["pnpmDeps", 20, 3], ["nativeBuildInputs", 27, 3], ["buildPhase", 34, 3], ["installPhase", 42, 3], ["__structuredAttrs", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const pnpm = pnpm_12;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pnpm-test",
       version: nix.thunk(() => nix.attr(pnpm, "version")),
       src: nix.path(here, "./src"),
       pnpmDeps: nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -47,7 +45,7 @@ runHook postInstall
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(pnpm, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         mainProgram: "pnpm-12-test",
         maintainers: nix.thunk(() => nix.attr(from, "maintainers")),

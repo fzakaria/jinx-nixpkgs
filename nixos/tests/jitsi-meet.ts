@@ -2,52 +2,25 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/jitsi-meet.nix", [[["maintainers", 5, 5]], [["pkgsReadOnly", 8, 8]], [["permittedInsecurePackages", 19, 24]], [["config", 19, 17]], [["enable", 24, 18]], [["enable", 22, 11], ["hostName", 23, 11], ["jigasi", 24, 11]], [["openFirewall", 26, 36]], [["enableACME", 34, 11], ["forceSSL", 35, 11]], [["server", 33, 37]], [["virtualHosts", 33, 24]], [["jitsi-meet", 21, 18], ["jitsi-videobridge", 26, 18], ["nginx", 33, 18]], [["allowedTCPPorts", 28, 29]], [["firewall", 28, 20]], [["email", 39, 32], ["server", 40, 32]], [["acceptTerms", 38, 23], ["defaults", 39, 23]], [["acme", 38, 18]], [["enable", 46, 21]], [["enable", 47, 21]], [["caddy", 46, 15], ["nginx", 47, 15]], [["extraConfig", 49, 80]], [["virtualHosts", 49, 28]], [["jitsi-meet", 45, 22], ["caddy", 49, 22]], [["services", 45, 13]], [["inheritParentConfig", 43, 11], ["configuration", 44, 11]], [["caddy", 42, 24]], [["nixpkgs", 19, 9], ["services", 21, 9], ["networking", 28, 9], ["security", 38, 9], ["specialisation", 42, 9]], [["client", 11, 5], ["server", 15, 5]], [["name", 3, 3], ["meta", 4, 3], ["node", 8, 3], ["nodes", 10, 3], ["testScript", 57, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/jitsi-meet.nix", [["maintainers", 5, 5]]);
-const pos$2 = nix.positions(here + "/jitsi-meet.nix", [["pkgsReadOnly", 8, 8]]);
 const formals$2 = { args: { nodes: false, pkgs: false }, ellipsis: true };
 const formals$3 = { args: { config: false }, ellipsis: true };
-const pos$3 = nix.positions(here + "/jitsi-meet.nix", [["permittedInsecurePackages", 19, 24]]);
-const pos$4 = nix.positions(here + "/jitsi-meet.nix", [["config", 19, 17]]);
-const pos$5 = nix.positions(here + "/jitsi-meet.nix", [["enable", 24, 18]]);
-const pos$6 = nix.positions(here + "/jitsi-meet.nix", [["enable", 22, 11], ["hostName", 23, 11], ["jigasi", 24, 11]]);
-const pos$7 = nix.positions(here + "/jitsi-meet.nix", [["openFirewall", 26, 36]]);
-const pos$8 = nix.positions(here + "/jitsi-meet.nix", [["enableACME", 34, 11], ["forceSSL", 35, 11]]);
-const pos$9 = nix.positions(here + "/jitsi-meet.nix", [["server", 33, 37]]);
-const pos$10 = nix.positions(here + "/jitsi-meet.nix", [["virtualHosts", 33, 24]]);
-const pos$11 = nix.positions(here + "/jitsi-meet.nix", [["jitsi-meet", 21, 18], ["jitsi-videobridge", 26, 18], ["nginx", 33, 18]]);
-const pos$12 = nix.positions(here + "/jitsi-meet.nix", [["allowedTCPPorts", 28, 29]]);
-const pos$13 = nix.positions(here + "/jitsi-meet.nix", [["firewall", 28, 20]]);
-const pos$14 = nix.positions(here + "/jitsi-meet.nix", [["email", 39, 32], ["server", 40, 32]]);
-const pos$15 = nix.positions(here + "/jitsi-meet.nix", [["acceptTerms", 38, 23], ["defaults", 39, 23]]);
-const pos$16 = nix.positions(here + "/jitsi-meet.nix", [["acme", 38, 18]]);
-const pos$17 = nix.positions(here + "/jitsi-meet.nix", [["enable", 46, 21]]);
-const pos$18 = nix.positions(here + "/jitsi-meet.nix", [["enable", 47, 21]]);
-const pos$19 = nix.positions(here + "/jitsi-meet.nix", [["caddy", 46, 15], ["nginx", 47, 15]]);
-const pos$20 = nix.positions(here + "/jitsi-meet.nix", [["extraConfig", 49, 80]]);
-const pos$21 = nix.positions(here + "/jitsi-meet.nix", [["virtualHosts", 49, 28]]);
-const pos$22 = nix.positions(here + "/jitsi-meet.nix", [["jitsi-meet", 45, 22], ["caddy", 49, 22]]);
-const pos$23 = nix.positions(here + "/jitsi-meet.nix", [["services", 45, 13]]);
-const pos$24 = nix.positions(here + "/jitsi-meet.nix", [["inheritParentConfig", 43, 11], ["configuration", 44, 11]]);
-const pos$25 = nix.positions(here + "/jitsi-meet.nix", [["caddy", 42, 24]]);
-const pos$26 = nix.positions(here + "/jitsi-meet.nix", [["nixpkgs", 19, 9], ["services", 21, 9], ["networking", 28, 9], ["security", 38, 9], ["specialisation", 42, 9]]);
-const pos$27 = nix.positions(here + "/jitsi-meet.nix", [["client", 11, 5], ["server", 15, 5]]);
 const formals$4 = { args: { nodes: false }, ellipsis: true };
-const pos$28 = nix.positions(here + "/jitsi-meet.nix", [["name", 3, 3], ["meta", 4, 3], ["node", 8, 3], ["nodes", 10, 3], ["testScript", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$28,
+    [nix.POS]: $pos[27],
     name: "jitsi-meet",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => nix.sel(pkgs, "lib", "teams", "jitsi", "members")),
     })),
-    node: nix.thunk(() => ({ [nix.POS]: pos$2, pkgsReadOnly: false })),
+    node: nix.thunk(() => ({ [nix.POS]: $pos[1], pkgsReadOnly: false })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$27,
+      [nix.POS]: $pos[26],
       client: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const nodes = nix.arg($_1, "nodes");
@@ -58,61 +31,61 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const config = nix.arg($_1, "config");
         return {
-          [nix.POS]: pos$26,
+          [nix.POS]: $pos[25],
           nixpkgs: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             config: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               permittedInsecurePackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "jitsi-meet", "name"))]),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             "jitsi-meet": nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               enable: true,
               hostName: "server",
-              jigasi: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
+              jigasi: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: true })),
             })),
-            "jitsi-videobridge": nix.thunk(() => ({ [nix.POS]: pos$7, openFirewall: true })),
+            "jitsi-videobridge": nix.thunk(() => ({ [nix.POS]: $pos[6], openFirewall: true })),
             nginx: nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               virtualHosts: nix.thunk(() => ({
-                [nix.POS]: pos$9,
-                server: nix.thunk(() => ({ [nix.POS]: pos$8, enableACME: true, forceSSL: true })),
+                [nix.POS]: $pos[8],
+                server: nix.thunk(() => ({ [nix.POS]: $pos[7], enableACME: true, forceSSL: true })),
               })),
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$13,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$12, allowedTCPPorts: nix.thunk(() => [80n, 443n]) })),
+            [nix.POS]: $pos[12],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[11], allowedTCPPorts: nix.thunk(() => [80n, 443n]) })),
           })),
           security: nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             acme: nix.thunk(() => ({
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               acceptTerms: true,
-              defaults: nix.thunk(() => ({ [nix.POS]: pos$14, email: "me@example.org", server: "https://example.com" })),
+              defaults: nix.thunk(() => ({ [nix.POS]: $pos[13], email: "me@example.org", server: "https://example.com" })),
             })),
           })),
           specialisation: nix.thunk(() => ({
-            [nix.POS]: pos$25,
+            [nix.POS]: $pos[24],
             caddy: nix.thunk(() => ({
-              [nix.POS]: pos$24,
+              [nix.POS]: $pos[23],
               inheritParentConfig: true,
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$23,
+                [nix.POS]: $pos[22],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$22,
+                  [nix.POS]: $pos[21],
                   "jitsi-meet": nix.thunk(() => ({
-                    [nix.POS]: pos$19,
-                    caddy: nix.thunk(() => ({ [nix.POS]: pos$17, enable: true })),
-                    nginx: nix.thunk(() => ({ [nix.POS]: pos$18, enable: false })),
+                    [nix.POS]: $pos[18],
+                    caddy: nix.thunk(() => ({ [nix.POS]: $pos[16], enable: true })),
+                    nginx: nix.thunk(() => ({ [nix.POS]: $pos[17], enable: false })),
                   })),
                   caddy: nix.thunk(() => ({
-                    [nix.POS]: pos$21,
+                    [nix.POS]: $pos[20],
                     virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
-                      [nix.sel(config, "services", "jitsi-meet", "hostName"), nix.thunk(() => ({ [nix.POS]: pos$20, extraConfig: "tls internal\n" }))],
+                      [nix.sel(config, "services", "jitsi-meet", "hostName"), nix.thunk(() => ({ [nix.POS]: $pos[19], extraConfig: "tls internal\n" }))],
                     ])),
                   })),
                 })),

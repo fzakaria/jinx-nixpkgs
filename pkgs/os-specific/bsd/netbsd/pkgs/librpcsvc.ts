@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/librpcsvc.nix", [[["platforms", 38, 8]], [["path", 16, 3], ["libcMinimal", 18, 3], ["outputs", 20, 3], ["nativeBuildInputs", 25, 3], ["makeFlags", 36, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, mkDerivation: false, defaultMakeFlags: false, bsdSetupHook: false, netbsdSetupHook: false, makeMinimal: false, install: false, tsort: false, lorder: false, rpcgen: false, statHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/librpcsvc.nix", [["platforms", 38, 8]]);
-const pos$2 = nix.positions(here + "/librpcsvc.nix", [["path", 16, 3], ["libcMinimal", 18, 3], ["outputs", 20, 3], ["nativeBuildInputs", 25, 3], ["makeFlags", 36, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const rpcgen = nix.arg($, "rpcgen");
   const statHook = nix.arg($, "statHook");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       path: "lib/librpcsvc",
       libcMinimal: true,
       outputs: nix.thunk(() => ["out", "dev"]),
@@ -36,7 +35,7 @@ export default nix.lambda((args) => (() => {
       ]),
       makeFlags: nix.thunk(() => nix.concat(defaultMakeFlags, ["INCSDIR=$(dev)/include/rpcsvc"])),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "netbsd")),
       })),
     })));

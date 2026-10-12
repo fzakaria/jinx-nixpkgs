@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["postFetch", 14, 5], ["hash", 20, 5]], [["maintainers", 31, 5]], [["version", 24, 17], ["pname", 25, 3], ["ignoreCollisions", 27, 3], ["paths", 28, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, buildEnv: false, git: false, fetchFromGitHub: false, gitwebTheme: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["postFetch", 14, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["maintainers", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 24, 17], ["pname", 25, 3], ["ignoreCollisions", 27, 3], ["paths", 28, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const gitwebTheme = nix.argOr($, "gitwebTheme", () => false);
   const gitwebThemeSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "kogakure",
       repo: "gitweb-theme",
       rev: "d4cc1792f10dac16dbeee06d7e0902715e4fa51a",
@@ -23,12 +21,12 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-+e8ZP8hVGWQsXgyWUd/rF9+GRHNHJLFpOr5nsNIieyo",
     }))));
   return nix.app(buildEnv, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: nix.thunk(() => nix.attr(git, "version")),
       pname: "gitweb",
       ignoreCollisions: true,
       paths: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), gitwebTheme, gitwebThemeSrc), [nix.thunk(() => nix.str`${git}/share/gitweb`)])),
-      meta: nix.thunk(() => nix.update(nix.sel(git, "meta"), { [nix.POS]: pos$2, maintainers: [] })),
+      meta: nix.thunk(() => nix.update(nix.sel(git, "meta"), { [nix.POS]: $pos[1], maintainers: [] })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

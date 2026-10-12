@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["darwin", 13, 5]], [["darwin", 16, 5]], [["description", 19, 5], ["homepage", 20, 5], ["downloadPage", 21, 5], ["sourceProvenance", 22, 5], ["license", 23, 5], ["maintainers", 24, 5], ["platforms", 25, 5], ["mainProgram", 28, 5]], [["url", 36, 5], ["hash", 37, 5]], [["pname", 32, 11], ["meta", 32, 17], ["version", 33, 3], ["src", 35, 3], ["nativeBuildInputs", 40, 3], ["unpackPhase", 46, 3], ["dontPatch", 50, 3], ["dontConfigure", 51, 3], ["dontBuild", 52, 3], ["installPhase", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, xar: false, pbzx: false, cpio: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["darwin", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["darwin", 16, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 19, 5], ["homepage", 20, 5], ["downloadPage", 21, 5], ["sourceProvenance", 22, 5], ["license", 23, 5], ["maintainers", 24, 5], ["platforms", 25, 5], ["mainProgram", 28, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 36, 5], ["hash", 37, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 32, 11], ["meta", 32, 17], ["version", 33, 3], ["src", 35, 3], ["nativeBuildInputs", 40, 3], ["unpackPhase", 46, 3], ["dontPatch", 50, 3], ["dontConfigure", 51, 3], ["dontBuild", 52, 3], ["installPhase", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const pbzx = nix.arg($, "pbzx");
   const cpio = nix.arg($, "cpio");
   const pname = "teams";
-  const versions = nix.thunk(() => ({ [nix.POS]: pos$1, darwin: "25255.703.3981.5698" }));
+  const versions = nix.thunk(() => ({ [nix.POS]: $pos[0], darwin: "25255.703.3981.5698" }));
   const hashes = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     darwin: "sha256-p9tAvOJxoIO0d8z0qdfc4sokUNfaYKq2NtBHKOWYBM4=",
   }));
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     description: "Microsoft Teams",
     homepage: "https://teams.microsoft.com",
     downloadPage: "https://teams.microsoft.com/downloads",
@@ -41,12 +37,12 @@ export default nix.lambda((args) => (() => {
     mainProgram: "teams",
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: pname,
       meta: meta,
       version: nix.thunk(() => nix.sel(versions, "darwin")),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           url: nix.thunk(() => nix.str`https://statics.teams.cdn.office.net/production-osx/${nix.sel(versions, "darwin")}/MicrosoftTeams.pkg`),
           hash: nix.thunk(() => nix.sel(hashes, "darwin")),
         })))),

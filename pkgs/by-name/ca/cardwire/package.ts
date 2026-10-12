@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["RUSTFLAGS", 53, 5], ["RUSTC_BOOTSTRAP", 54, 5]], [["cardwire", 114, 11]], [["tests", 114, 5], ["updateScript", 115, 5]], [["description", 119, 5], ["platforms", 120, 5], ["homepage", 124, 5], ["changelog", 125, 5], ["license", 126, 5], ["maintainers", 127, 5], ["mainProgram", 130, 5]], [["pname", 24, 3], ["version", 25, 3], ["__structuredAttrs", 27, 3], ["src", 29, 3], ["cargoHash", 35, 3], ["postPatch", 37, 3], ["env", 52, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 64, 3], ["postInstall", 69, 3], ["doInstallCheck", 109, 3], ["nativeInstallCheckInputs", 111, 3], ["passthru", 113, 3], ["meta", 118, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, hwdata: false, libdrm: false, "bpf-linker": false, "pkg-config": false, nixosTests: false, makeBinaryWrapper: false, udev: false, wayland: false, libxkbcommon: false, "vulkan-loader": false, libGL: false, installShellFiles: false, libxcb: false, libglvnd: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["RUSTFLAGS", 53, 5], ["RUSTC_BOOTSTRAP", 54, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["cardwire", 114, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 114, 5], ["updateScript", 115, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 119, 5], ["platforms", 120, 5], ["homepage", 124, 5], ["changelog", 125, 5], ["license", 126, 5], ["maintainers", 127, 5], ["mainProgram", 130, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["__structuredAttrs", 27, 3], ["src", 29, 3], ["cargoHash", 35, 3], ["postPatch", 37, 3], ["env", 52, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 64, 3], ["postInstall", 69, 3], ["doInstallCheck", 109, 3], ["nativeInstallCheckInputs", 111, 3], ["passthru", 113, 3], ["meta", 118, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "cardwire",
       version: "0.12.3",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "opengamingcollective",
           repo: "cardwire",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -58,7 +53,7 @@ substituteInPlace crates/cardwire-daemon/src/core/pci/pci_device.rs \\
 substituteInPlace crates/cardwire-daemon/src/core/gpu/device_info.rs \\
   --replace-fail "/usr/share/libdrm/amdgpu.ids" "${libdrm}/share/libdrm/amdgpu.ids"
 `),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, RUSTFLAGS: "-C target-feature=", RUSTC_BOOTSTRAP: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], RUSTFLAGS: "-C target-feature=", RUSTC_BOOTSTRAP: 1n })),
       nativeBuildInputs: nix.thunk(() => [pkg_config, bpf_linker, makeBinaryWrapper, installShellFiles]),
       buildInputs: nix.thunk(() => [libxcb, udev]),
       postInstall: nix.thunk(() => nix.add(nix.str`install -Dm444 ./assets/org.opengamingcollective.cardwire.conf \\
@@ -84,12 +79,15 @@ wrapProgram $out/bin/cardwire-gui \\
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, cardwire: nix.thunk(() => nix.sel(nixosTests, "cardwire")) })),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[2],
+          cardwire: nix.thunk(() => nix.sel(nixosTests, "cardwire")),
+        })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "GPU manager for laptop and workstation",
         platforms: nix.thunk(() => ["x86_64-linux", "aarch64-linux"]),
         homepage: "https://opengamingcollective.github.io/cardwire/",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["io", 44, 5], ["parallel", 45, 5], ["plot", 46, 5], ["sphinx", 52, 5], ["web", 57, 5]], [["description", 103, 5], ["homepage", 104, 5], ["changelog", 105, 5], ["license", 106, 5], ["maintainers", 107, 5], ["platforms", 109, 5]], [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["src", 32, 3], ["build-system", 39, 3], ["optional-dependencies", 41, 3], ["nativeCheckInputs", 64, 3], ["disabledTests", 74, 3], ["disabledTestPaths", 79, 3], ["pythonImportsCheck", 100, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, pythonAtLeast: false, fetchFromGitHub: false, setuptools: false, dill: false, flask: false, graphviz: false, multiprocess: false, regex: false, requests: false, sphinx: false, "sphinx-click": false, pytestCheckHook: false, ddt: false, cryptography: false, schedula: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["io", 44, 5], ["parallel", 45, 5], ["plot", 46, 5], ["sphinx", 52, 5], ["web", 57, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 103, 5], ["homepage", 104, 5], ["changelog", 105, 5], ["license", 106, 5], ["maintainers", 107, 5], ["platforms", 109, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["src", 32, 3], ["build-system", 39, 3], ["optional-dependencies", 41, 3], ["nativeCheckInputs", 64, 3], ["disabledTests", 74, 3], ["disabledTestPaths", 79, 3], ["pythonImportsCheck", 100, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.5.78";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vinci1it2000",
           repo: "schedula",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
         const plot = nix.thunk(() => [requests, graphviz, regex, flask]);
         const sphinx_1 = nix.thunk(() => nix.concat([sphinx_1, sphinx_click], plot));
         const web = nix.thunk(() => [requests, regex, flask]);
-        return { [nix.POS]: pos$2, io, parallel, plot, sphinx: sphinx_1, web };
+        return { [nix.POS]: $pos[1], io, parallel, plot, sphinx: sphinx_1, web };
       })());
       const nativeCheckInputs = nix.thunk(() => nix.concat([cryptography, ddt, sphinx, pytestCheckHook], nix.concat(nix.sel(schedula, "optional-dependencies", "io"), nix.concat(nix.sel(schedula, "optional-dependencies", "parallel"), nix.sel(schedula, "optional-dependencies", "plot")))));
       const disabledTests = nix.thunk(() => ["test_long_description"]);
@@ -61,7 +58,7 @@ export default nix.lambda((args) => (() => {
         ]))));
       const pythonImportsCheck = nix.thunk(() => ["schedula"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Smart function scheduler for dynamic flow-based programming",
         homepage: "https://github.com/vinci1it2000/schedula",
         changelog: nix.thunk(() => nix.str`https://github.com/vinci1it2000/schedula/blob/${nix.sel(src, "tag")}/CHANGELOG.rst`),
@@ -73,7 +70,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

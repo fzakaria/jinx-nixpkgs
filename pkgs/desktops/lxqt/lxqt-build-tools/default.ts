@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["0.13.0", 25, 9], ["2.4.0", 26, 9]], [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["updateScript", 66, 12]], [["homepage", 69, 5], ["description", 70, 5], ["mainProgram", 71, 5], ["license", 72, 5], ["platforms", 73, 5], ["teams", 74, 5]], [["pname", 16, 3], ["version", 17, 11], ["src", 19, 3], ["postPatch", 31, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 49, 3], ["propagatedBuildInputs", 54, 3], ["setupHook", 58, 3], ["postInstall", 62, 3], ["passthru", 66, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, qtbase: false, glib: false, perl: false, wrapQtAppsHook: false, gitUpdater: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["0.13.0", 25, 9], ["2.4.0", 26, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 66, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["homepage", 69, 5], ["description", 70, 5], ["mainProgram", 71, 5], ["license", 72, 5], ["platforms", 73, 5], ["teams", 74, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 11], ["src", 19, 3], ["postPatch", 31, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 49, 3], ["propagatedBuildInputs", 54, 3], ["setupHook", 58, 3], ["postInstall", 62, 3], ["passthru", 66, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +22,12 @@ export default nix.lambda((args) => (() => {
       const pname = "lxqt-build-tools";
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "lxqt",
           repo: "lxqt-build-tools",
           rev: version_1,
           hash: nix.thunk(() => nix.sel({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             "0.13.0": "sha256-4/hVlEdqqqd6CNitCRkIzsS1R941vPJdirIklp4acXA=",
             "2.4.0": "sha256-PvDXL4hHaHeHt7CXeNCj8L2bv3YYY78ZDTxsctc73fo=",
           }, nix.key(nix.str`${version_1}`))),
@@ -44,11 +40,11 @@ export default nix.lambda((args) => (() => {
       const postInstall = nix.thunk(() => nix.str`cp ${nix.path(here, "./LXQtConfigVars.cmake")} $out/share/cmake/lxqt${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version_1, "2.0.0")), "2")}-build-tools/modules/LXQtConfigVars.cmake
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/lxqt/lxqt-build-tools",
         description: "Various packaging tools and scripts for LXQt applications",
         mainProgram: "lxqt-transupdate",
@@ -60,7 +56,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "lxqt"))]),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version: version_1,
         src,

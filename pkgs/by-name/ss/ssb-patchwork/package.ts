@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["pname", 20, 13], ["version", 20, 19], ["src", 20, 27]], [["pname", 24, 13], ["version", 24, 19], ["src", 24, 27]], [["name", 28, 5], ["exec", 29, 5], ["icon", 30, 5], ["comment", 31, 5], ["desktopName", 32, 5], ["genericName", 33, 5], ["categories", 34, 5]], [["description", 51, 5], ["longDescription", 52, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["mainProgram", 62, 5], ["platforms", 63, 5]], [["version", 39, 11], ["pname", 40, 3], ["paths", 42, 3], ["postBuild", 44, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { appimageTools: false, symlinkJoin: false, lib: false, fetchurl: false, makeDesktopItem: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 20, 13], ["version", 20, 19], ["src", 20, 27]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 24, 13], ["version", 24, 19], ["src", 24, 27]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 28, 5], ["exec", 29, 5], ["icon", 30, 5], ["comment", 31, 5], ["desktopName", 32, 5], ["genericName", 33, 5], ["categories", 34, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 51, 5], ["longDescription", 52, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["mainProgram", 62, 5], ["platforms", 63, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["version", 39, 11], ["pname", 40, 3], ["paths", 42, 3], ["postBuild", 44, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,14 +16,14 @@ export default nix.lambda((args) => (() => {
   const version = "3.18.1";
   const name = nix.thunk(() => nix.str`Patchwork-${version}`);
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://github.com/ssbc/patchwork/releases/download/v${version}/${name}.AppImage`),
       sha256: "F8n6LLbgkg3z55lSY60T+pn2lra8aPt6Ztepw1gf2rI=",
     }))));
-  const binary = nix.thunk(() => nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
-  const appimage_contents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$3, pname: pname, version: version, src: src }))));
+  const binary = nix.thunk(() => nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({ [nix.POS]: $pos[1], pname: pname, version: version, src: src }))));
+  const appimage_contents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[2], pname: pname, version: version, src: src }))));
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       name: "ssb-patchwork",
       exec: nix.thunk(() => nix.str`${binary}/bin/ssb-patchwork`),
       icon: "ssb-patchwork",
@@ -38,7 +33,7 @@ export default nix.lambda((args) => (() => {
       categories: nix.thunk(() => ["Network"]),
     }))));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       version: version,
       pname: "patchwork",
       paths: nix.thunk(() => [binary]),
@@ -47,7 +42,7 @@ install -D ${appimage_contents}/ssb-patchwork.png -t $out/share/icons/hicolor/51
 cp ${desktopItem}/share/applications/* $out/share/applications/
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Decentralized messaging and sharing app built on top of Secure Scuttlebutt (SSB)",
         longDescription: "sea-slang for gossip - a scuttlebutt is basically a watercooler on a ship.\n",
         homepage: "https://www.scuttlebutt.nz/",

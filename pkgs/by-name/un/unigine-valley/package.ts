@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 42, 5], ["hash", 43, 5]], [["name", 124, 7], ["exec", 125, 7], ["genericName", 126, 7], ["icon", 127, 7], ["desktopName", 128, 7]], [["description", 135, 5], ["homepage", 136, 5], ["sourceProvenance", 137, 5], ["license", 138, 5], ["maintainers", 139, 5], ["platforms", 140, 5], ["mainProgram", 144, 5]], [["pname", 38, 3], ["version", 39, 11], ["src", 41, 3], ["sourceRoot", 46, 3], ["instPath", 47, 3], ["nativeBuildInputs", 49, 3], ["libPath", 56, 3], ["unpackPhase", 69, 3], ["postPatch", 79, 3], ["installPhase", 87, 3], ["desktopItems", 122, 3], ["stripDebugList", 132, 3], ["meta", 134, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, file: false, makeDesktopItem: false, imagemagick: false, copyDesktopItems: false, fontconfig: false, freetype: false, libx11: false, libxext: false, libxinerama: false, libxrandr: false, libxrender: false, libglvnd: false, openal: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 42, 5], ["hash", 43, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 124, 7], ["exec", 125, 7], ["genericName", 126, 7], ["icon", 127, 7], ["desktopName", 128, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 135, 5], ["homepage", 136, 5], ["sourceProvenance", 137, 5], ["license", 138, 5], ["maintainers", 139, 5], ["platforms", 140, 5], ["mainProgram", 144, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 38, 3], ["version", 39, 11], ["src", 41, 3], ["sourceRoot", 46, 3], ["instPath", 47, 3], ["nativeBuildInputs", 49, 3], ["libPath", 56, 3], ["unpackPhase", 69, 3], ["postPatch", 79, 3], ["installPhase", 87, 3], ["desktopItems", 122, 3], ["stripDebugList", 132, 3], ["meta", 134, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const pname = "unigine-valley";
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://assets.unigine.com/d/Unigine_Valley-${version_1}.run`),
           hash: "sha256-L7R6nEXQbLTEi76VUoUyhS2LFeTdgdaTaIQVWGn/1+8=",
         }))));
@@ -94,7 +91,7 @@ runHook postInstall
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "Valley",
             exec: "valley",
             genericName: "A GPU Stress test tool from the UNIGINE",
@@ -104,7 +101,7 @@ runHook postInstall
       ]);
       const stripDebugList = nix.thunk(() => [nix.thunk(() => nix.str`${instPath}/bin`)]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Unigine Valley GPU benchmarking tool",
         homepage: "https://unigine.com/products/benchmarks/valley/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -117,7 +114,7 @@ runHook postInstall
         mainProgram: "valley",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version: version_1,
         src,

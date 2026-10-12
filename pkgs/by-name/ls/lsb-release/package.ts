@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["coreutils", 20, 13], ["getopt", 20, 23], ["runtimeShell", 20, 30]], [["description", 24, 5], ["mainProgram", 25, 5], ["license", 26, 5], ["maintainers", 27, 5], ["platforms", 28, 5]], [["name", 10, 3], ["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["dir", 16, 3], ["isExecutable", 17, 3], ["replacements", 19, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { replaceVarsWith: false, lib: false, runtimeShell: false, coreutils: false, getopt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["coreutils", 20, 13], ["getopt", 20, 23], ["runtimeShell", 20, 30]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 24, 5], ["mainProgram", 25, 5], ["license", 26, 5], ["maintainers", 27, 5], ["platforms", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 10, 3], ["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["dir", 16, 3], ["isExecutable", 17, 3], ["replacements", 19, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const getopt = nix.arg($, "getopt");
   return nix.app(replaceVarsWith, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "lsb_release",
       pname: "lsb_release",
       version: nix.thunk(() => nix.sel(lib, "trivial", "release")),
@@ -23,13 +21,13 @@ export default nix.lambda((args) => (() => {
       dir: "bin",
       isExecutable: true,
       replacements: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         coreutils: coreutils,
         getopt: getopt,
         runtimeShell: runtimeShell,
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Prints certain LSB (Linux Standard Base) and Distribution information",
         mainProgram: "lsb_release",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

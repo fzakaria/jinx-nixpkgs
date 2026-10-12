@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 75, 7], ["repo", 76, 7], ["rev", 77, 7], ["hash", 78, 7]], [["updateScript", 88, 14]], [["description", 119, 7], ["homepage", 120, 7], ["license", 121, 7], ["maintainers", 122, 7], ["platforms", 126, 7]], [["pname", 71, 13], ["version", 72, 5], ["src", 74, 5], ["nativeBuildInputs", 81, 5], ["dontBuild", 86, 5], ["passthru", 88, 5], ["postPatch", 90, 5], ["installPhase", 100, 5], ["meta", 118, 5]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, "gnome-shell": false, sassc: false, unstableGitUpdater: false, colorVariants: true, sizeVariants: true, themeVariants: true, tweakVariants: true, iconVariants: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 75, 7], ["repo", 76, 7], ["rev", 77, 7], ["hash", 78, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 88, 14]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 119, 7], ["homepage", 120, 7], ["license", 121, 7], ["maintainers", 122, 7], ["platforms", 126, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 71, 13], ["version", 72, 5], ["src", 74, 5], ["nativeBuildInputs", 81, 5], ["dontBuild", 86, 5], ["passthru", 88, 5], ["postPatch", 90, 5], ["installPhase", 100, 5], ["meta", 118, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const tweakVariantList = nix.thunk(() => ["moon", "storm", "black", "float", "outline", "macos"]);
   const iconVariantList = nix.thunk(() => ["Dark-Cyan", "Dark", "Light", "Moon"]);
   return nix.app(nix.sel(lib, "checkListOfEnum"), nix.thunk(() => nix.str`${pname}: colorVariants`), colorVariantList, colorVariants, nix.thunk(() => nix.sel(lib, "checkListOfEnum")), nix.thunk(() => nix.str`${pname}: sizeVariants`), sizeVariantList, sizeVariants, nix.thunk(() => nix.sel(lib, "checkListOfEnum")), nix.thunk(() => nix.str`${pname}: themeVariants`), themeVariantList, themeVariants, nix.thunk(() => nix.sel(lib, "checkListOfEnum")), nix.thunk(() => nix.str`${pname}: tweakVariants`), tweakVariantList, tweakVariants, nix.thunk(() => nix.sel(lib, "checkListOfEnum")), nix.thunk(() => nix.str`${pname}: iconVariants`), iconVariantList, iconVariants, nix.thunk(() => nix.sel(stdenvNoCC, "mkDerivation")), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: "0-unstable-2025-10-23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Fausto-Korpsvart",
           repo: "Tokyonight-GTK-Theme",
           rev: "6c340e058e84c1975a038a8e5d1e384477225dc0",
@@ -52,7 +49,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [gnome_shell, sassc]),
       dontBuild: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       postPatch: "patchShebangs themes/install.sh\nsed -i \\\n  -e '/gtkrc\\.sh/d' \\\n  -e '/# GTK2 Themes/d' \\\n  -e '/\"${THEME_DIR}\\/gtk-2.0/d' \\\n  -e '/make_gtkrc /d' \\\n  themes/install.sh\n",
@@ -72,7 +69,7 @@ cp -a ${nix.builtins.toString(nix.thunk(() => nix.builtins.map((v) => nix.str`To
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "GTK theme based on the Tokyo Night colour palette",
         homepage: "https://github.com/Fausto-Korpsvart/Tokyonight-GTK-Theme",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5], ["postFetch", 39, 5]], [["name", 46, 7], ["url", 47, 7], ["hash", 48, 7]], [["updateScript", 118, 5]], [["description", 122, 5], ["homepage", 123, 5], ["changelog", 124, 5], ["license", 125, 5], ["maintainers", 126, 5], ["platforms", 127, 5], ["mainProgram", 128, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["patches", 44, 3], ["postPatch", 57, 3], ["nativeBuildInputs", 71, 3], ["dontConfigure", 81, 3], ["buildPhase", 83, 3], ["installPhase", 88, 3], ["nativeInstallCheckInputs", 112, 3], ["doInstallCheck", 115, 3], ["passthru", 117, 3], ["meta", 121, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, asciidoc: false, docbook_xml_dtd_45: false, docbook_xsl: false, installShellFiles: false, libxml2: false, libxslt: false, makeWrapper: false, coreutils: false, gawk: false, gitMinimal: false, gnugrep: false, gnused: false, jq: false, nix: false, versionCheckHook: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5], ["postFetch", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 46, 7], ["url", 47, 7], ["hash", 48, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 118, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 122, 5], ["homepage", 123, 5], ["changelog", 124, 5], ["license", 125, 5], ["maintainers", 126, 5], ["platforms", 127, 5], ["mainProgram", 128, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["patches", 44, 3], ["postPatch", 57, 3], ["nativeBuildInputs", 71, 3], ["dontConfigure", 81, 3], ["buildPhase", 83, 3], ["installPhase", 88, 3], ["nativeInstallCheckInputs", 112, 3], ["doInstallCheck", 115, 3], ["passthru", 117, 3], ["meta", 121, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "nix-prefetch",
       version: "0.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "msteen",
           repo: "nix-prefetch",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix-prefetching-hash-key.patch",
             url: "https://github.com/msteen/nix-prefetch/commit/508237f48f7e2d8496ce54f38abbe57f44d0cbca.patch",
             hash: "sha256-9SYPcRFZaVyNjMUVdXbef5eGvLp/kr379eU9lG5GgE0=",
@@ -80,11 +76,11 @@ cp -r contrib/hello_rs $out/share/doc/nix-prefetch/contrib
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Prefetch any fetcher function call, e.g. package sources",
         homepage: "https://github.com/msteen/nix-prefetch",
         changelog: nix.thunk(() => nix.str`https://github.com/msteen/nix-prefetch/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

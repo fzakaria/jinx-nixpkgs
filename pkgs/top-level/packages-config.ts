@@ -2,10 +2,10 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/packages-config.nix", [["allowAliases", 4, 3], ["allowVariants", 5, 3], ["recursionMode", 6, 3]]);
+const $pos = nix.positions(here + "/packages-config.nix", [[["allowAliases", 4, 3], ["allowVariants", 5, 3], ["recursionMode", 6, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$1,
+  [nix.POS]: $pos[0],
   allowAliases: false,
   allowVariants: false,
   recursionMode: "search",

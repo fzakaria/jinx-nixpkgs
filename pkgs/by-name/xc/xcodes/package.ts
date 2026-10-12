@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["changelog", 45, 5], ["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 53, 5], ["platforms", 57, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["configurePhase", 31, 3], ["installPhase", 33, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, stdenv: false, swift: false, swiftpm: false, swiftpm2nix: false, makeWrapper: false, aria2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 45, 5], ["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 53, 5], ["platforms", 57, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["configurePhase", 31, 3], ["installPhase", 33, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const aria2 = nix.arg($, "aria2");
   const generated = nix.thunk(() => nix.app(nix.sel(swiftpm2nix, "helpers"), nix.path(here, "./generated")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "xcodes",
       version: "1.6.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "XcodesOrg",
           repo: "xcodes",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,7 +39,7 @@ wrapProgram $out/bin/xcodes \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/XcodesOrg/xcodes/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Command-line tool to install and switch between multiple versions of Xcode",
         homepage: "https://github.com/XcodesOrg/xcodes",

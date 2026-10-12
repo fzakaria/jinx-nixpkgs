@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["nativeBuildInputs", 32, 9]], [["useLLVM", 55, 57]], [["nativeBuildInputs", 59, 9]], [["trivial", 10, 3], ["hello", 13, 3], ["multiple", 18, 3], ["regression-224542", 24, 3], ["use-llvm", 53, 3]]]);
 const formals$1 = { args: { lib: false, runCommand: false, runCommandCC: false, haskellPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 32, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["useLLVM", 55, 57]]);
-const pos$3 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 59, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["trivial", 10, 3], ["hello", 13, 3], ["multiple", 18, 3], ["regression-224542", 24, 3], ["use-llvm", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const runCommandCC = nix.arg($, "runCommandCC");
   const haskellPackages = nix.arg($, "haskellPackages");
   return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       trivial: nix.thunk(() => nix.app(nix.sel(haskellPackages, "ghcWithPackages"), (hsPkgs) => [])),
       hello: nix.thunk(() => nix.app(nix.sel(haskellPackages, "ghcWithPackages"), (hsPkgs) => [nix.thunk(() => nix.sel(hsPkgs, "hello"))])),
       multiple: nix.thunk(() => nix.app(nix.sel(haskellPackages, "ghcWithPackages"), (hsPkgs) => [
@@ -24,7 +21,7 @@ export default nix.lambda((args) => (() => {
         ])),
       "regression-224542": nix.thunk(() => (() => {
         const ghc = nix.thunk(() => nix.app(nix.sel(haskellPackages, "ghcWithPackages"), (hsPkgs) => [nix.thunk(() => nix.sel(hsPkgs, "hspec"))]));
-        return nix.app(runCommand, "regression-224542", nix.thunk(() => ({ [nix.POS]: pos$1, nativeBuildInputs: nix.thunk(() => [ghc]) })), nix.thunk(() => nix.str`${nix.sel(ghc, "targetPrefix")}ghc --interactive \\
+        return nix.app(runCommand, "regression-224542", nix.thunk(() => ({ [nix.POS]: $pos[0], nativeBuildInputs: nix.thunk(() => [ghc]) })), nix.thunk(() => nix.str`${nix.sel(ghc, "targetPrefix")}ghc --interactive \\
   -Werror=unrecognised-warning-flags \\
   -Werror=missed-extra-shared-lib \\
   2>&1 \\
@@ -41,8 +38,8 @@ touch $out
 `));
       })()),
       "use-llvm": nix.thunk(() => (() => {
-        const ghc = nix.thunk(() => nix.app(nix.sel(haskellPackages, "ghcWithPackages", "override"), nix.thunk(() => ({ [nix.POS]: pos$2, useLLVM: true })), (_) => []));
-        return nix.app(runCommandCC, "ghc-with-packages-use-llvm", nix.thunk(() => ({ [nix.POS]: pos$3, nativeBuildInputs: nix.thunk(() => [ghc]) })), nix.thunk(() => nix.str`echo 'main = pure ()' > test.hs
+        const ghc = nix.thunk(() => nix.app(nix.sel(haskellPackages, "ghcWithPackages", "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], useLLVM: true })), (_) => []));
+        return nix.app(runCommandCC, "ghc-with-packages-use-llvm", nix.thunk(() => ({ [nix.POS]: $pos[2], nativeBuildInputs: nix.thunk(() => [ghc]) })), nix.thunk(() => nix.str`echo 'main = pure ()' > test.hs
 # -ddump-llvm is unnecessary, but nice for visual feedback in the build log
 ${nix.sel(ghc, "targetPrefix")}ghc --make -fllvm -keep-llvm-files -ddump-llvm test.hs
 # Did we actually use the LLVM backend?

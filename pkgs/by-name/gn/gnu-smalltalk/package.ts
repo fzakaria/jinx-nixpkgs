@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["configureFlags", 31, 5]], [["url", 40, 5], ["hash", 41, 5]], [["NIX_CFLAGS_COMPILE", 52, 7]], [["description", 82, 5], ["longDescription", 83, 5], ["homepage", 89, 5], ["license", 90, 5], ["platforms", 94, 5], ["maintainers", 95, 5]], [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["patches", 44, 3], ["enableParallelBuilding", 51, 3], ["env", 52, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 57, 3], ["configureFlags", 71, 3], ["hardeningDisable", 73, 3], ["installFlags", 75, 3], ["doCheck", 79, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { config: false, lib: false, stdenv: false, fetchurl: false, "pkg-config": false, libtool: false, zip: false, libffi: false, libsigsegv: false, readline: false, gmp: false, gnutls: false, cairo: false, SDL: false, sqlite: false, emacsSupport: true, emacs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["configureFlags", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 40, 5], ["hash", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 52, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 82, 5], ["longDescription", 83, 5], ["homepage", 89, 5], ["license", 90, 5], ["platforms", 94, 5], ["maintainers", 95, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["patches", 44, 3], ["enableParallelBuilding", 51, 3], ["env", 52, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 57, 3], ["configureFlags", 71, 3], ["hardeningDisable", 73, 3], ["installFlags", 75, 3], ["doCheck", 79, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,13 +25,13 @@ export default nix.lambda((args) => (() => {
   const emacsSupport = nix.argOr($, "emacsSupport", () => nix.selOr(config, () => false, "emacsSupport"));
   const emacs = nix.argOr($, "emacs", () => null);
   nix.assert_((!nix.asBool(emacsSupport) || nix.asBool(!nix.eq(emacs, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/gn/gnu-smalltalk/package.nix:21:1");
-  const libsigsegv_shared = nix.thunk(() => nix.app(nix.sel(lib, "overrideDerivation"), libsigsegv, (oldAttrs) => ({ [nix.POS]: pos$1, configureFlags: nix.thunk(() => ["--enable-shared"]) })));
+  const libsigsegv_shared = nix.thunk(() => nix.app(nix.sel(lib, "overrideDerivation"), libsigsegv, (oldAttrs) => ({ [nix.POS]: $pos[0], configureFlags: nix.thunk(() => ["--enable-shared"]) })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gnu-smalltalk",
       version: "3.2.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`mirror://gnu/smalltalk/smalltalk-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-gZoV97qKG1X19gucmli63W9hU7P5h7cOexZ+d1XWWsw=",
         })))),
@@ -44,7 +40,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./0001-fix-compilation.patch"),
       ]),
       enableParallelBuilding: true,
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-std=gnu99" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_CFLAGS_COMPILE: "-std=gnu99" })),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => nix.concat([
         libtool,
@@ -63,7 +59,7 @@ export default nix.lambda((args) => (() => {
       installFlags: nix.thunk(() => nix.app(nix.sel(lib, "optional"), emacsSupport, nix.thunk(() => nix.str`lispdir=${nix.builtins.placeholder("$out")}/share/emacs/site-lisp`))),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Free implementation of the Smalltalk-80 language",
         longDescription: "GNU Smalltalk is a free implementation of the Smalltalk-80 language. It\nruns on most POSIX compatible operating systems (including GNU/Linux, of\ncourse), as well as under Windows. Smalltalk is a dynamic object-oriented\nlanguage, well-versed to scripting tasks.\n",
         homepage: "http://smalltalk.gnu.org/",

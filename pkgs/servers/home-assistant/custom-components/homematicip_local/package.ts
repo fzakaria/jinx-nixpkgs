@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["changelog", 57, 5], ["description", 58, 5], ["homepage", 59, 5], ["maintainers", 60, 5], ["license", 61, 5]], [["owner", 18, 3], ["domain", 19, 3], ["version", 20, 3], ["src", 22, 3], ["postPatch", 29, 3], ["dependencies", 36, 3], ["nativeCheckInputs", 43, 3], ["disabledTestPaths", 51, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, "async-upnp-client": false, buildHomeAssistantComponent: false, fetchFromGitHub: false, aiohomematic: false, "aiohomematic-config": false, "aiohomematic-test-support": false, "home-assistant": false, "openccu-data": false, "openccu-loom-client": false, "pytest-homeassistant-custom-component": false, "pytest-xdist": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 57, 5], ["description", 58, 5], ["homepage", 59, 5], ["maintainers", 60, 5], ["license", 61, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 18, 3], ["domain", 19, 3], ["version", 20, 3], ["src", 22, 3], ["postPatch", 29, 3], ["dependencies", 36, 3], ["nativeCheckInputs", 43, 3], ["disabledTestPaths", 51, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const domain = "homematicip_local";
       const version = "2.11.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "SukramJ",
           repo: "custom_homematic",
           tag: version,
@@ -48,7 +46,7 @@ test \\
       ]);
       const disabledTestPaths = nix.thunk(() => ["tests/test_config_flow.py::TestReauthFlow::test_reauth_flow_success"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/SukramJ/custom_homematic/blob/${nix.sel(src, "tag")}/changelog.md`),
         description: "Custom Home Assistant Component for HomeMatic",
         homepage: "https://github.com/SukramJ/custom_homematic",
@@ -59,7 +57,7 @@ test \\
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         owner,
         domain,
         version,

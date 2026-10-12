@@ -2,36 +2,30 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/ext.nix", [["callPackage", 6, 19], ["directory", 7, 3]]);
-const pos$2 = nix.positions(here + "/ext.nix", [["enableUnfree", 12, 66]]);
-const pos$3 = nix.positions(here + "/ext.nix", [["callPackage", 10, 19], ["timescaledb-apache", 12, 3]]);
-const pos$4 = nix.positions(here + "/ext.nix", [["plperl", 15, 3]]);
-const pos$5 = nix.positions(here + "/ext.nix", [["plpython3", 18, 3]]);
-const pos$6 = nix.positions(here + "/ext.nix", [["pltcl", 21, 3]]);
-const pos$7 = nix.positions(here + "/ext.nix", [["cstore_fdw", 24, 3], ["pg_embedding", 25, 3], ["pgvecto-rs", 26, 3], ["plv8", 27, 3]]);
+const $pos = nix.positions(here + "/ext.nix", [[["callPackage", 6, 19], ["directory", 7, 3]], [["enableUnfree", 12, 66]], [["callPackage", 10, 19], ["timescaledb-apache", 12, 3]], [["plperl", 15, 3]], [["plpython3", 18, 3]], [["pltcl", 21, 3]], [["cstore_fdw", 24, 3], ["pg_embedding", 25, 3], ["pgvecto-rs", 26, 3], ["plv8", 27, 3]]]);
 
 export default (self) => (super$) => (() => {
   const lib = nix.thunk(() => nix.attr(self, "lib"));
   const config = nix.thunk(() => nix.attr(self, "config"));
   return nix.update(nix.app(nix.sel(lib, "packagesFromDirectoryRecursive"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       callPackage: nix.thunk(() => nix.attr(super$, "callPackage")),
       directory: nix.path(here, "./ext"),
     }))), nix.update({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     callPackage: nix.thunk(() => nix.attr(super$, "callPackage")),
-    "timescaledb-apache": nix.thunk(() => nix.app(nix.sel(super$, "callPackage"), nix.path(here, "./ext/timescaledb.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, enableUnfree: false })))),
+    "timescaledb-apache": nix.thunk(() => nix.app(nix.sel(super$, "callPackage"), nix.path(here, "./ext/timescaledb.nix"), nix.thunk(() => ({ [nix.POS]: $pos[1], enableUnfree: false })))),
   }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(self, "perlSupport"))), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       plperl: nix.thunk(() => nix.builtins.throw("PostgreSQL extension `plperl` is not available, because `postgresql` was built without Perl support. Override with `perlSupport = true` to enable the extension.")),
     }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(self, "pythonSupport"))), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       plpython3: nix.thunk(() => nix.builtins.throw("PostgreSQL extension `plpython3` is not available, because `postgresql` was built without Python support. Override with `pythonSupport = true` to enable the extension.")),
     }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(self, "tclSupport"))), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pltcl: nix.thunk(() => nix.builtins.throw("PostgreSQL extension `pltcl` is not available, because `postgresql` was built without Tcl support. Override with `tclSupport = true` to enable the extension.")),
     }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       cstore_fdw: nix.thunk(() => nix.builtins.throw("PostgreSQL extension `cstore_fdw` has been removed due to being broken for more than a year; see RFC 180")),
       pg_embedding: nix.thunk(() => nix.builtins.throw("PostgreSQL extension `pg_embedding` has been removed since the project has been abandoned. Upstream's recommendation is to use pgvector instead (https://neon.tech/docs/extensions/pg_embedding#migrate-from-pg_embedding-to-pgvector)")),
       "pgvecto-rs": nix.thunk(() => nix.builtins.throw("PostgreSQL extension `pgvecto-rs` has been removed since the project has been abandoned. Upstream's recommendation is to use vectorchord instead (https://docs.vectorchord.ai/vectorchord/admin/migration.html#from-pgvecto-rs) ")),

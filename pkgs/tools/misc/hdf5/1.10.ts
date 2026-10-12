@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/1.10.nix", [[["url", 22, 5], ["sha256", 23, 5]], [["description", 53, 5], ["longDescription", 54, 5], ["license", 60, 5], ["maintainers", 61, 5], ["homepage", 62, 5], ["platforms", 63, 5]], [["version", 19, 3], ["pname", 20, 3], ["src", 21, 3], ["outputs", 26, 3], ["buildInputs", 31, 3], ["nativeBuildInputs", 33, 3], ["propagatedBuildInputs", 35, 3], ["configureFlags", 37, 3], ["patches", 42, 3], ["postInstall", 44, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, removeReferencesTo: false, cppSupport: true, zlibSupport: true, zlib: false, enableShared: true, javaSupport: true, jdk: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/1.10.nix", [["url", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/1.10.nix", [["description", 53, 5], ["longDescription", 54, 5], ["license", 60, 5], ["maintainers", 61, 5], ["homepage", 62, 5], ["platforms", 63, 5]]);
-const pos$3 = nix.positions(here + "/1.10.nix", [["version", 19, 3], ["pname", 20, 3], ["src", 21, 3], ["outputs", 26, 3], ["buildInputs", 31, 3], ["nativeBuildInputs", 33, 3], ["propagatedBuildInputs", 35, 3], ["configureFlags", 37, 3], ["patches", 42, 3], ["postInstall", 44, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.10.11";
       const pname = "hdf5";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/${pname}-${version}/src/${pname}-${version}.tar.bz2`),
           sha256: "sha256-Cvx32lxGIXcJR1u++8qRwMtvHqYozNjDYZbPbFpN4wQ=",
         }))));
@@ -41,7 +39,7 @@ moveToOutput 'bin/h5fc' "\${!outputDev}"
 moveToOutput 'bin/h5pcc' "\${!outputDev}"
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Data model, library, and file format for storing and managing data",
         longDescription: "HDF5 supports an unlimited variety of datatypes, and is designed for flexible and efficient\nI/O and for high volume and complex data. HDF5 is portable and is extensible, allowing\napplications to evolve in their use of HDF5. The HDF5 Technology suite includes tools and\napplications for managing, manipulating, viewing, and analyzing data in the HDF5 format.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -53,7 +51,7 @@ moveToOutput 'bin/h5pcc' "\${!outputDev}"
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         version,
         pname,
         src,

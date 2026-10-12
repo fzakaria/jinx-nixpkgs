@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 53, 5], ["repo", 54, 5], ["tag", 55, 5], ["hash", 56, 5]], [["requiredSystemFeatures", 150, 5], ["disabledTestMarks", 151, 5], ["disabledTests", 152, 5]], [["gpuCheck", 149, 12]], [["description", 156, 5], ["homepage", 157, 5], ["changelog", 158, 5], ["license", 159, 5], ["maintainers", 160, 5]], [["pname", 47, 3], ["version", 48, 3], ["pyproject", 49, 3], ["__structuredAttrs", 50, 3], ["src", 52, 3], ["postPatch", 59, 3], ["build-system", 68, 3], ["pythonRelaxDeps", 72, 3], ["dependencies", 75, 3], ["pythonImportsCheck", 98, 3], ["nativeCheckInputs", 100, 3], ["disabledTestMarks", 114, 3], ["disabledTests", 119, 3], ["disabledTestPaths", 140, 3], ["passthru", 149, 3], ["meta", 155, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, cftime: false, fsspec: false, gcsfs: false, h5netcdf: false, h5py: false, "huggingface-hub": false, loguru: false, netcdf4: false, obspec: false, obstore: false, pandas: false, pyarrow: false, pygrib: false, "python-dotenv": false, rich: false, s3fs: false, torch: false, tqdm: false, xarray: false, zarr: false, aiofiles: false, eccodes: false, fastapi: false, "hydra-core": false, pydantic: false, "pytest-asyncio": false, "pytest-xdist": false, pytestCheckHook: false, redis: false, rq: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 53, 5], ["repo", 54, 5], ["tag", 55, 5], ["hash", 56, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["requiredSystemFeatures", 150, 5], ["disabledTestMarks", 151, 5], ["disabledTests", 152, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["gpuCheck", 149, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 156, 5], ["homepage", 157, 5], ["changelog", 158, 5], ["license", 159, 5], ["maintainers", 160, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 47, 3], ["version", 48, 3], ["pyproject", 49, 3], ["__structuredAttrs", 50, 3], ["src", 52, 3], ["postPatch", 59, 3], ["build-system", 68, 3], ["pythonRelaxDeps", 72, 3], ["dependencies", 75, 3], ["pythonImportsCheck", 98, 3], ["nativeCheckInputs", 100, 3], ["disabledTestMarks", 114, 3], ["disabledTests", 119, 3], ["disabledTestPaths", 140, 3], ["passthru", 149, 3], ["meta", 155, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -48,13 +44,13 @@ export default nix.lambda((args) => (() => {
   const rq = nix.arg($, "rq");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "earth2studio",
       version: "0.19.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "NVIDIA",
           repo: "earth2studio",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -114,16 +110,16 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => ["test_fss"])))),
       disabledTestPaths: nix.thunk(() => ["test/data", "test/models/test_auto_models.py", "test/utils/test_cupy.py"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         gpuCheck: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (prev) => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             requiredSystemFeatures: nix.thunk(() => ["cuda"]),
             disabledTestMarks: [],
             disabledTests: nix.thunk(() => nix.app(nix.sel(lib, "remove"), "cuda", nix.thunk(() => nix.sel(prev, "disabledTests")))),
           }))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Open-source deep-learning framework for exploring, building and deploying AI weather/climate workflows",
         homepage: "https://github.com/NVIDIA/earth2studio",
         changelog: nix.thunk(() => nix.str`https://github.com/NVIDIA/earth2studio/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

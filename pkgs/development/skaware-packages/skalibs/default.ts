@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 13, 8]], [["fdtools", 69, 5]], [["tests", 66, 12]], [["pname", 9, 3], ["version", 10, 3], ["sha256", 11, 3], ["meta", 13, 3], ["outputs", 15, 3], ["configureFlags", 22, 3], ["postInstall", 59, 3], ["passthru", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, skawarePackages: false, pkgs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 13, 8]]);
-const pos$2 = nix.positions(here + "/default.nix", [["fdtools", 69, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 66, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["sha256", 11, 3], ["meta", 13, 3], ["outputs", 15, 3], ["configureFlags", 22, 3], ["postInstall", 59, 3], ["passthru", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const skawarePackages = nix.arg($, "skawarePackages");
   const pkgs = nix.arg($, "pkgs");
   return nix.app(nix.sel(skawarePackages, "buildPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "skalibs",
       version: "2.15.1.0",
       sha256: "sha256-+ckF50k1xv6RHH40Tj6J1fvSAUwaBGULUksVzptWNdE=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Set of general-purpose C programming libraries",
       })),
       outputs: nix.thunk(() => ["lib", "dev", "doc", "out"]),
@@ -40,8 +37,8 @@ export default nix.lambda((args) => (() => {
         ])))),
       postInstall: "rm -rf sysdeps.cfg\nrm libskarnet.*\n\nmv doc $doc/share/doc/skalibs/html\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, fdtools: nix.thunk(() => nix.sel(pkgs, "fdtools")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], fdtools: nix.thunk(() => nix.sel(pkgs, "fdtools")) })),
       })),
     })));
 })(), formals$1);

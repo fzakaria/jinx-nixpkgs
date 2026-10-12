@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 5], ["sha256", 23, 5]], [["NIX_CFLAGS_COMPILE", 55, 7]], [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 27, 3], ["postPatch", 39, 3], ["env", 55, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libjpeg: false, libGLU: false, libGL: false, libglut: false, zlib: false, cmake: false, libx11: false, libxml2: false, libpng: false, libxxf86vm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 55, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 27, 3], ["postPatch", 39, 3], ["env", 55, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,20 +21,20 @@ export default nix.lambda((args) => (() => {
   const libpng = nix.arg($, "libpng");
   const libxxf86vm = nix.arg($, "libxxf86vm");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "freepv",
       version: "0.3.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/freepv/freepv-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1w19abqjn64w47m35alg7bcdl1p97nf11zn64cp4p0dydihmhv56",
         })))),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [libjpeg, libGLU, libGL, libglut, zlib, libx11, libxml2, libpng, libxxf86vm]),
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 2.4.0)\" \"cmake_minimum_required(VERSION 3.10)\"\n\nsed -i -e '/GECKO/d' CMakeLists.txt\nsed -i -e '/mozilla/d' src/CMakeLists.txt\nsed -i -e '1i \\\n  #include <cstdio>' src/libfreepv/OpenGLRenderer.cpp\nsed -i -e '1i \\\n  #include <cstring>' src/libfreepv/Image.cpp\nsubstituteInPlace src/libfreepv/Action.h \\\n  --replace NULL nullptr\nsubstituteInPlace src/libfreepv/pngReader.cpp \\\n  --replace png_set_gray_1_2_4_to_8 png_set_expand_gray_1_2_4_to_8\n",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-fpermissive -Wno-narrowing" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-fpermissive -Wno-narrowing" })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Open source panorama viewer using GL",
         homepage: "https://freepv.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

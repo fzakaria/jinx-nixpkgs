@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cabal2nix.nix", [[["url", 40, 5], ["sha256", 41, 5]], [["pname", 37, 3], ["version", 38, 3], ["src", 39, 3], ["postUnpack", 43, 3], ["isLibrary", 44, 3], ["isExecutable", 45, 3], ["libraryHaskellDepends", 46, 3], ["executableHaskellDepends", 72, 3], ["testHaskellDepends", 90, 3], ["preCheck", 103, 3], ["homepage", 107, 3], ["description", 108, 3], ["license", 109, 3]]]);
 const formals$1 = { args: { mkDerivation: false, aeson: false, "ansi-terminal": false, base: false, bytestring: false, Cabal: false, containers: false, deepseq: false, directory: false, "distribution-nixpkgs": false, fetchzip: false, filepath: false, "hackage-db": false, hopenssl: false, hpack: false, "language-nix": false, lens: false, lib: false, "monad-par": false, "monad-par-extras": false, mtl: false, "optparse-applicative": false, pretty: false, prettyprinter: false, process: false, split: false, tasty: false, "tasty-golden": false, text: false, time: false, transformers: false, yaml: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/cabal2nix.nix", [["url", 40, 5], ["sha256", 41, 5]]);
-const pos$2 = nix.positions(here + "/cabal2nix.nix", [["pname", 37, 3], ["version", 38, 3], ["src", 39, 3], ["postUnpack", 43, 3], ["isLibrary", 44, 3], ["isExecutable", 45, 3], ["libraryHaskellDepends", 46, 3], ["executableHaskellDepends", 72, 3], ["testHaskellDepends", 90, 3], ["preCheck", 103, 3], ["homepage", 107, 3], ["description", 108, 3], ["license", 109, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,11 +40,11 @@ export default nix.lambda((args) => (() => {
   const transformers = nix.arg($, "transformers");
   const yaml = nix.arg($, "yaml");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "cabal2nix",
       version: "2.21.3-unstable-2026-03-30",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://github.com/NixOS/cabal2nix/archive/41239bcc0622a0975c6705a03a44dfeffeb56f23.tar.gz",
           sha256: "01qj6cvaif0810v83r6izcj1bbfpcqqxw4wybq04qsq92sqybpw2",
         })))),

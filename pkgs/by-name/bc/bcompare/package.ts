@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 7], ["sha256", 25, 7]], [["url", 29, 7], ["sha256", 30, 7]], [["x86_64-linux", 23, 5], ["aarch64-darwin", 28, 5]], [["pname", 46, 9], ["version", 47, 9], ["src", 48, 9], ["meta", 49, 9], ["unpackPhase", 51, 7], ["installPhase", 56, 7], ["nativeBuildInputs", 76, 7], ["buildInputs", 82, 7], ["dontBuild", 91, 7], ["dontConfigure", 92, 7], ["dontWrapQtApps", 93, 7], ["__structuredAttrs", 95, 7], ["strictDeps", 96, 7]], [["pname", 101, 7], ["version", 102, 7], ["src", 103, 7], ["meta", 104, 7], ["nativeBuildInputs", 106, 5], ["installPhase", 108, 5], ["__structuredAttrs", 113, 5], ["strictDeps", 114, 5]], [["description", 118, 5], ["longDescription", 119, 5], ["homepage", 124, 5], ["sourceProvenance", 125, 5], ["license", 126, 5], ["maintainers", 127, 5], ["platforms", 132, 5], ["mainProgram", 133, 5]]]);
 const formals$1 = { args: { lib: false, autoPatchelfHook: false, bzip2: false, fetchurl: false, glibc: false, "gobject-introspection": false, kdePackages: false, python3: false, stdenv: false, runtimeShell: false, unzip: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 7], ["sha256", 25, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 29, 7], ["sha256", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["x86_64-linux", 23, 5], ["aarch64-darwin", 28, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 46, 9], ["version", 47, 9], ["src", 48, 9], ["meta", 49, 9], ["unpackPhase", 51, 7], ["installPhase", 56, 7], ["nativeBuildInputs", 76, 7], ["buildInputs", 82, 7], ["dontBuild", 91, 7], ["dontConfigure", 92, 7], ["dontWrapQtApps", 93, 7], ["__structuredAttrs", 95, 7], ["strictDeps", 96, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 101, 7], ["version", 102, 7], ["src", 103, 7], ["meta", 104, 7], ["nativeBuildInputs", 106, 5], ["installPhase", 108, 5], ["__structuredAttrs", 113, 5], ["strictDeps", 114, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 118, 5], ["longDescription", 119, 5], ["homepage", 124, 5], ["sourceProvenance", 125, 5], ["license", 126, 5], ["maintainers", 127, 5], ["platforms", 132, 5], ["mainProgram", 133, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,14 +23,14 @@ export default nix.lambda((args) => (() => {
   const version = "5.2.4.32425";
   const throwSystem = nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)));
   const srcs = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: nix.thunk(() => nix.str`https://www.scootersoftware.com/files/bcompare-${version}_amd64.deb`),
         sha256: "sha256-gXmz7ZgTLPNzqckzKV7r+B8V0oS10/GQNTM0/0EYs3s=",
       })))),
     "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: nix.thunk(() => nix.str`https://www.scootersoftware.com/files/BCompareOSX-${version}.zip`),
         sha256: "sha256-CzAARAKDBSORI/zCELEdA8VRdWXHq+sMHGPkr3wV+G8=",
       })))),
@@ -47,7 +42,7 @@ export default nix.lambda((args) => (() => {
         return [nix.thunk(() => nix.lookup(w, "pygobject3"))];
       })()));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname: pname,
         version: version,
         src: src,
@@ -88,7 +83,7 @@ substituteInPlace $out/lib/beyondcompare/bcmount.sh \\
       })));
   })());
   const darwin = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: pname,
       version: version,
       src: src,
@@ -99,7 +94,7 @@ substituteInPlace $out/lib/beyondcompare/bcmount.sh \\
       strictDeps: true,
     }))));
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     description: "GUI application that allows to quickly and easily compare files and folders",
     longDescription: "Beyond Compare is focused. Beyond Compare allows you to quickly and easily compare your files and folders.\nBy using simple, powerful commands you can focus on the differences you're interested in and ignore those you're not.\nYou can then merge the changes, synchronize your files, and generate reports for your records.\n",
     homepage: "https://www.scootersoftware.com",

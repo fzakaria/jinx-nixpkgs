@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["pname", 37, 13], ["version", 37, 19], ["format", 38, 5], ["dist", 39, 5], ["python", 40, 5], ["hash", 41, 5]], [["description", 82, 5], ["homepage", 83, 5], ["license", 84, 5], ["platforms", 85, 5], ["mainProgram", 86, 5], ["maintainers", 87, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["firmwareAssets", 36, 3], ["sourceRoot", 44, 3], ["nativeBuildInputs", 46, 3], ["postPatch", 48, 3], ["build-system", 62, 3], ["pythonRelaxDeps", 64, 3], ["dependencies", 66, 3], ["doCheck", 79, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, "cmsis-svd": false, fetchFromGitHub: false, fetchPypi: false, ipython: false, lib: false, "prompt-toolkit": false, pyfwup: false, pygreat: false, pyusb: false, setuptools: false, tabulate: false, tqdm: false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 37, 13], ["version", 37, 19], ["format", 38, 5], ["dist", 39, 5], ["python", 40, 5], ["hash", 41, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 82, 5], ["homepage", 83, 5], ["license", 84, 5], ["platforms", 85, 5], ["mainProgram", 86, 5], ["maintainers", 87, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["firmwareAssets", 36, 3], ["sourceRoot", 44, 3], ["nativeBuildInputs", 46, 3], ["postPatch", 48, 3], ["build-system", 62, 3], ["pythonRelaxDeps", 64, 3], ["dependencies", 66, 3], ["doCheck", 79, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,14 +26,14 @@ export default nix.lambda((args) => (() => {
       const version = "2026.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "greatscottgadgets",
           repo: "greatfet",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-qXPNatakMVtvl26FG1bx+ngCeqRpg1So6qFamKK8WWk=",
         }))));
       const firmwareAssets = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: pname,
           version: version,
           format: "wheel",
@@ -63,7 +60,7 @@ unzip -j -o ${firmwareAssets} \\
       const dependencies = nix.thunk(() => [cmsis_svd, ipython, prompt_toolkit, pyfwup, pygreat, pyusb, tabulate, tqdm]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Hardware hacking with the greatfet",
         homepage: "https://greatscottgadgets.com/greatfet",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -78,7 +75,7 @@ unzip -j -o ${firmwareAssets} \\
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

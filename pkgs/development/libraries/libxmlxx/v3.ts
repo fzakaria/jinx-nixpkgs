@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/v3.nix", [[["url", 31, 5], ["hash", 32, 5]], [["attrPath", 88, 7], ["packageName", 89, 7], ["versionPolicy", 90, 7], ["freeze", 91, 7]], [["updateScript", 87, 5]], [["homepage", 98, 5], ["description", 99, 5], ["license", 100, 5], ["platforms", 101, 5], ["maintainers", 102, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["outputs", 35, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 64, 3], ["propagatedBuildInputs", 66, 3], ["mesonFlags", 68, 3], ["preBuild", 77, 3], ["postFixup", 81, 3], ["passthru", 86, 3], ["doCheck", 95, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, libxml2: false, glibmm_2_4: false, perl: false, gnome: false, meson: false, ninja: false, docbook5: false, "docbook-xsl-ns": false, doxygen: false, libxslt: false, fop: false, dblatex: false, graphviz: false, withDocumentation: true, withManual: true, withPDF: true, withExamples: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/v3.nix", [["url", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/v3.nix", [["attrPath", 88, 7], ["packageName", 89, 7], ["versionPolicy", 90, 7], ["freeze", 91, 7]]);
-const pos$3 = nix.positions(here + "/v3.nix", [["updateScript", 87, 5]]);
-const pos$4 = nix.positions(here + "/v3.nix", [["homepage", 98, 5], ["description", 99, 5], ["license", 100, 5], ["platforms", 101, 5], ["maintainers", 102, 5]]);
-const pos$5 = nix.positions(here + "/v3.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["outputs", 35, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 64, 3], ["propagatedBuildInputs", 66, 3], ["mesonFlags", 68, 3], ["preBuild", 77, 3], ["postFixup", 81, 3], ["passthru", 86, 3], ["doCheck", 95, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libxml++";
       const version = "3.2.5";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/libxml++/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/libxml++-${version}.tar.xz`),
           hash: "sha256-DJs4G1qD1rOrSwuGXXJW2rJ9V1mBtjvi+Fnty5TaWcc=",
         }))));
@@ -55,9 +51,9 @@ export default nix.lambda((args) => (() => {
       const preBuild = nix.thunk(() => nix.app(nix.sel(lib, "strings", "optionalString"), withDocumentation, "doxygen -u docs/reference/Doxyfile\n"));
       const postFixup = "substituteInPlace $dev/lib/pkgconfig/libxml++-3.0.pc \\\n  --replace-fail 'docdir=${datarootdir}' \"docdir=$doc/share\"\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             attrPath: "libxmlxx3",
             packageName: "libxml++",
             versionPolicy: "odd-unstable",
@@ -66,7 +62,7 @@ export default nix.lambda((args) => (() => {
       }));
       const doCheck = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://libxmlplusplus.sourceforge.net/",
         description: "C++ wrapper for the libxml2 XML parser library, version 3",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),
@@ -77,7 +73,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

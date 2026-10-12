@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 12, 3], ["src", 15, 5], ["version", 16, 5], ["meta", 17, 5], ["nativeBuildInputs", 18, 5], ["buildInputs", 21, 3], ["mesonFlags", 30, 3]]]);
 const formals$1 = { args: { stdenv: false, boost: false, libx11: false, libxext: false, linuxPackages: false, openssl: false, "tuxclocker-plugins": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["src", 15, 5], ["version", 16, 5], ["meta", 17, 5], ["nativeBuildInputs", 18, 5], ["buildInputs", 21, 3], ["mesonFlags", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const tuxclocker_plugins = nix.arg($, "tuxclocker-plugins");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "tuxclocker-nvidia-plugin",
       src: nix.thunk(() => nix.attr(tuxclocker_plugins, "src")),
       version: nix.thunk(() => nix.attr(tuxclocker_plugins, "version")),

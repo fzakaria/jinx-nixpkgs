@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mygui.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["platforms", 63, 5]], [["pname", 16, 3], ["version", 17, 3], ["__structuredAttrs", 19, 3], ["strictDeps", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["postPatch", 31, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 43, 3], ["cmakeFlags", 52, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, ninja: false, boost: false, freetype: false, libuuid: false, ois: false, "ogre-next": false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/mygui.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/mygui.nix", [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["platforms", 63, 5]]);
-const pos$3 = nix.positions(here + "/mygui.nix", [["pname", 16, 3], ["version", 17, 3], ["__structuredAttrs", 19, 3], ["strictDeps", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["postPatch", 31, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 43, 3], ["cmakeFlags", 52, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const ogre_next = nix.arg($, "ogre-next");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mygui",
       version: "0-unstable-2024-02-01",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cryham",
           repo: "mygui-next",
           rev: "a1490ffe01d503c31a00d8277007ffcb27a4258e",
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "MYGUI_RENDERSYSTEM", "8")),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library for creating GUIs for games and 3D applications (Stunt Rally fork)",
         homepage: "http://mygui.info/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

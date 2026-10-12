@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 68, 5], ["repo", 69, 5], ["tag", 70, 5], ["hash", 71, 5]], [["CIBUILDWHEEL", 80, 7]], [["adlfs", 98, 5], ["bigquery", 101, 5], ["bodo", 104, 5], ["daft", 107, 5], ["datafusion", 110, 5], ["duckdb", 113, 5], ["dynamodb", 117, 5], ["entra-auth", 120, 5], ["gcp-auth", 123, 5], ["gcsfs", 126, 5], ["geoarrow", 129, 5], ["glue", 132, 5], ["hf", 135, 5], ["hive", 138, 5], ["hive-kerberos", 141, 5], ["pandas", 146, 5], ["polars", 150, 5], ["pyarrow", 153, 5], ["pyiceberg-core", 156, 5], ["ray", 159, 5], ["rest-sigv4", 164, 5], ["s3fs", 167, 5], ["snappy", 170, 5], ["sql-postgres", 173, 5], ["sql-sqlite", 177, 5]], [["description", 318, 5], ["homepage", 319, 5], ["changelog", 320, 5], ["license", 321, 5], ["maintainers", 322, 5]], [["pname", 62, 3], ["version", 63, 3], ["pyproject", 64, 3], ["__structuredAttrs", 65, 3], ["src", 67, 3], ["build-system", 74, 3], ["env", 80, 3], ["dependencies", 82, 3], ["optional-dependencies", 97, 3], ["pythonImportsCheck", 182, 3], ["nativeCheckInputs", 188, 3], ["preCheck", 214, 3], ["disabledTestPaths", 218, 3], ["disabledTests", 234, 3], ["__darwinAllowLocalNetworking", 315, 3], ["meta", 317, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, cython: false, setuptools: false, cachetools: false, click: false, fsspec: false, mmh3: false, pydantic: false, pyparsing: false, pyroaring: false, requests: false, rich: false, strictyaml: false, tenacity: false, zstandard: false, adlfs: false, "google-cloud-bigquery": false, datafusion: false, duckdb: false, pyarrow: false, boto3: false, "azure-identity": false, "google-auth": false, gcsfs: false, "geoarrow-pyarrow": false, "huggingface-hub": false, thrift: false, kerberos: false, pandas: false, polars: false, "pyiceberg-core": false, ray: false, s3fs: false, "python-snappy": false, "psycopg2-binary": false, sqlalchemy: false, "azure-core": false, "azure-storage-blob": false, fastavro: false, moto: false, pyspark: false, pytestCheckHook: false, "pytest-lazy-fixtures": false, "pytest-mock": false, "pytest-timeout": false, "requests-mock": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 68, 5], ["repo", 69, 5], ["tag", 70, 5], ["hash", 71, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["CIBUILDWHEEL", 80, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["adlfs", 98, 5], ["bigquery", 101, 5], ["bodo", 104, 5], ["daft", 107, 5], ["datafusion", 110, 5], ["duckdb", 113, 5], ["dynamodb", 117, 5], ["entra-auth", 120, 5], ["gcp-auth", 123, 5], ["gcsfs", 126, 5], ["geoarrow", 129, 5], ["glue", 132, 5], ["hf", 135, 5], ["hive", 138, 5], ["hive-kerberos", 141, 5], ["pandas", 146, 5], ["polars", 150, 5], ["pyarrow", 153, 5], ["pyiceberg-core", 156, 5], ["ray", 159, 5], ["rest-sigv4", 164, 5], ["s3fs", 167, 5], ["snappy", 170, 5], ["sql-postgres", 173, 5], ["sql-sqlite", 177, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 318, 5], ["homepage", 319, 5], ["changelog", 320, 5], ["license", 321, 5], ["maintainers", 322, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 62, 3], ["version", 63, 3], ["pyproject", 64, 3], ["__structuredAttrs", 65, 3], ["src", 67, 3], ["build-system", 74, 3], ["env", 80, 3], ["dependencies", 82, 3], ["optional-dependencies", 97, 3], ["pythonImportsCheck", 182, 3], ["nativeCheckInputs", 188, 3], ["preCheck", 214, 3], ["disabledTestPaths", 218, 3], ["disabledTests", 234, 3], ["__darwinAllowLocalNetworking", 315, 3], ["meta", 317, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -61,20 +57,20 @@ export default nix.lambda((args) => (() => {
   const pytest_timeout = nix.arg($, "pytest-timeout");
   const requests_mock = nix.arg($, "requests-mock");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "pyiceberg",
       version: "0.12.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "apache",
           repo: "iceberg-python",
           tag: nix.thunk(() => nix.str`pyiceberg-${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-rH+lURcsMqU+Dz4AdofngxLVhJzZIp4LMru1yyvyItI=",
         })))),
       "build-system": nix.thunk(() => [cython, setuptools]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CIBUILDWHEEL: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CIBUILDWHEEL: "1" })),
       dependencies: nix.thunk(() => [
         cachetools,
         click,
@@ -90,7 +86,7 @@ export default nix.lambda((args) => (() => {
         zstandard,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         adlfs: nix.thunk(() => [adlfs]),
         bigquery: nix.thunk(() => [google_cloud_bigquery]),
         bodo: [],
@@ -190,7 +186,7 @@ export default nix.lambda((args) => (() => {
         ])))),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Python library for programmatic access to Apache Iceberg",
         homepage: "https://github.com/apache/iceberg-python",
         changelog: nix.thunk(() => nix.str`https://github.com/apache/iceberg-python/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

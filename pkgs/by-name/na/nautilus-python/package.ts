@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 29, 5], ["hash", 30, 5]], [["pythonPaths", 36, 7]], [["packageName", 60, 7]], [["updateScript", 59, 5]], [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["teams", 68, 5], ["platforms", 69, 5]], [["pname", 18, 3], ["version", 19, 3], ["outputs", 21, 3], ["src", 28, 3], ["patches", 33, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 52, 3], ["passthru", 58, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, replaceVars: false, fetchurl: false, meson: false, ninja: false, "pkg-config": false, "gtk-doc": false, "docbook-xsl-nons": false, docbook_xml_dtd_412: false, python3: false, nautilus: false, gnome: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pythonPaths", 36, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["packageName", 60, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 59, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["teams", 68, 5], ["platforms", 69, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["outputs", 21, 3], ["src", 28, 3], ["patches", 33, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 52, 3], ["passthru", 58, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,18 +21,18 @@ export default nix.lambda((args) => (() => {
   const nautilus = nix.arg($, "nautilus");
   const gnome = nix.arg($, "gnome");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "nautilus-python",
       version: "4.2.0",
       outputs: nix.thunk(() => ["out", "dev", "doc", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/nautilus-python/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/nautilus-python-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-pFubQHptETKK+02KnqAUdYwQDXfoRcyygIgtL35K37w=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             pythonPaths: nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), ", ", (pkg) => nix.str`'${pkg}/${nix.sel(python3, "sitePackages")}'`, nix.thunk(() => [nix.thunk(() => nix.sel(python3, "pkgs", "pygobject3"))]))),
           })))),
       ]),
@@ -52,11 +47,11 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [python3, nix.thunk(() => nix.sel(python3, "pkgs", "pygobject3")), nautilus]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$3, packageName: "nautilus-python" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[2], packageName: "nautilus-python" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Python bindings for the Nautilus Extension API",
         homepage: "https://gitlab.gnome.org/GNOME/nautilus-python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

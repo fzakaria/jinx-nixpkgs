@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["1.4.0", 32, 9], ["2.4.0", 33, 9]], [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["updateScript", 57, 12]], [["homepage", 65, 5], ["description", 66, 5], ["license", 67, 5], ["platforms", 68, 5], ["teams", 69, 5]], [["pname", 23, 3], ["version", 24, 11], ["src", 26, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 46, 3], ["passthru", 57, 3], ["postPatch", 59, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, libxdmcp: false, libexif: false, libfm: false, "libpthread-stubs": false, libxcb: false, "lxqt-build-tools": false, "lxqt-menu-data": false, "menu-cache": false, "pkg-config": false, qttools: false, wrapQtAppsHook: false, gitUpdater: false, version: true, qtx11extras: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["1.4.0", 32, 9], ["2.4.0", 33, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 57, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["homepage", 65, 5], ["description", 66, 5], ["license", 67, 5], ["platforms", 68, 5], ["teams", 69, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 11], ["src", 26, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 46, 3], ["passthru", 57, 3], ["postPatch", 59, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,16 +26,16 @@ export default nix.lambda((args) => (() => {
   const version = nix.argOr($, "version", () => "2.4.0");
   const qtx11extras = nix.argOr($, "qtx11extras", () => null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "libfm-qt",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "lxqt",
           repo: "libfm-qt",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: nix.thunk(() => nix.sel({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             "1.4.0": "sha256-QxPYSA7537K+/dRTxIYyg+Q/kj75rZOdzlUsmSdQcn4=",
             "2.4.0": "sha256-gfyskv/TpAdBES0+O1MrrkQqTDqtAGtDMIwv3NF7pnE=",
           }, nix.key(nix.str`${nix.sel(finalAttrs, "version")}`))),
@@ -55,12 +51,12 @@ export default nix.lambda((args) => (() => {
         menu_cache,
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), "2.0.0", nix.thunk(() => nix.sel(finalAttrs, "version")))), nix.thunk(() => [qtx11extras])))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(version, "1.4.0")), "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 3.1.0 FATAL_ERROR)\" \"cmake_minimum_required(VERSION 3.10)\"\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/lxqt/libfm-qt",
         description: "Core library of PCManFM-Qt (Qt binding for libfm)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

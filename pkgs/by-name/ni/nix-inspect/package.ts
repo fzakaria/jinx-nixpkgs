@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["url", 41, 9], ["hash", 42, 9]], [["src", 24, 13], ["pname", 26, 5], ["version", 27, 5], ["postPatch", 28, 5], ["nativeBuildInputs", 32, 5], ["patches", 38, 5], ["buildInputs", 46, 5], ["mesonBuildType", 56, 5]], [["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["platforms", 78, 5], ["mainProgram", 79, 5]], [["src", 60, 11], ["pname", 61, 3], ["version", 62, 3], ["cargoHash", 64, 3], ["buildInputs", 66, 3], ["postPatch", 68, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, boost: false, nlohmann_json: false, nixVersions: false, "pkg-config": false, meson: false, ninja: false, stdenv: false, fetchpatch2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 41, 9], ["hash", 42, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 24, 13], ["pname", 26, 5], ["version", 27, 5], ["postPatch", 28, 5], ["nativeBuildInputs", 32, 5], ["patches", 38, 5], ["buildInputs", 46, 5], ["mesonBuildType", 56, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["platforms", 78, 5], ["mainProgram", 79, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["src", 60, 11], ["pname", 61, 3], ["version", 62, 3], ["cargoHash", 64, 3], ["buildInputs", 66, 3], ["postPatch", 68, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,14 +20,14 @@ export default nix.lambda((args) => (() => {
   const fetchpatch2 = nix.arg($, "fetchpatch2");
   const nixComponents = nix.thunk(() => nix.sel(nixVersions, "nixComponents_2_31"));
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "bluskript",
       repo: "nix-inspect",
       rev: "2938c8e94acca6a7f1569f478cac6ddc4877558e",
       hash: "sha256-ArwdTtlIje7yOTblkZs4aQ1+HBtEwJKkfKOiA9tY8nA=",
     }))));
   const workerPackage = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       src: src,
       pname: "nix-inspect-worker",
       version: "0.1.2-unstable-2025-08-14",
@@ -39,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/bluskript/nix-inspect/commit/af4dd48d69f399c7b7e3f07d5268ade606a91f22.patch",
             hash: "sha256-ipyT/zr+CEZi8EPk6Tw8V58ukUdmrtXRn+H32Y7Csuw=",
           })))),
@@ -56,7 +52,7 @@ export default nix.lambda((args) => (() => {
       mesonBuildType: "release",
     }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       src: src,
       pname: "nix-inspect",
       version: "0.1.2",
@@ -66,7 +62,7 @@ export default nix.lambda((args) => (() => {
   --replace-fail 'env!("WORKER_BINARY_PATH")' '"${workerPackage}/bin/nix-inspect"'
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Interactive TUI for inspecting nix configs and other expressions",
         homepage: "https://github.com/bluskript/nix-inspect",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,19 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/octoprint.nix", [[["maintainers", 8, 8]], [["systemPackages", 13, 19]], [["firstRun", 18, 13]], [["enabled", 21, 13], ["key", 22, 13]], [["_disabled", 26, 13]], [["server", 17, 11], ["api", 20, 11], ["plugins", 24, 11]], [["enable", 15, 9], ["extraConfig", 16, 9]], [["octoprint", 14, 16]], [["environment", 13, 7], ["services", 14, 7]], [["machine", 10, 9]], [["name", 7, 3], ["meta", 8, 3], ["nodes", 10, 3], ["testScript", 36, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/octoprint.nix", [["maintainers", 8, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/octoprint.nix", [["systemPackages", 13, 19]]);
-const pos$3 = nix.positions(here + "/octoprint.nix", [["firstRun", 18, 13]]);
-const pos$4 = nix.positions(here + "/octoprint.nix", [["enabled", 21, 13], ["key", 22, 13]]);
-const pos$5 = nix.positions(here + "/octoprint.nix", [["_disabled", 26, 13]]);
-const pos$6 = nix.positions(here + "/octoprint.nix", [["server", 17, 11], ["api", 20, 11], ["plugins", 24, 11]]);
-const pos$7 = nix.positions(here + "/octoprint.nix", [["enable", 15, 9], ["extraConfig", 16, 9]]);
-const pos$8 = nix.positions(here + "/octoprint.nix", [["octoprint", 14, 16]]);
-const pos$9 = nix.positions(here + "/octoprint.nix", [["environment", 13, 7], ["services", 14, 7]]);
-const pos$10 = nix.positions(here + "/octoprint.nix", [["machine", 10, 9]]);
-const pos$11 = nix.positions(here + "/octoprint.nix", [["name", 7, 3], ["meta", 8, 3], ["nodes", 10, 3], ["testScript", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,40 +12,40 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const apikey = "testapikey";
   return {
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     name: "octoprint",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "gador"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs_1, null);
               return [nix.thunk(() => nix.lookup(w, "jq"))];
             })()),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             octoprint: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               enable: true,
               extraConfig: nix.thunk(() => ({
-                [nix.POS]: pos$6,
-                server: nix.thunk(() => ({ [nix.POS]: pos$3, firstRun: false })),
-                api: nix.thunk(() => ({ [nix.POS]: pos$4, enabled: true, key: apikey })),
+                [nix.POS]: $pos[5],
+                server: nix.thunk(() => ({ [nix.POS]: $pos[2], firstRun: false })),
+                api: nix.thunk(() => ({ [nix.POS]: $pos[3], enabled: true, key: apikey })),
                 plugins: nix.thunk(() => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   _disabled: nix.thunk(() => ["softwareupdate", "announcements", "pluginmanager"]),
                 })),
               })),

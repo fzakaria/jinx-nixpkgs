@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["name", 33, 7], ["url", 34, 7], ["hash", 35, 7]], [["description", 86, 5], ["homepage", 87, 5], ["license", 88, 5], ["maintainers", 89, 5], ["broken", 91, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["postInstall", 40, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 54, 3], ["propagatedBuildInputs", 61, 3], ["preFixup", 68, 3], ["configureFlags", 78, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, autoreconfHook: false, cg3: false, fetchFromGitHub: false, fetchpatch: false, hfst: false, "hfst-ospell": false, icu: false, libvoikko: false, makeWrapper: false, "pkg-config": false, python3: false, zip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 33, 7], ["url", 34, 7], ["hash", 35, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 86, 5], ["homepage", 87, 5], ["license", 88, 5], ["maintainers", 89, 5], ["broken", 91, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["postInstall", 40, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 54, 3], ["propagatedBuildInputs", 61, 3], ["preFixup", 68, 3], ["configureFlags", 78, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const zip = nix.arg($, "zip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "omorfi",
       version: "0.9.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "flammie",
           repo: "omorfi",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "python311.patch",
             url: "https://github.com/flammie/omorfi/commit/9736452ae6624060dbea0876a722c3731e776357.patch",
             hash: "sha256-Q4fi5HMmO0fq8YI833vgv2EYp//9Um/xFoRk28WrUMk=",
@@ -69,7 +66,7 @@ done
         "--enable-hyphenator",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Analysis for Finnish text",
         homepage: "https://github.com/flammie/omorfi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

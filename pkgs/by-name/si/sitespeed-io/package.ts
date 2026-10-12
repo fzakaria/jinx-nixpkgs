@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["CHROMEDRIVER_SKIP_DOWNLOAD", 41, 5], ["GECKODRIVER_SKIP_DOWNLOAD", 42, 5], ["EDGEDRIVER_SKIP_DOWNLOAD", 43, 5]], [["updateScript", 100, 5]], [["description", 104, 5], ["homepage", 105, 5], ["downloadPage", 106, 5], ["changelog", 107, 5], ["license", 108, 5], ["maintainers", 109, 5], ["platforms", 110, 5], ["mainProgram", 111, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["env", 39, 3], ["buildInputs", 46, 3], ["dontNpmBuild", 50, 3], ["npmInstallFlags", 51, 3], ["npmDepsHash", 52, 3], ["postInstall", 54, 3], ["nativeInstallCheckInputs", 59, 3], ["doInstallCheck", 62, 3], ["postFixup", 64, 3], ["passthru", 99, 3], ["meta", 103, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, buildNpmPackage: false, systemdLibs: false, coreutils: false, "ffmpeg-headless": false, imagemagick_light: false, procps: false, python3: false, versionCheckHook: false, "xorg-server": false, "nix-update-script": false, withChromium: true, chromedriver: false, chromium: false, withFirefox: true, geckodriver: false, firefox: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CHROMEDRIVER_SKIP_DOWNLOAD", 41, 5], ["GECKODRIVER_SKIP_DOWNLOAD", 42, 5], ["EDGEDRIVER_SKIP_DOWNLOAD", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 100, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 104, 5], ["homepage", 105, 5], ["downloadPage", 106, 5], ["changelog", 107, 5], ["license", 108, 5], ["maintainers", 109, 5], ["platforms", 110, 5], ["mainProgram", 111, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["env", 39, 3], ["buildInputs", 46, 3], ["dontNpmBuild", 50, 3], ["npmInstallFlags", 51, 3], ["npmDepsHash", 52, 3], ["postInstall", 54, 3], ["nativeInstallCheckInputs", 59, 3], ["doInstallCheck", 62, 3], ["postFixup", 64, 3], ["passthru", 99, 3], ["meta", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,18 +28,18 @@ export default nix.lambda((args) => (() => {
   const firefox = nix.arg($, "firefox");
   nix.assert_((!nix.asBool((nix.asBool(!nix.asBool(withFirefox)) && nix.asBool(!nix.asBool(withChromium)))) || nix.asBool(nix.builtins.throw("Either `withFirefox` or `withChromium` must be enabled."))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/si/sitespeed-io/package.nix:26:1");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "sitespeed-io",
       version: "42.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sitespeedio",
           repo: "sitespeed.io",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-tyEa28WmMa+t55k/CHBZNXno9pTyKJZed47OA5VN5U4=",
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         CHROMEDRIVER_SKIP_DOWNLOAD: true,
         GECKODRIVER_SKIP_DOWNLOAD: true,
         EDGEDRIVER_SKIP_DOWNLOAD: true,
@@ -85,11 +81,11 @@ export default nix.lambda((args) => (() => {
 `;
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Open source tool that helps you monitor, analyze and optimize your website speed and performance",
         homepage: "https://sitespeed.io",
         downloadPage: "https://github.com/sitespeedio/sitespeed.io",

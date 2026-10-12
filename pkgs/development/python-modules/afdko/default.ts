@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["FORCE_SYSTEM_ANTLR4", 84, 5], ["FORCE_SYSTEM_LIBXML2", 86, 5]], [["runAllTests", 138, 38]], [["fullTestsuite", 138, 5]], [["tests", 137, 12]], [["description", 142, 5], ["changelog", 143, 5], ["homepage", 144, 5], ["license", 145, 5], ["maintainers", 146, 5]], [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["src", 36, 3], ["postPatch", 43, 3], ["build-system", 50, 3], ["cmakeFlags", 58, 3], ["buildInputs", 62, 3], ["patches", 67, 3], ["env", 83, 3], ["dontUseCmakeConfigure", 89, 3], ["dependencies", 91, 3], ["nativeCheckInputs", 108, 3], ["disabledTests", 115, 3], ["passthru", 137, 3], ["meta", 141, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, addBinToPathHook: false, antlr4_13: false, booleanoperations: false, buildPythonPackage: false, cmake: false, cython: false, defcon: false, fetchFromGitHub: false, fontmath: false, fonttools: false, libxml2: false, lxml: false, mypy: false, ninja: false, pytestCheckHook: false, runAllTests: true, "scikit-build-core": false, "setuptools-scm": false, tqdm: false, ufonormalizer: false, ufoprocessor: false, uharfbuzz: false, afdko: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["FORCE_SYSTEM_ANTLR4", 84, 5], ["FORCE_SYSTEM_LIBXML2", 86, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["runAllTests", 138, 38]]);
-const pos$4 = nix.positions(here + "/default.nix", [["fullTestsuite", 138, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["tests", 137, 12]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 142, 5], ["changelog", 143, 5], ["homepage", 144, 5], ["license", 145, 5], ["maintainers", 146, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["src", 36, 3], ["postPatch", 43, 3], ["build-system", 50, 3], ["cmakeFlags", 58, 3], ["buildInputs", 62, 3], ["patches", 67, 3], ["env", 83, 3], ["dontUseCmakeConfigure", 89, 3], ["dependencies", 91, 3], ["nativeCheckInputs", 108, 3], ["disabledTests", 115, 3], ["passthru", 137, 3], ["meta", 141, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,12 +33,12 @@ export default nix.lambda((args) => (() => {
   const uharfbuzz = nix.arg($, "uharfbuzz");
   const afdko = nix.arg($, "afdko");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "afdko",
       version: "5.0.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "adobe-type-tools",
           repo: "afdko",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -65,7 +59,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./0001-addfeatures-hmtx-avoid-unsigned-integer-underflow.patch"),
         nix.path(here, "./0002-otfautohint-fix-assertion-high-ghost-first-stem.patch"),
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, FORCE_SYSTEM_ANTLR4: true, FORCE_SYSTEM_LIBXML2: true })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], FORCE_SYSTEM_ANTLR4: true, FORCE_SYSTEM_LIBXML2: true })),
       dontUseCmakeConfigure: true,
       dependencies: nix.thunk(() => nix.concat([
         booleanoperations,
@@ -88,14 +82,14 @@ export default nix.lambda((args) => (() => {
           "test_options",
         ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isRiscV")))), nix.thunk(() => ["test_spec"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isi686")), nix.thunk(() => ["test_dump_option", "test_type1mm_inputs"])))))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          fullTestsuite: nix.thunk(() => nix.app(nix.sel(afdko, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, runAllTests: true })))),
+          [nix.POS]: $pos[3],
+          fullTestsuite: nix.thunk(() => nix.app(nix.sel(afdko, "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], runAllTests: true })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Adobe Font Development Kit for OpenType",
         changelog: nix.thunk(() => nix.str`https://github.com/adobe-type-tools/afdko/blob/${nix.sel(finalAttrs, "version")}/NEWS.md`),
         homepage: "https://adobe-type-tools.github.io/afdko",

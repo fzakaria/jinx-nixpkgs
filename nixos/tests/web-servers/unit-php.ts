@@ -2,64 +2,48 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/unit-php.nix", [[["maintainers", 8, 8]], [["application", 21, 30]], [["*:9081", 21, 21]], [["file", 29, 21]], [["type", 23, 13], ["processes", 24, 13], ["user", 25, 13], ["group", 26, 13], ["root", 27, 13], ["index", 28, 13], ["options", 29, 13]], [["php_82", 22, 24]], [["listeners", 21, 11], ["applications", 22, 11]], [["enable", 19, 9], ["config", 20, 9]], [["unit", 18, 16]], [["isSystemUser", 35, 11], ["uid", 36, 11], ["group", 37, 11]], [["testuser", 34, 15]], [["gid", 40, 11]], [["testgroup", 39, 16]], [["users", 34, 9], ["groups", 39, 9]], [["services", 18, 7], ["users", 33, 7]], [["machine", 10, 9]], [["name", 7, 3], ["meta", 8, 3], ["nodes", 10, 3], ["testScript", 44, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/unit-php.nix", [["maintainers", 8, 8]]);
 const formals$2 = { args: { config: false, lib: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/unit-php.nix", [["application", 21, 30]]);
-const pos$3 = nix.positions(here + "/unit-php.nix", [["*:9081", 21, 21]]);
-const pos$4 = nix.positions(here + "/unit-php.nix", [["file", 29, 21]]);
-const pos$5 = nix.positions(here + "/unit-php.nix", [["type", 23, 13], ["processes", 24, 13], ["user", 25, 13], ["group", 26, 13], ["root", 27, 13], ["index", 28, 13], ["options", 29, 13]]);
-const pos$6 = nix.positions(here + "/unit-php.nix", [["php_82", 22, 24]]);
-const pos$7 = nix.positions(here + "/unit-php.nix", [["listeners", 21, 11], ["applications", 22, 11]]);
-const pos$8 = nix.positions(here + "/unit-php.nix", [["enable", 19, 9], ["config", 20, 9]]);
-const pos$9 = nix.positions(here + "/unit-php.nix", [["unit", 18, 16]]);
-const pos$10 = nix.positions(here + "/unit-php.nix", [["isSystemUser", 35, 11], ["uid", 36, 11], ["group", 37, 11]]);
-const pos$11 = nix.positions(here + "/unit-php.nix", [["testuser", 34, 15]]);
-const pos$12 = nix.positions(here + "/unit-php.nix", [["gid", 40, 11]]);
-const pos$13 = nix.positions(here + "/unit-php.nix", [["testgroup", 39, 16]]);
-const pos$14 = nix.positions(here + "/unit-php.nix", [["users", 34, 9], ["groups", 39, 9]]);
-const pos$15 = nix.positions(here + "/unit-php.nix", [["services", 18, 7], ["users", 33, 7]]);
-const pos$16 = nix.positions(here + "/unit-php.nix", [["machine", 10, 9]]);
-const pos$17 = nix.positions(here + "/unit-php.nix", [["name", 7, 3], ["meta", 8, 3], ["nodes", 10, 3], ["testScript", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const testdir = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextDir"), "www/info.php", "<?php phpinfo();"));
   return {
-    [nix.POS]: pos$17,
+    [nix.POS]: $pos[16],
     name: "unit-php-test",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "izorkin"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const lib = nix.arg($_1, "lib");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             unit: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               enable: true,
               config: nix.thunk(() => nix.app(nix.sel(pkgs_1, "lib", "strings", "toJSON"), nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   listeners: nix.thunk(() => ({
-                    [nix.POS]: pos$3,
-                    "*:9081": nix.thunk(() => ({ [nix.POS]: pos$2, application: "php_82" })),
+                    [nix.POS]: $pos[2],
+                    "*:9081": nix.thunk(() => ({ [nix.POS]: $pos[1], application: "php_82" })),
                   })),
                   applications: nix.thunk(() => ({
-                    [nix.POS]: pos$6,
+                    [nix.POS]: $pos[5],
                     php_82: nix.thunk(() => ({
-                      [nix.POS]: pos$5,
+                      [nix.POS]: $pos[4],
                       type: "php 8.2",
                       processes: 1n,
                       user: "testuser",
@@ -67,7 +51,7 @@ export default nix.lambda((args) => (() => {
                       root: nix.thunk(() => nix.str`${testdir}/www`),
                       index: "info.php",
                       options: nix.thunk(() => ({
-                        [nix.POS]: pos$4,
+                        [nix.POS]: $pos[3],
                         file: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "unit", "usedPhp82")}/lib/php.ini`),
                       })),
                     })),
@@ -76,14 +60,14 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$11,
-              testuser: nix.thunk(() => ({ [nix.POS]: pos$10, isSystemUser: true, uid: 1080n, group: "testgroup" })),
+              [nix.POS]: $pos[10],
+              testuser: nix.thunk(() => ({ [nix.POS]: $pos[9], isSystemUser: true, uid: 1080n, group: "testgroup" })),
             })),
             groups: nix.thunk(() => ({
-              [nix.POS]: pos$13,
-              testgroup: nix.thunk(() => ({ [nix.POS]: pos$12, gid: 1080n })),
+              [nix.POS]: $pos[12],
+              testgroup: nix.thunk(() => ({ [nix.POS]: $pos[11], gid: 1080n })),
             })),
           })),
         };

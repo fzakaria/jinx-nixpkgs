@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nqp.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["fetchSubmodules", 19, 5], ["hash", 20, 5]], [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["platforms", 44, 5], ["maintainers", 45, 5], ["mainProgram", 50, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 15, 3], ["configureScript", 23, 3], ["configureFlags", 24, 3], ["preBuild", 31, 3], ["doInstallCheck", 37, 3], ["nativeInstallCheckInputs", 38, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, moarvm: false, perl: false, stdenv: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/nqp.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["fetchSubmodules", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/nqp.nix", [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["platforms", 44, 5], ["maintainers", 45, 5], ["mainProgram", 50, 5]]);
-const pos$3 = nix.positions(here + "/nqp.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 15, 3], ["configureScript", 23, 3], ["configureFlags", 24, 3], ["preBuild", 31, 3], ["doInstallCheck", 37, 3], ["nativeInstallCheckInputs", 38, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "nqp",
       version: "2026.07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Raku",
           repo: "nqp",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,7 +37,7 @@ ln -fs ${moarvm}/$share_dir/{Nodes,Ops}.nqp $out/$share_dir
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Lightweight Raku-like environment for virtual machines",
         homepage: "https://github.com/Raku/nqp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "artistic2")),

@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 15, 3], ["extraNativeBuildInputs", 17, 3], ["extraBuildInputs", 23, 3], ["qtWrapperArgs", 31, 3]]]);
 const formals$1 = { args: { mkKdeDerivation: false, "pkg-config": false, "shared-mime-info": false, qtnetworkauth: false, qtspeech: false, qtwebengine: false, cyrus_sasl: false, lib: false, libetebase: false, libkgapi: false, libxslt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["extraNativeBuildInputs", 17, 3], ["extraBuildInputs", 23, 3], ["qtWrapperArgs", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const libkgapi = nix.arg($, "libkgapi");
   const libxslt = nix.arg($, "libxslt");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "kdepim-runtime",
       extraNativeBuildInputs: nix.thunk(() => [pkg_config, shared_mime_info, libxslt]),
       extraBuildInputs: nix.thunk(() => [qtnetworkauth, qtspeech, qtwebengine, cyrus_sasl, libetebase]),

@@ -2,23 +2,10 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/base.nix", [[["offsets.topic.replication.factor", 27, 17], ["log.dirs", 28, 17], ["node.id", 32, 17], ["process.roles", 33, 17], ["listeners", 37, 17], ["listener.security.protocol.map", 41, 17], ["controller.quorum.voters", 45, 17], ["controller.listener.names", 48, 17]], [["enable", 22, 15], ["package", 23, 15], ["clusterId", 24, 15], ["formatLogDirs", 25, 15], ["settings", 26, 15]], [["apache-kafka", 21, 22]], [["allowedTCPPorts", 52, 33]], [["firewall", 52, 24]], [["diskSize", 56, 28], ["memorySize", 58, 28]], [["services", 21, 13], ["networking", 52, 13], ["virtualisation", 56, 13]], [["kafka", 18, 9]], [["name", 15, 15], ["nodes", 17, 7], ["testScript", 62, 7]], [["kafkaPackage", 90, 43]], [["kafkaPackage", 91, 43]], [["kafkaPackage", 92, 43]], [["kafkaPackage", 93, 35]], [["kafka_4_1", 90, 3], ["kafka_4_2", 91, 3], ["kafka_4_3", 92, 3], ["kafka", 93, 3]]]);
 const formals$1 = { args: { pkgs: false, runTest: false, lib: false }, ellipsis: true };
 const formals$2 = { args: { kafkaPackage: false }, ellipsis: false };
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$1 = nix.positions(here + "/base.nix", [["offsets.topic.replication.factor", 27, 17], ["log.dirs", 28, 17], ["node.id", 32, 17], ["process.roles", 33, 17], ["listeners", 37, 17], ["listener.security.protocol.map", 41, 17], ["controller.quorum.voters", 45, 17], ["controller.listener.names", 48, 17]]);
-const pos$2 = nix.positions(here + "/base.nix", [["enable", 22, 15], ["package", 23, 15], ["clusterId", 24, 15], ["formatLogDirs", 25, 15], ["settings", 26, 15]]);
-const pos$3 = nix.positions(here + "/base.nix", [["apache-kafka", 21, 22]]);
-const pos$4 = nix.positions(here + "/base.nix", [["allowedTCPPorts", 52, 33]]);
-const pos$5 = nix.positions(here + "/base.nix", [["firewall", 52, 24]]);
-const pos$6 = nix.positions(here + "/base.nix", [["diskSize", 56, 28], ["memorySize", 58, 28]]);
-const pos$7 = nix.positions(here + "/base.nix", [["services", 21, 13], ["networking", 52, 13], ["virtualisation", 56, 13]]);
-const pos$8 = nix.positions(here + "/base.nix", [["kafka", 18, 9]]);
-const pos$9 = nix.positions(here + "/base.nix", [["name", 15, 15], ["nodes", 17, 7], ["testScript", 62, 7]]);
-const pos$10 = nix.positions(here + "/base.nix", [["kafkaPackage", 90, 43]]);
-const pos$11 = nix.positions(here + "/base.nix", [["kafkaPackage", 91, 43]]);
-const pos$12 = nix.positions(here + "/base.nix", [["kafkaPackage", 92, 43]]);
-const pos$13 = nix.positions(here + "/base.nix", [["kafkaPackage", 93, 35]]);
-const pos$14 = nix.positions(here + "/base.nix", [["kafka_4_1", 90, 3], ["kafka_4_2", 91, 3], ["kafka_4_3", 92, 3], ["kafka", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,24 +17,24 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const kafkaPackage = nix.arg($_1, "kafkaPackage");
     return nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         name: name,
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           kafka: nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$3);
             return {
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 "apache-kafka": nix.thunk(() => ({
-                  [nix.POS]: pos$2,
+                  [nix.POS]: $pos[1],
                   enable: true,
                   package: kafkaPackage,
                   clusterId: "ak2fIHr4S8WWarOF_ODD0g",
                   formatLogDirs: true,
                   settings: nix.thunk(() => ({
-                    [nix.POS]: pos$1,
+                    [nix.POS]: $pos[0],
                     "offsets.topic.replication.factor": 1n,
                     "log.dirs": nix.thunk(() => ["/var/lib/kafka/logdir1", "/var/lib/kafka/logdir2"]),
                     "node.id": 1n,
@@ -60,10 +47,10 @@ export default nix.lambda((args) => (() => {
                 })),
               })),
               networking: nix.thunk(() => ({
-                [nix.POS]: pos$5,
-                firewall: nix.thunk(() => ({ [nix.POS]: pos$4, allowedTCPPorts: nix.thunk(() => [9092n, 9093n]) })),
+                [nix.POS]: $pos[4],
+                firewall: nix.thunk(() => ({ [nix.POS]: $pos[3], allowedTCPPorts: nix.thunk(() => [9092n, 9093n]) })),
               })),
-              virtualisation: nix.thunk(() => ({ [nix.POS]: pos$6, diskSize: 1024n, memorySize: 2047n })),
+              virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[5], diskSize: 1024n, memorySize: 2047n })),
             };
           })(), formals$3),
         })),
@@ -93,21 +80,21 @@ assert "test 1" in kafka.succeed(
   })(), formals$2);
   const w_1 = nix.withScope(pkgs, w);
   return {
-    [nix.POS]: pos$14,
+    [nix.POS]: $pos[13],
     kafka_4_1: nix.thunk(() => nix.app(makeKafkaTest, "kafka_4_1", nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         kafkaPackage: nix.thunk(() => nix.lookup(w_1, "apacheKafka_4_1")),
       })))),
     kafka_4_2: nix.thunk(() => nix.app(makeKafkaTest, "kafka_4_2", nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         kafkaPackage: nix.thunk(() => nix.lookup(w_1, "apacheKafka_4_2")),
       })))),
     kafka_4_3: nix.thunk(() => nix.app(makeKafkaTest, "kafka_4_3", nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         kafkaPackage: nix.thunk(() => nix.lookup(w_1, "apacheKafka_4_3")),
       })))),
     kafka: nix.thunk(() => nix.app(makeKafkaTest, "kafka", nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         kafkaPackage: nix.thunk(() => nix.lookup(w_1, "apacheKafka")),
       })))),
   };

@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 46, 9], ["hash", 47, 9]], [["url", 50, 9], ["hash", 51, 9]], [["url", 54, 9], ["hash", 55, 9]], [["x86_64-linux", 45, 7], ["aarch64-linux", 49, 7], ["aarch64-darwin", 53, 7]], [["name", 61, 9], ["runtimeInputs", 62, 9], ["text", 67, 9]], [["sources", 44, 5], ["updateScript", 59, 5]], [["description", 84, 5], ["homepage", 85, 5], ["sourceProvenance", 86, 5], ["mainProgram", 87, 5], ["license", 88, 5], ["maintainers", 89, 5], ["platforms", 90, 5]], [["pname", 14, 3], ["version", 15, 3], ["strictDeps", 17, 3], ["__structuredAttrs", 18, 3], ["nativeBuildInputs", 20, 3], ["src", 22, 3], ["installPhase", 26, 3], ["nativeInstallCheckInputs", 39, 3], ["versionCheckProgramArg", 40, 3], ["doInstallCheck", 41, 3], ["passthru", 43, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, fetchurl: false, curl: false, "common-updater-scripts": false, writeShellApplication: false, gnugrep: false, installShellFiles: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 46, 9], ["hash", 47, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 50, 9], ["hash", 51, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 54, 9], ["hash", 55, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["x86_64-linux", 45, 7], ["aarch64-linux", 49, 7], ["aarch64-darwin", 53, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 61, 9], ["runtimeInputs", 62, 9], ["text", 67, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["sources", 44, 5], ["updateScript", 59, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 84, 5], ["homepage", 85, 5], ["sourceProvenance", 86, 5], ["mainProgram", 87, 5], ["license", 88, 5], ["maintainers", 89, 5], ["platforms", 90, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["strictDeps", 17, 3], ["__structuredAttrs", 18, 3], ["nativeBuildInputs", 20, 3], ["src", 22, 3], ["installPhase", 26, 3], ["nativeInstallCheckInputs", 39, 3], ["versionCheckProgramArg", 40, 3], ["doInstallCheck", 41, 3], ["passthru", 43, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "tideways-cli",
       version: "1.3.2",
       strictDeps: true,
@@ -36,27 +29,27 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "version",
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         sources: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               url: nix.thunk(() => nix.str`https://s3-eu-west-1.amazonaws.com/tideways/cli/${nix.sel(finalAttrs, "version")}/tideways-cli_linux_amd64-${nix.sel(finalAttrs, "version")}.tar.gz`),
               hash: "sha256-6arHj82OD5zKY0uEzimioeuD4lRoQ99YrT/aK+S1W38=",
             })))),
           "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               url: nix.thunk(() => nix.str`https://s3-eu-west-1.amazonaws.com/tideways/cli/${nix.sel(finalAttrs, "version")}/tideways-cli_linux_arm64-${nix.sel(finalAttrs, "version")}.tar.gz`),
               hash: "sha256-qOyRCbopaiWE0YtQgF6ocIdbCUDhid3w3X7AeA3kOlI=",
             })))),
           "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               url: nix.thunk(() => nix.str`https://s3-eu-west-1.amazonaws.com/tideways/cli/${nix.sel(finalAttrs, "version")}/tideways-cli_macos_arm64-${nix.sel(finalAttrs, "version")}.tar.gz`),
               hash: "sha256-90qhY1TKhOen6+ararnVVu+cIod1luEHyC3U/z9EtJY=",
             })))),
         })),
         updateScript: nix.thunk(() => nix.str`${nix.app(writeShellApplication, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "update-tideways-cli",
             runtimeInputs: nix.thunk(() => [curl, gnugrep, common_updater_scripts]),
             text: nix.thunk(() => nix.str`NEW_VERSION=$(curl --fail -L -s https://tideways.com/profiler/downloads | grep -E 'https://tideways.s3.amazonaws.com/cli/([0-9]+\\.[0-9]+\\.[0-9]+)/tideways-cli_linux_amd64-\\1.tar.gz' | grep -oP 'cli/\\K[0-9]+\\.[0-9]+\\.[0-9]+')
@@ -73,7 +66,7 @@ done
           })))}/bin/update-tideways-cli`),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Tideways Profiler CLI",
         homepage: "https://tideways.com/",
         sourceProvenance: nix.thunk(() => (() => {

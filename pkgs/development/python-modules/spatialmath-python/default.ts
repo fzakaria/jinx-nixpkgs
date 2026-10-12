@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 22, 5], ["version", 23, 26], ["hash", 24, 5]], [["MPLBACKEND", 53, 7]], [["description", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 27, 3], ["pythonRemoveDeps", 32, 3], ["pythonRelaxDeps", 34, 3], ["dependencies", 36, 3], ["pythonImportsCheck", 44, 3], ["nativeCheckInputs", 46, 3], ["disabledTestPaths", 48, 3], ["env", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchPypi: false, "oldest-supported-numpy": false, setuptools: false, ansitable: false, matplotlib: false, numpy: false, scipy: false, "typing-extensions": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 22, 5], ["version", 23, 26], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["MPLBACKEND", 53, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 27, 3], ["pythonRemoveDeps", 32, 3], ["pythonRelaxDeps", 34, 3], ["dependencies", 36, 3], ["pythonImportsCheck", 44, 3], ["nativeCheckInputs", 46, 3], ["disabledTestPaths", 48, 3], ["env", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const typing_extensions = nix.arg($, "typing-extensions");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "spatialmath-python",
       version: "1.1.18",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "spatialmath_python",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-39JluT9RUsAuuMBb/I1fgg52yqcVrL33u48tYKarIuw=",
@@ -41,11 +38,11 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       disabledTestPaths: nix.thunk(() => ["tests/test_spline.py"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         MPLBACKEND: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "Agg")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Provides spatial maths capability for Python",
         homepage: "https://github.com/rai-opensource/spatialmath-python",
         changelog: nix.thunk(() => nix.str`https://github.com/rai-opensource/spatialmath-python/releases/tag/${nix.sel(finalAttrs, "version")}`),

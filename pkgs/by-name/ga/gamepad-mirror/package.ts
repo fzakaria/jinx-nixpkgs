@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["hash", 34, 5]], [["giTypelibInputs", 58, 12]], [["description", 97, 5], ["homepage", 98, 5], ["license", 99, 5], ["maintainers", 100, 5], ["mainProgram", 101, 5], ["platforms", 102, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["__structuredAttrs", 37, 3], ["strictDeps", 39, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 52, 3], ["passthru", 58, 3], ["preFixup", 71, 3], ["postFixup", 81, 3], ["doInstallCheck", 86, 3], ["installCheckPhase", 87, 3], ["meta", 96, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromCodeberg: false, appstream: false, cmake: false, "desktop-file-utils": false, gettext: false, gjs: false, glib: false, gtk4: false, graphene: false, "gobject-introspection": false, pango: false, harfbuzz: false, "gdk-pixbuf": false, libadwaita: false, libmanette: false, libgudev: false, meson: false, ninja: false, "pkg-config": false, wrapGAppsHook4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["giTypelibInputs", 58, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 97, 5], ["homepage", 98, 5], ["license", 99, 5], ["maintainers", 100, 5], ["mainProgram", 101, 5], ["platforms", 102, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["__structuredAttrs", 37, 3], ["strictDeps", 39, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 52, 3], ["passthru", 58, 3], ["preFixup", 71, 3], ["postFixup", 81, 3], ["doInstallCheck", 86, 3], ["installCheckPhase", 87, 3], ["meta", 96, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gamepad-mirror",
       version: "0.3-unstable-2025-10-18",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vendillah",
           repo: "GamepadMirror",
           rev: "aa86d55f21b4d206eab61d0bf7cd9ccafc8aa607",
@@ -58,7 +55,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [gjs, glib, gtk4]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         giTypelibInputs: nix.thunk(() => [
           glib,
           gtk4,
@@ -86,7 +83,7 @@ export default nix.lambda((args) => (() => {
 runHook postInstallCheck
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Small Adwaita application to show game pad inputs using libmanette",
         homepage: "https://codeberg.org/vendillah/GamepadMirror",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

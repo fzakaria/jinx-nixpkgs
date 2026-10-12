@@ -2,36 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/lasuite-docs.nix", [[["maintainers", 13, 8]], [["127.0.0.1", 20, 24]], [["hosts", 20, 18]], [["mode", 116, 9], ["user", 117, 9], ["text", 118, 9]], [["dex/lasuite-docs", 115, 23]], [["systemPackages", 22, 19], ["etc", 115, 19]], [["createLocally", 29, 15]], [["createLocally", 30, 20]], [["DJANGO_SECRET_KEY_FILE", 36, 11], ["OIDC_OP_JWKS_ENDPOINT", 40, 11], ["OIDC_OP_AUTHORIZATION_ENDPOINT", 41, 11], ["OIDC_OP_TOKEN_ENDPOINT", 42, 11], ["OIDC_OP_USER_ENDPOINT", 43, 11], ["OIDC_RP_CLIENT_ID", 44, 11], ["OIDC_RP_SIGN_ALGO", 45, 11], ["OIDC_RP_SCOPES", 46, 11], ["OIDC_RP_CLIENT_SECRET", 47, 11], ["LOGIN_REDIRECT_URL", 49, 11], ["LOGIN_REDIRECT_URL_FAILURE", 50, 11], ["LOGOUT_REDIRECT_URL", 51, 11], ["AWS_S3_ENDPOINT_URL", 53, 11], ["AWS_S3_ACCESS_KEY_ID", 54, 11], ["AWS_S3_SECRET_ACCESS_KEY", 55, 11], ["AWS_STORAGE_BUCKET_NAME", 56, 11], ["MEDIA_BASE_URL", 57, 11], ["DJANGO_SECURE_PROXY_SSL_HEADER", 60, 11], ["DJANGO_SECURE_SSL_REDIRECT", 61, 11], ["DJANGO_CSRF_COOKIE_SECURE", 62, 11], ["DJANGO_SESSION_COOKIE_SECURE", 63, 11], ["DJANGO_CSRF_TRUSTED_ORIGINS", 64, 11]], [["enable", 27, 9], ["enableNginx", 28, 9], ["redis", 29, 9], ["postgresql", 30, 9], ["domain", 32, 17], ["s3Url", 33, 9], ["settings", 35, 9]], [["host", 74, 20]], [["type", 73, 13], ["config", 74, 13]], [["http", 76, 15]], [["skipApprovalScreen", 77, 18]], [["id", 80, 15], ["name", 81, 15], ["redirectURIs", 82, 15], ["secretFile", 83, 15]], [["username", 92, 17], ["password", 93, 17]], [["type", 88, 15], ["id", 89, 15], ["name", 90, 15], ["config", 91, 15]], [["issuer", 71, 11], ["storage", 72, 11], ["web", 76, 11], ["oauth2", 77, 11], ["staticClients", 78, 11], ["connectors", 86, 11]], [["enable", 69, 9], ["settings", 70, 9]], [["s3_region", 110, 13], ["api_bind_addr", 111, 13]], [["rpc_bind_addr", 104, 11], ["rpc_public_addr", 105, 11], ["rpc_secret", 106, 11], ["replication_factor", 107, 11], ["s3_api", 109, 11]], [["enable", 101, 9], ["package", 102, 9], ["settings", 103, 9]], [["name", 126, 13], ["ensureDBOwnership", 127, 13]], [["enable", 122, 9], ["ensureDatabases", 123, 9], ["ensureUsers", 124, 9]], [["lasuite-docs", 26, 16], ["dex", 68, 16], ["garage", 100, 16], ["postgresql", 121, 16]], [["networking", 20, 7], ["environment", 22, 7], ["services", 26, 7]], [["machine", 17, 14]], [["name", 12, 3], ["meta", 13, 3], ["containers", 17, 3], ["testScript", 133, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/lasuite-docs.nix", [["maintainers", 13, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/lasuite-docs.nix", [["127.0.0.1", 20, 24]]);
-const pos$3 = nix.positions(here + "/lasuite-docs.nix", [["hosts", 20, 18]]);
-const pos$4 = nix.positions(here + "/lasuite-docs.nix", [["mode", 116, 9], ["user", 117, 9], ["text", 118, 9]]);
-const pos$5 = nix.positions(here + "/lasuite-docs.nix", [["dex/lasuite-docs", 115, 23]]);
-const pos$6 = nix.positions(here + "/lasuite-docs.nix", [["systemPackages", 22, 19], ["etc", 115, 19]]);
-const pos$7 = nix.positions(here + "/lasuite-docs.nix", [["createLocally", 29, 15]]);
-const pos$8 = nix.positions(here + "/lasuite-docs.nix", [["createLocally", 30, 20]]);
-const pos$9 = nix.positions(here + "/lasuite-docs.nix", [["DJANGO_SECRET_KEY_FILE", 36, 11], ["OIDC_OP_JWKS_ENDPOINT", 40, 11], ["OIDC_OP_AUTHORIZATION_ENDPOINT", 41, 11], ["OIDC_OP_TOKEN_ENDPOINT", 42, 11], ["OIDC_OP_USER_ENDPOINT", 43, 11], ["OIDC_RP_CLIENT_ID", 44, 11], ["OIDC_RP_SIGN_ALGO", 45, 11], ["OIDC_RP_SCOPES", 46, 11], ["OIDC_RP_CLIENT_SECRET", 47, 11], ["LOGIN_REDIRECT_URL", 49, 11], ["LOGIN_REDIRECT_URL_FAILURE", 50, 11], ["LOGOUT_REDIRECT_URL", 51, 11], ["AWS_S3_ENDPOINT_URL", 53, 11], ["AWS_S3_ACCESS_KEY_ID", 54, 11], ["AWS_S3_SECRET_ACCESS_KEY", 55, 11], ["AWS_STORAGE_BUCKET_NAME", 56, 11], ["MEDIA_BASE_URL", 57, 11], ["DJANGO_SECURE_PROXY_SSL_HEADER", 60, 11], ["DJANGO_SECURE_SSL_REDIRECT", 61, 11], ["DJANGO_CSRF_COOKIE_SECURE", 62, 11], ["DJANGO_SESSION_COOKIE_SECURE", 63, 11], ["DJANGO_CSRF_TRUSTED_ORIGINS", 64, 11]]);
-const pos$10 = nix.positions(here + "/lasuite-docs.nix", [["enable", 27, 9], ["enableNginx", 28, 9], ["redis", 29, 9], ["postgresql", 30, 9], ["domain", 32, 17], ["s3Url", 33, 9], ["settings", 35, 9]]);
-const pos$11 = nix.positions(here + "/lasuite-docs.nix", [["host", 74, 20]]);
-const pos$12 = nix.positions(here + "/lasuite-docs.nix", [["type", 73, 13], ["config", 74, 13]]);
-const pos$13 = nix.positions(here + "/lasuite-docs.nix", [["http", 76, 15]]);
-const pos$14 = nix.positions(here + "/lasuite-docs.nix", [["skipApprovalScreen", 77, 18]]);
-const pos$15 = nix.positions(here + "/lasuite-docs.nix", [["id", 80, 15], ["name", 81, 15], ["redirectURIs", 82, 15], ["secretFile", 83, 15]]);
-const pos$16 = nix.positions(here + "/lasuite-docs.nix", [["username", 92, 17], ["password", 93, 17]]);
-const pos$17 = nix.positions(here + "/lasuite-docs.nix", [["type", 88, 15], ["id", 89, 15], ["name", 90, 15], ["config", 91, 15]]);
-const pos$18 = nix.positions(here + "/lasuite-docs.nix", [["issuer", 71, 11], ["storage", 72, 11], ["web", 76, 11], ["oauth2", 77, 11], ["staticClients", 78, 11], ["connectors", 86, 11]]);
-const pos$19 = nix.positions(here + "/lasuite-docs.nix", [["enable", 69, 9], ["settings", 70, 9]]);
-const pos$20 = nix.positions(here + "/lasuite-docs.nix", [["s3_region", 110, 13], ["api_bind_addr", 111, 13]]);
-const pos$21 = nix.positions(here + "/lasuite-docs.nix", [["rpc_bind_addr", 104, 11], ["rpc_public_addr", 105, 11], ["rpc_secret", 106, 11], ["replication_factor", 107, 11], ["s3_api", 109, 11]]);
-const pos$22 = nix.positions(here + "/lasuite-docs.nix", [["enable", 101, 9], ["package", 102, 9], ["settings", 103, 9]]);
-const pos$23 = nix.positions(here + "/lasuite-docs.nix", [["name", 126, 13], ["ensureDBOwnership", 127, 13]]);
-const pos$24 = nix.positions(here + "/lasuite-docs.nix", [["enable", 122, 9], ["ensureDatabases", 123, 9], ["ensureUsers", 124, 9]]);
-const pos$25 = nix.positions(here + "/lasuite-docs.nix", [["lasuite-docs", 26, 16], ["dex", 68, 16], ["garage", 100, 16], ["postgresql", 121, 16]]);
-const pos$26 = nix.positions(here + "/lasuite-docs.nix", [["networking", 20, 7], ["environment", 22, 7], ["services", 26, 7]]);
-const pos$27 = nix.positions(here + "/lasuite-docs.nix", [["machine", 17, 14]]);
-const pos$28 = nix.positions(here + "/lasuite-docs.nix", [["name", 12, 3], ["meta", 13, 3], ["containers", 17, 3], ["testScript", 133, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,49 +15,54 @@ export default nix.lambda((args) => (() => {
   const garageAccessKey = "GKaaaaaaaaaaaaaaaaaaaaaaaa";
   const garageSecretKey = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
   return {
-    [nix.POS]: pos$28,
+    [nix.POS]: $pos[27],
     name: "lasuite-docs",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "soyouzpanda"))];
       })()),
     })),
     containers: nix.thunk(() => ({
-      [nix.POS]: pos$27,
+      [nix.POS]: $pos[26],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$26,
+          [nix.POS]: $pos[25],
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            hosts: nix.thunk(() => ({ [nix.POS]: pos$2, "127.0.0.1": nix.thunk(() => [domain]) })),
+            [nix.POS]: $pos[2],
+            hosts: nix.thunk(() => ({ [nix.POS]: $pos[1], "127.0.0.1": nix.thunk(() => [domain]) })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [nix.thunk(() => nix.lookup(w, "jq"))];
             })()),
             etc: nix.thunk(() => ({
-              [nix.POS]: pos$5,
-              "dex/lasuite-docs": nix.thunk(() => ({ [nix.POS]: pos$4, mode: "0400", user: "dex", text: "lasuitedocsclientsecret" })),
+              [nix.POS]: $pos[4],
+              "dex/lasuite-docs": nix.thunk(() => ({
+                [nix.POS]: $pos[3],
+                mode: "0400",
+                user: "dex",
+                text: "lasuitedocsclientsecret",
+              })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$25,
+            [nix.POS]: $pos[24],
             "lasuite-docs": nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               enable: true,
               enableNginx: true,
-              redis: nix.thunk(() => ({ [nix.POS]: pos$7, createLocally: true })),
-              postgresql: nix.thunk(() => ({ [nix.POS]: pos$8, createLocally: true })),
+              redis: nix.thunk(() => ({ [nix.POS]: $pos[6], createLocally: true })),
+              postgresql: nix.thunk(() => ({ [nix.POS]: $pos[7], createLocally: true })),
               domain: domain,
               s3Url: nix.thunk(() => nix.str`http://${s3Addr}/lasuite-docs`),
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 DJANGO_SECRET_KEY_FILE: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "django-secret-file", "8540db59c03943d48c3ed1a0f96ce3b560e0f45274f120f7ee4dace3cc366a6b\n")),
                 OIDC_OP_JWKS_ENDPOINT: nix.thunk(() => nix.str`http://${oidcAddr}/dex/keys`),
                 OIDC_OP_AUTHORIZATION_ENDPOINT: nix.thunk(() => nix.str`http://${oidcAddr}/dex/auth/mock`),
@@ -110,21 +88,21 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             dex: nix.thunk(() => ({
-              [nix.POS]: pos$19,
+              [nix.POS]: $pos[18],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$18,
+                [nix.POS]: $pos[17],
                 issuer: nix.thunk(() => nix.str`http://${oidcAddr}/dex`),
                 storage: nix.thunk(() => ({
-                  [nix.POS]: pos$12,
+                  [nix.POS]: $pos[11],
                   type: "postgres",
-                  config: nix.thunk(() => ({ [nix.POS]: pos$11, host: "/var/run/postgresql" })),
+                  config: nix.thunk(() => ({ [nix.POS]: $pos[10], host: "/var/run/postgresql" })),
                 })),
-                web: nix.thunk(() => ({ [nix.POS]: pos$13, http: "127.0.0.1:8080" })),
-                oauth2: nix.thunk(() => ({ [nix.POS]: pos$14, skipApprovalScreen: true })),
+                web: nix.thunk(() => ({ [nix.POS]: $pos[12], http: "127.0.0.1:8080" })),
+                oauth2: nix.thunk(() => ({ [nix.POS]: $pos[13], skipApprovalScreen: true })),
                 staticClients: nix.thunk(() => [
                   nix.thunk(() => ({
-                    [nix.POS]: pos$15,
+                    [nix.POS]: $pos[14],
                     id: "lasuite-docs",
                     name: "Docs",
                     redirectURIs: nix.thunk(() => [nix.thunk(() => nix.str`http://${domain}/api/v1.0/callback/`)]),
@@ -133,34 +111,34 @@ export default nix.lambda((args) => (() => {
                 ]),
                 connectors: nix.thunk(() => [
                   nix.thunk(() => ({
-                    [nix.POS]: pos$17,
+                    [nix.POS]: $pos[16],
                     type: "mockPassword",
                     id: "mock",
                     name: "Example",
-                    config: nix.thunk(() => ({ [nix.POS]: pos$16, username: "admin", password: "password" })),
+                    config: nix.thunk(() => ({ [nix.POS]: $pos[15], username: "admin", password: "password" })),
                   })),
                 ]),
               })),
             })),
             garage: nix.thunk(() => ({
-              [nix.POS]: pos$22,
+              [nix.POS]: $pos[21],
               enable: true,
               package: nix.thunk(() => nix.sel(pkgs, "garage_2")),
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$21,
+                [nix.POS]: $pos[20],
                 rpc_bind_addr: "127.0.0.1:3901",
                 rpc_public_addr: "127.0.0.1:3901",
                 rpc_secret: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
                 replication_factor: 1n,
-                s3_api: nix.thunk(() => ({ [nix.POS]: pos$20, s3_region: "garage", api_bind_addr: s3Addr })),
+                s3_api: nix.thunk(() => ({ [nix.POS]: $pos[19], s3_region: "garage", api_bind_addr: s3Addr })),
               })),
             })),
             postgresql: nix.thunk(() => ({
-              [nix.POS]: pos$24,
+              [nix.POS]: $pos[23],
               enable: true,
               ensureDatabases: nix.thunk(() => ["dex"]),
               ensureUsers: nix.thunk(() => [
-                nix.thunk(() => ({ [nix.POS]: pos$23, name: "dex", ensureDBOwnership: true })),
+                nix.thunk(() => ({ [nix.POS]: $pos[22], name: "dex", ensureDBOwnership: true })),
               ]),
             })),
           })),

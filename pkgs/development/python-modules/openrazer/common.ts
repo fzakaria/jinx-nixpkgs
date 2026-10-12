@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/common.nix", [[["owner", 7, 5], ["repo", 8, 5], ["tag", 9, 5], ["hash", 10, 5]], [["homepage", 14, 5], ["changelog", 15, 5], ["license", 16, 5], ["maintainers", 17, 5], ["platforms", 18, 5]], [["version", 3, 3], ["pyproject", 4, 3], ["src", 6, 3], ["meta", 13, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/common.nix", [["owner", 7, 5], ["repo", 8, 5], ["tag", 9, 5], ["hash", 10, 5]]);
-const pos$2 = nix.positions(here + "/common.nix", [["homepage", 14, 5], ["changelog", 15, 5], ["license", 16, 5], ["maintainers", 17, 5], ["platforms", 18, 5]]);
-const pos$3 = nix.positions(here + "/common.nix", [["version", 3, 3], ["pyproject", 4, 3], ["src", 6, 3], ["meta", 13, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,14 +13,14 @@ export default nix.lambda((args) => (() => {
     const version = "3.12.4";
     const pyproject = true;
     const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         owner: "openrazer",
         repo: "openrazer",
         tag: nix.thunk(() => nix.str`v${version}`),
         hash: "sha256-WgDYs0ehnzWlX/wvfur0UhFLbZv7jZ6FMybqDaFDuLg=",
       }))));
     const meta = nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       homepage: "https://openrazer.github.io/",
       changelog: nix.thunk(() => nix.str`https://github.com/openrazer/openrazer/releases/tag/${nix.sel(src, "tag")}`),
       license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       })()),
       platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
     }));
-    return { [nix.POS]: pos$3, version, pyproject, src, meta };
+    return { [nix.POS]: $pos[2], version, pyproject, src, meta };
   })();
 })(), formals$1);
 //# sourceMappingURL=common.ts.map

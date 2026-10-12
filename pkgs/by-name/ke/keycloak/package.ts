@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 31, 5], ["hash", 32, 5]], [["tests", 92, 5], ["plugins", 93, 5], ["enabledPlugins", 94, 5]], [["homepage", 98, 5], ["description", 99, 5], ["sourceProvenance", 100, 5], ["license", 101, 5], ["platforms", 102, 5], ["maintainers", 103, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 40, 3], ["patches", 44, 3], ["buildPhase", 50, 3], ["installPhase", 74, 3], ["postFixup", 85, 3], ["passthru", 91, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, makeBinaryWrapper: false, jre_headless: false, nixosTests: false, callPackage: false, bash: false, confFile: true, plugins: true, extraFeatures: true, disabledFeatures: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["tests", 92, 5], ["plugins", 93, 5], ["enabledPlugins", 94, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 98, 5], ["description", 99, 5], ["sourceProvenance", 100, 5], ["license", 101, 5], ["platforms", 102, 5], ["maintainers", 103, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 40, 3], ["patches", 44, 3], ["buildPhase", 50, 3], ["installPhase", 74, 3], ["postFixup", 85, 3], ["passthru", 91, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +23,11 @@ export default nix.lambda((args) => (() => {
 ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(disabledFeatures, [])), nix.thunk(() => nix.str`--features-disabled=${nix.app(nix.sel(lib, "concatStringsSep"), ",", disabledFeatures)}`))}
 `);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "keycloak",
       version: "26.7.5",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/keycloak/keycloak/releases/download/${nix.sel(finalAttrs, "version")}/keycloak-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-R0W9ehKjs/1DGF/ZwTb2Mo5ZBo4ceCQqcDM0J9+jBNU=",
         })))),
@@ -58,13 +55,13 @@ runHook postBuild
 done
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         tests: nix.thunk(() => nix.sel(nixosTests, "keycloak")),
         plugins: nix.thunk(() => nix.app(callPackage, nix.path(here, "./all-plugins.nix"), nix.thunk(() => ({})))),
         enabledPlugins: plugins,
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.keycloak.org/",
         description: "Identity and access management for modern applications and services",
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryBytecode"))]),

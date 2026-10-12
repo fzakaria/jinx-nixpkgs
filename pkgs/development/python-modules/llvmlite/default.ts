@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]], [["LLVMLITE_SHARED", 53, 7]], [["llvm", 66, 60]], [["description", 69, 5], ["homepage", 70, 5], ["downloadPage", 71, 5], ["changelog", 72, 5], ["license", 73, 5]], [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["__structuredAttrs", 30, 3], ["disabled", 32, 3], ["src", 34, 3], ["build-system", 41, 3], ["dontUseCmakeConfigure", 46, 3], ["buildInputs", 48, 3], ["env", 53, 3], ["pythonImportsCheck", 55, 3], ["nativeCheckInputs", 57, 3], ["preCheck", 62, 3], ["passthru", 66, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildPythonPackage: false, isPyPy: false, cmake: false, ninja: false, setuptools: false, libxml2: false, llvm_22: false, pytestCheckHook: false, withStaticLLVM: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["LLVMLITE_SHARED", 53, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["llvm", 66, 60]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 69, 5], ["homepage", 70, 5], ["downloadPage", 71, 5], ["changelog", 72, 5], ["license", 73, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["__structuredAttrs", 30, 3], ["disabled", 32, 3], ["src", 34, 3], ["build-system", 41, 3], ["dontUseCmakeConfigure", 46, 3], ["buildInputs", 48, 3], ["env", 53, 3], ["pythonImportsCheck", 55, 3], ["nativeCheckInputs", 57, 3], ["preCheck", 62, 3], ["passthru", 66, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,14 +20,14 @@ export default nix.lambda((args) => (() => {
   const withStaticLLVM = nix.argOr($, "withStaticLLVM", () => true);
   const llvm = llvm_22;
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "llvmlite",
       version: "0.49.0",
       pyproject: true,
       __structuredAttrs: true,
       disabled: isPyPy,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "numba",
           repo: "llvmlite",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,15 +37,15 @@ export default nix.lambda((args) => (() => {
       dontUseCmakeConfigure: true,
       buildInputs: nix.thunk(() => nix.concat([llvm], nix.app(nix.sel(lib, "optionals"), withStaticLLVM, nix.thunk(() => [nix.thunk(() => nix.sel(libxml2, "dev"))])))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         LLVMLITE_SHARED: nix.thunk(() => !nix.asBool(withStaticLLVM)),
       })),
       pythonImportsCheck: nix.thunk(() => ["llvmlite"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       preCheck: "cd $out\n",
-      passthru: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(withStaticLLVM)), nix.thunk(() => ({ [nix.POS]: pos$3, llvm: llvm })))),
+      passthru: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(withStaticLLVM)), nix.thunk(() => ({ [nix.POS]: $pos[2], llvm: llvm })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Lightweight LLVM python binding for writing JIT compilers",
         homepage: "https://llvmlite.pydata.org/",
         downloadPage: "https://github.com/numba/llvmlite",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 37, 5], ["repo", 38, 5], ["rev", 39, 5], ["hash", 40, 5]], [["pkg-config", 160, 11]], [["tests", 160, 5], ["updateScript", 161, 5]], [["description", 165, 5], ["longDescription", 166, 5], ["homepage", 173, 5], ["changelog", 174, 5], ["license", 175, 5], ["teams", 176, 5], ["platforms", 177, 5], ["pkgConfigModules", 178, 5]], [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["outputs", 43, 3], ["postPatch", 48, 3], ["strictDeps", 102, 3], ["nativeBuildInputs", 104, 3], ["buildInputs", 112, 3], ["nativeCheckInputs", 121, 3], ["cmakeFlags", 130, 3], ["preBuild", 143, 3], ["doCheck", 149, 3], ["enableParallelChecking", 152, 3], ["preCheck", 154, 3], ["passthru", 159, 3], ["meta", 164, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, gitUpdater: false, testers: false, cmake: false, dbus: false, "dbus-test-runner": false, dconf: false, "gnome-keyring": false, libphonenumber: false, libqtdbustest: false, "pkg-config": false, protobuf: false, qtbase: false, qtdeclarative: false, qtpim: false, sqlite: false, telepathy: false, "telepathy-mission-control": false, validatePkgConfig: false, wrapQtAppsHook: false, "xvfb-run": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 37, 5], ["repo", 38, 5], ["rev", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pkg-config", 160, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 160, 5], ["updateScript", 161, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 165, 5], ["longDescription", 166, 5], ["homepage", 173, 5], ["changelog", 174, 5], ["license", 175, 5], ["teams", 176, 5], ["platforms", 177, 5], ["pkgConfigModules", 178, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["outputs", 43, 3], ["postPatch", 48, 3], ["strictDeps", 102, 3], ["nativeBuildInputs", 104, 3], ["buildInputs", 112, 3], ["nativeCheckInputs", 121, 3], ["cmakeFlags", 130, 3], ["preBuild", 143, 3], ["doCheck", 149, 3], ["enableParallelChecking", 152, 3], ["preCheck", 154, 3], ["passthru", 159, 3], ["meta", 164, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const xvfb_run = nix.arg($, "xvfb-run");
   const replaceDbusService = (pkg) => (name) => nix.str`--replace-fail "\\\${DBUS_SERVICES_DIR}/${name}" "${pkg}/share/dbus-1/services/${name}"`;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "lomiri-history-service",
       version: "0.7",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ubports",
           repo: "development/core/history-service",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -84,15 +80,15 @@ export QT_PLUGIN_PATH=${nix.app(nix.sel(lib, "getBin"), qtbase)}/${nix.sel(qtbas
 export HOME=$PWD
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Service that provides call log and conversation history",
         longDescription: "History service provides the database and an API to store/retrieve the call log (used by dialer-app) and the sms/mms history (used by messaging-app).\n\nSee as well telepathy-ofono for incoming message events.\n\nDatabase location: ~/.local/share/history-service/history.sqlite\n",
         homepage: "https://gitlab.com/ubports/development/core/lomiri-history-service",

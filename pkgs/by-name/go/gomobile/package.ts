@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["includeNDK", 15, 7]], [["name", 24, 5], ["url", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["maintainers", 75, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["vendorHash", 30, 3], ["subPackages", 32, 3], ["doCheck", 39, 3], ["nativeBuildInputs", 41, 3], ["postPatch", 44, 3], ["postInstall", 54, 3], ["postFixup", 59, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchgit: false, buildGoModule: false, zlib: false, makeWrapper: false, xcodeenv: false, androidenv: false, xcodeWrapperArgs: true, xcodeWrapper: true, withAndroidPkgs: true, androidPkgs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["includeNDK", 15, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 24, 5], ["url", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["maintainers", 75, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["vendorHash", 30, 3], ["subPackages", 32, 3], ["doCheck", 39, 3], ["nativeBuildInputs", 41, 3], ["postPatch", 44, 3], ["postInstall", 54, 3], ["postFixup", 59, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const xcodeWrapperArgs = nix.argOr($, "xcodeWrapperArgs", () => ({}));
   const xcodeWrapper = nix.argOr($, "xcodeWrapper", () => nix.app(nix.sel(xcodeenv, "composeXcodeWrapper"), xcodeWrapperArgs));
   const withAndroidPkgs = nix.argOr($, "withAndroidPkgs", () => true);
-  const androidPkgs = nix.argOr($, "androidPkgs", () => nix.app(nix.sel(androidenv, "composeAndroidPackages"), nix.thunk(() => ({ [nix.POS]: pos$1, includeNDK: true }))));
+  const androidPkgs = nix.argOr($, "androidPkgs", () => nix.app(nix.sel(androidenv, "composeAndroidPackages"), nix.thunk(() => ({ [nix.POS]: $pos[0], includeNDK: true }))));
   return nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gomobile",
       version: "0-unstable-2024-12-13",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: "gomobile",
           url: "https://go.googlesource.com/mobile",
           rev: "a87c1cf6cf463f0d4476cfe0fcf67c2953d76e7c",
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
 done
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Tool for building and running mobile apps written in Go",
         homepage: "https://pkg.go.dev/golang.org/x/mobile/cmd/gomobile",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

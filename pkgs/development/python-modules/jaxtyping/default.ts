@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]], [["doCheck", 68, 7], ["catchConflicts", 69, 7]], [["check", 66, 5]], [["tests", 65, 12]], [["description", 74, 5], ["homepage", 75, 5], ["changelog", 76, 5], ["license", 77, 5], ["maintainers", 78, 5]], [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["__structuredAttrs", 32, 3], ["src", 34, 3], ["build-system", 41, 3], ["dependencies", 43, 3], ["pythonImportsCheck", 47, 3], ["nativeCheckInputs", 49, 3], ["doCheck", 62, 3], ["passthru", 65, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pythonOlder: false, hatchling: false, "wadler-lindig": false, cloudpickle: false, equinox: false, ipython: false, jax: false, jaxlib: false, pytestCheckHook: false, torch: false, tensorflow: false, jaxtyping: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["doCheck", 68, 7], ["catchConflicts", 69, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["check", 66, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 65, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 74, 5], ["homepage", 75, 5], ["changelog", 76, 5], ["license", 77, 5], ["maintainers", 78, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["__structuredAttrs", 32, 3], ["src", 34, 3], ["build-system", 41, 3], ["dependencies", 43, 3], ["pythonImportsCheck", 47, 3], ["nativeCheckInputs", 49, 3], ["doCheck", 62, 3], ["passthru", 65, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const tensorflow = nix.arg($, "tensorflow");
   const jaxtyping = nix.arg($, "jaxtyping");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "jaxtyping",
       version: "0.3.11",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "patrick-kidger",
           repo: "jaxtyping",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,14 +41,14 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => nix.concat([cloudpickle, equinox, ipython, jax, jaxlib, pytestCheckHook, torch], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonOlder, "3.13")), nix.thunk(() => [tensorflow])))),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          check: nix.thunk(() => nix.app(nix.sel(jaxtyping, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$2, doCheck: false, catchConflicts: false })))),
+          [nix.POS]: $pos[2],
+          check: nix.thunk(() => nix.app(nix.sel(jaxtyping, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[1], doCheck: false, catchConflicts: false })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Type annotations and runtime checking for JAX arrays and PyTrees",
         homepage: "https://github.com/patrick-kidger/jaxtyping",
         changelog: nix.thunk(() => nix.str`https://github.com/patrick-kidger/jaxtyping/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

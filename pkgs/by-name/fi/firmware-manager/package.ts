@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["pname", 27, 13], ["version", 27, 19], ["src", 27, 27], ["hash", 28, 5]], [["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["mainProgram", 59, 5], ["maintainers", 60, 5], ["platforms", 61, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoDeps", 26, 3], ["postPatch", 31, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 44, 3], ["makeFlags", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, cargo: false, "pkg-config": false, rustc: false, openssl: false, udev: false, gtk3: false, wrapGAppsHook3: false, xz: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 27, 13], ["version", 27, 19], ["src", 27, 27], ["hash", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["mainProgram", 59, 5], ["maintainers", 60, 5], ["platforms", 61, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoDeps", 26, 3], ["postPatch", 31, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 44, 3], ["makeFlags", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,14 +23,14 @@ export default nix.lambda((args) => (() => {
       const pname = "firmware-manager";
       const version = "0.1.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pop-os",
           repo: "firmware-manager",
           rev: version,
           hash: "sha256-Q+LJJ4xK583fAcwuOFykt6GKT0rVJgmTt+zUX4o4Tm4=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: pname,
           version: version,
           src: src,
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [openssl, gtk3, udev]);
       const makeFlags = nix.thunk(() => ["prefix=$(out)"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Graphical frontend for firmware management",
         homepage: "https://github.com/pop-os/firmware-manager",
         license: nix.thunk(() => (() => {
@@ -66,7 +63,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

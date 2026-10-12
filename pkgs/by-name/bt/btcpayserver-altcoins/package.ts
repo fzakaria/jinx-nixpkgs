@@ -2,12 +2,12 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["altcoinSupport", 4, 3]]]);
 const formals$1 = { args: { btcpayserver: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["altcoinSupport", 4, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const btcpayserver = nix.arg($, "btcpayserver");
-  return nix.app(nix.sel(btcpayserver, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, altcoinSupport: true })));
+  return nix.app(nix.sel(btcpayserver, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], altcoinSupport: true })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

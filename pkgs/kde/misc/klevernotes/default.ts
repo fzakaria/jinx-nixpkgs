@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 15, 5], ["hash", 16, 5]], [["license", 26, 8]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["extraBuildInputs", 19, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, mkKdeDerivation: false, fetchurl: false, qtsvg: false, qtwebengine: false, kconfigwidgets: false, kitemmodels: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["license", 26, 8]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["extraBuildInputs", 19, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,13 +18,13 @@ export default nix.lambda((args) => (() => {
       const pname = "klevernotes";
       const version = "1.3.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://kde/stable/klevernotes/${version}/klevernotes-${version}.tar.xz`),
           hash: "sha256-34w59TT+vY6pJGW3HgPfNAS8hJzPRPMgC4oPKeUfytQ=",
         }))));
       const extraBuildInputs = nix.thunk(() => [qtsvg, qtwebengine, kconfigwidgets, kitemmodels]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
           return [
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
           ];
         })()),
       }));
-      return { [nix.POS]: pos$3, pname, version, src, extraBuildInputs, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, extraBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

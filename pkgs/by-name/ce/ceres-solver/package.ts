@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]], [["doCheck", 122, 7]], [["withTests", 121, 11]], [["tests", 121, 5], ["updateScript", 125, 5]], [["description", 129, 5], ["license", 130, 5], ["homepage", 131, 5], ["downloadPage", 132, 5], ["teams", 133, 5], ["maintainers", 134, 5], ["platforms", 135, 5]], [["pname", 32, 3], ["version", 33, 3], ["__structuredAttrs", 35, 3], ["strictDeps", 36, 3], ["src", 38, 3], ["outputs", 45, 3], ["postPatch", 51, 3], ["nativeBuildInputs", 59, 3], ["buildInputs", 66, 3], ["propagatedBuildInputs", 77, 3], ["cmakeFlags", 87, 3], ["preConfigure", 97, 3], ["doCheck", 101, 3], ["checkTarget", 102, 3], ["preCheck", 104, 3], ["passthru", 120, 3], ["meta", 128, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, config: false, fetchFromGitHub: false, cmake: false, cudaPackages: false, gflags: false, eigen: false, glog: false, blas: false, metis: false, suitesparse: false, "nix-update-script": false, enableStatic: true, withBlas: true, cudaSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["doCheck", 122, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["withTests", 121, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 121, 5], ["updateScript", 125, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 129, 5], ["license", 130, 5], ["homepage", 131, 5], ["downloadPage", 132, 5], ["teams", 133, 5], ["maintainers", 134, 5], ["platforms", 135, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["__structuredAttrs", 35, 3], ["strictDeps", 36, 3], ["src", 38, 3], ["outputs", 45, 3], ["postPatch", 51, 3], ["nativeBuildInputs", 59, 3], ["buildInputs", 66, 3], ["propagatedBuildInputs", 77, 3], ["cmakeFlags", 87, 3], ["preConfigure", 97, 3], ["doCheck", 101, 3], ["checkTarget", 102, 3], ["preCheck", 104, 3], ["passthru", 120, 3], ["meta", 128, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,13 +25,13 @@ export default nix.lambda((args) => (() => {
   const cudaSupport = nix.argOr($, "cudaSupport", () => nix.sel(config, "cudaSupport"));
   const effectiveStdenv = nix.thunk(() => (nix.asBool(cudaSupport) ? nix.sel(cudaPackages, "backendStdenv") : nix.force(stdenv)));
   return nix.app(nix.sel(effectiveStdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "ceres-solver",
       version: "2.2.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ceres-solver",
           repo: "ceres-solver",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -73,15 +68,15 @@ export default nix.lambda((args) => (() => {
 `;
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          withTests: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$2, doCheck: true })))),
+          [nix.POS]: $pos[2],
+          withTests: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[1], doCheck: true })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "C++ library for modeling and solving large, complicated optimization problems",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         homepage: "http://ceres-solver.org",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["name", 71, 7], ["exec", 72, 7], ["desktopName", 73, 7], ["comment", 74, 7], ["type", 75, 7], ["icon", 76, 7], ["terminal", 77, 7], ["categories", 78, 7]], [["updateScript", 105, 12]], [["homepage", 108, 5], ["description", 109, 5], ["mainProgram", 110, 5], ["license", 111, 5], ["maintainers", 112, 5], ["platforms", 113, 5]], [["pname", 31, 3], ["version", 32, 11], ["pyproject", 33, 3], ["src", 35, 3], ["build-system", 42, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 52, 3], ["dependencies", 57, 3], ["dontWrapPythonPrograms", 63, 3], ["dontWrapQtApps", 64, 3], ["doCheck", 66, 3], ["desktopItems", 69, 3], ["postPatch", 82, 3], ["postInstall", 88, 3], ["passthru", 105, 3], ["meta", 107, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, qt6: false, fetchFromGitHub: false, writeText: false, copyDesktopItems: false, makeDesktopItem: false, makeWrapper: false, onedrive: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 71, 7], ["exec", 72, 7], ["desktopName", 73, 7], ["comment", 74, 7], ["type", 75, 7], ["icon", 76, 7], ["terminal", 77, 7], ["categories", 78, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 105, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 108, 5], ["description", 109, 5], ["mainProgram", 110, 5], ["license", 111, 5], ["maintainers", 112, 5], ["platforms", 113, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 11], ["pyproject", 33, 3], ["src", 35, 3], ["build-system", 42, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 52, 3], ["dependencies", 57, 3], ["dontWrapPythonPrograms", 63, 3], ["dontWrapQtApps", 64, 3], ["doCheck", 66, 3], ["desktopItems", 69, 3], ["postPatch", 82, 3], ["postInstall", 88, 3], ["passthru", 105, 3], ["meta", 107, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,7 +32,7 @@ setup(
       const version_1 = version;
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bpozdena",
           repo: "OneDriveGUI",
           tag: nix.thunk(() => nix.str`v${version_1}`),
@@ -67,7 +63,7 @@ setup(
       const doCheck = false;
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "OneDriveGUI",
             exec: "onedrivegui",
             desktopName: "OneDriveGUI",
@@ -96,11 +92,11 @@ makeWrapper ${nix.sel(python3Packages, "python", "interpreter")} $out/bin/onedri
   --add-flags $out/${nix.sel(python3Packages, "python", "sitePackages")}/OneDriveGUI.py
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/bpozdena/OneDriveGUI",
         description: "Simple GUI for Linux OneDrive Client, with multi-account support",
         mainProgram: "onedrivegui",
@@ -112,7 +108,7 @@ makeWrapper ${nix.sel(python3Packages, "python", "interpreter")} $out/bin/onedri
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version: version_1,
         pyproject,

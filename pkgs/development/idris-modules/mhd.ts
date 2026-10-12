@@ -2,10 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mhd.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["sha256", 25, 5]], [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 32, 5]], [["pname", 10, 3], ["version", 11, 3], ["ipkgName", 13, 3], ["idrisDeps", 14, 3], ["extraBuildInputs", 19, 3], ["src", 21, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { "build-idris-package": false, fetchFromGitHub: false, contrib: false, effects: false, libmicrohttpd: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/mhd.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["sha256", 25, 5]]);
-const pos$2 = nix.positions(here + "/mhd.nix", [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 32, 5]]);
-const pos$3 = nix.positions(here + "/mhd.nix", [["pname", 10, 3], ["version", 11, 3], ["ipkgName", 13, 3], ["idrisDeps", 14, 3], ["extraBuildInputs", 19, 3], ["src", 21, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,21 +14,21 @@ export default nix.lambda((args) => (() => {
   const libmicrohttpd = nix.arg($, "libmicrohttpd");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mhd",
       version: "2016-04-22",
       ipkgName: "MHD",
       idrisDeps: nix.thunk(() => [contrib, effects]),
       extraBuildInputs: nix.thunk(() => [libmicrohttpd]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "colin-adams",
           repo: "idris-libmicrohttpd",
           rev: "a8808bc06fa292d4b3389f32cb00716e43122a46",
           sha256: "0wvp1qi3bn4hk52vsid6acfwvwbs58sggylbpjvkxzycsbhz4nx4",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Binding of the GNU libmicrohttpd library to the Idris C backend",
         homepage: "https://github.com/colin-adams/idris-libmicrohttpd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

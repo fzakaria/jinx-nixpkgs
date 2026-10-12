@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 33, 5], ["sha256", 34, 5]], [["packageName", 65, 7], ["versionPolicy", 66, 7]], [["updateScript", 64, 5]], [["description", 71, 5], ["mainProgram", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["platforms", 75, 5], ["teams", 76, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 48, 3], ["passthru", 63, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, atk: false, cairo: false, "desktop-file-utils": false, "evolution-data-server-gtk4": false, evolution: false, gcr_4: false, gettext: false, glib: false, gnome: false, gpgme: false, gtk3: false, gtksourceview4: false, gtkspell3: false, libcryptui: false, libxml2: false, meson: false, ninja: false, "pkg-config": false, python3: false, sqlite: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 33, 5], ["sha256", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 65, 7], ["versionPolicy", 66, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 64, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 71, 5], ["mainProgram", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["platforms", 75, 5], ["teams", 76, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 48, 3], ["passthru", 63, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "almanah",
       version: "0.12.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/almanah/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/almanah-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "DywW6Gkohf0lrX3Mw/UawrS4h2JOaOfqH2SulHkxlFI=",
         })))),
@@ -69,11 +65,11 @@ export default nix.lambda((args) => (() => {
         sqlite,
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "almanah", versionPolicy: "none" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "almanah", versionPolicy: "none" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Small GTK application to allow to keep a diary of your life",
         mainProgram: "almanah",
         homepage: "https://gitlab.gnome.org/GNOME/almanah",

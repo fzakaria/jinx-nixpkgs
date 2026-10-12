@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 62, 9], ["hash", 63, 9]], [["url", 66, 9], ["hash", 67, 9]], [["url", 70, 9], ["hash", 71, 9]], [["url", 74, 9], ["hash", 75, 9]], [["x86_64-linux", 61, 7], ["i686-linux", 65, 7], ["aarch64-linux", 69, 7], ["aarch64-darwin", 73, 7]], [["sources", 60, 5], ["updateScript", 79, 5]], [["description", 102, 5], ["homepage", 103, 5], ["sourceProvenance", 104, 5], ["license", 105, 5], ["maintainers", 106, 5], ["platforms", 107, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 20, 3], ["dontUnpack", 24, 3], ["installPhase", 26, 3], ["passthru", 59, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, dpkg: false, writeShellScript: false, curl: false, jq: false, "common-updater-scripts": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 62, 9], ["hash", 63, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 66, 9], ["hash", 67, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 70, 9], ["hash", 71, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 74, 9], ["hash", 75, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["x86_64-linux", 61, 7], ["i686-linux", 65, 7], ["aarch64-linux", 69, 7], ["aarch64-darwin", 73, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["sources", 60, 5], ["updateScript", 79, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 102, 5], ["homepage", 103, 5], ["sourceProvenance", 104, 5], ["license", 105, 5], ["maintainers", 106, 5], ["platforms", 107, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 20, 3], ["dontUnpack", 24, 3], ["installPhase", 26, 3], ["passthru", 59, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -60,26 +53,26 @@ fi
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         sources: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               url: nix.thunk(() => nix.str`https://packages.blackfire.io/debian/pool/any/main/b/blackfire/blackfire_${version}_amd64.deb`),
               hash: "sha256-rcWSzQgQKeZAv7o16geuvVAmvVVsTq1vTjXWIEfiX4E=",
             })))),
           "i686-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               url: nix.thunk(() => nix.str`https://packages.blackfire.io/debian/pool/any/main/b/blackfire/blackfire_${version}_i386.deb`),
               hash: "sha256-ZhNtOZ6SCv7ibtebXJUuMYD8VzdfX09x7UAKLkOnwaM=",
             })))),
           "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               url: nix.thunk(() => nix.str`https://packages.blackfire.io/debian/pool/any/main/b/blackfire/blackfire_${version}_arm64.deb`),
               hash: "sha256-VXHnmjN3W9M8wShHU4YkBv7DlWgOA/FXeOL4c3aEU1E=",
             })))),
           "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               url: nix.thunk(() => nix.str`https://packages.blackfire.io/blackfire/${version}/blackfire-darwin_arm64.pkg.tar.gz`),
               hash: "sha256-6/685RAzvEZNckIUG/iRoAZCRRODSoh9r/PzFB9WH2U=",
             })))),
@@ -99,7 +92,7 @@ done
 `))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Profiler agent and client",
         homepage: "https://blackfire.io/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -114,7 +107,7 @@ done
         platforms: nix.thunk(() => ["x86_64-linux", "aarch64-linux", "i686-linux", "aarch64-darwin"]),
       }));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname,
         version,
         src,

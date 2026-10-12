@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 42, 13], ["repo", 43, 5], ["rev", 44, 5], ["sha256", 45, 5]], [["test-helper-0.0.0", 56, 7]], [["lockFile", 54, 5], ["outputHashes", 55, 5]], [["LLVM_COV", 63, 5], ["LLVM_PROFDATA", 64, 5]], [["homepage", 84, 13], ["changelog", 85, 5], ["description", 86, 5], ["mainProgram", 87, 5], ["longDescription", 88, 5], ["license", 93, 5], ["maintainers", 97, 5], ["broken", 104, 5]], [["pname", 37, 11], ["version", 37, 17], ["src", 41, 3], ["postPatch", 49, 3], ["cargoLock", 53, 3], ["env", 60, 3], ["nativeCheckInputs", 67, 3], ["preCheck", 73, 3], ["checkFlags", 78, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, rustPlatform: false, llvmPackages_22: false, gitMinimal: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 42, 13], ["repo", 43, 5], ["rev", 44, 5], ["sha256", 45, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["test-helper-0.0.0", 56, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["lockFile", 54, 5], ["outputHashes", 55, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["LLVM_COV", 63, 5], ["LLVM_PROFDATA", 64, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 84, 13], ["changelog", 85, 5], ["description", 86, 5], ["mainProgram", 87, 5], ["longDescription", 88, 5], ["license", 93, 5], ["maintainers", 97, 5], ["broken", 104, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 37, 11], ["version", 37, 17], ["src", 41, 3], ["postPatch", 49, 3], ["cargoLock", 53, 3], ["env", 60, 3], ["nativeCheckInputs", 67, 3], ["preCheck", 73, 3], ["checkFlags", 78, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const homepage = nix.thunk(() => nix.str`https://github.com/${owner}/${pname}`);
   const llvm = nix.thunk(() => nix.attr(llvmPackages_22, "llvm"));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: owner,
           repo: "cargo-llvm-cov",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -38,15 +33,15 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.str`ln -s ${nix.path(here, "./Cargo.lock")} Cargo.lock
 `),
       cargoLock: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         lockFile: nix.path(here, "./Cargo.lock"),
         outputHashes: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "test-helper-0.0.0": "sha256-nPNYhfGVL6rNdfCoWLNJuVeP6Gt4m1CwEOyPtFYIXfk=",
         })),
       })),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         LLVM_COV: nix.thunk(() => nix.str`${llvm}/bin/llvm-cov`),
         LLVM_PROFDATA: nix.thunk(() => nix.str`${llvm}/bin/llvm-profdata`),
       })),
@@ -54,7 +49,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "git init -b main\ngit add .\n",
       checkFlags: nix.thunk(() => ["--skip=trybuild", "--skip=ui_test"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: homepage,
         changelog: nix.thunk(() => nix.add(homepage, nix.str`/blob/v${version}/CHANGELOG.md`)),
         description: "Cargo subcommand to easily use LLVM source-based code coverage",

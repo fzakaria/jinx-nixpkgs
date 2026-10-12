@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tensorrt.nix", [[["message", 203, 9], ["assertion", 206, 9]], [["message", 209, 9], ["assertion", 213, 9]], [["message", 217, 9], ["assertion", 220, 9]], [["message", 223, 9], ["assertion", 226, 9]], [["message", 229, 9], ["assertion", 232, 9]], [["description", 237, 7], ["longDescription", 238, 7], ["homepage", 243, 7], ["downloadPage", 246, 7], ["changelog", 247, 7], ["license", 248, 7], ["knownVulnerabilities", 250, 7]], [["redistName", 35, 5], ["pname", 36, 5], ["outputs", 38, 5], ["allowFHSReferences", 54, 5], ["nativeBuildInputs", 56, 5], ["buildInputs", 58, 5], ["preInstall", 63, 5], ["autoPatchelfIgnoreMissingDeps", 102, 5], ["postInstall", 121, 5], ["postFixup", 160, 5], ["platformAssertions", 201, 5], ["meta", 236, 5]]]);
 const formals$1 = { args: { _cuda: false, backendStdenv: false, buildRedist: false, cuda_cudart: false, cudaAtLeast: false, cudaMajorMinorVersion: false, lib: false, libcudla: false, patchelf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tensorrt.nix", [["message", 203, 9], ["assertion", 206, 9]]);
-const pos$2 = nix.positions(here + "/tensorrt.nix", [["message", 209, 9], ["assertion", 213, 9]]);
-const pos$3 = nix.positions(here + "/tensorrt.nix", [["message", 217, 9], ["assertion", 220, 9]]);
-const pos$4 = nix.positions(here + "/tensorrt.nix", [["message", 223, 9], ["assertion", 226, 9]]);
-const pos$5 = nix.positions(here + "/tensorrt.nix", [["message", 229, 9], ["assertion", 232, 9]]);
-const pos$6 = nix.positions(here + "/tensorrt.nix", [["description", 237, 7], ["longDescription", 238, 7], ["homepage", 243, 7], ["downloadPage", 246, 7], ["changelog", 247, 7], ["license", 248, 7], ["knownVulnerabilities", 250, 7]]);
-const pos$7 = nix.positions(here + "/tensorrt.nix", [["redistName", 35, 5], ["pname", 36, 5], ["outputs", 38, 5], ["allowFHSReferences", 54, 5], ["nativeBuildInputs", 56, 5], ["buildInputs", 58, 5], ["preInstall", 63, 5], ["autoPatchelfIgnoreMissingDeps", 102, 5], ["postInstall", 121, 5], ["postFixup", 160, 5], ["platformAssertions", 201, 5], ["meta", 236, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const allCCNewerThan70 = nix.thunk(() => (nix.asBool(allCCNewerThan75) || nix.asBool(nix.app(nix.sel(lib, "all"), nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "versionAtLeast")), "7.0")), cudaCapabilities))));
       const cudaCapabilitiesJSON = nix.thunk(() => nix.builtins.toJSON(cudaCapabilities));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         redistName: "tensorrt",
         pname: "tensorrt",
         outputs: nix.thunk(() => nix.concat(["out", "bin", "dev", "include", "lib"], nix.concat(nix.app(optionals, nix.thunk(() => nix.app(tensorrtOlder, "10.14.1")), nix.thunk(() => ["samples"])), nix.app(optionals, nix.thunk(() => nix.app(tensorrtOlder, "11.0.0")), nix.thunk(() => ["static"]))))),
@@ -104,33 +98,33 @@ unset -v cmakeFile
 `))), nix.app(optionalString, nix.thunk(() => nix.app(tensorrtAtLeast, "11.2.1")), "nixLog \"removing CMake import checks for Windows libraries\"\nsed -i '/_cmake_import_check_.*TRT::[A-Za-z_]*_win_/d' \\\n  \"${!outputDev:?}\"/lib/cmake/TensorRT-Enterprise/TensorRT-EnterpriseTargets-*.cmake\n"))),
         platformAssertions: nix.thunk(() => [
           nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             message: nix.thunk(() => nix.add(nix.str`tensorrt releases since 10.0.0 (found ${nix.sel(finalAttrs, "version")})`, nix.str` support CUDA compute capabilities 7.0 and newer (found ${cudaCapabilitiesJSON})`)),
             assertion: nix.thunk(() => (!nix.asBool(tensorrtAtLeast100) || nix.asBool(allCCNewerThan70))),
           })),
           nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             message: nix.thunk(() => nix.add(nix.add(nix.str`tensorrt releases since 10.0.0 (found ${nix.sel(finalAttrs, "version")})`, " support only CUDA compute capability 8.7 (Jetson Orin) for pre-Thor Jetson devices"), nix.str` (found ${cudaCapabilitiesJSON})`)),
             assertion: nix.thunk(() => (!nix.asBool((nix.asBool(tensorrtAtLeast100) && nix.asBool(nix.eq(hostRedistSystem, "linux-aarch64")))) || nix.asBool(nix.eq(cudaCapabilities, ["8.7"])))),
           })),
           nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             message: nix.thunk(() => nix.add(nix.str`tensorrt releases since 10.0.0 (found ${nix.sel(finalAttrs, "version")})`, nix.str` support CUDA 12.4 and newer for pre-Thor Jetson devices (found ${cudaMajorMinorVersion})`)),
             assertion: nix.thunk(() => (!nix.asBool((nix.asBool(tensorrtAtLeast100) && nix.asBool(nix.eq(hostRedistSystem, "linux-aarch64")))) || nix.asBool(nix.app(cudaAtLeast, "12.4")))),
           })),
           nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             message: nix.thunk(() => nix.add(nix.str`tensorrt releases since 10.5.0 (found ${nix.sel(finalAttrs, "version")})`, nix.str` support CUDA compute capabilities 7.5 and newer (found ${cudaCapabilitiesJSON})`)),
             assertion: nix.thunk(() => (!nix.asBool(tensorrtAtLeast105) || nix.asBool(allCCNewerThan75))),
           })),
           nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             message: nix.thunk(() => nix.add(nix.str`tensorrt releases since 11.2.1 (found ${nix.sel(finalAttrs, "version")})`, nix.str` do not support Jetson devices (found ${cudaCapabilitiesJSON})`)),
             assertion: nix.thunk(() => (!nix.asBool(nix.app(tensorrtAtLeast, "11.2.1")) || nix.asBool(!nix.asBool(hasJetsonCudaCapability)))),
           })),
         ]),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           description: "SDK that facilitates high-performance machine learning inference",
           longDescription: "NVIDIA TensorRT is an SDK that facilitates high-performance machine learning inference. It complements training\nframeworks such as TensorFlow, PyTorch, and MXNet. It focuses on running an already-trained network quickly and\nefficiently on NVIDIA hardware.\n",
           homepage: "https://developer.nvidia.com/tensorrt",

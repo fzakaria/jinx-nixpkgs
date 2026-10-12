@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 55, 9], ["hash", 56, 9]], [["url", 59, 9], ["hash", 60, 9]], [["x86_64-linux", 54, 7], ["aarch64-darwin", 58, 7]], [["description", 107, 7], ["homepage", 108, 7], ["sourceProvenance", 109, 7], ["license", 110, 7], ["platforms", 111, 7], ["maintainers", 112, 7]], [["pname", 65, 13], ["version", 65, 19], ["src", 67, 5], ["dontConfigure", 70, 5], ["dontStrip", 71, 5], ["nativeBuildInputs", 73, 5], ["installPhase", 75, 5], ["meta", 106, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, gtk2: false, "gdk-pixbuf": false, atk: false, pango: false, glib: false, cairo: false, freetype: false, fontconfig: false, libxml2: false, darwin: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 55, 9], ["hash", 56, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 59, 9], ["hash", 60, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["x86_64-linux", 54, 7], ["aarch64-darwin", 58, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 107, 7], ["homepage", 108, 7], ["sourceProvenance", 109, 7], ["license", 110, 7], ["platforms", 111, 7], ["maintainers", 112, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 65, 13], ["version", 65, 19], ["src", 67, 5], ["dontConfigure", 70, 5], ["dontStrip", 71, 5], ["nativeBuildInputs", 73, 5], ["installPhase", 75, 5], ["meta", 106, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -46,20 +42,20 @@ export default nix.lambda((args) => (() => {
   const version = "25.08";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => (() => {
       const srcs = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`https://github.com/verifast/verifast/releases/download/${nix.sel(finalAttrs, "version")}/${pname}-${nix.sel(finalAttrs, "version")}-linux.tar.gz`),
             hash: "sha256-HkABnWrdkb9yFByG9AB/L+Hu9n9FPLf7jx9at9MdUJ8=",
           })))),
         "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: nix.thunk(() => nix.str`https://github.com/verifast/verifast/releases/download/${nix.sel(finalAttrs, "version")}/${pname}-${nix.sel(finalAttrs, "version")}-macos-aarch.tar.gz`),
             hash: "sha256-/UicTlA4lFRk3OBgcsiS8YtDGmb7R7d6zeVLZo49HV8=",
           })))),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname: pname,
         version: version,
         src: nix.thunk(() => nix.selOr(srcs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
@@ -71,7 +67,7 @@ ${nix.app(patchExe, "$out/libexec/vfide")}
 ${nix.app(patchLib, "$out/libexec/libz3.so")}
 `))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "cp -R lib $out/lib\ninstall_name_tool -change '@executable_path/../lib/libz3.dylib' $out/lib/libz3.dylib $out/libexec/verifast\n\ninstall_name_tool -change libz3.dylib $out/lib/libz3.dylib $out/libexec/vfide-core\nln -s $out/libexec/vfide-core $out/bin/vfide-core\n\nfor f in $out/libexec/vfide-core $out/lib/*.dylib; do\n    for old in `otool -L $f | fgrep homebrew | sed -E 's|^[[:space:]]+([^ ]+).*$|\\1|g'`; do\n        new=`echo $old | sed -E 's|/opt/homebrew/.+/lib/([^ ]+)|\\1|'`\n        install_name_tool -change $old $out/lib/$new $f\n        codesign --force -s - $f\n    done\ndone\n# include path points to $out/bin\nln -s $out/libexec/*.{h,gh,cfmanifest,c} $out/bin/\n")), "ln -s $out/libexec/verifast $out/bin/verifast\nln -s $out/libexec/vfide    $out/bin/vfide\n")),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           description: "Verification for C and Java programs via separation logic",
           homepage: "https://people.cs.kuleuven.be/~bart.jacobs/verifast/",
           sourceProvenance: nix.thunk(() => (() => {

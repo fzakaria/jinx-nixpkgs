@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["CGO_ENABLED", 33, 7]], [["homepage", 42, 5], ["description", 43, 5], ["maintainers", 44, 5], ["mainProgram", 48, 5], ["license", 49, 5]], [["pname", 12, 3], ["version", 15, 3], ["src", 17, 3], ["proxyVendor", 24, 3], ["vendorHash", 25, 3], ["ldflags", 27, 3], ["env", 33, 3], ["subPackages", 35, 3], ["nativeCheckInputs", 37, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, versionCheckHook: false, "go-task": false, gotestsum: false, getent: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 33, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 42, 5], ["description", 43, 5], ["maintainers", 44, 5], ["mainProgram", 48, 5], ["license", 49, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 15, 3], ["src", 17, 3], ["proxyVendor", 24, 3], ["vendorHash", 25, 3], ["ldflags", 27, 3], ["env", 33, 3], ["subPackages", 35, 3], ["nativeCheckInputs", 37, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const gotestsum = nix.arg($, "gotestsum");
   const getent = nix.arg($, "getent");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "go-mockery_2",
       version: "2.53.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vektra",
           repo: "mockery",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,11 +32,11 @@ export default nix.lambda((args) => (() => {
         "-w",
         nix.thunk(() => nix.str`-X github.com/vektra/mockery/v${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/pkg/logging.SemVer=v${nix.sel(finalAttrs, "version")}`),
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_ENABLED: 0n })),
       subPackages: nix.thunk(() => ["."]),
       nativeCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/vektra/mockery",
         description: "Mock code autogenerator for Golang - v2",
         maintainers: nix.thunk(() => (() => {

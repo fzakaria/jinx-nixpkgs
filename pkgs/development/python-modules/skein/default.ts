@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 22, 13], ["version", 22, 19], ["hash", 23, 5]], [["pname", 28, 51], ["version", 28, 57], ["jarHash", 28, 65]], [["homepage", 73, 5], ["description", 74, 5], ["mainProgram", 75, 5], ["license", 76, 5], ["maintainers", 77, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 21, 3], ["jarHash", 27, 3], ["skeinJar", 28, 3], ["build-system", 30, 3], ["dependencies", 35, 3], ["buildInputs", 41, 3], ["preBuild", 43, 3], ["postPatch", 49, 3], ["pythonImportsCheck", 60, 3], ["nativeCheckInputs", 62, 3], ["disabledTests", 64, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, callPackage: false, fetchPypi: false, pythonOlder: false, lib: false, cryptography: false, grpcio: false, pyyaml: false, "grpcio-tools": false, hadoop: false, pytestCheckHook: false, setuptools_80: false, versioneer: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 22, 13], ["version", 22, 19], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 28, 51], ["version", 28, 57], ["jarHash", 28, 65]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 73, 5], ["description", 74, 5], ["mainProgram", 75, 5], ["license", 76, 5], ["maintainers", 77, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 21, 3], ["jarHash", 27, 3], ["skeinJar", 28, 3], ["build-system", 30, 3], ["dependencies", 35, 3], ["buildInputs", 41, 3], ["preBuild", 43, 3], ["postPatch", 49, 3], ["pythonImportsCheck", 60, 3], ["nativeCheckInputs", 62, 3], ["disabledTests", 64, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,13 +25,13 @@ export default nix.lambda((args) => (() => {
       const version = "0.8.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-nXTqsJNX/LwAglPcPZkmdYPfF+vDLN+nNdZaDFTrHzE=",
         }))));
       const jarHash = "sha256-x2KH6tnoG7sogtjrJvUaxy0PCEA8q/zneuI969oBOKo=";
-      const skeinJar = nix.thunk(() => nix.app(callPackage, nix.path(here, "./skeinjar.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, jarHash: jarHash }))));
+      const skeinJar = nix.thunk(() => nix.app(callPackage, nix.path(here, "./skeinjar.nix"), nix.thunk(() => ({ [nix.POS]: $pos[1], pname: pname, version: version, jarHash: jarHash }))));
       const build_system = nix.thunk(() => [setuptools_80, versioneer]);
       const dependencies = nix.thunk(() => [cryptography, grpcio, pyyaml]);
       const buildInputs = nix.thunk(() => [grpcio_tools]);
@@ -51,7 +48,7 @@ rm versioneer.py
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const disabledTests = nix.thunk(() => ["test_ui", "test_tornado", "test_kv", "test_core", "test_cli"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://jcristharif.com/skein",
         description: "Tool and library for easily deploying applications on Apache YARN",
         mainProgram: "skein",
@@ -65,7 +62,7 @@ rm versioneer.py
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/dscheck.nix", [[["description", 18, 5]], [["pname", 9, 3], ["src", 11, 29], ["version", 11, 33], ["propagatedBuildInputs", 13, 3], ["meta", 17, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, dscheck: false, "multicore-magic": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/dscheck.nix", [["description", 18, 5]]);
-const pos$2 = nix.positions(here + "/dscheck.nix", [["pname", 9, 3], ["src", 11, 29], ["version", 11, 33], ["propagatedBuildInputs", 13, 3], ["meta", 17, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const dscheck = nix.arg($, "dscheck");
   const multicore_magic = nix.arg($, "multicore-magic");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "multicore-magic-dscheck",
       src: nix.thunk(() => nix.attr(multicore_magic, "src")),
       version: nix.thunk(() => nix.attr(multicore_magic, "version")),
       propagatedBuildInputs: nix.thunk(() => [dscheck]),
       meta: nix.thunk(() => nix.update(nix.sel(multicore_magic, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Implementation of multicore-magic API using the atomic module of DScheck to make DScheck tests possible in libraries using multicore-magic",
       })),
     })));

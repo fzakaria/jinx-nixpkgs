@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 34, 5], ["repo", 35, 5], ["rev", 36, 5], ["sha256", 37, 5]], [["name", 75, 7], ["url", 76, 7], ["hash", 77, 7]], [["description", 100, 5], ["homepage", 101, 5], ["license", 102, 5], ["maintainers", 103, 5], ["platforms", 104, 5], ["badPlatforms", 106, 5]], [["pname", 24, 3], ["version", 25, 3], ["outputs", 27, 3], ["src", 33, 3], ["depsBuildBuild", 40, 3], ["nativeBuildInputs", 44, 3], ["propagatedBuildInputs", 55, 3], ["patches", 72, 3], ["mesonFlags", 81, 3], ["postFixup", 91, 3], ["dontWrapQtApps", 97, 3], ["meta", 99, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, fetchpatch2: false, meson: false, ninja: false, "pkg-config": false, "gobject-introspection": false, vala: false, "gi-docgen": false, glib: false, gtk3: false, gtk4: false, libsForQt5: false, qt6Packages: false, variant: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["rev", 36, 5], ["sha256", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 75, 7], ["url", 76, 7], ["hash", 77, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 100, 5], ["homepage", 101, 5], ["license", 102, 5], ["maintainers", 103, 5], ["platforms", 104, 5], ["badPlatforms", 106, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["outputs", 27, 3], ["src", 33, 3], ["depsBuildBuild", 40, 3], ["nativeBuildInputs", 44, 3], ["propagatedBuildInputs", 55, 3], ["patches", 72, 3], ["mesonFlags", 81, 3], ["postFixup", 91, 3], ["dontWrapQtApps", 97, 3], ["meta", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const variant = nix.argOr($, "variant", () => null);
   nix.assert_((nix.asBool((nix.asBool((nix.asBool((nix.asBool(nix.eq(variant, null)) || nix.asBool(nix.eq(variant, "gtk3")))) || nix.asBool(nix.eq(variant, "gtk4")))) || nix.asBool(nix.eq(variant, "qt5")))) || nix.asBool(nix.eq(variant, "qt6"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/li/libportal/package.nix:20:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: nix.thunk(() => nix.add("libportal", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(variant, null)), nix.thunk(() => nix.str`-${variant}`)))),
       version: "0.9.1",
       outputs: nix.thunk(() => nix.concat(["out", "dev"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(variant, "qt5")), "devdoc"))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "flatpak",
           repo: "libportal",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -47,7 +44,7 @@ export default nix.lambda((args) => (() => {
         ])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(variant, "qt6")), nix.thunk(() => [nix.thunk(() => nix.sel(qt6Packages, "qtbase"))]))))))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "libportal-fix-qt6.9-private-api-usage.patch",
             url: "https://github.com/flatpak/libportal/commit/796053d2eebe4532aad6bd3fd80cdf3b197806ec.patch?full_index=1",
             hash: "sha256-TPIKKnZCcp/bmmsaNlDxAsKLTBe6BKPCTOutLjXPCHQ=",
@@ -65,7 +62,7 @@ export default nix.lambda((args) => (() => {
       postFixup: "# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput \"share/doc\" \"$devdoc\"\n",
       dontWrapQtApps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Flatpak portal library",
         homepage: "https://github.com/flatpak/libportal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),

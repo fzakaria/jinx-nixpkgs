@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 48, 5], ["repo", 49, 5], ["tag", 50, 5], ["hash", 51, 5]], [["description", 93, 5], ["homepage", 94, 5], ["changelog", 95, 5], ["license", 96, 5], ["maintainers", 97, 5], ["platforms", 101, 5], ["mainProgram", 102, 5]], [["pname", 44, 3], ["version", 45, 3], ["src", 47, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 63, 3], ["patches", 74, 3], ["postInstall", 80, 3], ["preFixup", 84, 3], ["strictDeps", 90, 3], ["meta", 92, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, glib: false, gperf: false, meson: false, ninja: false, "pkg-config": false, wrapGAppsHook4: false, feedbackd: false, gtk4: false, libdng: false, libepoxy: false, libmegapixels: false, libpulseaudio: false, libxrandr: false, zbar: false, tiffSupport: true, libraw: false, jpgSupport: true, graphicsmagick: false, exiftool: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 48, 5], ["repo", 49, 5], ["tag", 50, 5], ["hash", 51, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 93, 5], ["homepage", 94, 5], ["changelog", 95, 5], ["license", 96, 5], ["maintainers", 97, 5], ["platforms", 101, 5], ["mainProgram", 102, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 44, 3], ["version", 45, 3], ["src", 47, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 63, 3], ["patches", 74, 3], ["postInstall", 80, 3], ["preFixup", 84, 3], ["strictDeps", 90, 3], ["meta", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const optionalString = nix.thunk(() => nix.attr(lib, "optionalString"));
   const runtimePath = nix.thunk(() => nix.app(makeBinPath, nix.thunk(() => nix.concat(nix.app(optional, tiffSupport, libraw), nix.app(optionals, jpgSupport, nix.thunk(() => [graphicsmagick, exiftool]))))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "megapixels",
       version: "2.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "megapixels-org",
           repo: "Megapixels",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -69,7 +67,7 @@ export default nix.lambda((args) => (() => {
 `))),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "GTK4 camera application that knows how to deal with the media request api",
         homepage: "https://gitlab.com/megapixels-org/Megapixels",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/megapixels-org/Megapixels/-/tags/${nix.sel(finalAttrs, "src", "tag")}`),

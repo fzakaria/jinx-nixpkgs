@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["__noChroot", 33, 13], ["nativeBuildInputs", 34, 13]], [["updateScript", 22, 7], ["tests", 30, 7]], [["changelog", 19, 5], ["passthru", 21, 5]]]);
 const formals$1 = { args: { haskell: false, haskellPackages: false, lib: false, "spago-legacy": false, cacert: false, git: false, nodejs: false, purescript: false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["__noChroot", 33, 13], ["nativeBuildInputs", 34, 13]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 22, 7], ["tests", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 19, 5], ["passthru", 21, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,13 +19,13 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(lib, "pipe"), nix.thunk(() => nix.sel(haskellPackages, "spago-legacy")), nix.thunk(() => [
       nix.thunk(() => nix.sel(haskell, "lib", "compose", "justStaticExecutables")),
       nix.thunk(() => nix.app(nix.sel(haskell, "lib", "compose", "overrideCabal"), (oldAttrs) => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           changelog: nix.thunk(() => nix.str`https://github.com/purescript/spago-legacy/releases/tag/${nix.sel(oldAttrs, "version")}`),
           passthru: nix.thunk(() => nix.update(nix.selOr(oldAttrs, () => ({}), "passthru"), {
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             updateScript: nix.path(here, "./update.sh"),
             tests: nix.thunk(() => nix.app(runCommand, "spago-legacy-tests", nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 __noChroot: true,
                 nativeBuildInputs: nix.thunk(() => [cacert, git, nodejs, purescript, spago_legacy]),
               })), "# spago expects HOME to be set because it creates a cache file under\n# home.\nHOME=$(pwd)\n\nspago --verbose init\nspago --verbose build\nspago --verbose test\n\ntouch $out\n")),

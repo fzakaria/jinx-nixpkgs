@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["exiftool", 40, 7], ["ffmpeg", 41, 7], ["kdialog", 42, 7], ["mat2", 44, 7], ["mat2svg", 45, 7]], [["extraLoaders", 80, 9]], [["description", 99, 5], ["homepage", 100, 5], ["changelog", 101, 5], ["license", 102, 5], ["mainProgram", 103, 5], ["maintainers", 104, 5]], [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["patches", 37, 3], ["postPatch", 53, 3], ["build-system", 59, 3], ["nativeBuildInputs", 61, 3], ["buildInputs", 66, 3], ["dependencies", 71, 3], ["postInstall", 77, 3], ["nativeCheckInputs", 94, 3], ["nativeInstallCheckInputs", 96, 3], ["meta", 98, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, pytestCheckHook: false, fetchFromGitHub: false, replaceVars: false, exiftool: false, ffmpeg_8: false, setuptools: false, wrapGAppsHook3: false, "gdk-pixbuf": false, gnome: false, "gobject-introspection": false, librsvg: false, poppler_gi: false, "webp-pixbuf-loader": false, mutagen: false, pygobject3: false, pycairo: false, dolphinIntegration: true, kdePackages: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["exiftool", 40, 7], ["ffmpeg", 41, 7], ["kdialog", 42, 7], ["mat2", 44, 7], ["mat2svg", 45, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["extraLoaders", 80, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 99, 5], ["homepage", 100, 5], ["changelog", 101, 5], ["license", 102, 5], ["mainProgram", 103, 5], ["maintainers", 104, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["patches", 37, 3], ["postPatch", 53, 3], ["build-system", 59, 3], ["nativeBuildInputs", 61, 3], ["buildInputs", 66, 3], ["dependencies", 71, 3], ["postInstall", 77, 3], ["nativeCheckInputs", 94, 3], ["nativeInstallCheckInputs", 96, 3], ["meta", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const kdePackages = nix.arg($, "kdePackages");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "mat2",
       version: "0.15.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jvoisin",
           repo: "mat2",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -46,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./paths.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             exiftool: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), exiftool)),
             ffmpeg: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), ffmpeg_8)),
             kdialog: nix.thunk(() => (nix.asBool(dolphinIntegration) ? nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(kdePackages, "kdialog"))) : null)),
@@ -62,7 +58,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gdk_pixbuf, poppler_gi]),
       dependencies: nix.thunk(() => [mutagen, pygobject3, pycairo]),
       postInstall: nix.thunk(() => nix.add(nix.str`export GDK_PIXBUF_MODULE_FILE="${nix.app(nix.sel(gnome, "_gdkPixbufCacheBuilder_DO_NOT_USE"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           extraLoaders: nix.thunk(() => [librsvg, webp_pixbuf_loader]),
         })))}"
 
@@ -72,7 +68,7 @@ install -Dm 444 doc/mat2.1 -t "$out/share/man/man1"
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Handy tool to trash your metadata",
         homepage: "https://github.com/jvoisin/mat2",
         changelog: nix.thunk(() => nix.str`https://github.com/jvoisin/mat2/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

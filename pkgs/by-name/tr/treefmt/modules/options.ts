@@ -2,31 +2,26 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/options.nix", [[["type", 5, 7], ["default", 6, 7], ["defaultText", 7, 7], ["description", 8, 7]], [["type", 14, 7], ["default", 15, 7], ["description", 16, 7]], [["type", 22, 7], ["apply", 24, 7], ["defaultText", 25, 7], ["description", 26, 7]], [["type", 32, 7], ["defaultText", 33, 7], ["description", 34, 7], ["internal", 37, 7]], [["name", 4, 5], ["runtimeInputs", 13, 5], ["configFile", 21, 5], ["package", 31, 5]], [["options", 3, 3]]]);
 const formals$1 = { args: { lib: false, config: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/options.nix", [["type", 5, 7], ["default", 6, 7], ["defaultText", 7, 7], ["description", 8, 7]]);
-const pos$2 = nix.positions(here + "/options.nix", [["type", 14, 7], ["default", 15, 7], ["description", 16, 7]]);
-const pos$3 = nix.positions(here + "/options.nix", [["type", 22, 7], ["apply", 24, 7], ["defaultText", 25, 7], ["description", 26, 7]]);
-const pos$4 = nix.positions(here + "/options.nix", [["type", 32, 7], ["defaultText", 33, 7], ["description", 34, 7], ["internal", 37, 7]]);
-const pos$5 = nix.positions(here + "/options.nix", [["name", 4, 5], ["runtimeInputs", 13, 5], ["configFile", 21, 5], ["package", 31, 5]]);
-const pos$6 = nix.positions(here + "/options.nix", [["options", 3, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const config = nix.arg($, "config");
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           type: nix.thunk(() => nix.sel(lib, "types", "str")),
           default: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "getName"), nix.thunk(() => nix.sel(config, "package"))), "-with-config")),
           defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"${getName package}-with-config\"")),
           description: "Name to use for the wrapped treefmt package.\n",
         })))),
       runtimeInputs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           type: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
             return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "package")));
@@ -35,14 +30,14 @@ export default nix.lambda((args) => (() => {
           description: "Packages to include on treefmt's PATH.\n",
         })))),
       configFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           type: nix.thunk(() => nix.sel(lib, "types", "path")),
           apply: (file) => (nix.asBool(nix.app(nix.sel(lib, "isDerivation"), file)) ? nix.force(file) : nix.str`${file}`),
           defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalMD"), "generated from [](#opt-treefmt-settings)")),
           description: "The treefmt config file.\n",
         })))),
       package: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           type: nix.thunk(() => nix.sel(lib, "types", "package")),
           defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "pkgs.treefmt")),
           description: "The treefmt package to wrap.\n",

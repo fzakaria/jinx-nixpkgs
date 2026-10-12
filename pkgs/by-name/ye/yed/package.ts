@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["sha256", 19, 5]], [["license", 47, 5], ["sourceProvenance", 48, 5], ["homepage", 49, 5], ["description", 50, 5], ["platforms", 51, 5], ["maintainers", 52, 5], ["mainProgram", 53, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 16, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 28, 3], ["dontConfigure", 30, 3], ["dontBuild", 31, 3], ["dontInstall", 32, 3], ["preFixup", 34, 3], ["dontWrapGApps", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, makeWrapper: false, unzip: false, jre: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["license", 47, 5], ["sourceProvenance", 48, 5], ["homepage", 49, 5], ["description", 50, 5], ["platforms", 51, 5], ["maintainers", 52, 5], ["mainProgram", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 16, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 28, 3], ["dontConfigure", 30, 3], ["dontBuild", 31, 3], ["dontInstall", 32, 3], ["preFixup", 34, 3], ["dontWrapGApps", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const jre = nix.arg($, "jre");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "yEd",
       version: "3.25.1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://web.archive.org/web/20250322075239/https://www.yworks.com/resources/yed/demo/yEd-3.25.1.zip",
           sha256: "sha256-CDciM2IW+nocbFMVmTXMWh2eYcDAMZ+lxsg/Rb7KRgo=",
         })))),
@@ -41,7 +39,7 @@ makeWrapper ${jre}/bin/java $out/bin/yed \\
 `),
       dontWrapGApps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
         sourceProvenance: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);

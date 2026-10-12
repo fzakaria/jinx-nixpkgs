@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 41, 5], ["hash", 42, 5]], [["description", 124, 5], ["homepage", 125, 5], ["changelog", 126, 5], ["license", 127, 5], ["maintainers", 131, 5], ["platforms", 134, 5]], [["pname", 37, 3], ["version", 38, 3], ["src", 40, 3], ["patches", 45, 3], ["outputs", 52, 3], ["mesonFlags", 61, 3], ["postFixup", 73, 3], ["nativeBuildInputs", 78, 3], ["buildInputs", 89, 3], ["hardeningDisable", 105, 3], ["propagatedBuildInputs", 107, 3], ["postPatch", 109, 3], ["preConfigure", 115, 3], ["enableParallelBuilding", 119, 3], ["doInstallCheck", 121, 3], ["meta", 123, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, glibc: false, clang: false, doxygen: false, meson: false, ninja: false, "pkg-config": false, perl: false, "argp-standalone": false, libjpeg: false, json_c: false, libbpf: false, libelf: false, udev: false, udevCheckHook: false, withUtils: true, withGUI: true, withBPF: true, "alsa-lib": false, libGLU: false, qt6Packages: false, linuxHeaders: false, buildPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 41, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 124, 5], ["homepage", 125, 5], ["changelog", 126, 5], ["license", 127, 5], ["maintainers", 131, 5], ["platforms", 134, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 37, 3], ["version", 38, 3], ["src", 40, 3], ["patches", 45, 3], ["outputs", 52, 3], ["mesonFlags", 61, 3], ["postFixup", 73, 3], ["nativeBuildInputs", 78, 3], ["buildInputs", 89, 3], ["hardeningDisable", 105, 3], ["propagatedBuildInputs", 107, 3], ["postPatch", 109, 3], ["preConfigure", 115, 3], ["enableParallelBuilding", 119, 3], ["doInstallCheck", 121, 3], ["meta", 123, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const withQt = nix.thunk(() => (nix.asBool(withUtils) && nix.asBool(withGUI)));
   const isCrossBuild = nix.thunk(() => !nix.asBool(nix.app(nix.sel(lib, "systems", "equals"), nix.thunk(() => nix.sel(stdenv, "buildPlatform")), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "v4l-utils",
       version: "1.32.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://linuxtv.org/downloads/v4l-utils/v4l-utils-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-aCiCihd3VSbrk/slipKU0dEHPWM8NE3XHs1Oeh/7ffw=",
         })))),
@@ -73,7 +71,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "V4L utils and libv4l, provide common image formats regardless of the v4l device",
         homepage: "https://linuxtv.org/projects.php",
         changelog: nix.thunk(() => nix.str`https://git.linuxtv.org/v4l-utils.git/plain/ChangeLog?h=v4l-utils-${nix.sel(finalAttrs, "version")}`),

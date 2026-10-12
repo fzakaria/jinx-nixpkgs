@@ -2,8 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["nativeBuildInputs", 14, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, runCommand: false, getent: false, xcbuild: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 14, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const getent = nix.arg($, "getent");
   const xcbuild = nix.arg($, "xcbuild");
   return nix.app(runCommand, "build-environment-info", nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       nativeBuildInputs: nix.thunk(() => nix.concat([getent], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "buildPlatform", "isDarwin")), nix.thunk(() => [xcbuild])))),
     })), nix.thunk(() => nix.str`# It’s useful to get more info even if a command fails.
 set +e

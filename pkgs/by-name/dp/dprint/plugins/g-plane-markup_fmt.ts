@@ -2,19 +2,18 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/g-plane-markup_fmt.nix", [[["configExcludes", 6, 5], ["configKey", 7, 5], ["fileExtensions", 8, 5]], [["description", 3, 3], ["hash", 4, 3], ["initConfig", 5, 3], ["pname", 20, 3], ["updateUrl", 21, 3], ["url", 22, 3], ["version", 23, 3]]]);
 const formals$1 = { args: { mkDprintPlugin: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/g-plane-markup_fmt.nix", [["configExcludes", 6, 5], ["configKey", 7, 5], ["fileExtensions", 8, 5]]);
-const pos$2 = nix.positions(here + "/g-plane-markup_fmt.nix", [["description", 3, 3], ["hash", 4, 3], ["initConfig", 5, 3], ["pname", 20, 3], ["updateUrl", 21, 3], ["url", 22, 3], ["version", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const mkDprintPlugin = nix.arg($, "mkDprintPlugin");
   return nix.app(mkDprintPlugin, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       description: "HTML, Vue, Svelte, Astro, Angular, Jinja, Twig, Nunjucks, and Vento formatter",
       hash: "sha256-bw7cMRYmqzWYqkp7RjT+HtL5jO6+GW9h/yOGQmw+bbU=",
       initConfig: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         configExcludes: [],
         configKey: "markup",
         fileExtensions: nix.thunk(() => ["html", "vue", "svelte", "astro", "jinja", "jinja2", "twig", "njk", "vto"]),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["package", 38, 5], ["command", 39, 5]], [["version", 37, 18]], [["tests", 37, 12]], [["description", 43, 5], ["longDescription", 44, 5], ["homepage", 49, 35], ["license", 50, 5], ["platforms", 51, 5], ["mainProgram", 52, 5], ["maintainers", 53, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["sourceRoot", 20, 3], ["buildPhase", 22, 3], ["postInstall", 30, 3], ["enableParallelBuilding", 35, 3], ["passthru", 37, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, testers: false, vpcs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 38, 5], ["command", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 37, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 37, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 43, 5], ["longDescription", 44, 5], ["homepage", 49, 35], ["license", 50, 5], ["platforms", 51, 5], ["mainProgram", 52, 5], ["maintainers", 53, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["sourceRoot", 20, 3], ["buildPhase", 22, 3], ["postInstall", 30, 3], ["enableParallelBuilding", 35, 3], ["passthru", 37, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const vpcs = nix.arg($, "vpcs");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "vpcs",
       version: "0.8.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "GNS3",
           repo: "vpcs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,16 +33,16 @@ runHook postBuild
       postInstall: "install -D -m555 vpcs $out/bin/vpcs\ninstall -D -m444 ../man/vpcs.1 $out/share/man/man1/vpcs.1\n",
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: vpcs, command: "vpcs -v" })))),
+          [nix.POS]: $pos[2],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: vpcs, command: "vpcs -v" })))),
         })),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Simple virtual PC simulator",
         longDescription: "The VPCS (Virtual PC Simulator) can simulate up to 9 PCs. You can\nping/traceroute them, or ping/traceroute the other hosts/routers from the\nVPCS when you study the Cisco routers in the dynamips.\n",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),

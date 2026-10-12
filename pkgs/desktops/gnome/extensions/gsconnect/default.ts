@@ -2,13 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["gapplication", 43, 7], ["gjs", 44, 7], ["typelibPath", 46, 7]], [["installedTests", 117, 7]], [["extensionUuid", 111, 5], ["extensionPortalSlug", 112, 5], ["tests", 116, 5]], [["description", 122, 5], ["homepage", 123, 5], ["changelog", 124, 5], ["license", 125, 5], ["maintainers", 126, 5], ["teams", 127, 5], ["platforms", 128, 5]], [["pname", 25, 3], ["version", 26, 3], ["outputs", 28, 3], ["src", 33, 3], ["patches", 40, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 62, 3], ["mesonFlags", 71, 3], ["postPatch", 82, 3], ["postFixup", 96, 3], ["passthru", 110, 3], ["meta", 121, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, replaceVars: false, openssl: false, gsound: false, meson: false, ninja: false, "pkg-config": false, "gobject-introspection": false, wrapGAppsHook3: false, glib: false, "glib-networking": false, gtk3: false, openssh: false, "gnome-shell": false, "evolution-data-server-gtk4": false, gjs: false, nixosTests: false, "desktop-file-utils": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["gapplication", 43, 7], ["gjs", 44, 7], ["typelibPath", 46, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["installedTests", 117, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["extensionUuid", 111, 5], ["extensionPortalSlug", 112, 5], ["tests", 116, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 122, 5], ["homepage", 123, 5], ["changelog", 124, 5], ["license", 125, 5], ["maintainers", 126, 5], ["teams", 127, 5], ["platforms", 128, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["outputs", 28, 3], ["src", 33, 3], ["patches", 40, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 62, 3], ["mesonFlags", 71, 3], ["postPatch", 82, 3], ["postFixup", 96, 3], ["passthru", 110, 3], ["meta", 121, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const desktop_file_utils = nix.arg($, "desktop-file-utils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "gnome-shell-extension-gsconnect",
       version: "72",
       outputs: nix.thunk(() => ["out", "installedTests"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "GSConnect",
           repo: "gnome-shell-extension-gsconnect",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             gapplication: nix.thunk(() => nix.str`${nix.sel(glib, "bin")}/bin/gapplication`),
             gjs: nix.thunk(() => nix.str`${gjs}/bin/gjs`),
             typelibPath: null,
@@ -86,16 +81,16 @@ substituteInPlace data/config.js.in \\
 `),
       postFixup: "# Let’s wrap the daemons\nfor file in $out/share/gnome-shell/extensions/gsconnect@andyholmes.github.io/service/{daemon,nativeMessagingHost}.js; do\n  echo \"Wrapping program $file\"\n  wrapGApp \"$file\"\ndone\n\n# Wrap jasmine runner for tests\nfor file in $installedTests/libexec/installed-tests/gsconnect/minijasmine; do\n  echo \"Wrapping program $file\"\n  wrapGApp \"$file\"\ndone\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         extensionUuid: "gsconnect@andyholmes.github.io",
         extensionPortalSlug: "gsconnect",
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           installedTests: nix.thunk(() => nix.sel(nixosTests, "installed-tests", "gsconnect")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "KDE Connect implementation for Gnome Shell",
         homepage: "https://github.com/GSConnect/gnome-shell-extension-gsconnect/wiki",
         changelog: nix.thunk(() => nix.str`https://github.com/GSConnect/gnome-shell-extension-gsconnect/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

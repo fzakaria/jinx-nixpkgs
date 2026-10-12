@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["property", 52, 5], ["visual", 55, 5]], [["description", 90, 5], ["homepage", 91, 5], ["changelog", 92, 5], ["license", 93, 5], ["maintainers", 94, 5]], [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["build-system", 40, 3], ["dependencies", 44, 3], ["optional-dependencies", 51, 3], ["nativeCheckInputs", 61, 3], ["disabledTestPaths", 70, 3], ["pythonImportsCheck", 83, 3], ["__structuredAttrs", 87, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, aiohttp: false, pillow: false, qrcode: false, "resize-image": false, hypothesis: false, imagehash: false, syrupy: false, "pytest-asyncio": false, pytestCheckHook: false, "pytest-cov-stub": false, "pytest-xdist": false, "time-machine": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["property", 52, 5], ["visual", 55, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 90, 5], ["homepage", 91, 5], ["changelog", 92, 5], ["license", 93, 5], ["maintainers", 94, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["build-system", 40, 3], ["dependencies", 44, 3], ["optional-dependencies", 51, 3], ["nativeCheckInputs", 61, 3], ["disabledTestPaths", 70, 3], ["pythonImportsCheck", 83, 3], ["__structuredAttrs", 87, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const pytest_xdist = nix.arg($, "pytest-xdist");
   const time_machine = nix.arg($, "time-machine");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "odl-renderer",
       version: "0.5.12",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "OpenDisplay",
           repo: "odl-renderer",
           tag: nix.thunk(() => nix.str`odl-renderer-v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling]),
       dependencies: nix.thunk(() => [aiohttp, pillow, qrcode, resize_image]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         property: nix.thunk(() => [hypothesis]),
         visual: nix.thunk(() => [imagehash, syrupy]),
       })),
@@ -60,7 +57,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["odl_renderer"]),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Pure image rendering from drawing instructions for e-paper displays",
         homepage: "https://github.com/OpenDisplay/odl-renderer",
         changelog: nix.thunk(() => nix.str`https://github.com/OpenDisplay/odl-renderer/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

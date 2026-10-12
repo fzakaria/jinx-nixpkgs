@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 21, 9], ["ruby", 22, 9], ["gemfile", 23, 9], ["lockfile", 24, 9], ["gemset", 25, 9]], [["updateScript", 33, 12]], [["description", 36, 5], ["mainProgram", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["platforms", 40, 5], ["maintainers", 41, 5]], [["pname", 11, 3], ["version", 12, 3], ["nativeBuildInputs", 14, 3], ["dontUnpack", 16, 3], ["installPhase", 18, 3], ["passthru", 33, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, bundlerEnv: false, ruby: false, bundlerUpdateScript: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 21, 9], ["ruby", 22, 9], ["gemfile", 23, 9], ["lockfile", 24, 9], ["gemset", 25, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 33, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 36, 5], ["mainProgram", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["platforms", 40, 5], ["maintainers", 41, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["nativeBuildInputs", 14, 3], ["dontUnpack", 16, 3], ["installPhase", 18, 3], ["passthru", 33, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const dontUnpack = true;
       const installPhase = nix.thunk(() => (() => {
         const env = nix.thunk(() => nix.app(bundlerEnv, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             name: nix.thunk(() => nix.str`${pname}-${version}-gems`),
             ruby: ruby,
             gemfile: nix.path(here, "./Gemfile"),
@@ -35,11 +32,11 @@ makeWrapper ${env}/bin/lvmsync $out/bin/lvmsync
 `;
       })());
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "lvmsync")),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Optimised synchronisation of LVM snapshots over a network",
         mainProgram: "lvmsync",
         homepage: "https://theshed.hezmatt.org/lvmsync/",
@@ -54,7 +51,7 @@ makeWrapper ${env}/bin/lvmsync $out/bin/lvmsync
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         nativeBuildInputs,

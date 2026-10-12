@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 26, 5], ["hash", 27, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 30, 3], ["preConfigure", 39, 3], ["buildInputs", 43, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchurl: false, "kio-extras": false, cmake: false, "pkg-config": false, "extra-cmake-modules": false, libsForQt5: false, samba: false, libssh: false, libmtp: false, libimobiledevice: false, gperf: false, libtirpc: false, openexr: false, taglib: false, libappimage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 30, 3], ["preConfigure", 39, 3], ["buildInputs", 43, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pname = "kio-extras-kf5";
       const version = "24.02.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://kde/stable/release-service/${version}/src/kio-extras-kf5-${version}.tar.xz`),
           hash: "sha256-qar1jzuALINBu6HOuVBU+RUFnqRH9Z/8e5M8ynGxKsk=",
         }))));
@@ -73,7 +72,7 @@ export default nix.lambda((args) => (() => {
       })());
       const meta = nix.thunk(() => nix.sel(kio_extras, "meta"));
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname,
         version,
         src,

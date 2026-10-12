@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/sdk-symlink.nix", [[["sdk", 57, 7]], [["longDescription", 61, 7]], [["pname", 9, 23], ["name", 10, 5], ["paths", 11, 5], ["strictDeps", 17, 5], ["__structuredAttrs", 18, 5], ["nativeBuildInputs", 20, 5], ["postBuild", 21, 5], ["passthru", 53, 5], ["meta", 60, 5]]]);
 const formals$1 = { args: { symlinkJoin: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/sdk-symlink.nix", [["sdk", 57, 7]]);
-const pos$2 = nix.positions(here + "/sdk-symlink.nix", [["longDescription", 61, 7]]);
-const pos$3 = nix.positions(here + "/sdk-symlink.nix", [["pname", 9, 23], ["name", 10, 5], ["paths", 11, 5], ["strictDeps", 17, 5], ["__structuredAttrs", 18, 5], ["nativeBuildInputs", 20, 5], ["postBuild", 21, 5], ["passthru", 53, 5], ["meta", 60, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   return (flutter) => (() => {
     const self = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname: nix.thunk(() => nix.attr(flutter, "pname")),
         name: nix.thunk(() => nix.str`${nix.sel(flutter, "name")}-sdk-links`),
         paths: nix.thunk(() => [
@@ -54,9 +52,9 @@ for file in "$artifactsDir"/**/*.xcframework/Info.plist; do
 done
 shopt -u globstar
 `),
-        passthru: nix.thunk(() => nix.update(nix.sel(flutter, "passthru"), { [nix.POS]: pos$1, sdk: self })),
+        passthru: nix.thunk(() => nix.update(nix.sel(flutter, "passthru"), { [nix.POS]: $pos[0], sdk: self })),
         meta: nix.thunk(() => nix.update(nix.sel(flutter, "meta"), {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           longDescription: nix.thunk(() => nix.str`${nix.sel(flutter, "meta", "longDescription")}
 Modified binaries are linked into the original SDK directory for use with tools that use the whole SDK.
 `),

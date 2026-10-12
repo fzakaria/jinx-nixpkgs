@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["PUPPETEER_SKIP_CHROMIUM_DOWNLOAD", 38, 5], ["NODE_OPTIONS", 39, 5]], [["send", 56, 28]], [["updateScript", 54, 5], ["tests", 55, 5]], [["description", 61, 5], ["changelog", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["mainProgram", 69, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["postConfigure", 22, 3], ["nodejs", 28, 3], ["npmDepsFetcherVersion", 30, 3], ["npmDepsHash", 31, 3], ["nativeBuildInputs", 33, 3], ["env", 37, 3], ["npmPackFlags", 42, 3], ["postInstall", 44, 3], ["passthru", 53, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, makeBinaryWrapper: false, nodejs_22: false, "nix-update-script": false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["PUPPETEER_SKIP_CHROMIUM_DOWNLOAD", 38, 5], ["NODE_OPTIONS", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["send", 56, 28]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 54, 5], ["tests", 55, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 61, 5], ["changelog", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["mainProgram", 69, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["postConfigure", 22, 3], ["nodejs", 28, 3], ["npmDepsFetcherVersion", 30, 3], ["npmDepsHash", 31, 3], ["nativeBuildInputs", 33, 3], ["env", 37, 3], ["npmPackFlags", 42, 3], ["postInstall", 44, 3], ["passthru", 53, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "send",
       version: "3.4.27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "timvisee",
           repo: "send",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +34,7 @@ export default nix.lambda((args) => (() => {
       npmDepsHash: "sha256-QInXcYpZcAOJMS6QFtIapftyWsqA80ef+OiKJ9XEs98=",
       nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: "true",
         NODE_OPTIONS: "--openssl-legacy-provider",
       })),
@@ -52,12 +47,12 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(finalAttrs
   --set "NODE_ENV" "production"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, send: nix.thunk(() => nix.attr(nixosTests, "send")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], send: nix.thunk(() => nix.attr(nixosTests, "send")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "File Sharing Experiment",
         changelog: nix.thunk(() => nix.str`https://github.com/timvisee/send/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         homepage: "https://github.com/timvisee/send",

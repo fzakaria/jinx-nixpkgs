@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 125, 5], ["repo", 126, 5], ["tag", 127, 5], ["fetchSubmodules", 128, 5], ["hash", 129, 5]], [["zfs", 137, 7], ["zpool", 138, 7]], [["name", 189, 9], ["runtimeInputs", 190, 9], ["text", 194, 9]], [["QEMU_BRIDGE_HELPER", 268, 9], ["QEMU_PR_HELPER", 269, 9]], [["libvirtd", 423, 18]], [["updateScript", 410, 12], ["tests", 423, 12]], [["description", 426, 5], ["homepage", 427, 5], ["changelog", 428, 5], ["license", 429, 5], ["platforms", 430, 5], ["maintainers", 431, 5]], [["pname", 120, 3], ["version", 122, 3], ["src", 124, 3], ["patches", 132, 3], ["postPatch", 143, 3], ["strictDeps", 203, 3], ["nativeBuildInputs", 205, 3], ["buildInputs", 221, 3], ["preConfigure", 265, 3], ["mesonAutoFeatures", 300, 3], ["mesonFlags", 302, 3], ["doCheck", 380, 3], ["postInstall", 382, 3], ["passthru", 410, 3], ["meta", 425, 3]]]);
 const formals$1 = { args: { lib: false, bash: false, "bash-completion": false, "bridge-utils": false, coreutils: false, curl: false, darwin: false, dbus: false, dnsmasq: false, docutils: false, fetchFromGitLab: false, gettext: false, glib: false, gnutls: false, iproute2: false, iptables: false, libpcap: false, libtasn1: false, libxml2: false, libxslt: false, makeWrapper: false, meson: false, nftables: false, ninja: false, openssh: false, passt: false, perl: false, perlPackages: false, polkit: false, "pkg-config": false, pmutils: false, python3: false, readline: false, "rpcsvc-proto": false, runtimeShell: false, stdenv: false, replaceVars: false, json_c: false, writeScript: false, writeShellApplication: false, nixosTests: false, acl: true, attr: true, audit: true, dmidecode: true, fuse3: true, kmod: true, libapparmor: true, libcap_ng: true, libnl: true, libpciaccess: true, libtirpc: true, lvm2: true, numactl: true, numad: true, parted: true, systemd: true, "util-linux": true, gmp: false, libiconv: false, qemu: false, enableCeph: true, ceph: false, enableGlusterfs: true, glusterfs: false, enableIscsi: true, openiscsi: false, libiscsi: false, enableXen: true, xen: false, enableZfs: true, zfs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 125, 5], ["repo", 126, 5], ["tag", 127, 5], ["fetchSubmodules", 128, 5], ["hash", 129, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["zfs", 137, 7], ["zpool", 138, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 189, 9], ["runtimeInputs", 190, 9], ["text", 194, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["QEMU_BRIDGE_HELPER", 268, 9], ["QEMU_PR_HELPER", 269, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["libvirtd", 423, 18]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 410, 12], ["tests", 423, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 426, 5], ["homepage", 427, 5], ["changelog", 428, 5], ["license", 429, 5], ["platforms", 430, 5], ["maintainers", 431, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 120, 3], ["version", 122, 3], ["src", 124, 3], ["patches", 132, 3], ["postPatch", 143, 3], ["strictDeps", 203, 3], ["nativeBuildInputs", 205, 3], ["buildInputs", 221, 3], ["preConfigure", 265, 3], ["mesonAutoFeatures", 300, 3], ["mesonFlags", 302, 3], ["doCheck", 380, 3], ["postInstall", 382, 3], ["passthru", 410, 3], ["meta", 425, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -114,7 +107,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libvirt";
       const version = "12.8.0";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "libvirt",
           repo: "libvirt",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -125,7 +118,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./0001-meson-patch-in-an-install-prefix-for-building-on-nix.patch"),
       ], nix.app(nix.sel(lib, "optionals"), enableZfs, nix.thunk(() => [
           nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0002-substitute-zfs-and-zpool-commands.patch"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               zfs: nix.thunk(() => nix.str`${zfs}/bin/zfs`),
               zpool: nix.thunk(() => nix.str`${zfs}/bin/zpool`),
             })))),
@@ -146,7 +139,7 @@ substituteInPlace src/libxl/libxl_capabilities.h \\
  --replace-fail /usr/lib/xen ${xen}/libexec/xen
 `))), nix.app(nix.sel(lib, "optionalString"), isLinux, nix.thunk(() => (() => {
           const script = nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               name: "virt-secret-init-encryption-sh",
               runtimeInputs: nix.thunk(() => [coreutils, systemd]),
               text: nix.thunk(() => nix.str`exec ${runtimeShell} "$@"`),
@@ -200,7 +193,7 @@ substituteInPlace src/libxl/libxl_capabilities.h \\
         ])), nix.concat(nix.app(nix.sel(lib, "optionals"), isDarwin, nix.thunk(() => [gmp, libiconv])), nix.concat(nix.app(nix.sel(lib, "optionals"), enableCeph, nix.thunk(() => [ceph])), nix.concat(nix.app(nix.sel(lib, "optionals"), enableGlusterfs, nix.thunk(() => [glusterfs])), nix.concat(nix.app(nix.sel(lib, "optionals"), enableIscsi, nix.thunk(() => [libiscsi, openiscsi])), nix.concat(nix.app(nix.sel(lib, "optionals"), enableXen, nix.thunk(() => [xen])), nix.app(nix.sel(lib, "optionals"), enableZfs, nix.thunk(() => [zfs]))))))))));
       const preConfigure = nix.thunk(() => (() => {
         const overrides = nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           QEMU_BRIDGE_HELPER: "/run/wrappers/bin/qemu-bridge-helper",
           QEMU_PR_HELPER: "/run/libvirt/nix-helpers/qemu-pr-helper",
         }));
@@ -325,7 +318,7 @@ wrapProgram $out/sbin/libvirtd \\
   --prefix PATH : /run/libvirt/nix-emulators:${binPath}
 `))));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(writeScript, "update-libvirt", nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p curl jq common-updater-scripts
 
@@ -337,10 +330,13 @@ update-source-version ${pname} "$libvirtVersion"
 update-source-version python3Packages.libvirt-python "$libvirtVersion"
 update-source-version perlPackages.SysVirt "$sysvirtVersion" --file="pkgs/top-level/perl-packages.nix"
 `))),
-        tests: nix.thunk(() => ({ [nix.POS]: pos$5, libvirtd: nix.thunk(() => nix.sel(nixosTests, "libvirtd")) })),
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[4],
+          libvirtd: nix.thunk(() => nix.sel(nixosTests, "libvirtd")),
+        })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Toolkit to interact with the virtualization capabilities of recent versions of Linux and other OSes",
         homepage: "https://libvirt.org/",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/libvirt/libvirt/-/raw/v${version}/NEWS.rst`),
@@ -356,7 +352,7 @@ update-source-version perlPackages.SysVirt "$sysvirtVersion" --file="pkgs/top-le
         })()),
       }));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname,
         version,
         src,

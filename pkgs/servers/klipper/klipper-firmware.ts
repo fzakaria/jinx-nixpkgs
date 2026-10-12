@@ -2,12 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/klipper-firmware.nix", [[["klipper-firmware", 110, 9], ["klipper", 112, 11], ["firmwareConfig", 113, 11], ["mcu", 114, 11], ["flashDevice", 115, 11], ["canbusNetwork", 116, 11], ["canbusDevice", 117, 11]], [["makeFlasher", 103, 5]], [["homepage", 123, 28], ["license", 123, 37], ["description", 124, 5], ["maintainers", 125, 5], ["platforms", 129, 5]], [["pname", 35, 3], ["version", 36, 3], ["src", 37, 3], ["nativeBuildInputs", 39, 3], ["configurePhase", 52, 3], ["postPatch", 61, 3], ["postBuild", 65, 3], ["makeFlags", 70, 3], ["installPhase", 75, 3], ["dontFixup", 100, 3], ["passthru", 102, 3], ["meta", 122, 3]]]);
 const formals$1 = { args: { "klipper-firmware": false, stdenv: false, lib: false, "pkg-config": false, pkgsCross: false, "bintools-unwrapped": false, libffi: false, libusb1: false, wxwidgets_3_2: false, python3: false, "gcc-arm-embedded": false, klipper: false, avrdude: false, stm32flash: false, "klipper-flash": false, mcu: true, firmwareConfig: true }, ellipsis: false };
 const formals$2 = { args: { flashDevice: true, canbusNetwork: true, canbusDevice: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/klipper-firmware.nix", [["klipper-firmware", 110, 9], ["klipper", 112, 11], ["firmwareConfig", 113, 11], ["mcu", 114, 11], ["flashDevice", 115, 11], ["canbusNetwork", 116, 11], ["canbusDevice", 117, 11]]);
-const pos$2 = nix.positions(here + "/klipper-firmware.nix", [["makeFlasher", 103, 5]]);
-const pos$3 = nix.positions(here + "/klipper-firmware.nix", [["homepage", 123, 28], ["license", 123, 37], ["description", 124, 5], ["maintainers", 125, 5], ["platforms", 129, 5]]);
-const pos$4 = nix.positions(here + "/klipper-firmware.nix", [["pname", 35, 3], ["version", 36, 3], ["src", 37, 3], ["nativeBuildInputs", 39, 3], ["configurePhase", 52, 3], ["postPatch", 61, 3], ["postBuild", 65, 3], ["makeFlags", 70, 3], ["installPhase", 75, 3], ["dontFixup", 100, 3], ["passthru", 102, 3], ["meta", 122, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
   })());
   const flashBinaries = nix.thunk(() => nix.concat(["lib/hidflash/hid-flash", "lib/rp2040_flash/rp2040_flash"], nix.app(nix.sel(lib, "optional"), needsBossac, "lib/bossac/bin/bossac")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: nix.thunk(() => nix.str`klipper-firmware-${mcu}`),
       version: nix.thunk(() => nix.sel(klipper, "version")),
       src: nix.thunk(() => nix.sel(klipper, "src")),
@@ -87,14 +84,14 @@ rmdir $out/lib 2>/dev/null || echo "Flash binaries exist, not cleaning up lib/"
 `),
       dontFixup: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         makeFlasher: nix.lambda((args_2) => (() => {
           const $_1 = nix.formals(args_2, formals$2);
           const flashDevice = nix.argOr($_1, "flashDevice", () => null);
           const canbusNetwork = nix.argOr($_1, "canbusNetwork", () => null);
           const canbusDevice = nix.argOr($_1, "canbusDevice", () => null);
           return nix.app(nix.sel(klipper_flash, "override"), nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               "klipper-firmware": nix.thunk(() => nix.app(nix.sel(klipper_firmware, "override"), args_1)),
               klipper: klipper,
               firmwareConfig: firmwareConfig,
@@ -108,7 +105,7 @@ rmdir $out/lib 2>/dev/null || echo "Flash binaries exist, not cleaning up lib/"
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(klipper, "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),
         description: "Firmware part of Klipper",

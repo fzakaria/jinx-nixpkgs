@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 5], ["hash", 23, 5]], [["description", 56, 5], ["mainProgram", 57, 5], ["longDescription", 58, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["platforms", 67, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 28, 3], ["postPatch", 30, 3], ["installPhase", 32, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, coreutils: false, python3: false, duplicity: false, gawk: false, gnupg: false, bash: false, gnugrep: false, txt2man: false, makeWrapper: false, which: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 56, 5], ["mainProgram", 57, 5], ["longDescription", 58, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["platforms", 67, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 28, 3], ["postPatch", 30, 3], ["installPhase", 32, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "duply",
       version: "2.5.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/ftplicity/duply%20%28simple%20duplicity%29/2.5.x/duply_${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-DSSnjfbcgWIuWaA+4h7d/0HqpDoXqkJOyGapYX4rtP0=",
         })))),
@@ -46,7 +44,7 @@ wrapProgram "$out/bin/duply" --prefix PATH : \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Shell front end for the duplicity backup tool",
         mainProgram: "duply",
         longDescription: "Duply is a shell front end for the duplicity backup tool\nhttps://www.nongnu.org/duplicity. It greatly simplifies its usage by\nimplementing backup job profiles, batch commands and more. Who says\nsecure backups on non-trusted spaces are no child's play?\n",

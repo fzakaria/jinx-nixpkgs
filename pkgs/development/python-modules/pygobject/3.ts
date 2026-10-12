@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/3.nix", [[["url", 30, 5], ["hash", 31, 5]], [["packageName", 69, 7], ["attrPath", 70, 7], ["versionPolicy", 71, 7]], [["updateScript", 68, 5]], [["homepage", 76, 5], ["description", 77, 5], ["license", 78, 5], ["teams", 79, 5], ["platforms", 80, 5]], [["pname", 19, 3], ["version", 20, 3], ["outputs", 22, 3], ["pyproject", 27, 3], ["src", 29, 3], ["depsBuildBuild", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 43, 3], ["propagatedBuildInputs", 49, 3], ["preConfigure", 55, 3], ["mesonFlags", 60, 3], ["passthru", 67, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, buildPythonPackage: false, "pkg-config": false, glib: false, "gobject-introspection": false, pycairo: false, cairo: false, ncurses: false, meson: false, ninja: false, gnome: false, python: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/3.nix", [["url", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/3.nix", [["packageName", 69, 7], ["attrPath", 70, 7], ["versionPolicy", 71, 7]]);
-const pos$3 = nix.positions(here + "/3.nix", [["updateScript", 68, 5]]);
-const pos$4 = nix.positions(here + "/3.nix", [["homepage", 76, 5], ["description", 77, 5], ["license", 78, 5], ["teams", 79, 5], ["platforms", 80, 5]]);
-const pos$5 = nix.positions(here + "/3.nix", [["pname", 19, 3], ["version", 20, 3], ["outputs", 22, 3], ["pyproject", 27, 3], ["src", 29, 3], ["depsBuildBuild", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 43, 3], ["propagatedBuildInputs", 49, 3], ["preConfigure", 55, 3], ["mesonFlags", 60, 3], ["passthru", 67, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const outputs = nix.thunk(() => ["out", "dev"]);
       const pyproject = false;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/pygobject/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/pygobject-${version}.tar.gz`),
           hash: "sha256-EnYOSg49BLbrleBveifjYsgm1WfqYTNzqSwAO2xw0tY=",
         }))));
@@ -46,16 +42,16 @@ export PKG_CONFIG_PATH_FOR_BUILD=${nix.app(nix.sel(lib, "getDev"), python)}/lib/
         nix.thunk(() => nix.str`-Dpython=${nix.sel(python, "pythonOnBuildForHost", "interpreter")}`),
       ]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             packageName: "pygobject",
             attrPath: "python3.pkgs.pygobject3",
             versionPolicy: "odd-unstable",
           })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://pygobject.readthedocs.io/",
         description: "Python bindings for Glib",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
@@ -63,7 +59,7 @@ export PKG_CONFIG_PATH_FOR_BUILD=${nix.app(nix.sel(lib, "getDev"), python)}/lib/
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         outputs,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["electron_43", 11, 29]], [["vencord", 16, 7]], [["license", 21, 24], ["mainProgram", 21, 32], ["platforms", 21, 44], ["description", 23, 5], ["homepage", 24, 5], ["maintainers", 25, 5]], [["pname", 12, 3], ["patches", 14, 3], ["meta", 20, 3]]]);
 const formals$1 = { args: { electron_43: false, webcord: false, replaceVars: false, lib: false, "vencord-web-extension": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["electron_43", 11, 29]]);
-const pos$2 = nix.positions(here + "/package.nix", [["vencord", 16, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["license", 21, 24], ["mainProgram", 21, 32], ["platforms", 21, 44], ["description", 23, 5], ["homepage", 24, 5], ["maintainers", 25, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["patches", 14, 3], ["meta", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,16 +12,16 @@ export default nix.lambda((args) => (() => {
   const replaceVars = nix.arg($, "replaceVars");
   const lib = nix.arg($, "lib");
   const vencord_web_extension = nix.arg($, "vencord-web-extension");
-  return nix.app(nix.sel(nix.app(nix.sel(webcord, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, electron_43: electron_43 }))), "overrideAttrs"), (old) => ({
-      [nix.POS]: pos$4,
+  return nix.app(nix.sel(nix.app(nix.sel(webcord, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], electron_43: electron_43 }))), "overrideAttrs"), (old) => ({
+      [nix.POS]: $pos[3],
       pname: "webcord-vencord",
       patches: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "patches"), [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./add-extension.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, vencord: vencord_web_extension })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./add-extension.patch"), nix.thunk(() => ({ [nix.POS]: $pos[1], vencord: vencord_web_extension })))),
       ])),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(old, "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         license: nix.thunk(() => nix.attr(from, "license")),
         mainProgram: nix.thunk(() => nix.attr(from, "mainProgram")),
         platforms: nix.thunk(() => nix.attr(from, "platforms")),

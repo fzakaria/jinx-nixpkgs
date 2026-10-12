@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["name", 47, 7], ["url", 48, 7], ["hash", 49, 7]], [["description", 84, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["license", 87, 5], ["maintainers", 88, 5]], [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["__structuredAttrs", 34, 3], ["src", 36, 3], ["patches", 43, 3], ["build-system", 53, 3], ["dependencies", 55, 3], ["pythonImportsCheck", 65, 3], ["nativeCheckInputs", 67, 3], ["disabledTests", 77, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, setuptools: false, autograd: false, "autograd-gamma": false, formulaic: false, matplotlib: false, numpy: false, pandas: false, scipy: false, dill: false, flaky: false, jinja2: false, psutil: false, pytestCheckHook: false, "scikit-learn": false, sybil: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 47, 7], ["url", 48, 7], ["hash", 49, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 84, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["license", 87, 5], ["maintainers", 88, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["__structuredAttrs", 34, 3], ["src", 36, 3], ["patches", 43, 3], ["build-system", 53, 3], ["dependencies", 55, 3], ["pythonImportsCheck", 65, 3], ["nativeCheckInputs", 67, 3], ["disabledTests", 77, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,13 +28,13 @@ export default nix.lambda((args) => (() => {
   const scikit_learn = nix.arg($, "scikit-learn");
   const sybil = nix.arg($, "sybil");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "lifelines",
       version: "0.30.3",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "CamDavidsonPilon",
           repo: "lifelines",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "pandas-3-compat.patch",
             url: "https://github.com/CamDavidsonPilon/lifelines/commit/755db6f1e018056b14282885e010274d9f91755a.patch",
             hash: "sha256-T9NLs3R1+G6gWam+DU/rCOYVyQpq9YjkoWgCh2KUxm4=",
@@ -60,7 +57,7 @@ export default nix.lambda((args) => (() => {
           "test_that_adding_strata_will_change_c_index",
         ]))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Survival analysis in Python",
         homepage: "https://lifelines.readthedocs.io",
         changelog: nix.thunk(() => nix.str`https://github.com/CamDavidsonPilon/lifelines/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 22, 5], ["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["description", 43, 5], ["mainProgram", 44, 5], ["longDescription", 45, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 33, 3], ["cmakeFlags", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, cmake: false, gfortran: false, blas: false, lapack: false, mpi: false, petsc: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 22, 5], ["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 43, 5], ["mainProgram", 44, 5], ["longDescription", 45, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 33, 3], ["cmakeFlags", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const mpiSupport = nix.thunk(() => nix.sel(petsc, "passthru", "mpiSupport"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "getdp",
       version: "3.6.0-unstable-2025-10-25",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.onelab.info",
           owner: "getdp",
           repo: "getdp",
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([gfortran, blas, lapack, petsc], nix.app(nix.sel(lib, "optional"), mpiSupport, mpi))),
       cmakeFlags: nix.thunk(() => nix.app(nix.sel(lib, "optional"), mpiSupport, "-DENABLE_MPI=1")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "General Environment for the Treatment of Discrete Problems",
         mainProgram: "getdp",
         longDescription: "GetDP is a free finite element solver using mixed elements to discretize\nde Rham-type complexes in one, two and three dimensions.  The main\nfeature of GetDP is the closeness between the input data defining\ndiscrete problems (written by the user in ASCII data files) and the\nsymbolic mathematical expressions of these problems.\n",

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]], [["doCheck", 112, 40]], [["pytest", 112, 5]], [["tests", 111, 12]], [["description", 116, 5], ["homepage", 117, 5], ["changelog", 118, 5], ["license", 119, 5], ["maintainers", 120, 5]], [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["disabled", 32, 3], ["src", 34, 3], ["postPatch", 41, 3], ["nativeBuildInputs", 49, 3], ["build-system", 53, 3], ["dependencies", 57, 3], ["nativeCheckInputs", 69, 3], ["pythonImportsCheck", 79, 3], ["doCheck", 81, 3], ["disabledTests", 83, 3], ["passthru", 111, 3], ["meta", 115, 3]]]);
 const formals$1 = { args: { lib: false, attrs: false, bellows: false, buildPythonPackage: false, fetchFromGitHub: false, freezegun: false, frozendict: false, looptime: false, pyprojectVersionPatchHook: false, "pytest-asyncio_0": false, "pytest-timeout": false, "pytest-xdist": false, pytestCheckHook: false, pythonOlder: false, setuptools: false, zigpy: false, "zigpy-deconz": false, "zigpy-xbee": false, "zigpy-zigate": false, "zigpy-ziggurat": false, "zigpy-znp": false, zha: false, "zha-quirks": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["doCheck", 112, 40]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pytest", 112, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 111, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 116, 5], ["homepage", 117, 5], ["changelog", 118, 5], ["license", 119, 5], ["maintainers", 120, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["disabled", 32, 3], ["src", 34, 3], ["postPatch", 41, 3], ["nativeBuildInputs", 49, 3], ["build-system", 53, 3], ["dependencies", 57, 3], ["nativeCheckInputs", 69, 3], ["pythonImportsCheck", 79, 3], ["doCheck", 81, 3], ["disabledTests", 83, 3], ["passthru", 111, 3], ["meta", 115, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,13 +31,13 @@ export default nix.lambda((args) => (() => {
   const zha = nix.arg($, "zha");
   const zha_quirks = nix.arg($, "zha-quirks");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "zha",
       version: "2.2.2",
       pyproject: true,
       disabled: nix.thunk(() => nix.app(pythonOlder, "3.12")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "zigpy",
           repo: "zha",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -99,14 +94,14 @@ export default nix.lambda((args) => (() => {
         "test_gateway_startup_failure",
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          pytest: nix.thunk(() => nix.app(nix.sel(zha, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$2, doCheck: true })))),
+          [nix.POS]: $pos[2],
+          pytest: nix.thunk(() => nix.app(nix.sel(zha, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[1], doCheck: true })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Zigbee Home Automation",
         homepage: "https://github.com/zigpy/zha",
         changelog: nix.thunk(() => nix.str`https://github.com/zigpy/zha/releases/tag/${nix.sel(finalAttrs, "version")}`),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["tagPrefix", 82, 7]], [["updateScript", 81, 5]], [["description", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["platforms", 90, 5], ["maintainers", 91, 5]], [["pname", 14, 3], ["version", 15, 3], ["outputs", 17, 3], ["src", 22, 3], ["patches", 29, 3], ["postPatch", 39, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 52, 3], ["strictDeps", 56, 3], ["cmakeFlags", 58, 3], ["doCheck", 72, 3], ["nativeCheckInputs", 76, 3], ["passthru", 80, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, doxygen: false, graphviz: false, gtest: false, unstableGitUpdater: false, valgrind: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["tagPrefix", 82, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 81, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["platforms", 90, 5], ["maintainers", 91, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["outputs", 17, 3], ["src", 22, 3], ["patches", 29, 3], ["postPatch", 39, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 52, 3], ["strictDeps", 56, 3], ["cmakeFlags", 58, 3], ["doCheck", 72, 3], ["nativeCheckInputs", 76, 3], ["passthru", 80, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const valgrind = nix.arg($, "valgrind");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "rapidjson",
       version: "1.1.0-unstable-2025-02-05",
       outputs: nix.thunk(() => ["out", "doc"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Tencent",
           repo: "rapidjson",
           rev: "24b5e7a8b27f42fa16b96fc70aade9106cf7102f",
@@ -53,11 +49,11 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => (nix.asBool(!nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))))) && nix.asBool(nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), valgrind)))),
       nativeCheckInputs: nix.thunk(() => [valgrind]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, tagPrefix: "v" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], tagPrefix: "v" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Fast JSON parser/generator for C++ with both SAX/DOM style API",
         homepage: "http://rapidjson.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

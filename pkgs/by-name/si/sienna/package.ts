@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 17, 5]], [["url", 21, 5], ["hash", 22, 5]], [["name", 27, 7], ["exec", 28, 7], ["icon", 29, 7], ["comment", 30, 7], ["desktopName", 31, 7], ["genericName", 32, 7], ["categories", 33, 7]], [["description", 56, 5], ["mainProgram", 57, 5], ["homepage", 58, 5], ["platforms", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["icon", 20, 3], ["desktopItems", 25, 3], ["nativeBuildInputs", 37, 3], ["dontUnpack", 42, 3], ["installPhase", 44, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, love: false, makeWrapper: false, makeDesktopItem: false, copyDesktopItems: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 27, 7], ["exec", 28, 7], ["icon", 29, 7], ["comment", 30, 7], ["desktopName", 31, 7], ["genericName", 32, 7], ["categories", 33, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 56, 5], ["mainProgram", 57, 5], ["homepage", 58, 5], ["platforms", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["icon", 20, 3], ["desktopItems", 25, 3], ["nativeBuildInputs", 37, 3], ["dontUnpack", 42, 3], ["installPhase", 44, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,18 +18,18 @@ export default nix.lambda((args) => (() => {
       const pname = "sienna";
       const version = "1.0d";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/SimonLarsen/sienna/releases/download/v${version}/sienna-${version}.love`),
           hash: "sha256-1bFjhN7jL/PMYMJH1ete6uyHTYsTGgoP60sf/sJTLlU=",
         }))));
       const icon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "http://tangramgames.dk/img/thumb/sienna.png",
           hash: "sha256-1grwCi1sKelqEH58pO0rTSnqG7JOfVByNKu2NCbMAos=",
         }))));
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "sienna",
             exec: "sienna",
             icon: icon,
@@ -55,7 +51,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), love)} $out/bin/sienna --add-flags
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Fast-paced one button platformer",
         mainProgram: "sienna",
         homepage: "https://tangramgames.dk/games/sienna",
@@ -64,7 +60,7 @@ runHook postInstall
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

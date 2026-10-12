@@ -2,20 +2,18 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/sources.nix", [["url", 4, 5], ["sha256", 5, 5]]);
-const pos$2 = nix.positions(here + "/sources.nix", [["url", 8, 5], ["sha256", 9, 5]]);
-const pos$3 = nix.positions(here + "/sources.nix", [["version", 2, 3], ["x86_64-linux", 3, 3], ["aarch64-darwin", 7, 3]]);
+const $pos = nix.positions(here + "/sources.nix", [[["url", 4, 5], ["sha256", 5, 5]], [["url", 8, 5], ["sha256", 9, 5]], [["version", 2, 3], ["x86_64-linux", 3, 3], ["aarch64-darwin", 7, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$3,
+  [nix.POS]: $pos[2],
   version: "3.12.1",
   "x86_64-linux": nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     url: "https://download.breitbandmessung.de/bbm/Breitbandmessung-3.12.1-linux.deb",
     sha256: "sha256-uUgzGk6N8Py91vus5Yh3DmK0xh5+J5xqD3nvWB3ggPE=",
   })),
   "aarch64-darwin": nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     url: "https://download.breitbandmessung.de/bbm/Breitbandmessung-3.12.1-mac.dmg",
     sha256: "sha256-8zzsQ86udXf4NeTYrxgrb28N5wwRaYrAAtZ5H/1T5w4=",
   })),

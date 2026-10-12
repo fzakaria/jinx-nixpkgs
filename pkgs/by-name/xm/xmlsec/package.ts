@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["urls", 23, 5], ["hash", 29, 5]], [["nativeBuildInputs", 85, 11], ["buildInputs", 86, 11]], [["python-xmlsec", 81, 5], ["libxmlsec1-crypto", 82, 5]], [["tests", 80, 12]], [["description", 113, 5], ["homepage", 114, 5], ["downloadPage", 115, 5], ["license", 116, 5], ["mainProgram", 117, 5], ["maintainers", 118, 5], ["platforms", 119, 5]], [["pname", 17, 3], ["version", 18, 3], ["__structuredAttrs", 20, 3], ["src", 22, 3], ["patches", 32, 3], ["postPatch", 37, 3], ["outputs", 41, 3], ["strictDeps", 46, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 50, 3], ["propagatedBuildInputs", 58, 3], ["enableParallelBuilding", 63, 3], ["doCheck", 64, 3], ["nativeCheckInputs", 65, 3], ["preCheck", 66, 3], ["configureFlags", 73, 3], ["postInstall", 75, 3], ["passthru", 80, 3], ["meta", 112, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchurl: false, libxml2: false, gnutls: false, libxslt: false, "pkg-config": false, libtool: false, openssl: false, nss: false, lib: false, python3Packages: false, runCommandCC: false, writeText: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["urls", 23, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 85, 11], ["buildInputs", 86, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["python-xmlsec", 81, 5], ["libxmlsec1-crypto", 82, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 80, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 113, 5], ["homepage", 114, 5], ["downloadPage", 115, 5], ["license", 116, 5], ["mainProgram", 117, 5], ["maintainers", 118, 5], ["platforms", 119, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["__structuredAttrs", 20, 3], ["src", 22, 3], ["patches", 32, 3], ["postPatch", 37, 3], ["outputs", 41, 3], ["strictDeps", 46, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 50, 3], ["propagatedBuildInputs", 58, 3], ["enableParallelBuilding", 63, 3], ["doCheck", 64, 3], ["nativeCheckInputs", 65, 3], ["preCheck", 66, 3], ["configureFlags", 73, 3], ["postInstall", 75, 3], ["passthru", 80, 3], ["meta", 112, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const runCommandCC = nix.arg($, "runCommandCC");
   const writeText = nix.arg($, "writeText");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "xmlsec",
       version: "1.3.12",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://www.aleksey.com/xmlsec/download/xmlsec1-${nix.sel(finalAttrs, "version")}.tar.gz`),
             nix.thunk(() => nix.str`https://www.aleksey.com/xmlsec/download/older-releases/xmlsec1-${nix.sel(finalAttrs, "version")}.tar.gz`),
@@ -55,12 +50,12 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--enable-soap"]),
       postInstall: "moveToOutput \"bin/xmlsec1-config\" \"$dev\"\nmoveToOutput \"lib/xmlsec1Conf.sh\" \"$dev\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "python-xmlsec": nix.thunk(() => nix.sel(python3Packages, "xmlsec")),
           "libxmlsec1-crypto": nix.thunk(() => nix.app(runCommandCC, "libxmlsec1-crypto-test", nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               nativeBuildInputs: nix.thunk(() => [pkg_config]),
               buildInputs: nix.thunk(() => [
                 nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
@@ -78,7 +73,7 @@ touch $out
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "XML Security Library in C based on libxml2",
         homepage: "https://www.aleksey.com/xmlsec/",
         downloadPage: "https://www.aleksey.com/xmlsec/download.html",

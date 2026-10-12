@@ -2,12 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 43]], [["libclang", 35, 7]], [["pname", 60, 26], ["version", 60, 32], ["src", 60, 40], ["hash", 61, 55], ["postPatch", 64, 5]], [["description", 89, 5], ["mainProgram", 90, 5], ["homepage", 91, 5], ["platforms", 92, 5], ["license", 93, 5], ["teams", 94, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["swiftpmPatches", 40, 3], ["postPatch", 42, 3], ["swiftpmDeps", 59, 3], ["strictDeps", 69, 3], ["nativeBuildInputs", 71, 3], ["buildInputs", 77, 3], ["doCheck", 84, 3], ["__structuredAttrs", 86, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, fetchSwiftPMDeps: false, llvmPackages: false, ncurses: false, "pkg-config": false, replaceVars: false, sqlite: false, stdenv: false, swift: false, "swift-corelibs-libdispatch": false, swiftpm: false, swift_release: false, swift_sources: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 43]]);
-const pos$2 = nix.positions(here + "/package.nix", [["libclang", 35, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 60, 26], ["version", 60, 32], ["src", 60, 40], ["hash", 61, 55], ["postPatch", 64, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 89, 5], ["mainProgram", 90, 5], ["homepage", 91, 5], ["platforms", 92, 5], ["license", 93, 5], ["teams", 94, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["swiftpmPatches", 40, 3], ["postPatch", 42, 3], ["swiftpmDeps", 59, 3], ["strictDeps", 69, 3], ["nativeBuildInputs", 71, 3], ["buildInputs", 77, 3], ["doCheck", 84, 3], ["__structuredAttrs", 86, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const swift_release = nix.arg($, "swift_release");
   const swift_sources = nix.arg($, "swift_sources");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "sourcekit-lsp",
       version: swift_release,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(swift_sources, "sourcekit-lsp"));
           return {
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "swiftlang",
           repo: "sourcekit-lsp",
           tag: nix.thunk(() => nix.str`swift-${nix.sel(finalAttrs, "version")}-RELEASE`),
@@ -42,7 +38,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./patches/0001-Fix-for-using-swift-corelibs-xctest-on-Darwin.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./patches/0002-Load-IndexStore-from-the-store.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             libclang: nix.thunk(() => nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(llvmPackages, "libclang")))),
           })))),
       ]),
@@ -51,7 +47,7 @@ export default nix.lambda((args) => (() => {
       swiftpmDeps: nix.thunk(() => nix.app(fetchSwiftPMDeps, nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(swift_sources, "sourcekit-lsp", "swiftpmDeps"));
           return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -66,7 +62,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Language Server Protocol implementation for Swift and C-based languages",
         mainProgram: "sourcekit-lsp",
         homepage: "https://github.com/apple/sourcekit-lsp",

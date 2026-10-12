@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["fetchLibrustyV8", 21, 46]], [["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]], [["LIBCLANG_PATH", 70, 5], ["RUSTY_V8_ARCHIVE", 71, 5]], [["updateScript", 144, 12]], [["description", 147, 5], ["homepage", 148, 5], ["changelog", 149, 5], ["mainProgram", 150, 5], ["license", 151, 5], ["maintainers", 152, 5], ["platforms", 160, 5]], [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["cargoHash", 48, 3], ["cargoBuildFlags", 50, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 63, 3], ["env", 69, 3], ["postFixup", 74, 3], ["nativeCheckInputs", 96, 3], ["__darwinAllowLocalNetworking", 103, 3], ["checkFlags", 105, 3], ["nativeInstallCheckInputs", 140, 3], ["versionCheckProgramArg", 141, 3], ["doInstallCheck", 142, 3], ["passthru", 144, 3], ["meta", 146, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, callPackage: false, fetchFromGitHub: false, rustPlatform: false, cmake: false, dbus: false, libxcb: false, "pkg-config": false, protobuf: false, openssl: false, cacert: false, gitMinimal: false, writableTmpDirAsHomeHook: false, versionCheckHook: false, "nix-update-script": false, llvmPackages: false, makeWrapper: false, librusty_v8: true, python3: false, bash: false, xdotool: false, wmctrl: false, xclip: false, xwininfo: false, wtype: false, "wl-clipboard": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["fetchLibrustyV8", 21, 46]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["LIBCLANG_PATH", 70, 5], ["RUSTY_V8_ARCHIVE", 71, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 144, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 147, 5], ["homepage", 148, 5], ["changelog", 149, 5], ["mainProgram", 150, 5], ["license", 151, 5], ["maintainers", 152, 5], ["platforms", 160, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["cargoHash", 48, 3], ["cargoBuildFlags", 50, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 63, 3], ["env", 69, 3], ["postFixup", 74, 3], ["nativeCheckInputs", 96, 3], ["__darwinAllowLocalNetworking", 103, 3], ["checkFlags", 105, 3], ["nativeInstallCheckInputs", 140, 3], ["versionCheckProgramArg", 141, 3], ["doInstallCheck", 142, 3], ["passthru", 144, 3], ["meta", 146, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +28,7 @@ export default nix.lambda((args) => (() => {
   const librusty_v8 = nix.argOr($, "librusty_v8", () => nix.app(callPackage, nix.path(here, "./librusty_v8.nix"), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.app(callPackage, nix.path(here, "./fetchers.nix"), nix.thunk(() => ({}))));
       return {
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       fetchLibrustyV8: nix.thunk(() => nix.attr(from, "fetchLibrustyV8")),
     };
     })())));
@@ -46,11 +41,11 @@ export default nix.lambda((args) => (() => {
   const wtype = nix.arg($, "wtype");
   const wl_clipboard = nix.arg($, "wl-clipboard");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "goose-cli",
       version: "1.49.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "aaif-goose",
           repo: "goose",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -67,7 +62,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => nix.concat([dbus, openssl], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libxcb])))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         LIBCLANG_PATH: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(llvmPackages, "libclang")))}/lib`),
         RUSTY_V8_ARCHIVE: librusty_v8,
       })),
@@ -101,11 +96,11 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "--version",
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Open-source, extensible AI agent that goes beyond code suggestions - install, execute, edit, and test with any LLM",
         homepage: "https://github.com/aaif-goose/goose",
         changelog: nix.thunk(() => nix.str`https://github.com/aaif-goose/goose/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

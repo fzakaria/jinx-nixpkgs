@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["PKG_CONFIG_PATH", 57, 7]], [["updateScript", 59, 12]], [["description", 62, 5], ["mainProgram", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 71, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["cargoHash", 27, 3], ["doCheck", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 38, 3], ["postInstall", 47, 3], ["env", 57, 3], ["passthru", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "nix-update-script": false, "gdk-pixbuf": false, glib: false, graphene: false, gtk4: false, openssl: false, pango: false, "pkg-config": false, wrapGAppsHook4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["PKG_CONFIG_PATH", 57, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 59, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 62, 5], ["mainProgram", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 71, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["cargoHash", 27, 3], ["doCheck", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 38, 3], ["postInstall", 47, 3], ["env", 57, 3], ["passthru", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "samrewritten",
       version: "1.6.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "PaulCombal",
           repo: "SamRewritten",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,15 +36,15 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gdk_pixbuf, glib, graphene, gtk4, openssl, pango]),
       postInstall: "install -Dm644 assets/org.samrewritten.SamRewritten.gschema.xml \\\n  $out/share/glib-2.0/schemas/org.samrewritten.SamRewritten.gschema.xml\nglib-compile-schemas $out/share/glib-2.0/schemas\nsubstituteInPlace package/samrewritten.desktop \\\n  --replace-fail \"/usr/bin/samrewritten\" \"samrewritten\"\ninstall -Dm644 package/samrewritten.desktop \\\n  $out/share/applications/samrewritten.desktop\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         PKG_CONFIG_PATH: nix.thunk(() => nix.str`${nix.sel(openssl, "dev")}/lib/pkgconfig`),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Modern Steam achievements manager for Windows and Linux",
         mainProgram: "samrewritten",
         homepage: "https://github.com/PaulCombal/SamRewritten",

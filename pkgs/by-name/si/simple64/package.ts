@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 5], ["hash", 25, 5]], [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["name", 101, 7], ["desktopName", 102, 7], ["genericName", 103, 7], ["exec", 104, 7], ["mimeTypes", 105, 7], ["icon", 106, 7], ["terminal", 107, 7], ["categories", 108, 7]], [["description", 116, 5], ["homepage", 117, 5], ["license", 118, 5], ["mainProgram", 119, 5], ["maintainers", 120, 5], ["platforms", 121, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["patches", 39, 3], ["postPatch", 44, 3], ["strictDeps", 48, 3], ["__structuredAttrs", 49, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 62, 3], ["dontUseCmakeConfigure", 73, 3], ["buildPhase", 75, 3], ["installPhase", 83, 3], ["desktopItems", 99, 3], ["meta", 115, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchurl: false, writeShellScriptBin: false, cmake: false, ninja: false, "pkg-config": false, makeWrapper: false, zlib: false, libpng: false, SDL2: false, SDL2_net: false, hidapi: false, qt6: false, "vulkan-loader": false, makeDesktopItem: false, copyDesktopItems: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 101, 7], ["desktopName", 102, 7], ["genericName", 103, 7], ["exec", 104, 7], ["mimeTypes", 105, 7], ["icon", 106, 7], ["terminal", 107, 7], ["categories", 108, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 116, 5], ["homepage", 117, 5], ["license", 118, 5], ["mainProgram", 119, 5], ["maintainers", 120, 5], ["platforms", 121, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["patches", 39, 3], ["postPatch", 44, 3], ["strictDeps", 48, 3], ["__structuredAttrs", 49, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 62, 3], ["dontUseCmakeConfigure", 73, 3], ["buildPhase", 75, 3], ["installPhase", 83, 3], ["desktopItems", 99, 3], ["meta", 115, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,16 +26,16 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const cheats_json = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://raw.githubusercontent.com/simple64/cheat-parser/87963b7aca06e0d4632b66bc5ffe7d6b34060f4f/cheats.json",
       hash: "sha256-rS/4Mdi+18C2ywtM5nW2XaJkC1YnKZPc4YdQ3mCfESU=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "simple64",
       version: "2024.12.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "simple64",
           repo: "simple64",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -90,7 +86,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "simple64",
             desktopName: "simple64",
             genericName: "Nintendo 64 Emulator",
@@ -102,7 +98,7 @@ runHook postInstall
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Easy to use N64 emulator",
         homepage: "https://simple64.github.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

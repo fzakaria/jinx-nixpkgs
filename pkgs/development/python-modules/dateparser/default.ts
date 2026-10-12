@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["calendars", 47, 5], ["fasttext", 51, 5], ["langdetect", 55, 5]], [["changelog", 81, 5], ["description", 82, 5], ["homepage", 83, 5], ["license", 84, 5], ["mainProgram", 85, 5], ["maintainers", 86, 5]], [["pname", 25, 3], ["version", 26, 3], ["pyproject", 28, 3], ["src", 30, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["optional-dependencies", 46, 3], ["nativeCheckInputs", 58, 3], ["enabledTestPaths", 70, 3], ["disabledTests", 72, 3], ["pythonImportsCheck", 78, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "python-dateutil": false, pytz: false, regex: false, tzlocal: false, hijridate: false, convertdate: false, fasttext: false, numpy: false, langdetect: false, parameterized: false, pytestCheckHook: false, gitpython: false, parsel: false, requests: false, "ruamel-yaml": false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["calendars", 47, 5], ["fasttext", 51, 5], ["langdetect", 55, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 81, 5], ["description", 82, 5], ["homepage", 83, 5], ["license", 84, 5], ["mainProgram", 85, 5], ["maintainers", 86, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["pyproject", 28, 3], ["src", 30, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["optional-dependencies", 46, 3], ["nativeCheckInputs", 58, 3], ["enabledTestPaths", 70, 3], ["disabledTests", 72, 3], ["pythonImportsCheck", 78, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const ruamel_yaml = nix.arg($, "ruamel-yaml");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "dateparser",
       version: "1.4.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "scrapinghub",
           repo: "dateparser",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [python_dateutil, pytz, regex, tzlocal]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         calendars: nix.thunk(() => [hijridate, convertdate]),
         fasttext: nix.thunk(() => [fasttext, numpy]),
         langdetect: nix.thunk(() => [langdetect]),
@@ -66,7 +63,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["dateparser"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/scrapinghub/dateparser/blob/${nix.sel(finalAttrs, "src", "tag")}/HISTORY.rst`),
         description: "Date parsing library designed to parse dates from HTML pages",
         homepage: "https://github.com/scrapinghub/dateparser",

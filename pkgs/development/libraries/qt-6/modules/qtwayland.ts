@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/qtwayland.nix", [[["platforms", 27, 5], ["badPlatforms", 28, 5]], [["pname", 13, 3], ["propagatedBuildInputs", 15, 3], ["buildInputs", 19, 3], ["nativeBuildInputs", 20, 3], ["cmakeFlags", 22, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { pkgsBuildBuild: false, stdenv: false, lib: false, qtModule: false, qtbase: false, qtdeclarative: false, "pkg-config": false, libdrm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/qtwayland.nix", [["platforms", 27, 5], ["badPlatforms", 28, 5]]);
-const pos$2 = nix.positions(here + "/qtwayland.nix", [["pname", 13, 3], ["propagatedBuildInputs", 15, 3], ["buildInputs", 19, 3], ["nativeBuildInputs", 20, 3], ["cmakeFlags", 22, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libdrm = nix.arg($, "libdrm");
   return nix.app(qtModule, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "qtwayland",
       propagatedBuildInputs: nix.thunk(() => [qtbase, qtdeclarative]),
       buildInputs: nix.thunk(() => [libdrm]),
@@ -26,7 +25,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.str`-DQt6WaylandScannerTools_DIR=${nix.sel(pkgsBuildBuild, "qt6", "qtbase")}/lib/cmake/Qt6WaylandScannerTools`),
         ]))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         badPlatforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),
       })),

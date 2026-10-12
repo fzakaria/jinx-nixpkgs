@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["patches", 69, 5]], [["nvidia_x11", 89, 17]], [["stdenv", 102, 5]], [["owner", 111, 5], ["repo", 112, 5], ["tag", 113, 5], ["hash", 114, 5]], [["NIX_CFLAGS_COMPILE", 131, 5], ["INCLUDE_DIRS", 133, 5]], [["xf86videodummy", 292, 13], ["updateScript", 293, 5]], [["homepage", 297, 5], ["description", 298, 5], ["changelog", 299, 5], ["platforms", 300, 5], ["license", 301, 5], ["maintainers", 302, 5]], [["pname", 106, 3], ["version", 107, 3], ["format", 108, 3], ["src", 110, 3], ["patches", 117, 3], ["postPatch", 122, 3], ["env", 129, 3], ["nativeBuildInputs", 136, 3], ["buildInputs", 147, 3], ["propagatedBuildInputs", 195, 3], ["setupPyBuildFlags", 231, 3], ["dontWrapGApps", 245, 3], ["preFixup", 247, 3], ["postInstall", 273, 3], ["enableParallelBuilding", 289, 3], ["passthru", 291, 3], ["meta", 296, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, "nix-update-script": false, "pkg-config": false, runCommand: false, writeText: false, wrapGAppsHook3: false, withNvenc: true, atk: false, cairo: false, cudaPackages: false, ffmpeg: false, "gdk-pixbuf": false, getopt: false, glib: false, "gobject-introspection": false, gst_all_1: false, gtk3: false, libappindicator: false, libfakexinerama: false, librsvg: false, libvpx: false, libwebp: false, systemdLibs: false, lz4: false, "nv-codec-headers-10": false, nvidia_x11: true, pam: false, pandoc: false, pango: false, pulseaudioFull: false, python3: false, stdenv: false, "util-linux": false, which: false, x264: false, x265: false, libavif: false, openh264: false, libyuv: false, xauth: false, "xdg-utils": false, "xkeyboard-config": false, "xf86-video-dummy": false, libxtst: false, libxres: false, libxrender: false, libxrandr: false, libxi: false, libxfixes: false, libxdamage: false, libxcomposite: false, libx11: false, xorgproto: false, libxkbfile: false, "xorg-server": false, xxhash: false, clang: false, withHtml: true, "xpra-html5": false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["patches", 69, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nvidia_x11", 89, 17]]);
-const pos$3 = nix.positions(here + "/package.nix", [["stdenv", 102, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 111, 5], ["repo", 112, 5], ["tag", 113, 5], ["hash", 114, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 131, 5], ["INCLUDE_DIRS", 133, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["xf86videodummy", 292, 13], ["updateScript", 293, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["homepage", 297, 5], ["description", 298, 5], ["changelog", 299, 5], ["platforms", 300, 5], ["license", 301, 5], ["maintainers", 302, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 106, 3], ["version", 107, 3], ["format", 108, 3], ["src", 110, 3], ["patches", 117, 3], ["postPatch", 122, 3], ["env", 129, 3], ["nativeBuildInputs", 136, 3], ["buildInputs", 147, 3], ["propagatedBuildInputs", 195, 3], ["setupPyBuildFlags", 231, 3], ["dontWrapGApps", 245, 3], ["preFixup", 247, 3], ["postInstall", 273, 3], ["enableParallelBuilding", 289, 3], ["passthru", 291, 3], ["meta", 296, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -79,7 +72,7 @@ export default nix.lambda((args) => (() => {
   const cython = nix.thunk(() => nix.attr(from, "cython"));
   const buildPythonApplication = nix.thunk(() => nix.attr(from, "buildPythonApplication"));
   const xf86videodummy = nix.thunk(() => nix.app(nix.sel(xf86_video_dummy, "overrideDerivation"), (p) => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       patches: nix.thunk(() => [
         nix.path(here, "./0002-Constant-DPI.patch"),
         nix.path(here, "./0003-fix-pointer-limits.patch"),
@@ -92,7 +85,7 @@ export default nix.lambda((args) => (() => {
   ModulePath "${xf86videodummy}/lib/xorg/modules/drivers"
 EndSection
 `)));
-  const nvencHeaders = nix.thunk(() => nix.app(runCommand, "nvenc-headers", nix.thunk(() => ({ [nix.POS]: pos$2, nvidia_x11: nvidia_x11 })), nix.thunk(() => nix.str`mkdir -p $out/include $out/lib/pkgconfig
+  const nvencHeaders = nix.thunk(() => nix.app(runCommand, "nvenc-headers", nix.thunk(() => ({ [nix.POS]: $pos[1], nvidia_x11: nvidia_x11 })), nix.thunk(() => nix.str`mkdir -p $out/include $out/lib/pkgconfig
 cp ${nv_codec_headers_10}/include/ffnvcodec/nvEncodeAPI.h $out/include
 substituteAll ${nix.path(here, "./nvenc.pc")} $out/lib/pkgconfig/nvenc.pc
 `)));
@@ -100,7 +93,7 @@ substituteAll ${nix.path(here, "./nvenc.pc")} $out/lib/pkgconfig/nvenc.pc
 substituteAll ${nix.sel(cudaPackages, "libnvjpeg", "dev")}/share/pkgconfig/nvjpeg.pc $out/lib/pkgconfig/nvjpeg.pc
 `)));
   const effectiveBuildPythonApplication = nix.thunk(() => nix.app(nix.sel(buildPythonApplication, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       stdenv: nix.thunk(() => (nix.asBool(withNvenc) ? nix.sel(cudaPackages, "backendStdenv") : nix.force(stdenv))),
     }))));
   return nix.app(effectiveBuildPythonApplication, nix.thunk(() => (() => {
@@ -108,7 +101,7 @@ substituteAll ${nix.sel(cudaPackages, "libnvjpeg", "dev")}/share/pkgconfig/nvjpe
       const version = "6.5.4";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "Xpra-org",
           repo: "xpra",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -121,7 +114,7 @@ substituteAll ${nix.sel(cudaPackages, "libnvjpeg", "dev")}/share/pkgconfig/nvjpe
 patchShebangs --build fs/bin/build_cuda_kernels.py
 `)));
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         NIX_CFLAGS_COMPILE: "-Wno-error=unused-function",
         INCLUDE_DIRS: nix.thunk(() => nix.str`${pam}/include`),
       }));
@@ -242,12 +235,12 @@ ln -sr "$out/share/icons/xpra.png" "$icon_dir"
 `))));
       const enableParallelBuilding = true;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         xf86videodummy: xf86videodummy,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         homepage: "https://github.com/Xpra-org/xpra",
         description: "Persistent remote applications for X",
         changelog: nix.thunk(() => nix.str`https://github.com/Xpra-org/xpra/releases/tag/v${version}`),
@@ -262,7 +255,7 @@ ln -sr "$out/share/icons/xpra.png" "$icon_dir"
         })()),
       }));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname,
         version,
         format,

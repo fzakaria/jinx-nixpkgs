@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 31, 5], ["owner", 32, 5], ["repo", 33, 5], ["rev", 34, 5], ["sha256", 35, 5]], [["PKG_CONFIG_BASH_COMPLETION_COMPLETIONSDIR", 74, 7]], [["description", 87, 5], ["mainProgram", 88, 5], ["homepage", 89, 5], ["license", 90, 5], ["platforms", 91, 27], ["maintainers", 92, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["buildInputs", 38, 3], ["depsBuildBuild", 58, 3], ["dontUseCmakeConfigure", 60, 3], ["nativeBuildInputs", 62, 3], ["env", 74, 3], ["postInstall", 76, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitLab: false, lib: false, cmake: false, meson: false, ninja: false, "bash-completion": false, libGL: false, libglvnd: false, makeWrapper: false, "pkg-config": false, python3: false, x11Support: true, libxcb: false, libx11: false, waylandSupport: true, wayland: false, "wayland-protocols": false, "wayland-scanner": false, useGbm: true, libgbm: false, udev: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 31, 5], ["owner", 32, 5], ["repo", 33, 5], ["rev", 34, 5], ["sha256", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["PKG_CONFIG_BASH_COMPLETION_COMPLETIONSDIR", 74, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 87, 5], ["mainProgram", 88, 5], ["homepage", 89, 5], ["license", 90, 5], ["platforms", 91, 27], ["maintainers", 92, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["buildInputs", 38, 3], ["depsBuildBuild", 58, 3], ["dontUseCmakeConfigure", 60, 3], ["nativeBuildInputs", 62, 3], ["env", 74, 3], ["postInstall", 76, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const libgbm = nix.arg($, "libgbm");
   const udev = nix.arg($, "udev");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "waffle",
       version: "1.8.3",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.freedesktop.org",
           owner: "Mesa",
           repo: "waffle",
@@ -52,7 +49,7 @@ export default nix.lambda((args) => (() => {
       dontUseCmakeConfigure: true,
       nativeBuildInputs: nix.thunk(() => nix.concat([cmake, makeWrapper, meson, ninja, pkg_config, python3], nix.app(nix.sel(lib, "optionals"), waylandSupport, nix.thunk(() => [wayland_scanner])))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         PKG_CONFIG_BASH_COMPLETION_COMPLETIONSDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/bash-completion/completions`),
       })),
       postInstall: nix.thunk(() => nix.str`wrapProgram $out/bin/wflinfo \\
@@ -61,7 +58,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(libgbm, "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Cross-platform C library that allows one to defer selection of an OpenGL API and window system until runtime",
         mainProgram: "wflinfo",
         homepage: "https://gitlab.freedesktop.org/mesa/waffle",

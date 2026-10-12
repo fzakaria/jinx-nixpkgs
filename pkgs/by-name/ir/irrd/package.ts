@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["doCheck", 23, 11]], [["pname", 31, 30], ["version", 32, 19], ["hash", 33, 11]], [["version", 29, 9], ["src", 30, 9], ["doCheck", 35, 9]], [["owner", 42, 11], ["repo", 43, 11], ["tag", 44, 11], ["hash", 45, 11]], [["version", 40, 9], ["src", 41, 9], ["doCheck", 47, 9]], [["sqlalchemy", 18, 7], ["factory-boy", 21, 7], ["beautifultable", 28, 7], ["limits", 39, 7]], [["self", 15, 5], ["packageOverrides", 16, 5]], [["owner", 60, 5], ["repo", 61, 5], ["tag", 62, 5], ["hash", 63, 5]], [["changelog", 164, 5], ["description", 165, 5], ["license", 166, 5], ["homepage", 167, 5], ["maintainers", 168, 5]], [["pname", 55, 3], ["version", 56, 3], ["pyproject", 57, 3], ["src", 59, 3], ["pythonRelaxDeps", 66, 3], ["build-system", 68, 3], ["nativeCheckInputs", 70, 3], ["dependencies", 85, 3], ["preCheck", 136, 3], ["postgresqlTestSetupPost", 143, 3], ["postCheck", 148, 3], ["disabledTests", 152, 3], ["disabledTestPaths", 158, 3], ["meta", 163, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchPypi: false, fetchFromGitHub: false, git: false, postgresql: false, postgresqlTestHook: false, valkey: false, redisTestHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["doCheck", 23, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 31, 30], ["version", 32, 19], ["hash", 33, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 29, 9], ["src", 30, 9], ["doCheck", 35, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 42, 11], ["repo", 43, 11], ["tag", 44, 11], ["hash", 45, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 40, 9], ["src", 41, 9], ["doCheck", 47, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["sqlalchemy", 18, 7], ["factory-boy", 21, 7], ["beautifultable", 28, 7], ["limits", 39, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["self", 15, 5], ["packageOverrides", 16, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["owner", 60, 5], ["repo", 61, 5], ["tag", 62, 5], ["hash", 63, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["changelog", 164, 5], ["description", 165, 5], ["license", 166, 5], ["homepage", 167, 5], ["maintainers", 168, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 55, 3], ["version", 56, 3], ["pyproject", 57, 3], ["src", 59, 3], ["pythonRelaxDeps", 66, 3], ["build-system", 68, 3], ["nativeCheckInputs", 70, 3], ["dependencies", 85, 3], ["preCheck", 136, 3], ["postgresqlTestSetupPost", 143, 3], ["postCheck", 148, 3], ["disabledTests", 152, 3], ["disabledTestPaths", 158, 3], ["meta", 163, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,44 +17,44 @@ export default nix.lambda((args) => (() => {
   const valkey = nix.arg($, "valkey");
   const redisTestHook = nix.arg($, "redisTestHook");
   const py = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       self: py,
       packageOverrides: (final) => (prev) => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         sqlalchemy: nix.thunk(() => nix.sel(prev, "sqlalchemy_1_4")),
-        "factory-boy": nix.thunk(() => nix.app(nix.sel(prev, "factory-boy", "overridePythonAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "const"), nix.thunk(() => ({ [nix.POS]: pos$1, doCheck: false })))))),
+        "factory-boy": nix.thunk(() => nix.app(nix.sel(prev, "factory-boy", "overridePythonAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "const"), nix.thunk(() => ({ [nix.POS]: $pos[0], doCheck: false })))))),
         beautifultable: nix.thunk(() => nix.app(nix.sel(prev, "beautifultable", "overridePythonAttrs"), (oldAttrs) => (() => {
             const version = "0.8.0";
             const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 pname: nix.thunk(() => nix.attr(oldAttrs, "pname")),
                 version: version,
                 hash: "sha256-1E2VUbvte/qIZ1Mk+E77mqhXOE1E6fsh61MPCgutuBU=",
               }))));
             const doCheck = false;
-            return { [nix.POS]: pos$3, version, src, doCheck };
+            return { [nix.POS]: $pos[2], version, src, doCheck };
           })())),
         limits: nix.thunk(() => nix.app(nix.sel(prev, "limits", "overridePythonAttrs"), (oldAttrs) => (() => {
             const version = "5.6.0";
             const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 owner: "alisaifee",
                 repo: "limits",
                 tag: version,
                 hash: "sha256-kghfF2ihEvyMPEGO1m9BquCdeBsYRoPyIljdLL1hToQ=",
               }))));
             const doCheck = false;
-            return { [nix.POS]: pos$5, version, src, doCheck };
+            return { [nix.POS]: $pos[4], version, src, doCheck };
           })())),
       }),
     }))));
   return nix.app(nix.sel(py, "pkgs", "buildPythonPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "irrd",
       version: "4.5.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           owner: "irrdnet",
           repo: "irrd",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -140,7 +131,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_020_dash_o_noop", "test_050_non_json_response"]),
       disabledTestPaths: nix.thunk(() => ["irrd/server/whois/tests/test_query_response.py"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         changelog: nix.thunk(() => nix.str`https://irrd.readthedocs.io/en/${nix.sel(finalAttrs, "src", "tag")}/releases/`),
         description: "Internet Routing Registry database server, processing IRR objects in the RPSL format",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

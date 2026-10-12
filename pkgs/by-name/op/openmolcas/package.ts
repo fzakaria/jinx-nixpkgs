@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 44, 5], ["repo", 45, 5], ["rev", 46, 5], ["hash", 47, 5]], [["owner", 55, 7], ["repo", 56, 7], ["rev", 57, 7], ["hash", 58, 7]], [["pname", 52, 5], ["version", 53, 5], ["src", 54, 5], ["patches", 60, 5], ["installPhase", 61, 5]], [["owner", 73, 5], ["repo", 74, 5], ["rev", 75, 5], ["hash", 76, 5]], [["mpi", 122, 52]], [["NIX_CFLAGS_COMPILE", 125, 7]], [["description", 178, 5], ["homepage", 179, 5], ["maintainers", 180, 5], ["license", 181, 5], ["platforms", 185, 5], ["mainProgram", 189, 5]], [["pname", 69, 3], ["version", 70, 3], ["src", 72, 3], ["patches", 79, 3], ["postPatch", 84, 3], ["nativeBuildInputs", 97, 3], ["buildInputs", 106, 3], ["passthru", 122, 3], ["env", 125, 3], ["cmakeFlags", 127, 3], ["preConfigure", 143, 3], ["postConfigure", 151, 3], ["postInstall", 156, 3], ["noAuditTmpdir", 164, 3], ["enableParallelBuilding", 166, 3], ["postFixup", 169, 3], ["meta", 177, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, fetchFromGitHub: false, cmake: false, gfortran: false, perl: false, "blas-ilp64": false, "lapack-ilp64": false, "hdf5-cpp": false, python3: false, texliveMinimal: false, armadillo: false, libxc: false, makeWrapper: false, gsl: false, boost188: false, libwignernj: false, autoPatchelfHook: false, enableQcmaquis: true, enableMpi: true, mpi: false, "globalarrays-ilp64": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 44, 5], ["repo", 45, 5], ["rev", 46, 5], ["hash", 47, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 55, 7], ["repo", 56, 7], ["rev", 57, 7], ["hash", 58, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 52, 5], ["version", 53, 5], ["src", 54, 5], ["patches", 60, 5], ["installPhase", 61, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 73, 5], ["repo", 74, 5], ["rev", 75, 5], ["hash", 76, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["mpi", 122, 52]]);
-const pos$6 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 125, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 178, 5], ["homepage", 179, 5], ["maintainers", 180, 5], ["license", 181, 5], ["platforms", 185, 5], ["mainProgram", 189, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 69, 3], ["version", 70, 3], ["src", 72, 3], ["patches", 79, 3], ["postPatch", 84, 3], ["nativeBuildInputs", 97, 3], ["buildInputs", 106, 3], ["passthru", 122, 3], ["env", 125, 3], ["cmakeFlags", 127, 3], ["preConfigure", 143, 3], ["postConfigure", 151, 3], ["postInstall", 156, 3], ["noAuditTmpdir", 164, 3], ["enableParallelBuilding", 166, 3], ["postFixup", 169, 3], ["meta", 177, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -51,18 +44,18 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   const qcmaquisSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "qcscine",
       repo: "qcmaquis",
       rev: "9ff551fecbdbad43d17600c441a9c9bfb9811d3e",
       hash: "sha256-+EtfgYg6apREDOltXu8zfUbpuiV56k4RvuPAYO0fbsM=",
     }))));
   const nevpt2Src = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "nevpt2-src",
       version: "unstable",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "qcscine",
           repo: "nevpt2",
           rev: "e1484fd4901ae93ab0188bde417cf5dc440a8a3b",
@@ -72,11 +65,11 @@ export default nix.lambda((args) => (() => {
       installPhase: "mkdir $out\ncp -r * $out/.\n",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "openmolcas",
       version: "26.06",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "Molcas",
           repo: "OpenMolcas",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -106,8 +99,8 @@ substituteInPlace cmake/custom/nevpt2.cmake \\
         lapack_ilp64,
         libwignernj,
       ], nix.app(nix.sel(lib, "optionals"), enableMpi, nix.thunk(() => [mpi, globalarrays_ilp64])))),
-      passthru: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), enableMpi, nix.thunk(() => ({ [nix.POS]: pos$5, mpi: mpi })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$6, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      passthru: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), enableMpi, nix.thunk(() => ({ [nix.POS]: $pos[4], mpi: mpi })))),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[5], NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       cmakeFlags: nix.thunk(() => [
         "-DOPENMP=ON",
         "-DTOOLS=ON",
@@ -136,7 +129,7 @@ done
 wrapProgram $out/bin/pymolcas --set MOLCAS $out
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Advanced quantum chemistry software package",
         homepage: "https://gitlab.com/Molcas/OpenMolcas",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "markuskowa"))]),

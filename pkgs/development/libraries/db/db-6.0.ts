@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/db-6.0.nix", [[["version", 14, 5], ["sha256", 15, 5], ["license", 16, 5], ["extraPatches", 17, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchpatch: false, fetchurl: false, autoreconfHook: false, autoconf269: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/db-6.0.nix", [["version", 14, 5], ["sha256", 15, 5], ["license", 16, 5], ["extraPatches", 17, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const autoconf269 = nix.arg($, "autoconf269");
   return nix.app(nix.builtins.import(nix.path(here, "./generic.nix")), nix.thunk(() => nix.update(args_1, {
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       version: "6.0.30",
       sha256: "1lhglbvg65j5slrlv7qv4vi3cvd7kjywa07gq1abzschycf4p3k0",
       license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

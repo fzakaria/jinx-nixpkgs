@@ -2,19 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["xlib", 26, 5], ["fb", 31, 5], ["quartz", 32, 5], ["wayland", 33, 5], ["sdl2", 34, 5]], [["xcore", 42, 5], ["xft", 43, 5], ["cairo", 44, 5]], [["mlclient", 52, 5], ["mlconfig", 53, 5], ["mlcc", 54, 5], ["mlterm-menu", 55, 5], ["mlimgloader", 59, 5], ["registobmp", 60, 5], ["mlfc", 61, 5]], [["uim", 70, 5], ["ibus", 71, 5], ["fcitx", 72, 5], ["m17n", 73, 5], ["ssh2", 74, 5], ["bidi", 75, 5], ["otl", 77, 5]], [["owner", 108, 5], ["repo", 109, 5], ["tag", 110, 5], ["sha256", 111, 5]], [["url", 116, 7], ["hash", 117, 7], ["excludes", 118, 7]], [["NIX_CFLAGS_COMPILE", 176, 5]], [["name", 209, 5], ["exec", 210, 5], ["icon", 211, 5], ["type", 212, 5], ["comment", 213, 5], ["desktopName", 214, 5], ["genericName", 215, 5], ["categories", 216, 5], ["startupNotify", 220, 5]], [["test", 224, 11]], [["tests", 224, 5], ["enableTypeEngines", 226, 7], ["enableTools", 227, 7], ["enableGuis", 228, 7], ["enableFeatures", 229, 7]], [["description", 234, 5], ["homepage", 235, 5], ["license", 236, 5], ["maintainers", 237, 5], ["platforms", 242, 5], ["mainProgram", 243, 5]], [["pname", 104, 3], ["version", 105, 3], ["src", 107, 3], ["patches", 114, 3], ["nativeBuildInputs", 124, 3], ["buildInputs", 131, 3], ["env", 175, 3], ["configureFlags", 182, 3], ["enableParallelBuilding", 195, 3], ["postInstall", 197, 3], ["desktopItem", 208, 3], ["passthru", 223, 3], ["meta", 233, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, fetchpatch: false, "pkg-config": false, autoconf: false, makeDesktopItem: false, nixosTests: false, vte: false, harfbuzz: false, fribidi: false, m17n_lib: false, libssh2: false, fcitx5: false, "fcitx5-gtk": false, ibus: false, uim: false, wrapGAppsHook3: false, "gdk-pixbuf": false, gtk3: false, gtk: true, enableGuis: true, libxkbcommon: false, wayland: false, SDL2: false, enableTypeEngines: true, libx11: false, libxft: false, cairo: false, enableTools: true, enableX11: true, enableFeatures: true, desktopBinary: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["xlib", 26, 5], ["fb", 31, 5], ["quartz", 32, 5], ["wayland", 33, 5], ["sdl2", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["xcore", 42, 5], ["xft", 43, 5], ["cairo", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["mlclient", 52, 5], ["mlconfig", 53, 5], ["mlcc", 54, 5], ["mlterm-menu", 55, 5], ["mlimgloader", 59, 5], ["registobmp", 60, 5], ["mlfc", 61, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["uim", 70, 5], ["ibus", 71, 5], ["fcitx", 72, 5], ["m17n", 73, 5], ["ssh2", 74, 5], ["bidi", 75, 5], ["otl", 77, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 108, 5], ["repo", 109, 5], ["tag", 110, 5], ["sha256", 111, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["url", 116, 7], ["hash", 117, 7], ["excludes", 118, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 176, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["name", 209, 5], ["exec", 210, 5], ["icon", 211, 5], ["type", 212, 5], ["comment", 213, 5], ["desktopName", 214, 5], ["genericName", 215, 5], ["categories", 216, 5], ["startupNotify", 220, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["test", 224, 11]]);
-const pos$10 = nix.positions(here + "/package.nix", [["tests", 224, 5], ["enableTypeEngines", 226, 7], ["enableTools", 227, 7], ["enableGuis", 228, 7], ["enableFeatures", 229, 7]]);
-const pos$11 = nix.positions(here + "/package.nix", [["description", 234, 5], ["homepage", 235, 5], ["license", 236, 5], ["maintainers", 237, 5], ["platforms", 242, 5], ["mainProgram", 243, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["pname", 104, 3], ["version", 105, 3], ["src", 107, 3], ["patches", 114, 3], ["nativeBuildInputs", 124, 3], ["buildInputs", 131, 3], ["env", 175, 3], ["configureFlags", 182, 3], ["enableParallelBuilding", 195, 3], ["postInstall", 197, 3], ["desktopItem", 208, 3], ["passthru", 223, 3], ["meta", 233, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,7 +29,7 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const gtk = nix.argOr($, "gtk", () => nix.force(gtk3));
   const enableGuis = nix.argOr($, "enableGuis", () => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     xlib: enableX11,
     fb: false,
     quartz: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
@@ -50,12 +39,12 @@ export default nix.lambda((args) => (() => {
   const libxkbcommon = nix.arg($, "libxkbcommon");
   const wayland = nix.arg($, "wayland");
   const SDL2 = nix.arg($, "SDL2");
-  const enableTypeEngines = nix.argOr($, "enableTypeEngines", () => ({ [nix.POS]: pos$2, xcore: false, xft: enableX11, cairo: true }));
+  const enableTypeEngines = nix.argOr($, "enableTypeEngines", () => ({ [nix.POS]: $pos[1], xcore: false, xft: enableX11, cairo: true }));
   const libx11 = nix.arg($, "libx11");
   const libxft = nix.arg($, "libxft");
   const cairo = nix.arg($, "cairo");
   const enableTools = nix.argOr($, "enableTools", () => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     mlclient: true,
     mlconfig: true,
     mlcc: true,
@@ -66,7 +55,7 @@ export default nix.lambda((args) => (() => {
   }));
   const enableX11 = nix.argOr($, "enableX11", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   const enableFeatures = nix.argOr($, "enableFeatures", () => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     uim: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
     ibus: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
     fcitx: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
@@ -81,11 +70,11 @@ export default nix.lambda((args) => (() => {
     return nix.app(nix.sel(lib, "withFeatureAs"), nix.thunk(() => !nix.eq(commaSepList, "")), featureName, commaSepList);
   })();
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       pname: "mlterm",
       version: "3.9.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           owner: "arakiken",
           repo: "mlterm",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -93,7 +82,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             url: "https://github.com/arakiken/mlterm/commit/819366f9c3c015d1be501d626ca954ce3ce38a60.patch",
             hash: "sha256-xI0CzXN3gfXZXrL1/tFgQDtpY5hnzGLPruidOuMrbPQ=",
             excludes: nix.thunk(() => ["ChangeLog"]),
@@ -102,7 +91,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([pkg_config, autoconf], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(enableTools, "mlconfig")), nix.thunk(() => [wrapGAppsHook3])))),
       buildInputs: nix.thunk(() => nix.concat([gtk, vte, gdk_pixbuf], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(enableTypeEngines, "xcore")), nix.thunk(() => [libx11])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(enableTypeEngines, "xft")), nix.thunk(() => [libxft])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(enableTypeEngines, "cairo")), nix.thunk(() => [cairo])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(enableGuis, "wayland")), nix.thunk(() => [libxkbcommon, wayland])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(enableGuis, "sdl2")), nix.thunk(() => [SDL2])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(enableFeatures, "otl")), nix.thunk(() => [harfbuzz])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(enableFeatures, "bidi")), nix.thunk(() => [fribidi])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(enableFeatures, "ssh2")), nix.thunk(() => [libssh2])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(enableFeatures, "m17n")), nix.thunk(() => [m17n_lib])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(enableFeatures, "fcitx")), nix.thunk(() => [fcitx5, fcitx5_gtk])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(enableFeatures, "ibus")), nix.thunk(() => [ibus])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(enableFeatures, "uim")), nix.thunk(() => [uim]))))))))))))))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), " -std=c17 ")),
       })),
       configureFlags: nix.thunk(() => nix.concat([
@@ -116,7 +105,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       postInstall: nix.thunk(() => nix.add("install -D contrib/icon/mlterm-icon.svg \"$out/share/icons/hicolor/scalable/apps/mlterm.svg\"\ninstall -D contrib/icon/mlterm-icon-gnome2.png \"$out/share/icons/hicolor/48x48/apps/mlterm.png\"\ninstall -D -t $out/share/applications $desktopItem/share/applications/*\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/Applications/\ncp -a cocoa/mlterm.app $out/Applications/\ninstall $out/bin/mlterm -Dt $out/Applications/mlterm.app/Contents/MacOS/\n"))),
       desktopItem: nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           name: "mlterm",
           exec: nix.thunk(() => nix.str`${desktopBinary} %U`),
           icon: "mlterm",
@@ -128,9 +117,9 @@ export default nix.lambda((args) => (() => {
           startupNotify: false,
         })))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           test: nix.thunk(() => nix.sel(nixosTests, "terminal-emulators", "mlterm")),
         })),
         enableTypeEngines: enableTypeEngines,
@@ -139,7 +128,7 @@ export default nix.lambda((args) => (() => {
         enableFeatures: enableFeatures,
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         description: "Multi Lingual TERMinal emulator",
         homepage: "https://mlterm.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

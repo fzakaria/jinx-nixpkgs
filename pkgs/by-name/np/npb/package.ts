@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["GIT_BIN", 43, 5], ["NIX_BIN", 44, 5], ["NIX_STORE_BIN", 49, 5], ["NIX_INSTANTIATE_BIN", 50, 5], ["NIX_EVAL_JOBS_BIN", 51, 5], ["NOM_BIN", 52, 5]], [["updateScript", 68, 12]], [["description", 71, 5], ["longDescription", 72, 5], ["mainProgram", 76, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["license", 79, 5], ["maintainers", 80, 5]], [["pname", 26, 3], ["version", 27, 3], ["__structuredAttrs", 29, 3], ["src", 31, 3], ["cargoHash", 38, 3], ["nativeBuildInputs", 40, 3], ["env", 42, 3], ["postInstall", 55, 3], ["doInstallCheck", 65, 3], ["nativeInstallCheckInputs", 66, 3], ["passthru", 68, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, installShellFiles: false, git: false, "nix-eval-jobs": false, "nix-output-monitor": false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["GIT_BIN", 43, 5], ["NIX_BIN", 44, 5], ["NIX_STORE_BIN", 49, 5], ["NIX_INSTANTIATE_BIN", 50, 5], ["NIX_EVAL_JOBS_BIN", 51, 5], ["NOM_BIN", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 68, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 71, 5], ["longDescription", 72, 5], ["mainProgram", 76, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["license", 79, 5], ["maintainers", 80, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["__structuredAttrs", 29, 3], ["src", 31, 3], ["cargoHash", 38, 3], ["nativeBuildInputs", 40, 3], ["env", 42, 3], ["postInstall", 55, 3], ["doInstallCheck", 65, 3], ["nativeInstallCheckInputs", 66, 3], ["passthru", 68, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const nix$ = nix.thunk(() => nix.attr(nix_eval_jobs, "nix"));
   const buildCanExecuteHost = nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "npb",
       version: "1.1.3",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "samestep",
           repo: "npb",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +34,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-apnM5aLI0bXp86yvTgkUL6LnHHCEDeVD9ltovmsQ0ak=",
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), buildCanExecuteHost, installShellFiles)),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         GIT_BIN: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), git)),
         NIX_BIN: nix.thunk(() => (() => {
           nix.assert_(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(nix$, "version")), "2.35"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/np/npb/package.nix:47:7");
@@ -53,11 +49,11 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Nixpkgs build comparison tool",
         longDescription: "A CLI tool to generate reports on the differences in build outcomes\nbetween a pair of Nixpkgs commits.\n",
         mainProgram: "npb",

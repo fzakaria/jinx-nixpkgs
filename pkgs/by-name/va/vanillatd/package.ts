@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 39, 5], ["repo", 40, 5], ["rev", 41, 5], ["hash", 42, 5]], [["vanillatd", 107, 11], ["vanillara", 108, 11]], [["name", 103, 7], ["desktopName", 104, 7], ["comment", 105, 7], ["exec", 111, 7], ["terminal", 112, 7], ["icon", 113, 7], ["startupWMClass", 114, 7], ["categories", 115, 7]], [["appName", 121, 64]], [["hardcodeZeroVersion", 130, 9]], [["name", 137, 13], ["paths", 138, 13]], [["pname", 142, 11], ["version", 143, 45], ["meta", 143, 53], ["buildInputs", 145, 11], ["nativeBuildInputs", 146, 11], ["buildCommand", 148, 11]], [["packages", 124, 15], ["updateScript", 126, 7], ["withPackages", 133, 7]], [["vanillatd", 173, 9], ["vanillara", 175, 9]], [["description", 171, 5], ["homepage", 179, 5], ["license", 180, 5], ["sourceProvenance", 181, 5], ["maintainers", 182, 5], ["platforms", 183, 5]], [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["buildInputs", 46, 3], ["nativeBuildInputs", 52, 3], ["cmakeFlags", 65, 3], ["preConfigure", 75, 3], ["installPhase", 80, 3], ["desktopItems", 101, 3], ["passthru", 119, 3], ["meta", 170, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, stdenvNoCC: false, fetchFromGitHub: false, SDL2: false, libcxx: false, openal: false, cmake: false, git: false, "pkg-config": false, imagemagick: false, libicns: false, copyDesktopItems: false, makeDesktopItem: false, callPackage: false, symlinkJoin: false, rsync: false, unstableGitUpdater: false, appName: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 39, 5], ["repo", 40, 5], ["rev", 41, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["vanillatd", 107, 11], ["vanillara", 108, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 103, 7], ["desktopName", 104, 7], ["comment", 105, 7], ["exec", 111, 7], ["terminal", 112, 7], ["icon", 113, 7], ["startupWMClass", 114, 7], ["categories", 115, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["appName", 121, 64]]);
-const pos$5 = nix.positions(here + "/package.nix", [["hardcodeZeroVersion", 130, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 137, 13], ["paths", 138, 13]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 142, 11], ["version", 143, 45], ["meta", 143, 53], ["buildInputs", 145, 11], ["nativeBuildInputs", 146, 11], ["buildCommand", 148, 11]]);
-const pos$8 = nix.positions(here + "/package.nix", [["packages", 124, 15], ["updateScript", 126, 7], ["withPackages", 133, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["vanillatd", 173, 9], ["vanillara", 175, 9]]);
-const pos$10 = nix.positions(here + "/package.nix", [["description", 171, 5], ["homepage", 179, 5], ["license", 180, 5], ["sourceProvenance", 181, 5], ["maintainers", 182, 5], ["platforms", 183, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["buildInputs", 46, 3], ["nativeBuildInputs", 52, 3], ["cmakeFlags", 65, 3], ["preConfigure", 75, 3], ["installPhase", 80, 3], ["desktopItems", 101, 3], ["passthru", 119, 3], ["meta", 170, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const appName = nix.argOr($, "appName", () => "vanillatd");
   nix.assert_(nix.app(nix.sel(lib, "assertOneOf"), "appName", appName, nix.thunk(() => ["vanillatd", "vanillara"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/va/vanillatd/package.nix:30:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       pname: appName,
       version: "0-unstable-2026-07-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "TheAssemblyArmada",
           repo: "Vanilla-Conquer",
           rev: "ce83b59edd99cccac6cebaae054ca04962c744b7",
@@ -73,11 +63,11 @@ runHook postInstall
 `)),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: appName,
             desktopName: appName,
             comment: nix.thunk(() => nix.sel({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               vanillatd: "Command & Conquer: Tiberian Dawn",
               vanillara: "Command & Conquer: Red Alert",
             }, nix.key(nix.str`${appName}`))),
@@ -89,21 +79,21 @@ runHook postInstall
           })))),
       ]),
       passthru: nix.thunk(() => (() => {
-        const packages = nix.thunk(() => nix.app(callPackage, nix.path(here, "./passthru-packages.nix"), nix.thunk(() => ({ [nix.POS]: pos$4, appName: appName }))));
+        const packages = nix.thunk(() => nix.app(callPackage, nix.path(here, "./passthru-packages.nix"), nix.thunk(() => ({ [nix.POS]: $pos[3], appName: appName }))));
         return {
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           packages: packages,
-          updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$5, hardcodeZeroVersion: true })))),
+          updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[4], hardcodeZeroVersion: true })))),
           withPackages: (cb) => (() => {
             const dataDerivation = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 name: nix.thunk(() => nix.str`${appName}-data`),
                 paths: nix.thunk(() => (nix.asBool(nix.builtins.isFunction(cb)) ? nix.app(cb, packages) : nix.force(cb))),
               }))));
             return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => (() => {
                 const from = nix.thunk(() => nix.sel(finalAttrs, "finalPackage"));
                 return {
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 pname: nix.thunk(() => nix.str`${appName}-with-packages`),
                 version: nix.thunk(() => nix.attr(from, "version")),
                 meta: nix.thunk(() => nix.attr(from, "meta")),
@@ -128,9 +118,9 @@ chmod 755 $out
         };
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         description: nix.thunk(() => nix.sel({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           vanillatd: "Vanilla Conquer is a modern, multi-platform source port of Command & Conquer: Tiberian Dawn",
           vanillara: "Vanilla Conquer is a modern, multi-platform source port of Command & Conquer: Red Alert",
         }, nix.key(nix.str`${appName}`))),

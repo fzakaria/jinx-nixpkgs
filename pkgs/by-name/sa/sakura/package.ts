@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["test", 54, 18]], [["tests", 54, 12]], [["homepage", 57, 5], ["description", 58, 5], ["longDescription", 59, 5], ["license", 69, 5], ["maintainers", 70, 5], ["platforms", 72, 5], ["mainProgram", 73, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 37, 3], ["strictDeps", 45, 3], ["postFixup", 49, 3], ["passthru", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, glib: false, gtk3: false, gettext: false, pango: false, makeWrapper: false, pcre2: false, perl: false, "pkg-config": false, vte: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["test", 54, 18]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 54, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 57, 5], ["description", 58, 5], ["longDescription", 59, 5], ["license", 69, 5], ["maintainers", 70, 5], ["platforms", 72, 5], ["mainProgram", 73, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 37, 3], ["strictDeps", 45, 3], ["postFixup", 49, 3], ["passthru", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const vte = nix.arg($, "vte");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "sakura",
       version: "3.8.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dabisu",
           repo: "sakura",
           rev: nix.thunk(() => nix.str`SAKURA_${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -43,14 +39,14 @@ export default nix.lambda((args) => (() => {
   --suffix XDG_DATA_DIRS : ${gtk3}/share/gsettings-schemas/${nix.sel(gtk3, "name")}/
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           test: nix.thunk(() => nix.sel(nixosTests, "terminal-emulators", "sakura")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://www.pleyades.net/david/projects/sakura",
         description: "Terminal emulator based on GTK and VTE",
         longDescription: "sakura is a terminal emulator based on GTK and VTE. It's a terminal\nemulator with few dependencies, so you don't need a full GNOME desktop\ninstalled to have a decent terminal emulator. Current terminal emulators\nbased on VTE are gnome-terminal, XFCE Terminal, TermIt and a small\nsample program included in the vte sources. The differences between\nsakura and the last one are that it uses a notebook to provide several\nterminals in one window and adds a contextual menu with some basic\noptions. No more no less.\n",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["mainProgram", 35, 5], ["maintainers", 36, 5], ["platforms", 40, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 24, 3], ["configureFlags", 29, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, clangStdenv: false, fetchurl: false, "gnustep-back": false, "gnustep-systempreferences": false, wrapGNUstepAppsHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["mainProgram", 35, 5], ["maintainers", 36, 5], ["platforms", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 24, 3], ["configureFlags", 29, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const gnustep_systempreferences = nix.arg($, "gnustep-systempreferences");
   const wrapGNUstepAppsHook = nix.arg($, "wrapGNUstepAppsHook");
   return nix.app(nix.sel(clangStdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gworkspace",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`ftp://ftp.gnustep.org/pub/gnustep/usr-apps/gworkspace-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-zjBOtVgQAILI5EozTzyO5pKglG2BBrwaZqVJCxT/Pzw=",
         })))),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gnustep_back, gnustep_systempreferences]),
       configureFlags: nix.thunk(() => ["--with-inotify"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Workspace manager for GNUstep",
         homepage: "https://gnustep.github.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),

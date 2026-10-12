@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["stripRoot", 15, 5], ["hash", 16, 5]], [["homepage", 38, 5], ["description", 39, 5], ["license", 40, 5], ["platforms", 41, 5], ["maintainers", 42, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 19, 3], ["buildPhase", 24, 3], ["installPhase", 30, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, fontforge: false, "nerd-font-patcher": false, stdenvNoCC: false, fetchzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["stripRoot", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 38, 5], ["description", 39, 5], ["license", 40, 5], ["platforms", 41, 5], ["maintainers", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 19, 3], ["buildPhase", 24, 3], ["installPhase", 30, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "inter-nerdfont",
       version: "4.1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/rsms/inter/releases/download/v${nix.sel(finalAttrs, "version")}/Inter-${nix.sel(finalAttrs, "version")}.zip`),
           stripRoot: false,
           hash: "sha256-5vdKKvHAeZi6igrfpbOdhZlDX2/5+UvzlnCQV6DdqoQ=",
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\nnerd-font-patcher Inter.ttc\nrunHook postBuild\n",
       installPhase: "runHook preInstall\ninstall -Dm444 'Inter Nerd Font.ttc' $out/share/fonts/truetype/InterNerdFont.ttc\ncp *.ttf $out/share/fonts/truetype\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://gitlab.com/mid_os/inter-nerdfont",
         description: "NerdFont patch of the Inter font",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

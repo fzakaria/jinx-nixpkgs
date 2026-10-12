@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 36, 7], ["hash", 37, 7]], [["description", 44, 7], ["homepage", 45, 7], ["license", 46, 7], ["platforms", 47, 7]], [["pname", 32, 5], ["version", 33, 5], ["src", 35, 5], ["nativeBuildInputs", 40, 5], ["configureFlags", 41, 5], ["meta", 43, 5]], [["url", 57, 5], ["hash", 58, 5]], [["name", 105, 7], ["exec", 106, 7], ["desktopName", 107, 7], ["genericName", 108, 7], ["comment", 109, 7], ["icon", 110, 7], ["terminal", 111, 7], ["startupNotify", 112, 7], ["categories", 113, 7]], [["changelog", 142, 5], ["description", 143, 5], ["homepage", 144, 5], ["license", 145, 5], ["longDescription", 146, 5], ["maintainers", 167, 5], ["mainProgram", 168, 5], ["platforms", 169, 5], ["sourceProvenance", 170, 5]], [["pname", 53, 3], ["version", 54, 3], ["src", 56, 3], ["dontConfigure", 61, 3], ["dontBuild", 62, 3], ["nativeBuildInputs", 64, 3], ["buildInputs", 74, 3], ["unpackPhase", 97, 3], ["desktopItems", 103, 3], ["preInstall", 117, 3], ["postInstall", 125, 3], ["preFixup", 133, 3], ["meta", 141, 3]]]);
 const formals$1 = { args: { autoPatchelfHook: false, ccid: false, cjson: false, copyDesktopItems: false, curl: false, doxygen: false, fetchurl: false, flatpak: false, lib: false, libGL: false, libgcc: false, libsForQt5: false, libzip: false, makeDesktopItem: false, makeWrapper: false, openjpeg: false, openpace: false, openssl: false, ostree: false, patchelf: false, pcsclite: false, "pkg-config": false, proot: false, qt5: false, stdenv: false, "xml-security-c": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 36, 7], ["hash", 37, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 44, 7], ["homepage", 45, 7], ["license", 46, 7], ["platforms", 47, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 32, 5], ["version", 33, 5], ["src", 35, 5], ["nativeBuildInputs", 40, 5], ["configureFlags", 41, 5], ["meta", 43, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 57, 5], ["hash", 58, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 105, 7], ["exec", 106, 7], ["desktopName", 107, 7], ["genericName", 108, 7], ["comment", 109, 7], ["icon", 110, 7], ["terminal", 111, 7], ["startupNotify", 112, 7], ["categories", 113, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["changelog", 142, 5], ["description", 143, 5], ["homepage", 144, 5], ["license", 145, 5], ["longDescription", 146, 5], ["maintainers", 167, 5], ["mainProgram", 168, 5], ["platforms", 169, 5], ["sourceProvenance", 170, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 53, 3], ["version", 54, 3], ["src", 56, 3], ["dontConfigure", 61, 3], ["dontBuild", 62, 3], ["nativeBuildInputs", 64, 3], ["buildInputs", 74, 3], ["unpackPhase", 97, 3], ["desktopItems", 103, 3], ["preInstall", 117, 3], ["postInstall", 125, 3], ["preFixup", 133, 3], ["meta", 141, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,21 +37,21 @@ export default nix.lambda((args) => (() => {
       const pname = "xerces-c";
       const version = "3.2.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://apache/xerces/c/3/sources/xerces-c-${version}.tar.gz`),
           hash: "sha256-+5b8SbH7iS0eZOU6atqKzPbw5tMM4JN5Vuxo05vXLH4=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [pkg_config]);
       const configureFlags = nix.thunk(() => ["--disable-static"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Validating XML parser written in a portable subset of C++",
         homepage: "https://xerces.apache.org/xerces-c/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,
@@ -67,11 +61,11 @@ export default nix.lambda((args) => (() => {
       };
     })())));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "autenticacao-gov-pt-bin",
       version: "3.15.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           url: nix.thunk(() => nix.str`https://github.com/amagovpt/autenticacao.gov/releases/download/v${nix.sel(finalAttrs, "version")}/pteid-mw-${nix.sel(finalAttrs, "version")}.flatpak`),
           hash: "sha256-Npbu1ZL+YW40jWbbLDnZ6gkhm+nHwBAQMCwHFOU03Ok=",
         })))),
@@ -114,7 +108,7 @@ ostree checkout --repo=pteid -U $(cd pteid/objects && echo */*.commit | sed -E "
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: nix.thunk(() => nix.sel(finalAttrs, "pname")),
             exec: nix.thunk(() => nix.sel(finalAttrs, "meta", "mainProgram")),
             desktopName: "Autenticação.gov",
@@ -135,7 +129,7 @@ ostree checkout --repo=pteid -U $(cd pteid/objects && echo */*.commit | sed -E "
 `),
       preFixup: "find $out/app/lib -type f -name '*.so*' | while read lib; do\n  patchelf --replace-needed libxml-security-c.so.20 libxml-security-c.so.30 \"$lib\"\ndone\nwrapQtApp $out/app/bin/eidguiV2\nautoPatchelf $out/app\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         changelog: nix.thunk(() => nix.str`https://github.com/amagovpt/autenticacao.gov/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Middleware for Electronic Identification in Portugal (with precompiled binaries by AMA)",
         homepage: "https://www.autenticacao.gov.pt/",

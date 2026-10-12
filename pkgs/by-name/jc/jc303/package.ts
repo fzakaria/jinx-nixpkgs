@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5], ["fetchSubmodules", 31, 5]], [["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["hash", 38, 5]], [["owner", 43, 5], ["repo", 44, 5], ["rev", 45, 5], ["hash", 46, 5], ["fetchSubmodules", 47, 5], ["postFetch", 49, 5]], [["owner", 64, 5], ["repo", 65, 5], ["rev", 66, 5], ["hash", 67, 5]], [["owner", 72, 5], ["repo", 73, 5], ["rev", 74, 5], ["hash", 75, 5]], [["owner", 88, 5], ["repo", 89, 5], ["tag", 90, 5], ["hash", 91, 5]], [["url", 97, 7], ["hash", 98, 7]], [["FONTCONFIG_FILE", 139, 7], ["NIX_CFLAGS_COMPILE", 143, 7]], [["updateScript", 177, 12]], [["description", 180, 5], ["homepage", 181, 5], ["platforms", 182, 5], ["license", 183, 5], ["maintainers", 184, 5]], [["pname", 84, 3], ["version", 85, 3], ["src", 87, 3], ["patches", 94, 3], ["postPatch", 102, 3], ["nativeBuildInputs", 107, 3], ["buildInputs", 113, 3], ["cmakeFlags", 124, 3], ["env", 139, 3], ["enableParallelBuilding", 141, 3], ["installPhase", 154, 3], ["passthru", 177, 3], ["meta", 179, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, fetchpatch: false, lib: false, cmake: false, "pkg-config": false, writableTmpDirAsHomeHook: false, "nix-update-script": false, juce: false, libx11: false, libxrandr: false, libxinerama: false, libxext: false, libxcursor: false, freetype: false, fontconfig: false, "alsa-lib": false, buildVST3: true, buildLV2: true, buildCLAP: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5], ["fetchSubmodules", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["hash", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 43, 5], ["repo", 44, 5], ["rev", 45, 5], ["hash", 46, 5], ["fetchSubmodules", 47, 5], ["postFetch", 49, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 64, 5], ["repo", 65, 5], ["rev", 66, 5], ["hash", 67, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 72, 5], ["repo", 73, 5], ["rev", 74, 5], ["hash", 75, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["owner", 88, 5], ["repo", 89, 5], ["tag", 90, 5], ["hash", 91, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["url", 97, 7], ["hash", 98, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["FONTCONFIG_FILE", 139, 7], ["NIX_CFLAGS_COMPILE", 143, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["updateScript", 177, 12]]);
-const pos$10 = nix.positions(here + "/package.nix", [["description", 180, 5], ["homepage", 181, 5], ["platforms", 182, 5], ["license", 183, 5], ["maintainers", 184, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["pname", 84, 3], ["version", 85, 3], ["src", 87, 3], ["patches", 94, 3], ["postPatch", 102, 3], ["nativeBuildInputs", 107, 3], ["buildInputs", 113, 3], ["cmakeFlags", 124, 3], ["env", 139, 3], ["enableParallelBuilding", 141, 3], ["installPhase", 154, 3], ["passthru", 177, 3], ["meta", 179, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,7 +28,7 @@ export default nix.lambda((args) => (() => {
   const buildLV2 = nix.argOr($, "buildLV2", () => true);
   const buildCLAP = nix.argOr($, "buildCLAP", () => true);
   const juce_clap_extensions = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "free-audio",
       repo: "clap-juce-extensions",
       rev: "02f91b7988298f7f1f05c706da16e1d9da852a87",
@@ -46,14 +36,14 @@ export default nix.lambda((args) => (() => {
       fetchSubmodules: true,
     }))));
   const chowdsp_utils = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       owner: "Chowdhury-DSP",
       repo: "chowdsp_utils",
       rev: "ffc70ba399f9afaeefb996eb14e55a1d487270b8",
       hash: "sha256-rKjrhb+w/lW9k3Dg5jWM2eJRa0fPDF8SNVrCTFrRMoM=",
     }))));
   const rtneural = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       owner: "jatinchowdhury18",
       repo: "RTNeural",
       rev: "04cb333bc4b174760958a77c7ce076eae38fe8e4",
@@ -62,14 +52,14 @@ export default nix.lambda((args) => (() => {
       postFetch: "# note: if rtneural is updated, this won't be needed anymore\nsubstituteInPlace $out/CMakeLists.txt \\\n  --replace-fail \"include(cmake/CPM.cmake)\" \"# No tests\" \\\n\n# Required for CMake 4\nsubstituteInPlace $out/CMakeLists.txt \\\n  --replace-fail \\\n    \"cmake_minimum_required(VERSION 3.5)\" \\\n    \"cmake_minimum_required(VERSION 4.0)\"\n",
     }))));
   const math_approx = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       owner: "Chowdhury-DSP",
       repo: "math_approx",
       rev: "0c68d4d17242d707ba07fa7f1901692b7ed72d58",
       hash: "sha256-t6UrsZGRJjJVp+aGkwBa++Skj9xkdQuZKAxRrTkfM0E=",
     }))));
   const ea_variant = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       owner: "eyalamirmusic",
       repo: "Variant",
       rev: "3fce49cfca50ba3b05026d41ffc4911a8e653378",
@@ -80,11 +70,11 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), buildLV2, "LV2")),
     ])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       pname: "jc303",
       version: "0.13.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           owner: "midilab",
           repo: "jc303",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -92,7 +82,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             url: "https://github.com/midilab/jc303/commit/837d3fc5cf4e993375403a45d7e23df1b4e3cf7f.diff",
             hash: "sha256-WvLIcSHrLiXj1VEV+IxS05YSWEq7oz57qIbNsqRySaY=",
           })))),
@@ -121,7 +111,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "BUILD_CLAP", buildCLAP)),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         FONTCONFIG_FILE: nix.thunk(() => nix.str`${nix.sel(fontconfig, "out")}/etc/fonts/fonts.conf`),
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-ffat-lto-objects"]))))),
       })),
@@ -139,11 +129,11 @@ popd
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         description: "Roland TB-303 clone plugin",
         homepage: "https://github.com/midilab/jc303",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

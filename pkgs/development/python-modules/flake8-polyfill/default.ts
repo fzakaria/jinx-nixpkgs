@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 19, 13], ["version", 19, 19], ["sha256", 20, 5]], [["name", 36, 7], ["url", 37, 7], ["sha256", 38, 7]], [["homepage", 51, 5], ["description", 52, 5], ["license", 53, 5], ["maintainers", 54, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 23, 3], ["dependencies", 25, 3], ["nativeCheckInputs", 27, 3], ["patches", 33, 3], ["postPatch", 42, 3], ["pythonImportsCheck", 48, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchpatch: false, fetchPypi: false, setuptools: false, flake8: false, mock: false, pep8: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 19, 13], ["version", 19, 19], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 36, 7], ["url", 37, 7], ["sha256", 38, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 51, 5], ["description", 52, 5], ["license", 53, 5], ["maintainers", 54, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 23, 3], ["dependencies", 25, 3], ["nativeCheckInputs", 27, 3], ["patches", 33, 3], ["postPatch", 42, 3], ["pythonImportsCheck", 48, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           sha256: "1nlf1mkqw856vi6782qcglqhaacb23khk9wkcgn55npnjxshhjz4",
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [mock, pep8, pytestCheckHook]);
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "skip-tests.patch",
             url: "https://github.com/PyCQA/flake8-polyfill/commit/3cf414350e82ceb835ca2edbd5d5967d33e9ff35.patch",
             sha256: "mElZafodq8dF3wLO/LOqwFb7eLMsPLlEjNSu5AWqets=",
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const postPatch = "# Failed: [pytest] section in setup.cfg files is no longer supported, change to [tool:pytest] instead.\nsubstituteInPlace setup.cfg \\\n  --replace-fail pytest 'tool:pytest'\n";
       const pythonImportsCheck = nix.thunk(() => ["flake8_polyfill"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://gitlab.com/pycqa/flake8-polyfill",
         description: "Polyfill package for Flake8 plugins",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -53,7 +50,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

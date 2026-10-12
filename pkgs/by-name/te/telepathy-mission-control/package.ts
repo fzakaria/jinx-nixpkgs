@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 26, 5], ["sha256", 27, 5]], [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["platforms", 63, 5], ["broken", 65, 5]], [["pname", 16, 3], ["version", 17, 3], ["outputs", 19, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["propagatedBuildInputs", 44, 3], ["doCheck", 48, 3], ["enableParallelBuilding", 50, 3], ["preFixup", 52, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, dconf: false, "telepathy-glib": false, python3: false, libxslt: false, makeWrapper: false, autoreconfHook: false, "gtk-doc": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 26, 5], ["sha256", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["platforms", 63, 5], ["broken", 65, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["outputs", 19, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["propagatedBuildInputs", 44, 3], ["doCheck", 48, 3], ["enableParallelBuilding", 50, 3], ["preFixup", 52, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const gtk_doc = nix.arg($, "gtk-doc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "telepathy-mission-control",
       version: "5.16.6",
       outputs: nix.thunk(() => ["out", "lib", "dev"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://telepathy.freedesktop.org/releases/telepathy-mission-control/telepathy-mission-control-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0ibs575pfr0wmhfcw6ln6iz7gw2y45l3bah11rksf6g9jlwsxy1d",
         })))),
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
   --prefix XDG_DATA_DIRS : "$GSETTINGS_SCHEMAS_PATH"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Account manager and channel dispatcher for the Telepathy framework",
         homepage: "https://telepathy.freedesktop.org/components/telepathy-mission-control/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),

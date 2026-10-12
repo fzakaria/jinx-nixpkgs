@@ -2,24 +2,22 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/smug-gerbil.nix", [[["fun", 11, 5], ["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]], [["description", 19, 5], ["homepage", 20, 5], ["license", 21, 5], ["platforms", 22, 5], ["maintainers", 23, 5]], [["pname", 4, 3], ["version", 5, 3], ["git-version", 6, 3], ["softwareName", 7, 3], ["gerbil-package", 8, 3], ["pre-src", 10, 3], ["meta", 18, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/smug-gerbil.nix", [["fun", 11, 5], ["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/smug-gerbil.nix", [["description", 19, 5], ["homepage", 20, 5], ["license", 21, 5], ["platforms", 22, 5], ["maintainers", 23, 5]]);
-const pos$3 = nix.positions(here + "/smug-gerbil.nix", [["pname", 4, 3], ["version", 5, 3], ["git-version", 6, 3], ["softwareName", 7, 3], ["gerbil-package", 8, 3], ["pre-src", 10, 3], ["meta", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return {
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     pname: "smug-gerbil",
     version: "unstable-2020-12-12",
     "git-version": "0.4.20",
     softwareName: "Smug-Gerbil",
     "gerbil-package": "drewc/smug",
     "pre-src": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       fun: fetchFromGitHub,
       owner: "drewc",
       repo: "smug-gerbil",
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       sha256: "13fdijd71m3fzp9fw9xp6ddgr38q1ly6wnr53salp725w6i4wqid",
     })),
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       description: "Super Monadic Über Go-into : Parsers and Gerbil Scheme",
       homepage: "https://github.com/drewc/smug-gerbil",
       license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 40, 5], ["repo", 41, 5], ["rev", 42, 13], ["hash", 43, 5]], [["RUSTC_BOOTSTRAP", 101, 5], ["VELOREN_GIT_VERSION", 104, 5], ["VELOREN_USERDATA_STRATEGY", 108, 5], ["SHADERC_LIB_DIR", 111, 5]], [["description", 144, 5], ["homepage", 145, 5], ["license", 146, 5], ["mainProgram", 147, 5], ["platforms", 148, 5], ["maintainers", 149, 5]], [["pname", 36, 3], ["version", 37, 11], ["src", 39, 3], ["cargoPatches", 46, 3], ["cargoHash", 50, 3], ["postPatch", 52, 3], ["nativeBuildInputs", 75, 3], ["buildInputs", 85, 3], ["buildNoDefaultFeatures", 96, 3], ["buildFeatures", 97, 3], ["env", 99, 3], ["doCheck", 115, 3], ["appendRunpaths", 117, 3], ["postInstall", 133, 3], ["meta", 143, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitLab: false, "pkg-config": false, stdenv: false, "vulkan-loader": false, "alsa-lib": false, udev: false, libxcb: false, libxkbcommon: false, autoPatchelfHook: false, libx11: false, libxi: false, libxcursor: false, libxrandr: false, wayland: false, shaderc: false, desktopToDarwinBundle: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 40, 5], ["repo", 41, 5], ["rev", 42, 13], ["hash", 43, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["RUSTC_BOOTSTRAP", 101, 5], ["VELOREN_GIT_VERSION", 104, 5], ["VELOREN_USERDATA_STRATEGY", 108, 5], ["SHADERC_LIB_DIR", 111, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 144, 5], ["homepage", 145, 5], ["license", 146, 5], ["mainProgram", 147, 5], ["platforms", 148, 5], ["maintainers", 149, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 36, 3], ["version", 37, 11], ["src", 39, 3], ["cargoPatches", 46, 3], ["cargoHash", 50, 3], ["postPatch", 52, 3], ["nativeBuildInputs", 75, 3], ["buildInputs", 85, 3], ["buildNoDefaultFeatures", 96, 3], ["buildFeatures", 97, 3], ["env", 99, 3], ["doCheck", 115, 3], ["appendRunpaths", 117, 3], ["postInstall", 133, 3], ["meta", 143, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const timestamp = "1769191511";
   const rev = "1d12f35edd6cdbfc1fb921c167cdd7beeeffe248";
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "veloren",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "veloren",
           repo: "veloren",
           rev: rev,
@@ -56,7 +53,7 @@ export default nix.lambda((args) => (() => {
       buildNoDefaultFeatures: true,
       buildFeatures: nix.thunk(() => ["default-publish"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         RUSTC_BOOTSTRAP: true,
         VELOREN_GIT_VERSION: nix.thunk(() => nix.str`/${nix.app(nix.sel(lib, "substring"), 0n, 8n, rev)}/${timestamp}`),
         VELOREN_USERDATA_STRATEGY: "system",
@@ -68,7 +65,7 @@ export default nix.lambda((args) => (() => {
         ]))),
       postInstall: "# Icons\ninstall -Dm644 assets/voxygen/net.veloren.veloren.desktop -t \"$out/share/applications\"\ninstall -Dm644 assets/voxygen/net.veloren.veloren.png -t \"$out/share/icons/hicolor/256x256/apps\"\ninstall -Dm644 assets/voxygen/net.veloren.veloren.metainfo.xml -t \"$out/share/metainfo\"\n\n# Assets directory\nmkdir -p \"$out/share/veloren\"; cp -ar assets \"$out/share/veloren/\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Open world, open source voxel RPG",
         homepage: "https://www.veloren.net",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

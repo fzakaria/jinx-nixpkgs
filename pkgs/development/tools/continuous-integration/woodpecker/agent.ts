@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/agent.nix", [[["CGO_ENABLED", 17, 7]], [["description", 20, 5], ["mainProgram", 21, 5]], [["pname", 6, 3], ["version", 8, 5], ["src", 9, 5], ["ldflags", 10, 5], ["postInstall", 11, 5], ["vendorHash", 12, 5], ["subPackages", 15, 3], ["env", 17, 3], ["meta", 19, 3]]]);
 const formals$1 = { args: { buildGoModule: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/agent.nix", [["CGO_ENABLED", 17, 7]]);
-const pos$2 = nix.positions(here + "/agent.nix", [["description", 20, 5], ["mainProgram", 21, 5]]);
-const pos$3 = nix.positions(here + "/agent.nix", [["pname", 6, 3], ["version", 8, 5], ["src", 9, 5], ["ldflags", 10, 5], ["postInstall", 11, 5], ["vendorHash", 12, 5], ["subPackages", 15, 3], ["env", 17, 3], ["meta", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const common = nix.thunk(() => nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({}))));
   return nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "woodpecker-agent",
       version: nix.thunk(() => nix.attr(common, "version")),
       src: nix.thunk(() => nix.attr(common, "src")),
@@ -21,9 +19,9 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.attr(common, "postInstall")),
       vendorHash: nix.thunk(() => nix.attr(common, "vendorHash")),
       subPackages: "cmd/agent",
-      env: nix.thunk(() => ({ [nix.POS]: pos$1, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[0], CGO_ENABLED: 0n })),
       meta: nix.thunk(() => nix.update(nix.sel(common, "meta"), {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Woodpecker Continuous Integration agent",
         mainProgram: "woodpecker-agent",
       })),

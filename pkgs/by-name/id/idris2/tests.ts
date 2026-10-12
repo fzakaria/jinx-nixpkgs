@@ -2,26 +2,10 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["timeout", 26, 14]], [["meta", 26, 9], ["strictDeps", 32, 9], ["nativeBuildInputs", 33, 9]], [["timeout", 72, 14]], [["meta", 72, 9], ["strictDeps", 74, 9], ["nativeBuildInputs", 75, 9]], [["testName", 96, 5], ["code", 97, 5], ["want", 103, 5]], [["testName", 108, 5], ["packages", 109, 5], ["code", 110, 5], ["want", 122, 5]], [["ipkgName", 128, 7], ["idrisLibraries", 129, 7], ["src", 130, 7]], [["withSource", 149, 52]], [["testName", 126, 5], ["buildIdrisArgs", 127, 5], ["transformBuildIdrisOutput", 149, 5], ["expectedTree", 150, 5]], [["ipkgName", 165, 7], ["idrisLibraries", 166, 7], ["src", 167, 7]], [["withSource", 186, 52]], [["testName", 163, 5], ["buildIdrisArgs", 164, 5], ["transformBuildIdrisOutput", 186, 5], ["expectedTree", 187, 5]], [["ipkgName", 203, 7], ["idrisLibraries", 204, 7], ["src", 205, 7]], [["testName", 201, 5], ["buildIdrisArgs", 202, 5], ["transformBuildIdrisOutput", 224, 5], ["expectedTree", 225, 5]], [["ipkgName", 241, 7], ["idrisLibraries", 242, 7], ["src", 243, 7]], [["testName", 239, 5], ["buildIdrisArgs", 240, 5], ["transformBuildIdrisOutput", 261, 5], ["expectedTree", 262, 5]], [["helloWorld", 95, 3], ["useContrib", 107, 3], ["buildLibrary", 125, 3], ["buildLibraryWithSource", 162, 3], ["buildLibraryWithSourceRetroactively", 200, 3], ["buildExecutable", 238, 3]]]);
 const formals$1 = { args: { stdenv: false, runCommand: false, lib: false, idris2: false, idris2Packages: false, chez: false, zsh: false, tree: false }, ellipsis: false };
 const formals$2 = { args: { testName: false, code: false, want: false, packages: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tests.nix", [["timeout", 26, 14]]);
-const pos$2 = nix.positions(here + "/tests.nix", [["meta", 26, 9], ["strictDeps", 32, 9], ["nativeBuildInputs", 33, 9]]);
 const formals$3 = { args: { testName: false, buildIdrisArgs: false, transformBuildIdrisOutput: false, expectedTree: false }, ellipsis: false };
-const pos$3 = nix.positions(here + "/tests.nix", [["timeout", 72, 14]]);
-const pos$4 = nix.positions(here + "/tests.nix", [["meta", 72, 9], ["strictDeps", 74, 9], ["nativeBuildInputs", 75, 9]]);
-const pos$5 = nix.positions(here + "/tests.nix", [["testName", 96, 5], ["code", 97, 5], ["want", 103, 5]]);
-const pos$6 = nix.positions(here + "/tests.nix", [["testName", 108, 5], ["packages", 109, 5], ["code", 110, 5], ["want", 122, 5]]);
-const pos$7 = nix.positions(here + "/tests.nix", [["ipkgName", 128, 7], ["idrisLibraries", 129, 7], ["src", 130, 7]]);
-const pos$8 = nix.positions(here + "/tests.nix", [["withSource", 149, 52]]);
-const pos$9 = nix.positions(here + "/tests.nix", [["testName", 126, 5], ["buildIdrisArgs", 127, 5], ["transformBuildIdrisOutput", 149, 5], ["expectedTree", 150, 5]]);
-const pos$10 = nix.positions(here + "/tests.nix", [["ipkgName", 165, 7], ["idrisLibraries", 166, 7], ["src", 167, 7]]);
-const pos$11 = nix.positions(here + "/tests.nix", [["withSource", 186, 52]]);
-const pos$12 = nix.positions(here + "/tests.nix", [["testName", 163, 5], ["buildIdrisArgs", 164, 5], ["transformBuildIdrisOutput", 186, 5], ["expectedTree", 187, 5]]);
-const pos$13 = nix.positions(here + "/tests.nix", [["ipkgName", 203, 7], ["idrisLibraries", 204, 7], ["src", 205, 7]]);
-const pos$14 = nix.positions(here + "/tests.nix", [["testName", 201, 5], ["buildIdrisArgs", 202, 5], ["transformBuildIdrisOutput", 224, 5], ["expectedTree", 225, 5]]);
-const pos$15 = nix.positions(here + "/tests.nix", [["ipkgName", 241, 7], ["idrisLibraries", 242, 7], ["src", 243, 7]]);
-const pos$16 = nix.positions(here + "/tests.nix", [["testName", 239, 5], ["buildIdrisArgs", 240, 5], ["transformBuildIdrisOutput", 261, 5], ["expectedTree", 262, 5]]);
-const pos$17 = nix.positions(here + "/tests.nix", [["helloWorld", 95, 3], ["useContrib", 107, 3], ["buildLibrary", 125, 3], ["buildLibraryWithSource", 162, 3], ["buildLibraryWithSourceRetroactively", 200, 3], ["buildExecutable", 238, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,8 +26,8 @@ export default nix.lambda((args) => (() => {
     const pname = nix.thunk(() => nix.attr(idris2, "pname"));
     const packageString = nix.thunk(() => nix.builtins.concatStringsSep(" ", nix.thunk(() => nix.builtins.map((p) => nix.add("--package ", p), packages))));
     return nix.app(runCommand, nix.thunk(() => nix.str`${pname}-${testName}`), nix.thunk(() => ({
-        [nix.POS]: pos$2,
-        meta: nix.thunk(() => ({ [nix.POS]: pos$1, timeout: 60n })),
+        [nix.POS]: $pos[1],
+        meta: nix.thunk(() => ({ [nix.POS]: $pos[0], timeout: 60n })),
         strictDeps: true,
         nativeBuildInputs: nix.thunk(() => nix.concat([chez], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [zsh])))),
       })), nix.thunk(() => nix.str`set -eo pipefail
@@ -76,8 +60,8 @@ touch $out
     const pname = nix.thunk(() => nix.attr(idris2, "pname"));
     const idrisPkg = nix.thunk(() => nix.app(transformBuildIdrisOutput, nix.thunk(() => nix.app(nix.sel(idris2Packages, "buildIdris"), buildIdrisArgs))));
     return nix.app(runCommand, nix.thunk(() => nix.str`${pname}-${testName}`), nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        meta: nix.thunk(() => ({ [nix.POS]: pos$3, timeout: 60n })),
+        [nix.POS]: $pos[3],
+        meta: nix.thunk(() => ({ [nix.POS]: $pos[2], timeout: 60n })),
         strictDeps: true,
         nativeBuildInputs: nix.thunk(() => [tree]),
       })), nix.thunk(() => nix.str`GOT="$(tree ${idrisPkg} | tail -n +2)"
@@ -96,30 +80,30 @@ touch $out
 `));
   })(), formals$3);
   return {
-    [nix.POS]: pos$17,
+    [nix.POS]: $pos[16],
     helloWorld: nix.thunk(() => nix.app(testCompileAndRun, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         testName: "hello-world",
         code: "module Main\n\nmain : IO ()\nmain = putStrLn \"Hello World!\"\n",
         want: "Hello World!",
       })))),
     useContrib: nix.thunk(() => nix.app(testCompileAndRun, nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         testName: "use-contrib",
         packages: nix.thunk(() => ["contrib"]),
         code: "module Main\n\nimport Data.Vect\nimport Data.Vect.Sort  -- from contrib\n\nvect : Vect 3 Int\nvect = 3 :: 1 :: 5 :: Nil\n\nmain : IO ()\nmain = putStrLn $ show (sort vect)\n",
         want: "[1, 3, 5]",
       })))),
     buildLibrary: nix.thunk(() => nix.app(testBuildIdris, nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         testName: "library-package",
         buildIdrisArgs: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           ipkgName: "pkg",
           idrisLibraries: nix.thunk(() => [nix.thunk(() => nix.sel(idris2Packages, "idris2Api"))]),
           src: nix.thunk(() => nix.app(runCommand, "library-package-src", nix.thunk(() => ({})), "mkdir $out\n\ncat > $out/Main.idr <<EOF\nmodule Main\n\nimport Compiler.ANF -- from Idris2Api\n\nhello : String\nhello = \"world\"\nEOF\n\ncat > $out/pkg.ipkg <<EOF\npackage pkg\nmodules = Main\ndepends = idris2\nEOF\n")),
         })),
-        transformBuildIdrisOutput: (pkg) => nix.app(nix.sel(pkg, "library"), nix.thunk(() => ({ [nix.POS]: pos$8, withSource: false }))),
+        transformBuildIdrisOutput: (pkg) => nix.app(nix.sel(pkg, "library"), nix.thunk(() => ({ [nix.POS]: $pos[7], withSource: false }))),
         expectedTree: nix.thunk(() => nix.str`\`-- lib
     \`-- idris2-${nix.sel(idris2, "version")}
         \`-- pkg-0
@@ -131,15 +115,15 @@ touch $out
 5 directories, 3 files`),
       })))),
     buildLibraryWithSource: nix.thunk(() => nix.app(testBuildIdris, nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         testName: "library-with-source-package",
         buildIdrisArgs: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           ipkgName: "pkg",
           idrisLibraries: nix.thunk(() => [nix.thunk(() => nix.sel(idris2Packages, "idris2Api"))]),
           src: nix.thunk(() => nix.app(runCommand, "library-package-src", nix.thunk(() => ({})), "mkdir $out\n\ncat > $out/Main.idr <<EOF\nmodule Main\n\nimport Compiler.ANF -- from Idris2Api\n\nhello : String\nhello = \"world\"\nEOF\n\ncat > $out/pkg.ipkg <<EOF\npackage pkg\nmodules = Main\ndepends = idris2\nEOF\n")),
         })),
-        transformBuildIdrisOutput: (pkg) => nix.app(nix.sel(pkg, "library"), nix.thunk(() => ({ [nix.POS]: pos$11, withSource: true }))),
+        transformBuildIdrisOutput: (pkg) => nix.app(nix.sel(pkg, "library"), nix.thunk(() => ({ [nix.POS]: $pos[10], withSource: true }))),
         expectedTree: nix.thunk(() => nix.str`\`-- lib
     \`-- idris2-${nix.sel(idris2, "version")}
         \`-- pkg-0
@@ -152,10 +136,10 @@ touch $out
 5 directories, 4 files`),
       })))),
     buildLibraryWithSourceRetroactively: nix.thunk(() => nix.app(testBuildIdris, nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         testName: "library-with-source-retro-package",
         buildIdrisArgs: nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           ipkgName: "pkg",
           idrisLibraries: nix.thunk(() => [nix.thunk(() => nix.sel(idris2Packages, "idris2Api"))]),
           src: nix.thunk(() => nix.app(runCommand, "library-package-src", nix.thunk(() => ({})), "mkdir $out\n\ncat > $out/Main.idr <<EOF\nmodule Main\n\nimport Compiler.ANF -- from Idris2Api\n\nhello : String\nhello = \"world\"\nEOF\n\ncat > $out/pkg.ipkg <<EOF\npackage pkg\nmodules = Main\ndepends = idris2\nEOF\n")),
@@ -173,10 +157,10 @@ touch $out
 5 directories, 4 files`),
       })))),
     buildExecutable: nix.thunk(() => nix.app(testBuildIdris, nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         testName: "executable-package",
         buildIdrisArgs: nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           ipkgName: "pkg",
           idrisLibraries: [],
           src: nix.thunk(() => nix.app(runCommand, "executable-package-src", nix.thunk(() => ({})), "mkdir $out\n\ncat > $out/Main.idr <<EOF\nmodule Main\n\nmain : IO ()\nmain = putStrLn \"hi\"\nEOF\n\ncat > $out/pkg.ipkg <<EOF\npackage pkg\nmodules = Main\nmain = Main\nexecutable = mypkg\nEOF\n")),

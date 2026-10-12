@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["updatemethod", 49, 9], ["updatemethodmessage", 50, 9], ["packageversion", 51, 9], ["packageauthor", 52, 9]], [["src", 72, 28], ["version", 72, 32], ["pname", 73, 7], ["sourceRoot", 75, 7], ["nodejs", 77, 7], ["npmDepsHash", 79, 7], ["nativeBuildInputs", 81, 7], ["preBuild", 85, 7], ["installPhase", 90, 7], ["dontFixup", 96, 7]], [["smoke-test", 99, 11]], [["subpackage", 102, 50]], [["extraArgs", 102, 7]], [["frontend", 71, 5], ["tests", 99, 5], ["updateScript", 101, 5]], [["description", 107, 5], ["homepage", 108, 5], ["changelog", 109, 5], ["sourceProvenance", 110, 5], ["license", 111, 5], ["maintainers", 112, 5], ["mainProgram", 116, 5], ["platforms", 117, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["dependencies", 24, 3], ["__structuredAttrs", 33, 3], ["dontBuild", 34, 3], ["dontWrapPythonPrograms", 35, 3], ["pyproject", 36, 3], ["installPhase", 38, 3], ["passthru", 70, 3], ["meta", 106, 3]]]);
 const formals$1 = { args: { buildNpmPackage: false, "dart-sass": false, fetchFromGitHub: false, ffmpeg: false, lib: false, "nix-update-script": false, nixosTests: false, nodejs_24: false, python313Packages: false, unar: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updatemethod", 49, 9], ["updatemethodmessage", 50, 9], ["packageversion", 51, 9], ["packageauthor", 52, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 72, 28], ["version", 72, 32], ["pname", 73, 7], ["sourceRoot", 75, 7], ["nodejs", 77, 7], ["npmDepsHash", 79, 7], ["nativeBuildInputs", 81, 7], ["preBuild", 85, 7], ["installPhase", 90, 7], ["dontFixup", 96, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["smoke-test", 99, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["subpackage", 102, 50]]);
-const pos$6 = nix.positions(here + "/package.nix", [["extraArgs", 102, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["frontend", 71, 5], ["tests", 99, 5], ["updateScript", 101, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 107, 5], ["homepage", 108, 5], ["changelog", 109, 5], ["sourceProvenance", 110, 5], ["license", 111, 5], ["maintainers", 112, 5], ["mainProgram", 116, 5], ["platforms", 117, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["dependencies", 24, 3], ["__structuredAttrs", 33, 3], ["dontBuild", 34, 3], ["dontWrapPythonPrograms", 35, 3], ["pyproject", 36, 3], ["installPhase", 38, 3], ["passthru", 70, 3], ["meta", 106, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const python313Packages = nix.arg($, "python313Packages");
   const unar = nix.arg($, "unar");
   return nix.app(nix.sel(python313Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "bazarr",
       version: "1.6.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "morpheus65535",
           repo: "bazarr",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -60,7 +52,7 @@ cp -r ${nix.sel(finalAttrs, "passthru", "frontend")} $out/lib/bazarr/frontend/bu
 printf '%s' "${nix.sel(finalAttrs, "version")}" > $out/lib/bazarr/VERSION
 
 printf '%s' "${nix.app(nix.sel(lib, "generators", "toKeyValue"), nix.thunk(() => ({})), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           updatemethod: "External",
           updatemethodmessage: "Bazarr is managed by Nix. Update it through your system configuration.",
           packageversion: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -76,9 +68,9 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(python313P
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         frontend: nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-frontend`),
@@ -91,16 +83,16 @@ runHook postInstall
             dontFixup: true,
           })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "smoke-test": nix.thunk(() => nix.sel(nixosTests, "bazarr")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$6,
-            extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "cli", "toCommandLineGNU"), nix.thunk(() => ({})), nix.thunk(() => ({ [nix.POS]: pos$5, subpackage: "frontend" })))),
+            [nix.POS]: $pos[5],
+            extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "cli", "toCommandLineGNU"), nix.thunk(() => ({})), nix.thunk(() => ({ [nix.POS]: $pos[4], subpackage: "frontend" })))),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Subtitle manager for Sonarr and Radarr",
         homepage: "https://www.bazarr.media/",
         changelog: nix.thunk(() => nix.str`https://github.com/morpheus65535/bazarr/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

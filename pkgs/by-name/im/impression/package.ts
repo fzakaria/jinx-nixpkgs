@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["pname", 39, 26], ["version", 39, 32], ["src", 39, 40], ["hash", 40, 5]], [["updateScript", 69, 5]], [["description", 73, 5], ["homepage", 74, 5], ["changelog", 75, 5], ["license", 76, 5], ["mainProgram", 77, 5], ["maintainers", 78, 5], ["teams", 79, 5], ["platforms", 80, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["cargoDeps", 38, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 55, 3], ["passthru", 68, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, "blueprint-compiler": false, cargo: false, "desktop-file-utils": false, meson: false, ninja: false, "pkg-config": false, rustPlatform: false, rustc: false, wrapGAppsHook4: false, cairo: false, dbus: false, "gdk-pixbuf": false, glib: false, gtk4: false, libadwaita: false, libcdio: false, openssl: false, pango: false, wimlib: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 39, 26], ["version", 39, 32], ["src", 39, 40], ["hash", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 69, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 73, 5], ["homepage", 74, 5], ["changelog", 75, 5], ["license", 76, 5], ["mainProgram", 77, 5], ["maintainers", 78, 5], ["teams", 79, 5], ["platforms", 80, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["cargoDeps", 38, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 55, 3], ["passthru", 68, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,18 +31,18 @@ export default nix.lambda((args) => (() => {
   const wimlib = nix.arg($, "wimlib");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "impression",
       version: "3.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "adhami3310",
           repo: "Impression",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-kUes+hNtoi6jvZFDon2pFUPsLq7wOJ2SDrPBGzg3AIo=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -76,11 +72,11 @@ export default nix.lambda((args) => (() => {
         wimlib,
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Straight-forward and modern application to create bootable drives",
         homepage: "https://gitlab.com/adhami3310/Impression",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/adhami3310/Impression/-/releases/v${nix.sel(finalAttrs, "version")}`),

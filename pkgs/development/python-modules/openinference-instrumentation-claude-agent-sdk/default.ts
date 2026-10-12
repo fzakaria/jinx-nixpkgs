@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["instruments", 51, 5]], [["updateScript", 65, 12]], [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["maintainers", 72, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["__structuredAttrs", 27, 3], ["src", 29, 3], ["sourceRoot", 36, 3], ["build-system", 38, 3], ["dependencies", 40, 3], ["optional-dependencies", 50, 3], ["nativeCheckInputs", 54, 3], ["pythonImportsCheck", 63, 3], ["passthru", 65, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, "claude-agent-sdk": false, fetchFromGitHub: false, hatchling: false, "nix-update-script": false, "openinference-instrumentation": false, "openinference-semantic-conventions": false, "opentelemetry-api": false, "opentelemetry-instrumentation": false, "opentelemetry-semantic-conventions": false, "pytest-asyncio": false, "pytest-timeout": false, pytestCheckHook: false, pyyaml: false, sniffio: false, "typing-extensions": false, wrapt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["instruments", 51, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 65, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["maintainers", 72, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["__structuredAttrs", 27, 3], ["src", 29, 3], ["sourceRoot", 36, 3], ["build-system", 38, 3], ["dependencies", 40, 3], ["optional-dependencies", 50, 3], ["nativeCheckInputs", 54, 3], ["pythonImportsCheck", 63, 3], ["passthru", 65, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,13 +26,13 @@ export default nix.lambda((args) => (() => {
   const typing_extensions = nix.arg($, "typing-extensions");
   const wrapt = nix.arg($, "wrapt");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "openinference-instrumentation-claude-agent-sdk",
       version: "0.1.7",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Arize-ai",
           repo: "openinference",
           tag: nix.thunk(() => nix.str`python-openinference-instrumentation-claude-agent-sdk-v${nix.sel(finalAttrs, "version")}`),
@@ -53,15 +49,15 @@ export default nix.lambda((args) => (() => {
         typing_extensions,
         wrapt,
       ]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, instruments: nix.thunk(() => [claude_agent_sdk]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], instruments: nix.thunk(() => [claude_agent_sdk]) })),
       nativeCheckInputs: nix.thunk(() => nix.concat([pytest_asyncio, pytest_timeout, pytestCheckHook, pyyaml, sniffio], nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))))),
       pythonImportsCheck: nix.thunk(() => ["openinference.instrumentation.claude_agent_sdk"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "OpenInference Claude Agent SDK Instrumentation",
         homepage: "https://github.com/Arize-ai/openinference",
         changelog: nix.thunk(() => nix.str`https://github.com/Arize-ai/openinference/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

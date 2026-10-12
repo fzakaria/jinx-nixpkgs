@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 26, 5], ["hash", 27, 5], ["postFetch", 37, 5]], [["owner", 44, 5], ["repo", 45, 5], ["rev", 46, 5], ["hash", 47, 5]], [["license", 110, 5]], [["pname", 18, 3], ["version", 19, 3], ["format", 20, 3], ["src", 22, 3], ["patchSrc", 43, 3], ["patches", 50, 3], ["configureFlags", 63, 3], ["nativeBuildInputs", 67, 3], ["propagatedBuildInputs", 73, 3], ["doCheck", 78, 3], ["preBuild", 80, 3], ["postPatch", 84, 3], ["LOCALE_ARCHIVE", 92, 3], ["pythonImportsCheck", 97, 3], ["meta", 109, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, makeWrapper: false, re2c: false, glibcLocales: false, file: false, six: false, typing: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 26, 5], ["hash", 27, 5], ["postFetch", 37, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 44, 5], ["repo", 45, 5], ["rev", 46, 5], ["hash", 47, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["license", 110, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["format", 20, 3], ["src", 22, 3], ["patchSrc", 43, 3], ["patches", 50, 3], ["configureFlags", 63, 3], ["nativeBuildInputs", 67, 3], ["propagatedBuildInputs", 73, 3], ["doCheck", 78, 3], ["preBuild", 80, 3], ["postPatch", 84, 3], ["LOCALE_ARCHIVE", 92, 3], ["pythonImportsCheck", 97, 3], ["meta", 109, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "2024-02-26";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "oilshell",
           repo: "oil",
           rev: "f730c79e2dcde4bc08e85a718951cfa42102bd01",
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
           postFetch: "rm -rf $out/{Python-2.7.13,metrics,py-yajl,rfc,gold,web,testdata,services,demo}\n",
         }))));
       const patchSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "abathur",
           repo: "nix-py-dev-oil",
           rev: "v0.20.0.0",
@@ -70,7 +67,7 @@ export default nix.lambda((args) => (() => {
         "oil.tools.ysh_ify",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
           return [
@@ -80,7 +77,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         format,

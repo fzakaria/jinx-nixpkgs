@@ -2,17 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/kernel.nix", [[["displayName", 15, 9], ["argv", 16, 9], ["language", 23, 9], ["logo32", 24, 9], ["logo64", 25, 9]], [["python3", 10, 5]], [["display_name", 69, 19]], [["interrupt_mode", 71, 66]], [["logo-32x32.png", 75, 64]], [["logo-64x64.png", 76, 64]], [["description", 94, 9], ["homepage", 95, 9], ["maintainers", 96, 9]], [["name", 41, 7], ["src", 43, 7], ["unpackCmd", 45, 7], ["installPhase", 47, 7], ["meta", 93, 7]], [["default", 31, 11], ["create", 35, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/kernel.nix", [["displayName", 15, 9], ["argv", 16, 9], ["language", 23, 9], ["logo32", 24, 9], ["logo64", 25, 9]]);
-const pos$2 = nix.positions(here + "/kernel.nix", [["python3", 10, 5]]);
 const formals$2 = { args: { definitions: true }, ellipsis: false };
-const pos$3 = nix.positions(here + "/kernel.nix", [["display_name", 69, 19]]);
-const pos$4 = nix.positions(here + "/kernel.nix", [["interrupt_mode", 71, 66]]);
-const pos$5 = nix.positions(here + "/kernel.nix", [["logo-32x32.png", 75, 64]]);
-const pos$6 = nix.positions(here + "/kernel.nix", [["logo-64x64.png", 76, 64]]);
-const pos$7 = nix.positions(here + "/kernel.nix", [["description", 94, 9], ["homepage", 95, 9], ["maintainers", 96, 9]]);
-const pos$8 = nix.positions(here + "/kernel.nix", [["name", 41, 7], ["src", 43, 7], ["unpackCmd", 45, 7], ["installPhase", 47, 7], ["meta", 93, 7]]);
-const pos$9 = nix.positions(here + "/kernel.nix", [["default", 31, 11], ["create", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,14 +12,14 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const python3 = nix.arg($, "python3");
   const default$ = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     python3: nix.thunk(() => (() => {
       const env = nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (ps) => (() => {
           const w = nix.withScope(ps, null);
           return [nix.thunk(() => nix.lookup(w, "ipykernel"))];
         })()));
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         displayName: "Python 3",
         argv: nix.thunk(() => [
           nix.thunk(() => nix.sel(env, "interpreter")),
@@ -43,13 +35,13 @@ export default nix.lambda((args) => (() => {
     })()),
   }));
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     default: default$,
     create: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const definitions = nix.argOr($_1, "definitions", () => nix.force(default$));
       return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           name: "jupyter-kernels",
           src: "/dev/null",
           unpackCmd: "mkdir jupyter_kernels",
@@ -69,17 +61,17 @@ ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.se
                 ]);
                 const kernel = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (n) => (v) => nix.app(nix.sel(lib, "elem"), n, allowedKernelKeys), unfilteredKernel));
                 const config = nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => nix.update(kernel, nix.update({
-                    [nix.POS]: pos$3,
+                    [nix.POS]: $pos[2],
                     display_name: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(kernel, "displayName"), "")) ? nix.sel(kernel, "displayName") : nix.force(kernelName))),
                   }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(kernel, "interruptMode")), nix.thunk(() => ({
-                      [nix.POS]: pos$4,
+                      [nix.POS]: $pos[3],
                       interrupt_mode: nix.thunk(() => nix.sel(kernel, "interruptMode")),
                     }))))))));
                 const extraPaths = nix.thunk(() => nix.update(nix.selOr(kernel, () => ({}), "extraPaths"), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(kernel, "logo32"), null)), nix.thunk(() => ({
-                    [nix.POS]: pos$5,
+                    [nix.POS]: $pos[4],
                     "logo-32x32.png": nix.thunk(() => nix.sel(kernel, "logo32")),
                   }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(kernel, "logo64"), null)), nix.thunk(() => ({
-                    [nix.POS]: pos$6,
+                    [nix.POS]: $pos[5],
                     "logo-64x64.png": nix.thunk(() => nix.sel(kernel, "logo64")),
                   }))))));
                 const linkExtraPaths = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (value) => nix.str`ln -s ${value} 'kernels/${kernelName}/${name}';`, extraPaths));
@@ -93,7 +85,7 @@ mkdir $out
 cp -r kernels $out
 `),
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             description: "Wrapper to create jupyter notebook kernel definitions",
             homepage: "https://jupyter.org/",
             maintainers: [],

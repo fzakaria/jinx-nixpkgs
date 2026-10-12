@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["fanout", 41, 43]], [["tests", 41, 12]], [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["platforms", 48, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["preBuild", 22, 3], ["patches", 26, 3], ["hardeningDisable", 30, 3], ["nativeBuildInputs", 35, 3], ["makeFlags", 37, 3], ["passthru", 41, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, kernel: false, kernelModuleMakeFlags: false, kmod: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["fanout", 41, 43]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 41, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["platforms", 48, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["preBuild", 22, 3], ["patches", 26, 3], ["hardeningDisable", 30, 3], ["nativeBuildInputs", 35, 3], ["makeFlags", 37, 3], ["passthru", 41, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const kmod = nix.arg($, "kmod");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "fanout",
       version: nix.thunk(() => nix.str`unstable-2022-10-17-${nix.sel(kernel, "version")}`),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bob-linuxtoys",
           repo: "fanout",
           rev: "69b1cc69bf425d1a5f83b4e84d41272f1caa0144",
@@ -37,11 +33,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`KERNELDIR=${nix.sel(kernel, "dev")}/lib/modules/${nix.sel(kernel, "modDirVersion")}/build`),
       ])),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, fanout: nix.thunk(() => nix.attr(nixosTests, "fanout")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], fanout: nix.thunk(() => nix.attr(nixosTests, "fanout")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Kernel-based publish-subscribe system",
         homepage: "https://github.com/bob-linuxtoys/fanout",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

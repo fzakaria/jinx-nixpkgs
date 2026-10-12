@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]], [["strongswan", 37, 15], ["xl2tpd", 37, 26]], [["networkManagerPlugin", 75, 5]], [["description", 79, 5], ["platforms", 80, 35], ["homepage", 81, 5], ["license", 82, 5], ["maintainers", 83, 5]], [["name", 24, 3], ["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["patches", 35, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 50, 3], ["configureFlags", 64, 3], ["enableParallelBuilding", 71, 3], ["strictDeps", 72, 3], ["passthru", 74, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, replaceVars: false, fetchFromGitHub: false, autoreconfHook: false, "pkg-config": false, gtk3: false, gtk4: false, networkmanager: false, ppp: false, xl2tpd: false, strongswan: false, libsecret: false, withGnome: true, libnma: false, "libnma-gtk4": false, glib: false, openssl: false, nss: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["strongswan", 37, 15], ["xl2tpd", 37, 26]]);
-const pos$3 = nix.positions(here + "/package.nix", [["networkManagerPlugin", 75, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 79, 5], ["platforms", 80, 35], ["homepage", 81, 5], ["license", 82, 5], ["maintainers", 83, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 24, 3], ["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["patches", 35, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 50, 3], ["configureFlags", 64, 3], ["enableParallelBuilding", 71, 3], ["strictDeps", 72, 3], ["passthru", 74, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,14 +31,14 @@ export default nix.lambda((args) => (() => {
       const pname = "NetworkManager-l2tp";
       const version = "1.52.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nm-l2tp",
           repo: "NetworkManager-l2tp",
           rev: version,
           hash: "sha256-5EIG/5fexhrcOOQE+31+TJKMtINGVL+EI32m9tEhYVo=",
         }))));
       const patches = nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, strongswan: strongswan, xl2tpd: xl2tpd })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ [nix.POS]: $pos[1], strongswan: strongswan, xl2tpd: xl2tpd })))),
       ]);
       const nativeBuildInputs = nix.thunk(() => nix.concat([autoreconfHook, glib, pkg_config], nix.app(nix.sel(lib, "optionals"), withGnome, nix.thunk(() => [gtk4]))));
       const buildInputs = nix.thunk(() => nix.concat([networkmanager, ppp, openssl, nss], nix.app(nix.sel(lib, "optionals"), withGnome, nix.thunk(() => [gtk3, gtk4, libsecret, libnma, libnma_gtk4]))));
@@ -54,11 +50,11 @@ export default nix.lambda((args) => (() => {
       ]);
       const enableParallelBuilding = true;
       const strictDeps = true;
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$3, networkManagerPlugin: "VPN/nm-l2tp-service.name" }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[2], networkManagerPlugin: "VPN/nm-l2tp-service.name" }));
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(networkmanager, "meta"));
         return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "L2TP plugin for NetworkManager",
         platforms: nix.thunk(() => nix.attr(from, "platforms")),
         homepage: "https://github.com/nm-l2tp/NetworkManager-l2tp",
@@ -70,7 +66,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         name,
         pname,
         version,

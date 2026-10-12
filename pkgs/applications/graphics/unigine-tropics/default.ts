@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 26, 5], ["sha256", 27, 5]], [["name", 64, 7], ["exec", 65, 7], ["genericName", 66, 7], ["icon", 67, 7], ["desktopName", 68, 7]], [["description", 90, 5], ["homepage", 91, 5], ["sourceProvenance", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["platforms", 95, 5], ["mainProgram", 99, 5]], [["pname", 22, 3], ["version", 23, 11], ["src", 25, 3], ["libPath", 30, 3], ["installPhase", 36, 3], ["desktopItems", 62, 3], ["nativeBuildInputs", 72, 3], ["buildInputs", 79, 3], ["dontUnpack", 87, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, autoPatchelfHook: false, libx11: false, libxext: false, libxrandr: false, libxinerama: false, libglvnd: false, openal: false, glibc: false, makeDesktopItem: false, copyDesktopItems: false, imagemagick: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 26, 5], ["sha256", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 64, 7], ["exec", 65, 7], ["genericName", 66, 7], ["icon", 67, 7], ["desktopName", 68, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 90, 5], ["homepage", 91, 5], ["sourceProvenance", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["platforms", 95, 5], ["mainProgram", 99, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 11], ["src", 25, 3], ["libPath", 30, 3], ["installPhase", 36, 3], ["desktopItems", 62, 3], ["nativeBuildInputs", 72, 3], ["buildInputs", 79, 3], ["dontUnpack", 87, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const imagemagick = nix.arg($, "imagemagick");
   const version = "1.3";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "unigine-tropics",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://assets.unigine.com/d/Unigine_Tropics-${version}.run`),
           sha256: "sha256-/eA1i42/PMcoBbUJIGS66j7QpZ13oPkOi1Y6Q27TikU=",
         })))),
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "bash $src --target $name\n\ninstall -D -m 0755 $name/bin/libUnigine_x86.so $out/lib/unigine/tropics/bin/libUnigine_x86.so\ninstall -D -m 0755 $name/bin/Tropics $out/lib/unigine/tropics/bin/Tropics\ninstall -D -m 0755 $name/1024x768_windowed.sh $out/bin/Tropics\n\ncp -R $name/data $out/lib/unigine/tropics\n\nwrapProgram $out/bin/Tropics \\\n  --prefix LD_LIBRARY_PATH : $libPath:$out/lib/unigine/tropics/bin \\\n  --run \"cd $out/lib/unigine/tropics\"\n\nconvert -size 256x256 xc:Transparent -fill gradient:'dodgerblue-white' -stroke Transparent -draw \"roundrectangle 0,0 256,256 50,50\"  $name/icon.png\nconvert $name/icon.png -fill white -stroke white -draw \"polygon  69.2564,84.1261 117.9,84.1261 117.9,206.56 138.1,206.56 138.1,84.1261 186.744,84.1261 186.744,65.9877 69.2564,65.9877 69.2564,84.1261\" $name/icon.png\n\nfor RES in 16 24 32 48 64 128 256\ndo\n    mkdir -p $out/share/icons/hicolor/\"$RES\"x\"$RES\"/apps\n    convert $name/icon.png -resize \"$RES\"x\"$RES\" $out/share/icons/hicolor/\"$RES\"x\"$RES\"/apps/Tropics.png\ndone\nconvert $name/icon.png -resize 128x128 $out/share/icons/Tropics.png\n\nrunHook postInstall\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "Tropics",
             exec: "Tropics",
             genericName: "A GPU Stress test tool from the UNIGINE",
@@ -57,7 +54,7 @@ export default nix.lambda((args) => (() => {
       ]),
       dontUnpack: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Unigine Heaven GPU benchmarking tool",
         homepage: "https://benchmark.unigine.com/tropics",
         sourceProvenance: nix.thunk(() => (() => {

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 28, 5], ["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["changelog", 74, 5], ["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["platforms", 78, 5], ["mainProgram", 79, 5], ["maintainers", 80, 5], ["teams", 81, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 46, 3], ["dependencies", 56, 3], ["dontWrapGApps", 68, 3], ["preFixup", 69, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitLab: false, "blueprint-compiler": false, meson: false, ninja: false, "pkg-config": false, "gobject-introspection": false, wrapGAppsHook4: false, "appstream-glib": false, "desktop-file-utils": false, glib: false, gtk4: false, librsvg: false, libsecret: false, libadwaita: false, gtksourceview5: false, webkitgtk_6_0: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 28, 5], ["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 74, 5], ["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["platforms", 78, 5], ["mainProgram", 79, 5], ["maintainers", 80, 5], ["teams", 81, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 46, 3], ["dependencies", 56, 3], ["dontWrapGApps", 68, 3], ["preFixup", 69, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const gtksourceview5 = nix.arg($, "gtksourceview5");
   const webkitgtk_6_0 = nix.arg($, "webkitgtk_6_0");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "iotas",
       version: "2026.7",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           owner: "World",
           repo: "iotas",
@@ -67,7 +65,7 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/World/iotas/-/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         description: "Simple note taking with mobile-first design and Nextcloud sync",
         homepage: "https://gitlab.gnome.org/World/iotas",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 54, 5], ["repo", 55, 5], ["tag", 56, 5], ["hash", 57, 5]], [["LUPDATE", 88, 5], ["LRELEASE", 89, 5], ["MOC", 90, 5], ["QTDIR", 91, 5], ["RCC", 92, 5], ["UIC", 93, 5]], [["description", 133, 5], ["longDescription", 134, 5], ["homepage", 150, 5], ["license", 151, 5], ["platforms", 152, 5]], [["pname", 50, 3], ["version", 51, 3], ["src", 53, 3], ["postPatch", 61, 3], ["nativeBuildInputs", 65, 3], ["buildInputs", 76, 3], ["env", 87, 3], ["configureFlags", 96, 3], ["hardeningDisable", 100, 3], ["qtWrapperArgs", 104, 3], ["postInstall", 106, 3], ["preFixup", 120, 3], ["enableParallelBuilding", 128, 3], ["doInstallCheck", 130, 3], ["meta", 132, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, autoreconfHook: false, curl: false, fetchFromGitHub: false, git: false, libevent: false, libtool: false, libsForQt5: false, qrencode: false, udev: false, libusb1: false, makeWrapper: false, "pkg-config": false, udevRule51: true, udevRule52: true, udevCheckHook: false, writeText: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 54, 5], ["repo", 55, 5], ["tag", 56, 5], ["hash", 57, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["LUPDATE", 88, 5], ["LRELEASE", 89, 5], ["MOC", 90, 5], ["QTDIR", 91, 5], ["RCC", 92, 5], ["UIC", 93, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 133, 5], ["longDescription", 134, 5], ["homepage", 150, 5], ["license", 151, 5], ["platforms", 152, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 50, 3], ["version", 51, 3], ["src", 53, 3], ["postPatch", 61, 3], ["nativeBuildInputs", 65, 3], ["buildInputs", 76, 3], ["env", 87, 3], ["configureFlags", 96, 3], ["hardeningDisable", 100, 3], ["qtWrapperArgs", 104, 3], ["postInstall", 106, 3], ["preFixup", 120, 3], ["enableParallelBuilding", 128, 3], ["doInstallCheck", 130, 3], ["meta", 132, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const writeText = nix.arg($, "writeText");
   const copyUdevRuleToOutput = (name) => (rule) => nix.str`cp ${nix.app(writeText, name, rule)} $out/etc/udev/rules.d/${name}`;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "digitalbitbox",
       version: "3.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "BitBoxSwiss",
           repo: "dbb-app",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -62,7 +59,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(libsForQt5, "qtmultimedia")),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         LUPDATE: nix.thunk(() => nix.str`${nix.sel(libsForQt5, "qttools", "dev")}/bin/lupdate`),
         LRELEASE: nix.thunk(() => nix.str`${nix.sel(libsForQt5, "qttools", "dev")}/bin/lrelease`),
         MOC: nix.thunk(() => nix.str`${nix.sel(libsForQt5, "qtbase", "dev")}/bin/moc`),
@@ -88,7 +85,7 @@ ${nix.app(copyUdevRuleToOutput, "52-hid-digitalbox.rules", udevRule52)}
       enableParallelBuilding: true,
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "QT based application for the Digital Bitbox hardware wallet",
         longDescription: "Digital Bitbox provides dbb-app, a GUI tool, and dbb-cli, a CLI tool, to manage Digital Bitbox devices.\n\nThis package will only install the dbb-app and dbb-cli, however; in order for these applications to identify and access Digital Bitbox devices, one may want to enable the digitalbitbox hardware module by adding\n\n    hardware.digitalbitbox.enable = true;\n\nto the configuration which is equivalent to adding this package to the udev.packages list.\n\n\nThe easiest way to use the digitalbitbox package in NixOS is by adding\n\n    programs.digitalbitbox.enable = true;\n\nto the configuration which installs the package and enables the hardware module.\n",
         homepage: "https://digitalbitbox.com/",

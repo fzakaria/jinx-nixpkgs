@@ -2,21 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 7], ["repo", 26, 7], ["rev", 27, 7], ["hash", 28, 7]], [["owner", 31, 7], ["repo", 32, 7], ["tag", 33, 7], ["hash", 34, 7]], [["owner", 38, 9], ["repo", 39, 9], ["rev", 40, 9], ["hash", 41, 9]], [["src", 37, 7], ["postPatch", 45, 7]], [["owner", 53, 7], ["repo", 54, 7], ["rev", 55, 7], ["hash", 56, 7]], [["owner", 59, 7], ["repo", 60, 7], ["rev", 61, 7], ["hash", 62, 7]], [["owner", 65, 7], ["repo", 66, 7], ["tag", 67, 7], ["hash", 68, 7]], [["url", 72, 7], ["hash", 73, 7]], [["avalon", 24, 5], ["chemdraw", 30, 5], ["yaehmop", 36, 5], ["freesasa", 52, 5], ["pubchem-align3d", 58, 5], ["better_enums", 64, 5], ["inchi", 71, 5]], [["enableNumpy", 76, 29]], [["owner", 88, 7], ["repo", 89, 7], ["tag", 90, 7], ["hash", 91, 7]], [["better_enums", 127, 26]], [["description", 202, 5], ["maintainers", 203, 5], ["license", 207, 5], ["homepage", 208, 5], ["changelog", 209, 5]], [["pname", 79, 3], ["version", 80, 3], ["pyproject", 81, 3], ["src", 83, 3], ["unpackPhase", 94, 3], ["patches", 125, 3], ["postPatch", 134, 3], ["nativeBuildInputs", 143, 3], ["buildInputs", 145, 3], ["dependencies", 154, 3], ["hardeningDisable", 160, 3], ["cmakeFlags", 162, 3], ["checkPhase", 187, 3], ["pythonImportsCheck", 194, 3], ["meta", 201, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchzip: false, applyPatches: false, replaceVars: false, cmake: false, "comic-neue": false, boost: false, catch2_3: false, cairo: false, eigen: false, python: false, rapidjson: false, maeparser: false, coordgenlibs: false, numpy: false, pandas: false, pillow: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 7], ["repo", 26, 7], ["rev", 27, 7], ["hash", 28, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 31, 7], ["repo", 32, 7], ["tag", 33, 7], ["hash", 34, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["owner", 38, 9], ["repo", 39, 9], ["rev", 40, 9], ["hash", 41, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["src", 37, 7], ["postPatch", 45, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["owner", 53, 7], ["repo", 54, 7], ["rev", 55, 7], ["hash", 56, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["owner", 59, 7], ["repo", 60, 7], ["rev", 61, 7], ["hash", 62, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["owner", 65, 7], ["repo", 66, 7], ["tag", 67, 7], ["hash", 68, 7]]);
-const pos$8 = nix.positions(here + "/default.nix", [["url", 72, 7], ["hash", 73, 7]]);
-const pos$9 = nix.positions(here + "/default.nix", [["avalon", 24, 5], ["chemdraw", 30, 5], ["yaehmop", 36, 5], ["freesasa", 52, 5], ["pubchem-align3d", 58, 5], ["better_enums", 64, 5], ["inchi", 71, 5]]);
-const pos$10 = nix.positions(here + "/default.nix", [["enableNumpy", 76, 29]]);
-const pos$11 = nix.positions(here + "/default.nix", [["owner", 88, 7], ["repo", 89, 7], ["tag", 90, 7], ["hash", 91, 7]]);
-const pos$12 = nix.positions(here + "/default.nix", [["better_enums", 127, 26]]);
-const pos$13 = nix.positions(here + "/default.nix", [["description", 202, 5], ["maintainers", 203, 5], ["license", 207, 5], ["homepage", 208, 5], ["changelog", 209, 5]]);
-const pos$14 = nix.positions(here + "/default.nix", [["pname", 79, 3], ["version", 80, 3], ["pyproject", 81, 3], ["src", 83, 3], ["unpackPhase", 94, 3], ["patches", 125, 3], ["postPatch", 134, 3], ["nativeBuildInputs", 143, 3], ["buildInputs", 145, 3], ["dependencies", 154, 3], ["hardeningDisable", 160, 3], ["cmakeFlags", 162, 3], ["checkPhase", 187, 3], ["pythonImportsCheck", 194, 3], ["meta", 201, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,25 +27,25 @@ export default nix.lambda((args) => (() => {
   const pandas = nix.arg($, "pandas");
   const pillow = nix.arg($, "pillow");
   const external = nix.thunk(() => ({
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     avalon: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         owner: "rdkit",
         repo: "ava-formake",
         rev: "AvalonToolkit_2.0.5-pre.3",
         hash: "sha256-2MuFZgRIHXnkV7Nc1da4fa7wDx57VHUtwLthrmjk+5o=",
       })))),
     chemdraw: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         owner: "Glysade",
         repo: "chemdraw",
         tag: "v1.0.10",
         hash: "sha256-ee2Oxvo2d7Yb59lN0zkrbFqy/3rOvVLo6qdS+f23wVQ=",
       })))),
     yaehmop: nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             owner: "greglandrum",
             repo: "yaehmop",
             rev: "v2025.03.1",
@@ -67,33 +54,33 @@ export default nix.lambda((args) => (() => {
         postPatch: "substituteInPlace tightbind/CMakeLists.txt \\\n  --replace-fail \\\n    \"cmake_minimum_required(VERSION 3.0)\" \\\n    \"cmake_minimum_required(VERSION 3.5)\"\n",
       })))),
     freesasa: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         owner: "mittinatten",
         repo: "freesasa",
         rev: "2.0.3",
         hash: "sha256-7E+imvfDAJFnXQRWb5hNaSu+Xrf9NXeIKc9fl+o3yHQ=",
       })))),
     "pubchem-align3d": nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         owner: "ncbi",
         repo: "pubchem-align3d",
         rev: "daefab3dd0c90ca56da9d3d5e375fe4d651e6be3",
         hash: "sha256-tQB4wqza9rlSoy4Uj9bA99ddawjxGyN9G7DYbcv/Qdo=",
       })))),
     better_enums: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         owner: "aantron",
         repo: "better-enums",
         tag: "0.11.3",
         hash: "sha256-UYldCOkRTySc78oEOJzgoY9h2lB386W/D5Rz3KjVCO8=",
       })))),
     inchi: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         url: "https://github.com/IUPAC-InChI/InChI/releases/download/v1.07.3/INCHI-1-SRC.zip",
         hash: "sha256-TUC2175HifB63EfSsg/ixA3wYzAxsvUnY6ZyNjVR/Fc=",
       })))),
   }));
-  const boost$ = nix.thunk(() => nix.app(nix.sel(boost, "override"), nix.thunk(() => ({ [nix.POS]: pos$10, enableNumpy: true }))));
+  const boost$ = nix.thunk(() => nix.app(nix.sel(boost, "override"), nix.thunk(() => ({ [nix.POS]: $pos[9], enableNumpy: true }))));
   return nix.app(buildPythonPackage, nix.thunk(() => (() => {
       const pname = "rdkit";
       const version = "2025.03.6";
@@ -101,7 +88,7 @@ export default nix.lambda((args) => (() => {
       const src = nix.thunk(() => (() => {
         const versionTag = nix.thunk(() => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version));
         return nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             owner: "rdkit",
             repo: "rdkit",
             tag: nix.thunk(() => nix.str`Release_${versionTag}`),
@@ -139,7 +126,7 @@ ln -s ${comic_neue}/share/fonts/truetype/ComicNeue-Regular.ttf Data/Fonts/
 `);
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./dont-fetch-better-enums.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             better_enums: nix.thunk(() => nix.attr(external, "better_enums")),
           })))),
       ]);
@@ -179,7 +166,7 @@ export PYTHONPATH="$out/${nix.sel(python, "sitePackages")}:$PYTHONPATH"
 `);
       const pythonImportsCheck = nix.thunk(() => ["rdkit", "rdkit.Chem", "rdkit.Chem.AllChem", "rdkit.Chem.rdDetermineBonds"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         description: "Open source toolkit for cheminformatics",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -193,7 +180,7 @@ export PYTHONPATH="$out/${nix.sel(python, "sitePackages")}:$PYTHONPATH"
         changelog: nix.thunk(() => nix.str`https://github.com/rdkit/rdkit/releases/tag/${nix.sel(src, "tag")}`),
       }));
       return {
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         pname,
         version,
         pyproject,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 15, 5], ["url", 16, 5], ["hash", 17, 5]], [["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["platforms", 79, 5], ["sourceProvenance", 80, 5], ["hydraPlatforms", 81, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 20, 3], ["sourceRoot", 26, 3], ["postPatch", 29, 3], ["dontConfigure", 35, 3], ["dontBuild", 36, 3], ["installPhase", 38, 3], ["postFixup", 65, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, requireFile: false, bubblewrap: false, fakeroot: false, unixtools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 15, 5], ["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["platforms", 79, 5], ["sourceProvenance", 80, 5], ["hydraPlatforms", 81, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 20, 3], ["sourceRoot", 26, 3], ["postPatch", 29, 3], ["dontConfigure", 35, 3], ["dontBuild", 36, 3], ["installPhase", 38, 3], ["postFixup", 65, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fakeroot = nix.arg($, "fakeroot");
   const unixtools = nix.arg($, "unixtools");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pixinsight",
       version: "1.9.5-20260927",
       src: nix.thunk(() => nix.app(requireFile, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: nix.thunk(() => nix.str`PI-linux-x64-gpu-${nix.sel(finalAttrs, "version")}-c.tar.xz`),
           url: "http://pixinsight.com",
           hash: "sha256-xbC6971cSWkqDNnB6UTTL+Aj0nTHzZNUSWqKjQpnaow=",
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\n# Prepare output directories\nmkdir -p $out/opt\nmkdir -p $out/share/{applications,mime/packages}\nfor i in 16 24 32 48 64 128 256 512; do\n  mkdir -p $out/share/icons/hicolor/\"$i\"x\"$i\"/apps\ndone\nmkdir -p $out/share/icons/hicolor/scalable/apps\n\n# Install using proper bind-mounts\nbwrap \\\n  --bind /build /build \\\n  --bind $out/opt /opt \\\n  --bind /nix /nix \\\n  --dev /dev \\\n  fakeroot script -ec \"./installer \\\n    --yes \\\n    --install-desktop-dir=$out/share/applications \\\n    --install-mime-dir=$out/share/mime \\\n    --install-icons-dir=$out/share/icons/hicolor \\\n    --no-bin-launcher\"\n\nrunHook postInstall\n",
       postFixup: "# Patch desktop entry for downstream compatibility\nsubstituteInPlace $out/share/applications/PixInsight.desktop \\\n  --replace-fail \"Exec=/opt/PixInsight/bin/PixInsight.sh\" \"Exec=pixinsight\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Scientific image processing program for astrophotography",
         homepage: "https://pixinsight.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

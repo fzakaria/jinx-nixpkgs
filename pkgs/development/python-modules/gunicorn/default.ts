@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["gevent", 41, 5], ["eventlet", 42, 5], ["tornado", 43, 5], ["gthread", 44, 5], ["setproctitle", 45, 5]], [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["mainProgram", 73, 5]], [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["build-system", 36, 3], ["dependencies", 38, 3], ["optional-dependencies", 40, 3], ["pythonImportsCheck", 48, 3], ["nativeCheckInputs", 50, 3], ["disabledTests", 57, 3], ["disabledTestPaths", 62, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, packaging: false, eventlet: false, gevent: false, tornado: false, setproctitle: false, "pytest-asyncio": false, pytestCheckHook: false, "pytest-cov-stub": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["gevent", 41, 5], ["eventlet", 42, 5], ["tornado", 43, 5], ["gthread", 44, 5], ["setproctitle", 45, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["mainProgram", 73, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["build-system", 36, 3], ["dependencies", 38, 3], ["optional-dependencies", 40, 3], ["pythonImportsCheck", 48, 3], ["nativeCheckInputs", 50, 3], ["disabledTests", 57, 3], ["disabledTestPaths", 62, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "26.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "benoitc",
           repo: "gunicorn",
           tag: version,
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [packaging]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         gevent: nix.thunk(() => [gevent]),
         eventlet: nix.thunk(() => [eventlet]),
         tornado: nix.thunk(() => [tornado]),
@@ -48,7 +45,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["TestSignalHandlingIntegration"]);
       const disabledTestPaths = nix.thunk(() => ["tests/test_control_socket_integration.py"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "WSGI HTTP Server for UNIX, fast clients and sleepy applications",
         homepage: "https://github.com/benoitc/gunicorn",
         changelog: nix.thunk(() => nix.str`https://github.com/benoitc/gunicorn/releases/tag/${version}`),
@@ -60,7 +57,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "gunicorn",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

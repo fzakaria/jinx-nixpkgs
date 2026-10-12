@@ -2,36 +2,20 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/predictable-interface-names.nix", [[["system", 4, 33], ["config", 4, 40]], [["system", 8, 55], ["pkgs", 8, 62]], [["predictable", 10, 5], ["withNetworkd", 14, 5], ["systemdStage1", 18, 5]], [["enable", 66, 31]], [["usePredictableInterfaceNames", 64, 24], ["useNetworkd", 65, 24], ["dhcpcd", 66, 24], ["useDHCP", 67, 24]], [["enable", 73, 17]], [["wantedBy", 76, 46]], [["Type", 80, 33]], [["requiredBy", 78, 19], ["after", 79, 19], ["serviceConfig", 80, 19], ["path", 81, 19], ["script", 82, 27]], [["systemd-udev-settle", 76, 26], ["check-interfaces", 77, 26]], [["initrdBin", 75, 17], ["services", 76, 17]], [["postDeviceCommands", 70, 25], ["systemd", 72, 25]], [["initrd", 70, 18]], [["networking", 64, 13], ["boot", 70, 13]], [["machine", 45, 15]], [["name", 38, 9], ["meta", 43, 9], ["nodes", 45, 9], ["testScript", 88, 9]], [["name", 32, 7], ["value", 37, 7]]]);
 const formals$1 = { args: { system: true, config: true, pkgs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/predictable-interface-names.nix", [["system", 4, 33], ["config", 4, 40]]);
-const pos$2 = nix.positions(here + "/predictable-interface-names.nix", [["system", 8, 55], ["pkgs", 8, 62]]);
-const pos$3 = nix.positions(here + "/predictable-interface-names.nix", [["predictable", 10, 5], ["withNetworkd", 14, 5], ["systemdStage1", 18, 5]]);
 const formals$2 = { args: { predictable: false, withNetworkd: false, systemdStage1: false }, ellipsis: false };
 const formals$3 = { args: { config: false, pkgs: false, lib: false }, ellipsis: true };
-const pos$4 = nix.positions(here + "/predictable-interface-names.nix", [["enable", 66, 31]]);
-const pos$5 = nix.positions(here + "/predictable-interface-names.nix", [["usePredictableInterfaceNames", 64, 24], ["useNetworkd", 65, 24], ["dhcpcd", 66, 24], ["useDHCP", 67, 24]]);
-const pos$6 = nix.positions(here + "/predictable-interface-names.nix", [["enable", 73, 17]]);
-const pos$7 = nix.positions(here + "/predictable-interface-names.nix", [["wantedBy", 76, 46]]);
-const pos$8 = nix.positions(here + "/predictable-interface-names.nix", [["Type", 80, 33]]);
-const pos$9 = nix.positions(here + "/predictable-interface-names.nix", [["requiredBy", 78, 19], ["after", 79, 19], ["serviceConfig", 80, 19], ["path", 81, 19], ["script", 82, 27]]);
-const pos$10 = nix.positions(here + "/predictable-interface-names.nix", [["systemd-udev-settle", 76, 26], ["check-interfaces", 77, 26]]);
-const pos$11 = nix.positions(here + "/predictable-interface-names.nix", [["initrdBin", 75, 17], ["services", 76, 17]]);
-const pos$12 = nix.positions(here + "/predictable-interface-names.nix", [["postDeviceCommands", 70, 25], ["systemd", 72, 25]]);
-const pos$13 = nix.positions(here + "/predictable-interface-names.nix", [["initrd", 70, 18]]);
-const pos$14 = nix.positions(here + "/predictable-interface-names.nix", [["networking", 64, 13], ["boot", 70, 13]]);
-const pos$15 = nix.positions(here + "/predictable-interface-names.nix", [["machine", 45, 15]]);
-const pos$16 = nix.positions(here + "/predictable-interface-names.nix", [["name", 38, 9], ["meta", 43, 9], ["nodes", 45, 9], ["testScript", 88, 9]]);
-const pos$17 = nix.positions(here + "/predictable-interface-names.nix", [["name", 32, 7], ["value", 37, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const config = nix.argOr($, "config", () => ({}));
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, config: config }))));
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, system: system, pkgs: pkgs }))));
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: $pos[0], system: system, config: config }))));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], system: system, pkgs: pkgs }))));
   const makeTest = nix.thunk(() => nix.attr(from, "makeTest"));
   const testCombinations = nix.thunk(() => nix.app(nix.sel(pkgs, "lib", "cartesianProduct"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       predictable: nix.thunk(() => [true, false]),
       withNetworkd: nix.thunk(() => [true, false]),
       systemdStage1: nix.thunk(() => [true, false]),
@@ -42,14 +26,14 @@ export default nix.lambda((args) => (() => {
         const withNetworkd = nix.arg($_1, "withNetworkd");
         const systemdStage1 = nix.arg($_1, "systemdStage1");
         return {
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           name: nix.thunk(() => nix.add(nix.add(nix.add(nix.app(nix.sel(pkgs, "lib", "optionalString"), nix.thunk(() => !nix.asBool(predictable)), "un"), "predictable"), nix.app(nix.sel(pkgs, "lib", "optionalString"), withNetworkd, "Networkd")), nix.app(nix.sel(pkgs, "lib", "optionalString"), systemdStage1, "SystemdStage1"))),
           value: nix.thunk(() => nix.app(makeTest, nix.thunk(() => ({
-              [nix.POS]: pos$16,
+              [nix.POS]: $pos[15],
               name: nix.thunk(() => nix.add(nix.add(nix.add(nix.app(nix.sel(pkgs, "lib", "optionalString"), nix.thunk(() => !nix.asBool(predictable)), "un"), "predictableInterfaceNames"), nix.app(nix.sel(pkgs, "lib", "optionalString"), withNetworkd, "-with-networkd")), nix.app(nix.sel(pkgs, "lib", "optionalString"), systemdStage1, "-systemd-stage-1"))),
               meta: nix.thunk(() => ({})),
               nodes: nix.thunk(() => ({
-                [nix.POS]: pos$15,
+                [nix.POS]: $pos[14],
                 machine: nix.lambda((args_2) => (() => {
                   const $_2 = nix.formals(args_2, formals$3);
                   const config_1 = nix.arg($_2, "config");
@@ -64,32 +48,32 @@ else
 fi
 `);
                   return {
-                    [nix.POS]: pos$14,
+                    [nix.POS]: $pos[13],
                     networking: nix.thunk(() => ({
-                      [nix.POS]: pos$5,
+                      [nix.POS]: $pos[4],
                       usePredictableInterfaceNames: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), predictable)),
                       useNetworkd: withNetworkd,
-                      dhcpcd: nix.thunk(() => ({ [nix.POS]: pos$4, enable: nix.thunk(() => !nix.asBool(withNetworkd)) })),
+                      dhcpcd: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: nix.thunk(() => !nix.asBool(withNetworkd)) })),
                       useDHCP: nix.thunk(() => !nix.asBool(withNetworkd)),
                     })),
                     boot: nix.thunk(() => ({
-                      [nix.POS]: pos$13,
+                      [nix.POS]: $pos[12],
                       initrd: nix.thunk(() => ({
-                        [nix.POS]: pos$12,
+                        [nix.POS]: $pos[11],
                         postDeviceCommands: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(systemdStage1)), script)),
                         systemd: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
-                            nix.thunk(() => ({ [nix.POS]: pos$6, enable: systemdStage1 })),
+                            nix.thunk(() => ({ [nix.POS]: $pos[5], enable: systemdStage1 })),
                             nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), systemdStage1, nix.thunk(() => ({
-                                [nix.POS]: pos$11,
+                                [nix.POS]: $pos[10],
                                 initrdBin: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "iproute2"))]),
                                 services: nix.thunk(() => ({
-                                  [nix.POS]: pos$10,
-                                  "systemd-udev-settle": nix.thunk(() => ({ [nix.POS]: pos$7, wantedBy: nix.thunk(() => ["initrd.target"]) })),
+                                  [nix.POS]: $pos[9],
+                                  "systemd-udev-settle": nix.thunk(() => ({ [nix.POS]: $pos[6], wantedBy: nix.thunk(() => ["initrd.target"]) })),
                                   "check-interfaces": nix.thunk(() => ({
-                                    [nix.POS]: pos$9,
+                                    [nix.POS]: $pos[8],
                                     requiredBy: nix.thunk(() => ["initrd.target"]),
                                     after: nix.thunk(() => ["systemd-udev-settle.service"]),
-                                    serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$8, Type: "oneshot" })),
+                                    serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[7], Type: "oneshot" })),
                                     path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "iproute2"))]),
                                     script: script,
                                   })),

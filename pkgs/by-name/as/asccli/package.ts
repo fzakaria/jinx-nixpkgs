@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["description", 57, 5], ["homepage", 58, 5], ["changelog", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["mainProgram", 64, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["ldflags", 22, 3], ["postInstall", 30, 3], ["nativeInstallCheckInputs", 34, 3], ["doInstallCheck", 35, 3], ["__darwinAllowLocalNetworking", 37, 3], ["nativeCheckInputs", 38, 3], ["preCheck", 39, 3], ["checkFlags", 42, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { buildGoModule: false, fetchFromGitHub: false, git: false, lib: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 57, 5], ["homepage", 58, 5], ["changelog", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["mainProgram", 64, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["ldflags", 22, 3], ["postInstall", 30, 3], ["nativeInstallCheckInputs", 34, 3], ["doInstallCheck", 35, 3], ["__darwinAllowLocalNetworking", 37, 3], ["nativeCheckInputs", 38, 3], ["preCheck", 39, 3], ["checkFlags", 42, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "asccli",
       version: "1.5.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rorkai",
           repo: "App-Store-Connect-CLI",
           tag: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}`),
@@ -52,7 +50,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Scriptable CLI for the App Store Connect API",
         homepage: "https://asccli.sh",
         changelog: nix.thunk(() => nix.str`https://github.com/rorkai/App-Store-Connect-CLI/releases/tag/${nix.sel(finalAttrs, "version")}`),

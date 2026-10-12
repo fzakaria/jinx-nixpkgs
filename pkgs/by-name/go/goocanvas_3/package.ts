@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 28, 5], ["sha256", 29, 5]], [["PKG_CONFIG_GOBJECT_INTROSPECTION_1_0_GIRDIR", 58, 5], ["PKG_CONFIG_GOBJECT_INTROSPECTION_1_0_TYPELIBDIR", 59, 5]], [["attrPath", 64, 7], ["packageName", 65, 7], ["versionPolicy", 66, 7]], [["updateScript", 63, 5]], [["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["platforms", 78, 5]], [["pname", 18, 3], ["version", 19, 3], ["outputs", 21, 3], ["src", 27, 3], ["patches", 32, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 51, 3], ["env", 57, 3], ["passthru", 62, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, "pkg-config": false, gettext: false, "gobject-introspection": false, "gtk-doc": false, python3: false, cairo: false, gtk3: false, glib: false, gnome: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 28, 5], ["sha256", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["PKG_CONFIG_GOBJECT_INTROSPECTION_1_0_GIRDIR", 58, 5], ["PKG_CONFIG_GOBJECT_INTROSPECTION_1_0_TYPELIBDIR", 59, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["attrPath", 64, 7], ["packageName", 65, 7], ["versionPolicy", 66, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 63, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["platforms", 78, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["outputs", 21, 3], ["src", 27, 3], ["patches", 32, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 51, 3], ["env", 57, 3], ["passthru", 62, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const gnome = nix.arg($, "gnome");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "goocanvas",
       version: "3.0.0",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/goocanvas/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/goocanvas-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "06j05g2lmwvklmv51xsb7gm7rszcarhm01sal41jfp0qzrbpa2k7",
         })))),
@@ -39,21 +34,21 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, gettext, gobject_introspection, gtk_doc, python3]),
       buildInputs: nix.thunk(() => [cairo, gtk3, glib]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         PKG_CONFIG_GOBJECT_INTROSPECTION_1_0_GIRDIR: "$(dev)/share/gir-1.0",
         PKG_CONFIG_GOBJECT_INTROSPECTION_1_0_TYPELIBDIR: "$(out)/lib/girepository-1.0",
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             attrPath: nix.thunk(() => nix.str`goocanvas_${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
             packageName: "goocanvas",
             versionPolicy: "odd-unstable",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Canvas widget for GTK based on the the Cairo 2D library",
         homepage: "https://gitlab.gnome.org/Archive/goocanvas",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),

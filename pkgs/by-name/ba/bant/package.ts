@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]], [["LIBTOOL", 38, 5]], [["aarch64-linux", 53, 9], ["x86_64-linux", 54, 9]], [["preInstall", 48, 5], ["hash", 51, 5]], [["installPhase", 69, 5]], [["updateScript", 74, 12]], [["description", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["maintainers", 83, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["bazelFlags", 32, 3], ["env", 37, 3], ["postPatch", 41, 3], ["removeRulesCC", 45, 3], ["fetchAttrs", 47, 3], ["nativeBuildInputs", 59, 3], ["bazel", 62, 3], ["bazelBuildFlags", 64, 3], ["bazelTestTargets", 65, 3], ["bazelTargets", 66, 3], ["buildAttrs", 68, 3], ["passthru", 74, 3], ["strictDeps", 76, 3], ["__structuredAttrs", 77, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildBazelPackage: false, fetchFromGitHub: false, bazel_7: false, jdk: false, "nix-update-script": false, cctools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["LIBTOOL", 38, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["aarch64-linux", 53, 9], ["x86_64-linux", 54, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["preInstall", 48, 5], ["hash", 51, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["installPhase", 69, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["updateScript", 74, 12]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["maintainers", 83, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["bazelFlags", 32, 3], ["env", 37, 3], ["postPatch", 41, 3], ["removeRulesCC", 45, 3], ["fetchAttrs", 47, 3], ["nativeBuildInputs", 59, 3], ["bazel", 62, 3], ["bazelBuildFlags", 64, 3], ["bazelTestTargets", 65, 3], ["bazelTargets", 66, 3], ["buildAttrs", 68, 3], ["passthru", 74, 3], ["strictDeps", 76, 3], ["__structuredAttrs", 77, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const cctools = nix.arg($, "cctools");
   const system = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "system"));
   const registry = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "bazelbuild",
       repo: "bazel-central-registry",
       rev: "dc643526b97838ffe421b833dd8b9c95e71702e8",
@@ -35,21 +27,24 @@ export default nix.lambda((args) => (() => {
       const pname = "bant";
       const version = "0.3.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "hzeller",
           repo: "bant",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-A7PwA9gxT+Jd/Z8nxycA//4db5qoSfuSGfcd2RjYpbs=",
         }))));
       const bazelFlags = nix.thunk(() => ["--registry", nix.thunk(() => nix.str`file://${registry}`)]);
-      const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$3, LIBTOOL: nix.thunk(() => nix.str`${cctools}/bin/libtool`) }))));
+      const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
+          [nix.POS]: $pos[2],
+          LIBTOOL: nix.thunk(() => nix.str`${cctools}/bin/libtool`),
+        }))));
       const postPatch = "patchShebangs scripts/create-workspace-status.sh\n";
       const removeRulesCC = false;
       const fetchAttrs = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         preInstall: "rm -rf $bazelOut/external/rules_shell~~sh_configure~local_config_shell\n",
         hash: nix.thunk(() => nix.selOr({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "aarch64-linux": "sha256-E70F3D7HGsyV0bPd0zbRTytx1UCHyEuNKObaG2eRy8A=",
           "x86_64-linux": "sha256-E9XAKrt16DOAne3/wY9PwWIM61YX0fWs8x1hqF3YJSU=",
         }, () => nix.builtins.throw(nix.thunk(() => nix.str`No hash for system: ${system}`)), nix.key(nix.force(system)))),
@@ -60,17 +55,17 @@ export default nix.lambda((args) => (() => {
       const bazelTestTargets = nix.thunk(() => ["//..."]);
       const bazelTargets = nix.thunk(() => ["//bant:bant"]);
       const buildAttrs = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         installPhase: "install -D --strip bazel-bin/bant/bant \"$out/bin/bant\"\n",
       }));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const strictDeps = true;
       const __structuredAttrs = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Bazel/Build Analysis and Navigation Tool",
         homepage: "http://bant.build/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
@@ -83,7 +78,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         pname,
         version,
         src,

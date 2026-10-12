@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["description", 39, 5], ["mainProgram", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["homepage", 43, 5], ["platforms", 44, 40]], [["version", 12, 3], ["pname", 13, 3], ["src", 15, 3], ["strictDeps", 22, 3], ["__structuredAttrs", 23, 3], ["depsBuildBuild", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 32, 3], ["preInstall", 34, 3], ["installFlags", 36, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPackages: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 39, 5], ["mainProgram", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["homepage", 43, 5], ["platforms", 44, 40]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 12, 3], ["pname", 13, 3], ["src", 15, 3], ["strictDeps", 22, 3], ["__structuredAttrs", 23, 3], ["depsBuildBuild", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 32, 3], ["preInstall", 34, 3], ["installFlags", 36, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(buildPackages, "buildPackages"));
   const ocamlPackages = nix.thunk(() => nix.attr(from, "ocamlPackages"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "0.3.3",
       pname: "opaline",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jaapb",
           repo: "opaline",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +44,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from_1 = nix.thunk(() => nix.sel(ocamlPackages, "ocaml", "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "OPAm Light INstaller Engine",
         mainProgram: "opaline",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

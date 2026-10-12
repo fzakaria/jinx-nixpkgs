@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["libcxml", 46, 47], ["asdcplib", 46, 55]], [["url", 53, 5], ["tag", 54, 5], ["hash", 55, 5]], [["description", 111, 5], ["homepage", 112, 5], ["downloadPage", 113, 5], ["license", 114, 5], ["platforms", 115, 5], ["maintainers", 116, 5]], [["pname", 49, 3], ["version", 50, 3], ["src", 52, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 68, 3], ["postInstall", 102, 3], ["__structuredAttrs", 107, 3], ["strictDeps", 108, 3], ["meta", 110, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, callPackage: false, wafHook: false, wrapGAppsHook3: false, python3: false, gitMinimal: false, "pkg-config": false, boost: false, curl: false, icu: false, libsamplerate: false, glib: false, libzip: false, bzip2: false, fontconfig: false, pangomm_1_4: false, libxmlxx: false, libssh: false, xmlsec: false, xercesc: false, "ffmpeg-headless": false, fmt: false, nettle: false, libjpeg: false, sqlite: false, wxwidgets_3_2: false, rtaudio: false, libGL: false, libGLU: false, libsndfile: false, libtool: false, libharu: false, openssl: false, nlohmann_json: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["libcxml", 46, 47], ["asdcplib", 46, 55]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 53, 5], ["tag", 54, 5], ["hash", 55, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 111, 5], ["homepage", 112, 5], ["downloadPage", 113, 5], ["license", 114, 5], ["platforms", 115, 5], ["maintainers", 116, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 49, 3], ["version", 50, 3], ["src", 52, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 68, 3], ["postInstall", 102, 3], ["__structuredAttrs", 107, 3], ["strictDeps", 108, 3], ["meta", 110, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -51,13 +48,13 @@ export default nix.lambda((args) => (() => {
   const asdcplib = nix.thunk(() => nix.app(callPackage, nix.path(here, "./asdcplib.nix"), nix.thunk(() => ({}))));
   const libttf = nix.thunk(() => nix.app(callPackage, nix.path(here, "./libttf.nix"), nix.thunk(() => ({}))));
   const libsub = nix.thunk(() => nix.app(callPackage, nix.path(here, "./libsub.nix"), nix.thunk(() => ({}))));
-  const libdcp = nix.thunk(() => nix.app(callPackage, nix.path(here, "./libdcp.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, libcxml: libcxml, asdcplib: asdcplib }))));
+  const libdcp = nix.thunk(() => nix.app(callPackage, nix.path(here, "./libdcp.nix"), nix.thunk(() => ({ [nix.POS]: $pos[0], libcxml: libcxml, asdcplib: asdcplib }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "dcpomatic",
       version: "2.18.50",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "https://git.carlh.net/git/dcpomatic",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-qYzV8tXISGCYAzoJJDhx/xDZAS4HD8VwE3Z0CsCjIZs=",
@@ -110,7 +107,7 @@ ln -s ${libdcp}/share/libdcp $out/share/libdcp
       __structuredAttrs: true,
       strictDeps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Convert video, audio and subtitles into DCP",
         homepage: "https://dcpomatic.com/",
         downloadPage: "https://git.carlh.net/cgit/dcpomatic",

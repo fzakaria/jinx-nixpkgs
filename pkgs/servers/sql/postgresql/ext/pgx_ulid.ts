@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/pgx_ulid.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["updateScript", 36, 5]], [["description", 40, 5], ["homepage", 41, 5], ["changelog", 42, 5], ["license", 43, 5], ["maintainers", 44, 5]], [["postgresql", 11, 11], ["cargo-pgrx", 12, 3], ["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["cargoHash", 24, 3], ["postInstall", 26, 3], ["doCheck", 33, 3], ["passthru", 35, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { buildPgrxExtension: false, "cargo-pgrx_0_17_0": false, fetchFromGitHub: false, lib: false, "nix-update-script": false, postgresql: false, "util-linux": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/pgx_ulid.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/pgx_ulid.nix", [["updateScript", 36, 5]]);
-const pos$3 = nix.positions(here + "/pgx_ulid.nix", [["description", 40, 5], ["homepage", 41, 5], ["changelog", 42, 5], ["license", 43, 5], ["maintainers", 44, 5]]);
-const pos$4 = nix.positions(here + "/pgx_ulid.nix", [["postgresql", 11, 11], ["cargo-pgrx", 12, 3], ["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["cargoHash", 24, 3], ["postInstall", 26, 3], ["doCheck", 33, 3], ["passthru", 35, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const postgresql = nix.arg($, "postgresql");
   const util_linux = nix.arg($, "util-linux");
   return nix.app(buildPgrxExtension, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       postgresql: postgresql,
       "cargo-pgrx": cargo_pgrx_0_17_0,
       pname: "pgx_ulid",
       version: "0.2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pksunkara",
           repo: "pgx_ulid",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,11 +34,11 @@ ${util_linux}/bin/rename pgx_ulid ulid $out/share/postgresql/extension/pgx_ulid*
 `),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "ULID Postgres extension written in Rust",
         homepage: "https://github.com/pksunkara/pgx_ulid",
         changelog: nix.thunk(() => nix.str`https://github.com/pksunkara/pgx_ulid/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

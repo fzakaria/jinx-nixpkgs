@@ -2,17 +2,16 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/read-only-pkgs.nix", [[["pkgs", 16, 8]], [["_class", 15, 3], ["node", 16, 3]]]);
 const formals$1 = { args: { hostPkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/read-only-pkgs.nix", [["pkgs", 16, 8]]);
-const pos$2 = nix.positions(here + "/read-only-pkgs.nix", [["_class", 15, 3], ["node", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const hostPkgs = nix.arg($, "hostPkgs");
   return {
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     _class: "nixosTest",
-    node: nix.thunk(() => ({ [nix.POS]: pos$1, pkgs: nix.thunk(() => nix.sel(hostPkgs, "pkgsLinux")) })),
+    node: nix.thunk(() => ({ [nix.POS]: $pos[0], pkgs: nix.thunk(() => nix.sel(hostPkgs, "pkgsLinux")) })),
   };
 })(), formals$1);
 //# sourceMappingURL=read-only-pkgs.ts.map

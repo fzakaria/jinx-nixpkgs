@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["NIX_CFLAGS_COMPILE", 23, 5]], [["description", 57, 5], ["homepage", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5], ["license", 61, 5], ["mainProgram", 62, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 18, 3], ["enableParallelBuilding", 20, 3], ["env", 22, 3], ["preConfigure", 37, 3], ["postInstall", 45, 3], ["configureFlags", 51, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, ncurses: false, coreutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 23, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 57, 5], ["homepage", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5], ["license", 61, 5], ["mainProgram", 62, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 18, 3], ["enableParallelBuilding", 20, 3], ["env", 22, 3], ["preConfigure", 37, 3], ["postInstall", 45, 3], ["configureFlags", 51, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const coreutils = nix.arg($, "coreutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ncftp",
       version: "3.3.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.ncftp.com/public_ftp/ncftp/ncftp-${nix.sel(finalAttrs, "version")}-src.tar.gz`),
           hash: "sha256-eSD4hMKtr8gsjkHEbW89ImmHhcez9W9Wd6jVyGY5Y4Y=",
         })))),
       buildInputs: nix.thunk(() => [ncurses]),
       enableParallelBuilding: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-fcommon", "-Wno-implicit-int", "-Wno-implicit-function-declaration"]))),
       })),
       preConfigure: nix.thunk(() => nix.str`find -name Makefile.in | xargs sed -i '/^TMPDIR=/d'
@@ -39,7 +36,7 @@ find . -name '*.sh' -or -name '*.in' -or -name '*.c' -or -name configure | xargs
       postInstall: "rmdir $out/etc\nmkdir -p $out/share/doc\ncp -r doc $out/share/doc/ncftp\n",
       configureFlags: nix.thunk(() => ["--enable-ssp", "--mandir=$(out)/share/man/"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Command line FTP (File Transfer Protocol) client",
         homepage: "https://www.ncftp.com/ncftp/",
         maintainers: nix.thunk(() => (() => {

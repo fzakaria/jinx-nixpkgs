@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["url", 23, 7], ["hash", 24, 7]], [["description", 39, 7], ["homepage", 40, 7], ["license", 45, 7], ["platforms", 46, 7]], [["pname", 19, 5], ["version", 20, 5], ["src", 22, 5], ["postPatch", 27, 5], ["installPhase", 31, 5], ["meta", 38, 5]], [["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["platforms", 82, 5]], [["pname", 51, 11], ["version", 51, 17], ["src", 51, 25], ["sourceRoot", 53, 3], ["postPatch", 55, 3], ["makeFlags", 60, 3], ["enableParallelBuilding", 65, 3], ["installPhase", 67, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 23, 7], ["hash", 24, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 39, 7], ["homepage", 40, 7], ["license", 45, 7], ["platforms", 46, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 5], ["version", 20, 5], ["src", 22, 5], ["postPatch", 27, 5], ["installPhase", 31, 5], ["meta", 38, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["platforms", 82, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 51, 11], ["version", 51, 17], ["src", 51, 25], ["sourceRoot", 53, 3], ["postPatch", 55, 3], ["makeFlags", 60, 3], ["enableParallelBuilding", 65, 3], ["installPhase", 67, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const pname = "nitrokey-storage-firmware";
   const version = "0.57";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "Nitrokey",
       repo: "nitrokey-storage-firmware",
       rev: nix.thunk(() => nix.str`V${version}`),
       hash: "sha256-u8IK57NVS/IOPIE3Ah/O8WuOIr0EY6AF1bEaeDgIBuk=",
     }))));
   const toolchain = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "avr32-toolchain",
       version: "3.0.0.201009140852",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "https://ww1.microchip.com/downloads/archive/avr32studio-ide-2.6.0.753-linux.gtk.x86_64.zip",
           hash: "sha256-MwsaGyNqbO0lBy1rcczuvKOaGbO3f0V+j84sUCkRlxc=",
         })))),
@@ -42,7 +37,7 @@ rm -r $out/avr $out/bin/avr-*
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "AVR32 toolchain",
         homepage: "https://web.archive.org/web/20210419192039/https://www.microchip.com/mplab/avr-support/avr-and-sam-downloads-archive",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -50,7 +45,7 @@ runHook postInstall
       })),
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: pname,
       version: version,
       src: src,
@@ -68,7 +63,7 @@ install -D nitrokey-storage-V${version}-reproducible.hex $out/nitrokey-storage-V
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Firmware for the Nitrokey Storage device",
         homepage: "https://github.com/Nitrokey/nitrokey-storage-firmware",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

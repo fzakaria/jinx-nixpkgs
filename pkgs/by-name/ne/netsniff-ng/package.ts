@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["repo", 28, 5], ["owner", 29, 5], ["rev", 30, 5], ["hash", 31, 5]], [["url", 37, 7], ["sha256", 38, 7]], [["description", 97, 5], ["longDescription", 98, 5], ["homepage", 105, 5], ["license", 106, 5], ["platforms", 107, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 34, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 49, 3], ["configurePhase", 64, 3], ["enableParallelBuilding", 74, 3], ["makeFlags", 77, 3], ["postInstall", 82, 3], ["meta", 96, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, fetchpatch: false, makeWrapper: false, bison: false, flex: false, geoip: false, "geolite-legacy": false, libcli: false, libnet: false, libnetfilter_conntrack: false, libnl: false, libpcap: false, libsodium: false, liburcu: false, ncurses: false, "pkg-config": false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["repo", 28, 5], ["owner", 29, 5], ["rev", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 37, 7], ["sha256", 38, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 97, 5], ["longDescription", 98, 5], ["homepage", 105, 5], ["license", 106, 5], ["platforms", 107, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 34, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 49, 3], ["configurePhase", 64, 3], ["enableParallelBuilding", 74, 3], ["makeFlags", 77, 3], ["postInstall", 82, 3], ["meta", 96, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "netsniff-ng",
       version: "0.6.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "netsniff-ng",
           owner: "netsniff-ng",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/netsniff-ng/netsniff-ng/commit/1af7ae33e3e8178ab5c649c3a52838d4375c4228.patch",
             sha256: "sha256-aNV1Srnr396HsyAKVQoCeGBo/oduxLrUidlZLuI5Rlk=",
           })))),
@@ -84,7 +81,7 @@ ln -sv ${geolite_legacy}/share/GeoIP/GeoIPASNumv6.dat $out/etc/netsniff-ng/asnam
 rm -v $out/etc/netsniff-ng/geoip.conf # updating databases after installation is impossible
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Swiss army knife for daily Linux network plumbing",
         longDescription: "netsniff-ng is a free Linux networking toolkit. Its gain of performance\nis reached by zero-copy mechanisms, so that on packet reception and\ntransmission the kernel does not need to copy packets from kernel space\nto user space and vice versa. The toolkit can be used for network\ndevelopment and analysis, debugging, auditing or network reconnaissance.\n",
         homepage: "http://netsniff-ng.org/",

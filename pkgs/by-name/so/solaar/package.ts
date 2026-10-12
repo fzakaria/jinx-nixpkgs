@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["DYLD_LIBRARY_PATH", 102, 7]], [["description", 112, 5], ["longDescription", 113, 5], ["homepage", 123, 5], ["changelog", 124, 5], ["license", 125, 5], ["mainProgram", 126, 5], ["maintainers", 127, 5], ["platforms", 134, 5]], [["pname", 22, 3], ["version", 23, 3], ["format", 24, 3], ["src", 26, 3], ["__structuredAttrs", 33, 3], ["outputs", 35, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 49, 3], ["propagatedBuildInputs", 57, 3], ["nativeCheckInputs", 74, 3], ["preConfigure", 80, 3], ["postInstall", 87, 3], ["dontWrapGApps", 93, 3], ["preFixup", 95, 3], ["env", 102, 3], ["pythonImportsCheck", 106, 3], ["meta", 111, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, stdenv: false, "gobject-introspection": false, gtk3: false, python3Packages: false, wrapGAppsHook3: false, "gdk-pixbuf": false, hidapi: false, libappindicator: false, librsvg: false, upower: false, udevCheckHook: false, acl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["DYLD_LIBRARY_PATH", 102, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 112, 5], ["longDescription", 113, 5], ["homepage", 123, 5], ["changelog", 124, 5], ["license", 125, 5], ["mainProgram", 126, 5], ["maintainers", 127, 5], ["platforms", 134, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["format", 24, 3], ["src", 26, 3], ["__structuredAttrs", 33, 3], ["outputs", 35, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 49, 3], ["propagatedBuildInputs", 57, 3], ["nativeCheckInputs", 74, 3], ["preConfigure", 80, 3], ["postInstall", 87, 3], ["dontWrapGApps", 93, 3], ["preFixup", 95, 3], ["env", 102, 3], ["pythonImportsCheck", 106, 3], ["meta", 111, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const udevCheckHook = nix.arg($, "udevCheckHook");
   const acl = nix.arg($, "acl");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "solaar",
       version: "1.1.20",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pwr-Solaar",
           repo: "Solaar",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -72,12 +69,12 @@ export default nix.lambda((args) => (() => {
       preFixup: nix.thunk(() => nix.add("makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.str`makeWrapperArgs+=(--prefix DYLD_LIBRARY_PATH : '${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [hidapi]))}')
 `)))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         DYLD_LIBRARY_PATH: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [hidapi]))))),
       })),
       pythonImportsCheck: nix.thunk(() => ["solaar", "solaar.gtk"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Linux devices manager for the Logitech Unifying Receiver",
         longDescription: "Solaar is a Linux manager for many Logitech keyboards, mice, and trackpads that\nconnect wirelessly to a USB Unifying, Lightspeed, or Nano receiver, connect\ndirectly via a USB cable, or connect via Bluetooth. Solaar does not work with\nperipherals from other companies.\n\nSolaar can be used as a GUI application or via its command-line interface.\n\nThis tool requires either to be run with root/sudo or alternatively to have the udev rules files installed. On NixOS this can be achieved by setting `hardware.logitech.wireless.enable`.\n",
         homepage: "https://pwr-solaar.github.io/Solaar/",

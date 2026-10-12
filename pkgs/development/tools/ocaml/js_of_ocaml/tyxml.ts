@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tyxml.nix", [[["pname", 10, 3], ["version", 12, 25], ["src", 12, 33], ["meta", 12, 37], ["buildInputs", 14, 3], ["propagatedBuildInputs", 16, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, "js_of_ocaml-ppx": false, js_of_ocaml: false, reactivedata: false, tyxml: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tyxml.nix", [["pname", 10, 3], ["version", 12, 25], ["src", 12, 33], ["meta", 12, 37], ["buildInputs", 14, 3], ["propagatedBuildInputs", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const reactivedata = nix.arg($, "reactivedata");
   const tyxml = nix.arg($, "tyxml");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "js_of_ocaml-tyxml",
       version: nix.thunk(() => nix.attr(js_of_ocaml, "version")),
       src: nix.thunk(() => nix.attr(js_of_ocaml, "src")),

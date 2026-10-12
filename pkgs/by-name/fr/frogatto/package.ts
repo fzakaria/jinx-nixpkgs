@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 14, 5], ["exec", 15, 5], ["startupNotify", 16, 5], ["icon", 17, 5], ["comment", 18, 5], ["desktopName", 19, 5], ["genericName", 20, 5], ["categories", 21, 5]], [["homepage", 52, 5], ["description", 53, 5], ["license", 54, 5], ["platforms", 58, 5], ["maintainers", 59, 5]], [["pname", 29, 3], ["version", 30, 11], ["nativeBuildInputs", 32, 3], ["paths", 33, 3], ["pathsToLink", 38, 3], ["postBuild", 46, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { buildEnv: false, lib: false, callPackage: false, makeWrapper: false, makeDesktopItem: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 14, 5], ["exec", 15, 5], ["startupNotify", 16, 5], ["icon", 17, 5], ["comment", 18, 5], ["desktopName", 19, 5], ["genericName", 20, 5], ["categories", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 52, 5], ["description", 53, 5], ["license", 54, 5], ["platforms", 58, 5], ["maintainers", 59, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 11], ["nativeBuildInputs", 32, 3], ["paths", 33, 3], ["pathsToLink", 38, 3], ["postBuild", 46, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const engine = nix.thunk(() => nix.app(callPackage, nix.path(here, "./engine.nix"), nix.thunk(() => ({}))));
   const data = nix.thunk(() => nix.app(callPackage, nix.path(here, "./data.nix"), nix.thunk(() => ({}))));
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "frogatto",
       exec: "frogatto",
       startupNotify: true,
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
     }))));
   const version = nix.thunk(() => nix.attr(data, "version"));
   return nix.app(buildEnv, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "frogatto",
       version: version,
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
@@ -44,7 +42,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postBuild: "wrapProgram $out/bin/frogatto \\\n  --chdir \"$out/share/frogatto\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://frogatto.com",
         description: description,
         license: nix.thunk(() => (() => {

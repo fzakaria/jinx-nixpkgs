@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["pname", 10, 3], ["version", 11, 11], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["installPhase", 23, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchurl: false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 11], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["installPhase", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const version = "4.6.7";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "yeswiki",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/YesWiki/yeswiki/releases/download/v${version}/yeswiki-v${version}.zip`),
           hash: "sha256-QgF08amdCh4q3E3/wat4e/KhIWMtBTkFJzT3p5m61FU=",
         })))),

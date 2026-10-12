@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]], [["homepage", 72, 5], ["description", 73, 5], ["license", 74, 5], ["teams", 75, 5], ["platforms", 76, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["propagatedBuildInputs", 38, 3], ["outputs", 54, 3], ["strictDeps", 59, 3], ["configureFlags", 61, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, SDL2: false, fetchFromGitHub: false, flac: false, fluidsynth: false, libogg: false, libvorbis: false, mpg123: false, opusfile: false, "pkg-config": false, smpeg2: false, stdenv: false, timidity: false, wavpack: false, libxmp: false, "game-music-emu": false, enableSdltest: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 72, 5], ["description", 73, 5], ["license", 74, 5], ["teams", 75, 5], ["platforms", 76, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["propagatedBuildInputs", 38, 3], ["outputs", 54, 3], ["strictDeps", 59, 3], ["configureFlags", 61, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const game_music_emu = nix.arg($, "game-music-emu");
   const enableSdltest = nix.argOr($, "enableSdltest", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "SDL2_mixer",
       version: "2.8.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "libsdl-org",
           repo: "SDL_mixer",
           rev: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
@@ -63,7 +61,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "withFeatureAs"), true, "timidity-cfg", nix.thunk(() => nix.str`${timidity}/share/timidity/timidity.cfg`))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/libsdl-org/SDL_mixer",
         description: "SDL multi-channel audio mixer library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),

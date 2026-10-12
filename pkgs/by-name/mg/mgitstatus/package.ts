@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["package", 24, 5], ["version", 25, 5]], [["version", 23, 18]], [["tests", 23, 12]], [["description", 29, 5], ["downloadPage", 30, 5], ["homepage", 31, 5], ["changelog", 32, 5], ["license", 33, 5], ["maintainers", 34, 5], ["mainProgram", 35, 5], ["platforms", 36, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["installFlags", 19, 3], ["passthru", 23, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, stdenvNoCC: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 24, 5], ["version", 25, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 23, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 23, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 29, 5], ["downloadPage", 30, 5], ["homepage", 31, 5], ["changelog", 32, 5], ["license", 33, 5], ["maintainers", 34, 5], ["mainProgram", 35, 5], ["platforms", 36, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["installFlags", 19, 3], ["passthru", 23, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "mgitstatus",
       version: "2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fboender",
           repo: "multi-git-status",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,18 +24,18 @@ export default nix.lambda((args) => (() => {
         })))),
       installFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Show uncommitted, untracked and unpushed changes for multiple Git repos",
         downloadPage: nix.thunk(() => nix.str`https://github.com/fboender/multi-git-status/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         homepage: "https://github.com/fboender/multi-git-status",

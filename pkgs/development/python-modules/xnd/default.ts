@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 14, 3], ["version", 15, 20], ["src", 15, 28], ["meta", 15, 32], ["pyproject", 16, 3], ["build-system", 18, 3], ["dependencies", 20, 3], ["buildInputs", 22, 3], ["postPatch", 24, 3], ["postInstall", 41, 3], ["checkPhase", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, libxnd: false, setuptools: false, ndtypes: false, libndtypes: false, pythonAtLeast: false, python: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 20], ["src", 15, 28], ["meta", 15, 32], ["pyproject", 16, 3], ["build-system", 18, 3], ["dependencies", 20, 3], ["buildInputs", 22, 3], ["postPatch", 24, 3], ["postInstall", 41, 3], ["checkPhase", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const pythonAtLeast = nix.arg($, "pythonAtLeast");
   const python = nix.arg($, "python");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "xnd",
       version: nix.thunk(() => nix.attr(libxnd, "version")),
       src: nix.thunk(() => nix.attr(libxnd, "src")),

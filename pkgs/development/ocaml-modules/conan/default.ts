@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 19, 5], ["hash", 20, 5]], [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["propagatedBuildInputs", 23, 3], ["doCheck", 29, 3], ["checkInputs", 31, 3], ["minimalOCamlVersion", 38, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, buildDunePackage: false, ptime: false, re: false, uutf: false, alcotest: false, crowbar: false, fmt: false, rresult: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["propagatedBuildInputs", 23, 3], ["doCheck", 29, 3], ["checkInputs", 31, 3], ["minimalOCamlVersion", 38, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const fmt = nix.arg($, "fmt");
   const rresult = nix.arg($, "rresult");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "conan",
       version: "0.0.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/mirage/conan/releases/download/v${nix.sel(finalAttrs, "version")}/conan-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-4ZbyGLnPRImRQ8vO71i+jlEWYB/FJCSelY7uBuH4dBU=",
         })))),
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [alcotest, crowbar, fmt, rresult]),
       minimalOCamlVersion: "4.12",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Identify type of your file (such as the MIME type)",
         homepage: "https://github.com/mirage/conan",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

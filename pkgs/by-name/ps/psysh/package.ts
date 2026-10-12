@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5], ["forceFetchGit", 16, 5], ["postFetch", 17, 5]], [["changelog", 29, 5], ["description", 30, 5], ["mainProgram", 31, 5], ["maintainers", 32, 5], ["license", 33, 5], ["homepage", 34, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["vendorHash", 23, 3], ["doInstallCheck", 25, 3], ["nativeInstallCheckInputs", 26, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, php: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5], ["forceFetchGit", 16, 5], ["postFetch", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 29, 5], ["description", 30, 5], ["mainProgram", 31, 5], ["maintainers", 32, 5], ["license", 33, 5], ["homepage", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["vendorHash", 23, 3], ["doInstallCheck", 25, 3], ["nativeInstallCheckInputs", 26, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const php = nix.arg($, "php");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(php, "buildComposerProject2"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "psysh",
       version: "0.12.24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bobthecow",
           repo: "psysh",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/bobthecow/psysh/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "PsySH is a runtime developer console, interactive debugger and REPL for PHP",
         mainProgram: "psysh",

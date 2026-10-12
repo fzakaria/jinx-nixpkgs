@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["pname", 25, 7], ["src", 26, 15], ["version", 26, 19], ["modRoot", 27, 7], ["vendorHash", 28, 7]], [["description", 76, 5], ["changelog", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["maintainers", 80, 5], ["mainProgram", 81, 5], ["platforms", 82, 5]], [["pname", 32, 3], ["version", 33, 11], ["src", 33, 19], ["postPatch", 35, 3], ["preBuild", 40, 3], ["cmakeFlags", 44, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 57, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { buildGo127Module: false, cmake: false, fetchFromGitHub: false, git: false, go_1_27: false, lib: false, nlohmann_json: false, stdenv: false, kdePackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 25, 7], ["src", 26, 15], ["version", 26, 19], ["modRoot", 27, 7], ["vendorHash", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 76, 5], ["changelog", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["maintainers", 80, 5], ["mainProgram", 81, 5], ["platforms", 82, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 11], ["src", 33, 19], ["postPatch", 35, 3], ["preBuild", 40, 3], ["cmakeFlags", 44, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 57, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,14 +18,14 @@ export default nix.lambda((args) => (() => {
   const kdePackages = nix.arg($, "kdePackages");
   const version = "0.22.2";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "f-koehler",
       repo: "KTailctl",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-FcWhetRUlIxZ3tdDyklxZ1ctQhE7IZao91xP0V3rjYA=",
     }))));
   const goDeps = nix.thunk(() => nix.sel(nix.app(buildGo127Module, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "ktailctl-go-wrapper",
       src: src,
       version: version,
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-Skuff6OoeYHg8TxJAPuFNzN5G3tS21QBAc5WSEB3jk0=",
     }))), "goModules"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ktailctl",
       version: version,
       src: src,
@@ -75,7 +72,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "GUI to monitor and manage Tailscale on your Linux desktop",
         changelog: nix.thunk(() => nix.str`https://github.com/f-koehler/KTailctl/releases/tag/${nix.sel(src, "tag")}`),
         homepage: "https://github.com/f-koehler/KTailctl",

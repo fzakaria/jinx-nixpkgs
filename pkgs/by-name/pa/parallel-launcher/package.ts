@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["libretro_info_path", 50, 9], ["assets_directory", 51, 9]], [["cores", 40, 7], ["settings", 45, 7]], [["owner", 61, 7], ["repo", 62, 7], ["tag", 63, 7], ["hash", 64, 7]], [["retroArchAssetsPath", 75, 19], ["retroArchCoresPath", 75, 39], ["retroArchExePath", 76, 11], ["parallelN64CorePath", 77, 11], ["sharePath", 79, 11]], [["retroArchVersion", 83, 11], ["parallelN64CoreVersion", 84, 11]], [["NIX_CFLAGS_COMPILE", 129, 9]], [["command", 164, 9], ["supportedFeatures", 165, 9]], [["parallel-n64-core", 162, 7], ["updateScript", 163, 7]], [["description", 170, 7], ["longDescription", 171, 7], ["homepage", 178, 7], ["changelog", 179, 7], ["platforms", 182, 7], ["license", 183, 7], ["maintainers", 184, 7], ["mainProgram", 187, 7]], [["pname", 57, 5], ["version", 58, 5], ["src", 60, 5], ["patches", 67, 5], ["nativeBuildInputs", 88, 5], ["buildInputs", 94, 5], ["qtWrapperArgs", 104, 5], ["qmakeFlags", 123, 5], ["env", 129, 5], ["postPatch", 131, 5], ["preConfigure", 143, 5], ["installPhase", 147, 5], ["passthru", 161, 5], ["meta", 169, 5]]]);
 const formals$1 = { args: { callPackage: false, coreutils: false, "discord-rpc": false, dosfstools: false, fetchFromGitLab: false, findutils: false, lib: false, libgcrypt: false, "libgpg-error": false, "parallel-launcher": false, qt6: false, replaceVars: false, "retroarch-assets": false, SDL2: false, sqlite: false, stdenv: false, "vulkan-loader": false, wrapRetroArch: false, "xdg-utils": false, zlib: false, extraRetroArchSettings: true, "parallel-n64-core": true, withDiscordRpc: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["libretro_info_path", 50, 9], ["assets_directory", 51, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["cores", 40, 7], ["settings", 45, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 61, 7], ["repo", 62, 7], ["tag", 63, 7], ["hash", 64, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["retroArchAssetsPath", 75, 19], ["retroArchCoresPath", 75, 39], ["retroArchExePath", 76, 11], ["parallelN64CorePath", 77, 11], ["sharePath", 79, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["retroArchVersion", 83, 11], ["parallelN64CoreVersion", 84, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 129, 9]]);
-const pos$7 = nix.positions(here + "/package.nix", [["command", 164, 9], ["supportedFeatures", 165, 9]]);
-const pos$8 = nix.positions(here + "/package.nix", [["parallel-n64-core", 162, 7], ["updateScript", 163, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 170, 7], ["longDescription", 171, 7], ["homepage", 178, 7], ["changelog", 179, 7], ["platforms", 182, 7], ["license", 183, 7], ["maintainers", 184, 7], ["mainProgram", 187, 7]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 57, 5], ["version", 58, 5], ["src", 60, 5], ["patches", 67, 5], ["nativeBuildInputs", 88, 5], ["buildInputs", 94, 5], ["qtWrapperArgs", 104, 5], ["qmakeFlags", 123, 5], ["env", 129, 5], ["postPatch", 131, 5], ["preConfigure", 143, 5], ["installPhase", 147, 5], ["passthru", 161, 5], ["meta", 169, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,20 +35,20 @@ export default nix.lambda((args) => (() => {
   const retroArchAssetsPath = nix.thunk(() => nix.str`${retroarch_assets}/share/retroarch/assets`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => (() => {
       const retroarch$ = nix.thunk(() => nix.app(wrapRetroArch, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           cores: nix.thunk(() => [parallel_n64_core]),
           settings: nix.thunk(() => nix.update({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             libretro_info_path: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/data`),
             assets_directory: retroArchAssetsPath,
           }, extraRetroArchSettings)),
         }))));
       return {
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         pname: "parallel-launcher",
         version: "9.0.6",
         src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             owner: "parallel-launcher",
             repo: "parallel-launcher",
             tag: nix.thunk(() => nix.app(reformatVersion, nix.thunk(() => nix.sel(finalAttrs, "version")))),
@@ -68,7 +59,7 @@ export default nix.lambda((args) => (() => {
           const suffix = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary"));
           return [
             nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 retroArchAssetsPath: retroArchAssetsPath,
                 retroArchCoresPath: retroArchCoresPath,
                 retroArchExePath: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), retroarch$)),
@@ -76,7 +67,7 @@ export default nix.lambda((args) => (() => {
                 sharePath: null,
               })))),
             nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-version-checks.patch"), nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 retroArchVersion: nix.thunk(() => nix.app(reformatVersion$, nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), retroarch$)))),
                 parallelN64CoreVersion: nix.thunk(() => nix.app(reformatVersion$, nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), parallel_n64_core)))),
               })))),
@@ -101,7 +92,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.str`--prefix LD_LIBRARY_PATH : ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => nix.concat([vulkan_loader], nix.app(nix.sel(lib, "optional"), withDiscordRpc, discord_rpc))))}`),
         ]),
         qmakeFlags: nix.thunk(() => ["DEFINES+=RETROARCH_XWAYLAND"]),
-        env: nix.thunk(() => ({ [nix.POS]: pos$6, NIX_CFLAGS_COMPILE: "-Wno-error=unused-parameter" })),
+        env: nix.thunk(() => ({ [nix.POS]: $pos[5], NIX_CFLAGS_COMPILE: "-Wno-error=unused-parameter" })),
         postPatch: nix.thunk(() => (() => {
           const sharePath = nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/parallel-launcher`);
           return nix.str`substituteInPlace src/main.cpp \\
@@ -114,16 +105,16 @@ substituteInPlace src/polyfill/base-directory.cpp \\
         preConfigure: "lrelease app.pro\n",
         installPhase: "runHook preInstall\n\n# Taken from pkg/arch/PKGBUILD\ninstall -D parallel-launcher -t $out/bin\ninstall -D ca.parallel_launcher.ParallelLauncher.desktop -t $out/share/applications\ninstall -D ca.parallel_launcher.ParallelLauncher.metainfo.xml -t $out/share/metainfo\ninstall -D data/appicon.svg $out/share/icons/hicolor/scalable/apps/ca.parallel_launcher.ParallelLauncher.svg\ninstall -D bps-mime.xml parallel-launcher-{lsjs,sdl-relay} -t $out/share/parallel-launcher\ninstall -D lang/*.qm -t $out/share/parallel-launcher/translations\n\nrunHook postInstall\n",
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           "parallel-n64-core": nix.thunk(() => nix.app(callPackage, nix.path(here, "./parallel-n64-next.nix"), nix.thunk(() => ({})))),
           updateScript: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             command: nix.path(here, "./update.sh"),
             supportedFeatures: nix.thunk(() => ["commit"]),
           })),
         })),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           description: "Modern N64 Emulator",
           longDescription: "Parallel Launcher is an emulator launcher that aims to make playing N64 games,\nboth retail and homebrew, as simple and as accessible as possible. Parallel\nLauncher uses the RetroArch emulator, but replaces its confusing menus and\ncontroller setup with a much simpler user interface. It also features optional\nintegration with romhacking.com.\n",
           homepage: "https://parallel-launcher.ca",

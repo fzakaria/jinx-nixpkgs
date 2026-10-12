@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["MAN_OUT", 44, 7]], [["updateScript", 59, 12]], [["description", 62, 5], ["longDescription", 63, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["mainProgram", 73, 5], ["maintainers", 74, 5], ["platforms", 78, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 19, 3], ["cargoHash", 26, 3], ["cargoExtraArgs", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 30, 3], ["outputs", 38, 3], ["env", 44, 3], ["postInstall", 46, 3], ["passthru", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rustPlatform: false, "pkg-config": false, openssl: false, libiconv: false, installShellFiles: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["MAN_OUT", 44, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 59, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 62, 5], ["longDescription", 63, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["mainProgram", 73, 5], ["maintainers", 74, 5], ["platforms", 78, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 19, 3], ["cargoHash", 26, 3], ["cargoExtraArgs", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 30, 3], ["outputs", 38, 3], ["env", 44, 3], ["postInstall", 46, 3], ["passthru", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "nix-weather",
       version: "0.0.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cafkafk",
           repo: "nix-weather",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,14 +32,14 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => nix.concat([openssl, installShellFiles], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv])))),
       outputs: nix.thunk(() => ["out", "man"]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, MAN_OUT: "./man" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], MAN_OUT: "./man" })),
       postInstall: "cd crates/nix-weather\ninstallManPage man/nix-weather.1\ninstallShellCompletion \\\n  --fish man/nix-weather.fish \\\n  --bash man/nix-weather.bash \\\n  --zsh  man/_nix-weather\nmkdir -p $out\ncd ../..\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Check Cache Availability of NixOS Configurations",
         longDescription: "Fast rust tool to check availability of your entire system in caches. It\nso to speak \"checks the weather\" before going to update. Useful for\ndebugging cache utilization and timing updates and deployments.\n\nHeavily inspired by guix weather.\n",
         homepage: "https://git.fem.gg/cafkafk/nix-weather",

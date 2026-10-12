@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5]], [["NIX_CFLAGS_COMPILE", 18, 7]], [["description", 42, 5], ["longDescription", 43, 5], ["license", 44, 5], ["homepage", 45, 5], ["changelog", 46, 5], ["platforms", 47, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["env", 18, 3], ["preBuild", 20, 3], ["installPhase", 24, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 18, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 42, 5], ["longDescription", 43, 5], ["license", 44, 5], ["homepage", 45, 5], ["changelog", 46, 5], ["platforms", 47, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["env", 18, 3], ["preBuild", 20, 3], ["installPhase", 24, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,24 +11,24 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "paml",
       version: "4.10.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "abacus-gene",
           repo: "paml",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-e93ldPcYpxtgei9+qPNxmhHkwwjpbywkQJklx+dsONM=",
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-D_POSIX_C_SOURCE")),
       })),
       preBuild: "cd ./src/\n",
       installPhase: "runHook preInstall\n\nmkdir -pv $out/bin\ncp -v codeml $out/bin\ncp -v baseml $out/bin\ncp -v basemlg $out/bin\ncp -v chi2 $out/bin\ncp -v codeml $out/bin\ncp -v evolver $out/bin\ncp -v mcmctree $out/bin\ncp -v pamp $out/bin\ncp -v yn00 $out/bin\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Phylogenetic Analysis by Maximum Likelihood (PAML)",
         longDescription: "PAML is a package of programs for phylogenetic analyses of DNA or protein sequences using maximum likelihood. It is maintained and distributed for academic use free of charge by Ziheng Yang. ANSI C source codes are distributed for UNIX/Linux/Mac OSX, and executables are provided for MS Windows. PAML is not good for tree making. It may be used to estimate parameters and test hypotheses to study the evolutionary process, when you have reconstructed trees using other programs such as PAUP*, PHYLIP, MOLPHY, PhyML, RaxML, etc.",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

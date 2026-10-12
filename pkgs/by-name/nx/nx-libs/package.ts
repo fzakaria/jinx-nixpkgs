@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["sha256", 38, 5]], [["name", 43, 7], ["url", 44, 7], ["sha256", 45, 7]], [["NIX_CFLAGS_COMPILE", 79, 5], ["NIX_LDFLAGS", 80, 5], ["PREFIX", 95, 7]], [["description", 105, 5], ["homepage", 106, 5], ["license", 107, 5], ["maintainers", 108, 5], ["platforms", 109, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 34, 3], ["patches", 41, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 58, 3], ["env", 78, 3], ["postPatch", 83, 3], ["preConfigure", 89, 3], ["installPhase", 96, 3], ["meta", 104, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, autoconf: false, automake: false, fetchFromGitHub: false, fetchpatch: false, libjpeg_turbo: false, libpng: false, libtool: false, libxml2: false, "pkg-config": false, which: false, "xkeyboard-config": false, libxtst: false, libxrandr: false, libxpm: false, libxinerama: false, libxfont_2: false, libxext: false, libxdmcp: false, libxdamage: false, libxcomposite: false, "font-util": false, xkbcomp: false, pixman: false, imake: false, gccmakedep: false, libtirpc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["sha256", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 43, 7], ["url", 44, 7], ["sha256", 45, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 79, 5], ["NIX_LDFLAGS", 80, 5], ["PREFIX", 95, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 105, 5], ["homepage", 106, 5], ["license", 107, 5], ["maintainers", 108, 5], ["platforms", 109, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 34, 3], ["patches", 41, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 58, 3], ["env", 78, 3], ["postPatch", 83, 3], ["preConfigure", 89, 3], ["installPhase", 96, 3], ["meta", 104, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const gccmakedep = nix.arg($, "gccmakedep");
   const libtirpc = nix.arg($, "libtirpc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "nx-libs",
       version: "3.5.99.26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ArcticaProject",
           repo: "nx-libs",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -52,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "binutils-2.36.patch",
             url: "https://github.com/ArcticaProject/nx-libs/commit/605a266911b50ababbb3f8a8b224efb42743379c.patch",
             sha256: "sha256-kk5ms3i0PrHL74I4OlsqDrdDcCJ0us03cQcBy4zjAoQ=",
@@ -79,7 +75,7 @@ export default nix.lambda((args) => (() => {
         libtirpc,
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [nix.thunk(() => nix.str`-I${nix.sel(libtirpc, "dev")}/include/tirpc`)]))),
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-ltirpc"]))),
         PREFIX: "",
@@ -91,7 +87,7 @@ ln -s libNX_X11.so.6.3.0
       preConfigure: "# binutils 2.37 fix\n# https://github.com/ArcticaProject/nx-libs/issues/1003\nsubstituteInPlace nx-X11/config/cf/Imake.tmpl --replace \"clq\" \"cq\"\n",
       installPhase: "make DESTDIR=\"$out\" install\n# See:\n# - https://salsa.debian.org/debian-remote-team/nx-libs/blob/bcc152100617dc59156015a36603a15db530a64f/debian/rules#L66-72\n# - https://github.com/ArcticaProject/nx-libs/issues/652\npatchelf --remove-needed \"libX11.so.6\" $out/bin/nxagent\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "NX X server based on Xnest",
         homepage: "https://github.com/ArcticaProject/nx-libs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

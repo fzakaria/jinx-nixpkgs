@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["tagPrefix", 49, 27]], [["updateScript", 48, 12]], [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["mainProgram", 58, 5], ["platforms", 59, 34]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["deps", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 37, 3], ["zigBuildFlags", 43, 3], ["passthru", 48, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { "_experimental-update-script-combinators": false, callPackage: false, fetchFromSourcehut: false, unstableGitUpdater: false, lib: false, "pkg-config": false, stdenv: false, "river-classic": false, wayland: false, "wayland-protocols": false, "wayland-scanner": false, zig_0_15: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["tagPrefix", 49, 27]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 48, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["mainProgram", 58, 5], ["platforms", 59, 34]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["deps", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 37, 3], ["zigBuildFlags", 43, 3], ["passthru", 48, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const zig_0_15 = nix.arg($, "zig_0_15");
   const zig = zig_0_15;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "river-bedload",
       version: "0.2.0",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "~novakane",
           repo: "river-bedload",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,16 +36,16 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [wayland, wayland_protocols, wayland_scanner]),
       zigBuildFlags: nix.thunk(() => ["--system", nix.thunk(() => nix.str`${nix.sel(finalAttrs, "deps")}`)]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
-            nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, tagPrefix: "v" })))),
+            nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], tagPrefix: "v" })))),
             nix.path(here, "./update-build-zig-zon.sh"),
           ]))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(river_classic, "meta"));
         return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Display information about river in json in the STDOUT",
         homepage: "https://git.sr.ht/~novakane/river-bedload",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

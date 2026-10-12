@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 11, 5], ["sha256", 12, 5]], [["pname", 17, 5], ["version", 18, 13]]]);
 const formals$1 = { args: { runCommand: false, fetchurl: false, rpm: false, cpio: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 11, 5], ["sha256", 12, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 17, 5], ["version", 18, 13]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const cpio = nix.arg($, "cpio");
   const version = "1.3-1";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`http://downloads.dell.com/printer/Dell-5130cdn-Color-Laser-${version}.noarch.rpm`),
       sha256: "0pj32sj6jcdnpa5v75af0hnvx4z0ky0m1k2522cfdx4cb1r2lna9",
     }))));
-  return nix.app(runCommand, nix.thunk(() => nix.str`Dell-5130cdn-Color-Laser-${version}`), nix.thunk(() => ({ [nix.POS]: pos$2, pname: "dell-5130cdn-color-laser", version: version })), nix.thunk(() => nix.str`mkdir -p usr/share/cups/model
+  return nix.app(runCommand, nix.thunk(() => nix.str`Dell-5130cdn-Color-Laser-${version}`), nix.thunk(() => ({ [nix.POS]: $pos[1], pname: "dell-5130cdn-color-laser", version: version })), nix.thunk(() => nix.str`mkdir -p usr/share/cups/model
 ${rpm}/bin/rpm2cpio ${src} | ${cpio}/bin/cpio -i
 mkdir -p $out/share/ppd
 mv usr/share/cups/model/Dell $out/share/ppd

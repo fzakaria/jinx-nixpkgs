@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["homepage", 20, 5], ["description", 21, 5], ["longDescription", 22, 5], ["license", 27, 5], ["platforms", 28, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 17, 3], ["meta", 19, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, installFonts: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 20, 5], ["description", 21, 5], ["longDescription", 22, 5], ["license", 27, 5], ["platforms", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 17, 3], ["meta", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,20 +15,20 @@ export default nix.lambda((args) => (() => {
       const pname = "unfonts-core";
       const version = "1.0.2-080608";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://kldp.net/unfonts/release/2607-un-fonts-core-${version}.tar.gz`),
           hash: "sha256-OwpydPmqt+jw8ZOMAacOFYF2bVG0lLoUVoPzesVXkY4=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [installFonts]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://kldp.net/unfonts/",
         description: "Korean Hangul typeface collection",
         longDescription: "The Un-fonts come from the HLaTeX as type1 fonts in 1998 by Koaunghi Un, he made type1 fonts to use with Korean TeX (HLaTeX) in the late 1990's and released it under the GPL license.\n\nThey were converted to TrueType with the FontForge (PfaEdit) by Won-kyu Park in 2003.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { [nix.POS]: pos$3, pname, version, src, nativeBuildInputs, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, nativeBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

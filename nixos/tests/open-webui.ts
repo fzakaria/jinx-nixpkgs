@@ -2,16 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/open-webui.nix", [[["maintainers", 14, 5]], [["dependencies", 26, 13]], [["RAG_EMBEDDING_MODEL", 30, 13]], [["enable", 22, 11], ["host", 23, 11], ["package", 25, 11], ["environment", 28, 11], ["environmentFile", 35, 11]], [["open-webui", 21, 18]], [["services", 21, 9]], [["machine", 18, 5]], [["name", 12, 3], ["meta", 13, 3], ["nodes", 17, 3], ["testScript", 42, 3]]]);
 const formals$1 = { args: { config: false, lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/open-webui.nix", [["maintainers", 14, 5]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/open-webui.nix", [["dependencies", 26, 13]]);
-const pos$3 = nix.positions(here + "/open-webui.nix", [["RAG_EMBEDDING_MODEL", 30, 13]]);
-const pos$4 = nix.positions(here + "/open-webui.nix", [["enable", 22, 11], ["host", 23, 11], ["package", 25, 11], ["environment", 28, 11], ["environmentFile", 35, 11]]);
-const pos$5 = nix.positions(here + "/open-webui.nix", [["open-webui", 21, 18]]);
-const pos$6 = nix.positions(here + "/open-webui.nix", [["services", 21, 9]]);
-const pos$7 = nix.positions(here + "/open-webui.nix", [["machine", 18, 5]]);
-const pos$8 = nix.positions(here + "/open-webui.nix", [["name", 12, 3], ["meta", 13, 3], ["nodes", 17, 3], ["testScript", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,32 +14,32 @@ export default nix.lambda((args) => (() => {
   const mainPort = "8080";
   const webuiName = "NixOS Test";
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     name: "open-webui",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "shivaraj-bh"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             "open-webui": nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               enable: true,
               host: "",
               package: nix.thunk(() => nix.app(nix.sel(pkgs, "open-webui", "overridePythonAttrs"), (old) => ({
-                  [nix.POS]: pos$2,
+                  [nix.POS]: $pos[1],
                   dependencies: nix.thunk(() => nix.concat(nix.sel(old, "dependencies"), nix.sel(pkgs, "open-webui", "optional-dependencies", "all"))),
                 }))),
-              environment: nix.thunk(() => ({ [nix.POS]: pos$3, RAG_EMBEDDING_MODEL: "" })),
+              environment: nix.thunk(() => ({ [nix.POS]: $pos[2], RAG_EMBEDDING_MODEL: "" })),
               environmentFile: nix.thunk(() => nix.app(nix.sel(config, "node", "pkgs", "writeText"), "test.env", nix.thunk(() => nix.str`WEBUI_NAME="${webuiName}"
 `))),
             })),

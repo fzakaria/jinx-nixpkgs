@@ -2,54 +2,46 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/containers-tmpfs.nix", [[["maintainers", 5, 5]], [["writableStore", 12, 22], ["additionalPaths", 31, 22]], [["enable", 27, 15]], [["nix", 27, 11]], [["autoStart", 15, 9], ["tmpfs", 16, 9], ["config", 26, 9]], [["tmpfs", 14, 18]], [["imports", 11, 7], ["virtualisation", 12, 7], ["containers", 14, 7]], [["machine", 8, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 34, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/containers-tmpfs.nix", [["maintainers", 5, 5]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/containers-tmpfs.nix", [["writableStore", 12, 22], ["additionalPaths", 31, 22]]);
-const pos$3 = nix.positions(here + "/containers-tmpfs.nix", [["enable", 27, 15]]);
-const pos$4 = nix.positions(here + "/containers-tmpfs.nix", [["nix", 27, 11]]);
-const pos$5 = nix.positions(here + "/containers-tmpfs.nix", [["autoStart", 15, 9], ["tmpfs", 16, 9], ["config", 26, 9]]);
-const pos$6 = nix.positions(here + "/containers-tmpfs.nix", [["tmpfs", 14, 18]]);
-const pos$7 = nix.positions(here + "/containers-tmpfs.nix", [["imports", 11, 7], ["virtualisation", 12, 7], ["containers", 14, 7]]);
-const pos$8 = nix.positions(here + "/containers-tmpfs.nix", [["machine", 8, 9]]);
-const pos$9 = nix.positions(here + "/containers-tmpfs.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     name: "containers-tmpfs",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "patryk27"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           imports: nix.thunk(() => [nix.path(here, "../modules/installer/cd-dvd/channel.nix")]),
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             writableStore: true,
             additionalPaths: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "stdenv"))]),
           })),
           containers: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             tmpfs: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               autoStart: true,
               tmpfs: nix.thunk(() => ["/var", "/var/log", "/some/random/path"]),
               config: nix.thunk(() => ({
-                [nix.POS]: pos$4,
-                nix: nix.thunk(() => ({ [nix.POS]: pos$3, enable: false })),
+                [nix.POS]: $pos[3],
+                nix: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: false })),
               })),
             })),
           })),

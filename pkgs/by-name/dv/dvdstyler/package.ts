@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 43, 5], ["hash", 44, 5]], [["homepage", 96, 5], ["description", 97, 5], ["longDescription", 98, 5], ["license", 129, 5], ["maintainers", 130, 5], ["platforms", 131, 5], ["mainProgram", 132, 5]], [["pname", 39, 3], ["version", 40, 3], ["src", 42, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 59, 3], ["enableParallelBuilding", 76, 3], ["preFixup", 78, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, bison: false, cdrtools: false, docbook_xml_dtd_412: false, "docbook-xsl-nons": false, dvdauthor: false, dvdplusrwtools: false, ffmpeg_7: false, flex: false, fontconfig: false, gettext: false, glib: false, "gobject-introspection": false, libexif: false, libjpeg: false, "pkg-config": false, wrapGAppsHook3: false, wxwidgets_3_2: false, wxsvg: false, "xine-ui": false, xmlto: false, zip: false, dvdisasterSupport: true, dvdisaster: true, udevSupport: true, udev: true, dbusSupport: true, dbus: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 43, 5], ["hash", 44, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 96, 5], ["description", 97, 5], ["longDescription", 98, 5], ["license", 129, 5], ["maintainers", 130, 5], ["platforms", 131, 5], ["mainProgram", 132, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 39, 3], ["version", 40, 3], ["src", 42, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 59, 3], ["enableParallelBuilding", 76, 3], ["preFixup", 78, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,11 +40,11 @@ export default nix.lambda((args) => (() => {
   const optionals = nix.thunk(() => nix.attr(lib, "optionals"));
   const makeBinPath = nix.thunk(() => nix.attr(lib, "makeBinPath"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dvdstyler",
       version: "3.3b4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/dvdstyler/dvdstyler-devel/${nix.sel(finalAttrs, "version")}/DVDStyler-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-JCaKcE7jkTxT57KKePs8gmgQedoOcP5NEQ2FwIDS2Ho=",
         })))),
@@ -84,7 +82,7 @@ export default nix.lambda((args) => (() => {
 `;
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.dvdstyler.org/",
         description: "DVD authoring software",
         longDescription: "DVDStyler is a cross-platform free DVD authoring application for the\ncreation of professional-looking DVDs. It allows not only burning of video\nfiles on DVD that can be played practically on any standalone DVD player,\nbut also creation of individually designed DVD menus. It is Open Source\nSoftware and is completely free.\n\nSome of its features include:\n\n- create and burn DVD video with interactive menus\n- design your own DVD menu or select one from the list of ready to use menu\n  templates\n- create photo slideshow\n- add multiple subtitle and audio tracks\n- support of AVI, MOV, MP4, MPEG, OGG, WMV and other file formats\n- support of MPEG-2, MPEG-4, DivX, Xvid, MP2, MP3, AC-3 and other audio and\n  video formats\n- support of multi-core processor\n- use MPEG and VOB files without reencoding\n- put files with different audio/video format on one DVD (support of\n  titleset)\n- user-friendly interface with support of drag & drop\n- flexible menu creation on the basis of scalable vector graphic\n- import of image file for background\n- place buttons, text, images and other graphic objects anywhere on the menu\n  screen\n- change the font/color and other parameters of buttons and graphic objects\n- scale any button or graphic object\n- copy any menu object or whole menu\n- customize navigation using DVD scripting\n",

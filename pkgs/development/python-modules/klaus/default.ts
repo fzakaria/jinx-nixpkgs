@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["name", 38, 7], ["url", 39, 7], ["hash", 40, 7]], [["description", 67, 5], ["mainProgram", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5]], [["pname", 19, 3], ["version", 20, 3], ["format", 21, 3], ["src", 23, 3], ["prePatch", 30, 3], ["patches", 36, 3], ["propagatedBuildInputs", 44, 3], ["nativeCheckInputs", 52, 3], ["checkPhase", 59, 3], ["doCheck", 64, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, isPy3k: false, flask: false, pygments: false, dulwich: false, httpauth: false, humanize: false, pytest: false, requests: false, "python-ctags3": false, mock: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 38, 7], ["url", 39, 7], ["hash", 40, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 67, 5], ["mainProgram", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["format", 21, 3], ["src", 23, 3], ["prePatch", 30, 3], ["patches", 36, 3], ["propagatedBuildInputs", 44, 3], ["nativeCheckInputs", 52, 3], ["checkPhase", 59, 3], ["doCheck", 64, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.0.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jonashaag",
           repo: "klaus",
           rev: version,
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const prePatch = "substituteInPlace runtests.sh \\\n  --replace \"mkdir -p \\$builddir\" \"mkdir -p \\$builddir && pwd\"\n";
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "distutils.patch",
             url: "https://github.com/jonashaag/klaus/commit/d50d2aab97fd86c11f3b5a4c1ecbcf1e085f395f.patch",
             hash: "sha256-gJ/ksm96VRNgqIBp+PX/ljzdfQJYbwTBmZaF2Ctu7Fc=",
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const checkPhase = "./runtests.sh\n";
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "First Git web viewer that Just Works",
         mainProgram: "klaus",
         homepage: "https://github.com/jonashaag/klaus",
@@ -60,7 +57,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         format,

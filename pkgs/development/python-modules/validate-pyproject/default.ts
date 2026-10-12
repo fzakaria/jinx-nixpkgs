@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["all", 39, 5], ["store", 44, 5]], [["updateScript", 87, 12]], [["description", 90, 5], ["homepage", 91, 5], ["changelog", 92, 5], ["license", 93, 5], ["maintainers", 94, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["__structuredAttrs", 22, 3], ["src", 24, 3], ["build-system", 31, 3], ["dependencies", 36, 3], ["optional-dependencies", 38, 3], ["nativeCheckInputs", 47, 3], ["pythonImportsCheck", 53, 3], ["disabledTests", 55, 3], ["passthru", 87, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fastjsonschema: false, fetchFromGitHub: false, "nix-update-script": false, packaging: false, "pytest-cov-stub": false, pytestCheckHook: false, "setuptools-scm": false, setuptools: false, tomli: false, "trove-classifiers": false, "validate-pyproject-schema-store": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["all", 39, 5], ["store", 44, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 87, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 90, 5], ["homepage", 91, 5], ["changelog", 92, 5], ["license", 93, 5], ["maintainers", 94, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["__structuredAttrs", 22, 3], ["src", 24, 3], ["build-system", 31, 3], ["dependencies", 36, 3], ["optional-dependencies", 38, 3], ["nativeCheckInputs", 47, 3], ["pythonImportsCheck", 53, 3], ["disabledTests", 55, 3], ["passthru", 87, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const trove_classifiers = nix.arg($, "trove-classifiers");
   const validate_pyproject_schema_store = nix.arg($, "validate-pyproject-schema-store");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "validate-pyproject",
       version: "0.26",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "abravalheri",
           repo: "validate-pyproject",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +36,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
       dependencies: nix.thunk(() => [fastjsonschema]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         all: nix.thunk(() => [packaging, tomli, trove_classifiers]),
         store: nix.thunk(() => [validate_pyproject_schema_store]),
       })),
@@ -74,11 +70,11 @@ export default nix.lambda((args) => (() => {
           ], examples), ["test_downloaded"]));
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Validation library for simple check on pyproject.toml",
         homepage: "https://github.com/abravalheri/validate-pyproject",
         changelog: nix.thunk(() => nix.str`https://github.com/abravalheri/validate-pyproject/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.rst`),

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["src", 28, 11], ["substitutions", 29, 11]], [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5], ["postFetch", 24, 5]], [["src", 44, 26], ["missingHashes", 44, 30], ["hash", 45, 5]], [["hedgedoc", 91, 36]], [["tests", 91, 5]], [["description", 95, 5], ["license", 96, 5], ["homepage", 97, 5], ["changelog", 98, 5], ["mainProgram", 99, 5], ["maintainers", 100, 5], ["platforms", 101, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["missingHashes", 41, 3], ["offlineCache", 43, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 55, 3], ["buildPhase", 59, 3], ["installPhase", 71, 3], ["passthru", 90, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, substitute: false, makeBinaryWrapper: false, nodejs: false, python3: false, nixosTests: false, "yarn-berry_4": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["src", 28, 11], ["substitutions", 29, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5], ["postFetch", 24, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 44, 26], ["missingHashes", 44, 30], ["hash", 45, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["hedgedoc", 91, 36]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 91, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 95, 5], ["license", 96, 5], ["homepage", 97, 5], ["changelog", 98, 5], ["mainProgram", 99, 5], ["maintainers", 100, 5], ["platforms", 101, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["missingHashes", 41, 3], ["offlineCache", 43, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 55, 3], ["buildPhase", 59, 3], ["installPhase", 71, 3], ["passthru", 90, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,18 +17,18 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const yarn_berry_4 = nix.arg($, "yarn-berry_4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "hedgedoc",
       version: "1.12.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "hedgedoc",
           repo: "hedgedoc",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-sKmy80FO5cp2aKoirtzaPmf2IqTn5yLUkbakIZMa5aQ=",
           postFetch: nix.thunk(() => nix.str`cd $out
 patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               src: nix.path(here, "./yarn-fix.patch"),
               substitutions: nix.thunk(() => [
                 "--replace-fail",
@@ -46,7 +40,7 @@ patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
         })))),
       missingHashes: nix.path(here, "./missing-hashes.json"),
       offlineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry_4, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           missingHashes: nix.thunk(() => nix.attr(finalAttrs, "missingHashes")),
           hash: "sha256-OywEJNs1DwUnPPjW2CzEYKhfHz03EcSEJ1PUWx8DGUI=",
@@ -80,14 +74,14 @@ makeWrapper ${nodejs}/bin/node $out/bin/hedgedoc \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           hedgedoc: nix.thunk(() => nix.attr(nixosTests, "hedgedoc")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Realtime collaborative markdown notes on all platforms",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
         homepage: "https://hedgedoc.org",

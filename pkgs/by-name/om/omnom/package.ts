@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5], ["fetchSubmodules", 23, 5]], [["pname", 51, 7], ["version", 52, 28], ["src", 52, 36], ["npmDepsHash", 54, 7], ["sourceRoot", 55, 7], ["npmPackFlags", 56, 7], ["nativeBuildInputs", 58, 7], ["postConfigure", 61, 7], ["postBuild", 66, 7], ["postCheck", 78, 7]], [["updateScript", 28, 12], ["omnom-addons", 50, 5], ["tests", 83, 5]], [["description", 87, 5], ["homepage", 88, 5], ["downloadPage", 89, 5], ["changelog", 90, 5], ["license", 91, 5], ["teams", 92, 5], ["mainProgram", 93, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["vendorHash", 26, 3], ["passthru", 28, 3], ["nativeBuildInputs", 30, 3], ["ldflags", 32, 3], ["postInstall", 37, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, "nix-update-script": false, makeWrapper: false, nixosTests: false, buildNpmPackage: false, zip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5], ["fetchSubmodules", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 51, 7], ["version", 52, 28], ["src", 52, 36], ["npmDepsHash", 54, 7], ["sourceRoot", 55, 7], ["npmPackFlags", 56, 7], ["nativeBuildInputs", 58, 7], ["postConfigure", 61, 7], ["postBuild", 66, 7], ["postCheck", 78, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 28, 12], ["omnom-addons", 50, 5], ["tests", 83, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 87, 5], ["homepage", 88, 5], ["downloadPage", 89, 5], ["changelog", 90, 5], ["license", 91, 5], ["teams", 92, 5], ["mainProgram", 93, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["vendorHash", 26, 3], ["passthru", 28, 3], ["nativeBuildInputs", 30, 3], ["ldflags", 32, 3], ["postInstall", 37, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const buildNpmPackage = nix.arg($, "buildNpmPackage");
   const zip = nix.arg($, "zip");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "omnom",
       version: "0.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "asciimoo",
           repo: "omnom",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,10 +29,10 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-meToyr93nmKLZ//h8Gc0rp2hc4vOV9ULU+FbBXmbDv8=",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         "omnom-addons": nix.thunk(() => nix.app(buildNpmPackage, (finalAttrs$) => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             pname: "omnom-addons",
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -63,7 +59,7 @@ cp -r static templates $out/share
 cp config.yml_sample $out/share/examples/config.yml
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Webpage bookmarking and snapshotting service",
         homepage: "https://omnom.zone/",
         downloadPage: "https://github.com/asciimoo/omnom",

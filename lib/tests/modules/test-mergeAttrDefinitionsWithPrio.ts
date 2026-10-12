@@ -2,12 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test-mergeAttrDefinitionsWithPrio.nix", [[["result", 11, 11]], [["default", 13, 5], ["regular", 14, 5], ["force", 15, 5], ["unused", 16, 5]], [["args", 12, 18]], [["_module", 12, 10], ["result", 18, 10]], [["options", 11, 3], ["config", 12, 3]]]);
 const formals$1 = { args: { lib: false, options: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/test-mergeAttrDefinitionsWithPrio.nix", [["result", 11, 11]]);
-const pos$2 = nix.positions(here + "/test-mergeAttrDefinitionsWithPrio.nix", [["default", 13, 5], ["regular", 14, 5], ["force", 15, 5], ["unused", 16, 5]]);
-const pos$3 = nix.positions(here + "/test-mergeAttrDefinitionsWithPrio.nix", [["args", 12, 18]]);
-const pos$4 = nix.positions(here + "/test-mergeAttrDefinitionsWithPrio.nix", [["_module", 12, 10], ["result", 18, 10]]);
-const pos$5 = nix.positions(here + "/test-mergeAttrDefinitionsWithPrio.nix", [["options", 11, 3], ["config", 12, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,17 +12,17 @@ export default nix.lambda((args) => (() => {
   const defs = nix.thunk(() => nix.app(nix.sel(lib, "modules", "mergeAttrDefinitionsWithPrio"), nix.thunk(() => nix.sel(options, "_module", "args"))));
   const assertLazy = (pos) => nix.builtins.throw(nix.thunk(() => nix.str`${nix.sel(pos, "file")}:${nix.builtins.toString(nix.thunk(() => nix.sel(pos, "line")))}:${nix.builtins.toString(nix.thunk(() => nix.sel(pos, "column")))}: The test must not evaluate this the assertLazy thunk, but it did. Unexpected strictness leads to unexpected errors and performance problems.`));
   return {
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       result: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({})))),
     })),
     config: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       _module: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         args: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           default: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.app(assertLazy, { file: nix.add(here, "/test-mergeAttrDefinitionsWithPrio.nix"), line: 13n, column: 41n })))),
           regular: null,
           force: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => nix.app(assertLazy, { file: nix.add(here, "/test-mergeAttrDefinitionsWithPrio.nix"), line: 15n, column: 37n })))),

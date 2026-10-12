@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 26, 5], ["sha256", 27, 5]], [["LC_ALL", 52, 7]], [["name", 63, 7], ["url", 64, 7], ["hash", 65, 7]], [["homepage", 70, 5], ["platforms", 71, 5], ["license", 72, 5]], [["pname", 17, 3], ["version", 18, 3], ["outputs", 20, 3], ["src", 25, 3], ["strictDeps", 30, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 39, 3], ["propagatedBuildInputs", 43, 3], ["configureFlags", 48, 3], ["env", 52, 3], ["enableParallelBuilding", 54, 3], ["preConfigure", 56, 3], ["patches", 60, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "dbus-glib": false, glib: false, python3: false, "pkg-config": false, libxslt: false, "gobject-introspection": false, vala: false, glibcLocales: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 26, 5], ["sha256", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["LC_ALL", 52, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 63, 7], ["url", 64, 7], ["hash", 65, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 70, 5], ["platforms", 71, 5], ["license", 72, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["outputs", 20, 3], ["src", 25, 3], ["strictDeps", 30, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 39, 3], ["propagatedBuildInputs", 43, 3], ["configureFlags", 48, 3], ["env", 52, 3], ["enableParallelBuilding", 54, 3], ["preConfigure", 56, 3], ["patches", 60, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const glibcLocales = nix.arg($, "glibcLocales");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "telepathy-glib",
       version: "0.24.2",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://telepathy.freedesktop.org/releases/telepathy-glib/telepathy-glib-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sKN013HN0IESXzjDq9B5ZXZCMBxxpUPVVeK/IZGSc/A=",
         })))),
@@ -38,19 +34,19 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [glibcLocales]),
       propagatedBuildInputs: nix.thunk(() => [dbus_glib, glib]),
       configureFlags: nix.thunk(() => ["--enable-vala-bindings"]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, LC_ALL: "en_US.UTF-8" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], LC_ALL: "en_US.UTF-8" })),
       enableParallelBuilding: true,
       preConfigure: "substituteInPlace telepathy-glib/telepathy-glib.pc.in --replace Requires.private Requires\n",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "fix-incompatible-pointer-types.patch",
             url: "https://github.com/TelepathyIM/telepathy-glib/commit/72412c944b771f3214ddc40fa9dea82cea3a5651.patch",
             hash: "sha256-NXQel0eS7zK6FRbJcPsPXCQxos0xT8EN102vX94M5Vo=",
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://telepathy.freedesktop.org",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         license: nix.thunk(() => (() => {

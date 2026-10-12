@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["PREFIX", 47, 7]], [["updateScript", 70, 12]], [["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["maintainers", 76, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["cargoHash", 23, 3], ["patches", 25, 3], ["nativeBuildInputs", 29, 3], ["propagatedBuildInputs", 34, 3], ["doCheck", 39, 3], ["outputs", 41, 3], ["env", 47, 3], ["preInstall", 51, 3], ["passthru", 70, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, lib: false, nettle: false, "nix-update-script": false, rustPlatform: false, "pkg-config": false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["PREFIX", 47, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 70, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["maintainers", 76, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["cargoHash", 23, 3], ["patches", 25, 3], ["nativeBuildInputs", 29, 3], ["propagatedBuildInputs", 34, 3], ["doCheck", 39, 3], ["outputs", 41, 3], ["env", 47, 3], ["preInstall", 51, 3], ["passthru", 70, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "rpm-sequoia";
       const version = "1.10.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rpm-software-management",
           repo: "rpm-sequoia",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,16 +31,16 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [nettle]);
       const doCheck = nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")));
       const outputs = nix.thunk(() => ["out", "dev"]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PREFIX: nix.thunk(() => nix.builtins.placeholder("out")) }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], PREFIX: nix.thunk(() => nix.builtins.placeholder("out")) }));
       const preInstall = nix.thunk(() => nix.add(nix.add("install -Dm644 target/release/rpm-sequoia.pc -t $dev/lib/pkgconfig\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), "install -d $out/lib\nfind target/release/ \\\n  -maxdepth 1 \\\n  -type l -name 'librpm_sequoia.*' \\\n  -exec cp --no-dereference {} $out/lib/ \\;\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.str`install -d $out/lib
 ln -s librpm_sequoia.dylib $out/lib/librpm_sequoia.${version}.dylib
 `))));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "OpenPGP backend for rpm using Sequoia PGP",
         homepage: "https://sequoia-pgp.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -54,7 +50,7 @@ ln -s librpm_sequoia.dylib $out/lib/librpm_sequoia.${version}.dylib
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

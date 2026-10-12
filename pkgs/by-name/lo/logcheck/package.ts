@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["description", 42, 5], ["longDescription", 43, 5], ["homepage", 49, 5], ["license", 50, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["prePatch", 18, 3], ["preConfigure", 23, 3], ["makeFlags", 34, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "lockfile-progs": false, perlPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 42, 5], ["longDescription", 43, 5], ["homepage", 49, 5], ["license", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["prePatch", 18, 3], ["preConfigure", 23, 3], ["makeFlags", 34, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const lockfile_progs = nix.arg($, "lockfile-progs");
   const perlPackages = nix.arg($, "perlPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "logcheck",
       version: "1.4.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://debian/pool/main/l/logcheck/logcheck_${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-zBYMvKwo85OI6LluRixOYtAFRTtpV/Hw6qjAk/+c898=",
         })))),
@@ -40,7 +38,7 @@ sed -i -e 's|! -f /usr/bin/lockfile|! -f ${lockfile_progs}/bin/lockfile|' \\
         "SHAREDIR=share/logtail/detectrotate",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Mails anomalies in the system logfiles to the administrator",
         longDescription: "Mails anomalies in the system logfiles to the administrator.\n\nLogcheck helps spot problems and security violations in your logfiles automatically and will send the results to you by e-mail.\nLogcheck was part of the Abacus Project of security tools, but this version has been rewritten.\n",
         homepage: "https://salsa.debian.org/debian/logcheck",

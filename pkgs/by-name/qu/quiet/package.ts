@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 19, 5], ["homepage", 20, 5], ["changelog", 21, 5], ["license", 22, 5], ["maintainers", 23, 5]], [["updateScript", 26, 12]], [["url", 44, 7], ["hash", 45, 7]], [["platforms", 49, 7]], [["pname", 38, 13], ["version", 38, 19], ["passthru", 38, 27], ["extraPkgs", 41, 5], ["src", 43, 5], ["meta", 48, 5]], [["url", 57, 7], ["hash", 58, 7]], [["platforms", 87, 7]], [["pname", 54, 13], ["version", 54, 19], ["passthru", 54, 27], ["src", 56, 5], ["nativeBuildInputs", 61, 5], ["sourceRoot", 66, 5], ["unpackPhase", 68, 5], ["installPhase", 76, 5], ["meta", 86, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, appimageTools: false, makeWrapper: false, _7zz: false, writeShellScript: false, curl: false, jq: false, "common-updater-scripts": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 19, 5], ["homepage", 20, 5], ["changelog", 21, 5], ["license", 22, 5], ["maintainers", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 26, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 44, 7], ["hash", 45, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["platforms", 49, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 38, 13], ["version", 38, 19], ["passthru", 38, 27], ["extraPkgs", 41, 5], ["src", 43, 5], ["meta", 48, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["url", 57, 7], ["hash", 58, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["platforms", 87, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 54, 13], ["version", 54, 19], ["passthru", 54, 27], ["src", 56, 5], ["nativeBuildInputs", 61, 5], ["sourceRoot", 66, 5], ["unpackPhase", 68, 5], ["installPhase", 76, 5], ["meta", 86, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const pname = "quiet";
   const version = "9.0.2";
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     description: "Private, p2p alternative to Slack and Discord built on Tor & IPFS",
     homepage: "https://github.com/TryQuiet/quiet",
     changelog: nix.thunk(() => nix.str`https://github.com/TryQuiet/quiet/releases/tag/@quiet/desktop@${version}`),
@@ -38,7 +31,7 @@ export default nix.lambda((args) => (() => {
     })()),
   }));
   const passthru = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     updateScript: nix.thunk(() => nix.app(writeShellScript, "update-quiet", nix.thunk(() => nix.str`latestVersion=$(${nix.app(nix.sel(lib, "getExe"), curl)} --fail --location --silent https://api.github.com/repos/TryQuiet/quiet/releases/latest | ${nix.app(nix.sel(lib, "getExe"), jq)} '.tag_name | ltrimstr("@quiet/desktop@")' --raw-output)
 currentVersion=$(nix eval --raw --file . quiet.version)
 if [[ "$latestVersion" == "$currentVersion" ]]; then
@@ -50,25 +43,25 @@ ${nix.app(nix.sel(lib, "getExe'"), common_updater_scripts, "update-source-versio
 `))),
   }));
   const linux = nix.thunk(() => nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: pname,
       version: version,
       passthru: passthru,
       extraPkgs: (pkgs) => [nix.thunk(() => nix.sel(pkgs, "procps"))],
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`https://github.com/TryQuiet/quiet/releases/download/@quiet/desktop@${version}/Quiet-${version}.AppImage`),
           hash: "sha256-CRQoTc7BbsWeA+6+X5ZjPYHNT4dqd1xZb6b2P83kC90=",
         })))),
-      meta: nix.thunk(() => nix.update(meta, { [nix.POS]: pos$4, platforms: nix.thunk(() => ["x86_64-linux"]) })),
+      meta: nix.thunk(() => nix.update(meta, { [nix.POS]: $pos[3], platforms: nix.thunk(() => ["x86_64-linux"]) })),
     }))));
   const darwin = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: pname,
       version: version,
       passthru: passthru,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           url: nix.thunk(() => nix.str`https://github.com/TryQuiet/quiet/releases/download/@quiet/desktop@${version}/Quiet-${version}-arm64.dmg`),
           hash: "sha256-G4Hj3YTsVX5Q3x4RnpXI6FPovm9fKXrfaUsZJ5EEUl8=",
         })))),
@@ -89,7 +82,7 @@ makeWrapper $out/Applications/Quiet.app/Contents/MacOS/Quiet $out/bin/${pname}
 runHook postInstall
 `),
       meta: nix.thunk(() => nix.update(meta, {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),
       })),
     }))));

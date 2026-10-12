@@ -2,24 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 31, 7], ["repo", 32, 7], ["tag", 33, 7], ["hash", 34, 7]], [["homepage", 53, 7], ["changelog", 54, 7], ["license", 55, 7], ["maintainers", 56, 7], ["platforms", 61, 7]], [["version", 28, 5], ["src", 30, 5], ["nativeBuildInputs", 37, 5], ["mesonBuildType", 44, 5], ["__structuredAttrs", 46, 5], ["strictDeps", 47, 5], ["separateDebugInfo", 48, 5], ["doCheck", 50, 5], ["meta", 52, 5]], [["pkg-config", 89, 22]], [["tests", 89, 16]], [["description", 92, 9], ["mainProgram", 93, 9], ["pkgConfigModules", 94, 9]], [["pname", 69, 7], ["sourceRoot", 71, 7], ["outputs", 73, 7], ["nativeBuildInputs", 78, 7], ["buildInputs", 82, 7], ["passthru", 89, 7], ["meta", 91, 7]], [["pkg-config", 120, 22]], [["tests", 120, 16]], [["description", 123, 9], ["pkgConfigModules", 124, 9]], [["pname", 102, 7], ["sourceRoot", 104, 7], ["outputs", 106, 7], ["buildInputs", 111, 7], ["passthru", 120, 7], ["meta", 122, 7]], [["package", 171, 47]], [["version", 171, 15]], [["updateScript", 170, 9], ["tests", 171, 9]], [["description", 175, 9], ["mainProgram", 176, 9]], [["pname", 132, 7], ["sourceRoot", 134, 7], ["buildInputs", 136, 7], ["nativeBuildInputs", 150, 7], ["preConfigure", 157, 7], ["disallowedRequisites", 161, 7], ["doCheck", 164, 7], ["doInstallCheck", 166, 7], ["nativeInstallCheckInputs", 167, 7], ["passthru", 169, 7], ["meta", 174, 7]], [["nixf", 66, 3], ["nixt", 99, 3], ["nixd", 129, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, versionCheckHook: false, boost: false, gtest: false, llvmPackages: false, meson: false, mesonEmulatorHook: false, ninja: false, nixVersions: false, "nix-update-script": false, nixd: false, nixf: false, nixt: false, nlohmann_json: false, "pkg-config": false, testers: false, python3: false, libxml2: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 31, 7], ["repo", 32, 7], ["tag", 33, 7], ["hash", 34, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 53, 7], ["changelog", 54, 7], ["license", 55, 7], ["maintainers", 56, 7], ["platforms", 61, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 28, 5], ["src", 30, 5], ["nativeBuildInputs", 37, 5], ["mesonBuildType", 44, 5], ["__structuredAttrs", 46, 5], ["strictDeps", 47, 5], ["separateDebugInfo", 48, 5], ["doCheck", 50, 5], ["meta", 52, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pkg-config", 89, 22]]);
-const pos$5 = nix.positions(here + "/default.nix", [["tests", 89, 16]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 92, 9], ["mainProgram", 93, 9], ["pkgConfigModules", 94, 9]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 69, 7], ["sourceRoot", 71, 7], ["outputs", 73, 7], ["nativeBuildInputs", 78, 7], ["buildInputs", 82, 7], ["passthru", 89, 7], ["meta", 91, 7]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pkg-config", 120, 22]]);
-const pos$9 = nix.positions(here + "/default.nix", [["tests", 120, 16]]);
-const pos$10 = nix.positions(here + "/default.nix", [["description", 123, 9], ["pkgConfigModules", 124, 9]]);
-const pos$11 = nix.positions(here + "/default.nix", [["pname", 102, 7], ["sourceRoot", 104, 7], ["outputs", 106, 7], ["buildInputs", 111, 7], ["passthru", 120, 7], ["meta", 122, 7]]);
-const pos$12 = nix.positions(here + "/default.nix", [["package", 171, 47]]);
-const pos$13 = nix.positions(here + "/default.nix", [["version", 171, 15]]);
-const pos$14 = nix.positions(here + "/default.nix", [["updateScript", 170, 9], ["tests", 171, 9]]);
-const pos$15 = nix.positions(here + "/default.nix", [["description", 175, 9], ["mainProgram", 176, 9]]);
-const pos$16 = nix.positions(here + "/default.nix", [["pname", 132, 7], ["sourceRoot", 134, 7], ["buildInputs", 136, 7], ["nativeBuildInputs", 150, 7], ["preConfigure", 157, 7], ["disallowedRequisites", 161, 7], ["doCheck", 164, 7], ["doInstallCheck", 166, 7], ["nativeInstallCheckInputs", 167, 7], ["passthru", 169, 7], ["meta", 174, 7]]);
-const pos$17 = nix.positions(here + "/default.nix", [["nixf", 66, 3], ["nixt", 99, 3], ["nixd", 129, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -48,7 +32,7 @@ export default nix.lambda((args) => (() => {
   const common = nix.thunk(() => (() => {
     const version = "2.9.3";
     const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         owner: "nix-community",
         repo: "nixd",
         tag: version,
@@ -61,7 +45,7 @@ export default nix.lambda((args) => (() => {
     const separateDebugInfo = true;
     const doCheck = true;
     const meta = nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       homepage: "https://github.com/nix-community/nixd",
       changelog: nix.thunk(() => nix.str`https://github.com/nix-community/nixd/releases/tag/${version}`),
       license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),
@@ -76,7 +60,7 @@ export default nix.lambda((args) => (() => {
       platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
     }));
     return {
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version,
       src,
       nativeBuildInputs,
@@ -89,9 +73,9 @@ export default nix.lambda((args) => (() => {
     };
   })());
   return {
-    [nix.POS]: pos$17,
+    [nix.POS]: $pos[16],
     nixf: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(common, {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname: "nixf",
         sourceRoot: nix.thunk(() => nix.str`${nix.sel(common, "src", "name")}/libnixf`),
         outputs: nix.thunk(() => ["out", "dev"]),
@@ -103,21 +87,21 @@ export default nix.lambda((args) => (() => {
           nlohmann_json,
         ]),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           tests: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nixf)),
           })),
         })),
         meta: nix.thunk(() => nix.update(nix.sel(common, "meta"), {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           description: "Nix language frontend, parser & semantic analysis",
           mainProgram: "nixf-tidy",
           pkgConfigModules: nix.thunk(() => ["nixf"]),
         })),
       })))),
     nixt: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(common, {
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         pname: "nixt",
         sourceRoot: nix.thunk(() => nix.str`${nix.sel(common, "src", "name")}/libnixt`),
         outputs: nix.thunk(() => ["out", "dev"]),
@@ -130,20 +114,20 @@ export default nix.lambda((args) => (() => {
           boost,
         ]),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           tests: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nixt)),
           })),
         })),
         meta: nix.thunk(() => nix.update(nix.sel(common, "meta"), {
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           description: "Supporting library that wraps C++ nix",
           pkgConfigModules: nix.thunk(() => ["nixt"]),
         })),
       })))),
     nixd: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(common, {
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         pname: "nixd",
         sourceRoot: nix.thunk(() => nix.str`${nix.sel(common, "src", "name")}/nixd`),
         buildInputs: nix.thunk(() => [
@@ -171,15 +155,15 @@ export default nix.lambda((args) => (() => {
         doInstallCheck: true,
         nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
           tests: nix.thunk(() => ({
-            [nix.POS]: pos$13,
-            version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$12, package: nixd })))),
+            [nix.POS]: $pos[12],
+            version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[11], package: nixd })))),
           })),
         })),
         meta: nix.thunk(() => nix.update(nix.sel(common, "meta"), {
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           description: "Feature-rich Nix language server interoperating with C++ nix",
           mainProgram: "nixd",
         })),

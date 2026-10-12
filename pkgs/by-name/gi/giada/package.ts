@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5], ["fetchSubmodules", 40, 5]], [["NIX_CFLAGS_COMPILE", 43, 7]], [["description", 89, 5], ["mainProgram", 90, 5], ["homepage", 91, 5], ["license", 92, 5], ["maintainers", 93, 5], ["platforms", 94, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["env", 43, 3], ["patches", 50, 3], ["cmakeFlags", 52, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 61, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, fltk: false, fontconfig: false, fmt: false, rtmidi: false, libsamplerate: false, libmpg123: false, libsndfile: false, jack2: false, "alsa-lib": false, libpulseaudio: false, libxpm: false, libxrandr: false, flac: false, libogg: false, libvorbis: false, libopus: false, nlohmann_json: false, expat: false, libGL: false, curl: false, webkitgtk_4_1: false, gtk3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5], ["fetchSubmodules", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 43, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 89, 5], ["mainProgram", 90, 5], ["homepage", 91, 5], ["license", 92, 5], ["maintainers", 93, 5], ["platforms", 94, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["env", 43, 3], ["patches", 50, 3], ["cmakeFlags", 52, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 61, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const webkitgtk_4_1 = nix.arg($, "webkitgtk_4_1");
   const gtk3 = nix.arg($, "gtk3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "giada",
       version: "1.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "monocasual",
           repo: "giada",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -50,7 +47,7 @@ export default nix.lambda((args) => (() => {
           fetchSubmodules: true,
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-w", "-Wno-error"]))),
       })),
       patches: nix.thunk(() => [nix.path(here, "./fmt-12-format-header.patch")]),
@@ -80,7 +77,7 @@ export default nix.lambda((args) => (() => {
         webkitgtk_4_1,
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isFreeBSD")))), nix.thunk(() => [fontconfig])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Free, minimal, hardcore audio tool for DJs, live performers and electronic musicians",
         mainProgram: "giada",
         homepage: "https://giadamusic.com/",

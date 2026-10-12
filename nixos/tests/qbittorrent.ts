@@ -2,56 +2,21 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/qbittorrent.nix", [[["maintainers", 6, 5]], [["enable", 14, 28]], [["qbittorrent", 14, 16]], [["enable", 18, 11], ["webuiPort", 19, 11], ["torrentingPort", 20, 11]], [["qbittorrent", 17, 18]], [["services", 17, 9]], [["configuration", 16, 33]], [["enable", 26, 11], ["openFirewall", 27, 11], ["webuiPort", 28, 11], ["torrentingPort", 29, 11]], [["qbittorrent", 25, 18]], [["services", 25, 9]], [["configuration", 24, 32]], [["Port", 37, 42]], [["WebUI", 37, 36]], [["Preferences", 37, 24]], [["enable", 35, 11], ["webuiPort", 36, 11], ["serverConfig", 37, 11]], [["qbittorrent", 34, 18]], [["services", 34, 9]], [["configuration", 33, 35]], [["portChange", 16, 22], ["openPorts", 24, 22], ["serverConfig", 33, 22]], [["services", 14, 7], ["specialisation", 16, 7]], [["Username", 52, 15], ["Password_PBKDF2", 54, 15], ["Port", 55, 15]], [["WebUI", 51, 13]], [["Preferences", 50, 11]], [["enable", 47, 9], ["webuiPort", 48, 9], ["serverConfig", 49, 9]], [["qbittorrent", 46, 16]], [["Port", 65, 42]], [["WebUI", 65, 36]], [["Preferences", 65, 24]], [["enable", 63, 11], ["webuiPort", 64, 11], ["serverConfig", 65, 11]], [["qbittorrent", 62, 18]], [["services", 62, 9]], [["configuration", 61, 41]], [["serverConfigChange", 61, 22]], [["services", 46, 7], ["specialisation", 61, 7]], [["simple", 13, 5], ["declarative", 45, 5]], [["name", 3, 3], ["meta", 5, 3], ["nodes", 12, 3], ["testScript", 71, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/qbittorrent.nix", [["maintainers", 6, 5]]);
-const pos$2 = nix.positions(here + "/qbittorrent.nix", [["enable", 14, 28]]);
-const pos$3 = nix.positions(here + "/qbittorrent.nix", [["qbittorrent", 14, 16]]);
-const pos$4 = nix.positions(here + "/qbittorrent.nix", [["enable", 18, 11], ["webuiPort", 19, 11], ["torrentingPort", 20, 11]]);
-const pos$5 = nix.positions(here + "/qbittorrent.nix", [["qbittorrent", 17, 18]]);
-const pos$6 = nix.positions(here + "/qbittorrent.nix", [["services", 17, 9]]);
-const pos$7 = nix.positions(here + "/qbittorrent.nix", [["configuration", 16, 33]]);
-const pos$8 = nix.positions(here + "/qbittorrent.nix", [["enable", 26, 11], ["openFirewall", 27, 11], ["webuiPort", 28, 11], ["torrentingPort", 29, 11]]);
-const pos$9 = nix.positions(here + "/qbittorrent.nix", [["qbittorrent", 25, 18]]);
-const pos$10 = nix.positions(here + "/qbittorrent.nix", [["services", 25, 9]]);
-const pos$11 = nix.positions(here + "/qbittorrent.nix", [["configuration", 24, 32]]);
-const pos$12 = nix.positions(here + "/qbittorrent.nix", [["Port", 37, 42]]);
-const pos$13 = nix.positions(here + "/qbittorrent.nix", [["WebUI", 37, 36]]);
-const pos$14 = nix.positions(here + "/qbittorrent.nix", [["Preferences", 37, 24]]);
-const pos$15 = nix.positions(here + "/qbittorrent.nix", [["enable", 35, 11], ["webuiPort", 36, 11], ["serverConfig", 37, 11]]);
-const pos$16 = nix.positions(here + "/qbittorrent.nix", [["qbittorrent", 34, 18]]);
-const pos$17 = nix.positions(here + "/qbittorrent.nix", [["services", 34, 9]]);
-const pos$18 = nix.positions(here + "/qbittorrent.nix", [["configuration", 33, 35]]);
-const pos$19 = nix.positions(here + "/qbittorrent.nix", [["portChange", 16, 22], ["openPorts", 24, 22], ["serverConfig", 33, 22]]);
-const pos$20 = nix.positions(here + "/qbittorrent.nix", [["services", 14, 7], ["specialisation", 16, 7]]);
-const pos$21 = nix.positions(here + "/qbittorrent.nix", [["Username", 52, 15], ["Password_PBKDF2", 54, 15], ["Port", 55, 15]]);
-const pos$22 = nix.positions(here + "/qbittorrent.nix", [["WebUI", 51, 13]]);
-const pos$23 = nix.positions(here + "/qbittorrent.nix", [["Preferences", 50, 11]]);
-const pos$24 = nix.positions(here + "/qbittorrent.nix", [["enable", 47, 9], ["webuiPort", 48, 9], ["serverConfig", 49, 9]]);
-const pos$25 = nix.positions(here + "/qbittorrent.nix", [["qbittorrent", 46, 16]]);
-const pos$26 = nix.positions(here + "/qbittorrent.nix", [["Port", 65, 42]]);
-const pos$27 = nix.positions(here + "/qbittorrent.nix", [["WebUI", 65, 36]]);
-const pos$28 = nix.positions(here + "/qbittorrent.nix", [["Preferences", 65, 24]]);
-const pos$29 = nix.positions(here + "/qbittorrent.nix", [["enable", 63, 11], ["webuiPort", 64, 11], ["serverConfig", 65, 11]]);
-const pos$30 = nix.positions(here + "/qbittorrent.nix", [["qbittorrent", 62, 18]]);
-const pos$31 = nix.positions(here + "/qbittorrent.nix", [["services", 62, 9]]);
-const pos$32 = nix.positions(here + "/qbittorrent.nix", [["configuration", 61, 41]]);
-const pos$33 = nix.positions(here + "/qbittorrent.nix", [["serverConfigChange", 61, 22]]);
-const pos$34 = nix.positions(here + "/qbittorrent.nix", [["services", 46, 7], ["specialisation", 61, 7]]);
-const pos$35 = nix.positions(here + "/qbittorrent.nix", [["simple", 13, 5], ["declarative", 45, 5]]);
 const formals$2 = { args: { nodes: false }, ellipsis: true };
-const pos$36 = nix.positions(here + "/qbittorrent.nix", [["name", 3, 3], ["meta", 5, 3], ["nodes", 12, 3], ["testScript", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$36,
+    [nix.POS]: $pos[35],
     name: "qbittorrent",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "fsnkty")),
           nix.thunk(() => nix.lookup(w, "undefined-landmark")),
@@ -59,33 +24,33 @@ export default nix.lambda((args) => (() => {
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$35,
+      [nix.POS]: $pos[34],
       simple: nix.thunk(() => ({
-        [nix.POS]: pos$20,
+        [nix.POS]: $pos[19],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          qbittorrent: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+          [nix.POS]: $pos[2],
+          qbittorrent: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
         })),
         specialisation: nix.thunk(() => ({
-          [nix.POS]: pos$19,
+          [nix.POS]: $pos[18],
           portChange: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             configuration: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$5,
-                qbittorrent: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true, webuiPort: 5555n, torrentingPort: 44444n })),
+                [nix.POS]: $pos[4],
+                qbittorrent: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: true, webuiPort: 5555n, torrentingPort: 44444n })),
               })),
             })),
           })),
           openPorts: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             configuration: nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 qbittorrent: nix.thunk(() => ({
-                  [nix.POS]: pos$8,
+                  [nix.POS]: $pos[7],
                   enable: true,
                   openFirewall: true,
                   webuiPort: 8080n,
@@ -95,20 +60,20 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           serverConfig: nix.thunk(() => ({
-            [nix.POS]: pos$18,
+            [nix.POS]: $pos[17],
             configuration: nix.thunk(() => ({
-              [nix.POS]: pos$17,
+              [nix.POS]: $pos[16],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$16,
+                [nix.POS]: $pos[15],
                 qbittorrent: nix.thunk(() => ({
-                  [nix.POS]: pos$15,
+                  [nix.POS]: $pos[14],
                   enable: true,
                   webuiPort: null,
                   serverConfig: nix.thunk(() => ({
-                    [nix.POS]: pos$14,
+                    [nix.POS]: $pos[13],
                     Preferences: nix.thunk(() => ({
-                      [nix.POS]: pos$13,
-                      WebUI: nix.thunk(() => ({ [nix.POS]: pos$12, Port: "8181" })),
+                      [nix.POS]: $pos[12],
+                      WebUI: nix.thunk(() => ({ [nix.POS]: $pos[11], Port: "8181" })),
                     })),
                   })),
                 })),
@@ -118,19 +83,19 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       declarative: nix.thunk(() => ({
-        [nix.POS]: pos$34,
+        [nix.POS]: $pos[33],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$25,
+          [nix.POS]: $pos[24],
           qbittorrent: nix.thunk(() => ({
-            [nix.POS]: pos$24,
+            [nix.POS]: $pos[23],
             enable: true,
             webuiPort: null,
             serverConfig: nix.thunk(() => ({
-              [nix.POS]: pos$23,
+              [nix.POS]: $pos[22],
               Preferences: nix.thunk(() => ({
-                [nix.POS]: pos$22,
+                [nix.POS]: $pos[21],
                 WebUI: nix.thunk(() => ({
-                  [nix.POS]: pos$21,
+                  [nix.POS]: $pos[20],
                   Username: "user",
                   Password_PBKDF2: "@ByteArray(6DIf26VOpTCYbgNiO6DAFQ==:e6241eaAWGzRotQZvVA5/up9fj5wwSAThLgXI2lVMsYTu1StUgX9MgmElU3Sa/M8fs+zqwZv9URiUOObjqJGNw==)",
                   Port: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "8181")),
@@ -140,22 +105,22 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         specialisation: nix.thunk(() => ({
-          [nix.POS]: pos$33,
+          [nix.POS]: $pos[32],
           serverConfigChange: nix.thunk(() => ({
-            [nix.POS]: pos$32,
+            [nix.POS]: $pos[31],
             configuration: nix.thunk(() => ({
-              [nix.POS]: pos$31,
+              [nix.POS]: $pos[30],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$30,
+                [nix.POS]: $pos[29],
                 qbittorrent: nix.thunk(() => ({
-                  [nix.POS]: pos$29,
+                  [nix.POS]: $pos[28],
                   enable: true,
                   webuiPort: null,
                   serverConfig: nix.thunk(() => ({
-                    [nix.POS]: pos$28,
+                    [nix.POS]: $pos[27],
                     Preferences: nix.thunk(() => ({
-                      [nix.POS]: pos$27,
-                      WebUI: nix.thunk(() => ({ [nix.POS]: pos$26, Port: "7171" })),
+                      [nix.POS]: $pos[26],
+                      WebUI: nix.thunk(() => ({ [nix.POS]: $pos[25], Port: "7171" })),
                     })),
                   })),
                 })),

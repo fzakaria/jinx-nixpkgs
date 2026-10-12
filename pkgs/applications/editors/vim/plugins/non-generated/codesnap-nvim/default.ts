@@ -2,14 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["OPENSSL_NO_VENDOR", 35, 7], ["RUSTFLAGS", 38, 7]], [["pname", 21, 5], ["version", 22, 13], ["src", 22, 21], ["sourceRoot", 24, 5], ["cargoHash", 26, 5], ["nativeBuildInputs", 28, 5], ["env", 33, 5], ["postInstall", 41, 5], ["buildInputs", 45, 5]], [["attrPath", 73, 7]], [["updateScript", 72, 5], ["codesnap-lib", 77, 13]], [["homepage", 81, 5], ["changelog", 82, 5], ["license", 83, 5]], [["pname", 52, 3], ["version", 53, 11], ["src", 53, 19], ["strictDeps", 55, 3], ["postPatch", 57, 3], ["passthru", 71, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rustPlatform: false, "pkg-config": false, libuv: false, openssl: false, vimUtils: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["OPENSSL_NO_VENDOR", 35, 7], ["RUSTFLAGS", 38, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 21, 5], ["version", 22, 13], ["src", 22, 21], ["sourceRoot", 24, 5], ["cargoHash", 26, 5], ["nativeBuildInputs", 28, 5], ["env", 33, 5], ["postInstall", 41, 5], ["buildInputs", 45, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["attrPath", 73, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["updateScript", 72, 5], ["codesnap-lib", 77, 13]]);
-const pos$6 = nix.positions(here + "/default.nix", [["homepage", 81, 5], ["changelog", 82, 5], ["license", 83, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 52, 3], ["version", 53, 11], ["src", 53, 19], ["strictDeps", 55, 3], ["postPatch", 57, 3], ["passthru", 71, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,14 +18,14 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const version = "2.1.1";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "mistricky",
       repo: "codesnap.nvim",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-lQxV0Ka/eU/226sbXa2bB/x39okyrKSNsRIBNZ/IaK4=",
     }))));
   const codesnap_lib = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "codesnap-lib",
       version: version,
       src: src,
@@ -39,7 +33,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-b+S56yRtly25fW1XmOVx5D3AT6PEY186r/KXVPI13dM=",
       nativeBuildInputs: nix.thunk(() => [pkg_config, nix.thunk(() => nix.sel(rustPlatform, "bindgenHook"))]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         OPENSSL_NO_VENDOR: 1n,
         RUSTFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-C link-arg=-undefined -C link-arg=dynamic_lookup")),
       })),
@@ -48,7 +42,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(libuv, "dev")), openssl]),
     }))));
   return nix.app(nix.sel(vimUtils, "buildVimPlugin"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "codesnap.nvim",
       version: version,
       src: src,
@@ -65,12 +59,12 @@ export default nix.lambda((args) => (() => {
 `;
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, attrPath: "vimPlugins.codesnap-nvim.codesnap-lib" })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[3], attrPath: "vimPlugins.codesnap-nvim.codesnap-lib" })))),
         "codesnap-lib": codesnap_lib,
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://github.com/mistricky/codesnap.nvim/",
         changelog: nix.thunk(() => nix.str`https://github.com/mistricky/codesnap.nvim/releases/tag/${nix.sel(src, "tag")}`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

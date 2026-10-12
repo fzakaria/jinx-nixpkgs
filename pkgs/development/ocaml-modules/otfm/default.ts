@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 24, 5], ["hash", 25, 5]], [["description", 43, 5], ["longDescription", 44, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["mainProgram", 52, 5], ["platforms", 53, 26]], [["pname", 20, 3], ["version", 21, 11], ["src", 23, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 34, 3], ["propagatedBuildInputs", 36, 3], ["strictDeps", 38, 3], ["buildPhase", 40, 19], ["installPhase", 40, 30], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, ocaml: false, findlib: false, ocamlbuild: false, topkg: false, uutf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 43, 5], ["longDescription", 44, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["mainProgram", 52, 5], ["platforms", 53, 26]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 11], ["src", 23, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 34, 3], ["propagatedBuildInputs", 36, 3], ["strictDeps", 38, 3], ["buildPhase", 40, 19], ["installPhase", 40, 30], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const version = "0.4.0";
   const webpage = nix.thunk(() => nix.str`https://erratique.ch/software/${pname}`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-${pname}`),
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`${webpage}/releases/${pname}-${version}.tbz`),
           hash: "sha256-02U23mYTy0ZJgSObDoyygPTGEMC4/Zge5bux4wshaEE=",
         })))),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "OpenType font decoder for OCaml",
         longDescription: "Otfm is an in-memory decoder for the OpenType font data format. It\nprovides low-level access to font tables and functions to decode some\nof them.\n",
         homepage: webpage,

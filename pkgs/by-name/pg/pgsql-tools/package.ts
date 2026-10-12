@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 11], ["hash", 20, 11]], [["url", 23, 11], ["hash", 24, 11]], [["url", 27, 11], ["hash", 28, 11]], [["x86_64-linux", 18, 9], ["aarch64-linux", 22, 9], ["aarch64-darwin", 26, 9]], [["updateScript", 72, 5]], [["homepage", 76, 5], ["description", 77, 5], ["changelog", 78, 5], ["license", 79, 5], ["platforms", 80, 5], ["maintainers", 85, 5], ["mainProgram", 86, 5], ["sourceProvenance", 87, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 42, 3], ["dontBuild", 47, 3], ["dontStrip", 48, 3], ["installPhase", 50, 3], ["doInstallCheck", 69, 3], ["passthru", 71, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, autoPatchelfHook: false, "libxcrypt-legacy": false, makeBinaryWrapper: false, "pgsql-tools": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 11], ["hash", 20, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 23, 11], ["hash", 24, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 27, 11], ["hash", 28, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["x86_64-linux", 18, 9], ["aarch64-linux", 22, 9], ["aarch64-darwin", 26, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 72, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 76, 5], ["description", 77, 5], ["changelog", 78, 5], ["license", 79, 5], ["platforms", 80, 5], ["maintainers", 85, 5], ["mainProgram", 86, 5], ["sourceProvenance", 87, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 42, 3], ["dontBuild", 47, 3], ["dontStrip", 48, 3], ["installPhase", 50, 3], ["doInstallCheck", 69, 3], ["passthru", 71, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,24 +15,24 @@ export default nix.lambda((args) => (() => {
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   const pgsql_tools = nix.arg($, "pgsql-tools");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "pgsql-tools",
       version: "2.1.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (() => {
           const sources = nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             "x86_64-linux": nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               url: nix.thunk(() => nix.str`https://github.com/microsoft/pgsql-tools/releases/download/v${nix.sel(finalAttrs, "version")}/pgsqltoolsservice-linux-x64.tar.gz`),
               hash: "sha256-dN7+LJCUwb39ypuJV4p3jUHNGAPaObN4aZvsOHIpmkQ=",
             })),
             "aarch64-linux": nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               url: nix.thunk(() => nix.str`https://github.com/microsoft/pgsql-tools/releases/download/v${nix.sel(finalAttrs, "version")}/pgsqltoolsservice-linux-arm64.tar.gz`),
               hash: "sha256-rD8jymGdM1RDGDbrKu6E7xoWtSMRNuc2ngCmR+sHgQI=",
             })),
             "aarch64-darwin": nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               url: nix.thunk(() => nix.str`https://github.com/microsoft/pgsql-tools/releases/download/v${nix.sel(finalAttrs, "version")}/pgsqltoolsservice-osx-arm64.tar.gz`),
               hash: "sha256-tpabEKB1kqse7D58FsP/9jywk+vgAAvptL9MadwxWg8=",
             })),
@@ -68,9 +62,9 @@ makeBinaryWrapper $out/lib/pgsql-tools/ossdbtoolsservice_main $out/bin/ossdbtool
 runHook postInstall
 `),
       doInstallCheck: true,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[4], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://github.com/microsoft/pgsql-tools",
         description: "Backend service for PostgreSQL server tools, offering features such as connection management, query execution with result set handling, and language service support via the VS Code protocol",
         changelog: nix.thunk(() => nix.str`https://github.com/microsoft/pgsql-tools/releases/tag/v${nix.sel(finalAttrs, "version")}`),

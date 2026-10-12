@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["description", 59, 5], ["homepage", 60, 5], ["platforms", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["mainProgram", 66, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 39, 3], ["cmakeFlags", 52, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, dbus: false, cmake: false, "pkg-config": false, "bash-completion": false, gsl: false, popt: false, clightd: false, systemd: false, libconfig: false, libmodule: false, withGeoclue: true, geoclue2: false, withUpower: true, upower: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 59, 5], ["homepage", 60, 5], ["platforms", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["mainProgram", 66, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 39, 3], ["cmakeFlags", 52, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const withUpower = nix.argOr($, "withUpower", () => true);
   const upower = nix.arg($, "upower");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "clight",
       version: "4.11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "FedeDP",
           repo: "Clight",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-DZSH_COMPLETIONS_DIR=${nix.builtins.placeholder("out")}/share/zsh/site-functions`),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "C daemon that turns your webcam into a light sensor",
         homepage: "https://github.com/FedeDP/Clight",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["homepage", 29, 5], ["description", 30, 5], ["longDescription", 31, 5], ["platforms", 39, 5], ["license", 40, 5], ["mainProgram", 41, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 19, 3], ["nativeBuildInputs", 24, 3], ["configureFlags", 26, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, openssl: false, python3: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 29, 5], ["description", 30, 5], ["longDescription", 31, 5], ["platforms", 39, 5], ["license", 40, 5], ["mainProgram", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 19, 3], ["nativeBuildInputs", 24, 3], ["configureFlags", 26, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "fetchmail",
       version: "6.6.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/fetchmail/fetchmail-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-vs6KqqaOAp7tn9Vf/9Ktx91s1elXTVv5Li2SCL2XqIE=",
         })))),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       configureFlags: nix.thunk(() => [nix.thunk(() => nix.str`--with-ssl=${nix.sel(openssl, "dev")}`)]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.fetchmail.info/",
         description: "Full-featured remote-mail retrieval and forwarding utility",
         longDescription: "A full-featured, robust, well-documented remote-mail retrieval and\nforwarding utility intended to be used over on-demand TCP/IP links\n(such as SLIP or PPP connections). It supports every remote-mail\nprotocol now in use on the Internet: POP2, POP3, RPOP, APOP, KPOP,\nall flavors of IMAP, ETRN, and ODMR. It can even support IPv6 and\nIPSEC.\n",

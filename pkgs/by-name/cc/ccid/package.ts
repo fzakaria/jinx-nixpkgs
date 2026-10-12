@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["NIX_CFLAGS_COMPILE", 44, 5]], [["updateScript", 77, 12]], [["description", 96, 5], ["homepage", 97, 5], ["license", 98, 5], ["maintainers", 99, 5], ["platforms", 100, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["mesonFlags", 34, 3], ["env", 43, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 55, 3], ["doInstallCheck", 61, 3], ["postInstall", 63, 3], ["stripDebugList", 75, 3], ["passthru", 77, 3], ["installCheckPhase", 79, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, flex: false, libusb1: false, meson: false, ninja: false, "nix-update-script": false, pcsclite: false, perl: false, "pkg-config": false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 77, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 96, 5], ["homepage", 97, 5], ["license", 98, 5], ["maintainers", 99, 5], ["platforms", 100, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["mesonFlags", 34, 3], ["env", 43, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 55, 3], ["doInstallCheck", 61, 3], ["postInstall", 63, 3], ["stripDebugList", 75, 3], ["passthru", 77, 3], ["installCheckPhase", 79, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ccid",
       version: "1.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "LudovicRousseau",
           repo: "CCID",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +36,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "mesonBool"), "udev-rules", false)),
       ]),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           NIX_CFLAGS_COMPILE: "-Wno-error=implicit-function-declaration",
         })))),
       nativeBuildInputs: nix.thunk(() => [flex, perl, pkg_config, meson, ninja]),
@@ -56,7 +52,7 @@ substituteInPlace $out/lib/udev/rules.d/92_pcscd_ccid.rules \\
 `),
       stripDebugList: nix.thunk(() => ["pcsc"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       installCheckPhase: nix.thunk(() => (() => {
@@ -73,7 +69,7 @@ runHook postInstallCheck
 `));
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "PC/SC driver for USB CCID smart card readers",
         homepage: "https://ccid.apdu.fr/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

@@ -2,43 +2,11 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/9.0.2-binary.nix", [[["url", 57, 11], ["sha256", 58, 11]], [["nixPackage", 63, 13], ["fileToCheckFor", 64, 13]], [["nixPackage", 70, 13], ["fileToCheckFor", 71, 13]], [["variantSuffix", 55, 9], ["src", 56, 9], ["exePathForLibraryCheck", 60, 9], ["archSpecificLibraries", 61, 9]], [["url", 78, 11], ["sha256", 79, 11]], [["nixPackage", 84, 13], ["fileToCheckFor", 85, 13]], [["nixPackage", 88, 13], ["fileToCheckFor", 89, 13]], [["nixPackage", 92, 13], ["fileToCheckFor", 93, 13]], [["variantSuffix", 76, 9], ["src", 77, 9], ["exePathForLibraryCheck", 81, 9], ["archSpecificLibraries", 82, 9]], [["url", 100, 11], ["sha256", 101, 11]], [["nixPackage", 106, 13], ["fileToCheckFor", 107, 13]], [["nixPackage", 110, 13], ["fileToCheckFor", 111, 13]], [["nixPackage", 114, 13], ["fileToCheckFor", 115, 13]], [["variantSuffix", 98, 9], ["src", 99, 9], ["exePathForLibraryCheck", 103, 9], ["archSpecificLibraries", 104, 9]], [["url", 122, 11], ["sha256", 123, 11]], [["nixPackage", 128, 13], ["fileToCheckFor", 129, 13]], [["nixPackage", 132, 13], ["fileToCheckFor", 133, 13]], [["nixPackage", 136, 13], ["fileToCheckFor", 137, 13]], [["variantSuffix", 120, 9], ["src", 121, 9], ["exePathForLibraryCheck", 125, 9], ["archSpecificLibraries", 126, 9], ["isHadrian", 140, 9]], [["i686-linux", 54, 7], ["x86_64-linux", 75, 7], ["aarch64-linux", 97, 7], ["aarch64-darwin", 119, 7]], [["url", 148, 11], ["sha256", 149, 11]], [["nixPackage", 154, 13], ["fileToCheckFor", 155, 13]], [["nixPackage", 158, 13], ["fileToCheckFor", 159, 13]], [["variantSuffix", 146, 9], ["src", 147, 9], ["exePathForLibraryCheck", 151, 9], ["archSpecificLibraries", 152, 9], ["isHadrian", 162, 9]], [["x86_64-linux", 145, 7]], [["defaultLibc", 53, 5], ["musl", 144, 5]], [["lib", 180, 54], ["stdenv", 180, 58], ["version", 180, 65]], [["shell", 205, 26], ["opt", 206, 9]], [["name", 197, 7], ["src", 198, 7], ["dir", 199, 7], ["isExecutable", 200, 7], ["preBuild", 201, 7], ["replacements", 204, 7]], [["targetPrefix", 470, 5], ["enableShared", 471, 5], ["llvmPackages", 473, 13], ["haskellCompilerName", 476, 5]], [["hadrian", 486, 5]], [["homepage", 490, 5], ["description", 491, 5], ["license", 492, 5], ["platforms", 502, 5], ["teams", 503, 5], ["sourceProvenance", 504, 5]], [["version", 219, 11], ["pname", 220, 3], ["src", 222, 3], ["nativeBuildInputs", 224, 3], ["env", 230, 3], ["postUnpack", 232, 3], ["preConfigure", 330, 3], ["configurePlatforms", 332, 3], ["configureFlags", 333, 3], ["dontBuild", 344, 3], ["makeFlags", 353, 3], ["postInstall", 356, 3], ["dontStrip", 387, 3], ["postFixup", 391, 3], ["doInstallCheck", 454, 3], ["installCheckPhase", 455, 3], ["passthru", 469, 3], ["meta", 489, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, perl: false, gcc: false, ncurses5: false, ncurses6: false, gmp: false, libiconv: false, numactl: false, libffi: false, llvmPackages: false, replaceVarsWith: false, coreutils: false, targetPackages: false, minimal: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/9.0.2-binary.nix", [["url", 57, 11], ["sha256", 58, 11]]);
-const pos$2 = nix.positions(here + "/9.0.2-binary.nix", [["nixPackage", 63, 13], ["fileToCheckFor", 64, 13]]);
-const pos$3 = nix.positions(here + "/9.0.2-binary.nix", [["nixPackage", 70, 13], ["fileToCheckFor", 71, 13]]);
-const pos$4 = nix.positions(here + "/9.0.2-binary.nix", [["variantSuffix", 55, 9], ["src", 56, 9], ["exePathForLibraryCheck", 60, 9], ["archSpecificLibraries", 61, 9]]);
-const pos$5 = nix.positions(here + "/9.0.2-binary.nix", [["url", 78, 11], ["sha256", 79, 11]]);
-const pos$6 = nix.positions(here + "/9.0.2-binary.nix", [["nixPackage", 84, 13], ["fileToCheckFor", 85, 13]]);
-const pos$7 = nix.positions(here + "/9.0.2-binary.nix", [["nixPackage", 88, 13], ["fileToCheckFor", 89, 13]]);
-const pos$8 = nix.positions(here + "/9.0.2-binary.nix", [["nixPackage", 92, 13], ["fileToCheckFor", 93, 13]]);
-const pos$9 = nix.positions(here + "/9.0.2-binary.nix", [["variantSuffix", 76, 9], ["src", 77, 9], ["exePathForLibraryCheck", 81, 9], ["archSpecificLibraries", 82, 9]]);
-const pos$10 = nix.positions(here + "/9.0.2-binary.nix", [["url", 100, 11], ["sha256", 101, 11]]);
-const pos$11 = nix.positions(here + "/9.0.2-binary.nix", [["nixPackage", 106, 13], ["fileToCheckFor", 107, 13]]);
-const pos$12 = nix.positions(here + "/9.0.2-binary.nix", [["nixPackage", 110, 13], ["fileToCheckFor", 111, 13]]);
-const pos$13 = nix.positions(here + "/9.0.2-binary.nix", [["nixPackage", 114, 13], ["fileToCheckFor", 115, 13]]);
-const pos$14 = nix.positions(here + "/9.0.2-binary.nix", [["variantSuffix", 98, 9], ["src", 99, 9], ["exePathForLibraryCheck", 103, 9], ["archSpecificLibraries", 104, 9]]);
-const pos$15 = nix.positions(here + "/9.0.2-binary.nix", [["url", 122, 11], ["sha256", 123, 11]]);
-const pos$16 = nix.positions(here + "/9.0.2-binary.nix", [["nixPackage", 128, 13], ["fileToCheckFor", 129, 13]]);
-const pos$17 = nix.positions(here + "/9.0.2-binary.nix", [["nixPackage", 132, 13], ["fileToCheckFor", 133, 13]]);
-const pos$18 = nix.positions(here + "/9.0.2-binary.nix", [["nixPackage", 136, 13], ["fileToCheckFor", 137, 13]]);
-const pos$19 = nix.positions(here + "/9.0.2-binary.nix", [["variantSuffix", 120, 9], ["src", 121, 9], ["exePathForLibraryCheck", 125, 9], ["archSpecificLibraries", 126, 9], ["isHadrian", 140, 9]]);
-const pos$20 = nix.positions(here + "/9.0.2-binary.nix", [["i686-linux", 54, 7], ["x86_64-linux", 75, 7], ["aarch64-linux", 97, 7], ["aarch64-darwin", 119, 7]]);
-const pos$21 = nix.positions(here + "/9.0.2-binary.nix", [["url", 148, 11], ["sha256", 149, 11]]);
-const pos$22 = nix.positions(here + "/9.0.2-binary.nix", [["nixPackage", 154, 13], ["fileToCheckFor", 155, 13]]);
-const pos$23 = nix.positions(here + "/9.0.2-binary.nix", [["nixPackage", 158, 13], ["fileToCheckFor", 159, 13]]);
-const pos$24 = nix.positions(here + "/9.0.2-binary.nix", [["variantSuffix", 146, 9], ["src", 147, 9], ["exePathForLibraryCheck", 151, 9], ["archSpecificLibraries", 152, 9], ["isHadrian", 162, 9]]);
-const pos$25 = nix.positions(here + "/9.0.2-binary.nix", [["x86_64-linux", 145, 7]]);
-const pos$26 = nix.positions(here + "/9.0.2-binary.nix", [["defaultLibc", 53, 5], ["musl", 144, 5]]);
-const pos$27 = nix.positions(here + "/9.0.2-binary.nix", [["lib", 180, 54], ["stdenv", 180, 58], ["version", 180, 65]]);
 const formals$2 = { args: { nixPackage: false }, ellipsis: true };
-const pos$28 = nix.positions(here + "/9.0.2-binary.nix", [["shell", 205, 26], ["opt", 206, 9]]);
-const pos$29 = nix.positions(here + "/9.0.2-binary.nix", [["name", 197, 7], ["src", 198, 7], ["dir", 199, 7], ["isExecutable", 200, 7], ["preBuild", 201, 7], ["replacements", 204, 7]]);
 const formals$3 = { args: { fileToCheckFor: false, nixPackage: false }, ellipsis: false };
 const formals$4 = { args: { nixPackage: false }, ellipsis: true };
-const pos$30 = nix.positions(here + "/9.0.2-binary.nix", [["targetPrefix", 470, 5], ["enableShared", 471, 5], ["llvmPackages", 473, 13], ["haskellCompilerName", 476, 5]]);
-const pos$31 = nix.positions(here + "/9.0.2-binary.nix", [["hadrian", 486, 5]]);
-const pos$32 = nix.positions(here + "/9.0.2-binary.nix", [["homepage", 490, 5], ["description", 491, 5], ["license", 492, 5], ["platforms", 502, 5], ["teams", 503, 5], ["sourceProvenance", 504, 5]]);
-const pos$33 = nix.positions(here + "/9.0.2-binary.nix", [["version", 219, 11], ["pname", 220, 3], ["src", 222, 3], ["nativeBuildInputs", 224, 3], ["env", 230, 3], ["postUnpack", 232, 3], ["preConfigure", 330, 3], ["configurePlatforms", 332, 3], ["configureFlags", 333, 3], ["dontBuild", 344, 3], ["makeFlags", 353, 3], ["postInstall", 356, 3], ["dontStrip", 387, 3], ["postFixup", 391, 3], ["doInstallCheck", 454, 3], ["installCheckPhase", 455, 3], ["passthru", 469, 3], ["meta", 489, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -62,84 +30,88 @@ export default nix.lambda((args) => (() => {
   const downloadsUrl = "https://downloads.haskell.org/ghc";
   const version = "9.0.2";
   const ghcBinDists = nix.thunk(() => ({
-    [nix.POS]: pos$26,
+    [nix.POS]: $pos[25],
     defaultLibc: nix.thunk(() => ({
-      [nix.POS]: pos$20,
+      [nix.POS]: $pos[19],
       "i686-linux": nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         variantSuffix: "",
         src: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`${downloadsUrl}/${version}/ghc-${version}-i386-deb9-linux.tar.xz`),
           sha256: "fdeb9f8928fbe994064778a8e1e85bb1a58a6cd3dd7b724fcc2a1dcfda6cad47",
         })),
         exePathForLibraryCheck: "ghc/stage2/build/tmp/ghc-stage2",
         archSpecificLibraries: nix.thunk(() => [
-          nix.thunk(() => ({ [nix.POS]: pos$2, nixPackage: gmp, fileToCheckFor: null })),
-          nix.thunk(() => ({ [nix.POS]: pos$3, nixPackage: ncurses5, fileToCheckFor: "libtinfo.so.5" })),
+          nix.thunk(() => ({ [nix.POS]: $pos[1], nixPackage: gmp, fileToCheckFor: null })),
+          nix.thunk(() => ({ [nix.POS]: $pos[2], nixPackage: ncurses5, fileToCheckFor: "libtinfo.so.5" })),
         ]),
       })),
       "x86_64-linux": nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         variantSuffix: "",
         src: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           url: nix.thunk(() => nix.str`${downloadsUrl}/${version}/ghc-${version}-x86_64-deb10-linux.tar.xz`),
           sha256: "5d0b9414b10cfb918453bcd01c5ea7a1824fe95948b08498d6780f20ba247afc",
         })),
         exePathForLibraryCheck: "ghc/stage2/build/tmp/ghc-stage2",
         archSpecificLibraries: nix.thunk(() => [
-          nix.thunk(() => ({ [nix.POS]: pos$6, nixPackage: gmp, fileToCheckFor: null })),
-          nix.thunk(() => ({ [nix.POS]: pos$7, nixPackage: ncurses6, fileToCheckFor: "libtinfo.so.6" })),
-          nix.thunk(() => ({ [nix.POS]: pos$8, nixPackage: numactl, fileToCheckFor: null })),
+          nix.thunk(() => ({ [nix.POS]: $pos[5], nixPackage: gmp, fileToCheckFor: null })),
+          nix.thunk(() => ({ [nix.POS]: $pos[6], nixPackage: ncurses6, fileToCheckFor: "libtinfo.so.6" })),
+          nix.thunk(() => ({ [nix.POS]: $pos[7], nixPackage: numactl, fileToCheckFor: null })),
         ]),
       })),
       "aarch64-linux": nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         variantSuffix: "",
         src: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           url: nix.thunk(() => nix.str`${downloadsUrl}/${version}/ghc-${version}-aarch64-deb10-linux.tar.xz`),
           sha256: "cb016344c70a872738a24af60bd15d3b18749087b9905c1b3f1b1549dc01f46d",
         })),
         exePathForLibraryCheck: "ghc/stage2/build/tmp/ghc-stage2",
         archSpecificLibraries: nix.thunk(() => [
-          nix.thunk(() => ({ [nix.POS]: pos$11, nixPackage: gmp, fileToCheckFor: null })),
-          nix.thunk(() => ({ [nix.POS]: pos$12, nixPackage: ncurses6, fileToCheckFor: "libtinfo.so.6" })),
-          nix.thunk(() => ({ [nix.POS]: pos$13, nixPackage: numactl, fileToCheckFor: null })),
+          nix.thunk(() => ({ [nix.POS]: $pos[10], nixPackage: gmp, fileToCheckFor: null })),
+          nix.thunk(() => ({ [nix.POS]: $pos[11], nixPackage: ncurses6, fileToCheckFor: "libtinfo.so.6" })),
+          nix.thunk(() => ({ [nix.POS]: $pos[12], nixPackage: numactl, fileToCheckFor: null })),
         ]),
       })),
       "aarch64-darwin": nix.thunk(() => ({
-        [nix.POS]: pos$19,
+        [nix.POS]: $pos[18],
         variantSuffix: "",
         src: nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           url: nix.thunk(() => nix.str`${downloadsUrl}/${version}/ghc-${version}-aarch64-apple-darwin.tar.xz`),
           sha256: "b1fcab17fe48326d2ff302d70c12bc4cf4d570dfbbce68ab57c719cfec882b05",
         })),
         exePathForLibraryCheck: null,
         archSpecificLibraries: nix.thunk(() => [
-          nix.thunk(() => ({ [nix.POS]: pos$16, nixPackage: gmp, fileToCheckFor: null })),
-          nix.thunk(() => ({ [nix.POS]: pos$17, nixPackage: ncurses6, fileToCheckFor: null })),
-          nix.thunk(() => ({ [nix.POS]: pos$18, nixPackage: libiconv, fileToCheckFor: null })),
+          nix.thunk(() => ({ [nix.POS]: $pos[15], nixPackage: gmp, fileToCheckFor: null })),
+          nix.thunk(() => ({ [nix.POS]: $pos[16], nixPackage: ncurses6, fileToCheckFor: null })),
+          nix.thunk(() => ({ [nix.POS]: $pos[17], nixPackage: libiconv, fileToCheckFor: null })),
         ]),
         isHadrian: true,
       })),
     })),
     musl: nix.thunk(() => ({
-      [nix.POS]: pos$25,
+      [nix.POS]: $pos[24],
       "x86_64-linux": nix.thunk(() => ({
-        [nix.POS]: pos$24,
+        [nix.POS]: $pos[23],
         variantSuffix: "-musl",
         src: nix.thunk(() => ({
-          [nix.POS]: pos$21,
+          [nix.POS]: $pos[20],
           url: nix.thunk(() => nix.str`${downloadsUrl}/${version}/ghc-${version}-x86_64-alpine3.12-linux-gmp.tar.xz`),
           sha256: "5bb1e7192c2b9fcff68930dbdc65509d345138e9a43c5d447056a68decc05ec8",
         })),
         exePathForLibraryCheck: "bin/ghc",
         archSpecificLibraries: nix.thunk(() => [
-          nix.thunk(() => ({ [nix.POS]: pos$22, nixPackage: gmp, fileToCheckFor: null })),
-          nix.thunk(() => ({ [nix.POS]: pos$23, nixPackage: ncurses6, fileToCheckFor: "libncursesw.so.6" })),
+          nix.thunk(() => ({ [nix.POS]: $pos[21], nixPackage: gmp, fileToCheckFor: null })),
+          nix.thunk(() => ({
+            [nix.POS]: $pos[22],
+            nixPackage: ncurses6,
+            fileToCheckFor: "libncursesw.so.6",
+          })),
         ]),
         isHadrian: true,
       })),
@@ -148,7 +120,7 @@ export default nix.lambda((args) => (() => {
   const distSetName = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isMusl")) ? "musl" : "defaultLibc"));
   const binDistUsed = nix.thunk(() => nix.selOr(ghcBinDists, () => nix.builtins.throw(nix.thunk(() => nix.str`cannot bootstrap GHC on this platform ('${nix.sel(stdenv, "hostPlatform", "system")}' with libc '${distSetName}')`)), nix.key(nix.force(distSetName)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const gmpUsed = nix.thunk(() => nix.sel(nix.builtins.head(nix.thunk(() => nix.builtins.filter((drv) => nix.app(nix.sel(lib, "hasPrefix"), "gmp", nix.thunk(() => nix.selOr(drv, () => "", "nixPackage", "name"))), nix.thunk(() => nix.sel(binDistUsed, "archSpecificLibraries"))))), "nixPackage"));
-  const useLLVM = nix.thunk(() => !nix.asBool(nix.app(nix.builtins.import(nix.path(here, "./common-have-ncg.nix")), nix.thunk(() => ({ [nix.POS]: pos$27, lib: lib, stdenv: stdenv, version: version })))));
+  const useLLVM = nix.thunk(() => !nix.asBool(nix.app(nix.builtins.import(nix.path(here, "./common-have-ncg.nix")), nix.thunk(() => ({ [nix.POS]: $pos[26], lib: lib, stdenv: stdenv, version: version })))));
   const libPath = nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => nix.builtins.map(nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const nixPackage = nix.arg($_1, "nixPackage");
@@ -161,14 +133,14 @@ export default nix.lambda((args) => (() => {
     coreutils,
   ], nix.concat(nix.app(nix.sel(lib, "optionals"), useLLVM, nix.thunk(() => [
       nix.thunk(() => nix.app(replaceVarsWith, nix.thunk(() => ({
-          [nix.POS]: pos$29,
+          [nix.POS]: $pos[28],
           name: "subopt",
           src: nix.path(here, "./subopt.bash"),
           dir: "bin",
           isExecutable: true,
           preBuild: "name=opt\n",
           replacements: nix.thunk(() => ({
-            [nix.POS]: pos$28,
+            [nix.POS]: $pos[27],
             shell: nix.thunk(() => nix.attr(stdenv, "shell")),
             opt: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(llvmPackages, "llvm")), "opt")),
           })),
@@ -178,7 +150,7 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.sel(targetPackages, "stdenv", "cc", "bintools", "bintools")),
     ])))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$33,
+      [nix.POS]: $pos[32],
       version: version,
       pname: nix.thunk(() => nix.str`ghc-binary${nix.sel(binDistUsed, "variantSuffix")}`),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.sel(binDistUsed, "src")))),
@@ -292,14 +264,14 @@ done
       doInstallCheck: true,
       installCheckPhase: "# Sanity check, can ghc create executables?\ncd $TMP\nmkdir test-ghc; cd test-ghc\ncat > main.hs << EOF\n  {-# LANGUAGE TemplateHaskell #-}\n  module Main where\n  main = putStrLn \\$([|\"yes\"|])\nEOF\nenv -i $out/bin/ghc --make main.hs || exit 1\necho compilation ok\n[ $(./main) == \"yes\" ]\n",
       passthru: nix.thunk(() => nix.update({
-        [nix.POS]: pos$30,
+        [nix.POS]: $pos[29],
         targetPrefix: "",
         enableShared: true,
         llvmPackages: llvmPackages,
         haskellCompilerName: nix.thunk(() => nix.str`ghc-${version}`),
-      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.selOr(ghcBinDists, () => false, nix.key(nix.force(distSetName)), nix.key(nix.sel(stdenv, "hostPlatform", "system")), "isHadrian")), nix.thunk(() => ({ [nix.POS]: pos$31, hadrian: null }))))),
+      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.selOr(ghcBinDists, () => false, nix.key(nix.force(distSetName)), nix.key(nix.sel(stdenv, "hostPlatform", "system")), "isHadrian")), nix.thunk(() => ({ [nix.POS]: $pos[30], hadrian: null }))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$32,
+        [nix.POS]: $pos[31],
         homepage: "http://haskell.org/ghc",
         description: "Glasgow Haskell Compiler",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["description", 27, 5], ["longDescription", 29, 5], ["license", 39, 5], ["homepage", 40, 5], ["maintainers", 41, 5], ["platforms", 42, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 17, 3], ["buildInputs", 18, 3], ["doCheck", 24, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, perlPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 27, 5], ["longDescription", 29, 5], ["license", 39, 5], ["homepage", 40, 5], ["maintainers", 41, 5], ["platforms", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 17, 3], ["buildInputs", 18, 3], ["doCheck", 24, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const perlPackages = nix.arg($, "perlPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "stow",
       version: "2.4.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnu/stow/stow-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-DYWoUTZ355I2l7zkLNuzPStXr5FaveHQZx566Asu8LQ=",
         })))),
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       })()),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tool for managing the installation of multiple software packages in the same run-time directory tree",
         longDescription: "GNU Stow is a symlink farm manager which takes distinct packages\nof software and/or data located in separate directories on the\nfilesystem, and makes them appear to be installed in the same\nplace. For example, /usr/local/bin could contain symlinks to\nfiles within /usr/local/stow/emacs/bin, /usr/local/stow/perl/bin\netc., and likewise recursively for any other subdirectories such\nas .../share, .../man, and so on.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

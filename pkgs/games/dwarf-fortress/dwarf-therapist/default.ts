@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 13]], [["maxDfVersion", 57, 13]], [["mainProgram", 61, 5], ["description", 62, 5], ["maintainers", 63, 5], ["license", 67, 5], ["platforms", 68, 5], ["homepage", 69, 5]], [["pname", 18, 3], ["version", 20, 11], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 33, 3], ["enableParallelBuilding", 38, 3], ["cmakeFlags", 40, 3], ["installPhase", 45, 3], ["dontWrapQtApps", 54, 3], ["passthru", 56, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, qtbase: false, qtdeclarative: false, cmake: false, ninja: false, dfVersions: false, version: true, maxDfVersion: true, hash: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 13]]);
-const pos$2 = nix.positions(here + "/default.nix", [["maxDfVersion", 57, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["mainProgram", 61, 5], ["description", 62, 5], ["maintainers", 63, 5], ["license", 67, 5], ["platforms", 68, 5], ["homepage", 69, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 20, 11], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 33, 3], ["enableParallelBuilding", 38, 3], ["cmakeFlags", 40, 3], ["installPhase", 45, 3], ["dontWrapQtApps", 54, 3], ["passthru", 56, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "dwarf-therapist";
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Dwarf-Therapist",
           repo: "Dwarf-Therapist",
           tag: nix.thunk(() => nix.str`v${version_1}`),
@@ -37,9 +34,9 @@ export default nix.lambda((args) => (() => {
       const cmakeFlags = nix.thunk(() => ["-GNinja", "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"]);
       const installPhase = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "mkdir -p $out/Applications\ncp -r DwarfTherapist.app $out/Applications\n" : null));
       const dontWrapQtApps = true;
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, maxDfVersion: maxDfVersion }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[1], maxDfVersion: maxDfVersion }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         mainProgram: "dwarftherapist",
         description: "Tool to manage dwarves in a running game of Dwarf Fortress",
         maintainers: nix.thunk(() => (() => {
@@ -54,7 +51,7 @@ export default nix.lambda((args) => (() => {
         homepage: "https://github.com/Dwarf-Therapist/Dwarf-Therapist",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version: version_1,
         src,

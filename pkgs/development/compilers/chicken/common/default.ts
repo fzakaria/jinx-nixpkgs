@@ -2,17 +2,10 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["sha256", 35, 15], ["url", 36, 7]], [["overridesFile", 39, 66]], [["version", 43, 7], ["hash", 44, 7], ["binaryVersion", 45, 7], ["postPatch", 46, 7]], [["pname", 64, 53]], [["agpl", 72, 17], ["artistic", 73, 17], ["bsd", 74, 17], ["bsd-0-clause", 75, 17], ["bsd-1-clause", 76, 17], ["bsd-2", 77, 17], ["bsd-2-clause", 78, 17], ["bsd-3", 79, 17], ["bsd-3-clause", 80, 17], ["gpl", 81, 17], ["gpl-2", 82, 17], ["gplv2", 83, 17], ["gpl-3", 84, 17], ["gpl-3.0", 85, 17], ["gplv3", 86, 17], ["lgpl", 87, 17], ["lgpl-2", 88, 17], ["lgpl-2.0+", 89, 17], ["lgpl-2.1", 90, 17], ["lgpl-2.1-or-later", 91, 17], ["lgpl-3", 92, 17], ["lgplv3", 93, 17], ["lgpl-3.0-or-later", 94, 17], ["public-domain", 95, 17], ["srfi", 96, 17], ["unicode", 97, 17], ["unknown", 98, 17], ["zlib-acknowledgement", 99, 17]], [["homepage", 66, 16], ["description", 67, 16], ["license", 68, 16]], [["pname", 63, 19], ["version", 63, 25], ["src", 64, 11], ["buildInputs", 65, 11], ["meta", 66, 11]], [["fetchegg", 27, 3], ["eggDerivation", 39, 3], ["chicken", 41, 3], ["chickenEggs", 50, 3]]]);
 const formals$1 = { args: { lib: false, newScope: false, fetchurl: false, version: false, hash: false, binaryVersion: false, postPatch: true, depsFile: false, overridesFile: false, invalidDependencies: false }, ellipsis: false };
 const formals$2 = { args: { pname: false, version: false, sha256: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["sha256", 35, 15], ["url", 36, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["overridesFile", 39, 66]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 43, 7], ["hash", 44, 7], ["binaryVersion", 45, 7], ["postPatch", 46, 7]]);
 const formals$3 = { args: { version: false, synopsis: false, dependencies: false, license: false }, ellipsis: true };
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 64, 53]]);
-const pos$5 = nix.positions(here + "/default.nix", [["agpl", 72, 17], ["artistic", 73, 17], ["bsd", 74, 17], ["bsd-0-clause", 75, 17], ["bsd-1-clause", 76, 17], ["bsd-2", 77, 17], ["bsd-2-clause", 78, 17], ["bsd-3", 79, 17], ["bsd-3-clause", 80, 17], ["gpl", 81, 17], ["gpl-2", 82, 17], ["gplv2", 83, 17], ["gpl-3", 84, 17], ["gpl-3.0", 85, 17], ["gplv3", 86, 17], ["lgpl", 87, 17], ["lgpl-2", 88, 17], ["lgpl-2.0+", 89, 17], ["lgpl-2.1", 90, 17], ["lgpl-2.1-or-later", 91, 17], ["lgpl-3", 92, 17], ["lgplv3", 93, 17], ["lgpl-3.0-or-later", 94, 17], ["public-domain", 95, 17], ["srfi", 96, 17], ["unicode", 97, 17], ["unknown", 98, 17], ["zlib-acknowledgement", 99, 17]]);
-const pos$6 = nix.positions(here + "/default.nix", [["homepage", 66, 16], ["description", 67, 16], ["license", 68, 16]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 63, 19], ["version", 63, 25], ["src", 64, 11], ["buildInputs", 65, 11], ["meta", 66, 11]]);
-const pos$8 = nix.positions(here + "/default.nix", [["fetchegg", 27, 3], ["eggDerivation", 39, 3], ["chicken", 41, 3], ["chickenEggs", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,21 +21,21 @@ export default nix.lambda((args) => (() => {
   const invalidDependencies = nix.arg($, "invalidDependencies");
   const majorVersion = nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), version));
   return nix.app(nix.sel(lib, "makeScope"), newScope, (self) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       fetchegg: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pname = nix.arg($_1, "pname");
         const version_1 = nix.arg($_1, "version");
         const sha256 = nix.arg($_1, "sha256");
         return nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             sha256: sha256,
             url: nix.thunk(() => nix.str`https://code.call-cc.org/egg-tarballs/${majorVersion}/${pname}/${pname}-${version_1}.tar.gz`),
           })));
       })(), formals$2),
-      eggDerivation: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./eggDerivation.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, overridesFile: overridesFile })))),
+      eggDerivation: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./eggDerivation.nix"), nix.thunk(() => ({ [nix.POS]: $pos[1], overridesFile: overridesFile })))),
       chicken: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./chicken.nix"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: version,
           hash: hash,
           binaryVersion: binaryVersion,
@@ -56,17 +49,17 @@ export default nix.lambda((args) => (() => {
               const dependencies = nix.arg($_1, "dependencies");
               const license = nix.arg($_1, "license");
               return nix.app(nix.sel(self, "eggDerivation"), nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   pname: pname,
                   version: version_1,
-                  src: nix.thunk(() => nix.app(nix.sel(self, "fetchegg"), nix.thunk(() => nix.update(eggData, { [nix.POS]: pos$4, pname: pname })))),
+                  src: nix.thunk(() => nix.app(nix.sel(self, "fetchegg"), nix.thunk(() => nix.update(eggData, { [nix.POS]: $pos[3], pname: pname })))),
                   buildInputs: nix.thunk(() => nix.builtins.map((x) => nix.sel(eggself, nix.key(nix.force(x))), nix.thunk(() => nix.app(nix.sel(lib, "subtractLists"), invalidDependencies, dependencies)))),
                   meta: nix.thunk(() => ({
-                    [nix.POS]: pos$6,
+                    [nix.POS]: $pos[5],
                     homepage: nix.thunk(() => nix.str`https://wiki.call-cc.org/eggref/${majorVersion}/${pname}`),
                     description: synopsis,
                     license: nix.thunk(() => nix.selOr(nix.update(nix.sel(lib, "licenses"), {
-                      [nix.POS]: pos$5,
+                      [nix.POS]: $pos[4],
                       agpl: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
                       artistic: nix.thunk(() => nix.sel(lib, "licenses", "artistic2")),
                       bsd: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["unpackPhase", 20, 3], ["patchPhase", 24, 3], ["buildInputs", 28, 3], ["buildPhase", 35, 3], ["installPhase", 39, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "google-fonts": false, migu: false, fontforge: false, which: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["unpackPhase", 20, 3], ["patchPhase", 24, 3], ["buildInputs", 28, 3], ["buildPhase", 35, 3], ["installPhase", 39, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ricty";
       const version = "4.1.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://rictyfonts.github.io/files/ricty_generator-${version}.sh`),
           sha256: "03fngb8f5hl7ifigdm5yljhs4z2x80cq8y8kna86d07ghknhzgw6",
         }))));
@@ -31,14 +29,14 @@ export default nix.lambda((args) => (() => {
 `);
       const installPhase = "install -m644 --target $out/share/fonts/truetype/ricty -D Ricty-*.ttf\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "High-quality Japanese font based on Inconsolata and Migu 1M",
         homepage: "https://rictyfonts.github.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "mikoim"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 100, 9], ["homepage", 101, 9], ["license", 102, 9], ["maintainers", 103, 9], ["mainProgram", 104, 9], ["changelog", 105, 9]], [["pname", 96, 30], ["version", 96, 36], ["meta", 98, 5], ["nativeBuildInputs", 109, 5]]]);
 const formals$1 = { args: { lib: false, formats: false, runCommand: false, makeWrapper: false, extraPackages: true, optionalDeps: true, file: false, "yazi-unwrapped": false, jq: false, "poppler-utils": false, _7zz: false, "ffmpeg-headless": false, fd: false, ripgrep: false, fzf: false, zoxide: false, imagemagick: false, chafa: false, resvg: false, settings: true, plugins: true, flavors: true, initLua: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 100, 9], ["homepage", 101, 9], ["license", 102, 9], ["maintainers", 103, 9], ["mainProgram", 104, 9], ["changelog", 105, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 96, 30], ["version", 96, 36], ["meta", 98, 5], ["nativeBuildInputs", 109, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -62,13 +61,13 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(flavors, {})),
 ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(initLua, null)), nix.thunk(() => nix.str`ln -s "${initLua}" "$out/init.lua"`))}
 `))));
   return nix.app(runCommand, nix.thunk(() => nix.sel(yazi_unwrapped, "name")), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: nix.thunk(() => nix.attr(yazi_unwrapped, "pname")),
       version: nix.thunk(() => nix.attr(yazi_unwrapped, "version")),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(yazi_unwrapped, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: nix.thunk(() => nix.attr(from, "description")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["mainProgram", 15, 8]], [["pname", 8, 3], ["extraNativeBuildInputs", 10, 3], ["extraBuildInputs", 11, 3], ["meta", 15, 3]]]);
 const formals$1 = { args: { mkKdeDerivation: false, qt5compat: false, libarchive: false, "shared-mime-info": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["mainProgram", 15, 8]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["extraNativeBuildInputs", 10, 3], ["extraBuildInputs", 11, 3], ["meta", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const libarchive = nix.arg($, "libarchive");
   const shared_mime_info = nix.arg($, "shared-mime-info");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "kbackup",
       extraNativeBuildInputs: nix.thunk(() => [shared_mime_info]),
       extraBuildInputs: nix.thunk(() => [qt5compat, libarchive]),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "kbackup" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], mainProgram: "kbackup" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

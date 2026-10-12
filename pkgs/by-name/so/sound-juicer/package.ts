@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 29, 5], ["sha256", 30, 5]], [["packageName", 61, 7]], [["updateScript", 60, 5]], [["description", 66, 5], ["mainProgram", 67, 5], ["homepage", 68, 5], ["maintainers", 69, 5], ["license", 70, 5], ["platforms", 71, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 42, 3], ["passthru", 59, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, meson: false, ninja: false, "pkg-config": false, glib: false, gtk3: false, itstool: false, libxml2: false, brasero: false, "libcanberra-gtk3": false, gnome: false, "adwaita-icon-theme": false, gst_all_1: false, libmusicbrainz: false, libdiscid: false, isocodes: false, "gsettings-desktop-schemas": false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 29, 5], ["sha256", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 61, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 60, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 66, 5], ["mainProgram", 67, 5], ["homepage", 68, 5], ["maintainers", 69, 5], ["license", 70, 5], ["platforms", 71, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 42, 3], ["passthru", 59, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const pname = "sound-juicer";
       const version = "3.40.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/sound-juicer/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/sound-juicer-${version}.tar.xz`),
           sha256: "LuiCdEORvrTG1koPaCX7dlUQtwbsK3BL+0LkKvquHeY=",
         }))));
@@ -57,11 +53,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(gst_all_1, "gst-libav")),
       ]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: pname })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: pname })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Gnome CD Ripper",
         mainProgram: "sound-juicer",
         homepage: "https://gitlab.gnome.org/GNOME/sound-juicer",
@@ -70,7 +66,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

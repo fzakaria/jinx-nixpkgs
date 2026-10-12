@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 20, 3], ["extraNativeBuildInputs", 22, 3], ["extraBuildInputs", 27, 3], ["postInstall", 43, 3]]]);
 const formals$1 = { args: { mkKdeDerivation: false, qt5compat: false, qtsvg: false, "pkg-config": false, samba: false, libssh: false, libmtp: false, libimobiledevice: false, gperf: false, libtirpc: false, openexr: false, taglib: false, "shared-mime-info": false, libappimage: false, libxcursor: false, kio: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["extraNativeBuildInputs", 22, 3], ["extraBuildInputs", 27, 3], ["postInstall", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const libxcursor = nix.arg($, "libxcursor");
   const kio = nix.arg($, "kio");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "kio-extras",
       extraNativeBuildInputs: nix.thunk(() => [pkg_config, gperf, shared_mime_info]),
       extraBuildInputs: nix.thunk(() => [

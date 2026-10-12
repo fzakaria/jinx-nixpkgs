@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["1.0.3", 29, 9], ["1.0.4", 30, 9]], [["url", 26, 5], ["hash", 27, 5]], [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["mainProgram", 57, 5], ["platforms", 58, 26]], [["name", 21, 3], ["pname", 22, 3], ["version", 23, 11], ["src", 25, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 41, 3], ["propagatedBuildInputs", 45, 3], ["strictDeps", 47, 3], ["buildPhase", 49, 19], ["installPhase", 49, 30], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, ocaml: false, findlib: false, ocamlbuild: false, cmdliner: false, topkg: false, uchar: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["1.0.3", 29, 9], ["1.0.4", 30, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 26, 5], ["hash", 27, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["mainProgram", 57, 5], ["platforms", 58, 26]]);
-const pos$4 = nix.positions(here + "/default.nix", [["name", 21, 3], ["pname", 22, 3], ["version", 23, 11], ["src", 25, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 41, 3], ["propagatedBuildInputs", 45, 3], ["strictDeps", 47, 3], ["buildPhase", 49, 19], ["installPhase", 49, 30], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,15 +18,15 @@ export default nix.lambda((args) => (() => {
   const uchar = nix.arg($, "uchar");
   const version = nix.argOr($, "version", () => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.08")) ? "1.0.4" : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.03")) ? "1.0.3" : nix.builtins.throw(nix.thunk(() => nix.str`uutf is not available with OCaml ${nix.sel(ocaml, "version")}`)))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       name: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}`),
       pname: "uutf",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://erratique.ch/software/uutf/releases/uutf-${version}.tbz`),
           hash: nix.thunk(() => nix.sel({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             "1.0.3": "sha256-h3KlYT0ecCmM4U3zMkGjaF8h5O9r20zwP+mF+x7KBWg=",
             "1.0.4": "sha256-p6V45q+RSaiJThjjtHWchWWTemnGyaznowu/BIRhnKg=",
           }, nix.key(nix.str`${version}`))),
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Non-blocking streaming Unicode codec for OCaml",
         homepage: "https://erratique.ch/software/uutf",
         changelog: nix.thunk(() => nix.str`https://raw.githubusercontent.com/dbuenzli/uutf/refs/tags/v${version}/CHANGES.md`),

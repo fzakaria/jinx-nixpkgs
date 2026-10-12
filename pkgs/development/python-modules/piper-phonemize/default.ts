@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["broken", 35, 5], ["description", 36, 5], ["homepage", 37, 43], ["license", 37, 52], ["maintainers", 37, 60]], [["pname", 13, 36], ["version", 13, 42], ["src", 13, 50], ["pyproject", 14, 3], ["nativeBuildInputs", 16, 3], ["buildInputs", 21, 3], ["pythonImportsCheck", 28, 3], ["doCheck", 31, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, "espeak-ng": false, "onnxruntime-native": false, "piper-phonemize-native": false, pybind11: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["broken", 35, 5], ["description", 36, 5], ["homepage", 37, 43], ["license", 37, 52], ["maintainers", 37, 60]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 13, 36], ["version", 13, 42], ["src", 13, 50], ["pyproject", 14, 3], ["nativeBuildInputs", 16, 3], ["buildInputs", 21, 3], ["pythonImportsCheck", 28, 3], ["doCheck", 31, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const pybind11 = nix.arg($, "pybind11");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: nix.thunk(() => nix.attr(piper_phonemize_native, "pname")),
       version: nix.thunk(() => nix.attr(piper_phonemize_native, "version")),
       src: nix.thunk(() => nix.attr(piper_phonemize_native, "src")),
@@ -29,7 +28,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(piper_phonemize_native, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         broken: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86")))),
         description: "Phonemization library used by Piper text to speech system",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["teams", 66, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["buildInputs", 26, 3], ["build-system", 30, 3], ["dependencies", 35, 3], ["pythonImportsCheck", 39, 3], ["nativeCheckInputs", 43, 3], ["checkInputs", 47, 3], ["preCheck", 52, 3], ["disabledTests", 56, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitLab: false, pytestCheckHook: false, cffi: false, icontract: false, setuptools: false, sfcgal: false, wheel: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["teams", 66, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["buildInputs", 26, 3], ["build-system", 30, 3], ["dependencies", 35, 3], ["pythonImportsCheck", 39, 3], ["nativeCheckInputs", 43, 3], ["checkInputs", 47, 3], ["preCheck", 52, 3], ["disabledTests", 56, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const sfcgal = nix.arg($, "sfcgal");
   const wheel = nix.arg($, "wheel");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pysfcgal",
       version: "2.2.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sfcgal",
           repo: "pysfcgal",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "rm -rf pysfcgal\n",
       disabledTests: nix.thunk(() => ["test_wrap_geom_segfault"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python wrapper for SFCGAL",
         homepage: "https://gitlab.com/sfcgal/pysfcgal",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/sfcgal/pysfcgal/-/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

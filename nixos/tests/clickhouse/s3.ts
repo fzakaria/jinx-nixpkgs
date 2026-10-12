@@ -2,34 +2,16 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/s3.nix", [[["bucket", 5, 5], ["accessKey", 6, 5], ["secretKey", 7, 5]], [["maintainers", 44, 8]], [["text", 53, 11]], [["clickhouse-server/config.d/s3.xml", 52, 9]], [["etc", 51, 19]], [["enable", 58, 9], ["package", 59, 17]], [["clickhouse", 57, 16]], [["diskSize", 61, 22], ["memorySize", 62, 22]], [["environment", 51, 7], ["services", 57, 7], ["virtualisation", 61, 7]], [["diskSize", 68, 24]], [["allowedTCPPorts", 69, 29]], [["firewall", 69, 20]], [["s3_region", 81, 15], ["api_bind_addr", 82, 15]], [["rpc_bind_addr", 75, 13], ["rpc_public_addr", 76, 13], ["rpc_secret", 77, 13], ["replication_factor", 78, 13], ["s3_api", 80, 13]], [["enable", 72, 11], ["package", 73, 11], ["settings", 74, 11]], [["garage", 71, 18]], [["virtualisation", 68, 9], ["networking", 69, 9], ["services", 71, 9]], [["clickhouse", 50, 5], ["garage", 65, 5]], [["name", 43, 3], ["meta", 44, 3], ["nodes", 49, 3], ["testScript", 89, 3]]]);
 const formals$1 = { args: { pkgs: false, package: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/s3.nix", [["bucket", 5, 5], ["accessKey", 6, 5], ["secretKey", 7, 5]]);
-const pos$2 = nix.positions(here + "/s3.nix", [["maintainers", 44, 8]]);
-const pos$3 = nix.positions(here + "/s3.nix", [["text", 53, 11]]);
-const pos$4 = nix.positions(here + "/s3.nix", [["clickhouse-server/config.d/s3.xml", 52, 9]]);
-const pos$5 = nix.positions(here + "/s3.nix", [["etc", 51, 19]]);
-const pos$6 = nix.positions(here + "/s3.nix", [["enable", 58, 9], ["package", 59, 17]]);
-const pos$7 = nix.positions(here + "/s3.nix", [["clickhouse", 57, 16]]);
-const pos$8 = nix.positions(here + "/s3.nix", [["diskSize", 61, 22], ["memorySize", 62, 22]]);
-const pos$9 = nix.positions(here + "/s3.nix", [["environment", 51, 7], ["services", 57, 7], ["virtualisation", 61, 7]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$10 = nix.positions(here + "/s3.nix", [["diskSize", 68, 24]]);
-const pos$11 = nix.positions(here + "/s3.nix", [["allowedTCPPorts", 69, 29]]);
-const pos$12 = nix.positions(here + "/s3.nix", [["firewall", 69, 20]]);
-const pos$13 = nix.positions(here + "/s3.nix", [["s3_region", 81, 15], ["api_bind_addr", 82, 15]]);
-const pos$14 = nix.positions(here + "/s3.nix", [["rpc_bind_addr", 75, 13], ["rpc_public_addr", 76, 13], ["rpc_secret", 77, 13], ["replication_factor", 78, 13], ["s3_api", 80, 13]]);
-const pos$15 = nix.positions(here + "/s3.nix", [["enable", 72, 11], ["package", 73, 11], ["settings", 74, 11]]);
-const pos$16 = nix.positions(here + "/s3.nix", [["garage", 71, 18]]);
-const pos$17 = nix.positions(here + "/s3.nix", [["virtualisation", 68, 9], ["networking", 69, 9], ["services", 71, 9]]);
-const pos$18 = nix.positions(here + "/s3.nix", [["clickhouse", 50, 5], ["garage", 65, 5]]);
-const pos$19 = nix.positions(here + "/s3.nix", [["name", 43, 3], ["meta", 44, 3], ["nodes", 49, 3], ["testScript", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const package$ = nix.arg($, "package");
   const s3 = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     bucket: "clickhouse-bucket",
     accessKey: "GKaaaaaaaaaaaaaaaaaaaaaaaa",
     secretKey: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
@@ -65,10 +47,10 @@ export default nix.lambda((args) => (() => {
 </clickhouse>
 `);
   return {
-    [nix.POS]: pos$19,
+    [nix.POS]: $pos[18],
     name: nix.thunk(() => nix.str`clickhouse-${nix.sel(package$, "version")}-s3`),
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [
@@ -78,25 +60,25 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       clickhouse: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           etc: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             "clickhouse-server/config.d/s3.xml": nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               text: nix.thunk(() => nix.str`${clickhouseS3StorageConfig}`),
             })),
           })),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$7,
-          clickhouse: nix.thunk(() => ({ [nix.POS]: pos$6, enable: true, package: package$ })),
+          [nix.POS]: $pos[6],
+          clickhouse: nix.thunk(() => ({ [nix.POS]: $pos[5], enable: true, package: package$ })),
         })),
         virtualisation: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           diskSize: nix.thunk(() => nix.mul(15n, 1024n)),
           memorySize: nix.thunk(() => nix.mul(4n, 1024n)),
         })),
@@ -105,25 +87,25 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$17,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$10, diskSize: nix.thunk(() => nix.mul(2n, 1024n)) })),
+          [nix.POS]: $pos[16],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[9], diskSize: nix.thunk(() => nix.mul(2n, 1024n)) })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$12,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$11, allowedTCPPorts: nix.thunk(() => [9000n]) })),
+            [nix.POS]: $pos[11],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[10], allowedTCPPorts: nix.thunk(() => [9000n]) })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             garage: nix.thunk(() => ({
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               enable: true,
               package: nix.thunk(() => nix.sel(pkgs_1, "garage_2")),
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$14,
+                [nix.POS]: $pos[13],
                 rpc_bind_addr: "127.0.0.1:3901",
                 rpc_public_addr: "127.0.0.1:3901",
                 rpc_secret: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
                 replication_factor: 1n,
-                s3_api: nix.thunk(() => ({ [nix.POS]: pos$13, s3_region: "garage", api_bind_addr: "0.0.0.0:9000" })),
+                s3_api: nix.thunk(() => ({ [nix.POS]: $pos[12], s3_region: "garage", api_bind_addr: "0.0.0.0:9000" })),
               })),
             })),
           })),

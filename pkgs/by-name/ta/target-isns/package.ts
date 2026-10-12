@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["url", 26, 7], ["sha256", 27, 7]], [["name", 31, 7], ["url", 32, 7], ["hash", 33, 7]], [["url", 38, 7], ["hash", 39, 7]], [["description", 48, 5], ["mainProgram", 49, 5], ["homepage", 50, 5], ["maintainers", 51, 5], ["license", 52, 5], ["platforms", 53, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 20, 3], ["cmakeFlags", 43, 3], ["nativeBuildInputs", 45, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cmake: false, fetchFromGitHub: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 26, 7], ["sha256", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 31, 7], ["url", 32, 7], ["hash", 33, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 38, 7], ["hash", 39, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 48, 5], ["mainProgram", 49, 5], ["homepage", 50, 5], ["maintainers", 51, 5], ["license", 52, 5], ["platforms", 53, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 20, 3], ["cmakeFlags", 43, 3], ["nativeBuildInputs", 45, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "target-isns",
       version: "0.6.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "open-iscsi",
           repo: "target-isns",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,18 +26,18 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./install_prefix_path.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/open-iscsi/target-isns/commit/3d0c47dd89bcf83d828bcc22ecaaa5f58d78b58e.patch",
             sha256: "1x2bkc1ff15621svhpq1r11m0q4ajv0j4fng6hm7wkkbr2s6d1vx",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "minimal-cmake-version.patch",
             url: "https://github.com/open-iscsi/target-isns/commit/e209821423f936d1cc9b946fb8f7a8979b8e751b.patch?full_index=1",
             hash: "sha256-86nl8wTiI9WSZ+Hhw/a9VtgS8OLqoFwiot5iU5IK0f8=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://github.com/open-iscsi/target-isns/commit/d3645f0c357b2b14fb682fa2cd4ba3621efc4cea.patch",
             hash: "sha256-/ew+B4WDF2s5bjfPLZ7glHW+o/pRTI7zPHLTDh+n4lY=",
           })))),
@@ -50,7 +45,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => ["-DSUPPORT_SYSTEMD=ON"]),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "iSNS client for the Linux LIO iSCSI target",
         mainProgram: "target-isns",
         homepage: "https://github.com/open-iscsi/target-isns",

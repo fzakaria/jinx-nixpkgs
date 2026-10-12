@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/comfy.nix", [[["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["sha256", 33, 5]], [["owner", 52, 15], ["repo", 53, 15], ["rev", 54, 15], ["hash", 55, 15]], [["homepage", 61, 34], ["description", 62, 15], ["license", 67, 15], ["platforms", 68, 15], ["maintainers", 69, 15]], [["pname", 48, 13], ["version", 49, 21], ["src", 51, 13], ["npmDepsHash", 58, 13], ["meta", 60, 13]], [["set", 42, 15], ["privateBuildPlan", 42, 19], ["buildNpmPackage", 43, 7]], [["name", 77, 5], ["value", 78, 5]]]);
 const formals$1 = { args: { lib: false, iosevka: false, fetchFromGitHub: false, buildNpmPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/comfy.nix", [["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["sha256", 33, 5]]);
-const pos$2 = nix.positions(here + "/comfy.nix", [["owner", 52, 15], ["repo", 53, 15], ["rev", 54, 15], ["hash", 55, 15]]);
-const pos$3 = nix.positions(here + "/comfy.nix", [["homepage", 61, 34], ["description", 62, 15], ["license", 67, 15], ["platforms", 68, 15], ["maintainers", 69, 15]]);
-const pos$4 = nix.positions(here + "/comfy.nix", [["pname", 48, 13], ["version", 49, 21], ["src", 51, 13], ["npmDepsHash", 58, 13], ["meta", 60, 13]]);
-const pos$5 = nix.positions(here + "/comfy.nix", [["set", 42, 15], ["privateBuildPlan", 42, 19], ["buildNpmPackage", 43, 7]]);
-const pos$6 = nix.positions(here + "/comfy.nix", [["name", 77, 5], ["value", 78, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +27,7 @@ export default nix.lambda((args) => (() => {
   ]);
   const version = "2.1.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "protesilaos",
       repo: "iosevka-comfy",
       rev: version,
@@ -42,15 +37,15 @@ export default nix.lambda((args) => (() => {
   const makeIosevkaFont = (set) => (() => {
     const superBuildNpmPackage = buildNpmPackage;
     return nix.app(nix.sel(iosevka, "override"), nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         set: set,
         privateBuildPlan: privateBuildPlan,
         buildNpmPackage: (args_1) => nix.app(superBuildNpmPackage, nix.thunk(() => nix.update(args_1, {
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             pname: nix.thunk(() => nix.str`iosevka-${set}`),
             version: version,
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 owner: "be5invis",
                 repo: "iosevka",
                 rev: "v31.9.1",
@@ -60,7 +55,7 @@ export default nix.lambda((args) => (() => {
             meta: nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(src, "meta"));
               return {
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               homepage: nix.thunk(() => nix.attr(from, "homepage")),
               description: "Customised build of the Iosevka typeface, with a consistent\nrounded style and overrides for almost all individual glyphs\nin both roman (upright) and italic (slanted) variants.\n",
               license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
@@ -72,7 +67,7 @@ export default nix.lambda((args) => (() => {
       })));
   })();
   return nix.builtins.listToAttrs(nix.thunk(() => nix.builtins.map((set) => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         name: set,
         value: nix.thunk(() => nix.app(makeIosevkaFont, set)),
       }), sets)));

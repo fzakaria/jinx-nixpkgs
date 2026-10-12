@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 22, 5], ["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["description", 87, 5], ["homepage", 88, 5], ["maintainers", 89, 5], ["license", 90, 5], ["platforms", 94, 5], ["mainProgram", 95, 5], ["badPlatforms", 97, 5]], [["pname", 16, 3], ["version", 17, 3], ["__structuredAttrs", 18, 3], ["strictDeps", 19, 3], ["src", 21, 3], ["postPatch", 29, 3], ["outputs", 33, 3], ["doCheck", 38, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 46, 3], ["nativeCheckInputs", 50, 3], ["installPhase", 57, 3], ["checkPhase", 66, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, quilt: false, "pkg-config": false, libbsd: false, installShellFiles: false, strace: false, iproute2: false, procps: false, "util-linux": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 22, 5], ["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 87, 5], ["homepage", 88, 5], ["maintainers", 89, 5], ["license", 90, 5], ["platforms", 94, 5], ["mainProgram", 95, 5], ["badPlatforms", 97, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["__structuredAttrs", 18, 3], ["strictDeps", 19, 3], ["src", 21, 3], ["postPatch", 29, 3], ["outputs", 33, 3], ["doCheck", 38, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 46, 3], ["nativeCheckInputs", 50, 3], ["installPhase", 57, 3], ["checkPhase", 66, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const procps = nix.arg($, "procps");
   const util_linux = nix.arg($, "util-linux");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "netcat-openbsd",
       version: "1.238-1",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "salsa.debian.org",
           owner: "debian",
           repo: "netcat-openbsd",
@@ -60,7 +58,7 @@ debian/checks/netcat
 runHook postCheck
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "TCP/IP swiss army knife. OpenBSD variant",
         homepage: "https://salsa.debian.org/debian/netcat-openbsd",
         maintainers: nix.thunk(() => (() => {

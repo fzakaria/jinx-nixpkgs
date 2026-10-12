@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/buildGraalvm.nix", [[["home", 263, 9], ["updateScript", 264, 9]], [["homepage", 275, 13], ["description", 276, 13], ["license", 277, 13], ["sourceProvenance", 283, 13], ["mainProgram", 284, 13], ["teams", 285, 13]], [["pname", 98, 7], ["unpackPhase", 100, 7], ["dontStrip", 128, 7], ["nativeBuildInputs", 130, 7], ["propagatedBuildInputs", 136, 7], ["buildInputs", 141, 7], ["postInstall", 152, 7], ["preFixup", 206, 7], ["doInstallCheck", 212, 7], ["installCheckPhase", 213, 7], ["passthru", 262, 7], ["meta", 271, 7]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "alsa-lib": false, autoPatchelfHook: false, cairo: false, cups: false, fontconfig: false, glib: false, glibc: false, gtk3: false, makeWrapper: false, musl: false, runCommandCC: false, setJavaClassPath: false, unzip: false, libxtst: false, libxrender: false, libxi: false, libxext: false, libx11: false, zlib: false, extraCLibs: true, gtkSupport: true, useMusl: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/buildGraalvm.nix", [["home", 263, 9], ["updateScript", 264, 9]]);
-const pos$2 = nix.positions(here + "/buildGraalvm.nix", [["homepage", 275, 13], ["description", 276, 13], ["license", 277, 13], ["sourceProvenance", 283, 13], ["mainProgram", 284, 13], ["teams", 285, 13]]);
-const pos$3 = nix.positions(here + "/buildGraalvm.nix", [["pname", 98, 7], ["unpackPhase", 100, 7], ["dontStrip", 128, 7], ["nativeBuildInputs", 130, 7], ["propagatedBuildInputs", 136, 7], ["buildInputs", 141, 7], ["postInstall", 152, 7], ["preFixup", 206, 7], ["doInstallCheck", 212, 7], ["installCheckPhase", 213, 7], ["passthru", 262, 7], ["meta", 271, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -75,7 +73,7 @@ chmod +x $out/bin/${nix.sel(stdenv, "hostPlatform", "system")}-musl-gcc
   const binPath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), useMusl, nix.thunk(() => [musl_gcc])), [nix.thunk(() => nix.sel(stdenv, "cc"))]))));
   const runtimeLibraryPath = nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => nix.concat([cups], nix.app(nix.sel(lib, "optionals"), gtkSupport, nix.thunk(() => [cairo, glib, gtk3]))))));
   const graalvm_ce = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "graalvm-ce",
       unpackPhase: nix.thunk(() => nix.str`runHook preUnpack
 
@@ -187,12 +185,12 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool((nix.asBoo
 runHook postInstallCheck
 `),
       passthru: nix.thunk(() => nix.update({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         home: graalvm_ce,
         updateScript: nix.thunk(() => [nix.path(here, "./update.sh"), "graalvm-ce"]),
       }, nix.selOr(args_1, () => ({}), "passhtru"))),
       meta: nix.thunk(() => nix.update({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.graalvm.org/",
         description: "High-Performance Polyglot VM",
         license: nix.thunk(() => (() => {

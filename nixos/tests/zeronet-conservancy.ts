@@ -2,40 +2,35 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/zeronet-conservancy.nix", [[["maintainers", 11, 5]], [["enable", 18, 9], ["package", 19, 9], ["port", 20, 17]], [["zeronet", 17, 16]], [["services", 17, 7]], [["machine", 14, 9]], [["name", 9, 3], ["meta", 10, 3], ["nodes", 14, 3], ["testScript", 24, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/zeronet-conservancy.nix", [["maintainers", 11, 5]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/zeronet-conservancy.nix", [["enable", 18, 9], ["package", 19, 9], ["port", 20, 17]]);
-const pos$3 = nix.positions(here + "/zeronet-conservancy.nix", [["zeronet", 17, 16]]);
-const pos$4 = nix.positions(here + "/zeronet-conservancy.nix", [["services", 17, 7]]);
-const pos$5 = nix.positions(here + "/zeronet-conservancy.nix", [["machine", 14, 9]]);
-const pos$6 = nix.positions(here + "/zeronet-conservancy.nix", [["name", 9, 3], ["meta", 10, 3], ["nodes", 14, 3], ["testScript", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const port = 43110n;
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     name: "zeronet-conservancy",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "fgaz"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             zeronet: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               enable: true,
               package: nix.thunk(() => nix.sel(pkgs, "zeronet-conservancy")),
               port: port,

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 52, 5], ["homepage", 54, 7], ["license", 55, 7], ["maintainers", 56, 7], ["teams", 57, 7]], [["pname", 24, 3], ["version", 25, 22], ["src", 25, 30], ["pyproject", 26, 3], ["sourceRoot", 28, 3], ["build-system", 30, 3], ["dependencies", 34, 3], ["pythonImportsCheck", 42, 3], ["nativeCheckInputs", 44, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, "dep-scan": false, setuptools: false, "appthreat-vulnerability-db": false, "custom-json-diff": false, "ds-analysis-lib": false, quart: false, rich: false, "pytest-asyncio": false, "pytest-cov-stub": false, pytestCheckHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 52, 5], ["homepage", 54, 7], ["license", 55, 7], ["maintainers", 56, 7], ["teams", 57, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 22], ["src", 25, 30], ["pyproject", 26, 3], ["sourceRoot", 28, 3], ["build-system", 30, 3], ["dependencies", 34, 3], ["pythonImportsCheck", 42, 3], ["nativeCheckInputs", 44, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(dep_scan, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Server library for owasp depscan",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),
@@ -43,7 +42,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname,
         version,
         src,

@@ -2,33 +2,30 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 11, 5], ["sha256", 12, 5], ["rev", 13, 5]], [["version", 17, 5], ["sha256", 18, 5], ["rev", 19, 5]], [["version", 23, 5], ["sha256", 24, 5], ["rev", 25, 5]], [["mkKops", 8, 11], ["kops_1_31", 10, 3], ["kops_1_32", 16, 3], ["kops_1_33", 22, 3]]]);
 const formals$1 = { args: { callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 11, 5], ["sha256", 12, 5], ["rev", 13, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 17, 5], ["sha256", 18, 5], ["rev", 19, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 23, 5], ["sha256", 24, 5], ["rev", 25, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["mkKops", 8, 11], ["kops_1_31", 10, 3], ["kops_1_32", 16, 3], ["kops_1_33", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const callPackage = nix.arg($, "callPackage");
   const mkKops = nix.thunk(() => nix.app(callPackage, nix.path(here, "./mkkops.nix"), nix.thunk(() => ({}))));
   return {
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     mkKops: mkKops,
     kops_1_31: nix.thunk(() => nix.app(mkKops, (finalAttrs) => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         version: "1.31.0",
         sha256: "sha256-q9megrNXXKJ/YqP/fjPHh8Oji4dPK5M3HLHa+ufwRAM=",
         rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
       }))),
     kops_1_32: nix.thunk(() => nix.app(mkKops, (finalAttrs) => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         version: "1.32.1",
         sha256: "sha256-nQKeTDajtUffPBhPrPuaJ+1XWgLDUltwDQDZHkylys4=",
         rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
       }))),
     kops_1_33: nix.thunk(() => nix.app(mkKops, (finalAttrs) => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         version: "1.33.0",
         sha256: "sha256-VnnKWcU83yqsKW54Q1tr99/Ln8ppMyB7GLl70rUFGDY=",
         rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 62, 5], ["hash", 63, 5]], [["url", 139, 5], ["rev-prefix", 140, 5]], [["updateScript", 137, 12]], [["description", 144, 5], ["homepage", 145, 5], ["license", 146, 5], ["mainProgram", 147, 5], ["maintainers", 148, 5], ["platforms", 152, 5]], [["pname", 58, 3], ["version", 59, 3], ["src", 61, 3], ["postPatch", 66, 3], ["depsBuildBuild", 71, 3], ["nativeBuildInputs", 74, 3], ["buildInputs", 80, 3], ["mesonFlags", 128, 3], ["passthru", 137, 3], ["meta", 143, 3]]]);
 const formals$1 = { args: { "dri-pkgconfig-stub": false, "egl-wayland": false, "epoll-shim": false, "evdev-proto": false, bash: false, libepoxy: false, fetchurl: false, "font-util": false, lib: false, libdecor: false, libgbm: false, libei: false, libGL: false, libGLU: false, libx11: false, libxau: false, libxaw: false, libxdmcp: false, libxext: false, libxfixes: false, libxfont_2: false, libxmu: false, libxpm: false, libxrender: false, libxres: false, libxt: false, libdrm: false, libtirpc: false, withLibunwind: true, libunwind: false, libxcb: false, libxkbfile: false, libxshmfence: false, libxcvt: false, "mesa-gl-headers": false, meson: false, ninja: false, openssl: false, "pkg-config": false, pixman: false, stdenv: false, systemd: false, wayland: false, "wayland-protocols": false, "wayland-scanner": false, xkbcomp: false, xkeyboard_config: false, xorgproto: false, xtrans: false, zlib: false, defaultFontPath: true, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 62, 5], ["hash", 63, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 139, 5], ["rev-prefix", 140, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 137, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 144, 5], ["homepage", 145, 5], ["license", 146, 5], ["mainProgram", 147, 5], ["maintainers", 148, 5], ["platforms", 152, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 58, 3], ["version", 59, 3], ["src", 61, 3], ["postPatch", 66, 3], ["depsBuildBuild", 71, 3], ["nativeBuildInputs", 74, 3], ["buildInputs", 80, 3], ["mesonFlags", 128, 3], ["passthru", 137, 3], ["meta", 143, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -64,11 +60,11 @@ export default nix.lambda((args) => (() => {
   const defaultFontPath = nix.argOr($, "defaultFontPath", () => "");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "xwayland",
       version: "24.1.14",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://xorg/individual/xserver/xwayland-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-Tra5jWeCmaS5YTjYhjRbKUEwaVdgNF74RZYiWoIkB4o=",
         })))),
@@ -123,15 +119,15 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "mesonBool"), "libunwind", withLibunwind)),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitlab.freedesktop.org/xorg/xserver.git",
             "rev-prefix": "xwayland-",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "X server for interfacing X11 apps with the Wayland protocol",
         homepage: "https://gitlab.freedesktop.org/xorg/xserver",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

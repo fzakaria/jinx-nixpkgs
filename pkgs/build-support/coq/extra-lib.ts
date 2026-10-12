@@ -2,18 +2,16 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/extra-lib.nix", [[["lib", 4, 49]], [["mkCoqDerivation", 55, 9]], [["overrideCoqDerivation", 52, 5]]]);
 const formals$1 = { args: { lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/extra-lib.nix", [["lib", 4, 49]]);
-const pos$2 = nix.positions(here + "/extra-lib.nix", [["mkCoqDerivation", 55, 9]]);
-const pos$3 = nix.positions(here + "/extra-lib.nix", [["overrideCoqDerivation", 52, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
-  return nix.app(nix.sel(lib, "recursiveUpdate"), lib, nix.thunk(() => nix.update(nix.app(nix.builtins.import(nix.path(here, "../rocq/extra-lib-common.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib }))), {
-      [nix.POS]: pos$3,
+  return nix.app(nix.sel(lib, "recursiveUpdate"), lib, nix.thunk(() => nix.update(nix.app(nix.builtins.import(nix.path(here, "../rocq/extra-lib-common.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib }))), {
+      [nix.POS]: $pos[2],
       overrideCoqDerivation: (f) => (drv) => nix.app(nix.sel(drv, "override"), (args_1) => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           mkCoqDerivation: (drv_) => nix.app(nix.sel(nix.app(nix.sel(args_1, "mkCoqDerivation"), drv_), "override"), f),
         })),
     })));

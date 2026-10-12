@@ -2,30 +2,26 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/user-account.nix", [[["isNormalUser", 5, 5], ["description", 6, 5], ["password", 7, 5], ["uid", 8, 5]], [["isNormalUser", 12, 5], ["description", 13, 5], ["password", 14, 5]], [["alice", 4, 15], ["bob", 11, 15]], [["users", 4, 9]], [["users", 4, 3]]]);
 const formals$1 = { args: {  }, ellipsis: true };
-const pos$1 = nix.positions(here + "/user-account.nix", [["isNormalUser", 5, 5], ["description", 6, 5], ["password", 7, 5], ["uid", 8, 5]]);
-const pos$2 = nix.positions(here + "/user-account.nix", [["isNormalUser", 12, 5], ["description", 13, 5], ["password", 14, 5]]);
-const pos$3 = nix.positions(here + "/user-account.nix", [["alice", 4, 15], ["bob", 11, 15]]);
-const pos$4 = nix.positions(here + "/user-account.nix", [["users", 4, 9]]);
-const pos$5 = nix.positions(here + "/user-account.nix", [["users", 4, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     users: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       users: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         alice: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           isNormalUser: true,
           description: "Alice Foobar",
           password: "foobar",
           uid: 1000n,
         })),
         bob: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           isNormalUser: true,
           description: "Bob Foobar",
           password: "foobar",

@@ -2,83 +2,66 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/envoy.nix", [[["maintainers", 6, 5]], [["protocol", 17, 13], ["address", 18, 13], ["port_value", 19, 13]], [["socket_address", 16, 11]], [["access_log_path", 14, 9], ["address", 15, 9]], [["listeners", 24, 9], ["clusters", 25, 9]], [["admin", 13, 7], ["static_resources", 23, 7]], [["enable", 10, 20], ["package", 11, 20], ["settings", 12, 20]], [["envoy", 10, 14]], [["access_log_path", 34, 28]], [["admin", 34, 22]], [["requireValidConfig", 33, 13], ["settings", 34, 13]], [["envoy", 32, 20]], [["services", 32, 11]], [["configuration", 29, 31]], [["withoutConfigValidation", 29, 7]], [["services", 10, 5], ["specialisation", 28, 5]], [["machine", 9, 9]], [["name", 3, 3], ["meta", 5, 3], ["nodes", 9, 3], ["testScript", 40, 3]]]);
 const formals$1 = { args: { envoyPackage: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/envoy.nix", [["maintainers", 6, 5]]);
-const pos$2 = nix.positions(here + "/envoy.nix", [["protocol", 17, 13], ["address", 18, 13], ["port_value", 19, 13]]);
-const pos$3 = nix.positions(here + "/envoy.nix", [["socket_address", 16, 11]]);
-const pos$4 = nix.positions(here + "/envoy.nix", [["access_log_path", 14, 9], ["address", 15, 9]]);
-const pos$5 = nix.positions(here + "/envoy.nix", [["listeners", 24, 9], ["clusters", 25, 9]]);
-const pos$6 = nix.positions(here + "/envoy.nix", [["admin", 13, 7], ["static_resources", 23, 7]]);
-const pos$7 = nix.positions(here + "/envoy.nix", [["enable", 10, 20], ["package", 11, 20], ["settings", 12, 20]]);
-const pos$8 = nix.positions(here + "/envoy.nix", [["envoy", 10, 14]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$9 = nix.positions(here + "/envoy.nix", [["access_log_path", 34, 28]]);
-const pos$10 = nix.positions(here + "/envoy.nix", [["admin", 34, 22]]);
-const pos$11 = nix.positions(here + "/envoy.nix", [["requireValidConfig", 33, 13], ["settings", 34, 13]]);
-const pos$12 = nix.positions(here + "/envoy.nix", [["envoy", 32, 20]]);
-const pos$13 = nix.positions(here + "/envoy.nix", [["services", 32, 11]]);
-const pos$14 = nix.positions(here + "/envoy.nix", [["configuration", 29, 31]]);
-const pos$15 = nix.positions(here + "/envoy.nix", [["withoutConfigValidation", 29, 7]]);
-const pos$16 = nix.positions(here + "/envoy.nix", [["services", 10, 5], ["specialisation", 28, 5]]);
-const pos$17 = nix.positions(here + "/envoy.nix", [["machine", 9, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$18 = nix.positions(here + "/envoy.nix", [["name", 3, 3], ["meta", 5, 3], ["nodes", 9, 3], ["testScript", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const envoyPackage = nix.arg($, "envoyPackage");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$18,
+    [nix.POS]: $pos[17],
     name: nix.thunk(() => nix.sel(envoyPackage, "pname")),
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "cameronnemo"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           envoy: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             enable: true,
             package: envoyPackage,
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               admin: nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 access_log_path: "/dev/null",
                 address: nix.thunk(() => ({
-                  [nix.POS]: pos$3,
-                  socket_address: nix.thunk(() => ({ [nix.POS]: pos$2, protocol: "TCP", address: "127.0.0.1", port_value: 80n })),
+                  [nix.POS]: $pos[2],
+                  socket_address: nix.thunk(() => ({ [nix.POS]: $pos[1], protocol: "TCP", address: "127.0.0.1", port_value: 80n })),
                 })),
               })),
-              static_resources: nix.thunk(() => ({ [nix.POS]: pos$5, listeners: [], clusters: [] })),
+              static_resources: nix.thunk(() => ({ [nix.POS]: $pos[4], listeners: [], clusters: [] })),
             })),
           })),
         })),
         specialisation: nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           withoutConfigValidation: nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             configuration: nix.lambda((args_1) => (() => {
               const $_1 = nix.formals(args_1, formals$2);
               return {
-                [nix.POS]: pos$13,
+                [nix.POS]: $pos[12],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$12,
+                  [nix.POS]: $pos[11],
                   envoy: nix.thunk(() => ({
-                    [nix.POS]: pos$11,
+                    [nix.POS]: $pos[10],
                     requireValidConfig: false,
                     settings: nix.thunk(() => ({
-                      [nix.POS]: pos$10,
+                      [nix.POS]: $pos[9],
                       admin: nix.thunk(() => ({
-                        [nix.POS]: pos$9,
+                        [nix.POS]: $pos[8],
                         access_log_path: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "/var/log/envoy/access.log")),
                       })),
                     })),

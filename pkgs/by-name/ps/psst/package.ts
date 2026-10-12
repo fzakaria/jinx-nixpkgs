@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["categories", 22, 5], ["comment", 26, 5], ["desktopName", 27, 5], ["exec", 28, 5], ["icon", 29, 5], ["name", 30, 5], ["startupWMClass", 31, 5]], [["owner", 39, 5], ["repo", 40, 5], ["rev", 41, 5], ["hash", 42, 5]], [["LIBCLANG_PATH", 51, 5]], [["extraArgs", 80, 5]], [["updateScript", 79, 12]], [["description", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["platforms", 90, 5], ["maintainers", 91, 5], ["mainProgram", 95, 5]], [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["cargoHash", 45, 3], ["buildAndTestSubdir", 48, 3], ["env", 50, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 56, 3], ["patches", 69, 3], ["postInstall", 74, 3], ["passthru", 79, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { "alsa-lib": false, atk: false, cairo: false, dbus: false, fetchFromGitHub: false, "gdk-pixbuf": false, glib: false, gtk3: false, lib: false, libclang: false, makeDesktopItem: false, "nix-update-script": false, pango: false, "pkg-config": false, rustPlatform: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["categories", 22, 5], ["comment", 26, 5], ["desktopName", 27, 5], ["exec", 28, 5], ["icon", 29, 5], ["name", 30, 5], ["startupWMClass", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 39, 5], ["repo", 40, 5], ["rev", 41, 5], ["hash", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["LIBCLANG_PATH", 51, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["extraArgs", 80, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 79, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["platforms", 90, 5], ["maintainers", 91, 5], ["mainProgram", 95, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["cargoHash", 45, 3], ["buildAndTestSubdir", 48, 3], ["env", 50, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 56, 3], ["patches", 69, 3], ["postInstall", 74, 3], ["passthru", 79, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const stdenv = nix.arg($, "stdenv");
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       categories: nix.thunk(() => ["Audio", "AudioVideo"]),
       comment: "Spotify client with native GUI written in Rust, without Electron",
       desktopName: "Psst",
@@ -40,11 +34,11 @@ export default nix.lambda((args) => (() => {
       startupWMClass: "psst-gui",
     }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "psst",
       version: "0-unstable-2026-08-18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "jpochyla",
           repo: "psst",
           rev: "3c3621aa79f820c737dd899e7e359b1359292466",
@@ -53,7 +47,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-sJX5iMPXsKE9UmD+WOAYqWTTouSzmiDbZppPtMoGue8=",
       buildAndTestSubdir: "psst-gui",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         LIBCLANG_PATH: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), libclang)}/lib`),
       })),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
@@ -63,14 +57,14 @@ export default nix.lambda((args) => (() => {
 install -Dm644 ${desktopItem}/share/applications/* -t $out/share/applications
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             extraArgs: nix.thunk(() => ["--version=branch", "--version-regex=(0-unstable-.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Spotify client with native GUI written in Rust, without Electron",
         homepage: "https://github.com/jpochyla/psst",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

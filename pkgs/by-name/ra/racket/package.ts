@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["disableDocs", 27, 47]], [["url", 36, 7], ["sha256", 37, 31]], [["fontDirectories", 86, 50]], [["racket", 113, 67]], [["draw-crossing", 115, 11]], [["tests", 113, 9]], [["description", 120, 7], ["longDescription", 121, 7], ["badPlatforms", 130, 7]], [["src", 35, 5], ["buildInputs", 40, 5], ["nativeBuildInputs", 52, 5], ["patches", 56, 5], ["preBuild", 65, 5], ["dontWrapGApps", 90, 5], ["preFixup", 92, 5], ["passthru", 105, 5], ["meta", 119, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "racket-minimal": false, cairo: false, fontconfig: false, glib: false, glibcLocales: false, gtk3: false, libGL: false, libiodbc: false, libjpeg: false, libpng: false, makeFontsConf: false, pango: false, unixodbc: false, wrapGAppsHook3: false, disableDocs: true, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["disableDocs", 27, 47]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 36, 7], ["sha256", 37, 31]]);
-const pos$3 = nix.positions(here + "/package.nix", [["fontDirectories", 86, 50]]);
-const pos$4 = nix.positions(here + "/package.nix", [["racket", 113, 67]]);
-const pos$5 = nix.positions(here + "/package.nix", [["draw-crossing", 115, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 113, 9]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 120, 7], ["longDescription", 121, 7], ["badPlatforms", 130, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["src", 35, 5], ["buildInputs", 40, 5], ["nativeBuildInputs", 52, 5], ["patches", 56, 5], ["preBuild", 65, 5], ["dontWrapGApps", 90, 5], ["preFixup", 92, 5], ["passthru", 105, 5], ["meta", 119, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,16 +26,16 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const disableDocs = nix.argOr($, "disableDocs", () => false);
   const callPackage = nix.arg($, "callPackage");
-  const minimal = nix.thunk(() => nix.app(nix.sel(racket_minimal, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, disableDocs: disableDocs }))));
+  const minimal = nix.thunk(() => nix.app(nix.sel(racket_minimal, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], disableDocs: disableDocs }))));
   const manifest = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./manifest.json")));
   const from = nix.thunk(() => nix.sel(stdenv, "hostPlatform"));
   const isDarwin = nix.thunk(() => nix.attr(from, "isDarwin"));
   return nix.app(nix.sel(minimal, "overrideAttrs"), (finalAttrs) => (prevAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (() => {
           const from_1 = nix.thunk(() => nix.sel(manifest, "full"));
           return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://mirror.racket-lang.org/installers/${nix.sel(manifest, "version")}/${nix.sel(manifest, "full", "filename")}`),
           sha256: nix.thunk(() => nix.attr(from_1, "sha256")),
         };
@@ -71,7 +64,7 @@ export default nix.lambda((args) => (() => {
 ); do
     addToSearchPath ${libPathsVar} $lib_path
 done
-`, nix.str`export FONTCONFIG_FILE=${nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: pos$3, fontDirectories: [] })))}
+`, nix.str`export FONTCONFIG_FILE=${nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: $pos[2], fontDirectories: [] })))}
 export XDG_CACHE_HOME=$(mktemp -d)
 `);
       })()),
@@ -91,18 +84,18 @@ wrapGApp $out/lib/racket/gracket
         const notUpdated = (x) => (nix.asBool(!nix.asBool(nix.builtins.isAttrs(x))) || nix.asBool(nix.app(nix.sel(lib, "isDerivation"), x)));
         const stopPred = (_) => (lhs) => (rhs) => (nix.asBool(nix.app(notUpdated, lhs)) || nix.asBool(nix.app(notUpdated, rhs)));
         return nix.app(nix.sel(lib, "recursiveUpdateUntil"), stopPred, nix.thunk(() => nix.sel(prevAttrs, "passthru")), nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             tests: nix.thunk(() => nix.builtins.mapAttrs((name) => (path) => nix.app(callPackage, path, nix.thunk(() => ({
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   racket: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
                 }))), nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 "draw-crossing": nix.path(here, "./tests/draw-crossing.nix"),
               })))),
           })));
       })()),
       meta: nix.thunk(() => nix.update(nix.sel(prevAttrs, "meta"), {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Programmable programming language",
         longDescription: "Racket is a full-spectrum programming language. It goes beyond\nLisp and Scheme with dialects that support objects, types,\nlaziness, and more. Racket enables programmers to link\ncomponents written in different dialects, and it empowers\nprogrammers to create new, project-specific dialects. Racket's\nlibraries support applications from web servers and databases to\nGUIs and charts.\n",
         badPlatforms: [],

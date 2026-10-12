@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 13], ["fetchSubmodules", 18, 5], ["hash", 19, 5]], [["updateScript", 76, 12]], [["homepage", 79, 5], ["description", 80, 5], ["longDescription", 81, 5], ["license", 82, 5], ["maintainers", 83, 5]], [["pname", 10, 3], ["version", 11, 3], ["rev", 12, 3], ["src", 14, 3], ["postPatch", 22, 3], ["preConfigure", 31, 3], ["outputs", 65, 3], ["nativeBuildInputs", 70, 3], ["passthru", 76, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, python3Packages: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 13], ["fetchSubmodules", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 76, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 79, 5], ["description", 80, 5], ["longDescription", 81, 5], ["license", 82, 5], ["maintainers", 83, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["rev", 12, 3], ["src", 14, 3], ["postPatch", 22, 3], ["preConfigure", 31, 3], ["outputs", 65, 3], ["nativeBuildInputs", 70, 3], ["passthru", 76, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "0-unstable-2026-03-24";
       const rev = "41044ec17ddb835b3e5acb385a2e429aa74af627";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "canokeys",
           repo: "canokey-qemu",
           rev: rev,
@@ -40,11 +37,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(python3Packages, "jinja2")),
       ]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/canokeys/canokey-qemu",
         description: "CanoKey QEMU Virtual Card",
         longDescription: "A virtual OPENPGP and FIDO2 card. Only for testing purpose. There is no warranty on security.",
@@ -55,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         rev,

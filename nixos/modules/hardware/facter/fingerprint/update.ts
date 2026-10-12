@@ -2,15 +2,14 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/update.nix", [[["nativeBuildInputs", 7, 5], ["buildPhase", 11, 5], ["outputs", 14, 5], ["installPhase", 15, 5], ["installCheckPhase", 22, 5]], [["name", 26, 3], ["runtimeInputs", 27, 3], ["text", 31, 3]]]);
 const formals$1 = { args: { pkgs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/update.nix", [["nativeBuildInputs", 7, 5], ["buildPhase", 11, 5], ["outputs", 14, 5], ["installPhase", 15, 5], ["installCheckPhase", 22, 5]]);
-const pos$2 = nix.positions(here + "/update.nix", [["name", 26, 3], ["runtimeInputs", 27, 3], ["text", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../../../..")), nix.thunk(() => ({}))));
   const fprint_supported_devices = nix.thunk(() => nix.app(nix.sel(pkgs, "libfprint", "overrideAttrs"), (old) => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "nativeBuildInputs"), [nix.thunk(() => nix.sel(pkgs, "jq")), nix.thunk(() => nix.sel(pkgs, "gawk"))])),
       buildPhase: "ninja libfprint/fprint-list-supported-devices\n",
       outputs: nix.thunk(() => ["out"]),
@@ -18,7 +17,7 @@ export default nix.lambda((args) => (() => {
       installCheckPhase: "",
     })));
   return nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "update-fprint-devices",
       runtimeInputs: nix.thunk(() => (() => {
         const w = nix.withScope(pkgs, null);

@@ -2,55 +2,13 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/fetchers.nix", [["success", 17, 7], ["value", 18, 7]]);
-const pos$2 = nix.positions(here + "/fetchers.nix", [["expr", 15, 5], ["expected", 16, 5]]);
-const pos$3 = nix.positions(here + "/fetchers.nix", [["outputHash", 31, 9], ["outputHashAlgo", 32, 9]]);
-const pos$4 = nix.positions(here + "/fetchers.nix", [["outputHash", 35, 9], ["outputHashAlgo", 36, 9]]);
-const pos$5 = nix.positions(here + "/fetchers.nix", [["expr", 30, 7], ["expected", 34, 7]]);
-const pos$6 = nix.positions(here + "/fetchers.nix", [["sha256", 41, 22]]);
-const pos$7 = nix.positions(here + "/fetchers.nix", [["outputHash", 43, 9], ["outputHashAlgo", 44, 9]]);
-const pos$8 = nix.positions(here + "/fetchers.nix", [["expr", 41, 7], ["expected", 42, 7]]);
-const pos$9 = nix.positions(here + "/fetchers.nix", [["hashTypes", 49, 18]]);
-const pos$10 = nix.positions(here + "/fetchers.nix", [["sha512", 49, 48]]);
-const pos$11 = nix.positions(here + "/fetchers.nix", [["outputHash", 51, 9], ["outputHashAlgo", 52, 9]]);
-const pos$12 = nix.positions(here + "/fetchers.nix", [["expr", 49, 7], ["expected", 50, 7]]);
-const pos$13 = nix.positions(here + "/fetchers.nix", [["hash", 57, 22]]);
-const pos$14 = nix.positions(here + "/fetchers.nix", [["outputHash", 59, 9], ["outputHashAlgo", 60, 9]]);
-const pos$15 = nix.positions(here + "/fetchers.nix", [["expr", 57, 7], ["expected", 58, 7]]);
-const pos$16 = nix.positions(here + "/fetchers.nix", [["hash", 65, 22]]);
-const pos$17 = nix.positions(here + "/fetchers.nix", [["outputHash", 67, 9], ["outputHashAlgo", 68, 9]]);
-const pos$18 = nix.positions(here + "/fetchers.nix", [["expr", 65, 7], ["expected", 66, 7]]);
-const pos$19 = nix.positions(here + "/fetchers.nix", [["hash", 73, 22]]);
-const pos$20 = nix.positions(here + "/fetchers.nix", [["outputHash", 75, 9], ["outputHashAlgo", 76, 9]]);
-const pos$21 = nix.positions(here + "/fetchers.nix", [["expr", 73, 7], ["expected", 74, 7]]);
-const pos$22 = nix.positions(here + "/fetchers.nix", [["hash", 82, 9], ["destination", 83, 9]]);
-const pos$23 = nix.positions(here + "/fetchers.nix", [["outputHash", 86, 9], ["outputHashAlgo", 87, 9], ["destination", 88, 9]]);
-const pos$24 = nix.positions(here + "/fetchers.nix", [["expr", 81, 7], ["expected", 85, 7]]);
-const pos$25 = nix.positions(here + "/fetchers.nix", [["sha1", 92, 60]]);
-const pos$26 = nix.positions(here + "/fetchers.nix", [["sha512", 93, 62]]);
-const pos$27 = nix.positions(here + "/fetchers.nix", [["gibi", 95, 55]]);
+const $pos = nix.positions(here + "/fetchers.nix", [[["success", 17, 7], ["value", 18, 7]], [["expr", 15, 5], ["expected", 16, 5]], [["outputHash", 31, 9], ["outputHashAlgo", 32, 9]], [["outputHash", 35, 9], ["outputHashAlgo", 36, 9]], [["expr", 30, 7], ["expected", 34, 7]], [["sha256", 41, 22]], [["outputHash", 43, 9], ["outputHashAlgo", 44, 9]], [["expr", 41, 7], ["expected", 42, 7]], [["hashTypes", 49, 18]], [["sha512", 49, 48]], [["outputHash", 51, 9], ["outputHashAlgo", 52, 9]], [["expr", 49, 7], ["expected", 50, 7]], [["hash", 57, 22]], [["outputHash", 59, 9], ["outputHashAlgo", 60, 9]], [["expr", 57, 7], ["expected", 58, 7]], [["hash", 65, 22]], [["outputHash", 67, 9], ["outputHashAlgo", 68, 9]], [["expr", 65, 7], ["expected", 66, 7]], [["hash", 73, 22]], [["outputHash", 75, 9], ["outputHashAlgo", 76, 9]], [["expr", 73, 7], ["expected", 74, 7]], [["hash", 82, 9], ["destination", 83, 9]], [["outputHash", 86, 9], ["outputHashAlgo", 87, 9], ["destination", 88, 9]], [["expr", 81, 7], ["expected", 85, 7]], [["sha1", 92, 60]], [["sha512", 93, 62]], [["gibi", 95, 55]], [["required", 105, 30]], [["hash", 106, 9], ["prof", 107, 9]], [["hash", 110, 9], ["prof", 111, 9]], [["expr", 105, 7], ["expected", 109, 7]], [["required", 116, 30]], [["ga bu", 116, 52]], [["ga bu", 117, 16]], [["expr", 116, 7], ["expected", 117, 7]], [["author", 128, 11]], [["author", 129, 16]], [["expr", 121, 7], ["expected", 129, 7]], [["hash", 142, 16]], [["expr", 133, 7], ["expected", 142, 7]], [["hash", 157, 9], ["pumping", 158, 9]], [["expr", 146, 7], ["expected", 156, 7]], [["testNormalizeNotRequiredEquivalent", 104, 5], ["testNormalizeNotRequiredPassthru", 115, 5], ["testOptionalArg", 120, 5], ["testOptionalArgMetadata", 132, 5], ["testPreservesArgsMetadata", 145, 5], ["testRejectsMissingHashArg", 162, 5], ["testRejectsMissingAlgoArg", 163, 5]]]);
 const formals$1 = { args: { outputHash: false, outputHashAlgo: false }, ellipsis: true };
-const pos$28 = nix.positions(here + "/fetchers.nix", [["required", 105, 30]]);
-const pos$29 = nix.positions(here + "/fetchers.nix", [["hash", 106, 9], ["prof", 107, 9]]);
-const pos$30 = nix.positions(here + "/fetchers.nix", [["hash", 110, 9], ["prof", 111, 9]]);
-const pos$31 = nix.positions(here + "/fetchers.nix", [["expr", 105, 7], ["expected", 109, 7]]);
-const pos$32 = nix.positions(here + "/fetchers.nix", [["required", 116, 30]]);
-const pos$33 = nix.positions(here + "/fetchers.nix", [["ga bu", 116, 52]]);
-const pos$34 = nix.positions(here + "/fetchers.nix", [["ga bu", 117, 16]]);
-const pos$35 = nix.positions(here + "/fetchers.nix", [["expr", 116, 7], ["expected", 117, 7]]);
 const formals$2 = { args: { outputHash: true, outputHashAlgo: true }, ellipsis: true };
-const pos$36 = nix.positions(here + "/fetchers.nix", [["author", 128, 11]]);
-const pos$37 = nix.positions(here + "/fetchers.nix", [["author", 129, 16]]);
-const pos$38 = nix.positions(here + "/fetchers.nix", [["expr", 121, 7], ["expected", 129, 7]]);
 const formals$3 = { args: { outputHash: true, outputHashAlgo: true }, ellipsis: false };
-const pos$39 = nix.positions(here + "/fetchers.nix", [["hash", 142, 16]]);
-const pos$40 = nix.positions(here + "/fetchers.nix", [["expr", 133, 7], ["expected", 142, 7]]);
 const formals$4 = { args: { outputHash: false, outputHashAlgo: false, pumping: true }, ellipsis: false };
-const pos$41 = nix.positions(here + "/fetchers.nix", [["hash", 157, 9], ["pumping", 158, 9]]);
-const pos$42 = nix.positions(here + "/fetchers.nix", [["expr", 146, 7], ["expected", 156, 7]]);
 const formals$5 = { args: { outputHashAlgo: false }, ellipsis: false };
 const formals$6 = { args: { outputHash: false }, ellipsis: false };
-const pos$43 = nix.positions(here + "/fetchers.nix", [["testNormalizeNotRequiredEquivalent", 104, 5], ["testNormalizeNotRequiredPassthru", 115, 5], ["testOptionalArg", 120, 5], ["testOptionalArgMetadata", 132, 5], ["testPreservesArgsMetadata", 145, 5], ["testRejectsMissingHashArg", 162, 5], ["testRejectsMissingAlgoArg", 163, 5]]);
 
 export default nix.thunk(() => (() => {
   const lib = nix.thunk(() => nix.builtins.import(nix.path(here, "./..")));
@@ -64,60 +22,60 @@ export default nix.thunk(() => (() => {
   const normalizeHash = nix.thunk(() => nix.attr(from, "normalizeHash"));
   const withNormalizedHash = nix.thunk(() => nix.attr(from, "withNormalizedHash"));
   const testingThrow = (expr) => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     expr: nix.thunk(() => (() => {
       const w = nix.withScope(nix.builtins, null);
       return nix.app(nix.lookup(w, "tryEval"), nix.thunk(() => nix.app(nix.lookup(w, "seq"), expr, "didn't throw")));
     })()),
-    expected: nix.thunk(() => ({ [nix.POS]: pos$1, success: false, value: false })),
+    expected: nix.thunk(() => ({ [nix.POS]: $pos[0], success: false, value: false })),
   });
   const sri256 = "sha256-d6xi4mKdjkX2JFicDIv5niSzpyI0m/Hnm8GGAIU04kY=";
   const sri512 = "sha512-AXFyVo7jiZ5we10fxZ5E9qfPjSfqkizY2apCzORKFVYZaNhCIVbooY+J4cYST00ztLf0EjivIBPPdtIYFUMfzQ==";
   const unionOfDisjoints = nix.thunk(() => nix.app(nix.sel(lib, "foldl"), nix.thunk(() => nix.sel(lib, "attrsets", "unionOfDisjoint")), nix.thunk(() => ({}))));
   const genTests = (n) => (f) => nix.attrsDyn({}, [
     [nix.str`test${n}AlreadyNormalized`, nix.thunk(() => ({
-      [nix.POS]: pos$5,
-      expr: nix.thunk(() => nix.app(f, nix.thunk(() => ({})), nix.thunk(() => ({ [nix.POS]: pos$3, outputHash: "", outputHashAlgo: "md42" })))),
-      expected: nix.thunk(() => ({ [nix.POS]: pos$4, outputHash: "", outputHashAlgo: "md42" })),
+      [nix.POS]: $pos[4],
+      expr: nix.thunk(() => nix.app(f, nix.thunk(() => ({})), nix.thunk(() => ({ [nix.POS]: $pos[2], outputHash: "", outputHashAlgo: "md42" })))),
+      expected: nix.thunk(() => ({ [nix.POS]: $pos[3], outputHash: "", outputHashAlgo: "md42" })),
     }))],
     [nix.str`test${n}EmptySha256`, nix.thunk(() => ({
-      [nix.POS]: pos$8,
-      expr: nix.thunk(() => nix.app(f, nix.thunk(() => ({})), nix.thunk(() => ({ [nix.POS]: pos$6, sha256: "" })))),
-      expected: nix.thunk(() => ({ [nix.POS]: pos$7, outputHash: fakeSha256, outputHashAlgo: "sha256" })),
+      [nix.POS]: $pos[7],
+      expr: nix.thunk(() => nix.app(f, nix.thunk(() => ({})), nix.thunk(() => ({ [nix.POS]: $pos[5], sha256: "" })))),
+      expected: nix.thunk(() => ({ [nix.POS]: $pos[6], outputHash: fakeSha256, outputHashAlgo: "sha256" })),
     }))],
     [nix.str`test${n}EmptySha512`, nix.thunk(() => ({
-      [nix.POS]: pos$12,
-      expr: nix.thunk(() => nix.app(f, nix.thunk(() => ({ [nix.POS]: pos$9, hashTypes: nix.thunk(() => ["sha512"]) })), nix.thunk(() => ({ [nix.POS]: pos$10, sha512: "" })))),
-      expected: nix.thunk(() => ({ [nix.POS]: pos$11, outputHash: fakeSha512, outputHashAlgo: "sha512" })),
+      [nix.POS]: $pos[11],
+      expr: nix.thunk(() => nix.app(f, nix.thunk(() => ({ [nix.POS]: $pos[8], hashTypes: nix.thunk(() => ["sha512"]) })), nix.thunk(() => ({ [nix.POS]: $pos[9], sha512: "" })))),
+      expected: nix.thunk(() => ({ [nix.POS]: $pos[10], outputHash: fakeSha512, outputHashAlgo: "sha512" })),
     }))],
     [nix.str`test${n}EmptyHash`, nix.thunk(() => ({
-      [nix.POS]: pos$15,
-      expr: nix.thunk(() => nix.app(f, nix.thunk(() => ({})), nix.thunk(() => ({ [nix.POS]: pos$13, hash: "" })))),
-      expected: nix.thunk(() => ({ [nix.POS]: pos$14, outputHash: fakeHash, outputHashAlgo: null })),
+      [nix.POS]: $pos[14],
+      expr: nix.thunk(() => nix.app(f, nix.thunk(() => ({})), nix.thunk(() => ({ [nix.POS]: $pos[12], hash: "" })))),
+      expected: nix.thunk(() => ({ [nix.POS]: $pos[13], outputHash: fakeHash, outputHashAlgo: null })),
     }))],
     [nix.str`test${n}Sri256`, nix.thunk(() => ({
-      [nix.POS]: pos$18,
-      expr: nix.thunk(() => nix.app(f, nix.thunk(() => ({})), nix.thunk(() => ({ [nix.POS]: pos$16, hash: sri256 })))),
-      expected: nix.thunk(() => ({ [nix.POS]: pos$17, outputHash: sri256, outputHashAlgo: null })),
+      [nix.POS]: $pos[17],
+      expr: nix.thunk(() => nix.app(f, nix.thunk(() => ({})), nix.thunk(() => ({ [nix.POS]: $pos[15], hash: sri256 })))),
+      expected: nix.thunk(() => ({ [nix.POS]: $pos[16], outputHash: sri256, outputHashAlgo: null })),
     }))],
     [nix.str`test${n}Sri512`, nix.thunk(() => ({
-      [nix.POS]: pos$21,
-      expr: nix.thunk(() => nix.app(f, nix.thunk(() => ({})), nix.thunk(() => ({ [nix.POS]: pos$19, hash: sri512 })))),
-      expected: nix.thunk(() => ({ [nix.POS]: pos$20, outputHash: sri512, outputHashAlgo: null })),
+      [nix.POS]: $pos[20],
+      expr: nix.thunk(() => nix.app(f, nix.thunk(() => ({})), nix.thunk(() => ({ [nix.POS]: $pos[18], hash: sri512 })))),
+      expected: nix.thunk(() => ({ [nix.POS]: $pos[19], outputHash: sri512, outputHashAlgo: null })),
     }))],
     [nix.str`test${n}PreservesAttrs`, nix.thunk(() => ({
-      [nix.POS]: pos$24,
-      expr: nix.thunk(() => nix.app(f, nix.thunk(() => ({})), nix.thunk(() => ({ [nix.POS]: pos$22, hash: "aaaa", destination: "Earth" })))),
+      [nix.POS]: $pos[23],
+      expr: nix.thunk(() => nix.app(f, nix.thunk(() => ({})), nix.thunk(() => ({ [nix.POS]: $pos[21], hash: "aaaa", destination: "Earth" })))),
       expected: nix.thunk(() => ({
-        [nix.POS]: pos$23,
+        [nix.POS]: $pos[22],
         outputHash: "aaaa",
         outputHashAlgo: null,
         destination: "Earth",
       })),
     }))],
-    [nix.str`test${n}RejectsSha1ByDefault`, nix.thunk(() => nix.app(testingThrow, nix.thunk(() => nix.app(f, nix.thunk(() => ({})), nix.thunk(() => ({ [nix.POS]: pos$25, sha1: "" }))))))],
-    [nix.str`test${n}RejectsSha512ByDefault`, nix.thunk(() => nix.app(testingThrow, nix.thunk(() => nix.app(f, nix.thunk(() => ({})), nix.thunk(() => ({ [nix.POS]: pos$26, sha512: "" }))))))],
-    [nix.str`test${n}ThrowsOnMissing`, nix.thunk(() => nix.app(testingThrow, nix.thunk(() => nix.app(f, nix.thunk(() => ({})), nix.thunk(() => ({ [nix.POS]: pos$27, gibi: false }))))))],
+    [nix.str`test${n}RejectsSha1ByDefault`, nix.thunk(() => nix.app(testingThrow, nix.thunk(() => nix.app(f, nix.thunk(() => ({})), nix.thunk(() => ({ [nix.POS]: $pos[24], sha1: "" }))))))],
+    [nix.str`test${n}RejectsSha512ByDefault`, nix.thunk(() => nix.app(testingThrow, nix.thunk(() => nix.app(f, nix.thunk(() => ({})), nix.thunk(() => ({ [nix.POS]: $pos[25], sha512: "" }))))))],
+    [nix.str`test${n}ThrowsOnMissing`, nix.thunk(() => nix.app(testingThrow, nix.thunk(() => nix.app(f, nix.thunk(() => ({})), nix.thunk(() => ({ [nix.POS]: $pos[26], gibi: false }))))))],
   ]);
   return nix.app(runTests, nix.thunk(() => nix.app(unionOfDisjoints, nix.thunk(() => [
         nix.thunk(() => nix.app(genTests, "NormalizeHash", normalizeHash)),
@@ -129,40 +87,40 @@ export default nix.thunk(() => (() => {
               return nix.force(args_1);
             })(), formals$1))))),
         nix.thunk(() => ({
-          [nix.POS]: pos$43,
+          [nix.POS]: $pos[42],
           testNormalizeNotRequiredEquivalent: nix.thunk(() => ({
-            [nix.POS]: pos$31,
-            expr: nix.thunk(() => nix.app(normalizeHash, nix.thunk(() => ({ [nix.POS]: pos$28, required: false })), nix.thunk(() => ({ [nix.POS]: pos$29, hash: "", prof: "shadoko" })))),
-            expected: nix.thunk(() => nix.app(normalizeHash, nix.thunk(() => ({})), nix.thunk(() => ({ [nix.POS]: pos$30, hash: "", prof: "shadoko" })))),
+            [nix.POS]: $pos[30],
+            expr: nix.thunk(() => nix.app(normalizeHash, nix.thunk(() => ({ [nix.POS]: $pos[27], required: false })), nix.thunk(() => ({ [nix.POS]: $pos[28], hash: "", prof: "shadoko" })))),
+            expected: nix.thunk(() => nix.app(normalizeHash, nix.thunk(() => ({})), nix.thunk(() => ({ [nix.POS]: $pos[29], hash: "", prof: "shadoko" })))),
           })),
           testNormalizeNotRequiredPassthru: nix.thunk(() => ({
-            [nix.POS]: pos$35,
-            expr: nix.thunk(() => nix.app(normalizeHash, nix.thunk(() => ({ [nix.POS]: pos$32, required: false })), nix.thunk(() => ({ [nix.POS]: pos$33, "ga bu": "zo meu" })))),
-            expected: nix.thunk(() => ({ [nix.POS]: pos$34, "ga bu": "zo meu" })),
+            [nix.POS]: $pos[34],
+            expr: nix.thunk(() => nix.app(normalizeHash, nix.thunk(() => ({ [nix.POS]: $pos[31], required: false })), nix.thunk(() => ({ [nix.POS]: $pos[32], "ga bu": "zo meu" })))),
+            expected: nix.thunk(() => ({ [nix.POS]: $pos[33], "ga bu": "zo meu" })),
           })),
           testOptionalArg: nix.thunk(() => ({
-            [nix.POS]: pos$38,
+            [nix.POS]: $pos[37],
             expr: nix.thunk(() => nix.app(withNormalizedHash, nix.thunk(() => ({})), nix.lambda((args) => (() => {
                 const $ = nix.formals(args, formals$2);
                 const args_1 = args;
                 const outputHash = nix.argOr($, "outputHash", () => "");
                 const outputHashAlgo = nix.argOr($, "outputHashAlgo", () => null);
                 return nix.force(args_1);
-              })(), formals$2), nix.thunk(() => ({ [nix.POS]: pos$36, author: "Jacques Rouxel" })))),
-            expected: nix.thunk(() => ({ [nix.POS]: pos$37, author: "Jacques Rouxel" })),
+              })(), formals$2), nix.thunk(() => ({ [nix.POS]: $pos[35], author: "Jacques Rouxel" })))),
+            expected: nix.thunk(() => ({ [nix.POS]: $pos[36], author: "Jacques Rouxel" })),
           })),
           testOptionalArgMetadata: nix.thunk(() => ({
-            [nix.POS]: pos$40,
+            [nix.POS]: $pos[39],
             expr: nix.thunk(() => nix.app(functionArgs, nix.thunk(() => nix.app(withNormalizedHash, nix.thunk(() => ({})), nix.lambda((args) => (() => {
                   const $ = nix.formals(args, formals$3);
                   const outputHash = nix.argOr($, "outputHash", () => "");
                   const outputHashAlgo = nix.argOr($, "outputHashAlgo", () => null);
                   return {};
                 })(), formals$3))))),
-            expected: nix.thunk(() => ({ [nix.POS]: pos$39, hash: true })),
+            expected: nix.thunk(() => ({ [nix.POS]: $pos[38], hash: true })),
           })),
           testPreservesArgsMetadata: nix.thunk(() => ({
-            [nix.POS]: pos$42,
+            [nix.POS]: $pos[41],
             expr: nix.thunk(() => nix.app(functionArgs, nix.thunk(() => nix.app(withNormalizedHash, nix.thunk(() => ({})), nix.lambda((args) => (() => {
                   const $ = nix.formals(args, formals$4);
                   const outputHash = nix.arg($, "outputHash");
@@ -170,7 +128,7 @@ export default nix.thunk(() => (() => {
                   const pumping = nix.argOr($, "pumping", () => true);
                   return {};
                 })(), formals$4))))),
-            expected: nix.thunk(() => ({ [nix.POS]: pos$41, hash: false, pumping: true })),
+            expected: nix.thunk(() => ({ [nix.POS]: $pos[40], hash: false, pumping: true })),
           })),
           testRejectsMissingHashArg: nix.thunk(() => nix.app(testingThrow, nix.thunk(() => nix.app(withNormalizedHash, nix.thunk(() => ({})), nix.lambda((args) => (() => {
                 const $ = nix.formals(args, formals$5);

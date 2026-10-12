@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["mainProgram", 72, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["postPatch", 21, 3], ["vendorHash", 28, 3], ["nativeBuildInputs", 30, 3], ["subPackages", 35, 3], ["ldflags", 37, 3], ["postBuild", 43, 3], ["nativeCheckInputs", 47, 3], ["checkPhase", 49, 3], ["postInstall", 56, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, perl: false, file: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["mainProgram", 72, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["postPatch", 21, 3], ["vendorHash", 28, 3], ["nativeBuildInputs", 30, 3], ["subPackages", 35, 3], ["ldflags", 37, 3], ["postBuild", 43, 3], ["nativeCheckInputs", 47, 3], ["checkPhase", 49, 3], ["postInstall", 56, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const file = nix.arg($, "file");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "holo-build",
       version: "1.6.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "holocm",
           repo: "holo-build",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +47,7 @@ bash test/interface/run_tests.sh
 `),
       postInstall: "installManPage build/man/*\ninstallShellCompletion --bash --name holo-build util/autocomplete.bash\ninstallShellCompletion --zsh --name _holo-build util/autocomplete.zsh\n\n# install wrapper script\nmkdir -p $out/lib/holo\nmv $out/bin/holo-build $out/lib/holo/holo-build\ncp src/holo-build.sh $out/bin/holo-build\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Cross-distribution system package compiler",
         homepage: "https://holocm.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

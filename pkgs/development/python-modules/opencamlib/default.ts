@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["CMAKE_ARGS", 51, 7]], [["homepage", 67, 5], ["description", 68, 5], ["license", 70, 5], ["maintainers", 71, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["build-system", 31, 3], ["buildInputs", 35, 3], ["nativeBuildInputs", 40, 3], ["postPatch", 45, 3], ["dontUseCmakeConfigure", 50, 3], ["env", 51, 3], ["pythonImportsCheck", 53, 3], ["checkPhase", 55, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "scikit-build-core": false, cmake: false, ninja: false, stdenv: false, llvmPackages: false, boost: false, python: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["CMAKE_ARGS", 51, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 67, 5], ["description", 68, 5], ["license", 70, 5], ["maintainers", 71, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["build-system", 31, 3], ["buildInputs", 35, 3], ["nativeBuildInputs", 40, 3], ["postPatch", 45, 3], ["dontUseCmakeConfigure", 50, 3], ["env", 51, 3], ["pythonImportsCheck", 53, 3], ["checkPhase", 55, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "2023.01.11";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "aewallin",
           repo: "opencamlib",
           tag: version,
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
 `);
       const dontUseCmakeConfigure = true;
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         CMAKE_ARGS: nix.thunk(() => nix.str`-DVERSION_STRING=${version} -DBoost_USE_STATIC_LIBS=OFF`),
       }));
       const pythonImportsCheck = nix.thunk(() => ["opencamlib"]);
@@ -54,7 +51,7 @@ popd
 runHook postCheck
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/aewallin/opencamlib",
         description: "Open source computer aided manufacturing algorithms library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
@@ -64,7 +61,7 @@ runHook postCheck
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

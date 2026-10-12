@@ -2,97 +2,77 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/phosh.nix", [[["maintainers", 8, 5]], [["isNormalUser", 16, 11], ["password", 17, 11]], [["nixos", 15, 21]], [["users", 15, 15]], [["scale", 27, 15]], [["Virtual-1", 26, 21]], [["outputs", 26, 13]], [["enable", 21, 11], ["user", 22, 11], ["group", 23, 11], ["phocConfig", 25, 11]], [["phosh", 20, 33]], [["desktopManager", 20, 18]], [["systemPackages", 32, 21]], [["WLR_RENDERER", 39, 13]], [["environment", 37, 11]], [["phosh", 36, 26]], [["services", 36, 17]], [["x", 44, 11], ["y", 45, 11]], [["options", 47, 29]], [["resolution", 43, 24], ["qemu", 47, 24]], [["users", 15, 9], ["services", 20, 9], ["environment", 32, 9], ["systemd", 36, 9], ["virtualisation", 43, 9]], [["phone", 12, 5]], [["name", 6, 3], ["meta", 7, 3], ["nodes", 11, 3], ["enableOCR", 51, 3], ["testScript", 53, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/phosh.nix", [["maintainers", 8, 5]]);
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/phosh.nix", [["isNormalUser", 16, 11], ["password", 17, 11]]);
-const pos$3 = nix.positions(here + "/phosh.nix", [["nixos", 15, 21]]);
-const pos$4 = nix.positions(here + "/phosh.nix", [["users", 15, 15]]);
-const pos$5 = nix.positions(here + "/phosh.nix", [["scale", 27, 15]]);
-const pos$6 = nix.positions(here + "/phosh.nix", [["Virtual-1", 26, 21]]);
-const pos$7 = nix.positions(here + "/phosh.nix", [["outputs", 26, 13]]);
-const pos$8 = nix.positions(here + "/phosh.nix", [["enable", 21, 11], ["user", 22, 11], ["group", 23, 11], ["phocConfig", 25, 11]]);
-const pos$9 = nix.positions(here + "/phosh.nix", [["phosh", 20, 33]]);
-const pos$10 = nix.positions(here + "/phosh.nix", [["desktopManager", 20, 18]]);
-const pos$11 = nix.positions(here + "/phosh.nix", [["systemPackages", 32, 21]]);
-const pos$12 = nix.positions(here + "/phosh.nix", [["WLR_RENDERER", 39, 13]]);
-const pos$13 = nix.positions(here + "/phosh.nix", [["environment", 37, 11]]);
-const pos$14 = nix.positions(here + "/phosh.nix", [["phosh", 36, 26]]);
-const pos$15 = nix.positions(here + "/phosh.nix", [["services", 36, 17]]);
-const pos$16 = nix.positions(here + "/phosh.nix", [["x", 44, 11], ["y", 45, 11]]);
-const pos$17 = nix.positions(here + "/phosh.nix", [["options", 47, 29]]);
-const pos$18 = nix.positions(here + "/phosh.nix", [["resolution", 43, 24], ["qemu", 47, 24]]);
-const pos$19 = nix.positions(here + "/phosh.nix", [["users", 15, 9], ["services", 20, 9], ["environment", 32, 9], ["systemd", 36, 9], ["virtualisation", 43, 9]]);
-const pos$20 = nix.positions(here + "/phosh.nix", [["phone", 12, 5]]);
-const pos$21 = nix.positions(here + "/phosh.nix", [["name", 6, 3], ["meta", 7, 3], ["nodes", 11, 3], ["enableOCR", 51, 3], ["testScript", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const pin = "1234";
   return {
-    [nix.POS]: pos$21,
+    [nix.POS]: $pos[20],
     name: "phosh",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "zhaofengli"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$20,
+      [nix.POS]: $pos[19],
       phone: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$19,
+          [nix.POS]: $pos[18],
           users: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$3,
-              nixos: nix.thunk(() => ({ [nix.POS]: pos$2, isNormalUser: true, password: pin })),
+              [nix.POS]: $pos[2],
+              nixos: nix.thunk(() => ({ [nix.POS]: $pos[1], isNormalUser: true, password: pin })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             desktopManager: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               phosh: nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 enable: true,
                 user: "nixos",
                 group: "users",
                 phocConfig: nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   outputs: nix.thunk(() => ({
-                    [nix.POS]: pos$6,
-                    "Virtual-1": nix.thunk(() => ({ [nix.POS]: pos$5, scale: 2n })),
+                    [nix.POS]: $pos[5],
+                    "Virtual-1": nix.thunk(() => ({ [nix.POS]: $pos[4], scale: 2n })),
                   })),
                 })),
               })),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "phosh-mobile-settings"))]),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               phosh: nix.thunk(() => ({
-                [nix.POS]: pos$13,
-                environment: nix.thunk(() => ({ [nix.POS]: pos$12, WLR_RENDERER: "pixman" })),
+                [nix.POS]: $pos[12],
+                environment: nix.thunk(() => ({ [nix.POS]: $pos[11], WLR_RENDERER: "pixman" })),
               })),
             })),
           })),
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$18,
-            resolution: nix.thunk(() => ({ [nix.POS]: pos$16, x: 720n, y: 1440n })),
+            [nix.POS]: $pos[17],
+            resolution: nix.thunk(() => ({ [nix.POS]: $pos[15], x: 720n, y: 1440n })),
             qemu: nix.thunk(() => ({
-              [nix.POS]: pos$17,
+              [nix.POS]: $pos[16],
               options: nix.thunk(() => ["-vga none -device virtio-gpu-pci,xres=720,yres=1440"]),
             })),
           })),

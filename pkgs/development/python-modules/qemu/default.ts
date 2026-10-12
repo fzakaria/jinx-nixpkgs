@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["homepage", 52, 5], ["description", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["prePatch", 18, 3], ["preConfigure", 23, 3], ["build-system", 31, 3], ["dependencies", 33, 3], ["checkPhase", 37, 3], ["pythonImportsCheck", 43, 3], ["preFixup", 45, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, qemu: false, setuptools: false, fuseSupport: true, fusepy: false, "qemu-qmp": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["homepage", 52, 5], ["description", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["prePatch", 18, 3], ["preConfigure", 23, 3], ["build-system", 31, 3], ["dependencies", 33, 3], ["checkPhase", 37, 3], ["pythonImportsCheck", 43, 3], ["preFixup", 45, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const fusepy = nix.arg($, "fusepy");
   const qemu_qmp = nix.arg($, "qemu-qmp");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "qemu",
       version: "0.6.1.0a1",
       pyproject: true,
@@ -29,7 +28,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["qemu"]),
       preFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(fuseSupport)), "rm $out/bin/qom-fuse\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: "https://www.qemu.org/",
         description: "Python tooling used by the QEMU project to build, configure, and test QEMU",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

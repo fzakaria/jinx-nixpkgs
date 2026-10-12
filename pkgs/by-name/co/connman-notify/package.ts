@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["description", 43, 5], ["mainProgram", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["platforms", 47, 5], ["maintainers", 48, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["pyproject", 21, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 28, 3], ["pythonPath", 30, 3], ["strictDeps", 35, 3], ["installPhase", 37, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitLab: false, python3Packages: false, glib: false, "gobject-introspection": false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 43, 5], ["mainProgram", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["platforms", 47, 5], ["maintainers", 48, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["pyproject", 21, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 28, 3], ["pythonPath", 30, 3], ["strictDeps", 35, 3], ["installPhase", 37, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const gobject_introspection = nix.arg($, "gobject-introspection");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "connman-notify",
       version: "2019-10-05",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "wavexx",
           repo: "connman-notify",
           rev: "24b10a51721b54d932f4cd61ef2756423768c015",
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: false,
       installPhase: "install -D -t $out/bin connman-notify\ninstall -D -t $out/share/doc README.rst\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Desktop notification integration for connman",
         mainProgram: "connman-notify",
         homepage: "https://gitlab.com/wavexx/connman-notify",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["pname", 17, 54], ["version", 17, 60], ["src", 17, 68]], [["updateScript", 37, 12]], [["homepage", 40, 5], ["description", 41, 5], ["license", 42, 5], ["sourceProvenance", 43, 5], ["mainProgram", 44, 5], ["changelog", 45, 5], ["platforms", 46, 5], ["maintainers", 47, 5]], [["pname", 20, 11], ["version", 20, 17], ["src", 20, 25], ["nativeBuildInputs", 22, 3], ["extraInstallCommands", 24, 3], ["extraPkgs", 35, 3], ["passthru", 37, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, appimageTools: false, fetchurl: false, makeWrapper: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 17, 54], ["version", 17, 60], ["src", 17, 68]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 37, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 40, 5], ["description", 41, 5], ["license", 42, 5], ["sourceProvenance", 43, 5], ["mainProgram", 44, 5], ["changelog", 45, 5], ["platforms", 46, 5], ["maintainers", 47, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 11], ["version", 20, 17], ["src", 20, 25], ["nativeBuildInputs", 22, 3], ["extraInstallCommands", 24, 3], ["extraPkgs", 35, 3], ["passthru", 37, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const pname = "protonup-qt";
   const version = "2.15.1";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://github.com/DavidoTek/ProtonUp-Qt/releases/download/v${version}/ProtonUp-Qt-${version}-x86_64.AppImage`),
       hash: "sha256-/Xjvsf+gkHpSV4RGJJS5tCk4+f18AZ8+rqO4+vg36ME=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[1], pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: pname,
       version: version,
       src: src,
@@ -44,11 +40,11 @@ wrapProgram $out/bin/protonup-qt \\
         return [nix.thunk(() => nix.lookup(w, "zstd"))];
       })(),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://davidotek.github.io/protonup-qt/",
         description: "Install and manage Proton-GE and Luxtorpeda for Steam and Wine-GE for Lutris with this graphical user interface",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

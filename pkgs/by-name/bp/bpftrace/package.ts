@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]], [["bpf", 78, 26]], [["tests", 77, 12]], [["description", 82, 5], ["homepage", 83, 5], ["changelog", 84, 5], ["mainProgram", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["platforms", 94, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["buildInputs", 35, 3], ["nativeBuildInputs", 47, 3], ["cmakeFlags", 57, 3], ["postInstall", 65, 3], ["outputs", 72, 3], ["passthru", 77, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, llvmPackages: false, elfutils: false, bcc: false, libbpf: false, libbfd: false, libopcodes: false, glibc: false, cereal: false, asciidoctor: false, cmake: false, "pkg-config": false, flex: false, bison: false, "util-linux": false, xxd: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["bpf", 78, 26]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 77, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 82, 5], ["homepage", 83, 5], ["changelog", 84, 5], ["mainProgram", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["platforms", 94, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["buildInputs", 35, 3], ["nativeBuildInputs", 47, 3], ["cmakeFlags", 57, 3], ["postInstall", 65, 3], ["outputs", 72, 3], ["passthru", 77, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const pname = "bpftrace";
       const version = "0.27.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bpftrace",
           repo: "bpftrace",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -72,11 +68,11 @@ export default nix.lambda((args) => (() => {
       const postInstall = "ln -sr $out/share/bpftrace/tools/*.bt $out/bin/\n# do not use /usr/bin/env for shipped tools\n# If someone can get patchShebangs to work here please fix.\nsed -i -e \"1s:#!/usr/bin/env bpftrace:#!$out/bin/bpftrace:\" $out/share/bpftrace/tools/*.bt\n";
       const outputs = nix.thunk(() => ["out", "man"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, bpf: nix.thunk(() => nix.attr(nixosTests, "bpf")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], bpf: nix.thunk(() => nix.attr(nixosTests, "bpf")) })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "High-level tracing language for Linux eBPF",
         homepage: "https://github.com/bpftrace/bpftrace",
         changelog: nix.thunk(() => nix.str`https://github.com/bpftrace/bpftrace/releases/tag/v${version}`),
@@ -95,7 +91,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["owner", 69, 7], ["repo", 70, 7], ["rev", 71, 7], ["hash", 72, 7]], [["ddcbc-api", 68, 5], ["updateScript", 75, 5]], [["description", 79, 5], ["homepage", 80, 5], ["changelog", 81, 5], ["license", 82, 5], ["maintainers", 83, 5], ["platforms", 84, 28], ["mainProgram", 85, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 28, 3], ["strictDeps", 37, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 45, 3], ["postBuild", 51, 3], ["postInstall", 53, 3], ["passthru", 67, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, ddcutil: false, fetchFromGitHub: false, gtk4: false, installShellFiles: false, wrapGAppsHook4: false, libadwaita: false, "nix-update-script": false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 69, 7], ["repo", 70, 7], ["rev", 71, 7], ["hash", 72, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["ddcbc-api", 68, 5], ["updateScript", 75, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 79, 5], ["homepage", 80, 5], ["changelog", 81, 5], ["license", 82, 5], ["maintainers", 83, 5], ["platforms", 84, 28], ["mainProgram", 85, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 28, 3], ["strictDeps", 37, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 45, 3], ["postBuild", 51, 3], ["postInstall", 53, 3], ["passthru", 67, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "luminance",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sidevesh",
           repo: "Luminance",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,9 +41,9 @@ substituteInPlace build.sh \\
       postBuild: "./build.sh",
       postInstall: "mv build/app com.sidevesh.Luminance\ninstallBin com.sidevesh.Luminance\n\ninstall -Dm644 install_files/44-backlight-permissions.rules -t $out/lib/udev/rules.d\ninstall -Dm644 install_files/com.sidevesh.Luminance.desktop -t $out/share/applications\ninstall -Dm644 install_files/com.sidevesh.Luminance.gschema.xml -t $out/share/glib-2.0/schemas\n\nglib-compile-schemas $out/share/glib-2.0/schemas\n\nmv icons $out/share/icons\nrm $out/share/icons/com.sidevesh.luminance.Source.svg\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         "ddcbc-api": nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             owner: "ahshabbir",
             repo: "ddcbc-api",
             rev: "f54500284fcfc2f140d5ae01df779f3f47c9b563",
@@ -58,7 +54,7 @@ substituteInPlace build.sh \\
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ddcutil, "meta"));
         return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Simple GTK application to control brightness of displays including external displays supporting DDC/CI",
         homepage: "https://github.com/sidevesh/Luminance",
         changelog: nix.thunk(() => nix.str`https://github.com/sidevesh/Luminance/releases/tag/${nix.sel(finalAttrs, "version")}`),

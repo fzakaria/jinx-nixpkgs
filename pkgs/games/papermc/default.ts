@@ -2,10 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 18, 23], ["version", 18, 27], ["hash", 18, 35], ["jre", 19, 7]], [["name", 16, 5], ["value", 17, 5]], [["papermc", 26, 5]]]);
 const formals$1 = { args: { callPackage: false, javaPackages: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 18, 23], ["version", 18, 27], ["hash", 18, 35], ["jre", 19, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 16, 5], ["value", 17, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["papermc", 26, 5]]);
 
 export default nix.thunk(() => (() => {
   const versions = nix.thunk(() => nix.builtins.fromJSON(nix.thunk(() => nix.builtins.readFile(nix.path(here, "./versions.json")))));
@@ -18,10 +16,10 @@ export default nix.thunk(() => (() => {
     const escapeVersion = nix.thunk(() => nix.app(nix.builtins.replaceStrings, nix.thunk(() => ["."]), nix.thunk(() => ["_"])));
     const getJavaVersion = (v) => nix.sel(nix.builtins.getAttr(nix.thunk(() => nix.str`openjdk${nix.builtins.toString(v)}`), nix.thunk(() => nix.sel(javaPackages, "compiler"))), "headless");
     const packages = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (version) => (value) => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name: nix.thunk(() => nix.str`papermc-${nix.app(escapeVersion, version)}`),
         value: nix.thunk(() => nix.app(callPackage, nix.path(here, "./derivation.nix"), nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.attr(value, "url")),
             version: nix.thunk(() => nix.attr(value, "version")),
             hash: nix.thunk(() => nix.attr(value, "hash")),
@@ -29,7 +27,7 @@ export default nix.thunk(() => (() => {
           })))),
       }), versions));
     return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.update(packages, {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         papermc: nix.thunk(() => nix.builtins.getAttr(nix.thunk(() => nix.str`papermc-${nix.app(escapeVersion, latestVersion)}`), packages)),
       })));
   })(), formals$1);

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["sha256", 22, 5]], [["deconz", 84, 36]], [["tests", 84, 5]], [["description", 88, 5], ["homepage", 89, 5], ["license", 90, 5], ["platforms", 91, 5], ["sourceProvenance", 92, 5], ["maintainers", 93, 5], ["mainProgram", 94, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 32, 3], ["unpackPhase", 38, 3], ["installPhase", 46, 3], ["passthru", 83, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, qt5: false, dpkg: false, autoPatchelfHook: false, openssl: false, libredirect: false, makeWrapper: false, gzip: false, gnutar: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["deconz", 84, 36]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 84, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 88, 5], ["homepage", 89, 5], ["license", 90, 5], ["platforms", 91, 5], ["sourceProvenance", 92, 5], ["maintainers", 93, 5], ["mainProgram", 94, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 32, 3], ["unpackPhase", 38, 3], ["installPhase", 46, 3], ["passthru", 83, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "deconz";
       const version = "2.32.5";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://deconz.dresden-elektronik.de/ubuntu/beta/deconz-${version}-qt5.deb`),
           sha256: "sha256-57HS7x76qLBfBGuYu8gEXqVTLldLz/ixg4fE6+LnIzI=",
         }))));
@@ -74,11 +70,11 @@ done
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, deconz: nix.thunk(() => nix.attr(nixosTests, "deconz")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], deconz: nix.thunk(() => nix.attr(nixosTests, "deconz")) })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Manage Zigbee network with ConBee, ConBee II or RaspBee hardware",
         homepage: "https://www.dresden-elektronik.com/wireless/software/deconz.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -94,7 +90,7 @@ runHook postInstall
         mainProgram: "deCONZ",
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

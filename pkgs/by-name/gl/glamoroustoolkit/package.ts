@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 33, 5], ["sha256", 34, 5]], [["url", 42, 5], ["stripRoot", 43, 5], ["hash", 44, 5]], [["name", 61, 7], ["desktopName", 62, 7], ["exec", 63, 7], ["icon", 64, 7]], [["homepage", 143, 5], ["description", 144, 5], ["license", 145, 5], ["maintainers", 146, 5], ["platforms", 147, 5], ["sourceProvenance", 148, 5]], [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["nativeBuildInputs", 47, 3], ["sourceRoot", 52, 3], ["dontConfigure", 54, 3], ["dontBuild", 55, 3], ["dontPatchELF", 56, 3], ["dontStrip", 57, 3], ["desktopItems", 59, 3], ["installPhase", 68, 3], ["preFixup", 80, 3], ["meta", 142, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchzip: false, wrapGAppsHook3: false, cairo: false, copyDesktopItems: false, dbus: false, fontconfig: false, freetype: false, glib: false, gtk3: false, libx11: false, libxcursor: false, libxext: false, libxi: false, libxrandr: false, libxrender: false, libxkbcommon: false, libgit2: false, libglvnd: false, libuuid: false, libxcb: false, makeDesktopItem: false, harfbuzz: false, libsoup_3: false, webkitgtk_4_1: false, zenity: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 33, 5], ["sha256", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 42, 5], ["stripRoot", 43, 5], ["hash", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 61, 7], ["desktopName", 62, 7], ["exec", 63, 7], ["icon", 64, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 143, 5], ["description", 144, 5], ["license", 145, 5], ["maintainers", 146, 5], ["platforms", 147, 5], ["sourceProvenance", 148, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["nativeBuildInputs", 47, 3], ["sourceRoot", 52, 3], ["dontConfigure", 54, 3], ["dontBuild", 55, 3], ["dontPatchELF", 56, 3], ["dontStrip", 57, 3], ["desktopItems", 59, 3], ["installPhase", 68, 3], ["preFixup", 80, 3], ["meta", 142, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,16 +36,16 @@ export default nix.lambda((args) => (() => {
   const webkitgtk_4_1 = nix.arg($, "webkitgtk_4_1");
   const zenity = nix.arg($, "zenity");
   const gkIcon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://gist.githubusercontent.com/qbit/cb52e6cd193c410e0b0aee8a216f6574/raw/2b042bde1dc4cbd30457f14c9d18c889444bf3d0/glamoroustoolkit.svg",
       sha256: "sha256-Trfo8P01anLq9yTFzwqIfsyidLGyuZDg48YQPrGBkgs=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "glamoroustoolkit",
       version: "1.1.70",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://github.com/feenkcom/gtoolkit-vm/releases/download/v${nix.sel(finalAttrs, "version")}/GlamorousToolkit-x86_64-unknown-linux-gnu.zip`),
           stripRoot: false,
           hash: "sha256-ftMHM+uePoS7CYCSQDwe+rXjpu/HR7G3twbmo5IFuWE=",
@@ -64,7 +60,7 @@ export default nix.lambda((args) => (() => {
         const w = nix.withScope(finalAttrs, null);
         return [
           nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               name: nix.thunk(() => nix.lookup(w, "pname")),
               desktopName: "GlamorousToolkit",
               exec: "GlamorousToolkit",
@@ -140,7 +136,7 @@ gappsWrapperArgs+=(
 `;
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://gtoolkit.com",
         description: "GlamorousToolkit Development Environment",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

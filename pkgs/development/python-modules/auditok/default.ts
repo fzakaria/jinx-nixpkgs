@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 19, 26], ["pname", 20, 5], ["hash", 21, 5]], [["skipBulkUpdate", 44, 12]], [["description", 47, 5], ["mainProgram", 48, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["license", 51, 5], ["maintainers", 52, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 24, 3], ["dependencies", 26, 3], ["nativeCheckInputs", 33, 3], ["unittestFlagsArray", 35, 3], ["pythonImportsCheck", 40, 3], ["passthru", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, fetchPypi: false, lib: false, matplotlib: false, numpy: false, pyaudio: false, pydub: false, setuptools: false, unittestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 19, 26], ["pname", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["skipBulkUpdate", 44, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 47, 5], ["mainProgram", 48, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["license", 51, 5], ["maintainers", 52, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 24, 3], ["dependencies", 26, 3], ["nativeCheckInputs", 33, 3], ["unittestFlagsArray", 35, 3], ["pythonImportsCheck", 40, 3], ["passthru", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const unittestCheckHook = nix.arg($, "unittestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "auditok",
       version: "0.1.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "auditok",
           hash: "sha256-HNsw9VLP7XEgs8E2X6p7ygDM47AwWxMYjptipknFig4=",
@@ -35,9 +32,9 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [unittestCheckHook]),
       unittestFlagsArray: nix.thunk(() => ["-s", "tests"]),
       pythonImportsCheck: nix.thunk(() => ["auditok"]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, skipBulkUpdate: true })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], skipBulkUpdate: true })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Audio Activity Detection tool that can process online data as well as audio files",
         mainProgram: "auditok",
         homepage: "https://github.com/amsehili/auditok/",

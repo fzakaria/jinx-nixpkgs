@@ -2,17 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["type", 15, 11], ["default", 16, 11], ["description", 17, 11]], [["enable", 14, 25]], [["bar", 14, 21]], [["foo", 14, 17]], [["options", 14, 9]], [["modules", 12, 5]], [["options", 26, 20]], [["extraArgs", 42, 11]], [["commonMarkDefault", 40, 9], ["commonMarkAnchors", 41, 9]], [["commonMark", 37, 3]]]);
 const formals$1 = { args: { lib: false, nixosOptionsDoc: false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tests.nix", [["type", 15, 11], ["default", 16, 11], ["description", 17, 11]]);
-const pos$2 = nix.positions(here + "/tests.nix", [["enable", 14, 25]]);
-const pos$3 = nix.positions(here + "/tests.nix", [["bar", 14, 21]]);
-const pos$4 = nix.positions(here + "/tests.nix", [["foo", 14, 17]]);
-const pos$5 = nix.positions(here + "/tests.nix", [["options", 14, 9]]);
-const pos$6 = nix.positions(here + "/tests.nix", [["modules", 12, 5]]);
-const pos$7 = nix.positions(here + "/tests.nix", [["options", 26, 20]]);
-const pos$8 = nix.positions(here + "/tests.nix", [["extraArgs", 42, 11]]);
-const pos$9 = nix.positions(here + "/tests.nix", [["commonMarkDefault", 40, 9], ["commonMarkAnchors", 41, 9]]);
-const pos$10 = nix.positions(here + "/tests.nix", [["commonMark", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const eval$ = nix.thunk(() => nix.app(nix.sel(lib, "evalModules"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       modules: nix.thunk(() => [
         nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           options: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             foo: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               bar: nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                    [nix.POS]: pos$1,
+                    [nix.POS]: $pos[0],
                     type: nix.thunk(() => nix.sel(types, "bool")),
                     default: false,
                     description: "Enable the foo bar feature.\n",
@@ -44,14 +35,14 @@ export default nix.lambda((args) => (() => {
         })),
       ]),
     }))));
-  const doc = nix.thunk(() => nix.app(nixosOptionsDoc, nix.thunk(() => ({ [nix.POS]: pos$7, options: nix.thunk(() => nix.attr(eval$, "options")) }))));
+  const doc = nix.thunk(() => nix.app(nixosOptionsDoc, nix.thunk(() => ({ [nix.POS]: $pos[6], options: nix.thunk(() => nix.attr(eval$, "options")) }))));
   return {
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     commonMark: nix.thunk(() => nix.app(runCommand, "test-nixosOptionsDoc-commonMark", nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         commonMarkDefault: nix.thunk(() => nix.sel(doc, "optionsCommonMark")),
         commonMarkAnchors: nix.thunk(() => nix.app(nix.sel(doc, "optionsCommonMark", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             extraArgs: nix.thunk(() => ["--anchor-prefix", "my-opt-", "--anchor-style", "legacy"]),
           })))),
       })), "env | grep ^commonMark | sed -e 's/=/ = /'\n(\n  set -x\n  grep -F 'foo\\.bar\\.enable' $commonMarkDefault >/dev/null\n  grep -F '{#my-opt-foo.bar.enable}' $commonMarkAnchors >/dev/null\n)\ntouch $out\n")),

@@ -2,59 +2,41 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tandoor-recipes-media.nix", [[["GUNICORN_MEDIA", 11, 9]], [["enable", 7, 7], ["extraConfig", 10, 7]], [["tandoor-recipes", 6, 14]], [["stateVersion", 16, 14]], [["GUNICORN_MEDIA", 20, 11], ["MEDIA_ROOT", 22, 11]], [["enable", 18, 9], ["extraConfig", 19, 9]], [["tandoor-recipes", 17, 16]], [["system", 16, 7], ["services", 17, 7]], [["configuration", 15, 31]], [["stateVersion", 28, 14]], [["GUNICORN_MEDIA", 32, 11], ["MEDIA_ROOT", 33, 11]], [["enable", 30, 9], ["extraConfig", 31, 9]], [["tandoor-recipes", 29, 16]], [["system", 28, 7], ["services", 29, 7]], [["configuration", 27, 44]], [["oldVersion", 15, 20], ["oldVersionOverrideMedia", 27, 20]], [["services", 6, 5], ["specialisation", 15, 5]], [["machine", 5, 9]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 39, 3]]]);
 const formals$1 = { args: {  }, ellipsis: true };
-const pos$1 = nix.positions(here + "/tandoor-recipes-media.nix", [["GUNICORN_MEDIA", 11, 9]]);
-const pos$2 = nix.positions(here + "/tandoor-recipes-media.nix", [["enable", 7, 7], ["extraConfig", 10, 7]]);
-const pos$3 = nix.positions(here + "/tandoor-recipes-media.nix", [["tandoor-recipes", 6, 14]]);
-const pos$4 = nix.positions(here + "/tandoor-recipes-media.nix", [["stateVersion", 16, 14]]);
-const pos$5 = nix.positions(here + "/tandoor-recipes-media.nix", [["GUNICORN_MEDIA", 20, 11], ["MEDIA_ROOT", 22, 11]]);
-const pos$6 = nix.positions(here + "/tandoor-recipes-media.nix", [["enable", 18, 9], ["extraConfig", 19, 9]]);
-const pos$7 = nix.positions(here + "/tandoor-recipes-media.nix", [["tandoor-recipes", 17, 16]]);
-const pos$8 = nix.positions(here + "/tandoor-recipes-media.nix", [["system", 16, 7], ["services", 17, 7]]);
-const pos$9 = nix.positions(here + "/tandoor-recipes-media.nix", [["configuration", 15, 31]]);
-const pos$10 = nix.positions(here + "/tandoor-recipes-media.nix", [["stateVersion", 28, 14]]);
-const pos$11 = nix.positions(here + "/tandoor-recipes-media.nix", [["GUNICORN_MEDIA", 32, 11], ["MEDIA_ROOT", 33, 11]]);
-const pos$12 = nix.positions(here + "/tandoor-recipes-media.nix", [["enable", 30, 9], ["extraConfig", 31, 9]]);
-const pos$13 = nix.positions(here + "/tandoor-recipes-media.nix", [["tandoor-recipes", 29, 16]]);
-const pos$14 = nix.positions(here + "/tandoor-recipes-media.nix", [["system", 28, 7], ["services", 29, 7]]);
-const pos$15 = nix.positions(here + "/tandoor-recipes-media.nix", [["configuration", 27, 44]]);
-const pos$16 = nix.positions(here + "/tandoor-recipes-media.nix", [["oldVersion", 15, 20], ["oldVersionOverrideMedia", 27, 20]]);
-const pos$17 = nix.positions(here + "/tandoor-recipes-media.nix", [["services", 6, 5], ["specialisation", 15, 5]]);
-const pos$18 = nix.positions(here + "/tandoor-recipes-media.nix", [["machine", 5, 9]]);
 const formals$2 = { args: { nodes: false }, ellipsis: true };
-const pos$19 = nix.positions(here + "/tandoor-recipes-media.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    [nix.POS]: pos$19,
+    [nix.POS]: $pos[18],
     name: "tandoor-recipes-media",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "tandoor-recipes": nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             enable: true,
-            extraConfig: nix.thunk(() => ({ [nix.POS]: pos$1, GUNICORN_MEDIA: true })),
+            extraConfig: nix.thunk(() => ({ [nix.POS]: $pos[0], GUNICORN_MEDIA: true })),
           })),
         })),
         specialisation: nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           oldVersion: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             configuration: nix.thunk(() => ({
-              [nix.POS]: pos$8,
-              system: nix.thunk(() => ({ [nix.POS]: pos$4, stateVersion: "25.11" })),
+              [nix.POS]: $pos[7],
+              system: nix.thunk(() => ({ [nix.POS]: $pos[3], stateVersion: "25.11" })),
               services: nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 "tandoor-recipes": nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   enable: true,
                   extraConfig: nix.thunk(() => ({
-                    [nix.POS]: pos$5,
+                    [nix.POS]: $pos[4],
                     GUNICORN_MEDIA: true,
                     MEDIA_ROOT: "/var/lib/tandoor-recipes",
                   })),
@@ -63,17 +45,17 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           oldVersionOverrideMedia: nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             configuration: nix.thunk(() => ({
-              [nix.POS]: pos$14,
-              system: nix.thunk(() => ({ [nix.POS]: pos$10, stateVersion: "25.11" })),
+              [nix.POS]: $pos[13],
+              system: nix.thunk(() => ({ [nix.POS]: $pos[9], stateVersion: "25.11" })),
               services: nix.thunk(() => ({
-                [nix.POS]: pos$13,
+                [nix.POS]: $pos[12],
                 "tandoor-recipes": nix.thunk(() => ({
-                  [nix.POS]: pos$12,
+                  [nix.POS]: $pos[11],
                   enable: true,
                   extraConfig: nix.thunk(() => ({
-                    [nix.POS]: pos$11,
+                    [nix.POS]: $pos[10],
                     GUNICORN_MEDIA: true,
                     MEDIA_ROOT: "/var/lib/tandoor-recipes/media",
                   })),

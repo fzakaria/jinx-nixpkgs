@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 47, 5], ["repo", 48, 5], ["tag", 49, 5], ["hash", 50, 5]], [["owner", 126, 7], ["repo", 127, 7], ["tag", 128, 7], ["hash", 129, 7]], [["roms", 125, 5], ["updateScript", 131, 5]], [["description", 146, 5], ["mainProgram", 147, 5], ["homepage", 148, 5], ["changelog", 149, 5], ["license", 150, 5], ["maintainers", 153, 5], ["platforms", 157, 5]], [["pname", 43, 3], ["version", 44, 3], ["src", 46, 3], ["patches", 53, 3], ["postPatch", 57, 3], ["nativeBuildInputs", 61, 3], ["buildInputs", 72, 3], ["cmakeFlags", 100, 3], ["postInstall", 110, 3], ["passthru", 124, 3], ["preFixup", 136, 3], ["meta", 145, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cmake: false, kdePackages: false, "pkg-config": false, makeWrapper: false, freetype: false, SDL2: false, glib: false, pcre2: false, openal: false, rtmidi: false, fluidsynth: false, jack2: false, "alsa-lib": false, qt5: false, libvncserver: false, "discord-gamesdk": false, libpcap: false, libslirp: false, libserialport: false, wayland: false, "wayland-scanner": false, libsndfile: false, flac: false, libogg: false, libvorbis: false, libopus: false, libmpg123: false, libgcrypt: false, enableDynarec: true, enableNewDynarec: true, enableVncRenderer: true, enableWayland: true, unfreeEnableDiscord: true, unfreeEnableRoms: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 47, 5], ["repo", 48, 5], ["tag", 49, 5], ["hash", 50, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 126, 7], ["repo", 127, 7], ["tag", 128, 7], ["hash", 129, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["roms", 125, 5], ["updateScript", 131, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 146, 5], ["mainProgram", 147, 5], ["homepage", 148, 5], ["changelog", 149, 5], ["license", 150, 5], ["maintainers", 153, 5], ["platforms", 157, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 43, 3], ["version", 44, 3], ["src", 46, 3], ["patches", 53, 3], ["postPatch", 57, 3], ["nativeBuildInputs", 61, 3], ["buildInputs", 72, 3], ["cmakeFlags", 100, 3], ["postInstall", 110, 3], ["passthru", 124, 3], ["preFixup", 136, 3], ["meta", 145, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -52,11 +48,11 @@ export default nix.lambda((args) => (() => {
   const unfreeEnableDiscord = nix.argOr($, "unfreeEnableDiscord", () => false);
   const unfreeEnableRoms = nix.argOr($, "unfreeEnableRoms", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "86box",
       version: "6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "86Box",
           repo: "86Box",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -99,9 +95,9 @@ export default nix.lambda((args) => (() => {
 ln -s ${nix.sel(finalAttrs, "passthru", "roms")} $out/share/86Box/roms
 `)))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         roms: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             owner: "86Box",
             repo: "roms",
             tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -116,7 +112,7 @@ ln -s ${nix.sel(finalAttrs, "passthru", "roms")} $out/share/86Box/roms
 `;
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Emulator of x86-based machines based on PCem",
         mainProgram: "86Box",
         homepage: "https://86box.net/",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["sha256", 34, 5]], [["NIX_LDFLAGS", 37, 7]], [["description", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["platforms", 48, 5], ["homepage", 49, 5], ["downloadPage", 50, 5]], [["pname", 11, 3], ["version", 12, 3], ["buildInputs", 14, 3], ["propagatedBuildInputs", 18, 3], ["nativeBuildInputs", 20, 3], ["configureFlags", 22, 3], ["postInstall", 26, 3], ["src", 30, 3], ["env", 37, 3], ["patches", 39, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, cimg: false, imagemagick: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["sha256", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 37, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["platforms", 48, 5], ["homepage", 49, 5], ["downloadPage", 50, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["buildInputs", 14, 3], ["propagatedBuildInputs", 18, 3], ["nativeBuildInputs", 20, 3], ["configureFlags", 22, 3], ["postInstall", 26, 3], ["src", 30, 3], ["env", 37, 3], ["patches", 39, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const cimg = nix.arg($, "cimg");
   const imagemagick = nix.arg($, "imagemagick");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pHash",
       version: "0.9.6",
       buildInputs: nix.thunk(() => [cimg]),
@@ -27,16 +24,16 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`cp ${cimg}/include/CImg.h $out/include/
 `),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "clearscene",
           repo: "pHash",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           sha256: "sha256-frISiZ89ei7XfI5F2nJJehfQZsk0Mlb4n91q/AiZ2vA=",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_LDFLAGS: "-lfftw3_threads" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_LDFLAGS: "-lfftw3_threads" })),
       patches: nix.thunk(() => [nix.path(here, "./0001-proper-pthread-return-value.patch")]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Compute the perceptual hash of an image",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "imalsogreg"))]),

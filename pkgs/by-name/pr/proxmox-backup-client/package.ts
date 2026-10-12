@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["rev", 21, 5], ["name", 22, 5], ["hash", 23, 5]], [["url", 27, 5], ["rev", 28, 5], ["name", 29, 5], ["hash", 30, 5]], [["url", 34, 5], ["rev", 35, 5], ["name", 36, 5], ["hash", 37, 5]], [["url", 41, 5], ["rev", 42, 5], ["name", 43, 5], ["hash", 44, 5]], [["url", 48, 5], ["rev", 49, 5], ["name", 50, 5], ["hash", 51, 5]], [["lockFileContents", 113, 5]], [["RUSTFLAGS", 125, 5], ["REPOID", 127, 5]], [["description", 150, 5], ["homepage", 151, 5], ["changelog", 152, 5], ["license", 153, 5], ["maintainers", 154, 5], ["platforms", 158, 5], ["mainProgram", 159, 5]], [["pname", 56, 11], ["version", 56, 17], ["srcs", 58, 3], ["sourceRoot", 66, 3], ["cargoPatches", 70, 3], ["postPatch", 80, 3], ["postBuild", 92, 3], ["postInstall", 100, 3], ["cargoLock", 112, 3], ["cargoBuildFlags", 116, 3], ["env", 124, 3], ["doCheck", 130, 3], ["nativeBuildInputs", 132, 3], ["buildInputs", 139, 3], ["doInstallCheck", 145, 3], ["nativeInstallCheckInputs", 146, 3], ["versionCheckProgramArg", 147, 3], ["meta", 149, 3]]]);
 const formals$1 = { args: { lib: false, fetchgit: false, rustPlatform: false, pkgconf: false, openssl: false, fuse3: false, acl: false, installShellFiles: false, sphinx: false, stdenv: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["rev", 21, 5], ["name", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 27, 5], ["rev", 28, 5], ["name", 29, 5], ["hash", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 34, 5], ["rev", 35, 5], ["name", 36, 5], ["hash", 37, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 41, 5], ["rev", 42, 5], ["name", 43, 5], ["hash", 44, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 48, 5], ["rev", 49, 5], ["name", 50, 5], ["hash", 51, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["lockFileContents", 113, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["RUSTFLAGS", 125, 5], ["REPOID", 127, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 150, 5], ["homepage", 151, 5], ["changelog", 152, 5], ["license", 153, 5], ["maintainers", 154, 5], ["platforms", 158, 5], ["mainProgram", 159, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 56, 11], ["version", 56, 17], ["srcs", 58, 3], ["sourceRoot", 66, 3], ["cargoPatches", 70, 3], ["postPatch", 80, 3], ["postBuild", 92, 3], ["postInstall", 100, 3], ["cargoLock", 112, 3], ["cargoBuildFlags", 116, 3], ["env", 124, 3], ["doCheck", 130, 3], ["nativeBuildInputs", 132, 3], ["buildInputs", 139, 3], ["doInstallCheck", 145, 3], ["nativeInstallCheckInputs", 146, 3], ["versionCheckProgramArg", 147, 3], ["meta", 149, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,42 +21,42 @@ export default nix.lambda((args) => (() => {
   const pname = "proxmox-backup-client";
   const version = "4.2.0";
   const proxmox_backup_src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "git://git.proxmox.com/git/proxmox-backup.git",
       rev: "035c449897fafc228c8bbf3a5b5ba38564478ac7",
       name: "proxmox-backup",
       hash: "sha256-tfZXmMWQrP0MiBC1uuSenGaghqHi4ljky6T2KtLcjhk=",
     }))));
   const proxmox_src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: "git://git.proxmox.com/git/proxmox.git",
       rev: "22c4d5ecbfce6eb2fd566181e0b7d23ac2df4f0c",
       name: "proxmox",
       hash: "sha256-rYaLx6Lorry+NkEmc6/xARMY6ZgdnIaCLJqRA0Mnf8o=",
     }))));
   const proxmox_fuse_src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       url: "git://git.proxmox.com/git/proxmox-fuse.git",
       rev: "258788a3d66f7a77040a480170fff9890d4939aa",
       name: "proxmox-fuse",
       hash: "sha256-deEPxhg2uyswBYjgYrXcAEBByJ/4ptX7I9y0R3AAFA0=",
     }))));
   const proxmox_pxar_src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       url: "git://git.proxmox.com/git/pxar.git",
       rev: "091a8a382d0d6fc71025351fb35c51b1f3b0074d",
       name: "pxar",
       hash: "sha256-9SFlrz6nuVby6iQ2ELVaioZu2pcs90tSuyzLCWJlcrA=",
     }))));
   const proxmox_pathpatterns_src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       url: "git://git.proxmox.com/git/pathpatterns.git",
       rev: "42e5e96e30297da878a4d4b3a7fa52b65c1be0ab",
       name: "pathpatterns",
       hash: "sha256-U8EhTg/2iuArQvUNGNYrgVYn1T/jnxxqSKJxfsCMAjs=",
     }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: pname,
       version: version,
       srcs: nix.thunk(() => [
@@ -97,7 +89,7 @@ echo '!<arch>' >.dep-stubs/libcrypt.a
 `),
       postInstall: "installManPage docs/output/man/proxmox-backup-client.1\ninstallShellCompletion --cmd proxmox-backup-client \\\n  --bash debian/proxmox-backup-client.bc \\\n  --zsh zsh-completions/_proxmox-backup-client\n\ninstallManPage docs/output/man/pxar.1\ninstallShellCompletion --cmd pxar \\\n  --bash debian/pxar.bc \\\n  --zsh zsh-completions/_pxar\n",
       cargoLock: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         lockFileContents: nix.thunk(() => nix.builtins.readFile(nix.path(here, "./Cargo.lock"))),
       })),
       cargoBuildFlags: nix.thunk(() => [
@@ -108,7 +100,7 @@ echo '!<arch>' >.dep-stubs/libcrypt.a
         "--bin=pxar",
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         RUSTFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-L.dep-stubs"]))),
         REPOID: "",
       })),
@@ -124,7 +116,7 @@ echo '!<arch>' >.dep-stubs/libcrypt.a
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "version",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Command line client for Proxmox Backup Server",
         homepage: "https://pbs.proxmox.com/docs/backup-client.html",
         changelog: nix.thunk(() => nix.str`https://git.proxmox.com/?p=proxmox-backup.git;a=blob;f=debian/changelog;hb=${nix.sel(proxmox_backup_src, "rev")}`),

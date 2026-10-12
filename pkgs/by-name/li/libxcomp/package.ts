@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["sha256", 18, 5], ["url", 19, 5]], [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["platforms", 44, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["buildInputs", 22, 3], ["nativeBuildInputs", 28, 3], ["preAutoreconf", 33, 3], ["enableParallelBuilding", 38, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoreconfHook: false, "pkg-config": false, libjpeg: false, libpng: false, libx11: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["sha256", 18, 5], ["url", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["platforms", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["buildInputs", 22, 3], ["nativeBuildInputs", 28, 3], ["preAutoreconf", 33, 3], ["enableParallelBuilding", 38, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libxcomp",
       version: "3.5.99.16",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           sha256: "1m3z9w3h6qpgk265xf030w7lcs181jgw2cdyzshb7l97mn1f7hh2",
           url: nix.thunk(() => nix.str`https://code.x2go.org/releases/source/nx-libs/nx-libs-${nix.sel(finalAttrs, "version")}-lite.tar.gz`),
         })))),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       preAutoreconf: "cd nxcomp/\nsed -i 's|/src/.libs/libXcomp.a|/src/.libs/libXcomp.la|' test/Makefile.am\n",
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "NX compression library",
         homepage: "http://wiki.x2go.org/doku.php/wiki:libs:nx-libs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

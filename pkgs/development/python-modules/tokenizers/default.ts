@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 35, 7], ["hash", 36, 15]], [["albert-base-v1-tokenizer.json", 43, 7], ["bert-base-uncased-vocab.txt", 44, 7], ["bert-wiki.json", 45, 7], ["big.txt", 46, 7], ["openai-gpt-merges.txt", 47, 7], ["openai-gpt-vocab.json", 48, 7], ["roberta-base-merges.txt", 49, 7], ["roberta-base-vocab.json", 50, 7], ["small.txt", 51, 7], ["tokenizer-wiki.json", 52, 7]], [["owner", 63, 5], ["repo", 64, 5], ["tag", 65, 5], ["hash", 66, 5]], [["pname", 71, 7], ["version", 72, 7], ["src", 73, 7], ["sourceRoot", 74, 7], ["hash", 76, 5]], [["description", 147, 5], ["homepage", 148, 5], ["changelog", 149, 5], ["license", 150, 5], ["maintainers", 151, 5], ["platforms", 152, 5]], [["pname", 57, 3], ["version", 58, 3], ["pyproject", 59, 3], ["__structuredAttrs", 60, 3], ["src", 62, 3], ["cargoDeps", 69, 3], ["sourceRoot", 79, 3], ["nativeBuildInputs", 81, 3], ["buildInputs", 90, 3], ["dependencies", 94, 3], ["nativeCheckInputs", 98, 3], ["postUnpack", 108, 3], ["postPatch", 115, 3], ["pythonImportsCheck", 125, 3], ["disabledTests", 127, 3], ["disabledTestPaths", 141, 3], ["meta", 146, 3]]]);
 const formals$1 = { args: { lib: false, linkFarm: false, fetchurl: false, buildPythonPackage: false, fetchFromGitHub: false, cargo: false, "pkg-config": false, rustPlatform: false, rustc: false, "setuptools-rust": false, openssl: false, "huggingface-hub": false, datasets: false, numpy: false, "pytest-asyncio": false, pytestCheckHook: false, requests: false, tiktoken: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 35, 7], ["hash", 36, 15]]);
-const pos$2 = nix.positions(here + "/default.nix", [["albert-base-v1-tokenizer.json", 43, 7], ["bert-base-uncased-vocab.txt", 44, 7], ["bert-wiki.json", 45, 7], ["big.txt", 46, 7], ["openai-gpt-merges.txt", 47, 7], ["openai-gpt-vocab.json", 48, 7], ["roberta-base-merges.txt", 49, 7], ["roberta-base-vocab.json", 50, 7], ["small.txt", 51, 7], ["tokenizer-wiki.json", 52, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["owner", 63, 5], ["repo", 64, 5], ["tag", 65, 5], ["hash", 66, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 71, 7], ["version", 72, 7], ["src", 73, 7], ["sourceRoot", 74, 7], ["hash", 76, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 147, 5], ["homepage", 148, 5], ["changelog", 149, 5], ["license", 150, 5], ["maintainers", 151, 5], ["platforms", 152, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 57, 3], ["version", 58, 3], ["pyproject", 59, 3], ["__structuredAttrs", 60, 3], ["src", 62, 3], ["cargoDeps", 69, 3], ["sourceRoot", 79, 3], ["nativeBuildInputs", 81, 3], ["buildInputs", 90, 3], ["dependencies", 94, 3], ["nativeCheckInputs", 98, 3], ["postUnpack", 108, 3], ["postPatch", 115, 3], ["pythonImportsCheck", 125, 3], ["disabledTests", 127, 3], ["disabledTestPaths", 141, 3], ["meta", 146, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const tiktoken = nix.arg($, "tiktoken");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const fetchTestData = (name) => (hash) => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://huggingface.co/datasets/hf-internal-testing/tokenizers-test-data/resolve/main/${name}`),
       hash: hash,
     })));
   const test_data = nix.thunk(() => nix.app(linkFarm, "tokenizers-test-data", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), fetchTestData, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         "albert-base-v1-tokenizer.json": "sha256-biqj1cpMaEG8NqUCgXnLTWPBKZMfoY/OOP2zjOxNKsM=",
         "bert-base-uncased-vocab.txt": "sha256-B+ztN1zsFE0nyQAkHz4zlHjeyVj5L928VR8pXJkgOKM=",
         "bert-wiki.json": "sha256-i533xC8J5CDMNxBjo+p6avIM8UOcui8RmGAmK0GmfBc=",
@@ -50,20 +45,20 @@ export default nix.lambda((args) => (() => {
         "tokenizer-wiki.json": "sha256-ipY9d5DR5nxoO6kj7rItueZ9AO5wq9+Nzr6GuEIfIBI=",
       }))))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "tokenizers",
       version: "0.23.2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "huggingface",
           repo: "tokenizers",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-liHx1YRFZC/PUNiv1MJyb9oAw7/xHbaRbFsn1n8gtuI=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -107,7 +102,7 @@ ln -s ${test_data}/* $sourceRoot/tests/data/
       ]),
       disabledTestPaths: nix.thunk(() => ["benches/test_tiktoken.py"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Fast State-of-the-Art Tokenizers optimized for Research and Production",
         homepage: "https://github.com/huggingface/tokenizers",
         changelog: nix.thunk(() => nix.str`https://github.com/huggingface/tokenizers/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["description", 47, 5], ["longDescription", 48, 5], ["maintainers", 51, 5], ["homepage", 52, 5], ["changelog", 53, 5], ["license", 54, 5], ["platforms", 55, 5], ["sourceProvenance", 56, 5], ["mainProgram", 57, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 14, 3], ["dontBuild", 19, 3], ["installPhase", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 32, 3], ["postFixup", 37, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, openjdk: false, gradle: false, makeWrapper: false, maven: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 47, 5], ["longDescription", 48, 5], ["maintainers", 51, 5], ["homepage", 52, 5], ["changelog", 53, 5], ["license", 54, 5], ["platforms", 55, 5], ["sourceProvenance", 56, 5], ["mainProgram", 57, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 14, 3], ["dontBuild", 19, 3], ["installPhase", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 32, 3], ["postFixup", 37, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const maven = nix.arg($, "maven");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "kotlin-language-server",
       version: "1.3.13",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/fwcd/kotlin-language-server/releases/download/${nix.sel(finalAttrs, "version")}/server.zip`),
           hash: "sha256-ypiOeXA+14Js31WPGJAdSjskQJR9sBPVWGecLkKHiN4=",
         })))),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.str`wrapProgram "$out/bin/kotlin-language-server" --set JAVA_HOME ${openjdk} --prefix PATH : ${nix.app(nix.sel(lib, "strings", "makeBinPath"), nix.thunk(() => [openjdk, maven]))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Kotlin language server",
         longDescription: "About Kotlin code completion, linting and more for any editor/IDE\nusing the Language Server Protocol Topics",
         maintainers: nix.thunk(() => (() => {

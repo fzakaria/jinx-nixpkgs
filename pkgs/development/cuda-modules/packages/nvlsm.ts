@@ -2,21 +2,20 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nvlsm.nix", [[["description", 11, 5], ["longDescription", 12, 5], ["homepage", 18, 5]], [["redistName", 3, 3], ["pname", 4, 3], ["outputs", 6, 3], ["allowFHSReferences", 8, 3], ["meta", 10, 3]]]);
 const formals$1 = { args: { buildRedist: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/nvlsm.nix", [["description", 11, 5], ["longDescription", 12, 5], ["homepage", 18, 5]]);
-const pos$2 = nix.positions(here + "/nvlsm.nix", [["redistName", 3, 3], ["pname", 4, 3], ["outputs", 6, 3], ["allowFHSReferences", 8, 3], ["meta", 10, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const buildRedist = nix.arg($, "buildRedist");
   return nix.app(buildRedist, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       redistName: "cuda",
       pname: "nvlsm",
       outputs: nix.thunk(() => ["out"]),
       allowFHSReferences: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "NVIDIA NVLSM (NVLink Subnet Manager) for 4th-generation NVSwitch management",
         longDescription: "NVLSM is the NVLink Subnet Manager component used on systems with 4th-generation NVSwitch\nsilicon (e.g. B200 SXM). It manages the NVLink fabric topology, routing, and quality of\nservice between GPUs and NVSwitches. It is typically started before nvidia-fabricmanager,\nwhich uses the management GUID discovered by NVLSM.\n",
         homepage: "https://docs.nvidia.com/datacenter/tesla/fabric-manager-user-guide",

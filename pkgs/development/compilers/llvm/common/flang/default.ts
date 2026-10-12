@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["passthru", 29, 31], ["strictDeps", 30, 9], ["__structuredAttrs", 31, 9]], [["langC", 90, 5], ["langCC", 91, 5], ["langFortran", 92, 5], ["isClang", 93, 5], ["isFlang", 94, 5], ["hardeningUnsupportedFlags", 96, 5]], [["homepage", 113, 5], ["description", 114, 5], ["license", 115, 5], ["mainProgram", 116, 5], ["maintainers", 117, 5]], [["pname", 23, 3], ["version", 24, 11], ["src", 26, 3], ["patches", 45, 3], ["patchFlags", 46, 3], ["sourceRoot", 48, 3], ["buildInputs", 50, 3], ["nativeBuildInputs", 57, 3], ["strictDeps", 66, 3], ["preConfigure", 68, 3], ["cmakeFlags", 73, 3], ["passthru", 88, 3], ["postUnpack", 103, 3], ["outputs", 107, 3], ["requiredSystemFeatures", 108, 3], ["__structuredAttrs", 110, 3], ["meta", 112, 3]]]);
 const formals$1 = { args: { lib: false, llvm_meta: false, monorepoSrc: false, release_version: false, runCommand: false, cmake: false, libxml2: false, libllvm: false, ninja: false, libffi: false, libclang: false, stdenv: false, clang: false, mlir: false, version: false, python3: false, buildLlvmPackages: false, devExtraCmakeFlags: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["passthru", 29, 31], ["strictDeps", 30, 9], ["__structuredAttrs", 31, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["langC", 90, 5], ["langCC", 91, 5], ["langFortran", 92, 5], ["isClang", 93, 5], ["isFlang", 94, 5], ["hardeningUnsupportedFlags", 96, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 113, 5], ["description", 114, 5], ["license", 115, 5], ["mainProgram", 116, 5], ["maintainers", 117, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 11], ["src", 26, 3], ["patches", 45, 3], ["patchFlags", 46, 3], ["sourceRoot", 48, 3], ["buildInputs", 50, 3], ["nativeBuildInputs", 57, 3], ["strictDeps", 66, 3], ["preConfigure", 68, 3], ["cmakeFlags", 73, 3], ["passthru", 88, 3], ["postUnpack", 103, 3], ["outputs", 107, 3], ["requiredSystemFeatures", 108, 3], ["__structuredAttrs", 110, 3], ["meta", 112, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const buildLlvmPackages = nix.arg($, "buildLlvmPackages");
   const devExtraCmakeFlags = nix.argOr($, "devExtraCmakeFlags", () => []);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "flang",
       version: version,
       src: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-src-${nix.sel(finalAttrs, "version")}`), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           passthru: nix.thunk(() => nix.attr(monorepoSrc, "passthru")),
           strictDeps: true,
           __structuredAttrs: true,
@@ -78,7 +75,7 @@ ls -l ${nix.sel(mlir, "dev")}/lib/cmake/mlir/MLIRConfig.cmake
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "FLANG_INCLUDE_TESTS", false)),
       ], devExtraCmakeFlags)),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         langC: false,
         langCC: false,
         langFortran: true,
@@ -91,7 +88,7 @@ ls -l ${nix.sel(mlir, "dev")}/lib/cmake/mlir/MLIRConfig.cmake
       requiredSystemFeatures: nix.thunk(() => ["big-parallel"]),
       __structuredAttrs: true,
       meta: nix.thunk(() => nix.update(llvm_meta, {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://flang.llvm.org/",
         description: "LLVM-based Fortran frontend",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ncsa")),

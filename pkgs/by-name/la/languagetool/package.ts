@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["modules", 11, 5]], [["url", 27, 5], ["sha256", 28, 5]], [["languagetool", 54, 11]], [["jre", 53, 13], ["tests", 54, 5]], [["homepage", 58, 5], ["sourceProvenance", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5], ["description", 63, 5], ["mainProgram", 64, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 33, 3], ["installPhase", 35, 3], ["passthru", 52, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, jre_minimal: false, makeWrapper: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["modules", 11, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 27, 5], ["sha256", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["languagetool", 54, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["jre", 53, 13], ["tests", 54, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 58, 5], ["sourceProvenance", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5], ["description", 63, 5], ["mainProgram", 64, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 33, 3], ["installPhase", 35, 3], ["passthru", 52, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const nixosTests = nix.arg($, "nixosTests");
   const jre = nix.thunk(() => nix.app(nix.sel(jre_minimal, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       modules: nix.thunk(() => [
         "java.base",
         "java.datatransfer",
@@ -31,11 +26,11 @@ export default nix.lambda((args) => (() => {
       ]),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "languagetool",
       version: "6.6",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://www.languagetool.org/download/LanguageTool-${nix.sel(finalAttrs, "version")}.zip`),
           sha256: "sha256-BNiUIk5h38oEM4IliHdy8rNmZY0frQ1RaFeJ7HI5nOI=",
         })))),
@@ -57,15 +52,15 @@ makeWrapper ${jre}/bin/java $out/bin/languagetool-http-server \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         jre: jre,
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           languagetool: nix.thunk(() => nix.sel(nixosTests, "languagetool")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://languagetool.org",
         sourceProvenance: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);

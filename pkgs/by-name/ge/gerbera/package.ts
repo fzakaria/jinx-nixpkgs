@@ -2,25 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["cmakeFlags", 49, 5]], [["name", 57, 7], ["enable", 58, 7], ["packages", 59, 7]], [["name", 62, 7], ["enable", 63, 7], ["packages", 64, 7]], [["name", 67, 7], ["enable", 68, 7], ["packages", 69, 7]], [["name", 72, 7], ["enable", 73, 7], ["packages", 74, 7]], [["name", 77, 7], ["enable", 78, 7], ["packages", 79, 7]], [["name", 82, 7], ["enable", 83, 7], ["packages", 84, 7]], [["name", 87, 7], ["enable", 88, 7], ["packages", 89, 7]], [["name", 92, 7], ["enable", 93, 7], ["packages", 94, 7]], [["name", 97, 7], ["enable", 98, 7], ["packages", 99, 7]], [["name", 105, 7], ["enable", 106, 7], ["packages", 107, 7]], [["name", 110, 7], ["enable", 111, 7], ["packages", 112, 7]], [["name", 115, 7], ["enable", 116, 7], ["packages", 117, 7]], [["repo", 129, 5], ["owner", 130, 5], ["rev", 131, 5], ["sha256", 132, 5]], [["mediatomb", 173, 43]], [["tests", 173, 12]], [["homepage", 176, 5], ["changelog", 177, 5], ["description", 178, 5], ["longDescription", 179, 5], ["license", 184, 5], ["maintainers", 185, 5], ["platforms", 186, 5], ["mainProgram", 187, 5]], [["pname", 125, 3], ["version", 126, 3], ["src", 128, 3], ["postPatch", 135, 3], ["cmakeFlags", 148, 3], ["nativeBuildInputs", 154, 3], ["buildInputs", 159, 3], ["passthru", 173, 3], ["meta", 175, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, nixosTests: false, libiconv: false, libupnp: false, libuuid: false, pugixml: false, spdlog: false, sqlite: false, zlib: false, fmt: false, jsoncpp: false, icu77: false, enableMysql: true, libmysqlclient: false, enableDuktape: true, duktape: false, enableCurl: true, curl: false, enableTaglib: true, taglib: false, enableLibmagic: true, file: false, enableLibmatroska: true, libmatroska: false, libebml: false, enableAvcodec: true, ffmpeg: false, enableLibexif: true, libexif: false, enableExiv2: true, exiv2: false, enableFFmpegThumbnailer: true, ffmpegthumbnailer: false, enableInotifyTools: true, "inotify-tools": false, wavpack: false, enableWavPack: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["cmakeFlags", 49, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 57, 7], ["enable", 58, 7], ["packages", 59, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 62, 7], ["enable", 63, 7], ["packages", 64, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 67, 7], ["enable", 68, 7], ["packages", 69, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 72, 7], ["enable", 73, 7], ["packages", 74, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 77, 7], ["enable", 78, 7], ["packages", 79, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["name", 82, 7], ["enable", 83, 7], ["packages", 84, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["name", 87, 7], ["enable", 88, 7], ["packages", 89, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["name", 92, 7], ["enable", 93, 7], ["packages", 94, 7]]);
-const pos$10 = nix.positions(here + "/package.nix", [["name", 97, 7], ["enable", 98, 7], ["packages", 99, 7]]);
-const pos$11 = nix.positions(here + "/package.nix", [["name", 105, 7], ["enable", 106, 7], ["packages", 107, 7]]);
-const pos$12 = nix.positions(here + "/package.nix", [["name", 110, 7], ["enable", 111, 7], ["packages", 112, 7]]);
-const pos$13 = nix.positions(here + "/package.nix", [["name", 115, 7], ["enable", 116, 7], ["packages", 117, 7]]);
-const pos$14 = nix.positions(here + "/package.nix", [["repo", 129, 5], ["owner", 130, 5], ["rev", 131, 5], ["sha256", 132, 5]]);
-const pos$15 = nix.positions(here + "/package.nix", [["mediatomb", 173, 43]]);
-const pos$16 = nix.positions(here + "/package.nix", [["tests", 173, 12]]);
-const pos$17 = nix.positions(here + "/package.nix", [["homepage", 176, 5], ["changelog", 177, 5], ["description", 178, 5], ["longDescription", 179, 5], ["license", 184, 5], ["maintainers", 185, 5], ["platforms", 186, 5], ["mainProgram", 187, 5]]);
-const pos$18 = nix.positions(here + "/package.nix", [["pname", 125, 3], ["version", 126, 3], ["src", 128, 3], ["postPatch", 135, 3], ["cmakeFlags", 148, 3], ["nativeBuildInputs", 154, 3], ["buildInputs", 159, 3], ["passthru", 173, 3], ["meta", 175, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -66,78 +49,78 @@ export default nix.lambda((args) => (() => {
   const wavpack = nix.arg($, "wavpack");
   const enableWavPack = nix.argOr($, "enableWavPack", () => false);
   const libupnp$ = nix.thunk(() => nix.app(nix.sel(libupnp, "overrideAttrs"), (super$) => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       cmakeFlags: nix.thunk(() => nix.concat(nix.selOr(super$, () => [], "cmakeFlags"), ["-Dblocking_tcp_connections=OFF", "-Dreuseaddr=ON"])),
     })));
   const options = nix.thunk(() => [
     nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "AVCODEC",
       enable: enableAvcodec,
       packages: nix.thunk(() => [ffmpeg]),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "CURL",
       enable: enableCurl,
       packages: nix.thunk(() => [curl]),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       name: "EXIF",
       enable: enableLibexif,
       packages: nix.thunk(() => [libexif]),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       name: "EXIV2",
       enable: enableExiv2,
       packages: nix.thunk(() => [exiv2]),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       name: "FFMPEGTHUMBNAILER",
       enable: enableFFmpegThumbnailer,
       packages: nix.thunk(() => [ffmpegthumbnailer]),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       name: "INOTIFY",
       enable: enableInotifyTools,
       packages: nix.thunk(() => [inotify_tools]),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       name: "JS",
       enable: enableDuktape,
       packages: nix.thunk(() => [duktape]),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       name: "MAGIC",
       enable: enableLibmagic,
       packages: nix.thunk(() => [file]),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       name: "MATROSKA",
       enable: enableLibmatroska,
       packages: nix.thunk(() => [libmatroska, libebml]),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       name: "MYSQL",
       enable: enableMysql,
       packages: nix.thunk(() => [libmysqlclient]),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       name: "TAGLIB",
       enable: enableTaglib,
       packages: nix.thunk(() => [taglib]),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       name: "WAVPACK",
       enable: enableWavPack,
       packages: nix.thunk(() => [wavpack]),
@@ -145,11 +128,11 @@ export default nix.lambda((args) => (() => {
   ]);
   const flatten = nix.thunk(() => nix.attr(lib, "flatten"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       pname: "gerbera",
       version: "3.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           repo: "gerbera",
           owner: "gerbera",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -179,14 +162,14 @@ substituteInPlace CMakeLists.txt --replace-fail /usr/share/bash-completion/compl
         icu77,
       ], nix.app(flatten, nix.thunk(() => nix.builtins.catAttrs("packages", nix.thunk(() => nix.builtins.filter((e) => nix.sel(e, "enable"), options))))))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           mediatomb: nix.thunk(() => nix.attr(nixosTests, "mediatomb")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         homepage: "https://docs.gerbera.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/gerbera/gerbera/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "UPnP Media Server for 2024",

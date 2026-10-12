@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 27, 5], ["paths", 28, 5]], [["owner", 47, 5], ["repo", 48, 5], ["tag", 49, 5], ["hash", 50, 5]], [["name", 81, 7], ["exec", 82, 7], ["icon", 83, 7], ["comment", 84, 7], ["desktopName", 85, 7], ["mimeTypes", 86, 7], ["categories", 89, 7]], [["updateScript", 111, 12]], [["description", 114, 5], ["homepage", 115, 5], ["license", 116, 5], ["maintainers", 117, 5], ["mainProgram", 121, 5], ["platforms", 122, 5]], [["__structuredAttrs", 43, 3], ["pname", 44, 3], ["version", 45, 3], ["src", 46, 3], ["vendorHash", 52, 3], ["ldflags", 54, 3], ["buildInputs", 58, 3], ["doCheck", 67, 3], ["nativeBuildInputs", 68, 3], ["subPackages", 75, 3], ["desktopItems", 79, 3], ["postInstall", 99, 3], ["passthru", 111, 3], ["meta", 113, 3]]]);
 const formals$1 = { args: { buildGoModule: false, cairo: false, copyDesktopItems: false, fetchFromCodeberg: false, "gdk-pixbuf": false, glib: false, "glib-networking": false, "gobject-introspection": false, graphene: false, gst_all_1: false, gtk4: false, lib: false, libadwaita: false, libsecret: false, librsvg: false, makeDesktopItem: false, makeBinaryWrapper: false, "nix-update-script": false, pango: false, "pkg-config": false, symlinkJoin: false, wrapGAppsHook4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 27, 5], ["paths", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 47, 5], ["repo", 48, 5], ["tag", 49, 5], ["hash", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 81, 7], ["exec", 82, 7], ["icon", 83, 7], ["comment", 84, 7], ["desktopName", 85, 7], ["mimeTypes", 86, 7], ["categories", 89, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 111, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 114, 5], ["homepage", 115, 5], ["license", 116, 5], ["maintainers", 117, 5], ["mainProgram", 121, 5], ["platforms", 122, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["__structuredAttrs", 43, 3], ["pname", 44, 3], ["version", 45, 3], ["src", 46, 3], ["vendorHash", 52, 3], ["ldflags", 54, 3], ["buildInputs", 58, 3], ["doCheck", 67, 3], ["nativeBuildInputs", 68, 3], ["subPackages", 75, 3], ["desktopItems", 79, 3], ["postInstall", 99, 3], ["passthru", 111, 3], ["meta", 113, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +30,7 @@ export default nix.lambda((args) => (() => {
   const symlinkJoin = nix.arg($, "symlinkJoin");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   const libraryPath = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "tonearm-puregotk-lib-folder",
       paths: nix.thunk(() => [
         cairo,
@@ -51,12 +46,12 @@ export default nix.lambda((args) => (() => {
       ]),
     }))));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       __structuredAttrs: true,
       pname: "tonearm",
       version: "1.5.1",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "dergs",
           repo: "Tonearm",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -80,7 +75,7 @@ export default nix.lambda((args) => (() => {
       subPackages: nix.thunk(() => ["cmd/tonearm"]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "dev.dergs.Tonearm",
             exec: "tonearm %u",
             icon: "dev.dergs.Tonearm",
@@ -101,11 +96,11 @@ install -Dm444 internal/settings/dev.dergs.Tonearm.gschema.xml -t $out/share/gli
 glib-compile-schemas $out/share/glib-2.0/schemas
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "GTK client for TIDAL written in Golang",
         homepage: "https://codeberg.org/dergs/Tonearm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["buildPhase", 23, 5]], [["description", 40, 5], ["homepage", 41, 5], ["changelog", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["mainProgram", 49, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["vendorHash", 19, 3], ["overrideModAttrs", 22, 3], ["ldflags", 28, 3], ["doCheck", 34, 3], ["nativeInstallCheckInputs", 36, 3], ["doInstallCheck", 37, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildGoModule: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["buildPhase", 23, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 40, 5], ["homepage", 41, 5], ["changelog", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["mainProgram", 49, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["vendorHash", 19, 3], ["overrideModAttrs", 22, 3], ["ldflags", 28, 3], ["doCheck", 34, 3], ["nativeInstallCheckInputs", 36, 3], ["doInstallCheck", 37, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,24 +12,24 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "glauth",
       version: "2.5.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "glauth",
           repo: "glauth",
           tag: nix.thunk(() => nix.str`GLAuth-v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-b5R3aXrvHyKDoRhNIXIZncnkIV5DuWr4pPQCv0I36JU=",
         })))),
       vendorHash: "sha256-T0nzmnnM7Cps9nmt4Rfzn4nl2+i/1baP0AwIrjk4hXk=",
-      overrideModAttrs: (_) => ({ [nix.POS]: pos$2, buildPhase: "go work vendor -e -v\n" }),
+      overrideModAttrs: (_) => ({ [nix.POS]: $pos[1], buildPhase: "go work vendor -e -v\n" }),
       ldflags: nix.thunk(() => ["-s", "-w"]),
       doCheck: false,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Lightweight LDAP server for development, home use, or CI",
         homepage: "https://github.com/glauth/glauth",
         changelog: nix.thunk(() => nix.str`https://github.com/glauth/glauth/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

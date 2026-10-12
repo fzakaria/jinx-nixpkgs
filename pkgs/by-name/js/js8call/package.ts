@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["description", 63, 5], ["longDescription", 64, 5], ["homepage", 74, 5], ["license", 75, 5], ["platforms", 76, 5], ["maintainers", 77, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 32, 3], ["installPhase", 46, 3], ["postInstall", 57, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, hamlib_4: false, libusb1: false, cmake: false, fftw: false, fftwFloat: false, qt6: false, boost: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 63, 5], ["longDescription", 64, 5], ["homepage", 74, 5], ["license", 75, 5], ["platforms", 76, 5], ["maintainers", 77, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 32, 3], ["installPhase", 46, 3], ["postInstall", 57, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const qt6 = nix.arg($, "qt6");
   const boost = nix.arg($, "boost");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "js8call",
       version: "3.0.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "JS8Call-improved",
           repo: "JS8Call-improved",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "mkdir -p $out/bin $out/share/doc/js8call $out/share/icons/hicolor/128x128/apps $out/share/applications\ncp JS8Call $out/bin/js8call\ncp ../LICENSE ../README.md $out/share/doc/js8call\ncp ../artwork/js8call_icon.png $out/share/icons/hicolor/128x128/apps\ncp ../.github/workflows/misc/JS8Call.desktop $out/share/applications\nrunHook postInstall\n",
       postInstall: "substituteInPlace $out/share/applications/JS8Call.desktop \\\n  --replace-fail \"Exec=JS8Call\" \"Exec=js8call\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Weak-signal keyboard messaging for amateur radio",
         longDescription: "JS8Call is software using the JS8 Digital Mode providing weak signal\nkeyboard to keyboard messaging to Amateur Radio Operators.\n\nJS8Call-Improved is a community-driven evolution of JS8Call,\nbringing modern features, active development, and long-term\nsupport to HF digital communication. It’s fully compatible with\nexisting JS8Call versions while adding new capabilities and\nrefinements.\n",
         homepage: "https://js8call-improved.com/",

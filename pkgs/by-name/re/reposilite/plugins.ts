@@ -2,14 +2,10 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/plugins.nix", [[["description", 39, 15], ["homepage", 40, 15], ["sourceProvenance", 41, 15], ["license", 42, 15], ["maintainers", 43, 15], ["platforms", 44, 41]], [["url", 35, 13], ["pname", 36, 21], ["version", 36, 27], ["hash", 36, 35], ["meta", 38, 13]], [["fetchPlugin", 14, 7]], [["name", 50, 66], ["hash", 50, 71]], [["otherSplices", 10, 3], ["f", 11, 3]]]);
 const formals$1 = { args: { lib: false, generateSplicesForMkScope: false, "makeScopeWithSplicing'": false }, ellipsis: false };
 const formals$2 = { args: { lib: false, fetchurl: false, reposilite: false }, ellipsis: false };
 const formals$3 = { args: { name: false, hash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/plugins.nix", [["description", 39, 15], ["homepage", 40, 15], ["sourceProvenance", 41, 15], ["license", 42, 15], ["maintainers", 43, 15], ["platforms", 44, 41]]);
-const pos$2 = nix.positions(here + "/plugins.nix", [["url", 35, 13], ["pname", 36, 21], ["version", 36, 27], ["hash", 36, 35], ["meta", 38, 13]]);
-const pos$3 = nix.positions(here + "/plugins.nix", [["fetchPlugin", 14, 7]]);
-const pos$4 = nix.positions(here + "/plugins.nix", [["name", 50, 66], ["hash", 50, 71]]);
-const pos$5 = nix.positions(here + "/plugins.nix", [["otherSplices", 10, 3], ["f", 11, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,10 +14,10 @@ export default nix.lambda((args) => (() => {
   const makeScopeWithSplicing$ = nix.arg($, "makeScopeWithSplicing'");
   const pluginHashes = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./plugins.json")));
   return nix.app(makeScopeWithSplicing$, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       otherSplices: nix.thunk(() => nix.app(generateSplicesForMkScope, "reposilitePlugins")),
       f: (self) => nix.update({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         fetchPlugin: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$2);
             const lib_1 = nix.arg($_1, "lib");
@@ -38,7 +34,7 @@ export default nix.lambda((args) => (() => {
                     nix.thunk(() => nix.builtins.substring(1n, nix.thunk(() => nix.sub(nix.builtins.stringLength(name), 1n)), name)),
                   ])));
                 return nix.app(fetchurl, nix.thunk(() => ({
-                    [nix.POS]: pos$2,
+                    [nix.POS]: $pos[1],
                     url: nix.thunk(() => nix.str`https://maven.reposilite.com/releases/com/reposilite/plugin/${name}-plugin/${version}/${name}-plugin-${version}-all.jar`),
                     pname: pname,
                     version: version,
@@ -46,7 +42,7 @@ export default nix.lambda((args) => (() => {
                     meta: nix.thunk(() => (() => {
                       const from = nix.thunk(() => nix.sel(reposilite, "meta"));
                       return {
-                      [nix.POS]: pos$1,
+                      [nix.POS]: $pos[0],
                       description: nix.thunk(() => nix.str`${fancyName} plugin for Reposilite.`),
                       homepage: "https://github.com/dzikoysk/reposilite",
                       sourceProvenance: nix.thunk(() => (() => {
@@ -64,7 +60,7 @@ export default nix.lambda((args) => (() => {
                   })));
               })(), formals$3));
           })(), formals$2), nix.thunk(() => ({})))),
-      }, nix.builtins.mapAttrs((name) => (hash) => nix.app(nix.sel(self, "fetchPlugin"), nix.thunk(() => ({ [nix.POS]: pos$4, name: name, hash: hash }))), pluginHashes)),
+      }, nix.builtins.mapAttrs((name) => (hash) => nix.app(nix.sel(self, "fetchPlugin"), nix.thunk(() => ({ [nix.POS]: $pos[3], name: name, hash: hash }))), pluginHashes)),
     })));
 })(), formals$1);
 //# sourceMappingURL=plugins.ts.map

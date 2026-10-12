@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["PROTOC", 22, 5], ["PROTOC_INCLUDE", 23, 5]], [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["platforms", 49, 5], ["maintainers", 50, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["env", 21, 3], ["cargoRoot", 26, 3], ["cargoHash", 27, 3], ["cargoPatches", 28, 3], ["preBuild", 30, 3], ["buildInputs", 34, 3], ["postInstall", 36, 3], ["nativeBuildInputs", 40, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, protobuf: false, "pkg-config": false, rustc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["PROTOC", 22, 5], ["PROTOC_INCLUDE", 23, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["platforms", 49, 5], ["maintainers", 50, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["env", 21, 3], ["cargoRoot", 26, 3], ["cargoHash", 27, 3], ["cargoPatches", 28, 3], ["preBuild", 30, 3], ["buildInputs", 34, 3], ["postInstall", 36, 3], ["nativeBuildInputs", 40, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const rustc = nix.arg($, "rustc");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "kclvm",
       version: "0.11.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kcl-lang",
           repo: "kcl",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-6XDLxTpgENhP7F51kicAJB7BNMtX4cONKJApAhqgdno=",
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         PROTOC: nix.thunk(() => nix.str`${protobuf}/bin/protoc`),
         PROTOC_INCLUDE: nix.thunk(() => nix.str`${protobuf}/include`),
       })),
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "install_name_tool -id $out/lib/libkclvm_cli_cdylib.dylib $out/lib/libkclvm_cli_cdylib.dylib\n")),
       nativeBuildInputs: nix.thunk(() => [pkg_config, protobuf]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "High-performance implementation of KCL written in Rust that uses LLVM as the compiler backend",
         homepage: "https://github.com/kcl-lang/kcl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["package", 28, 43]], [["version", 28, 11]], [["tests", 28, 5]], [["description", 33, 7], ["homepage", 34, 7], ["changelog", 35, 7], ["license", 36, 7], ["mainProgram", 37, 7], ["maintainers", 38, 7]], [["pname", 14, 3], ["version", 15, 29], ["nativeBuildInputs", 17, 3], ["paths", 19, 3], ["postBuild", 21, 3], ["passthru", 27, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, symlinkJoin: false, makeBinaryWrapper: false, testers: false, turbo: false, "turbo-unwrapped": false, disableTelemetry: true, disableUpdateNotifier: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["package", 28, 43]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 28, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 28, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 33, 7], ["homepage", 34, 7], ["changelog", 35, 7], ["license", 36, 7], ["mainProgram", 37, 7], ["maintainers", 38, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 29], ["nativeBuildInputs", 17, 3], ["paths", 19, 3], ["postBuild", 21, 3], ["passthru", 27, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const disableTelemetry = nix.argOr($, "disableTelemetry", () => true);
   const disableUpdateNotifier = nix.argOr($, "disableUpdateNotifier", () => true);
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "turbo",
       version: nix.thunk(() => nix.attr(turbo_unwrapped, "version")),
       nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper]),
@@ -30,16 +26,16 @@ export default nix.lambda((args) => (() => {
   ${nix.app(nix.sel(lib, "optionalString"), disableUpdateNotifier, "--set TURBO_NO_UPDATE_NOTIFIER 1")}
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$1, package: turbo })))),
+          [nix.POS]: $pos[1],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[0], package: turbo })))),
         })),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(turbo_unwrapped, "meta"));
         return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: nix.thunk(() => nix.attr(from, "description")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         changelog: nix.thunk(() => nix.attr(from, "changelog")),

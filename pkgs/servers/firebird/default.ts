@@ -2,19 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 22, 7], ["downloadPage", 23, 7], ["homepage", 24, 7], ["changelog", 25, 7], ["license", 26, 7], ["platforms", 30, 7], ["maintainers", 31, 7]], [["LD_LIBRARY_PATH", 43, 9]], [["pname", 19, 5], ["meta", 21, 5], ["nativeBuildInputs", 36, 5], ["buildInputs", 38, 5], ["env", 43, 5], ["configureFlags", 45, 5], ["enableParallelBuilding", 50, 5], ["__structuredAttrs", 52, 5], ["strictDeps", 53, 5], ["installPhase", 55, 5]], [["owner", 72, 9], ["repo", 73, 9], ["rev", 74, 9], ["hash", 75, 9]], [["pname", 80, 11], ["version", 81, 11], ["debianRevision", 82, 11], ["patch", 83, 11], ["hash", 84, 11]], [["platforms", 94, 9]], [["version", 69, 7], ["src", 71, 7], ["patches", 78, 7], ["buildInputs", 88, 7], ["meta", 93, 7]], [["owner", 105, 9], ["repo", 106, 9], ["rev", 107, 9], ["hash", 108, 9]], [["version", 102, 7], ["src", 104, 7], ["nativeBuildInputs", 111, 7], ["buildInputs", 112, 7]], [["owner", 126, 9], ["repo", 127, 9], ["rev", 128, 9], ["fetchSubmodules", 129, 9], ["hash", 130, 9]], [["version", 123, 7], ["src", 125, 7], ["dontUseCmakeConfigure", 134, 7], ["nativeBuildInputs", 136, 7], ["buildInputs", 140, 7]], [["firebird_3", 66, 3], ["firebird_4", 99, 3], ["firebird_5", 120, 3], ["firebird", 148, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchDebianPatch: false, libedit: false, autoreconfHook: false, cmake: false, zlib: false, unzip: false, libtommath: false, libtomcrypt: false, icu73: false, superServer: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 22, 7], ["downloadPage", 23, 7], ["homepage", 24, 7], ["changelog", 25, 7], ["license", 26, 7], ["platforms", 30, 7], ["maintainers", 31, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["LD_LIBRARY_PATH", 43, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 19, 5], ["meta", 21, 5], ["nativeBuildInputs", 36, 5], ["buildInputs", 38, 5], ["env", 43, 5], ["configureFlags", 45, 5], ["enableParallelBuilding", 50, 5], ["__structuredAttrs", 52, 5], ["strictDeps", 53, 5], ["installPhase", 55, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["owner", 72, 9], ["repo", 73, 9], ["rev", 74, 9], ["hash", 75, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 80, 11], ["version", 81, 11], ["debianRevision", 82, 11], ["patch", 83, 11], ["hash", 84, 11]]);
-const pos$6 = nix.positions(here + "/default.nix", [["platforms", 94, 9]]);
-const pos$7 = nix.positions(here + "/default.nix", [["version", 69, 7], ["src", 71, 7], ["patches", 78, 7], ["buildInputs", 88, 7], ["meta", 93, 7]]);
-const pos$8 = nix.positions(here + "/default.nix", [["owner", 105, 9], ["repo", 106, 9], ["rev", 107, 9], ["hash", 108, 9]]);
-const pos$9 = nix.positions(here + "/default.nix", [["version", 102, 7], ["src", 104, 7], ["nativeBuildInputs", 111, 7], ["buildInputs", 112, 7]]);
-const pos$10 = nix.positions(here + "/default.nix", [["owner", 126, 9], ["repo", 127, 9], ["rev", 128, 9], ["fetchSubmodules", 129, 9], ["hash", 130, 9]]);
-const pos$11 = nix.positions(here + "/default.nix", [["version", 123, 7], ["src", 125, 7], ["dontUseCmakeConfigure", 134, 7], ["nativeBuildInputs", 136, 7], ["buildInputs", 140, 7]]);
-const pos$12 = nix.positions(here + "/default.nix", [["firebird_3", 66, 3], ["firebird_4", 99, 3], ["firebird_5", 120, 3], ["firebird", 148, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,10 +21,10 @@ export default nix.lambda((args) => (() => {
   const icu73 = nix.arg($, "icu73");
   const superServer = nix.argOr($, "superServer", () => false);
   const base = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     pname: "firebird",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       description: "SQL relational database management system",
       downloadPage: "https://github.com/FirebirdSQL/firebird/",
       homepage: "https://firebirdsql.org/",
@@ -56,7 +45,7 @@ export default nix.lambda((args) => (() => {
     nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
     buildInputs: nix.thunk(() => [libedit, icu73]),
     env: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       LD_LIBRARY_PATH: nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [icu73]))),
     })),
     configureFlags: nix.thunk(() => nix.concat(["--with-system-editline"], nix.app(nix.sel(lib, "optional"), superServer, "--enable-superserver"))),
@@ -69,7 +58,7 @@ export default nix.lambda((args) => (() => {
     const firebird_3 = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(base, (() => {
         const version = "3.0.14";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             owner: "FirebirdSQL",
             repo: "firebird",
             rev: nix.thunk(() => nix.str`v${version}`),
@@ -77,7 +66,7 @@ export default nix.lambda((args) => (() => {
           }))));
         const patches = nix.thunk(() => [
           nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               pname: "firebird3.0",
               version: "3.0.13.ds7",
               debianRevision: "2",
@@ -86,13 +75,13 @@ export default nix.lambda((args) => (() => {
             })))),
         ]);
         const buildInputs = nix.thunk(() => nix.concat(nix.sel(base, "buildInputs"), [zlib, libtommath]));
-        const meta = nix.thunk(() => nix.update(nix.sel(base, "meta"), { [nix.POS]: pos$6, platforms: nix.thunk(() => ["x86_64-linux"]) }));
-        return { [nix.POS]: pos$7, version, src, patches, buildInputs, meta };
+        const meta = nix.thunk(() => nix.update(nix.sel(base, "meta"), { [nix.POS]: $pos[5], platforms: nix.thunk(() => ["x86_64-linux"]) }));
+        return { [nix.POS]: $pos[6], version, src, patches, buildInputs, meta };
       })()))));
     const firebird_4 = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(base, (() => {
         const version = "4.0.7";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             owner: "FirebirdSQL",
             repo: "firebird",
             rev: nix.thunk(() => nix.str`v${version}`),
@@ -100,12 +89,12 @@ export default nix.lambda((args) => (() => {
           }))));
         const nativeBuildInputs = nix.thunk(() => nix.concat(nix.sel(base, "nativeBuildInputs"), [unzip]));
         const buildInputs = nix.thunk(() => nix.concat(nix.sel(base, "buildInputs"), [zlib, libtommath, libtomcrypt]));
-        return { [nix.POS]: pos$9, version, src, nativeBuildInputs, buildInputs };
+        return { [nix.POS]: $pos[8], version, src, nativeBuildInputs, buildInputs };
       })()))));
     const firebird_5 = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(base, (() => {
         const version = "5.0.4";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             owner: "FirebirdSQL",
             repo: "firebird",
             rev: nix.thunk(() => nix.str`v${version}`),
@@ -116,7 +105,7 @@ export default nix.lambda((args) => (() => {
         const nativeBuildInputs = nix.thunk(() => nix.concat(nix.sel(base, "nativeBuildInputs"), [cmake, unzip]));
         const buildInputs = nix.thunk(() => nix.concat(nix.sel(base, "buildInputs"), [zlib, libtommath, libtomcrypt]));
         return {
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           version,
           src,
           dontUseCmakeConfigure,
@@ -125,7 +114,7 @@ export default nix.lambda((args) => (() => {
         };
       })()))));
     const firebird = firebird_5;
-    return { [nix.POS]: pos$12, firebird_3, firebird_4, firebird_5, firebird };
+    return { [nix.POS]: $pos[11], firebird_3, firebird_4, firebird_5, firebird };
   })();
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

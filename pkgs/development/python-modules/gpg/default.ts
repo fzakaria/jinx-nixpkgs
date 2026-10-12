@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 19, 5], ["hash", 20, 5]], [["changelog", 66, 5], ["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["postPatch", 23, 3], ["build-system", 32, 3], ["nativeBuildInputs", 34, 3], ["preBuild", 41, 3], ["buildInputs", 46, 3], ["pythonImportsCheck", 51, 3], ["nativeCheckInputs", 53, 3], ["checkPhase", 57, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { autoreconfHook: false, buildPythonPackage: false, fetchurl: false, gnupg: false, gpgme: false, lib: false, "libgpg-error": false, setuptools: false, swig: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 66, 5], ["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["postPatch", 23, 3], ["build-system", 32, 3], ["nativeBuildInputs", 34, 3], ["preBuild", 41, 3], ["buildInputs", 46, 3], ["pythonImportsCheck", 51, 3], ["nativeCheckInputs", 53, 3], ["checkPhase", 57, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnupg/gpgmepy/gpgmepy-${version}.tar.bz2`),
           hash: "sha256-B+EmVkj/UdojjJr3oYs/HcewxmtPIacvJ8dLOWzTM20=",
         }))));
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [gnupg]);
       const checkPhase = "runHook preCheck\n\nmake -C tests\n\nrunHook postCheck\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://dev.gnupg.org/source/gpgmepy/browse/master/NEWS;gpgmepy-${version}?as=remarkup`),
         description: "Python bindings to the GPGME API of the GnuPG cryptography library",
         homepage: "https://dev.gnupg.org/source/gpgmepy/",
@@ -44,7 +42,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "dotlambda"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

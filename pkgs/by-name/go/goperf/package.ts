@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["url", 25, 32]], [["updateScript", 22, 12]], [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["platforms", 38, 5], ["maintainers", 39, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 20, 3], ["passthru", 22, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchgit: false, writeShellScript: false, unstableGitUpdater: false, sd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 25, 32]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 22, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["platforms", 38, 5], ["maintainers", 39, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 20, 3], ["passthru", 22, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,22 +14,22 @@ export default nix.lambda((args) => (() => {
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const sd = nix.arg($, "sd");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "goperf",
       version: "0-unstable-2026-09-08",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://go.googlesource.com/perf",
           rev: "22c9c6c9d4da6248aedbc79f02ecedcd59f8f5f2",
           hash: "sha256-RSiI5I92l9bMWxTbHNKhcti4OKj8kD9yFxeHaWQJiFU=",
         })))),
       vendorHash: "sha256-9y6O/R2fOPYAGjlIZ2lcO1TNiZPj6My3EoPRiiFZu3U=",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update-goperf", nix.thunk(() => nix.str`export UPDATE_NIX_ATTR_PATH=goperf
 ${nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => (() => {
                 const from = nix.thunk(() => nix.sel(finalAttrs, "src"));
-                return { [nix.POS]: pos$2, url: nix.thunk(() => nix.attr(from, "url")) };
+                return { [nix.POS]: $pos[1], url: nix.thunk(() => nix.attr(from, "url")) };
               })()))))}
 set -x
 oldhash="$(nix-instantiate . --eval --strict -A "goperf.goModules.drvAttrs.outputHash" | cut -d'"' -f2)"
@@ -43,7 +39,7 @@ ${nix.app(nix.sel(lib, "getExe"), sd)} --string-mode "$oldhash" "$newhash" "$fna
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Tools and packages for analyzing Go benchmark results",
         homepage: "https://cs.opensource.google/go/x/perf",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

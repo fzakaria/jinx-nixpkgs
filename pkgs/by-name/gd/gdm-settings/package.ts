@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["description", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["mainProgram", 65, 5], ["platforms", 66, 24]], [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 47, 3], ["dependencies", 49, 3], ["dontWrapGApps", 51, 3], ["makeWrapperArgs", 52, 3], ["pythonImportsCheck", 57, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, appstream: false, "blueprint-compiler": false, "desktop-file-utils": false, fetchFromGitHub: false, gdm: false, glib: false, libadwaita: false, meson: false, ninja: false, "pkg-config": false, python3Packages: false, wrapGAppsHook4: false, dataDirs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["mainProgram", 65, 5], ["platforms", 66, 24]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 47, 3], ["dependencies", 49, 3], ["dontWrapGApps", 51, 3], ["makeWrapperArgs", 52, 3], ["pythonImportsCheck", 57, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   const dataDirs = nix.argOr($, "dataDirs", () => nix.app(nix.sel(lib, "concatStringsSep"), ":", nix.thunk(() => ["/run/current-system/sw/share", "/usr/local/share", "/usr/share"])));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gdm-settings",
       version: "5.0",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gdm-settings",
           repo: "gdm-settings",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,7 +54,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(gdm, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Settings app for GNOME's Login Manager",
         homepage: "https://gdm-settings.github.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/gdm-settings/gdm-settings/releases/tag/v${nix.sel(finalAttrs, "version")}`),

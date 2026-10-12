@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/6.nix", [[["url", 10, 5], ["hash", 11, 5]], [["url", 17, 7], ["hash", 18, 7]], [["version", 8, 3], ["src", 9, 3], ["extraPatches", 13, 3]]]);
 const formals$1 = { args: { callPackage: false, fetchurl: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/6.nix", [["url", 10, 5], ["hash", 11, 5]]);
-const pos$2 = nix.positions(here + "/6.nix", [["url", 17, 7], ["hash", 18, 7]]);
-const pos$3 = nix.positions(here + "/6.nix", [["version", 8, 3], ["src", 9, 3], ["extraPatches", 13, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,18 +13,18 @@ export default nix.lambda((args) => (() => {
   return nix.app(callPackage, nix.path(here, "./generic.nix"), nix.thunk(() => (() => {
       const version = "6.14.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://dl.winehq.org/mono/sources/mono/mono-${version}.tar.xz`),
           hash: "sha256-MCTJfAvIy81hHEAdX5lFKHBBCM6zHzGyjepHgwBNCCA=",
         }))));
       const extraPatches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitlab.winehq.org/mono/mono/-/commit/2224c6915a98f870cc9a3a9f9e3698e7b20e3d27.patch",
             hash: "sha256-qyc3t1OyDzWBSnNW+W2YpdgFfTBs1Ew13jwdGKs09u0=",
           })))),
       ]);
-      return { [nix.POS]: pos$3, version, src, extraPatches };
+      return { [nix.POS]: $pos[2], version, src, extraPatches };
     })()));
 })(), formals$1);
 //# sourceMappingURL=6.ts.map

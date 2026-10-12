@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/fluent-runtime.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["changelog", 54, 5], ["description", 55, 5], ["downloadPage", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]], [["pname", 27, 3], ["version", 28, 11], ["pyproject", 29, 3], ["src", 31, 11], ["sourceRoot", 32, 3], ["build-system", 34, 3], ["dependencies", 36, 3], ["nativeCheckInputs", 44, 3], ["disabledTests", 46, 3], ["pythonImportsCheck", 51, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, fetchFromGitHub: false, lib: false, pytestCheckHook: false, setuptools: false, attrs: false, babel: false, "fluent-syntax": false, pytz: false, "typing-extensions": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/fluent-runtime.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/fluent-runtime.nix", [["changelog", 54, 5], ["description", 55, 5], ["downloadPage", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]]);
-const pos$3 = nix.positions(here + "/fluent-runtime.nix", [["pname", 27, 3], ["version", 28, 11], ["pyproject", 29, 3], ["src", 31, 11], ["sourceRoot", 32, 3], ["build-system", 34, 3], ["dependencies", 36, 3], ["nativeCheckInputs", 44, 3], ["disabledTests", 46, 3], ["pythonImportsCheck", 51, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,14 +19,14 @@ export default nix.lambda((args) => (() => {
   const typing_extensions = nix.arg($, "typing-extensions");
   const version = "0.4.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "projectfluent",
       repo: "python-fluent",
       rev: nix.thunk(() => nix.str`fluent.runtime@${version}`),
       hash: "sha256-Crg6ybweOZ4B3WfLMOcD7+TxGEZPTHJUxr8ItLB4G+Y=",
     }))));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "fluent-runtime",
       version: version,
       pyproject: true,
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_timeZone"]),
       pythonImportsCheck: nix.thunk(() => ["fluent.runtime"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/projectfluent/python-fluent/blob/${nix.sel(src, "rev")}/fluent.runtime/CHANGELOG.rst`),
         description: "Localization library for expressive translations",
         downloadPage: nix.thunk(() => nix.str`https://github.com/projectfluent/python-fluent/releases/tag/${nix.sel(src, "rev")}`),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["pname", 34, 26], ["data", 35, 5]], [["updateScript", 65, 12]], [["description", 68, 5], ["longDescription", 69, 5], ["homepage", 74, 5], ["downloadPage", 75, 5], ["changelog", 76, 5], ["mainProgram", 77, 5], ["license", 78, 5], ["platforms", 79, 5], ["sourceProvenance", 80, 5], ["maintainers", 84, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["gradleBuildTask", 24, 3], ["nativeBuildInputs", 26, 3], ["mitmCache", 33, 3], ["__darwinAllowLocalNetworking", 39, 3], ["gradleCheckTask", 41, 3], ["doCheck", 42, 3], ["installPhase", 44, 3], ["postInstall", 55, 3], ["doInstallCheck", 62, 3], ["nativeInstallCheckInputs", 63, 3], ["passthru", 65, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { jre: false, lib: false, stdenv: false, gradle: false, makeWrapper: false, fetchFromGitHub: false, versionCheckHook: false, installShellFiles: false, stripJavaArchivesHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 34, 26], ["data", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 65, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 68, 5], ["longDescription", 69, 5], ["homepage", 74, 5], ["downloadPage", 75, 5], ["changelog", 76, 5], ["mainProgram", 77, 5], ["license", 78, 5], ["platforms", 79, 5], ["sourceProvenance", 80, 5], ["maintainers", 84, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["gradleBuildTask", 24, 3], ["nativeBuildInputs", 26, 3], ["mitmCache", 33, 3], ["__darwinAllowLocalNetworking", 39, 3], ["gradleCheckTask", 41, 3], ["doCheck", 42, 3], ["installPhase", 44, 3], ["postInstall", 55, 3], ["doInstallCheck", 62, 3], ["nativeInstallCheckInputs", 63, 3], ["passthru", 65, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const stripJavaArchivesHook = nix.arg($, "stripJavaArchivesHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "pakku",
       version: "1.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "juraj-hrivnak",
           repo: "Pakku",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +30,7 @@ export default nix.lambda((args) => (() => {
       gradleBuildTask: "jvmJar",
       nativeBuildInputs: nix.thunk(() => [gradle, makeWrapper, installShellFiles, stripJavaArchivesHook]),
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           data: nix.path(here, "./deps.json"),
         })))),
@@ -53,9 +49,9 @@ runHook postInstall
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd pakku \\\n  --bash <($out/bin/pakku --generate-completion=bash) \\\n  --fish <($out/bin/pakku --generate-completion=fish) \\\n  --zsh <($out/bin/pakku --generate-completion=zsh)\n")),
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Multiplatform modpack manager for Minecraft: Java Edition",
         longDescription: "With Pakku, you can create modpacks for CurseForge, Modrinth or both simultaneously.\n\nIt's a package manager that significantly simplifies Minecraft modpack development, inspired by package managers like npm and Cargo. In addition to package management itself, it enables support for version control, simplifies collaboration options, and adds support for CI/CD.\n",
         homepage: "https://github.com/juraj-hrivnak/Pakku",

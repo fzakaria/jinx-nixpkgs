@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["urls", 28, 9], ["hash", 32, 9]], [["urls", 35, 9], ["hash", 39, 9]], [["urls", 42, 9], ["hash", 46, 9]], [["x86_64-linux", 27, 7], ["aarch64-linux", 34, 7], ["aarch64-darwin", 41, 7]], [["sources", 26, 5], ["updateScript", 49, 5]], [["description", 57, 5], ["homepage", 58, 5], ["changelog", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 65, 5]], [["mainProgram", 68, 5]], [["pname", 76, 7], ["version", 77, 7], ["src", 78, 7], ["passthru", 79, 7], ["meta", 80, 7], ["nativeBuildInputs", 83, 5], ["sourceRoot", 84, 5], ["installPhase", 86, 5]], [["pname", 99, 7], ["version", 100, 7], ["src", 101, 7], ["passthru", 102, 7], ["meta", 103, 7], ["nativeBuildInputs", 106, 5], ["buildInputs", 112, 5], ["runtimeDependencies", 119, 5], ["installPhase", 125, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, undmg: false, dpkg: false, autoPatchelfHook: false, makeShellWrapper: false, "alsa-lib": false, nss: false, gtk3: false, libgbm: false, libGL: false, cups: false, dbus: false, pango: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["urls", 28, 9], ["hash", 32, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["urls", 35, 9], ["hash", 39, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["urls", 42, 9], ["hash", 46, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["x86_64-linux", 27, 7], ["aarch64-linux", 34, 7], ["aarch64-darwin", 41, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["sources", 26, 5], ["updateScript", 49, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 57, 5], ["homepage", 58, 5], ["changelog", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 65, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["mainProgram", 68, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 76, 7], ["version", 77, 7], ["src", 78, 7], ["passthru", 79, 7], ["meta", 80, 7], ["nativeBuildInputs", 83, 5], ["sourceRoot", 84, 5], ["installPhase", 86, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 99, 7], ["version", 100, 7], ["src", 101, 7], ["passthru", 102, 7], ["meta", 103, 7], ["nativeBuildInputs", 106, 5], ["buildInputs", 112, 5], ["runtimeDependencies", 119, 5], ["installPhase", 125, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const pname = "typora";
   const version = "1.14.9";
   const passthru = nix.thunk(() => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     sources: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://download.typora.io/linux/typora_${version}_amd64.deb`),
             nix.thunk(() => nix.str`https://downloads.typoraio.cn/linux/typora_${version}_amd64.deb`),
@@ -45,7 +37,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-iIUgfPni2u2iWS/ancsFwS1rXEZloqBVpQ5lSADmM+o=",
         })))),
       "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://download.typora.io/linux/typora_${version}_arm64.deb`),
             nix.thunk(() => nix.str`https://downloads.typoraio.cn/linux/typora_${version}_arm64.deb`),
@@ -53,7 +45,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-RXSQKwEffTcWgFR/P04UJ/e41mr26YGcGC2byNyGACw=",
         })))),
       "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://download.typora.io/mac/Typora-${version}.dmg`),
             nix.thunk(() => nix.str`https://downloads.typoraio.cn/mac/Typora-${version}.dmg`),
@@ -65,7 +57,7 @@ export default nix.lambda((args) => (() => {
   }));
   const src = nix.thunk(() => nix.selOr(passthru, () => nix.builtins.throw(nix.thunk(() => nix.str`unsupported system ${nix.sel(stdenv, "hostPlatform", "system")}`)), "sources", nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const meta = nix.thunk(() => nix.update({
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     description: "A minimal Markdown editor and reader.",
     homepage: "https://typora.io/",
     changelog: "https://typora.io/releases/all",
@@ -78,9 +70,9 @@ export default nix.lambda((args) => (() => {
       ];
     })()),
     platforms: nix.thunk(() => nix.builtins.attrNames(nix.thunk(() => nix.sel(passthru, "sources")))),
-  }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({ [nix.POS]: pos$7, mainProgram: "typora" })))));
+  }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({ [nix.POS]: $pos[6], mainProgram: "typora" })))));
   return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: pname,
       version: version,
       src: src,
@@ -90,7 +82,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: ".",
       installPhase: "runHook preInstall\n\nmkdir -p $out/Applications\ncp -a Typora.app $out/Applications\n\nrunHook postInstall\n",
     }))) : nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: pname,
       version: version,
       src: src,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5], ["stripRoot", 17, 5]], [["name", 40, 5], ["exec", 41, 5], ["icon", 42, 5], ["desktopName", 43, 5], ["genericName", 44, 5], ["comment", 45, 5], ["categories", 46, 5], ["startupWMClass", 50, 5]], [["description", 54, 5], ["mainProgram", 55, 5], ["longDescription", 56, 5], ["homepage", 61, 5], ["sourceProvenance", 62, 5], ["license", 63, 5], ["platforms", 64, 5], ["maintainers", 65, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["dontBuild", 20, 3], ["nativeBuildInputs", 22, 3], ["installPhase", 24, 3], ["desktopItem", 39, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, makeWrapper: false, makeDesktopItem: false, jdk8: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5], ["stripRoot", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 40, 5], ["exec", 41, 5], ["icon", 42, 5], ["desktopName", 43, 5], ["genericName", 44, 5], ["comment", 45, 5], ["categories", 46, 5], ["startupWMClass", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 54, 5], ["mainProgram", 55, 5], ["longDescription", 56, 5], ["homepage", 61, 5], ["sourceProvenance", 62, 5], ["license", 63, 5], ["platforms", 64, 5], ["maintainers", 65, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["dontBuild", 20, 3], ["nativeBuildInputs", 22, 3], ["installPhase", 24, 3], ["desktopItem", 39, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const jdk8 = nix.arg($, "jdk8");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "jpexs",
       version: "26.2.1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/jindrapetrik/jpexs-decompiler/releases/download/version${nix.sel(finalAttrs, "version")}/ffdec_${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-ReHYd+50dkDO/KcTDpFglm4FtJtt3EPfF4mDjaFZjb8=",
           stripRoot: false,
@@ -51,7 +48,7 @@ makeWrapper ${jdk8}/bin/java $out/bin/ffdec \\
           const categories = nix.thunk(() => ["Development", "Java"]);
           const startupWMClass = "com-jpexs-decompiler-flash-gui-Main";
           return {
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name,
             exec,
             icon,
@@ -63,7 +60,7 @@ makeWrapper ${jdk8}/bin/java $out/bin/ffdec \\
           };
         })()))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Flash SWF decompiler and editor",
         mainProgram: "ffdec",
         longDescription: "Open-source Flash SWF decompiler and editor. Extract resources,\nconvert SWF to FLA, edit ActionScript, replace images, sounds,\ntexts or fonts.\n",

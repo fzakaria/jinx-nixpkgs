@@ -2,17 +2,16 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["mainProgram", 5, 8]], [["pname", 4, 3], ["meta", 5, 3], ["configureFlags", 6, 3]]]);
 const formals$1 = { args: { libtool: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["mainProgram", 5, 8]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 4, 3], ["meta", 5, 3], ["configureFlags", 6, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const libtool = nix.arg($, "libtool");
   return nix.app(nix.sel(libtool, "overrideAttrs"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "glibtool",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "glibtool" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], mainProgram: "glibtool" })),
       configureFlags: nix.thunk(() => ["--program-prefix=g"]),
     })));
 })(), formals$1);

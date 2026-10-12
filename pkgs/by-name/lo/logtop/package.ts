@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["rev", 15, 5], ["owner", 16, 5], ["repo", 17, 5], ["sha256", 18, 5]], [["description", 35, 5], ["longDescription", 36, 5], ["license", 41, 5], ["homepage", 42, 5], ["platforms", 43, 5], ["maintainers", 44, 5], ["mainProgram", 45, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 22, 3], ["makeFlags", 27, 3], ["installFlags", 28, 3], ["postConfigure", 30, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, ncurses: false, uthash: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["rev", 15, 5], ["owner", 16, 5], ["repo", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 35, 5], ["longDescription", 36, 5], ["license", 41, 5], ["homepage", 42, 5], ["platforms", 43, 5], ["maintainers", 44, 5], ["mainProgram", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 22, 3], ["makeFlags", 27, 3], ["installFlags", 28, 3], ["postConfigure", 30, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const uthash = nix.arg($, "uthash");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "logtop",
       version: "0.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           rev: nix.thunk(() => nix.str`logtop-${nix.sel(finalAttrs, "version")}`),
           owner: "JulienPalard",
           repo: "logtop",
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       installFlags: nix.thunk(() => ["DESTDIR=$(out)"]),
       postConfigure: "substituteInPlace Makefile --replace /usr \"\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Displays a real-time count of strings received from stdin",
         longDescription: "logtop displays a real-time count of strings received from stdin.\nIt can be useful in some cases, like getting the IP flooding your\nserver or the top buzzing article of your blog\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

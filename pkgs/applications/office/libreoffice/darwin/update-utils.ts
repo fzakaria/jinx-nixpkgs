@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/update-utils.nix", [[["extractLatestVersionFromHtml", 45, 5], ["getHtml", 46, 5], ["getLatestStableVersion", 47, 5], ["extractSha256FromHtml", 48, 5], ["getSha256", 49, 5], ["getSha256Url", 50, 5]]]);
 const formals$1 = { args: { lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/update-utils.nix", [["extractLatestVersionFromHtml", 45, 5], ["getHtml", 46, 5], ["getLatestStableVersion", 47, 5], ["extractSha256FromHtml", 48, 5], ["getSha256", 49, 5], ["getSha256Url", 50, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const getSha256 = (dmgUrl) => (oldVersion) => (newVersion) => nix.app(extractSha256FromHtml, nix.thunk(() => nix.app(getHtml, nix.thunk(() => nix.app(getSha256Url, dmgUrl, oldVersion, newVersion)))));
   const getSha256Url = (dmgUrl) => (oldVersion) => (newVersion) => nix.add(nix.builtins.replaceStrings(nix.thunk(() => [oldVersion]), nix.thunk(() => [newVersion]), dmgUrl), ".sha256");
   return {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     extractLatestVersionFromHtml: extractLatestVersionFromHtml,
     getHtml: getHtml,
     getLatestStableVersion: getLatestStableVersion,

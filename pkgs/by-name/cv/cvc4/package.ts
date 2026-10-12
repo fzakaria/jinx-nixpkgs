@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["sha256", 27, 5]], [["description", 88, 5], ["mainProgram", 89, 5], ["homepage", 90, 5], ["license", 91, 5], ["platforms", 92, 5], ["maintainers", 93, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 34, 3], ["configureFlags", 47, 3], ["prePatch", 55, 3], ["patches", 60, 3], ["postPatch", 64, 3], ["preConfigure", 81, 3], ["cmakeBuildType", 85, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, cln: false, gmp: false, git: false, swig: false, "pkg-config": false, readline: false, libantlr3c: false, boost: false, jdk: false, python3: false, antlr3_4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["sha256", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 88, 5], ["mainProgram", 89, 5], ["homepage", 90, 5], ["license", 91, 5], ["platforms", 92, 5], ["maintainers", 93, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 34, 3], ["configureFlags", 47, 3], ["prePatch", 55, 3], ["patches", 60, 3], ["postPatch", 64, 3], ["preConfigure", 81, 3], ["cmakeBuildType", 85, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const antlr3_4 = nix.arg($, "antlr3_4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "cvc4",
       version: "1.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cvc4",
           repo: "cvc4-archived",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -62,7 +60,7 @@ patch -p1 -i ${nix.path(here, "./minisat-fenv.patch")} -d src/prop/bvminisat
       preConfigure: "patchShebangs ./src/\n",
       cmakeBuildType: "Production",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "High-performance theorem prover and SMT solver",
         mainProgram: "cvc4",
         homepage: "http://cvc4.cs.stanford.edu/web/",

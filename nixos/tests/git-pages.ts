@@ -2,56 +2,40 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/git-pages.nix", [[["systemPackages", 6, 17]], [["pages", 12, 11], ["caddy", 13, 11], ["metrics", 14, 11]], [["server", 11, 18]], [["settings", 11, 9]], [["PAGES_INSECURE", 17, 35]], [["environment", 17, 23]], [["service", 17, 15]], [["imports", 9, 7], ["git-pages", 10, 7], ["systemd", 17, 7]], [["git-pages", 8, 21]], [["services", 8, 12]], [["enable", 21, 7], ["configFile", 22, 7]], [["caddy", 20, 14]], [["allowedTCPPorts", 40, 25]], [["firewall", 40, 16]], [["environment", 6, 5], ["system", 8, 5], ["services", 20, 5], ["networking", 40, 5]], [["machine", 5, 9]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 43, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/git-pages.nix", [["systemPackages", 6, 17]]);
-const pos$2 = nix.positions(here + "/git-pages.nix", [["pages", 12, 11], ["caddy", 13, 11], ["metrics", 14, 11]]);
-const pos$3 = nix.positions(here + "/git-pages.nix", [["server", 11, 18]]);
-const pos$4 = nix.positions(here + "/git-pages.nix", [["settings", 11, 9]]);
-const pos$5 = nix.positions(here + "/git-pages.nix", [["PAGES_INSECURE", 17, 35]]);
-const pos$6 = nix.positions(here + "/git-pages.nix", [["environment", 17, 23]]);
-const pos$7 = nix.positions(here + "/git-pages.nix", [["service", 17, 15]]);
-const pos$8 = nix.positions(here + "/git-pages.nix", [["imports", 9, 7], ["git-pages", 10, 7], ["systemd", 17, 7]]);
-const pos$9 = nix.positions(here + "/git-pages.nix", [["git-pages", 8, 21]]);
-const pos$10 = nix.positions(here + "/git-pages.nix", [["services", 8, 12]]);
-const pos$11 = nix.positions(here + "/git-pages.nix", [["enable", 21, 7], ["configFile", 22, 7]]);
-const pos$12 = nix.positions(here + "/git-pages.nix", [["caddy", 20, 14]]);
-const pos$13 = nix.positions(here + "/git-pages.nix", [["allowedTCPPorts", 40, 25]]);
-const pos$14 = nix.positions(here + "/git-pages.nix", [["firewall", 40, 16]]);
-const pos$15 = nix.positions(here + "/git-pages.nix", [["environment", 6, 5], ["system", 8, 5], ["services", 20, 5], ["networking", 40, 5]]);
-const pos$16 = nix.positions(here + "/git-pages.nix", [["machine", 5, 9]]);
-const pos$17 = nix.positions(here + "/git-pages.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$17,
+    [nix.POS]: $pos[16],
     name: "git-pages-modular-service",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "curl"))]),
           })),
           system: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               "git-pages": nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 imports: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "git-pages", "services", "default"))]),
                 "git-pages": nix.thunk(() => ({
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   settings: nix.thunk(() => ({
-                    [nix.POS]: pos$3,
+                    [nix.POS]: $pos[2],
                     server: nix.thunk(() => ({
-                      [nix.POS]: pos$2,
+                      [nix.POS]: $pos[1],
                       pages: "tcp/:3000",
                       caddy: "tcp/:3001",
                       metrics: "tcp/:3002",
@@ -59,26 +43,26 @@ export default nix.lambda((args) => (() => {
                   })),
                 })),
                 systemd: nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   service: nix.thunk(() => ({
-                    [nix.POS]: pos$6,
-                    environment: nix.thunk(() => ({ [nix.POS]: pos$5, PAGES_INSECURE: "1" })),
+                    [nix.POS]: $pos[5],
+                    environment: nix.thunk(() => ({ [nix.POS]: $pos[4], PAGES_INSECURE: "1" })),
                   })),
                 })),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             caddy: nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               enable: true,
               configFile: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "Caddyfile", "{\n    admin off\n    persist_config off\n    auto_https disable_redirects\n    on_demand_tls {\n        permission http http://localhost:3001\n    }\n}\nhttps://, http:// {\n  tls {\n      on_demand\n  }\n  reverse_proxy http://localhost:3000\n}\n")),
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$14,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$13, allowedTCPPorts: nix.thunk(() => [80n]) })),
+            [nix.POS]: $pos[13],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[12], allowedTCPPorts: nix.thunk(() => [80n]) })),
           })),
         };
       })(), formals$2),

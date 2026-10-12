@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 13, 3], ["patches", 15, 3], ["extraBuildInputs", 19, 3], ["extraPropagatedBuildInputs", 28, 3]]]);
 const formals$1 = { args: { mkKdeDerivation: false, qtwebchannel: false, qtwebengine: false, qttools: false, kitemmodels: false, kquickcharts: false, libpcap: false, libnl: false, lm_sensors: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["patches", 15, 3], ["extraBuildInputs", 19, 3], ["extraPropagatedBuildInputs", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const libnl = nix.arg($, "libnl");
   const lm_sensors = nix.arg($, "lm_sensors");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "libksysguard",
       patches: nix.thunk(() => [nix.path(here, "./helper-path.patch")]),
       extraBuildInputs: nix.thunk(() => [qtwebchannel, qtwebengine, qttools, libpcap, libnl, lm_sensors]),

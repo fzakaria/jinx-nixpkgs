@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]], [["name", 29, 7], ["url", 30, 7], ["hash", 31, 7]], [["homepage", 45, 5], ["license", 46, 5], ["description", 47, 5], ["platforms", 48, 5], ["maintainers", 49, 5], ["mainProgram", 50, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["postPatch", 22, 3], ["patches", 26, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 37, 3], ["makeFlags", 42, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, "gdk-pixbuf": false, gtk2: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 29, 7], ["url", 30, 7], ["hash", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 45, 5], ["license", 46, 5], ["description", 47, 5], ["platforms", 48, 5], ["maintainers", 49, 5], ["mainProgram", 50, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["postPatch", 22, 3], ["patches", 26, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 37, 3], ["makeFlags", 42, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "trayer";
       const version = "1.1.8";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sargon",
           repo: "trayer-srg",
           rev: nix.thunk(() => nix.str`${pname}-${version}`),
@@ -30,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const postPatch = "patchShebangs configure\n";
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix_function_dec.patch",
             url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/x11-misc/trayer-srg/files/trayer-srg-1.1.8-fix-define.patch?id=94ae89d1b044c24138d5c8903df68e9654a5462f",
             hash: "sha256-LighVaBDePheBO+dWG6JHhm/Y6sxdtvTrBar8VrPRH4=",
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [gdk_pixbuf, gtk2]);
       const makeFlags = nix.thunk(() => ["PREFIX=$(out)"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/sargon/trayer-srg",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         description: "Lightweight GTK2-based systray for UNIX desktop",
@@ -52,7 +49,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "trayer",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

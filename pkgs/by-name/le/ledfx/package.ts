@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["hue", 75, 5]], [["description", 92, 5], ["homepage", 93, 5], ["changelog", 94, 5], ["license", 95, 5], ["maintainers", 96, 5], ["mainProgram", 97, 5], ["platforms", 98, 5]], [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 12, 3], ["pythonRelaxDeps", 19, 3], ["pythonRemoveDeps", 21, 3], ["build-system", 27, 3], ["dependencies", 32, 3], ["optional-dependencies", 74, 3], ["nativeCheckInputs", 78, 3], ["disabledTests", 86, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["hue", 75, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 92, 5], ["homepage", 93, 5], ["changelog", 94, 5], ["license", 95, 5], ["maintainers", 96, 5], ["mainProgram", 97, 5], ["platforms", 98, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 12, 3], ["pythonRelaxDeps", 19, 3], ["pythonRemoveDeps", 21, 3], ["build-system", 27, 3], ["dependencies", 32, 3], ["optional-dependencies", 74, 3], ["nativeCheckInputs", 78, 3], ["disabledTests", 86, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ledfx",
       version: "2.2.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "LedFx",
           repo: "LedFx",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -78,7 +75,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         hue: nix.thunk(() => (() => {
           const w_2 = nix.withScope(nix.thunk(() => nix.sel(python3, "pkgs")), null);
           return [nix.thunk(() => nix.lookup(w_2, "python-mbedtls"))];
@@ -96,7 +93,7 @@ export default nix.lambda((args) => (() => {
       })()),
       disabledTests: nix.thunk(() => ["TestURLDownloadWithExternalURL"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Network based LED effect controller with support for advanced real-time audio effects",
         homepage: "https://github.com/LedFx/LedFx",
         changelog: nix.thunk(() => nix.str`https://github.com/LedFx/LedFx/releases/tag/v${nix.sel(finalAttrs, "version")}`),

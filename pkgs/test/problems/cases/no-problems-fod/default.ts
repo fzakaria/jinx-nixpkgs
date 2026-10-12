@@ -2,34 +2,29 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["package", 9, 11], ["handler", 10, 11]], [["matchers", 7, 16]], [["problems", 7, 7]], [["system", 4, 5], ["overlays", 5, 5], ["config", 6, 5]], [["description", 19, 8]], [["pname", 17, 3], ["version", 18, 3], ["meta", 19, 3], ["outputHash", 20, 3]]]);
 const formals$1 = { args: { nixpkgs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["package", 9, 11], ["handler", 10, 11]]);
-const pos$2 = nix.positions(here + "/default.nix", [["matchers", 7, 16]]);
-const pos$3 = nix.positions(here + "/default.nix", [["problems", 7, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["system", 4, 5], ["overlays", 5, 5], ["config", 6, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 19, 8]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["meta", 19, 3], ["outputHash", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const nixpkgs = nix.arg($, "nixpkgs");
   const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nixpkgs), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       system: "x86_64-linux",
       overlays: [],
       config: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         problems: nix.thunk(() => ({
-          [nix.POS]: pos$2,
-          matchers: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$1, package: "a", handler: "error" }))]),
+          [nix.POS]: $pos[1],
+          matchers: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[0], package: "a", handler: "error" }))]),
         })),
       })),
     }))));
   return nix.app(nix.sel(pkgs, "stdenvNoCC", "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "a",
       version: "0",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$5, description: "Some package" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[4], description: "Some package" })),
       outputHash: nix.thunk(() => nix.sel(pkgs, "lib", "fakeHash")),
     })));
 })(), formals$1);

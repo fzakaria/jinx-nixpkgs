@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 40, 5], ["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]], [["name", 102, 7], ["desktopName", 103, 7], ["exec", 104, 7], ["icon", 105, 7], ["mimeTypes", 106, 7], ["categories", 107, 7], ["comment", 108, 7]], [["fmod", 143, 13], ["sqlite", 143, 18]], [["homepage", 147, 5], ["description", 148, 5], ["mainProgram", 149, 5], ["maintainers", 150, 5], ["license", 151, 5], ["platforms", 152, 5]], [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["patches", 48, 3], ["buildInputs", 54, 3], ["nativeBuildInputs", 71, 3], ["preConfigure", 80, 3], ["cmakeFlags", 92, 3], ["hardeningDisable", 98, 3], ["desktopItems", 100, 3], ["installPhase", 113, 3], ["postFixup", 137, 3], ["passthru", 142, 3], ["meta", 146, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, cmake: false, "pkg-config": false, makeWrapper: false, callPackage: false, "soundfont-fluid": false, "sdl12-compat": false, libGL: false, libopus: false, glew: false, bzip2: false, zlib: false, libjpeg: false, fluidsynth: false, fmodex: false, openssl: false, python3: false, "game-music-emu": false, copyDesktopItems: false, makeDesktopItem: false, imagemagick: false, serverOnly: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 40, 5], ["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 102, 7], ["desktopName", 103, 7], ["exec", 104, 7], ["icon", 105, 7], ["mimeTypes", 106, 7], ["categories", 107, 7], ["comment", 108, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["fmod", 143, 13], ["sqlite", 143, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 147, 5], ["description", 148, 5], ["mainProgram", 149, 5], ["maintainers", 150, 5], ["license", 151, 5], ["platforms", 152, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["patches", 48, 3], ["buildInputs", 54, 3], ["nativeBuildInputs", 71, 3], ["preConfigure", 80, 3], ["cmakeFlags", 92, 3], ["hardeningDisable", 98, 3], ["desktopItems", 100, 3], ["installPhase", 113, 3], ["postFixup", 137, 3], ["passthru", 142, 3], ["meta", 146, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.thunk(() => nix.app(callPackage, nix.path(here, "./sqlite.nix"), nix.thunk(() => ({}))));
   const clientLibPath = nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [fluidsynth])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: nix.thunk(() => nix.str`zandronum${suffix}`),
       version: "3.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "foss.heptapod.net",
           owner: "zandronum",
           repo: "zandronum-stable",
@@ -66,7 +62,7 @@ sed -i -e 's| restrict| _restrict|g' dumb/include/dumb.h \\
       hardeningDisable: nix.thunk(() => ["format"]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "zandronum",
             desktopName: "Zandronum",
             exec: "zandronum",
@@ -101,9 +97,9 @@ runHook postInstall
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(serverOnly)), nix.thunk(() => nix.str`patchelf --set-rpath $(patchelf --print-rpath $out/lib/zandronum/zandronum):$out/lib/zandronum:${clientLibPath} \\
   $out/lib/zandronum/zandronum
 `))),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, fmod: fmod, sqlite: sqlite })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], fmod: fmod, sqlite: sqlite })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://zandronum.com/",
         description: "Multiplayer oriented port, based off Skulltag, for Doom and Doom II by id Software",
         mainProgram: "zandronum-server",

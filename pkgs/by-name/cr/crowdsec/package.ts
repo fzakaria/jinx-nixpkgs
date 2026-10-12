@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["mainProgram", 76, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["description", 79, 5], ["longDescription", 80, 5], ["license", 91, 5], ["maintainers", 92, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["nativeBuildInputs", 22, 3], ["subPackages", 27, 3], ["ldflags", 39, 3], ["postBuild", 50, 3], ["postInstall", 52, 3], ["preCheck", 66, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, makeBinaryWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["mainProgram", 76, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["description", 79, 5], ["longDescription", 80, 5], ["license", 91, 5], ["maintainers", 92, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["nativeBuildInputs", 22, 3], ["subPackages", 27, 3], ["ldflags", 39, 3], ["postBuild", 50, 3], ["postInstall", 52, 3], ["preCheck", 66, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "crowdsec",
       version: "1.8.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "crowdsecurity",
           repo: "crowdsec",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -58,7 +56,7 @@ if [ "$version" != "v${nix.sel(finalAttrs, "version")}" ]; then
 fi
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         mainProgram: "crowdsec",
         homepage: "https://crowdsec.net/",
         changelog: nix.thunk(() => nix.str`https://github.com/crowdsecurity/crowdsec/releases/tag/v${nix.sel(finalAttrs, "version")}`),

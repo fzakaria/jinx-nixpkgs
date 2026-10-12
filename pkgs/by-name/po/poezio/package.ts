@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["plugins", 35, 5]], [["description", 67, 5], ["longDescription", 68, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["build-system", 22, 3], ["dependencies", 28, 3], ["optional-dependencies", 34, 3], ["preBuild", 45, 3], ["nativeCheckInputs", 49, 3], ["outputs", 53, 3], ["sphinxBuilders", 58, 3], ["pythonImportsCheck", 62, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromCodeberg: false, "pkg-config": false, python3: false, sphinxHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["plugins", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 67, 5], ["longDescription", 68, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["build-system", 22, 3], ["dependencies", 28, 3], ["optional-dependencies", 34, 3], ["preBuild", 45, 3], ["nativeCheckInputs", 49, 3], ["outputs", 53, 3], ["sphinxBuilders", 58, 3], ["pythonImportsCheck", 62, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const sphinxHook = nix.arg($, "sphinxHook");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "poezio",
       version: "0.18",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "poezio",
           repo: "poezio",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         plugins: nix.thunk(() => (() => {
           const w_2 = nix.withScope(nix.thunk(() => nix.sel(python3, "pkgs")), null);
           return [
@@ -68,7 +65,7 @@ export default nix.lambda((args) => (() => {
       sphinxBuilders: nix.thunk(() => ["man"]),
       pythonImportsCheck: nix.thunk(() => ["poezio"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Free console XMPP client",
         longDescription: "Its goal is to let you connect very easily (no account creation needed) to\nthe network and join various chatrooms, immediately. It tries to look like\nthe most famous IRC clients (weechat, irssi, etc). Many commands are\nidentical and you won't be lost if you already know these clients.\nConfiguration can be made in a configuration file or directly from\nthe client.\n\nYou'll find the light, fast, geeky and anonymous spirit of IRC while using\na powerful, standard and open protocol.\n",
         homepage: "https://poez.io",

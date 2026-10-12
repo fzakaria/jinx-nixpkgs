@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["mainProgram", 40, 5], ["platforms", 41, 5], ["sourceProvenance", 42, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["installPhase", 24, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { fetchurl: false, jdk21_headless: false, lib: false, makeWrapper: false, stdenvNoCC: false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["mainProgram", 40, 5], ["platforms", 41, 5], ["sourceProvenance", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["installPhase", 24, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ijhttp",
       version: "261.25134.95",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.jetbrains.com/resources/intellij/http-client/${nix.sel(finalAttrs, "version")}/intellij-http-client.zip`),
           hash: "sha256-RlbpweLHmPvn/Xjtj8EkvAceu0bgJ3DhmKViaJ2jLJ0=",
         })))),
@@ -36,7 +34,7 @@ makeWrapper $out/lib/ijhttp $out/bin/ijhttp \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Run HTTP requests from a terminal, e.g. for HTTP request testing",
         homepage: "https://www.jetbrains.com/help/idea/http-client-cli.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

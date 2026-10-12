@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5]], [["pname", 20, 5], ["src", 21, 13], ["version", 21, 17], ["sourceRoot", 23, 5], ["cargoHash", 25, 5]], [["description", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["license", 63, 5], ["platforms", 64, 5], ["maintainers", 65, 5], ["mainProgram", 66, 5]], [["pname", 29, 3], ["src", 30, 11], ["version", 30, 15], ["pyproject", 31, 3], ["build-system", 33, 3], ["dependencies", 37, 3], ["postPatch", 42, 3], ["preBuild", 54, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, pkgsStatic: false, fetchFromGitHub: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 20, 5], ["src", 21, 13], ["version", 21, 17], ["sourceRoot", 23, 5], ["cargoHash", 25, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["license", 63, 5], ["platforms", 64, 5], ["maintainers", 65, 5], ["mainProgram", 66, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["src", 30, 11], ["version", 30, 15], ["pyproject", 31, 3], ["build-system", 33, 3], ["dependencies", 37, 3], ["postPatch", 42, 3], ["preBuild", 54, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const version = "2.14.2";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "JonathonReinhart",
       repo: "scuba",
       tag: nix.thunk(() => nix.str`v${version}`),
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const sourceRoot = nix.thunk(() => nix.str`${nix.sel(src_1, "name")}/scubainit`);
       const cargoHash = "sha256-YUYo2B5hzzmDeNiWUC+198Qbz+JPgUJfpAqyPWAXTRA=";
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname,
         src: src_1,
         version: version_1,
@@ -67,7 +64,7 @@ substituteInPlace setup.py \\
 ln -s ${scubainit}/bin/scubainit scuba/scubainit
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Simple Container-Utilizing Build Apparatus",
         homepage: "https://github.com/JonathonReinhart/scuba",
         changelog: nix.thunk(() => nix.str`https://github.com/JonathonReinhart/scuba/releases/tag/${nix.sel(src_1, "tag")}`),
@@ -80,7 +77,7 @@ ln -s ${scubainit}/bin/scubainit scuba/scubainit
         mainProgram: "scuba",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         src: src_1,
         version: version_1,

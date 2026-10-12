@@ -2,15 +2,14 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/sd-image-aarch64-new-kernel-installer.nix", [["cloneConfig", 9, 13]]);
-const pos$2 = nix.positions(here + "/sd-image-aarch64-new-kernel-installer.nix", [["imports", 2, 3], ["installer", 9, 3]]);
+const $pos = nix.positions(here + "/sd-image-aarch64-new-kernel-installer.nix", [[["cloneConfig", 9, 13]], [["imports", 2, 3], ["installer", 9, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$2,
+  [nix.POS]: $pos[1],
   imports: nix.thunk(() => [
     nix.path(here, "../../profiles/installation-device.nix"),
     nix.path(here, "./sd-image-aarch64-new-kernel.nix"),
   ]),
-  installer: nix.thunk(() => ({ [nix.POS]: pos$1, cloneConfig: false })),
+  installer: nix.thunk(() => ({ [nix.POS]: $pos[0], cloneConfig: false })),
 }));
 //# sourceMappingURL=sd-image-aarch64-new-kernel-installer.ts.map

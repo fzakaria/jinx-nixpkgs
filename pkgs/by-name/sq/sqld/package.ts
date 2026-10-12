@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["ZSTD_SYS_USE_PKG_CONFIG", 51, 5], ["RUSTFLAGS", 54, 5]], [["updateScript", 64, 5]], [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["mainProgram", 72, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["cargoBuildFlags", 30, 3], ["cargoHash", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 44, 3], ["env", 50, 3], ["doCheck", 58, 3], ["nativeInstallCheckInputs", 60, 3], ["doInstallCheck", 61, 3], ["passthru", 63, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, fetchpatch: false, "pkg-config": false, protobuf: false, openssl: false, sqlite: false, zstd: false, cmake: false, "nix-update-script": false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ZSTD_SYS_USE_PKG_CONFIG", 51, 5], ["RUSTFLAGS", 54, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 64, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["mainProgram", 72, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["cargoBuildFlags", 30, 3], ["cargoHash", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 44, 3], ["env", 50, 3], ["doCheck", 58, 3], ["nativeInstallCheckInputs", 60, 3], ["doInstallCheck", 61, 3], ["passthru", 63, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "sqld",
       version: "0.24.33",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tursodatabase",
           repo: "libsql",
           tag: nix.thunk(() => nix.str`libsql-server-v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +41,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [openssl, sqlite, zstd]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         ZSTD_SYS_USE_PKG_CONFIG: true,
         RUSTFLAGS: "--cfg tokio_unstable",
       })),
@@ -53,11 +49,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "LibSQL with extended capabilities like HTTP protocol, replication, and more",
         homepage: "https://github.com/tursodatabase/libsql",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

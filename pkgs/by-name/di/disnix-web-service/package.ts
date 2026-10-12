@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["url", 30, 7], ["hash", 31, 7]], [["PREFIX", 42, 5], ["AXIS2_LIB", 43, 5], ["AXIS2_WEBAPP", 44, 5], ["DBUS_JAVA_LIB", 45, 5]], [["description", 70, 5], ["mainProgram", 71, 5], ["homepage", 72, 5], ["changelog", 73, 5], ["license", 74, 5], ["platforms", 75, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["nativeBuildInputs", 35, 3], ["env", 41, 3], ["prePatch", 48, 3], ["buildPhase", 57, 3], ["installPhase", 63, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, ant: false, jdk8: false, xmlstarlet: false, axis2: false, dbus_java: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 30, 7], ["hash", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["PREFIX", 42, 5], ["AXIS2_LIB", 43, 5], ["AXIS2_WEBAPP", 44, 5], ["DBUS_JAVA_LIB", 45, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 70, 5], ["mainProgram", 71, 5], ["homepage", 72, 5], ["changelog", 73, 5], ["license", 74, 5], ["platforms", 75, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["nativeBuildInputs", 35, 3], ["env", 41, 3], ["prePatch", 48, 3], ["buildPhase", 57, 3], ["installPhase", 63, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const dbus_java = nix.arg($, "dbus_java");
   const jdk = jdk8;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "disnix-web-service",
       version: "0.10.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "svanderburg",
           repo: "DisnixWebService",
           rev: nix.thunk(() => nix.str`DisnixWebService-${nix.sel(finalAttrs, "version")}`),
@@ -34,14 +30,14 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/svanderburg/DisnixWebService/commit/cee99c6af744b5dda16728a70ebd2800f61871a0.patch",
             hash: "sha256-4rSEN8AwivUXUCIUYFBRIoE19jVDv+Vpgakmy8fR06A=",
           })))),
       ]),
       nativeBuildInputs: nix.thunk(() => [ant, jdk, xmlstarlet]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         PREFIX: nix.thunk(() => nix.builtins.placeholder("out")),
         AXIS2_LIB: nix.thunk(() => nix.str`${axis2}/lib`),
         AXIS2_WEBAPP: nix.thunk(() => nix.str`${axis2}/webapps/axis2`),
@@ -57,7 +53,7 @@ substituteInPlace scripts/disnix-soap-client \\
       buildPhase: "runHook preBuild\nant\nrunHook postBuild\n",
       installPhase: "runHook preInstall\nant install\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "SOAP interface and client for Disnix",
         mainProgram: "disnix-soap-client",
         homepage: "https://github.com/svanderburg/DisnixWebService",

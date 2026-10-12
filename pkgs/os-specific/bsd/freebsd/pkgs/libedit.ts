@@ -2,15 +2,15 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libedit.nix", [[["path", 3, 3], ["extraPaths", 4, 3], ["buildInputs", 5, 3], ["MK_TESTS", 6, 3]]]);
 const formals$1 = { args: { mkDerivation: false, "libncurses-tinfo": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libedit.nix", [["path", 3, 3], ["extraPaths", 4, 3], ["buildInputs", 5, 3], ["MK_TESTS", 6, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const mkDerivation = nix.arg($, "mkDerivation");
   const libncurses_tinfo = nix.arg($, "libncurses-tinfo");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       path: "lib/libedit",
       extraPaths: nix.thunk(() => ["contrib/libedit"]),
       buildInputs: nix.thunk(() => [libncurses_tinfo]),

@@ -2,11 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mssql.nix", [[["url", 14, 7], ["hash", 15, 7]], [["description", 21, 7], ["mainProgram", 22, 7], ["homepage", 23, 7], ["license", 24, 7], ["maintainers", 29, 7], ["platforms", 30, 7]], [["pname", 10, 5], ["version", 11, 13], ["src", 13, 5], ["vendorHash", 18, 5], ["meta", 20, 5]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchurl: false }, ellipsis: false };
 const formals$2 = { args: { version: false, mssqlHash: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/mssql.nix", [["url", 14, 7], ["hash", 15, 7]]);
-const pos$2 = nix.positions(here + "/mssql.nix", [["description", 21, 7], ["mainProgram", 22, 7], ["homepage", 23, 7], ["license", 24, 7], ["maintainers", 29, 7], ["platforms", 30, 7]]);
-const pos$3 = nix.positions(here + "/mssql.nix", [["pname", 10, 5], ["version", 11, 13], ["src", 13, 5], ["vendorHash", 18, 5], ["meta", 20, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,17 +16,17 @@ export default nix.lambda((args) => (() => {
       const version = nix.arg($_1, "version");
       const mssqlHash = nix.arg($_1, "mssqlHash");
       return nix.app(buildGoModule, (finalAttrs) => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: "zabbix-agent2-plugin-mssql",
           version: version,
           src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               url: nix.thunk(() => nix.str`https://cdn.zabbix.com/zabbix-agent2-plugins/sources/mssql/zabbix-agent2-plugin-mssql-${nix.sel(finalAttrs, "version")}.tar.gz`),
               hash: mssqlHash,
             })))),
           vendorHash: null,
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             description: "Zabbix agent2 plugin for monitoring Microsoft SQL servers",
             mainProgram: "mssql",
             homepage: "https://www.zabbix.com/documentation/current/en/manual/appendix/config/zabbix_agent2_plugins/mssql_plugin",

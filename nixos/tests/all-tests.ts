@@ -2,372 +2,11 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/all-tests.nix", [[["system", 46, 17], ["pkgs", 46, 24]], [["system", 87, 66], ["pkgs", 87, 73]], [["minimalModules", 99, 18]], [["featureFlags", 99, 5]], [["modules", 101, 54]], [["pkgs", 120, 19]], [["nixpkgs", 120, 11]], [["system", 117, 7], ["modules", 118, 7]], [["enable", 149, 20]], [["nix", 149, 16]], [["_file", 144, 9], ["config", 149, 9]], [["_class", 137, 7], ["_file", 139, 7], ["imports", 140, 7], ["extraBaseModules", 143, 7]], [["system", 157, 54], ["pkgs", 157, 61]], [["imports", 158, 11]], [["doRunTest", 155, 7], ["findTests", 163, 7], ["runTest", 170, 7], ["runTestOn", 176, 7]], [["pkgs", 204, 94]], [["failed", 208, 11]], [["test", 222, 11], ["nativeBuildInputs", 223, 11]], [["extra-python-packages", 193, 5], ["lib-extend", 194, 5], ["node-name", 195, 5], ["busybox", 196, 5], ["ssh-backdoor", 197, 5], ["console-log", 198, 5], ["containers", 199, 5], ["nspawn-daemon-reexec-dbus", 200, 5], ["multi-arch-test", 201, 5], ["skip-typecheck", 202, 5], ["console-timeout", 203, 5], ["options-doc-regression", 204, 5], ["driver-timeout", 205, 5], ["efivars", 218, 5], ["junit", 219, 5]], [["runTest", 239, 13], ["lib", 239, 21]], [["runTest", 259, 13]], [["confined", 267, 18]], [["args", 267, 13]], [["imports", 266, 5], ["_module", 267, 5]], [["confined", 271, 18]], [["args", 271, 13]], [["imports", 270, 5], ["_module", 271, 5]], [["pkgs", 298, 38], ["runTest", 298, 43]], [["networkd", 315, 18]], [["args", 315, 13]], [["imports", 314, 5], ["_module", 315, 5]], [["networkd", 319, 18]], [["args", 319, 13]], [["imports", 318, 5], ["_module", 319, 5]], [["compression", 334, 18]], [["args", 334, 13]], [["imports", 333, 5], ["_module", 334, 5]], [["compression", 338, 18]], [["args", 338, 13]], [["imports", 337, 5], ["_module", 338, 5]], [["compression", 342, 18]], [["args", 342, 13]], [["imports", 341, 5], ["_module", 342, 5]], [["lib", 346, 20], ["runTest", 347, 13], ["package", 348, 5]], [["lib", 351, 20], ["runTest", 352, 13], ["package", 353, 5]], [["pkgs", 392, 58], ["runTest", 392, 63]], [["getPackage", 398, 18]], [["args", 398, 13]], [["imports", 397, 5], ["_module", 398, 5]], [["withCephfs", 406, 46]], [["pkgs", 412, 44], ["runTest", 412, 49]], [["runTest", 428, 13], ["package", 429, 5]], [["runTest", 432, 13], ["package", 433, 5]], [["pkgs", 438, 54], ["runTest", 438, 59]], [["lib", 441, 13], ["runTest", 442, 5]], [["pkgs", 462, 60]], [["nix", 475, 12]], [["imports", 474, 5], ["params", 475, 5]], [["testName", 490, 18], ["enableAutologin", 491, 18], ["enableXWayland", 492, 18]], [["args", 490, 13]], [["imports", 489, 5], ["_module", 490, 5]], [["testName", 496, 18], ["enableAutologin", 497, 18], ["enableXWayland", 498, 18]], [["args", 496, 13]], [["imports", 495, 5], ["_module", 496, 5]], [["testName", 502, 18], ["enableAutologin", 503, 18], ["enableXWayland", 504, 18]], [["args", 502, 13]], [["imports", 501, 5], ["_module", 502, 5]], [["testName", 508, 18], ["enableAutologin", 509, 18], ["enableXWayland", 510, 18]], [["args", 508, 13]], [["imports", 507, 5], ["_module", 508, 5]], [["mechanism", 516, 18]], [["args", 516, 13]], [["imports", 515, 5], ["_module", 516, 5]], [["mechanism", 520, 18]], [["args", 520, 13]], [["imports", 519, 5], ["_module", 520, 5]], [["pkgs", 528, 48], ["runTest", 528, 53]], [["package", 549, 18]], [["args", 549, 13]], [["imports", 548, 5], ["_module", 549, 5]], [["package", 553, 18]], [["args", 553, 13]], [["imports", 552, 5], ["_module", 553, 5]], [["pkgs", 556, 44], ["runTest", 556, 49]], [["nixosLib", 567, 85]], [["pkgs", 586, 54], ["runTest", 586, 59]], [["systemdStage1", 607, 18]], [["args", 607, 13]], [["imports", 606, 5], ["_module", 607, 5]], [["systemdStage1", 611, 18]], [["args", 611, 13]], [["imports", 610, 5], ["_module", 611, 5]], [["envoyPackage", 615, 18]], [["args", 615, 13]], [["imports", 614, 5], ["_module", 615, 5]], [["envoyPackage", 619, 18]], [["args", 619, 13]], [["imports", 618, 5], ["_module", 619, 5]], [["lib", 625, 13], ["runTest", 625, 17]], [["evalMinimalConfig", 628, 72]], [["pkgs", 629, 46], ["runTest", 629, 51]], [["runTest", 633, 54]], [["pkgs", 644, 46], ["runTest", 644, 51]], [["firefoxPackage", 652, 18]], [["args", 652, 13]], [["imports", 651, 5], ["_module", 652, 5]], [["firefoxPackage", 656, 18]], [["args", 656, 13]], [["imports", 655, 5], ["_module", 656, 5]], [["firefoxPackage", 661, 18]], [["args", 661, 13]], [["imports", 660, 5], ["_module", 661, 5]], [["firefoxPackage", 665, 18]], [["args", 665, 13]], [["imports", 664, 5], ["_module", 665, 5]], [["backend", 673, 18]], [["args", 673, 13]], [["imports", 672, 5], ["_module", 673, 5]], [["backend", 677, 18]], [["args", 677, 13]], [["imports", 676, 5], ["_module", 677, 5]], [["backend", 681, 18]], [["args", 681, 13]], [["imports", 680, 5], ["_module", 681, 5]], [["runTest", 698, 13], ["forgejoPackage", 699, 5]], [["runTest", 702, 13], ["forgejoPackage", 703, 5]], [["runTest", 706, 13]], [["runTest", 710, 42]], [["systemdStage1", 717, 18]], [["args", 717, 13]], [["imports", 716, 5], ["_module", 717, 5]], [["systemdStage1", 721, 18]], [["args", 721, 13]], [["imports", 720, 5], ["_module", 721, 5]], [["runTest", 725, 57]], [["runTest", 728, 13], ["package", 729, 5]], [["runTest", 732, 13], ["package", 733, 5]], [["pkgs", 737, 46], ["runTest", 737, 51]], [["gitea", 748, 25], ["runTest", 749, 13], ["lib", 750, 13]], [["runTest", 755, 13]], [["runTest", 789, 13]], [["basic", 801, 5], ["efi", 802, 5], ["graphical", 803, 5], ["hashed-password", 804, 5], ["mirrored-boots", 805, 5]], [["lib", 812, 13], ["runTest", 812, 17]], [["handleTestOn", 815, 13], ["package", 816, 5]], [["handleTestOn", 819, 13], ["package", 820, 5]], [["handleTestOn", 823, 13], ["package", 824, 5]], [["getPackage", 832, 18]], [["args", 832, 13]], [["imports", 831, 5], ["_module", 832, 5]], [["getPackage", 836, 18]], [["args", 836, 13]], [["imports", 835, 5], ["_module", 836, 5]], [["getPackage", 840, 18]], [["args", 840, 13]], [["imports", 839, 5], ["_module", 840, 5]], [["getPackage", 844, 18]], [["args", 844, 13]], [["imports", 843, 5], ["_module", 844, 5]], [["systemdStage1", 854, 5]], [["systemdStage1", 857, 5]], [["pkgs", 872, 13], ["runTest", 872, 18], ["lib", 873, 20]], [["runTest", 885, 40]], [["runTestOn", 895, 13], ["package", 896, 5]], [["runTestOn", 899, 13], ["package", 900, 5]], [["systemdStage1", 906, 18]], [["args", 906, 13]], [["imports", 905, 5], ["_module", 906, 5]], [["systemdStage1", 909, 5]], [["systemdStage1", 918, 44]], [["systemdStage1", 919, 60]], [["pkgs", 942, 5], ["runTest", 943, 13]], [["lib", 947, 13], ["pkgs", 947, 17], ["runTest", 948, 5], ["rancherDistro", 952, 5]], [["runTest", 955, 13], ["pkgs", 955, 21]], [["pkgs", 972, 13], ["runTest", 972, 18]], [["pkgs", 981, 13], ["runTest", 981, 18], ["lib", 982, 20]], [["pkgs", 985, 13], ["runTest", 985, 18], ["lib", 986, 20]], [["lib", 1003, 13], ["runTest", 1003, 17]], [["latestKernel", 1016, 18]], [["args", 1016, 13]], [["imports", 1015, 5], ["_module", 1016, 5]], [["login", 1014, 16]], [["firefoxPackage", 1036, 18]], [["args", 1036, 13]], [["imports", 1035, 5], ["_module", 1036, 5]], [["runTest", 1044, 38]], [["pkgs", 1057, 13], ["runTest", 1057, 18]], [["pkgs", 1085, 34], ["runTest", 1085, 39]], [["handleTest", 1090, 51]], [["handleTestOn", 1101, 73]], [["lib", 1122, 13], ["runTest", 1122, 17]], [["evalSystem", 1146, 13]], [["testName", 1157, 20]], [["args", 1157, 15]], [["imports", 1156, 7], ["_module", 1157, 7]], [["testName", 1164, 20]], [["args", 1164, 15]], [["package", 1165, 33]], [["mongodb", 1165, 25]], [["services", 1165, 16]], [["imports", 1163, 7], ["_module", 1164, 7], ["defaults", 1165, 7]], [["lib", 1176, 13], ["runTest", 1176, 17]], [["withFirewall", 1199, 41]], [["withFirewall", 1201, 5], ["nftables", 1202, 5]], [["withFirewall", 1205, 5], ["nftables", 1206, 5]], [["firewall", 1200, 16], ["standalone", 1204, 16]], [["withFirewall", 1208, 43]], [["firewall", 1199, 7], ["nftables", 1200, 7], ["standalone", 1208, 7]], [["testName", 1215, 18]], [["args", 1215, 13]], [["imports", 1214, 5], ["_module", 1215, 5]], [["testName", 1219, 18]], [["args", 1219, 13]], [["databaseURL", 1220, 34]], [["cache", 1220, 28]], [["ncps", 1220, 23]], [["services", 1220, 14]], [["imports", 1218, 5], ["_module", 1219, 5], ["defaults", 1220, 5]], [["testName", 1224, 18]], [["args", 1224, 13]], [["local", 1225, 42]], [["storage", 1225, 34]], [["cache", 1225, 28]], [["ncps", 1225, 23]], [["services", 1225, 14]], [["imports", 1223, 5], ["_module", 1224, 5], ["defaults", 1225, 5]], [["enabled", 1230, 38]], [["cdc", 1230, 34]], [["cache", 1230, 28]], [["ncps", 1230, 23]], [["services", 1230, 14]], [["imports", 1229, 5], ["defaults", 1230, 5]], [["connectivity", 1234, 10], ["reload", 1235, 10]], [["networkd", 1243, 77]], [["networkd", 1245, 77]], [["networkd", 1243, 14], ["networkmanager", 1244, 14], ["scripted", 1245, 14]], [["version", 1254, 29]], [["version", 1255, 29]], [["pkgs", 1265, 52], ["runTest", 1265, 57]], [["runTest", 1279, 58]], [["nixVersions", 1295, 20], ["system", 1296, 13]], [["imports", 1304, 5]], [["imports", 1307, 5]], [["imports", 1310, 5]], [["imports", 1313, 5]], [["evalMinimalConfig", 1315, 73]], [["evalMinimalConfig", 1318, 17]], [["package", 1357, 18]], [["args", 1357, 13]], [["imports", 1356, 5], ["_module", 1357, 5]], [["package", 1361, 18]], [["args", 1361, 13]], [["imports", 1360, 5], ["_module", 1361, 5]], [["package", 1365, 18]], [["args", 1365, 13]], [["imports", 1364, 5], ["_module", 1365, 5]], [["package", 1369, 18]], [["args", 1369, 13]], [["imports", 1368, 5], ["_module", 1369, 5]], [["package", 1373, 18]], [["args", 1373, 13]], [["imports", 1372, 5], ["_module", 1373, 5]], [["package", 1377, 18]], [["args", 1377, 13]], [["imports", 1376, 5], ["_module", 1377, 5]], [["evalSystem", 1414, 13]], [["lib", 1456, 13], ["runTest", 1456, 17]], [["runTest", 1465, 46]], [["runTest", 1473, 13], ["php", 1474, 5]], [["runTest", 1477, 13], ["php", 1478, 5]], [["runTest", 1481, 13], ["php", 1482, 5]], [["runTest", 1485, 13], ["php", 1486, 5]], [["runTest", 1489, 13], ["php", 1490, 5]], [["runTest", 1494, 46]], [["runTestOn", 1496, 51]], [["runTest", 1499, 48]], [["runTest", 1523, 13], ["pkgs", 1524, 5]], [["testName", 1537, 18], ["socket", 1538, 18], ["listenTcp", 1539, 18]], [["args", 1537, 13]], [["imports", 1536, 5], ["_module", 1537, 5]], [["testName", 1543, 18], ["socket", 1544, 18], ["listenTcp", 1545, 18]], [["args", 1543, 13]], [["imports", 1542, 5], ["_module", 1543, 5]], [["testName", 1549, 18], ["socket", 1550, 18], ["listenTcp", 1551, 18]], [["args", 1549, 13]], [["imports", 1548, 5], ["_module", 1549, 5]], [["testName", 1555, 18], ["socket", 1556, 18], ["listenTcp", 1557, 18]], [["args", 1555, 13]], [["imports", 1554, 5], ["_module", 1555, 5]], [["runTest", 1561, 46]], [["lib", 1563, 13], ["runTest", 1563, 17]], [["package", 1585, 34]], [["package", 1586, 38]], [["lib", 1604, 13], ["runTest", 1604, 17]], [["package", 1612, 18]], [["args", 1612, 13]], [["imports", 1611, 5], ["_module", 1612, 5]], [["lib", 1628, 13], ["pkgs", 1628, 17], ["runTest", 1629, 5], ["rancherDistro", 1633, 5]], [["runTest", 1677, 38]], [["runTest", 1689, 38]], [["runTest", 1696, 40]], [["pkgs", 1741, 42], ["runTest", 1741, 47]], [["runTest", 1751, 44]], [["lib", 1757, 13], ["runTest", 1757, 17]], [["part", 1768, 18]], [["args", 1768, 13]], [["imports", 1767, 5], ["_module", 1768, 5]], [["part", 1772, 18]], [["args", 1772, 13]], [["imports", 1771, 5], ["_module", 1772, 5]], [["part", 1776, 18]], [["args", 1776, 13]], [["imports", 1775, 5], ["_module", 1776, 5]], [["part", 1780, 18]], [["args", 1780, 13]], [["imports", 1779, 5], ["_module", 1780, 5]], [["evalSystem", 1799, 9], ["runTest", 1800, 9], ["callTest", 1801, 9], ["pkgs", 1803, 7]], [["lib", 1810, 13], ["runTest", 1810, 17], ["runTestOn", 1810, 25]], [["systemdStage1", 1825, 18]], [["args", 1825, 13]], [["imports", 1824, 5], ["_module", 1825, 5]], [["runTest", 1833, 76]], [["systemdStage1", 1837, 32]], [["systemdStage1", 1842, 18]], [["args", 1842, 13]], [["imports", 1841, 5], ["_module", 1842, 5]], [["systemdStage1", 1875, 18]], [["args", 1875, 13]], [["imports", 1874, 5], ["_module", 1875, 5]], [["runTest", 1928, 34]], [["useNftables", 1969, 43]], [["useNftables", 1970, 43]], [["iptables", 1969, 8], ["nftables", 1970, 8]], [["runTest", 1990, 46]], [["package", 1996, 18]], [["args", 1996, 13]], [["imports", 1995, 5], ["_module", 1996, 5]], [["package", 2000, 18]], [["args", 2000, 13]], [["imports", 1999, 5], ["_module", 2000, 5]], [["runTest", 2008, 38]], [["runTest", 2012, 50]], [["runTest", 2013, 56]], [["runTest", 2014, 54]], [["package", 2018, 18]], [["args", 2018, 13]], [["imports", 2017, 5], ["_module", 2018, 5]], [["runTest", 2024, 46]], [["getPackage", 2039, 18]], [["args", 2039, 13]], [["imports", 2038, 5], ["_module", 2039, 5]], [["getPackage", 2043, 18]], [["args", 2043, 13]], [["imports", 2042, 5], ["_module", 2043, 5]], [["runTest", 2050, 13]], [["pkgs", 2053, 13], ["runTest", 2053, 18], ["lib", 2054, 20]], [["pkgs", 2057, 5], ["runTest", 2058, 13], ["lib", 2058, 21]], [["pkgs", 2064, 58], ["runTest", 2064, 63]], [["runTest", 2066, 61]], [["ybPivHarnessTests", 2083, 63], ["testFixtures", 2083, 81]], [["lib", 2085, 13], ["runTest", 2085, 17]], [["system", 2094, 36], ["pkgs", 2094, 43], ["runTest", 2094, 48]], [["nixos-test-driver", 192, 3], ["_3proxy", 234, 3], ["aaaaxy", 235, 3], ["accountsservice", 236, 3], ["acl", 237, 3], ["acme", 238, 3], ["acme-dns", 241, 3], ["activation", 242, 3], ["activation-bashless", 243, 3], ["activation-bashless-closure", 244, 3], ["activation-bashless-image", 245, 3], ["activation-etc-overlay-immutable", 246, 3], ["activation-etc-overlay-mutable", 247, 3], ["activation-lib", 248, 3], ["activation-nix-channel", 249, 3], ["activation-nixos-init", 250, 3], ["activation-perlless", 251, 3], ["activation-template-dropin", 252, 3], ["activation-var", 253, 3], ["actual", 254, 3], ["adguardhome", 255, 3], ["aesmd", 256, 3], ["agate", 257, 3], ["agda", 258, 3], ["age-plugin-tpm-decrypt", 261, 3], ["agnos", 262, 3], ["agorakit", 263, 3], ["airsonic", 264, 3], ["akkoma", 265, 3], ["akkoma-confined", 269, 3], ["alice-lg", 273, 3], ["alloy", 274, 3], ["allTerminfo", 275, 3], ["alps", 276, 3], ["amazon-cloudwatch-agent", 277, 3], ["amazon-init-shell", 278, 3], ["amazon-ssm-agent", 279, 3], ["amd-sev", 280, 3], ["amuled", 281, 3], ["android-translation-layer", 282, 3], ["angie-api", 283, 3], ["angrr", 284, 3], ["anki-sync-server", 285, 3], ["anubis", 286, 3], ["anuko-time-tracker", 287, 3], ["apcupsd", 288, 3], ["apfs", 289, 3], ["apparmor", 290, 3], ["appliance-repart-image", 291, 3], ["appliance-repart-image-verity-store", 292, 3], ["aria2", 293, 3], ["armagetronad", 294, 3], ["artalk", 295, 3], ["asynch", 296, 3], ["atd", 297, 3], ["atop", 298, 3], ["atticd", 299, 3], ["attr", 300, 3], ["atuin", 301, 3], ["atuin-programs", 302, 3], ["audiobookshelf", 303, 3], ["audit", 304, 3], ["audit-testsuite", 305, 3], ["aurral", 306, 3], ["auth-mysql", 307, 3], ["authelia", 308, 3], ["auto-cpufreq", 309, 3], ["autobrr", 310, 3], ["autopush-rs", 311, 3], ["autosuspend", 312, 3], ["avahi", 313, 3], ["avahi-with-resolved", 317, 3], ["ax25", 321, 3], ["ayatana-indicators", 322, 3], ["babeld", 323, 3], ["bazarr", 324, 3], ["bcache", 325, 3], ["bcachefs", 326, 3], ["beanstalkd", 327, 3], ["bees", 328, 3], ["benchexec", 329, 3], ["bentopdf", 330, 3], ["beszel", 331, 3], ["binary-cache", 332, 3], ["binary-cache-no-compression", 336, 3], ["binary-cache-xz", 340, 3], ["bind", 344, 3], ["bird2", 345, 3], ["bird3", 350, 3], ["birdwatcher", 355, 3], ["bitbox-bridge", 356, 3], ["bitcoind", 357, 3], ["bittorrent", 358, 3], ["blint", 359, 3], ["blockbook-frontend", 360, 3], ["blocky", 361, 3], ["bluesky-pds", 362, 3], ["bookorbit", 363, 3], ["bookstack", 364, 3], ["boot", 365, 3], ["boot-stage1", 366, 3], ["boot-stage2", 367, 3], ["bootspec", 368, 3], ["borgbackup", 369, 3], ["borgmatic", 370, 3], ["bpf", 371, 3], ["bpftune", 372, 3], ["breitbandmessung", 373, 3], ["broadcast-box", 374, 3], ["brscan5", 375, 3], ["btrbk", 376, 3], ["btrbk-doas", 377, 3], ["btrbk-no-timer", 378, 3], ["btrbk-section-order", 379, 3], ["btrfs-autoscrub", 380, 3], ["budgie", 381, 3], ["buildbot", 382, 3], ["buildkite-agents", 383, 3], ["buildstream", 384, 3], ["buildstream-plugins-community", 385, 3], ["bulwark", 386, 3], ["c2fmzq", 387, 3], ["caddy", 388, 3], ["cadvisor", 389, 3], ["cage", 390, 3], ["cagebreak", 391, 3], ["calibre-server", 392, 3], ["calibre-web", 393, 3], ["canaille", 394, 3], ["cardwire", 395, 3], ["cassandra", 396, 3], ["castopod", 400, 3], ["centrifugo", 401, 3], ["ceph-multi-node-bluestore", 402, 3], ["ceph-multi-node-bluestore-cephfs", 405, 3], ["ceph-single-node-bluestore", 408, 3], ["certmgr", 412, 3], ["cfssl", 413, 3], ["cgit", 414, 3], ["charliecloud", 415, 3], ["chhoto-url", 416, 3], ["chipass", 417, 3], ["chromadb", 418, 3], ["chromium", 419, 3], ["chrony", 420, 3], ["chrony-ptp", 421, 3], ["cinnamon", 422, 3], ["cinnamon-wayland", 423, 3], ["cjdns", 424, 3], ["clamav", 425, 3], ["clatd", 426, 3], ["clickhouse", 427, 3], ["clickhouse-lts", 431, 3], ["cliproxyapi", 435, 3], ["cloud-init", 436, 3], ["cloud-init-hostname", 437, 3], ["cloudcompare", 438, 3], ["cloudlog", 439, 3], ["cntr", 440, 3], ["cockpit", 447, 3], ["cockroachdb", 448, 3], ["cocoon", 449, 3], ["code-server", 450, 3], ["coder", 451, 3], ["collectd", 452, 3], ["commafeed", 453, 3], ["connman", 454, 3], ["console", 455, 3], ["console-xkb-and-i18n", 456, 3], ["consul", 457, 3], ["consul-template", 458, 3], ["containers-bridge", 459, 3], ["containers-custom-pkgs", 460, 3], ["containers-ephemeral", 461, 3], ["containers-eval", 462, 3], ["containers-extra_veth", 463, 3], ["containers-gateway", 464, 3], ["containers-hosts", 465, 3], ["containers-imperative", 466, 3], ["containers-imperative-no-daemon", 467, 3], ["containers-ip", 468, 3], ["containers-ipv6-slaac", 469, 3], ["containers-macvlans", 470, 3], ["containers-names", 471, 3], ["containers-nested", 472, 3], ["containers-nested-nix", 473, 3], ["containers-physical_interfaces", 477, 3], ["containers-portforward", 478, 3], ["containers-reloadable", 479, 3], ["containers-require-bind-mounts", 480, 3], ["containers-restart_networking", 481, 3], ["containers-tmpfs", 482, 3], ["containers-unified-hierarchy", 483, 3], ["convos", 484, 3], ["coredns", 485, 3], ["corerad", 486, 3], ["corteza", 487, 3], ["cosmic", 488, 3], ["cosmic-autologin", 494, 3], ["cosmic-autologin-noxwayland", 500, 3], ["cosmic-noxwayland", 506, 3], ["coturn", 512, 3], ["couchdb", 513, 3], ["credentials-fwcfg", 514, 3], ["credentials-smbios", 518, 3], ["cri-o", 522, 3], ["croc", 523, 3], ["cross-seed", 524, 3], ["cryptpad", 525, 3], ["cups-pdf", 526, 3], ["curl-impersonate", 527, 3], ["custom-ca", 528, 3], ["cyrus-imap", 529, 3], ["dae", 530, 3], ["darling-dmg", 531, 3], ["dashy", 532, 3], ["davis", 533, 3], ["dawarich", 534, 3], ["db-rest", 535, 3], ["dconf", 536, 3], ["ddns-updater", 537, 3], ["deconz", 538, 3], ["deluge", 539, 3], ["dendrite", 540, 3], ["dep-scan", 541, 3], ["dependency-track", 542, 3], ["devpi-server", 543, 3], ["dex-oidc", 544, 3], ["dictd", 545, 3], ["disable-installer-tools", 546, 3], ["discourse", 547, 3], ["discourseAllPlugins", 551, 3], ["dnscrypt-proxy", 555, 3], ["dnsdist", 556, 3], ["doas", 557, 3], ["docker", 558, 3], ["docker-autoprune", 559, 3], ["docker-registry", 560, 3], ["docker-rootless", 561, 3], ["docker-tools", 562, 3], ["docker-tools-cross", 563, 3], ["docker-tools-nix-shell", 564, 3], ["docker-tools-overlay", 565, 3], ["docling-serve", 566, 3], ["documentation", 567, 3], ["documize", 568, 3], ["docuseal-psql", 569, 3], ["docuseal-sqlite", 570, 3], ["docuum", 571, 3], ["doh-proxy-rust", 572, 3], ["dokuwiki", 573, 3], ["dolibarr", 574, 3], ["domination", 575, 3], ["dovecot", 576, 3], ["draupnir", 577, 3], ["drawterm", 578, 3], ["drbd", 579, 3], ["drbd-driver", 580, 3], ["druid", 581, 3], ["drupal", 582, 3], ["dublin-traceroute", 583, 3], ["duplicity", 584, 3], ["dwl", 585, 3], ["e57inspector", 586, 3], ["early-mount-options", 587, 3], ["earlyoom", 588, 3], ["easytier", 589, 3], ["easytier-modular", 590, 3], ["ec2-config", 591, 3], ["ec2-image", 592, 3], ["ec2-nixops", 593, 3], ["echoip", 594, 3], ["ejabberd", 595, 3], ["elk", 596, 3], ["elk-zone", 597, 3], ["emacs-daemon", 598, 3], ["endlessh", 599, 3], ["endlessh-go", 600, 3], ["engelsystem", 601, 3], ["enlightenment", 602, 3], ["ente", 603, 3], ["env", 604, 3], ["envfs", 605, 3], ["envfs-systemd-stage-1", 609, 3], ["envoy", 613, 3], ["envoy-bin", 617, 3], ["ergo", 621, 3], ["ergochat", 622, 3], ["ersatztv", 623, 3], ["espanso", 624, 3], ["esphome", 627, 3], ["etc", 628, 3], ["etcd", 629, 3], ["etebase-server", 630, 3], ["etesync-dav", 631, 3], ["evcc", 632, 3], ["extra-initrd", 633, 3], ["facter", 634, 3], ["fail2ban", 635, 3], ["fakeroute", 636, 3], ["fancontrol", 637, 3], ["fanout", 638, 3], ["fastnetmon-advanced", 639, 3], ["fcitx5", 640, 3], ["fedimintd", 641, 3], ["feishin", 642, 3], ["ferm", 643, 3], ["ferretdb", 644, 3], ["fider", 645, 3], ["filebrowser", 646, 3], ["filesystems-overlayfs", 647, 3], ["firefly-iii", 648, 3], ["firefly-iii-data-importer", 649, 3], ["firefox", 650, 3], ["firefox-devedition", 654, 3], ["firefox-esr", 658, 3], ["firefox-esr-153", 663, 3], ["firefox-syncserver", 667, 3], ["firefox_decrypt", 668, 3], ["firefoxpwa", 669, 3], ["firejail", 670, 3], ["firewall", 671, 3], ["firewall-firewalld", 675, 3], ["firewall-nftables", 679, 3], ["firewalld", 683, 3], ["firezone", 684, 3], ["fish", 685, 3], ["flame", 686, 3], ["flannel", 687, 3], ["flap-alerted", 688, 3], ["flaresolverr", 689, 3], ["flarum", 690, 3], ["flood", 691, 3], ["fluent-bit", 692, 3], ["fluentd", 693, 3], ["fluidd", 694, 3], ["fontconfig-bitmap-fonts", 695, 3], ["fontconfig-default-fonts", 696, 3], ["forgejo", 697, 3], ["forgejo-lts", 701, 3], ["freescout", 705, 3], ["freeswitch", 708, 3], ["freetube", 709, 3], ["freshrss", 710, 3], ["frigate", 711, 3], ["froide-govplan", 712, 3], ["frp", 713, 3], ["frr", 714, 3], ["fsck", 715, 3], ["fsck-systemd-stage-1", 719, 3], ["fscrypt", 723, 3], ["ft2-clone", 724, 3], ["galene", 725, 3], ["gancio", 726, 3], ["garage_1", 727, 3], ["garage_2", 731, 3], ["garm-incus", 735, 3], ["gatus", 736, 3], ["gemstash", 737, 3], ["geoclue2", 738, 3], ["geoserver", 739, 3], ["gerrit", 740, 3], ["getaddrinfo", 741, 3], ["geth", 742, 3], ["ghostunnel", 743, 3], ["ghostunnel-modular", 744, 3], ["git-pages-modular", 745, 3], ["gitdaemon", 746, 3], ["gitea", 747, 3], ["gitea-actions-runner", 752, 3], ["github-runner", 753, 3], ["gitlab", 754, 3], ["gitolite", 757, 3], ["gitolite-fcgiwrap", 758, 3], ["glance", 759, 3], ["glances", 760, 3], ["glitchtip", 761, 3], ["glusterfs", 762, 3], ["gnome", 763, 3], ["gnome-extensions", 764, 3], ["gnome-flashback", 765, 3], ["gns3-server", 766, 3], ["gnupg", 767, 3], ["go-camo", 768, 3], ["go-csp-collector", 769, 3], ["go-httpbin", 770, 3], ["goatcounter", 771, 3], ["gobgpd", 772, 3], ["gocd-agent", 773, 3], ["gocd-server", 774, 3], ["gocron", 775, 3], ["gocryptfs", 776, 3], ["gokapi", 777, 3], ["gollum", 778, 3], ["gonic", 779, 3], ["google-oslogin", 780, 3], ["gophernicus", 781, 3], ["gopro-tool", 782, 3], ["goss", 783, 3], ["gotenberg", 784, 3], ["gotify-server", 785, 3], ["gotosocial", 786, 3], ["goupile", 787, 3], ["grafana", 788, 3], ["grafana-to-ntfy", 791, 3], ["graphite", 792, 3], ["grav", 793, 3], ["graylog", 794, 3], ["greenlight", 795, 3], ["greetd-no-shadow", 796, 3], ["grist", 797, 3], ["grocy", 798, 3], ["grow-partition", 799, 3], ["grub", 800, 3], ["gs1200-exporter", 807, 3], ["guacamole-server", 808, 3], ["guix", 809, 3], ["gvisor", 810, 3], ["h2o", 811, 3], ["hadoop", 814, 3], ["hadoop2", 818, 3], ["hadoop_3_3", 822, 3], ["haproxy", 826, 3], ["harmonia", 827, 3], ["harmonia-gc", 828, 3], ["haste-server", 829, 3], ["hbase2", 830, 3], ["hbase3", 834, 3], ["hbase_2_4", 838, 3], ["hbase_2_5", 842, 3], ["hddtemp", 846, 3], ["headplane", 847, 3], ["headscale", 848, 3], ["healthchecks", 849, 3], ["hedgedoc", 850, 3], ["herbstluftwm", 851, 3], ["hibernate", 853, 3], ["hibernate-systemd-stage-1", 856, 3], ["hickory-dns", 859, 3], ["hister", 860, 3], ["hitch", 861, 3], ["hledger-web", 862, 3], ["hockeypuck", 863, 3], ["holo-daemon-modular-service", 864, 3], ["home-assistant", 865, 3], ["homebox", 866, 3], ["homebridge", 867, 3], ["homepage-dashboard", 868, 3], ["homer", 869, 3], ["hoogle", 870, 3], ["hostname", 871, 3], ["hound", 875, 3], ["hub", 876, 3], ["hydra", 877, 3], ["hyphanet", 878, 3], ["i18n", 879, 3], ["i2pd", 880, 3], ["i3wm", 881, 3], ["icecast", 882, 3], ["icingaweb2", 883, 3], ["ifm", 884, 3], ["ifstate", 885, 3], ["iftop", 886, 3], ["image-contents", 887, 3], ["immich", 888, 3], ["immich-kiosk", 889, 3], ["immich-public-proxy", 890, 3], ["immich-vectorchord-reindex", 891, 3], ["immichframe", 892, 3], ["incron", 893, 3], ["incus", 894, 3], ["incus-lts", 898, 3], ["influxdb", 902, 3], ["influxdb2", 903, 3], ["initrd-luks-empty-passphrase", 904, 3], ["initrd-network-openvpn", 908, 3], ["initrd-network-ssh", 911, 3], ["initrd-secrets", 912, 3], ["initrd-secrets-changing", 913, 3], ["initrdNetwork", 914, 3], ["input-remapper", 915, 3], ["inspircd", 916, 3], ["installed-tests", 917, 3], ["installer", 918, 3], ["installer-systemd-stage-1", 919, 3], ["intune", 920, 3], ["inventree", 921, 3], ["invidious", 922, 3], ["invoiceplane", 923, 3], ["iocaine", 924, 3], ["iodine", 925, 3], ["iosched", 926, 3], ["ipget", 927, 3], ["ipv6", 928, 3], ["irqbalance", 929, 3], ["iscsi-multipath-root", 930, 3], ["iscsi-root", 931, 3], ["isolate", 932, 3], ["isso", 933, 3], ["jackett", 934, 3], ["jellyfin", 935, 3], ["jenkins", 936, 3], ["jenkins-cli", 937, 3], ["jibri", 938, 3], ["jirafeau", 939, 3], ["jitsi-meet", 940, 3], ["jool", 941, 3], ["jotta-cli", 945, 3], ["k3s", 946, 3], ["kafka", 954, 3], ["kaidan", 957, 3], ["kanboard", 958, 3], ["kanidm", 959, 3], ["kanidm-provisioning", 960, 3], ["kapla", 961, 3], ["karakeep", 962, 3], ["karma", 963, 3], ["kavita", 964, 3], ["kbd-setfont-decompress", 965, 3], ["kbd-update-search-paths-patch", 966, 3], ["kea", 967, 3], ["keepalived", 968, 3], ["keepassxc", 969, 3], ["kener", 970, 3], ["kerberos", 971, 3], ["kernel-generic", 974, 3], ["kernel-latest-ath-user-regd", 975, 3], ["kernel-rust", 976, 3], ["keter", 977, 3], ["kexec", 978, 3], ["keycloak", 979, 3], ["keyd", 980, 3], ["keymap", 984, 3], ["kimai", 988, 3], ["kismet", 989, 3], ["kiwix-serve", 990, 3], ["kmonad", 991, 3], ["kmscon", 992, 3], ["knot", 993, 3], ["koito", 994, 3], ["komga", 995, 3], ["komodo-periphery", 996, 3], ["krb5", 997, 3], ["krill", 998, 3], ["ksm", 999, 3], ["kthxbye", 1000, 3], ["kubernetes", 1001, 3], ["kubo", 1002, 3], ["kvrocks", 1005, 3], ["labgrid", 1006, 3], ["lact", 1007, 3], ["ladybird", 1008, 3], ["languagetool", 1009, 3], ["lanraragi", 1010, 3], ["lasuite-docs", 1011, 3], ["lasuite-drive", 1012, 3], ["lasuite-meet", 1013, 3], ["latestKernel", 1014, 3], ["lauti", 1018, 3], ["lavalink", 1019, 3], ["leaps", 1020, 3], ["legit", 1021, 3], ["lemmy", 1022, 3], ["lemurs", 1023, 3], ["lemurs-wayland", 1024, 3], ["lemurs-wayland-script", 1025, 3], ["lemurs-xorg", 1026, 3], ["lemurs-xorg-script", 1027, 3], ["libinput", 1028, 3], ["librechat", 1029, 3], ["librenms", 1030, 3], ["libresprite", 1031, 3], ["libreswan", 1032, 3], ["libreswan-nat", 1033, 3], ["librewolf", 1034, 3], ["libuiohook", 1038, 3], ["libvirtd", 1039, 3], ["lidarr", 1040, 3], ["lightdm", 1041, 3], ["lighttpd", 1042, 3], ["limesurvey", 1043, 3], ["limine", 1044, 3], ["linkding", 1045, 3], ["linkding-postgres", 1046, 3], ["linkwarden", 1047, 3], ["linux-builder-vz-store-gc", 1048, 3], ["listmonk", 1049, 3], ["litellm", 1050, 3], ["litestream", 1051, 3], ["livebook-service", 1052, 3], ["livekit", 1053, 3], ["lix", 1054, 3], ["lk-jwt-service", 1055, 3], ["llama-swap", 1056, 3], ["lldap", 1059, 3], ["local-content-share", 1060, 3], ["locale", 1061, 3], ["localsend", 1062, 3], ["locate", 1063, 3], ["login", 1064, 3], ["login-nosuid", 1065, 3], ["logkeys", 1066, 3], ["logrotate", 1067, 3], ["loki", 1068, 3], ["lomiri", 1070, 3], ["lomiri-calculator-app", 1071, 3], ["lomiri-calendar-app", 1072, 3], ["lomiri-camera-app", 1073, 3], ["lomiri-clock-app", 1074, 3], ["lomiri-docviewer-app", 1075, 3], ["lomiri-filemanager-app", 1076, 3], ["lomiri-gallery-app", 1077, 3], ["lomiri-mediaplayer-app", 1078, 3], ["lomiri-music-app", 1079, 3], ["lomiri-system-settings", 1080, 3], ["loops-server", 1081, 3], ["lorri", 1082, 3], ["luks", 1083, 3], ["luks-suspend", 1084, 3], ["lvm2", 1085, 3], ["lxc", 1086, 3], ["lxd-image-server", 1087, 3], ["lxqt", 1088, 3], ["ly", 1089, 3], ["maddy", 1090, 3], ["maestral", 1091, 3], ["magic-wormhole-mailbox-server", 1092, 3], ["magnetico", 1093, 3], ["mailcatcher", 1094, 3], ["mailhog", 1095, 3], ["mailman", 1096, 3], ["mailpit", 1097, 3], ["man", 1098, 3], ["mariadb-galera", 1099, 3], ["marytts", 1100, 3], ["mastodon", 1101, 3], ["mate", 1102, 3], ["mate-wayland", 1103, 3], ["matomo", 1104, 3], ["matrix-alertmanager", 1105, 3], ["matrix-appservice-irc", 1106, 3], ["matrix-authentication-service", 1107, 3], ["matrix-conduit", 1108, 3], ["matrix-continuwuity", 1109, 3], ["matrix-synapse", 1110, 3], ["matrix-tuwunel", 1111, 3], ["matter-server", 1112, 3], ["matterjs-server", 1113, 3], ["mattermost", 1114, 3], ["mautrix-discord", 1115, 3], ["mautrix-meta-postgres", 1116, 3], ["mautrix-meta-sqlite", 1117, 3], ["mealie", 1118, 3], ["mediamtx", 1119, 3], ["mediatomb", 1120, 3], ["mediawiki", 1121, 3], ["meilisearch", 1124, 3], ["memcached", 1125, 3], ["merecat", 1126, 3], ["meshtasticd", 1127, 3], ["metabase", 1128, 3], ["mihomo", 1129, 3], ["mimir", 1130, 3], ["mindustry", 1131, 3], ["minecraft-server", 1132, 3], ["minidlna", 1133, 3], ["miniflux", 1134, 3], ["minio", 1135, 3], ["miracle-wm", 1136, 3], ["miriway", 1137, 3], ["misc", 1138, 3], ["misskey", 1139, 3], ["mitmproxy", 1140, 3], ["mjolnir", 1141, 3], ["mobilizon", 1142, 3], ["mod_perl", 1143, 3], ["modular-service-etc", 1144, 3], ["modularService", 1145, 3], ["moduleStateRevisions", 1148, 3], ["molly-brown", 1149, 3], ["mollysocket", 1150, 3], ["monado", 1151, 3], ["monetdb", 1152, 3], ["mongodb", 1153, 3], ["mongodb-ce", 1160, 3], ["monica", 1168, 3], ["moodle", 1169, 3], ["moonraker", 1170, 3], ["moosefs", 1171, 3], ["mopidy", 1172, 3], ["morph-browser", 1173, 3], ["mosquitto", 1174, 3], ["movim", 1175, 3], ["mpd", 1178, 3], ["mpv", 1179, 3], ["mtp", 1180, 3], ["mumble", 1181, 3], ["munge", 1182, 3], ["munin", 1183, 3], ["musescore", 1186, 3], ["music-assistant", 1187, 3], ["mutableUsers", 1188, 3], ["mycelium", 1189, 3], ["mympd", 1190, 3], ["mysql", 1191, 3], ["mysql-autobackup", 1192, 3], ["mysql-backup", 1193, 3], ["mysql-replication", 1194, 3], ["mysql-secure-root", 1195, 3], ["n8n", 1196, 3], ["nagios", 1197, 3], ["nar-serve", 1198, 3], ["nat", 1199, 3], ["nats", 1209, 3], ["navidrome", 1210, 3], ["nbd", 1211, 3], ["ncdns", 1212, 3], ["ncps", 1213, 3], ["ncps-custom-sqlite-directory", 1217, 3], ["ncps-custom-storage-local", 1222, 3], ["ncps-ha-pg-redis", 1227, 3], ["ncps-ha-pg-redis-cdc", 1228, 3], ["ndppd", 1232, 3], ["nebula-lighthouse-service", 1233, 3], ["nebula", 1234, 3], ["neo4j", 1236, 3], ["netbird", 1237, 3], ["netbird-relay", 1238, 3], ["netbox", 1239, 3], ["netdata", 1240, 3], ["netfoil", 1241, 3], ["netplan", 1242, 3], ["networking", 1243, 3], ["networkingProxy", 1247, 3], ["nextcloud", 1248, 3], ["nextflow", 1249, 3], ["nextjs-ollama-llm-ui", 1250, 3], ["nexus", 1251, 3], ["nezha", 1252, 3], ["nfs3", 1254, 3], ["nfs4", 1255, 3], ["nghttpx", 1256, 3], ["nginx", 1257, 3], ["nginx-auth", 1258, 3], ["nginx-compression", 1259, 3], ["nginx-dynamic-modules", 1260, 3], ["nginx-etag", 1261, 3], ["nginx-etag-compression", 1262, 3], ["nginx-globalredirect", 1263, 3], ["nginx-grpc-error-pages", 1264, 3], ["nginx-http3", 1265, 3], ["nginx-lua", 1266, 3], ["nginx-mime", 1267, 3], ["nginx-modsecurity", 1268, 3], ["nginx-moreheaders", 1269, 3], ["nginx-njs", 1270, 3], ["nginx-otel", 1271, 3], ["nginx-proxyprotocol", 1272, 3], ["nginx-pubhtml", 1273, 3], ["nginx-redirectcode", 1274, 3], ["nginx-sso", 1275, 3], ["nginx-status-page", 1276, 3], ["nginx-tmpdir", 1277, 3], ["nginx-unix-socket", 1278, 3], ["nginx-variants", 1279, 3], ["nifi", 1280, 3], ["nimdow", 1281, 3], ["nipap", 1282, 3], ["nitter", 1283, 3], ["nix-config", 1284, 3], ["nix-daemon-firewall", 1285, 3], ["nix-daemon-unprivileged", 1286, 3], ["nix-ld", 1287, 3], ["nix-local-store", 1288, 3], ["nix-misc", 1289, 3], ["nix-required-mounts", 1290, 3], ["nix-serve", 1291, 3], ["nix-serve-ssh", 1292, 3], ["nix-store-veritysetup", 1293, 3], ["nix-upgrade", 1294, 3], ["nixops", 1298, 3], ["nixos-generate-config", 1299, 3], ["nixos-rebuild-install-bootloader", 1300, 3], ["nixos-rebuild-specialisations", 1303, 3], ["nixos-rebuild-store-path", 1306, 3], ["nixos-rebuild-target-host", 1309, 3], ["nixos-rebuild-target-host-interrupted", 1312, 3], ["nixpkgs", 1315, 3], ["nixpkgs-config-allow-unfree", 1316, 3], ["nixpkgs-config-allow-unfree-packages-and-predicate", 1319, 3], ["nixseparatedebuginfod2", 1322, 3], ["nmtrust", 1323, 3], ["node-red", 1324, 3], ["nohang", 1325, 3], ["nomad", 1326, 3], ["nominatim", 1327, 3], ["non-default-filesystems", 1328, 3], ["non-switchable-system", 1329, 3], ["nordvpn", 1330, 3], ["noto-fonts", 1331, 3], ["noto-fonts-cjk-qt-default-weight", 1332, 3], ["novacomd", 1333, 3], ["npmrc", 1334, 3], ["nscd", 1335, 3], ["nsd", 1336, 3], ["ntfy-sh", 1337, 3], ["ntfy-sh-migration", 1338, 3], ["ntpd", 1339, 3], ["ntpd-rs", 1340, 3], ["nullmailer", 1341, 3], ["nushell", 1342, 3], ["nvidia-container-toolkit", 1343, 3], ["nvme-rs", 1344, 3], ["nvmetcfg", 1345, 3], ["nyxt", 1346, 3], ["nzbget", 1347, 3], ["nzbhydra2", 1348, 3], ["obs-studio", 1349, 3], ["oci-containers", 1350, 3], ["ocis", 1351, 3], ["ocsinventory-agent", 1352, 3], ["octoprint", 1353, 3], ["oddjobd", 1354, 3], ["odoo17", 1355, 3], ["odoo17-multiprocess", 1359, 3], ["odoo18", 1363, 3], ["odoo18-multiprocess", 1367, 3], ["odoo19", 1371, 3], ["odoo19-multiprocess", 1375, 3], ["oh-my-zsh", 1379, 3], ["oku", 1380, 3], ["olivetin", 1381, 3], ["ollama", 1382, 3], ["ollama-cuda", 1383, 3], ["ollama-rocm", 1384, 3], ["ollama-vulkan", 1385, 3], ["ollaya", 1386, 3], ["omada", 1387, 3], ["ombi", 1388, 3], ["omnom", 1389, 3], ["oncall", 1390, 3], ["onlyoffice", 1391, 3], ["open-web-calendar", 1392, 3], ["open-webui", 1393, 3], ["openafs", 1394, 3], ["openarena", 1395, 3], ["openbao", 1396, 3], ["openbao-agent", 1397, 3], ["opencloud", 1398, 3], ["openldap", 1399, 3], ["openresty-lua", 1400, 3], ["opensearch", 1401, 3], ["opensearch-dashboards", 1402, 3], ["opensmtpd", 1403, 3], ["opensmtpd-rspamd", 1404, 3], ["opensnitch", 1405, 3], ["openssh", 1406, 3], ["openstack-image-metadata", 1407, 3], ["openstack-image-userdata", 1409, 3], ["opentabletdriver", 1411, 3], ["opentelemetry-collector", 1412, 3], ["opentelemetry-collector-validate", 1413, 3], ["openvscode-server", 1416, 3], ["openvswitch", 1417, 3], ["optee", 1418, 3], ["orangefs", 1419, 3], ["orbit", 1420, 3], ["orthanc", 1421, 3], ["os-prober", 1422, 3], ["osquery", 1423, 3], ["osrm-backend", 1424, 3], ["outline", 1425, 3], ["overlayfs", 1426, 3], ["owi", 1427, 3], ["owncast", 1428, 3], ["oxidized", 1429, 3], ["oxwm", 1430, 3], ["pacemaker", 1431, 3], ["packagekit", 1432, 3], ["pairdrop", 1433, 3], ["paisa", 1434, 3], ["pam-file-contents", 1435, 3], ["pam-lastlog", 1436, 3], ["pam-oath-login", 1437, 3], ["pam-pgsql", 1438, 3], ["pam-u2f", 1439, 3], ["pam-u2f-polkit", 1440, 3], ["pam-ussh", 1441, 3], ["pam-zfs-key", 1442, 3], ["pangolin", 1443, 3], ["pantalaimon", 1444, 3], ["pantheon", 1445, 3], ["paperless", 1446, 3], ["papra", 1447, 3], ["paretosecurity", 1448, 3], ["parsedmarc", 1449, 3], ["part-db", 1450, 3], ["pass-secret-service", 1451, 3], ["password-option-override-ordering", 1452, 3], ["patroni", 1453, 3], ["pcsclite", 1454, 3], ["pdfding", 1455, 3], ["pdns-recursor", 1458, 3], ["pdudaemon", 1459, 3], ["peerflix", 1460, 3], ["peering-manager", 1461, 3], ["peertube", 1462, 3], ["perses", 1463, 3], ["pgadmin4", 1464, 3], ["pgbackrest", 1465, 3], ["pgbouncer", 1466, 3], ["pgmanage", 1467, 3], ["pgweb", 1468, 3], ["phosh", 1469, 3], ["photonvision", 1470, 3], ["photoprism", 1471, 3], ["php", 1472, 3], ["php82", 1476, 3], ["php83", 1480, 3], ["php84", 1484, 3], ["php85", 1488, 3], ["phylactery", 1492, 3], ["pict-rs", 1493, 3], ["pihole-ftl", 1494, 3], ["pinnwand", 1495, 3], ["pixelfed", 1496, 3], ["plantuml-server", 1497, 3], ["plasma6", 1498, 3], ["plausible", 1499, 3], ["playwright-python", 1500, 3], ["please", 1501, 3], ["pleroma", 1502, 3], ["plikd", 1503, 3], ["plotinus", 1504, 3], ["pocket-id", 1505, 3], ["podman", 1506, 3], ["podman-tls-ghostunnel", 1507, 3], ["polaris", 1511, 3], ["pomerium", 1512, 3], ["portmaster", 1513, 3], ["portunus", 1514, 3], ["porxie", 1515, 3], ["postfix", 1516, 3], ["postfix-raise-smtpd-tls-security-level", 1517, 3], ["postfix-tlspol", 1520, 3], ["postgres-websockets", 1521, 3], ["postgresql", 1522, 3], ["postgrest", 1526, 3], ["power-profiles-daemon", 1527, 3], ["powerdns", 1528, 3], ["powerdns-admin", 1529, 3], ["pppd", 1530, 3], ["predictable-interface-names", 1531, 3], ["prefect", 1532, 3], ["pretalx", 1533, 3], ["pretix", 1534, 3], ["printing-service", 1535, 3], ["printing-service-notcp", 1541, 3], ["printing-socket", 1547, 3], ["printing-socket-notcp", 1553, 3], ["privatebin", 1559, 3], ["privoxy", 1560, 3], ["prometheus", 1561, 3], ["prometheus-exporters", 1562, 3], ["prosody", 1565, 3], ["prosody-mysql", 1566, 3], ["prowlarr", 1567, 3], ["proxy", 1568, 3], ["pt2-clone", 1569, 3], ["public-inbox", 1570, 3], ["pufferpanel", 1571, 3], ["pulseaudio", 1572, 3], ["pulseaudio-tcp", 1573, 3], ["pumpkin", 1574, 3], ["pykms", 1575, 3], ["qbit-manage", 1576, 3], ["qbittorrent", 1577, 3], ["qboot", 1578, 3], ["qemu-firmware", 1579, 3], ["qemu-vm-external-disk-image", 1580, 3], ["qemu-vm-restrictnetwork", 1581, 3], ["qemu-vm-shared-directories", 1582, 3], ["qemu-vm-store", 1583, 3], ["qemu-vm-volatile-root", 1584, 3], ["qgis", 1585, 3], ["qgis-ltr", 1586, 3], ["qlever", 1587, 3], ["qownnotes", 1588, 3], ["qtile", 1589, 3], ["qtile-extras", 1590, 3], ["quake3", 1591, 3], ["qui", 1592, 3], ["quicktun", 1593, 3], ["quickwit", 1594, 3], ["rabbitmq", 1595, 3], ["radarr", 1596, 3], ["radicale", 1597, 3], ["radicle", 1598, 3], ["radicle-ci-broker", 1599, 3], ["rasdaemon", 1600, 3], ["rathole", 1601, 3], ["rauc", 1602, 3], ["reaction", 1603, 3], ["readarr", 1606, 3], ["readeck", 1607, 3], ["realm", 1608, 3], ["rebuilderd", 1609, 3], ["redis", 1610, 3], ["redlib", 1614, 3], ["redmine", 1615, 3], ["refind", 1616, 3], ["remark42", 1617, 3], ["renovate", 1618, 3], ["repath-studio", 1619, 3], ["replace-dependencies", 1620, 3], ["reposilite", 1621, 3], ["restartByActivationScript", 1622, 3], ["restic", 1623, 3], ["restic-rest-server", 1624, 3], ["retroarch", 1625, 3], ["ringboard", 1626, 3], ["rke2", 1627, 3], ["rkvm", 1635, 3], ["rmfakecloud", 1636, 3], ["rnsd", 1637, 3], ["robustirc-bridge", 1638, 3], ["romm", 1639, 3], ["rosec", 1640, 3], ["rosenpass", 1641, 3], ["roundcube", 1642, 3], ["routinator", 1643, 3], ["rqbit", 1644, 3], ["rshim", 1645, 3], ["rspamd", 1646, 3], ["rspamd-trainer", 1647, 3], ["rss-bridge", 1648, 3], ["rss2email", 1649, 3], ["rsshub", 1650, 3], ["rstp", 1651, 3], ["rstudio-server", 1652, 3], ["rsync", 1653, 3], ["rsyncd", 1654, 3], ["rsyslogd", 1655, 3], ["rtkit", 1656, 3], ["rtorrent", 1657, 3], ["rundeck", 1658, 3], ["rush", 1659, 3], ["rustfs", 1660, 3], ["rustical", 1661, 3], ["rustls-libssl", 1662, 3], ["rxe", 1663, 3], ["sabnzbd", 1664, 3], ["sabnzbd-module", 1665, 3], ["samba", 1666, 3], ["samba-wsdd", 1667, 3], ["sane", 1668, 3], ["sanoid", 1669, 3], ["saunafs", 1670, 3], ["scanservjs", 1671, 3], ["schleuder", 1672, 3], ["scion-freestanding-deployment", 1673, 3], ["scrutiny", 1674, 3], ["scx", 1675, 3], ["scx-loader", 1676, 3], ["sddm", 1677, 3], ["sdl3", 1678, 3], ["searx", 1679, 3], ["seatd", 1680, 3], ["seerr", 1681, 3], ["selfoss", 1682, 3], ["send", 1683, 3], ["service-runner", 1684, 3], ["servo", 1685, 3], ["sftpgo", 1686, 3], ["sfxr-qt", 1687, 3], ["sgt-puzzles", 1688, 3], ["shadow", 1689, 3], ["shadowsocks", 1690, 3], ["shadps4", 1691, 3], ["sharkey", 1692, 3], ["shattered-pixel-dungeon", 1693, 3], ["shelfmark", 1694, 3], ["shiori", 1695, 3], ["shoko", 1696, 3], ["signal-desktop", 1697, 3], ["silverbullet", 1698, 3], ["simple-container", 1699, 3], ["simple-vm", 1700, 3], ["sing-box", 1701, 3], ["sks", 1702, 3], ["slimserver", 1703, 3], ["slipshow", 1704, 3], ["slurm", 1705, 3], ["slurm-pam", 1706, 3], ["smokeping", 1707, 3], ["snapcast", 1708, 3], ["snapper", 1709, 3], ["snid", 1710, 3], ["snipe-it", 1711, 3], ["snips-sh", 1712, 3], ["snmpd", 1713, 3], ["soapui", 1714, 3], ["soft-serve", 1715, 3], ["sogo", 1716, 3], ["soju", 1717, 3], ["solanum", 1718, 3], ["sonarr", 1719, 3], ["sonic-server", 1720, 3], ["spacecookie", 1721, 3], ["spark", 1722, 3], ["speechd", 1723, 3], ["speedtest-tracker", 1724, 3], ["spiped", 1725, 3], ["spire", 1726, 3], ["sqlite3-to-mysql", 1727, 3], ["squid", 1728, 3], ["ssh-agent-auth", 1729, 3], ["ssh-audit", 1730, 3], ["sshwifty", 1731, 3], ["sslh", 1732, 3], ["sssd-ldap", 1733, 3], ["sssd-legacy-config", 1734, 3], ["sstorytime", 1735, 3], ["stalwart", 1736, 3], ["stardust-xr-atmosphere", 1737, 3], ["stardust-xr-flatland", 1738, 3], ["stargazer", 1739, 3], ["starship", 1740, 3], ["startx", 1741, 3], ["stash", 1742, 3], ["static-web-server", 1743, 3], ["step-ca", 1744, 3], ["stirling-pdf-desktop", 1745, 3], ["stratis", 1746, 3], ["strichliste", 1747, 3], ["strongswan-swanctl", 1748, 3], ["stub-ld", 1749, 3], ["stump", 1750, 3], ["stunnel", 1751, 3], ["sudo", 1752, 3], ["sudo-rs", 1753, 3], ["sunshine", 1754, 3], ["suricata", 1755, 3], ["suwayomi-server", 1756, 3], ["svnserve", 1759, 3], ["swap-file-btrfs", 1760, 3], ["swap-partition", 1761, 3], ["swap-random-encryption", 1762, 3], ["swapspace", 1763, 3], ["sway", 1764, 3], ["swayfx", 1765, 3], ["switchTest", 1766, 3], ["switchTest-basics", 1770, 3], ["switchTest-units", 1774, 3], ["switchTest-user", 1778, 3], ["sx", 1782, 3], ["sympa", 1783, 3], ["syncthing", 1784, 3], ["syncthing-defaults", 1785, 3], ["syncthing-folders", 1786, 3], ["syncthing-guiPassword", 1787, 3], ["syncthing-guiPasswordFile", 1788, 3], ["syncthing-init", 1789, 3], ["syncthing-many-devices", 1790, 3], ["syncthing-no-settings", 1791, 3], ["syncthing-private-relay", 1792, 3], ["syncthing-relay", 1793, 3], ["sysfs", 1794, 3], ["sysinit-reactivation", 1795, 3], ["system-services-compliance", 1796, 3], ["systemd", 1806, 3], ["systemd-analyze", 1807, 3], ["systemd-binfmt", 1808, 3], ["systemd-boot", 1809, 3], ["systemd-bpf", 1812, 3], ["systemd-capsules", 1813, 3], ["systemd-confinement", 1814, 3], ["systemd-coredump", 1815, 3], ["systemd-credentials-tpm2", 1816, 3], ["systemd-cryptenroll", 1817, 3], ["systemd-escaping", 1818, 3], ["systemd-homed", 1819, 3], ["systemd-initrd-bridge", 1820, 3], ["systemd-initrd-btrfs-raid", 1821, 3], ["systemd-initrd-credentials", 1822, 3], ["systemd-initrd-luks-empty-passphrase", 1823, 3], ["systemd-initrd-luks-fido2", 1827, 3], ["systemd-initrd-luks-keyfile", 1828, 3], ["systemd-initrd-luks-password", 1829, 3], ["systemd-initrd-luks-tpm2", 1830, 3], ["systemd-initrd-luks-unl0kr", 1831, 3], ["systemd-initrd-modprobe", 1832, 3], ["systemd-initrd-networkd", 1833, 3], ["systemd-initrd-networkd-openvpn", 1834, 3], ["systemd-initrd-networkd-ssh", 1838, 3], ["systemd-initrd-non-nixos", 1839, 3], ["systemd-initrd-shutdown", 1840, 3], ["systemd-initrd-simple", 1844, 3], ["systemd-initrd-swraid", 1845, 3], ["systemd-initrd-terminfo", 1846, 3], ["systemd-initrd-vconsole", 1847, 3], ["systemd-initrd-vlan", 1848, 3], ["systemd-journal", 1849, 3], ["systemd-journal-gateway", 1850, 3], ["systemd-journal-upload", 1851, 3], ["systemd-localed", 1852, 3], ["systemd-lock-handler", 1853, 3], ["systemd-machinectl", 1854, 3], ["systemd-misc", 1855, 3], ["systemd-networkd", 1856, 3], ["systemd-networkd-batadv", 1857, 3], ["systemd-networkd-bridge", 1858, 3], ["systemd-networkd-dhcpserver", 1859, 3], ["systemd-networkd-dhcpserver-static-leases", 1860, 3], ["systemd-networkd-ipv6-prefix-delegation", 1861, 3], ["systemd-networkd-vrf", 1864, 3], ["systemd-no-tainted", 1865, 3], ["systemd-nspawn", 1866, 3], ["systemd-nspawn-configfile", 1867, 3], ["systemd-oomd", 1868, 3], ["systemd-portabled", 1869, 3], ["systemd-pstore", 1870, 3], ["systemd-repart", 1871, 3], ["systemd-resolved", 1872, 3], ["systemd-shutdown", 1873, 3], ["systemd-ssh-proxy", 1877, 3], ["systemd-sysupdate", 1878, 3], ["systemd-sysusers-immutable", 1879, 3], ["systemd-sysusers-mutable", 1880, 3], ["systemd-sysusers-password-option-override-ordering", 1881, 3], ["systemd-timesyncd", 1882, 3], ["systemd-timesyncd-nscd-dnssec", 1883, 3], ["systemd-user-linger", 1884, 3], ["systemd-user-linger-purge", 1885, 3], ["systemd-user-settings", 1886, 3], ["systemd-user-tmpfiles-rules", 1887, 3], ["systemd-userdbd", 1888, 3], ["systemd-varlink", 1889, 3], ["systemtap", 1890, 3], ["szurubooru", 1891, 3], ["taler", 1892, 3], ["tandoor-recipes", 1893, 3], ["tandoor-recipes-media", 1894, 3], ["tandoor-recipes-script-name", 1895, 3], ["tang", 1896, 3], ["taskchampion-sync-server", 1897, 3], ["taskserver", 1898, 3], ["tayga", 1899, 3], ["tdarr", 1900, 3], ["technitium-dns-server", 1901, 3], ["teeworlds", 1902, 3], ["telegraf", 1903, 3], ["teleport", 1904, 3], ["teleports", 1905, 3], ["temporal", 1906, 3], ["terminal-emulators", 1907, 3], ["test-containers-bittorrent", 1908, 3], ["thanos", 1909, 3], ["thelounge", 1910, 3], ["tiddlywiki", 1911, 3], ["tigervnc", 1912, 3], ["tika", 1913, 3], ["timekpr", 1914, 3], ["timezone", 1915, 3], ["timidity", 1916, 3], ["tinc", 1917, 3], ["tinyauth", 1918, 3], ["tinydns", 1919, 3], ["tinyproxy", 1920, 3], ["tinywl", 1921, 3], ["tlshd", 1922, 3], ["tlsrpt", 1923, 3], ["tmate-ssh-server", 1924, 3], ["tomcat", 1925, 3], ["tor", 1926, 3], ["tpm-ek", 1927, 3], ["tpm2", 1928, 3], ["traccar", 1929, 3], ["tracee", 1931, 3], ["traefik", 1932, 3], ["trafficserver", 1933, 3], ["trailbase", 1934, 3], ["tranquil-pds", 1935, 3], ["transfer-sh", 1936, 3], ["transmission_4", 1937, 3], ["trezord", 1938, 3], ["trickster", 1939, 3], ["trilium-server", 1940, 3], ["tsm-client-gui", 1941, 3], ["tt-rss", 1942, 3], ["ttyd", 1943, 3], ["tuliprox", 1944, 3], ["tuned", 1945, 3], ["tuptime", 1946, 3], ["turborepo-remote-cache", 1947, 3], ["turbovnc-headless-server", 1948, 3], ["turn-rs", 1949, 3], ["tusd", 1950, 3], ["tuxguitar", 1951, 3], ["twingate", 1952, 3], ["txredisapi", 1953, 3], ["typesense", 1954, 3], ["tzpfms", 1955, 3], ["tzupdate", 1956, 3], ["ucarp", 1957, 3], ["udisks2", 1958, 3], ["udp-over-tcp", 1959, 3], ["udp514-journal", 1960, 3], ["ulogd", 1961, 3], ["umami", 1962, 3], ["umurmur", 1963, 3], ["unbound", 1964, 3], ["unifi", 1965, 3], ["unit-perl", 1966, 3], ["unit-php", 1967, 3], ["unpackerr", 1968, 3], ["upnp", 1969, 3], ["uptermd", 1971, 3], ["uptime-kuma", 1972, 3], ["urn-timer", 1973, 3], ["usbguard", 1974, 3], ["user-activation-scripts", 1975, 3], ["user-enable-option", 1976, 3], ["user-expiry", 1977, 3], ["user-home-mode", 1978, 3], ["userborn", 1979, 3], ["userborn-immutable-etc", 1980, 3], ["userborn-immutable-users", 1981, 3], ["userborn-migration", 1982, 3], ["userborn-mutable-etc", 1983, 3], ["userborn-mutable-users", 1984, 3], ["userborn-static", 1985, 3], ["userborn-subids", 1986, 3], ["userborn-subids-immutable-etc", 1987, 3], ["userborn-subids-mutable-etc", 1988, 3], ["ustreamer", 1989, 3], ["utils", 1990, 3], ["utmp", 1991, 3], ["uwsgi", 1992, 3], ["v2ray", 1993, 3], ["valkey", 1994, 3], ["varnish80", 1998, 3], ["vault", 2002, 3], ["vault-agent", 2003, 3], ["vault-dev", 2004, 3], ["vault-postgresql", 2005, 3], ["vaultwarden", 2006, 3], ["vdirsyncer", 2007, 3], ["vector", 2008, 3], ["velocity", 2009, 3], ["vengi-tools", 2010, 3], ["veroroute", 2011, 3], ["victorialogs", 2012, 3], ["victoriametrics", 2013, 3], ["victoriatraces", 2014, 3], ["vikunja", 2015, 3], ["vinyl-cache_9", 2016, 3], ["virtualbox", 2020, 3], ["vm-variant", 2021, 3], ["vnstat", 2022, 3], ["vscode-remote-ssh", 2023, 3], ["vscodium", 2024, 3], ["vsftpd", 2025, 3], ["waagent", 2026, 3], ["wakapi", 2027, 3], ["warpgate", 2028, 3], ["warzone2100", 2029, 3], ["wasabibackend", 2030, 3], ["wastebin", 2031, 3], ["watchdogd", 2032, 3], ["watt", 2033, 3], ["webhook", 2034, 3], ["weblate", 2035, 3], ["wg-access-server", 2036, 3], ["whisparr_2", 2037, 3], ["whisparr_3", 2041, 3], ["whoami", 2045, 3], ["whois", 2046, 3], ["whoogle-search", 2047, 3], ["wiki-js", 2048, 3], ["windmill", 2049, 3], ["wine", 2052, 3], ["wireguard", 2056, 3], ["without-nix", 2060, 3], ["wmderland", 2061, 3], ["wordpress", 2062, 3], ["workout-tracker", 2063, 3], ["wpa_supplicant", 2064, 3], ["wrappers", 2065, 3], ["writefreely", 2066, 3], ["wstunnel", 2067, 3], ["xandikos", 2068, 3], ["xautolock", 2069, 3], ["xfce", 2070, 3], ["xfce-wayland", 2071, 3], ["xinetd", 2072, 3], ["xmonad", 2073, 3], ["xmonad-xdg-autostart", 2074, 3], ["xpadneo", 2075, 3], ["xrdp", 2076, 3], ["xrdp-with-audio-pulseaudio", 2077, 3], ["xscreensaver", 2078, 3], ["xss-lock", 2079, 3], ["xterm", 2080, 3], ["xxh", 2081, 3], ["yarr", 2082, 3], ["yb", 2083, 3], ["ydotool", 2084, 3], ["yggdrasil", 2087, 3], ["your_spotify", 2088, 3], ["zammad", 2089, 3], ["zapret2", 2090, 3], ["zenohd", 2091, 3], ["zerobyte", 2092, 3], ["zeronet-conservancy", 2093, 3], ["zfs", 2094, 3], ["zigbee2mqtt", 2095, 3], ["zipline", 2096, 3], ["zoneminder", 2097, 3], ["zookeeper", 2098, 3], ["zoom-us", 2099, 3], ["zram-generator", 2100, 3], ["zrepl", 2101, 3], ["zwave-js", 2102, 3], ["zwave-js-ui", 2103, 3]]]);
 const formals$1 = { args: { system: false, pkgs: false, callTest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/all-tests.nix", [["system", 46, 17], ["pkgs", 46, 24]]);
-const pos$2 = nix.positions(here + "/all-tests.nix", [["system", 87, 66], ["pkgs", 87, 73]]);
-const pos$3 = nix.positions(here + "/all-tests.nix", [["minimalModules", 99, 18]]);
-const pos$4 = nix.positions(here + "/all-tests.nix", [["featureFlags", 99, 5]]);
-const pos$5 = nix.positions(here + "/all-tests.nix", [["modules", 101, 54]]);
-const pos$6 = nix.positions(here + "/all-tests.nix", [["pkgs", 120, 19]]);
-const pos$7 = nix.positions(here + "/all-tests.nix", [["nixpkgs", 120, 11]]);
-const pos$8 = nix.positions(here + "/all-tests.nix", [["system", 117, 7], ["modules", 118, 7]]);
 const formals$2 = { args: { lib: false }, ellipsis: true };
-const pos$9 = nix.positions(here + "/all-tests.nix", [["enable", 149, 20]]);
-const pos$10 = nix.positions(here + "/all-tests.nix", [["nix", 149, 16]]);
-const pos$11 = nix.positions(here + "/all-tests.nix", [["_file", 144, 9], ["config", 149, 9]]);
-const pos$12 = nix.positions(here + "/all-tests.nix", [["_class", 137, 7], ["_file", 139, 7], ["imports", 140, 7], ["extraBaseModules", 143, 7]]);
-const pos$13 = nix.positions(here + "/all-tests.nix", [["system", 157, 54], ["pkgs", 157, 61]]);
-const pos$14 = nix.positions(here + "/all-tests.nix", [["imports", 158, 11]]);
-const pos$15 = nix.positions(here + "/all-tests.nix", [["doRunTest", 155, 7], ["findTests", 163, 7], ["runTest", 170, 7], ["runTestOn", 176, 7]]);
-const pos$16 = nix.positions(here + "/all-tests.nix", [["pkgs", 204, 94]]);
-const pos$17 = nix.positions(here + "/all-tests.nix", [["failed", 208, 11]]);
-const pos$18 = nix.positions(here + "/all-tests.nix", [["test", 222, 11], ["nativeBuildInputs", 223, 11]]);
-const pos$19 = nix.positions(here + "/all-tests.nix", [["extra-python-packages", 193, 5], ["lib-extend", 194, 5], ["node-name", 195, 5], ["busybox", 196, 5], ["ssh-backdoor", 197, 5], ["console-log", 198, 5], ["containers", 199, 5], ["nspawn-daemon-reexec-dbus", 200, 5], ["multi-arch-test", 201, 5], ["skip-typecheck", 202, 5], ["console-timeout", 203, 5], ["options-doc-regression", 204, 5], ["driver-timeout", 205, 5], ["efivars", 218, 5], ["junit", 219, 5]]);
-const pos$20 = nix.positions(here + "/all-tests.nix", [["runTest", 239, 13], ["lib", 239, 21]]);
-const pos$21 = nix.positions(here + "/all-tests.nix", [["runTest", 259, 13]]);
-const pos$22 = nix.positions(here + "/all-tests.nix", [["confined", 267, 18]]);
-const pos$23 = nix.positions(here + "/all-tests.nix", [["args", 267, 13]]);
-const pos$24 = nix.positions(here + "/all-tests.nix", [["imports", 266, 5], ["_module", 267, 5]]);
-const pos$25 = nix.positions(here + "/all-tests.nix", [["confined", 271, 18]]);
-const pos$26 = nix.positions(here + "/all-tests.nix", [["args", 271, 13]]);
-const pos$27 = nix.positions(here + "/all-tests.nix", [["imports", 270, 5], ["_module", 271, 5]]);
-const pos$28 = nix.positions(here + "/all-tests.nix", [["pkgs", 298, 38], ["runTest", 298, 43]]);
-const pos$29 = nix.positions(here + "/all-tests.nix", [["networkd", 315, 18]]);
-const pos$30 = nix.positions(here + "/all-tests.nix", [["args", 315, 13]]);
-const pos$31 = nix.positions(here + "/all-tests.nix", [["imports", 314, 5], ["_module", 315, 5]]);
-const pos$32 = nix.positions(here + "/all-tests.nix", [["networkd", 319, 18]]);
-const pos$33 = nix.positions(here + "/all-tests.nix", [["args", 319, 13]]);
-const pos$34 = nix.positions(here + "/all-tests.nix", [["imports", 318, 5], ["_module", 319, 5]]);
-const pos$35 = nix.positions(here + "/all-tests.nix", [["compression", 334, 18]]);
-const pos$36 = nix.positions(here + "/all-tests.nix", [["args", 334, 13]]);
-const pos$37 = nix.positions(here + "/all-tests.nix", [["imports", 333, 5], ["_module", 334, 5]]);
-const pos$38 = nix.positions(here + "/all-tests.nix", [["compression", 338, 18]]);
-const pos$39 = nix.positions(here + "/all-tests.nix", [["args", 338, 13]]);
-const pos$40 = nix.positions(here + "/all-tests.nix", [["imports", 337, 5], ["_module", 338, 5]]);
-const pos$41 = nix.positions(here + "/all-tests.nix", [["compression", 342, 18]]);
-const pos$42 = nix.positions(here + "/all-tests.nix", [["args", 342, 13]]);
-const pos$43 = nix.positions(here + "/all-tests.nix", [["imports", 341, 5], ["_module", 342, 5]]);
-const pos$44 = nix.positions(here + "/all-tests.nix", [["lib", 346, 20], ["runTest", 347, 13], ["package", 348, 5]]);
-const pos$45 = nix.positions(here + "/all-tests.nix", [["lib", 351, 20], ["runTest", 352, 13], ["package", 353, 5]]);
-const pos$46 = nix.positions(here + "/all-tests.nix", [["pkgs", 392, 58], ["runTest", 392, 63]]);
-const pos$47 = nix.positions(here + "/all-tests.nix", [["getPackage", 398, 18]]);
-const pos$48 = nix.positions(here + "/all-tests.nix", [["args", 398, 13]]);
-const pos$49 = nix.positions(here + "/all-tests.nix", [["imports", 397, 5], ["_module", 398, 5]]);
-const pos$50 = nix.positions(here + "/all-tests.nix", [["withCephfs", 406, 46]]);
-const pos$51 = nix.positions(here + "/all-tests.nix", [["pkgs", 412, 44], ["runTest", 412, 49]]);
-const pos$52 = nix.positions(here + "/all-tests.nix", [["runTest", 428, 13], ["package", 429, 5]]);
-const pos$53 = nix.positions(here + "/all-tests.nix", [["runTest", 432, 13], ["package", 433, 5]]);
-const pos$54 = nix.positions(here + "/all-tests.nix", [["pkgs", 438, 54], ["runTest", 438, 59]]);
-const pos$55 = nix.positions(here + "/all-tests.nix", [["lib", 441, 13], ["runTest", 442, 5]]);
-const pos$56 = nix.positions(here + "/all-tests.nix", [["pkgs", 462, 60]]);
-const pos$57 = nix.positions(here + "/all-tests.nix", [["nix", 475, 12]]);
-const pos$58 = nix.positions(here + "/all-tests.nix", [["imports", 474, 5], ["params", 475, 5]]);
-const pos$59 = nix.positions(here + "/all-tests.nix", [["testName", 490, 18], ["enableAutologin", 491, 18], ["enableXWayland", 492, 18]]);
-const pos$60 = nix.positions(here + "/all-tests.nix", [["args", 490, 13]]);
-const pos$61 = nix.positions(here + "/all-tests.nix", [["imports", 489, 5], ["_module", 490, 5]]);
-const pos$62 = nix.positions(here + "/all-tests.nix", [["testName", 496, 18], ["enableAutologin", 497, 18], ["enableXWayland", 498, 18]]);
-const pos$63 = nix.positions(here + "/all-tests.nix", [["args", 496, 13]]);
-const pos$64 = nix.positions(here + "/all-tests.nix", [["imports", 495, 5], ["_module", 496, 5]]);
-const pos$65 = nix.positions(here + "/all-tests.nix", [["testName", 502, 18], ["enableAutologin", 503, 18], ["enableXWayland", 504, 18]]);
-const pos$66 = nix.positions(here + "/all-tests.nix", [["args", 502, 13]]);
-const pos$67 = nix.positions(here + "/all-tests.nix", [["imports", 501, 5], ["_module", 502, 5]]);
-const pos$68 = nix.positions(here + "/all-tests.nix", [["testName", 508, 18], ["enableAutologin", 509, 18], ["enableXWayland", 510, 18]]);
-const pos$69 = nix.positions(here + "/all-tests.nix", [["args", 508, 13]]);
-const pos$70 = nix.positions(here + "/all-tests.nix", [["imports", 507, 5], ["_module", 508, 5]]);
-const pos$71 = nix.positions(here + "/all-tests.nix", [["mechanism", 516, 18]]);
-const pos$72 = nix.positions(here + "/all-tests.nix", [["args", 516, 13]]);
-const pos$73 = nix.positions(here + "/all-tests.nix", [["imports", 515, 5], ["_module", 516, 5]]);
-const pos$74 = nix.positions(here + "/all-tests.nix", [["mechanism", 520, 18]]);
-const pos$75 = nix.positions(here + "/all-tests.nix", [["args", 520, 13]]);
-const pos$76 = nix.positions(here + "/all-tests.nix", [["imports", 519, 5], ["_module", 520, 5]]);
-const pos$77 = nix.positions(here + "/all-tests.nix", [["pkgs", 528, 48], ["runTest", 528, 53]]);
-const pos$78 = nix.positions(here + "/all-tests.nix", [["package", 549, 18]]);
-const pos$79 = nix.positions(here + "/all-tests.nix", [["args", 549, 13]]);
-const pos$80 = nix.positions(here + "/all-tests.nix", [["imports", 548, 5], ["_module", 549, 5]]);
-const pos$81 = nix.positions(here + "/all-tests.nix", [["package", 553, 18]]);
-const pos$82 = nix.positions(here + "/all-tests.nix", [["args", 553, 13]]);
-const pos$83 = nix.positions(here + "/all-tests.nix", [["imports", 552, 5], ["_module", 553, 5]]);
-const pos$84 = nix.positions(here + "/all-tests.nix", [["pkgs", 556, 44], ["runTest", 556, 49]]);
-const pos$85 = nix.positions(here + "/all-tests.nix", [["nixosLib", 567, 85]]);
-const pos$86 = nix.positions(here + "/all-tests.nix", [["pkgs", 586, 54], ["runTest", 586, 59]]);
-const pos$87 = nix.positions(here + "/all-tests.nix", [["systemdStage1", 607, 18]]);
-const pos$88 = nix.positions(here + "/all-tests.nix", [["args", 607, 13]]);
-const pos$89 = nix.positions(here + "/all-tests.nix", [["imports", 606, 5], ["_module", 607, 5]]);
-const pos$90 = nix.positions(here + "/all-tests.nix", [["systemdStage1", 611, 18]]);
-const pos$91 = nix.positions(here + "/all-tests.nix", [["args", 611, 13]]);
-const pos$92 = nix.positions(here + "/all-tests.nix", [["imports", 610, 5], ["_module", 611, 5]]);
-const pos$93 = nix.positions(here + "/all-tests.nix", [["envoyPackage", 615, 18]]);
-const pos$94 = nix.positions(here + "/all-tests.nix", [["args", 615, 13]]);
-const pos$95 = nix.positions(here + "/all-tests.nix", [["imports", 614, 5], ["_module", 615, 5]]);
-const pos$96 = nix.positions(here + "/all-tests.nix", [["envoyPackage", 619, 18]]);
-const pos$97 = nix.positions(here + "/all-tests.nix", [["args", 619, 13]]);
-const pos$98 = nix.positions(here + "/all-tests.nix", [["imports", 618, 5], ["_module", 619, 5]]);
-const pos$99 = nix.positions(here + "/all-tests.nix", [["lib", 625, 13], ["runTest", 625, 17]]);
-const pos$100 = nix.positions(here + "/all-tests.nix", [["evalMinimalConfig", 628, 72]]);
-const pos$101 = nix.positions(here + "/all-tests.nix", [["pkgs", 629, 46], ["runTest", 629, 51]]);
-const pos$102 = nix.positions(here + "/all-tests.nix", [["runTest", 633, 54]]);
-const pos$103 = nix.positions(here + "/all-tests.nix", [["pkgs", 644, 46], ["runTest", 644, 51]]);
-const pos$104 = nix.positions(here + "/all-tests.nix", [["firefoxPackage", 652, 18]]);
-const pos$105 = nix.positions(here + "/all-tests.nix", [["args", 652, 13]]);
-const pos$106 = nix.positions(here + "/all-tests.nix", [["imports", 651, 5], ["_module", 652, 5]]);
-const pos$107 = nix.positions(here + "/all-tests.nix", [["firefoxPackage", 656, 18]]);
-const pos$108 = nix.positions(here + "/all-tests.nix", [["args", 656, 13]]);
-const pos$109 = nix.positions(here + "/all-tests.nix", [["imports", 655, 5], ["_module", 656, 5]]);
-const pos$110 = nix.positions(here + "/all-tests.nix", [["firefoxPackage", 661, 18]]);
-const pos$111 = nix.positions(here + "/all-tests.nix", [["args", 661, 13]]);
-const pos$112 = nix.positions(here + "/all-tests.nix", [["imports", 660, 5], ["_module", 661, 5]]);
-const pos$113 = nix.positions(here + "/all-tests.nix", [["firefoxPackage", 665, 18]]);
-const pos$114 = nix.positions(here + "/all-tests.nix", [["args", 665, 13]]);
-const pos$115 = nix.positions(here + "/all-tests.nix", [["imports", 664, 5], ["_module", 665, 5]]);
-const pos$116 = nix.positions(here + "/all-tests.nix", [["backend", 673, 18]]);
-const pos$117 = nix.positions(here + "/all-tests.nix", [["args", 673, 13]]);
-const pos$118 = nix.positions(here + "/all-tests.nix", [["imports", 672, 5], ["_module", 673, 5]]);
-const pos$119 = nix.positions(here + "/all-tests.nix", [["backend", 677, 18]]);
-const pos$120 = nix.positions(here + "/all-tests.nix", [["args", 677, 13]]);
-const pos$121 = nix.positions(here + "/all-tests.nix", [["imports", 676, 5], ["_module", 677, 5]]);
-const pos$122 = nix.positions(here + "/all-tests.nix", [["backend", 681, 18]]);
-const pos$123 = nix.positions(here + "/all-tests.nix", [["args", 681, 13]]);
-const pos$124 = nix.positions(here + "/all-tests.nix", [["imports", 680, 5], ["_module", 681, 5]]);
-const pos$125 = nix.positions(here + "/all-tests.nix", [["runTest", 698, 13], ["forgejoPackage", 699, 5]]);
-const pos$126 = nix.positions(here + "/all-tests.nix", [["runTest", 702, 13], ["forgejoPackage", 703, 5]]);
-const pos$127 = nix.positions(here + "/all-tests.nix", [["runTest", 706, 13]]);
-const pos$128 = nix.positions(here + "/all-tests.nix", [["runTest", 710, 42]]);
-const pos$129 = nix.positions(here + "/all-tests.nix", [["systemdStage1", 717, 18]]);
-const pos$130 = nix.positions(here + "/all-tests.nix", [["args", 717, 13]]);
-const pos$131 = nix.positions(here + "/all-tests.nix", [["imports", 716, 5], ["_module", 717, 5]]);
-const pos$132 = nix.positions(here + "/all-tests.nix", [["systemdStage1", 721, 18]]);
-const pos$133 = nix.positions(here + "/all-tests.nix", [["args", 721, 13]]);
-const pos$134 = nix.positions(here + "/all-tests.nix", [["imports", 720, 5], ["_module", 721, 5]]);
-const pos$135 = nix.positions(here + "/all-tests.nix", [["runTest", 725, 57]]);
-const pos$136 = nix.positions(here + "/all-tests.nix", [["runTest", 728, 13], ["package", 729, 5]]);
-const pos$137 = nix.positions(here + "/all-tests.nix", [["runTest", 732, 13], ["package", 733, 5]]);
-const pos$138 = nix.positions(here + "/all-tests.nix", [["pkgs", 737, 46], ["runTest", 737, 51]]);
-const pos$139 = nix.positions(here + "/all-tests.nix", [["gitea", 748, 25], ["runTest", 749, 13], ["lib", 750, 13]]);
-const pos$140 = nix.positions(here + "/all-tests.nix", [["runTest", 755, 13]]);
-const pos$141 = nix.positions(here + "/all-tests.nix", [["runTest", 789, 13]]);
-const pos$142 = nix.positions(here + "/all-tests.nix", [["basic", 801, 5], ["efi", 802, 5], ["graphical", 803, 5], ["hashed-password", 804, 5], ["mirrored-boots", 805, 5]]);
-const pos$143 = nix.positions(here + "/all-tests.nix", [["lib", 812, 13], ["runTest", 812, 17]]);
-const pos$144 = nix.positions(here + "/all-tests.nix", [["handleTestOn", 815, 13], ["package", 816, 5]]);
-const pos$145 = nix.positions(here + "/all-tests.nix", [["handleTestOn", 819, 13], ["package", 820, 5]]);
-const pos$146 = nix.positions(here + "/all-tests.nix", [["handleTestOn", 823, 13], ["package", 824, 5]]);
-const pos$147 = nix.positions(here + "/all-tests.nix", [["getPackage", 832, 18]]);
-const pos$148 = nix.positions(here + "/all-tests.nix", [["args", 832, 13]]);
-const pos$149 = nix.positions(here + "/all-tests.nix", [["imports", 831, 5], ["_module", 832, 5]]);
-const pos$150 = nix.positions(here + "/all-tests.nix", [["getPackage", 836, 18]]);
-const pos$151 = nix.positions(here + "/all-tests.nix", [["args", 836, 13]]);
-const pos$152 = nix.positions(here + "/all-tests.nix", [["imports", 835, 5], ["_module", 836, 5]]);
-const pos$153 = nix.positions(here + "/all-tests.nix", [["getPackage", 840, 18]]);
-const pos$154 = nix.positions(here + "/all-tests.nix", [["args", 840, 13]]);
-const pos$155 = nix.positions(here + "/all-tests.nix", [["imports", 839, 5], ["_module", 840, 5]]);
-const pos$156 = nix.positions(here + "/all-tests.nix", [["getPackage", 844, 18]]);
-const pos$157 = nix.positions(here + "/all-tests.nix", [["args", 844, 13]]);
-const pos$158 = nix.positions(here + "/all-tests.nix", [["imports", 843, 5], ["_module", 844, 5]]);
-const pos$159 = nix.positions(here + "/all-tests.nix", [["systemdStage1", 854, 5]]);
-const pos$160 = nix.positions(here + "/all-tests.nix", [["systemdStage1", 857, 5]]);
-const pos$161 = nix.positions(here + "/all-tests.nix", [["pkgs", 872, 13], ["runTest", 872, 18], ["lib", 873, 20]]);
-const pos$162 = nix.positions(here + "/all-tests.nix", [["runTest", 885, 40]]);
-const pos$163 = nix.positions(here + "/all-tests.nix", [["runTestOn", 895, 13], ["package", 896, 5]]);
-const pos$164 = nix.positions(here + "/all-tests.nix", [["runTestOn", 899, 13], ["package", 900, 5]]);
-const pos$165 = nix.positions(here + "/all-tests.nix", [["systemdStage1", 906, 18]]);
-const pos$166 = nix.positions(here + "/all-tests.nix", [["args", 906, 13]]);
-const pos$167 = nix.positions(here + "/all-tests.nix", [["imports", 905, 5], ["_module", 906, 5]]);
-const pos$168 = nix.positions(here + "/all-tests.nix", [["systemdStage1", 909, 5]]);
-const pos$169 = nix.positions(here + "/all-tests.nix", [["systemdStage1", 918, 44]]);
-const pos$170 = nix.positions(here + "/all-tests.nix", [["systemdStage1", 919, 60]]);
-const pos$171 = nix.positions(here + "/all-tests.nix", [["pkgs", 942, 5], ["runTest", 943, 13]]);
-const pos$172 = nix.positions(here + "/all-tests.nix", [["lib", 947, 13], ["pkgs", 947, 17], ["runTest", 948, 5], ["rancherDistro", 952, 5]]);
-const pos$173 = nix.positions(here + "/all-tests.nix", [["runTest", 955, 13], ["pkgs", 955, 21]]);
-const pos$174 = nix.positions(here + "/all-tests.nix", [["pkgs", 972, 13], ["runTest", 972, 18]]);
-const pos$175 = nix.positions(here + "/all-tests.nix", [["pkgs", 981, 13], ["runTest", 981, 18], ["lib", 982, 20]]);
-const pos$176 = nix.positions(here + "/all-tests.nix", [["pkgs", 985, 13], ["runTest", 985, 18], ["lib", 986, 20]]);
-const pos$177 = nix.positions(here + "/all-tests.nix", [["lib", 1003, 13], ["runTest", 1003, 17]]);
-const pos$178 = nix.positions(here + "/all-tests.nix", [["latestKernel", 1016, 18]]);
-const pos$179 = nix.positions(here + "/all-tests.nix", [["args", 1016, 13]]);
-const pos$180 = nix.positions(here + "/all-tests.nix", [["imports", 1015, 5], ["_module", 1016, 5]]);
-const pos$181 = nix.positions(here + "/all-tests.nix", [["login", 1014, 16]]);
-const pos$182 = nix.positions(here + "/all-tests.nix", [["firefoxPackage", 1036, 18]]);
-const pos$183 = nix.positions(here + "/all-tests.nix", [["args", 1036, 13]]);
-const pos$184 = nix.positions(here + "/all-tests.nix", [["imports", 1035, 5], ["_module", 1036, 5]]);
-const pos$185 = nix.positions(here + "/all-tests.nix", [["runTest", 1044, 38]]);
-const pos$186 = nix.positions(here + "/all-tests.nix", [["pkgs", 1057, 13], ["runTest", 1057, 18]]);
-const pos$187 = nix.positions(here + "/all-tests.nix", [["pkgs", 1085, 34], ["runTest", 1085, 39]]);
-const pos$188 = nix.positions(here + "/all-tests.nix", [["handleTest", 1090, 51]]);
-const pos$189 = nix.positions(here + "/all-tests.nix", [["handleTestOn", 1101, 73]]);
-const pos$190 = nix.positions(here + "/all-tests.nix", [["lib", 1122, 13], ["runTest", 1122, 17]]);
-const pos$191 = nix.positions(here + "/all-tests.nix", [["evalSystem", 1146, 13]]);
 const formals$3 = { args: { config: false }, ellipsis: true };
-const pos$192 = nix.positions(here + "/all-tests.nix", [["testName", 1157, 20]]);
-const pos$193 = nix.positions(here + "/all-tests.nix", [["args", 1157, 15]]);
-const pos$194 = nix.positions(here + "/all-tests.nix", [["imports", 1156, 7], ["_module", 1157, 7]]);
 const formals$4 = { args: { config: false }, ellipsis: true };
-const pos$195 = nix.positions(here + "/all-tests.nix", [["testName", 1164, 20]]);
-const pos$196 = nix.positions(here + "/all-tests.nix", [["args", 1164, 15]]);
-const pos$197 = nix.positions(here + "/all-tests.nix", [["package", 1165, 33]]);
-const pos$198 = nix.positions(here + "/all-tests.nix", [["mongodb", 1165, 25]]);
-const pos$199 = nix.positions(here + "/all-tests.nix", [["services", 1165, 16]]);
-const pos$200 = nix.positions(here + "/all-tests.nix", [["imports", 1163, 7], ["_module", 1164, 7], ["defaults", 1165, 7]]);
-const pos$201 = nix.positions(here + "/all-tests.nix", [["lib", 1176, 13], ["runTest", 1176, 17]]);
-const pos$202 = nix.positions(here + "/all-tests.nix", [["withFirewall", 1199, 41]]);
-const pos$203 = nix.positions(here + "/all-tests.nix", [["withFirewall", 1201, 5], ["nftables", 1202, 5]]);
-const pos$204 = nix.positions(here + "/all-tests.nix", [["withFirewall", 1205, 5], ["nftables", 1206, 5]]);
-const pos$205 = nix.positions(here + "/all-tests.nix", [["firewall", 1200, 16], ["standalone", 1204, 16]]);
-const pos$206 = nix.positions(here + "/all-tests.nix", [["withFirewall", 1208, 43]]);
-const pos$207 = nix.positions(here + "/all-tests.nix", [["firewall", 1199, 7], ["nftables", 1200, 7], ["standalone", 1208, 7]]);
-const pos$208 = nix.positions(here + "/all-tests.nix", [["testName", 1215, 18]]);
-const pos$209 = nix.positions(here + "/all-tests.nix", [["args", 1215, 13]]);
-const pos$210 = nix.positions(here + "/all-tests.nix", [["imports", 1214, 5], ["_module", 1215, 5]]);
-const pos$211 = nix.positions(here + "/all-tests.nix", [["testName", 1219, 18]]);
-const pos$212 = nix.positions(here + "/all-tests.nix", [["args", 1219, 13]]);
-const pos$213 = nix.positions(here + "/all-tests.nix", [["databaseURL", 1220, 34]]);
-const pos$214 = nix.positions(here + "/all-tests.nix", [["cache", 1220, 28]]);
-const pos$215 = nix.positions(here + "/all-tests.nix", [["ncps", 1220, 23]]);
-const pos$216 = nix.positions(here + "/all-tests.nix", [["services", 1220, 14]]);
-const pos$217 = nix.positions(here + "/all-tests.nix", [["imports", 1218, 5], ["_module", 1219, 5], ["defaults", 1220, 5]]);
-const pos$218 = nix.positions(here + "/all-tests.nix", [["testName", 1224, 18]]);
-const pos$219 = nix.positions(here + "/all-tests.nix", [["args", 1224, 13]]);
-const pos$220 = nix.positions(here + "/all-tests.nix", [["local", 1225, 42]]);
-const pos$221 = nix.positions(here + "/all-tests.nix", [["storage", 1225, 34]]);
-const pos$222 = nix.positions(here + "/all-tests.nix", [["cache", 1225, 28]]);
-const pos$223 = nix.positions(here + "/all-tests.nix", [["ncps", 1225, 23]]);
-const pos$224 = nix.positions(here + "/all-tests.nix", [["services", 1225, 14]]);
-const pos$225 = nix.positions(here + "/all-tests.nix", [["imports", 1223, 5], ["_module", 1224, 5], ["defaults", 1225, 5]]);
-const pos$226 = nix.positions(here + "/all-tests.nix", [["enabled", 1230, 38]]);
-const pos$227 = nix.positions(here + "/all-tests.nix", [["cdc", 1230, 34]]);
-const pos$228 = nix.positions(here + "/all-tests.nix", [["cache", 1230, 28]]);
-const pos$229 = nix.positions(here + "/all-tests.nix", [["ncps", 1230, 23]]);
-const pos$230 = nix.positions(here + "/all-tests.nix", [["services", 1230, 14]]);
-const pos$231 = nix.positions(here + "/all-tests.nix", [["imports", 1229, 5], ["defaults", 1230, 5]]);
-const pos$232 = nix.positions(here + "/all-tests.nix", [["connectivity", 1234, 10], ["reload", 1235, 10]]);
-const pos$233 = nix.positions(here + "/all-tests.nix", [["networkd", 1243, 77]]);
-const pos$234 = nix.positions(here + "/all-tests.nix", [["networkd", 1245, 77]]);
-const pos$235 = nix.positions(here + "/all-tests.nix", [["networkd", 1243, 14], ["networkmanager", 1244, 14], ["scripted", 1245, 14]]);
-const pos$236 = nix.positions(here + "/all-tests.nix", [["version", 1254, 29]]);
-const pos$237 = nix.positions(here + "/all-tests.nix", [["version", 1255, 29]]);
-const pos$238 = nix.positions(here + "/all-tests.nix", [["pkgs", 1265, 52], ["runTest", 1265, 57]]);
-const pos$239 = nix.positions(here + "/all-tests.nix", [["runTest", 1279, 58]]);
-const pos$240 = nix.positions(here + "/all-tests.nix", [["nixVersions", 1295, 20], ["system", 1296, 13]]);
-const pos$241 = nix.positions(here + "/all-tests.nix", [["imports", 1304, 5]]);
-const pos$242 = nix.positions(here + "/all-tests.nix", [["imports", 1307, 5]]);
-const pos$243 = nix.positions(here + "/all-tests.nix", [["imports", 1310, 5]]);
-const pos$244 = nix.positions(here + "/all-tests.nix", [["imports", 1313, 5]]);
-const pos$245 = nix.positions(here + "/all-tests.nix", [["evalMinimalConfig", 1315, 73]]);
-const pos$246 = nix.positions(here + "/all-tests.nix", [["evalMinimalConfig", 1318, 17]]);
-const pos$247 = nix.positions(here + "/all-tests.nix", [["package", 1357, 18]]);
-const pos$248 = nix.positions(here + "/all-tests.nix", [["args", 1357, 13]]);
-const pos$249 = nix.positions(here + "/all-tests.nix", [["imports", 1356, 5], ["_module", 1357, 5]]);
-const pos$250 = nix.positions(here + "/all-tests.nix", [["package", 1361, 18]]);
-const pos$251 = nix.positions(here + "/all-tests.nix", [["args", 1361, 13]]);
-const pos$252 = nix.positions(here + "/all-tests.nix", [["imports", 1360, 5], ["_module", 1361, 5]]);
-const pos$253 = nix.positions(here + "/all-tests.nix", [["package", 1365, 18]]);
-const pos$254 = nix.positions(here + "/all-tests.nix", [["args", 1365, 13]]);
-const pos$255 = nix.positions(here + "/all-tests.nix", [["imports", 1364, 5], ["_module", 1365, 5]]);
-const pos$256 = nix.positions(here + "/all-tests.nix", [["package", 1369, 18]]);
-const pos$257 = nix.positions(here + "/all-tests.nix", [["args", 1369, 13]]);
-const pos$258 = nix.positions(here + "/all-tests.nix", [["imports", 1368, 5], ["_module", 1369, 5]]);
-const pos$259 = nix.positions(here + "/all-tests.nix", [["package", 1373, 18]]);
-const pos$260 = nix.positions(here + "/all-tests.nix", [["args", 1373, 13]]);
-const pos$261 = nix.positions(here + "/all-tests.nix", [["imports", 1372, 5], ["_module", 1373, 5]]);
-const pos$262 = nix.positions(here + "/all-tests.nix", [["package", 1377, 18]]);
-const pos$263 = nix.positions(here + "/all-tests.nix", [["args", 1377, 13]]);
-const pos$264 = nix.positions(here + "/all-tests.nix", [["imports", 1376, 5], ["_module", 1377, 5]]);
-const pos$265 = nix.positions(here + "/all-tests.nix", [["evalSystem", 1414, 13]]);
-const pos$266 = nix.positions(here + "/all-tests.nix", [["lib", 1456, 13], ["runTest", 1456, 17]]);
-const pos$267 = nix.positions(here + "/all-tests.nix", [["runTest", 1465, 46]]);
-const pos$268 = nix.positions(here + "/all-tests.nix", [["runTest", 1473, 13], ["php", 1474, 5]]);
-const pos$269 = nix.positions(here + "/all-tests.nix", [["runTest", 1477, 13], ["php", 1478, 5]]);
-const pos$270 = nix.positions(here + "/all-tests.nix", [["runTest", 1481, 13], ["php", 1482, 5]]);
-const pos$271 = nix.positions(here + "/all-tests.nix", [["runTest", 1485, 13], ["php", 1486, 5]]);
-const pos$272 = nix.positions(here + "/all-tests.nix", [["runTest", 1489, 13], ["php", 1490, 5]]);
-const pos$273 = nix.positions(here + "/all-tests.nix", [["runTest", 1494, 46]]);
-const pos$274 = nix.positions(here + "/all-tests.nix", [["runTestOn", 1496, 51]]);
-const pos$275 = nix.positions(here + "/all-tests.nix", [["runTest", 1499, 48]]);
-const pos$276 = nix.positions(here + "/all-tests.nix", [["runTest", 1523, 13], ["pkgs", 1524, 5]]);
-const pos$277 = nix.positions(here + "/all-tests.nix", [["testName", 1537, 18], ["socket", 1538, 18], ["listenTcp", 1539, 18]]);
-const pos$278 = nix.positions(here + "/all-tests.nix", [["args", 1537, 13]]);
-const pos$279 = nix.positions(here + "/all-tests.nix", [["imports", 1536, 5], ["_module", 1537, 5]]);
-const pos$280 = nix.positions(here + "/all-tests.nix", [["testName", 1543, 18], ["socket", 1544, 18], ["listenTcp", 1545, 18]]);
-const pos$281 = nix.positions(here + "/all-tests.nix", [["args", 1543, 13]]);
-const pos$282 = nix.positions(here + "/all-tests.nix", [["imports", 1542, 5], ["_module", 1543, 5]]);
-const pos$283 = nix.positions(here + "/all-tests.nix", [["testName", 1549, 18], ["socket", 1550, 18], ["listenTcp", 1551, 18]]);
-const pos$284 = nix.positions(here + "/all-tests.nix", [["args", 1549, 13]]);
-const pos$285 = nix.positions(here + "/all-tests.nix", [["imports", 1548, 5], ["_module", 1549, 5]]);
-const pos$286 = nix.positions(here + "/all-tests.nix", [["testName", 1555, 18], ["socket", 1556, 18], ["listenTcp", 1557, 18]]);
-const pos$287 = nix.positions(here + "/all-tests.nix", [["args", 1555, 13]]);
-const pos$288 = nix.positions(here + "/all-tests.nix", [["imports", 1554, 5], ["_module", 1555, 5]]);
-const pos$289 = nix.positions(here + "/all-tests.nix", [["runTest", 1561, 46]]);
-const pos$290 = nix.positions(here + "/all-tests.nix", [["lib", 1563, 13], ["runTest", 1563, 17]]);
-const pos$291 = nix.positions(here + "/all-tests.nix", [["package", 1585, 34]]);
-const pos$292 = nix.positions(here + "/all-tests.nix", [["package", 1586, 38]]);
-const pos$293 = nix.positions(here + "/all-tests.nix", [["lib", 1604, 13], ["runTest", 1604, 17]]);
-const pos$294 = nix.positions(here + "/all-tests.nix", [["package", 1612, 18]]);
-const pos$295 = nix.positions(here + "/all-tests.nix", [["args", 1612, 13]]);
-const pos$296 = nix.positions(here + "/all-tests.nix", [["imports", 1611, 5], ["_module", 1612, 5]]);
-const pos$297 = nix.positions(here + "/all-tests.nix", [["lib", 1628, 13], ["pkgs", 1628, 17], ["runTest", 1629, 5], ["rancherDistro", 1633, 5]]);
-const pos$298 = nix.positions(here + "/all-tests.nix", [["runTest", 1677, 38]]);
-const pos$299 = nix.positions(here + "/all-tests.nix", [["runTest", 1689, 38]]);
-const pos$300 = nix.positions(here + "/all-tests.nix", [["runTest", 1696, 40]]);
-const pos$301 = nix.positions(here + "/all-tests.nix", [["pkgs", 1741, 42], ["runTest", 1741, 47]]);
-const pos$302 = nix.positions(here + "/all-tests.nix", [["runTest", 1751, 44]]);
-const pos$303 = nix.positions(here + "/all-tests.nix", [["lib", 1757, 13], ["runTest", 1757, 17]]);
-const pos$304 = nix.positions(here + "/all-tests.nix", [["part", 1768, 18]]);
-const pos$305 = nix.positions(here + "/all-tests.nix", [["args", 1768, 13]]);
-const pos$306 = nix.positions(here + "/all-tests.nix", [["imports", 1767, 5], ["_module", 1768, 5]]);
-const pos$307 = nix.positions(here + "/all-tests.nix", [["part", 1772, 18]]);
-const pos$308 = nix.positions(here + "/all-tests.nix", [["args", 1772, 13]]);
-const pos$309 = nix.positions(here + "/all-tests.nix", [["imports", 1771, 5], ["_module", 1772, 5]]);
-const pos$310 = nix.positions(here + "/all-tests.nix", [["part", 1776, 18]]);
-const pos$311 = nix.positions(here + "/all-tests.nix", [["args", 1776, 13]]);
-const pos$312 = nix.positions(here + "/all-tests.nix", [["imports", 1775, 5], ["_module", 1776, 5]]);
-const pos$313 = nix.positions(here + "/all-tests.nix", [["part", 1780, 18]]);
-const pos$314 = nix.positions(here + "/all-tests.nix", [["args", 1780, 13]]);
-const pos$315 = nix.positions(here + "/all-tests.nix", [["imports", 1779, 5], ["_module", 1780, 5]]);
-const pos$316 = nix.positions(here + "/all-tests.nix", [["evalSystem", 1799, 9], ["runTest", 1800, 9], ["callTest", 1801, 9], ["pkgs", 1803, 7]]);
-const pos$317 = nix.positions(here + "/all-tests.nix", [["lib", 1810, 13], ["runTest", 1810, 17], ["runTestOn", 1810, 25]]);
-const pos$318 = nix.positions(here + "/all-tests.nix", [["systemdStage1", 1825, 18]]);
-const pos$319 = nix.positions(here + "/all-tests.nix", [["args", 1825, 13]]);
-const pos$320 = nix.positions(here + "/all-tests.nix", [["imports", 1824, 5], ["_module", 1825, 5]]);
-const pos$321 = nix.positions(here + "/all-tests.nix", [["runTest", 1833, 76]]);
-const pos$322 = nix.positions(here + "/all-tests.nix", [["systemdStage1", 1837, 32]]);
-const pos$323 = nix.positions(here + "/all-tests.nix", [["systemdStage1", 1842, 18]]);
-const pos$324 = nix.positions(here + "/all-tests.nix", [["args", 1842, 13]]);
-const pos$325 = nix.positions(here + "/all-tests.nix", [["imports", 1841, 5], ["_module", 1842, 5]]);
-const pos$326 = nix.positions(here + "/all-tests.nix", [["systemdStage1", 1875, 18]]);
-const pos$327 = nix.positions(here + "/all-tests.nix", [["args", 1875, 13]]);
-const pos$328 = nix.positions(here + "/all-tests.nix", [["imports", 1874, 5], ["_module", 1875, 5]]);
-const pos$329 = nix.positions(here + "/all-tests.nix", [["runTest", 1928, 34]]);
-const pos$330 = nix.positions(here + "/all-tests.nix", [["useNftables", 1969, 43]]);
-const pos$331 = nix.positions(here + "/all-tests.nix", [["useNftables", 1970, 43]]);
-const pos$332 = nix.positions(here + "/all-tests.nix", [["iptables", 1969, 8], ["nftables", 1970, 8]]);
-const pos$333 = nix.positions(here + "/all-tests.nix", [["runTest", 1990, 46]]);
-const pos$334 = nix.positions(here + "/all-tests.nix", [["package", 1996, 18]]);
-const pos$335 = nix.positions(here + "/all-tests.nix", [["args", 1996, 13]]);
-const pos$336 = nix.positions(here + "/all-tests.nix", [["imports", 1995, 5], ["_module", 1996, 5]]);
-const pos$337 = nix.positions(here + "/all-tests.nix", [["package", 2000, 18]]);
-const pos$338 = nix.positions(here + "/all-tests.nix", [["args", 2000, 13]]);
-const pos$339 = nix.positions(here + "/all-tests.nix", [["imports", 1999, 5], ["_module", 2000, 5]]);
-const pos$340 = nix.positions(here + "/all-tests.nix", [["runTest", 2008, 38]]);
-const pos$341 = nix.positions(here + "/all-tests.nix", [["runTest", 2012, 50]]);
-const pos$342 = nix.positions(here + "/all-tests.nix", [["runTest", 2013, 56]]);
-const pos$343 = nix.positions(here + "/all-tests.nix", [["runTest", 2014, 54]]);
-const pos$344 = nix.positions(here + "/all-tests.nix", [["package", 2018, 18]]);
-const pos$345 = nix.positions(here + "/all-tests.nix", [["args", 2018, 13]]);
-const pos$346 = nix.positions(here + "/all-tests.nix", [["imports", 2017, 5], ["_module", 2018, 5]]);
-const pos$347 = nix.positions(here + "/all-tests.nix", [["runTest", 2024, 46]]);
-const pos$348 = nix.positions(here + "/all-tests.nix", [["getPackage", 2039, 18]]);
-const pos$349 = nix.positions(here + "/all-tests.nix", [["args", 2039, 13]]);
-const pos$350 = nix.positions(here + "/all-tests.nix", [["imports", 2038, 5], ["_module", 2039, 5]]);
-const pos$351 = nix.positions(here + "/all-tests.nix", [["getPackage", 2043, 18]]);
-const pos$352 = nix.positions(here + "/all-tests.nix", [["args", 2043, 13]]);
-const pos$353 = nix.positions(here + "/all-tests.nix", [["imports", 2042, 5], ["_module", 2043, 5]]);
-const pos$354 = nix.positions(here + "/all-tests.nix", [["runTest", 2050, 13]]);
-const pos$355 = nix.positions(here + "/all-tests.nix", [["pkgs", 2053, 13], ["runTest", 2053, 18], ["lib", 2054, 20]]);
-const pos$356 = nix.positions(here + "/all-tests.nix", [["pkgs", 2057, 5], ["runTest", 2058, 13], ["lib", 2058, 21]]);
-const pos$357 = nix.positions(here + "/all-tests.nix", [["pkgs", 2064, 58], ["runTest", 2064, 63]]);
-const pos$358 = nix.positions(here + "/all-tests.nix", [["runTest", 2066, 61]]);
-const pos$359 = nix.positions(here + "/all-tests.nix", [["ybPivHarnessTests", 2083, 63], ["testFixtures", 2083, 81]]);
-const pos$360 = nix.positions(here + "/all-tests.nix", [["lib", 2085, 13], ["runTest", 2085, 17]]);
-const pos$361 = nix.positions(here + "/all-tests.nix", [["system", 2094, 36], ["pkgs", 2094, 43], ["runTest", 2094, 48]]);
-const pos$362 = nix.positions(here + "/all-tests.nix", [["nixos-test-driver", 192, 3], ["_3proxy", 234, 3], ["aaaaxy", 235, 3], ["accountsservice", 236, 3], ["acl", 237, 3], ["acme", 238, 3], ["acme-dns", 241, 3], ["activation", 242, 3], ["activation-bashless", 243, 3], ["activation-bashless-closure", 244, 3], ["activation-bashless-image", 245, 3], ["activation-etc-overlay-immutable", 246, 3], ["activation-etc-overlay-mutable", 247, 3], ["activation-lib", 248, 3], ["activation-nix-channel", 249, 3], ["activation-nixos-init", 250, 3], ["activation-perlless", 251, 3], ["activation-template-dropin", 252, 3], ["activation-var", 253, 3], ["actual", 254, 3], ["adguardhome", 255, 3], ["aesmd", 256, 3], ["agate", 257, 3], ["agda", 258, 3], ["age-plugin-tpm-decrypt", 261, 3], ["agnos", 262, 3], ["agorakit", 263, 3], ["airsonic", 264, 3], ["akkoma", 265, 3], ["akkoma-confined", 269, 3], ["alice-lg", 273, 3], ["alloy", 274, 3], ["allTerminfo", 275, 3], ["alps", 276, 3], ["amazon-cloudwatch-agent", 277, 3], ["amazon-init-shell", 278, 3], ["amazon-ssm-agent", 279, 3], ["amd-sev", 280, 3], ["amuled", 281, 3], ["android-translation-layer", 282, 3], ["angie-api", 283, 3], ["angrr", 284, 3], ["anki-sync-server", 285, 3], ["anubis", 286, 3], ["anuko-time-tracker", 287, 3], ["apcupsd", 288, 3], ["apfs", 289, 3], ["apparmor", 290, 3], ["appliance-repart-image", 291, 3], ["appliance-repart-image-verity-store", 292, 3], ["aria2", 293, 3], ["armagetronad", 294, 3], ["artalk", 295, 3], ["asynch", 296, 3], ["atd", 297, 3], ["atop", 298, 3], ["atticd", 299, 3], ["attr", 300, 3], ["atuin", 301, 3], ["atuin-programs", 302, 3], ["audiobookshelf", 303, 3], ["audit", 304, 3], ["audit-testsuite", 305, 3], ["aurral", 306, 3], ["auth-mysql", 307, 3], ["authelia", 308, 3], ["auto-cpufreq", 309, 3], ["autobrr", 310, 3], ["autopush-rs", 311, 3], ["autosuspend", 312, 3], ["avahi", 313, 3], ["avahi-with-resolved", 317, 3], ["ax25", 321, 3], ["ayatana-indicators", 322, 3], ["babeld", 323, 3], ["bazarr", 324, 3], ["bcache", 325, 3], ["bcachefs", 326, 3], ["beanstalkd", 327, 3], ["bees", 328, 3], ["benchexec", 329, 3], ["bentopdf", 330, 3], ["beszel", 331, 3], ["binary-cache", 332, 3], ["binary-cache-no-compression", 336, 3], ["binary-cache-xz", 340, 3], ["bind", 344, 3], ["bird2", 345, 3], ["bird3", 350, 3], ["birdwatcher", 355, 3], ["bitbox-bridge", 356, 3], ["bitcoind", 357, 3], ["bittorrent", 358, 3], ["blint", 359, 3], ["blockbook-frontend", 360, 3], ["blocky", 361, 3], ["bluesky-pds", 362, 3], ["bookorbit", 363, 3], ["bookstack", 364, 3], ["boot", 365, 3], ["boot-stage1", 366, 3], ["boot-stage2", 367, 3], ["bootspec", 368, 3], ["borgbackup", 369, 3], ["borgmatic", 370, 3], ["bpf", 371, 3], ["bpftune", 372, 3], ["breitbandmessung", 373, 3], ["broadcast-box", 374, 3], ["brscan5", 375, 3], ["btrbk", 376, 3], ["btrbk-doas", 377, 3], ["btrbk-no-timer", 378, 3], ["btrbk-section-order", 379, 3], ["btrfs-autoscrub", 380, 3], ["budgie", 381, 3], ["buildbot", 382, 3], ["buildkite-agents", 383, 3], ["buildstream", 384, 3], ["buildstream-plugins-community", 385, 3], ["bulwark", 386, 3], ["c2fmzq", 387, 3], ["caddy", 388, 3], ["cadvisor", 389, 3], ["cage", 390, 3], ["cagebreak", 391, 3], ["calibre-server", 392, 3], ["calibre-web", 393, 3], ["canaille", 394, 3], ["cardwire", 395, 3], ["cassandra", 396, 3], ["castopod", 400, 3], ["centrifugo", 401, 3], ["ceph-multi-node-bluestore", 402, 3], ["ceph-multi-node-bluestore-cephfs", 405, 3], ["ceph-single-node-bluestore", 408, 3], ["certmgr", 412, 3], ["cfssl", 413, 3], ["cgit", 414, 3], ["charliecloud", 415, 3], ["chhoto-url", 416, 3], ["chipass", 417, 3], ["chromadb", 418, 3], ["chromium", 419, 3], ["chrony", 420, 3], ["chrony-ptp", 421, 3], ["cinnamon", 422, 3], ["cinnamon-wayland", 423, 3], ["cjdns", 424, 3], ["clamav", 425, 3], ["clatd", 426, 3], ["clickhouse", 427, 3], ["clickhouse-lts", 431, 3], ["cliproxyapi", 435, 3], ["cloud-init", 436, 3], ["cloud-init-hostname", 437, 3], ["cloudcompare", 438, 3], ["cloudlog", 439, 3], ["cntr", 440, 3], ["cockpit", 447, 3], ["cockroachdb", 448, 3], ["cocoon", 449, 3], ["code-server", 450, 3], ["coder", 451, 3], ["collectd", 452, 3], ["commafeed", 453, 3], ["connman", 454, 3], ["console", 455, 3], ["console-xkb-and-i18n", 456, 3], ["consul", 457, 3], ["consul-template", 458, 3], ["containers-bridge", 459, 3], ["containers-custom-pkgs", 460, 3], ["containers-ephemeral", 461, 3], ["containers-eval", 462, 3], ["containers-extra_veth", 463, 3], ["containers-gateway", 464, 3], ["containers-hosts", 465, 3], ["containers-imperative", 466, 3], ["containers-imperative-no-daemon", 467, 3], ["containers-ip", 468, 3], ["containers-ipv6-slaac", 469, 3], ["containers-macvlans", 470, 3], ["containers-names", 471, 3], ["containers-nested", 472, 3], ["containers-nested-nix", 473, 3], ["containers-physical_interfaces", 477, 3], ["containers-portforward", 478, 3], ["containers-reloadable", 479, 3], ["containers-require-bind-mounts", 480, 3], ["containers-restart_networking", 481, 3], ["containers-tmpfs", 482, 3], ["containers-unified-hierarchy", 483, 3], ["convos", 484, 3], ["coredns", 485, 3], ["corerad", 486, 3], ["corteza", 487, 3], ["cosmic", 488, 3], ["cosmic-autologin", 494, 3], ["cosmic-autologin-noxwayland", 500, 3], ["cosmic-noxwayland", 506, 3], ["coturn", 512, 3], ["couchdb", 513, 3], ["credentials-fwcfg", 514, 3], ["credentials-smbios", 518, 3], ["cri-o", 522, 3], ["croc", 523, 3], ["cross-seed", 524, 3], ["cryptpad", 525, 3], ["cups-pdf", 526, 3], ["curl-impersonate", 527, 3], ["custom-ca", 528, 3], ["cyrus-imap", 529, 3], ["dae", 530, 3], ["darling-dmg", 531, 3], ["dashy", 532, 3], ["davis", 533, 3], ["dawarich", 534, 3], ["db-rest", 535, 3], ["dconf", 536, 3], ["ddns-updater", 537, 3], ["deconz", 538, 3], ["deluge", 539, 3], ["dendrite", 540, 3], ["dep-scan", 541, 3], ["dependency-track", 542, 3], ["devpi-server", 543, 3], ["dex-oidc", 544, 3], ["dictd", 545, 3], ["disable-installer-tools", 546, 3], ["discourse", 547, 3], ["discourseAllPlugins", 551, 3], ["dnscrypt-proxy", 555, 3], ["dnsdist", 556, 3], ["doas", 557, 3], ["docker", 558, 3], ["docker-autoprune", 559, 3], ["docker-registry", 560, 3], ["docker-rootless", 561, 3], ["docker-tools", 562, 3], ["docker-tools-cross", 563, 3], ["docker-tools-nix-shell", 564, 3], ["docker-tools-overlay", 565, 3], ["docling-serve", 566, 3], ["documentation", 567, 3], ["documize", 568, 3], ["docuseal-psql", 569, 3], ["docuseal-sqlite", 570, 3], ["docuum", 571, 3], ["doh-proxy-rust", 572, 3], ["dokuwiki", 573, 3], ["dolibarr", 574, 3], ["domination", 575, 3], ["dovecot", 576, 3], ["draupnir", 577, 3], ["drawterm", 578, 3], ["drbd", 579, 3], ["drbd-driver", 580, 3], ["druid", 581, 3], ["drupal", 582, 3], ["dublin-traceroute", 583, 3], ["duplicity", 584, 3], ["dwl", 585, 3], ["e57inspector", 586, 3], ["early-mount-options", 587, 3], ["earlyoom", 588, 3], ["easytier", 589, 3], ["easytier-modular", 590, 3], ["ec2-config", 591, 3], ["ec2-image", 592, 3], ["ec2-nixops", 593, 3], ["echoip", 594, 3], ["ejabberd", 595, 3], ["elk", 596, 3], ["elk-zone", 597, 3], ["emacs-daemon", 598, 3], ["endlessh", 599, 3], ["endlessh-go", 600, 3], ["engelsystem", 601, 3], ["enlightenment", 602, 3], ["ente", 603, 3], ["env", 604, 3], ["envfs", 605, 3], ["envfs-systemd-stage-1", 609, 3], ["envoy", 613, 3], ["envoy-bin", 617, 3], ["ergo", 621, 3], ["ergochat", 622, 3], ["ersatztv", 623, 3], ["espanso", 624, 3], ["esphome", 627, 3], ["etc", 628, 3], ["etcd", 629, 3], ["etebase-server", 630, 3], ["etesync-dav", 631, 3], ["evcc", 632, 3], ["extra-initrd", 633, 3], ["facter", 634, 3], ["fail2ban", 635, 3], ["fakeroute", 636, 3], ["fancontrol", 637, 3], ["fanout", 638, 3], ["fastnetmon-advanced", 639, 3], ["fcitx5", 640, 3], ["fedimintd", 641, 3], ["feishin", 642, 3], ["ferm", 643, 3], ["ferretdb", 644, 3], ["fider", 645, 3], ["filebrowser", 646, 3], ["filesystems-overlayfs", 647, 3], ["firefly-iii", 648, 3], ["firefly-iii-data-importer", 649, 3], ["firefox", 650, 3], ["firefox-devedition", 654, 3], ["firefox-esr", 658, 3], ["firefox-esr-153", 663, 3], ["firefox-syncserver", 667, 3], ["firefox_decrypt", 668, 3], ["firefoxpwa", 669, 3], ["firejail", 670, 3], ["firewall", 671, 3], ["firewall-firewalld", 675, 3], ["firewall-nftables", 679, 3], ["firewalld", 683, 3], ["firezone", 684, 3], ["fish", 685, 3], ["flame", 686, 3], ["flannel", 687, 3], ["flap-alerted", 688, 3], ["flaresolverr", 689, 3], ["flarum", 690, 3], ["flood", 691, 3], ["fluent-bit", 692, 3], ["fluentd", 693, 3], ["fluidd", 694, 3], ["fontconfig-bitmap-fonts", 695, 3], ["fontconfig-default-fonts", 696, 3], ["forgejo", 697, 3], ["forgejo-lts", 701, 3], ["freescout", 705, 3], ["freeswitch", 708, 3], ["freetube", 709, 3], ["freshrss", 710, 3], ["frigate", 711, 3], ["froide-govplan", 712, 3], ["frp", 713, 3], ["frr", 714, 3], ["fsck", 715, 3], ["fsck-systemd-stage-1", 719, 3], ["fscrypt", 723, 3], ["ft2-clone", 724, 3], ["galene", 725, 3], ["gancio", 726, 3], ["garage_1", 727, 3], ["garage_2", 731, 3], ["garm-incus", 735, 3], ["gatus", 736, 3], ["gemstash", 737, 3], ["geoclue2", 738, 3], ["geoserver", 739, 3], ["gerrit", 740, 3], ["getaddrinfo", 741, 3], ["geth", 742, 3], ["ghostunnel", 743, 3], ["ghostunnel-modular", 744, 3], ["git-pages-modular", 745, 3], ["gitdaemon", 746, 3], ["gitea", 747, 3], ["gitea-actions-runner", 752, 3], ["github-runner", 753, 3], ["gitlab", 754, 3], ["gitolite", 757, 3], ["gitolite-fcgiwrap", 758, 3], ["glance", 759, 3], ["glances", 760, 3], ["glitchtip", 761, 3], ["glusterfs", 762, 3], ["gnome", 763, 3], ["gnome-extensions", 764, 3], ["gnome-flashback", 765, 3], ["gns3-server", 766, 3], ["gnupg", 767, 3], ["go-camo", 768, 3], ["go-csp-collector", 769, 3], ["go-httpbin", 770, 3], ["goatcounter", 771, 3], ["gobgpd", 772, 3], ["gocd-agent", 773, 3], ["gocd-server", 774, 3], ["gocron", 775, 3], ["gocryptfs", 776, 3], ["gokapi", 777, 3], ["gollum", 778, 3], ["gonic", 779, 3], ["google-oslogin", 780, 3], ["gophernicus", 781, 3], ["gopro-tool", 782, 3], ["goss", 783, 3], ["gotenberg", 784, 3], ["gotify-server", 785, 3], ["gotosocial", 786, 3], ["goupile", 787, 3], ["grafana", 788, 3], ["grafana-to-ntfy", 791, 3], ["graphite", 792, 3], ["grav", 793, 3], ["graylog", 794, 3], ["greenlight", 795, 3], ["greetd-no-shadow", 796, 3], ["grist", 797, 3], ["grocy", 798, 3], ["grow-partition", 799, 3], ["grub", 800, 3], ["gs1200-exporter", 807, 3], ["guacamole-server", 808, 3], ["guix", 809, 3], ["gvisor", 810, 3], ["h2o", 811, 3], ["hadoop", 814, 3], ["hadoop2", 818, 3], ["hadoop_3_3", 822, 3], ["haproxy", 826, 3], ["harmonia", 827, 3], ["harmonia-gc", 828, 3], ["haste-server", 829, 3], ["hbase2", 830, 3], ["hbase3", 834, 3], ["hbase_2_4", 838, 3], ["hbase_2_5", 842, 3], ["hddtemp", 846, 3], ["headplane", 847, 3], ["headscale", 848, 3], ["healthchecks", 849, 3], ["hedgedoc", 850, 3], ["herbstluftwm", 851, 3], ["hibernate", 853, 3], ["hibernate-systemd-stage-1", 856, 3], ["hickory-dns", 859, 3], ["hister", 860, 3], ["hitch", 861, 3], ["hledger-web", 862, 3], ["hockeypuck", 863, 3], ["holo-daemon-modular-service", 864, 3], ["home-assistant", 865, 3], ["homebox", 866, 3], ["homebridge", 867, 3], ["homepage-dashboard", 868, 3], ["homer", 869, 3], ["hoogle", 870, 3], ["hostname", 871, 3], ["hound", 875, 3], ["hub", 876, 3], ["hydra", 877, 3], ["hyphanet", 878, 3], ["i18n", 879, 3], ["i2pd", 880, 3], ["i3wm", 881, 3], ["icecast", 882, 3], ["icingaweb2", 883, 3], ["ifm", 884, 3], ["ifstate", 885, 3], ["iftop", 886, 3], ["image-contents", 887, 3], ["immich", 888, 3], ["immich-kiosk", 889, 3], ["immich-public-proxy", 890, 3], ["immich-vectorchord-reindex", 891, 3], ["immichframe", 892, 3], ["incron", 893, 3], ["incus", 894, 3], ["incus-lts", 898, 3], ["influxdb", 902, 3], ["influxdb2", 903, 3], ["initrd-luks-empty-passphrase", 904, 3], ["initrd-network-openvpn", 908, 3], ["initrd-network-ssh", 911, 3], ["initrd-secrets", 912, 3], ["initrd-secrets-changing", 913, 3], ["initrdNetwork", 914, 3], ["input-remapper", 915, 3], ["inspircd", 916, 3], ["installed-tests", 917, 3], ["installer", 918, 3], ["installer-systemd-stage-1", 919, 3], ["intune", 920, 3], ["inventree", 921, 3], ["invidious", 922, 3], ["invoiceplane", 923, 3], ["iocaine", 924, 3], ["iodine", 925, 3], ["iosched", 926, 3], ["ipget", 927, 3], ["ipv6", 928, 3], ["irqbalance", 929, 3], ["iscsi-multipath-root", 930, 3], ["iscsi-root", 931, 3], ["isolate", 932, 3], ["isso", 933, 3], ["jackett", 934, 3], ["jellyfin", 935, 3], ["jenkins", 936, 3], ["jenkins-cli", 937, 3], ["jibri", 938, 3], ["jirafeau", 939, 3], ["jitsi-meet", 940, 3], ["jool", 941, 3], ["jotta-cli", 945, 3], ["k3s", 946, 3], ["kafka", 954, 3], ["kaidan", 957, 3], ["kanboard", 958, 3], ["kanidm", 959, 3], ["kanidm-provisioning", 960, 3], ["kapla", 961, 3], ["karakeep", 962, 3], ["karma", 963, 3], ["kavita", 964, 3], ["kbd-setfont-decompress", 965, 3], ["kbd-update-search-paths-patch", 966, 3], ["kea", 967, 3], ["keepalived", 968, 3], ["keepassxc", 969, 3], ["kener", 970, 3], ["kerberos", 971, 3], ["kernel-generic", 974, 3], ["kernel-latest-ath-user-regd", 975, 3], ["kernel-rust", 976, 3], ["keter", 977, 3], ["kexec", 978, 3], ["keycloak", 979, 3], ["keyd", 980, 3], ["keymap", 984, 3], ["kimai", 988, 3], ["kismet", 989, 3], ["kiwix-serve", 990, 3], ["kmonad", 991, 3], ["kmscon", 992, 3], ["knot", 993, 3], ["koito", 994, 3], ["komga", 995, 3], ["komodo-periphery", 996, 3], ["krb5", 997, 3], ["krill", 998, 3], ["ksm", 999, 3], ["kthxbye", 1000, 3], ["kubernetes", 1001, 3], ["kubo", 1002, 3], ["kvrocks", 1005, 3], ["labgrid", 1006, 3], ["lact", 1007, 3], ["ladybird", 1008, 3], ["languagetool", 1009, 3], ["lanraragi", 1010, 3], ["lasuite-docs", 1011, 3], ["lasuite-drive", 1012, 3], ["lasuite-meet", 1013, 3], ["latestKernel", 1014, 3], ["lauti", 1018, 3], ["lavalink", 1019, 3], ["leaps", 1020, 3], ["legit", 1021, 3], ["lemmy", 1022, 3], ["lemurs", 1023, 3], ["lemurs-wayland", 1024, 3], ["lemurs-wayland-script", 1025, 3], ["lemurs-xorg", 1026, 3], ["lemurs-xorg-script", 1027, 3], ["libinput", 1028, 3], ["librechat", 1029, 3], ["librenms", 1030, 3], ["libresprite", 1031, 3], ["libreswan", 1032, 3], ["libreswan-nat", 1033, 3], ["librewolf", 1034, 3], ["libuiohook", 1038, 3], ["libvirtd", 1039, 3], ["lidarr", 1040, 3], ["lightdm", 1041, 3], ["lighttpd", 1042, 3], ["limesurvey", 1043, 3], ["limine", 1044, 3], ["linkding", 1045, 3], ["linkding-postgres", 1046, 3], ["linkwarden", 1047, 3], ["linux-builder-vz-store-gc", 1048, 3], ["listmonk", 1049, 3], ["litellm", 1050, 3], ["litestream", 1051, 3], ["livebook-service", 1052, 3], ["livekit", 1053, 3], ["lix", 1054, 3], ["lk-jwt-service", 1055, 3], ["llama-swap", 1056, 3], ["lldap", 1059, 3], ["local-content-share", 1060, 3], ["locale", 1061, 3], ["localsend", 1062, 3], ["locate", 1063, 3], ["login", 1064, 3], ["login-nosuid", 1065, 3], ["logkeys", 1066, 3], ["logrotate", 1067, 3], ["loki", 1068, 3], ["lomiri", 1070, 3], ["lomiri-calculator-app", 1071, 3], ["lomiri-calendar-app", 1072, 3], ["lomiri-camera-app", 1073, 3], ["lomiri-clock-app", 1074, 3], ["lomiri-docviewer-app", 1075, 3], ["lomiri-filemanager-app", 1076, 3], ["lomiri-gallery-app", 1077, 3], ["lomiri-mediaplayer-app", 1078, 3], ["lomiri-music-app", 1079, 3], ["lomiri-system-settings", 1080, 3], ["loops-server", 1081, 3], ["lorri", 1082, 3], ["luks", 1083, 3], ["luks-suspend", 1084, 3], ["lvm2", 1085, 3], ["lxc", 1086, 3], ["lxd-image-server", 1087, 3], ["lxqt", 1088, 3], ["ly", 1089, 3], ["maddy", 1090, 3], ["maestral", 1091, 3], ["magic-wormhole-mailbox-server", 1092, 3], ["magnetico", 1093, 3], ["mailcatcher", 1094, 3], ["mailhog", 1095, 3], ["mailman", 1096, 3], ["mailpit", 1097, 3], ["man", 1098, 3], ["mariadb-galera", 1099, 3], ["marytts", 1100, 3], ["mastodon", 1101, 3], ["mate", 1102, 3], ["mate-wayland", 1103, 3], ["matomo", 1104, 3], ["matrix-alertmanager", 1105, 3], ["matrix-appservice-irc", 1106, 3], ["matrix-authentication-service", 1107, 3], ["matrix-conduit", 1108, 3], ["matrix-continuwuity", 1109, 3], ["matrix-synapse", 1110, 3], ["matrix-tuwunel", 1111, 3], ["matter-server", 1112, 3], ["matterjs-server", 1113, 3], ["mattermost", 1114, 3], ["mautrix-discord", 1115, 3], ["mautrix-meta-postgres", 1116, 3], ["mautrix-meta-sqlite", 1117, 3], ["mealie", 1118, 3], ["mediamtx", 1119, 3], ["mediatomb", 1120, 3], ["mediawiki", 1121, 3], ["meilisearch", 1124, 3], ["memcached", 1125, 3], ["merecat", 1126, 3], ["meshtasticd", 1127, 3], ["metabase", 1128, 3], ["mihomo", 1129, 3], ["mimir", 1130, 3], ["mindustry", 1131, 3], ["minecraft-server", 1132, 3], ["minidlna", 1133, 3], ["miniflux", 1134, 3], ["minio", 1135, 3], ["miracle-wm", 1136, 3], ["miriway", 1137, 3], ["misc", 1138, 3], ["misskey", 1139, 3], ["mitmproxy", 1140, 3], ["mjolnir", 1141, 3], ["mobilizon", 1142, 3], ["mod_perl", 1143, 3], ["modular-service-etc", 1144, 3], ["modularService", 1145, 3], ["moduleStateRevisions", 1148, 3], ["molly-brown", 1149, 3], ["mollysocket", 1150, 3], ["monado", 1151, 3], ["monetdb", 1152, 3], ["mongodb", 1153, 3], ["mongodb-ce", 1160, 3], ["monica", 1168, 3], ["moodle", 1169, 3], ["moonraker", 1170, 3], ["moosefs", 1171, 3], ["mopidy", 1172, 3], ["morph-browser", 1173, 3], ["mosquitto", 1174, 3], ["movim", 1175, 3], ["mpd", 1178, 3], ["mpv", 1179, 3], ["mtp", 1180, 3], ["mumble", 1181, 3], ["munge", 1182, 3], ["munin", 1183, 3], ["musescore", 1186, 3], ["music-assistant", 1187, 3], ["mutableUsers", 1188, 3], ["mycelium", 1189, 3], ["mympd", 1190, 3], ["mysql", 1191, 3], ["mysql-autobackup", 1192, 3], ["mysql-backup", 1193, 3], ["mysql-replication", 1194, 3], ["mysql-secure-root", 1195, 3], ["n8n", 1196, 3], ["nagios", 1197, 3], ["nar-serve", 1198, 3], ["nat", 1199, 3], ["nats", 1209, 3], ["navidrome", 1210, 3], ["nbd", 1211, 3], ["ncdns", 1212, 3], ["ncps", 1213, 3], ["ncps-custom-sqlite-directory", 1217, 3], ["ncps-custom-storage-local", 1222, 3], ["ncps-ha-pg-redis", 1227, 3], ["ncps-ha-pg-redis-cdc", 1228, 3], ["ndppd", 1232, 3], ["nebula-lighthouse-service", 1233, 3], ["nebula", 1234, 3], ["neo4j", 1236, 3], ["netbird", 1237, 3], ["netbird-relay", 1238, 3], ["netbox", 1239, 3], ["netdata", 1240, 3], ["netfoil", 1241, 3], ["netplan", 1242, 3], ["networking", 1243, 3], ["networkingProxy", 1247, 3], ["nextcloud", 1248, 3], ["nextflow", 1249, 3], ["nextjs-ollama-llm-ui", 1250, 3], ["nexus", 1251, 3], ["nezha", 1252, 3], ["nfs3", 1254, 3], ["nfs4", 1255, 3], ["nghttpx", 1256, 3], ["nginx", 1257, 3], ["nginx-auth", 1258, 3], ["nginx-compression", 1259, 3], ["nginx-dynamic-modules", 1260, 3], ["nginx-etag", 1261, 3], ["nginx-etag-compression", 1262, 3], ["nginx-globalredirect", 1263, 3], ["nginx-grpc-error-pages", 1264, 3], ["nginx-http3", 1265, 3], ["nginx-lua", 1266, 3], ["nginx-mime", 1267, 3], ["nginx-modsecurity", 1268, 3], ["nginx-moreheaders", 1269, 3], ["nginx-njs", 1270, 3], ["nginx-otel", 1271, 3], ["nginx-proxyprotocol", 1272, 3], ["nginx-pubhtml", 1273, 3], ["nginx-redirectcode", 1274, 3], ["nginx-sso", 1275, 3], ["nginx-status-page", 1276, 3], ["nginx-tmpdir", 1277, 3], ["nginx-unix-socket", 1278, 3], ["nginx-variants", 1279, 3], ["nifi", 1280, 3], ["nimdow", 1281, 3], ["nipap", 1282, 3], ["nitter", 1283, 3], ["nix-config", 1284, 3], ["nix-daemon-firewall", 1285, 3], ["nix-daemon-unprivileged", 1286, 3], ["nix-ld", 1287, 3], ["nix-local-store", 1288, 3], ["nix-misc", 1289, 3], ["nix-required-mounts", 1290, 3], ["nix-serve", 1291, 3], ["nix-serve-ssh", 1292, 3], ["nix-store-veritysetup", 1293, 3], ["nix-upgrade", 1294, 3], ["nixops", 1298, 3], ["nixos-generate-config", 1299, 3], ["nixos-rebuild-install-bootloader", 1300, 3], ["nixos-rebuild-specialisations", 1303, 3], ["nixos-rebuild-store-path", 1306, 3], ["nixos-rebuild-target-host", 1309, 3], ["nixos-rebuild-target-host-interrupted", 1312, 3], ["nixpkgs", 1315, 3], ["nixpkgs-config-allow-unfree", 1316, 3], ["nixpkgs-config-allow-unfree-packages-and-predicate", 1319, 3], ["nixseparatedebuginfod2", 1322, 3], ["nmtrust", 1323, 3], ["node-red", 1324, 3], ["nohang", 1325, 3], ["nomad", 1326, 3], ["nominatim", 1327, 3], ["non-default-filesystems", 1328, 3], ["non-switchable-system", 1329, 3], ["nordvpn", 1330, 3], ["noto-fonts", 1331, 3], ["noto-fonts-cjk-qt-default-weight", 1332, 3], ["novacomd", 1333, 3], ["npmrc", 1334, 3], ["nscd", 1335, 3], ["nsd", 1336, 3], ["ntfy-sh", 1337, 3], ["ntfy-sh-migration", 1338, 3], ["ntpd", 1339, 3], ["ntpd-rs", 1340, 3], ["nullmailer", 1341, 3], ["nushell", 1342, 3], ["nvidia-container-toolkit", 1343, 3], ["nvme-rs", 1344, 3], ["nvmetcfg", 1345, 3], ["nyxt", 1346, 3], ["nzbget", 1347, 3], ["nzbhydra2", 1348, 3], ["obs-studio", 1349, 3], ["oci-containers", 1350, 3], ["ocis", 1351, 3], ["ocsinventory-agent", 1352, 3], ["octoprint", 1353, 3], ["oddjobd", 1354, 3], ["odoo17", 1355, 3], ["odoo17-multiprocess", 1359, 3], ["odoo18", 1363, 3], ["odoo18-multiprocess", 1367, 3], ["odoo19", 1371, 3], ["odoo19-multiprocess", 1375, 3], ["oh-my-zsh", 1379, 3], ["oku", 1380, 3], ["olivetin", 1381, 3], ["ollama", 1382, 3], ["ollama-cuda", 1383, 3], ["ollama-rocm", 1384, 3], ["ollama-vulkan", 1385, 3], ["ollaya", 1386, 3], ["omada", 1387, 3], ["ombi", 1388, 3], ["omnom", 1389, 3], ["oncall", 1390, 3], ["onlyoffice", 1391, 3], ["open-web-calendar", 1392, 3], ["open-webui", 1393, 3], ["openafs", 1394, 3], ["openarena", 1395, 3], ["openbao", 1396, 3], ["openbao-agent", 1397, 3], ["opencloud", 1398, 3], ["openldap", 1399, 3], ["openresty-lua", 1400, 3], ["opensearch", 1401, 3], ["opensearch-dashboards", 1402, 3], ["opensmtpd", 1403, 3], ["opensmtpd-rspamd", 1404, 3], ["opensnitch", 1405, 3], ["openssh", 1406, 3], ["openstack-image-metadata", 1407, 3], ["openstack-image-userdata", 1409, 3], ["opentabletdriver", 1411, 3], ["opentelemetry-collector", 1412, 3], ["opentelemetry-collector-validate", 1413, 3], ["openvscode-server", 1416, 3], ["openvswitch", 1417, 3], ["optee", 1418, 3], ["orangefs", 1419, 3], ["orbit", 1420, 3], ["orthanc", 1421, 3], ["os-prober", 1422, 3], ["osquery", 1423, 3], ["osrm-backend", 1424, 3], ["outline", 1425, 3], ["overlayfs", 1426, 3], ["owi", 1427, 3], ["owncast", 1428, 3], ["oxidized", 1429, 3], ["oxwm", 1430, 3], ["pacemaker", 1431, 3], ["packagekit", 1432, 3], ["pairdrop", 1433, 3], ["paisa", 1434, 3], ["pam-file-contents", 1435, 3], ["pam-lastlog", 1436, 3], ["pam-oath-login", 1437, 3], ["pam-pgsql", 1438, 3], ["pam-u2f", 1439, 3], ["pam-u2f-polkit", 1440, 3], ["pam-ussh", 1441, 3], ["pam-zfs-key", 1442, 3], ["pangolin", 1443, 3], ["pantalaimon", 1444, 3], ["pantheon", 1445, 3], ["paperless", 1446, 3], ["papra", 1447, 3], ["paretosecurity", 1448, 3], ["parsedmarc", 1449, 3], ["part-db", 1450, 3], ["pass-secret-service", 1451, 3], ["password-option-override-ordering", 1452, 3], ["patroni", 1453, 3], ["pcsclite", 1454, 3], ["pdfding", 1455, 3], ["pdns-recursor", 1458, 3], ["pdudaemon", 1459, 3], ["peerflix", 1460, 3], ["peering-manager", 1461, 3], ["peertube", 1462, 3], ["perses", 1463, 3], ["pgadmin4", 1464, 3], ["pgbackrest", 1465, 3], ["pgbouncer", 1466, 3], ["pgmanage", 1467, 3], ["pgweb", 1468, 3], ["phosh", 1469, 3], ["photonvision", 1470, 3], ["photoprism", 1471, 3], ["php", 1472, 3], ["php82", 1476, 3], ["php83", 1480, 3], ["php84", 1484, 3], ["php85", 1488, 3], ["phylactery", 1492, 3], ["pict-rs", 1493, 3], ["pihole-ftl", 1494, 3], ["pinnwand", 1495, 3], ["pixelfed", 1496, 3], ["plantuml-server", 1497, 3], ["plasma6", 1498, 3], ["plausible", 1499, 3], ["playwright-python", 1500, 3], ["please", 1501, 3], ["pleroma", 1502, 3], ["plikd", 1503, 3], ["plotinus", 1504, 3], ["pocket-id", 1505, 3], ["podman", 1506, 3], ["podman-tls-ghostunnel", 1507, 3], ["polaris", 1511, 3], ["pomerium", 1512, 3], ["portmaster", 1513, 3], ["portunus", 1514, 3], ["porxie", 1515, 3], ["postfix", 1516, 3], ["postfix-raise-smtpd-tls-security-level", 1517, 3], ["postfix-tlspol", 1520, 3], ["postgres-websockets", 1521, 3], ["postgresql", 1522, 3], ["postgrest", 1526, 3], ["power-profiles-daemon", 1527, 3], ["powerdns", 1528, 3], ["powerdns-admin", 1529, 3], ["pppd", 1530, 3], ["predictable-interface-names", 1531, 3], ["prefect", 1532, 3], ["pretalx", 1533, 3], ["pretix", 1534, 3], ["printing-service", 1535, 3], ["printing-service-notcp", 1541, 3], ["printing-socket", 1547, 3], ["printing-socket-notcp", 1553, 3], ["privatebin", 1559, 3], ["privoxy", 1560, 3], ["prometheus", 1561, 3], ["prometheus-exporters", 1562, 3], ["prosody", 1565, 3], ["prosody-mysql", 1566, 3], ["prowlarr", 1567, 3], ["proxy", 1568, 3], ["pt2-clone", 1569, 3], ["public-inbox", 1570, 3], ["pufferpanel", 1571, 3], ["pulseaudio", 1572, 3], ["pulseaudio-tcp", 1573, 3], ["pumpkin", 1574, 3], ["pykms", 1575, 3], ["qbit-manage", 1576, 3], ["qbittorrent", 1577, 3], ["qboot", 1578, 3], ["qemu-firmware", 1579, 3], ["qemu-vm-external-disk-image", 1580, 3], ["qemu-vm-restrictnetwork", 1581, 3], ["qemu-vm-shared-directories", 1582, 3], ["qemu-vm-store", 1583, 3], ["qemu-vm-volatile-root", 1584, 3], ["qgis", 1585, 3], ["qgis-ltr", 1586, 3], ["qlever", 1587, 3], ["qownnotes", 1588, 3], ["qtile", 1589, 3], ["qtile-extras", 1590, 3], ["quake3", 1591, 3], ["qui", 1592, 3], ["quicktun", 1593, 3], ["quickwit", 1594, 3], ["rabbitmq", 1595, 3], ["radarr", 1596, 3], ["radicale", 1597, 3], ["radicle", 1598, 3], ["radicle-ci-broker", 1599, 3], ["rasdaemon", 1600, 3], ["rathole", 1601, 3], ["rauc", 1602, 3], ["reaction", 1603, 3], ["readarr", 1606, 3], ["readeck", 1607, 3], ["realm", 1608, 3], ["rebuilderd", 1609, 3], ["redis", 1610, 3], ["redlib", 1614, 3], ["redmine", 1615, 3], ["refind", 1616, 3], ["remark42", 1617, 3], ["renovate", 1618, 3], ["repath-studio", 1619, 3], ["replace-dependencies", 1620, 3], ["reposilite", 1621, 3], ["restartByActivationScript", 1622, 3], ["restic", 1623, 3], ["restic-rest-server", 1624, 3], ["retroarch", 1625, 3], ["ringboard", 1626, 3], ["rke2", 1627, 3], ["rkvm", 1635, 3], ["rmfakecloud", 1636, 3], ["rnsd", 1637, 3], ["robustirc-bridge", 1638, 3], ["romm", 1639, 3], ["rosec", 1640, 3], ["rosenpass", 1641, 3], ["roundcube", 1642, 3], ["routinator", 1643, 3], ["rqbit", 1644, 3], ["rshim", 1645, 3], ["rspamd", 1646, 3], ["rspamd-trainer", 1647, 3], ["rss-bridge", 1648, 3], ["rss2email", 1649, 3], ["rsshub", 1650, 3], ["rstp", 1651, 3], ["rstudio-server", 1652, 3], ["rsync", 1653, 3], ["rsyncd", 1654, 3], ["rsyslogd", 1655, 3], ["rtkit", 1656, 3], ["rtorrent", 1657, 3], ["rundeck", 1658, 3], ["rush", 1659, 3], ["rustfs", 1660, 3], ["rustical", 1661, 3], ["rustls-libssl", 1662, 3], ["rxe", 1663, 3], ["sabnzbd", 1664, 3], ["sabnzbd-module", 1665, 3], ["samba", 1666, 3], ["samba-wsdd", 1667, 3], ["sane", 1668, 3], ["sanoid", 1669, 3], ["saunafs", 1670, 3], ["scanservjs", 1671, 3], ["schleuder", 1672, 3], ["scion-freestanding-deployment", 1673, 3], ["scrutiny", 1674, 3], ["scx", 1675, 3], ["scx-loader", 1676, 3], ["sddm", 1677, 3], ["sdl3", 1678, 3], ["searx", 1679, 3], ["seatd", 1680, 3], ["seerr", 1681, 3], ["selfoss", 1682, 3], ["send", 1683, 3], ["service-runner", 1684, 3], ["servo", 1685, 3], ["sftpgo", 1686, 3], ["sfxr-qt", 1687, 3], ["sgt-puzzles", 1688, 3], ["shadow", 1689, 3], ["shadowsocks", 1690, 3], ["shadps4", 1691, 3], ["sharkey", 1692, 3], ["shattered-pixel-dungeon", 1693, 3], ["shelfmark", 1694, 3], ["shiori", 1695, 3], ["shoko", 1696, 3], ["signal-desktop", 1697, 3], ["silverbullet", 1698, 3], ["simple-container", 1699, 3], ["simple-vm", 1700, 3], ["sing-box", 1701, 3], ["sks", 1702, 3], ["slimserver", 1703, 3], ["slipshow", 1704, 3], ["slurm", 1705, 3], ["slurm-pam", 1706, 3], ["smokeping", 1707, 3], ["snapcast", 1708, 3], ["snapper", 1709, 3], ["snid", 1710, 3], ["snipe-it", 1711, 3], ["snips-sh", 1712, 3], ["snmpd", 1713, 3], ["soapui", 1714, 3], ["soft-serve", 1715, 3], ["sogo", 1716, 3], ["soju", 1717, 3], ["solanum", 1718, 3], ["sonarr", 1719, 3], ["sonic-server", 1720, 3], ["spacecookie", 1721, 3], ["spark", 1722, 3], ["speechd", 1723, 3], ["speedtest-tracker", 1724, 3], ["spiped", 1725, 3], ["spire", 1726, 3], ["sqlite3-to-mysql", 1727, 3], ["squid", 1728, 3], ["ssh-agent-auth", 1729, 3], ["ssh-audit", 1730, 3], ["sshwifty", 1731, 3], ["sslh", 1732, 3], ["sssd-ldap", 1733, 3], ["sssd-legacy-config", 1734, 3], ["sstorytime", 1735, 3], ["stalwart", 1736, 3], ["stardust-xr-atmosphere", 1737, 3], ["stardust-xr-flatland", 1738, 3], ["stargazer", 1739, 3], ["starship", 1740, 3], ["startx", 1741, 3], ["stash", 1742, 3], ["static-web-server", 1743, 3], ["step-ca", 1744, 3], ["stirling-pdf-desktop", 1745, 3], ["stratis", 1746, 3], ["strichliste", 1747, 3], ["strongswan-swanctl", 1748, 3], ["stub-ld", 1749, 3], ["stump", 1750, 3], ["stunnel", 1751, 3], ["sudo", 1752, 3], ["sudo-rs", 1753, 3], ["sunshine", 1754, 3], ["suricata", 1755, 3], ["suwayomi-server", 1756, 3], ["svnserve", 1759, 3], ["swap-file-btrfs", 1760, 3], ["swap-partition", 1761, 3], ["swap-random-encryption", 1762, 3], ["swapspace", 1763, 3], ["sway", 1764, 3], ["swayfx", 1765, 3], ["switchTest", 1766, 3], ["switchTest-basics", 1770, 3], ["switchTest-units", 1774, 3], ["switchTest-user", 1778, 3], ["sx", 1782, 3], ["sympa", 1783, 3], ["syncthing", 1784, 3], ["syncthing-defaults", 1785, 3], ["syncthing-folders", 1786, 3], ["syncthing-guiPassword", 1787, 3], ["syncthing-guiPasswordFile", 1788, 3], ["syncthing-init", 1789, 3], ["syncthing-many-devices", 1790, 3], ["syncthing-no-settings", 1791, 3], ["syncthing-private-relay", 1792, 3], ["syncthing-relay", 1793, 3], ["sysfs", 1794, 3], ["sysinit-reactivation", 1795, 3], ["system-services-compliance", 1796, 3], ["systemd", 1806, 3], ["systemd-analyze", 1807, 3], ["systemd-binfmt", 1808, 3], ["systemd-boot", 1809, 3], ["systemd-bpf", 1812, 3], ["systemd-capsules", 1813, 3], ["systemd-confinement", 1814, 3], ["systemd-coredump", 1815, 3], ["systemd-credentials-tpm2", 1816, 3], ["systemd-cryptenroll", 1817, 3], ["systemd-escaping", 1818, 3], ["systemd-homed", 1819, 3], ["systemd-initrd-bridge", 1820, 3], ["systemd-initrd-btrfs-raid", 1821, 3], ["systemd-initrd-credentials", 1822, 3], ["systemd-initrd-luks-empty-passphrase", 1823, 3], ["systemd-initrd-luks-fido2", 1827, 3], ["systemd-initrd-luks-keyfile", 1828, 3], ["systemd-initrd-luks-password", 1829, 3], ["systemd-initrd-luks-tpm2", 1830, 3], ["systemd-initrd-luks-unl0kr", 1831, 3], ["systemd-initrd-modprobe", 1832, 3], ["systemd-initrd-networkd", 1833, 3], ["systemd-initrd-networkd-openvpn", 1834, 3], ["systemd-initrd-networkd-ssh", 1838, 3], ["systemd-initrd-non-nixos", 1839, 3], ["systemd-initrd-shutdown", 1840, 3], ["systemd-initrd-simple", 1844, 3], ["systemd-initrd-swraid", 1845, 3], ["systemd-initrd-terminfo", 1846, 3], ["systemd-initrd-vconsole", 1847, 3], ["systemd-initrd-vlan", 1848, 3], ["systemd-journal", 1849, 3], ["systemd-journal-gateway", 1850, 3], ["systemd-journal-upload", 1851, 3], ["systemd-localed", 1852, 3], ["systemd-lock-handler", 1853, 3], ["systemd-machinectl", 1854, 3], ["systemd-misc", 1855, 3], ["systemd-networkd", 1856, 3], ["systemd-networkd-batadv", 1857, 3], ["systemd-networkd-bridge", 1858, 3], ["systemd-networkd-dhcpserver", 1859, 3], ["systemd-networkd-dhcpserver-static-leases", 1860, 3], ["systemd-networkd-ipv6-prefix-delegation", 1861, 3], ["systemd-networkd-vrf", 1864, 3], ["systemd-no-tainted", 1865, 3], ["systemd-nspawn", 1866, 3], ["systemd-nspawn-configfile", 1867, 3], ["systemd-oomd", 1868, 3], ["systemd-portabled", 1869, 3], ["systemd-pstore", 1870, 3], ["systemd-repart", 1871, 3], ["systemd-resolved", 1872, 3], ["systemd-shutdown", 1873, 3], ["systemd-ssh-proxy", 1877, 3], ["systemd-sysupdate", 1878, 3], ["systemd-sysusers-immutable", 1879, 3], ["systemd-sysusers-mutable", 1880, 3], ["systemd-sysusers-password-option-override-ordering", 1881, 3], ["systemd-timesyncd", 1882, 3], ["systemd-timesyncd-nscd-dnssec", 1883, 3], ["systemd-user-linger", 1884, 3], ["systemd-user-linger-purge", 1885, 3], ["systemd-user-settings", 1886, 3], ["systemd-user-tmpfiles-rules", 1887, 3], ["systemd-userdbd", 1888, 3], ["systemd-varlink", 1889, 3], ["systemtap", 1890, 3], ["szurubooru", 1891, 3], ["taler", 1892, 3], ["tandoor-recipes", 1893, 3], ["tandoor-recipes-media", 1894, 3], ["tandoor-recipes-script-name", 1895, 3], ["tang", 1896, 3], ["taskchampion-sync-server", 1897, 3], ["taskserver", 1898, 3], ["tayga", 1899, 3], ["tdarr", 1900, 3], ["technitium-dns-server", 1901, 3], ["teeworlds", 1902, 3], ["telegraf", 1903, 3], ["teleport", 1904, 3], ["teleports", 1905, 3], ["temporal", 1906, 3], ["terminal-emulators", 1907, 3], ["test-containers-bittorrent", 1908, 3], ["thanos", 1909, 3], ["thelounge", 1910, 3], ["tiddlywiki", 1911, 3], ["tigervnc", 1912, 3], ["tika", 1913, 3], ["timekpr", 1914, 3], ["timezone", 1915, 3], ["timidity", 1916, 3], ["tinc", 1917, 3], ["tinyauth", 1918, 3], ["tinydns", 1919, 3], ["tinyproxy", 1920, 3], ["tinywl", 1921, 3], ["tlshd", 1922, 3], ["tlsrpt", 1923, 3], ["tmate-ssh-server", 1924, 3], ["tomcat", 1925, 3], ["tor", 1926, 3], ["tpm-ek", 1927, 3], ["tpm2", 1928, 3], ["traccar", 1929, 3], ["tracee", 1931, 3], ["traefik", 1932, 3], ["trafficserver", 1933, 3], ["trailbase", 1934, 3], ["tranquil-pds", 1935, 3], ["transfer-sh", 1936, 3], ["transmission_4", 1937, 3], ["trezord", 1938, 3], ["trickster", 1939, 3], ["trilium-server", 1940, 3], ["tsm-client-gui", 1941, 3], ["tt-rss", 1942, 3], ["ttyd", 1943, 3], ["tuliprox", 1944, 3], ["tuned", 1945, 3], ["tuptime", 1946, 3], ["turborepo-remote-cache", 1947, 3], ["turbovnc-headless-server", 1948, 3], ["turn-rs", 1949, 3], ["tusd", 1950, 3], ["tuxguitar", 1951, 3], ["twingate", 1952, 3], ["txredisapi", 1953, 3], ["typesense", 1954, 3], ["tzpfms", 1955, 3], ["tzupdate", 1956, 3], ["ucarp", 1957, 3], ["udisks2", 1958, 3], ["udp-over-tcp", 1959, 3], ["udp514-journal", 1960, 3], ["ulogd", 1961, 3], ["umami", 1962, 3], ["umurmur", 1963, 3], ["unbound", 1964, 3], ["unifi", 1965, 3], ["unit-perl", 1966, 3], ["unit-php", 1967, 3], ["unpackerr", 1968, 3], ["upnp", 1969, 3], ["uptermd", 1971, 3], ["uptime-kuma", 1972, 3], ["urn-timer", 1973, 3], ["usbguard", 1974, 3], ["user-activation-scripts", 1975, 3], ["user-enable-option", 1976, 3], ["user-expiry", 1977, 3], ["user-home-mode", 1978, 3], ["userborn", 1979, 3], ["userborn-immutable-etc", 1980, 3], ["userborn-immutable-users", 1981, 3], ["userborn-migration", 1982, 3], ["userborn-mutable-etc", 1983, 3], ["userborn-mutable-users", 1984, 3], ["userborn-static", 1985, 3], ["userborn-subids", 1986, 3], ["userborn-subids-immutable-etc", 1987, 3], ["userborn-subids-mutable-etc", 1988, 3], ["ustreamer", 1989, 3], ["utils", 1990, 3], ["utmp", 1991, 3], ["uwsgi", 1992, 3], ["v2ray", 1993, 3], ["valkey", 1994, 3], ["varnish80", 1998, 3], ["vault", 2002, 3], ["vault-agent", 2003, 3], ["vault-dev", 2004, 3], ["vault-postgresql", 2005, 3], ["vaultwarden", 2006, 3], ["vdirsyncer", 2007, 3], ["vector", 2008, 3], ["velocity", 2009, 3], ["vengi-tools", 2010, 3], ["veroroute", 2011, 3], ["victorialogs", 2012, 3], ["victoriametrics", 2013, 3], ["victoriatraces", 2014, 3], ["vikunja", 2015, 3], ["vinyl-cache_9", 2016, 3], ["virtualbox", 2020, 3], ["vm-variant", 2021, 3], ["vnstat", 2022, 3], ["vscode-remote-ssh", 2023, 3], ["vscodium", 2024, 3], ["vsftpd", 2025, 3], ["waagent", 2026, 3], ["wakapi", 2027, 3], ["warpgate", 2028, 3], ["warzone2100", 2029, 3], ["wasabibackend", 2030, 3], ["wastebin", 2031, 3], ["watchdogd", 2032, 3], ["watt", 2033, 3], ["webhook", 2034, 3], ["weblate", 2035, 3], ["wg-access-server", 2036, 3], ["whisparr_2", 2037, 3], ["whisparr_3", 2041, 3], ["whoami", 2045, 3], ["whois", 2046, 3], ["whoogle-search", 2047, 3], ["wiki-js", 2048, 3], ["windmill", 2049, 3], ["wine", 2052, 3], ["wireguard", 2056, 3], ["without-nix", 2060, 3], ["wmderland", 2061, 3], ["wordpress", 2062, 3], ["workout-tracker", 2063, 3], ["wpa_supplicant", 2064, 3], ["wrappers", 2065, 3], ["writefreely", 2066, 3], ["wstunnel", 2067, 3], ["xandikos", 2068, 3], ["xautolock", 2069, 3], ["xfce", 2070, 3], ["xfce-wayland", 2071, 3], ["xinetd", 2072, 3], ["xmonad", 2073, 3], ["xmonad-xdg-autostart", 2074, 3], ["xpadneo", 2075, 3], ["xrdp", 2076, 3], ["xrdp-with-audio-pulseaudio", 2077, 3], ["xscreensaver", 2078, 3], ["xss-lock", 2079, 3], ["xterm", 2080, 3], ["xxh", 2081, 3], ["yarr", 2082, 3], ["yb", 2083, 3], ["ydotool", 2084, 3], ["yggdrasil", 2087, 3], ["your_spotify", 2088, 3], ["zammad", 2089, 3], ["zapret2", 2090, 3], ["zenohd", 2091, 3], ["zerobyte", 2092, 3], ["zeronet-conservancy", 2093, 3], ["zfs", 2094, 3], ["zigbee2mqtt", 2095, 3], ["zipline", 2096, 3], ["zoneminder", 2097, 3], ["zookeeper", 2098, 3], ["zoom-us", 2099, 3], ["zram-generator", 2100, 3], ["zrepl", 2101, 3], ["zwave-js", 2102, 3], ["zwave-js-ui", 2103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -382,23 +21,23 @@ export default nix.lambda((args) => (() => {
   const meta = nix.thunk(() => nix.attr(lib, "meta"));
   const recurseIntoAttrs = nix.thunk(() => nix.attr(lib, "recurseIntoAttrs"));
   const callSupportedTest = (test) => (nix.asBool(nix.app(nix.sel(meta, "availableOn"), nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform")), test)) ? nix.app(callTest, test) : {});
-  const discoverTests = (val) => (nix.asBool(nix.app(isAttrs, val)) ? (nix.asBool(nix.has(val, "test")) ? nix.app(callSupportedTest, val) : nix.app(mapAttrs, (n) => (s) => (nix.asBool(nix.eq(n, "passthru")) ? nix.force(s) : nix.app(discoverTests, s)), val)) : (nix.asBool(nix.app(isFunction, val)) ? nix.app(discoverTests, nix.thunk(() => nix.app(val, nix.thunk(() => ({ [nix.POS]: pos$1, system: system, pkgs: pkgs }))))) : nix.force(val)));
-  const handleTest = (path) => (args_1) => nix.app(discoverTests, nix.thunk(() => nix.app(nix.builtins.import(path), nix.thunk(() => nix.update({ [nix.POS]: pos$2, system: system, pkgs: pkgs }, args_1)))));
+  const discoverTests = (val) => (nix.asBool(nix.app(isAttrs, val)) ? (nix.asBool(nix.has(val, "test")) ? nix.app(callSupportedTest, val) : nix.app(mapAttrs, (n) => (s) => (nix.asBool(nix.eq(n, "passthru")) ? nix.force(s) : nix.app(discoverTests, s)), val)) : (nix.asBool(nix.app(isFunction, val)) ? nix.app(discoverTests, nix.thunk(() => nix.app(val, nix.thunk(() => ({ [nix.POS]: $pos[0], system: system, pkgs: pkgs }))))) : nix.force(val)));
+  const handleTest = (path) => (args_1) => nix.app(discoverTests, nix.thunk(() => nix.app(nix.builtins.import(path), nix.thunk(() => nix.update({ [nix.POS]: $pos[1], system: system, pkgs: pkgs }, args_1)))));
   const handleTestOn = (systems) => (path) => (args_1) => (nix.asBool(nix.app(elem, system, systems)) ? nix.app(handleTest, path, args_1) : {});
   const nixosLib = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib")), nix.thunk(() => ({
-      [nix.POS]: pos$4,
-      featureFlags: nix.thunk(() => ({ [nix.POS]: pos$3, minimalModules: nix.thunk(() => ({})) })),
+      [nix.POS]: $pos[3],
+      featureFlags: nix.thunk(() => ({ [nix.POS]: $pos[2], minimalModules: nix.thunk(() => ({})) })),
     }))));
-  const evalMinimalConfig = (module) => nix.app(nix.sel(nixosLib, "evalModules"), nix.thunk(() => ({ [nix.POS]: pos$5, modules: nix.thunk(() => [module]) })));
+  const evalMinimalConfig = (module) => nix.app(nix.sel(nixosLib, "evalModules"), nix.thunk(() => ({ [nix.POS]: $pos[4], modules: nix.thunk(() => [module]) })));
   const pkgsLinux = nix.thunk(() => nix.attr(pkgs, "pkgsLinux"));
   const evalSystem = (module) => nix.app(nix.builtins.import(nix.path(here, "../lib/eval-config.nix")), nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       system: null,
       modules: nix.thunk(() => [
         nix.path(here, "../modules/misc/nixpkgs/read-only.nix"),
         nix.thunk(() => ({
-          [nix.POS]: pos$7,
-          nixpkgs: nix.thunk(() => ({ [nix.POS]: pos$6, pkgs: pkgsLinux })),
+          [nix.POS]: $pos[6],
+          nixpkgs: nix.thunk(() => ({ [nix.POS]: $pos[5], pkgs: pkgsLinux })),
         })),
         module,
       ]),
@@ -407,17 +46,17 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const lib_1 = nix.arg($_1, "lib");
     return {
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       _class: "nixosTest",
       _file: "nixpkgs/nixos/tests/all-tests.nix#localTestOverrides",
       imports: nix.thunk(() => [nix.path(here, "./read-only-pkgs.nix")]),
       extraBaseModules: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         _file: "nixpkgs/nixos/tests/all-tests.nix#localTestOverrides-extraBaseModules",
         config: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           nix: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             enable: nix.thunk(() => nix.app(nix.sel(lib_1, "mkDefault"), false)),
           })),
         })),
@@ -425,7 +64,7 @@ export default nix.lambda((args) => (() => {
     };
   })(), formals$2);
   const from = nix.thunk(() => (() => {
-    const doRunTest = (arg) => nix.sel(nix.app(nix.sel(nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: pos$13, system: system, pkgs: pkgs }))), "evalTest"), nix.thunk(() => ({ [nix.POS]: pos$14, imports: nix.thunk(() => [arg, localTestOverrides]) }))), "config", "result");
+    const doRunTest = (arg) => nix.sel(nix.app(nix.sel(nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: $pos[12], system: system, pkgs: pkgs }))), "evalTest"), nix.thunk(() => ({ [nix.POS]: $pos[13], imports: nix.thunk(() => [arg, localTestOverrides]) }))), "config", "result");
     const findTests = (tree) => (nix.asBool((nix.asBool(nix.has(tree, "recurseForDerivations")) && nix.asBool(nix.sel(tree, "recurseForDerivations")))) ? nix.app(mapAttrs, (k) => findTests, nix.thunk(() => nix.builtins.removeAttrs(tree, nix.thunk(() => ["recurseForDerivations"])))) : nix.app(callSupportedTest, tree));
     const runTest_1 = (arg) => (() => {
       const r = nix.thunk(() => nix.app(doRunTest, arg));
@@ -433,7 +72,7 @@ export default nix.lambda((args) => (() => {
     })();
     const runTestOn_1 = (systems) => (arg) => (nix.asBool(nix.app(elem, system, systems)) ? nix.app(runTest_1, arg) : {});
     return {
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       doRunTest,
       findTests,
       runTest: runTest_1,
@@ -443,9 +82,9 @@ export default nix.lambda((args) => (() => {
   const runTest = nix.thunk(() => nix.attr(from, "runTest"));
   const runTestOn = nix.thunk(() => nix.attr(from, "runTestOn"));
   return {
-    [nix.POS]: pos$362,
+    [nix.POS]: $pos[361],
     "nixos-test-driver": nix.thunk(() => ({
-      [nix.POS]: pos$19,
+      [nix.POS]: $pos[18],
       "extra-python-packages": nix.thunk(() => nix.app(runTest, nix.path(here, "./nixos-test-driver/extra-python-packages.nix"))),
       "lib-extend": nix.thunk(() => nix.app(handleTestOn, nix.thunk(() => ["x86_64-linux", "aarch64-linux"]), nix.path(here, "./nixos-test-driver/lib-extend.nix"), nix.thunk(() => ({})))),
       "node-name": nix.thunk(() => nix.app(runTest, nix.path(here, "./nixos-test-driver/node-name.nix"))),
@@ -457,14 +96,14 @@ export default nix.lambda((args) => (() => {
       "multi-arch-test": nix.thunk(() => nix.app(runTest, nix.path(here, "./nixos-test-driver/multi-arch-test.nix"))),
       "skip-typecheck": nix.thunk(() => nix.app(runTest, nix.path(here, "./nixos-test-driver/skip-typecheck.nix"))),
       "console-timeout": nix.thunk(() => nix.app(runTest, nix.path(here, "./nixos-test-driver/console-timeout.nix"))),
-      "options-doc-regression": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./nixos-test-driver/options-doc-regression.nix")), nix.thunk(() => ({ [nix.POS]: pos$16, pkgs: pkgs })))),
+      "options-doc-regression": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./nixos-test-driver/options-doc-regression.nix")), nix.thunk(() => ({ [nix.POS]: $pos[15], pkgs: pkgs })))),
       "driver-timeout": nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "ensure-timeout-induced-failure", nix.thunk(() => ({
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           failed: nix.thunk(() => nix.app(nix.sel(pkgs, "testers", "testBuildFailure"), nix.thunk(() => nix.sel(nix.app(runTest, nix.path(here, "./nixos-test-driver/timeout.nix")), "config", "rawTestDerivation")))),
         })), "grep -F \"timeout reached; test terminating\" $failed/testBuildFailure.log\n# The program will always be terminated by SIGTERM (143) if it waits for the deadline thread.\n[[ 143 = $(cat $failed/testBuildFailure.exit) ]]\ntouch $out\n")),
       efivars: nix.thunk(() => nix.app(runTestOn, nix.thunk(() => ["x86_64-linux"]), nix.path(here, "./nixos-test-driver/efivars.nix"))),
       junit: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "junit-xml-has-correct-testcases", nix.thunk(() => ({
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           test: nix.thunk(() => nix.app(runTest, nix.path(here, "./nixos-test-driver/junit.nix"))),
           nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "yq-go"))]),
         })), "[[ 2 = $(yq '.testsuites.testsuite.+@tests' $test/junit.xml) ]]\ntouch $out\n")),
@@ -473,7 +112,7 @@ export default nix.lambda((args) => (() => {
     aaaaxy: nix.thunk(() => nix.app(runTest, nix.path(here, "./aaaaxy.nix"))),
     accountsservice: nix.thunk(() => nix.app(runTest, nix.path(here, "./accountsservice.nix"))),
     acl: nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./acl.nix"), nix.thunk(() => ({})))),
-    acme: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./acme/default.nix")), nix.thunk(() => ({ [nix.POS]: pos$20, runTest: runTest, lib: lib })))),
+    acme: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./acme/default.nix")), nix.thunk(() => ({ [nix.POS]: $pos[19], runTest: runTest, lib: lib })))),
     "acme-dns": nix.thunk(() => nix.app(runTest, nix.path(here, "./acme-dns.nix"))),
     activation: nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "../modules/system/activation/test.nix"), nix.thunk(() => ({})))),
     "activation-bashless": nix.thunk(() => nix.app(runTest, nix.path(here, "./activation/bashless.nix"))),
@@ -491,25 +130,25 @@ export default nix.lambda((args) => (() => {
     adguardhome: nix.thunk(() => nix.app(runTest, nix.path(here, "./adguardhome.nix"))),
     aesmd: nix.thunk(() => nix.app(runTestOn, nix.thunk(() => ["x86_64-linux"]), nix.path(here, "./aesmd.nix"))),
     agate: nix.thunk(() => nix.app(runTest, nix.path(here, "./web-servers/agate.nix"))),
-    agda: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./agda")), nix.thunk(() => ({ [nix.POS]: pos$21, runTest: runTest })))),
+    agda: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./agda")), nix.thunk(() => ({ [nix.POS]: $pos[20], runTest: runTest })))),
     "age-plugin-tpm-decrypt": nix.thunk(() => nix.app(runTest, nix.path(here, "./age-plugin-tpm-decrypt.nix"))),
     agnos: nix.thunk(() => nix.app(discoverTests, nix.thunk(() => nix.builtins.import(nix.path(here, "./agnos.nix"))))),
     agorakit: nix.thunk(() => nix.app(runTest, nix.path(here, "./web-apps/agorakit.nix"))),
     airsonic: nix.thunk(() => nix.app(runTest, nix.path(here, "./airsonic.nix"))),
     akkoma: nix.thunk(() => nix.app(runTestOn, nix.thunk(() => ["x86_64-linux", "aarch64-linux"]), nix.thunk(() => ({
-        [nix.POS]: pos$24,
+        [nix.POS]: $pos[23],
         imports: nix.thunk(() => [nix.path(here, "./akkoma.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$23,
-          args: nix.thunk(() => ({ [nix.POS]: pos$22, confined: false })),
+          [nix.POS]: $pos[22],
+          args: nix.thunk(() => ({ [nix.POS]: $pos[21], confined: false })),
         })),
       })))),
     "akkoma-confined": nix.thunk(() => nix.app(runTestOn, nix.thunk(() => ["x86_64-linux", "aarch64-linux"]), nix.thunk(() => ({
-        [nix.POS]: pos$27,
+        [nix.POS]: $pos[26],
         imports: nix.thunk(() => [nix.path(here, "./akkoma.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$26,
-          args: nix.thunk(() => ({ [nix.POS]: pos$25, confined: true })),
+          [nix.POS]: $pos[25],
+          args: nix.thunk(() => ({ [nix.POS]: $pos[24], confined: true })),
         })),
       })))),
     "alice-lg": nix.thunk(() => nix.app(runTest, nix.path(here, "./alice-lg.nix"))),
@@ -537,7 +176,7 @@ export default nix.lambda((args) => (() => {
     artalk: nix.thunk(() => nix.app(runTest, nix.path(here, "./artalk.nix"))),
     asynch: nix.thunk(() => nix.app(runTest, nix.path(here, "./asynch.nix"))),
     atd: nix.thunk(() => nix.app(runTest, nix.path(here, "./atd.nix"))),
-    atop: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./atop.nix")), nix.thunk(() => ({ [nix.POS]: pos$28, pkgs: pkgs, runTest: runTest })))),
+    atop: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./atop.nix")), nix.thunk(() => ({ [nix.POS]: $pos[27], pkgs: pkgs, runTest: runTest })))),
     atticd: nix.thunk(() => nix.app(runTest, nix.path(here, "./atticd.nix"))),
     attr: nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./attr.nix"), nix.thunk(() => ({})))),
     atuin: nix.thunk(() => nix.app(runTest, nix.path(here, "./atuin.nix"))),
@@ -553,19 +192,19 @@ export default nix.lambda((args) => (() => {
     "autopush-rs": nix.thunk(() => nix.app(runTest, nix.path(here, "./autopush-rs.nix"))),
     autosuspend: nix.thunk(() => nix.app(runTest, nix.path(here, "./autosuspend.nix"))),
     avahi: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$31,
+        [nix.POS]: $pos[30],
         imports: nix.thunk(() => [nix.path(here, "./avahi.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$30,
-          args: nix.thunk(() => ({ [nix.POS]: pos$29, networkd: false })),
+          [nix.POS]: $pos[29],
+          args: nix.thunk(() => ({ [nix.POS]: $pos[28], networkd: false })),
         })),
       })))),
     "avahi-with-resolved": nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$34,
+        [nix.POS]: $pos[33],
         imports: nix.thunk(() => [nix.path(here, "./avahi.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$33,
-          args: nix.thunk(() => ({ [nix.POS]: pos$32, networkd: true })),
+          [nix.POS]: $pos[32],
+          args: nix.thunk(() => ({ [nix.POS]: $pos[31], networkd: true })),
         })),
       })))),
     ax25: nix.thunk(() => nix.app(runTest, nix.path(here, "./ax25.nix"))),
@@ -580,38 +219,38 @@ export default nix.lambda((args) => (() => {
     bentopdf: nix.thunk(() => nix.app(handleTest, nix.path(here, "./bentopdf"), nix.thunk(() => ({})))),
     beszel: nix.thunk(() => nix.app(runTest, nix.path(here, "./beszel.nix"))),
     "binary-cache": nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$37,
+        [nix.POS]: $pos[36],
         imports: nix.thunk(() => [nix.path(here, "./binary-cache.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$36,
-          args: nix.thunk(() => ({ [nix.POS]: pos$35, compression: "zstd" })),
+          [nix.POS]: $pos[35],
+          args: nix.thunk(() => ({ [nix.POS]: $pos[34], compression: "zstd" })),
         })),
       })))),
     "binary-cache-no-compression": nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$40,
+        [nix.POS]: $pos[39],
         imports: nix.thunk(() => [nix.path(here, "./binary-cache.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$39,
-          args: nix.thunk(() => ({ [nix.POS]: pos$38, compression: "none" })),
+          [nix.POS]: $pos[38],
+          args: nix.thunk(() => ({ [nix.POS]: $pos[37], compression: "none" })),
         })),
       })))),
     "binary-cache-xz": nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$43,
+        [nix.POS]: $pos[42],
         imports: nix.thunk(() => [nix.path(here, "./binary-cache.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$42,
-          args: nix.thunk(() => ({ [nix.POS]: pos$41, compression: "xz" })),
+          [nix.POS]: $pos[41],
+          args: nix.thunk(() => ({ [nix.POS]: $pos[40], compression: "xz" })),
         })),
       })))),
     bind: nix.thunk(() => nix.app(runTest, nix.path(here, "./bind.nix"))),
     bird2: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./bird.nix")), nix.thunk(() => ({
-        [nix.POS]: pos$44,
+        [nix.POS]: $pos[43],
         lib: nix.thunk(() => nix.attr(pkgs, "lib")),
         runTest: runTest,
         package: nix.thunk(() => nix.sel(pkgs, "bird2")),
       })))),
     bird3: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./bird.nix")), nix.thunk(() => ({
-        [nix.POS]: pos$45,
+        [nix.POS]: $pos[44],
         lib: nix.thunk(() => nix.attr(pkgs, "lib")),
         runTest: runTest,
         package: nix.thunk(() => nix.sel(pkgs, "bird3")),
@@ -653,24 +292,24 @@ export default nix.lambda((args) => (() => {
     cadvisor: nix.thunk(() => nix.app(runTestOn, nix.thunk(() => ["x86_64-linux"]), nix.path(here, "./cadvisor.nix"))),
     cage: nix.thunk(() => nix.app(runTest, nix.path(here, "./cage.nix"))),
     cagebreak: nix.thunk(() => nix.app(runTest, nix.path(here, "./cagebreak.nix"))),
-    "calibre-server": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./calibre-server.nix")), nix.thunk(() => ({ [nix.POS]: pos$46, pkgs: pkgs, runTest: runTest })))),
+    "calibre-server": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./calibre-server.nix")), nix.thunk(() => ({ [nix.POS]: $pos[45], pkgs: pkgs, runTest: runTest })))),
     "calibre-web": nix.thunk(() => nix.app(runTest, nix.path(here, "./calibre-web.nix"))),
     canaille: nix.thunk(() => nix.app(runTest, nix.path(here, "./canaille.nix"))),
     cardwire: nix.thunk(() => nix.app(runTest, nix.path(here, "./cardwire.nix"))),
     cassandra: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$49,
+        [nix.POS]: $pos[48],
         imports: nix.thunk(() => [nix.path(here, "./cassandra.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$48,
-          args: nix.thunk(() => ({ [nix.POS]: pos$47, getPackage: (pkgs_1) => nix.sel(pkgs_1, "cassandra") })),
+          [nix.POS]: $pos[47],
+          args: nix.thunk(() => ({ [nix.POS]: $pos[46], getPackage: (pkgs_1) => nix.sel(pkgs_1, "cassandra") })),
         })),
       })))),
     castopod: nix.thunk(() => nix.app(runTest, nix.path(here, "./castopod.nix"))),
     centrifugo: nix.thunk(() => nix.app(runTest, nix.path(here, "./centrifugo.nix"))),
     "ceph-multi-node-bluestore": nix.thunk(() => nix.app(runTestOn, nix.thunk(() => ["aarch64-linux", "x86_64-linux"]), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./ceph-multi-node-bluestore.nix")), nix.thunk(() => ({})))))),
-    "ceph-multi-node-bluestore-cephfs": nix.thunk(() => nix.app(runTestOn, nix.thunk(() => ["aarch64-linux", "x86_64-linux"]), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./ceph-multi-node-bluestore.nix")), nix.thunk(() => ({ [nix.POS]: pos$50, withCephfs: true })))))),
+    "ceph-multi-node-bluestore-cephfs": nix.thunk(() => nix.app(runTestOn, nix.thunk(() => ["aarch64-linux", "x86_64-linux"]), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./ceph-multi-node-bluestore.nix")), nix.thunk(() => ({ [nix.POS]: $pos[49], withCephfs: true })))))),
     "ceph-single-node-bluestore": nix.thunk(() => nix.app(runTestOn, nix.thunk(() => ["aarch64-linux", "x86_64-linux"]), nix.path(here, "./ceph-single-node-bluestore.nix"))),
-    certmgr: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./certmgr.nix")), nix.thunk(() => ({ [nix.POS]: pos$51, pkgs: pkgs, runTest: runTest })))),
+    certmgr: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./certmgr.nix")), nix.thunk(() => ({ [nix.POS]: $pos[50], pkgs: pkgs, runTest: runTest })))),
     cfssl: nix.thunk(() => nix.app(runTestOn, nix.thunk(() => ["aarch64-linux", "x86_64-linux"]), nix.path(here, "./cfssl.nix"))),
     cgit: nix.thunk(() => nix.app(runTest, nix.path(here, "./cgit.nix"))),
     charliecloud: nix.thunk(() => nix.app(runTest, nix.path(here, "./charliecloud.nix"))),
@@ -686,22 +325,22 @@ export default nix.lambda((args) => (() => {
     clamav: nix.thunk(() => nix.app(runTest, nix.path(here, "./clamav.nix"))),
     clatd: nix.thunk(() => nix.app(runTest, nix.path(here, "./clatd.nix"))),
     clickhouse: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./clickhouse")), nix.thunk(() => ({
-        [nix.POS]: pos$52,
+        [nix.POS]: $pos[51],
         runTest: runTest,
         package: nix.thunk(() => nix.sel(pkgs, "clickhouse")),
       })))),
     "clickhouse-lts": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./clickhouse")), nix.thunk(() => ({
-        [nix.POS]: pos$53,
+        [nix.POS]: $pos[52],
         runTest: runTest,
         package: nix.thunk(() => nix.sel(pkgs, "clickhouse-lts")),
       })))),
     cliproxyapi: nix.thunk(() => nix.app(runTest, nix.path(here, "./cliproxyapi.nix"))),
     "cloud-init": nix.thunk(() => nix.app(runTest, nix.path(here, "./cloud-init.nix"))),
     "cloud-init-hostname": nix.thunk(() => nix.app(runTest, nix.path(here, "./cloud-init-hostname.nix"))),
-    cloudcompare: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./cloudcompare.nix")), nix.thunk(() => ({ [nix.POS]: pos$54, pkgs: pkgs, runTest: runTest })))),
+    cloudcompare: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./cloudcompare.nix")), nix.thunk(() => ({ [nix.POS]: $pos[53], pkgs: pkgs, runTest: runTest })))),
     cloudlog: nix.thunk(() => nix.app(runTest, nix.path(here, "./cloudlog.nix"))),
     cntr: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./cntr.nix")), nix.thunk(() => ({
-        [nix.POS]: pos$55,
+        [nix.POS]: $pos[54],
         lib: lib,
         runTest: nix.thunk(() => nix.app(runTestOn, nix.thunk(() => ["aarch64-linux", "x86_64-linux"]))),
       })))),
@@ -720,7 +359,7 @@ export default nix.lambda((args) => (() => {
     "containers-bridge": nix.thunk(() => nix.app(runTest, nix.path(here, "./containers-bridge.nix"))),
     "containers-custom-pkgs": nix.thunk(() => nix.app(runTest, nix.path(here, "./containers-custom-pkgs.nix"))),
     "containers-ephemeral": nix.thunk(() => nix.app(runTest, nix.path(here, "./containers-ephemeral.nix"))),
-    "containers-eval": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./containers-eval.nix")), nix.thunk(() => ({ [nix.POS]: pos$56, pkgs: pkgs })))),
+    "containers-eval": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./containers-eval.nix")), nix.thunk(() => ({ [nix.POS]: $pos[55], pkgs: pkgs })))),
     "containers-extra_veth": nix.thunk(() => nix.app(runTest, nix.path(here, "./containers-extra_veth.nix"))),
     "containers-gateway": nix.thunk(() => nix.app(runTest, nix.path(here, "./containers-gateway.nix"))),
     "containers-hosts": nix.thunk(() => nix.app(runTest, nix.path(here, "./containers-hosts.nix"))),
@@ -732,9 +371,9 @@ export default nix.lambda((args) => (() => {
     "containers-names": nix.thunk(() => nix.app(runTest, nix.path(here, "./containers-names.nix"))),
     "containers-nested": nix.thunk(() => nix.app(runTest, nix.path(here, "./containers-nested.nix"))),
     "containers-nested-nix": nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$58,
+        [nix.POS]: $pos[57],
         imports: nix.thunk(() => [nix.path(here, "./containers-nested.nix")]),
-        params: nix.thunk(() => ({ [nix.POS]: pos$57, nix: true })),
+        params: nix.thunk(() => ({ [nix.POS]: $pos[56], nix: true })),
       })))),
     "containers-physical_interfaces": nix.thunk(() => nix.app(runTest, nix.path(here, "./containers-physical_interfaces.nix"))),
     "containers-portforward": nix.thunk(() => nix.app(runTest, nix.path(here, "./containers-portforward.nix"))),
@@ -748,12 +387,12 @@ export default nix.lambda((args) => (() => {
     corerad: nix.thunk(() => nix.app(runTest, nix.path(here, "./corerad.nix"))),
     corteza: nix.thunk(() => nix.app(runTest, nix.path(here, "./corteza.nix"))),
     cosmic: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$61,
+        [nix.POS]: $pos[60],
         imports: nix.thunk(() => [nix.path(here, "./cosmic")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$60,
+          [nix.POS]: $pos[59],
           args: nix.thunk(() => ({
-            [nix.POS]: pos$59,
+            [nix.POS]: $pos[58],
             testName: "cosmic",
             enableAutologin: false,
             enableXWayland: true,
@@ -761,12 +400,12 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     "cosmic-autologin": nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$64,
+        [nix.POS]: $pos[63],
         imports: nix.thunk(() => [nix.path(here, "./cosmic")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$63,
+          [nix.POS]: $pos[62],
           args: nix.thunk(() => ({
-            [nix.POS]: pos$62,
+            [nix.POS]: $pos[61],
             testName: "cosmic-autologin",
             enableAutologin: true,
             enableXWayland: true,
@@ -774,12 +413,12 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     "cosmic-autologin-noxwayland": nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$67,
+        [nix.POS]: $pos[66],
         imports: nix.thunk(() => [nix.path(here, "./cosmic")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$66,
+          [nix.POS]: $pos[65],
           args: nix.thunk(() => ({
-            [nix.POS]: pos$65,
+            [nix.POS]: $pos[64],
             testName: "cosmic-autologin-noxwayland",
             enableAutologin: true,
             enableXWayland: false,
@@ -787,12 +426,12 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     "cosmic-noxwayland": nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$70,
+        [nix.POS]: $pos[69],
         imports: nix.thunk(() => [nix.path(here, "./cosmic")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$69,
+          [nix.POS]: $pos[68],
           args: nix.thunk(() => ({
-            [nix.POS]: pos$68,
+            [nix.POS]: $pos[67],
             testName: "cosmic-noxwayland",
             enableAutologin: false,
             enableXWayland: false,
@@ -802,19 +441,19 @@ export default nix.lambda((args) => (() => {
     coturn: nix.thunk(() => nix.app(runTest, nix.path(here, "./coturn.nix"))),
     couchdb: nix.thunk(() => nix.app(runTest, nix.path(here, "./couchdb.nix"))),
     "credentials-fwcfg": nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$73,
+        [nix.POS]: $pos[72],
         imports: nix.thunk(() => [nix.path(here, "./credentials.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$72,
-          args: nix.thunk(() => ({ [nix.POS]: pos$71, mechanism: "fw_cfg" })),
+          [nix.POS]: $pos[71],
+          args: nix.thunk(() => ({ [nix.POS]: $pos[70], mechanism: "fw_cfg" })),
         })),
       })))),
     "credentials-smbios": nix.thunk(() => nix.app(runTestOn, nix.thunk(() => ["x86_64-linux"]), nix.thunk(() => ({
-        [nix.POS]: pos$76,
+        [nix.POS]: $pos[75],
         imports: nix.thunk(() => [nix.path(here, "./credentials.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$75,
-          args: nix.thunk(() => ({ [nix.POS]: pos$74, mechanism: "smbios" })),
+          [nix.POS]: $pos[74],
+          args: nix.thunk(() => ({ [nix.POS]: $pos[73], mechanism: "smbios" })),
         })),
       })))),
     "cri-o": nix.thunk(() => nix.app(runTestOn, nix.thunk(() => ["aarch64-linux", "x86_64-linux"]), nix.path(here, "./cri-o.nix"))),
@@ -823,7 +462,7 @@ export default nix.lambda((args) => (() => {
     cryptpad: nix.thunk(() => nix.app(runTest, nix.path(here, "./cryptpad.nix"))),
     "cups-pdf": nix.thunk(() => nix.app(runTest, nix.path(here, "./cups-pdf.nix"))),
     "curl-impersonate": nix.thunk(() => nix.app(runTest, nix.path(here, "./curl-impersonate.nix"))),
-    "custom-ca": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./custom-ca.nix")), nix.thunk(() => ({ [nix.POS]: pos$77, pkgs: pkgs, runTest: runTest })))),
+    "custom-ca": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./custom-ca.nix")), nix.thunk(() => ({ [nix.POS]: $pos[76], pkgs: pkgs, runTest: runTest })))),
     "cyrus-imap": nix.thunk(() => nix.app(runTest, nix.path(here, "./cyrus-imap.nix"))),
     dae: nix.thunk(() => nix.app(runTest, nix.path(here, "./dae.nix"))),
     "darling-dmg": nix.thunk(() => nix.app(runTest, nix.path(here, "./darling-dmg.nix"))),
@@ -843,26 +482,26 @@ export default nix.lambda((args) => (() => {
     dictd: nix.thunk(() => nix.app(runTest, nix.path(here, "./dictd.nix"))),
     "disable-installer-tools": nix.thunk(() => nix.app(runTest, nix.path(here, "./disable-installer-tools.nix"))),
     discourse: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$80,
+        [nix.POS]: $pos[79],
         imports: nix.thunk(() => [nix.path(here, "./discourse.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$79,
-          args: nix.thunk(() => ({ [nix.POS]: pos$78, package: nix.thunk(() => nix.sel(pkgs, "discourse")) })),
+          [nix.POS]: $pos[78],
+          args: nix.thunk(() => ({ [nix.POS]: $pos[77], package: nix.thunk(() => nix.sel(pkgs, "discourse")) })),
         })),
       })))),
     discourseAllPlugins: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$83,
+        [nix.POS]: $pos[82],
         imports: nix.thunk(() => [nix.path(here, "./discourse.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$82,
+          [nix.POS]: $pos[81],
           args: nix.thunk(() => ({
-            [nix.POS]: pos$81,
+            [nix.POS]: $pos[80],
             package: nix.thunk(() => nix.sel(pkgs, "discourseAllPlugins")),
           })),
         })),
       })))),
     "dnscrypt-proxy": nix.thunk(() => nix.app(runTestOn, nix.thunk(() => ["x86_64-linux"]), nix.path(here, "./dnscrypt-proxy.nix"))),
-    dnsdist: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./dnsdist.nix")), nix.thunk(() => ({ [nix.POS]: pos$84, pkgs: pkgs, runTest: runTest })))),
+    dnsdist: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./dnsdist.nix")), nix.thunk(() => ({ [nix.POS]: $pos[83], pkgs: pkgs, runTest: runTest })))),
     doas: nix.thunk(() => nix.app(runTest, nix.path(here, "./doas.nix"))),
     docker: nix.thunk(() => nix.app(runTestOn, nix.thunk(() => ["aarch64-linux", "x86_64-linux"]), nix.path(here, "./docker.nix"))),
     "docker-autoprune": nix.thunk(() => nix.app(runTestOn, nix.thunk(() => ["aarch64-linux", "x86_64-linux"]), nix.path(here, "./docker-autoprune.nix"))),
@@ -873,7 +512,7 @@ export default nix.lambda((args) => (() => {
     "docker-tools-nix-shell": nix.thunk(() => nix.app(runTest, nix.path(here, "./docker-tools-nix-shell.nix"))),
     "docker-tools-overlay": nix.thunk(() => nix.app(runTestOn, nix.thunk(() => ["x86_64-linux"]), nix.path(here, "./docker-tools-overlay.nix"))),
     "docling-serve": nix.thunk(() => nix.app(runTest, nix.path(here, "./docling-serve.nix"))),
-    documentation: nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "../modules/misc/documentation/test.nix"), nix.thunk(() => ({ [nix.POS]: pos$85, nixosLib: nixosLib })))),
+    documentation: nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "../modules/misc/documentation/test.nix"), nix.thunk(() => ({ [nix.POS]: $pos[84], nixosLib: nixosLib })))),
     documize: nix.thunk(() => nix.app(runTest, nix.path(here, "./documize.nix"))),
     "docuseal-psql": nix.thunk(() => nix.app(runTest, nix.path(here, "./docuseal-postgres.nix"))),
     "docuseal-sqlite": nix.thunk(() => nix.app(runTest, nix.path(here, "./docuseal-sqlite.nix"))),
@@ -892,7 +531,7 @@ export default nix.lambda((args) => (() => {
     "dublin-traceroute": nix.thunk(() => nix.app(runTest, nix.path(here, "./dublin-traceroute.nix"))),
     duplicity: nix.thunk(() => nix.app(runTest, nix.path(here, "./duplicity.nix"))),
     dwl: nix.thunk(() => nix.app(runTestOn, nix.thunk(() => ["x86_64-linux", "aarch64-linux"]), nix.path(here, "./dwl.nix"))),
-    e57inspector: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./e57inspector.nix")), nix.thunk(() => ({ [nix.POS]: pos$86, pkgs: pkgs, runTest: runTest })))),
+    e57inspector: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./e57inspector.nix")), nix.thunk(() => ({ [nix.POS]: $pos[85], pkgs: pkgs, runTest: runTest })))),
     "early-mount-options": nix.thunk(() => nix.app(runTest, nix.path(here, "./early-mount-options.nix"))),
     earlyoom: nix.thunk(() => nix.app(runTestOn, nix.thunk(() => ["x86_64-linux"]), nix.path(here, "./earlyoom.nix"))),
     easytier: nix.thunk(() => nix.app(runTest, nix.path(here, "./easytier.nix"))),
@@ -912,48 +551,51 @@ export default nix.lambda((args) => (() => {
     ente: nix.thunk(() => nix.app(runTest, nix.path(here, "./ente"))),
     env: nix.thunk(() => nix.app(runTest, nix.path(here, "./env.nix"))),
     envfs: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$89,
+        [nix.POS]: $pos[88],
         imports: nix.thunk(() => [nix.path(here, "./envfs.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$88,
-          args: nix.thunk(() => ({ [nix.POS]: pos$87, systemdStage1: false })),
+          [nix.POS]: $pos[87],
+          args: nix.thunk(() => ({ [nix.POS]: $pos[86], systemdStage1: false })),
         })),
       })))),
     "envfs-systemd-stage-1": nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$92,
+        [nix.POS]: $pos[91],
         imports: nix.thunk(() => [nix.path(here, "./envfs.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$91,
-          args: nix.thunk(() => ({ [nix.POS]: pos$90, systemdStage1: true })),
+          [nix.POS]: $pos[90],
+          args: nix.thunk(() => ({ [nix.POS]: $pos[89], systemdStage1: true })),
         })),
       })))),
     envoy: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$95,
+        [nix.POS]: $pos[94],
         imports: nix.thunk(() => [nix.path(here, "./envoy.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$94,
-          args: nix.thunk(() => ({ [nix.POS]: pos$93, envoyPackage: nix.thunk(() => nix.sel(pkgs, "envoy")) })),
+          [nix.POS]: $pos[93],
+          args: nix.thunk(() => ({ [nix.POS]: $pos[92], envoyPackage: nix.thunk(() => nix.sel(pkgs, "envoy")) })),
         })),
       })))),
     "envoy-bin": nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$98,
+        [nix.POS]: $pos[97],
         imports: nix.thunk(() => [nix.path(here, "./envoy.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$97,
-          args: nix.thunk(() => ({ [nix.POS]: pos$96, envoyPackage: nix.thunk(() => nix.sel(pkgs, "envoy-bin")) })),
+          [nix.POS]: $pos[96],
+          args: nix.thunk(() => ({
+            [nix.POS]: $pos[95],
+            envoyPackage: nix.thunk(() => nix.sel(pkgs, "envoy-bin")),
+          })),
         })),
       })))),
     ergo: nix.thunk(() => nix.app(runTest, nix.path(here, "./ergo.nix"))),
     ergochat: nix.thunk(() => nix.app(runTest, nix.path(here, "./ergochat.nix"))),
     ersatztv: nix.thunk(() => nix.app(runTest, nix.path(here, "./ersatztv.nix"))),
-    espanso: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./espanso.nix")), nix.thunk(() => ({ [nix.POS]: pos$99, lib: lib, runTest: runTest })))),
+    espanso: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./espanso.nix")), nix.thunk(() => ({ [nix.POS]: $pos[98], lib: lib, runTest: runTest })))),
     esphome: nix.thunk(() => nix.app(runTest, nix.path(here, "./esphome.nix"))),
-    etc: nix.thunk(() => nix.app(nix.sel(pkgsLinux, "callPackage"), nix.path(here, "../modules/system/etc/test.nix"), nix.thunk(() => ({ [nix.POS]: pos$100, evalMinimalConfig: evalMinimalConfig })))),
-    etcd: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./etcd/default.nix")), nix.thunk(() => ({ [nix.POS]: pos$101, pkgs: pkgs, runTest: runTest })))),
+    etc: nix.thunk(() => nix.app(nix.sel(pkgsLinux, "callPackage"), nix.path(here, "../modules/system/etc/test.nix"), nix.thunk(() => ({ [nix.POS]: $pos[99], evalMinimalConfig: evalMinimalConfig })))),
+    etcd: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./etcd/default.nix")), nix.thunk(() => ({ [nix.POS]: $pos[100], pkgs: pkgs, runTest: runTest })))),
     "etebase-server": nix.thunk(() => nix.app(runTest, nix.path(here, "./etebase-server.nix"))),
     "etesync-dav": nix.thunk(() => nix.app(runTest, nix.path(here, "./etesync-dav.nix"))),
     evcc: nix.thunk(() => nix.app(runTest, nix.path(here, "./evcc.nix"))),
-    "extra-initrd": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./extra-initrd.nix")), nix.thunk(() => ({ [nix.POS]: pos$102, runTest: runTest })))),
+    "extra-initrd": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./extra-initrd.nix")), nix.thunk(() => ({ [nix.POS]: $pos[101], runTest: runTest })))),
     facter: nix.thunk(() => nix.app(runTest, nix.path(here, "./facter"))),
     fail2ban: nix.thunk(() => nix.app(runTest, nix.path(here, "./fail2ban.nix"))),
     fakeroute: nix.thunk(() => nix.app(runTest, nix.path(here, "./fakeroute.nix"))),
@@ -964,52 +606,52 @@ export default nix.lambda((args) => (() => {
     fedimintd: nix.thunk(() => nix.app(runTest, nix.path(here, "./fedimintd.nix"))),
     feishin: nix.thunk(() => nix.app(handleTest, nix.path(here, "./feishin"), nix.thunk(() => ({})))),
     ferm: nix.thunk(() => nix.app(runTest, nix.path(here, "./ferm.nix"))),
-    ferretdb: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./ferretdb.nix")), nix.thunk(() => ({ [nix.POS]: pos$103, pkgs: pkgs, runTest: runTest })))),
+    ferretdb: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./ferretdb.nix")), nix.thunk(() => ({ [nix.POS]: $pos[102], pkgs: pkgs, runTest: runTest })))),
     fider: nix.thunk(() => nix.app(runTest, nix.path(here, "./fider.nix"))),
     filebrowser: nix.thunk(() => nix.app(runTest, nix.path(here, "./filebrowser.nix"))),
     "filesystems-overlayfs": nix.thunk(() => nix.app(runTest, nix.path(here, "./filesystems-overlayfs.nix"))),
     "firefly-iii": nix.thunk(() => nix.app(runTest, nix.path(here, "./firefly-iii.nix"))),
     "firefly-iii-data-importer": nix.thunk(() => nix.app(runTest, nix.path(here, "./firefly-iii-data-importer.nix"))),
     firefox: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$106,
+        [nix.POS]: $pos[105],
         imports: nix.thunk(() => [nix.path(here, "./firefox.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$105,
+          [nix.POS]: $pos[104],
           args: nix.thunk(() => ({
-            [nix.POS]: pos$104,
+            [nix.POS]: $pos[103],
             firefoxPackage: nix.thunk(() => nix.sel(pkgs, "firefox")),
           })),
         })),
       })))),
     "firefox-devedition": nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$109,
+        [nix.POS]: $pos[108],
         imports: nix.thunk(() => [nix.path(here, "./firefox.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$108,
+          [nix.POS]: $pos[107],
           args: nix.thunk(() => ({
-            [nix.POS]: pos$107,
+            [nix.POS]: $pos[106],
             firefoxPackage: nix.thunk(() => nix.sel(pkgs, "firefox-devedition")),
           })),
         })),
       })))),
     "firefox-esr": nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$112,
+        [nix.POS]: $pos[111],
         imports: nix.thunk(() => [nix.path(here, "./firefox.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$111,
+          [nix.POS]: $pos[110],
           args: nix.thunk(() => ({
-            [nix.POS]: pos$110,
+            [nix.POS]: $pos[109],
             firefoxPackage: nix.thunk(() => nix.sel(pkgs, "firefox-esr")),
           })),
         })),
       })))),
     "firefox-esr-153": nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$115,
+        [nix.POS]: $pos[114],
         imports: nix.thunk(() => [nix.path(here, "./firefox.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$114,
+          [nix.POS]: $pos[113],
           args: nix.thunk(() => ({
-            [nix.POS]: pos$113,
+            [nix.POS]: $pos[112],
             firefoxPackage: nix.thunk(() => nix.sel(pkgs, "firefox-esr-153")),
           })),
         })),
@@ -1019,27 +661,27 @@ export default nix.lambda((args) => (() => {
     firefoxpwa: nix.thunk(() => nix.app(runTest, nix.path(here, "./firefoxpwa.nix"))),
     firejail: nix.thunk(() => nix.app(runTest, nix.path(here, "./firejail.nix"))),
     firewall: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$118,
+        [nix.POS]: $pos[117],
         imports: nix.thunk(() => [nix.path(here, "./firewall.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$117,
-          args: nix.thunk(() => ({ [nix.POS]: pos$116, backend: "iptables" })),
+          [nix.POS]: $pos[116],
+          args: nix.thunk(() => ({ [nix.POS]: $pos[115], backend: "iptables" })),
         })),
       })))),
     "firewall-firewalld": nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$121,
+        [nix.POS]: $pos[120],
         imports: nix.thunk(() => [nix.path(here, "./firewall.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$120,
-          args: nix.thunk(() => ({ [nix.POS]: pos$119, backend: "firewalld" })),
+          [nix.POS]: $pos[119],
+          args: nix.thunk(() => ({ [nix.POS]: $pos[118], backend: "firewalld" })),
         })),
       })))),
     "firewall-nftables": nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$124,
+        [nix.POS]: $pos[123],
         imports: nix.thunk(() => [nix.path(here, "./firewall.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$123,
-          args: nix.thunk(() => ({ [nix.POS]: pos$122, backend: "nftables" })),
+          [nix.POS]: $pos[122],
+          args: nix.thunk(() => ({ [nix.POS]: $pos[121], backend: "nftables" })),
         })),
       })))),
     firewalld: nix.thunk(() => nix.app(runTest, nix.path(here, "./firewalld.nix"))),
@@ -1057,56 +699,56 @@ export default nix.lambda((args) => (() => {
     "fontconfig-bitmap-fonts": nix.thunk(() => nix.app(runTest, nix.path(here, "./fontconfig-bitmap-fonts.nix"))),
     "fontconfig-default-fonts": nix.thunk(() => nix.app(runTest, nix.path(here, "./fontconfig-default-fonts.nix"))),
     forgejo: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./forgejo.nix")), nix.thunk(() => ({
-        [nix.POS]: pos$125,
+        [nix.POS]: $pos[124],
         runTest: runTest,
         forgejoPackage: nix.thunk(() => nix.sel(pkgsLinux, "forgejo")),
       })))),
     "forgejo-lts": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./forgejo.nix")), nix.thunk(() => ({
-        [nix.POS]: pos$126,
+        [nix.POS]: $pos[125],
         runTest: runTest,
         forgejoPackage: nix.thunk(() => nix.sel(pkgsLinux, "forgejo-lts")),
       })))),
-    freescout: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./freescout")), nix.thunk(() => ({ [nix.POS]: pos$127, runTest: runTest })))),
+    freescout: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./freescout")), nix.thunk(() => ({ [nix.POS]: $pos[126], runTest: runTest })))),
     freeswitch: nix.thunk(() => nix.app(runTest, nix.path(here, "./freeswitch.nix"))),
     freetube: nix.thunk(() => nix.app(discoverTests, nix.thunk(() => nix.builtins.import(nix.path(here, "./freetube.nix"))))),
-    freshrss: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./freshrss")), nix.thunk(() => ({ [nix.POS]: pos$128, runTest: runTest })))),
+    freshrss: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./freshrss")), nix.thunk(() => ({ [nix.POS]: $pos[127], runTest: runTest })))),
     frigate: nix.thunk(() => nix.app(runTest, nix.path(here, "./frigate.nix"))),
     "froide-govplan": nix.thunk(() => nix.app(runTest, nix.path(here, "./web-apps/froide-govplan.nix"))),
     frp: nix.thunk(() => nix.app(runTest, nix.path(here, "./frp.nix"))),
     frr: nix.thunk(() => nix.app(runTest, nix.path(here, "./frr.nix"))),
     fsck: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$131,
+        [nix.POS]: $pos[130],
         imports: nix.thunk(() => [nix.path(here, "./fsck.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$130,
-          args: nix.thunk(() => ({ [nix.POS]: pos$129, systemdStage1: false })),
+          [nix.POS]: $pos[129],
+          args: nix.thunk(() => ({ [nix.POS]: $pos[128], systemdStage1: false })),
         })),
       })))),
     "fsck-systemd-stage-1": nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$134,
+        [nix.POS]: $pos[133],
         imports: nix.thunk(() => [nix.path(here, "./fsck.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$133,
-          args: nix.thunk(() => ({ [nix.POS]: pos$132, systemdStage1: true })),
+          [nix.POS]: $pos[132],
+          args: nix.thunk(() => ({ [nix.POS]: $pos[131], systemdStage1: true })),
         })),
       })))),
     fscrypt: nix.thunk(() => nix.app(runTest, nix.path(here, "./fscrypt.nix"))),
     "ft2-clone": nix.thunk(() => nix.app(runTest, nix.path(here, "./ft2-clone.nix"))),
-    galene: nix.thunk(() => nix.app(discoverTests, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./galene.nix")), nix.thunk(() => ({ [nix.POS]: pos$135, runTest: runTest })))))),
+    galene: nix.thunk(() => nix.app(discoverTests, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./galene.nix")), nix.thunk(() => ({ [nix.POS]: $pos[134], runTest: runTest })))))),
     gancio: nix.thunk(() => nix.app(runTest, nix.path(here, "./gancio.nix"))),
     garage_1: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./garage")), nix.thunk(() => ({
-        [nix.POS]: pos$136,
+        [nix.POS]: $pos[135],
         runTest: runTest,
         package: nix.thunk(() => nix.sel(pkgsLinux, "garage_1")),
       })))),
     garage_2: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./garage")), nix.thunk(() => ({
-        [nix.POS]: pos$137,
+        [nix.POS]: $pos[136],
         runTest: runTest,
         package: nix.thunk(() => nix.sel(pkgsLinux, "garage_2")),
       })))),
     "garm-incus": nix.thunk(() => nix.app(runTestOn, nix.thunk(() => ["x86_64-linux"]), nix.path(here, "./garm-incus.nix"))),
     gatus: nix.thunk(() => nix.app(runTest, nix.path(here, "./gatus.nix"))),
-    gemstash: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./gemstash.nix")), nix.thunk(() => ({ [nix.POS]: pos$138, pkgs: pkgs, runTest: runTest })))),
+    gemstash: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./gemstash.nix")), nix.thunk(() => ({ [nix.POS]: $pos[137], pkgs: pkgs, runTest: runTest })))),
     geoclue2: nix.thunk(() => nix.app(runTest, nix.path(here, "./geoclue2.nix"))),
     geoserver: nix.thunk(() => nix.app(runTest, nix.path(here, "./geoserver.nix"))),
     gerrit: nix.thunk(() => nix.app(runTest, nix.path(here, "./gerrit.nix"))),
@@ -1117,14 +759,14 @@ export default nix.lambda((args) => (() => {
     "git-pages-modular": nix.thunk(() => nix.app(runTest, nix.path(here, "./git-pages.nix"))),
     gitdaemon: nix.thunk(() => nix.app(runTest, nix.path(here, "./gitdaemon.nix"))),
     gitea: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./gitea.nix")), nix.thunk(() => ({
-        [nix.POS]: pos$139,
+        [nix.POS]: $pos[138],
         gitea: nix.thunk(() => nix.attr(pkgsLinux, "gitea")),
         runTest: runTest,
         lib: lib,
       })))),
     "gitea-actions-runner": nix.thunk(() => nix.app(runTest, nix.path(here, "./gitea-actions-runner.nix"))),
     "github-runner": nix.thunk(() => nix.app(runTest, nix.path(here, "./github-runner.nix"))),
-    gitlab: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./gitlab")), nix.thunk(() => ({ [nix.POS]: pos$140, runTest: runTest })))),
+    gitlab: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./gitlab")), nix.thunk(() => ({ [nix.POS]: $pos[139], runTest: runTest })))),
     gitolite: nix.thunk(() => nix.app(runTest, nix.path(here, "./gitolite.nix"))),
     "gitolite-fcgiwrap": nix.thunk(() => nix.app(runTest, nix.path(here, "./gitolite-fcgiwrap.nix"))),
     glance: nix.thunk(() => nix.app(runTest, nix.path(here, "./glance.nix"))),
@@ -1156,7 +798,7 @@ export default nix.lambda((args) => (() => {
     "gotify-server": nix.thunk(() => nix.app(runTest, nix.path(here, "./gotify-server.nix"))),
     gotosocial: nix.thunk(() => nix.app(runTest, nix.path(here, "./web-apps/gotosocial.nix"))),
     goupile: nix.thunk(() => nix.app(runTest, nix.path(here, "./web-apps/goupile"))),
-    grafana: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./grafana")), nix.thunk(() => ({ [nix.POS]: pos$141, runTest: runTest })))),
+    grafana: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./grafana")), nix.thunk(() => ({ [nix.POS]: $pos[140], runTest: runTest })))),
     "grafana-to-ntfy": nix.thunk(() => nix.app(runTest, nix.path(here, "./grafana-to-ntfy.nix"))),
     graphite: nix.thunk(() => nix.app(runTest, nix.path(here, "./graphite.nix"))),
     grav: nix.thunk(() => nix.app(runTest, nix.path(here, "./web-apps/grav.nix"))),
@@ -1167,7 +809,7 @@ export default nix.lambda((args) => (() => {
     grocy: nix.thunk(() => nix.app(runTest, nix.path(here, "./grocy.nix"))),
     "grow-partition": nix.thunk(() => nix.app(runTest, nix.path(here, "./grow-partition.nix"))),
     grub: nix.thunk(() => ({
-      [nix.POS]: pos$142,
+      [nix.POS]: $pos[141],
       basic: nix.thunk(() => nix.app(runTest, nix.path(here, "./grub/basic.nix"))),
       efi: nix.thunk(() => nix.app(runTest, nix.path(here, "./grub/efi.nix"))),
       graphical: nix.thunk(() => nix.app(runTest, nix.path(here, "./grub/graphical.nix"))),
@@ -1178,19 +820,19 @@ export default nix.lambda((args) => (() => {
     "guacamole-server": nix.thunk(() => nix.app(runTest, nix.path(here, "./guacamole-server.nix"))),
     guix: nix.thunk(() => nix.app(handleTest, nix.path(here, "./guix"), nix.thunk(() => ({})))),
     gvisor: nix.thunk(() => nix.app(runTest, nix.path(here, "./gvisor.nix"))),
-    h2o: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./web-servers/h2o")), nix.thunk(() => ({ [nix.POS]: pos$143, lib: lib, runTest: runTest })))),
+    h2o: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./web-servers/h2o")), nix.thunk(() => ({ [nix.POS]: $pos[142], lib: lib, runTest: runTest })))),
     hadoop: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./hadoop")), nix.thunk(() => ({
-        [nix.POS]: pos$144,
+        [nix.POS]: $pos[143],
         handleTestOn: handleTestOn,
         package: nix.thunk(() => nix.sel(pkgs, "hadoop")),
       })))),
     hadoop2: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./hadoop")), nix.thunk(() => ({
-        [nix.POS]: pos$145,
+        [nix.POS]: $pos[144],
         handleTestOn: handleTestOn,
         package: nix.thunk(() => nix.sel(pkgs, "hadoop2")),
       })))),
     hadoop_3_3: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./hadoop")), nix.thunk(() => ({
-        [nix.POS]: pos$146,
+        [nix.POS]: $pos[145],
         handleTestOn: handleTestOn,
         package: nix.thunk(() => nix.sel(pkgs, "hadoop_3_3")),
       })))),
@@ -1199,35 +841,35 @@ export default nix.lambda((args) => (() => {
     "harmonia-gc": nix.thunk(() => nix.app(runTest, nix.path(here, "./harmonia-gc.nix"))),
     "haste-server": nix.thunk(() => nix.app(runTest, nix.path(here, "./haste-server.nix"))),
     hbase2: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$149,
+        [nix.POS]: $pos[148],
         imports: nix.thunk(() => [nix.path(here, "./hbase.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$148,
-          args: nix.thunk(() => ({ [nix.POS]: pos$147, getPackage: (pkgs_1) => nix.sel(pkgs_1, "hbase2") })),
+          [nix.POS]: $pos[147],
+          args: nix.thunk(() => ({ [nix.POS]: $pos[146], getPackage: (pkgs_1) => nix.sel(pkgs_1, "hbase2") })),
         })),
       })))),
     hbase3: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$152,
+        [nix.POS]: $pos[151],
         imports: nix.thunk(() => [nix.path(here, "./hbase.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$151,
-          args: nix.thunk(() => ({ [nix.POS]: pos$150, getPackage: (pkgs_1) => nix.sel(pkgs_1, "hbase3") })),
+          [nix.POS]: $pos[150],
+          args: nix.thunk(() => ({ [nix.POS]: $pos[149], getPackage: (pkgs_1) => nix.sel(pkgs_1, "hbase3") })),
         })),
       })))),
     hbase_2_4: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$155,
+        [nix.POS]: $pos[154],
         imports: nix.thunk(() => [nix.path(here, "./hbase.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$154,
-          args: nix.thunk(() => ({ [nix.POS]: pos$153, getPackage: (pkgs_1) => nix.sel(pkgs_1, "hbase_2_4") })),
+          [nix.POS]: $pos[153],
+          args: nix.thunk(() => ({ [nix.POS]: $pos[152], getPackage: (pkgs_1) => nix.sel(pkgs_1, "hbase_2_4") })),
         })),
       })))),
     hbase_2_5: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$158,
+        [nix.POS]: $pos[157],
         imports: nix.thunk(() => [nix.path(here, "./hbase.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$157,
-          args: nix.thunk(() => ({ [nix.POS]: pos$156, getPackage: (pkgs_1) => nix.sel(pkgs_1, "hbase_2_5") })),
+          [nix.POS]: $pos[156],
+          args: nix.thunk(() => ({ [nix.POS]: $pos[155], getPackage: (pkgs_1) => nix.sel(pkgs_1, "hbase_2_5") })),
         })),
       })))),
     hddtemp: nix.thunk(() => nix.app(runTest, nix.path(here, "./hddtemp.nix"))),
@@ -1236,8 +878,8 @@ export default nix.lambda((args) => (() => {
     healthchecks: nix.thunk(() => nix.app(runTest, nix.path(here, "./web-apps/healthchecks.nix"))),
     hedgedoc: nix.thunk(() => nix.app(runTest, nix.path(here, "./hedgedoc.nix"))),
     herbstluftwm: nix.thunk(() => nix.app(runTest, nix.path(here, "./herbstluftwm.nix"))),
-    hibernate: nix.thunk(() => nix.app(handleTestOn, nix.thunk(() => ["x86_64-linux"]), nix.path(here, "./hibernate.nix"), nix.thunk(() => ({ [nix.POS]: pos$159, systemdStage1: false })))),
-    "hibernate-systemd-stage-1": nix.thunk(() => nix.app(handleTestOn, nix.thunk(() => ["x86_64-linux"]), nix.path(here, "./hibernate.nix"), nix.thunk(() => ({ [nix.POS]: pos$160, systemdStage1: true })))),
+    hibernate: nix.thunk(() => nix.app(handleTestOn, nix.thunk(() => ["x86_64-linux"]), nix.path(here, "./hibernate.nix"), nix.thunk(() => ({ [nix.POS]: $pos[158], systemdStage1: false })))),
+    "hibernate-systemd-stage-1": nix.thunk(() => nix.app(handleTestOn, nix.thunk(() => ["x86_64-linux"]), nix.path(here, "./hibernate.nix"), nix.thunk(() => ({ [nix.POS]: $pos[159], systemdStage1: true })))),
     "hickory-dns": nix.thunk(() => nix.app(runTest, nix.path(here, "./hickory-dns.nix"))),
     hister: nix.thunk(() => nix.app(runTest, nix.path(here, "./hister.nix"))),
     hitch: nix.thunk(() => nix.app(runTest, nix.path(here, "./hitch"))),
@@ -1251,7 +893,7 @@ export default nix.lambda((args) => (() => {
     homer: nix.thunk(() => nix.app(handleTest, nix.path(here, "./homer"), nix.thunk(() => ({})))),
     hoogle: nix.thunk(() => nix.app(runTest, nix.path(here, "./hoogle.nix"))),
     hostname: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./hostname.nix")), nix.thunk(() => ({
-        [nix.POS]: pos$161,
+        [nix.POS]: $pos[160],
         pkgs: pkgs,
         runTest: runTest,
         lib: nix.thunk(() => nix.attr(pkgs, "lib")),
@@ -1266,7 +908,7 @@ export default nix.lambda((args) => (() => {
     icecast: nix.thunk(() => nix.app(runTest, nix.path(here, "./icecast.nix"))),
     icingaweb2: nix.thunk(() => nix.app(runTest, nix.path(here, "./icingaweb2.nix"))),
     ifm: nix.thunk(() => nix.app(runTest, nix.path(here, "./ifm.nix"))),
-    ifstate: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./ifstate")), nix.thunk(() => ({ [nix.POS]: pos$162, runTest: runTest })))),
+    ifstate: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./ifstate")), nix.thunk(() => ({ [nix.POS]: $pos[161], runTest: runTest })))),
     iftop: nix.thunk(() => nix.app(runTest, nix.path(here, "./iftop.nix"))),
     "image-contents": nix.thunk(() => nix.app(handleTest, nix.path(here, "./image-contents.nix"), nix.thunk(() => ({})))),
     immich: nix.thunk(() => nix.app(runTest, nix.path(here, "./web-apps/immich.nix"))),
@@ -1276,26 +918,26 @@ export default nix.lambda((args) => (() => {
     immichframe: nix.thunk(() => nix.app(runTest, nix.path(here, "./web-apps/immichframe.nix"))),
     incron: nix.thunk(() => nix.app(runTest, nix.path(here, "./incron.nix"))),
     incus: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./incus")), nix.thunk(() => ({
-        [nix.POS]: pos$163,
+        [nix.POS]: $pos[162],
         runTestOn: runTestOn,
         package: nix.thunk(() => nix.sel(pkgs, "incus")),
       })))),
     "incus-lts": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./incus")), nix.thunk(() => ({
-        [nix.POS]: pos$164,
+        [nix.POS]: $pos[163],
         runTestOn: runTestOn,
         package: nix.thunk(() => nix.sel(pkgs, "incus-lts")),
       })))),
     influxdb: nix.thunk(() => nix.app(runTest, nix.path(here, "./influxdb.nix"))),
     influxdb2: nix.thunk(() => nix.app(runTest, nix.path(here, "./influxdb2.nix"))),
     "initrd-luks-empty-passphrase": nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$167,
+        [nix.POS]: $pos[166],
         imports: nix.thunk(() => [nix.path(here, "./initrd-luks-empty-passphrase.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$166,
-          args: nix.thunk(() => ({ [nix.POS]: pos$165, systemdStage1: false })),
+          [nix.POS]: $pos[165],
+          args: nix.thunk(() => ({ [nix.POS]: $pos[164], systemdStage1: false })),
         })),
       })))),
-    "initrd-network-openvpn": nix.thunk(() => nix.app(handleTestOn, nix.thunk(() => ["x86_64-linux", "i686-linux"]), nix.path(here, "./initrd-network-openvpn"), nix.thunk(() => ({ [nix.POS]: pos$168, systemdStage1: false })))),
+    "initrd-network-openvpn": nix.thunk(() => nix.app(handleTestOn, nix.thunk(() => ["x86_64-linux", "i686-linux"]), nix.path(here, "./initrd-network-openvpn"), nix.thunk(() => ({ [nix.POS]: $pos[167], systemdStage1: false })))),
     "initrd-network-ssh": nix.thunk(() => nix.app(handleTest, nix.path(here, "./initrd-network-ssh"), nix.thunk(() => ({})))),
     "initrd-secrets": nix.thunk(() => nix.app(handleTest, nix.path(here, "./initrd-secrets.nix"), nix.thunk(() => ({})))),
     "initrd-secrets-changing": nix.thunk(() => nix.app(handleTest, nix.path(here, "./initrd-secrets-changing.nix"), nix.thunk(() => ({})))),
@@ -1303,8 +945,8 @@ export default nix.lambda((args) => (() => {
     "input-remapper": nix.thunk(() => nix.app(runTest, nix.path(here, "./input-remapper.nix"))),
     inspircd: nix.thunk(() => nix.app(runTest, nix.path(here, "./inspircd.nix"))),
     "installed-tests": nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(handleTest, nix.path(here, "./installed-tests"), nix.thunk(() => ({})))))),
-    installer: nix.thunk(() => nix.app(handleTest, nix.path(here, "./installer.nix"), nix.thunk(() => ({ [nix.POS]: pos$169, systemdStage1: false })))),
-    "installer-systemd-stage-1": nix.thunk(() => nix.app(handleTest, nix.path(here, "./installer.nix"), nix.thunk(() => ({ [nix.POS]: pos$170, systemdStage1: true })))),
+    installer: nix.thunk(() => nix.app(handleTest, nix.path(here, "./installer.nix"), nix.thunk(() => ({ [nix.POS]: $pos[168], systemdStage1: false })))),
+    "installer-systemd-stage-1": nix.thunk(() => nix.app(handleTest, nix.path(here, "./installer.nix"), nix.thunk(() => ({ [nix.POS]: $pos[169], systemdStage1: true })))),
     intune: nix.thunk(() => nix.app(runTest, nix.path(here, "./intune.nix"))),
     inventree: nix.thunk(() => nix.app(runTest, nix.path(here, "./inventree.nix"))),
     invidious: nix.thunk(() => nix.app(runTest, nix.path(here, "./invidious.nix"))),
@@ -1326,16 +968,16 @@ export default nix.lambda((args) => (() => {
     jibri: nix.thunk(() => nix.app(runTest, nix.path(here, "./jibri.nix"))),
     jirafeau: nix.thunk(() => nix.app(runTest, nix.path(here, "./jirafeau.nix"))),
     "jitsi-meet": nix.thunk(() => nix.app(runTest, nix.path(here, "./jitsi-meet.nix"))),
-    jool: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./jool.nix")), nix.thunk(() => ({ [nix.POS]: pos$171, pkgs: pkgsLinux, runTest: runTest })))),
+    jool: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./jool.nix")), nix.thunk(() => ({ [nix.POS]: $pos[170], pkgs: pkgsLinux, runTest: runTest })))),
     "jotta-cli": nix.thunk(() => nix.app(runTest, nix.path(here, "./jotta-cli.nix"))),
     k3s: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./rancher")), nix.thunk(() => ({
-        [nix.POS]: pos$172,
+        [nix.POS]: $pos[171],
         lib: lib,
         pkgs: pkgs,
         runTest: nix.thunk(() => nix.app(runTestOn, nix.thunk(() => ["aarch64-linux", "x86_64-linux"]))),
         rancherDistro: "k3s",
       })))),
-    kafka: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./kafka")), nix.thunk(() => ({ [nix.POS]: pos$173, runTest: runTest, pkgs: pkgs })))),
+    kafka: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./kafka")), nix.thunk(() => ({ [nix.POS]: $pos[172], runTest: runTest, pkgs: pkgs })))),
     kaidan: nix.thunk(() => nix.app(runTest, nix.path(here, "./kaidan"))),
     kanboard: nix.thunk(() => nix.app(runTest, nix.path(here, "./web-apps/kanboard.nix"))),
     kanidm: nix.thunk(() => nix.app(runTest, nix.path(here, "./kanidm.nix"))),
@@ -1350,7 +992,7 @@ export default nix.lambda((args) => (() => {
     keepalived: nix.thunk(() => nix.app(discoverTests, nix.thunk(() => nix.builtins.import(nix.path(here, "./keepalived.nix"))))),
     keepassxc: nix.thunk(() => nix.app(runTest, nix.path(here, "./keepassxc.nix"))),
     kener: nix.thunk(() => nix.app(runTest, nix.path(here, "./kener.nix"))),
-    kerberos: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./kerberos/default.nix")), nix.thunk(() => ({ [nix.POS]: pos$174, pkgs: pkgs, runTest: runTest })))),
+    kerberos: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./kerberos/default.nix")), nix.thunk(() => ({ [nix.POS]: $pos[173], pkgs: pkgs, runTest: runTest })))),
     "kernel-generic": nix.thunk(() => nix.app(handleTest, nix.path(here, "./kernel-generic"), nix.thunk(() => ({})))),
     "kernel-latest-ath-user-regd": nix.thunk(() => nix.app(runTest, nix.path(here, "./kernel-latest-ath-user-regd.nix"))),
     "kernel-rust": nix.thunk(() => nix.app(handleTest, nix.path(here, "./kernel-rust.nix"), nix.thunk(() => ({})))),
@@ -1358,13 +1000,13 @@ export default nix.lambda((args) => (() => {
     kexec: nix.thunk(() => nix.app(runTest, nix.path(here, "./kexec.nix"))),
     keycloak: nix.thunk(() => nix.app(discoverTests, nix.thunk(() => nix.builtins.import(nix.path(here, "./keycloak.nix"))))),
     keyd: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./keyd.nix")), nix.thunk(() => ({
-        [nix.POS]: pos$175,
+        [nix.POS]: $pos[174],
         pkgs: pkgs,
         runTest: runTest,
         lib: nix.thunk(() => nix.attr(pkgs, "lib")),
       })))),
     keymap: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./keymap.nix")), nix.thunk(() => ({
-        [nix.POS]: pos$176,
+        [nix.POS]: $pos[175],
         pkgs: pkgs,
         runTest: runTest,
         lib: nix.thunk(() => nix.attr(pkgs, "lib")),
@@ -1383,7 +1025,7 @@ export default nix.lambda((args) => (() => {
     ksm: nix.thunk(() => nix.app(runTest, nix.path(here, "./ksm.nix"))),
     kthxbye: nix.thunk(() => nix.app(runTest, nix.path(here, "./kthxbye.nix"))),
     kubernetes: nix.thunk(() => nix.app(handleTestOn, nix.thunk(() => ["x86_64-linux"]), nix.path(here, "./kubernetes"), nix.thunk(() => ({})))),
-    kubo: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./kubo")), nix.thunk(() => ({ [nix.POS]: pos$177, lib: lib, runTest: runTest })))),
+    kubo: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./kubo")), nix.thunk(() => ({ [nix.POS]: $pos[176], lib: lib, runTest: runTest })))),
     kvrocks: nix.thunk(() => nix.app(runTest, nix.path(here, "./kvrocks.nix"))),
     labgrid: nix.thunk(() => nix.app(runTest, nix.path(here, "./labgrid.nix"))),
     lact: nix.thunk(() => nix.app(runTest, nix.path(here, "./lact.nix"))),
@@ -1394,13 +1036,13 @@ export default nix.lambda((args) => (() => {
     "lasuite-drive": nix.thunk(() => nix.app(runTest, nix.path(here, "./web-apps/lasuite-drive.nix"))),
     "lasuite-meet": nix.thunk(() => nix.app(runTest, nix.path(here, "./web-apps/lasuite-meet.nix"))),
     latestKernel: nix.thunk(() => ({
-      [nix.POS]: pos$181,
+      [nix.POS]: $pos[180],
       login: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-          [nix.POS]: pos$180,
+          [nix.POS]: $pos[179],
           imports: nix.thunk(() => [nix.path(here, "./login.nix")]),
           _module: nix.thunk(() => ({
-            [nix.POS]: pos$179,
-            args: nix.thunk(() => ({ [nix.POS]: pos$178, latestKernel: true })),
+            [nix.POS]: $pos[178],
+            args: nix.thunk(() => ({ [nix.POS]: $pos[177], latestKernel: true })),
           })),
         })))),
     })),
@@ -1421,12 +1063,12 @@ export default nix.lambda((args) => (() => {
     libreswan: nix.thunk(() => nix.app(runTest, nix.path(here, "./libreswan.nix"))),
     "libreswan-nat": nix.thunk(() => nix.app(runTest, nix.path(here, "./libreswan-nat.nix"))),
     librewolf: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$184,
+        [nix.POS]: $pos[183],
         imports: nix.thunk(() => [nix.path(here, "./firefox.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$183,
+          [nix.POS]: $pos[182],
           args: nix.thunk(() => ({
-            [nix.POS]: pos$182,
+            [nix.POS]: $pos[181],
             firefoxPackage: nix.thunk(() => nix.sel(pkgs, "librewolf")),
           })),
         })),
@@ -1437,7 +1079,7 @@ export default nix.lambda((args) => (() => {
     lightdm: nix.thunk(() => nix.app(runTest, nix.path(here, "./lightdm.nix"))),
     lighttpd: nix.thunk(() => nix.app(runTest, nix.path(here, "./lighttpd.nix"))),
     limesurvey: nix.thunk(() => nix.app(runTest, nix.path(here, "./limesurvey.nix"))),
-    limine: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./limine")), nix.thunk(() => ({ [nix.POS]: pos$185, runTest: runTest })))),
+    limine: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./limine")), nix.thunk(() => ({ [nix.POS]: $pos[184], runTest: runTest })))),
     linkding: nix.thunk(() => nix.app(runTest, nix.path(here, "./web-apps/linkding.nix"))),
     "linkding-postgres": nix.thunk(() => nix.app(runTest, nix.path(here, "./web-apps/linkding-postgres.nix"))),
     linkwarden: nix.thunk(() => nix.app(runTest, nix.path(here, "./web-apps/linkwarden.nix"))),
@@ -1449,7 +1091,7 @@ export default nix.lambda((args) => (() => {
     livekit: nix.thunk(() => nix.app(runTest, nix.path(here, "./networking/livekit.nix"))),
     lix: nix.thunk(() => nix.app(runTest, nix.path(here, "./lix.nix"))),
     "lk-jwt-service": nix.thunk(() => nix.app(runTest, nix.path(here, "./matrix/lk-jwt-service.nix"))),
-    "llama-swap": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./web-servers/llama-swap.nix")), nix.thunk(() => ({ [nix.POS]: pos$186, pkgs: pkgs, runTest: runTest })))),
+    "llama-swap": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./web-servers/llama-swap.nix")), nix.thunk(() => ({ [nix.POS]: $pos[185], pkgs: pkgs, runTest: runTest })))),
     lldap: nix.thunk(() => nix.app(runTest, nix.path(here, "./lldap.nix"))),
     "local-content-share": nix.thunk(() => nix.app(runTest, nix.path(here, "./local-content-share.nix"))),
     locale: nix.thunk(() => nix.app(runTest, nix.path(here, "./locale.nix"))),
@@ -1475,12 +1117,12 @@ export default nix.lambda((args) => (() => {
     lorri: nix.thunk(() => nix.app(runTest, nix.path(here, "./lorri/default.nix"))),
     luks: nix.thunk(() => nix.app(runTest, nix.path(here, "./luks.nix"))),
     "luks-suspend": nix.thunk(() => nix.app(runTest, nix.path(here, "./luks-suspend.nix"))),
-    lvm2: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./lvm2")), nix.thunk(() => ({ [nix.POS]: pos$187, pkgs: pkgs, runTest: runTest })))),
+    lvm2: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./lvm2")), nix.thunk(() => ({ [nix.POS]: $pos[186], pkgs: pkgs, runTest: runTest })))),
     lxc: nix.thunk(() => nix.app(runTestOn, nix.thunk(() => ["x86_64-linux", "aarch64-linux"]), nix.path(here, "./lxc"))),
     "lxd-image-server": nix.thunk(() => nix.app(runTest, nix.path(here, "./lxd-image-server.nix"))),
     lxqt: nix.thunk(() => nix.app(runTest, nix.path(here, "./lxqt.nix"))),
     ly: nix.thunk(() => nix.app(runTest, nix.path(here, "./ly.nix"))),
-    maddy: nix.thunk(() => nix.app(discoverTests, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./maddy")), nix.thunk(() => ({ [nix.POS]: pos$188, handleTest: handleTest })))))),
+    maddy: nix.thunk(() => nix.app(discoverTests, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./maddy")), nix.thunk(() => ({ [nix.POS]: $pos[187], handleTest: handleTest })))))),
     maestral: nix.thunk(() => nix.app(runTest, nix.path(here, "./maestral.nix"))),
     "magic-wormhole-mailbox-server": nix.thunk(() => nix.app(runTest, nix.path(here, "./magic-wormhole-mailbox-server.nix"))),
     magnetico: nix.thunk(() => nix.app(runTest, nix.path(here, "./magnetico.nix"))),
@@ -1491,7 +1133,7 @@ export default nix.lambda((args) => (() => {
     man: nix.thunk(() => nix.app(runTest, nix.path(here, "./man.nix"))),
     "mariadb-galera": nix.thunk(() => nix.app(handleTest, nix.path(here, "./mysql/mariadb-galera.nix"), nix.thunk(() => ({})))),
     marytts: nix.thunk(() => nix.app(runTest, nix.path(here, "./marytts.nix"))),
-    mastodon: nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(handleTest, nix.path(here, "./web-apps/mastodon"), nix.thunk(() => ({ [nix.POS]: pos$189, handleTestOn: handleTestOn })))))),
+    mastodon: nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(handleTest, nix.path(here, "./web-apps/mastodon"), nix.thunk(() => ({ [nix.POS]: $pos[188], handleTestOn: handleTestOn })))))),
     mate: nix.thunk(() => nix.app(runTest, nix.path(here, "./mate.nix"))),
     "mate-wayland": nix.thunk(() => nix.app(runTest, nix.path(here, "./mate-wayland.nix"))),
     matomo: nix.thunk(() => nix.app(runTest, nix.path(here, "./matomo.nix"))),
@@ -1511,7 +1153,7 @@ export default nix.lambda((args) => (() => {
     mealie: nix.thunk(() => nix.app(runTest, nix.path(here, "./mealie.nix"))),
     mediamtx: nix.thunk(() => nix.app(runTest, nix.path(here, "./mediamtx.nix"))),
     mediatomb: nix.thunk(() => nix.app(runTest, nix.path(here, "./mediatomb.nix"))),
-    mediawiki: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mediawiki.nix")), nix.thunk(() => ({ [nix.POS]: pos$190, lib: lib, runTest: runTest })))),
+    mediawiki: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mediawiki.nix")), nix.thunk(() => ({ [nix.POS]: $pos[189], lib: lib, runTest: runTest })))),
     meilisearch: nix.thunk(() => nix.app(runTest, nix.path(here, "./meilisearch.nix"))),
     memcached: nix.thunk(() => nix.app(runTest, nix.path(here, "./memcached.nix"))),
     merecat: nix.thunk(() => nix.app(runTest, nix.path(here, "./merecat.nix"))),
@@ -1533,7 +1175,7 @@ export default nix.lambda((args) => (() => {
     mobilizon: nix.thunk(() => nix.app(runTest, nix.path(here, "./mobilizon.nix"))),
     mod_perl: nix.thunk(() => nix.app(runTest, nix.path(here, "./mod_perl.nix"))),
     "modular-service-etc": nix.thunk(() => nix.app(runTest, nix.path(here, "./modular-service-etc/test.nix"))),
-    modularService: nix.thunk(() => nix.app(nix.sel(pkgsLinux, "callPackage"), nix.path(here, "../modules/system/service/systemd/test.nix"), nix.thunk(() => ({ [nix.POS]: pos$191, evalSystem: evalSystem })))),
+    modularService: nix.thunk(() => nix.app(nix.sel(pkgsLinux, "callPackage"), nix.path(here, "../modules/system/service/systemd/test.nix"), nix.thunk(() => ({ [nix.POS]: $pos[190], evalSystem: evalSystem })))),
     moduleStateRevisions: nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./moduleStateRevisions.nix"), nix.thunk(() => ({})))),
     "molly-brown": nix.thunk(() => nix.app(runTest, nix.path(here, "./molly-brown.nix"))),
     mollysocket: nix.thunk(() => nix.app(runTest, nix.path(here, "./mollysocket.nix"))),
@@ -1543,11 +1185,11 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const config = nix.arg($_1, "config");
         return {
-          [nix.POS]: pos$194,
+          [nix.POS]: $pos[193],
           imports: nix.thunk(() => [nix.path(here, "./mongodb.nix")]),
           _module: nix.thunk(() => ({
-            [nix.POS]: pos$193,
-            args: nix.thunk(() => ({ [nix.POS]: pos$192, testName: "mongodb" })),
+            [nix.POS]: $pos[192],
+            args: nix.thunk(() => ({ [nix.POS]: $pos[191], testName: "mongodb" })),
           })),
         };
       })(), formals$3))),
@@ -1555,18 +1197,18 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$4);
         const config = nix.arg($_1, "config");
         return {
-          [nix.POS]: pos$200,
+          [nix.POS]: $pos[199],
           imports: nix.thunk(() => [nix.path(here, "./mongodb.nix")]),
           _module: nix.thunk(() => ({
-            [nix.POS]: pos$196,
-            args: nix.thunk(() => ({ [nix.POS]: pos$195, testName: "mongodb-ce" })),
+            [nix.POS]: $pos[195],
+            args: nix.thunk(() => ({ [nix.POS]: $pos[194], testName: "mongodb-ce" })),
           })),
           defaults: nix.thunk(() => ({
-            [nix.POS]: pos$199,
+            [nix.POS]: $pos[198],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$198,
+              [nix.POS]: $pos[197],
               mongodb: nix.thunk(() => ({
-                [nix.POS]: pos$197,
+                [nix.POS]: $pos[196],
                 package: nix.thunk(() => nix.sel(config, "node", "pkgs", "mongodb-ce")),
               })),
             })),
@@ -1580,7 +1222,7 @@ export default nix.lambda((args) => (() => {
     mopidy: nix.thunk(() => nix.app(runTest, nix.path(here, "./mopidy.nix"))),
     "morph-browser": nix.thunk(() => nix.app(discoverTests, nix.thunk(() => nix.builtins.import(nix.path(here, "./morph-browser.nix"))))),
     mosquitto: nix.thunk(() => nix.app(runTest, nix.path(here, "./mosquitto.nix"))),
-    movim: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./web-apps/movim")), nix.thunk(() => ({ [nix.POS]: pos$201, lib: lib, runTest: runTest })))),
+    movim: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./web-apps/movim")), nix.thunk(() => ({ [nix.POS]: $pos[200], lib: lib, runTest: runTest })))),
     mpd: nix.thunk(() => nix.app(runTest, nix.path(here, "./mpd.nix"))),
     mpv: nix.thunk(() => nix.app(runTest, nix.path(here, "./mpv.nix"))),
     mtp: nix.thunk(() => nix.app(runTest, nix.path(here, "./mtp.nix"))),
@@ -1601,61 +1243,61 @@ export default nix.lambda((args) => (() => {
     nagios: nix.thunk(() => nix.app(runTestOn, nix.thunk(() => ["x86_64-linux", "aarch64-linux"]), nix.path(here, "./nagios.nix"))),
     "nar-serve": nix.thunk(() => nix.app(runTest, nix.path(here, "./nar-serve.nix"))),
     nat: nix.thunk(() => ({
-      [nix.POS]: pos$207,
-      firewall: nix.thunk(() => nix.app(handleTest, nix.path(here, "./nat.nix"), nix.thunk(() => ({ [nix.POS]: pos$202, withFirewall: true })))),
+      [nix.POS]: $pos[206],
+      firewall: nix.thunk(() => nix.app(handleTest, nix.path(here, "./nat.nix"), nix.thunk(() => ({ [nix.POS]: $pos[201], withFirewall: true })))),
       nftables: nix.thunk(() => ({
-        [nix.POS]: pos$205,
-        firewall: nix.thunk(() => nix.app(handleTest, nix.path(here, "./nat.nix"), nix.thunk(() => ({ [nix.POS]: pos$203, withFirewall: true, nftables: true })))),
-        standalone: nix.thunk(() => nix.app(handleTest, nix.path(here, "./nat.nix"), nix.thunk(() => ({ [nix.POS]: pos$204, withFirewall: false, nftables: true })))),
+        [nix.POS]: $pos[204],
+        firewall: nix.thunk(() => nix.app(handleTest, nix.path(here, "./nat.nix"), nix.thunk(() => ({ [nix.POS]: $pos[202], withFirewall: true, nftables: true })))),
+        standalone: nix.thunk(() => nix.app(handleTest, nix.path(here, "./nat.nix"), nix.thunk(() => ({ [nix.POS]: $pos[203], withFirewall: false, nftables: true })))),
       })),
-      standalone: nix.thunk(() => nix.app(handleTest, nix.path(here, "./nat.nix"), nix.thunk(() => ({ [nix.POS]: pos$206, withFirewall: false })))),
+      standalone: nix.thunk(() => nix.app(handleTest, nix.path(here, "./nat.nix"), nix.thunk(() => ({ [nix.POS]: $pos[205], withFirewall: false })))),
     })),
     nats: nix.thunk(() => nix.app(runTest, nix.path(here, "./nats.nix"))),
     navidrome: nix.thunk(() => nix.app(runTest, nix.path(here, "./navidrome.nix"))),
     nbd: nix.thunk(() => nix.app(runTest, nix.path(here, "./nbd.nix"))),
     ncdns: nix.thunk(() => nix.app(runTest, nix.path(here, "./ncdns.nix"))),
     ncps: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$210,
+        [nix.POS]: $pos[209],
         imports: nix.thunk(() => [nix.path(here, "./ncps.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$209,
-          args: nix.thunk(() => ({ [nix.POS]: pos$208, testName: "ncps" })),
+          [nix.POS]: $pos[208],
+          args: nix.thunk(() => ({ [nix.POS]: $pos[207], testName: "ncps" })),
         })),
       })))),
     "ncps-custom-sqlite-directory": nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$217,
+        [nix.POS]: $pos[216],
         imports: nix.thunk(() => [nix.path(here, "./ncps.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$212,
-          args: nix.thunk(() => ({ [nix.POS]: pos$211, testName: "ncps-custom-sqlite-directory" })),
+          [nix.POS]: $pos[211],
+          args: nix.thunk(() => ({ [nix.POS]: $pos[210], testName: "ncps-custom-sqlite-directory" })),
         })),
         defaults: nix.thunk(() => ({
-          [nix.POS]: pos$216,
+          [nix.POS]: $pos[215],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$215,
+            [nix.POS]: $pos[214],
             ncps: nix.thunk(() => ({
-              [nix.POS]: pos$214,
-              cache: nix.thunk(() => ({ [nix.POS]: pos$213, databaseURL: "sqlite:/path/to/ncps/db.sqlite" })),
+              [nix.POS]: $pos[213],
+              cache: nix.thunk(() => ({ [nix.POS]: $pos[212], databaseURL: "sqlite:/path/to/ncps/db.sqlite" })),
             })),
           })),
         })),
       })))),
     "ncps-custom-storage-local": nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$225,
+        [nix.POS]: $pos[224],
         imports: nix.thunk(() => [nix.path(here, "./ncps.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$219,
-          args: nix.thunk(() => ({ [nix.POS]: pos$218, testName: "ncps-custom-storage-local" })),
+          [nix.POS]: $pos[218],
+          args: nix.thunk(() => ({ [nix.POS]: $pos[217], testName: "ncps-custom-storage-local" })),
         })),
         defaults: nix.thunk(() => ({
-          [nix.POS]: pos$224,
+          [nix.POS]: $pos[223],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$223,
+            [nix.POS]: $pos[222],
             ncps: nix.thunk(() => ({
-              [nix.POS]: pos$222,
+              [nix.POS]: $pos[221],
               cache: nix.thunk(() => ({
-                [nix.POS]: pos$221,
-                storage: nix.thunk(() => ({ [nix.POS]: pos$220, local: "/path/to/ncps" })),
+                [nix.POS]: $pos[220],
+                storage: nix.thunk(() => ({ [nix.POS]: $pos[219], local: "/path/to/ncps" })),
               })),
             })),
           })),
@@ -1663,17 +1305,17 @@ export default nix.lambda((args) => (() => {
       })))),
     "ncps-ha-pg-redis": nix.thunk(() => nix.app(runTest, nix.path(here, "./ncps-ha-pg-redis.nix"))),
     "ncps-ha-pg-redis-cdc": nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$231,
+        [nix.POS]: $pos[230],
         imports: nix.thunk(() => [nix.path(here, "./ncps-ha-pg-redis.nix")]),
         defaults: nix.thunk(() => ({
-          [nix.POS]: pos$230,
+          [nix.POS]: $pos[229],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$229,
+            [nix.POS]: $pos[228],
             ncps: nix.thunk(() => ({
-              [nix.POS]: pos$228,
+              [nix.POS]: $pos[227],
               cache: nix.thunk(() => ({
-                [nix.POS]: pos$227,
-                cdc: nix.thunk(() => ({ [nix.POS]: pos$226, enabled: true })),
+                [nix.POS]: $pos[226],
+                cdc: nix.thunk(() => ({ [nix.POS]: $pos[225], enabled: true })),
               })),
             })),
           })),
@@ -1682,7 +1324,7 @@ export default nix.lambda((args) => (() => {
     ndppd: nix.thunk(() => nix.app(runTest, nix.path(here, "./ndppd.nix"))),
     "nebula-lighthouse-service": nix.thunk(() => nix.app(runTest, nix.path(here, "./nebula-lighthouse-service.nix"))),
     nebula: nix.thunk(() => ({
-      [nix.POS]: pos$232,
+      [nix.POS]: $pos[231],
       connectivity: nix.thunk(() => nix.app(runTest, nix.path(here, "./nebula/connectivity.nix"))),
       reload: nix.thunk(() => nix.app(runTest, nix.path(here, "./nebula/reload.nix"))),
     })),
@@ -1694,10 +1336,10 @@ export default nix.lambda((args) => (() => {
     netfoil: nix.thunk(() => nix.app(runTest, nix.path(here, "./netfoil.nix"))),
     netplan: nix.thunk(() => nix.app(runTest, nix.path(here, "./netplan.nix"))),
     networking: nix.thunk(() => ({
-      [nix.POS]: pos$235,
-      networkd: nix.thunk(() => nix.app(handleTest, nix.path(here, "./networking/networkd-and-scripted.nix"), nix.thunk(() => ({ [nix.POS]: pos$233, networkd: true })))),
+      [nix.POS]: $pos[234],
+      networkd: nix.thunk(() => nix.app(handleTest, nix.path(here, "./networking/networkd-and-scripted.nix"), nix.thunk(() => ({ [nix.POS]: $pos[232], networkd: true })))),
       networkmanager: nix.thunk(() => nix.app(handleTest, nix.path(here, "./networking/networkmanager.nix"), nix.thunk(() => ({})))),
-      scripted: nix.thunk(() => nix.app(handleTest, nix.path(here, "./networking/networkd-and-scripted.nix"), nix.thunk(() => ({ [nix.POS]: pos$234, networkd: false })))),
+      scripted: nix.thunk(() => nix.app(handleTest, nix.path(here, "./networking/networkd-and-scripted.nix"), nix.thunk(() => ({ [nix.POS]: $pos[233], networkd: false })))),
     })),
     networkingProxy: nix.thunk(() => nix.app(runTest, nix.path(here, "./networking-proxy.nix"))),
     nextcloud: nix.thunk(() => nix.app(handleTest, nix.path(here, "./nextcloud"), nix.thunk(() => ({})))),
@@ -1705,8 +1347,8 @@ export default nix.lambda((args) => (() => {
     "nextjs-ollama-llm-ui": nix.thunk(() => nix.app(runTest, nix.path(here, "./web-apps/nextjs-ollama-llm-ui.nix"))),
     nexus: nix.thunk(() => nix.app(runTest, nix.path(here, "./nexus.nix"))),
     nezha: nix.thunk(() => nix.app(runTest, nix.path(here, "./nezha.nix"))),
-    nfs3: nix.thunk(() => nix.app(handleTest, nix.path(here, "./nfs"), nix.thunk(() => ({ [nix.POS]: pos$236, version: 3n })))),
-    nfs4: nix.thunk(() => nix.app(handleTest, nix.path(here, "./nfs"), nix.thunk(() => ({ [nix.POS]: pos$237, version: 4n })))),
+    nfs3: nix.thunk(() => nix.app(handleTest, nix.path(here, "./nfs"), nix.thunk(() => ({ [nix.POS]: $pos[235], version: 3n })))),
+    nfs4: nix.thunk(() => nix.app(handleTest, nix.path(here, "./nfs"), nix.thunk(() => ({ [nix.POS]: $pos[236], version: 4n })))),
     nghttpx: nix.thunk(() => nix.app(runTest, nix.path(here, "./nghttpx.nix"))),
     nginx: nix.thunk(() => nix.app(runTest, nix.path(here, "./nginx.nix"))),
     "nginx-auth": nix.thunk(() => nix.app(runTest, nix.path(here, "./nginx-auth.nix"))),
@@ -1716,7 +1358,7 @@ export default nix.lambda((args) => (() => {
     "nginx-etag-compression": nix.thunk(() => nix.app(runTest, nix.path(here, "./nginx-etag-compression.nix"))),
     "nginx-globalredirect": nix.thunk(() => nix.app(runTest, nix.path(here, "./nginx-globalredirect.nix"))),
     "nginx-grpc-error-pages": nix.thunk(() => nix.app(runTest, nix.path(here, "./nginx-grpc-error-pages.nix"))),
-    "nginx-http3": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./nginx-http3.nix")), nix.thunk(() => ({ [nix.POS]: pos$238, pkgs: pkgs, runTest: runTest })))),
+    "nginx-http3": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./nginx-http3.nix")), nix.thunk(() => ({ [nix.POS]: $pos[237], pkgs: pkgs, runTest: runTest })))),
     "nginx-lua": nix.thunk(() => nix.app(runTest, nix.path(here, "./nginx-lua.nix"))),
     "nginx-mime": nix.thunk(() => nix.app(runTest, nix.path(here, "./nginx-mime.nix"))),
     "nginx-modsecurity": nix.thunk(() => nix.app(runTest, nix.path(here, "./nginx-modsecurity.nix"))),
@@ -1730,7 +1372,7 @@ export default nix.lambda((args) => (() => {
     "nginx-status-page": nix.thunk(() => nix.app(runTest, nix.path(here, "./nginx-status-page.nix"))),
     "nginx-tmpdir": nix.thunk(() => nix.app(runTest, nix.path(here, "./nginx-tmpdir.nix"))),
     "nginx-unix-socket": nix.thunk(() => nix.app(runTest, nix.path(here, "./nginx-unix-socket.nix"))),
-    "nginx-variants": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./nginx-variants.nix")), nix.thunk(() => ({ [nix.POS]: pos$239, runTest: runTest })))),
+    "nginx-variants": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./nginx-variants.nix")), nix.thunk(() => ({ [nix.POS]: $pos[238], runTest: runTest })))),
     nifi: nix.thunk(() => nix.app(runTestOn, nix.thunk(() => ["x86_64-linux"]), nix.path(here, "./web-apps/nifi.nix"))),
     nimdow: nix.thunk(() => nix.app(runTest, nix.path(here, "./nimdow.nix"))),
     nipap: nix.thunk(() => nix.app(runTest, nix.path(here, "./web-apps/nipap.nix"))),
@@ -1746,7 +1388,7 @@ export default nix.lambda((args) => (() => {
     "nix-serve-ssh": nix.thunk(() => nix.app(runTest, nix.path(here, "./nix-serve-ssh.nix"))),
     "nix-store-veritysetup": nix.thunk(() => nix.app(runTest, nix.path(here, "./nix-store-veritysetup.nix"))),
     "nix-upgrade": nix.thunk(() => nix.app(handleTest, nix.path(here, "./nix/upgrade.nix"), nix.thunk(() => ({
-        [nix.POS]: pos$240,
+        [nix.POS]: $pos[239],
         nixVersions: nix.thunk(() => nix.attr(pkgs, "nixVersions")),
         system: system,
       })))),
@@ -1754,23 +1396,23 @@ export default nix.lambda((args) => (() => {
     "nixos-generate-config": nix.thunk(() => nix.app(runTest, nix.path(here, "./nixos-generate-config.nix"))),
     "nixos-rebuild-install-bootloader": nix.thunk(() => nix.app(handleTestOn, nix.thunk(() => ["x86_64-linux"]), nix.path(here, "./nixos-rebuild-install-bootloader.nix"), nix.thunk(() => ({})))),
     "nixos-rebuild-specialisations": nix.thunk(() => nix.app(runTestOn, nix.thunk(() => ["x86_64-linux"]), nix.thunk(() => ({
-        [nix.POS]: pos$241,
+        [nix.POS]: $pos[240],
         imports: nix.thunk(() => [nix.path(here, "./nixos-rebuild-specialisations.nix")]),
       })))),
     "nixos-rebuild-store-path": nix.thunk(() => nix.app(runTestOn, nix.thunk(() => ["x86_64-linux"]), nix.thunk(() => ({
-        [nix.POS]: pos$242,
+        [nix.POS]: $pos[241],
         imports: nix.thunk(() => [nix.path(here, "./nixos-rebuild-store-path.nix")]),
       })))),
     "nixos-rebuild-target-host": nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$243,
+        [nix.POS]: $pos[242],
         imports: nix.thunk(() => [nix.path(here, "./nixos-rebuild-target-host.nix")]),
       })))),
     "nixos-rebuild-target-host-interrupted": nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$244,
+        [nix.POS]: $pos[243],
         imports: nix.thunk(() => [nix.path(here, "./nixos-rebuild-target-host-interrupted.nix")]),
       })))),
-    nixpkgs: nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "../modules/misc/nixpkgs/test.nix"), nix.thunk(() => ({ [nix.POS]: pos$245, evalMinimalConfig: evalMinimalConfig })))),
-    "nixpkgs-config-allow-unfree": nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "../modules/misc/nixpkgs/test-nixpkgs-config-allow-unfree.nix"), nix.thunk(() => ({ [nix.POS]: pos$246, evalMinimalConfig: evalMinimalConfig })))),
+    nixpkgs: nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "../modules/misc/nixpkgs/test.nix"), nix.thunk(() => ({ [nix.POS]: $pos[244], evalMinimalConfig: evalMinimalConfig })))),
+    "nixpkgs-config-allow-unfree": nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "../modules/misc/nixpkgs/test-nixpkgs-config-allow-unfree.nix"), nix.thunk(() => ({ [nix.POS]: $pos[245], evalMinimalConfig: evalMinimalConfig })))),
     "nixpkgs-config-allow-unfree-packages-and-predicate": nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "../../pkgs/stdenv/generic/check-meta-test.nix"), nix.thunk(() => ({})))),
     nixseparatedebuginfod2: nix.thunk(() => nix.app(runTest, nix.path(here, "./nixseparatedebuginfod2.nix"))),
     nmtrust: nix.thunk(() => nix.app(runTest, nix.path(here, "./nmtrust.nix"))),
@@ -1806,51 +1448,51 @@ export default nix.lambda((args) => (() => {
     octoprint: nix.thunk(() => nix.app(runTest, nix.path(here, "./octoprint.nix"))),
     oddjobd: nix.thunk(() => nix.app(handleTestOn, nix.thunk(() => ["x86_64-linux", "aarch64-linux"]), nix.path(here, "./oddjobd.nix"), nix.thunk(() => ({})))),
     odoo17: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$249,
+        [nix.POS]: $pos[248],
         imports: nix.thunk(() => [nix.path(here, "./odoo/single-process.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$248,
-          args: nix.thunk(() => ({ [nix.POS]: pos$247, package: nix.thunk(() => nix.sel(pkgs, "odoo17")) })),
+          [nix.POS]: $pos[247],
+          args: nix.thunk(() => ({ [nix.POS]: $pos[246], package: nix.thunk(() => nix.sel(pkgs, "odoo17")) })),
         })),
       })))),
     "odoo17-multiprocess": nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$252,
+        [nix.POS]: $pos[251],
         imports: nix.thunk(() => [nix.path(here, "./odoo/multi-process.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$251,
-          args: nix.thunk(() => ({ [nix.POS]: pos$250, package: nix.thunk(() => nix.sel(pkgs, "odoo17")) })),
+          [nix.POS]: $pos[250],
+          args: nix.thunk(() => ({ [nix.POS]: $pos[249], package: nix.thunk(() => nix.sel(pkgs, "odoo17")) })),
         })),
       })))),
     odoo18: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$255,
+        [nix.POS]: $pos[254],
         imports: nix.thunk(() => [nix.path(here, "./odoo/single-process.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$254,
-          args: nix.thunk(() => ({ [nix.POS]: pos$253, package: nix.thunk(() => nix.sel(pkgs, "odoo18")) })),
+          [nix.POS]: $pos[253],
+          args: nix.thunk(() => ({ [nix.POS]: $pos[252], package: nix.thunk(() => nix.sel(pkgs, "odoo18")) })),
         })),
       })))),
     "odoo18-multiprocess": nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$258,
+        [nix.POS]: $pos[257],
         imports: nix.thunk(() => [nix.path(here, "./odoo/multi-process.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$257,
-          args: nix.thunk(() => ({ [nix.POS]: pos$256, package: nix.thunk(() => nix.sel(pkgs, "odoo18")) })),
+          [nix.POS]: $pos[256],
+          args: nix.thunk(() => ({ [nix.POS]: $pos[255], package: nix.thunk(() => nix.sel(pkgs, "odoo18")) })),
         })),
       })))),
     odoo19: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$261,
+        [nix.POS]: $pos[260],
         imports: nix.thunk(() => [nix.path(here, "./odoo/single-process.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$260,
-          args: nix.thunk(() => ({ [nix.POS]: pos$259, package: nix.thunk(() => nix.sel(pkgs, "odoo19")) })),
+          [nix.POS]: $pos[259],
+          args: nix.thunk(() => ({ [nix.POS]: $pos[258], package: nix.thunk(() => nix.sel(pkgs, "odoo19")) })),
         })),
       })))),
     "odoo19-multiprocess": nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$264,
+        [nix.POS]: $pos[263],
         imports: nix.thunk(() => [nix.path(here, "./odoo/multi-process.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$263,
-          args: nix.thunk(() => ({ [nix.POS]: pos$262, package: nix.thunk(() => nix.sel(pkgs, "odoo19")) })),
+          [nix.POS]: $pos[262],
+          args: nix.thunk(() => ({ [nix.POS]: $pos[261], package: nix.thunk(() => nix.sel(pkgs, "odoo19")) })),
         })),
       })))),
     "oh-my-zsh": nix.thunk(() => nix.app(runTest, nix.path(here, "./oh-my-zsh.nix"))),
@@ -1885,7 +1527,7 @@ export default nix.lambda((args) => (() => {
     "openstack-image-userdata": nix.thunk(() => nix.selOr(nix.app(handleTestOn, nix.thunk(() => ["x86_64-linux"]), nix.path(here, "./openstack-image.nix"), nix.thunk(() => ({}))), () => ({}), "userdata")),
     opentabletdriver: nix.thunk(() => nix.app(runTest, nix.path(here, "./opentabletdriver.nix"))),
     "opentelemetry-collector": nix.thunk(() => nix.app(runTest, nix.path(here, "./opentelemetry-collector.nix"))),
-    "opentelemetry-collector-validate": nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./opentelemetry-collector-validate.nix"), nix.thunk(() => ({ [nix.POS]: pos$265, evalSystem: evalSystem })))),
+    "opentelemetry-collector-validate": nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./opentelemetry-collector-validate.nix"), nix.thunk(() => ({ [nix.POS]: $pos[264], evalSystem: evalSystem })))),
     "openvscode-server": nix.thunk(() => nix.app(runTest, nix.path(here, "./openvscode-server.nix"))),
     openvswitch: nix.thunk(() => nix.app(runTest, nix.path(here, "./openvswitch.nix"))),
     optee: nix.thunk(() => nix.app(runTestOn, nix.thunk(() => ["aarch64-linux"]), nix.path(here, "./optee.nix"))),
@@ -1925,7 +1567,7 @@ export default nix.lambda((args) => (() => {
     "password-option-override-ordering": nix.thunk(() => nix.app(runTest, nix.path(here, "./password-option-override-ordering.nix"))),
     patroni: nix.thunk(() => nix.app(handleTestOn, nix.thunk(() => ["x86_64-linux"]), nix.path(here, "./patroni.nix"), nix.thunk(() => ({})))),
     pcsclite: nix.thunk(() => nix.app(runTest, nix.path(here, "./pcsclite.nix"))),
-    pdfding: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./web-apps/pdfding")), nix.thunk(() => ({ [nix.POS]: pos$266, lib: lib, runTest: runTest })))),
+    pdfding: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./web-apps/pdfding")), nix.thunk(() => ({ [nix.POS]: $pos[265], lib: lib, runTest: runTest })))),
     "pdns-recursor": nix.thunk(() => nix.app(runTest, nix.path(here, "./pdns-recursor.nix"))),
     pdudaemon: nix.thunk(() => nix.app(runTest, nix.path(here, "./pdudaemon.nix"))),
     peerflix: nix.thunk(() => nix.app(runTest, nix.path(here, "./peerflix.nix"))),
@@ -1933,7 +1575,7 @@ export default nix.lambda((args) => (() => {
     peertube: nix.thunk(() => nix.app(handleTestOn, nix.thunk(() => ["x86_64-linux"]), nix.path(here, "./web-apps/peertube.nix"), nix.thunk(() => ({})))),
     perses: nix.thunk(() => nix.app(runTest, nix.path(here, "./perses.nix"))),
     pgadmin4: nix.thunk(() => nix.app(runTest, nix.path(here, "./pgadmin4.nix"))),
-    pgbackrest: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./pgbackrest")), nix.thunk(() => ({ [nix.POS]: pos$267, runTest: runTest })))),
+    pgbackrest: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./pgbackrest")), nix.thunk(() => ({ [nix.POS]: $pos[266], runTest: runTest })))),
     pgbouncer: nix.thunk(() => nix.app(runTest, nix.path(here, "./pgbouncer.nix"))),
     pgmanage: nix.thunk(() => nix.app(runTest, nix.path(here, "./pgmanage.nix"))),
     pgweb: nix.thunk(() => nix.app(runTest, nix.path(here, "./pgweb.nix"))),
@@ -1941,38 +1583,38 @@ export default nix.lambda((args) => (() => {
     photonvision: nix.thunk(() => nix.app(runTest, nix.path(here, "./photonvision.nix"))),
     photoprism: nix.thunk(() => nix.app(runTest, nix.path(here, "./photoprism.nix"))),
     php: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./php/default.nix")), nix.thunk(() => ({
-        [nix.POS]: pos$268,
+        [nix.POS]: $pos[267],
         runTest: runTest,
         php: nix.thunk(() => nix.sel(pkgs, "php")),
       })))),
     php82: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./php/default.nix")), nix.thunk(() => ({
-        [nix.POS]: pos$269,
+        [nix.POS]: $pos[268],
         runTest: runTest,
         php: nix.thunk(() => nix.sel(pkgs, "php82")),
       })))),
     php83: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./php/default.nix")), nix.thunk(() => ({
-        [nix.POS]: pos$270,
+        [nix.POS]: $pos[269],
         runTest: runTest,
         php: nix.thunk(() => nix.sel(pkgs, "php83")),
       })))),
     php84: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./php/default.nix")), nix.thunk(() => ({
-        [nix.POS]: pos$271,
+        [nix.POS]: $pos[270],
         runTest: runTest,
         php: nix.thunk(() => nix.sel(pkgs, "php84")),
       })))),
     php85: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./php/default.nix")), nix.thunk(() => ({
-        [nix.POS]: pos$272,
+        [nix.POS]: $pos[271],
         runTest: runTest,
         php: nix.thunk(() => nix.sel(pkgs, "php85")),
       })))),
     phylactery: nix.thunk(() => nix.app(runTest, nix.path(here, "./web-apps/phylactery.nix"))),
     "pict-rs": nix.thunk(() => nix.app(runTest, nix.path(here, "./pict-rs.nix"))),
-    "pihole-ftl": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./pihole-ftl")), nix.thunk(() => ({ [nix.POS]: pos$273, runTest: runTest })))),
+    "pihole-ftl": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./pihole-ftl")), nix.thunk(() => ({ [nix.POS]: $pos[272], runTest: runTest })))),
     pinnwand: nix.thunk(() => nix.app(runTest, nix.path(here, "./pinnwand.nix"))),
-    pixelfed: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./web-apps/pixelfed")), nix.thunk(() => ({ [nix.POS]: pos$274, runTestOn: runTestOn })))),
+    pixelfed: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./web-apps/pixelfed")), nix.thunk(() => ({ [nix.POS]: $pos[273], runTestOn: runTestOn })))),
     "plantuml-server": nix.thunk(() => nix.app(runTest, nix.path(here, "./plantuml-server.nix"))),
     plasma6: nix.thunk(() => nix.app(runTest, nix.path(here, "./plasma6.nix"))),
-    plausible: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./plausible.nix")), nix.thunk(() => ({ [nix.POS]: pos$275, runTest: runTest })))),
+    plausible: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./plausible.nix")), nix.thunk(() => ({ [nix.POS]: $pos[274], runTest: runTest })))),
     "playwright-python": nix.thunk(() => nix.app(runTest, nix.path(here, "./playwright-python.nix"))),
     please: nix.thunk(() => nix.app(runTest, nix.path(here, "./please.nix"))),
     pleroma: nix.thunk(() => nix.app(handleTestOn, nix.thunk(() => ["x86_64-linux", "aarch64-linux"]), nix.path(here, "./pleroma.nix"), nix.thunk(() => ({})))),
@@ -1990,7 +1632,7 @@ export default nix.lambda((args) => (() => {
     "postfix-raise-smtpd-tls-security-level": nix.thunk(() => nix.app(handleTest, nix.path(here, "./postfix-raise-smtpd-tls-security-level.nix"), nix.thunk(() => ({})))),
     "postfix-tlspol": nix.thunk(() => nix.app(runTest, nix.path(here, "./postfix-tlspol.nix"))),
     "postgres-websockets": nix.thunk(() => nix.app(runTest, nix.path(here, "./postgres-websockets.nix"))),
-    postgresql: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./postgresql")), nix.thunk(() => ({ [nix.POS]: pos$276, runTest: runTest, pkgs: pkgsLinux })))),
+    postgresql: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./postgresql")), nix.thunk(() => ({ [nix.POS]: $pos[275], runTest: runTest, pkgs: pkgsLinux })))),
     postgrest: nix.thunk(() => nix.app(runTest, nix.path(here, "./postgrest.nix"))),
     "power-profiles-daemon": nix.thunk(() => nix.app(runTest, nix.path(here, "./power-profiles-daemon.nix"))),
     powerdns: nix.thunk(() => nix.app(runTest, nix.path(here, "./powerdns.nix"))),
@@ -2001,12 +1643,12 @@ export default nix.lambda((args) => (() => {
     pretalx: nix.thunk(() => nix.app(runTest, nix.path(here, "./web-apps/pretalx.nix"))),
     pretix: nix.thunk(() => nix.app(runTest, nix.path(here, "./web-apps/pretix.nix"))),
     "printing-service": nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$279,
+        [nix.POS]: $pos[278],
         imports: nix.thunk(() => [nix.path(here, "./printing.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$278,
+          [nix.POS]: $pos[277],
           args: nix.thunk(() => ({
-            [nix.POS]: pos$277,
+            [nix.POS]: $pos[276],
             testName: "printing-service",
             socket: false,
             listenTcp: true,
@@ -2014,12 +1656,12 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     "printing-service-notcp": nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$282,
+        [nix.POS]: $pos[281],
         imports: nix.thunk(() => [nix.path(here, "./printing.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$281,
+          [nix.POS]: $pos[280],
           args: nix.thunk(() => ({
-            [nix.POS]: pos$280,
+            [nix.POS]: $pos[279],
             testName: "printing-service-notcp",
             socket: false,
             listenTcp: false,
@@ -2027,12 +1669,12 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     "printing-socket": nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$285,
+        [nix.POS]: $pos[284],
         imports: nix.thunk(() => [nix.path(here, "./printing.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$284,
+          [nix.POS]: $pos[283],
           args: nix.thunk(() => ({
-            [nix.POS]: pos$283,
+            [nix.POS]: $pos[282],
             testName: "printing-socket",
             socket: true,
             listenTcp: true,
@@ -2040,12 +1682,12 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     "printing-socket-notcp": nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$288,
+        [nix.POS]: $pos[287],
         imports: nix.thunk(() => [nix.path(here, "./printing.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$287,
+          [nix.POS]: $pos[286],
           args: nix.thunk(() => ({
-            [nix.POS]: pos$286,
+            [nix.POS]: $pos[285],
             testName: "printing-socket-notcp",
             socket: true,
             listenTcp: false,
@@ -2054,8 +1696,8 @@ export default nix.lambda((args) => (() => {
       })))),
     privatebin: nix.thunk(() => nix.app(runTest, nix.path(here, "./privatebin.nix"))),
     privoxy: nix.thunk(() => nix.app(runTest, nix.path(here, "./privoxy.nix"))),
-    prometheus: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./prometheus")), nix.thunk(() => ({ [nix.POS]: pos$289, runTest: runTest })))),
-    "prometheus-exporters": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./prometheus-exporters.nix")), nix.thunk(() => ({ [nix.POS]: pos$290, lib: lib, runTest: runTest })))),
+    prometheus: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./prometheus")), nix.thunk(() => ({ [nix.POS]: $pos[288], runTest: runTest })))),
+    "prometheus-exporters": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./prometheus-exporters.nix")), nix.thunk(() => ({ [nix.POS]: $pos[289], lib: lib, runTest: runTest })))),
     prosody: nix.thunk(() => nix.app(runTest, nix.path(here, "./xmpp/prosody.nix"))),
     "prosody-mysql": nix.thunk(() => nix.app(handleTest, nix.path(here, "./xmpp/prosody-mysql.nix"), nix.thunk(() => ({})))),
     prowlarr: nix.thunk(() => nix.app(runTest, nix.path(here, "./prowlarr.nix"))),
@@ -2076,8 +1718,8 @@ export default nix.lambda((args) => (() => {
     "qemu-vm-shared-directories": nix.thunk(() => nix.app(runTest, nix.path(here, "./qemu-vm-shared-directories.nix"))),
     "qemu-vm-store": nix.thunk(() => nix.app(runTest, nix.path(here, "./qemu-vm-store.nix"))),
     "qemu-vm-volatile-root": nix.thunk(() => nix.app(runTest, nix.path(here, "./qemu-vm-volatile-root.nix"))),
-    qgis: nix.thunk(() => nix.app(handleTest, nix.path(here, "./qgis.nix"), nix.thunk(() => ({ [nix.POS]: pos$291, package: nix.thunk(() => nix.sel(pkgs, "qgis")) })))),
-    "qgis-ltr": nix.thunk(() => nix.app(handleTest, nix.path(here, "./qgis.nix"), nix.thunk(() => ({ [nix.POS]: pos$292, package: nix.thunk(() => nix.sel(pkgs, "qgis-ltr")) })))),
+    qgis: nix.thunk(() => nix.app(handleTest, nix.path(here, "./qgis.nix"), nix.thunk(() => ({ [nix.POS]: $pos[290], package: nix.thunk(() => nix.sel(pkgs, "qgis")) })))),
+    "qgis-ltr": nix.thunk(() => nix.app(handleTest, nix.path(here, "./qgis.nix"), nix.thunk(() => ({ [nix.POS]: $pos[291], package: nix.thunk(() => nix.sel(pkgs, "qgis-ltr")) })))),
     qlever: nix.thunk(() => nix.app(runTest, nix.path(here, "./qlever.nix"))),
     qownnotes: nix.thunk(() => nix.app(runTest, nix.path(here, "./qownnotes.nix"))),
     qtile: nix.thunk(() => nix.app(runTestOn, nix.thunk(() => ["x86_64-linux", "aarch64-linux"]), nix.path(here, "./qtile/default.nix"))),
@@ -2094,17 +1736,17 @@ export default nix.lambda((args) => (() => {
     rasdaemon: nix.thunk(() => nix.app(runTest, nix.path(here, "./rasdaemon.nix"))),
     rathole: nix.thunk(() => nix.app(runTest, nix.path(here, "./rathole.nix"))),
     rauc: nix.thunk(() => nix.app(runTest, nix.path(here, "./rauc.nix"))),
-    reaction: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./reaction")), nix.thunk(() => ({ [nix.POS]: pos$293, lib: lib, runTest: runTest })))),
+    reaction: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./reaction")), nix.thunk(() => ({ [nix.POS]: $pos[292], lib: lib, runTest: runTest })))),
     readarr: nix.thunk(() => nix.app(runTest, nix.path(here, "./readarr.nix"))),
     readeck: nix.thunk(() => nix.app(runTest, nix.path(here, "./readeck.nix"))),
     realm: nix.thunk(() => nix.app(runTest, nix.path(here, "./realm.nix"))),
     rebuilderd: nix.thunk(() => nix.app(runTest, nix.path(here, "./rebuilderd.nix"))),
     redis: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$296,
+        [nix.POS]: $pos[295],
         imports: nix.thunk(() => [nix.path(here, "./redis.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$295,
-          args: nix.thunk(() => ({ [nix.POS]: pos$294, package: nix.thunk(() => nix.sel(pkgs, "redis")) })),
+          [nix.POS]: $pos[294],
+          args: nix.thunk(() => ({ [nix.POS]: $pos[293], package: nix.thunk(() => nix.sel(pkgs, "redis")) })),
         })),
       })))),
     redlib: nix.thunk(() => nix.app(runTest, nix.path(here, "./redlib.nix"))),
@@ -2121,7 +1763,7 @@ export default nix.lambda((args) => (() => {
     retroarch: nix.thunk(() => nix.app(runTest, nix.path(here, "./retroarch.nix"))),
     ringboard: nix.thunk(() => nix.app(runTest, nix.path(here, "./ringboard.nix"))),
     rke2: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./rancher")), nix.thunk(() => ({
-        [nix.POS]: pos$297,
+        [nix.POS]: $pos[296],
         lib: lib,
         pkgs: pkgs,
         runTest: nix.thunk(() => nix.app(runTestOn, nix.thunk(() => ["aarch64-linux", "x86_64-linux"]))),
@@ -2169,7 +1811,7 @@ export default nix.lambda((args) => (() => {
     scrutiny: nix.thunk(() => nix.app(runTest, nix.path(here, "./scrutiny.nix"))),
     scx: nix.thunk(() => nix.app(runTest, nix.path(here, "./scx/default.nix"))),
     "scx-loader": nix.thunk(() => nix.app(runTest, nix.path(here, "./scx/loader.nix"))),
-    sddm: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./sddm.nix")), nix.thunk(() => ({ [nix.POS]: pos$298, runTest: runTest })))),
+    sddm: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./sddm.nix")), nix.thunk(() => ({ [nix.POS]: $pos[297], runTest: runTest })))),
     sdl3: nix.thunk(() => nix.app(runTest, nix.path(here, "./sdl3.nix"))),
     searx: nix.thunk(() => nix.app(runTest, nix.path(here, "./searx.nix"))),
     seatd: nix.thunk(() => nix.app(runTest, nix.path(here, "./seatd.nix"))),
@@ -2181,14 +1823,14 @@ export default nix.lambda((args) => (() => {
     sftpgo: nix.thunk(() => nix.app(runTest, nix.path(here, "./sftpgo.nix"))),
     "sfxr-qt": nix.thunk(() => nix.app(runTest, nix.path(here, "./sfxr-qt.nix"))),
     "sgt-puzzles": nix.thunk(() => nix.app(runTest, nix.path(here, "./sgt-puzzles.nix"))),
-    shadow: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./shadow")), nix.thunk(() => ({ [nix.POS]: pos$299, runTest: runTest })))),
+    shadow: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./shadow")), nix.thunk(() => ({ [nix.POS]: $pos[298], runTest: runTest })))),
     shadowsocks: nix.thunk(() => nix.app(handleTest, nix.path(here, "./shadowsocks"), nix.thunk(() => ({})))),
     shadps4: nix.thunk(() => nix.app(runTest, nix.path(here, "./shadps4.nix"))),
     sharkey: nix.thunk(() => nix.app(runTest, nix.path(here, "./web-apps/sharkey.nix"))),
     "shattered-pixel-dungeon": nix.thunk(() => nix.app(runTest, nix.path(here, "./shattered-pixel-dungeon.nix"))),
     shelfmark: nix.thunk(() => nix.app(runTest, nix.path(here, "./shelfmark.nix"))),
     shiori: nix.thunk(() => nix.app(runTest, nix.path(here, "./shiori.nix"))),
-    shoko: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./shoko.nix")), nix.thunk(() => ({ [nix.POS]: pos$300, runTest: runTest })))),
+    shoko: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./shoko.nix")), nix.thunk(() => ({ [nix.POS]: $pos[299], runTest: runTest })))),
     "signal-desktop": nix.thunk(() => nix.app(runTest, nix.path(here, "./signal-desktop.nix"))),
     silverbullet: nix.thunk(() => nix.app(runTest, nix.path(here, "./silverbullet.nix"))),
     "simple-container": nix.thunk(() => nix.app(runTest, nix.path(here, "./simple-container.nix"))),
@@ -2233,7 +1875,7 @@ export default nix.lambda((args) => (() => {
     "stardust-xr-flatland": nix.thunk(() => nix.app(runTest, nix.path(here, "./stardust-xr/flatland.nix"))),
     stargazer: nix.thunk(() => nix.app(runTest, nix.path(here, "./web-servers/stargazer.nix"))),
     starship: nix.thunk(() => nix.app(runTest, nix.path(here, "./starship.nix"))),
-    startx: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./startx.nix")), nix.thunk(() => ({ [nix.POS]: pos$301, pkgs: pkgs, runTest: runTest })))),
+    startx: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./startx.nix")), nix.thunk(() => ({ [nix.POS]: $pos[300], pkgs: pkgs, runTest: runTest })))),
     stash: nix.thunk(() => nix.app(handleTestOn, nix.thunk(() => ["x86_64-linux", "aarch64-linux"]), nix.path(here, "./stash.nix"), nix.thunk(() => ({})))),
     "static-web-server": nix.thunk(() => nix.app(runTest, nix.path(here, "./web-servers/static-web-server.nix"))),
     "step-ca": nix.thunk(() => nix.app(handleTestOn, nix.thunk(() => ["x86_64-linux"]), nix.path(here, "./step-ca.nix"), nix.thunk(() => ({})))),
@@ -2243,12 +1885,12 @@ export default nix.lambda((args) => (() => {
     "strongswan-swanctl": nix.thunk(() => nix.app(runTest, nix.path(here, "./strongswan-swanctl.nix"))),
     "stub-ld": nix.thunk(() => nix.app(handleTestOn, nix.thunk(() => ["x86_64-linux", "aarch64-linux"]), nix.path(here, "./stub-ld.nix"), nix.thunk(() => ({})))),
     stump: nix.thunk(() => nix.app(runTest, nix.path(here, "./web-apps/stump.nix"))),
-    stunnel: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./stunnel.nix")), nix.thunk(() => ({ [nix.POS]: pos$302, runTest: runTest })))),
+    stunnel: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./stunnel.nix")), nix.thunk(() => ({ [nix.POS]: $pos[301], runTest: runTest })))),
     sudo: nix.thunk(() => nix.app(runTest, nix.path(here, "./sudo.nix"))),
     "sudo-rs": nix.thunk(() => nix.app(runTest, nix.path(here, "./sudo-rs.nix"))),
     sunshine: nix.thunk(() => nix.app(runTest, nix.path(here, "./sunshine.nix"))),
     suricata: nix.thunk(() => nix.app(runTest, nix.path(here, "./suricata.nix"))),
-    "suwayomi-server": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./suwayomi-server.nix")), nix.thunk(() => ({ [nix.POS]: pos$303, lib: lib, runTest: runTest })))),
+    "suwayomi-server": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./suwayomi-server.nix")), nix.thunk(() => ({ [nix.POS]: $pos[302], lib: lib, runTest: runTest })))),
     svnserve: nix.thunk(() => nix.app(runTest, nix.path(here, "./svnserve.nix"))),
     "swap-file-btrfs": nix.thunk(() => nix.app(runTest, nix.path(here, "./swap-file-btrfs.nix"))),
     "swap-partition": nix.thunk(() => nix.app(runTest, nix.path(here, "./swap-partition.nix"))),
@@ -2257,35 +1899,35 @@ export default nix.lambda((args) => (() => {
     sway: nix.thunk(() => nix.app(runTest, nix.path(here, "./sway.nix"))),
     swayfx: nix.thunk(() => nix.app(runTest, nix.path(here, "./swayfx.nix"))),
     switchTest: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$306,
+        [nix.POS]: $pos[305],
         imports: nix.thunk(() => [nix.path(here, "./switch-test.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$305,
-          args: nix.thunk(() => ({ [nix.POS]: pos$304, part: "services" })),
+          [nix.POS]: $pos[304],
+          args: nix.thunk(() => ({ [nix.POS]: $pos[303], part: "services" })),
         })),
       })))),
     "switchTest-basics": nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$309,
+        [nix.POS]: $pos[308],
         imports: nix.thunk(() => [nix.path(here, "./switch-test.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$308,
-          args: nix.thunk(() => ({ [nix.POS]: pos$307, part: "basics" })),
+          [nix.POS]: $pos[307],
+          args: nix.thunk(() => ({ [nix.POS]: $pos[306], part: "basics" })),
         })),
       })))),
     "switchTest-units": nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$312,
+        [nix.POS]: $pos[311],
         imports: nix.thunk(() => [nix.path(here, "./switch-test.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$311,
-          args: nix.thunk(() => ({ [nix.POS]: pos$310, part: "units" })),
+          [nix.POS]: $pos[310],
+          args: nix.thunk(() => ({ [nix.POS]: $pos[309], part: "units" })),
         })),
       })))),
     "switchTest-user": nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$315,
+        [nix.POS]: $pos[314],
         imports: nix.thunk(() => [nix.path(here, "./switch-test.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$314,
-          args: nix.thunk(() => ({ [nix.POS]: pos$313, part: "user" })),
+          [nix.POS]: $pos[313],
+          args: nix.thunk(() => ({ [nix.POS]: $pos[312], part: "user" })),
         })),
       })))),
     sx: nix.thunk(() => nix.app(runTest, nix.path(here, "./sx.nix"))),
@@ -2303,7 +1945,7 @@ export default nix.lambda((args) => (() => {
     sysfs: nix.thunk(() => nix.app(runTest, nix.path(here, "./sysfs.nix"))),
     "sysinit-reactivation": nix.thunk(() => nix.app(runTest, nix.path(here, "./sysinit-reactivation.nix"))),
     "system-services-compliance": nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./system-services-compliance.nix")), nix.thunk(() => ({
-          [nix.POS]: pos$316,
+          [nix.POS]: $pos[315],
           evalSystem: evalSystem,
           runTest: runTest,
           callTest: callTest,
@@ -2312,7 +1954,7 @@ export default nix.lambda((args) => (() => {
     systemd: nix.thunk(() => nix.app(runTest, nix.path(here, "./systemd.nix"))),
     "systemd-analyze": nix.thunk(() => nix.app(runTest, nix.path(here, "./systemd-analyze.nix"))),
     "systemd-binfmt": nix.thunk(() => nix.app(handleTestOn, nix.thunk(() => ["x86_64-linux"]), nix.path(here, "./systemd-binfmt.nix"), nix.thunk(() => ({})))),
-    "systemd-boot": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./systemd-boot.nix")), nix.thunk(() => ({ [nix.POS]: pos$317, lib: lib, runTest: runTest, runTestOn: runTestOn })))),
+    "systemd-boot": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./systemd-boot.nix")), nix.thunk(() => ({ [nix.POS]: $pos[316], lib: lib, runTest: runTest, runTestOn: runTestOn })))),
     "systemd-bpf": nix.thunk(() => nix.app(runTest, nix.path(here, "./systemd-bpf.nix"))),
     "systemd-capsules": nix.thunk(() => nix.app(runTest, nix.path(here, "./systemd-capsules.nix"))),
     "systemd-confinement": nix.thunk(() => nix.app(handleTest, nix.path(here, "./systemd-confinement"), nix.thunk(() => ({})))),
@@ -2325,11 +1967,11 @@ export default nix.lambda((args) => (() => {
     "systemd-initrd-btrfs-raid": nix.thunk(() => nix.app(runTest, nix.path(here, "./systemd-initrd-btrfs-raid.nix"))),
     "systemd-initrd-credentials": nix.thunk(() => nix.app(runTest, nix.path(here, "./systemd-initrd-credentials.nix"))),
     "systemd-initrd-luks-empty-passphrase": nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$320,
+        [nix.POS]: $pos[319],
         imports: nix.thunk(() => [nix.path(here, "./initrd-luks-empty-passphrase.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$319,
-          args: nix.thunk(() => ({ [nix.POS]: pos$318, systemdStage1: true })),
+          [nix.POS]: $pos[318],
+          args: nix.thunk(() => ({ [nix.POS]: $pos[317], systemdStage1: true })),
         })),
       })))),
     "systemd-initrd-luks-fido2": nix.thunk(() => nix.app(runTest, nix.path(here, "./systemd-initrd-luks-fido2.nix"))),
@@ -2338,16 +1980,16 @@ export default nix.lambda((args) => (() => {
     "systemd-initrd-luks-tpm2": nix.thunk(() => nix.app(runTest, nix.path(here, "./systemd-initrd-luks-tpm2.nix"))),
     "systemd-initrd-luks-unl0kr": nix.thunk(() => nix.app(runTest, nix.path(here, "./systemd-initrd-luks-unl0kr.nix"))),
     "systemd-initrd-modprobe": nix.thunk(() => nix.app(runTest, nix.path(here, "./systemd-initrd-modprobe.nix"))),
-    "systemd-initrd-networkd": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./systemd-initrd-networkd.nix")), nix.thunk(() => ({ [nix.POS]: pos$321, runTest: runTest })))),
-    "systemd-initrd-networkd-openvpn": nix.thunk(() => nix.app(handleTestOn, nix.thunk(() => ["x86_64-linux", "i686-linux"]), nix.path(here, "./initrd-network-openvpn"), nix.thunk(() => ({ [nix.POS]: pos$322, systemdStage1: true })))),
+    "systemd-initrd-networkd": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./systemd-initrd-networkd.nix")), nix.thunk(() => ({ [nix.POS]: $pos[320], runTest: runTest })))),
+    "systemd-initrd-networkd-openvpn": nix.thunk(() => nix.app(handleTestOn, nix.thunk(() => ["x86_64-linux", "i686-linux"]), nix.path(here, "./initrd-network-openvpn"), nix.thunk(() => ({ [nix.POS]: $pos[321], systemdStage1: true })))),
     "systemd-initrd-networkd-ssh": nix.thunk(() => nix.app(runTest, nix.path(here, "./systemd-initrd-networkd-ssh.nix"))),
     "systemd-initrd-non-nixos": nix.thunk(() => nix.app(runTest, nix.path(here, "./systemd-initrd-non-nixos.nix"))),
     "systemd-initrd-shutdown": nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$325,
+        [nix.POS]: $pos[324],
         imports: nix.thunk(() => [nix.path(here, "./systemd-shutdown.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$324,
-          args: nix.thunk(() => ({ [nix.POS]: pos$323, systemdStage1: true })),
+          [nix.POS]: $pos[323],
+          args: nix.thunk(() => ({ [nix.POS]: $pos[322], systemdStage1: true })),
         })),
       })))),
     "systemd-initrd-simple": nix.thunk(() => nix.app(runTest, nix.path(here, "./systemd-initrd-simple.nix"))),
@@ -2378,11 +2020,11 @@ export default nix.lambda((args) => (() => {
     "systemd-repart": nix.thunk(() => nix.app(handleTest, nix.path(here, "./systemd-repart.nix"), nix.thunk(() => ({})))),
     "systemd-resolved": nix.thunk(() => nix.app(runTest, nix.path(here, "./systemd-resolved.nix"))),
     "systemd-shutdown": nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$328,
+        [nix.POS]: $pos[327],
         imports: nix.thunk(() => [nix.path(here, "./systemd-shutdown.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$327,
-          args: nix.thunk(() => ({ [nix.POS]: pos$326, systemdStage1: false })),
+          [nix.POS]: $pos[326],
+          args: nix.thunk(() => ({ [nix.POS]: $pos[325], systemdStage1: false })),
         })),
       })))),
     "systemd-ssh-proxy": nix.thunk(() => nix.app(runTest, nix.path(here, "./systemd-ssh-proxy.nix"))),
@@ -2436,7 +2078,7 @@ export default nix.lambda((args) => (() => {
     tomcat: nix.thunk(() => nix.app(runTest, nix.path(here, "./tomcat.nix"))),
     tor: nix.thunk(() => nix.app(runTest, nix.path(here, "./tor.nix"))),
     "tpm-ek": nix.thunk(() => nix.app(handleTest, nix.path(here, "./tpm-ek"), nix.thunk(() => ({})))),
-    tpm2: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./tpm2")), nix.thunk(() => ({ [nix.POS]: pos$329, runTest: runTest })))),
+    tpm2: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./tpm2")), nix.thunk(() => ({ [nix.POS]: $pos[328], runTest: runTest })))),
     traccar: nix.thunk(() => nix.app(runTest, nix.path(here, "./traccar.nix"))),
     tracee: nix.thunk(() => nix.app(handleTestOn, nix.thunk(() => ["x86_64-linux"]), nix.path(here, "./tracee.nix"), nix.thunk(() => ({})))),
     traefik: nix.thunk(() => nix.app(runTestOn, nix.thunk(() => ["aarch64-linux", "x86_64-linux"]), nix.path(here, "./traefik.nix"))),
@@ -2477,9 +2119,9 @@ export default nix.lambda((args) => (() => {
     "unit-php": nix.thunk(() => nix.app(runTest, nix.path(here, "./web-servers/unit-php.nix"))),
     unpackerr: nix.thunk(() => nix.app(runTest, nix.path(here, "./unpackerr.nix"))),
     upnp: nix.thunk(() => ({
-      [nix.POS]: pos$332,
-      iptables: nix.thunk(() => nix.app(handleTest, nix.path(here, "./upnp.nix"), nix.thunk(() => ({ [nix.POS]: pos$330, useNftables: false })))),
-      nftables: nix.thunk(() => nix.app(handleTest, nix.path(here, "./upnp.nix"), nix.thunk(() => ({ [nix.POS]: pos$331, useNftables: true })))),
+      [nix.POS]: $pos[331],
+      iptables: nix.thunk(() => nix.app(handleTest, nix.path(here, "./upnp.nix"), nix.thunk(() => ({ [nix.POS]: $pos[329], useNftables: false })))),
+      nftables: nix.thunk(() => nix.app(handleTest, nix.path(here, "./upnp.nix"), nix.thunk(() => ({ [nix.POS]: $pos[330], useNftables: true })))),
     })),
     uptermd: nix.thunk(() => nix.app(runTest, nix.path(here, "./uptermd.nix"))),
     "uptime-kuma": nix.thunk(() => nix.app(runTest, nix.path(here, "./uptime-kuma.nix"))),
@@ -2500,25 +2142,25 @@ export default nix.lambda((args) => (() => {
     "userborn-subids-immutable-etc": nix.thunk(() => nix.app(runTest, nix.path(here, "./userborn-subids-immutable-etc.nix"))),
     "userborn-subids-mutable-etc": nix.thunk(() => nix.app(runTest, nix.path(here, "./userborn-subids-mutable-etc.nix"))),
     ustreamer: nix.thunk(() => nix.app(runTest, nix.path(here, "./ustreamer.nix"))),
-    utils: nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./utils"), nix.thunk(() => ({ [nix.POS]: pos$333, runTest: runTest })))),
+    utils: nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./utils"), nix.thunk(() => ({ [nix.POS]: $pos[332], runTest: runTest })))),
     utmp: nix.thunk(() => nix.app(runTest, nix.path(here, "./utmp.nix"))),
     uwsgi: nix.thunk(() => nix.app(runTest, nix.path(here, "./uwsgi.nix"))),
     v2ray: nix.thunk(() => nix.app(runTest, nix.path(here, "./v2ray.nix"))),
     valkey: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$336,
+        [nix.POS]: $pos[335],
         imports: nix.thunk(() => [nix.path(here, "./redis.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$335,
-          args: nix.thunk(() => ({ [nix.POS]: pos$334, package: nix.thunk(() => nix.sel(pkgs, "valkey")) })),
+          [nix.POS]: $pos[334],
+          args: nix.thunk(() => ({ [nix.POS]: $pos[333], package: nix.thunk(() => nix.sel(pkgs, "valkey")) })),
         })),
       })))),
     varnish80: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$339,
+        [nix.POS]: $pos[338],
         imports: nix.thunk(() => [nix.path(here, "./varnish.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$338,
+          [nix.POS]: $pos[337],
           args: nix.thunk(() => ({
-            [nix.POS]: pos$337,
+            [nix.POS]: $pos[336],
             package: nix.thunk(() => nix.sel(pkgsLinux, "varnish80")),
           })),
         })),
@@ -2529,21 +2171,21 @@ export default nix.lambda((args) => (() => {
     "vault-postgresql": nix.thunk(() => nix.app(runTest, nix.path(here, "./vault-postgresql.nix"))),
     vaultwarden: nix.thunk(() => nix.app(discoverTests, nix.thunk(() => nix.builtins.import(nix.path(here, "./vaultwarden.nix"))))),
     vdirsyncer: nix.thunk(() => nix.app(runTest, nix.path(here, "./vdirsyncer.nix"))),
-    vector: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./vector")), nix.thunk(() => ({ [nix.POS]: pos$340, runTest: runTest })))),
+    vector: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./vector")), nix.thunk(() => ({ [nix.POS]: $pos[339], runTest: runTest })))),
     velocity: nix.thunk(() => nix.app(runTest, nix.path(here, "./velocity.nix"))),
     "vengi-tools": nix.thunk(() => nix.app(runTest, nix.path(here, "./vengi-tools.nix"))),
     veroroute: nix.thunk(() => nix.app(runTest, nix.path(here, "./veroroute.nix"))),
-    victorialogs: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./victorialogs")), nix.thunk(() => ({ [nix.POS]: pos$341, runTest: runTest })))),
-    victoriametrics: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./victoriametrics")), nix.thunk(() => ({ [nix.POS]: pos$342, runTest: runTest })))),
-    victoriatraces: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./victoriatraces")), nix.thunk(() => ({ [nix.POS]: pos$343, runTest: runTest })))),
+    victorialogs: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./victorialogs")), nix.thunk(() => ({ [nix.POS]: $pos[340], runTest: runTest })))),
+    victoriametrics: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./victoriametrics")), nix.thunk(() => ({ [nix.POS]: $pos[341], runTest: runTest })))),
+    victoriatraces: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./victoriatraces")), nix.thunk(() => ({ [nix.POS]: $pos[342], runTest: runTest })))),
     vikunja: nix.thunk(() => nix.app(runTest, nix.path(here, "./vikunja.nix"))),
     "vinyl-cache_9": nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$346,
+        [nix.POS]: $pos[345],
         imports: nix.thunk(() => [nix.path(here, "./vinyl-cache.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$345,
+          [nix.POS]: $pos[344],
           args: nix.thunk(() => ({
-            [nix.POS]: pos$344,
+            [nix.POS]: $pos[343],
             package: nix.thunk(() => nix.sel(pkgsLinux, "vinyl-cache_9")),
           })),
         })),
@@ -2552,7 +2194,7 @@ export default nix.lambda((args) => (() => {
     "vm-variant": nix.thunk(() => nix.app(handleTest, nix.path(here, "./vm-variant.nix"), nix.thunk(() => ({})))),
     vnstat: nix.thunk(() => nix.app(runTest, nix.path(here, "./vnstat.nix"))),
     "vscode-remote-ssh": nix.thunk(() => nix.app(handleTestOn, nix.thunk(() => ["x86_64-linux"]), nix.path(here, "./vscode-remote-ssh.nix"), nix.thunk(() => ({})))),
-    vscodium: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./vscodium.nix")), nix.thunk(() => ({ [nix.POS]: pos$347, runTest: runTest })))),
+    vscodium: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./vscodium.nix")), nix.thunk(() => ({ [nix.POS]: $pos[346], runTest: runTest })))),
     vsftpd: nix.thunk(() => nix.app(runTest, nix.path(here, "./vsftpd.nix"))),
     waagent: nix.thunk(() => nix.app(runTest, nix.path(here, "./waagent.nix"))),
     wakapi: nix.thunk(() => nix.app(runTest, nix.path(here, "./wakapi.nix"))),
@@ -2566,40 +2208,40 @@ export default nix.lambda((args) => (() => {
     weblate: nix.thunk(() => nix.app(runTest, nix.path(here, "./web-apps/weblate.nix"))),
     "wg-access-server": nix.thunk(() => nix.app(runTest, nix.path(here, "./wg-access-server.nix"))),
     whisparr_2: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$350,
+        [nix.POS]: $pos[349],
         imports: nix.thunk(() => [nix.path(here, "./whisparr.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$349,
-          args: nix.thunk(() => ({ [nix.POS]: pos$348, getPackage: (pkgs_1) => nix.sel(pkgs_1, "whisparr_2") })),
+          [nix.POS]: $pos[348],
+          args: nix.thunk(() => ({ [nix.POS]: $pos[347], getPackage: (pkgs_1) => nix.sel(pkgs_1, "whisparr_2") })),
         })),
       })))),
     whisparr_3: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$353,
+        [nix.POS]: $pos[352],
         imports: nix.thunk(() => [nix.path(here, "./whisparr.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$352,
-          args: nix.thunk(() => ({ [nix.POS]: pos$351, getPackage: (pkgs_1) => nix.sel(pkgs_1, "whisparr_3") })),
+          [nix.POS]: $pos[351],
+          args: nix.thunk(() => ({ [nix.POS]: $pos[350], getPackage: (pkgs_1) => nix.sel(pkgs_1, "whisparr_3") })),
         })),
       })))),
     whoami: nix.thunk(() => nix.app(runTest, nix.path(here, "./whoami.nix"))),
     whois: nix.thunk(() => nix.app(runTest, nix.path(here, "./whois.nix"))),
     "whoogle-search": nix.thunk(() => nix.app(runTest, nix.path(here, "./whoogle-search.nix"))),
     "wiki-js": nix.thunk(() => nix.app(runTest, nix.path(here, "./wiki-js.nix"))),
-    windmill: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./windmill")), nix.thunk(() => ({ [nix.POS]: pos$354, runTest: runTest })))),
+    windmill: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./windmill")), nix.thunk(() => ({ [nix.POS]: $pos[353], runTest: runTest })))),
     wine: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./wine.nix")), nix.thunk(() => ({
-        [nix.POS]: pos$355,
+        [nix.POS]: $pos[354],
         pkgs: pkgs,
         runTest: runTest,
         lib: nix.thunk(() => nix.attr(pkgs, "lib")),
       })))),
-    wireguard: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./wireguard")), nix.thunk(() => ({ [nix.POS]: pos$356, pkgs: pkgsLinux, runTest: runTest, lib: lib })))),
+    wireguard: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./wireguard")), nix.thunk(() => ({ [nix.POS]: $pos[355], pkgs: pkgsLinux, runTest: runTest, lib: lib })))),
     "without-nix": nix.thunk(() => nix.app(runTest, nix.path(here, "./without-nix.nix"))),
     wmderland: nix.thunk(() => nix.app(runTest, nix.path(here, "./wmderland.nix"))),
     wordpress: nix.thunk(() => nix.app(runTest, nix.path(here, "./wordpress.nix"))),
     "workout-tracker": nix.thunk(() => nix.app(runTest, nix.path(here, "./workout-tracker.nix"))),
-    wpa_supplicant: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./wpa_supplicant.nix")), nix.thunk(() => ({ [nix.POS]: pos$357, pkgs: pkgs, runTest: runTest })))),
+    wpa_supplicant: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./wpa_supplicant.nix")), nix.thunk(() => ({ [nix.POS]: $pos[356], pkgs: pkgs, runTest: runTest })))),
     wrappers: nix.thunk(() => nix.app(runTest, nix.path(here, "./wrappers.nix"))),
-    writefreely: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./web-apps/writefreely.nix")), nix.thunk(() => ({ [nix.POS]: pos$358, runTest: runTest })))),
+    writefreely: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./web-apps/writefreely.nix")), nix.thunk(() => ({ [nix.POS]: $pos[357], runTest: runTest })))),
     wstunnel: nix.thunk(() => nix.app(runTest, nix.path(here, "./wstunnel.nix"))),
     xandikos: nix.thunk(() => nix.app(runTest, nix.path(here, "./xandikos.nix"))),
     xautolock: nix.thunk(() => nix.app(runTest, nix.path(here, "./xautolock.nix"))),
@@ -2619,12 +2261,12 @@ export default nix.lambda((args) => (() => {
     yb: nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./yb.nix"), nix.thunk(() => (() => {
         const from_1 = nix.thunk(() => nix.sel(pkgs, "yb", "passthru"));
         return {
-        [nix.POS]: pos$359,
+        [nix.POS]: $pos[358],
         ybPivHarnessTests: nix.thunk(() => nix.attr(from_1, "ybPivHarnessTests")),
         testFixtures: nix.thunk(() => nix.attr(from_1, "testFixtures")),
       };
       })()))),
-    ydotool: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./ydotool.nix")), nix.thunk(() => ({ [nix.POS]: pos$360, lib: lib, runTest: runTest })))),
+    ydotool: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./ydotool.nix")), nix.thunk(() => ({ [nix.POS]: $pos[359], lib: lib, runTest: runTest })))),
     yggdrasil: nix.thunk(() => nix.app(runTest, nix.path(here, "./yggdrasil.nix"))),
     your_spotify: nix.thunk(() => nix.app(runTest, nix.path(here, "./your_spotify.nix"))),
     zammad: nix.thunk(() => nix.app(runTest, nix.path(here, "./zammad.nix"))),
@@ -2632,7 +2274,7 @@ export default nix.lambda((args) => (() => {
     zenohd: nix.thunk(() => nix.app(runTest, nix.path(here, "./zenohd.nix"))),
     zerobyte: nix.thunk(() => nix.app(runTest, nix.path(here, "./zerobyte.nix"))),
     "zeronet-conservancy": nix.thunk(() => nix.app(runTest, nix.path(here, "./zeronet-conservancy.nix"))),
-    zfs: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./zfs.nix")), nix.thunk(() => ({ [nix.POS]: pos$361, system: system, pkgs: pkgs, runTest: runTest })))),
+    zfs: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./zfs.nix")), nix.thunk(() => ({ [nix.POS]: $pos[360], system: system, pkgs: pkgs, runTest: runTest })))),
     zigbee2mqtt: nix.thunk(() => nix.app(runTest, nix.path(here, "./zigbee2mqtt.nix"))),
     zipline: nix.thunk(() => nix.app(runTest, nix.path(here, "./zipline.nix"))),
     zoneminder: nix.thunk(() => nix.app(runTest, nix.path(here, "./zoneminder.nix"))),

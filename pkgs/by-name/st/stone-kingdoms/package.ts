@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["name", 33, 7], ["exec", 34, 7], ["icon", 35, 7], ["comment", 36, 7], ["desktopName", 37, 7], ["genericName", 38, 7], ["categories", 39, 7]], [["description", 55, 5], ["homepage", 56, 5], ["platforms", 57, 5], ["license", 58, 5], ["maintainers", 62, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["desktopItems", 31, 3], ["installPhase", 43, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitLab: false, copyDesktopItems: false, love: false, makeDesktopItem: false, makeWrapper: false, "strip-nondeterminism": false, zip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 33, 7], ["exec", 34, 7], ["icon", 35, 7], ["comment", 36, 7], ["desktopName", 37, 7], ["genericName", 38, 7], ["categories", 39, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 55, 5], ["homepage", 56, 5], ["platforms", 57, 5], ["license", 58, 5], ["maintainers", 62, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["desktopItems", 31, 3], ["installPhase", 43, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "stone-kingdoms";
       const version = "0.6.1";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "stone-kingdoms",
           repo: "stone-kingdoms",
           tag: version,
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [copyDesktopItems, makeWrapper, strip_nondeterminism, zip]);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "stone-kingdoms",
             exec: "stone-kingdoms",
             icon: "stone-kingdoms",
@@ -52,7 +49,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), love)} $out/bin/stone-kingdoms \\
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Real-time strategy game made with LÖVE based on the original Stronghold by Firefly studios",
         homepage: "https://gitlab.com/stone-kingdoms/stone-kingdoms",
         platforms: nix.thunk(() => nix.sel(love, "meta", "platforms")),
@@ -69,7 +66,7 @@ runHook postInstall
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

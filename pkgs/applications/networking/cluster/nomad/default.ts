@@ -2,24 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 36, 11], ["repo", 37, 11], ["rev", 38, 11], ["hash", 39, 19]], [["homepage", 61, 11], ["description", 62, 11], ["mainProgram", 63, 11], ["license", 64, 19], ["maintainers", 65, 11]], [["pname", 30, 9], ["version", 31, 17], ["vendorHash", 31, 25], ["subPackages", 33, 9], ["src", 35, 9], ["nativeBuildInputs", 42, 9], ["ldflags", 44, 9], ["tags", 53, 9], ["postInstall", 55, 9], ["meta", 60, 9]], [["nomad", 103, 20]], [["tests", 103, 14]], [["buildGoModule", 98, 5], ["version", 99, 5], ["hash", 100, 5], ["vendorHash", 101, 5], ["license", 102, 5], ["passthru", 103, 5], ["preCheck", 104, 5]], [["nomad", 90, 20]], [["tests", 90, 14]], [["buildGoModule", 85, 5], ["version", 86, 5], ["hash", 87, 5], ["vendorHash", 88, 5], ["license", 89, 5], ["passthru", 90, 5], ["preCheck", 91, 5], ["__structuredAttrs", 94, 5]], [["nomad", 115, 20]], [["tests", 115, 14]], [["buildGoModule", 110, 5], ["version", 111, 5], ["hash", 112, 5], ["vendorHash", 113, 5], ["license", 114, 5], ["passthru", 115, 5], ["preCheck", 116, 5]], [["nomad", 127, 20]], [["tests", 127, 14]], [["buildGoModule", 122, 5], ["version", 123, 5], ["hash", 124, 5], ["vendorHash", 125, 5], ["license", 126, 5], ["passthru", 127, 5], ["preCheck", 128, 5]], [["nomad", 82, 3], ["nomad_2_0", 84, 3], ["nomad_1_11", 97, 3], ["nomad_1_10", 109, 3], ["nomad_1_9", 121, 3]]]);
 const formals$1 = { args: { lib: false, buildGo126Module: false, fetchFromGitHub: false, nixosTests: false, installShellFiles: false }, ellipsis: false };
 const formals$2 = { args: { buildGoModule: false, version: false, hash: false, vendorHash: false, license: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 36, 11], ["repo", 37, 11], ["rev", 38, 11], ["hash", 39, 19]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 61, 11], ["description", 62, 11], ["mainProgram", 63, 11], ["license", 64, 19], ["maintainers", 65, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 30, 9], ["version", 31, 17], ["vendorHash", 31, 25], ["subPackages", 33, 9], ["src", 35, 9], ["nativeBuildInputs", 42, 9], ["ldflags", 44, 9], ["tags", 53, 9], ["postInstall", 55, 9], ["meta", 60, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["nomad", 103, 20]]);
-const pos$5 = nix.positions(here + "/default.nix", [["tests", 103, 14]]);
-const pos$6 = nix.positions(here + "/default.nix", [["buildGoModule", 98, 5], ["version", 99, 5], ["hash", 100, 5], ["vendorHash", 101, 5], ["license", 102, 5], ["passthru", 103, 5], ["preCheck", 104, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["nomad", 90, 20]]);
-const pos$8 = nix.positions(here + "/default.nix", [["tests", 90, 14]]);
-const pos$9 = nix.positions(here + "/default.nix", [["buildGoModule", 85, 5], ["version", 86, 5], ["hash", 87, 5], ["vendorHash", 88, 5], ["license", 89, 5], ["passthru", 90, 5], ["preCheck", 91, 5], ["__structuredAttrs", 94, 5]]);
-const pos$10 = nix.positions(here + "/default.nix", [["nomad", 115, 20]]);
-const pos$11 = nix.positions(here + "/default.nix", [["tests", 115, 14]]);
-const pos$12 = nix.positions(here + "/default.nix", [["buildGoModule", 110, 5], ["version", 111, 5], ["hash", 112, 5], ["vendorHash", 113, 5], ["license", 114, 5], ["passthru", 115, 5], ["preCheck", 116, 5]]);
-const pos$13 = nix.positions(here + "/default.nix", [["nomad", 127, 20]]);
-const pos$14 = nix.positions(here + "/default.nix", [["tests", 127, 14]]);
-const pos$15 = nix.positions(here + "/default.nix", [["buildGoModule", 122, 5], ["version", 123, 5], ["hash", 124, 5], ["vendorHash", 125, 5], ["license", 126, 5], ["passthru", 127, 5], ["preCheck", 128, 5]]);
-const pos$16 = nix.positions(here + "/default.nix", [["nomad", 82, 3], ["nomad_2_0", 84, 3], ["nomad_1_11", 97, 3], ["nomad_1_10", 109, 3], ["nomad_1_9", 121, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,7 +28,7 @@ export default nix.lambda((args) => (() => {
         const vendorHash_1 = vendorHash;
         const subPackages = nix.thunk(() => ["."]);
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: "hashicorp",
             repo: "nomad",
             rev: nix.thunk(() => nix.str`v${version_1}`),
@@ -58,7 +43,7 @@ export default nix.lambda((args) => (() => {
         const tags = nix.thunk(() => ["ui"]);
         const postInstall = "echo \"complete -C $out/bin/nomad nomad\" > nomad.bash\ninstallShellCompletion nomad.bash\n";
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           homepage: "https://developer.hashicorp.com/nomad",
           description: "Distributed, Highly Available, Datacenter-Aware Scheduler",
           mainProgram: "nomad",
@@ -73,7 +58,7 @@ export default nix.lambda((args) => (() => {
           })()),
         }));
         return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname,
           version: version_1,
           vendorHash: vendorHash_1,
@@ -89,60 +74,60 @@ export default nix.lambda((args) => (() => {
   })(), formals$2);
   return (() => {
     const nomad_1_11 = nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         buildGoModule: buildGo126Module,
         version: "1.11.3",
         hash: "sha256-J+w53HlMlrXX5yKjDYhf3rSGt1pmOyNcPlOqyUrkLWE=",
         vendorHash: "sha256-67etQUjcPXz4VVpNXLVusQlEybxEqKfYQcNTNL4X8bA=",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsl11")),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$5,
-          tests: nix.thunk(() => ({ [nix.POS]: pos$4, nomad: nix.thunk(() => nix.sel(nixosTests, "nomad")) })),
+          [nix.POS]: $pos[4],
+          tests: nix.thunk(() => ({ [nix.POS]: $pos[3], nomad: nix.thunk(() => nix.sel(nixosTests, "nomad")) })),
         })),
         preCheck: "export PATH=\"$PATH:$NIX_BUILD_TOP/go/bin\"\n",
       }))));
     const nomad = nomad_1_11;
     const nomad_2_0 = nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         buildGoModule: buildGo126Module,
         version: "2.0.0",
         hash: "sha256-5rCAcOXWQ6g2iK1d5wy/a/DZQC2xwwdpI1SscDX98C8=",
         vendorHash: "sha256-3/H7QgVOHtaUs6BOF7ATVgrA0cfNBbm940Axrvq2bKU=",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsl11")),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$8,
-          tests: nix.thunk(() => ({ [nix.POS]: pos$7, nomad: nix.thunk(() => nix.sel(nixosTests, "nomad")) })),
+          [nix.POS]: $pos[7],
+          tests: nix.thunk(() => ({ [nix.POS]: $pos[6], nomad: nix.thunk(() => nix.sel(nixosTests, "nomad")) })),
         })),
         preCheck: "export PATH=\"$PATH:$NIX_BUILD_TOP/go/bin\"\n",
         __structuredAttrs: true,
       }))));
     const nomad_1_10 = nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         buildGoModule: buildGo126Module,
         version: "1.10.5",
         hash: "sha256-NFH++oYWb6vQN6cOPByscI/ZBWDNy4YbcLiBMO3/jVU=",
         vendorHash: "sha256-QcTw9kKwoHIvXZoxfDohFG+sBs8OLvYPeygygDClsn8=",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsl11")),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$11,
-          tests: nix.thunk(() => ({ [nix.POS]: pos$10, nomad: nix.thunk(() => nix.sel(nixosTests, "nomad")) })),
+          [nix.POS]: $pos[10],
+          tests: nix.thunk(() => ({ [nix.POS]: $pos[9], nomad: nix.thunk(() => nix.sel(nixosTests, "nomad")) })),
         })),
         preCheck: "export PATH=\"$PATH:$NIX_BUILD_TOP/go/bin\"\n",
       }))));
     const nomad_1_9 = nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         buildGoModule: buildGo126Module,
         version: "1.9.7",
         hash: "sha256-U02H6DPr1friQ9EwqD/wQnE2Fm20OE5xNccPDJfnsqI=",
         vendorHash: "sha256-9GnwqkexJAxrhW9yJFaDTdSaZ+p+/dcMuhlusp4cmyw=",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsl11")),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$14,
-          tests: nix.thunk(() => ({ [nix.POS]: pos$13, nomad: nix.thunk(() => nix.sel(nixosTests, "nomad")) })),
+          [nix.POS]: $pos[13],
+          tests: nix.thunk(() => ({ [nix.POS]: $pos[12], nomad: nix.thunk(() => nix.sel(nixosTests, "nomad")) })),
         })),
         preCheck: "export PATH=\"$PATH:$NIX_BUILD_TOP/go/bin\"\n",
       }))));
-    return { [nix.POS]: pos$16, nomad, nomad_2_0, nomad_1_11, nomad_1_10, nomad_1_9 };
+    return { [nix.POS]: $pos[15], nomad, nomad_2_0, nomad_1_11, nomad_1_10, nomad_1_9 };
   })();
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

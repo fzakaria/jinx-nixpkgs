@@ -2,14 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["domain", 16, 5], ["group", 17, 5], ["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]], [["package", 46, 7], ["moduleNames", 47, 7]], [["cmake-config", 45, 5]], [["tests", 44, 12]], [["NIX_CFLAGS_COMPILE", 53, 7]], [["description", 60, 5], ["homepage", 61, 5], ["platforms", 62, 5], ["license", 66, 5], ["maintainers", 67, 5]], [["pname", 11, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 24, 3], ["postPatch", 32, 3], ["cmakeFlags", 37, 3], ["nativeBuildInputs", 42, 3], ["passthru", 44, 3], ["env", 53, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { cmake: false, fetchFromGitLab: false, lib: false, stdenv: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["domain", 16, 5], ["group", 17, 5], ["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["package", 46, 7], ["moduleNames", 47, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["cmake-config", 45, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 44, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 53, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 60, 5], ["homepage", 61, 5], ["platforms", 62, 5], ["license", 66, 5], ["maintainers", 67, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 24, 3], ["postPatch", 32, 3], ["cmakeFlags", 37, 3], ["nativeBuildInputs", 42, 3], ["passthru", 44, 3], ["env", 53, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "bc-ispell",
       version: "3.4.02-unstable-2025-05-05",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.linphone.org",
           group: "BC",
           owner: "public/external",
@@ -39,22 +33,22 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "cmake-config": nix.thunk(() => nix.app(nix.sel(testers, "hasCmakeConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               moduleNames: nix.thunk(() => ["ISpell"]),
             })))),
         })),
       })),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=incompatible-pointer-types", "-std=gnu17"]))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Interactive spelling checker",
         homepage: "https://gitlab.linphone.org/BC/public/external/ispell",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),

@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/patchmatrix.nix", [[["pname", 6, 5], ["version", 7, 5], ["url", 9, 5], ["sha256", 10, 5], ["additionalBuildInputs", 12, 5], ["description", 14, 5]]]);
 const formals$1 = { args: { callPackage: false, libjack2: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/patchmatrix.nix", [["pname", 6, 5], ["version", 7, 5], ["url", 9, 5], ["sha256", 10, 5], ["additionalBuildInputs", 12, 5], ["description", 14, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const additionalBuildInputs = nix.thunk(() => [libjack2]);
       const description = "JACK patchbay in flow matrix style";
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         pname,
         version,
         url,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 22, 5], ["sha256", 23, 5]], [["description", 39, 5], ["longDescription", 40, 5], ["homepage", 46, 13], ["platforms", 47, 26], ["license", 48, 5], ["maintainers", 49, 5], ["broken", 50, 5]], [["pname", 18, 3], ["version", 19, 11], ["src", 21, 3], ["strictDeps", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 34, 3], ["buildPhase", 36, 19], ["installPhase", 36, 30], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, ocaml: false, findlib: false, topkg: false, ocamlbuild: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 39, 5], ["longDescription", 40, 5], ["homepage", 46, 13], ["platforms", 47, 26], ["license", 48, 5], ["maintainers", 49, 5], ["broken", 50, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 11], ["src", 21, 3], ["strictDeps", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 34, 3], ["buildPhase", 36, 19], ["installPhase", 36, 30], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const homepage = "https://erratique.ch/software/gg";
   const version = "1.0.0";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-gg`),
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`${homepage}/releases/gg-${version}.tbz`),
           sha256: "sha256:0j7bpj8k17csnz6v6frkz9aycywsb7xmznnb31g8rbfk3626f3ci",
         })))),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Basic types for computer graphics in OCaml",
         longDescription: "Gg is an OCaml module providing basic types for computer graphics. It\ndefines types and functions for floats, vectors, points, sizes,\nmatrices, quaternions, axis aligned boxes, colors, color spaces, and\nraster data.\n",
         homepage: homepage,

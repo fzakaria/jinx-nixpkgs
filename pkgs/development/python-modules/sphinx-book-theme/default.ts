@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 17, 13], ["format", 18, 5], ["dist", 19, 5], ["python", 20, 5], ["pname", 21, 5], ["hash", 22, 5]], [["jupyter-book", 33, 13]], [["tests", 32, 12]], [["description", 37, 5], ["homepage", 38, 5], ["changelog", 39, 5], ["license", 40, 5], ["maintainers", 41, 5]], [["pname", 11, 3], ["version", 12, 3], ["format", 14, 3], ["src", 16, 3], ["dependencies", 25, 3], ["pythonImportsCheck", 30, 3], ["passthru", 32, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, sphinx: false, "pydata-sphinx-theme": false, "jupyter-book": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 17, 13], ["format", 18, 5], ["dist", 19, 5], ["python", 20, 5], ["pname", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["jupyter-book", 33, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 32, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 37, 5], ["homepage", 38, 5], ["changelog", 39, 5], ["license", 40, 5], ["maintainers", 41, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["format", 14, 3], ["src", 16, 3], ["dependencies", 25, 3], ["pythonImportsCheck", 30, 3], ["passthru", 32, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.2.0";
       const format = "wheel";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: version,
           format: "wheel",
           dist: "py3",
@@ -33,11 +29,11 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [pydata_sphinx_theme, sphinx]);
       const pythonImportsCheck = nix.thunk(() => ["sphinx_book_theme"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, "jupyter-book": jupyter_book })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], "jupyter-book": jupyter_book })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Clean book theme for scientific explanations and documentation with Sphinx",
         homepage: "https://github.com/executablebooks/sphinx-book-theme",
         changelog: nix.thunk(() => nix.str`https://github.com/executablebooks/sphinx-book-theme/raw/v${version}/CHANGELOG.md`),
@@ -45,7 +41,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         format,

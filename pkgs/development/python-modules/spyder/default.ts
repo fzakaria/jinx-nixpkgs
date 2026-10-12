@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 68, 13], ["version", 68, 19], ["hash", 69, 5]], [["SPYDER_QT_BINDING", 143, 7]], [["description", 158, 5], ["mainProgram", 159, 5], ["longDescription", 160, 5], ["homepage", 165, 5], ["downloadPage", 166, 5], ["changelog", 167, 5], ["license", 168, 5], ["maintainers", 169, 5], ["platforms", 170, 5]], [["pname", 63, 3], ["version", 64, 3], ["pyproject", 65, 3], ["src", 67, 3], ["patches", 72, 3], ["nativeBuildInputs", 74, 3], ["build-system", 76, 3], ["pythonRelaxDeps", 78, 3], ["buildInputs", 84, 3], ["dependencies", 89, 3], ["doCheck", 141, 3], ["env", 143, 3], ["postInstall", 145, 3], ["dontWrapQtApps", 151, 3], ["preFixup", 153, 3], ["meta", 157, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, "pyqt6-webengine": false, setuptools: false, aiohttp: false, asyncssh: false, atomicwrites: false, bcrypt: false, chardet: false, cloudpickle: false, cookiecutter: false, "diff-match-patch": false, fzf: false, intervaltree: false, "ipython-pygments-lexers": false, jedi: false, jellyfish: false, keyring: false, matplotlib: false, nbconvert: false, numpy: false, numpydoc: false, packaging: false, pickleshare: false, psutil: false, pygithub: false, pygments: false, "pylint-venv": false, "pyls-spyder": false, pyopengl: false, pyqt6: false, "python-lsp-black": false, "python-lsp-ruff": false, "python-lsp-server": false, pyuca: false, pyzmq: false, qdarkstyle: false, qstylizer: false, qtawesome: false, qtconsole: false, qtpy: false, rope: false, rtree: false, scipy: false, "spyder-kernels": false, superqt: false, textdistance: false, "three-merge": false, watchdog: false, yarl: false, qt6: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 68, 13], ["version", 68, 19], ["hash", 69, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["SPYDER_QT_BINDING", 143, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 158, 5], ["mainProgram", 159, 5], ["longDescription", 160, 5], ["homepage", 165, 5], ["downloadPage", 166, 5], ["changelog", 167, 5], ["license", 168, 5], ["maintainers", 169, 5], ["platforms", 170, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 63, 3], ["version", 64, 3], ["pyproject", 65, 3], ["src", 67, 3], ["patches", 72, 3], ["nativeBuildInputs", 74, 3], ["build-system", 76, 3], ["pythonRelaxDeps", 78, 3], ["buildInputs", 84, 3], ["dependencies", 89, 3], ["doCheck", 141, 3], ["env", 143, 3], ["postInstall", 145, 3], ["dontWrapQtApps", 151, 3], ["preFixup", 153, 3], ["meta", 157, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -67,7 +64,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.1.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-eYbtAwq4BHiXS8uBtcjIgvUMpzZsqdVmzgGYZq1rBYM=",
@@ -130,12 +127,12 @@ export default nix.lambda((args) => (() => {
         pyqt6,
       ], nix.sel(python_lsp_server, "optional-dependencies", "all")));
       const doCheck = false;
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, SPYDER_QT_BINDING: "pyqt6" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], SPYDER_QT_BINDING: "pyqt6" }));
       const postInstall = "# Add Python libs to env so Spyder subprocesses\n# created to run compute kernels don't fail with ImportErrors\nwrapProgram $out/bin/spyder --prefix PYTHONPATH : \"$PYTHONPATH\"\n";
       const dontWrapQtApps = true;
       const preFixup = "makeWrapperArgs+=(\"${qtWrapperArgs[@]}\")\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Scientific python development environment",
         mainProgram: "spyder",
         longDescription: "Spyder (previously known as Pydee) is a powerful interactive development\nenvironment for the Python language with advanced editing, interactive\ntesting, debugging and introspection features.\n",
@@ -147,7 +144,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

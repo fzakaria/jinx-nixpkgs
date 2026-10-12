@@ -2,32 +2,25 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/all-terminfo.nix", [[["maintainers", 5, 5]], [["text", 43, 32]], [["text", 44, 35]], [["terminfo-missing", 43, 13], ["terminfo-extra-outs", 44, 13]], [["enableAllTerminfo", 42, 9], ["etc", 43, 9]], [["environment", 41, 7]], [["machine", 8, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 48, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/all-terminfo.nix", [["maintainers", 5, 5]]);
 const formals$2 = { args: { pkgs: false, config: false, lib: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/all-terminfo.nix", [["text", 43, 32]]);
-const pos$3 = nix.positions(here + "/all-terminfo.nix", [["text", 44, 35]]);
-const pos$4 = nix.positions(here + "/all-terminfo.nix", [["terminfo-missing", 43, 13], ["terminfo-extra-outs", 44, 13]]);
-const pos$5 = nix.positions(here + "/all-terminfo.nix", [["enableAllTerminfo", 42, 9], ["etc", 43, 9]]);
-const pos$6 = nix.positions(here + "/all-terminfo.nix", [["environment", 41, 7]]);
-const pos$7 = nix.positions(here + "/all-terminfo.nix", [["machine", 8, 9]]);
-const pos$8 = nix.positions(here + "/all-terminfo.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     name: "all-terminfo",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "jkarlson"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
@@ -45,18 +38,18 @@ export default nix.lambda((args) => (() => {
         const excludedTerminfos = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_) => (drv) => !nix.asBool(nix.builtins.elem(nix.thunk(() => nix.sel(drv, "terminfo")), nix.thunk(() => nix.sel(config, "environment", "systemPackages")))), terminfos));
         const includedOuts = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_) => (drv) => nix.builtins.elem(nix.thunk(() => nix.sel(drv, "out")), nix.thunk(() => nix.sel(config, "environment", "systemPackages"))), terminfos));
         return {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             enableAllTerminfo: true,
             etc: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               "terminfo-missing": nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 text: nix.thunk(() => nix.builtins.concatStringsSep("\n", nix.thunk(() => nix.builtins.attrNames(excludedTerminfos)))),
               })),
               "terminfo-extra-outs": nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 text: nix.thunk(() => nix.builtins.concatStringsSep("\n", nix.thunk(() => nix.builtins.attrNames(includedOuts)))),
               })),
             })),

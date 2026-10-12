@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["homepage", 19, 5], ["description", 20, 5], ["license", 21, 5], ["platforms", 22, 5], ["maintainers", 23, 5]], [["pname", 8, 3], ["src", 10, 37], ["version", 10, 41], ["postUnpack", 12, 3], ["libraryFile", 16, 3], ["meta", 18, 3]]]);
 const formals$1 = { args: { lib: false, mkDerivation: false, haskellPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["homepage", 19, 5], ["description", 20, 5], ["license", 21, 5], ["platforms", 22, 5], ["maintainers", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["src", 10, 37], ["version", 10, 41], ["postUnpack", 12, 3], ["libraryFile", 16, 3], ["meta", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,14 +13,14 @@ export default nix.lambda((args) => (() => {
   return nix.app(mkDerivation, nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(haskellPackages, "agda2hs"));
       return {
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "agda2hs-base",
       src: nix.thunk(() => nix.attr(from, "src")),
       version: nix.thunk(() => nix.attr(from, "version")),
       postUnpack: "sourceRoot=\"$sourceRoot/lib/base\"\n",
       libraryFile: "base.agda-lib",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: "https://github.com/agda/agda2hs",
         description: "Standard library for compiling Agda code to readable Haskell",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

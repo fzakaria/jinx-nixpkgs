@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 18, 5]], [["name", 24, 7], ["url", 25, 7], ["hash", 26, 7]], [["homepage", 52, 5], ["description", 53, 5], ["mainProgram", 54, 5], ["license", 55, 5], ["platforms", 56, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 22, 3], ["postPatch", 30, 3], ["nativeBuildInputs", 34, 3], ["strictDeps", 40, 3], ["configureScript", 44, 3], ["nativeCheckInputs", 46, 3], ["doCheck", 47, 3], ["__structuredAttrs", 49, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, python3: false, autoconf: false, automake: false, libtool: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 24, 7], ["url", 25, 7], ["hash", 26, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 52, 5], ["description", 53, 5], ["mainProgram", 54, 5], ["license", 55, 5], ["platforms", 56, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 22, 3], ["postPatch", 30, 3], ["nativeBuildInputs", 34, 3], ["strictDeps", 40, 3], ["configureScript", 44, 3], ["nativeCheckInputs", 46, 3], ["doCheck", 47, 3], ["__structuredAttrs", 49, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,17 +16,17 @@ export default nix.lambda((args) => (() => {
   const automake = nix.arg($, "automake");
   const libtool = nix.arg($, "libtool");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "jbig2dec",
       version: "0.20",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/ArtifexSoftware/jbig2dec/archive/${nix.sel(finalAttrs, "version")}/jbig2dec-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-qXBTaaZjOrpTJpNFDsgCxWI5fhuCRmLegJ7ekvZ6/yE=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "CVE-2026-38076.patch",
             url: "https://github.com/ArtifexSoftware/jbig2dec/commit/cc37d0931aa71582f7128736a068c92cd8712d9b.patch",
             hash: "sha256-NdmE3xT5M6Ini6FJcKqCJmJkBTFnnq66/YV3Ky5PVNM=",
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.jbig2dec.com/",
         description: "Decoder implementation of the JBIG2 image compression format",
         mainProgram: "jbig2dec",

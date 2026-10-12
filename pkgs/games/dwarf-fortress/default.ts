@@ -2,21 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["dfVersion", 82, 48]], [["dfVersion", 86, 21], ["dwarf-fortress-unfuck", 87, 21]], [["dfVersion", 90, 77]], [["XMLLibXML", 93, 36], ["XMLLibXSLT", 93, 46], ["dfVersion", 94, 21], ["stdenv", 95, 13]], [["themes", 107, 32], ["dwarf-fortress", 109, 19], ["twbt", 110, 19], ["dfhack", 111, 19], ["dwarf-therapist", 112, 19]], [["dfVersions", 122, 32]], [["version", 127, 21], ["maxDfVersion", 128, 21], ["hash", 129, 21]], [["dwarf-fortress", 119, 21], ["dfhack", 119, 36], ["mkDfWrapper", 119, 43], ["dwarf-therapist", 120, 13]], [["dwarf-fortress", 134, 31], ["dfhack", 134, 46], ["dwarf-therapist", 134, 53]], [["name", 76, 7], ["value", 77, 7]], [["df-games", 147, 15], ["versionToName", 147, 24], ["latestVersion", 147, 38]], [["stdenv", 156, 9]], [["dfVersions", 139, 5], ["dwarf-fortress", 142, 5], ["dwarf-therapist", 143, 5], ["dwarf-fortress-original", 144, 5], ["dwarf-fortress-full", 146, 5], ["soundSense", 150, 5], ["legends-browser", 152, 5], ["themes", 154, 5], ["phoebus-theme", 161, 5], ["cla-theme", 162, 5]]]);
 const formals$1 = { args: { stdenv: false, stdenvNoCC: false, gcc15Stdenv: false, lib: false, libsForQt5: false, newScope: false, perlPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["dfVersion", 82, 48]]);
-const pos$2 = nix.positions(here + "/default.nix", [["dfVersion", 86, 21], ["dwarf-fortress-unfuck", 87, 21]]);
-const pos$3 = nix.positions(here + "/default.nix", [["dfVersion", 90, 77]]);
-const pos$4 = nix.positions(here + "/default.nix", [["XMLLibXML", 93, 36], ["XMLLibXSLT", 93, 46], ["dfVersion", 94, 21], ["stdenv", 95, 13]]);
 const formals$2 = { args: { "dwarf-fortress": false, dfhack: false, "dwarf-therapist": true }, ellipsis: true };
-const pos$5 = nix.positions(here + "/default.nix", [["themes", 107, 32], ["dwarf-fortress", 109, 19], ["twbt", 110, 19], ["dfhack", 111, 19], ["dwarf-therapist", 112, 19]]);
-const pos$6 = nix.positions(here + "/default.nix", [["dfVersions", 122, 32]]);
-const pos$7 = nix.positions(here + "/default.nix", [["version", 127, 21], ["maxDfVersion", 128, 21], ["hash", 129, 21]]);
-const pos$8 = nix.positions(here + "/default.nix", [["dwarf-fortress", 119, 21], ["dfhack", 119, 36], ["mkDfWrapper", 119, 43], ["dwarf-therapist", 120, 13]]);
-const pos$9 = nix.positions(here + "/default.nix", [["dwarf-fortress", 134, 31], ["dfhack", 134, 46], ["dwarf-therapist", 134, 53]]);
-const pos$10 = nix.positions(here + "/default.nix", [["name", 76, 7], ["value", 77, 7]]);
-const pos$11 = nix.positions(here + "/default.nix", [["df-games", 147, 15], ["versionToName", 147, 24], ["latestVersion", 147, 38]]);
-const pos$12 = nix.positions(here + "/default.nix", [["stdenv", 156, 9]]);
-const pos$13 = nix.positions(here + "/default.nix", [["dfVersions", 139, 5], ["dwarf-fortress", 142, 5], ["dwarf-therapist", 143, 5], ["dwarf-fortress-original", 144, 5], ["dwarf-fortress-full", 146, 5], ["soundSense", 150, 5], ["legends-browser", 152, 5], ["themes", 154, 5], ["phoebus-theme", 161, 5], ["cla-theme", 162, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,19 +27,19 @@ export default nix.lambda((args) => (() => {
   const latestVersion = nix.thunk(() => nix.sel(self, "dfVersions", "game", "latest", nix.key((nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? "linux" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "darwin" : nix.builtins.throw("Unsupported system"))))));
   const versionToName = (version) => nix.str`dwarf-fortress_${nix.app(replaceStrings, nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version)}`;
   const df_games = nix.thunk(() => nix.app(listToAttrs, nix.thunk(() => nix.builtins.map((dfVersion) => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         name: nix.thunk(() => nix.app(versionToName, dfVersion)),
         value: nix.thunk(() => (() => {
           const isAtLeast50 = nix.thunk(() => nix.app(versionAtLeast, dfVersion, "50.0"));
-          const dwarf_fortress_unfuck = nix.thunk(() => nix.app(optionalAttrs, nix.thunk(() => (nix.asBool(!nix.asBool(isAtLeast50)) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")))), nix.thunk(() => nix.app(callPackage, nix.path(here, "./unfuck.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, dfVersion: dfVersion }))))));
+          const dwarf_fortress_unfuck = nix.thunk(() => nix.app(optionalAttrs, nix.thunk(() => (nix.asBool(!nix.asBool(isAtLeast50)) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")))), nix.thunk(() => nix.app(callPackage, nix.path(here, "./unfuck.nix"), nix.thunk(() => ({ [nix.POS]: $pos[0], dfVersion: dfVersion }))))));
           const dwarf_fortress = nix.thunk(() => nix.app(callPackage, nix.path(here, "./game.nix"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               dfVersion: dfVersion,
               "dwarf-fortress-unfuck": dwarf_fortress_unfuck,
             }))));
-          const twbt = nix.thunk(() => nix.app(optionalAttrs, nix.thunk(() => !nix.asBool(isAtLeast50)), nix.thunk(() => nix.app(callPackage, nix.path(here, "./twbt"), nix.thunk(() => ({ [nix.POS]: pos$3, dfVersion: dfVersion }))))));
+          const twbt = nix.thunk(() => nix.app(optionalAttrs, nix.thunk(() => !nix.asBool(isAtLeast50)), nix.thunk(() => nix.app(callPackage, nix.path(here, "./twbt"), nix.thunk(() => ({ [nix.POS]: $pos[2], dfVersion: dfVersion }))))));
           const dfhack = nix.thunk(() => nix.app(callPackage, nix.path(here, "./dfhack"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               XMLLibXML: nix.thunk(() => nix.attr(perlPackages, "XMLLibXML")),
               XMLLibXSLT: nix.thunk(() => nix.attr(perlPackages, "XMLLibXSLT")),
               dfVersion: dfVersion,
@@ -64,7 +52,7 @@ export default nix.lambda((args) => (() => {
             const dfhack_1 = nix.arg($_1, "dfhack");
             const dwarf_therapist_1 = nix.argOr($_1, "dwarf-therapist", () => null);
             return nix.app(callPackage, nix.path(here, "./wrapper"), nix.thunk(() => nix.update({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 themes: nix.thunk(() => nix.attr(self, "themes")),
                 "dwarf-fortress": dwarf_fortress_1,
                 twbt: twbt,
@@ -73,19 +61,22 @@ export default nix.lambda((args) => (() => {
               }, args_2)));
           })(), formals$2);
           const dwarf_therapist = nix.thunk(() => nix.app(nix.sel(libsForQt5, "callPackage"), nix.path(here, "./dwarf-therapist/wrapper.nix"), nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               "dwarf-fortress": dwarf_fortress,
               dfhack: dfhack,
               mkDfWrapper: mkDfWrapper,
-              "dwarf-therapist": nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(libsForQt5, "callPackage"), nix.path(here, "./dwarf-therapist"), nix.thunk(() => ({ [nix.POS]: pos$6, dfVersions: nix.thunk(() => nix.attr(self, "dfVersions")) }))), "override"), nix.thunk(() => nix.app(optionalAttrs, nix.thunk(() => !nix.asBool(isAtLeast50)), nix.thunk(() => ({
-                    [nix.POS]: pos$7,
+              "dwarf-therapist": nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(libsForQt5, "callPackage"), nix.path(here, "./dwarf-therapist"), nix.thunk(() => ({
+                  [nix.POS]: $pos[5],
+                  dfVersions: nix.thunk(() => nix.attr(self, "dfVersions")),
+                }))), "override"), nix.thunk(() => nix.app(optionalAttrs, nix.thunk(() => !nix.asBool(isAtLeast50)), nix.thunk(() => ({
+                    [nix.POS]: $pos[6],
                     version: "41.2.5",
                     maxDfVersion: "0.47.05",
                     hash: "sha256-xfYBtnO1n6OcliVt07GsQ9alDJIfWdVhtuyWwuvXSZs=",
                   })))))),
             }))));
           return nix.app(mkDfWrapper, nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               "dwarf-fortress": dwarf_fortress,
               dfhack: dfhack,
               "dwarf-therapist": dwarf_therapist,
@@ -98,18 +89,18 @@ export default nix.lambda((args) => (() => {
     const dwarf_therapist = nix.thunk(() => nix.sel(dwarf_fortress, "dwarf-therapist"));
     const dwarf_fortress_original = nix.thunk(() => nix.sel(dwarf_fortress, "dwarf-fortress"));
     const dwarf_fortress_full = nix.thunk(() => nix.app(callPackage, nix.path(here, "./lazy-pack.nix"), nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         "df-games": df_games,
         versionToName: versionToName,
         latestVersion: latestVersion,
       }))));
     const soundSense = nix.thunk(() => nix.app(callPackage, nix.path(here, "./soundsense.nix"), nix.thunk(() => ({}))));
     const legends_browser = nix.thunk(() => nix.app(callPackage, nix.path(here, "./legends-browser"), nix.thunk(() => ({}))));
-    const themes = nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(callPackage, nix.path(here, "./themes"), nix.thunk(() => ({ [nix.POS]: pos$12, stdenv: stdenvNoCC }))))));
+    const themes = nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(callPackage, nix.path(here, "./themes"), nix.thunk(() => ({ [nix.POS]: $pos[11], stdenv: stdenvNoCC }))))));
     const phoebus_theme = nix.thunk(() => nix.sel(themes, "phoebus"));
     const cla_theme = nix.thunk(() => nix.sel(themes, "cla"));
     return {
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       dfVersions,
       "dwarf-fortress": dwarf_fortress,
       "dwarf-therapist": dwarf_therapist,

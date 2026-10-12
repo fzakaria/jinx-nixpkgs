@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["sha256", 22, 5]], [["url", 27, 7], ["sha256", 28, 7]], [["NIX_CFLAGS_COMPILE", 64, 7]], [["description", 74, 5], ["mainProgram", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["platforms", 78, 5], ["maintainers", 79, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 25, 3], ["buildInputs", 32, 3], ["prePatch", 41, 3], ["configureFlags", 45, 3], ["preConfigure", 47, 3], ["env", 64, 3], ["dontDisableStatic", 71, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, file: false, openssl: false, mlton: false, libmysqlclient: false, libpq: false, sqlite: false, gcc: false, icu: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 27, 7], ["sha256", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 64, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 74, 5], ["mainProgram", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["platforms", 78, 5], ["maintainers", 79, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 25, 3], ["buildInputs", 32, 3], ["prePatch", 41, 3], ["configureFlags", 45, 3], ["preConfigure", 47, 3], ["env", 64, 3], ["dontDisableStatic", 71, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,13 +23,13 @@ export default nix.lambda((args) => (() => {
       const pname = "urweb";
       const version = "20200209";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/urweb/urweb/releases/download/${version}/${pname}-${version}.tar.gz`),
           sha256: "0qh6wcxfk5kf735i5gqwnkdirnnmqhnnpkfz96gz144dgz2i0c5c",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/urweb/urweb/commit/f7a38a95bee9d1aaf7ed83a651cfbce8da96ed44.patch",
             sha256: "TQFD9Y8OEOSFv6cqpHQ4WSNAPzl82MmVCAxLR4F4Uxc=",
           })))),
@@ -54,12 +50,12 @@ export CCARGS="-I$out/include \\
                -L${nix.sel(sqlite, "out")}/lib";
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "# unresolved reference when linking liburweb.1.dylib\nexport LDFLAGS=\"-Wl,-undefined,dynamic_lookup\";\n")));
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=use-after-free", "-Wno-error=discarded-qualifiers"]))),
       }));
       const dontDisableStatic = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Advanced purely-functional web programming language",
         mainProgram: "urweb",
         homepage: "http://www.impredicative.com/ur/",
@@ -72,7 +68,7 @@ export CCARGS="-I$out/include \\
         ]),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

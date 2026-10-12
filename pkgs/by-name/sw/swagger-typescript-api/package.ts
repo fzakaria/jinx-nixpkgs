@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["aarch64-darwin", 61, 9], ["aarch64-linux", 62, 9], ["x86_64-linux", 63, 9]], [["src", 22, 26], ["version", 22, 30], ["pname", 23, 5], ["impureEnvVars", 25, 5], ["nativeBuildInputs", 30, 5], ["dontConfigure", 35, 5], ["dontFixup", 39, 5], ["buildPhase", 41, 5], ["installPhase", 50, 5], ["outputHash", 59, 5], ["outputHashAlgo", 68, 5], ["outputHashMode", 69, 5]], [["mainProgram", 104, 5], ["description", 105, 5], ["homepage", 106, 5], ["changelog", 107, 5], ["license", 108, 5], ["platforms", 109, 5], ["maintainers", 110, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["node_modules", 21, 3], ["nativeBuildInputs", 72, 3], ["buildPhase", 78, 3], ["installPhase", 89, 3], ["meta", 103, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, stdenv: false, makeBinaryWrapper: false, writableTmpDirAsHomeHook: false, nodejs: false, bun: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["aarch64-darwin", 61, 9], ["aarch64-linux", 62, 9], ["x86_64-linux", 63, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 22, 26], ["version", 22, 30], ["pname", 23, 5], ["impureEnvVars", 25, 5], ["nativeBuildInputs", 30, 5], ["dontConfigure", 35, 5], ["dontFixup", 39, 5], ["buildPhase", 41, 5], ["installPhase", 50, 5], ["outputHash", 59, 5], ["outputHashAlgo", 68, 5], ["outputHashMode", 69, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["mainProgram", 104, 5], ["description", 105, 5], ["homepage", 106, 5], ["changelog", 107, 5], ["license", 108, 5], ["platforms", 109, 5], ["maintainers", 110, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["node_modules", 21, 3], ["nativeBuildInputs", 72, 3], ["buildPhase", 78, 3], ["installPhase", 89, 3], ["meta", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const nodejs = nix.arg($, "nodejs");
   const bun = nix.arg($, "bun");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "swagger-typescript-api",
       version: "13.13.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "acacode",
           repo: "swagger-typescript-api",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-lV24rJwgmcTODyvb/qkpKWII4EhKd+xGrs1uwjuSVq4=",
         })))),
       node_modules: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-node_modules`),
@@ -41,7 +37,7 @@ export default nix.lambda((args) => (() => {
           buildPhase: "runHook preBuild\n\nexport BUN_INSTALL_CACHE_DIR=$(mktemp -d)\nbun install --no-progress --frozen-lockfile\n\nrunHook postBuild\n",
           installPhase: "runHook preInstall\n\nmkdir -p $out/node_modules\ncp -R ./node_modules $out\n\nrunHook postInstall\n",
           outputHash: nix.thunk(() => nix.selOr({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             "aarch64-darwin": "sha256-BBHQGnSAZ6sgVDX2cTnConqRPjY5umeDHE2lIkvuyo4=",
             "aarch64-linux": "sha256-0S9nKVlzv7WQvUXQZ8ZGU+kWhDYP7ciOIUtpdT8ehCA=",
             "x86_64-linux": "sha256-vGApFxnG7X9XBZu0z4HpyarNnVFUZk7eq+pQKXS+O5E=",
@@ -72,7 +68,7 @@ makeBinaryWrapper ${nodejs}/bin/node $out/bin/${nix.sel(finalAttrs, "pname")} \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         mainProgram: "swagger-typescript-api",
         description: "Generate TypeScript API client and definitions for fetch or axios from an OpenAPI specification",
         homepage: "https://github.com/acacode/swagger-typescript-api",

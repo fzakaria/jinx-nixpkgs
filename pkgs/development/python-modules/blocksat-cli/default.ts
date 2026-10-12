@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["description", 67, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["mainProgram", 72, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["postPatch", 31, 3], ["pythonRelaxDeps", 35, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["nativeCheckInputs", 49, 3], ["disabledTests", 51, 3], ["disabledTestPaths", 62, 3], ["pythonImportsCheck", 64, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, distro: false, fetchFromGitHub: false, pyasyncore: false, pysnmp: false, pysnmplib: false, pytestCheckHook: false, "python-gnupg": false, pythonAtLeast: false, qrcode: false, requests: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 67, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["mainProgram", 72, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["postPatch", 31, 3], ["pythonRelaxDeps", 35, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["nativeCheckInputs", 49, 3], ["disabledTests", 51, 3], ["disabledTestPaths", 62, 3], ["pythonImportsCheck", 64, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.5.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Blockstream",
           repo: "satellite",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -49,7 +47,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["blocksatgui/tests/"]);
       const pythonImportsCheck = nix.thunk(() => ["blocksatcli"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Blockstream Satellite CLI",
         homepage: "https://github.com/Blockstream/satellite",
         changelog: nix.thunk(() => nix.str`https://github.com/Blockstream/satellite/releases/tag/${nix.sel(src, "tag")}`),
@@ -61,7 +59,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "blocksat-cli",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

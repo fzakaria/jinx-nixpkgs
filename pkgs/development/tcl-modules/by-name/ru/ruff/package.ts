@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["description", 33, 5], ["longDescription", 34, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["dontBuild", 17, 3], ["propagatedBuildInputs", 19, 3], ["installPhase", 23, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, mkTclDerivation: false, fetchzip: false, tcllib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 33, 5], ["longDescription", 34, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["dontBuild", 17, 3], ["propagatedBuildInputs", 19, 3], ["installPhase", 23, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const tcllib = nix.arg($, "tcllib");
   return nix.app(mkTclDerivation, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ruff",
       version: "2.4.2",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/magicsplat/ruff/ruff-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-BeO0YtFDSg3e0ehdcpbojAw6WsInkiiHh01I0bYOkRY=",
         })))),
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [tcllib]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/lib\ncp -r . $out/lib/ruff\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Documentation generator for Tcl",
         longDescription: "Ruff! (Runtime function formatter) is a documentation generation system\nfor programs written in the Tcl programming language. Ruff! uses runtime\nintrospection in conjunction with comment analysis to generate reference\nmanuals for Tcl programs.\n",
         homepage: "https://ruff.magicsplat.com/",

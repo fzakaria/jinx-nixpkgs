@@ -2,80 +2,53 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ly.nix", [[["load", 9, 9], ["save", 10, 9]], [["enable", 7, 7], ["settings", 8, 7]], [["ly", 6, 29]], [["displayManager", 6, 14]], [["imports", 5, 5], ["services", 6, 5]], [["x11Support", 21, 34]], [["ly", 21, 31], ["defaultSession", 23, 31]], [["enable", 24, 44]], [["icewm", 24, 38]], [["enable", 22, 24], ["windowManager", 24, 24]], [["displayManager", 21, 16], ["xserver", 22, 16]], [["services", 21, 7]], [["x11Support", 29, 34]], [["enable", 34, 9], ["user", 35, 9]], [["ly", 29, 31], ["defaultSession", 31, 31], ["autoLogin", 33, 31]], [["enable", 32, 44]], [["icewm", 32, 38]], [["enable", 30, 24], ["windowManager", 32, 24]], [["displayManager", 29, 16], ["xserver", 30, 16]], [["services", 29, 7]], [["x11Support", 41, 34]], [["ly", 41, 31], ["defaultSession", 42, 31]], [["displayManager", 41, 16]], [["enable", 43, 21]], [["sway", 43, 16]], [["services", 41, 7], ["programs", 43, 7]], [["machine", 18, 9], ["machineAutologin", 26, 9], ["machineNoX11", 38, 9]], [["name", 16, 3], ["nodes", 18, 3], ["testScript", 46, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/ly.nix", [["load", 9, 9], ["save", 10, 9]]);
-const pos$2 = nix.positions(here + "/ly.nix", [["enable", 7, 7], ["settings", 8, 7]]);
-const pos$3 = nix.positions(here + "/ly.nix", [["ly", 6, 29]]);
-const pos$4 = nix.positions(here + "/ly.nix", [["displayManager", 6, 14]]);
-const pos$5 = nix.positions(here + "/ly.nix", [["imports", 5, 5], ["services", 6, 5]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$6 = nix.positions(here + "/ly.nix", [["x11Support", 21, 34]]);
-const pos$7 = nix.positions(here + "/ly.nix", [["ly", 21, 31], ["defaultSession", 23, 31]]);
-const pos$8 = nix.positions(here + "/ly.nix", [["enable", 24, 44]]);
-const pos$9 = nix.positions(here + "/ly.nix", [["icewm", 24, 38]]);
-const pos$10 = nix.positions(here + "/ly.nix", [["enable", 22, 24], ["windowManager", 24, 24]]);
-const pos$11 = nix.positions(here + "/ly.nix", [["displayManager", 21, 16], ["xserver", 22, 16]]);
-const pos$12 = nix.positions(here + "/ly.nix", [["services", 21, 7]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$13 = nix.positions(here + "/ly.nix", [["x11Support", 29, 34]]);
-const pos$14 = nix.positions(here + "/ly.nix", [["enable", 34, 9], ["user", 35, 9]]);
-const pos$15 = nix.positions(here + "/ly.nix", [["ly", 29, 31], ["defaultSession", 31, 31], ["autoLogin", 33, 31]]);
-const pos$16 = nix.positions(here + "/ly.nix", [["enable", 32, 44]]);
-const pos$17 = nix.positions(here + "/ly.nix", [["icewm", 32, 38]]);
-const pos$18 = nix.positions(here + "/ly.nix", [["enable", 30, 24], ["windowManager", 32, 24]]);
-const pos$19 = nix.positions(here + "/ly.nix", [["displayManager", 29, 16], ["xserver", 30, 16]]);
-const pos$20 = nix.positions(here + "/ly.nix", [["services", 29, 7]]);
 const formals$4 = { args: {  }, ellipsis: true };
-const pos$21 = nix.positions(here + "/ly.nix", [["x11Support", 41, 34]]);
-const pos$22 = nix.positions(here + "/ly.nix", [["ly", 41, 31], ["defaultSession", 42, 31]]);
-const pos$23 = nix.positions(here + "/ly.nix", [["displayManager", 41, 16]]);
-const pos$24 = nix.positions(here + "/ly.nix", [["enable", 43, 21]]);
-const pos$25 = nix.positions(here + "/ly.nix", [["sway", 43, 16]]);
-const pos$26 = nix.positions(here + "/ly.nix", [["services", 41, 7], ["programs", 43, 7]]);
-const pos$27 = nix.positions(here + "/ly.nix", [["machine", 18, 9], ["machineAutologin", 26, 9], ["machineNoX11", 38, 9]]);
 const formals$5 = { args: { nodes: false }, ellipsis: true };
-const pos$28 = nix.positions(here + "/ly.nix", [["name", 16, 3], ["nodes", 18, 3], ["testScript", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const machineBase = nix.thunk(() => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
     services: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       displayManager: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         ly: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           enable: true,
-          settings: nix.thunk(() => ({ [nix.POS]: pos$1, load: false, save: false })),
+          settings: nix.thunk(() => ({ [nix.POS]: $pos[0], load: false, save: false })),
         })),
       })),
     })),
   }));
   return {
-    [nix.POS]: pos$28,
+    [nix.POS]: $pos[27],
     name: "ly",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$27,
+      [nix.POS]: $pos[26],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return nix.app(nix.sel(lib, "attrsets", "recursiveUpdate"), machineBase, nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               displayManager: nix.thunk(() => ({
-                [nix.POS]: pos$7,
-                ly: nix.thunk(() => ({ [nix.POS]: pos$6, x11Support: true })),
+                [nix.POS]: $pos[6],
+                ly: nix.thunk(() => ({ [nix.POS]: $pos[5], x11Support: true })),
                 defaultSession: "none+icewm",
               })),
               xserver: nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 enable: true,
                 windowManager: nix.thunk(() => ({
-                  [nix.POS]: pos$9,
-                  icewm: nix.thunk(() => ({ [nix.POS]: pos$8, enable: true })),
+                  [nix.POS]: $pos[8],
+                  icewm: nix.thunk(() => ({ [nix.POS]: $pos[7], enable: true })),
                 })),
               })),
             })),
@@ -84,21 +57,21 @@ export default nix.lambda((args) => (() => {
       machineAutologin: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return nix.app(nix.sel(lib, "attrsets", "recursiveUpdate"), machineBase, nix.thunk(() => ({
-            [nix.POS]: pos$20,
+            [nix.POS]: $pos[19],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$19,
+              [nix.POS]: $pos[18],
               displayManager: nix.thunk(() => ({
-                [nix.POS]: pos$15,
-                ly: nix.thunk(() => ({ [nix.POS]: pos$13, x11Support: true })),
+                [nix.POS]: $pos[14],
+                ly: nix.thunk(() => ({ [nix.POS]: $pos[12], x11Support: true })),
                 defaultSession: "none+icewm",
-                autoLogin: nix.thunk(() => ({ [nix.POS]: pos$14, enable: true, user: "alice" })),
+                autoLogin: nix.thunk(() => ({ [nix.POS]: $pos[13], enable: true, user: "alice" })),
               })),
               xserver: nix.thunk(() => ({
-                [nix.POS]: pos$18,
+                [nix.POS]: $pos[17],
                 enable: true,
                 windowManager: nix.thunk(() => ({
-                  [nix.POS]: pos$17,
-                  icewm: nix.thunk(() => ({ [nix.POS]: pos$16, enable: true })),
+                  [nix.POS]: $pos[16],
+                  icewm: nix.thunk(() => ({ [nix.POS]: $pos[15], enable: true })),
                 })),
               })),
             })),
@@ -107,18 +80,18 @@ export default nix.lambda((args) => (() => {
       machineNoX11: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$4);
         return nix.app(nix.sel(lib, "attrsets", "recursiveUpdate"), machineBase, nix.thunk(() => ({
-            [nix.POS]: pos$26,
+            [nix.POS]: $pos[25],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$23,
+              [nix.POS]: $pos[22],
               displayManager: nix.thunk(() => ({
-                [nix.POS]: pos$22,
-                ly: nix.thunk(() => ({ [nix.POS]: pos$21, x11Support: false })),
+                [nix.POS]: $pos[21],
+                ly: nix.thunk(() => ({ [nix.POS]: $pos[20], x11Support: false })),
                 defaultSession: "sway",
               })),
             })),
             programs: nix.thunk(() => ({
-              [nix.POS]: pos$25,
-              sway: nix.thunk(() => ({ [nix.POS]: pos$24, enable: true })),
+              [nix.POS]: $pos[24],
+              sway: nix.thunk(() => ({ [nix.POS]: $pos[23], enable: true })),
             })),
           })));
       })(), formals$4),

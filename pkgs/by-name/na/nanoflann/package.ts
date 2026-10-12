@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["homepage", 30, 5], ["description", 31, 5], ["longDescription", 32, 5], ["changelog", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["platforms", 47, 5]], [["version", 10, 3], ["pname", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["cmakeFlags", 22, 3], ["doCheck", 26, 3], ["checkTarget", 27, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, buildExamples: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 30, 5], ["description", 31, 5], ["longDescription", 32, 5], ["changelog", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["platforms", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 10, 3], ["pname", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["cmakeFlags", 22, 3], ["doCheck", 26, 3], ["checkTarget", 27, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const buildExamples = nix.argOr($, "buildExamples", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "1.7.1",
       pname: "nanoflann",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jlblancoc",
           repo: "nanoflann",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkTarget: "test",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/jlblancoc/nanoflann",
         description: "Header only C++ library for approximate nearest neighbor search",
         longDescription: "nanoflann is a C++11 header-only library for building KD-Trees of datasets\nwith different topologies: R2, R3 (point clouds), SO(2) and SO(3) (2D and\n3D rotation groups). No support for approximate NN is provided. nanoflann\ndoes not require compiling or installing. You just need to #include\n<nanoflann.hpp> in your code.\n\nThis library is a fork of the flann library by Marius Muja and David\nG. Lowe, and born as a child project of MRPT. Following the original\nlicense terms, nanoflann is distributed under the BSD license. Please, for\nbugs use the issues button or fork and open a pull request.\n",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 32, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["minimalOCamlVersion", 19, 3], ["duneVersion", 20, 3], ["propagatedBuildInputs", 22, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, fetchurl: false, lib: false, zarith: false, digestif: false, fmt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 32, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["minimalOCamlVersion", 19, 3], ["duneVersion", 20, 3], ["propagatedBuildInputs", 22, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "tezos-base58";
       const version = "1.0.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/tarides/tezos-base58/releases/download/${version}/${pname}-${version}.tbz`),
           sha256: "14w2pff5dy6mxnz588pxaf2k8xpkd51sbsys065wr51kbv1f36da",
         }))));
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const duneVersion = "3";
       const propagatedBuildInputs = nix.thunk(() => [zarith, digestif, fmt]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Base58 encoding for Tezos",
         homepage: "https://github.com/tarides/tezos-base58/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

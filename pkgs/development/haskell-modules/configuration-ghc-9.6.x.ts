@@ -2,16 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/configuration-ghc-9.6.x.nix", [[["url", 138, 5], ["name", 139, 5], ["relative", 140, 5], ["sha256", 141, 5]], [["url", 147, 5], ["name", 148, 5], ["relative", 149, 5], ["sha256", 150, 5]], [["name", 166, 9], ["url", 167, 9], ["sha256", 168, 9]], [["editedCabalFile", 161, 5], ["buildDepends", 162, 5], ["patches", 163, 5]], [["name", 181, 9], ["url", 182, 9], ["sha256", 183, 9], ["excludes", 184, 9]], [["badPlatforms", 195, 9]], [["Cabal-syntax", 216, 11], ["Cabal", 217, 11], ["extensions", 218, 11]], [["apply-refact", 222, 9], ["floskell", 223, 9], ["fourmolu", 224, 9], ["ghcide", 225, 9], ["haskell-language-server", 226, 9], ["hls-plugin-api", 231, 9], ["hlint", 232, 9], ["lsp-types", 233, 9], ["ormolu", 234, 9], ["retrie", 235, 9], ["stylish-haskell", 236, 9]], [["array", 20, 3], ["base", 21, 3], ["binary", 22, 3], ["bytestring", 23, 3], ["Cabal", 24, 3], ["Cabal-syntax", 25, 3], ["containers", 26, 3], ["deepseq", 27, 3], ["directory", 28, 3], ["exceptions", 29, 3], ["filepath", 30, 3], ["ghc-bignum", 31, 3], ["ghc-boot", 32, 3], ["ghc-boot-th", 33, 3], ["ghc-compact", 34, 3], ["ghc-heap", 35, 3], ["ghc-prim", 36, 3], ["ghci", 37, 3], ["haskeline", 38, 3], ["hpc", 39, 3], ["integer-gmp", 40, 3], ["mtl", 41, 3], ["parsec", 42, 3], ["pretty", 43, 3], ["process", 44, 3], ["rts", 45, 3], ["stm", 46, 3], ["system-cxx-std-lib", 47, 3], ["template-haskell", 48, 3], ["terminfo", 50, 3], ["text", 55, 3], ["time", 56, 3], ["transformers", 57, 3], ["unix", 58, 3], ["xhtml", 59, 3], ["Win32", 60, 3], ["libiserv", 62, 3], ["iserv-proxy", 64, 3], ["semaphore-compat", 67, 3], ["os-string", 70, 3], ["ghc-experimental", 73, 3], ["ghc-internal", 74, 3], ["ghc-toolchain", 76, 3], ["ghc-platform", 77, 3], ["some", 80, 3], ["th-extras", 88, 3], ["ghc-tags", 92, 3], ["quickcheck-classes-base", 99, 3], ["break", 101, 3], ["ChasingBottoms", 103, 3], ["cabal-install-solver", 105, 3], ["cabal-install", 106, 3], ["newtype-generics", 109, 3], ["servant-lucid", 112, 3], ["stm-containers", 114, 3], ["regex-tdfa", 115, 3], ["hiedb", 116, 3], ["relude", 118, 3], ["ghc-trace-events", 121, 5], ["gi-cairo-connector", 122, 5], ["ghc-prof", 123, 5], ["env-guard", 124, 5], ["package-version", 125, 5], ["gtk", 129, 3], ["hip", 133, 3], ["ascii-predicates", 137, 3], ["ascii-numbers", 146, 3], ["aeson", 154, 3], ["toml-reader", 157, 3], ["ConfigFile", 160, 3], ["libtorch-ffi-helper", 174, 3], ["kqueue", 178, 3], ["mueval", 198, 5], ["lambdabot", 199, 5], ["lambdabot-haskell-plugins", 200, 5], ["singletons-base", 203, 3], ["ghc-exactprint", 206, 3], ["ghc-lib", 208, 3], ["ghc-lib-parser", 209, 3], ["ghc-lib-parser-ex", 210, 3], ["haddock-library", 211, 3], ["apply-refact", 239, 5], ["floskell", 240, 5], ["fourmolu", 241, 5], ["ghcide", 242, 5], ["haskell-language-server", 243, 5], ["hls-plugin-api", 244, 5], ["hlint", 245, 5], ["lsp-types", 246, 5], ["ormolu", 247, 5], ["retrie", 248, 5], ["stylish-haskell", 249, 5]]]);
 const formals$1 = { args: { pkgs: false, haskellLib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/configuration-ghc-9.6.x.nix", [["url", 138, 5], ["name", 139, 5], ["relative", 140, 5], ["sha256", 141, 5]]);
-const pos$2 = nix.positions(here + "/configuration-ghc-9.6.x.nix", [["url", 147, 5], ["name", 148, 5], ["relative", 149, 5], ["sha256", 150, 5]]);
-const pos$3 = nix.positions(here + "/configuration-ghc-9.6.x.nix", [["name", 166, 9], ["url", 167, 9], ["sha256", 168, 9]]);
-const pos$4 = nix.positions(here + "/configuration-ghc-9.6.x.nix", [["editedCabalFile", 161, 5], ["buildDepends", 162, 5], ["patches", 163, 5]]);
-const pos$5 = nix.positions(here + "/configuration-ghc-9.6.x.nix", [["name", 181, 9], ["url", 182, 9], ["sha256", 183, 9], ["excludes", 184, 9]]);
-const pos$6 = nix.positions(here + "/configuration-ghc-9.6.x.nix", [["badPlatforms", 195, 9]]);
-const pos$7 = nix.positions(here + "/configuration-ghc-9.6.x.nix", [["Cabal-syntax", 216, 11], ["Cabal", 217, 11], ["extensions", 218, 11]]);
-const pos$8 = nix.positions(here + "/configuration-ghc-9.6.x.nix", [["apply-refact", 222, 9], ["floskell", 223, 9], ["fourmolu", 224, 9], ["ghcide", 225, 9], ["haskell-language-server", 226, 9], ["hls-plugin-api", 231, 9], ["hlint", 232, 9], ["lsp-types", 233, 9], ["ormolu", 234, 9], ["retrie", 235, 9], ["stylish-haskell", 236, 9]]);
-const pos$9 = nix.positions(here + "/configuration-ghc-9.6.x.nix", [["array", 20, 3], ["base", 21, 3], ["binary", 22, 3], ["bytestring", 23, 3], ["Cabal", 24, 3], ["Cabal-syntax", 25, 3], ["containers", 26, 3], ["deepseq", 27, 3], ["directory", 28, 3], ["exceptions", 29, 3], ["filepath", 30, 3], ["ghc-bignum", 31, 3], ["ghc-boot", 32, 3], ["ghc-boot-th", 33, 3], ["ghc-compact", 34, 3], ["ghc-heap", 35, 3], ["ghc-prim", 36, 3], ["ghci", 37, 3], ["haskeline", 38, 3], ["hpc", 39, 3], ["integer-gmp", 40, 3], ["mtl", 41, 3], ["parsec", 42, 3], ["pretty", 43, 3], ["process", 44, 3], ["rts", 45, 3], ["stm", 46, 3], ["system-cxx-std-lib", 47, 3], ["template-haskell", 48, 3], ["terminfo", 50, 3], ["text", 55, 3], ["time", 56, 3], ["transformers", 57, 3], ["unix", 58, 3], ["xhtml", 59, 3], ["Win32", 60, 3], ["libiserv", 62, 3], ["iserv-proxy", 64, 3], ["semaphore-compat", 67, 3], ["os-string", 70, 3], ["ghc-experimental", 73, 3], ["ghc-internal", 74, 3], ["ghc-toolchain", 76, 3], ["ghc-platform", 77, 3], ["some", 80, 3], ["th-extras", 88, 3], ["ghc-tags", 92, 3], ["quickcheck-classes-base", 99, 3], ["break", 101, 3], ["ChasingBottoms", 103, 3], ["cabal-install-solver", 105, 3], ["cabal-install", 106, 3], ["newtype-generics", 109, 3], ["servant-lucid", 112, 3], ["stm-containers", 114, 3], ["regex-tdfa", 115, 3], ["hiedb", 116, 3], ["relude", 118, 3], ["ghc-trace-events", 121, 5], ["gi-cairo-connector", 122, 5], ["ghc-prof", 123, 5], ["env-guard", 124, 5], ["package-version", 125, 5], ["gtk", 129, 3], ["hip", 133, 3], ["ascii-predicates", 137, 3], ["ascii-numbers", 146, 3], ["aeson", 154, 3], ["toml-reader", 157, 3], ["ConfigFile", 160, 3], ["libtorch-ffi-helper", 174, 3], ["kqueue", 178, 3], ["mueval", 198, 5], ["lambdabot", 199, 5], ["lambdabot-haskell-plugins", 200, 5], ["singletons-base", 203, 3], ["ghc-exactprint", 206, 3], ["ghc-lib", 208, 3], ["ghc-lib-parser", 209, 3], ["ghc-lib-parser-ex", 210, 3], ["haddock-library", 211, 3], ["apply-refact", 239, 5], ["floskell", 240, 5], ["fourmolu", 241, 5], ["ghcide", 242, 5], ["haskell-language-server", 243, 5], ["hls-plugin-api", 244, 5], ["hlint", 245, 5], ["lsp-types", 246, 5], ["ormolu", 247, 5], ["retrie", 248, 5], ["stylish-haskell", 249, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,18 +16,18 @@ export default nix.lambda((args) => (() => {
     return (() => {
       const from = nix.thunk(() => nix.app(nix.sel(pkgs, "lib", "mapAttrs"), (_) => nix.force(nix.lookup(w, "doJailbreak")), super$));
       const from_1 = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => nix.app(nix.lookup(w, "overrideCabal"), (drv) => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             badPlatforms: nix.thunk(() => nix.concat(nix.selOr(drv, () => [], "badPlatforms"), ["aarch64-linux"])),
           })), super$));
       const from_2 = nix.thunk(() => (() => {
         const hls_overlay = (lself) => (lsuper) => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           "Cabal-syntax": nix.thunk(() => nix.sel(lself, "Cabal-syntax_3_10_3_0")),
           Cabal: nix.thunk(() => nix.sel(lself, "Cabal_3_10_3_0")),
           extensions: nix.thunk(() => nix.app(nix.lookup(w, "dontCheck"), nix.thunk(() => nix.app(nix.lookup(w, "doJailbreak"), nix.thunk(() => nix.sel(lself, "extensions_0_1_0_1")))))),
         });
         return nix.app(nix.sel(lib, "mapAttrs"), (_) => (pkg) => nix.app(nix.lookup(w, "doDistribute"), nix.thunk(() => nix.app(nix.sel(pkg, "overrideScope"), hls_overlay))), nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             "apply-refact": nix.thunk(() => nix.app(nix.lookup(w, "addBuildDepend"), nix.thunk(() => nix.sel(self, "data-default-class")), nix.thunk(() => nix.sel(super$, "apply-refact")))),
             floskell: nix.thunk(() => nix.app(nix.lookup(w, "doJailbreak"), nix.thunk(() => nix.sel(super$, "floskell")))),
             fourmolu: nix.thunk(() => nix.app(nix.lookup(w, "dontCheck"), nix.thunk(() => nix.app(nix.lookup(w, "doJailbreak"), nix.thunk(() => nix.sel(self, "fourmolu_0_15_0_0")))))),
@@ -54,7 +46,7 @@ export default nix.lambda((args) => (() => {
           })));
       })());
       return {
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       array: null,
       base: null,
       binary: null,
@@ -121,14 +113,14 @@ export default nix.lambda((args) => (() => {
       gtk: nix.thunk(() => nix.app(nix.lookup(w, "doJailbreak"), nix.thunk(() => nix.sel(super$, "gtk")))),
       hip: nix.thunk(() => nix.app(nix.lookup(w, "appendConfigureFlag"), "--ghc-options=-fsimpl-tick-factor=200", nix.thunk(() => nix.sel(super$, "hip")))),
       "ascii-predicates": nix.thunk(() => nix.app(nix.lookup(w, "appendPatch"), nix.thunk(() => nix.app(nix.sel(pkgs, "fetchpatch"), nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: "https://github.com/typeclasses/ascii-predicates/commit/2e6d9ed45987a8566f3a77eedf7836055c076d1a.patch",
             name: "ascii-predicates-pull-1.patch",
             relative: "ascii-predicates",
             sha256: "sha256-4JguQFZNRQpjZThLrAo13jNeypvLfqFp6o7c1bnkmZo=",
           })))), nix.thunk(() => nix.sel(super$, "ascii-predicates")))),
       "ascii-numbers": nix.thunk(() => nix.app(nix.lookup(w, "appendPatch"), nix.thunk(() => nix.app(nix.sel(pkgs, "fetchpatch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/typeclasses/ascii-numbers/commit/e9474ad91bc997891f1a46afd5d0bdf9b9f7d768.patch",
             name: "ascii-numbers-pull-1.patch",
             relative: "ascii-numbers",
@@ -137,12 +129,12 @@ export default nix.lambda((args) => (() => {
       aeson: nix.thunk(() => nix.app(nix.lookup(w, "dontCheck"), nix.thunk(() => nix.sel(super$, "aeson")))),
       "toml-reader": nix.thunk(() => nix.app(nix.lookup(w, "dontCheck"), nix.thunk(() => nix.sel(super$, "toml-reader")))),
       ConfigFile: nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (drv) => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           editedCabalFile: null,
           buildDepends: nix.thunk(() => nix.concat(nix.selOr(drv, () => [], "buildDepends"), [nix.thunk(() => nix.sel(self, "HUnit"))])),
           patches: nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(pkgs, "fetchpatch"), nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 name: "ConfigFile-pr-12.patch",
                 url: "https://github.com/jgoerzen/configfile/compare/d0a2e654be0b73eadbf2a50661d00574ad7b6f87...83ee30b43f74d2b6781269072cf5ed0f0e00012f.patch",
                 sha256: "sha256-b7u9GiIAd2xpOrM0MfILHNb6Nt7070lNRIadn2l3DfQ=",
@@ -152,7 +144,7 @@ export default nix.lambda((args) => (() => {
       "libtorch-ffi-helper": nix.thunk(() => nix.app(nix.lookup(w, "unmarkBroken"), nix.thunk(() => nix.app(nix.lookup(w, "doDistribute"), nix.thunk(() => nix.sel(super$, "libtorch-ffi-helper")))))),
       kqueue: nix.thunk(() => nix.app(nix.lookup(w, "doJailbreak"), nix.thunk(() => nix.app(nix.lookup(w, "appendPatches"), nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(pkgs, "fetchpatch"), nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 name: "kqueue-ghc-9.6.patch",
                 url: "https://github.com/hesselink/kqueue/pull/10/commits/a2735e807d761410e776482ec04515d9cf76a7f5.patch",
                 sha256: "18rilz4nrwcmlvll3acjx2lp7s129pviggb8fy3hdb0z34ls5j84",

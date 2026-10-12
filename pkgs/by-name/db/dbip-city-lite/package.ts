@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 11, 5], ["hash", 12, 5]], [["mmdb", 26, 12]], [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 32, 5], ["platforms", 33, 5]], [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["dontUnpack", 15, 3], ["installPhase", 17, 3], ["passthru", 26, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 11, 5], ["hash", 12, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["mmdb", 26, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 32, 5], ["platforms", 33, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["dontUnpack", 15, 3], ["installPhase", 17, 3], ["passthru", 26, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,22 +11,22 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "dbip-city-lite",
       version: "2026-10",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.db-ip.com/free/dbip-city-lite-${nix.sel(finalAttrs, "version")}.mmdb.gz`),
           hash: "sha256-yDnUB/haHgvdujVM7xayw5gYLRw07Y2YVVXc4TSzaxQ=",
         })))),
       dontUnpack: true,
       installPhase: "runHook preInstall\n\ngzip -c -d \"$src\" > dbip-city-lite.mmdb\ninstall -Dm444 dbip-city-lite.mmdb \"$out/share/dbip/dbip-city-lite.mmdb\"\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         mmdb: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}/share/dbip/dbip-city-lite.mmdb`),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Free IP to City Lite database by DB-IP",
         homepage: "https://db-ip.com/db/download/ip-to-city-lite",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-40")),

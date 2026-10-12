@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["description", 30, 5], ["license", 31, 5], ["homepage", 32, 5], ["maintainers", 33, 5]], [["version", 13, 11], ["pname", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 25, 3], ["configureFlags", 27, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { buildPecl: false, lib: false, zstd: false, "pkg-config": false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 30, 5], ["license", 31, 5], ["homepage", 32, 5], ["maintainers", 33, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 13, 11], ["pname", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 25, 3], ["configureFlags", 27, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const version = "0.18.0";
   return nix.app(buildPecl, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: version,
       pname: "zstd",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kjdev",
           repo: "php-ext-zstd",
           rev: version,
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [zstd]),
       configureFlags: nix.thunk(() => ["--with-libzstd"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Zstd Extension for PHP",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/kjdev/php-ext-zstd",

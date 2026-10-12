@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["updateScript", 36, 12]], [["description", 39, 5], ["homepage", 40, 5], ["changelog", 41, 5], ["license", 42, 5], ["teams", 43, 5], ["maintainers", 44, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["build-system", 20, 3], ["dependencies", 24, 3], ["pythonImportsCheck", 28, 3], ["doCheck", 33, 3], ["passthru", 36, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchhg: false, setuptools: false, urwid: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 36, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 39, 5], ["homepage", 40, 5], ["changelog", 41, 5], ["license", 42, 5], ["teams", 43, 5], ["maintainers", 44, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["build-system", 20, 3], ["dependencies", 24, 3], ["pythonImportsCheck", 28, 3], ["doCheck", 33, 3], ["passthru", 36, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.8.0-unstable-2023-04-08";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchhg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://repos.goffi.org/urwid-satext",
           rev: "6689aa54b20cb38731c68d4d39d86d01d25c21fa",
           hash: "sha256-llCONyYV2kVVmT4EsugnW9j5X5PIeYEnnk4i5rQnE0w=",
@@ -29,9 +26,9 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [urwid]);
       const pythonImportsCheck = nix.thunk(() => ["urwid_satext"]);
       const doCheck = false;
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: null }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: null }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "SàT extension widgets for Urwid",
         homepage: "https://libervia.org",
         changelog: nix.thunk(() => nix.str`https://repos.goffi.org/urwid-satext/file/${nix.sel(src, "rev")}/CHANGELOG`),
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "oluchitheanalyst"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

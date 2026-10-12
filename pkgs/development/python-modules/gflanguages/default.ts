@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION", 33, 7]], [["description", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["pythonRelaxDeps", 31, 3], ["env", 33, 3], ["build-system", 35, 3], ["dependencies", 40, 3], ["nativeCheckInputs", 46, 3], ["pythonImportsCheck", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, protobuf: false, pytestCheckHook: false, regex: false, setuptools: false, "setuptools-scm": false, uharfbuzz: false, youseedee: false, gfmetadata: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION", 33, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["pythonRelaxDeps", 31, 3], ["env", 33, 3], ["build-system", 35, 3], ["dependencies", 40, 3], ["nativeCheckInputs", 46, 3], ["pythonImportsCheck", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,25 +19,25 @@ export default nix.lambda((args) => (() => {
   const youseedee = nix.arg($, "youseedee");
   const gfmetadata = nix.arg($, "gfmetadata");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gflanguages",
       version: "0.7.11",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "googlefonts",
           repo: "lang",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-skybvMeSP+F3Bz3PJEB7ZIEVhLdwBc8+VemDcC+1FZc=",
         })))),
       pythonRelaxDeps: nix.thunk(() => ["protobuf"]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: "python" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: "python" })),
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
       dependencies: nix.thunk(() => [protobuf, regex, gfmetadata]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, regex, uharfbuzz, youseedee]),
       pythonImportsCheck: nix.thunk(() => ["gflanguages"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python library for Google Fonts language metadata",
         homepage: "https://github.com/googlefonts/lang",
         changelog: nix.thunk(() => nix.str`https://github.com/googlefonts/lang/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

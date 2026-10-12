@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 25, 13], ["version", 25, 19], ["sha256", 26, 5]], [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5]], [["version", 18, 3], ["format", 19, 3], ["pname", 20, 3], ["disabled", 22, 3], ["src", 24, 3], ["doCheck", 30, 3], ["propagatedBuildInputs", 32, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, isPy3k: false, numpy: false, "django-colorful": false, pillow: false, psycopg2: false, pyparsing: false, django: false, celery: false, boto3: false, "importlib-metadata": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 25, 13], ["version", 25, 19], ["sha256", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 18, 3], ["format", 19, 3], ["pname", 20, 3], ["disabled", 22, 3], ["src", 24, 3], ["doCheck", 30, 3], ["propagatedBuildInputs", 32, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "django-raster";
       const disabled = nix.thunk(() => !nix.asBool(isPy3k));
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           sha256: "213758fe96d74be502f69f2620f7666961a85caa0551d14573637315035a9745",
@@ -46,13 +44,13 @@ export default nix.lambda((args) => (() => {
         importlib_metadata,
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Basic raster data integration for Django",
         homepage: "https://github.com/geodesign/django-raster",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         version,
         format,
         pname,

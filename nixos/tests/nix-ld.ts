@@ -2,34 +2,29 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nix-ld.nix", [[["enable", 8, 23]], [["nix-ld", 8, 16]], [["systemPackages", 10, 19]], [["programs", 8, 7], ["environment", 10, 7]], [["machine", 5, 9]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 18, 3]]]);
 const formals$1 = { args: {  }, ellipsis: true };
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/nix-ld.nix", [["enable", 8, 23]]);
-const pos$2 = nix.positions(here + "/nix-ld.nix", [["nix-ld", 8, 16]]);
-const pos$3 = nix.positions(here + "/nix-ld.nix", [["systemPackages", 10, 19]]);
-const pos$4 = nix.positions(here + "/nix-ld.nix", [["programs", 8, 7], ["environment", 10, 7]]);
-const pos$5 = nix.positions(here + "/nix-ld.nix", [["machine", 5, 9]]);
-const pos$6 = nix.positions(here + "/nix-ld.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     name: "nix-ld",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           programs: nix.thunk(() => ({
-            [nix.POS]: pos$2,
-            "nix-ld": nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
+            [nix.POS]: $pos[1],
+            "nix-ld": nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "patched-hello", nix.thunk(() => ({})), nix.thunk(() => nix.str`install -D -m755 ${nix.sel(pkgs, "hello")}/bin/hello $out/bin/hello
 patchelf $out/bin/hello --set-interpreter $(cat ${nix.sel(config, "programs", "nix-ld", "package")}/nix-support/ldpath)

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 7], ["hash", 23, 7], ["nativeBuildInputs", 24, 7]], [["url", 27, 7], ["hash", 28, 7]], [["x86_64-linux", 21, 5], ["aarch64-darwin", 26, 5]], [["changelog", 88, 5], ["description", 89, 5], ["downloadPage", 90, 5], ["homepage", 91, 5], ["license", 92, 5], ["longDescription", 93, 5], ["mainProgram", 97, 5], ["maintainers", 98, 5], ["platforms", 102, 5], ["sourceProvenance", 103, 5]], [["pname", 33, 3], ["version", 34, 11], ["src", 36, 3], ["nativeBuildInputs", 38, 3], ["sourceRoot", 40, 3], ["unpackPhase", 42, 3], ["installPhase", 46, 3], ["postFixup", 80, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchzip: false, fetchurl: false, dpkg: false, makeWrapper: false, addDriverRunpath: false, electron: false, _7zz: false, withTetrioPlus: true, "tetrio-plus": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 7], ["hash", 23, 7], ["nativeBuildInputs", 24, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 27, 7], ["hash", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["x86_64-linux", 21, 5], ["aarch64-darwin", 26, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 88, 5], ["description", 89, 5], ["downloadPage", 90, 5], ["homepage", 91, 5], ["license", 92, 5], ["longDescription", 93, 5], ["mainProgram", 97, 5], ["maintainers", 98, 5], ["platforms", 102, 5], ["sourceProvenance", 103, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 11], ["src", 36, 3], ["nativeBuildInputs", 38, 3], ["sourceRoot", 40, 3], ["unpackPhase", 42, 3], ["installPhase", 46, 3], ["postFixup", 80, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,21 +23,21 @@ export default nix.lambda((args) => (() => {
   const system = nix.thunk(() => nix.attr(from, "system"));
   const version = "10";
   const srcs = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     "x86_64-linux": nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: nix.thunk(() => nix.str`https://tetr.io/about/desktop/builds/${version}/TETR.IO%20Setup.deb`),
         hash: "sha256-2FtFCajNEj7O8DGangDecs2yeKbufYLx1aZb3ShnYvw=",
         nativeBuildInputs: nix.thunk(() => [dpkg]),
       })))),
     "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: nix.thunk(() => nix.str`https://tetr.io/about/desktop/builds/${version}/TETR.IO%20Setup%20arm64.dmg`),
         hash: "sha256-PbK9XEynpii35p6DQYiPbaRM4guPazWd5N4Dr2O4H24=",
       })))),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "tetrio-desktop",
       version: version,
       src: nix.thunk(() => nix.selOr(srcs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${system}`)), nix.key(nix.force(system)))),
@@ -80,7 +76,7 @@ runHook postInstall
   --add-flags $out/share/TETR.IO/app.asar
 `))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: "https://tetr.io/about/desktop/history/",
         description: "Desktop client for TETR.IO, an online stacker game",
         downloadPage: "https://tetr.io/about/desktop/",

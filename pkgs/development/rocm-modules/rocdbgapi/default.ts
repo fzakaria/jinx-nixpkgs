@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 62, 5], ["repo", 63, 5], ["tag", 64, 5], ["hash", 65, 5]], [["finalAttrs", 100, 54]], [["updateScript", 100, 12]], [["description", 103, 5], ["homepage", 104, 5], ["license", 105, 5], ["teams", 106, 5], ["platforms", 107, 5]], [["pname", 49, 3], ["version", 50, 3], ["outputs", 52, 3], ["buildFlags", 59, 3], ["src", 61, 3], ["nativeBuildInputs", 68, 3], ["buildInputs", 79, 3], ["cmakeFlags", 85, 3], ["postInstall", 94, 3], ["passthru", 100, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rocmUpdateScript: false, cmake: false, "rocm-cmake": false, "rocm-comgr": false, "rocm-runtime": false, hwdata: false, texliveSmall: false, doxygen: false, graphviz: false, writableTmpDirAsHomeHook: false, buildDocs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 62, 5], ["repo", 63, 5], ["tag", 64, 5], ["hash", 65, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["finalAttrs", 100, 54]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 100, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 103, 5], ["homepage", 104, 5], ["license", 105, 5], ["teams", 106, 5], ["platforms", 107, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 49, 3], ["version", 50, 3], ["outputs", 52, 3], ["buildFlags", 59, 3], ["src", 61, 3], ["nativeBuildInputs", 68, 3], ["buildInputs", 79, 3], ["cmakeFlags", 85, 3], ["postInstall", 94, 3], ["passthru", 100, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -53,13 +49,13 @@ export default nix.lambda((args) => (() => {
         ];
       })()))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "rocdbgapi",
       version: "7.2.3",
       outputs: nix.thunk(() => nix.concat(["out"], nix.app(nix.sel(lib, "optionals"), buildDocs, nix.thunk(() => ["doc"])))),
       buildFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), buildDocs, nix.thunk(() => ["doc"]))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ROCm",
           repo: "ROCdbgapi",
           tag: nix.thunk(() => nix.str`rocm-${nix.sel(finalAttrs, "version")}`),
@@ -75,11 +71,11 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), buildDocs, "mkdir -p $doc/share/doc/amd-dbgapi/\nmv $out/share/html/amd-dbgapi $doc/share/doc/amd-dbgapi/html\nrmdir $out/share/html\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: pos$2, finalAttrs: finalAttrs })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: $pos[1], finalAttrs: finalAttrs })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Debugger support for control of execution and inspection state of AMD's GPU architectures",
         homepage: "https://github.com/ROCm/ROCdbgapi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

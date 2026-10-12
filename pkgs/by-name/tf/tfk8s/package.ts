@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["sample1", 37, 5]], [["tests", 36, 12]], [["description", 41, 5], ["license", 42, 5], ["longDescription", 43, 5], ["homepage", 50, 5], ["maintainers", 51, 5], ["mainProgram", 52, 5]], [["pname", 9, 3], ["version", 10, 3], ["tag", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["ldflags", 22, 3], ["doCheck", 29, 3], ["doInstallCheck", 31, 3], ["installCheckPhase", 32, 3], ["passthru", 36, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["sample1", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 36, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 41, 5], ["license", 42, 5], ["longDescription", 43, 5], ["homepage", 50, 5], ["maintainers", 51, 5], ["mainProgram", 52, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["tag", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["ldflags", 22, 3], ["doCheck", 29, 3], ["doInstallCheck", 31, 3], ["installCheckPhase", 32, 3], ["passthru", 36, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.10";
       const tag = nix.thunk(() => nix.str`v${version}`);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jrhouston",
           repo: "tfk8s",
           rev: tag,
@@ -38,14 +34,14 @@ export default nix.lambda((args) => (() => {
       const installCheckPhase = nix.thunk(() => nix.str`$out/bin/tfk8s --version | grep ${tag} > /dev/null
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           sample1: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests/sample1"), nix.thunk(() => ({})))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Utility to convert Kubernetes YAML manifests to Terraform's HCL format",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         longDescription: "tfk8s is a tool that makes it easier to work with the Terraform Kubernetes Provider.\nIf you want to copy examples from the Kubernetes documentation or migrate existing YAML manifests and use them with Terraform without having to convert YAML to HCL by hand, this tool is for you.\nFeatures:\n* Convert a YAML file containing multiple manifests.\n* Strip out server side fields when piping kubectl get $R -o yaml | tfk8s --strip\n",
@@ -54,7 +50,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "tfk8s",
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         tag,

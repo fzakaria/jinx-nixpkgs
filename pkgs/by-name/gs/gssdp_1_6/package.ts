@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 35, 5], ["hash", 36, 5]], [["attrPath", 85, 7], ["packageName", 86, 7]], [["gssdp-tools", 90, 15]], [["updateScript", 84, 5], ["tests", 89, 5]], [["description", 95, 5], ["homepage", 96, 5], ["license", 97, 5], ["teams", 98, 5], ["platforms", 99, 5]], [["pname", 23, 3], ["version", 24, 3], ["outputs", 26, 3], ["src", 34, 3], ["depsBuildBuild", 39, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 55, 3], ["propagatedBuildInputs", 59, 3], ["mesonFlags", 63, 3], ["doCheck", 72, 3], ["postFixup", 74, 3], ["passthru", 83, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, meson: false, ninja: false, "pkg-config": false, "gobject-introspection": false, vala: false, "gi-docgen": false, python3: false, libsoup_3: false, glib: false, gnome: false, "gssdp-tools": false, withIntrospection: true, buildPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["attrPath", 85, 7], ["packageName", 86, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["gssdp-tools", 90, 15]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 84, 5], ["tests", 89, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 95, 5], ["homepage", 96, 5], ["license", 97, 5], ["teams", 98, 5], ["platforms", 99, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["outputs", 26, 3], ["src", 34, 3], ["depsBuildBuild", 39, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 55, 3], ["propagatedBuildInputs", 59, 3], ["mesonFlags", 63, 3], ["doCheck", 72, 3], ["postFixup", 74, 3], ["passthru", 83, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const withIntrospection = nix.argOr($, "withIntrospection", () => (nix.asBool(nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), gobject_introspection)) && nix.asBool(nix.app(nix.sel(stdenv, "hostPlatform", "emulatorAvailable"), buildPackages))));
   const buildPackages = nix.arg($, "buildPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "gssdp",
       version: "1.6.6",
       outputs: nix.thunk(() => nix.concat(["out", "dev"], nix.app(nix.sel(lib, "optionals"), withIntrospection, nix.thunk(() => ["devdoc"])))),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gssdp/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gssdp-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-dn0idSVM4O/q6sZEGf+fTwrUcNE072cvXFVrKrt4a8s=",
         })))),
@@ -51,12 +46,12 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withIntrospection, "# Move developer documentation to devdoc output.\n# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nfind -L \"$out/share/doc\" -type f -regex '.*\\.devhelp2?' -print0 \\\n  | while IFS= read -r -d '' file; do\n    moveToOutput \"$(dirname \"${file/\"$out/\"/}\")\" \"$devdoc\"\ndone\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, attrPath: "gssdp_1_6", packageName: "gssdp" })))),
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, "gssdp-tools": gssdp_tools })),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], attrPath: "gssdp_1_6", packageName: "gssdp" })))),
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], "gssdp-tools": gssdp_tools })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "GObject-based API for handling resource discovery and announcement over SSDP",
         homepage: "http://www.gupnp.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),

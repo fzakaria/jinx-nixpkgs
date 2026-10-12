@@ -2,61 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/types-attrTag.nix", [[["type", 17, 13]], [["type", 20, 13]], [["left", 16, 11], ["right", 19, 11]], [["type", 14, 7]], [["type", 28, 11]], [["type", 33, 15]], [["type", 36, 15]], [["left", 32, 13], ["right", 35, 13]], [["type", 31, 11]], [["left", 27, 9], ["right", 30, 9]], [["type", 26, 7]], [["type", 46, 13]], [["type", 49, 13]], [["yay", 45, 11], ["extensible", 48, 11]], [["type", 43, 7]], [["type", 61, 19]], [["bar", 60, 17]], [["options", 59, 15]], [["type", 58, 13]], [["type", 67, 13], ["description", 68, 13]], [["foo", 57, 11], ["qux", 66, 11]], [["type", 55, 7]], [["intStrings", 13, 5], ["nested", 25, 5], ["merged", 42, 5], ["submodules", 54, 5], ["okChecks", 73, 5]], [["type", 82, 15]], [["type", 85, 15]], [["nay", 81, 13], ["extensible", 84, 13]], [["type", 79, 9]], [["merged", 78, 15]], [["options", 78, 7]], [["a", 96, 7], ["b", 97, 7]], [["a", 100, 9]], [["b", 101, 9]], [["int", 104, 9]], [["string", 105, 9]], [["rite", 107, 28]], [["left", 108, 32]], [["left", 109, 26]], [["right", 110, 22]], [["syntaxError", 93, 16], ["syntaxError2", 94, 16], ["syntaxError3", 95, 16], ["syntaxError4", 99, 16], ["mergeError", 103, 16], ["badTagError", 107, 16], ["badTagTypeError", 108, 16], ["numberOne", 109, 16], ["hello", 110, 16]], [["left", 111, 18]], [["right", 111, 12]], [["nay", 112, 21]], [["yay", 113, 21]], [["extensible", 114, 24]], [["extensible", 115, 24]], [["negative", 112, 12], ["positive", 113, 12], ["extensi-foo", 114, 12], ["extensi-bar", 115, 12]], [["right", 117, 43]], [["left", 118, 47]], [["nay", 119, 42]], [["yay", 120, 42]], [["extensible", 121, 45]], [["extensible", 122, 45]], [["intStrings", 93, 5], ["nested", 111, 5], ["merged", 112, 5], ["okChecks", 116, 5]], [["options", 12, 3], ["imports", 75, 3], ["config", 92, 3]]]);
 const formals$1 = { args: { lib: false, config: false, options: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/types-attrTag.nix", [["type", 17, 13]]);
-const pos$2 = nix.positions(here + "/types-attrTag.nix", [["type", 20, 13]]);
-const pos$3 = nix.positions(here + "/types-attrTag.nix", [["left", 16, 11], ["right", 19, 11]]);
-const pos$4 = nix.positions(here + "/types-attrTag.nix", [["type", 14, 7]]);
-const pos$5 = nix.positions(here + "/types-attrTag.nix", [["type", 28, 11]]);
-const pos$6 = nix.positions(here + "/types-attrTag.nix", [["type", 33, 15]]);
-const pos$7 = nix.positions(here + "/types-attrTag.nix", [["type", 36, 15]]);
-const pos$8 = nix.positions(here + "/types-attrTag.nix", [["left", 32, 13], ["right", 35, 13]]);
-const pos$9 = nix.positions(here + "/types-attrTag.nix", [["type", 31, 11]]);
-const pos$10 = nix.positions(here + "/types-attrTag.nix", [["left", 27, 9], ["right", 30, 9]]);
-const pos$11 = nix.positions(here + "/types-attrTag.nix", [["type", 26, 7]]);
-const pos$12 = nix.positions(here + "/types-attrTag.nix", [["type", 46, 13]]);
-const pos$13 = nix.positions(here + "/types-attrTag.nix", [["type", 49, 13]]);
-const pos$14 = nix.positions(here + "/types-attrTag.nix", [["yay", 45, 11], ["extensible", 48, 11]]);
-const pos$15 = nix.positions(here + "/types-attrTag.nix", [["type", 43, 7]]);
-const pos$16 = nix.positions(here + "/types-attrTag.nix", [["type", 61, 19]]);
-const pos$17 = nix.positions(here + "/types-attrTag.nix", [["bar", 60, 17]]);
-const pos$18 = nix.positions(here + "/types-attrTag.nix", [["options", 59, 15]]);
-const pos$19 = nix.positions(here + "/types-attrTag.nix", [["type", 58, 13]]);
-const pos$20 = nix.positions(here + "/types-attrTag.nix", [["type", 67, 13], ["description", 68, 13]]);
-const pos$21 = nix.positions(here + "/types-attrTag.nix", [["foo", 57, 11], ["qux", 66, 11]]);
-const pos$22 = nix.positions(here + "/types-attrTag.nix", [["type", 55, 7]]);
-const pos$23 = nix.positions(here + "/types-attrTag.nix", [["intStrings", 13, 5], ["nested", 25, 5], ["merged", 42, 5], ["submodules", 54, 5], ["okChecks", 73, 5]]);
-const pos$24 = nix.positions(here + "/types-attrTag.nix", [["type", 82, 15]]);
-const pos$25 = nix.positions(here + "/types-attrTag.nix", [["type", 85, 15]]);
-const pos$26 = nix.positions(here + "/types-attrTag.nix", [["nay", 81, 13], ["extensible", 84, 13]]);
-const pos$27 = nix.positions(here + "/types-attrTag.nix", [["type", 79, 9]]);
-const pos$28 = nix.positions(here + "/types-attrTag.nix", [["merged", 78, 15]]);
-const pos$29 = nix.positions(here + "/types-attrTag.nix", [["options", 78, 7]]);
-const pos$30 = nix.positions(here + "/types-attrTag.nix", [["a", 96, 7], ["b", 97, 7]]);
-const pos$31 = nix.positions(here + "/types-attrTag.nix", [["a", 100, 9]]);
-const pos$32 = nix.positions(here + "/types-attrTag.nix", [["b", 101, 9]]);
-const pos$33 = nix.positions(here + "/types-attrTag.nix", [["int", 104, 9]]);
-const pos$34 = nix.positions(here + "/types-attrTag.nix", [["string", 105, 9]]);
-const pos$35 = nix.positions(here + "/types-attrTag.nix", [["rite", 107, 28]]);
-const pos$36 = nix.positions(here + "/types-attrTag.nix", [["left", 108, 32]]);
-const pos$37 = nix.positions(here + "/types-attrTag.nix", [["left", 109, 26]]);
-const pos$38 = nix.positions(here + "/types-attrTag.nix", [["right", 110, 22]]);
-const pos$39 = nix.positions(here + "/types-attrTag.nix", [["syntaxError", 93, 16], ["syntaxError2", 94, 16], ["syntaxError3", 95, 16], ["syntaxError4", 99, 16], ["mergeError", 103, 16], ["badTagError", 107, 16], ["badTagTypeError", 108, 16], ["numberOne", 109, 16], ["hello", 110, 16]]);
-const pos$40 = nix.positions(here + "/types-attrTag.nix", [["left", 111, 18]]);
-const pos$41 = nix.positions(here + "/types-attrTag.nix", [["right", 111, 12]]);
-const pos$42 = nix.positions(here + "/types-attrTag.nix", [["nay", 112, 21]]);
-const pos$43 = nix.positions(here + "/types-attrTag.nix", [["yay", 113, 21]]);
-const pos$44 = nix.positions(here + "/types-attrTag.nix", [["extensible", 114, 24]]);
-const pos$45 = nix.positions(here + "/types-attrTag.nix", [["extensible", 115, 24]]);
-const pos$46 = nix.positions(here + "/types-attrTag.nix", [["negative", 112, 12], ["positive", 113, 12], ["extensi-foo", 114, 12], ["extensi-bar", 115, 12]]);
-const pos$47 = nix.positions(here + "/types-attrTag.nix", [["right", 117, 43]]);
-const pos$48 = nix.positions(here + "/types-attrTag.nix", [["left", 118, 47]]);
-const pos$49 = nix.positions(here + "/types-attrTag.nix", [["nay", 119, 42]]);
-const pos$50 = nix.positions(here + "/types-attrTag.nix", [["yay", 120, 42]]);
-const pos$51 = nix.positions(here + "/types-attrTag.nix", [["extensible", 121, 45]]);
-const pos$52 = nix.positions(here + "/types-attrTag.nix", [["extensible", 122, 45]]);
-const pos$53 = nix.positions(here + "/types-attrTag.nix", [["intStrings", 93, 5], ["nested", 111, 5], ["merged", 112, 5], ["okChecks", 116, 5]]);
-const pos$54 = nix.positions(here + "/types-attrTag.nix", [["options", 12, 3], ["imports", 75, 3], ["config", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -67,59 +14,59 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const mergedSubOption = nix.thunk(() => nix.sel(nix.app(nix.sel(options, "merged", "type", "getSubOptions"), nix.thunk(() => nix.sel(options, "merged", "loc"))), "extensible"));
   return {
-    [nix.POS]: pos$54,
+    [nix.POS]: $pos[53],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$23,
+      [nix.POS]: $pos[22],
       intStrings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "attrTag"), nix.thunk(() => ({
-                [nix.POS]: pos$3,
-                left: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$1, type: nix.thunk(() => nix.sel(types, "int")) })))),
-                right: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$2, type: nix.thunk(() => nix.sel(types, "str")) })))),
+                [nix.POS]: $pos[2],
+                left: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: $pos[0], type: nix.thunk(() => nix.sel(types, "int")) })))),
+                right: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: $pos[1], type: nix.thunk(() => nix.sel(types, "str")) })))),
               })))))),
         })))),
       nested: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           type: nix.thunk(() => nix.app(nix.sel(types, "attrTag"), nix.thunk(() => ({
-              [nix.POS]: pos$10,
-              left: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$5, type: nix.thunk(() => nix.sel(types, "int")) })))),
+              [nix.POS]: $pos[9],
+              left: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: $pos[4], type: nix.thunk(() => nix.sel(types, "int")) })))),
               right: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  [nix.POS]: pos$9,
+                  [nix.POS]: $pos[8],
                   type: nix.thunk(() => nix.app(nix.sel(types, "attrTag"), nix.thunk(() => ({
-                      [nix.POS]: pos$8,
-                      left: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$6, type: nix.thunk(() => nix.sel(types, "int")) })))),
-                      right: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$7, type: nix.thunk(() => nix.sel(types, "str")) })))),
+                      [nix.POS]: $pos[7],
+                      left: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: $pos[5], type: nix.thunk(() => nix.sel(types, "int")) })))),
+                      right: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: $pos[6], type: nix.thunk(() => nix.sel(types, "str")) })))),
                     })))),
                 })))),
             })))),
         })))),
       merged: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "attrTag"), nix.thunk(() => ({
-                [nix.POS]: pos$14,
-                yay: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$12, type: nix.thunk(() => nix.sel(types, "int")) })))),
+                [nix.POS]: $pos[13],
+                yay: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: $pos[11], type: nix.thunk(() => nix.sel(types, "int")) })))),
                 extensible: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                    [nix.POS]: pos$13,
+                    [nix.POS]: $pos[12],
                     type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["foo"]))),
                   })))),
               })))))),
         })))),
       submodules: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$22,
+          [nix.POS]: $pos[21],
           type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "attrTag"), nix.thunk(() => ({
-                [nix.POS]: pos$21,
+                [nix.POS]: $pos[20],
                 foo: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                    [nix.POS]: pos$19,
+                    [nix.POS]: $pos[18],
                     type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                        [nix.POS]: pos$18,
+                        [nix.POS]: $pos[17],
                         options: nix.thunk(() => ({
-                          [nix.POS]: pos$17,
-                          bar: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$16, type: nix.thunk(() => nix.sel(types, "int")) })))),
+                          [nix.POS]: $pos[16],
+                          bar: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: $pos[15], type: nix.thunk(() => nix.sel(types, "int")) })))),
                         })),
                       })))),
                   })))),
                 qux: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                    [nix.POS]: pos$20,
+                    [nix.POS]: $pos[19],
                     type: nix.thunk(() => nix.sel(types, "str")),
                     description: "A qux for when you don't want a foo",
                   })))),
@@ -130,16 +77,16 @@ export default nix.lambda((args) => (() => {
     imports: nix.thunk(() => [
       nix.path(here, "./docs.nix"),
       nix.thunk(() => ({
-        [nix.POS]: pos$29,
+        [nix.POS]: $pos[28],
         options: nix.thunk(() => ({
-          [nix.POS]: pos$28,
+          [nix.POS]: $pos[27],
           merged: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              [nix.POS]: pos$27,
+              [nix.POS]: $pos[26],
               type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "attrTag"), nix.thunk(() => ({
-                    [nix.POS]: pos$26,
-                    nay: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$24, type: nix.thunk(() => nix.sel(types, "bool")) })))),
+                    [nix.POS]: $pos[25],
+                    nay: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: $pos[23], type: nix.thunk(() => nix.sel(types, "bool")) })))),
                     extensible: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        [nix.POS]: pos$25,
+                        [nix.POS]: $pos[24],
                         type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["bar"]))),
                       })))),
                   })))))),
@@ -148,46 +95,49 @@ export default nix.lambda((args) => (() => {
       })),
     ]),
     config: nix.thunk(() => ({
-      [nix.POS]: pos$53,
+      [nix.POS]: $pos[52],
       intStrings: nix.thunk(() => ({
-        [nix.POS]: pos$39,
+        [nix.POS]: $pos[38],
         syntaxError: 1n,
         syntaxError2: nix.thunk(() => ({})),
-        syntaxError3: nix.thunk(() => ({ [nix.POS]: pos$30, a: true, b: true })),
+        syntaxError3: nix.thunk(() => ({ [nix.POS]: $pos[29], a: true, b: true })),
         syntaxError4: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
-            nix.thunk(() => ({ [nix.POS]: pos$31, a: true })),
-            nix.thunk(() => ({ [nix.POS]: pos$32, b: true })),
+            nix.thunk(() => ({ [nix.POS]: $pos[30], a: true })),
+            nix.thunk(() => ({ [nix.POS]: $pos[31], b: true })),
           ]))),
         mergeError: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
-            nix.thunk(() => ({ [nix.POS]: pos$33, int: nix.thunk(() => nix.builtins.throw("do not eval")) })),
+            nix.thunk(() => ({ [nix.POS]: $pos[32], int: nix.thunk(() => nix.builtins.throw("do not eval")) })),
             nix.thunk(() => ({
-              [nix.POS]: pos$34,
+              [nix.POS]: $pos[33],
               string: nix.thunk(() => nix.builtins.throw("do not eval")),
             })),
           ]))),
-        badTagError: nix.thunk(() => ({ [nix.POS]: pos$35, rite: nix.thunk(() => nix.builtins.throw("do not eval")) })),
-        badTagTypeError: nix.thunk(() => ({ [nix.POS]: pos$36, left: "bad" })),
-        numberOne: nix.thunk(() => ({ [nix.POS]: pos$37, left: 1n })),
-        hello: nix.thunk(() => ({ [nix.POS]: pos$38, right: "hello world" })),
+        badTagError: nix.thunk(() => ({
+          [nix.POS]: $pos[34],
+          rite: nix.thunk(() => nix.builtins.throw("do not eval")),
+        })),
+        badTagTypeError: nix.thunk(() => ({ [nix.POS]: $pos[35], left: "bad" })),
+        numberOne: nix.thunk(() => ({ [nix.POS]: $pos[36], left: 1n })),
+        hello: nix.thunk(() => ({ [nix.POS]: $pos[37], right: "hello world" })),
       })),
       nested: nix.thunk(() => ({
-        [nix.POS]: pos$41,
-        right: nix.thunk(() => ({ [nix.POS]: pos$40, left: "not a number" })),
+        [nix.POS]: $pos[40],
+        right: nix.thunk(() => ({ [nix.POS]: $pos[39], left: "not a number" })),
       })),
       merged: nix.thunk(() => ({
-        [nix.POS]: pos$46,
-        negative: nix.thunk(() => ({ [nix.POS]: pos$42, nay: false })),
-        positive: nix.thunk(() => ({ [nix.POS]: pos$43, yay: 100n })),
-        "extensi-foo": nix.thunk(() => ({ [nix.POS]: pos$44, extensible: "foo" })),
-        "extensi-bar": nix.thunk(() => ({ [nix.POS]: pos$45, extensible: "bar" })),
+        [nix.POS]: $pos[45],
+        negative: nix.thunk(() => ({ [nix.POS]: $pos[41], nay: false })),
+        positive: nix.thunk(() => ({ [nix.POS]: $pos[42], yay: 100n })),
+        "extensi-foo": nix.thunk(() => ({ [nix.POS]: $pos[43], extensible: "foo" })),
+        "extensi-bar": nix.thunk(() => ({ [nix.POS]: $pos[44], extensible: "bar" })),
       })),
       okChecks: nix.thunk(() => nix.builtins.addErrorContext("while evaluating the assertions", nix.thunk(() => (() => {
-          nix.assert_(nix.eq(nix.sel(config, "intStrings", "hello"), { [nix.POS]: pos$47, right: "hello world" }), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types-attrTag.nix:117:7");
-          nix.assert_(nix.eq(nix.sel(config, "intStrings", "numberOne"), { [nix.POS]: pos$48, left: 1n }), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types-attrTag.nix:118:7");
-          nix.assert_(nix.eq(nix.sel(config, "merged", "negative"), { [nix.POS]: pos$49, nay: false }), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types-attrTag.nix:119:7");
-          nix.assert_(nix.eq(nix.sel(config, "merged", "positive"), { [nix.POS]: pos$50, yay: 100n }), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types-attrTag.nix:120:7");
-          nix.assert_(nix.eq(nix.sel(config, "merged", "extensi-foo"), { [nix.POS]: pos$51, extensible: "foo" }), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types-attrTag.nix:121:7");
-          nix.assert_(nix.eq(nix.sel(config, "merged", "extensi-bar"), { [nix.POS]: pos$52, extensible: "bar" }), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types-attrTag.nix:122:7");
+          nix.assert_(nix.eq(nix.sel(config, "intStrings", "hello"), { [nix.POS]: $pos[46], right: "hello world" }), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types-attrTag.nix:117:7");
+          nix.assert_(nix.eq(nix.sel(config, "intStrings", "numberOne"), { [nix.POS]: $pos[47], left: 1n }), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types-attrTag.nix:118:7");
+          nix.assert_(nix.eq(nix.sel(config, "merged", "negative"), { [nix.POS]: $pos[48], nay: false }), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types-attrTag.nix:119:7");
+          nix.assert_(nix.eq(nix.sel(config, "merged", "positive"), { [nix.POS]: $pos[49], yay: 100n }), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types-attrTag.nix:120:7");
+          nix.assert_(nix.eq(nix.sel(config, "merged", "extensi-foo"), { [nix.POS]: $pos[50], extensible: "foo" }), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types-attrTag.nix:121:7");
+          nix.assert_(nix.eq(nix.sel(config, "merged", "extensi-bar"), { [nix.POS]: $pos[51], extensible: "bar" }), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types-attrTag.nix:122:7");
           nix.assert_(nix.eq(nix.sel(config, "docs", "submodules.<name>.foo.bar", "declarations"), [
             nix.thunk(() => nix.sel({ file: nix.add(here, "/types-attrTag.nix"), line: 123n, column: 72n }, "file")),
           ]), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types-attrTag.nix:123:7");

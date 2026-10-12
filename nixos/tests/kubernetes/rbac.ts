@@ -2,61 +2,34 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/rbac.nix", [[["system", 3, 36]], [["system", 5, 34]], [["name", 13, 9], ["namespace", 14, 9]], [["kind", 10, 7], ["apiVersion", 11, 7], ["metadata", 12, 7]], [["name", 24, 9], ["namespace", 25, 9]], [["apiGroup", 28, 9], ["kind", 29, 9], ["name", 30, 9]], [["kind", 34, 11], ["name", 35, 11], ["namespace", 36, 11]], [["apiVersion", 21, 7], ["kind", 22, 7], ["metadata", 23, 7], ["roleRef", 27, 7], ["subjects", 32, 7]], [["name", 47, 9], ["namespace", 48, 9]], [["apiGroups", 52, 11], ["resources", 53, 11], ["verbs", 54, 11]], [["apiVersion", 44, 7], ["kind", 45, 7], ["metadata", 46, 7], ["rules", 50, 7]], [["name", 70, 23]], [["name", 68, 16], ["namespace", 69, 16], ["labels", 70, 16]], [["name", 74, 11], ["image", 75, 11], ["command", 76, 11], ["imagePullPolicy", 80, 11], ["tty", 81, 11]], [["serviceAccountName", 71, 12], ["containers", 72, 12]], [["kind", 66, 7], ["apiVersion", 67, 7], ["metadata", 68, 7], ["spec", 71, 7]], [["name", 93, 23]], [["name", 91, 16], ["namespace", 92, 16], ["labels", 93, 16]], [["name", 97, 11], ["image", 98, 11], ["command", 99, 11], ["imagePullPolicy", 103, 11], ["tty", 104, 11]], [["serviceAccountName", 94, 12], ["containers", 95, 12]], [["kind", 89, 7], ["apiVersion", 90, 7], ["metadata", 91, 7], ["spec", 94, 7]], [["name", 119, 7], ["pathsToLink", 120, 7], ["paths", 121, 7]], [["Entrypoint", 127, 12]], [["name", 116, 5], ["tag", 117, 5], ["copyToRoot", 118, 5], ["config", 127, 5]], [["name", 131, 5]], [["test", 135, 5]], [["test", 164, 5]], [["singlenode", 202, 3], ["multinode", 203, 3]]]);
 const formals$1 = { args: { system: true, pkgs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/rbac.nix", [["system", 3, 36]]);
-const pos$2 = nix.positions(here + "/rbac.nix", [["system", 5, 34]]);
-const pos$3 = nix.positions(here + "/rbac.nix", [["name", 13, 9], ["namespace", 14, 9]]);
-const pos$4 = nix.positions(here + "/rbac.nix", [["kind", 10, 7], ["apiVersion", 11, 7], ["metadata", 12, 7]]);
-const pos$5 = nix.positions(here + "/rbac.nix", [["name", 24, 9], ["namespace", 25, 9]]);
-const pos$6 = nix.positions(here + "/rbac.nix", [["apiGroup", 28, 9], ["kind", 29, 9], ["name", 30, 9]]);
-const pos$7 = nix.positions(here + "/rbac.nix", [["kind", 34, 11], ["name", 35, 11], ["namespace", 36, 11]]);
-const pos$8 = nix.positions(here + "/rbac.nix", [["apiVersion", 21, 7], ["kind", 22, 7], ["metadata", 23, 7], ["roleRef", 27, 7], ["subjects", 32, 7]]);
-const pos$9 = nix.positions(here + "/rbac.nix", [["name", 47, 9], ["namespace", 48, 9]]);
-const pos$10 = nix.positions(here + "/rbac.nix", [["apiGroups", 52, 11], ["resources", 53, 11], ["verbs", 54, 11]]);
-const pos$11 = nix.positions(here + "/rbac.nix", [["apiVersion", 44, 7], ["kind", 45, 7], ["metadata", 46, 7], ["rules", 50, 7]]);
-const pos$12 = nix.positions(here + "/rbac.nix", [["name", 70, 23]]);
-const pos$13 = nix.positions(here + "/rbac.nix", [["name", 68, 16], ["namespace", 69, 16], ["labels", 70, 16]]);
-const pos$14 = nix.positions(here + "/rbac.nix", [["name", 74, 11], ["image", 75, 11], ["command", 76, 11], ["imagePullPolicy", 80, 11], ["tty", 81, 11]]);
-const pos$15 = nix.positions(here + "/rbac.nix", [["serviceAccountName", 71, 12], ["containers", 72, 12]]);
-const pos$16 = nix.positions(here + "/rbac.nix", [["kind", 66, 7], ["apiVersion", 67, 7], ["metadata", 68, 7], ["spec", 71, 7]]);
-const pos$17 = nix.positions(here + "/rbac.nix", [["name", 93, 23]]);
-const pos$18 = nix.positions(here + "/rbac.nix", [["name", 91, 16], ["namespace", 92, 16], ["labels", 93, 16]]);
-const pos$19 = nix.positions(here + "/rbac.nix", [["name", 97, 11], ["image", 98, 11], ["command", 99, 11], ["imagePullPolicy", 103, 11], ["tty", 104, 11]]);
-const pos$20 = nix.positions(here + "/rbac.nix", [["serviceAccountName", 94, 12], ["containers", 95, 12]]);
-const pos$21 = nix.positions(here + "/rbac.nix", [["kind", 89, 7], ["apiVersion", 90, 7], ["metadata", 91, 7], ["spec", 94, 7]]);
-const pos$22 = nix.positions(here + "/rbac.nix", [["name", 119, 7], ["pathsToLink", 120, 7], ["paths", 121, 7]]);
-const pos$23 = nix.positions(here + "/rbac.nix", [["Entrypoint", 127, 12]]);
-const pos$24 = nix.positions(here + "/rbac.nix", [["name", 116, 5], ["tag", 117, 5], ["copyToRoot", 118, 5], ["config", 127, 5]]);
-const pos$25 = nix.positions(here + "/rbac.nix", [["name", 131, 5]]);
-const pos$26 = nix.positions(here + "/rbac.nix", [["test", 135, 5]]);
-const pos$27 = nix.positions(here + "/rbac.nix", [["test", 164, 5]]);
-const pos$28 = nix.positions(here + "/rbac.nix", [["singlenode", 202, 3], ["multinode", 203, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system }))));
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./base.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, system: system })))), null);
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../..")), nix.thunk(() => ({ [nix.POS]: $pos[0], system: system }))));
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./base.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], system: system })))), null);
   const roServiceAccount = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "ro-service-account.json", nix.thunk(() => nix.app(nix.sel(nix.builtins, "toJSON"), nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         kind: "ServiceAccount",
         apiVersion: "v1",
-        metadata: nix.thunk(() => ({ [nix.POS]: pos$3, name: "read-only", namespace: "default" })),
+        metadata: nix.thunk(() => ({ [nix.POS]: $pos[2], name: "read-only", namespace: "default" })),
       }))))));
   const roRoleBinding = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "ro-role-binding.json", nix.thunk(() => nix.app(nix.sel(nix.builtins, "toJSON"), nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         apiVersion: "rbac.authorization.k8s.io/v1",
         kind: "RoleBinding",
-        metadata: nix.thunk(() => ({ [nix.POS]: pos$5, name: "read-pods", namespace: "default" })),
+        metadata: nix.thunk(() => ({ [nix.POS]: $pos[4], name: "read-pods", namespace: "default" })),
         roleRef: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           apiGroup: "rbac.authorization.k8s.io",
           kind: "Role",
           name: "pod-reader",
         })),
         subjects: nix.thunk(() => [
           nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             kind: "ServiceAccount",
             name: "read-only",
             namespace: "default",
@@ -64,13 +37,13 @@ export default nix.lambda((args) => (() => {
         ]),
       }))))));
   const roRole = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "ro-role.json", nix.thunk(() => nix.app(nix.sel(nix.builtins, "toJSON"), nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         apiVersion: "rbac.authorization.k8s.io/v1",
         kind: "Role",
-        metadata: nix.thunk(() => ({ [nix.POS]: pos$9, name: "pod-reader", namespace: "default" })),
+        metadata: nix.thunk(() => ({ [nix.POS]: $pos[8], name: "pod-reader", namespace: "default" })),
         rules: nix.thunk(() => [
           nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             apiGroups: nix.thunk(() => [""]),
             resources: nix.thunk(() => ["pods"]),
             verbs: nix.thunk(() => ["get", "list", "watch"]),
@@ -78,21 +51,21 @@ export default nix.lambda((args) => (() => {
         ]),
       }))))));
   const kubectlPod = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "kubectl-pod.json", nix.thunk(() => nix.app(nix.sel(nix.builtins, "toJSON"), nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         kind: "Pod",
         apiVersion: "v1",
         metadata: nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           name: "kubectl",
           namespace: "default",
-          labels: nix.thunk(() => ({ [nix.POS]: pos$12, name: "kubectl" })),
+          labels: nix.thunk(() => ({ [nix.POS]: $pos[11], name: "kubectl" })),
         })),
         spec: nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           serviceAccountName: "read-only",
           containers: nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               name: "kubectl",
               image: "kubectl:latest",
               command: nix.thunk(() => ["/bin/tail", "-f"]),
@@ -103,21 +76,21 @@ export default nix.lambda((args) => (() => {
         })),
       }))))));
   const kubectlPod2 = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextDir"), "kubectl-pod-2.json", nix.thunk(() => nix.app(nix.sel(nix.builtins, "toJSON"), nix.thunk(() => ({
-        [nix.POS]: pos$21,
+        [nix.POS]: $pos[20],
         kind: "Pod",
         apiVersion: "v1",
         metadata: nix.thunk(() => ({
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           name: "kubectl-2",
           namespace: "default",
-          labels: nix.thunk(() => ({ [nix.POS]: pos$17, name: "kubectl-2" })),
+          labels: nix.thunk(() => ({ [nix.POS]: $pos[16], name: "kubectl-2" })),
         })),
         spec: nix.thunk(() => ({
-          [nix.POS]: pos$20,
+          [nix.POS]: $pos[19],
           serviceAccountName: "read-only",
           containers: nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$19,
+              [nix.POS]: $pos[18],
               name: "kubectl-2",
               image: "kubectl:latest",
               command: nix.thunk(() => ["/bin/tail", "-f"]),
@@ -131,20 +104,20 @@ export default nix.lambda((args) => (() => {
 cp ${nix.sel(pkgs, "kubernetes")}/bin/kubectl $out/bin/kubectl
 `)));
   const kubectlImage = nix.thunk(() => nix.app(nix.sel(pkgs, "dockerTools", "buildImage"), nix.thunk(() => ({
-      [nix.POS]: pos$24,
+      [nix.POS]: $pos[23],
       name: "kubectl",
       tag: "latest",
       copyToRoot: nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-          [nix.POS]: pos$22,
+          [nix.POS]: $pos[21],
           name: "image-root",
           pathsToLink: nix.thunk(() => ["/bin"]),
           paths: nix.thunk(() => [copyKubectl, nix.thunk(() => nix.sel(pkgs, "busybox")), kubectlPod2]),
         })))),
-      config: nix.thunk(() => ({ [nix.POS]: pos$23, Entrypoint: nix.thunk(() => ["/bin/sh"]) })),
+      config: nix.thunk(() => ({ [nix.POS]: $pos[22], Entrypoint: nix.thunk(() => ["/bin/sh"]) })),
     }))));
-  const base = nix.thunk(() => ({ [nix.POS]: pos$25, name: "rbac" }));
+  const base = nix.thunk(() => ({ [nix.POS]: $pos[24], name: "rbac" }));
   const singlenode = nix.thunk(() => nix.update(base, {
-    [nix.POS]: pos$26,
+    [nix.POS]: $pos[25],
     test: nix.thunk(() => nix.str`machine1.wait_until_succeeds("kubectl get node machine1.my.zyx | grep -w Ready")
 
 machine1.wait_until_succeeds(
@@ -172,7 +145,7 @@ machine1.fail("kubectl exec kubectl -- kubectl delete pods -l name=kubectl")
 `),
   }));
   const multinode = nix.thunk(() => nix.update(base, {
-    [nix.POS]: pos$27,
+    [nix.POS]: $pos[26],
     test: nix.thunk(() => nix.str`# Node token exchange
 machine1.wait_until_succeeds(
     "cp -f /var/lib/cfssl/apitoken.secret /tmp/shared/apitoken.secret"
@@ -208,7 +181,7 @@ machine1.fail("kubectl exec kubectl -- kubectl delete pods -l name=kubectl")
 `),
   }));
   return {
-    [nix.POS]: pos$28,
+    [nix.POS]: $pos[27],
     singlenode: nix.thunk(() => nix.app(nix.lookup(w, "mkKubernetesSingleNodeTest"), singlenode)),
     multinode: nix.thunk(() => nix.app(nix.lookup(w, "mkKubernetesMultiNodeTest"), multinode)),
   };

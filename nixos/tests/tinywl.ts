@@ -2,51 +2,37 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tinywl.nix", [[["maintainers", 6, 5]], [["autologinUser", 14, 22]], [["getty", 14, 16]], [["enable", 15, 23]], [["polkit", 15, 16]], [["systemPackages", 18, 9]], [["enable", 25, 25]], [["graphics", 25, 16]], [["loginShellInit", 28, 21]], [["bash", 28, 16]], [["options", 40, 27]], [["qemu", 40, 22]], [["imports", 13, 7], ["services", 14, 7], ["security", 15, 7], ["environment", 17, 7], ["hardware", 25, 7], ["programs", 28, 7], ["virtualisation", 40, 7]], [["machine", 9, 9]], [["name", 4, 3], ["meta", 5, 3], ["nodes", 9, 3], ["testScript", 43, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/tinywl.nix", [["maintainers", 6, 5]]);
 const formals$2 = { args: { config: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/tinywl.nix", [["autologinUser", 14, 22]]);
-const pos$3 = nix.positions(here + "/tinywl.nix", [["getty", 14, 16]]);
-const pos$4 = nix.positions(here + "/tinywl.nix", [["enable", 15, 23]]);
-const pos$5 = nix.positions(here + "/tinywl.nix", [["polkit", 15, 16]]);
-const pos$6 = nix.positions(here + "/tinywl.nix", [["systemPackages", 18, 9]]);
-const pos$7 = nix.positions(here + "/tinywl.nix", [["enable", 25, 25]]);
-const pos$8 = nix.positions(here + "/tinywl.nix", [["graphics", 25, 16]]);
-const pos$9 = nix.positions(here + "/tinywl.nix", [["loginShellInit", 28, 21]]);
-const pos$10 = nix.positions(here + "/tinywl.nix", [["bash", 28, 16]]);
-const pos$11 = nix.positions(here + "/tinywl.nix", [["options", 40, 27]]);
-const pos$12 = nix.positions(here + "/tinywl.nix", [["qemu", 40, 22]]);
-const pos$13 = nix.positions(here + "/tinywl.nix", [["imports", 13, 7], ["services", 14, 7], ["security", 15, 7], ["environment", 17, 7], ["hardware", 25, 7], ["programs", 28, 7], ["virtualisation", 40, 7]]);
-const pos$14 = nix.positions(here + "/tinywl.nix", [["machine", 9, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$15 = nix.positions(here + "/tinywl.nix", [["name", 4, 3], ["meta", 5, 3], ["nodes", 9, 3], ["testScript", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$15,
+    [nix.POS]: $pos[14],
     name: "tinywl",
-    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: $pos[0], maintainers: [] })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         return {
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            getty: nix.thunk(() => ({ [nix.POS]: pos$2, autologinUser: "alice" })),
+            [nix.POS]: $pos[2],
+            getty: nix.thunk(() => ({ [nix.POS]: $pos[1], autologinUser: "alice" })),
           })),
           security: nix.thunk(() => ({
-            [nix.POS]: pos$5,
-            polkit: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
+            [nix.POS]: $pos[4],
+            polkit: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: true })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [
@@ -57,20 +43,20 @@ export default nix.lambda((args) => (() => {
             })()),
           })),
           hardware: nix.thunk(() => ({
-            [nix.POS]: pos$8,
-            graphics: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
+            [nix.POS]: $pos[7],
+            graphics: nix.thunk(() => ({ [nix.POS]: $pos[6], enable: true })),
           })),
           programs: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             bash: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               loginShellInit: "if [ \"$(tty)\" = \"/dev/tty1\" ]; then\n  set -e\n  test ! -e /tmp/tinywl.log # Only start tinywl once\n  readonly TEST_CMD=\"wayland-info |& tee /tmp/test-wayland.out && touch /tmp/test-wayland-exit-ok; read\"\n  readonly FOOT_CMD=\"foot sh -c '$TEST_CMD'\"\n  tinywl -s \"$FOOT_CMD\" |& tee /tmp/tinywl.log\n  touch /tmp/tinywl-exit-ok\nfi\n",
             })),
           })),
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             qemu: nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               options: nix.thunk(() => ["-vga none -device virtio-gpu-pci"]),
             })),
           })),

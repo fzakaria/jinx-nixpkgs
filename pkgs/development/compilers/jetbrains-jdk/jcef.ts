@@ -2,20 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/jcef.nix", [[["aarch64-linux", 35, 7], ["x86_64-linux", 36, 7]], [["depsArch", 42, 9], ["projectArch", 43, 9], ["targetArch", 44, 9]], [["depsArch", 47, 9], ["projectArch", 48, 9], ["targetArch", 49, 9]], [["linuxarm64", 41, 7], ["linux64", 46, 7]], [["aarch64-linux", 63, 7], ["x86_64-linux", 64, 7]], [["version", 59, 5], ["gitRevision", 60, 5], ["chromiumVersion", 61, 5], ["srcHashes", 62, 5]], [["owner", 72, 7], ["repo", 73, 7], ["tag", 74, 7], ["hash", 75, 7]], [["name", 85, 9], ["url", 86, 9], ["hash", 87, 9]], [["version", 69, 5], ["src", 71, 5], ["cmakeFlags", 78, 5], ["patches", 81, 5]], [["owner", 126, 5], ["repo", 127, 5], ["rev", 128, 13], ["hash", 129, 5]], [["url", 134, 5], ["hash", 135, 5]], [["description", 222, 5], ["license", 223, 5], ["homepage", 224, 5], ["platforms", 225, 5], ["maintainers", 229, 5]], [["pname", 94, 3], ["rev", 95, 3], ["version", 99, 3], ["nativeBuildInputs", 101, 3], ["buildInputs", 115, 3], ["src", 125, 3], ["clang-fmt", 133, 3], ["configurePhase", 138, 3], ["outputs", 172, 3], ["postBuild", 176, 3], ["installPhase", 188, 3], ["dontStrip", 213, 3], ["postFixup", 215, 3], ["meta", 221, 3]]]);
 const formals$1 = { args: { autoPatchelfHook: false, fetchFromGitHub: false, fetchurl: false, fetchpatch: false, stdenv: false, cmake: false, python3: false, jdk: false, git: false, rsync: false, which: false, lib: false, ant: false, ninja: false, "strip-nondeterminism": false, stripJavaArchivesHook: false, debugBuild: true, nss: false, nspr: false, libGL: false, libx11: false, libxdamage: false, boost: false, thrift: false, "cef-binary": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/jcef.nix", [["aarch64-linux", 35, 7], ["x86_64-linux", 36, 7]]);
-const pos$2 = nix.positions(here + "/jcef.nix", [["depsArch", 42, 9], ["projectArch", 43, 9], ["targetArch", 44, 9]]);
-const pos$3 = nix.positions(here + "/jcef.nix", [["depsArch", 47, 9], ["projectArch", 48, 9], ["targetArch", 49, 9]]);
-const pos$4 = nix.positions(here + "/jcef.nix", [["linuxarm64", 41, 7], ["linux64", 46, 7]]);
-const pos$5 = nix.positions(here + "/jcef.nix", [["aarch64-linux", 63, 7], ["x86_64-linux", 64, 7]]);
-const pos$6 = nix.positions(here + "/jcef.nix", [["version", 59, 5], ["gitRevision", 60, 5], ["chromiumVersion", 61, 5], ["srcHashes", 62, 5]]);
-const pos$7 = nix.positions(here + "/jcef.nix", [["owner", 72, 7], ["repo", 73, 7], ["tag", 74, 7], ["hash", 75, 7]]);
-const pos$8 = nix.positions(here + "/jcef.nix", [["name", 85, 9], ["url", 86, 9], ["hash", 87, 9]]);
-const pos$9 = nix.positions(here + "/jcef.nix", [["version", 69, 5], ["src", 71, 5], ["cmakeFlags", 78, 5], ["patches", 81, 5]]);
-const pos$10 = nix.positions(here + "/jcef.nix", [["owner", 126, 5], ["repo", 127, 5], ["rev", 128, 13], ["hash", 129, 5]]);
-const pos$11 = nix.positions(here + "/jcef.nix", [["url", 134, 5], ["hash", 135, 5]]);
-const pos$12 = nix.positions(here + "/jcef.nix", [["description", 222, 5], ["license", 223, 5], ["homepage", 224, 5], ["platforms", 225, 5], ["maintainers", 229, 5]]);
-const pos$13 = nix.positions(here + "/jcef.nix", [["pname", 94, 3], ["rev", 95, 3], ["version", 99, 3], ["nativeBuildInputs", 101, 3], ["buildInputs", 115, 3], ["src", 125, 3], ["clang-fmt", 133, 3], ["configurePhase", 138, 3], ["outputs", 172, 3], ["postBuild", 176, 3], ["installPhase", 188, 3], ["dontStrip", 213, 3], ["postFixup", 215, 3], ["meta", 221, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -45,17 +33,17 @@ export default nix.lambda((args) => (() => {
   const thrift = nix.arg($, "thrift");
   const cef_binary = nix.arg($, "cef-binary");
   const buildType = nix.thunk(() => (nix.asBool(debugBuild) ? "Debug" : "Release"));
-  const platform = nix.thunk(() => nix.selOr({ [nix.POS]: pos$1, "aarch64-linux": "linuxarm64", "x86_64-linux": "linux64" }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
+  const platform = nix.thunk(() => nix.selOr({ [nix.POS]: $pos[0], "aarch64-linux": "linuxarm64", "x86_64-linux": "linux64" }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const arches = nix.thunk(() => nix.sel({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     linuxarm64: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       depsArch: "arm64",
       projectArch: "arm64",
       targetArch: "arm64",
     })),
     linux64: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       depsArch: "amd64",
       projectArch: "x86_64",
       targetArch: "x86_64",
@@ -66,21 +54,21 @@ export default nix.lambda((args) => (() => {
   const targetArch = nix.thunk(() => nix.attr(arches, "targetArch"));
   const cef_name = nix.thunk(() => nix.str`cef_binary_144.0.15+g72717cf+chromium-144.0.7559.172_${platform}_minimal`);
   const cef_bin = nix.thunk(() => nix.app(nix.sel(cef_binary, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       version: "144.0.15",
       gitRevision: "72717cf",
       chromiumVersion: "144.0.7559.172",
       srcHashes: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         "aarch64-linux": "sha256-2w2TDj7LGjYeUjpVvojAsHb8HlqG82AwH8Arg0NxREg=",
         "x86_64-linux": "sha256-JDlZmIEg9ajjuFOL8qAr6HDVbeu3/Cg21Z57fHryfdc=",
       })),
     }))));
   const thrift20 = nix.thunk(() => nix.app(nix.sel(thrift, "overrideAttrs"), (old) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       version: "0.20.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           owner: "apache",
           repo: "thrift",
           tag: "v0.20.0",
@@ -89,7 +77,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "cmakeFlags"), ["-DCMAKE_POLICY_VERSION_MINIMUM=3.10"])),
       patches: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "patches"), [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             name: "thrift-add-missing-cstdint-include-gcc15.patch",
             url: "https://github.com/apache/thrift/commit/947ad66940cfbadd9b24ba31d892dfc1142dd330.patch",
             hash: "sha256-pWcG6/BepUwc/K6cBs+6d74AWIhZ2/wXvCunb/KyB0s=",
@@ -115,14 +103,14 @@ export default nix.lambda((args) => (() => {
       ]);
       const buildInputs = nix.thunk(() => [boost, libGL, libx11, libxdamage, nss, nspr, thrift20]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           owner: "jetbrains",
           repo: "jcef",
           rev: rev,
           hash: "sha256-eYn1T4cRrHeVDSye6FKBv8X3zZPDGFurk6HJG+jPypY=",
         }))));
       const clang_fmt = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           url: "https://storage.googleapis.com/chromium-clang-format/dd736afb28430c9782750fc0fd5f0ed497399263",
           hash: "sha256-4H6FVO9jdZtxH40CSfS+4VESAHgYgYxfCBFSMHdT0hE=",
         }))));
@@ -195,7 +183,7 @@ runHook postInstall
       const dontStrip = debugBuild;
       const postFixup = "# stripJavaArchivesHook gets rid of jar file timestamps, but not of jmod file timestamps\n# We have to manually call strip-nondeterminism to do this for jmod files too\nfind $out -name \"*.jmod\" -exec strip-nondeterminism --type jmod {} +\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         description: "Jetbrains' fork of JCEF",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         homepage: "https://github.com/JetBrains/JCEF",
@@ -206,7 +194,7 @@ runHook postInstall
         })()),
       }));
       return {
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         pname,
         rev,
         version,

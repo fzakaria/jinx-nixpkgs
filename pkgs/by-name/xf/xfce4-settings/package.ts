@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 42, 5], ["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["hash", 46, 5]], [["rev-prefix", 95, 5], ["odd-unstable", 96, 5]], [["updateScript", 94, 12]], [["description", 100, 5], ["homepage", 101, 5], ["license", 102, 5], ["mainProgram", 103, 5], ["platforms", 104, 5], ["teams", 105, 5]], [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["depsBuildBuild", 49, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 62, 3], ["strictDeps", 83, 3], ["configureFlags", 85, 3], ["enableParallelBuilding", 92, 3], ["passthru", 94, 3], ["meta", 99, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, gettext: false, "pkg-config": false, "xfce4-dev-tools": false, "wayland-scanner": false, wrapGAppsHook3: false, "xfce4-exo": false, garcon: false, gtk3: false, "gtk-layer-shell": false, glib: false, libnotify: false, libx11: false, libxext: false, libxfce4ui: false, libxfce4util: false, libxklavier: false, libxml2: false, bashNonInteractive: false, withXrandr: true, upower: false, withUpower: true, "wlr-protocols": false, xapp: false, xfconf: false, "xf86-input-libinput": false, colord: false, withColord: true, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 42, 5], ["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["hash", 46, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rev-prefix", 95, 5], ["odd-unstable", 96, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 94, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 100, 5], ["homepage", 101, 5], ["license", 102, 5], ["mainProgram", 103, 5], ["platforms", 104, 5], ["teams", 105, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["depsBuildBuild", 49, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 62, 3], ["strictDeps", 83, 3], ["configureFlags", 85, 3], ["enableParallelBuilding", 92, 3], ["passthru", 94, 3], ["meta", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,11 +39,11 @@ export default nix.lambda((args) => (() => {
   const withColord = nix.argOr($, "withColord", () => true);
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "xfce4-settings",
       version: "4.20.5",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.xfce.org",
           owner: "xfce",
           repo: "xfce4-settings",
@@ -88,11 +84,11 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), withUpower, nix.thunk(() => ["--enable-upower-glib"])), nix.app(nix.sel(lib, "optionals"), withColord, nix.thunk(() => ["--enable-colord"]))))),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "xfce4-settings-", "odd-unstable": true })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "xfce4-settings-", "odd-unstable": true })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Settings manager for Xfce",
         homepage: "https://gitlab.xfce.org/xfce/xfce4-settings",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

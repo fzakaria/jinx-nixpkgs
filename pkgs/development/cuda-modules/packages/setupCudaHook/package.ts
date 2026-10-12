@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["setupCudaHook", 10, 17], ["ccFullPath", 14, 17]], [["license", 16, 8]], [["name", 8, 3], ["substitutions", 10, 3], ["meta", 16, 3]]]);
 const formals$1 = { args: { lib: false, makeSetupHook: false, backendStdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["setupCudaHook", 10, 17], ["ccFullPath", 14, 17]]);
-const pos$2 = nix.positions(here + "/package.nix", [["license", 16, 8]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 8, 3], ["substitutions", 10, 3], ["meta", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,14 +11,17 @@ export default nix.lambda((args) => (() => {
   const makeSetupHook = nix.arg($, "makeSetupHook");
   const backendStdenv = nix.arg($, "backendStdenv");
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "setup-cuda-hook",
       substitutions: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         setupCudaHook: nix.thunk(() => nix.builtins.placeholder("out")),
         ccFullPath: nix.thunk(() => nix.str`${nix.sel(backendStdenv, "cc")}/bin/${nix.sel(backendStdenv, "cc", "targetPrefix")}c++`),
       })),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({
+        [nix.POS]: $pos[1],
+        license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+      })),
     })), nix.path(here, "./setup-cuda-hook.sh"));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

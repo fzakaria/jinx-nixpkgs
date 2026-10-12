@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["hash", 24, 5]], [["NIX_CFLAGS_COMPILE", 48, 7]], [["homepage", 66, 5], ["description", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 34, 3], ["buildFlags", 43, 3], ["env", 48, 3], ["installFlags", 55, 3], ["postInstall", 60, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, bison: false, flex: false, gccmakedep: false, imake: false, libxau: false, libxaw: false, libxext: false, libxpm: false, libxt: false, "xorg-cf-files": false, xorgproto: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 48, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 66, 5], ["description", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 34, 3], ["buildFlags", 43, 3], ["env", 48, 3], ["installFlags", 55, 3], ["postInstall", 60, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const xorg_cf_files = nix.arg($, "xorg-cf-files");
   const xorgproto = nix.arg($, "xorgproto");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "nas",
       version: "1.9.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/nas/nas-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-t4hK+zj+7AOhlr07fpxHuAPIMOzRDXRV6cl+Eiw3lEw=",
         })))),
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libxau, libxaw, libxext, libxpm, libxt, xorgproto]),
       buildFlags: nix.thunk(() => ["WORLDOPTS=", "World"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-std=c17",
             "-Wno-error=implicit-function-declaration",
@@ -53,7 +50,7 @@ export default nix.lambda((args) => (() => {
 rm -fr $out/nix
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "http://radscan.com/nas.html",
         description: "Network transparent, client/server audio transport system",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,23 +2,10 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/getaddrinfo.nix", [[["::1/128", 7, 5], ["::/0", 8, 5], ["2002::/16", 9, 5], ["::/96", 10, 5], ["::ffff:0:0/96", 11, 5]], [["maintainers", 16, 8]], [["enable", 19, 25]], [["firewall", 19, 16], ["useDHCP", 20, 16]], [["address", 25, 9]], [["enable", 23, 7], ["settings", 24, 7]], [["dnsmasq", 22, 14]], [["networking", 19, 5], ["services", 22, 5]], [["reload", 40, 9], ["precedence", 41, 17]], [["nameservers", 36, 18], ["getaddrinfo", 39, 18], ["useDHCP", 43, 18]], [["systemPackages", 44, 19]], [["networking", 36, 7], ["environment", 44, 7]], [["server", 18, 9], ["client", 33, 9]], [["name", 15, 3], ["meta", 16, 3], ["nodes", 18, 3], ["testScript", 54, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/getaddrinfo.nix", [["::1/128", 7, 5], ["::/0", 8, 5], ["2002::/16", 9, 5], ["::/96", 10, 5], ["::ffff:0:0/96", 11, 5]]);
-const pos$2 = nix.positions(here + "/getaddrinfo.nix", [["maintainers", 16, 8]]);
-const pos$3 = nix.positions(here + "/getaddrinfo.nix", [["enable", 19, 25]]);
-const pos$4 = nix.positions(here + "/getaddrinfo.nix", [["firewall", 19, 16], ["useDHCP", 20, 16]]);
-const pos$5 = nix.positions(here + "/getaddrinfo.nix", [["address", 25, 9]]);
-const pos$6 = nix.positions(here + "/getaddrinfo.nix", [["enable", 23, 7], ["settings", 24, 7]]);
-const pos$7 = nix.positions(here + "/getaddrinfo.nix", [["dnsmasq", 22, 14]]);
-const pos$8 = nix.positions(here + "/getaddrinfo.nix", [["networking", 19, 5], ["services", 22, 5]]);
 const formals$2 = { args: { pkgs: false, nodes: false }, ellipsis: true };
-const pos$9 = nix.positions(here + "/getaddrinfo.nix", [["reload", 40, 9], ["precedence", 41, 17]]);
-const pos$10 = nix.positions(here + "/getaddrinfo.nix", [["nameservers", 36, 18], ["getaddrinfo", 39, 18], ["useDHCP", 43, 18]]);
-const pos$11 = nix.positions(here + "/getaddrinfo.nix", [["systemPackages", 44, 19]]);
-const pos$12 = nix.positions(here + "/getaddrinfo.nix", [["networking", 36, 7], ["environment", 44, 7]]);
-const pos$13 = nix.positions(here + "/getaddrinfo.nix", [["server", 18, 9], ["client", 33, 9]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$14 = nix.positions(here + "/getaddrinfo.nix", [["name", 15, 3], ["meta", 16, 3], ["nodes", 18, 3], ["testScript", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const ip4 = "192.0.2.1";
   const ip6 = "2001:db8::1";
   const precedence = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "::1/128": 50n,
     "::/0": 40n,
     "2002::/16": 30n,
@@ -34,31 +21,31 @@ export default nix.lambda((args) => (() => {
     "::ffff:0:0/96": 100n,
   }));
   return {
-    [nix.POS]: pos$14,
+    [nix.POS]: $pos[13],
     name: "getaddrinfo",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "moraxyc"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       server: (_) => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          firewall: nix.thunk(() => ({ [nix.POS]: pos$3, enable: false })),
+          [nix.POS]: $pos[3],
+          firewall: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: false })),
           useDHCP: false,
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           dnsmasq: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             enable: true,
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               address: nix.thunk(() => [
                 nix.thunk(() => nix.str`/nixos.test/${ip4}`),
                 nix.thunk(() => nix.str`/nixos.test/${ip6}`),
@@ -72,17 +59,17 @@ export default nix.lambda((args) => (() => {
         const pkgs = nix.arg($_1, "pkgs");
         const nodes = nix.arg($_1, "nodes");
         return {
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             nameservers: nix.thunk(() => [
               nix.thunk(() => nix.sel(nix.app(nix.sel(lib, "head"), nix.thunk(() => nix.sel(nodes, "server", "networking", "interfaces", "eth1", "ipv4", "addresses"))), "address")),
             ]),
-            getaddrinfo: nix.thunk(() => ({ [nix.POS]: pos$9, reload: true, precedence: precedence })),
+            getaddrinfo: nix.thunk(() => ({ [nix.POS]: $pos[8], reload: true, precedence: precedence })),
             useDHCP: false,
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(pkgs, "writers", "writePython3Bin"), "request-addr", nix.thunk(() => ({})), "import socket\n\nresults = socket.getaddrinfo(\"nixos.test\", None)\nprint(results[0][4][0])\n")),
             ]),

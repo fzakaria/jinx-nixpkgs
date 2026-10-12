@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["fetchSubmodules", 40, 5], ["hash", 41, 5]], [["description", 103, 5], ["homepage", 104, 5], ["license", 105, 5], ["maintainers", 106, 5], ["platforms", 110, 5]], [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["buildInputs", 44, 3], ["nativeBuildInputs", 68, 3], ["cmakeFlags", 73, 3], ["doCheck", 77, 3], ["postPatch", 79, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, libjack2: false, libsndfile: false, "libxcb-util": false, "libxcb-render-util": false, "libxcb-keysyms": false, "libxcb-image": false, "libxcb-cursor": false, libxdmcp: false, libxau: false, libx11: false, libxcb: false, freetype: false, libxkbcommon: false, cairo: false, glib: false, zenity: false, flac: false, libogg: false, libvorbis: false, libopus: false, cmake: false, pango: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["fetchSubmodules", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 103, 5], ["homepage", 104, 5], ["license", 105, 5], ["maintainers", 106, 5], ["platforms", 110, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["buildInputs", 44, 3], ["nativeBuildInputs", 68, 3], ["cmakeFlags", 73, 3], ["doCheck", 77, 3], ["postPatch", 79, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const pango = nix.arg($, "pango");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "sfizz-ui",
       version: "1.2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sfztools",
           repo: "sfizz-ui",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -95,7 +93,7 @@ substituteInPlace plugins/editor/external/vstgui4/vstgui/lib/finally.h \\
     "other.invoke = false;"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "SFZ based sampler, providing AU / LV2 / PD / VST3 plugins using the sfizz library",
         homepage: "https://github.com/sfztools/sfizz-ui/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

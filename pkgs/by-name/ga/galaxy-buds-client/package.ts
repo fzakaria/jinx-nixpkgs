@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["name", 70, 7], ["exec", 71, 7], ["icon", 72, 7], ["desktopName", 73, 7], ["genericName", 74, 7], ["comment", 75, 7], ["type", 76, 7], ["categories", 77, 7], ["startupNotify", 78, 7]], [["updateScript", 83, 5]], [["description", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["maintainers", 90, 5], ["platforms", 91, 5], ["mainProgram", 92, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["projectFile", 31, 3], ["nugetDeps", 32, 3], ["dotnet-sdk", 33, 3], ["dotnet-runtime", 34, 3], ["dotnetFlags", 35, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 44, 3], ["runtimeDeps", 49, 3], ["postFixup", 57, 3], ["desktopItems", 68, 3], ["passthru", 82, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildDotnetModule: false, fetchFromGitHub: false, dotnetCorePackages: false, fontconfig: false, glib: false, libglvnd: false, libxinerama: false, libxkbcommon: false, libxt: false, libxtst: false, makeWrapper: false, makeDesktopItem: false, copyDesktopItems: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 70, 7], ["exec", 71, 7], ["icon", 72, 7], ["desktopName", 73, 7], ["genericName", 74, 7], ["comment", 75, 7], ["type", 76, 7], ["categories", 77, 7], ["startupNotify", 78, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 83, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["maintainers", 90, 5], ["platforms", 91, 5], ["mainProgram", 92, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["projectFile", 31, 3], ["nugetDeps", 32, 3], ["dotnet-sdk", 33, 3], ["dotnet-runtime", 34, 3], ["dotnetFlags", 35, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 44, 3], ["runtimeDeps", 49, 3], ["postFixup", 57, 3], ["desktopItems", 68, 3], ["passthru", 82, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pname = "galaxy-buds-client";
       const version = "5.2.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "timschneeb",
           repo: "GalaxyBudsClient",
           tag: version,
@@ -59,7 +55,7 @@ rm $out/bin/*.so
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: nix.thunk(() => nix.sel(meta, "mainProgram")),
             exec: nix.thunk(() => nix.sel(meta, "mainProgram")),
             icon: nix.thunk(() => nix.sel(meta, "mainProgram")),
@@ -72,11 +68,11 @@ rm $out/bin/*.so
           })))),
       ]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Unofficial Galaxy Buds Manager",
         homepage: "https://github.com/timschneeb/GalaxyBudsClient",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -88,7 +84,7 @@ rm $out/bin/*.so
         mainProgram: "GalaxyBudsClient",
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

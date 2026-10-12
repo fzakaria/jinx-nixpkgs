@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["doInstallCheck", 23, 7]], [["doCheck", 28, 11]], [["lutok", 27, 9]], [["doInstallCheck", 34, 11]], [["owner", 47, 7], ["repo", 48, 7], ["rev", 49, 7], ["hash", 50, 7]], [["rev-prefix", 75, 42]], [["updateScript", 75, 14]], [["description", 80, 7], ["homepage", 81, 7], ["license", 82, 7], ["maintainers", 83, 7], ["platforms", 84, 7]], [["pname", 38, 5], ["version", 39, 5], ["outputs", 41, 5], ["src", 46, 5], ["strictDeps", 53, 5], ["propagatedBuildInputs", 55, 5], ["nativeBuildInputs", 57, 5], ["enableParallelBuilding", 63, 5], ["makeFlags", 65, 5], ["doCheck", 70, 5], ["checkInputs", 72, 5], ["nativeCheckInputs", 73, 5], ["passthru", 75, 5], ["__structuredAttrs", 77, 5], ["meta", 79, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, atf: false, autoreconfHook: false, kyua: false, lua: false, "pkg-config": false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["doInstallCheck", 23, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["doCheck", 28, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["lutok", 27, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["doInstallCheck", 34, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 47, 7], ["repo", 48, 7], ["rev", 49, 7], ["hash", 50, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["rev-prefix", 75, 42]]);
-const pos$7 = nix.positions(here + "/package.nix", [["updateScript", 75, 14]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 80, 7], ["homepage", 81, 7], ["license", 82, 7], ["maintainers", 83, 7], ["platforms", 84, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 38, 5], ["version", 39, 5], ["outputs", 41, 5], ["src", 46, 5], ["strictDeps", 53, 5], ["propagatedBuildInputs", 55, 5], ["nativeBuildInputs", 57, 5], ["enableParallelBuilding", 63, 5], ["makeFlags", 65, 5], ["doCheck", 70, 5], ["checkInputs", 72, 5], ["nativeCheckInputs", 73, 5], ["passthru", 75, 5], ["__structuredAttrs", 77, 5], ["meta", 79, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,18 +17,18 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(lib, "fix"), (drv) => (() => {
-      const atf$ = nix.thunk(() => nix.app(nix.sel(atf, "overrideAttrs"), (_) => ({ [nix.POS]: pos$1, doInstallCheck: false })));
+      const atf$ = nix.thunk(() => nix.app(nix.sel(atf, "overrideAttrs"), (_) => ({ [nix.POS]: $pos[0], doInstallCheck: false })));
       const kyua$ = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(kyua, "override"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          lutok: nix.thunk(() => nix.app(nix.sel(drv, "overrideAttrs"), (_) => ({ [nix.POS]: pos$2, doCheck: false }))),
-        }))), "overrideAttrs"), (_) => ({ [nix.POS]: pos$4, doInstallCheck: false })));
+          [nix.POS]: $pos[2],
+          lutok: nix.thunk(() => nix.app(nix.sel(drv, "overrideAttrs"), (_) => ({ [nix.POS]: $pos[1], doCheck: false }))),
+        }))), "overrideAttrs"), (_) => ({ [nix.POS]: $pos[3], doInstallCheck: false })));
       return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           pname: "lutok",
           version: "0.4",
           outputs: nix.thunk(() => ["out", "dev"]),
           src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               owner: "freebsd",
               repo: "lutok",
               rev: nix.thunk(() => nix.str`lutok-${nix.sel(finalAttrs, "version")}`),
@@ -51,12 +43,12 @@ export default nix.lambda((args) => (() => {
           checkInputs: nix.thunk(() => [atf$]),
           nativeCheckInputs: nix.thunk(() => [kyua$]),
           passthru: nix.thunk(() => ({
-            [nix.POS]: pos$7,
-            updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$6, "rev-prefix": "lutok-" })))),
+            [nix.POS]: $pos[6],
+            updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[5], "rev-prefix": "lutok-" })))),
           })),
           __structuredAttrs: true,
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             description: "Lightweight C++ API for Lua",
             homepage: "https://github.com/freebsd/lutok/",
             license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

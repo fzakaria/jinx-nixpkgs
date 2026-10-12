@@ -2,53 +2,21 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/basic.nix", [[["HTTP", 7, 5], ["TLS", 8, 5]], [["name", 14, 5], ["text", 15, 5]], [["name", 19, 5], ["text", 20, 5]], [["maintainers", 34, 5]], [["file.file", 50, 21]], [["/hello_world.txt", 49, 19]], [["paths", 48, 17]], [["settings", 47, 15]], [["retry", 59, 19]], [["key-file", 63, 21], ["certificate-file", 64, 21]], [["minimum-version", 68, 19], ["ocsp-update-interval", 70, 19]], [["policy", 57, 17], ["quic", 58, 17], ["identity", 61, 17], ["extraSettings", 67, 17]], [["file.file", 76, 21]], [["/hello_world.rst", 75, 19]], [["paths", 74, 17]], [["tls", 56, 15], ["settings", 73, 15]], [["extensions", 87, 17], ["is_compressible", 88, 17]], [["text/x-rst", 86, 15]], [["compress", 83, 13], ["compress-minimum-size", 84, 13], ["file.mime.addtypes", 85, 13], ["ssl-offload", 91, 13]], [["enable", 42, 11], ["defaultHTTPListenPort", 43, 11], ["defaultTLSListenPort", 44, 11], ["hosts", 45, 11], ["settings", 82, 11]], [["h2o", 41, 18]], [["certificates", 95, 22]], [["pki", 95, 18]], [["allowedTCPPorts", 101, 13], ["allowedUDPPorts", 105, 13]], [["firewall", 100, 11], ["extraHosts", 109, 11]], [["services", 41, 9], ["security", 95, 9], ["networking", 99, 9]], [["systemPackages", 119, 21]], [["certificates", 123, 22]], [["pki", 123, 18]], [["extraHosts", 127, 20]], [["environment", 119, 9], ["security", 123, 9], ["networking", 127, 9]], [["server", 38, 5], ["client", 116, 5]], [["name", 31, 3], ["meta", 33, 3], ["nodes", 37, 3], ["testScript", 134, 3]]]);
 const formals$1 = { args: { hostPkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/basic.nix", [["HTTP", 7, 5], ["TLS", 8, 5]]);
-const pos$2 = nix.positions(here + "/basic.nix", [["name", 14, 5], ["text", 15, 5]]);
-const pos$3 = nix.positions(here + "/basic.nix", [["name", 19, 5], ["text", 20, 5]]);
-const pos$4 = nix.positions(here + "/basic.nix", [["maintainers", 34, 5]]);
 const formals$2 = { args: { config: false }, ellipsis: true };
-const pos$5 = nix.positions(here + "/basic.nix", [["file.file", 50, 21]]);
-const pos$6 = nix.positions(here + "/basic.nix", [["/hello_world.txt", 49, 19]]);
-const pos$7 = nix.positions(here + "/basic.nix", [["paths", 48, 17]]);
-const pos$8 = nix.positions(here + "/basic.nix", [["settings", 47, 15]]);
-const pos$9 = nix.positions(here + "/basic.nix", [["retry", 59, 19]]);
-const pos$10 = nix.positions(here + "/basic.nix", [["key-file", 63, 21], ["certificate-file", 64, 21]]);
-const pos$11 = nix.positions(here + "/basic.nix", [["minimum-version", 68, 19], ["ocsp-update-interval", 70, 19]]);
-const pos$12 = nix.positions(here + "/basic.nix", [["policy", 57, 17], ["quic", 58, 17], ["identity", 61, 17], ["extraSettings", 67, 17]]);
-const pos$13 = nix.positions(here + "/basic.nix", [["file.file", 76, 21]]);
-const pos$14 = nix.positions(here + "/basic.nix", [["/hello_world.rst", 75, 19]]);
-const pos$15 = nix.positions(here + "/basic.nix", [["paths", 74, 17]]);
-const pos$16 = nix.positions(here + "/basic.nix", [["tls", 56, 15], ["settings", 73, 15]]);
-const pos$17 = nix.positions(here + "/basic.nix", [["extensions", 87, 17], ["is_compressible", 88, 17]]);
-const pos$18 = nix.positions(here + "/basic.nix", [["text/x-rst", 86, 15]]);
-const pos$19 = nix.positions(here + "/basic.nix", [["compress", 83, 13], ["compress-minimum-size", 84, 13], ["file.mime.addtypes", 85, 13], ["ssl-offload", 91, 13]]);
-const pos$20 = nix.positions(here + "/basic.nix", [["enable", 42, 11], ["defaultHTTPListenPort", 43, 11], ["defaultTLSListenPort", 44, 11], ["hosts", 45, 11], ["settings", 82, 11]]);
-const pos$21 = nix.positions(here + "/basic.nix", [["h2o", 41, 18]]);
-const pos$22 = nix.positions(here + "/basic.nix", [["certificates", 95, 22]]);
-const pos$23 = nix.positions(here + "/basic.nix", [["pki", 95, 18]]);
-const pos$24 = nix.positions(here + "/basic.nix", [["allowedTCPPorts", 101, 13], ["allowedUDPPorts", 105, 13]]);
-const pos$25 = nix.positions(here + "/basic.nix", [["firewall", 100, 11], ["extraHosts", 109, 11]]);
-const pos$26 = nix.positions(here + "/basic.nix", [["services", 41, 9], ["security", 95, 9], ["networking", 99, 9]]);
 const formals$3 = { args: { nodes: false, pkgs: false }, ellipsis: true };
-const pos$27 = nix.positions(here + "/basic.nix", [["systemPackages", 119, 21]]);
-const pos$28 = nix.positions(here + "/basic.nix", [["certificates", 123, 22]]);
-const pos$29 = nix.positions(here + "/basic.nix", [["pki", 123, 18]]);
-const pos$30 = nix.positions(here + "/basic.nix", [["extraHosts", 127, 20]]);
-const pos$31 = nix.positions(here + "/basic.nix", [["environment", 119, 9], ["security", 123, 9], ["networking", 127, 9]]);
-const pos$32 = nix.positions(here + "/basic.nix", [["server", 38, 5], ["client", 116, 5]]);
 const formals$4 = { args: { nodes: false }, ellipsis: true };
-const pos$33 = nix.positions(here + "/basic.nix", [["name", 31, 3], ["meta", 33, 3], ["nodes", 37, 3], ["testScript", 134, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const hostPkgs = nix.arg($, "hostPkgs");
   const lib = nix.arg($, "lib");
-  const domain = nix.thunk(() => ({ [nix.POS]: pos$1, HTTP: "h2o.local", TLS: "acme.test" }));
+  const domain = nix.thunk(() => ({ [nix.POS]: $pos[0], HTTP: "h2o.local", TLS: "acme.test" }));
   const sawatdi_chao_lok = "สวัสดีชาวโลก";
-  const hello_world_txt = nix.thunk(() => nix.app(nix.sel(hostPkgs, "writeTextFile"), nix.thunk(() => ({ [nix.POS]: pos$2, name: "/hello_world.txt", text: sawatdi_chao_lok }))));
+  const hello_world_txt = nix.thunk(() => nix.app(nix.sel(hostPkgs, "writeTextFile"), nix.thunk(() => ({ [nix.POS]: $pos[1], name: "/hello_world.txt", text: sawatdi_chao_lok }))));
   const hello_world_rst = nix.thunk(() => nix.app(nix.sel(hostPkgs, "writeTextFile"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "/hello_world.rst",
       text: nix.thunk(() => nix.str`====================
 Thaiger Sprint 2025‼
@@ -58,72 +26,82 @@ ${sawatdi_chao_lok}
 `),
     }))));
   return {
-    [nix.POS]: pos$33,
+    [nix.POS]: $pos[32],
     name: "h2o-basic",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "toastal"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$32,
+      [nix.POS]: $pos[31],
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         return {
-          [nix.POS]: pos$26,
+          [nix.POS]: $pos[25],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$21,
+            [nix.POS]: $pos[20],
             h2o: nix.thunk(() => ({
-              [nix.POS]: pos$20,
+              [nix.POS]: $pos[19],
               enable: true,
               defaultHTTPListenPort: 8080n,
               defaultTLSListenPort: 8443n,
               hosts: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`${nix.sel(domain, "HTTP")}`, nix.thunk(() => ({
-                  [nix.POS]: pos$8,
+                  [nix.POS]: $pos[7],
                   settings: nix.thunk(() => ({
-                    [nix.POS]: pos$7,
+                    [nix.POS]: $pos[6],
                     paths: nix.thunk(() => ({
-                      [nix.POS]: pos$6,
-                      "/hello_world.txt": nix.thunk(() => ({ [nix.POS]: pos$5, "file.file": nix.thunk(() => nix.str`${hello_world_txt}`) })),
+                      [nix.POS]: $pos[5],
+                      "/hello_world.txt": nix.thunk(() => ({
+                        [nix.POS]: $pos[4],
+                        "file.file": nix.thunk(() => nix.str`${hello_world_txt}`),
+                      })),
                     })),
                   })),
                 }))],
                 [nix.str`${nix.sel(domain, "TLS")}`, nix.thunk(() => ({
-                  [nix.POS]: pos$16,
+                  [nix.POS]: $pos[15],
                   tls: nix.thunk(() => ({
-                    [nix.POS]: pos$12,
+                    [nix.POS]: $pos[11],
                     policy: "force",
-                    quic: nix.thunk(() => ({ [nix.POS]: pos$9, retry: "ON" })),
+                    quic: nix.thunk(() => ({ [nix.POS]: $pos[8], retry: "ON" })),
                     identity: nix.thunk(() => [
                       nix.thunk(() => ({
-                        [nix.POS]: pos$10,
+                        [nix.POS]: $pos[9],
                         "key-file": nix.path(here, "../../common/acme/server/acme.test.key.pem"),
                         "certificate-file": nix.path(here, "../../common/acme/server/acme.test.cert.pem"),
                       })),
                     ]),
-                    extraSettings: nix.thunk(() => ({ [nix.POS]: pos$11, "minimum-version": "TLSv1.3", "ocsp-update-interval": 0n })),
+                    extraSettings: nix.thunk(() => ({
+                      [nix.POS]: $pos[10],
+                      "minimum-version": "TLSv1.3",
+                      "ocsp-update-interval": 0n,
+                    })),
                   })),
                   settings: nix.thunk(() => ({
-                    [nix.POS]: pos$15,
+                    [nix.POS]: $pos[14],
                     paths: nix.thunk(() => ({
-                      [nix.POS]: pos$14,
-                      "/hello_world.rst": nix.thunk(() => ({ [nix.POS]: pos$13, "file.file": nix.thunk(() => nix.str`${hello_world_rst}`) })),
+                      [nix.POS]: $pos[13],
+                      "/hello_world.rst": nix.thunk(() => ({
+                        [nix.POS]: $pos[12],
+                        "file.file": nix.thunk(() => nix.str`${hello_world_rst}`),
+                      })),
                     })),
                   })),
                 }))],
               ])),
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$19,
+                [nix.POS]: $pos[18],
                 compress: "ON",
                 "compress-minimum-size": 32n,
                 "file.mime.addtypes": nix.thunk(() => ({
-                  [nix.POS]: pos$18,
+                  [nix.POS]: $pos[17],
                   "text/x-rst": nix.thunk(() => ({
-                    [nix.POS]: pos$17,
+                    [nix.POS]: $pos[16],
                     extensions: nix.thunk(() => [".rst"]),
                     is_compressible: "YES",
                   })),
@@ -133,18 +111,18 @@ ${sawatdi_chao_lok}
             })),
           })),
           security: nix.thunk(() => ({
-            [nix.POS]: pos$23,
+            [nix.POS]: $pos[22],
             pki: nix.thunk(() => ({
-              [nix.POS]: pos$22,
+              [nix.POS]: $pos[21],
               certificates: nix.thunk(() => [
                 nix.thunk(() => nix.builtins.readFile(nix.path(here, "../../common/acme/server/ca.cert.pem"))),
               ]),
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$25,
+            [nix.POS]: $pos[24],
             firewall: nix.thunk(() => ({
-              [nix.POS]: pos$24,
+              [nix.POS]: $pos[23],
               allowedTCPPorts: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(config, "services", "h2o")), null);
                 return [
@@ -168,22 +146,22 @@ ${nix.sel(config, "networking", "primaryIPAddress")} ${nix.sel(domain, "TLS")}
         const nodes = nix.arg($_1, "nodes");
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$31,
+          [nix.POS]: $pos[30],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$27,
+            [nix.POS]: $pos[26],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "curl"))]),
           })),
           security: nix.thunk(() => ({
-            [nix.POS]: pos$29,
+            [nix.POS]: $pos[28],
             pki: nix.thunk(() => ({
-              [nix.POS]: pos$28,
+              [nix.POS]: $pos[27],
               certificates: nix.thunk(() => [
                 nix.thunk(() => nix.builtins.readFile(nix.path(here, "../../common/acme/server/ca.cert.pem"))),
               ]),
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$30,
+            [nix.POS]: $pos[29],
             extraHosts: nix.thunk(() => nix.str`${nix.sel(nodes, "server", "networking", "primaryIPAddress")} ${nix.sel(domain, "HTTP")}
 ${nix.sel(nodes, "server", "networking", "primaryIPAddress")} ${nix.sel(domain, "TLS")}
 `),

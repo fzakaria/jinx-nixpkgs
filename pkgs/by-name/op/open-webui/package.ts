@@ -2,19 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["datasets", 23, 13]], [["hash", 34, 7], ["url", 35, 7]], [["CYPRESS_INSTALL_BINARY", 49, 9], ["ONNXRUNTIME_NODE_INSTALL_CUDA", 50, 9], ["NODE_OPTIONS", 51, 9]], [["pname", 27, 5], ["version", 28, 13], ["src", 28, 21], ["pyodideVersion", 32, 5], ["pyodide", 33, 5], ["npmDepsHash", 38, 5], ["npmFlags", 40, 5], ["postPatch", 44, 5], ["env", 49, 5], ["preBuild", 53, 5], ["installPhase", 57, 5]], [["HATCH_BUILD_NO_HOOKS", 79, 7]], [["postgres", 208, 5], ["mariadb", 213, 5], ["unstructured", 217, 5], ["all", 221, 5]], [["open-webui", 244, 28]], [["tests", 243, 5], ["updateScript", 246, 5], ["frontend", 247, 13]], [["shortName", 258, 7], ["fullName", 259, 7], ["url", 260, 7], ["free", 263, 7]], [["changelog", 251, 5], ["description", 252, 5], ["homepage", 253, 5], ["license", 257, 5], ["longDescription", 265, 5], ["mainProgram", 272, 5], ["maintainers", 273, 5]], [["pname", 68, 11], ["version", 68, 17], ["src", 68, 25], ["pyproject", 69, 3], ["build-system", 71, 3], ["postPatch", 74, 3], ["env", 79, 3], ["pythonRelaxDeps", 81, 3], ["dependencies", 83, 3], ["optional-dependencies", 207, 3], ["pythonImportsCheck", 238, 3], ["makeWrapperArgs", 240, 3], ["passthru", 242, 3], ["meta", 250, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, python3Packages: false, nixosTests: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["datasets", 23, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["hash", 34, 7], ["url", 35, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["CYPRESS_INSTALL_BINARY", 49, 9], ["ONNXRUNTIME_NODE_INSTALL_CUDA", 50, 9], ["NODE_OPTIONS", 51, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 27, 5], ["version", 28, 13], ["src", 28, 21], ["pyodideVersion", 32, 5], ["pyodide", 33, 5], ["npmDepsHash", 38, 5], ["npmFlags", 40, 5], ["postPatch", 44, 5], ["env", 49, 5], ["preBuild", 53, 5], ["installPhase", 57, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["HATCH_BUILD_NO_HOOKS", 79, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["postgres", 208, 5], ["mariadb", 213, 5], ["unstructured", 217, 5], ["all", 221, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["open-webui", 244, 28]]);
-const pos$9 = nix.positions(here + "/package.nix", [["tests", 243, 5], ["updateScript", 246, 5], ["frontend", 247, 13]]);
-const pos$10 = nix.positions(here + "/package.nix", [["shortName", 258, 7], ["fullName", 259, 7], ["url", 260, 7], ["free", 263, 7]]);
-const pos$11 = nix.positions(here + "/package.nix", [["changelog", 251, 5], ["description", 252, 5], ["homepage", 253, 5], ["license", 257, 5], ["longDescription", 265, 5], ["mainProgram", 272, 5], ["maintainers", 273, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["pname", 68, 11], ["version", 68, 17], ["src", 68, 25], ["pyproject", 69, 3], ["build-system", 71, 3], ["postPatch", 74, 3], ["env", 79, 3], ["pythonRelaxDeps", 81, 3], ["dependencies", 83, 3], ["optional-dependencies", 207, 3], ["pythonImportsCheck", 238, 3], ["makeWrapperArgs", 240, 3], ["passthru", 242, 3], ["meta", 250, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,21 +16,21 @@ export default nix.lambda((args) => (() => {
   const pname = "open-webui";
   const version = "0.11.4";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "open-webui",
       repo: "open-webui",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-Z7pc1o6AK9XySZLYF8YNSnHyrp85nh8ZmiCw4FWCwW8=",
     }))));
   const datasets = nix.thunk(() => nix.sel(python3Packages, "datasets_3"));
-  const colbert_ai = nix.thunk(() => nix.app(nix.sel(python3Packages, "colbert-ai", "override"), nix.thunk(() => ({ [nix.POS]: pos$2, datasets: datasets }))));
+  const colbert_ai = nix.thunk(() => nix.app(nix.sel(python3Packages, "colbert-ai", "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], datasets: datasets }))));
   const frontend = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => (() => {
       const pname_1 = "open-webui-frontend";
       const version_1 = version;
       const src_1 = src;
       const pyodideVersion = "314.0.3";
       const pyodide = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           hash: "sha256-oCgELZDbqedP377PNuqn1X6IvwrWGNnFBZ6xBAqnYSo=",
           url: nix.thunk(() => nix.str`https://github.com/pyodide/pyodide/releases/download/${pyodideVersion}/pyodide-${pyodideVersion}.tar.bz2`),
         }))));
@@ -49,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const npmFlags = nix.thunk(() => ["--force"]);
       const postPatch = "substituteInPlace package.json \\\n  --replace-fail \"npm run pyodide:fetch && vite build\" \"vite build\"\n";
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         CYPRESS_INSTALL_BINARY: "0",
         ONNXRUNTIME_NODE_INSTALL_CUDA: "skip",
         NODE_OPTIONS: "--max-old-space-size=8192",
@@ -58,7 +47,7 @@ export default nix.lambda((args) => (() => {
 `);
       const installPhase = "runHook preInstall\n\nmkdir -p $out/share\ncp -a build $out/share/open-webui\n\nrunHook postInstall\n";
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname: pname_1,
         version: version_1,
         src: src_1,
@@ -73,7 +62,7 @@ export default nix.lambda((args) => (() => {
       };
     })())));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       pname: pname,
       version: version,
       src: src,
@@ -83,7 +72,7 @@ export default nix.lambda((args) => (() => {
         return [nix.thunk(() => nix.lookup(w, "hatchling"))];
       })()),
       postPatch: "substituteInPlace pyproject.toml \\\n  --replace-fail ', build = \"open_webui/frontend\"' \"\"\n",
-      env: nix.thunk(() => ({ [nix.POS]: pos$6, HATCH_BUILD_NO_HOOKS: true })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[5], HATCH_BUILD_NO_HOOKS: true })),
       pythonRelaxDeps: true,
       dependencies: nix.thunk(() => (() => {
         const w_1 = nix.withScope(python3Packages, null);
@@ -209,7 +198,7 @@ export default nix.lambda((args) => (() => {
       "optional-dependencies": nix.thunk(() => (() => {
         const w_2 = nix.withScope(python3Packages, null);
         return {
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           postgres: nix.thunk(() => [
             nix.thunk(() => nix.lookup(w_2, "pgvector")),
             nix.thunk(() => nix.lookup(w_2, "psycopg2-binary")),
@@ -235,21 +224,21 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--set FRONTEND_BUILD_DIR ${frontend}/share/open-webui`),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           "open-webui": nix.thunk(() => nix.attr(nixosTests, "open-webui")),
         })),
         updateScript: nix.path(here, "./update.sh"),
         frontend: frontend,
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         changelog: nix.thunk(() => nix.str`https://github.com/open-webui/open-webui/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
         description: "Comprehensive suite for LLMs with a user-friendly WebUI",
         homepage: "https://github.com/open-webui/open-webui",
         license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "mkLicense"), nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             shortName: "openWebUI",
             fullName: "Open WebUI License",
             url: "https://github.com/open-webui/open-webui/blob/0cef844168e97b70de2abee4c076cc30ffec6193/LICENSE",

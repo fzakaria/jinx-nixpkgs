@@ -2,22 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["yarnv1", 21, 11]], [["zlib", 29, 11]], [["patches", 32, 13]], [["berryCacheVersion", 17, 7], ["berryOfflinePatches", 19, 7], ["libzip", 26, 7]], [["yarnv1", 42, 11], ["YARN_LOCKFILE_VERSION_PLACEHOLDER", 43, 11]], [["url", 58, 19], ["revert", 59, 19], ["hash", 60, 19]], [["patches", 53, 15]], [["withZlibCompat", 65, 17]], [["zlib", 51, 11]], [["patches", 69, 13]], [["berryCacheVersion", 38, 7], ["berryOfflinePatches", 40, 7], ["libzip", 48, 7]], [["3", 16, 5], ["4", 37, 5]], [["pname", 97, 11], ["patches", 98, 11]], [["yarn-berry", 94, 17], ["berryVersion", 94, 28], ["yarn-berry-offline", 96, 9], ["yarn-berry-fetcher", 101, 9], ["fetchYarnBerryDeps", 102, 9], ["yarnBerryConfigHook", 103, 9]], [["otherSplices", 82, 11], ["f", 83, 3]]]);
 const formals$1 = { args: { lib: false, "yarn-berry": false, yarn: false, replaceVars: false, libzip: false, zlib: false, "zlib-ng": false, "makeScopeWithSplicing'": false, generateSplicesForMkScope: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["yarnv1", 21, 11]]);
-const pos$2 = nix.positions(here + "/default.nix", [["zlib", 29, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["patches", 32, 13]]);
-const pos$4 = nix.positions(here + "/default.nix", [["berryCacheVersion", 17, 7], ["berryOfflinePatches", 19, 7], ["libzip", 26, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["yarnv1", 42, 11], ["YARN_LOCKFILE_VERSION_PLACEHOLDER", 43, 11]]);
-const pos$6 = nix.positions(here + "/default.nix", [["url", 58, 19], ["revert", 59, 19], ["hash", 60, 19]]);
-const pos$7 = nix.positions(here + "/default.nix", [["patches", 53, 15]]);
-const pos$8 = nix.positions(here + "/default.nix", [["withZlibCompat", 65, 17]]);
-const pos$9 = nix.positions(here + "/default.nix", [["zlib", 51, 11]]);
-const pos$10 = nix.positions(here + "/default.nix", [["patches", 69, 13]]);
-const pos$11 = nix.positions(here + "/default.nix", [["berryCacheVersion", 38, 7], ["berryOfflinePatches", 40, 7], ["libzip", 48, 7]]);
-const pos$12 = nix.positions(here + "/default.nix", [["3", 16, 5], ["4", 37, 5]]);
-const pos$13 = nix.positions(here + "/default.nix", [["pname", 97, 11], ["patches", 98, 11]]);
-const pos$14 = nix.positions(here + "/default.nix", [["yarn-berry", 94, 17], ["berryVersion", 94, 28], ["yarn-berry-offline", 96, 9], ["yarn-berry-fetcher", 101, 9], ["fetchYarnBerryDeps", 102, 9], ["yarnBerryConfigHook", 103, 9]]);
-const pos$15 = nix.positions(here + "/default.nix", [["otherSplices", 82, 11], ["f", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,48 +18,48 @@ export default nix.lambda((args) => (() => {
   const generateSplicesForMkScope = nix.arg($, "generateSplicesForMkScope");
   const fetchpatch = nix.arg($, "fetchpatch");
   const variantOverlays = nix.thunk(() => ({
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     "3": (final) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       berryCacheVersion: "8",
       berryOfflinePatches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./berry-3-offline.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             yarnv1: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), yarn)),
           })))),
       ]),
-      libzip: nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(libzip, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, zlib: zlib }))), "overrideAttrs"), (old) => ({
-          [nix.POS]: pos$3,
+      libzip: nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(libzip, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], zlib: zlib }))), "overrideAttrs"), (old) => ({
+          [nix.POS]: $pos[2],
           patches: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "patches"), [
             nix.thunk(() => nix.add(nix.sel(final, "yarn-berry-fetcher", "src"), "/libzip-revert-to-old-versionneeded-behavior.patch")),
           ])),
         }))),
     }),
     "4": (final) => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       berryCacheVersion: "10",
       berryOfflinePatches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./berry-4-offline.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             yarnv1: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), yarn)),
             YARN_LOCKFILE_VERSION_PLACEHOLDER: nix.thunk(() => nix.sel(yarn_berry, "lockfileVersion")),
           })))),
       ]),
       libzip: nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(libzip, "override"), nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           zlib: nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(zlib_ng, "overrideAttrs"), (old) => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               patches: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "patches"), [
                 nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                    [nix.POS]: pos$6,
+                    [nix.POS]: $pos[5],
                     url: "https://github.com/zlib-ng/zlib-ng/commit/be819413be8a284b1827437006c0859644d0c367.patch",
                     revert: true,
                     hash: "sha256-rwRcNKpA2dMWkC6WRATDOCYCDDqqPvFJkQ6DLDohQd8=",
                   })))),
               ])),
-            })), "override"), nix.thunk(() => ({ [nix.POS]: pos$8, withZlibCompat: true })))),
+            })), "override"), nix.thunk(() => ({ [nix.POS]: $pos[7], withZlibCompat: true })))),
         }))), "overrideAttrs"), (old) => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           patches: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "patches"), [nix.path(here, "./libzip-revert-to-old-versionneeded-behavior.patch")])),
         }))),
     }),
@@ -81,7 +67,7 @@ export default nix.lambda((args) => (() => {
   const berryVersion = nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(yarn_berry, "version"))));
   const otherSplices = nix.thunk(() => nix.app(generateSplicesForMkScope, nix.thunk(() => nix.str`yarn-berry_${berryVersion}-fetcher`)));
   return nix.app(makeScopeWithSplicing$, nix.thunk(() => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       otherSplices: otherSplices,
       f: (final) => (() => {
         const err = nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`Berry version ${nix.builtins.toString(berryVersion)} not supported by yarn-berry-fetcher.
@@ -89,11 +75,11 @@ Supported versions: ${nix.app(nix.sel(lib, "concatStringsSep"), ", ", nix.thunk(
 `)));
         const variantOverlay = nix.thunk(() => nix.app(nix.selOr(variantOverlays, () => nix.force(err), nix.key(nix.force(berryVersion))), final));
         return nix.update({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           "yarn-berry": yarn_berry,
           berryVersion: berryVersion,
           "yarn-berry-offline": nix.thunk(() => nix.app(nix.sel(final, "yarn-berry", "overrideAttrs"), (old) => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               pname: nix.thunk(() => nix.add(nix.sel(old, "pname"), "-offline")),
               patches: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "patches"), nix.sel(final, "berryOfflinePatches"))),
             }))),

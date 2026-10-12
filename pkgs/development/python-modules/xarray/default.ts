@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 48, 5], ["repo", 49, 5], ["tag", 50, 5], ["hash", 51, 5]], [["accel", 71, 5], ["io", 79, 5], ["etc", 89, 5], ["parallel", 90, 5], ["viz", 91, 5], ["complete", 97, 5]], [["changelog", 134, 5], ["description", 135, 5], ["homepage", 136, 5], ["license", 137, 5], ["maintainers", 138, 5]], [["pname", 41, 3], ["version", 42, 3], ["pyproject", 43, 3], ["__structuredAttrs", 45, 3], ["src", 47, 3], ["postPatch", 54, 3], ["build-system", 59, 3], ["dependencies", 64, 3], ["optional-dependencies", 70, 3], ["preCheck", 102, 3], ["nativeCheckInputs", 107, 3], ["pytestFlags", 122, 3], ["pythonImportsCheck", 129, 3], ["__darwinAllowLocalNetworking", 131, 3], ["meta", 133, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "setuptools-scm": false, numpy: false, packaging: false, pandas: false, bottleneck: false, cartopy: false, cftime: false, dask: false, fsspec: false, h5netcdf: false, matplotlib: false, netcdf4: false, numba: false, numbagg: false, "opt-einsum": false, pooch: false, scipy: false, seaborn: false, sparse: false, zarr: false, "pytest-asyncio": false, "pytest-xdist": false, pytestCheckHook: false, h5py: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 48, 5], ["repo", 49, 5], ["tag", 50, 5], ["hash", 51, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["accel", 71, 5], ["io", 79, 5], ["etc", 89, 5], ["parallel", 90, 5], ["viz", 91, 5], ["complete", 97, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 134, 5], ["description", 135, 5], ["homepage", 136, 5], ["license", 137, 5], ["maintainers", 138, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 41, 3], ["version", 42, 3], ["pyproject", 43, 3], ["__structuredAttrs", 45, 3], ["src", 47, 3], ["postPatch", 54, 3], ["build-system", 59, 3], ["dependencies", 64, 3], ["optional-dependencies", 70, 3], ["preCheck", 102, 3], ["nativeCheckInputs", 107, 3], ["pytestFlags", 122, 3], ["pythonImportsCheck", 129, 3], ["__darwinAllowLocalNetworking", 131, 3], ["meta", 133, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,13 +36,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const h5py = nix.arg($, "h5py");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "xarray",
       version: "2026.07.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pydata",
           repo: "xarray",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +52,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
       dependencies: nix.thunk(() => [numpy, packaging, pandas]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         accel: nix.thunk(() => [bottleneck, numba, numbagg, opt_einsum, scipy]),
         io: nix.thunk(() => [netcdf4, h5netcdf, scipy, zarr, fsspec, cftime, pooch]),
         etc: nix.thunk(() => [sparse]),
@@ -72,7 +69,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["xarray"]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/pydata/xarray/blob/${nix.sel(finalAttrs, "src", "tag")}/doc/whats-new.rst`),
         description: "N-D labeled arrays and datasets in Python",
         homepage: "https://github.com/pydata/xarray",

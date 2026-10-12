@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["sha256", 34, 5]], [["url", 40, 7], ["sha256", 41, 7]], [["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["platforms", 77, 5], ["broken", 78, 5]], [["pname", 21, 3], ["version", 22, 3], ["outputs", 24, 3], ["src", 30, 3], ["patches", 37, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 55, 3], ["propagatedBuildInputs", 60, 3], ["mesonFlags", 66, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, ninja: false, meson: false, "pkg-config": false, "gobject-introspection": false, "gtk-doc": false, "docbook-xsl-nons": false, docbook_xml_dtd_43: false, glib: false, gtk3: false, graphene: false, libepoxy: false, "json-glib": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["sha256", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 40, 7], ["sha256", 41, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["platforms", 77, 5], ["broken", 78, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["outputs", 24, 3], ["src", 30, 3], ["patches", 37, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 55, 3], ["propagatedBuildInputs", 60, 3], ["mesonFlags", 66, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const libepoxy = nix.arg($, "libepoxy");
   const json_glib = nix.arg($, "json-glib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gthree",
       version: "0.9.0",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "alexlarsson",
           repo: "gthree",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/alexlarsson/gthree/commit/75f05c40aba9d5f603d8a3c490c3406c1fe06776.patch",
             sha256: "PBwLz4DLhC+7BtypVTFMFiF3hKAJeskU3XBKFHa3a84=",
           })))),
@@ -61,7 +58,7 @@ export default nix.lambda((args) => (() => {
         "-Dexamples=false",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "GObject/GTK port of three.js",
         homepage: "https://github.com/alexlarsson/gthree",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

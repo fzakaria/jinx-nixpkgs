@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 16, 7], ["version", 17, 7], ["meta", 18, 7], ["passthru", 19, 7]]]);
 const formals$1 = { args: { lib: false, python3: false, runCommand: false, extraPackages: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 16, 7], ["version", 17, 7], ["meta", 18, 7], ["passthru", 19, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const pythonEnv = nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (ps) => nix.concat([nix.thunk(() => nix.sel(ps, "devpi-server"))], nix.app(extraPackages, ps))));
   const server = nix.thunk(() => nix.sel(python3, "pkgs", "devpi-server"));
   return nix.app(runCommand, nix.thunk(() => nix.str`devpi-${nix.sel(server, "version")}`), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: nix.thunk(() => nix.attr(server, "pname")),
       version: nix.thunk(() => nix.attr(server, "version")),
       meta: nix.thunk(() => nix.attr(server, "meta")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 49, 5], ["repo", 50, 5], ["tag", 51, 5], ["hash", 52, 5], ["fetchSubmodules", 53, 5]], [["name", 93, 7], ["url", 94, 7], ["sha256", 95, 7]], [["homepage", 123, 5], ["changelog", 124, 5], ["description", 125, 5], ["longDescription", 126, 5], ["license", 131, 5], ["maintainers", 132, 5], ["mainProgram", 135, 5], ["platforms", 136, 5]], [["pname", 45, 3], ["version", 46, 3], ["src", 48, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 64, 3], ["patches", 90, 3], ["postPatch", 102, 3], ["postInstall", 114, 3], ["meta", 122, 3]]]);
 const formals$1 = { args: { config: false, cairo: false, cmake: false, fetchFromGitHub: false, fetchpatch: false, libuv: false, libxdmcp: false, "libpthread-stubs": false, libxcb: false, "pkg-config": false, python3: false, python3Packages: false, lib: false, stdenv: false, xcbproto: false, "libxcb-util": false, "libxcb-cursor": false, "libxcb-image": false, "libxcb-render-util": false, "libxcb-wm": false, xcbutilxrm: false, makeWrapper: false, removeReferencesTo: false, "alsa-lib": false, curl: false, libmpdclient: false, libpulseaudio: false, wirelesstools: false, libnl: false, i3: false, jsoncpp: false, alsaSupport: true, githubSupport: true, mpdSupport: true, pulseSupport: true, iwSupport: true, nlSupport: true, i3Support: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 49, 5], ["repo", 50, 5], ["tag", 51, 5], ["hash", 52, 5], ["fetchSubmodules", 53, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 93, 7], ["url", 94, 7], ["sha256", 95, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 123, 5], ["changelog", 124, 5], ["description", 125, 5], ["longDescription", 126, 5], ["license", 131, 5], ["maintainers", 132, 5], ["mainProgram", 135, 5], ["platforms", 136, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 45, 3], ["version", 46, 3], ["src", 48, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 64, 3], ["patches", 90, 3], ["postPatch", 102, 3], ["postInstall", 114, 3], ["meta", 122, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -49,11 +46,11 @@ export default nix.lambda((args) => (() => {
   const nlSupport = nix.argOr($, "nlSupport", () => true);
   const i3Support = nix.argOr($, "i3Support", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "polybar",
       version: "3.7.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "polybar",
           repo: "polybar",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -83,7 +80,7 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optional"), alsaSupport, alsa_lib), nix.concat(nix.app(nix.sel(lib, "optional"), githubSupport, curl), nix.concat(nix.app(nix.sel(lib, "optional"), mpdSupport, libmpdclient), nix.concat(nix.app(nix.sel(lib, "optional"), pulseSupport, libpulseaudio), nix.concat(nix.app(nix.sel(lib, "optional"), iwSupport, wirelesstools), nix.concat(nix.app(nix.sel(lib, "optional"), nlSupport, libnl), nix.app(nix.sel(lib, "optionals"), i3Support, nix.thunk(() => [jsoncpp, i3])))))))))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "gcc15-cstdint-fix.patch",
             url: "https://github.com/polybar/polybar/commit/f99e0b1c7a5b094f5a04b14101899d0cb4ece69d.patch",
             sha256: "sha256-Mf9R4u1Kq4yqLqTFD5ZoLjrK+GmlvtSsEyRFRCiQ72U=",
@@ -96,7 +93,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : "${i3}/bin"
 `)))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://polybar.github.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/polybar/polybar/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Fast and easy-to-use tool for creating status bars",

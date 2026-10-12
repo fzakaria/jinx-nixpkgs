@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 48, 5], ["hash", 49, 5]], [["polkit_version", 57, 7]], [["description", 136, 5], ["longDescription", 137, 5], ["homepage", 142, 5], ["license", 143, 5], ["platforms", 144, 5], ["mainProgram", 145, 5]], [["pname", 44, 3], ["version", 45, 3], ["src", 47, 3], ["patches", 55, 3], ["enableParallelBuilding", 61, 3], ["configureFlags", 63, 3], ["buildInputs", 68, 3], ["nativeBuildInputs", 77, 3], ["runtimeDeps", 83, 3], ["preConfigure", 104, 3], ["preFixup", 109, 3], ["postInstall", 130, 3], ["meta", 135, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, gettext: false, coreutils: false, gnused: false, "adwaita-icon-theme": false, gnugrep: false, parted: false, glib: false, libuuid: false, "pkg-config": false, gtkmm3: false, libxml2: false, gpart: false, hdparm: false, procps: false, polkit: false, wrapGAppsHook3: false, replaceVars: false, mtools: false, xhost: false, dosfstools: false, e2fsprogs: false, "util-linuxMinimal": false, withAllTools: true, "bcachefs-tools": false, "btrfs-progs": false, exfatprogs: false, "f2fs-tools": false, hfsprogs: false, jfsutils: false, cryptsetup: false, lvm2: false, "nilfs-utils": false, ntfs3g: false, udftools: false, xfsprogs: false, xfsdump: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 48, 5], ["hash", 49, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["polkit_version", 57, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 136, 5], ["longDescription", 137, 5], ["homepage", 142, 5], ["license", 143, 5], ["platforms", 144, 5], ["mainProgram", 145, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 44, 3], ["version", 45, 3], ["src", 47, 3], ["patches", 55, 3], ["enableParallelBuilding", 61, 3], ["configureFlags", 63, 3], ["buildInputs", 68, 3], ["nativeBuildInputs", 77, 3], ["runtimeDeps", 83, 3], ["preConfigure", 104, 3], ["preFixup", 109, 3], ["postInstall", 130, 3], ["meta", 135, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -50,17 +47,17 @@ export default nix.lambda((args) => (() => {
   const xfsprogs = nix.arg($, "xfsprogs");
   const xfsdump = nix.arg($, "xfsdump");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gparted",
       version: "1.8.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/gparted/gparted-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-ZziKxAX5/pKkBjbLA7Dh4LtkA62JzMF0sv8ZDvbzI0k=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./polkit.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             polkit_version: nix.thunk(() => nix.sel(polkit, "version")),
           })))),
       ]),
@@ -100,7 +97,7 @@ addToSearchPath "XDG_DATA_DIRS" "${nix.sel(polkit, "out")}/share"
 `),
       postInstall: "install -D -m0644 org.gnome.gparted.policy \\\n  $out/share/polkit-1/actions/org.gnome.gparted.policy\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Graphical disk partitioning tool",
         longDescription: "GNOME Partition Editor for creating, reorganizing, and deleting disk\npartitions. GParted enables you to change the partition organization\nwhile preserving the partition contents.\n",
         homepage: "https://gparted.org",

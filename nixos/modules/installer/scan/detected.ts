@@ -2,19 +2,17 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/detected.nix", [[["enableRedistributableFirmware", 7, 14]], [["hardware", 7, 5]], [["config", 5, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/detected.nix", [["enableRedistributableFirmware", 7, 14]]);
-const pos$2 = nix.positions(here + "/detected.nix", [["hardware", 7, 5]]);
-const pos$3 = nix.positions(here + "/detected.nix", [["config", 5, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => ({
-        [nix.POS]: pos$2,
-        hardware: nix.thunk(() => ({ [nix.POS]: pos$1, enableRedistributableFirmware: true })),
+        [nix.POS]: $pos[1],
+        hardware: nix.thunk(() => ({ [nix.POS]: $pos[0], enableRedistributableFirmware: true })),
       })))),
   };
 })(), formals$1);

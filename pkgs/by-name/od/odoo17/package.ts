@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 11], ["rev", 23, 11], ["hash", 24, 11]], [["version", 20, 9], ["src", 21, 9], ["buildInputs", 26, 9]], [["docutils-0_17", 19, 7]], [["self", 16, 5], ["packageOverrides", 17, 5]], [["url", 38, 5], ["name", 39, 5], ["hash", 40, 5]], [["url", 44, 7], ["hash", 45, 7]], [["odoo17", 121, 28], ["odoo17-multiprocess", 121, 35]], [["updateScript", 119, 5], ["tests", 120, 5]], [["description", 126, 5], ["homepage", 127, 5], ["license", 128, 5], ["maintainers", 129, 5]], [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["src", 37, 3], ["patches", 42, 3], ["makeWrapperArgs", 49, 3], ["postPatch", 58, 3], ["build-system", 65, 3], ["dependencies", 69, 3], ["dontStrip", 116, 3], ["passthru", 118, 3], ["meta", 125, 3]]]);
 const formals$1 = { args: { lib: false, fetchgit: false, fetchzip: false, fetchpatch2: false, python311: false, rtlcss: false, wkhtmltopdf: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 11], ["rev", 23, 11], ["hash", 24, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 20, 9], ["src", 21, 9], ["buildInputs", 26, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["docutils-0_17", 19, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["self", 16, 5], ["packageOverrides", 17, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 38, 5], ["name", 39, 5], ["hash", 40, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["url", 44, 7], ["hash", 45, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["odoo17", 121, 28], ["odoo17-multiprocess", 121, 35]]);
-const pos$8 = nix.positions(here + "/package.nix", [["updateScript", 119, 5], ["tests", 120, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 126, 5], ["homepage", 127, 5], ["license", 128, 5], ["maintainers", 129, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["src", 37, 3], ["patches", 42, 3], ["makeWrapperArgs", 49, 3], ["postPatch", 58, 3], ["build-system", 65, 3], ["dependencies", 69, 3], ["dontStrip", 116, 3], ["passthru", 118, 3], ["meta", 125, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,14 +18,14 @@ export default nix.lambda((args) => (() => {
   const odoo_version = "17.0";
   const odoo_release = "20250506";
   const python = nix.thunk(() => nix.app(nix.sel(python311, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       self: python,
       packageOverrides: (final) => (prev) => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         "docutils-0_17": nix.thunk(() => nix.app(nix.sel(prev, "docutils", "overridePythonAttrs"), (old) => (() => {
             const version = "0.17";
             const src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 url: "git://repo.or.cz/docutils.git",
                 rev: nix.thunk(() => nix.str`docutils-${version}`),
                 hash: "sha256-O/9q/Dg1DBIxKdNBOhDV16yy5ez0QANJYMjeovDoWX8=",
@@ -43,7 +34,7 @@ export default nix.lambda((args) => (() => {
               const w = nix.withScope(prev, null);
               return [nix.thunk(() => nix.lookup(w, "setuptools"))];
             })());
-            return { [nix.POS]: pos$2, version, src, buildInputs };
+            return { [nix.POS]: $pos[1], version, src, buildInputs };
           })())),
       }),
     }))));
@@ -52,14 +43,14 @@ export default nix.lambda((args) => (() => {
       const version = nix.thunk(() => nix.str`${odoo_version}.${odoo_release}`);
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           url: nix.thunk(() => nix.str`https://nightly.odoo.com/${odoo_version}/nightly/src/odoo_${version}.zip`),
           name: nix.thunk(() => nix.str`odoo-${version}`),
           hash: "sha256-V15Oe3AOBJ1agt5WmpFZnC7EkyoKyxTH8Iqdf2/9aec=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             url: "https://github.com/odoo/odoo/commit/ade3200e8138a9c28eb9b294a4efd2753a8e5591.patch?full_index=1",
             hash: "sha256-EFKjrR38eg9bxlNmRNoLSXem+MjQKqPcR3/mSgs0cDs=",
           })))),
@@ -125,16 +116,16 @@ substituteInPlace odoo/service/server.py \\
       })());
       const dontStrip = true;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         updateScript: nix.path(here, "./update.sh"),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           odoo17: nix.thunk(() => nix.attr(nixosTests, "odoo17")),
           "odoo17-multiprocess": nix.thunk(() => nix.attr(nixosTests, "odoo17-multiprocess")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Open Source ERP and CRM",
         homepage: "https://www.odoo.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),
@@ -147,7 +138,7 @@ substituteInPlace odoo/service/server.py \\
         })()),
       }));
       return {
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         pname,
         version,
         pyproject,

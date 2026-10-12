@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 11, 3], ["version", 12, 21], ["src", 12, 29], ["meta", 12, 33], ["pyproject", 13, 3], ["nativeBuildInputs", 15, 3], ["nativeCheckInputs", 21, 3], ["unittestFlagsArray", 23, 3], ["pythonImportsCheck", 28, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, hnswlib: false, numpy: false, pybind11: false, setuptools: false, unittestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 21], ["src", 12, 29], ["meta", 12, 33], ["pyproject", 13, 3], ["nativeBuildInputs", 15, 3], ["nativeCheckInputs", 21, 3], ["unittestFlagsArray", 23, 3], ["pythonImportsCheck", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const unittestCheckHook = nix.arg($, "unittestCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "hnswlib",
       version: nix.thunk(() => nix.attr(hnswlib, "version")),
       src: nix.thunk(() => nix.attr(hnswlib, "src")),

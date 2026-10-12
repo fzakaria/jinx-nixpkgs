@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 37, 5], ["hash", 38, 5]], [["updateScript", 127, 5]], [["description", 131, 5], ["downloadPage", 132, 5], ["homepage", 133, 5], ["license", 134, 5], ["mainProgram", 135, 5], ["maintainers", 136, 5], ["platforms", 137, 5], ["sourceProvenance", 138, 5]], [["pname", 31, 3], ["version", 32, 3], ["__structuredAttrs", 34, 3], ["src", 36, 3], ["strictDeps", 41, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 49, 3], ["autoPatchelfIgnoreMissingDeps", 79, 3], ["dontBuild", 84, 3], ["installPhase", 86, 3], ["passthru", 126, 3], ["meta", 130, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchzip: false, lib: false, libarchive: false, makeWrapper: false, autoPatchelfHook: false, libxkbcommon: false, "libxcb-cursor": false, "libxcb-wm": false, "libxcb-util": false, "libxcb-image": false, "libxcb-keysyms": false, "libxcb-render-util": false, krb5: false, brotli: false, fontconfig: false, freetype: false, gtk3: false, pango: false, "at-spi2-atk": false, unixodbc: false, firebird: false, libdrm: false, openldap: false, bash: false, kdePackages: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 127, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 131, 5], ["downloadPage", 132, 5], ["homepage", 133, 5], ["license", 134, 5], ["mainProgram", 135, 5], ["maintainers", 136, 5], ["platforms", 137, 5], ["sourceProvenance", 138, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["__structuredAttrs", 34, 3], ["src", 36, 3], ["strictDeps", 41, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 49, 3], ["autoPatchelfIgnoreMissingDeps", 79, 3], ["dontBuild", 84, 3], ["installPhase", 86, 3], ["passthru", 126, 3], ["meta", 130, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,12 +35,12 @@ export default nix.lambda((args) => (() => {
   const kdePackages = nix.arg($, "kdePackages");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "amnezia-vpn-bin",
       version: "4.8.19.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/amnezia-vpn/amnezia-client/releases/download/${nix.sel(finalAttrs, "version")}/AmneziaVPN_${nix.sel(finalAttrs, "version")}_linux_x64.tar`),
           hash: "sha256-2bCP5yeaH0yQcjgwnrCgSnF1vafhrf+AlGyVPPgbK0k=",
         })))),
@@ -76,11 +73,11 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/amnezia-vpn $out/bin $out/share/applications $out/lib/systemd/system $out/share/icons/hicolor/512x512/apps\n\nbsdtar -xf AmneziaVPN_Linux_Installer.bin -C $out/share/amnezia-vpn\n\nmakeWrapper \"$out/share/amnezia-vpn/client/bin/AmneziaVPN\" \"$out/bin/AmneziaVPN\" \\\n  --prefix LD_LIBRARY_PATH : \"$out/share/amnezia-vpn/client/lib\" \\\n  --set QML_IMPORT_PATH \"$out/share/amnezia-vpn/client/qml\" \\\n  --set QML2_IMPORT_PATH \"$out/share/amnezia-vpn/client/qml\" \\\n  --set QT_PLUGIN_PATH \"$out/share/amnezia-vpn/client/plugins\" \\\n  --set QT_QPA_PLATFORM_PLUGIN_PATH \"$out/share/amnezia-vpn/client/plugins/platforms\" \\\n  --set QTDIR \"$out/share/amnezia-vpn/client\" \\\n  --set CQT_PKG_ROOT \"$out/share/amnezia-vpn/client\"\n\nmakeWrapper \"$out/share/amnezia-vpn/service/bin/AmneziaVPN-service\" \"$out/bin/AmneziaVPN-service\" \\\n  --prefix LD_LIBRARY_PATH : \"$out/share/amnezia-vpn/client/lib\" \\\n  --prefix LD_LIBRARY_PATH : \"$out/share/amnezia-vpn/service/lib\" \\\n  --set QML_IMPORT_PATH \"$out/share/amnezia-vpn/service/qml\" \\\n  --set QML2_IMPORT_PATH \"$out/share/amnezia-vpn/service/qml\" \\\n  --set QT_PLUGIN_PATH \"$out/share/amnezia-vpn/service/plugins\" \\\n  --set QT_QPA_PLATFORM_PLUGIN_PATH \"$out/share/amnezia-vpn/service/plugins/platforms\" \\\n  --set QTDIR \"$out/share/amnezia-vpn/service\" \\\n  --set CQT_PKG_ROOT \"$out/share/amnezia-vpn/service\"\n\nsubstituteInPlace $out/share/amnezia-vpn/AmneziaVPN.service \\\n  --replace-fail \"/opt/AmneziaVPN/service/AmneziaVPN-service.sh\" \"AmneziaVPN-service\" \\\n  --replace-fail \"Environment=LD_LIBRARY_PATH=/opt/AmneziaVPN/client/lib\" \"\"\nln -s $out/share/amnezia-vpn/AmneziaVPN.service $out/lib/systemd/system/AmneziaVPN.service\n\nsubstituteInPlace $out/share/amnezia-vpn/AmneziaVPN.desktop \\\n  --replace-fail \"/usr/share/pixmaps/AmneziaVPN.png\" \"AmneziaVPN\"\nln -s $out/share/amnezia-vpn/AmneziaVPN.desktop $out/share/applications/AmneziaVPN.desktop\n\nln -s $out/share/amnezia-vpn/AmneziaVPN.png $out/share/icons/hicolor/512x512/apps/AmneziaVPN.png\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Amnezia VPN Client (binary release)",
         downloadPage: "https://amnezia.org/en/downloads",
         homepage: "https://github.com/amnezia-vpn/amnezia-client",

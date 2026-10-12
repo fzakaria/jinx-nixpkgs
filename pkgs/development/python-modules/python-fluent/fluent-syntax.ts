@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/fluent-syntax.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["changelog", 37, 5], ["description", 38, 5], ["downloadPage", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5]], [["pname", 21, 3], ["version", 22, 11], ["pyproject", 23, 3], ["src", 25, 11], ["sourceRoot", 26, 3], ["build-system", 28, 3], ["dependencies", 30, 3], ["nativeCheckInputs", 32, 3], ["pythonImportsCheck", 34, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, fetchFromGitHub: false, lib: false, pytestCheckHook: false, setuptools: false, "typing-extensions": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/fluent-syntax.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/fluent-syntax.nix", [["changelog", 37, 5], ["description", 38, 5], ["downloadPage", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5]]);
-const pos$3 = nix.positions(here + "/fluent-syntax.nix", [["pname", 21, 3], ["version", 22, 11], ["pyproject", 23, 3], ["src", 25, 11], ["sourceRoot", 26, 3], ["build-system", 28, 3], ["dependencies", 30, 3], ["nativeCheckInputs", 32, 3], ["pythonImportsCheck", 34, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,14 +15,14 @@ export default nix.lambda((args) => (() => {
   const typing_extensions = nix.arg($, "typing-extensions");
   const version = "0.19.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "projectfluent",
       repo: "python-fluent",
       rev: nix.thunk(() => nix.str`fluent.syntax@${version}`),
       hash: "sha256-nULngwBG/ebICRDi6HMHBdT+r/oq6tbDL7C1iMZpMsA=",
     }))));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "fluent-syntax",
       version: version,
       pyproject: true,
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["fluent.syntax"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/projectfluent/python-fluent/blob/${nix.sel(src, "rev")}/fluent.syntax/CHANGELOG.md`),
         description: "Parse, analyze, process, and serialize Fluent files",
         downloadPage: nix.thunk(() => nix.str`https://github.com/projectfluent/python-fluent/releases/tag/${nix.sel(src, "rev")}`),

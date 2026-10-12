@@ -2,40 +2,33 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/installation-cd-graphical-gnome.nix", [[["edition", 8, 12]], [["favoriteAppsOverride", 12, 5], ["enable", 16, 5]], [["gnome", 10, 27]], [["enable", 20, 5], ["autoSuspend", 27, 5]], [["enable", 31, 5], ["user", 32, 5]], [["gdm", 19, 27], ["autoLogin", 30, 27]], [["desktopManager", 10, 12], ["displayManager", 19, 12]], [["imports", 6, 3], ["isoImage", 8, 3], ["services", 10, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/installation-cd-graphical-gnome.nix", [["edition", 8, 12]]);
-const pos$2 = nix.positions(here + "/installation-cd-graphical-gnome.nix", [["favoriteAppsOverride", 12, 5], ["enable", 16, 5]]);
-const pos$3 = nix.positions(here + "/installation-cd-graphical-gnome.nix", [["gnome", 10, 27]]);
-const pos$4 = nix.positions(here + "/installation-cd-graphical-gnome.nix", [["enable", 20, 5], ["autoSuspend", 27, 5]]);
-const pos$5 = nix.positions(here + "/installation-cd-graphical-gnome.nix", [["enable", 31, 5], ["user", 32, 5]]);
-const pos$6 = nix.positions(here + "/installation-cd-graphical-gnome.nix", [["gdm", 19, 27], ["autoLogin", 30, 27]]);
-const pos$7 = nix.positions(here + "/installation-cd-graphical-gnome.nix", [["desktopManager", 10, 12], ["displayManager", 19, 12]]);
-const pos$8 = nix.positions(here + "/installation-cd-graphical-gnome.nix", [["imports", 6, 3], ["isoImage", 8, 3], ["services", 10, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     imports: nix.thunk(() => [nix.path(here, "./installation-cd-graphical-base.nix")]),
     isoImage: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       edition: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "gnome")),
     })),
     services: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       desktopManager: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         gnome: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           favoriteAppsOverride: "[org.gnome.shell]\nfavorite-apps=[ 'firefox.desktop', 'nixos-manual.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.Nautilus.desktop', 'gparted.desktop' ]\n",
           enable: true,
         })),
       })),
       displayManager: nix.thunk(() => ({
-        [nix.POS]: pos$6,
-        gdm: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true, autoSuspend: false })),
-        autoLogin: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true, user: "nixos" })),
+        [nix.POS]: $pos[5],
+        gdm: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: true, autoSuspend: false })),
+        autoLogin: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: true, user: "nixos" })),
       })),
     })),
   };

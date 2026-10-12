@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["changelog", 53, 31], ["license", 53, 41], ["description", 54, 5], ["homepage", 55, 5], ["maintainers", 56, 5]], [["pname", 18, 3], ["pyproject", 19, 3], ["version", 21, 24], ["src", 21, 32], ["disabled", 24, 3], ["sourceRoot", 26, 3], ["postPatch", 29, 3], ["build-system", 36, 3], ["dependencies", 40, 3], ["nativeCheckInputs", 45, 3], ["pytestFlags", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, pythonAtLeast: false, setuptools: false, "hydra-core": false, joblib: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["changelog", 53, 31], ["license", 53, 41], ["description", 54, 5], ["homepage", 55, 5], ["maintainers", 56, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["pyproject", 19, 3], ["version", 21, 24], ["src", 21, 32], ["disabled", 24, 3], ["sourceRoot", 26, 3], ["postPatch", 29, 3], ["build-system", 36, 3], ["dependencies", 40, 3], ["nativeCheckInputs", 45, 3], ["pytestFlags", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const joblib = nix.arg($, "joblib");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "hydra-joblib-launcher",
       pyproject: true,
       version: nix.thunk(() => nix.attr(hydra_core, "version")),
@@ -35,7 +34,7 @@ substituteInPlace setup.py  \\
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(hydra_core, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         changelog: nix.thunk(() => nix.attr(from, "changelog")),
         license: nix.thunk(() => nix.attr(from, "license")),
         description: "Hydra launcher supporting parallel execution based on Joblib.Parallel",

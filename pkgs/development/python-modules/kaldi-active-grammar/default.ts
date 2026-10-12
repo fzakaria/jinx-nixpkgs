@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["sha256", 34, 5]], [["KALDI_BRANCH", 38, 5], ["KALDIAG_SETUP_RAW", 39, 5]], [["kaldiFork", 49, 7]], [["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["maintainers", 80, 5], ["platforms", 82, 5]], [["pname", 26, 3], ["version", 27, 3], ["format", 28, 3], ["src", 30, 3], ["env", 37, 3], ["patches", 42, 3], ["preBuild", 54, 3], ["buildInputs", 58, 3], ["nativeBuildInputs", 62, 3], ["propagatedBuildInputs", 66, 3], ["doCheck", 74, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "scikit-build": false, cmake: false, ush: false, requests: false, six: false, numpy: false, cffi: false, openfst: false, replaceVars: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["sha256", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["KALDI_BRANCH", 38, 5], ["KALDIAG_SETUP_RAW", 39, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["kaldiFork", 49, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["maintainers", 80, 5], ["platforms", 82, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 3], ["format", 28, 3], ["src", 30, 3], ["env", 37, 3], ["patches", 42, 3], ["preBuild", 54, 3], ["buildInputs", 58, 3], ["nativeBuildInputs", 62, 3], ["propagatedBuildInputs", 66, 3], ["doCheck", 74, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,17 +26,17 @@ export default nix.lambda((args) => (() => {
       const version = "3.2.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "daanzu",
           repo: "kaldi-active-grammar",
           tag: nix.thunk(() => nix.str`v${version}`),
           sha256: "sha256-VyVshIEVp/ep4Ih7Kj66GF02JEZ4nwgJOtgR2DarzdY=",
         }))));
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, KALDI_BRANCH: "foo", KALDIAG_SETUP_RAW: "1" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], KALDI_BRANCH: "foo", KALDIAG_SETUP_RAW: "1" }));
       const patches = nix.thunk(() => [
         nix.path(here, "./0001-stub.patch"),
         nix.path(here, "./0002-exec-path.patch"),
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0003-ffi-path.patch"), nix.thunk(() => ({ [nix.POS]: pos$3, kaldiFork: nix.thunk(() => nix.str`${kaldi}/lib`) })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0003-ffi-path.patch"), nix.thunk(() => ({ [nix.POS]: $pos[2], kaldiFork: nix.thunk(() => nix.str`${kaldi}/lib`) })))),
       ]);
       const preBuild = "cd ..\n";
       const buildInputs = nix.thunk(() => [openfst, kaldi]);
@@ -48,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [ush, requests, numpy, cffi, six]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Python Kaldi speech recognition",
         homepage: "https://github.com/daanzu/kaldi-active-grammar",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),
@@ -56,7 +52,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         format,

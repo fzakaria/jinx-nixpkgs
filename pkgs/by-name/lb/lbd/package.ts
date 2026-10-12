@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["description", 52, 5], ["mainProgram", 53, 5], ["homepage", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5], ["license", 57, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["installPhase", 31, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, makeWrapper: false, bash: false, coreutils: false, diffutils: false, gawk: false, gnugrep: false, gnused: false, host: false, "netcat-openbsd": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 52, 5], ["mainProgram", 53, 5], ["homepage", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5], ["license", 57, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["installPhase", 31, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const host = nix.arg($, "host");
   const netcat_openbsd = nix.arg($, "netcat-openbsd");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "lbd",
       version: "0-unstable-2024-02-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "D3vil0p3r",
           repo: "lbd",
           rev: "73baaaecddcd834d43d79f50f0808b779c9a97c3",
@@ -42,7 +40,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), bash)} $out/bin/lbd \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Detect if a domain uses DNS and/or HTTP Load-Balancing",
         mainProgram: "lbd",
         homepage: "https://github.com/D3vil0p3r/lbd",

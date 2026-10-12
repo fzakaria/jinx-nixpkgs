@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["changelog", 75, 7], ["description", 76, 7], ["homepage", 77, 7], ["license", 78, 7], ["maintainers", 79, 7]], [["pname", 19, 5], ["src", 20, 5], ["version", 21, 5], ["format", 24, 3], ["__structuredAttrs", 25, 3], ["dontUseWheelUnpack", 27, 3], ["postUnpack", 29, 3], ["buildInputs", 34, 3], ["dependencies", 40, 3], ["nativeCheckInputs", 47, 3], ["postInstall", 55, 3], ["preCheck", 60, 3], ["enabledTestPaths", 64, 3], ["__darwinAllowLocalNetworking", 68, 3], ["pythonImportsCheck", 70, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, onnx: false, "ml-dtypes": false, numpy: false, protobuf: false, "typing-extensions": false, parameterized: false, pillow: false, pytestCheckHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["changelog", 75, 7], ["description", 76, 7], ["homepage", 77, 7], ["license", 78, 7], ["maintainers", 79, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 19, 5], ["src", 20, 5], ["version", 21, 5], ["format", 24, 3], ["__structuredAttrs", 25, 3], ["dontUseWheelUnpack", 27, 3], ["postUnpack", 29, 3], ["buildInputs", 34, 3], ["dependencies", 40, 3], ["nativeCheckInputs", 47, 3], ["postInstall", 55, 3], ["preCheck", 60, 3], ["enabledTestPaths", 64, 3], ["__darwinAllowLocalNetworking", 68, 3], ["pythonImportsCheck", 70, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: nix.thunk(() => nix.attr(onnx, "pname")),
       src: nix.thunk(() => nix.attr(onnx, "src")),
       version: nix.thunk(() => nix.attr(onnx, "version")),
@@ -40,7 +39,7 @@ chmod +w "$sourceRoot/dist"
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(onnx, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         changelog: nix.thunk(() => nix.attr(from, "changelog")),
         description: nix.thunk(() => nix.attr(from, "description")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/net.nix", [[["description", 51, 5]], [["pname", 22, 3], ["minimalOCamlVersion", 24, 3], ["src", 26, 23], ["version", 26, 27], ["nativeBuildInputs", 28, 3], ["propagatedBuildInputs", 32, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, "asn1-combinators": false, astring: false, base64: false, capnp: false, "capnp-rpc": false, capnproto: false, cstruct: false, fmt: false, logs: false, "mirage-crypto": false, "mirage-crypto-rng": false, prometheus: false, ptime: false, "tls-eio": false, uri: false, x509: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/net.nix", [["description", 51, 5]]);
-const pos$2 = nix.positions(here + "/net.nix", [["pname", 22, 3], ["minimalOCamlVersion", 24, 3], ["src", 26, 23], ["version", 26, 27], ["nativeBuildInputs", 28, 3], ["propagatedBuildInputs", 32, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +25,7 @@ export default nix.lambda((args) => (() => {
   const uri = nix.arg($, "uri");
   const x509 = nix.arg($, "x509");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "capnp-rpc-net",
       minimalOCamlVersion: "5.2",
       src: nix.thunk(() => nix.attr(capnp_rpc, "src")),
@@ -50,7 +49,7 @@ export default nix.lambda((args) => (() => {
         x509,
       ]),
       meta: nix.thunk(() => nix.update(nix.sel(capnp_rpc, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Network and TLS support for Cap'n Proto RPC services",
       })),
     })));

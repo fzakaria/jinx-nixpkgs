@@ -2,13 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/soundsense.nix", [[["url", 9, 7], ["hash", 10, 7]], [["name", 7, 5], ["src", 8, 5], ["installPhase", 12, 5]], [["url", 24, 5], ["hash", 25, 5]], [["version", 38, 24], ["dfVersion", 38, 32]], [["description", 40, 5], ["maintainers", 41, 5], ["sourceProvenance", 44, 5], ["license", 45, 5], ["platforms", 46, 5], ["homepage", 47, 5]], [["version", 19, 3], ["dfVersion", 20, 3], ["soundPack", 21, 11], ["pname", 22, 3], ["src", 23, 3], ["nativeBuildInputs", 27, 3], ["buildPhase", 28, 3], ["installPhase", 32, 3], ["passthru", 38, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, dos2unix: false, soundPack: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/soundsense.nix", [["url", 9, 7], ["hash", 10, 7]]);
-const pos$2 = nix.positions(here + "/soundsense.nix", [["name", 7, 5], ["src", 8, 5], ["installPhase", 12, 5]]);
-const pos$3 = nix.positions(here + "/soundsense.nix", [["url", 24, 5], ["hash", 25, 5]]);
-const pos$4 = nix.positions(here + "/soundsense.nix", [["version", 38, 24], ["dfVersion", 38, 32]]);
-const pos$5 = nix.positions(here + "/soundsense.nix", [["description", 40, 5], ["maintainers", 41, 5], ["sourceProvenance", 44, 5], ["license", 45, 5], ["platforms", 46, 5], ["homepage", 47, 5]]);
-const pos$6 = nix.positions(here + "/soundsense.nix", [["version", 19, 3], ["dfVersion", 20, 3], ["soundPack", 21, 11], ["pname", 22, 3], ["src", 23, 3], ["nativeBuildInputs", 27, 3], ["buildPhase", 28, 3], ["installPhase", 32, 3], ["passthru", 38, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,10 +12,10 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const dos2unix = nix.arg($, "dos2unix");
   const soundPack = nix.argOr($, "soundPack", () => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "soundsense-soundpack",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://df.zweistein.cz/soundsense/soundpack.zip",
           hash: "sha256-yjlhBLYYv/FXsk5IpiZNDG2ugDldaD5mf+Dyc6es4GM=",
         })))),
@@ -32,16 +27,16 @@ export default nix.lambda((args) => (() => {
       const soundPack_1 = soundPack;
       const pname = "soundsense";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`https://df.zweistein.cz/soundsense/soundSense_${version}.zip`),
           hash: "sha256-c+LOUxmJaZ3VqVOBYSQypiZxWyNAXOlRQVD3QZPReb4=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [dos2unix]);
       const buildPhase = "dos2unix soundSense.sh\nchmod +x soundSense.sh\n";
       const installPhase = "mkdir $out\ncp -R . $out/soundsense\nln -s $out/soundsense/dfhack $out/hack\nln -s $soundPack $out/soundsense/packs\n";
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$4, version: version, dfVersion: dfVersion }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[3], version: version, dfVersion: dfVersion }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Plays sound based on Dwarf Fortress game logs",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -56,7 +51,7 @@ export default nix.lambda((args) => (() => {
         homepage: "https://df.zweistein.cz/soundsense",
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         version,
         dfVersion,
         soundPack: soundPack_1,

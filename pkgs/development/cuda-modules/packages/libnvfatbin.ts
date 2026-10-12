@@ -2,21 +2,20 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libnvfatbin.nix", [[["description", 12, 5], ["homepage", 13, 5]], [["redistName", 3, 3], ["pname", 4, 3], ["outputs", 6, 3], ["includeRemoveStubsFromRunpathHook", 9, 3], ["meta", 11, 3]]]);
 const formals$1 = { args: { buildRedist: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libnvfatbin.nix", [["description", 12, 5], ["homepage", 13, 5]]);
-const pos$2 = nix.positions(here + "/libnvfatbin.nix", [["redistName", 3, 3], ["pname", 4, 3], ["outputs", 6, 3], ["includeRemoveStubsFromRunpathHook", 9, 3], ["meta", 11, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const buildRedist = nix.arg($, "buildRedist");
   return nix.app(buildRedist, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       redistName: "cuda",
       pname: "libnvfatbin",
       outputs: nix.thunk(() => ["out"]),
       includeRemoveStubsFromRunpathHook: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "APIs which can be used at runtime to combine multiple CUDA objects into one CUDA fat binary (fatbin)",
         homepage: "https://docs.nvidia.com/cuda/nvfatbin",
       })),

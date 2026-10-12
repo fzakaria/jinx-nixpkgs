@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/4.x.nix", [[["url", 22, 5], ["sha256", 23, 5]], [["name", 28, 7], ["url", 29, 7], ["sha256", 30, 7]], [["description", 61, 5], ["mainProgram", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["platforms", 67, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["disabled", 19, 3], ["src", 21, 3], ["patches", 26, 3], ["postPatch", 34, 3], ["propagatedBuildInputs", 38, 3], ["configurePhase", 40, 3], ["enableParallelBuilding", 47, 3], ["pythonImportsCheck", 49, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, fetchpatch: false, buildPythonPackage: false, python: false, isPyPy: false, pythonAtLeast: false, pythonOlder: false, "sip-module": true, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/4.x.nix", [["url", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/4.x.nix", [["name", 28, 7], ["url", 29, 7], ["sha256", 30, 7]]);
-const pos$3 = nix.positions(here + "/4.x.nix", [["description", 61, 5], ["mainProgram", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["platforms", 67, 5]]);
-const pos$4 = nix.positions(here + "/4.x.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["disabled", 19, 3], ["src", 21, 3], ["patches", 26, 3], ["postPatch", 34, 3], ["propagatedBuildInputs", 38, 3], ["configurePhase", 40, 3], ["enableParallelBuilding", 47, 3], ["pythonImportsCheck", 49, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,13 +23,13 @@ export default nix.lambda((args) => (() => {
       const pyproject = false;
       const disabled = isPyPy;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.riverbankcomputing.com/static/Downloads/sip/${version}/sip-${version}.tar.gz`),
           sha256: "04a23cgsnx150xq86w1z44b6vr2zyazysy9mqax0fy346zlr77dk",
         }))));
       const patches = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.11")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               name: "sip-4-python3-11.patch",
               url: "https://aur.archlinux.org/cgit/aur.git/plain/python3-11.patch?h=sip4&id=67b5907227e68845cdfafcf050fedb89ed653585",
               sha256: "sha256-cmuz2y5+T8EM/h03G2oboSnnOwrUjVKt2TUQaC9YAdE=",
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
         "sipconfig",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Creates C++ bindings for Python modules",
         mainProgram: "sip",
         homepage: "https://riverbankcomputing.com/",
@@ -60,7 +57,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

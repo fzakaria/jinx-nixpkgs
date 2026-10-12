@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 50, 5], ["hash", 51, 5]], [["libcaca", 94, 9], ["diffoscopeMinimal", 95, 9], ["feh", 96, 9], ["icewm", 97, 9], ["openbox", 98, 9], ["fluxbox", 99, 9], ["enlightenment", 100, 9], ["pkg-config", 102, 7]], [["url", 106, 7], ["rev-prefix", 107, 7]], [["tests", 92, 5], ["updateScript", 104, 5]], [["description", 112, 5], ["longDescription", 114, 5], ["homepage", 122, 5], ["changelog", 123, 5], ["license", 124, 5], ["pkgConfigModules", 125, 5], ["platforms", 126, 5], ["maintainers", 127, 5]], [["pname", 46, 3], ["version", 47, 3], ["src", 49, 3], ["buildInputs", 54, 3], ["nativeBuildInputs", 73, 3], ["enableParallelBuilding", 75, 3], ["configureFlags", 79, 3], ["outputs", 85, 3], ["passthru", 91, 3], ["meta", 111, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libjpeg: false, libtiff: false, giflib: false, libpng: false, libwebp: false, libjxl: false, libspectre: false, libid3tag: false, librsvg: false, libheif: false, freetype: false, bzip2: false, "pkg-config": false, x11Support: true, webpSupport: true, svgSupport: true, heifSupport: true, jxlSupport: true, psSupport: true, libcaca: false, diffoscopeMinimal: false, feh: false, icewm: false, openbox: false, fluxbox: false, enlightenment: false, libxft: false, libxext: false, testers: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 50, 5], ["hash", 51, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["libcaca", 94, 9], ["diffoscopeMinimal", 95, 9], ["feh", 96, 9], ["icewm", 97, 9], ["openbox", 98, 9], ["fluxbox", 99, 9], ["enlightenment", 100, 9], ["pkg-config", 102, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 106, 7], ["rev-prefix", 107, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 92, 5], ["updateScript", 104, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 112, 5], ["longDescription", 114, 5], ["homepage", 122, 5], ["changelog", 123, 5], ["license", 124, 5], ["pkgConfigModules", 125, 5], ["platforms", 126, 5], ["maintainers", 127, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 46, 3], ["version", 47, 3], ["src", 49, 3], ["buildInputs", 54, 3], ["nativeBuildInputs", 73, 3], ["enableParallelBuilding", 75, 3], ["configureFlags", 79, 3], ["outputs", 85, 3], ["passthru", 91, 3], ["meta", 111, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -48,11 +43,11 @@ export default nix.lambda((args) => (() => {
   const optional = nix.thunk(() => nix.attr(lib, "optional"));
   const optionals = nix.thunk(() => nix.attr(lib, "optionals"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "imlib2",
       version: "1.12.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/enlightenment/imlib2-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-JQ+XUvadxSLlKagaqpOVcF9/wxL/JFPl3lmsK6HyhY8=",
         })))),
@@ -62,9 +57,9 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => nix.concat(nix.app(optional, nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "--enable-amd64=no"), nix.concat(nix.app(optional, nix.thunk(() => !nix.asBool(svgSupport)), "--without-svg"), nix.concat(nix.app(optional, nix.thunk(() => !nix.asBool(heifSupport)), "--without-heif"), nix.app(optional, nix.thunk(() => !nix.asBool(x11Support)), "--without-x"))))),
       outputs: nix.thunk(() => ["bin", "out", "dev"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           libcaca: libcaca,
           diffoscopeMinimal: diffoscopeMinimal,
           feh: feh,
@@ -75,13 +70,13 @@ export default nix.lambda((args) => (() => {
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://git.enlightenment.org/old/legacy-imlib2.git",
             "rev-prefix": "v",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Image manipulation library",
         longDescription: "This is the Imlib 2 library - a library that does image file loading and\nsaving as well as rendering, manipulation, arbitrary polygon support, etc.\nIt does ALL of these operations FAST. Imlib2 also tries to be highly\nintelligent about doing them, so writing naive programs can be done\neasily, without sacrificing speed.\n",
         homepage: "https://docs.enlightenment.org/api/imlib2/html",

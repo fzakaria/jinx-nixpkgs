@@ -2,131 +2,10 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/examples.nix", [[["minimalModules", 25, 18]], [["featureFlags", 25, 5]], [["modules", 27, 54]], [["uid", 86, 9], ["user", 87, 9]], [["Cmd", 99, 9], ["ExposedPorts", 104, 9]], [["description", 109, 12]], [["name", 80, 7], ["tag", 81, 7], ["contents", 82, 7], ["extraCommands", 90, 7], ["config", 98, 7], ["meta", 109, 7]], [["name", 120, 7], ["paths", 121, 7], ["pathsToLink", 122, 7]], [["description", 125, 10]], [["name", 117, 5], ["tag", 118, 5], ["copyToRoot", 119, 5], ["meta", 125, 5]], [["name", 138, 7], ["paths", 139, 7], ["pathsToLink", 140, 7]], [["/data", 161, 9]], [["Test", 164, 9], ["Interval", 168, 9], ["Timeout", 169, 9], ["Retries", 170, 9]], [["Cmd", 158, 7], ["WorkingDir", 159, 7], ["Volumes", 160, 7], ["Healthcheck", 163, 7]], [["description", 174, 10]], [["name", 130, 5], ["tag", 131, 5], ["fromImage", 134, 5], ["copyToRoot", 137, 5], ["runAsRoot", 143, 5], ["config", 157, 5], ["meta", 174, 5]], [["imageName", 185, 5], ["imageDigest", 186, 5], ["hash", 187, 5], ["finalImageTag", 188, 5], ["finalImageName", 189, 5]], [["imageName", 194, 5], ["imageDigest", 195, 5], ["hash", 196, 5], ["finalImageTag", 197, 5], ["finalImageName", 198, 5]], [["name", 205, 7], ["pathsToLink", 206, 7], ["paths", 207, 7]], [["name", 203, 5], ["copyToRoot", 204, 5]], [["name", 223, 7], ["pathsToLink", 224, 7], ["paths", 225, 7]], [["Env", 234, 7]], [["description", 242, 10]], [["name", 220, 5], ["tag", 221, 5], ["copyToRoot", 222, 5], ["config", 233, 5], ["meta", 242, 5]], [["name", 252, 7], ["pathsToLink", 253, 7], ["paths", 254, 7]], [["name", 248, 5], ["tag", 249, 5], ["fromImage", 250, 5], ["copyToRoot", 251, 5]], [["name", 264, 7], ["pathsToLink", 265, 7], ["paths", 266, 7]], [["name", 261, 5], ["tag", 262, 5], ["copyToRoot", 263, 5], ["runAsRoot", 271, 5], ["extraCommands", 272, 5]], [["name", 281, 7], ["pathsToLink", 282, 7], ["paths", 283, 7]], [["name", 278, 5], ["tag", 279, 5], ["copyToRoot", 280, 5], ["created", 285, 5]], [["Cmd", 293, 12]], [["name", 290, 5], ["tag", 291, 5], ["extraCommands", 292, 5], ["config", 293, 5], ["contents", 294, 5]], [["Env", 311, 7], ["WorkingDir", 312, 7], ["Cmd", 313, 7]], [["name", 303, 5], ["tag", 304, 5], ["fromImage", 305, 5], ["extraCommands", 306, 5], ["config", 310, 5]], [["Env", 331, 7], ["WorkingDir", 332, 7], ["Cmd", 333, 7]], [["name", 323, 5], ["tag", 324, 5], ["fromImage", 325, 5], ["extraCommands", 326, 5], ["config", 330, 5]], [["name", 344, 5], ["tag", 345, 5], ["runAsRoot", 346, 5], ["fromImage", 347, 5]], [["name", 359, 9], ["tag", 360, 9], ["extraCommands", 361, 9]], [["name", 369, 9], ["fromImage", 370, 9], ["tag", 371, 9], ["extraCommands", 372, 9]], [["name", 384, 9], ["pathsToLink", 385, 9], ["paths", 386, 9]], [["name", 380, 7], ["fromImage", 381, 7], ["tag", 382, 7], ["copyToRoot", 383, 7], ["extraCommands", 388, 7]], [["Env", 401, 7]], [["name", 398, 5], ["tag", 399, 5], ["config", 400, 5]], [["name", 413, 7], ["pathsToLink", 414, 7], ["paths", 415, 7]], [["Env", 418, 7]], [["name", 409, 5], ["fromImage", 410, 5], ["tag", 411, 5], ["copyToRoot", 412, 5], ["config", 417, 5]], [["Env", 431, 7]], [["name", 426, 5], ["fromImage", 427, 5], ["tag", 428, 5], ["contents", 429, 5], ["config", 430, 5]], [["Cmd", 442, 12]], [["name", 440, 5], ["tag", 441, 5], ["config", 442, 5]], [["Cmd", 449, 12]], [["name", 447, 5], ["tag", 448, 5], ["config", 449, 5], ["contents", 450, 5], ["maxLayers", 454, 5]], [["name", 460, 5], ["tag", 461, 5], ["contents", 462, 5], ["maxLayers", 466, 5]], [["name", 472, 5], ["tag", 473, 5], ["fromImage", 474, 5], ["contents", 475, 5], ["maxLayers", 479, 5]], [["name", 485, 5], ["tag", 486, 5], ["extraCommands", 487, 5]], [["Env", 508, 7]], [["name", 498, 5], ["tag", 499, 5], ["contents", 500, 5], ["config", 507, 5]], [["Cmd", 531, 7], ["Env", 533, 7]], [["name", 520, 5], ["tag", 521, 5], ["contents", 522, 5], ["config", 530, 5]], [["name", 540, 5], ["tag", 541, 5], ["contents", 542, 5], ["created", 543, 5]], [["name", 557, 13], ["pathsToLink", 558, 13], ["paths", 559, 13]], [["name", 553, 11], ["tag", 554, 11], ["fromImage", 555, 11], ["copyToRoot", 556, 11], ["runAsRoot", 561, 11]], [["name", 576, 5], ["tag", 577, 5], ["compressor", 578, 5], ["copyToRoot", 580, 5]], [["name", 584, 5], ["tag", 585, 5], ["compressor", 586, 5], ["copyToRoot", 588, 5]], [["name", 593, 5], ["copyToRoot", 595, 5]], [["name", 600, 5], ["contents", 601, 5]], [["name", 606, 5], ["tag", 607, 5], ["compressor", 608, 5], ["contents", 609, 5]], [["name", 614, 5], ["tag", 615, 5], ["compressor", 616, 5], ["contents", 617, 5]], [["name", 622, 5], ["contents", 623, 5]], [["uid", 635, 7], ["user", 636, 7]], [["name", 628, 5], ["tag", 629, 5], ["contents", 630, 5]], [["name", 654, 9], ["pathsToLink", 655, 9], ["paths", 656, 9]], [["name", 651, 7], ["tag", 652, 7], ["copyToRoot", 653, 7]], [["name", 667, 7], ["tag", 668, 7], ["contents", 669, 7]], [["symlink", 675, 28]], [["passthru", 675, 7]], [["Cmd", 682, 12]], [["name", 680, 5], ["tag", 681, 5], ["config", 682, 5]], [["Cmd", 689, 12]], [["name", 687, 5], ["tag", 688, 5], ["config", 689, 5]], [["mainProgram", 712, 15]], [["configureFlags", 706, 13], ["doCheck", 709, 13], ["versionCheckProgram", 710, 13], ["meta", 711, 13]], [["name", 694, 5], ["tag", 695, 5], ["contents", 696, 5], ["fakeRootCommands", 699, 5]], [["name", 750, 9], ["paths", 751, 9]], [["Cmd", 754, 12]], [["name", 746, 5], ["tag", 747, 5], ["contents", 748, 5], ["config", 754, 5]], [["name", 762, 9], ["paths", 763, 9]], [["Cmd", 766, 12]], [["name", 758, 5], ["tag", 759, 5], ["contents", 760, 5], ["config", 766, 5], ["includeStorePaths", 767, 5]], [["name", 775, 9], ["paths", 776, 9]], [["Cmd", 779, 12]], [["name", 771, 5], ["tag", 772, 5], ["contents", 773, 5], ["config", 779, 5], ["includeStorePaths", 780, 5], ["enableFakechroot", 781, 5]], [["text", 796, 15]], [["some-config-file", 795, 29]], [["etc", 795, 25]], [["imports", 791, 13], ["environment", 795, 13]], [["Cmd", 819, 14]], [["name", 812, 7], ["tag", 813, 7], ["enableFakechroot", 814, 7], ["fakeRootCommands", 815, 7], ["config", 819, 7]], [["fromImage", 823, 47]], [["Cmd", 828, 12]], [["name", 826, 5], ["tag", 827, 5], ["config", 828, 5], ["enableFakechroot", 829, 5], ["fakeRootCommands", 833, 5]], [["name", 840, 5], ["tag", 841, 5], ["copyToRoot", 843, 5]], [["name", 850, 5], ["tag", 851, 5], ["contents", 852, 5]], [["name", 859, 5], ["tag", 860, 5], ["architecture", 861, 5], ["copyToRoot", 863, 5]], [["name", 870, 5], ["tag", 871, 5], ["architecture", 872, 5], ["contents", 873, 5]], [["name", 885, 7], ["paths", 886, 7]], [["name", 881, 5], ["tag", 882, 5], ["copyToRoot", 884, 5], ["config", 892, 5]], [["name", 897, 5], ["tag", 898, 5], ["drv", 899, 5]], [["shellHook", 906, 7]], [["name", 903, 5], ["tag", 904, 5], ["drv", 905, 5]], [["nativeBuildInputs", 917, 7]], [["name", 914, 5], ["tag", 915, 5], ["drv", 916, 5], ["command", 921, 5]], [["str", 930, 7], ["passAsFile", 931, 7]], [["name", 927, 5], ["tag", 928, 5], ["drv", 929, 5], ["command", 933, 5]], [["name", 939, 5], ["tag", 940, 5], ["drv", 941, 5], ["run", 942, 5]], [["name", 951, 5], ["tag", 952, 5], ["drv", 953, 5], ["command", 954, 5]], [["name", 963, 5], ["tag", 964, 5], ["drv", 965, 5], ["run", 966, 5]], [["name", 981, 5], ["tag", 982, 5], ["drv", 983, 5], ["homeDirectory", 984, 5], ["run", 985, 5]], [["name", 1000, 5], ["tag", 1001, 5], ["drv", 1002, 5], ["run", 1003, 5]], [["Env", 1018, 7]], [["name", 1010, 5], ["tag", 1011, 5], ["contents", 1012, 5], ["includeNixDB", 1016, 5], ["config", 1017, 5]], [["bash", 116, 3], ["redis", 129, 3], ["nginx", 178, 3], ["nginxStream", 181, 3], ["nixFromDockerHub", 184, 3], ["testNixFromDockerHub", 193, 3], ["editors", 202, 3], ["nix", 219, 3], ["onTopOfPulledImage", 247, 3], ["runAsRootExtraCommands", 260, 3], ["unstableDate", 277, 3], ["layered-image", 289, 3], ["layered-on-top", 302, 3], ["layered-on-top-layered", 322, 3], ["runAsRootParentImage", 343, 3], ["layersOrder", 356, 3], ["environmentVariablesParent", 397, 3], ["environmentVariables", 408, 3], ["environmentVariablesLayered", 425, 3], ["another-layered-image", 439, 3], ["two-layered-image", 446, 3], ["bulk-layer", 459, 3], ["layered-bulk-layer", 471, 3], ["no-store-paths", 484, 3], ["nixLayered", 497, 3], ["filesInStore", 519, 3], ["unstableDateLayered", 539, 3], ["layersUnpackOrder", 548, 3], ["bashUncompressed", 575, 3], ["bashZstdCompressed", 583, 3], ["bashNoTag", 592, 3], ["bashNoTagLayered", 599, 3], ["bashLayeredUncompressed", 605, 3], ["bashLayeredZstdCompressed", 613, 3], ["bashNoTagStreamLayered", 621, 3], ["bashLayeredWithUser", 627, 3], ["cross", 641, 3], ["layeredStoreSymlink", 661, 3], ["prefixedImage", 679, 3], ["prefixedLayeredImage", 686, 3], ["layeredImageWithFakeRootCommands", 693, 3], ["mergedBashAndRedis", 721, 3], ["mergedBashNoTagAndRedis", 727, 3], ["mergedBashFakeRoot", 734, 3], ["mergeVaryingCompressor", 739, 3], ["helloOnRoot", 745, 3], ["helloOnRootNoStore", 757, 3], ["helloOnRootNoStoreFakechroot", 770, 3], ["etc", 784, 3], ["exportBash", 823, 3], ["imageViaFakeChroot", 825, 3], ["build-image-with-path", 839, 3], ["layered-image-with-path", 849, 3], ["build-image-with-architecture", 858, 3], ["layered-image-with-architecture", 869, 3], ["image-with-certs", 880, 3], ["nix-shell-basic", 896, 3], ["nix-shell-hook", 902, 3], ["nix-shell-inputs", 913, 3], ["nix-shell-pass-as-file", 926, 3], ["nix-shell-run", 938, 3], ["nix-shell-command", 950, 3], ["nix-shell-writable-home", 962, 3], ["nix-shell-nonexistent-home", 980, 3], ["nix-shell-build-derivation", 999, 3], ["nix-layered", 1009, 3]]]);
 const formals$1 = { args: { pkgs: false, buildImage: false, buildLayeredImage: false, pullImage: false, shadowSetup: false, buildImageWithNixDb: false, pkgsCross: false, streamNixShellImage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/examples.nix", [["minimalModules", 25, 18]]);
-const pos$2 = nix.positions(here + "/examples.nix", [["featureFlags", 25, 5]]);
-const pos$3 = nix.positions(here + "/examples.nix", [["modules", 27, 54]]);
 const formals$2 = { args: { user: false, uid: false, gid: true }, ellipsis: false };
-const pos$4 = nix.positions(here + "/examples.nix", [["uid", 86, 9], ["user", 87, 9]]);
-const pos$5 = nix.positions(here + "/examples.nix", [["Cmd", 99, 9], ["ExposedPorts", 104, 9]]);
-const pos$6 = nix.positions(here + "/examples.nix", [["description", 109, 12]]);
-const pos$7 = nix.positions(here + "/examples.nix", [["name", 80, 7], ["tag", 81, 7], ["contents", 82, 7], ["extraCommands", 90, 7], ["config", 98, 7], ["meta", 109, 7]]);
-const pos$8 = nix.positions(here + "/examples.nix", [["name", 120, 7], ["paths", 121, 7], ["pathsToLink", 122, 7]]);
-const pos$9 = nix.positions(here + "/examples.nix", [["description", 125, 10]]);
-const pos$10 = nix.positions(here + "/examples.nix", [["name", 117, 5], ["tag", 118, 5], ["copyToRoot", 119, 5], ["meta", 125, 5]]);
-const pos$11 = nix.positions(here + "/examples.nix", [["name", 138, 7], ["paths", 139, 7], ["pathsToLink", 140, 7]]);
-const pos$12 = nix.positions(here + "/examples.nix", [["/data", 161, 9]]);
-const pos$13 = nix.positions(here + "/examples.nix", [["Test", 164, 9], ["Interval", 168, 9], ["Timeout", 169, 9], ["Retries", 170, 9]]);
-const pos$14 = nix.positions(here + "/examples.nix", [["Cmd", 158, 7], ["WorkingDir", 159, 7], ["Volumes", 160, 7], ["Healthcheck", 163, 7]]);
-const pos$15 = nix.positions(here + "/examples.nix", [["description", 174, 10]]);
-const pos$16 = nix.positions(here + "/examples.nix", [["name", 130, 5], ["tag", 131, 5], ["fromImage", 134, 5], ["copyToRoot", 137, 5], ["runAsRoot", 143, 5], ["config", 157, 5], ["meta", 174, 5]]);
-const pos$17 = nix.positions(here + "/examples.nix", [["imageName", 185, 5], ["imageDigest", 186, 5], ["hash", 187, 5], ["finalImageTag", 188, 5], ["finalImageName", 189, 5]]);
-const pos$18 = nix.positions(here + "/examples.nix", [["imageName", 194, 5], ["imageDigest", 195, 5], ["hash", 196, 5], ["finalImageTag", 197, 5], ["finalImageName", 198, 5]]);
-const pos$19 = nix.positions(here + "/examples.nix", [["name", 205, 7], ["pathsToLink", 206, 7], ["paths", 207, 7]]);
-const pos$20 = nix.positions(here + "/examples.nix", [["name", 203, 5], ["copyToRoot", 204, 5]]);
-const pos$21 = nix.positions(here + "/examples.nix", [["name", 223, 7], ["pathsToLink", 224, 7], ["paths", 225, 7]]);
-const pos$22 = nix.positions(here + "/examples.nix", [["Env", 234, 7]]);
-const pos$23 = nix.positions(here + "/examples.nix", [["description", 242, 10]]);
-const pos$24 = nix.positions(here + "/examples.nix", [["name", 220, 5], ["tag", 221, 5], ["copyToRoot", 222, 5], ["config", 233, 5], ["meta", 242, 5]]);
-const pos$25 = nix.positions(here + "/examples.nix", [["name", 252, 7], ["pathsToLink", 253, 7], ["paths", 254, 7]]);
-const pos$26 = nix.positions(here + "/examples.nix", [["name", 248, 5], ["tag", 249, 5], ["fromImage", 250, 5], ["copyToRoot", 251, 5]]);
-const pos$27 = nix.positions(here + "/examples.nix", [["name", 264, 7], ["pathsToLink", 265, 7], ["paths", 266, 7]]);
-const pos$28 = nix.positions(here + "/examples.nix", [["name", 261, 5], ["tag", 262, 5], ["copyToRoot", 263, 5], ["runAsRoot", 271, 5], ["extraCommands", 272, 5]]);
-const pos$29 = nix.positions(here + "/examples.nix", [["name", 281, 7], ["pathsToLink", 282, 7], ["paths", 283, 7]]);
-const pos$30 = nix.positions(here + "/examples.nix", [["name", 278, 5], ["tag", 279, 5], ["copyToRoot", 280, 5], ["created", 285, 5]]);
-const pos$31 = nix.positions(here + "/examples.nix", [["Cmd", 293, 12]]);
-const pos$32 = nix.positions(here + "/examples.nix", [["name", 290, 5], ["tag", 291, 5], ["extraCommands", 292, 5], ["config", 293, 5], ["contents", 294, 5]]);
-const pos$33 = nix.positions(here + "/examples.nix", [["Env", 311, 7], ["WorkingDir", 312, 7], ["Cmd", 313, 7]]);
-const pos$34 = nix.positions(here + "/examples.nix", [["name", 303, 5], ["tag", 304, 5], ["fromImage", 305, 5], ["extraCommands", 306, 5], ["config", 310, 5]]);
-const pos$35 = nix.positions(here + "/examples.nix", [["Env", 331, 7], ["WorkingDir", 332, 7], ["Cmd", 333, 7]]);
-const pos$36 = nix.positions(here + "/examples.nix", [["name", 323, 5], ["tag", 324, 5], ["fromImage", 325, 5], ["extraCommands", 326, 5], ["config", 330, 5]]);
-const pos$37 = nix.positions(here + "/examples.nix", [["name", 344, 5], ["tag", 345, 5], ["runAsRoot", 346, 5], ["fromImage", 347, 5]]);
-const pos$38 = nix.positions(here + "/examples.nix", [["name", 359, 9], ["tag", 360, 9], ["extraCommands", 361, 9]]);
-const pos$39 = nix.positions(here + "/examples.nix", [["name", 369, 9], ["fromImage", 370, 9], ["tag", 371, 9], ["extraCommands", 372, 9]]);
-const pos$40 = nix.positions(here + "/examples.nix", [["name", 384, 9], ["pathsToLink", 385, 9], ["paths", 386, 9]]);
-const pos$41 = nix.positions(here + "/examples.nix", [["name", 380, 7], ["fromImage", 381, 7], ["tag", 382, 7], ["copyToRoot", 383, 7], ["extraCommands", 388, 7]]);
-const pos$42 = nix.positions(here + "/examples.nix", [["Env", 401, 7]]);
-const pos$43 = nix.positions(here + "/examples.nix", [["name", 398, 5], ["tag", 399, 5], ["config", 400, 5]]);
-const pos$44 = nix.positions(here + "/examples.nix", [["name", 413, 7], ["pathsToLink", 414, 7], ["paths", 415, 7]]);
-const pos$45 = nix.positions(here + "/examples.nix", [["Env", 418, 7]]);
-const pos$46 = nix.positions(here + "/examples.nix", [["name", 409, 5], ["fromImage", 410, 5], ["tag", 411, 5], ["copyToRoot", 412, 5], ["config", 417, 5]]);
-const pos$47 = nix.positions(here + "/examples.nix", [["Env", 431, 7]]);
-const pos$48 = nix.positions(here + "/examples.nix", [["name", 426, 5], ["fromImage", 427, 5], ["tag", 428, 5], ["contents", 429, 5], ["config", 430, 5]]);
-const pos$49 = nix.positions(here + "/examples.nix", [["Cmd", 442, 12]]);
-const pos$50 = nix.positions(here + "/examples.nix", [["name", 440, 5], ["tag", 441, 5], ["config", 442, 5]]);
-const pos$51 = nix.positions(here + "/examples.nix", [["Cmd", 449, 12]]);
-const pos$52 = nix.positions(here + "/examples.nix", [["name", 447, 5], ["tag", 448, 5], ["config", 449, 5], ["contents", 450, 5], ["maxLayers", 454, 5]]);
-const pos$53 = nix.positions(here + "/examples.nix", [["name", 460, 5], ["tag", 461, 5], ["contents", 462, 5], ["maxLayers", 466, 5]]);
-const pos$54 = nix.positions(here + "/examples.nix", [["name", 472, 5], ["tag", 473, 5], ["fromImage", 474, 5], ["contents", 475, 5], ["maxLayers", 479, 5]]);
-const pos$55 = nix.positions(here + "/examples.nix", [["name", 485, 5], ["tag", 486, 5], ["extraCommands", 487, 5]]);
-const pos$56 = nix.positions(here + "/examples.nix", [["Env", 508, 7]]);
-const pos$57 = nix.positions(here + "/examples.nix", [["name", 498, 5], ["tag", 499, 5], ["contents", 500, 5], ["config", 507, 5]]);
-const pos$58 = nix.positions(here + "/examples.nix", [["Cmd", 531, 7], ["Env", 533, 7]]);
-const pos$59 = nix.positions(here + "/examples.nix", [["name", 520, 5], ["tag", 521, 5], ["contents", 522, 5], ["config", 530, 5]]);
-const pos$60 = nix.positions(here + "/examples.nix", [["name", 540, 5], ["tag", 541, 5], ["contents", 542, 5], ["created", 543, 5]]);
-const pos$61 = nix.positions(here + "/examples.nix", [["name", 557, 13], ["pathsToLink", 558, 13], ["paths", 559, 13]]);
-const pos$62 = nix.positions(here + "/examples.nix", [["name", 553, 11], ["tag", 554, 11], ["fromImage", 555, 11], ["copyToRoot", 556, 11], ["runAsRoot", 561, 11]]);
-const pos$63 = nix.positions(here + "/examples.nix", [["name", 576, 5], ["tag", 577, 5], ["compressor", 578, 5], ["copyToRoot", 580, 5]]);
-const pos$64 = nix.positions(here + "/examples.nix", [["name", 584, 5], ["tag", 585, 5], ["compressor", 586, 5], ["copyToRoot", 588, 5]]);
-const pos$65 = nix.positions(here + "/examples.nix", [["name", 593, 5], ["copyToRoot", 595, 5]]);
-const pos$66 = nix.positions(here + "/examples.nix", [["name", 600, 5], ["contents", 601, 5]]);
-const pos$67 = nix.positions(here + "/examples.nix", [["name", 606, 5], ["tag", 607, 5], ["compressor", 608, 5], ["contents", 609, 5]]);
-const pos$68 = nix.positions(here + "/examples.nix", [["name", 614, 5], ["tag", 615, 5], ["compressor", 616, 5], ["contents", 617, 5]]);
-const pos$69 = nix.positions(here + "/examples.nix", [["name", 622, 5], ["contents", 623, 5]]);
-const pos$70 = nix.positions(here + "/examples.nix", [["uid", 635, 7], ["user", 636, 7]]);
-const pos$71 = nix.positions(here + "/examples.nix", [["name", 628, 5], ["tag", 629, 5], ["contents", 630, 5]]);
-const pos$72 = nix.positions(here + "/examples.nix", [["name", 654, 9], ["pathsToLink", 655, 9], ["paths", 656, 9]]);
-const pos$73 = nix.positions(here + "/examples.nix", [["name", 651, 7], ["tag", 652, 7], ["copyToRoot", 653, 7]]);
-const pos$74 = nix.positions(here + "/examples.nix", [["name", 667, 7], ["tag", 668, 7], ["contents", 669, 7]]);
-const pos$75 = nix.positions(here + "/examples.nix", [["symlink", 675, 28]]);
-const pos$76 = nix.positions(here + "/examples.nix", [["passthru", 675, 7]]);
-const pos$77 = nix.positions(here + "/examples.nix", [["Cmd", 682, 12]]);
-const pos$78 = nix.positions(here + "/examples.nix", [["name", 680, 5], ["tag", 681, 5], ["config", 682, 5]]);
-const pos$79 = nix.positions(here + "/examples.nix", [["Cmd", 689, 12]]);
-const pos$80 = nix.positions(here + "/examples.nix", [["name", 687, 5], ["tag", 688, 5], ["config", 689, 5]]);
-const pos$81 = nix.positions(here + "/examples.nix", [["mainProgram", 712, 15]]);
-const pos$82 = nix.positions(here + "/examples.nix", [["configureFlags", 706, 13], ["doCheck", 709, 13], ["versionCheckProgram", 710, 13], ["meta", 711, 13]]);
-const pos$83 = nix.positions(here + "/examples.nix", [["name", 694, 5], ["tag", 695, 5], ["contents", 696, 5], ["fakeRootCommands", 699, 5]]);
-const pos$84 = nix.positions(here + "/examples.nix", [["name", 750, 9], ["paths", 751, 9]]);
-const pos$85 = nix.positions(here + "/examples.nix", [["Cmd", 754, 12]]);
-const pos$86 = nix.positions(here + "/examples.nix", [["name", 746, 5], ["tag", 747, 5], ["contents", 748, 5], ["config", 754, 5]]);
-const pos$87 = nix.positions(here + "/examples.nix", [["name", 762, 9], ["paths", 763, 9]]);
-const pos$88 = nix.positions(here + "/examples.nix", [["Cmd", 766, 12]]);
-const pos$89 = nix.positions(here + "/examples.nix", [["name", 758, 5], ["tag", 759, 5], ["contents", 760, 5], ["config", 766, 5], ["includeStorePaths", 767, 5]]);
-const pos$90 = nix.positions(here + "/examples.nix", [["name", 775, 9], ["paths", 776, 9]]);
-const pos$91 = nix.positions(here + "/examples.nix", [["Cmd", 779, 12]]);
-const pos$92 = nix.positions(here + "/examples.nix", [["name", 771, 5], ["tag", 772, 5], ["contents", 773, 5], ["config", 779, 5], ["includeStorePaths", 780, 5], ["enableFakechroot", 781, 5]]);
 const formals$3 = { args: { config: false }, ellipsis: true };
-const pos$93 = nix.positions(here + "/examples.nix", [["text", 796, 15]]);
-const pos$94 = nix.positions(here + "/examples.nix", [["some-config-file", 795, 29]]);
-const pos$95 = nix.positions(here + "/examples.nix", [["etc", 795, 25]]);
-const pos$96 = nix.positions(here + "/examples.nix", [["imports", 791, 13], ["environment", 795, 13]]);
-const pos$97 = nix.positions(here + "/examples.nix", [["Cmd", 819, 14]]);
-const pos$98 = nix.positions(here + "/examples.nix", [["name", 812, 7], ["tag", 813, 7], ["enableFakechroot", 814, 7], ["fakeRootCommands", 815, 7], ["config", 819, 7]]);
-const pos$99 = nix.positions(here + "/examples.nix", [["fromImage", 823, 47]]);
-const pos$100 = nix.positions(here + "/examples.nix", [["Cmd", 828, 12]]);
-const pos$101 = nix.positions(here + "/examples.nix", [["name", 826, 5], ["tag", 827, 5], ["config", 828, 5], ["enableFakechroot", 829, 5], ["fakeRootCommands", 833, 5]]);
-const pos$102 = nix.positions(here + "/examples.nix", [["name", 840, 5], ["tag", 841, 5], ["copyToRoot", 843, 5]]);
-const pos$103 = nix.positions(here + "/examples.nix", [["name", 850, 5], ["tag", 851, 5], ["contents", 852, 5]]);
-const pos$104 = nix.positions(here + "/examples.nix", [["name", 859, 5], ["tag", 860, 5], ["architecture", 861, 5], ["copyToRoot", 863, 5]]);
-const pos$105 = nix.positions(here + "/examples.nix", [["name", 870, 5], ["tag", 871, 5], ["architecture", 872, 5], ["contents", 873, 5]]);
-const pos$106 = nix.positions(here + "/examples.nix", [["name", 885, 7], ["paths", 886, 7]]);
-const pos$107 = nix.positions(here + "/examples.nix", [["name", 881, 5], ["tag", 882, 5], ["copyToRoot", 884, 5], ["config", 892, 5]]);
-const pos$108 = nix.positions(here + "/examples.nix", [["name", 897, 5], ["tag", 898, 5], ["drv", 899, 5]]);
-const pos$109 = nix.positions(here + "/examples.nix", [["shellHook", 906, 7]]);
-const pos$110 = nix.positions(here + "/examples.nix", [["name", 903, 5], ["tag", 904, 5], ["drv", 905, 5]]);
-const pos$111 = nix.positions(here + "/examples.nix", [["nativeBuildInputs", 917, 7]]);
-const pos$112 = nix.positions(here + "/examples.nix", [["name", 914, 5], ["tag", 915, 5], ["drv", 916, 5], ["command", 921, 5]]);
-const pos$113 = nix.positions(here + "/examples.nix", [["str", 930, 7], ["passAsFile", 931, 7]]);
-const pos$114 = nix.positions(here + "/examples.nix", [["name", 927, 5], ["tag", 928, 5], ["drv", 929, 5], ["command", 933, 5]]);
-const pos$115 = nix.positions(here + "/examples.nix", [["name", 939, 5], ["tag", 940, 5], ["drv", 941, 5], ["run", 942, 5]]);
-const pos$116 = nix.positions(here + "/examples.nix", [["name", 951, 5], ["tag", 952, 5], ["drv", 953, 5], ["command", 954, 5]]);
-const pos$117 = nix.positions(here + "/examples.nix", [["name", 963, 5], ["tag", 964, 5], ["drv", 965, 5], ["run", 966, 5]]);
-const pos$118 = nix.positions(here + "/examples.nix", [["name", 981, 5], ["tag", 982, 5], ["drv", 983, 5], ["homeDirectory", 984, 5], ["run", 985, 5]]);
-const pos$119 = nix.positions(here + "/examples.nix", [["name", 1000, 5], ["tag", 1001, 5], ["drv", 1002, 5], ["run", 1003, 5]]);
-const pos$120 = nix.positions(here + "/examples.nix", [["Env", 1018, 7]]);
-const pos$121 = nix.positions(here + "/examples.nix", [["name", 1010, 5], ["tag", 1011, 5], ["contents", 1012, 5], ["includeNixDB", 1016, 5], ["config", 1017, 5]]);
-const pos$122 = nix.positions(here + "/examples.nix", [["bash", 116, 3], ["redis", 129, 3], ["nginx", 178, 3], ["nginxStream", 181, 3], ["nixFromDockerHub", 184, 3], ["testNixFromDockerHub", 193, 3], ["editors", 202, 3], ["nix", 219, 3], ["onTopOfPulledImage", 247, 3], ["runAsRootExtraCommands", 260, 3], ["unstableDate", 277, 3], ["layered-image", 289, 3], ["layered-on-top", 302, 3], ["layered-on-top-layered", 322, 3], ["runAsRootParentImage", 343, 3], ["layersOrder", 356, 3], ["environmentVariablesParent", 397, 3], ["environmentVariables", 408, 3], ["environmentVariablesLayered", 425, 3], ["another-layered-image", 439, 3], ["two-layered-image", 446, 3], ["bulk-layer", 459, 3], ["layered-bulk-layer", 471, 3], ["no-store-paths", 484, 3], ["nixLayered", 497, 3], ["filesInStore", 519, 3], ["unstableDateLayered", 539, 3], ["layersUnpackOrder", 548, 3], ["bashUncompressed", 575, 3], ["bashZstdCompressed", 583, 3], ["bashNoTag", 592, 3], ["bashNoTagLayered", 599, 3], ["bashLayeredUncompressed", 605, 3], ["bashLayeredZstdCompressed", 613, 3], ["bashNoTagStreamLayered", 621, 3], ["bashLayeredWithUser", 627, 3], ["cross", 641, 3], ["layeredStoreSymlink", 661, 3], ["prefixedImage", 679, 3], ["prefixedLayeredImage", 686, 3], ["layeredImageWithFakeRootCommands", 693, 3], ["mergedBashAndRedis", 721, 3], ["mergedBashNoTagAndRedis", 727, 3], ["mergedBashFakeRoot", 734, 3], ["mergeVaryingCompressor", 739, 3], ["helloOnRoot", 745, 3], ["helloOnRootNoStore", 757, 3], ["helloOnRootNoStoreFakechroot", 770, 3], ["etc", 784, 3], ["exportBash", 823, 3], ["imageViaFakeChroot", 825, 3], ["build-image-with-path", 839, 3], ["layered-image-with-path", 849, 3], ["build-image-with-architecture", 858, 3], ["layered-image-with-architecture", 869, 3], ["image-with-certs", 880, 3], ["nix-shell-basic", 896, 3], ["nix-shell-hook", 902, 3], ["nix-shell-inputs", 913, 3], ["nix-shell-pass-as-file", 926, 3], ["nix-shell-run", 938, 3], ["nix-shell-command", 950, 3], ["nix-shell-writable-home", 962, 3], ["nix-shell-nonexistent-home", 980, 3], ["nix-shell-build-derivation", 999, 3], ["nix-layered", 1009, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -139,10 +18,10 @@ export default nix.lambda((args) => (() => {
   const pkgsCross = nix.arg($, "pkgsCross");
   const streamNixShellImage = nix.arg($, "streamNixShellImage");
   const nixosLib = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../nixos/lib")), nix.thunk(() => ({
-      [nix.POS]: pos$2,
-      featureFlags: nix.thunk(() => ({ [nix.POS]: pos$1, minimalModules: nix.thunk(() => ({})) })),
+      [nix.POS]: $pos[1],
+      featureFlags: nix.thunk(() => ({ [nix.POS]: $pos[0], minimalModules: nix.thunk(() => ({})) })),
     }))));
-  const evalMinimalConfig = (module) => nix.app(nix.sel(nixosLib, "evalModules"), nix.thunk(() => ({ [nix.POS]: pos$3, modules: nix.thunk(() => [module]) })));
+  const evalMinimalConfig = (module) => nix.app(nix.sel(nixosLib, "evalModules"), nix.thunk(() => ({ [nix.POS]: $pos[2], modules: nix.thunk(() => [module]) })));
   const nonRootShadowSetup = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const user = nix.arg($_1, "user");
@@ -184,63 +63,66 @@ http {
 `)));
     const nginxWebRoot = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextDir"), "index.html", "<html><body><h1>Hello from NGINX</h1></body></html>\n"));
     return {
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       name: "nginx-container",
       tag: "latest",
-      contents: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(pkgs, "nginx"))], nix.app(nonRootShadowSetup, nix.thunk(() => ({ [nix.POS]: pos$4, uid: 999n, user: "nginx" }))))),
+      contents: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(pkgs, "nginx"))], nix.app(nonRootShadowSetup, nix.thunk(() => ({ [nix.POS]: $pos[3], uid: 999n, user: "nginx" }))))),
       extraCommands: "mkdir -p tmp/nginx_client_body\n\n# nginx still tries to read this directory even if error_log\n# directive is specifying another file :/\nmkdir -p var/log/nginx\n",
       config: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         Cmd: nix.thunk(() => ["nginx", "-c", nginxConf]),
         ExposedPorts: nix.thunk(() => nix.attrsDyn({}, [[nix.str`${nginxPort}/tcp`, nix.thunk(() => ({}))]])),
       })),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$6, description: "Basic nginx docker image example" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[5], description: "Basic nginx docker image example" })),
     };
   })());
   return (() => {
     const bash = nix.thunk(() => nix.app(buildImage, nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         name: "bash",
         tag: "latest",
         copyToRoot: nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             name: "image-root",
             paths: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "bash"))]),
             pathsToLink: nix.thunk(() => ["/bin"]),
           })))),
-        meta: nix.thunk(() => ({ [nix.POS]: pos$9, description: "Basic example image" })),
+        meta: nix.thunk(() => ({ [nix.POS]: $pos[8], description: "Basic example image" })),
       }))));
     const redis = nix.thunk(() => nix.app(buildImage, nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         name: "redis",
         tag: "latest",
         fromImage: bash,
         copyToRoot: nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             name: "image-root",
             paths: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "redis"))]),
             pathsToLink: nix.thunk(() => ["/bin"]),
           })))),
         runAsRoot: "mkdir -p /data\ncat >/bin/healthcheck <<-'EOF'\nset -x\nprobe=\"$(/bin/redis-cli ping)\"\necho \"$probe\"\nif [ \"$probe\" = 'PONG' ]; then\n  exit 0\nfi\nexit 1\nEOF\nchmod +x /bin/healthcheck\n",
         config: nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           Cmd: nix.thunk(() => ["/bin/redis-server"]),
           WorkingDir: "/data",
-          Volumes: nix.thunk(() => ({ [nix.POS]: pos$12, "/data": nix.thunk(() => ({})) })),
+          Volumes: nix.thunk(() => ({ [nix.POS]: $pos[11], "/data": nix.thunk(() => ({})) })),
           Healthcheck: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             Test: nix.thunk(() => ["CMD-SHELL", "/bin/healthcheck"]),
             Interval: 30000000000n,
             Timeout: 10000000000n,
             Retries: 3n,
           })),
         })),
-        meta: nix.thunk(() => ({ [nix.POS]: pos$15, description: "Service example, layered on another image" })),
+        meta: nix.thunk(() => ({
+          [nix.POS]: $pos[14],
+          description: "Service example, layered on another image",
+        })),
       }))));
     const nginx = nix.thunk(() => nix.app(buildLayeredImage, nginxArguments));
     const nginxStream = nix.thunk(() => nix.app(nix.sel(pkgs, "dockerTools", "streamLayeredImage"), nginxArguments));
     const nixFromDockerHub = nix.thunk(() => nix.app(pullImage, nix.thunk(() => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         imageName: "nixos/nix",
         imageDigest: "sha256:85299d86263a3059cf19f419f9d286cc9f06d3c13146a8ebbb21b3437f598357",
         hash: "sha256-xxZ4UW6jRIVAzlVYA62awcopzcYNViDyh6q1yocF3KU=",
@@ -248,7 +130,7 @@ http {
         finalImageName: "nix",
       }))));
     const testNixFromDockerHub = nix.thunk(() => nix.app(nix.sel(pkgs, "testers", "invalidateFetcherByDrvHash"), pullImage, nix.thunk(() => ({
-        [nix.POS]: pos$18,
+        [nix.POS]: $pos[17],
         imageName: "nixos/nix",
         imageDigest: "sha256:85299d86263a3059cf19f419f9d286cc9f06d3c13146a8ebbb21b3437f598357",
         hash: "sha256-xxZ4UW6jRIVAzlVYA62awcopzcYNViDyh6q1yocF3KU=",
@@ -256,10 +138,10 @@ http {
         finalImageName: "nix",
       }))));
     const editors = nix.thunk(() => nix.app(buildImage, nix.thunk(() => ({
-        [nix.POS]: pos$20,
+        [nix.POS]: $pos[19],
         name: "editors",
         copyToRoot: nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-            [nix.POS]: pos$19,
+            [nix.POS]: $pos[18],
             name: "image-root",
             pathsToLink: nix.thunk(() => ["/bin"]),
             paths: nix.thunk(() => [
@@ -272,11 +154,11 @@ http {
           })))),
       }))));
     const nix$ = nix.thunk(() => nix.app(buildImageWithNixDb, nix.thunk(() => ({
-        [nix.POS]: pos$24,
+        [nix.POS]: $pos[23],
         name: "nix",
         tag: "latest",
         copyToRoot: nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-            [nix.POS]: pos$21,
+            [nix.POS]: $pos[20],
             name: "image-root",
             pathsToLink: nix.thunk(() => ["/bin"]),
             paths: nix.thunk(() => [
@@ -285,30 +167,30 @@ http {
               nix.thunk(() => nix.sel(pkgs, "bash")),
             ]),
           })))),
-        config: nix.thunk(() => ({ [nix.POS]: pos$22, Env: nix.thunk(() => ["NIX_PAGER=cat", "USER=nobody"]) })),
+        config: nix.thunk(() => ({ [nix.POS]: $pos[21], Env: nix.thunk(() => ["NIX_PAGER=cat", "USER=nobody"]) })),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$23,
+          [nix.POS]: $pos[22],
           description: "nix example to play with the container nix store",
         })),
       }))));
     const onTopOfPulledImage = nix.thunk(() => nix.app(buildImage, nix.thunk(() => ({
-        [nix.POS]: pos$26,
+        [nix.POS]: $pos[25],
         name: "onTopOfPulledImage",
         tag: "latest",
         fromImage: nixFromDockerHub,
         copyToRoot: nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-            [nix.POS]: pos$25,
+            [nix.POS]: $pos[24],
             name: "image-root",
             pathsToLink: nix.thunk(() => ["/bin"]),
             paths: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "hello"))]),
           })))),
       }))));
     const runAsRootExtraCommands = nix.thunk(() => nix.app(nix.sel(pkgs, "dockerTools", "buildImage"), nix.thunk(() => ({
-        [nix.POS]: pos$28,
+        [nix.POS]: $pos[27],
         name: "runAsRootExtraCommands",
         tag: "latest",
         copyToRoot: nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-            [nix.POS]: pos$27,
+            [nix.POS]: $pos[26],
             name: "image-root",
             pathsToLink: nix.thunk(() => ["/bin"]),
             paths: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "coreutils"))]),
@@ -317,11 +199,11 @@ http {
         extraCommands: "echo \"(extraCommand)\" > extraCommands",
       }))));
     const unstableDate = nix.thunk(() => nix.app(nix.sel(pkgs, "dockerTools", "buildImage"), nix.thunk(() => ({
-        [nix.POS]: pos$30,
+        [nix.POS]: $pos[29],
         name: "unstable-date",
         tag: "latest",
         copyToRoot: nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-            [nix.POS]: pos$29,
+            [nix.POS]: $pos[28],
             name: "image-root",
             pathsToLink: nix.thunk(() => ["/bin"]),
             paths: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "coreutils"))]),
@@ -329,12 +211,12 @@ http {
         created: "now",
       }))));
     const layered_image = nix.thunk(() => nix.app(nix.sel(pkgs, "dockerTools", "buildLayeredImage"), nix.thunk(() => ({
-        [nix.POS]: pos$32,
+        [nix.POS]: $pos[31],
         name: "layered-image",
         tag: "latest",
         extraCommands: "echo \"(extraCommand)\" > extraCommands",
         config: nix.thunk(() => ({
-          [nix.POS]: pos$31,
+          [nix.POS]: $pos[30],
           Cmd: nix.thunk(() => [nix.thunk(() => nix.str`${nix.sel(pkgs, "hello")}/bin/hello`)]),
         })),
         contents: nix.thunk(() => [
@@ -344,13 +226,13 @@ http {
         ]),
       }))));
     const layered_on_top = nix.thunk(() => nix.app(nix.sel(pkgs, "dockerTools", "buildImage"), nix.thunk(() => ({
-        [nix.POS]: pos$34,
+        [nix.POS]: $pos[33],
         name: "layered-on-top",
         tag: "latest",
         fromImage: layered_image,
         extraCommands: "mkdir ./example-output\nchmod 777 ./example-output\n",
         config: nix.thunk(() => ({
-          [nix.POS]: pos$33,
+          [nix.POS]: $pos[32],
           Env: nix.thunk(() => [nix.thunk(() => nix.str`PATH=${nix.sel(pkgs, "coreutils")}/bin/`)]),
           WorkingDir: "/example-output",
           Cmd: nix.thunk(() => [
@@ -361,13 +243,13 @@ http {
         })),
       }))));
     const layered_on_top_layered = nix.thunk(() => nix.app(nix.sel(pkgs, "dockerTools", "buildLayeredImage"), nix.thunk(() => ({
-        [nix.POS]: pos$36,
+        [nix.POS]: $pos[35],
         name: "layered-on-top-layered",
         tag: "latest",
         fromImage: layered_image,
         extraCommands: "mkdir ./example-output\nchmod 777 ./example-output\n",
         config: nix.thunk(() => ({
-          [nix.POS]: pos$35,
+          [nix.POS]: $pos[34],
           Env: nix.thunk(() => [nix.thunk(() => nix.str`PATH=${nix.sel(pkgs, "coreutils")}/bin/`)]),
           WorkingDir: "/example-output",
           Cmd: nix.thunk(() => [
@@ -378,7 +260,7 @@ http {
         })),
       }))));
     const runAsRootParentImage = nix.thunk(() => nix.app(buildImage, nix.thunk(() => ({
-        [nix.POS]: pos$37,
+        [nix.POS]: $pos[36],
         name: "runAsRootParentImage",
         tag: "latest",
         runAsRoot: "touch /example-file",
@@ -386,25 +268,25 @@ http {
       }))));
     const layersOrder = nix.thunk(() => (() => {
       const l1 = nix.thunk(() => nix.app(nix.sel(pkgs, "dockerTools", "buildImage"), nix.thunk(() => ({
-          [nix.POS]: pos$38,
+          [nix.POS]: $pos[37],
           name: "l1",
           tag: "latest",
           extraCommands: "mkdir -p tmp\necho layer1 > tmp/layer1\necho layer1 > tmp/layer2\necho layer1 > tmp/layer3\n",
         }))));
       const l2 = nix.thunk(() => nix.app(nix.sel(pkgs, "dockerTools", "buildImage"), nix.thunk(() => ({
-          [nix.POS]: pos$39,
+          [nix.POS]: $pos[38],
           name: "l2",
           fromImage: l1,
           tag: "latest",
           extraCommands: "mkdir -p tmp\necho layer2 > tmp/layer2\necho layer2 > tmp/layer3\n",
         }))));
       return nix.app(nix.sel(pkgs, "dockerTools", "buildImage"), nix.thunk(() => ({
-          [nix.POS]: pos$41,
+          [nix.POS]: $pos[40],
           name: "l3",
           fromImage: l2,
           tag: "latest",
           copyToRoot: nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-              [nix.POS]: pos$40,
+              [nix.POS]: $pos[39],
               name: "image-root",
               pathsToLink: nix.thunk(() => ["/bin"]),
               paths: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "coreutils"))]),
@@ -413,56 +295,56 @@ http {
         })));
     })());
     const environmentVariablesParent = nix.thunk(() => nix.app(nix.sel(pkgs, "dockerTools", "buildImage"), nix.thunk(() => ({
-        [nix.POS]: pos$43,
+        [nix.POS]: $pos[42],
         name: "parent",
         tag: "latest",
         config: nix.thunk(() => ({
-          [nix.POS]: pos$42,
+          [nix.POS]: $pos[41],
           Env: nix.thunk(() => ["FROM_PARENT=true", "LAST_LAYER=parent"]),
         })),
       }))));
     const environmentVariables = nix.thunk(() => nix.app(nix.sel(pkgs, "dockerTools", "buildImage"), nix.thunk(() => ({
-        [nix.POS]: pos$46,
+        [nix.POS]: $pos[45],
         name: "child",
         fromImage: environmentVariablesParent,
         tag: "latest",
         copyToRoot: nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-            [nix.POS]: pos$44,
+            [nix.POS]: $pos[43],
             name: "image-root",
             pathsToLink: nix.thunk(() => ["/bin"]),
             paths: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "coreutils"))]),
           })))),
         config: nix.thunk(() => ({
-          [nix.POS]: pos$45,
+          [nix.POS]: $pos[44],
           Env: nix.thunk(() => ["FROM_CHILD=true", "LAST_LAYER=child"]),
         })),
       }))));
     const environmentVariablesLayered = nix.thunk(() => nix.app(nix.sel(pkgs, "dockerTools", "buildLayeredImage"), nix.thunk(() => ({
-        [nix.POS]: pos$48,
+        [nix.POS]: $pos[47],
         name: "child",
         fromImage: environmentVariablesParent,
         tag: "latest",
         contents: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "coreutils"))]),
         config: nix.thunk(() => ({
-          [nix.POS]: pos$47,
+          [nix.POS]: $pos[46],
           Env: nix.thunk(() => ["FROM_CHILD=true", "LAST_LAYER=child"]),
         })),
       }))));
     const another_layered_image = nix.thunk(() => nix.app(nix.sel(pkgs, "dockerTools", "buildLayeredImage"), nix.thunk(() => ({
-        [nix.POS]: pos$50,
+        [nix.POS]: $pos[49],
         name: "another-layered-image",
         tag: "latest",
         config: nix.thunk(() => ({
-          [nix.POS]: pos$49,
+          [nix.POS]: $pos[48],
           Cmd: nix.thunk(() => [nix.thunk(() => nix.str`${nix.sel(pkgs, "hello")}/bin/hello`)]),
         })),
       }))));
     const two_layered_image = nix.thunk(() => nix.app(nix.sel(pkgs, "dockerTools", "buildLayeredImage"), nix.thunk(() => ({
-        [nix.POS]: pos$52,
+        [nix.POS]: $pos[51],
         name: "two-layered-image",
         tag: "latest",
         config: nix.thunk(() => ({
-          [nix.POS]: pos$51,
+          [nix.POS]: $pos[50],
           Cmd: nix.thunk(() => [nix.thunk(() => nix.str`${nix.sel(pkgs, "hello")}/bin/hello`)]),
         })),
         contents: nix.thunk(() => [
@@ -472,7 +354,7 @@ http {
         maxLayers: 2n,
       }))));
     const bulk_layer = nix.thunk(() => nix.app(nix.sel(pkgs, "dockerTools", "buildLayeredImage"), nix.thunk(() => ({
-        [nix.POS]: pos$53,
+        [nix.POS]: $pos[52],
         name: "bulk-layer",
         tag: "latest",
         contents: nix.thunk(() => (() => {
@@ -485,7 +367,7 @@ http {
         maxLayers: 2n,
       }))));
     const layered_bulk_layer = nix.thunk(() => nix.app(nix.sel(pkgs, "dockerTools", "buildLayeredImage"), nix.thunk(() => ({
-        [nix.POS]: pos$54,
+        [nix.POS]: $pos[53],
         name: "layered-bulk-layer",
         tag: "latest",
         fromImage: two_layered_image,
@@ -499,7 +381,7 @@ http {
         maxLayers: 4n,
       }))));
     const no_store_paths = nix.thunk(() => nix.app(nix.sel(pkgs, "dockerTools", "buildLayeredImage"), nix.thunk(() => ({
-        [nix.POS]: pos$55,
+        [nix.POS]: $pos[54],
         name: "no-store-paths",
         tag: "latest",
         extraCommands: nix.thunk(() => nix.str`# This removes sharing of busybox and is not recommended. We do this
@@ -511,7 +393,7 @@ ${nix.sel(pkgs, "hello")}/bin/hello
 `),
       }))));
     const nixLayered = nix.thunk(() => nix.app(nix.sel(pkgs, "dockerTools", "buildLayeredImageWithNixDb"), nix.thunk(() => ({
-        [nix.POS]: pos$57,
+        [nix.POS]: $pos[56],
         name: "nix-layered",
         tag: "latest",
         contents: nix.thunk(() => [
@@ -519,10 +401,10 @@ ${nix.sel(pkgs, "hello")}/bin/hello
           nix.thunk(() => nix.sel(pkgs, "nix")),
           nix.thunk(() => nix.sel(pkgs, "bash")),
         ]),
-        config: nix.thunk(() => ({ [nix.POS]: pos$56, Env: nix.thunk(() => ["NIX_PAGER=cat", "USER=nobody"]) })),
+        config: nix.thunk(() => ({ [nix.POS]: $pos[55], Env: nix.thunk(() => ["NIX_PAGER=cat", "USER=nobody"]) })),
       }))));
     const filesInStore = nix.thunk(() => nix.app(nix.sel(pkgs, "dockerTools", "buildLayeredImageWithNixDb"), nix.thunk(() => ({
-        [nix.POS]: pos$59,
+        [nix.POS]: $pos[58],
         name: "file-in-store",
         tag: "latest",
         contents: nix.thunk(() => [
@@ -533,13 +415,13 @@ cat ${nix.app(nix.sel(pkgs, "writeText"), "somefile", "some data")}
 `))),
         ]),
         config: nix.thunk(() => ({
-          [nix.POS]: pos$58,
+          [nix.POS]: $pos[57],
           Cmd: nix.thunk(() => ["myscript"]),
           Env: nix.thunk(() => ["USER=root"]),
         })),
       }))));
     const unstableDateLayered = nix.thunk(() => nix.app(nix.sel(pkgs, "dockerTools", "buildLayeredImage"), nix.thunk(() => ({
-        [nix.POS]: pos$60,
+        [nix.POS]: $pos[59],
         name: "unstable-date-layered",
         tag: "latest",
         contents: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "coreutils"))]),
@@ -547,12 +429,12 @@ cat ${nix.app(nix.sel(pkgs, "writeText"), "somefile", "some data")}
       }))));
     const layersUnpackOrder = nix.thunk(() => (() => {
       const layerOnTopOf = (parent) => (layerName) => nix.app(nix.sel(pkgs, "dockerTools", "buildImage"), nix.thunk(() => ({
-          [nix.POS]: pos$62,
+          [nix.POS]: $pos[61],
           name: nix.thunk(() => nix.str`layers-unpack-order-${layerName}`),
           tag: "latest",
           fromImage: parent,
           copyToRoot: nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-              [nix.POS]: pos$61,
+              [nix.POS]: $pos[60],
               name: "image-root",
               pathsToLink: nix.thunk(() => ["/bin"]),
               paths: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "coreutils"))]),
@@ -567,65 +449,65 @@ echo -n "${layerName}" >> /layer-order
       return nix.force(layerC);
     })());
     const bashUncompressed = nix.thunk(() => nix.app(nix.sel(pkgs, "dockerTools", "buildImage"), nix.thunk(() => ({
-        [nix.POS]: pos$63,
+        [nix.POS]: $pos[62],
         name: "bash-uncompressed",
         tag: "latest",
         compressor: "none",
         copyToRoot: nix.thunk(() => nix.sel(pkgs, "bash")),
       }))));
     const bashZstdCompressed = nix.thunk(() => nix.app(nix.sel(pkgs, "dockerTools", "buildImage"), nix.thunk(() => ({
-        [nix.POS]: pos$64,
+        [nix.POS]: $pos[63],
         name: "bash-zstd",
         tag: "latest",
         compressor: "zstd",
         copyToRoot: nix.thunk(() => nix.sel(pkgs, "bash")),
       }))));
     const bashNoTag = nix.thunk(() => nix.app(nix.sel(pkgs, "dockerTools", "buildImage"), nix.thunk(() => ({
-        [nix.POS]: pos$65,
+        [nix.POS]: $pos[64],
         name: "bash-no-tag",
         copyToRoot: nix.thunk(() => nix.sel(pkgs, "bash")),
       }))));
     const bashNoTagLayered = nix.thunk(() => nix.app(nix.sel(pkgs, "dockerTools", "buildLayeredImage"), nix.thunk(() => ({
-        [nix.POS]: pos$66,
+        [nix.POS]: $pos[65],
         name: "bash-no-tag-layered",
         contents: nix.thunk(() => nix.sel(pkgs, "bash")),
       }))));
     const bashLayeredUncompressed = nix.thunk(() => nix.app(nix.sel(pkgs, "dockerTools", "buildLayeredImage"), nix.thunk(() => ({
-        [nix.POS]: pos$67,
+        [nix.POS]: $pos[66],
         name: "bash-layered-uncompressed",
         tag: "latest",
         compressor: "none",
         contents: nix.thunk(() => nix.sel(pkgs, "bash")),
       }))));
     const bashLayeredZstdCompressed = nix.thunk(() => nix.app(nix.sel(pkgs, "dockerTools", "buildLayeredImage"), nix.thunk(() => ({
-        [nix.POS]: pos$68,
+        [nix.POS]: $pos[67],
         name: "bash-layered-zstd",
         tag: "latest",
         compressor: "zstd",
         contents: nix.thunk(() => nix.sel(pkgs, "bash")),
       }))));
     const bashNoTagStreamLayered = nix.thunk(() => nix.app(nix.sel(pkgs, "dockerTools", "streamLayeredImage"), nix.thunk(() => ({
-        [nix.POS]: pos$69,
+        [nix.POS]: $pos[68],
         name: "bash-no-tag-stream-layered",
         contents: nix.thunk(() => nix.sel(pkgs, "bash")),
       }))));
     const bashLayeredWithUser = nix.thunk(() => nix.app(nix.sel(pkgs, "dockerTools", "buildLayeredImage"), nix.thunk(() => ({
-        [nix.POS]: pos$71,
+        [nix.POS]: $pos[70],
         name: "bash-layered-with-user",
         tag: "latest",
         contents: nix.thunk(() => nix.concat([
           nix.thunk(() => nix.sel(pkgs, "bash")),
           nix.thunk(() => nix.sel(pkgs, "coreutils")),
-        ], nix.app(nonRootShadowSetup, nix.thunk(() => ({ [nix.POS]: pos$70, uid: 999n, user: "somebody" }))))),
+        ], nix.app(nonRootShadowSetup, nix.thunk(() => ({ [nix.POS]: $pos[69], uid: 999n, user: "somebody" }))))),
       }))));
     const cross = nix.thunk(() => (() => {
       const crossPkgs = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(pkgs, "stdenv", "hostPlatform", "system"), "aarch64-linux")) ? nix.sel(pkgsCross, "gnu64") : nix.sel(pkgsCross, "aarch64-multiplatform")));
       return nix.app(nix.sel(crossPkgs, "dockerTools", "buildImage"), nix.thunk(() => ({
-          [nix.POS]: pos$73,
+          [nix.POS]: $pos[72],
           name: "hello-cross",
           tag: "latest",
           copyToRoot: nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-              [nix.POS]: pos$72,
+              [nix.POS]: $pos[71],
               name: "image-root",
               pathsToLink: nix.thunk(() => ["/bin"]),
               paths: nix.thunk(() => [nix.thunk(() => nix.sel(crossPkgs, "hello"))]),
@@ -636,46 +518,46 @@ echo -n "${layerName}" >> /layer-order
       const target = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextDir"), "dir/target", "Content doesn't matter."));
       const symlink = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "symlink", nix.thunk(() => ({})), nix.thunk(() => nix.str`ln -s ${target} $out`)));
       return nix.update(nix.app(nix.sel(pkgs, "dockerTools", "buildLayeredImage"), nix.thunk(() => ({
-          [nix.POS]: pos$74,
+          [nix.POS]: $pos[73],
           name: "layeredstoresymlink",
           tag: "latest",
           contents: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "bash")), symlink]),
         }))), {
-        [nix.POS]: pos$76,
-        passthru: nix.thunk(() => ({ [nix.POS]: pos$75, symlink: symlink })),
+        [nix.POS]: $pos[75],
+        passthru: nix.thunk(() => ({ [nix.POS]: $pos[74], symlink: symlink })),
       });
     })());
     const prefixedImage = nix.thunk(() => nix.app(nix.sel(pkgs, "dockerTools", "buildImage"), nix.thunk(() => ({
-        [nix.POS]: pos$78,
+        [nix.POS]: $pos[77],
         name: "registry-1.docker.io/image",
         tag: "latest",
         config: nix.thunk(() => ({
-          [nix.POS]: pos$77,
+          [nix.POS]: $pos[76],
           Cmd: nix.thunk(() => [nix.thunk(() => nix.str`${nix.sel(pkgs, "hello")}/bin/hello`)]),
         })),
       }))));
     const prefixedLayeredImage = nix.thunk(() => nix.app(nix.sel(pkgs, "dockerTools", "buildLayeredImage"), nix.thunk(() => ({
-        [nix.POS]: pos$80,
+        [nix.POS]: $pos[79],
         name: "registry-1.docker.io/layered-image",
         tag: "latest",
         config: nix.thunk(() => ({
-          [nix.POS]: pos$79,
+          [nix.POS]: $pos[78],
           Cmd: nix.thunk(() => [nix.thunk(() => nix.str`${nix.sel(pkgs, "hello")}/bin/hello`)]),
         })),
       }))));
     const layeredImageWithFakeRootCommands = nix.thunk(() => nix.app(nix.sel(pkgs, "dockerTools", "buildLayeredImage"), nix.thunk(() => ({
-        [nix.POS]: pos$83,
+        [nix.POS]: $pos[82],
         name: "layered-image-with-fake-root-commands",
         tag: "latest",
         contents: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "pkgsStatic", "busybox"))]),
         fakeRootCommands: nix.thunk(() => nix.str`mkdir -p ./home/alice
 chown 1000 ./home/alice
 ln -s ${nix.app(nix.sel(pkgs, "hello", "overrideAttrs"), (finalAttrs) => (prevAttrs) => ({
-            [nix.POS]: pos$82,
+            [nix.POS]: $pos[81],
             configureFlags: nix.thunk(() => nix.concat(nix.selOr(prevAttrs, () => [], "configureFlags"), ["--program-prefix=layeredImageWithFakeRootCommands-"])),
             doCheck: false,
             versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/${nix.sel(finalAttrs, "meta", "mainProgram")}`),
-            meta: nix.thunk(() => nix.update(nix.sel(prevAttrs, "meta"), { [nix.POS]: pos$81, mainProgram: "layeredImageWithFakeRootCommands-hello" })),
+            meta: nix.thunk(() => nix.update(nix.sel(prevAttrs, "meta"), { [nix.POS]: $pos[80], mainProgram: "layeredImageWithFakeRootCommands-hello" })),
           }))} ./hello
 `),
       }))));
@@ -684,44 +566,44 @@ ln -s ${nix.app(nix.sel(pkgs, "hello", "overrideAttrs"), (finalAttrs) => (prevAt
     const mergedBashFakeRoot = nix.thunk(() => nix.app(nix.sel(pkgs, "dockerTools", "mergeImages"), nix.thunk(() => [bash, layeredImageWithFakeRootCommands])));
     const mergeVaryingCompressor = nix.thunk(() => nix.app(nix.sel(pkgs, "dockerTools", "mergeImages"), nix.thunk(() => [redis, bashUncompressed, bashZstdCompressed])));
     const helloOnRoot = nix.thunk(() => nix.app(nix.sel(pkgs, "dockerTools", "streamLayeredImage"), nix.thunk(() => ({
-        [nix.POS]: pos$86,
+        [nix.POS]: $pos[85],
         name: "hello",
         tag: "latest",
         contents: nix.thunk(() => [
           nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-              [nix.POS]: pos$84,
+              [nix.POS]: $pos[83],
               name: "hello-root",
               paths: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "hello"))]),
             })))),
         ]),
-        config: nix.thunk(() => ({ [nix.POS]: pos$85, Cmd: nix.thunk(() => ["hello"]) })),
+        config: nix.thunk(() => ({ [nix.POS]: $pos[84], Cmd: nix.thunk(() => ["hello"]) })),
       }))));
     const helloOnRootNoStore = nix.thunk(() => nix.app(nix.sel(pkgs, "dockerTools", "streamLayeredImage"), nix.thunk(() => ({
-        [nix.POS]: pos$89,
+        [nix.POS]: $pos[88],
         name: "hello",
         tag: "latest",
         contents: nix.thunk(() => [
           nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-              [nix.POS]: pos$87,
+              [nix.POS]: $pos[86],
               name: "hello-root",
               paths: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "hello"))]),
             })))),
         ]),
-        config: nix.thunk(() => ({ [nix.POS]: pos$88, Cmd: nix.thunk(() => ["hello"]) })),
+        config: nix.thunk(() => ({ [nix.POS]: $pos[87], Cmd: nix.thunk(() => ["hello"]) })),
         includeStorePaths: false,
       }))));
     const helloOnRootNoStoreFakechroot = nix.thunk(() => nix.app(nix.sel(pkgs, "dockerTools", "streamLayeredImage"), nix.thunk(() => ({
-        [nix.POS]: pos$92,
+        [nix.POS]: $pos[91],
         name: "hello",
         tag: "latest",
         contents: nix.thunk(() => [
           nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-              [nix.POS]: pos$90,
+              [nix.POS]: $pos[89],
               name: "hello-root",
               paths: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "hello"))]),
             })))),
         ]),
-        config: nix.thunk(() => ({ [nix.POS]: pos$91, Cmd: nix.thunk(() => ["hello"]) })),
+        config: nix.thunk(() => ({ [nix.POS]: $pos[90], Cmd: nix.thunk(() => ["hello"]) })),
         includeStorePaths: false,
         enableFakechroot: true,
       }))));
@@ -731,16 +613,16 @@ ln -s ${nix.app(nix.sel(pkgs, "hello", "overrideAttrs"), (finalAttrs) => (prevAt
           const $_1 = nix.formals(args_1, formals$3);
           const config = nix.arg($_1, "config");
           return {
-            [nix.POS]: pos$96,
+            [nix.POS]: $pos[95],
             imports: nix.thunk(() => [
               nix.thunk(() => nix.sel(pkgs, "pkgsModule")),
               nix.path(here, "../../../nixos/modules/system/etc/etc.nix"),
             ]),
             environment: nix.thunk(() => ({
-              [nix.POS]: pos$95,
+              [nix.POS]: $pos[94],
               etc: nix.thunk(() => ({
-                [nix.POS]: pos$94,
-                "some-config-file": nix.thunk(() => ({ [nix.POS]: pos$93, text: "127.0.0.1 localhost\n::1 localhost\n" })),
+                [nix.POS]: $pos[93],
+                "some-config-file": nix.thunk(() => ({ [nix.POS]: $pos[92], text: "127.0.0.1 localhost\n::1 localhost\n" })),
               })),
             })),
           };
@@ -749,59 +631,59 @@ ln -s ${nix.app(nix.sel(pkgs, "hello", "overrideAttrs"), (finalAttrs) => (prevAt
 ${nix.sel(pkgs, "busybox")}/bin/cat /etc/some-config-file
 `)));
       return nix.app(nix.sel(pkgs, "dockerTools", "streamLayeredImage"), nix.thunk(() => ({
-          [nix.POS]: pos$98,
+          [nix.POS]: $pos[97],
           name: "etc",
           tag: "latest",
           enableFakechroot: true,
           fakeRootCommands: nix.thunk(() => nix.str`mkdir -p /etc
 ${nix.sel(nixosCore, "config", "system", "build", "etcActivationCommands")}
 `),
-          config: nix.thunk(() => ({ [nix.POS]: pos$97, Cmd: nix.thunk(() => [etcCmd]) })),
+          config: nix.thunk(() => ({ [nix.POS]: $pos[96], Cmd: nix.thunk(() => [etcCmd]) })),
         })));
     })());
-    const exportBash = nix.thunk(() => nix.app(nix.sel(pkgs, "dockerTools", "exportImage"), nix.thunk(() => ({ [nix.POS]: pos$99, fromImage: bash }))));
+    const exportBash = nix.thunk(() => nix.app(nix.sel(pkgs, "dockerTools", "exportImage"), nix.thunk(() => ({ [nix.POS]: $pos[98], fromImage: bash }))));
     const imageViaFakeChroot = nix.thunk(() => nix.app(nix.sel(pkgs, "dockerTools", "streamLayeredImage"), nix.thunk(() => ({
-        [nix.POS]: pos$101,
+        [nix.POS]: $pos[100],
         name: "image-via-fake-chroot",
         tag: "latest",
-        config: nix.thunk(() => ({ [nix.POS]: pos$100, Cmd: nix.thunk(() => ["hello"]) })),
+        config: nix.thunk(() => ({ [nix.POS]: $pos[99], Cmd: nix.thunk(() => ["hello"]) })),
         enableFakechroot: true,
         fakeRootCommands: nix.thunk(() => nix.str`mkdir /bin
 ln -s ${nix.sel(pkgs, "hello")}/bin/hello /bin/hello
 `),
       }))));
     const build_image_with_path = nix.thunk(() => nix.app(buildImage, nix.thunk(() => ({
-        [nix.POS]: pos$102,
+        [nix.POS]: $pos[101],
         name: "build-image-with-path",
         tag: "latest",
         copyToRoot: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "bash")), nix.path(here, "./test-dummy")]),
       }))));
     const layered_image_with_path = nix.thunk(() => nix.app(nix.sel(pkgs, "dockerTools", "streamLayeredImage"), nix.thunk(() => ({
-        [nix.POS]: pos$103,
+        [nix.POS]: $pos[102],
         name: "layered-image-with-path",
         tag: "latest",
         contents: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "bash")), nix.path(here, "./test-dummy")]),
       }))));
     const build_image_with_architecture = nix.thunk(() => nix.app(buildImage, nix.thunk(() => ({
-        [nix.POS]: pos$104,
+        [nix.POS]: $pos[103],
         name: "build-image-with-architecture",
         tag: "latest",
         architecture: "arm64",
         copyToRoot: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "bash")), nix.path(here, "./test-dummy")]),
       }))));
     const layered_image_with_architecture = nix.thunk(() => nix.app(nix.sel(pkgs, "dockerTools", "streamLayeredImage"), nix.thunk(() => ({
-        [nix.POS]: pos$105,
+        [nix.POS]: $pos[104],
         name: "layered-image-with-architecture",
         tag: "latest",
         architecture: "arm64",
         contents: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "bash")), nix.path(here, "./test-dummy")]),
       }))));
     const image_with_certs = nix.thunk(() => nix.app(buildImage, nix.thunk(() => ({
-        [nix.POS]: pos$107,
+        [nix.POS]: $pos[106],
         name: "image-with-certs",
         tag: "latest",
         copyToRoot: nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-            [nix.POS]: pos$106,
+            [nix.POS]: $pos[105],
             name: "image-with-certs-root",
             paths: nix.thunk(() => [
               nix.thunk(() => nix.sel(pkgs, "coreutils")),
@@ -811,61 +693,61 @@ ln -s ${nix.sel(pkgs, "hello")}/bin/hello /bin/hello
         config: nix.thunk(() => ({})),
       }))));
     const nix_shell_basic = nix.thunk(() => nix.app(streamNixShellImage, nix.thunk(() => ({
-        [nix.POS]: pos$108,
+        [nix.POS]: $pos[107],
         name: "nix-shell-basic",
         tag: "latest",
         drv: nix.thunk(() => nix.sel(pkgs, "hello")),
       }))));
     const nix_shell_hook = nix.thunk(() => nix.app(streamNixShellImage, nix.thunk(() => ({
-        [nix.POS]: pos$110,
+        [nix.POS]: $pos[109],
         name: "nix-shell-hook",
         tag: "latest",
-        drv: nix.thunk(() => nix.app(nix.sel(pkgs, "mkShell"), nix.thunk(() => ({ [nix.POS]: pos$109, shellHook: "echo \"This is the shell hook!\"\nexit\n" })))),
+        drv: nix.thunk(() => nix.app(nix.sel(pkgs, "mkShell"), nix.thunk(() => ({ [nix.POS]: $pos[108], shellHook: "echo \"This is the shell hook!\"\nexit\n" })))),
       }))));
     const nix_shell_inputs = nix.thunk(() => nix.app(streamNixShellImage, nix.thunk(() => ({
-        [nix.POS]: pos$112,
+        [nix.POS]: $pos[111],
         name: "nix-shell-inputs",
         tag: "latest",
         drv: nix.thunk(() => nix.app(nix.sel(pkgs, "mkShell"), nix.thunk(() => ({
-            [nix.POS]: pos$111,
+            [nix.POS]: $pos[110],
             nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "hello"))]),
           })))),
         command: "hello\n",
       }))));
     const nix_shell_pass_as_file = nix.thunk(() => nix.app(streamNixShellImage, nix.thunk(() => ({
-        [nix.POS]: pos$114,
+        [nix.POS]: $pos[113],
         name: "nix-shell-pass-as-file",
         tag: "latest",
         drv: nix.thunk(() => nix.app(nix.sel(pkgs, "mkShell"), nix.thunk(() => ({
-            [nix.POS]: pos$113,
+            [nix.POS]: $pos[112],
             str: "this is a string",
             passAsFile: nix.thunk(() => ["str"]),
           })))),
         command: "cat \"$strPath\"\n",
       }))));
     const nix_shell_run = nix.thunk(() => nix.app(streamNixShellImage, nix.thunk(() => ({
-        [nix.POS]: pos$115,
+        [nix.POS]: $pos[114],
         name: "nix-shell-run",
         tag: "latest",
         drv: nix.thunk(() => nix.app(nix.sel(pkgs, "mkShell"), nix.thunk(() => ({})))),
         run: "case \"$-\" in\n*i*) echo This shell is interactive ;;\n*) echo This shell is not interactive ;;\nesac\n",
       }))));
     const nix_shell_command = nix.thunk(() => nix.app(streamNixShellImage, nix.thunk(() => ({
-        [nix.POS]: pos$116,
+        [nix.POS]: $pos[115],
         name: "nix-shell-command",
         tag: "latest",
         drv: nix.thunk(() => nix.app(nix.sel(pkgs, "mkShell"), nix.thunk(() => ({})))),
         command: "case \"$-\" in\n*i*) echo This shell is interactive ;;\n*) echo This shell is not interactive ;;\nesac\n",
       }))));
     const nix_shell_writable_home = nix.thunk(() => nix.app(streamNixShellImage, nix.thunk(() => ({
-        [nix.POS]: pos$117,
+        [nix.POS]: $pos[116],
         name: "nix-shell-writable-home",
         tag: "latest",
         drv: nix.thunk(() => nix.app(nix.sel(pkgs, "mkShell"), nix.thunk(() => ({})))),
         run: "if [[ \"$HOME\" != \"$(eval \"echo ~$(whoami)\")\" ]]; then\n  echo \"\\$HOME ($HOME) is not the same as ~\\$(whoami) ($(eval \"echo ~$(whoami)\"))\"\n  exit 1\nfi\n\nif ! touch $HOME/test-file; then\n  echo \"home directory is not writable\"\n  exit 1\nfi\necho \"home directory is writable\"\n",
       }))));
     const nix_shell_nonexistent_home = nix.thunk(() => nix.app(streamNixShellImage, nix.thunk(() => ({
-        [nix.POS]: pos$118,
+        [nix.POS]: $pos[117],
         name: "nix-shell-nonexistent-home",
         tag: "latest",
         drv: nix.thunk(() => nix.app(nix.sel(pkgs, "mkShell"), nix.thunk(() => ({})))),
@@ -873,14 +755,14 @@ ln -s ${nix.sel(pkgs, "hello")}/bin/hello /bin/hello
         run: "if [[ \"$HOME\" != \"$(eval \"echo ~$(whoami)\")\" ]]; then\n  echo \"\\$HOME ($HOME) is not the same as ~\\$(whoami) ($(eval \"echo ~$(whoami)\"))\"\n  exit 1\nfi\n\nif -e $HOME; then\n  echo \"home directory exists\"\n  exit 1\nfi\necho \"home directory doesn't exist\"\n",
       }))));
     const nix_shell_build_derivation = nix.thunk(() => nix.app(streamNixShellImage, nix.thunk(() => ({
-        [nix.POS]: pos$119,
+        [nix.POS]: $pos[118],
         name: "nix-shell-build-derivation",
         tag: "latest",
         drv: nix.thunk(() => nix.sel(pkgs, "hello")),
         run: "buildDerivation\n$out/bin/hello\n",
       }))));
     const nix_layered = nix.thunk(() => nix.app(nix.sel(pkgs, "dockerTools", "streamLayeredImage"), nix.thunk(() => ({
-        [nix.POS]: pos$121,
+        [nix.POS]: $pos[120],
         name: "nix-layered",
         tag: "latest",
         contents: nix.thunk(() => [
@@ -888,10 +770,10 @@ ln -s ${nix.sel(pkgs, "hello")}/bin/hello /bin/hello
           nix.thunk(() => nix.sel(pkgs, "bash")),
         ]),
         includeNixDB: true,
-        config: nix.thunk(() => ({ [nix.POS]: pos$120, Env: nix.thunk(() => ["NIX_PAGER=cat"]) })),
+        config: nix.thunk(() => ({ [nix.POS]: $pos[119], Env: nix.thunk(() => ["NIX_PAGER=cat"]) })),
       }))));
     return {
-      [nix.POS]: pos$122,
+      [nix.POS]: $pos[121],
       bash,
       redis,
       nginx,

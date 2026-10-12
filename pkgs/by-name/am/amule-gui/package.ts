@@ -2,13 +2,13 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["monolithic", 8, 5], ["client", 9, 5], ["mainProgram", 10, 5]]]);
 const formals$1 = { args: { amule: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/package.nix", [["monolithic", 8, 5], ["client", 9, 5], ["mainProgram", 10, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const args_1 = args;
   const amule = nix.arg($, "amule");
-  return nix.app(nix.sel(amule, "override"), nix.thunk(() => nix.update({ [nix.POS]: pos$1, monolithic: false, client: true, mainProgram: "amulegui" }, nix.builtins.removeAttrs(args_1, nix.thunk(() => ["amule"])))));
+  return nix.app(nix.sel(amule, "override"), nix.thunk(() => nix.update({ [nix.POS]: $pos[0], monolithic: false, client: true, mainProgram: "amulegui" }, nix.builtins.removeAttrs(args_1, nix.thunk(() => ["amule"])))));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

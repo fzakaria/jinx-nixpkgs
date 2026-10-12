@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["aliases", 57, 9]], [["scripts", 45, 5], ["interpreter", 46, 5], ["inputs", 47, 5], ["fix", 57, 5], ["execer", 58, 5]], [["default", 44, 13]], [["description", 65, 5], ["homepage", 66, 5], ["maintainers", 67, 5], ["license", 68, 5], ["mainProgram", 69, 5], ["platforms", 70, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["dontBuild", 35, 3], ["installPhase", 37, 3], ["solutions", 44, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { bash: false, coreutils: false, curl: false, gawk: false, fetchFromGitHub: false, gnugrep: false, gnused: false, iproute2: false, jq: false, lib: false, resholve: false, "wireguard-tools": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["aliases", 57, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["scripts", 45, 5], ["interpreter", 46, 5], ["inputs", 47, 5], ["fix", 57, 5], ["execer", 58, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["default", 44, 13]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 65, 5], ["homepage", 66, 5], ["maintainers", 67, 5], ["license", 68, 5], ["mainProgram", 69, 5], ["platforms", 70, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["dontBuild", 35, 3], ["installPhase", 37, 3], ["solutions", 44, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const resholve = nix.arg($, "resholve");
   const wireguard_tools = nix.arg($, "wireguard-tools");
   return nix.app(nix.sel(resholve, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "wgnord",
       version: "0.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "phirecc",
           repo: "wgnord",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,13 +34,13 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "install -Dm 755 wgnord -t $out/bin/\ninstall -Dm 644 countries.txt -t $out/share/\ninstall -Dm 644 countries_iso31662.txt -t $out/share/\ninstall -Dm 644 template.conf -t $out/share/\n",
       solutions: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         default: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           scripts: nix.thunk(() => ["bin/wgnord"]),
           interpreter: nix.thunk(() => nix.str`${bash}/bin/sh`),
           inputs: nix.thunk(() => [coreutils, curl, gawk, gnugrep, gnused, iproute2, jq, wireguard_tools]),
-          fix: nix.thunk(() => ({ [nix.POS]: pos$2, aliases: true })),
+          fix: nix.thunk(() => ({ [nix.POS]: $pos[1], aliases: true })),
           execer: nix.thunk(() => [
             nix.thunk(() => nix.str`cannot:${iproute2}/bin/ip`),
             nix.thunk(() => nix.str`cannot:${wireguard_tools}/bin/wg-quick`),
@@ -53,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "NordVPN Wireguard (NordLynx) client in POSIX shell",
         homepage: "https://github.com/phirecc/wgnord",
         maintainers: nix.thunk(() => (() => {

@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/flags.nix", [[["cudaCapabilities", 20, 7], ["cudaForwardCompat", 24, 7], ["archNames", 27, 7], ["realArches", 32, 7], ["virtualArches", 37, 7], ["arches", 42, 7], ["gencode", 48, 7], ["gencodeString", 54, 7], ["cmakeCudaArchitecturesString", 56, 7]], [["cudaCapabilityToInfo", 59, 15], ["cudaCapabilities", 60, 7], ["cudaForwardCompat", 64, 7]], [["__structuredAttrs", 74, 5], ["strictDeps", 75, 5]]]);
 const formals$1 = { args: { _cuda: false, cudaNamePrefix: false, lib: false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/flags.nix", [["cudaCapabilities", 20, 7], ["cudaForwardCompat", 24, 7], ["archNames", 27, 7], ["realArches", 32, 7], ["virtualArches", 37, 7], ["arches", 42, 7], ["gencode", 48, 7], ["gencodeString", 54, 7], ["cmakeCudaArchitecturesString", 56, 7]]);
-const pos$2 = nix.positions(here + "/flags.nix", [["cudaCapabilityToInfo", 59, 15], ["cudaCapabilities", 60, 7], ["cudaForwardCompat", 64, 7]]);
-const pos$3 = nix.positions(here + "/flags.nix", [["__structuredAttrs", 74, 5], ["strictDeps", 75, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
   nix.assert_(nix.app(assertMsg, nix.thunk(() => (nix.asBool(nix.has(cudaCapabilityToInfo, "7.5")) && nix.asBool(nix.has(cudaCapabilityToInfo, "8.6")))), "The following test requires both 7.5 and 8.6 be known CUDA capabilities"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/cuda-modules/packages/tests/flags.nix:14:1");
   nix.assert_((() => {
     const expected = nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       cudaCapabilities: nix.thunk(() => ["7.5", "8.6"]),
       cudaForwardCompat: true,
       archNames: nix.thunk(() => ["Ampere", "Turing"]),
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       cmakeCudaArchitecturesString: "75;86",
     }));
     const actual = nix.thunk(() => nix.app(formatCapabilities, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         cudaCapabilityToInfo: cudaCapabilityToInfo,
         cudaCapabilities: nix.thunk(() => ["7.5", "8.6"]),
         cudaForwardCompat: true,
@@ -51,6 +49,6 @@ export default nix.lambda((args) => (() => {
 Actual: ${nix.app(toJSON, actualWrapped)}
 `));
   })(), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/cuda-modules/packages/tests/flags.nix:17:1");
-  return nix.app(runCommand, nix.thunk(() => nix.str`${cudaNamePrefix}-tests-flags`), nix.thunk(() => ({ [nix.POS]: pos$3, __structuredAttrs: true, strictDeps: true })), "touch \"$out\"\n");
+  return nix.app(runCommand, nix.thunk(() => nix.str`${cudaNamePrefix}-tests-flags`), nix.thunk(() => ({ [nix.POS]: $pos[2], __structuredAttrs: true, strictDeps: true })), "touch \"$out\"\n");
 })(), formals$1);
 //# sourceMappingURL=flags.ts.map

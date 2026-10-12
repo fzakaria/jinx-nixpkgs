@@ -2,12 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/hyprsplit.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["extraArgs", 25, 47]], [["updateScript", 25, 12]], [["homepage", 28, 5], ["description", 29, 5], ["license", 30, 5], ["maintainers", 31, 5]], [["pluginName", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["passthru", 25, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, meson: false, fetchFromGitHub: false, ninja: false, mkHyprlandPlugin: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/hyprsplit.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/hyprsplit.nix", [["extraArgs", 25, 47]]);
-const pos$3 = nix.positions(here + "/hyprsplit.nix", [["updateScript", 25, 12]]);
-const pos$4 = nix.positions(here + "/hyprsplit.nix", [["homepage", 28, 5], ["description", 29, 5], ["license", 30, 5], ["maintainers", 31, 5]]);
-const pos$5 = nix.positions(here + "/hyprsplit.nix", [["pluginName", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["passthru", 25, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const mkHyprlandPlugin = nix.arg($, "mkHyprlandPlugin");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(mkHyprlandPlugin, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pluginName: "hyprsplit",
       version: "0.54.3-unstable-2026-06-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "shezdy",
           repo: "hyprsplit",
           rev: "6b00b677d8905fb38779c91e12d6294e0e586a44",
@@ -30,11 +26,11 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [meson, ninja]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[1], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/shezdy/hyprsplit",
         description: "Hyprland plugin for awesome / dwm like workspaces",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

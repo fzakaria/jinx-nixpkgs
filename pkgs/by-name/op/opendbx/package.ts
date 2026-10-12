@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["sha256", 21, 5]], [["NIX_CFLAGS_COMPILE", 44, 7]], [["broken", 50, 5], ["description", 51, 5], ["mainProgram", 52, 5], ["license", 53, 5], ["platforms", 54, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["preConfigure", 24, 3], ["configureFlags", 30, 3], ["buildInputs", 37, 3], ["env", 44, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, readline: false, libmysqlclient: false, libpq: false, sqlite: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 44, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["broken", 50, 5], ["description", 51, 5], ["mainProgram", 52, 5], ["license", 53, 5], ["platforms", 54, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["preConfigure", 24, 3], ["configureFlags", 30, 3], ["buildInputs", 37, 3], ["env", 44, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const getDev = nix.thunk(() => nix.attr(lib, "getDev"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "opendbx",
       version: "1.4.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://linuxnetworks.de/opendbx/download/opendbx-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0z29h6zx5f3gghkh1a0060w6wr572ci1rl2a3480znf728wa0ii2",
         })))),
@@ -38,11 +35,11 @@ configureFlagsArray=(--with-backends="mysql pgsql sqlite3")
       ]),
       buildInputs: nix.thunk(() => [readline, libmysqlclient, libpq, sqlite]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-std=c++14"]))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Extremely lightweight but extensible database access library written in C",
         mainProgram: "odbx-sql",

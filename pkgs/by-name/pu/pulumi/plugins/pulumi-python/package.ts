@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["smokeTest", 50, 18]], [["tests", 50, 12]], [["homepage", 53, 5], ["description", 54, 5], ["license", 55, 5], ["mainProgram", 56, 5], ["maintainers", 57, 5], ["teams", 58, 5]], [["pname", 10, 3], ["version", 11, 20], ["src", 11, 28], ["sourceRoot", 13, 3], ["vendorHash", 15, 3], ["ldflags", 17, 3], ["checkFlags", 23, 3], ["nativeCheckInputs", 34, 3], ["buildInputs", 39, 3], ["postInstall", 44, 3], ["passthru", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, callPackage: false, pulumi: false, bash: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["smokeTest", 50, 18]]);
-const pos$2 = nix.positions(here + "/package.nix", [["tests", 50, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 53, 5], ["description", 54, 5], ["license", 55, 5], ["mainProgram", 56, 5], ["maintainers", 57, 5], ["teams", 58, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 20], ["src", 11, 28], ["sourceRoot", 13, 3], ["vendorHash", 15, 3], ["ldflags", 17, 3], ["checkFlags", 23, 3], ["nativeCheckInputs", 34, 3], ["buildInputs", 39, 3], ["postInstall", 44, 3], ["passthru", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const bash = nix.arg($, "bash");
   const python3 = nix.arg($, "python3");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pulumi-python",
       version: nix.thunk(() => nix.attr(pulumi, "version")),
       src: nix.thunk(() => nix.attr(pulumi, "src")),
@@ -40,14 +37,14 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [bash, python3]),
       postInstall: "cp -t \"$out/bin\" \\\n  ../pulumi-language-python-exec \\\n  ../../dist/pulumi-resource-pulumi-python\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           smokeTest: nix.thunk(() => nix.app(callPackage, nix.path(here, "./smoke-test/default.nix"), nix.thunk(() => ({})))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.pulumi.com/docs/iac/languages-sdks/python/",
         description: "Language host for Pulumi programs written in Python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

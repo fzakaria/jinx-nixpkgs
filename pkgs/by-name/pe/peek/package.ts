@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 34, 5], ["repo", 35, 5], ["rev", 36, 5], ["sha256", 37, 5]], [["url", 44, 7], ["sha256", 45, 7]], [["updateScript", 89, 5]], [["homepage", 93, 5], ["description", 94, 5], ["license", 95, 5], ["maintainers", 96, 5], ["platforms", 97, 5], ["mainProgram", 98, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["patches", 40, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 63, 3], ["postPatch", 74, 3], ["preFixup", 78, 3], ["passthru", 88, 3], ["meta", 92, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, fetchpatch: false, "nix-update-script": false, meson: false, ninja: false, gettext: false, "desktop-file-utils": false, "appstream-glib": false, "pkg-config": false, txt2man: false, vala: false, wrapGAppsHook3: false, "gsettings-desktop-schemas": false, gtk3: false, glib: false, cairo: false, keybinder3: false, "ffmpeg-full": false, python3: false, libxml2: false, gst_all_1: false, which: false, gifski: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["rev", 36, 5], ["sha256", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 44, 7], ["sha256", 45, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 89, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 93, 5], ["description", 94, 5], ["license", 95, 5], ["maintainers", 96, 5], ["platforms", 97, 5], ["mainProgram", 98, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["patches", 40, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 63, 3], ["postPatch", 74, 3], ["preFixup", 78, 3], ["passthru", 88, 3], ["meta", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const gifski = nix.arg($, "gifski");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "peek",
       version: "1.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "phw",
           repo: "peek",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -49,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/phw/peek/commit/008d15316ab5428363c512b263ca8138cb8f52ba.patch",
             sha256: "xxJ+r5uRk93MEzWTFla88ewZsnUl3+YKTenzDygtKP0=",
           })))),
@@ -81,11 +77,11 @@ export default nix.lambda((args) => (() => {
       preFixup: nix.thunk(() => nix.str`gappsWrapperArgs+=(--prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [which, ffmpeg_full, gifski]))})
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/phw/peek",
         description: "Simple animated GIF screen recorder with an easy to use interface",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

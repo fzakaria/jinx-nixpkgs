@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 12, 9], ["url", 13, 9], ["hash", 14, 9]], [["stripRoot", 16, 49]], [["stripRoot", 17, 52]], [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["platforms", 45, 5], ["maintainers", 46, 5]], [["pname", 26, 3], ["version", 27, 11], ["srcs", 28, 11], ["sourceRoot", 30, 3], ["installPhase", 32, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, fetchzip: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 12, 9], ["url", 13, 9], ["hash", 14, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["stripRoot", 16, 49]]);
-const pos$3 = nix.positions(here + "/package.nix", [["stripRoot", 17, 52]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["platforms", 45, 5], ["maintainers", 46, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 11], ["srcs", 28, 11], ["sourceRoot", 30, 3], ["installPhase", 32, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,24 +11,24 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const stdenv = nix.arg($, "stdenv");
   const _src = (variant) => (suffix) => (hash) => nix.app(fetchzip, nix.thunk(() => nix.update({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: variant,
       url: nix.thunk(() => nix.str`https://github.com/ful1e5/apple_cursor/releases/download/v${version}/${variant}.${suffix}`),
       hash: hash,
-    }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(suffix, "zip")), nix.thunk(() => ({ [nix.POS]: pos$2, stripRoot: false }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(suffix, "tar.xz")), nix.thunk(() => ({ [nix.POS]: pos$3, stripRoot: false })))))));
+    }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(suffix, "zip")), nix.thunk(() => ({ [nix.POS]: $pos[1], stripRoot: false }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(suffix, "tar.xz")), nix.thunk(() => ({ [nix.POS]: $pos[2], stripRoot: false })))))));
   const srcs = nix.thunk(() => [
     nix.thunk(() => nix.app(_src, "macOS", "tar.xz", "sha256-nS4g+VwM+4q/S1ODb3ySi2SBk7Ha8vF8d9XpP5cEkok=")),
   ]);
   const version = "2.0.1";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "apple_cursor",
       version: version,
       srcs: srcs,
       sourceRoot: ".",
       installPhase: "install -dm 0755 $out/share/icons\ncp -r macOS/macOS* $out/share/icons/\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Opensource macOS Cursors",
         homepage: "https://github.com/ful1e5/apple_cursor",
         license: nix.thunk(() => [

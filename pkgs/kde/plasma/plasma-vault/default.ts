@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["gocryptfs", 14, 7], ["lsof", 15, 7]], [["pname", 10, 3], ["patches", 12, 3], ["extraNativeBuildInputs", 19, 3]]]);
 const formals$1 = { args: { lib: false, mkKdeDerivation: false, replaceVars: false, "pkg-config": false, gocryptfs: false, lsof: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["gocryptfs", 14, 7], ["lsof", 15, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["patches", 12, 3], ["extraNativeBuildInputs", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const gocryptfs = nix.arg($, "gocryptfs");
   const lsof = nix.arg($, "lsof");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "plasma-vault",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-paths.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             gocryptfs: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), gocryptfs, "gocryptfs")),
             lsof: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), lsof)),
           })))),

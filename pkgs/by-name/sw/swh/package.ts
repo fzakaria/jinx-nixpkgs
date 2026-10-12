@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["license", 26, 45], ["mainProgram", 26, 53], ["platforms", 26, 65], ["description", 27, 5]], [["name", 21, 3], ["text", 22, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, writeShellApplication: false, withSwhPythonPackages: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["license", 26, 45], ["mainProgram", 26, 53], ["platforms", 26, 65], ["description", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 21, 3], ["text", 22, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,14 +25,14 @@ export default nix.lambda((args) => (() => {
       return nix.concat([nix.thunk(() => nix.lookup(w, "swh-core"))], withSwhPythonPackages);
     })()));
   return nix.app(writeShellApplication, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "swh",
       text: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), python3$, "swh")} "$@"
 `),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(python3Packages, "swh-core", "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         license: nix.thunk(() => nix.attr(from, "license")),
         mainProgram: nix.thunk(() => nix.attr(from, "mainProgram")),
         platforms: nix.thunk(() => nix.attr(from, "platforms")),

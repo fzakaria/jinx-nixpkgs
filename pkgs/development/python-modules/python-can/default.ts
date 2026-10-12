@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["serial", 48, 5], ["seeedstudio", 49, 5], ["pcan", 50, 5]], [["description", 90, 5], ["homepage", 91, 5], ["changelog", 92, 5], ["license", 93, 5], ["maintainers", 94, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["build-system", 33, 3], ["dependencies", 38, 3], ["pythonRelaxDeps", 45, 3], ["optional-dependencies", 47, 3], ["nativeCheckInputs", 53, 3], ["disabledTestPaths", 62, 3], ["disabledTests", 67, 3], ["preCheck", 81, 3], ["pythonImportsCheck", 87, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, hypothesis: false, packaging: false, parameterized: false, msgpack: false, pyserial: false, "pytest-cov-stub": false, "pytest-timeout": false, pytestCheckHook: false, setuptools: false, "setuptools-scm": false, "typing-extensions": false, wrapt: false, uptime: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["serial", 48, 5], ["seeedstudio", 49, 5], ["pcan", 50, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 90, 5], ["homepage", 91, 5], ["changelog", 92, 5], ["license", 93, 5], ["maintainers", 94, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["build-system", 33, 3], ["dependencies", 38, 3], ["pythonRelaxDeps", 45, 3], ["optional-dependencies", 47, 3], ["nativeCheckInputs", 53, 3], ["disabledTestPaths", 62, 3], ["disabledTests", 67, 3], ["preCheck", 81, 3], ["pythonImportsCheck", 87, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.6.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hardbyte",
           repo: "python-can",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [msgpack, packaging, typing_extensions, wrapt]);
       const pythonRelaxDeps = nix.thunk(() => ["wrapt"]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         serial: nix.thunk(() => [pyserial]),
         seeedstudio: nix.thunk(() => [pyserial]),
         pcan: nix.thunk(() => [uptime]),
@@ -58,7 +55,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "export PATH=\"$PATH:$out/bin\";\n# skips timing senstive tests\nexport CI=1\n";
       const pythonImportsCheck = nix.thunk(() => ["can"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "CAN support for Python",
         homepage: "https://python-can.readthedocs.io",
         changelog: nix.thunk(() => nix.str`https://github.com/hardbyte/python-can/releases/tag/${nix.sel(src, "tag")}`),
@@ -72,7 +69,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

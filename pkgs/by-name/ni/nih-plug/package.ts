@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 39, 5], ["repo", 40, 5], ["rev", 41, 5], ["hash", 42, 5]], [["description", 134, 5], ["longDescription", 135, 5], ["homepage", 157, 5], ["changelog", 158, 5], ["license", 162, 5], ["maintainers", 168, 5], ["platforms", 173, 5]], [["pname", 32, 3], ["version", 35, 3], ["__structuredAttrs", 36, 3], ["src", 38, 3], ["cargoHash", 51, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 59, 3], ["bundlePackages", 73, 3], ["buildPhase", 89, 3], ["doCheck", 112, 3], ["installPhase", 114, 3], ["meta", 133, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, "alsa-lib": false, libjack2: false, libGL: false, libxkbcommon: false, libx11: false, libxcursor: false, libxcb: false, "libxcb-wm": false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 39, 5], ["repo", 40, 5], ["rev", 41, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 134, 5], ["longDescription", 135, 5], ["homepage", 157, 5], ["changelog", 158, 5], ["license", 162, 5], ["maintainers", 168, 5], ["platforms", 173, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 35, 3], ["__structuredAttrs", 36, 3], ["src", 38, 3], ["cargoHash", 51, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 59, 3], ["bundlePackages", 73, 3], ["buildPhase", 89, 3], ["doCheck", 112, 3], ["installPhase", 114, 3], ["meta", 133, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0-unstable-2026-05-10";
       const __structuredAttrs = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "robbert-vdh",
           repo: "nih-plug",
           rev: "f36931f7af4646065488a9845d8f8c2f95252c23",
@@ -73,7 +71,7 @@ runHook postBuild
       const doCheck = false;
       const installPhase = "runHook preInstall\n\ninstall -d \"$out/lib/clap\" \"$out/lib/vst3\"\n\n# CLAP plugins are single `.clap` shared objects.\nfind target/bundled -maxdepth 1 -type f -name '*.clap' \\\n  -exec install -Dm644 -t \"$out/lib/clap\" {} +\n\n# VST3 plugins are directory bundles. On Linux the layout is\n# `Foo.vst3/Contents/<arch>-linux/Foo.so`.\nfor vst3 in target/bundled/*.vst3; do\n  [ -e \"$vst3\" ] || continue\n  cp -r \"$vst3\" \"$out/lib/vst3/\"\ndone\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Collection of CLAP and VST3 audio plugins built with the NIH-plug framework",
         longDescription: "Builds the upstream NIH-plug plugin collection: Buffr Glitch (a MIDI-\ntriggered buffer-repeat effect), Crisp (high-frequency excitement\ninspired by Polarity's Fake Distortion), Loudness War Winner\n(digital saturation/clipper), Puberty Simulator (octave-down with\nformant artefacts), Safety Limiter (hearing-protection  tool that cuts\nto Morse-code SOS on clip), Soft Vacuum (oversampled port of Airwindows'\nHard Vacuum) and Spectral Compressor (FFT-based dynamics processor).\n\nOutputs install to `$out/lib/clap` and `$out/lib/vst3`. Hosts that\nhonour `CLAP_PATH` / `VST3_PATH` will pick them up automatically when\nthe package is in the user's profile; otherwise symlink them into\n`~/.clap` and `~/.vst3` (or `~/.local/share/{clap,vst3}`).\n\nThe NIH-plug framework itself is in upstream-declared maintenance mode;\na community fork at codeberg.org/BillyDM/nih-plug is the active\nsuccessor for new framework development. These plugin binaries continue\nto be developed in the upstream repository.\n\nCrossover and Diopser are part of the upstream repository but\nunconditionally require nightly Rust (std::simd) and are not built here.\n",
         homepage: "https://github.com/robbert-vdh/nih-plug",
@@ -92,7 +90,7 @@ runHook postBuild
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         __structuredAttrs,

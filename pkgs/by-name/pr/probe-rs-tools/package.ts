@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["hash", 21, 5]], [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["description", 85, 5], ["homepage", 86, 5], ["changelog", 87, 5], ["license", 88, 5], ["maintainers", 92, 5]], [["pname", 14, 3], ["version", 15, 3], ["udevRules", 18, 3], ["src", 24, 3], ["cargoHash", 31, 3], ["buildAndTestSubdir", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 43, 3], ["postInstall", 48, 3], ["checkFlags", 58, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, fetchurl: false, cmake: false, "pkg-config": false, installShellFiles: false, libusb1: false, openssl: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 85, 5], ["homepage", 86, 5], ["changelog", 87, 5], ["license", 88, 5], ["maintainers", 92, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["udevRules", 18, 3], ["src", 24, 3], ["cargoHash", 31, 3], ["buildAndTestSubdir", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 43, 3], ["postInstall", 48, 3], ["checkFlags", 58, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,16 +18,16 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "probe-rs-tools",
       version: "0.32.0",
       udevRules: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://raw.githubusercontent.com/probe-rs/webpage/9cc4b7d0727cc1ad0b87d5999aa9cdbfd8021632/public/files/69-probe-rs.rules",
           hash: "sha256-JvH56IOapIIaT1gD9XCd/mdgrha3VVNSjneVDdebnoI=",
         })))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "probe-rs",
           repo: "probe-rs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -64,7 +61,7 @@ export default nix.lambda((args) => (() => {
         "--skip=util::cargo::test::workspace_root",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "CLI tool for on-chip debugging and flashing of ARM chips",
         homepage: "https://probe.rs/",
         changelog: nix.thunk(() => nix.str`https://github.com/probe-rs/probe-rs/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

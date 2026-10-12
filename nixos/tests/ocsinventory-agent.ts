@@ -2,35 +2,30 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ocsinventory-agent.nix", [[["debug", 12, 13], ["local", 13, 13], ["tag", 14, 13]], [["enable", 10, 11], ["settings", 11, 11]], [["ocsinventory-agent", 9, 18]], [["services", 9, 9]], [["machine", 6, 11]], [["name", 4, 5], ["nodes", 6, 5], ["testScript", 19, 5]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/ocsinventory-agent.nix", [["debug", 12, 13], ["local", 13, 13], ["tag", 14, 13]]);
-const pos$2 = nix.positions(here + "/ocsinventory-agent.nix", [["enable", 10, 11], ["settings", 11, 11]]);
-const pos$3 = nix.positions(here + "/ocsinventory-agent.nix", [["ocsinventory-agent", 9, 18]]);
-const pos$4 = nix.positions(here + "/ocsinventory-agent.nix", [["services", 9, 9]]);
-const pos$5 = nix.positions(here + "/ocsinventory-agent.nix", [["machine", 6, 11]]);
-const pos$6 = nix.positions(here + "/ocsinventory-agent.nix", [["name", 4, 5], ["nodes", 6, 5], ["testScript", 19, 5]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")), nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     const pkgs = nix.arg($, "pkgs");
     return {
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       name: "ocsinventory-agent",
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         machine: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               "ocsinventory-agent": nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 enable: true,
                 settings: nix.thunk(() => ({
-                  [nix.POS]: pos$1,
+                  [nix.POS]: $pos[0],
                   debug: true,
                   local: "/var/lib/ocsinventory-agent/reports",
                   tag: "MY_INVENTORY_TAG",

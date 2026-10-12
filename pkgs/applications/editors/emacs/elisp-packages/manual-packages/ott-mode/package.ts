@@ -2,16 +2,15 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 19, 5], ["homepage", 20, 24], ["license", 20, 33]], [["pname", 4, 3], ["src", 6, 17], ["version", 6, 21], ["files", 8, 3], ["postPatch", 10, 3], ["meta", 18, 3]]]);
 const formals$1 = { args: { melpaBuild: false, ott: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 19, 5], ["homepage", 20, 24], ["license", 20, 33]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 4, 3], ["src", 6, 17], ["version", 6, 21], ["files", 8, 3], ["postPatch", 10, 3], ["meta", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const melpaBuild = nix.arg($, "melpaBuild");
   const ott = nix.arg($, "ott");
   return nix.app(melpaBuild, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "ott-mode",
       src: nix.thunk(() => nix.attr(ott, "src")),
       version: nix.thunk(() => nix.attr(ott, "version")),
@@ -20,7 +19,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ott, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Emacs ott mode (from ott sources)",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),

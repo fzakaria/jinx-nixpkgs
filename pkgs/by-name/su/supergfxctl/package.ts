@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["platforms", 49, 5], ["maintainers", 50, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cargoHash", 21, 3], ["postPatch", 23, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 32, 3], ["doCheck", 35, 3], ["doInstallCheck", 37, 3], ["postInstall", 39, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitLab: false, "pkg-config": false, systemd: false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["platforms", 49, 5], ["maintainers", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cargoHash", 21, 3], ["postPatch", 23, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 32, 3], ["doCheck", 35, 3], ["doInstallCheck", 37, 3], ["postInstall", 39, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const systemd = nix.arg($, "systemd");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "supergfxctl",
       version: "5.2.7",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "asus-linux",
           repo: "supergfxctl",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +34,7 @@ substituteInPlace data/99-nvidia-ac.rules --replace /usr/bin/systemctl ${systemd
       doInstallCheck: true,
       postInstall: "install -Dm444 -t $out/lib/udev/rules.d/ data/*.rules\ninstall -Dm444 -t $out/share/dbus-1/system.d/ data/org.supergfxctl.Daemon.conf\ninstall -Dm444 -t $out/lib/systemd/system/ data/supergfxd.service\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "GPU switching utility, mostly for ASUS laptops",
         homepage: "https://gitlab.com/asus-linux/supergfxctl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["name", 57, 7], ["desktopName", 58, 7], ["comment", 59, 7], ["icon", 60, 7], ["exec", 61, 7], ["terminal", 62, 7], ["mimeTypes", 63, 7], ["categories", 68, 7], ["keywords", 72, 7], ["startupWMClass", 76, 7]], [["updateScript", 113, 12]], [["description", 116, 5], ["homepage", 117, 5], ["changelog", 118, 5], ["license", 119, 5], ["maintainers", 120, 5], ["mainProgram", 125, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["cargoHash", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 41, 3], ["desktopItems", 55, 3], ["postFixup", 80, 3], ["postInstall", 94, 3], ["passthru", 113, 3], ["meta", 115, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, copyDesktopItems: false, makeDesktopItem: false, libxkbcommon: false, makeBinaryWrapper: false, "nix-update-script": false, openssl: false, "pkg-config": false, rustPlatform: false, "vulkan-loader": false, wayland: false, libxi: false, libxcursor: false, libx11: false, libxcb: false, "alsa-lib": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 57, 7], ["desktopName", 58, 7], ["comment", 59, 7], ["icon", 60, 7], ["exec", 61, 7], ["terminal", 62, 7], ["mimeTypes", 63, 7], ["categories", 68, 7], ["keywords", 72, 7], ["startupWMClass", 76, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 113, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 116, 5], ["homepage", 117, 5], ["changelog", 118, 5], ["license", 119, 5], ["maintainers", 120, 5], ["mainProgram", 125, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["cargoHash", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 41, 3], ["desktopItems", 55, 3], ["postFixup", 80, 3], ["postInstall", 94, 3], ["passthru", 113, 3], ["meta", 115, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const libxcb = nix.arg($, "libxcb");
   const alsa_lib = nix.arg($, "alsa-lib");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "halloy",
       version: "2026.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "squidowl",
           repo: "halloy",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -54,7 +50,7 @@ export default nix.lambda((args) => (() => {
         ])))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "org.squidowl.halloy",
             desktopName: "Halloy",
             comment: "IRC client written in Rust",
@@ -87,11 +83,11 @@ substitute \\
 makeBinaryWrapper "$out/bin/halloy" "$APP_DIR/MacOS/halloy"
 `)))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "IRC application",
         homepage: "https://github.com/squidowl/halloy",
         changelog: nix.thunk(() => nix.str`https://github.com/squidowl/halloy/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

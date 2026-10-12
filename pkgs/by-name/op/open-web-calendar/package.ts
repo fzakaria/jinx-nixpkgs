@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["version", 19, 26], ["pname", 20, 5], ["hash", 21, 5]], [["open-web-calendar", 76, 28]], [["python", 74, 13], ["tests", 75, 5]], [["description", 81, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["license", 88, 5], ["platforms", 93, 5], ["maintainers", 94, 5], ["mainProgram", 95, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["postInstall", 29, 3], ["build-system", 33, 3], ["dependencies", 39, 3], ["nativeCheckInputs", 62, 3], ["enabledTestPaths", 67, 3], ["pythonImportsCheck", 69, 3], ["defaultSpecificationPath", 71, 3], ["passthru", 73, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchPypi: false, nixosTests: false, defaultSpecificationFile: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["version", 19, 26], ["pname", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["open-web-calendar", 76, 28]]);
-const pos$3 = nix.positions(here + "/package.nix", [["python", 74, 13], ["tests", 75, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 81, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["license", 88, 5], ["platforms", 93, 5], ["maintainers", 94, 5], ["mainProgram", 95, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["postInstall", 29, 3], ["build-system", 33, 3], ["dependencies", 39, 3], ["nativeCheckInputs", 62, 3], ["enabledTestPaths", 67, 3], ["pythonImportsCheck", 69, 3], ["defaultSpecificationPath", 71, 3], ["passthru", 73, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const defaultSpecificationFile = nix.argOr($, "defaultSpecificationFile", () => null);
   const python = python3;
   return nix.app(nix.sel(python, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "open-web-calendar",
       version: "1.51",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "open_web_calendar",
           hash: "sha256-r+7ZKdNOhjnjE1MBNAkni4Rrpx4DMRhUaP1Mmk5wzOo=",
@@ -72,15 +68,15 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["open_web_calendar.app"]),
       defaultSpecificationPath: nix.thunk(() => nix.str`${nix.sel(python, "sitePackages")}/open_web_calendar/default_specification.yml`),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         python: python,
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "open-web-calendar": nix.thunk(() => nix.attr(nixosTests, "open-web-calendar")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Highly customizable web calendar that can be embedded into websites using ICal source links",
         homepage: "https://open-web-calendar.quelltext.eu",
         changelog: nix.thunk(() => (() => {

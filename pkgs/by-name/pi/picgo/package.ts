@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["version", 31, 26], ["src", 31, 34], ["pnpm", 32, 13], ["pname", 33, 5], ["hash", 34, 5], ["fetcherVersion", 35, 5]], [["NODE_ENV", 48, 5]], [["name", 122, 7], ["desktopName", 123, 7], ["genericName", 124, 7], ["comment", 125, 7], ["exec", 126, 7], ["icon", 127, 7], ["categories", 128, 7], ["mimeTypes", 132, 7], ["startupWMClass", 133, 7]], [["updateScript", 137, 12]], [["description", 140, 5], ["longDescription", 141, 5], ["homepage", 146, 5], ["license", 147, 5], ["platforms", 148, 5], ["mainProgram", 149, 5], ["maintainers", 150, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["pnpmDeps", 30, 3], ["nativeBuildInputs", 38, 3], ["env", 47, 3], ["postPatch", 51, 3], ["buildPhase", 60, 3], ["postBuild", 68, 3], ["installPhase", 75, 3], ["desktopItems", 120, 3], ["passthru", 137, 3], ["meta", 139, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, nodejs_22: false, pnpm_10: false, fetchPnpmDeps: false, pnpmConfigHook: false, electron_43: false, makeWrapper: false, copyDesktopItems: false, makeDesktopItem: false, writableTmpDirAsHomeHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 31, 26], ["src", 31, 34], ["pnpm", 32, 13], ["pname", 33, 5], ["hash", 34, 5], ["fetcherVersion", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NODE_ENV", 48, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 122, 7], ["desktopName", 123, 7], ["genericName", 124, 7], ["comment", 125, 7], ["exec", 126, 7], ["icon", 127, 7], ["categories", 128, 7], ["mimeTypes", 132, 7], ["startupWMClass", 133, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 137, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 140, 5], ["longDescription", 141, 5], ["homepage", 146, 5], ["license", 147, 5], ["platforms", 148, 5], ["mainProgram", 149, 5], ["maintainers", 150, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["pnpmDeps", 30, 3], ["nativeBuildInputs", 38, 3], ["env", 47, 3], ["postPatch", 51, 3], ["buildPhase", 60, 3], ["postBuild", 68, 3], ["installPhase", 75, 3], ["desktopItems", 120, 3], ["passthru", 137, 3], ["meta", 139, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,18 +22,18 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const pnpm = pnpm_10;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "picgo",
       version: "3.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Molunerfinn",
           repo: "PicGo",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-wT9CfPchNbD2CzSVA9kZAYsstpc2mvgqAl305rmrUdo=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           pnpm: pnpm,
@@ -55,7 +49,7 @@ export default nix.lambda((args) => (() => {
         copyDesktopItems,
         writableTmpDirAsHomeHook,
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, NODE_ENV: "development" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], NODE_ENV: "development" })),
       postPatch: "# Maximizing a hidden BrowserWindow makes it visible on Linux. Defer restoring\n# the maximized state until the main window is explicitly shown.\n# https://github.com/Molunerfinn/PicGo/blob/4676326eb88d087432989366d71e61e17a039e98/src/main/apis/app/window/windowList.ts#L83-L94\nsubstituteInPlace src/main/apis/app/window/windowList.ts \\\n  --replace-fail \"      window.maximize()\" \\\n    \"      window.once('show', () => window.maximize())\"\n",
       buildPhase: "runHook preBuild\n\npnpm run build\n\nrunHook postBuild\n",
       postBuild: "# Renderer assets are loaded from a file:// URL, so the mini window logo must\n# use a path relative to its index.html.\nsubstituteInPlace dist_electron/renderer/assets/mini-*.js \\\n  --replace-fail '\"/squareLogo.png\"' '\"./squareLogo.png\"'\n",
@@ -104,7 +98,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "picgo",
             desktopName: "PicGo",
             genericName: "Picture Uploader",
@@ -117,11 +111,11 @@ runHook postInstall
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Simple tool for uploading pictures",
         longDescription: "PicGo is a simple & beautiful tool for uploading pictures built by `electron-vue`.\nIt supports uploading images to various cloud storage services and clipboard management.\nThe application features a plugin system for extending functionality.\n",
         homepage: "https://picgo.app",

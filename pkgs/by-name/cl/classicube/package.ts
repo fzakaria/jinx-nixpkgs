@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["name", 36, 7], ["desktopName", 37, 7], ["genericName", 38, 7], ["exec", 39, 7], ["icon", 40, 7], ["comment", 41, 7], ["categories", 42, 7]], [["homepage", 105, 5], ["description", 106, 5], ["license", 107, 5], ["platforms", 108, 5], ["maintainers", 109, 5], ["mainProgram", 110, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["desktopItems", 34, 3], ["prePatch", 46, 3], ["patches", 52, 3], ["font_path", 57, 3], ["enableParallelBuilding", 59, 3], ["postPatch", 61, 3], ["buildInputs", 74, 3], ["installPhase", 83, 3], ["meta", 104, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, dos2unix: false, makeWrapper: false, makeDesktopItem: false, copyDesktopItems: false, libx11: false, libxi: false, libGL: false, curl: false, openal: false, liberation_ttf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 36, 7], ["desktopName", 37, 7], ["genericName", 38, 7], ["exec", 39, 7], ["icon", 40, 7], ["comment", 41, 7], ["categories", 42, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 105, 5], ["description", 106, 5], ["license", 107, 5], ["platforms", 108, 5], ["maintainers", 109, 5], ["mainProgram", 110, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["desktopItems", 34, 3], ["prePatch", 46, 3], ["patches", 52, 3], ["font_path", 57, 3], ["enableParallelBuilding", 59, 3], ["postPatch", 61, 3], ["buildInputs", 74, 3], ["installPhase", 83, 3], ["meta", 104, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const openal = nix.arg($, "openal");
   const liberation_ttf = nix.arg($, "liberation_ttf");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ClassiCube",
       version: "1.3.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ClassiCube",
           repo: "ClassiCube",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [dos2unix, makeWrapper, copyDesktopItems]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: nix.thunk(() => nix.sel(finalAttrs, "pname")),
             desktopName: nix.thunk(() => nix.sel(finalAttrs, "pname")),
             genericName: "Sandbox Block Game",
@@ -65,7 +62,7 @@ substituteInPlace Makefile \\
       buildInputs: nix.thunk(() => [libx11, libxi, libGL, curl, openal, liberation_ttf]),
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/bin\"\ncp 'ClassiCube' \"$out/bin\"\n# ClassiCube puts downloaded resources\n# next to the location of the executable by default.\n# This doesn't work with Nix\n# as the location of the executable is read-only.\n# We wrap the program to make it put its resources\n# in ~/.local/share instead.\nwrapProgram \"$out/bin/ClassiCube\" \\\n  --run 'mkdir -p \"$HOME/.local/share/ClassiCube\"' \\\n  --run 'cd       \"$HOME/.local/share/ClassiCube\"'\n\nmkdir -p \"$out/share/icons/hicolor/256x256/apps\"\ncp misc/CCicon.png \"$out/share/icons/hicolor/256x256/apps\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.classicube.net/",
         description: "Lightweight, custom Minecraft Classic/ClassiCube client with optional additions written from scratch in C",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

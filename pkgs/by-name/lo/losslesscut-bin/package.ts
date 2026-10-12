@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 11, 5], ["homepage", 12, 5], ["license", 13, 5], ["maintainers", 14, 5], ["mainProgram", 18, 5], ["sourceProvenance", 19, 5]], [["pname", 22, 13], ["version", 22, 19], ["metaCommon", 22, 27], ["hash", 23, 5], ["makeWrapper", 24, 29]], [["pname", 27, 13], ["version", 27, 19], ["metaCommon", 27, 27], ["hash", 28, 5], ["isAarch64", 29, 5]], [["pname", 32, 13], ["version", 32, 19], ["metaCommon", 32, 27], ["hash", 33, 5], ["isAarch64", 34, 5]], [["pname", 37, 13], ["version", 37, 19], ["metaCommon", 37, 27], ["hash", 38, 5]], [["x86_64-appimage", 54, 9], ["x86_64-dmg", 55, 9], ["aarch64-dmg", 56, 9], ["x86_64-windows", 57, 9]], [["platforms", 61, 7]], [["passthru", 52, 5], ["meta", 60, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, callPackage: false, buildPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 11, 5], ["homepage", 12, 5], ["license", 13, 5], ["maintainers", 14, 5], ["mainProgram", 18, 5], ["sourceProvenance", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 22, 13], ["version", 22, 19], ["metaCommon", 22, 27], ["hash", 23, 5], ["makeWrapper", 24, 29]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 27, 13], ["version", 27, 19], ["metaCommon", 27, 27], ["hash", 28, 5], ["isAarch64", 29, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 32, 13], ["version", 32, 19], ["metaCommon", 32, 27], ["hash", 33, 5], ["isAarch64", 34, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 37, 13], ["version", 37, 19], ["metaCommon", 37, 27], ["hash", 38, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["x86_64-appimage", 54, 9], ["x86_64-dmg", 55, 9], ["aarch64-dmg", 56, 9], ["x86_64-windows", 57, 9]]);
-const pos$7 = nix.positions(here + "/package.nix", [["platforms", 61, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["passthru", 52, 5], ["meta", 60, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const pname = "losslesscut";
   const version = "3.69.0";
   const metaCommon = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     description: "Swiss army knife of lossless video/audio editing",
     homepage: "https://mifi.no/losslesscut/",
     license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -36,7 +29,7 @@ export default nix.lambda((args) => (() => {
     sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryNativeCode"))]),
   }));
   const x86_64_appimage = nix.thunk(() => nix.app(callPackage, nix.path(here, "./build-from-appimage.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: pname,
       version: version,
       metaCommon: metaCommon,
@@ -44,7 +37,7 @@ export default nix.lambda((args) => (() => {
       makeWrapper: nix.thunk(() => nix.attr(buildPackages, "makeWrapper")),
     }))));
   const x86_64_dmg = nix.thunk(() => nix.app(callPackage, nix.path(here, "./build-from-dmg.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: version,
       metaCommon: metaCommon,
@@ -52,7 +45,7 @@ export default nix.lambda((args) => (() => {
       isAarch64: false,
     }))));
   const aarch64_dmg = nix.thunk(() => nix.app(callPackage, nix.path(here, "./build-from-dmg.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       metaCommon: metaCommon,
@@ -60,23 +53,23 @@ export default nix.lambda((args) => (() => {
       isAarch64: true,
     }))));
   const x86_64_windows = nix.thunk(() => nix.app(callPackage, nix.path(here, "./build-from-windows.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: pname,
       version: version,
       metaCommon: metaCommon,
       hash: "sha256-uvcQZXaZnhRg+RgFTjrUrjipVGmJLMahqXtBMfAoGOQ=",
     }))));
   return nix.app(nix.sel((nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "aarch64-darwin")) ? nix.force(aarch64_dmg) : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.force(x86_64_dmg) : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isCygwin")) ? nix.force(x86_64_windows) : nix.force(x86_64_appimage)))), "overrideAttrs"), (oldAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       passthru: nix.thunk(() => nix.update(nix.selOr(oldAttrs, () => ({}), "passthru"), {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         "x86_64-appimage": x86_64_appimage,
         "x86_64-dmg": x86_64_dmg,
         "aarch64-dmg": aarch64_dmg,
         "x86_64-windows": x86_64_windows,
       })),
       meta: nix.thunk(() => nix.update(nix.sel(oldAttrs, "meta"), {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         platforms: nix.thunk(() => nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.concat(nix.sel(x86_64_appimage, "meta", "platforms"), nix.concat(nix.sel(x86_64_dmg, "meta", "platforms"), nix.concat(nix.sel(aarch64_dmg, "meta", "platforms"), nix.sel(x86_64_windows, "meta", "platforms"))))))),
       })),
     }));

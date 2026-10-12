@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["hash", 19, 5], ["nativeBuildInputs", 20, 5], ["downloadToTemp", 21, 5], ["recursiveHash", 22, 5], ["postFetch", 23, 5]], [["name", 46, 5], ["runtimeInputs", 47, 5], ["text", 54, 5]], [["updateScript", 45, 12]], [["homepage", 64, 5], ["description", 65, 5], ["platforms", 66, 5], ["mainProgram", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["sourceProvenance", 70, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 30, 3], ["dontFixup", 34, 3], ["installPhase", 36, 3], ["passthru", 45, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { dpkg: false, fetchurl: false, lib: false, makeWrapper: false, stdenvNoCC: false, writeShellApplication: false, "common-updater-scripts": false, curl: false, jc: false, jq: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["hash", 19, 5], ["nativeBuildInputs", 20, 5], ["downloadToTemp", 21, 5], ["recursiveHash", 22, 5], ["postFetch", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 46, 5], ["runtimeInputs", 47, 5], ["text", 54, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 45, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 64, 5], ["description", 65, 5], ["platforms", 66, 5], ["mainProgram", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["sourceProvenance", 70, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 30, 3], ["dontFixup", 34, 3], ["installPhase", 36, 3], ["passthru", 45, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const jc = nix.arg($, "jc");
   const jq = nix.arg($, "jq");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "plasticscm-client-core-unwrapped",
       version: "11.0.16.10371",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.plasticscm.com/plasticrepo/stable/debian/amd64/plasticscm-client-core_${nix.sel(finalAttrs, "version")}_amd64.deb`),
           hash: "sha256-iDfepwChkVewk0l+znR13AOBIIOzCHTgmNAytAgr+tQ=",
           nativeBuildInputs: nix.thunk(() => [dpkg]),
@@ -38,16 +34,16 @@ export default nix.lambda((args) => (() => {
       dontFixup: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out\ncp -r opt usr/{share,bin} $out\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               name: "update-plasticscm-client-core-unwrapped",
               runtimeInputs: nix.thunk(() => [common_updater_scripts, curl, dpkg, jc, jq]),
               text: "version=\"$(curl -sSL https://www.plasticscm.com/plasticrepo/stable/debian/Packages |\n  jc --pkg-index-deb |\n  jq -r '[.[] | select(.package == \"plasticscm-client-core\")] | sort_by(.version) | last | .version')\"\n\nupdate-source-version --ignore-same-hash plasticscm-client-core-unwrapped \"$version\"\n",
             })))))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://www.plasticscm.com",
         description: "SCM by Unity for game development",
         platforms: nix.thunk(() => ["x86_64-linux"]),

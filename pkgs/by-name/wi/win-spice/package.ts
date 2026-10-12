@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["sha256", 13, 5]], [["url", 16, 5], ["sha256", 17, 5]], [["url", 22, 5], ["sha256", 23, 5]], [["url", 28, 5], ["sha256", 29, 5]], [["url", 32, 5], ["sha256", 33, 5]], [["description", 85, 5], ["homepage", 86, 5], ["license", 87, 5], ["maintainers", 88, 5], ["sourceProvenance", 89, 5], ["platforms", 90, 5]], [["pname", 39, 3], ["version", 40, 3], ["dontUnpack", 42, 3], ["buildPhase", 44, 3], ["installPhase", 61, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, p7zip: false, "virtio-win": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 22, 5], ["sha256", 23, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 28, 5], ["sha256", 29, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 32, 5], ["sha256", 33, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 85, 5], ["homepage", 86, 5], ["license", 87, 5], ["maintainers", 88, 5], ["sourceProvenance", 89, 5], ["platforms", 90, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 39, 3], ["version", 40, 3], ["dontUnpack", 42, 3], ["buildPhase", 44, 3], ["installPhase", 61, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,34 +14,34 @@ export default nix.lambda((args) => (() => {
   const virtio_win = nix.arg($, "virtio-win");
   const version_usbdk = "1.0.22";
   const src_usbdk_x86 = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://www.spice-space.org/download/windows/UsbDk/UsbDk_${version_usbdk}_x86.msi`),
       sha256: "1vr8kv37wz6p3xhawyhwxv0g7y89igkvx30zwmyvlgnkv3h5i317",
     }))));
   const src_usbdk_amd64 = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: nix.thunk(() => nix.str`https://www.spice-space.org/download/windows/UsbDk/UsbDk_${version_usbdk}_x64.msi`),
       sha256: "19b64jv6pfimd54y0pphbs1xh25z41bbblz64ih6ag71w6azdxli",
     }))));
   const version_qxlwddm = "0.21";
   const src_qxlwddm = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       url: nix.thunk(() => nix.str`https://www.spice-space.org/download/windows/qxl-wddm-dod/qxl-wddm-dod-${version_qxlwddm}/spice-qxl-wddm-dod-${version_qxlwddm}.zip`),
       sha256: "0yjq54gxw3lcfghsfs4fzwipa9sgx5b1sn3fss6r5dm7pdvjp20q",
     }))));
   const version_vdagent = "0.10.0";
   const src_vdagent_x86 = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       url: nix.thunk(() => nix.str`https://www.spice-space.org/download/windows/vdagent/vdagent-win-${version_vdagent}/vdagent-win-${version_vdagent}-x86.zip`),
       sha256: "142c0lqsqry9dclji2225ppclkn13gbjl1j0pzx8fp6hgy4i02c1",
     }))));
   const src_vdagent_amd64 = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       url: nix.thunk(() => nix.str`https://www.spice-space.org/download/windows/vdagent/vdagent-win-${version_vdagent}/vdagent-win-${version_vdagent}-x64.zip`),
       sha256: "1x2wcvld531kv17a4ks7sh67nhzxzv7nkhpx391n5vj6d12i8g3i",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "win-spice",
       version: version_qxlwddm,
       dontUnpack: true,
@@ -82,7 +76,7 @@ runHook postInstall
 `;
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Windows SPICE Drivers",
         homepage: "https://www.spice-space.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

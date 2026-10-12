@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["url", 47, 7], ["hash", 48, 7]], [["url", 54, 7], ["hash", 55, 7]], [["url", 61, 7], ["hash", 62, 7]], [["description", 101, 5], ["homepage", 102, 5], ["changelog", 103, 5], ["license", 104, 5], ["maintainers", 105, 5], ["platforms", 106, 5]], [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["patches", 43, 3], ["nativeBuildInputs", 66, 3], ["buildInputs", 73, 3], ["doCheck", 98, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { cmake: false, coin3d: false, doxygen: false, eigen: false, fetchFromGitHub: false, fetchpatch: false, lapack: false, lib: false, libdc1394: false, libdmtx: false, libglvnd: false, libjpeg: false, libpng: false, librealsense: false, libxml2: false, libx11: false, nlohmann_json: false, openblas: false, opencv: false, "pkg-config": false, python3Packages: false, stdenv: false, texliveSmall: false, libv4l: false, "libpthread-stubs": false, zbar: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 47, 7], ["hash", 48, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 54, 7], ["hash", 55, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 61, 7], ["hash", 62, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 101, 5], ["homepage", 102, 5], ["changelog", 103, 5], ["license", 104, 5], ["maintainers", 105, 5], ["platforms", 106, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["patches", 43, 3], ["nativeBuildInputs", 66, 3], ["buildInputs", 73, 3], ["doCheck", 98, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const zbar = nix.arg($, "zbar");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "visp",
       version: "3.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lagadic",
           repo: "visp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,17 +47,17 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/lagadic/visp/pull/1416/commits/fdda5620389badee998fe1926ddd3b46f7a6bcd8.patch",
             hash: "sha256-W3vvBdQdp59WAMjuucNoWI0eCyPHjWerl7VCNcPVvzI=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/lagadic/visp/pull/1310/commits/9ed0300507e13dddd83fd62a799f5039025ea44e.patch",
             hash: "sha256-xrJ7B/8mEfi9dM/ToMr6vCAwX/FMw+GA/W0zFYgT32s=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://github.com/lagadic/visp/commit/8c1461661f99a5db31c89ede9946d2b0244f8123.patch",
             hash: "sha256-MER5KDrFxKs+Y5G9UcEIAh95Zilmv1Vp4xq+isRMM/U=",
           })))),
@@ -89,7 +84,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [coin3d, libv4l])))),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Open Source Visual Servoing Platform",
         homepage: "https://visp.inria.fr",
         changelog: nix.thunk(() => nix.str`https://github.com/lagadic/visp/blob/v${nix.sel(finalAttrs, "version")}/ChangeLog.txt`),

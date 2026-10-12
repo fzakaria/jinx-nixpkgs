@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 50, 5], ["hash", 51, 5]], [["homepage", 98, 5], ["description", 99, 5], ["longDescription", 100, 5], ["license", 111, 5], ["mainProgram", 112, 5], ["maintainers", 113, 5], ["platforms", 117, 5]], [["pname", 46, 3], ["version", 47, 3], ["src", 49, 3], ["outputs", 54, 3], ["strictDeps", 60, 3], ["enableParallelBuilding", 61, 3], ["hardeningDisable", 64, 3], ["nativeBuildInputs", 66, 3], ["buildInputs", 75, 3], ["configureFlags", 80, 3], ["preConfigure", 91, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, bison: false, boost: false, flex: false, gputils: false, zlib: false, withGputils: true, excludePorts: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 50, 5], ["hash", 51, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 98, 5], ["description", 99, 5], ["longDescription", 100, 5], ["license", 111, 5], ["mainProgram", 112, 5], ["maintainers", 113, 5], ["platforms", 117, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 46, 3], ["version", 47, 3], ["src", 49, 3], ["outputs", 54, 3], ["strictDeps", 60, 3], ["enableParallelBuilding", 61, 3], ["hardeningDisable", 64, 3], ["nativeBuildInputs", 66, 3], ["buildInputs", 75, 3], ["configureFlags", 80, 3], ["preConfigure", 91, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -50,11 +48,11 @@ export default nix.lambda((args) => (() => {
       "z80n",
     ]), excludePorts), []), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/sd/sdcc/package.nix:14:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "sdcc",
       version: "4.6.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/sdcc/sdcc-src-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-X9apPlmXzgF1aGj+NeRBCVz7Y3iUqAwmJRSmNAlJc7Y=",
         })))),
@@ -70,7 +68,7 @@ export default nix.lambda((args) => (() => {
       })()),
       preConfigure: "if test -n \"${dontStrip-}\"; then\n  export STRIP=none\nfi\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://sdcc.sourceforge.net/",
         description: "Small Device C Compiler",
         longDescription: "SDCC is a free open source, retargettable, optimizing ISO C compiler suite\nthat targets a growing list of processors including the Intel MCS-51 based\nmicroprocessors (8031, 8032, 8051, 8052, etc.), Maxim (formerly Dallas)\nDS80C390 variants, Freescale (formerly Motorola) HC08 based (hc08, s08),\nZilog Z80 based MCUs (Z80, Z80N, Z180, SM83 (e.g. Game Boy), Rabbit 2000,\nRabbit 2000A/3000, Rabbit 3000A, TLCS-90, R800), STMicroelectronics STM8,\nPadauk PDK14 and PDK15 and MOS 6502. Work is in progress on supporting the\nPadauk PDK13 target. There are unmaintained Microchip PIC16 and PIC18\ntargets. It can be retargeted for other microprocessors.\n",

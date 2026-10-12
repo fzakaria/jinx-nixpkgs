@@ -2,16 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 9], ["hash", 19, 17]], [["pname", 14, 7], ["version", 15, 15], ["src", 17, 7], ["dontUnpack", 22, 7], ["installPhase", 24, 7]], [["suffix", 37, 7], ["hash", 38, 7]], [["suffix", 41, 7], ["hash", 42, 7]], [["suffix", 45, 7], ["hash", 46, 7]], [["emoji-sequences", 36, 5], ["emoji-test", 40, 5], ["emoji-zwj-sequences", 44, 5]], [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["platforms", 63, 5]], [["version", 52, 11], ["pname", 53, 3], ["paths", 55, 3], ["passthru", 57, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, symlinkJoin: false }, ellipsis: false };
 const formals$2 = { args: { suffix: false, hash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 9], ["hash", 19, 17]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 14, 7], ["version", 15, 15], ["src", 17, 7], ["dontUnpack", 22, 7], ["installPhase", 24, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["suffix", 37, 7], ["hash", 38, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["suffix", 41, 7], ["hash", 42, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["suffix", 45, 7], ["hash", 46, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["emoji-sequences", 36, 5], ["emoji-test", 40, 5], ["emoji-zwj-sequences", 44, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["platforms", 63, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["version", 52, 11], ["pname", 53, 3], ["paths", 55, 3], ["passthru", 57, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +18,11 @@ export default nix.lambda((args) => (() => {
     const suffix = nix.arg($_1, "suffix");
     const hash = nix.arg($_1, "hash");
     return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname: nix.thunk(() => nix.str`unicode-emoji-${suffix}`),
         version: version,
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`https://www.unicode.org/Public/${version}/emoji/emoji-${suffix}.txt`),
             hash: hash,
           })))),
@@ -45,31 +38,31 @@ runHook postInstall
       })));
   })(), formals$2);
   const srcs = nix.thunk(() => ({
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     "emoji-sequences": nix.thunk(() => nix.app(fetchData, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         suffix: "sequences",
         hash: "sha256-EsyCZ9wzy9Ee0yvPb8XcKtnHp3uuG9+6L0GxubPq2N0=",
       })))),
     "emoji-test": nix.thunk(() => nix.app(fetchData, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         suffix: "test",
         hash: "sha256-HYqUT4jXlS9+98UWf+88Z5lbyuJFQ5SXECMbA6IBrNo=",
       })))),
     "emoji-zwj-sequences": nix.thunk(() => nix.app(fetchData, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         suffix: "zwj-sequences",
         hash: "sha256-WyVEHa7SMisGjF5wzaUilGpPAnTfhkRFoZZakuX8XK0=",
       })))),
   }));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       version: version,
       pname: "unicode-emoji",
       paths: nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), srcs)),
       passthru: srcs,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Unicode Emoji Data Files",
         homepage: "https://home.unicode.org/emoji/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unicode-30")),

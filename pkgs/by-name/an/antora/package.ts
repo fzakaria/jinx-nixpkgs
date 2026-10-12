@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["run", 37, 11]], [["tests", 37, 5], ["updateScript", 38, 5]], [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["mainProgram", 45, 5], ["maintainers", 47, 5], ["platforms", 52, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["npmDepsHash", 20, 3], ["postPatch", 24, 3], ["postInstall", 31, 3], ["passthru", 36, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { buildNpmPackage: false, callPackage: false, fetchFromGitLab: false, lib: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["run", 37, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 37, 5], ["updateScript", 38, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["mainProgram", 45, 5], ["maintainers", 47, 5], ["platforms", 52, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["npmDepsHash", 20, 3], ["postPatch", 24, 3], ["postInstall", 31, 3], ["passthru", 36, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "antora";
       const version = "3.1.15";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "antora",
           repo: "antora",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -30,15 +26,15 @@ export default nix.lambda((args) => (() => {
       const postPatch = "substituteInPlace package.json --replace-warn \\\n  '\"_mocha\"' '\"\"'\nsubstituteInPlace package.json --replace-warn \\\n  '\"npm run lint\"' '\"\"'\n";
       const postInstall = "mkdir -p $out/bin\nln -s $out/lib/node_modules/antora-build/packages/cli/bin/antora $out/bin/antora\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           run: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test"), nix.thunk(() => ({})))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Modular documentation site generator. Designed for users of Asciidoctor",
         homepage: "https://antora.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
@@ -53,7 +49,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

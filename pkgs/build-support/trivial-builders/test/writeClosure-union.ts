@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/writeClosure-union.nix", [[["maintainers", 14, 10]], [["__structuredAttrs", 10, 5], ["closures", 11, 5], ["collectiveClosure", 12, 5], ["samples", 13, 13], ["meta", 14, 5]]]);
 const formals$1 = { args: { lib: false, runCommandLocal: false, writeClosure: false, samples: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/writeClosure-union.nix", [["maintainers", 14, 10]]);
-const pos$2 = nix.positions(here + "/writeClosure-union.nix", [["__structuredAttrs", 10, 5], ["closures", 11, 5], ["collectiveClosure", 12, 5], ["samples", 13, 13], ["meta", 14, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const writeClosure = nix.arg($, "writeClosure");
   const samples = nix.arg($, "samples");
   return nix.app(runCommandLocal, "test-trivial-builders-writeClosure-union", nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       __structuredAttrs: true,
       closures: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (n) => (v) => nix.app(writeClosure, nix.thunk(() => [v])), samples)),
       collectiveClosure: nix.thunk(() => nix.app(writeClosure, nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), samples)))),
       samples: samples,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "ShamrockLee"))];

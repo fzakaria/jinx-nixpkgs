@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["hash", 28, 5], ["tag", 29, 5]], [["MYSQL_DIR", 58, 5], ["MYSQL_INCLUDE_DIR", 59, 5]], [["extraArgs", 105, 5]], [["updateScript", 104, 12]], [["homepage", 109, 5], ["description", 110, 5], ["license", 111, 5], ["maintainers", 112, 5], ["platforms", 116, 5]], [["pname", 21, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 37, 3], ["propagatedBuildInputs", 43, 3], ["outputs", 52, 3], ["env", 57, 3], ["cmakeFlags", 62, 3], ["patches", 83, 3], ["doCheck", 91, 3], ["nativeCheckInputs", 92, 3], ["postFixup", 97, 3], ["passthru", 104, 3], ["meta", 108, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "nix-update-script": false, "pkg-config": false, zlib: false, pcre2: false, utf8proc: false, expat: false, sqlite: false, openssl: false, unixodbc: false, libmysqlclient: false, libpng: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["hash", 28, 5], ["tag", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["MYSQL_DIR", 58, 5], ["MYSQL_INCLUDE_DIR", 59, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 105, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 104, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 109, 5], ["description", 110, 5], ["license", 111, 5], ["maintainers", 112, 5], ["platforms", 116, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 37, 3], ["propagatedBuildInputs", 43, 3], ["outputs", 52, 3], ["env", 57, 3], ["cmakeFlags", 62, 3], ["patches", 83, 3], ["doCheck", 91, 3], ["nativeCheckInputs", 92, 3], ["postFixup", 97, 3], ["passthru", 104, 3], ["meta", 108, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pname = "poco";
       const version = "1.15.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pocoproject",
           repo: "poco",
           hash: "sha256-IpBwGwPY873EqWXOYFOBiuNrJBu1r+dBTOByHZ9Lnhg=",
@@ -43,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [zlib, pcre2, utf8proc, expat, sqlite, openssl]);
       const outputs = nix.thunk(() => ["out", "dev"]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         MYSQL_DIR: libmysqlclient,
         MYSQL_INCLUDE_DIR: nix.thunk(() => nix.str`${nix.sel(env, "MYSQL_DIR")}/include/mysql`),
       }));
@@ -60,14 +55,14 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [writableTmpDirAsHomeHook]);
       const postFixup = "grep -rlF INTERFACE_INCLUDE_DIRECTORIES \"$dev/lib/cmake/Poco\" | while read -r f; do\n  substituteInPlace \"$f\" \\\n    --replace-quiet \"$\"'{_IMPORT_PREFIX}/include' \"\"\ndone\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraArgs: nix.thunk(() => ["--version-regex=poco-(.*)-release"]),
           })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://pocoproject.org/",
         description: "Cross-platform C++ libraries with a network/internet focus",
         license: nix.thunk(() => nix.sel(lib, "licenses", "boost")),
@@ -81,7 +76,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["libmysqlclient", 45, 27]], [["hash", 52, 7]], [["version", 50, 5], ["src", 51, 5]], [["url", 63, 5], ["hash", 64, 5]], [["bash", 69, 7], ["catchsegv", 70, 7], ["coreutils", 71, 7], ["sudo", 72, 7]], [["cairoDev", 78, 7]], [["name", 86, 7], ["url", 87, 7], ["hash", 88, 7]], [["enableHttp", 126, 25]], [["NIX_CFLAGS_COMPILE", 142, 7]], [["description", 196, 5], ["longDescription", 197, 5], ["homepage", 203, 5], ["license", 204, 5], ["mainProgram", 205, 5], ["maintainers", 206, 5], ["platforms", 207, 5]], [["pname", 59, 3], ["version", 60, 3], ["src", 62, 3], ["patches", 67, 3], ["postPatch", 93, 3], ["strictDeps", 105, 3], ["nativeBuildInputs", 107, 3], ["buildInputs", 116, 3], ["env", 142, 3], ["cmakeFlags", 161, 3], ["dontWrapGApps", 173, 3], ["preFixup", 175, 3], ["postFixup", 185, 3], ["meta", 195, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, replaceVars: false, cmake: false, jre: false, ninja: false, "pkg-config": false, swig: false, wrapGAppsHook3: false, bash: false, coreutils: false, glibc: false, sudo: false, python3Packages: false, cairo: false, mysql84: false, libiodbc: false, proj: false, antlr4_13: false, boost: false, gdal: false, gtkmm3: false, libmysqlconnectorcpp: false, libsecret: false, libssh: false, libuuid: false, libxml2: false, libzip: false, openssl: false, rapidjson: false, vsqlite: false, zstd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["libmysqlclient", 45, 27]]);
-const pos$2 = nix.positions(here + "/package.nix", [["hash", 52, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 50, 5], ["src", 51, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 63, 5], ["hash", 64, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["bash", 69, 7], ["catchsegv", 70, 7], ["coreutils", 71, 7], ["sudo", 72, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["cairoDev", 78, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["name", 86, 7], ["url", 87, 7], ["hash", 88, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["enableHttp", 126, 25]]);
-const pos$9 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 142, 7]]);
-const pos$10 = nix.positions(here + "/package.nix", [["description", 196, 5], ["longDescription", 197, 5], ["homepage", 203, 5], ["license", 204, 5], ["mainProgram", 205, 5], ["maintainers", 206, 5], ["platforms", 207, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["pname", 59, 3], ["version", 60, 3], ["src", 62, 3], ["patches", 67, 3], ["postPatch", 93, 3], ["strictDeps", 105, 3], ["nativeBuildInputs", 107, 3], ["buildInputs", 116, 3], ["env", 142, 3], ["cmakeFlags", 161, 3], ["dontWrapGApps", 173, 3], ["preFixup", 175, 3], ["postFixup", 185, 3], ["meta", 195, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -52,13 +42,13 @@ export default nix.lambda((args) => (() => {
   const vsqlite = nix.arg($, "vsqlite");
   const zstd = nix.arg($, "zstd");
   const mysql = nix.thunk(() => nix.sel(mysql84, "client"));
-  const gdal$ = nix.thunk(() => nix.app(nix.sel(gdal, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, libmysqlclient: mysql }))));
+  const gdal$ = nix.thunk(() => nix.app(nix.sel(gdal, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], libmysqlclient: mysql }))));
   const antlr = antlr4_13;
   const swig$ = nix.thunk(() => nix.app(nix.sel(swig, "overrideAttrs"), (prevAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "4.2.1",
       src: nix.thunk(() => nix.app(nix.sel(prevAttrs, "src", "override"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           hash: "sha256-VlUsiRZLScmbC7hZDzKqUr9481YXVwo0eXT/jy6Fda8=",
         })))),
     })));
@@ -66,29 +56,29 @@ export default nix.lambda((args) => (() => {
   const pycairo = nix.thunk(() => nix.attr(python3Packages, "pycairo"));
   const pyodbc = nix.thunk(() => nix.attr(python3Packages, "pyodbc"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       pname: "mysql-workbench",
       version: "8.0.46",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           url: nix.thunk(() => nix.str`https://cdn.mysql.com/Downloads/MySQLGUITools/mysql-workbench-community-${nix.sel(finalAttrs, "version")}-src.tar.gz`),
           hash: "sha256-sP7GYSagPpcBhmdCynvQsxJexe54Bgu6RI7apCSb9TE=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-paths.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             bash: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), bash)),
             catchsegv: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), glibc, "catchsegv")),
             coreutils: nix.thunk(() => nix.app(nix.sel(lib, "getBin"), coreutils)),
             sudo: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), sudo)),
           })))),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-swig-build.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             cairoDev: nix.thunk(() => nix.app(nix.sel(lib, "getDev"), cairo)),
           })))),
         nix.path(here, "./dont-search-for-antlr-jar.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             name: "python3.13.patch",
             url: "https://git.pld-linux.org/?p=packages/mysql-workbench.git;a=blob_plain;f=python-3.13.patch;h=d1425a93c41fb421603cda6edbb0514389cdc6a8;hb=bb09cb858f3b9c28df699d3b98530a6c590b5b7a",
             hash: "sha256-hLfPqZSNf3ls2WThF1SBRjV33zTUymfgDmdZVpgO22Q=",
@@ -108,7 +98,7 @@ export default nix.lambda((args) => (() => {
         libsecret,
         libssh,
         libuuid,
-        nix.thunk(() => nix.app(nix.sel(libxml2, "override"), nix.thunk(() => ({ [nix.POS]: pos$8, enableHttp: true })))),
+        nix.thunk(() => nix.app(nix.sel(libxml2, "override"), nix.thunk(() => ({ [nix.POS]: $pos[7], enableHttp: true })))),
         libzip,
         openssl,
         rapidjson,
@@ -120,7 +110,7 @@ export default nix.lambda((args) => (() => {
         pyodbc,
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat([
             "-Wno-error=deprecated-declarations",
             "-Wno-error=unused-but-set-variable=",
@@ -142,7 +132,7 @@ export default nix.lambda((args) => (() => {
 `),
       postFixup: "find -L \"$out/bin\" -type f -executable -print0 \\\n  | while IFS= read -r -d '' file; do\n  if [[ \"${file}\" != *-bin ]]; then\n    echo \"Wrapping program $file\"\n    wrapGApp \"$file\"\n  fi\ndone\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         description: "Visual MySQL database modeling, administration and querying tool",
         longDescription: "MySQL Workbench is a modeling tool that allows you to design\nand generate MySQL databases graphically. It also has administration\nand query development modules where you can manage MySQL server instances\nand execute SQL queries.\n",
         homepage: "http://wb.mysql.com/",

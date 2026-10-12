@@ -2,13 +2,13 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["version", 6, 28]]]);
 const formals$1 = { args: { cadical: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["version", 6, 28]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const cadical = nix.arg($, "cadical");
   const version = nix.argOr($, "version", () => "2.2.1");
-  return nix.app(nix.sel(cadical, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, version: version })));
+  return nix.app(nix.sel(cadical, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], version: version })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

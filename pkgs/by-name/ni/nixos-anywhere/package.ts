@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["hash", 39, 5]], [["description", 53, 5], ["homepage", 54, 5], ["mainProgram", 55, 5], ["license", 56, 5], ["platforms", 57, 5], ["maintainers", 58, 5]], [["pname", 33, 3], ["version", 34, 3], ["src", 35, 3], ["nativeBuildInputs", 41, 3], ["installPhase", 42, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, openssh: false, gitMinimal: false, nix: false, coreutils: false, curl: false, gnugrep: false, gawk: false, findutils: false, gnused: false, lib: false, makeWrapper: false, sshpass: false, gnutar: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 53, 5], ["homepage", 54, 5], ["mainProgram", 55, 5], ["license", 56, 5], ["platforms", 57, 5], ["maintainers", 58, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 35, 3], ["nativeBuildInputs", 41, 3], ["installPhase", 42, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,11 +35,11 @@ export default nix.lambda((args) => (() => {
     gnutar,
   ]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "nixos-anywhere",
       version: "1.13.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nix-community",
           repo: "nixos-anywhere",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -57,7 +55,7 @@ wrapProgram $out/bin/nixos-anywhere \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), runtimeDeps)} --suffix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [openssh]))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Install nixos everywhere via ssh",
         homepage: "https://github.com/nix-community/nixos-anywhere",
         mainProgram: "nixos-anywhere",

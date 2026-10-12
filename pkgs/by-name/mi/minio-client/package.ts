@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["minio", 34, 18]], [["tests", 34, 12]], [["homepage", 37, 5], ["description", 38, 5], ["maintainers", 39, 5], ["mainProgram", 43, 5], ["license", 44, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["vendorHash", 19, 3], ["subPackages", 21, 3], ["patchPhase", 23, 3], ["doInstallCheck", 29, 3], ["installCheckPhase", 30, 3], ["passthru", 34, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["minio", 34, 18]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 34, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 37, 5], ["description", 38, 5], ["maintainers", 39, 5], ["mainProgram", 43, 5], ["license", 44, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["vendorHash", 19, 3], ["subPackages", 21, 3], ["patchPhase", 23, 3], ["doInstallCheck", 29, 3], ["installCheckPhase", 30, 3], ["passthru", 34, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "minio-client",
       version: "2025-08-13T08-35-41Z",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "minio",
           repo: "mc",
           rev: nix.thunk(() => nix.str`RELEASE.${nix.sel(finalAttrs, "version")}`),
@@ -36,11 +32,11 @@ sed -i "s/CommitID.*/CommitID = \\"${nix.sel(finalAttrs, "src", "rev")}\\"/g" cm
       installCheckPhase: nix.thunk(() => nix.str`$out/bin/mc --version | grep ${nix.sel(finalAttrs, "version")} > /dev/null
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, minio: nix.thunk(() => nix.sel(nixosTests, "minio")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], minio: nix.thunk(() => nix.sel(nixosTests, "minio")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/minio/mc",
         description: "Replacement for ls, cp, mkdir, diff and rsync commands for filesystems and object storage",
         maintainers: nix.thunk(() => (() => {

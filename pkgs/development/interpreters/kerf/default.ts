@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["NIX_CFLAGS_COMPILE", 39, 7]], [["description", 85, 5], ["mainProgram", 86, 5], ["longDescription", 87, 5], ["license", 93, 5], ["homepage", 94, 5], ["platforms", 95, 5], ["maintainers", 96, 5], ["broken", 100, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["sourceRoot", 23, 3], ["buildInputs", 24, 3], ["nativeCheckInputs", 30, 3], ["doCheck", 31, 3], ["makeFlags", 33, 3], ["env", 39, 3], ["patchPhase", 50, 3], ["checkPhase", 60, 3], ["installPhase", 82, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, libedit: false, zlib: false, ncurses: false, expect: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 39, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 85, 5], ["mainProgram", 86, 5], ["longDescription", 87, 5], ["license", 93, 5], ["homepage", 94, 5], ["platforms", 95, 5], ["maintainers", 96, 5], ["broken", 100, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["sourceRoot", 23, 3], ["buildInputs", 24, 3], ["nativeCheckInputs", 30, 3], ["doCheck", 31, 3], ["makeFlags", 33, 3], ["env", 39, 3], ["patchPhase", 50, 3], ["checkPhase", 60, 3], ["installPhase", 82, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "kerf";
       const version = "0-unstable-2022-07-24";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kevinlawler",
           repo: "kerf1",
           rev: "4ec5b592b310b96d33654d20d6a511e6fffc0f9d",
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = true;
       const makeFlags = nix.thunk(() => ["kerf", "kerf_test"]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(nix.builtins.map((x) => nix.str`-Wno-${x}`, nix.thunk(() => [
               "void-pointer-to-int-cast",
               "format",
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const checkPhase = "expect <<EOD\n  set timeout 60\n  spawn ./kerf_test\n  expect {\n    \"Passed\" {}\n    \"Failed\" { exit 1 }\n    timeout { exit 1 }\n  }\n  expect {\n    \"KeRF> \" {send \"quit\\r\"}\n    timeout { exit 1 }\n  }\n  expect {\n    \"\\[DEBUG\\] OK: Done OK.\" {}\n    \"\\[DEBUG\\] FAILED: Debug failure.\" { exit 1 }\n    timeout { exit 1 }\n  }\n  exit 0\nEOD\n";
       const installPhase = "install -D kerf $out/bin/kerf";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Columnar tick database and time-series language",
         mainProgram: "kerf",
         longDescription: "Kerf is a columnar tick database and small programming\nlanguage that is a superset of JSON and SQL. It can be\nused for local analytics, timeseries, logfile processing,\nand more.\n",
@@ -60,7 +57,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

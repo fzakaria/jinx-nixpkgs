@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 51, 5], ["repo", 52, 5], ["tag", 53, 5], ["fetchSubmodules", 54, 5], ["hash", 55, 5]], [["NIX_CFLAGS_COMPILE", 105, 7], ["RUSTY_V8_ARCHIVE", 108, 7], ["RUSTY_V8_SRC_BINDING_PATH", 110, 7], ["LIBSQLITE3_SYS_USE_PKG_CONFIG", 113, 7], ["ZSTD_SYS_USE_PKG_CONFIG", 115, 7], ["LCMS2_LIB_DIR", 117, 7]], [["deno", 276, 39], ["runCommand", 276, 44], ["lib", 276, 55]], [["dontBuild", 279, 9], ["doCheck", 283, 9]], [["build-with-unit-tests", 277, 7], ["librusty_v8-tests", 288, 7]], [["updateScript", 275, 5], ["tests", 276, 5], ["librusty_v8", 290, 13]], [["homepage", 294, 5], ["changelog", 295, 5], ["description", 296, 5], ["longDescription", 297, 5], ["license", 306, 5], ["mainProgram", 307, 5], ["maintainers", 308, 5], ["maxSilent", 314, 5], ["platforms", 315, 5]], [["pname", 39, 3], ["version", 40, 3], ["__structuredAttrs", 42, 3], ["outputs", 44, 3], ["src", 50, 3], ["cargoHash", 58, 3], ["patches", 60, 3], ["postPatch", 65, 3], ["buildInputs", 70, 3], ["nativeBuildInputs", 76, 3], ["configureFlags", 91, 3], ["buildFlags", 96, 3], ["buildNoDefaultFeatures", 99, 3], ["buildFeatures", 100, 3], ["env", 105, 3], ["doCheck", 124, 3], ["preCheck", 127, 3], ["cargoTestFlags", 159, 3], ["checkFlags", 169, 3], ["__darwinAllowLocalNetworking", 231, 3], ["nativeCheckInputs", 233, 3], ["preInstall", 241, 3], ["postInstall", 250, 3], ["postFixup", 267, 3], ["doInstallCheck", 271, 3], ["nativeInstallCheckInputs", 272, 3], ["passthru", 274, 3], ["meta", 293, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, callPackage: false, fetchFromGitHub: false, rustPlatform: false, cmake: false, yq: false, protobuf: false, installShellFiles: false, makeBinaryWrapper: false, versionCheckHook: false, librusty_v8: true, libffi: false, sqlite: false, "pkg-config": false, zstd: false, lcms2: false, lld: false, "vulkan-loader": false, writableTmpDirAsHomeHook: false, curl: false, nodejs: false, git: false, python3: false, esbuild: false, runCommand: false, deno: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 51, 5], ["repo", 52, 5], ["tag", 53, 5], ["fetchSubmodules", 54, 5], ["hash", 55, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 105, 7], ["RUSTY_V8_ARCHIVE", 108, 7], ["RUSTY_V8_SRC_BINDING_PATH", 110, 7], ["LIBSQLITE3_SYS_USE_PKG_CONFIG", 113, 7], ["ZSTD_SYS_USE_PKG_CONFIG", 115, 7], ["LCMS2_LIB_DIR", 117, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["deno", 276, 39], ["runCommand", 276, 44], ["lib", 276, 55]]);
-const pos$4 = nix.positions(here + "/package.nix", [["dontBuild", 279, 9], ["doCheck", 283, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["build-with-unit-tests", 277, 7], ["librusty_v8-tests", 288, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 275, 5], ["tests", 276, 5], ["librusty_v8", 290, 13]]);
-const pos$7 = nix.positions(here + "/package.nix", [["homepage", 294, 5], ["changelog", 295, 5], ["description", 296, 5], ["longDescription", 297, 5], ["license", 306, 5], ["mainProgram", 307, 5], ["maintainers", 308, 5], ["maxSilent", 314, 5], ["platforms", 315, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 39, 3], ["version", 40, 3], ["__structuredAttrs", 42, 3], ["outputs", 44, 3], ["src", 50, 3], ["cargoHash", 58, 3], ["patches", 60, 3], ["postPatch", 65, 3], ["buildInputs", 70, 3], ["nativeBuildInputs", 76, 3], ["configureFlags", 91, 3], ["buildFlags", 96, 3], ["buildNoDefaultFeatures", 99, 3], ["buildFeatures", 100, 3], ["env", 105, 3], ["doCheck", 124, 3], ["preCheck", 127, 3], ["cargoTestFlags", 159, 3], ["checkFlags", 169, 3], ["__darwinAllowLocalNetworking", 231, 3], ["nativeCheckInputs", 233, 3], ["preInstall", 241, 3], ["postInstall", 250, 3], ["postFixup", 267, 3], ["doInstallCheck", 271, 3], ["nativeInstallCheckInputs", 272, 3], ["passthru", 274, 3], ["meta", 293, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,13 +36,13 @@ export default nix.lambda((args) => (() => {
   const deno = nix.arg($, "deno");
   const canExecute = nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "deno",
       version: "2.9.7",
       __structuredAttrs: true,
       outputs: nix.thunk(() => ["out", "denort", "libdenort"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "denoland",
           repo: "deno",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -78,7 +71,7 @@ export default nix.lambda((args) => (() => {
       buildNoDefaultFeatures: true,
       buildFeatures: nix.thunk(() => ["v8"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-Wno-unknown-warning-option")),
         RUSTY_V8_ARCHIVE: librusty_v8,
         RUSTY_V8_SRC_BINDING_PATH: nix.thunk(() => nix.sel(librusty_v8, "binding")),
@@ -153,12 +146,12 @@ makeBinaryWrapper $out/bin/deno $out/bin/dx --add-flags "x"
       doInstallCheck: canExecute,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.path(here, "./update.sh"),
-        tests: nix.thunk(() => nix.update(nix.app(nix.builtins.import(nix.path(here, "./tests")), nix.thunk(() => ({ [nix.POS]: pos$3, deno: deno, runCommand: runCommand, lib: lib }))), {
-          [nix.POS]: pos$5,
+        tests: nix.thunk(() => nix.update(nix.app(nix.builtins.import(nix.path(here, "./tests")), nix.thunk(() => ({ [nix.POS]: $pos[2], deno: deno, runCommand: runCommand, lib: lib }))), {
+          [nix.POS]: $pos[4],
           "build-with-unit-tests": nix.thunk(() => nix.app(nix.sel(deno, "overrideAttrs"), (fa) => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               dontBuild: false,
               doCheck: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) || nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))))))),
             }))),
@@ -167,7 +160,7 @@ makeBinaryWrapper $out/bin/deno $out/bin/dx --add-flags "x"
         librusty_v8: librusty_v8,
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         homepage: "https://deno.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/denoland/deno/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Secure runtime for JavaScript and TypeScript",

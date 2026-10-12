@@ -2,18 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 50, 5], ["repo", 51, 5], ["tag", 52, 5], ["hash", 53, 5]], [["name", 60, 7], ["url", 61, 7], ["hash", 62, 7]], [["name", 65, 7], ["url", 66, 7], ["hash", 67, 7]], [["name", 70, 7], ["url", 71, 7], ["hash", 72, 7]], [["name", 75, 7], ["url", 76, 7], ["hash", 77, 7]], [["NIX_CFLAGS_COMPILE", 163, 7]], [["lomiri-indicator-telephony-service", 219, 7]], [["vm", 221, 11]], [["ayatana-indicators", 218, 5], ["tests", 221, 5], ["updateScript", 222, 5]], [["description", 226, 5], ["homepage", 227, 5], ["changelog", 228, 5], ["license", 229, 5], ["teams", 230, 5], ["platforms", 231, 5]], [["pname", 46, 3], ["version", 47, 3], ["src", 49, 3], ["patches", 56, 3], ["postPatch", 81, 3], ["strictDeps", 108, 3], ["nativeBuildInputs", 110, 3], ["buildInputs", 116, 3], ["nativeCheckInputs", 147, 3], ["dontWrapQtApps", 155, 3], ["cmakeFlags", 157, 3], ["env", 163, 3], ["doCheck", 169, 3], ["enableParallelChecking", 172, 3], ["preCheck", 174, 3], ["postInstall", 184, 3], ["passthru", 217, 3], ["meta", 225, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, fetchpatch: false, gitUpdater: false, nixosTests: false, runCommand: false, "ayatana-indicator-messages": false, bash: false, cmake: false, dbus: false, "dbus-glib": false, "dbus-test-runner": false, dconf: false, gettext: false, glib: false, "gnome-keyring": false, libnotify: false, libphonenumber: false, libpulseaudio: false, libusermetrics: false, "lomiri-history-service": false, "lomiri-url-dispatcher": false, makeWrapper: false, "pkg-config": false, protobuf: false, python3: false, qtbase: false, qtdeclarative: false, qtfeedback: false, qtmultimedia: false, qtpim: false, telepathy: false, "telepathy-glib": false, "telepathy-mission-control": false, "xvfb-run": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 50, 5], ["repo", 51, 5], ["tag", 52, 5], ["hash", 53, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 60, 7], ["url", 61, 7], ["hash", 62, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 65, 7], ["url", 66, 7], ["hash", 67, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["name", 70, 7], ["url", 71, 7], ["hash", 72, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["name", 75, 7], ["url", 76, 7], ["hash", 77, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 163, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["lomiri-indicator-telephony-service", 219, 7]]);
-const pos$8 = nix.positions(here + "/default.nix", [["vm", 221, 11]]);
-const pos$9 = nix.positions(here + "/default.nix", [["ayatana-indicators", 218, 5], ["tests", 221, 5], ["updateScript", 222, 5]]);
-const pos$10 = nix.positions(here + "/default.nix", [["description", 226, 5], ["homepage", 227, 5], ["changelog", 228, 5], ["license", 229, 5], ["teams", 230, 5], ["platforms", 231, 5]]);
-const pos$11 = nix.positions(here + "/default.nix", [["pname", 46, 3], ["version", 47, 3], ["src", 49, 3], ["patches", 56, 3], ["postPatch", 81, 3], ["strictDeps", 108, 3], ["nativeBuildInputs", 110, 3], ["buildInputs", 116, 3], ["nativeCheckInputs", 147, 3], ["dontWrapQtApps", 155, 3], ["cmakeFlags", 157, 3], ["env", 163, 3], ["doCheck", 169, 3], ["enableParallelChecking", 172, 3], ["preCheck", 174, 3], ["postInstall", 184, 3], ["passthru", 217, 3], ["meta", 225, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -55,11 +45,11 @@ export default nix.lambda((args) => (() => {
   const xvfb_run = nix.arg($, "xvfb-run");
   const replaceDbusService = (pkg) => (name) => nix.str`--replace-fail "\\\${DBUS_SERVICES_DIR}/${name}" "${pkg}/share/dbus-1/services/${name}"`;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       pname: "lomiri-telephony-service",
       version: "0.6.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ubports",
           repo: "development/core/lomiri-telephony-service",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -67,25 +57,25 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "0001-lomiri-telephony-service-new-libnotify-needs-spec_version.patch",
             url: "https://gitlab.com/ubports/development/core/lomiri-telephony-service/-/commit/6b0b51a4fcfafcd10ae5fe4928d49c9f73f14d12.patch",
             hash: "sha256-E9THrqE77GXBY8ftwrkwFzFCTSa/YpkaHiX4ivjH6mM=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "0002-lomiri-telephony-service-tests-depend-on-the-notification-mock.patch",
             url: "https://gitlab.com/ubports/development/core/lomiri-telephony-service/-/commit/8c5a3048492eb01354565f0892a61770eb27b957.patch",
             hash: "sha256-nLN+Evyq4Yf9GN2wSSPXmzEzTPXHDl+Pl5FKOiwdDY8=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "0003-lomiri-telephony-service-approver-fix-race-condition-when-accepting-calls.patch",
             url: "https://gitlab.com/ubports/development/core/lomiri-telephony-service/-/commit/b3123f784ed692f9424c978e68867a8662d00083.patch",
             hash: "sha256-/JEkoEEivFwFoNOrcdDleAGOjdUwS4SlUovMr9trNQQ=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "0004-lomiri-telephony-service-Robustness-fixes-for-tests.patch",
             url: "https://gitlab.com/ubports/development/core/lomiri-telephony-service/-/commit/e886fbdd016327634e935986f2b63b90833295be.patch",
             hash: "sha256-Ie9kM7UHSjmORTOTNzZ1/qtM4ILkOnGjyQCXXo1PU88=",
@@ -140,7 +130,7 @@ substituteInPlace cmake/modules/GenerateTest.cmake \\
       dontWrapQtApps: true,
       cmakeFlags: nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "SKIP_QML_TESTS", true))]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getDev"), telepathy_glib)}/include/telepathy-1.0`),
             nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getDev"), dbus_glib)}/include/dbus-1.0`),
@@ -176,19 +166,19 @@ wrapProgram $out/bin/lomiri-indicator-telephony-service \\
   --prefix PATH : "$out/bin"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         "ayatana-indicators": nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           "lomiri-indicator-telephony-service": nix.thunk(() => ["lomiri"]),
         })),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           vm: nix.thunk(() => nix.sel(nixosTests, "ayatana-indicators")),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         description: "Backend dispatcher service for various mobile phone related operations",
         homepage: "https://gitlab.com/ubports/development/core/lomiri-telephony-service",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/ubports/development/core/lomiri-telephony-service/-/blob/${nix.sel(finalAttrs, "version")}/ChangeLog`),

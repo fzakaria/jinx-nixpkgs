@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["sha256", 19, 5]], [["NIX_CFLAGS_COMPILE", 39, 7]], [["description", 48, 5], ["homepage", 49, 5], ["maintainers", 50, 5], ["license", 51, 5], ["platforms", 52, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 23, 3], ["unpackPhase", 25, 3], ["postPatch", 31, 3], ["env", 39, 3], ["postInstall", 41, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { fetchurl: false, lib: false, stdenv: false, autoreconfHook: false, curl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 39, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 48, 5], ["homepage", 49, 5], ["maintainers", 50, 5], ["license", 51, 5], ["platforms", 52, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 23, 3], ["unpackPhase", 25, 3], ["postPatch", 31, 3], ["env", 39, 3], ["postInstall", 41, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const major = "2";
   const minor = "22";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "dirb",
       version: nix.thunk(() => nix.str`${major}.${minor}`),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/dirb/${nix.sel(finalAttrs, "version")}/dirb${major}${minor}.tar.gz`),
           sha256: "0b7wc2gvgnyp54rxf1n9arn6ymrvdb633v6b3ah138hw4gg8lx7k",
         })))),
@@ -30,10 +27,10 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [curl]),
       unpackPhase: "tar -xf $src\nfind . -exec chmod +x \"{}\" \";\"\nexport sourceRoot=\"dirb222\"\n",
       postPatch: "sed -i \"s#/usr#$out#\" src/dirb.c\n",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-fcommon" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-fcommon" })),
       postInstall: "mkdir -p $out/share/{dirb,wordlists}\ncp -r wordlists/ $out/share/dirb/\nln -s $out/share/dirb/wordlists/ $out/share/wordlists/dirb\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Web content scanner",
         homepage: "https://dirb.sourceforge.net/",
         maintainers: nix.thunk(() => (() => {

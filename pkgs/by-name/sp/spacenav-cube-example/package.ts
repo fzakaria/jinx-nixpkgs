@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["homepage", 31, 5], ["description", 32, 5], ["license", 33, 5], ["platforms", 34, 5], ["maintainers", 35, 5], ["mainProgram", 36, 5]], [["pname", 10, 3], ["version", 11, 22], ["src", 11, 30], ["sourceRoot", 13, 3], ["buildInputs", 15, 3], ["makeFlags", 21, 3], ["installPhase", 23, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, libspnav: false, libx11: false, mesa_glu: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["homepage", 31, 5], ["description", 32, 5], ["license", 33, 5], ["platforms", 34, 5], ["maintainers", 35, 5], ["mainProgram", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 22], ["src", 11, 30], ["sourceRoot", 13, 3], ["buildInputs", 15, 3], ["makeFlags", 21, 3], ["installPhase", 23, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const mesa_glu = nix.arg($, "mesa_glu");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "spacenav-cube-example",
       version: nix.thunk(() => nix.attr(libspnav, "version")),
       src: nix.thunk(() => nix.attr(libspnav, "src")),
@@ -23,7 +22,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`CC=${nix.sel(stdenv, "cc", "targetPrefix")}cc`)]),
       installPhase: "runHook preInstall\nmkdir -p $out/bin\ncp cube $out/bin/spacenav-cube-example\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: "https://spacenav.sourceforge.net/",
         description: "Example application to test the spacenavd driver",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

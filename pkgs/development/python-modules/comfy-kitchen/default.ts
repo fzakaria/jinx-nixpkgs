@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["fetchSubmodules", 29, 5], ["hash", 30, 5]], [["CUDA_HOME", 63, 5]], [["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["maintainers", 77, 28]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 25, 3], ["buildInputs", 33, 3], ["build-system", 41, 3], ["dependencies", 48, 3], ["dontUseCmakeConfigure", 50, 3], ["pypaBuildFlags", 52, 3], ["env", 62, 3], ["doCheck", 69, 3], ["pythonImportsCheck", 71, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, cmake: false, config: false, cudaSupport: true, fetchFromGitHub: false, nanobind: false, ninja: false, setuptools: false, torch: false, comfyui: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["fetchSubmodules", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["CUDA_HOME", 63, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["maintainers", 77, 28]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 25, 3], ["buildInputs", 33, 3], ["build-system", 41, 3], ["dependencies", 48, 3], ["dontUseCmakeConfigure", 50, 3], ["pypaBuildFlags", 52, 3], ["env", 62, 3], ["doCheck", 69, 3], ["pythonImportsCheck", 71, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const comfyui = nix.arg($, "comfyui");
   const cudaPackages = nix.thunk(() => nix.attr(torch, "cudaPackages"));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "comfy-kitchen",
       version: "0.2.35",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Comfy-Org",
           repo: "comfy-kitchen",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--config-setting=--cuda-archs="${nix.app(nix.sel(lib, "concatMapStringsSep"), ";", nix.thunk(() => nix.sel(cudaPackages, "flags", "dropDots")), nix.thunk(() => nix.sel(torch, "cudaCapabilities")))}"`),
       ] : ["-C--global-option=--no-cuda"])),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), cudaSupport, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           CUDA_HOME: nix.thunk(() => nix.sel(cudaPackages, "cuda_nvcc")),
         })))),
       doCheck: false,
@@ -57,7 +54,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(comfyui, "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Fast kernel library for ComfyUI with multiple compute backends",
         homepage: "https://github.com/Comfy-Org/comfy-kitchen",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

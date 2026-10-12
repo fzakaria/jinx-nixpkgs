@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["description", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["platforms", 43, 5], ["homepage", 44, 5], ["mainProgram", 45, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["dontUnpack", 18, 3], ["buildInputs", 20, 3], ["installPhase", 25, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, python3: false, runtimeShell: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["platforms", 43, 5], ["homepage", 44, 5], ["mainProgram", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["dontUnpack", 18, 3], ["buildInputs", 20, 3], ["installPhase", 25, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const runtimeShell = nix.arg($, "runtimeShell");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mozlz4a",
       version: "2022-03-19",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://gist.githubusercontent.com/Tblue/62ff47bef7f894e92ed5/raw/c12fce199a97ecb214eb913cc5d762eac2e92c57/mozlz4a.py",
           hash: "sha256-Igj9u6TmV+nIuSg8gI8zD4hTb/Iiog/3aB3DDk0Lqkg=",
         })))),
@@ -34,7 +32,7 @@ echo "'${python3}/bin/python' '$out/${nix.sel(python3, "sitePackages")}/mozlz4a.
 chmod a+x "$out/bin/mozlz4a"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Compression/decompression utility",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
         maintainers: nix.thunk(() => (() => {

@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 20, 5], ["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["url", 58, 9], ["hash", 59, 9]], [["url", 73, 7], ["hash", 74, 7]], [["url", 77, 7], ["hash", 78, 7]], [["url", 81, 7], ["hash", 82, 7]], [["url", 85, 7], ["hash", 86, 7]], [["url", 89, 7], ["hash", 90, 7]], [["url", 93, 7], ["hash", 94, 7]], [["description", 99, 5], ["mainProgram", 100, 5], ["homepage", 101, 5], ["maintainers", 102, 5], ["license", 106, 5], ["platforms", 107, 5]], [["version", 16, 3], ["pname", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 32, 3], ["makeFlags", 39, 3], ["preInstall", 51, 3], ["postInstall", 55, 3], ["patches", 71, 3], ["meta", 98, 3]]]);
 const formals$1 = { args: { stdenv: false, autoreconfHook: false, fetchFromGitLab: false, fetchpatch: false, fetchurl: false, fontconfig: false, freetype: false, gpm: false, lib: false, ncurses: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 20, 5], ["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 58, 9], ["hash", 59, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 73, 7], ["hash", 74, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 77, 7], ["hash", 78, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 81, 7], ["hash", 82, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["url", 85, 7], ["hash", 86, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["url", 89, 7], ["hash", 90, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["url", 93, 7], ["hash", 94, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 99, 5], ["mainProgram", 100, 5], ["homepage", 101, 5], ["maintainers", 102, 5], ["license", 106, 5], ["platforms", 107, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["version", 16, 3], ["pname", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 32, 3], ["makeFlags", 39, 3], ["preInstall", 51, 3], ["postInstall", 55, 3], ["patches", 71, 3], ["meta", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       version: "1.7-2",
       pname: "fbterm",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "salsa.debian.org",
           owner: "debian",
           repo: "fbterm",
@@ -45,7 +36,7 @@ export default nix.lambda((args) => (() => {
       preInstall: "export HOME=$PWD\n",
       postInstall: nix.thunk(() => (() => {
         const fbtermrc = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://aur.archlinux.org/cgit/aur.git/plain/fbtermrc?h=fbterm",
             hash: "sha256-zNIfi2ZjEGc5PLdOIirKGTXESb5Wm5XBAI1sfHa31LY=",
           }))));
@@ -58,38 +49,38 @@ cp "${fbtermrc}" "$out/etc/fbterm"
       })()),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://aur.archlinux.org/cgit/aur.git/plain/fbconfig.patch?h=fbterm",
             hash: "sha256-skCdUqyMkkqxS1YUI7cofsfnNNo3SL/qe4WEIXlhm/s=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://aur.archlinux.org/cgit/aur.git/plain/color_palette.patch?h=fbterm",
             hash: "sha256-SkWxzfapyBTtMpTXkiFHRAw8/uXw7cAWwg5Q3TqWlk8=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: "https://aur.archlinux.org/cgit/aur.git/plain/fbterm.patch?h=fbterm",
             hash: "sha256-XNHBTGQGeaQPip2XgcKlr123VDwils2pnyiGqkBGhzU=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             url: "https://aur.archlinux.org/cgit/aur.git/plain/0001-Fix-build-with-gcc-6.patch?h=fbterm",
             hash: "sha256-3d3zBvr5upICVVkd6tn63IhuB0sF67f62aKnf8KvOwg=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             url: "https://aur.archlinux.org/cgit/aur.git/plain/fix_ftbfs_crosscompile.patch?h=fbterm",
             hash: "sha256-jv/FSG6dHR0jKjPXQIfqsvpiT/XYzwv/VwuV+qUSovM=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             url: "https://aur.archlinux.org/cgit/aur.git/plain/fix_ftbfs_epoll.patch?h=fbterm",
             hash: "sha256-wkhfG0uY/5ZApcXTERkaKqz5IDpnilxUEcxull4645A=",
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Framebuffer terminal emulator",
         mainProgram: "fbterm",
         homepage: "https://salsa.debian.org/debian/fbterm",

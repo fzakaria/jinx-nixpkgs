@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["mainProgram", 52, 5], ["description", 53, 5], ["longDescription", 54, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 23, 3], ["__structuredAttrs", 27, 3], ["strictDeps", 29, 3], ["enableParallelBuilding", 31, 3], ["makeFlags", 33, 3], ["buildFlags", 38, 3], ["preCheck", 43, 3], ["checkTarget", 47, 3], ["doCheck", 49, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fixDarwinDylibNames: false, gmp: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["mainProgram", 52, 5], ["description", 53, 5], ["longDescription", 54, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 23, 3], ["__structuredAttrs", 27, 3], ["strictDeps", 29, 3], ["enableParallelBuilding", 31, 3], ["makeFlags", 33, 3], ["buildFlags", 38, 3], ["preCheck", 43, 3], ["checkTarget", 47, 3], ["doCheck", 49, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fixDarwinDylibNames = nix.arg($, "fixDarwinDylibNames");
   const gmp = nix.arg($, "gmp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "frobby",
       version: "0.9.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Macaulay2",
           repo: "frobby",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       checkTarget: "test",
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         mainProgram: "frobby",
         description: "Software system and project for computations with monomial ideals",
         longDescription: "Current functionality includes Euler characteristic, Hilbert series,\nmaximal standard monomials, combinatorial optimization on monomial\nideals, primary decomposition, irreducible decomposition, Alexander dual,\nassociated primes, minimization and intersection of monomial ideals as\nwell as the computation of Frobenius problems (using 4ti2) with very\nlarge numbers. Frobby is also able to translate between formats that can\nbe used with several different computer systems, such as Macaulay2,\nMonos, 4ti2, CoCoA4 and Singular. Thus Frobby can be used with any of\nthose systems.\n",

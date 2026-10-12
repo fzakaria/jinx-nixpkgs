@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 5], ["sha256", 23, 5]], [["description", 54, 5], ["longDescription", 56, 5], ["homepage", 77, 5], ["license", 78, 5], ["maintainers", 80, 5], ["platforms", 81, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["preConfigure", 26, 3], ["buildInputs", 33, 3], ["nativeBuildInputs", 37, 3], ["doCheck", 49, 3], ["patches", 51, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { fetchurl: false, lib: false, stdenv: false, emacs: false, gnulib: false, autoconf: false, bison: false, automake: false, gettext: false, gperf: false, texinfo: false, perl: false, rsync: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 54, 5], ["longDescription", 56, 5], ["homepage", 77, 5], ["license", 78, 5], ["maintainers", 80, 5], ["platforms", 81, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["preConfigure", 26, 3], ["buildInputs", 33, 3], ["nativeBuildInputs", 37, 3], ["doCheck", 49, 3], ["patches", 51, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const rsync = nix.arg($, "rsync");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "idutils",
       version: "4.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnu/idutils/idutils-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "1hmai3422iaqnp34kkzxdnywl7n7pvlxp11vrw66ybxn9wxg90c1",
         })))),
@@ -41,7 +39,7 @@ substituteInPlace ./configure.ac --replace "AC_PREREQ(2.61)" "AC_PREREQ(2.64)"
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       patches: nix.thunk(() => [nix.path(here, "./nix-mapping.patch")]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Text searching utility",
         longDescription: "An \"ID database\" is a binary file containing a list of file\nnames, a list of tokens, and a sparse matrix indicating which\ntokens appear in which files.\n\nWith this database and some tools to query it, many\ntext-searching tasks become simpler and faster.  For example,\nyou can list all files that reference a particular `\\#include'\nfile throughout a huge source hierarchy, search for all the\nmemos containing references to a project, or automatically\ninvoke an editor on all files containing references to some\nfunction or variable.  Anyone with a large software project to\nmaintain, or a large set of text files to organize, can benefit\nfrom the ID utilities.\n\nAlthough the name `ID' is short for `identifier', the ID\nutilities handle more than just identifiers; they also treat\nother kinds of tokens, most notably numeric constants, and the\ncontents of certain character strings.\n",
         homepage: "https://www.gnu.org/software/idutils/",

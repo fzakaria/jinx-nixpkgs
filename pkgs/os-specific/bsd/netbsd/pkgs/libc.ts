@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libc.nix", [[["threadModel", 55, 12]], [["platforms", 57, 8]], [["pname", 17, 3], ["version", 18, 11], ["outputs", 20, 3], ["paths", 26, 3], ["postBuild", 45, 3], ["passthru", 55, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, symlinkJoin: false, libcMinimal: false, libpthread: false, libm: false, libresolv: false, librpcsvc: false, i18n_module: false, libutil: false, librt: false, libcrypt: false, version: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libc.nix", [["threadModel", 55, 12]]);
-const pos$2 = nix.positions(here + "/libc.nix", [["platforms", 57, 8]]);
-const pos$3 = nix.positions(here + "/libc.nix", [["pname", 17, 3], ["version", 18, 11], ["outputs", 20, 3], ["paths", 26, 3], ["postBuild", 45, 3], ["passthru", 55, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const libcrypt = nix.arg($, "libcrypt");
   const version = nix.arg($, "version");
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libc-netbsd",
       version: version,
       outputs: nix.thunk(() => ["out", "dev", "man"]),
@@ -42,9 +40,9 @@ export default nix.lambda((args) => (() => {
           libcrypt,
         ]))),
       postBuild: "rm -r \"$out/nix-support\"\nfixupPhase\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, threadModel: "posix" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[0], threadModel: "posix" })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "netbsd")),
       })),
     })));

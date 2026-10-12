@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/rasqal.nix", [[["url", 18, 5], ["sha256", 19, 5]], [["pkg-config", 40, 5]], [["tests", 37, 12]], [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 50, 5], ["platforms", 51, 5], ["pkgConfigModules", 52, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 24, 3], ["propagatedBuildInputs", 29, 3], ["postInstall", 31, 3], ["nativeCheckInputs", 33, 3], ["doCheck", 34, 3], ["doInstallCheck", 35, 3], ["passthru", 37, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, librdf_raptor2: false, gmp: false, "pkg-config": false, libxml2: false, perl: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/rasqal.nix", [["url", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/rasqal.nix", [["pkg-config", 40, 5]]);
-const pos$3 = nix.positions(here + "/rasqal.nix", [["tests", 37, 12]]);
-const pos$4 = nix.positions(here + "/rasqal.nix", [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 50, 5], ["platforms", 51, 5], ["pkgConfigModules", 52, 5]]);
-const pos$5 = nix.positions(here + "/rasqal.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 24, 3], ["propagatedBuildInputs", 29, 3], ["postInstall", 31, 3], ["nativeCheckInputs", 33, 3], ["doCheck", 34, 3], ["doInstallCheck", 35, 3], ["passthru", 37, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "rasqal",
       version: "0.9.33",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.librdf.org/source/rasqal-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0z6rrwn4jsagvarg8d5zf0j352kjgi33py39jqd29gbhcnncj939",
         })))),
@@ -37,14 +33,14 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       doInstallCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Library that handles Resource Description Framework (RDF)",
         homepage: "https://librdf.org/rasqal",
         license: nix.thunk(() => (() => {

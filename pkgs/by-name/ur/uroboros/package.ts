@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 13], ["hash", 16, 5]], [["description", 22, 5], ["homepage", 23, 5], ["license", 24, 5], ["maintainers", 25, 5]], [["pname", 8, 3], ["version", 9, 3], ["rev", 10, 3], ["src", 12, 3], ["vendorHash", 19, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 13], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 22, 5], ["homepage", 23, 5], ["license", 24, 5], ["maintainers", 25, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["rev", 10, 3], ["src", 12, 3], ["vendorHash", 19, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const version = nix.thunk(() => nix.str`20210304-${nix.app(nix.sel(lib, "strings", "substring"), 0n, 7n, rev)}`);
       const rev = "9bed95bb4cc44cfd043e8ac192e788df379c7a44";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "evilsocket",
           repo: "uroboros",
           rev: rev,
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const vendorHash = "sha256-FJTmnkPMXolNijRc4ZqCsi/ykReTE2WOC5LP/wHog9Y=";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tool for monitoring and profiling single processes",
         homepage: "https://github.com/evilsocket/uroboros",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "fab"))];
         })()),
       }));
-      return { [nix.POS]: pos$3, pname, version, rev, src, vendorHash, meta };
+      return { [nix.POS]: $pos[2], pname, version, rev, src, vendorHash, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

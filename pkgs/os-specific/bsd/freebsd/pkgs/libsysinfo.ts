@@ -2,12 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libsysinfo.nix", [[["url", 9, 5], ["hash", 10, 5]], [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["NIX_LDFLAGS", 30, 7]], [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]], [["pname", 14, 3], ["path", 15, 3], ["version", 16, 3], ["src", 17, 3], ["outputs", 24, 3], ["env", 30, 3], ["postPatch", 33, 3], ["postInstall", 38, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, mkDerivation: false, fetchurl: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libsysinfo.nix", [["url", 9, 5], ["hash", 10, 5]]);
-const pos$2 = nix.positions(here + "/libsysinfo.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$3 = nix.positions(here + "/libsysinfo.nix", [["NIX_LDFLAGS", 30, 7]]);
-const pos$4 = nix.positions(here + "/libsysinfo.nix", [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]]);
-const pos$5 = nix.positions(here + "/libsysinfo.nix", [["pname", 14, 3], ["path", 15, 3], ["version", 16, 3], ["src", 17, 3], ["outputs", 24, 3], ["env", 30, 3], ["postPatch", 33, 3], ["postInstall", 38, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const pcFile = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://raw.githubusercontent.com/freebsd/freebsd-ports/a613e66a54d54251878412b74c1e99defdac4192/devel/libsysinfo/files/libsysinfo.pc.in",
       hash: "sha256-KeCOYLCYeoJm+AwaagygKve2f+jNaIfaO7c/UnMegAg=",
     }))));
@@ -25,14 +21,14 @@ export default nix.lambda((args) => (() => {
       const path = "...";
       const version = "0.0.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "bsdimp",
           repo: "libsysinfo",
           rev: "e535d95d1598932a0084a027402104d6e0276479",
           hash: "sha256-HFgaYRR9HQM0iVJBWq1nrPGZIl/Y/5C0JJUunlzCZLI=",
         }))));
       const outputs = nix.thunk(() => ["out", "man", "debug"]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$3, NIX_LDFLAGS: "-lkvm" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_LDFLAGS: "-lkvm" }));
       const postPatch = "substituteInPlace Makefile --replace-fail 'then else' 'then :; else'\nsubstituteInPlace Makefile --replace-fail 'mkdir' 'mkdir -p'\n";
       const postInstall = nix.thunk(() => nix.str`mkdir -p $out/lib/pkgconfig
 substitute ${pcFile} $out/lib/pkgconfig/libsysinfo.pc \\
@@ -44,7 +40,7 @@ mkdir -p $out/include/sys
 ln -s ../sysinfo.h $out/include/sys/sysinfo.h
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "GNU libc's sysinfo port for FreeBSD",
         homepage: "https://github.com/bsdimp/libsysinfo",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -54,7 +50,7 @@ ln -s ../sysinfo.h $out/include/sys/sysinfo.h
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         path,
         version,

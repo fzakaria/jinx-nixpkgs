@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/extension.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["description", 40, 33], ["maintainers", 40, 45], ["license", 41, 7]], [["pname", 12, 3], ["version", 14, 3], ["src", 16, 3], ["buildInputs", 23, 3], ["nativeBuildInputs", 27, 3], ["makeFlags", 31, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { curl: false, fetchFromGitHub: false, lib: false, postgresql: false, postgresqlBuildExtension: false, postgresqlTestExtension: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/extension.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/extension.nix", [["description", 40, 33], ["maintainers", 40, 45], ["license", 41, 7]]);
-const pos$3 = nix.positions(here + "/extension.nix", [["pname", 12, 3], ["version", 14, 3], ["src", 16, 3], ["buildInputs", 23, 3], ["nativeBuildInputs", 27, 3], ["makeFlags", 31, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const postgresqlTestExtension = nix.arg($, "postgresqlTestExtension");
   const python3 = nix.arg($, "python3");
   return nix.app(postgresqlBuildExtension, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "orioledb",
       version: "1.10-beta19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "orioledb",
           repo: "orioledb",
           tag: "beta19",
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
         return (() => {
           const from = nix.thunk(() => nix.sel(postgresql, "meta"));
           return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           description: nix.thunk(() => nix.attr(from, "description")),
           maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
           license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "OR"), nix.thunk(() => [

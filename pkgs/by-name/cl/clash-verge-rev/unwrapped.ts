@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/unwrapped.nix", [[["pname", 36, 7], ["version", 37, 7], ["src", 38, 7], ["pnpm", 40, 5], ["fetcherVersion", 41, 5], ["hash", 42, 5]], [["OPENSSL_NO_VENDOR", 46, 5]], [["version", 29, 11], ["src", 29, 19], ["meta", 29, 23], ["pname", 30, 3], ["cargoHash", 32, 3], ["pnpmDeps", 34, 3], ["env", 45, 3], ["postPatch", 49, 3], ["nativeBuildInputs", 83, 3], ["buildInputs", 93, 3], ["postInstall", 102, 3]]]);
 const formals$1 = { args: { pname: false, version: false, src: false, meta: false, "pnpm-hash": false, "vendor-hash": false, rustPlatform: false, "cargo-tauri": false, jq: false, moreutils: false, nodejs: false, "pkg-config": false, pnpm_11: false, fetchPnpmDeps: false, pnpmConfigHook: false, glib: false, kdePackages: false, "libayatana-appindicator": false, libsForQt5: false, libsoup_3: false, openssl: false, webkitgtk_4_1: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/unwrapped.nix", [["pname", 36, 7], ["version", 37, 7], ["src", 38, 7], ["pnpm", 40, 5], ["fetcherVersion", 41, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/unwrapped.nix", [["OPENSSL_NO_VENDOR", 46, 5]]);
-const pos$3 = nix.positions(here + "/unwrapped.nix", [["version", 29, 11], ["src", 29, 19], ["meta", 29, 23], ["pname", 30, 3], ["cargoHash", 32, 3], ["pnpmDeps", 34, 3], ["env", 45, 3], ["postPatch", 49, 3], ["nativeBuildInputs", 83, 3], ["buildInputs", 93, 3], ["postInstall", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,14 +30,14 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const webkitgtk_4_1 = nix.arg($, "webkitgtk_4_1");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: version,
       src: src,
       meta: meta,
       pname: nix.thunk(() => nix.str`${pname}-unwrapped`),
       cargoHash: vendor_hash,
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           src: src,
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
           fetcherVersion: 4n,
           hash: pnpm_hash,
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], OPENSSL_NO_VENDOR: 1n })),
       postPatch: nix.thunk(() => nix.str`# We disable the option to try to use the bleeding-edge version of mihomo
 # If you need a newer version, you can override the mihomo input of the wrapped package
 sed -i -e '/Mihomo Alpha/d' ./src/components/setting/mods/clash-core-viewer.tsx

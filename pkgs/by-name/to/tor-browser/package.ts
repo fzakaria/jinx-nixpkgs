@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["urls", 109, 7], ["hash", 115, 7]], [["urls", 119, 7], ["hash", 125, 7]], [["x86_64-linux", 108, 5], ["i686-linux", 118, 5]], [["id", 133, 9], ["version", 134, 9], ["about", 135, 9]], [["Global", 132, 7]], [["name", 170, 7], ["exec", 171, 7], ["icon", 172, 7], ["desktopName", 173, 7], ["genericName", 174, 7], ["comment", 175, 7], ["categories", 176, 7], ["mimeTypes", 181, 7], ["startupWMClass", 189, 7]], [["pname", 335, 15], ["version", 335, 21], ["meta", 335, 29]], [["sources", 333, 13], ["updateScript", 334, 5]], [["description", 340, 5], ["mainProgram", 341, 5], ["homepage", 342, 5], ["donationPage", 343, 5], ["changelog", 344, 5], ["platforms", 345, 5], ["maintainers", 346, 5], ["license", 356, 5], ["sourceProvenance", 362, 5]], [["pname", 141, 3], ["version", 142, 11], ["src", 144, 3], ["nativeBuildInputs", 148, 3], ["buildInputs", 155, 3], ["patchelfFlags", 163, 3], ["preferLocalBuild", 165, 3], ["allowSubstitutes", 166, 3], ["desktopItems", 168, 3], ["buildPhase", 193, 3], ["installPhase", 323, 3], ["passthru", 332, 3], ["meta", 339, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeDesktopItem: false, copyDesktopItems: false, makeWrapper: false, writeText: false, autoPatchelfHook: false, patchelfUnstable: false, wrapGAppsHook3: false, callPackage: false, atk: false, cairo: false, dbus: false, "dbus-glib": false, fontconfig: false, freetype: false, "gdk-pixbuf": false, glib: false, gtk3: false, libxcb: false, libx11: false, libxext: false, libxrender: false, libxt: false, libxtst: false, libgbm: false, pango: false, pciutils: false, zlib: false, libnotifySupport: true, libnotify: false, waylandSupport: true, libxkbcommon: false, libdrm: false, libGL: false, mediaSupport: true, ffmpeg_7: false, audioSupport: true, pipewireSupport: true, pipewire: false, pulseaudioSupport: true, libpulseaudio: false, apulse: false, "alsa-lib": false, libvaSupport: true, libva: false, useIPCTorService: true, disableContentSandbox: true, extraPrefs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["urls", 109, 7], ["hash", 115, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["urls", 119, 7], ["hash", 125, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["x86_64-linux", 108, 5], ["i686-linux", 118, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["id", 133, 9], ["version", 134, 9], ["about", 135, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["Global", 132, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 170, 7], ["exec", 171, 7], ["icon", 172, 7], ["desktopName", 173, 7], ["genericName", 174, 7], ["comment", 175, 7], ["categories", 176, 7], ["mimeTypes", 181, 7], ["startupWMClass", 189, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 335, 15], ["version", 335, 21], ["meta", 335, 29]]);
-const pos$8 = nix.positions(here + "/package.nix", [["sources", 333, 13], ["updateScript", 334, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 340, 5], ["mainProgram", 341, 5], ["homepage", 342, 5], ["donationPage", 343, 5], ["changelog", 344, 5], ["platforms", 345, 5], ["maintainers", 346, 5], ["license", 356, 5], ["sourceProvenance", 362, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 141, 3], ["version", 142, 11], ["src", 144, 3], ["nativeBuildInputs", 148, 3], ["buildInputs", 155, 3], ["patchelfFlags", 163, 3], ["preferLocalBuild", 165, 3], ["allowSubstitutes", 166, 3], ["desktopItems", 168, 3], ["buildPhase", 193, 3], ["installPhase", 323, 3], ["passthru", 332, 3], ["meta", 339, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -92,9 +83,9 @@ export default nix.lambda((args) => (() => {
     ], nix.concat(nix.app(nix.sel(lib, "optionals"), libnotifySupport, nix.thunk(() => [libnotify])), nix.concat(nix.app(nix.sel(lib, "optionals"), waylandSupport, nix.thunk(() => [libxkbcommon, libdrm, libGL])), nix.concat(nix.app(nix.sel(lib, "optionals"), pipewireSupport, nix.thunk(() => [pipewire])), nix.concat(nix.app(nix.sel(lib, "optionals"), pulseaudioSupport, nix.thunk(() => [libpulseaudio])), nix.concat(nix.app(nix.sel(lib, "optionals"), libvaSupport, nix.thunk(() => [libva])), nix.app(nix.sel(lib, "optionals"), mediaSupport, nix.thunk(() => [ffmpeg_7])))))))))));
   const version = "15.0.24";
   const sources = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         urls: nix.thunk(() => [
           nix.thunk(() => nix.str`https://archive.torproject.org/tor-package-archive/torbrowser/${version}/tor-browser-linux-x86_64-${version}.tar.xz`),
           nix.thunk(() => nix.str`https://dist.torproject.org/torbrowser/${version}/tor-browser-linux-x86_64-${version}.tar.xz`),
@@ -104,7 +95,7 @@ export default nix.lambda((args) => (() => {
         hash: "sha256-sD7vtuvirLU6HWT4LJXA3wztnA+dYmWG6MbIHZgF1gQ=",
       })))),
     "i686-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         urls: nix.thunk(() => [
           nix.thunk(() => nix.str`https://archive.torproject.org/tor-package-archive/torbrowser/${version}/tor-browser-linux-i686-${version}.tar.xz`),
           nix.thunk(() => nix.str`https://dist.torproject.org/torbrowser/${version}/tor-browser-linux-i686-${version}.tar.xz`),
@@ -115,9 +106,9 @@ export default nix.lambda((args) => (() => {
       })))),
   }));
   const distributionIni = nix.thunk(() => nix.app(writeText, "distribution.ini", nix.thunk(() => nix.app(nix.sel(lib, "generators", "toINI"), nix.thunk(() => ({})), nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         Global: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           id: "nixos",
           version: "1.0",
           about: "Tor Browser for NixOS",
@@ -140,7 +131,7 @@ export default nix.lambda((args) => (() => {
       const allowSubstitutes = false;
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             name: "tor-browser",
             exec: "tor-browser %U",
             icon: "tor-browser",
@@ -281,12 +272,12 @@ install -Dvm644 ${distributionIni} $out/share/tor-browser/distribution/distribut
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         sources: sources,
-        updateScript: nix.thunk(() => nix.app(callPackage, nix.path(here, "./update.nix"), nix.thunk(() => ({ [nix.POS]: pos$7, pname: pname, version: version_1, meta: meta })))),
+        updateScript: nix.thunk(() => nix.app(callPackage, nix.path(here, "./update.nix"), nix.thunk(() => ({ [nix.POS]: $pos[6], pname: pname, version: version_1, meta: meta })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Privacy-focused browser routing traffic through the Tor network",
         mainProgram: "tor-browser",
         homepage: "https://www.torproject.org/",
@@ -318,7 +309,7 @@ runHook postInstall
         })()),
       }));
       return {
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         pname,
         version: version_1,
         src,

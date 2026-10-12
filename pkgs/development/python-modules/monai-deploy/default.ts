@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["description", 67, 5], ["mainProgram", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["broken", 73, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["postPatch", 28, 3], ["build-system", 35, 3], ["dependencies", 40, 3], ["nativeCheckInputs", 48, 3], ["disabledTests", 53, 3], ["pythonImportsCheck", 58, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, colorama: false, fetchFromGitHub: false, networkx: false, numpy: false, "pytest-lazy-fixture": false, pytestCheckHook: false, setuptools: false, tritonclient: false, typeguard: false, versioneer: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 67, 5], ["mainProgram", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["broken", 73, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["postPatch", 28, 3], ["build-system", 35, 3], ["dependencies", 40, 3], ["nativeCheckInputs", 48, 3], ["disabledTests", 53, 3], ["pythonImportsCheck", 58, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Project-MONAI",
           repo: "monai-deploy-app-sdk",
           tag: version,
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_packager"]);
       const pythonImportsCheck = nix.thunk(() => ["monai.deploy", "monai.deploy.core"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Framework and tools to design, develop and verify AI applications in healthcare imaging",
         mainProgram: "monai-deploy",
         homepage: "https://monai.io/deploy.html",
@@ -52,7 +50,7 @@ export default nix.lambda((args) => (() => {
         broken: true,
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

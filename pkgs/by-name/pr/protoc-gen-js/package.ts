@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["stdenv", 16, 9]], [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]], [["LIBTOOL", 44, 5]], [["preInstall", 48, 5], ["hash", 52, 5]], [["installPhase", 55, 14]], [["broken", 62, 5], ["description", 63, 5], ["mainProgram", 64, 5], ["homepage", 65, 5], ["platforms", 66, 5], ["license", 67, 5], ["sourceProvenance", 71, 5], ["maintainers", 72, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["bazel", 32, 3], ["bazelTargets", 33, 3], ["bazelBuildFlags", 34, 3], ["removeRulesCC", 40, 3], ["removeLocalConfigCC", 41, 3], ["env", 43, 3], ["fetchAttrs", 47, 3], ["buildAttrs", 55, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { stdenv: false, gcc14Stdenv: false, lib: false, buildBazelPackage: false, bazel_7: false, fetchFromGitHub: false, cctools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["stdenv", 16, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["LIBTOOL", 44, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["preInstall", 48, 5], ["hash", 52, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["installPhase", 55, 14]]);
-const pos$6 = nix.positions(here + "/package.nix", [["broken", 62, 5], ["description", 63, 5], ["mainProgram", 64, 5], ["homepage", 65, 5], ["platforms", 66, 5], ["license", 67, 5], ["sourceProvenance", 71, 5], ["maintainers", 72, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["bazel", 32, 3], ["bazelTargets", 33, 3], ["bazelBuildFlags", 34, 3], ["removeRulesCC", 40, 3], ["removeLocalConfigCC", 41, 3], ["env", 43, 3], ["fetchAttrs", 47, 3], ["buildAttrs", 55, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const bazel_7 = nix.arg($, "bazel_7");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const cctools = nix.arg($, "cctools");
-  const buildBazelPackage$ = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isGNU")) ? nix.app(nix.sel(buildBazelPackage, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: gcc14Stdenv }))) : nix.force(buildBazelPackage)));
+  const buildBazelPackage$ = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isGNU")) ? nix.app(nix.sel(buildBazelPackage, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], stdenv: gcc14Stdenv }))) : nix.force(buildBazelPackage)));
   return nix.app(buildBazelPackage$, nix.thunk(() => (() => {
       const pname = "protoc-gen-js";
       const version = "3.21.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "protocolbuffers",
           repo: "protobuf-javascript",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -36,18 +30,21 @@ export default nix.lambda((args) => (() => {
       const bazelBuildFlags = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ["--cxxopt=-x", "--cxxopt=c++", "--host_cxxopt=-x", "--host_cxxopt=c++"])));
       const removeRulesCC = false;
       const removeLocalConfigCC = false;
-      const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$3, LIBTOOL: nix.thunk(() => nix.str`${cctools}/bin/libtool`) }))));
+      const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
+          [nix.POS]: $pos[2],
+          LIBTOOL: nix.thunk(() => nix.str`${cctools}/bin/libtool`),
+        }))));
       const fetchAttrs = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         preInstall: "rm -rv \"$bazelOut/external/host_platform\"\n",
         hash: "sha256-znkwUs984vbinz/BLo1uxQ+PvxkpXo719lJu4TD1Vmg=",
       }));
       const buildAttrs = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         installPhase: "mkdir -p $out/bin\ninstall -Dm755 bazel-bin/generator/protoc-gen-js $out/bin/\n",
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Protobuf plugin for generating JavaScript code",
         mainProgram: "protoc-gen-js",
@@ -64,7 +61,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         src,

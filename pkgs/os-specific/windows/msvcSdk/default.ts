@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["manifest", 21, 5], ["hash", 22, 5]], [["name", 57, 9], ["nativeBuildInputs", 59, 9], ["script", 64, 9]], [["hello-world", 56, 7]], [["updateScript", 54, 5], ["tests", 55, 5]], [["fullName", 97, 7], ["shortName", 98, 7], ["free", 99, 7], ["url", 100, 7]], [["description", 93, 5], ["homepage", 94, 5], ["maintainers", 95, 5], ["license", 96, 5], ["platforms", 102, 5], ["broken", 104, 5], ["sourceProvenance", 105, 5], ["teams", 106, 5]], [["version", 17, 11], ["pname", 18, 3], ["src", 20, 3], ["strictDeps", 25, 3], ["nativeBuildInputs", 26, 3], ["__structuredAttrs", 30, 3], ["xwinArgs", 31, 3], ["installPhase", 40, 3], ["dontFixup", 51, 3], ["passthru", 53, 3], ["meta", 92, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, xwin: false, testers: false, llvmPackages: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["manifest", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 57, 9], ["nativeBuildInputs", 59, 9], ["script", 64, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["hello-world", 56, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["updateScript", 54, 5], ["tests", 55, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["fullName", 97, 7], ["shortName", 98, 7], ["free", 99, 7], ["url", 100, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 93, 5], ["homepage", 94, 5], ["maintainers", 95, 5], ["license", 96, 5], ["platforms", 102, 5], ["broken", 104, 5], ["sourceProvenance", 105, 5], ["teams", 106, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["version", 17, 11], ["pname", 18, 3], ["src", 20, 3], ["strictDeps", 25, 3], ["nativeBuildInputs", 26, 3], ["__structuredAttrs", 30, 3], ["xwinArgs", 31, 3], ["installPhase", 40, 3], ["dontFixup", 51, 3], ["passthru", 53, 3], ["meta", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const hashes = nix.thunk(() => nix.builtins.fromJSON(nix.thunk(() => nix.builtins.readFile(nix.path(here, "./hashes.json")))));
   const fetchWinSdk = nix.thunk(() => nix.app(callPackage, nix.path(here, "./fetchWinSdk.nix"), nix.thunk(() => ({}))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       version: version,
       pname: "win-sdk",
       src: nix.thunk(() => nix.app(fetchWinSdk, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           manifest: nix.path(here, "./manifest.json"),
           hash: nix.thunk(() => nix.sel(hashes, nix.key(nix.sel(finalAttrs, "src", "arch")))),
         })))),
@@ -45,12 +39,12 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nxwin \"${xwinArgs[@]}\"\n\nmkdir -p \"$out\"\ncp -r splat/* \"$out\"\n\nrunHook postInstall\n",
       dontFixup: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.path(here, "./update.nu"),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "hello-world": nix.thunk(() => nix.app(nix.sel(testers, "runCommand"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               name: "hello-msvc",
               nativeBuildInputs: nix.thunk(() => [
                 nix.thunk(() => nix.sel(llvmPackages, "clang-unwrapped")),
@@ -83,12 +77,12 @@ fi
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "MSVC SDK and Windows CRT for cross compiling",
         homepage: "https://developer.microsoft.com/en-us/windows/downloads/windows-sdk/",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "RossSmyth"))]),
         license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "mkLicense"), nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             fullName: "Microsoft Software License Terms",
             shortName: "msvc",
             free: false,

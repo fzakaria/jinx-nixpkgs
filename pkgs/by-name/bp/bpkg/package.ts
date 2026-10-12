@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 27, 5], ["hash", 28, 5]], [["description", 63, 5], ["mainProgram", 64, 5], ["longDescription", 66, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["platforms", 74, 5]], [["pname", 17, 3], ["version", 18, 3], ["outputs", 20, 3], ["src", 26, 3], ["strictDeps", 31, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 35, 3], ["nativeCheckInputs", 42, 3], ["doCheck", 47, 3], ["postPatch", 50, 3], ["build2ConfigureFlags", 54, 3], ["postInstall", 58, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, build2: false, fetchurl: false, git: false, libbpkg: false, libbutl: false, libodb: false, "libodb-sqlite": false, openssl: false, enableShared: true, enableStatic: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 63, 5], ["mainProgram", 64, 5], ["longDescription", 66, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["platforms", 74, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["outputs", 20, 3], ["src", 26, 3], ["strictDeps", 31, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 35, 3], ["nativeCheckInputs", 42, 3], ["doCheck", 47, 3], ["postPatch", 50, 3], ["build2ConfigureFlags", 54, 3], ["postInstall", 58, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const enableShared = nix.argOr($, "enableShared", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")));
   const enableStatic = nix.argOr($, "enableStatic", () => !nix.asBool(enableShared));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "bpkg",
       version: "0.18.0",
       outputs: nix.thunk(() => ["out", "doc", "man"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://pkg.cppget.org/1/alpha/build2/bpkg-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-EcDxvQ3P182gkZWkE3qI586vIlJXlDrYC2DoU0Out18=",
         })))),
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.str`install_name_tool -add_rpath '${nix.app(nix.sel(lib, "getLib"), build2)}/lib' "\${!outputBin}/bin/bpkg"
 `))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Build2 package dependency manager",
         mainProgram: "bpkg",
         longDescription: "The build2 package dependency manager is used to manipulate build\nconfigurations, packages, and repositories.\n",

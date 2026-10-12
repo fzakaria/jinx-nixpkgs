@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["sha256", 31, 5]], [["NIX_CFLAGS_COMPILE", 105, 7]], [["description", 147, 5], ["longDescription", 148, 5], ["homepage", 166, 5], ["license", 167, 5], ["platforms", 168, 5], ["maintainers", 169, 5], ["mainProgram", 170, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 34, 3], ["postPatch", 36, 3], ["outputs", 50, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 70, 3], ["nativeCheckInputs", 77, 3], ["preConfigure", 82, 3], ["qmakeFlags", 86, 3], ["makeFlags", 95, 3], ["env", 105, 3], ["doCheck", 107, 3], ["dontWrapQtApps", 109, 3], ["installPhase", 111, 3], ["postFixup", 135, 3], ["meta", 146, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchurl: false, "pkg-config": false, which: false, libusb1: false, shapelib: false, zlib: false, withGUI: true, withDoc: true, docbook_xml_dtd_45: false, docbook_xsl: false, expat: false, fop: false, libxml2: false, libxslt: false, perl: false, libsForQt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["sha256", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 105, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 147, 5], ["longDescription", 148, 5], ["homepage", 166, 5], ["license", 167, 5], ["platforms", 168, 5], ["maintainers", 169, 5], ["mainProgram", 170, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 34, 3], ["postPatch", 36, 3], ["outputs", 50, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 70, 3], ["nativeCheckInputs", 77, 3], ["preConfigure", 82, 3], ["qmakeFlags", 86, 3], ["makeFlags", 95, 3], ["env", 105, 3], ["doCheck", 107, 3], ["dontWrapQtApps", 109, 3], ["installPhase", 111, 3], ["postFixup", 135, 3], ["meta", 146, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const libsForQt5 = nix.arg($, "libsForQt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gpsbabel",
       version: "1.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gpsbabel",
           repo: "gpsbabel",
           rev: nix.thunk(() => nix.str`gpsbabel_${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -53,7 +50,7 @@ export default nix.lambda((args) => (() => {
       qmakeFlags: nix.thunk(() => nix.concat(["WITH_LIBUSB=pkgconfig", "WITH_SHAPELIB=pkgconfig", "WITH_ZLIB=pkgconfig"], nix.app(nix.sel(lib, "optionals"), withGUI, nix.thunk(() => ["CONFIG+=disable-mappreview"])))),
       makeFlags: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), withGUI, "gui"), nix.app(nix.sel(lib, "optionals"), withDoc, nix.thunk(() => ["gpsbabel.pdf", "gpsbabel.html", "gpsbabel.org"])))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isi686")), "-ffloat-store")),
       })),
       doCheck: true,
@@ -61,7 +58,7 @@ export default nix.lambda((args) => (() => {
       installPhase: nix.thunk(() => nix.add(nix.add("install -Dm755 gpsbabel -t $out/bin\n", nix.app(nix.sel(lib, "optionalString"), withGUI, nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "mkdir -p $out/Applications\nmv gui/GPSBabelFE.app $out/Applications\ninstall -Dm644 gui/*.qm gui/coretool/*.qm -t $out/Applications/GPSBabelFE.app/Contents/Resources/translations\nln -s $out/bin/gpsbabel $out/Applications/GPSBabelFE.app/Contents/MacOS\n" : "install -Dm755 gui/objects/gpsbabelfe -t $out/bin\ninstall -Dm644 gui/gpsbabel.desktop -t $out/share/application\ninstall -Dm644 gui/images/appicon.png $out/share/icons/hicolor/512x512/apps/gpsbabel.png\ninstall -Dm644 gui/*.qm gui/coretool/*.qm -t $out/share/gpsbabel/translations\n")))), nix.app(nix.sel(lib, "optionalString"), withDoc, "install -Dm655 gpsbabel.{html,pdf} -t $doc/share/doc/gpsbabel\ncp -r html $doc/share/doc/gpsbabel\n"))),
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withGUI, nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "wrapQtApp \"$out/Applications/GPSBabelFE.app/Contents/MacOS/GPSBabelFE\"\n" : "wrapQtApp \"$out/bin/gpsbabelfe\"\n")))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Convert, upload and download data from GPS and Map programs",
         longDescription: "GPSBabel converts waypoints, tracks, and routes between popular\nGPS receivers and mapping programs.  It also has powerful\nmanipulation tools for such data.\n\nBy flattening the Tower of Babel that the authors of various\nprograms for manipulating GPS data have imposed upon us, it\nreturns to us the ability to freely move our own waypoint data\nbetween the programs and hardware we choose to use.\n\nIt contains extensive data manipulation abilities making it a\nconvenient for server-side processing or as the backend for\nother tools.\n\nIt does not convert, transfer, send, or manipulate maps.  We\nprocess data that may (or may not be) placed on a map, such as\nwaypoints, tracks, and routes.\n",
         homepage: "https://www.gpsbabel.org/",

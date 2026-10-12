@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["name", 45, 7], ["desktopName", 46, 7], ["genericName", 47, 7], ["comment", 48, 7], ["icon", 49, 7], ["exec", 50, 7], ["categories", 51, 7], ["keywords", 55, 7]], [["homepage", 66, 5], ["description", 67, 5], ["longDescription", 68, 5], ["license", 73, 5], ["maintainers", 74, 5], ["platforms", 75, 5], ["mainProgram", 76, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 38, 3], ["desktopItems", 43, 3], ["postInstall", 61, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, intltool: false, "pkg-config": false, wrapGAppsHook3: false, gtk3: false, miniupnpc: false, makeDesktopItem: false, copyDesktopItems: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 45, 7], ["desktopName", 46, 7], ["genericName", 47, 7], ["comment", 48, 7], ["icon", 49, 7], ["exec", 50, 7], ["categories", 51, 7], ["keywords", 55, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 66, 5], ["description", 67, 5], ["longDescription", 68, 5], ["license", 73, 5], ["maintainers", 74, 5], ["platforms", 75, 5], ["mainProgram", 76, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 38, 3], ["desktopItems", 43, 3], ["postInstall", 61, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "yaup",
       version: "0-unstable-2026-03-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Holarse-Linuxgaming",
           repo: "yaup",
           rev: "7135987a17208dab1b980ba5de55114abe217b63",
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gtk3, miniupnpc]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "yaup",
             desktopName: "Yaup",
             genericName: "UPnP Portmapper",
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "install -Dm644 src/yaup-dark.png $out/share/icons/hicolor/512x512/apps/yaup.png\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/Holarse-Linuxgaming/yaup",
         description: "Yet Another UPnP Portmapper",
         longDescription: "Portmapping made easy.\nPortforward your incoming traffic to a specified local ip.\nMostly used for IPv4.\n",

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/frontend.nix", [[["description", 95, 7]], [["pname", 27, 5], ["version", 29, 7], ["src", 30, 7], ["cargoHash", 31, 7], ["nativeBuildInputs", 34, 5], ["buildInputs", 46, 5], ["buildPhase", 51, 5], ["doCheck", 86, 5], ["installPhase", 88, 5], ["__structuredAttrs", 92, 5], ["meta", 94, 5]], [["description", 130, 7]], [["pname", 100, 5], ["version", 101, 13], ["src", 101, 21], ["sourceRoot", 102, 5], ["postPatch", 104, 5], ["npmDepsHash", 111, 5], ["preConfigure", 113, 5], ["buildPhase", 117, 5], ["installPhase", 121, 5], ["__structuredAttrs", 126, 5], ["strictDeps", 127, 5], ["meta", 129, 5]], [["description", 172, 7]], [["pname", 135, 5], ["version", 136, 13], ["src", 136, 21], ["sourceRoot", 137, 5], ["postPatch", 139, 5], ["npmDepsHash", 155, 5], ["preBuild", 157, 5], ["installPhase", 163, 5], ["__structuredAttrs", 168, 5], ["strictDeps", 169, 5], ["meta", 171, 5]], [["wasm", 178, 5], ["widget", 179, 5], ["frontend", 180, 5]]]);
 const formals$1 = { args: { rustPlatform: false, buildNpmPackage: false, python3: false, "pkg-config": false, binaryen: false, bzip2: false, zstd: false, esbuild: false, "wasm-bindgen-cli_0_2_108": false, "wasm-pack": false, nodejs: false, typescript_7: false, lld: false, writableTmpDirAsHomeHook: false, ironcalc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/frontend.nix", [["description", 95, 7]]);
-const pos$2 = nix.positions(here + "/frontend.nix", [["pname", 27, 5], ["version", 29, 7], ["src", 30, 7], ["cargoHash", 31, 7], ["nativeBuildInputs", 34, 5], ["buildInputs", 46, 5], ["buildPhase", 51, 5], ["doCheck", 86, 5], ["installPhase", 88, 5], ["__structuredAttrs", 92, 5], ["meta", 94, 5]]);
-const pos$3 = nix.positions(here + "/frontend.nix", [["description", 130, 7]]);
-const pos$4 = nix.positions(here + "/frontend.nix", [["pname", 100, 5], ["version", 101, 13], ["src", 101, 21], ["sourceRoot", 102, 5], ["postPatch", 104, 5], ["npmDepsHash", 111, 5], ["preConfigure", 113, 5], ["buildPhase", 117, 5], ["installPhase", 121, 5], ["__structuredAttrs", 126, 5], ["strictDeps", 127, 5], ["meta", 129, 5]]);
-const pos$5 = nix.positions(here + "/frontend.nix", [["description", 172, 7]]);
-const pos$6 = nix.positions(here + "/frontend.nix", [["pname", 135, 5], ["version", 136, 13], ["src", 136, 21], ["sourceRoot", 137, 5], ["postPatch", 139, 5], ["npmDepsHash", 155, 5], ["preBuild", 157, 5], ["installPhase", 163, 5], ["__structuredAttrs", 168, 5], ["strictDeps", 169, 5], ["meta", 171, 5]]);
-const pos$7 = nix.positions(here + "/frontend.nix", [["wasm", 178, 5], ["widget", 179, 5], ["frontend", 180, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const src = nix.thunk(() => nix.attr(ironcalc, "src"));
   const cargoHash = nix.thunk(() => nix.attr(ironcalc, "cargoHash"));
   const wasm = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "ironcalc-wasm",
       version: version,
       src: src,
@@ -85,10 +79,10 @@ EOF
       doCheck: true,
       installPhase: "cp -r pkg $out\n",
       __structuredAttrs: true,
-      meta: nix.thunk(() => nix.update(nix.sel(ironcalc, "meta"), { [nix.POS]: pos$1, description: "Ironcalc wasm bindings" })),
+      meta: nix.thunk(() => nix.update(nix.sel(ironcalc, "meta"), { [nix.POS]: $pos[0], description: "Ironcalc wasm bindings" })),
     }))));
   const widget = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ironcalc-widget",
       version: version,
       src: src,
@@ -105,10 +99,10 @@ echo '{"name": "@ironcalc/wasm", "version": "${nix.sel(ironcalc, "version")}"}' 
       installPhase: "mkdir -p $out\ncp -r . $out\n",
       __structuredAttrs: true,
       strictDeps: true,
-      meta: nix.thunk(() => nix.update(nix.sel(ironcalc, "meta"), { [nix.POS]: pos$3, description: "Ironcalc frontend widget package" })),
+      meta: nix.thunk(() => nix.update(nix.sel(ironcalc, "meta"), { [nix.POS]: $pos[2], description: "Ironcalc frontend widget package" })),
     }))));
   const frontend = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "ironcalc-frontend",
       version: version,
       src: src,
@@ -135,8 +129,8 @@ cp -rv ${wasm}/. node_modules/@ironcalc/wasm
       installPhase: "mkdir -p $out\ncp -r dist/. $out\n",
       __structuredAttrs: true,
       strictDeps: true,
-      meta: nix.thunk(() => nix.update(nix.sel(ironcalc, "meta"), { [nix.POS]: pos$5, description: "Ironcalc frontend package" })),
+      meta: nix.thunk(() => nix.update(nix.sel(ironcalc, "meta"), { [nix.POS]: $pos[4], description: "Ironcalc frontend package" })),
     }))));
-  return { [nix.POS]: pos$7, wasm: wasm, widget: widget, frontend: frontend };
+  return { [nix.POS]: $pos[6], wasm: wasm, widget: widget, frontend: frontend };
 })(), formals$1);
 //# sourceMappingURL=frontend.ts.map

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["XFAIL_TESTS", 47, 7]], [["url", 54, 7]], [["updateScript", 53, 5]], [["homepage", 59, 5], ["description", 60, 5], ["longDescription", 61, 5], ["changelog", 64, 5], ["license", 65, 5], ["platforms", 66, 5], ["maintainers", 67, 5]], [["pname", 13, 3], ["version", 14, 3], ["outputs", 16, 3], ["separateDebugInfo", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 28, 3], ["nativeCheckInputs", 33, 3], ["enableParallelBuilding", 39, 3], ["enableParallelChecking", 42, 3], ["env", 47, 3], ["doCheck", 50, 3], ["passthru", 52, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, autoreconfHook: false, "pkg-config": false, dbus: false, sysctl: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["XFAIL_TESTS", 47, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 54, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 53, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 59, 5], ["description", 60, 5], ["longDescription", 61, 5], ["changelog", 64, 5], ["license", 65, 5], ["platforms", 66, 5], ["maintainers", 67, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["outputs", 16, 3], ["separateDebugInfo", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 28, 3], ["nativeCheckInputs", 33, 3], ["enableParallelBuilding", 39, 3], ["enableParallelChecking", 42, 3], ["env", 47, 3], ["doCheck", 50, 3], ["passthru", 52, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const sysctl = nix.arg($, "sysctl");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "ell",
       version: "0.83",
       outputs: nix.thunk(() => ["out", "dev"]),
       separateDebugInfo: true,
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.kernel.org/pub/scm/libs/ell/ell.git",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-RhT36DWIdEpe6WmA7spBt/0peBj4cpy1Qe64/SRBmPs=",
@@ -36,14 +31,14 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [dbus, sysctl]),
       enableParallelBuilding: true,
       enableParallelChecking: false,
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, XFAIL_TESTS: "unit/test-hwdb" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], XFAIL_TESTS: "unit/test-hwdb" })),
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isMusl"))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, url: "https://git.kernel.org/pub/scm/libs/ell/ell.git" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], url: "https://git.kernel.org/pub/scm/libs/ell/ell.git" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://git.kernel.org/pub/scm/libs/ell/ell.git",
         description: "Embedded Linux Library",
         longDescription: "The Embedded Linux* Library (ELL) provides core, low-level functionality for system daemons. It typically has no dependencies other than the Linux kernel, C standard library, and libdl (for dynamic linking). While ELL is designed to be efficient and compact enough for use on embedded Linux platforms, it is not limited to resource-constrained systems.\n",

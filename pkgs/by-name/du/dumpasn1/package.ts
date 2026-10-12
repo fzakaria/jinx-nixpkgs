@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5]], [["CFLAGS", 17, 7]], [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["mainProgram", 32, 5], ["maintainers", 33, 5], ["platforms", 34, 5]], [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["env", 17, 3], ["makeFlags", 19, 3], ["patches", 21, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CFLAGS", 17, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["mainProgram", 32, 5], ["maintainers", 33, 5], ["platforms", 34, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["env", 17, 3], ["makeFlags", 19, 3], ["patches", 21, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,21 +11,21 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "dumpasn1",
       version: "20230207.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "katexochen",
           repo: "dumpasn1",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-r40czSLdjCYbt73zK7exCoP/kMq6+pyJfz9LKJLLaXM=",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CFLAGS: "-DDUMPASN1_CONFIG_PATH='\"$(out)/etc/\"' " })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CFLAGS: "-DDUMPASN1_CONFIG_PATH='\"$(out)/etc/\"' " })),
       makeFlags: nix.thunk(() => ["prefix=$(out)"]),
       patches: nix.thunk(() => [nix.path(here, "./configpath.patch")]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Display and debug ASN.1 data",
         homepage: "https://github.com/katexochen/dumpasn1",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

@@ -2,35 +2,31 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["typeName", 16, 15]], [["description", 20, 13]], [["nativeBuildInputs", 33, 17], ["value", 37, 25], ["pythonGen", 38, 17], ["preferLocalBuild", 50, 17], ["__structuredAttrs", 51, 17]], [["type", 13, 9], ["generate", 23, 9]], [["format", 6, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: false };
 const formals$2 = { args: { format: true, withHeader: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["typeName", 16, 15]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 20, 13]]);
 const formals$3 = { args: { runCommand: false, libxml2Python: false, python3Packages: false }, ellipsis: false };
-const pos$3 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 33, 17], ["value", 37, 25], ["pythonGen", 38, 17], ["preferLocalBuild", 50, 17], ["__structuredAttrs", 51, 17]]);
-const pos$4 = nix.positions(here + "/default.nix", [["type", 13, 9], ["generate", 23, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["format", 6, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     format: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const format = nix.argOr($_1, "format", () => "badgerfish");
       const withHeader = nix.argOr($_1, "withHeader", () => true);
       return (nix.asBool(nix.eq(format, "badgerfish")) ? {
-        [nix.POS]: pos$4,
-        type: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "serializableValueWith"), nix.thunk(() => ({ [nix.POS]: pos$1, typeName: "XML" }))))), { [nix.POS]: pos$2, description: "XML value" })),
+        [nix.POS]: $pos[3],
+        type: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "serializableValueWith"), nix.thunk(() => ({ [nix.POS]: $pos[0], typeName: "XML" }))))), { [nix.POS]: $pos[1], description: "XML value" })),
         generate: (name) => (value) => nix.app(nix.sel(pkgs, "callPackage"), nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$3);
             const runCommand = nix.arg($_2, "runCommand");
             const libxml2Python = nix.arg($_2, "libxml2Python");
             const python3Packages = nix.arg($_2, "python3Packages");
             return nix.app(runCommand, name, nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(python3Packages, "xmltodict")), libxml2Python]),
                 value: value,
                 pythonGen: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "pythonGen", nix.thunk(() => nix.str`import json

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["name", 26, 7], ["url", 27, 7], ["includes", 28, 7], ["hash", 29, 7]], [["name", 32, 7], ["url", 33, 7], ["includes", 34, 7], ["hash", 35, 7]], [["description", 75, 5], ["homepage", 76, 5], ["changelog", 77, 5], ["license", 78, 5], ["maintainers", 79, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["build-system", 39, 3], ["dependencies", 43, 3], ["nativeCheckInputs", 48, 3], ["pythonImportsCheck", 50, 3], ["disabledTestPaths", 52, 3], ["disabledTests", 67, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, click: false, fetchFromGitHub: false, fetchpatch: false, pytestCheckHook: false, setuptools: false, six: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 26, 7], ["url", 27, 7], ["includes", 28, 7], ["hash", 29, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 32, 7], ["url", 33, 7], ["includes", 34, 7], ["hash", 35, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 75, 5], ["homepage", 76, 5], ["changelog", 77, 5], ["license", 78, 5], ["maintainers", 79, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["build-system", 39, 3], ["dependencies", 43, 3], ["nativeCheckInputs", 48, 3], ["pythonImportsCheck", 50, 3], ["disabledTestPaths", 52, 3], ["disabledTests", 67, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rocky",
           repo: "python-xdis",
           tag: version,
@@ -32,14 +28,14 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "python-3.13.13.patch",
             url: "https://github.com/rocky/python-xdis/commit/f2c46c8c89898157c2345c0a026a2d31f14e7ea9.patch",
             includes: nix.thunk(() => ["xdis/magics.py"]),
             hash: "sha256-+k3mbiAmM69Pl7k0Wogx+qpib5+p3Gn/pSpnDn5e6pE=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "python-3.14.4.patch",
             url: "https://github.com/rocky/python-xdis/commit/36a1a2442c224e3bfca776f727a5e262968855a4.patch",
             includes: nix.thunk(() => ["xdis/magics.py"]),
@@ -57,7 +53,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const disabledTests = nix.thunk(() => ["test_big_linenos", "test_basic"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Python cross-version byte-code disassembler and marshal routines",
         homepage: "https://github.com/rocky/python-xdis",
         changelog: nix.thunk(() => nix.str`https://github.com/rocky/python-xdis/releases/tag/${nix.sel(src, "tag")}`),
@@ -71,7 +67,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

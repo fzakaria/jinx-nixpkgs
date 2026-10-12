@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["withStatic", 14, 31]], [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["platforms", 58, 5], ["maintainers", 59, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 37, 3], ["configureFlags", 43, 3], ["enableParallelBuilding", 49, 3], ["doCheck", 50, 3], ["nativeCheckInputs", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cudd: false, gmp: false, gperf: false, autoreconfHook: false, libpoly: false, ncurses5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["withStatic", 14, 31]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["platforms", 58, 5], ["maintainers", 59, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 37, 3], ["configureFlags", 43, 3], ["enableParallelBuilding", 49, 3], ["doCheck", 50, 3], ["nativeCheckInputs", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const libpoly = nix.arg($, "libpoly");
   const ncurses5 = nix.arg($, "ncurses5");
-  const gmp_static = nix.thunk(() => nix.app(nix.sel(gmp, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withStatic: true }))));
+  const gmp_static = nix.thunk(() => nix.app(nix.sel(gmp, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], withStatic: true }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "yices",
       version: "2.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "SRI-CSL",
           repo: "yices2",
           tag: nix.thunk(() => nix.str`yices-${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       nativeCheckInputs: nix.thunk(() => [ncurses5]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "High-performance theorem prover and SMT solver",
         homepage: "https://yices.csl.sri.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

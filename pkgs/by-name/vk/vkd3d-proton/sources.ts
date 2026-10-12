@@ -2,23 +2,21 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/sources.nix", [[["owner", 11, 11], ["repo", 12, 11], ["tag", 13, 11], ["fetchSubmodules", 14, 11], ["deepClone", 26, 11], ["postFetch", 27, 11], ["hash", 34, 11]], [["pname", 7, 9], ["version", 8, 9], ["src", 10, 9]], [["vkd3d-proton", 4, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/sources.nix", [["owner", 11, 11], ["repo", 12, 11], ["tag", 13, 11], ["fetchSubmodules", 14, 11], ["deepClone", 26, 11], ["postFetch", 27, 11], ["hash", 34, 11]]);
-const pos$2 = nix.positions(here + "/sources.nix", [["pname", 7, 9], ["version", 8, 9], ["src", 10, 9]]);
-const pos$3 = nix.positions(here + "/sources.nix", [["vkd3d-proton", 4, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return {
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     "vkd3d-proton": nix.thunk(() => (() => {
       const self = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname: "vkd3d-proton",
         version: "2.14.1",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: "HansKristian-Work",
             repo: "vkd3d-proton",
             tag: nix.thunk(() => nix.str`v${nix.sel(self, "version")}`),

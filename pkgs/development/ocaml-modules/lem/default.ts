@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["homepage", 44, 5], ["description", 45, 5], ["mainProgram", 46, 5], ["maintainers", 47, 5], ["license", 48, 5], ["platforms", 52, 5], ["broken", 53, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["propagatedBuildInputs", 30, 3], ["installFlags", 35, 3], ["createFindlibDestdir", 37, 3], ["postInstall", 39, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, lib: false, makeWrapper: false, ocamlbuild: false, findlib: false, ocaml: false, num: false, zarith: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 44, 5], ["description", 45, 5], ["mainProgram", 46, 5], ["maintainers", 47, 5], ["license", 48, 5], ["platforms", 52, 5], ["broken", 53, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["propagatedBuildInputs", 30, 3], ["installFlags", 35, 3], ["createFindlibDestdir", 37, 3], ["postInstall", 39, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-lem`);
       const version = "2025-03-13";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rems-project",
           repo: "lem",
           rev: version,
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const createFindlibDestdir = true;
       const postInstall = "wrapProgram $out/bin/lem --set LEMLIB $out/share/lem/library\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/rems-project/lem",
         description: "Tool for lightweight executable mathematics",
         mainProgram: "lem",
@@ -50,7 +48,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => !nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.07"))),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

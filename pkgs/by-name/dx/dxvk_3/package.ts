@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 46, 5], ["repo", 47, 5], ["tag", 48, 5], ["hash", 49, 5], ["fetchSubmodules", 50, 5]], [["rev-prefix", 105, 5], ["allowedVersions", 106, 5]], [["updateScript", 104, 12]], [["description", 112, 5], ["homepage", 113, 5], ["changelog", 114, 5], ["maintainers", 115, 5], ["license", 116, 5], ["badPlatforms", 117, 5], ["platforms", 118, 5], ["pkgConfigModules", 119, 5]], [["pname", 42, 3], ["version", 43, 3], ["src", 45, 3], ["postPatch", 53, 3], ["strictDeps", 70, 3], ["nativeBuildInputs", 72, 3], ["buildInputs", 79, 3], ["preConfigure", 89, 3], ["mesonFlags", 94, 3], ["mesonBuildType", 100, 3], ["doCheck", 102, 3], ["passthru", 104, 3], ["__structuredAttrs", 109, 3], ["meta", 111, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, pkgsBuildHost: false, glslang: false, meson: false, ninja: false, "pkg-config": false, windows: false, "spirv-headers": false, "vulkan-headers": false, SDL2: false, sdl3: false, glfw: false, gitUpdater: false, sdl2Support: true, sdl3Support: true, glfwSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 46, 5], ["repo", 47, 5], ["tag", 48, 5], ["hash", 49, 5], ["fetchSubmodules", 50, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rev-prefix", 105, 5], ["allowedVersions", 106, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 104, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 112, 5], ["homepage", 113, 5], ["changelog", 114, 5], ["maintainers", 115, 5], ["license", 116, 5], ["badPlatforms", 117, 5], ["platforms", 118, 5], ["pkgConfigModules", 119, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 42, 3], ["version", 43, 3], ["src", 45, 3], ["postPatch", 53, 3], ["strictDeps", 70, 3], ["nativeBuildInputs", 72, 3], ["buildInputs", 79, 3], ["preConfigure", 89, 3], ["mesonFlags", 94, 3], ["mesonBuildType", 100, 3], ["doCheck", 102, 3], ["passthru", 104, 3], ["__structuredAttrs", 109, 3], ["meta", 111, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const libSDL2 = nix.thunk(() => nix.str`${libPrefix}SDL2${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(hostPlatform, "isWindows"))), "-2.0")}${nix.app(soVersion, "0")}`);
   const libSDL3 = nix.thunk(() => nix.str`${libPrefix}SDL3${nix.app(soVersion, "0")}`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "dxvk",
       version: "3.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "doitsujin",
           repo: "dxvk",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -69,12 +65,12 @@ export default nix.lambda((args) => (() => {
       mesonBuildType: "release",
       doCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v", allowedVersions: "^3\\." })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "v", allowedVersions: "^3\\." })))),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Vulkan-based translation layer for Direct3D 8/9/10/11",
         homepage: "https://github.com/doitsujin/dxvk",
         changelog: "https://github.com/doitsujin/dxvk/releases",

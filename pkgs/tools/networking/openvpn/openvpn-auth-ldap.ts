@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/openvpn-auth-ldap.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]], [["name", 28, 7], ["url", 29, 7], ["hash", 30, 7]], [["name", 33, 7], ["url", 34, 7], ["hash", 35, 7]], [["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["maintainers", 79, 5], ["platforms", 80, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["postPatch", 41, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 51, 3], ["configureFlags", 58, 3], ["doCheck", 64, 3], ["preInstall", 66, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch2: false, autoreconfHook: false, "gnustep-base": false, re2c: false, openldap: false, openssl: false, openvpn: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/openvpn-auth-ldap.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/openvpn-auth-ldap.nix", [["name", 28, 7], ["url", 29, 7], ["hash", 30, 7]]);
-const pos$3 = nix.positions(here + "/openvpn-auth-ldap.nix", [["name", 33, 7], ["url", 34, 7], ["hash", 35, 7]]);
-const pos$4 = nix.positions(here + "/openvpn-auth-ldap.nix", [["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["maintainers", 79, 5], ["platforms", 80, 5]]);
-const pos$5 = nix.positions(here + "/openvpn-auth-ldap.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["postPatch", 41, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 51, 3], ["configureFlags", 58, 3], ["doCheck", 64, 3], ["preInstall", 66, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "openvpn-auth-ldap";
       const version = "2.0.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "threerings",
           repo: "openvpn-auth-ldap",
           rev: nix.thunk(() => nix.str`auth-ldap-${version}`),
@@ -34,13 +30,13 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => [
         nix.path(here, "./auth-ldap-fix-conftest.patch"),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix-cve-2024-28820",
             url: "https://patch-diff.githubusercontent.com/raw/threerings/openvpn-auth-ldap/pull/92.patch",
             hash: "sha256-SXuo1D/WywKO5hCsmoeDdTsR7EelxFxJAKmlAQJ6vuE=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "gcc-15-fix",
             url: "https://sources.debian.org/data/main/o/openvpn-auth-ldap/2.0.4-5/debian/patches/gcc-15.patch",
             hash: "sha256-VwUwRBBfxgxEO4PKC/97vEN4e6XcUG6esc0Khu+iDxM=",
@@ -57,7 +53,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = true;
       const preInstall = "mkdir -p $out/lib/openvpn $out/share/doc/openvpn/examples\ncp README.md $out/share/doc/openvpn/\ncp auth-ldap.conf $out/share/doc/openvpn/examples/\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "LDAP authentication plugin for OpenVPN",
         homepage: "https://github.com/threerings/openvpn-auth-ldap",
         license: nix.thunk(() => [
@@ -68,7 +64,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

@@ -2,13 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 7], ["repo", 19, 7], ["tag", 20, 7], ["hash", 21, 7]], [["pname", 14, 5], ["version", 15, 5], ["src", 17, 5], ["cargoHash", 24, 5], ["sourceRoot", 26, 5], ["postInstall", 28, 5]], [["attrPath", 44, 40]], [["tsc-dyn", 43, 13], ["updateScript", 44, 5]], [["description", 48, 5], ["license", 49, 5], ["maintainers", 50, 5]], [["pname", 37, 3], ["version", 38, 21], ["src", 38, 29], ["files", 40, 3], ["passthru", 42, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, melpaBuild: false, fetchFromGitHub: false, rustPlatform: false, stdenv: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 7], ["repo", 19, 7], ["tag", 20, 7], ["hash", 21, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 14, 5], ["version", 15, 5], ["src", 17, 5], ["cargoHash", 24, 5], ["sourceRoot", 26, 5], ["postInstall", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["attrPath", 44, 40]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tsc-dyn", 43, 13], ["updateScript", 44, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 48, 5], ["license", 49, 5], ["maintainers", 50, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 37, 3], ["version", 38, 21], ["src", 38, 29], ["files", 40, 3], ["passthru", 42, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const libExt = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary"));
   const tsc_dyn = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "tsc-dyn",
       version: "0.19.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "emacs-tree-sitter",
           repo: "emacs-tree-sitter",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,18 +34,18 @@ popd
 `),
     })));
   return nix.app(melpaBuild, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "tsc",
       version: nix.thunk(() => nix.attr(tsc_dyn, "version")),
       src: nix.thunk(() => nix.attr(tsc_dyn, "src")),
       files: nix.thunk(() => nix.str`("core/*.el" "${tsc_dyn}/lib/*")`),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         "tsc-dyn": tsc_dyn,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, attrPath: "emacsPackages.tsc.tsc-dyn" })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[2], attrPath: "emacsPackages.tsc.tsc-dyn" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Core APIs of the Emacs binding for tree-sitter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],

@@ -2,15 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 16, 7], ["src", 17, 15], ["nativeBuildInputs", 18, 7], ["dontBuild", 21, 7], ["dontConfigure", 22, 7], ["dontFixup", 23, 7], ["installPhase", 24, 7]], [["name", 35, 9], ["targetPkgs", 36, 17], ["runScript", 37, 9]], [["name", 42, 9], ["targetPkgs", 43, 9], ["runScript", 46, 9]], [["platforms", 54, 11]], [["meta", 52, 9]], [["url", 80, 9], ["hash", 81, 9]], [["url", 91, 9], ["hash", 92, 9]], [["libtinfo", 77, 3], ["liblzma", 88, 3]]]);
 const formals$1 = { args: { lib: false, buildFHSEnv: false, runCommand: false, stdenv: false, fetchurl: false, dpkg: false, glibc: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 16, 7], ["src", 17, 15], ["nativeBuildInputs", 18, 7], ["dontBuild", 21, 7], ["dontConfigure", 22, 7], ["dontFixup", 23, 7], ["installPhase", 24, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 35, 9], ["targetPkgs", 36, 17], ["runScript", 37, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 42, 9], ["targetPkgs", 43, 9], ["runScript", 46, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["platforms", 54, 11]]);
-const pos$5 = nix.positions(here + "/default.nix", [["meta", 52, 9]]);
-const pos$6 = nix.positions(here + "/default.nix", [["url", 80, 9], ["hash", 81, 9]]);
-const pos$7 = nix.positions(here + "/default.nix", [["url", 91, 9], ["hash", 92, 9]]);
-const pos$8 = nix.positions(here + "/default.nix", [["libtinfo", 77, 3], ["liblzma", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const glibc = nix.arg($, "glibc");
   const callPackage = nix.arg($, "callPackage");
   const getSharedObjectFromDebian = (sharedObjectName) => (src) => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: nix.thunk(() => nix.str`${sharedObjectName}-fetcher`),
       src: src,
       nativeBuildInputs: nix.thunk(() => [dpkg]),
@@ -37,7 +30,7 @@ cp usr/lib/*/${sharedObjectName} $out
     })));
   const makeSharedObjectTest = (sharedObject) => (targetPkgs) => (() => {
     const lddFHSEnv = nix.thunk(() => nix.app(buildFHSEnv, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name: "ldd-with-ncurses-FHS-env",
         targetPkgs: targetPkgs,
         runScript: "ldd",
@@ -45,15 +38,15 @@ cp usr/lib/*/${sharedObjectName} $out
     const ldd_in_FHS = nix.thunk(() => nix.str`${lddFHSEnv}/bin/${nix.sel(lddFHSEnv, "name")}`);
     const ldd = nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), glibc)}/bin/ldd`);
     const find_libFHSEnv = nix.thunk(() => nix.app(buildFHSEnv, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         name: "ls-with-ncurses-FHS-env",
         targetPkgs: (p) => [nix.thunk(() => nix.sel(p, "ncurses5"))],
         runScript: "find /lib/ -executable",
       }))));
     const find_lib_in_FHS = nix.thunk(() => nix.str`${find_libFHSEnv}/bin/${nix.sel(find_libFHSEnv, "name")}`);
     return nix.app(runCommand, "FHS-lib-test", nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        meta: nix.thunk(() => ({ [nix.POS]: pos$4, platforms: nix.thunk(() => ["x86_64-linux"]) })),
+        [nix.POS]: $pos[4],
+        meta: nix.thunk(() => ({ [nix.POS]: $pos[3], platforms: nix.thunk(() => ["x86_64-linux"]) })),
       })), nix.thunk(() => nix.str`echo original ldd output is:
 ${ldd} ${sharedObject}
 lddOutput="$(${ldd_in_FHS} ${sharedObject})"
@@ -70,9 +63,9 @@ fi
 `));
   })();
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     libtinfo: nix.thunk(() => nix.app(makeSharedObjectTest, nix.thunk(() => nix.app(getSharedObjectFromDebian, "libedit.so.2.0.70", nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             url: "mirror://debian/pool/main/libe/libedit/libedit2_3.1-20221030-2_amd64.deb",
             hash: "sha256-HPFKvycW0yedsS0GV6VzfPcAdKHnHTvfcyBmJePInOY=",
           })))))), (p) => [
@@ -80,7 +73,7 @@ fi
         nix.thunk(() => nix.sel(p, "libbsd")),
       ])),
     liblzma: nix.thunk(() => nix.app(makeSharedObjectTest, nix.thunk(() => nix.app(getSharedObjectFromDebian, "libxml2.so.2.9.14", nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             url: "mirror://debian/pool/main/libx/libxml2/libxml2_2.9.14+dfsg-1.3~deb12u1_amd64.deb",
             hash: "sha256-NbdstwOPwclAIEpPBfM/+3nQJzU85Gk5fZrc+Pmz4ac=",
           })))))), (p) => [

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["eggDerivation", 8, 58], ["fetchegg", 8, 72]], [["version", 17, 13], ["name", 18, 5], ["sha256", 19, 5]], [["homepage", 42, 5], ["description", 43, 5], ["license", 44, 5], ["platforms", 45, 5]], [["pname", 12, 3], ["version", 13, 3], ["name", 14, 3], ["src", 16, 3], ["buildInputs", 22, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, chickenPackages_4: false, z3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["eggDerivation", 8, 58], ["fetchegg", 8, 72]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 17, 13], ["name", 18, 5], ["sha256", 19, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 42, 5], ["description", 43, 5], ["license", 44, 5], ["platforms", 45, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["name", 14, 3], ["src", 16, 3], ["buildInputs", 22, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const chickenPackages_4 = nix.arg($, "chickenPackages_4");
   const z3 = nix.arg($, "z3");
   const eggs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./eggs.nix")), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       eggDerivation: nix.thunk(() => nix.attr(chickenPackages_4, "eggDerivation")),
       fetchegg: nix.thunk(() => nix.attr(chickenPackages_4, "fetchegg")),
     }))));
@@ -23,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0";
       const name = nix.thunk(() => nix.str`${pname}-${version}`);
       const src = nix.thunk(() => nix.app(nix.sel(chickenPackages_4, "fetchegg"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           version: version,
           name: pname,
           sha256: "1l5zkr6b8l5dw9p5mimbva0ncqw1sbvp3d4cywm1hqx2m03a0f1n",
@@ -50,13 +47,13 @@ export default nix.lambda((args) => (() => {
         ];
       })());
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.kitten-technologies.co.uk/project/ugarit/",
         description: "Backup/archival system based around content-addressable storage",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
-      return { [nix.POS]: pos$4, pname, version, name, src, buildInputs, meta };
+      return { [nix.POS]: $pos[3], pname, version, name, src, buildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

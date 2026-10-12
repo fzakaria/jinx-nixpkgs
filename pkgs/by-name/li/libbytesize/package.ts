@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["updateScript", 71, 12]], [["homepage", 74, 5], ["description", 75, 5], ["license", 76, 5], ["mainProgram", 77, 5], ["maintainers", 78, 5], ["platforms", 79, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["outputs", 30, 3], ["nativeBuildInputs", 37, 3], ["nativeInstallCheckInputs", 48, 3], ["buildInputs", 52, 3], ["doInstallCheck", 58, 3], ["strictDeps", 59, 3], ["postInstall", 61, 3], ["pythonImportsCheck", 69, 3], ["passthru", 71, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, autoreconfHook: false, docbook_xml_dtd_43: false, docbook_xsl: false, fetchFromGitHub: false, gettext: false, gmp: false, "gtk-doc": false, libxslt: false, mpfr: false, "nix-update-script": false, pcre2: false, "pkg-config": false, python3Packages: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 71, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 74, 5], ["description", 75, 5], ["license", 76, 5], ["mainProgram", 77, 5], ["maintainers", 78, 5], ["platforms", 79, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["outputs", 30, 3], ["nativeBuildInputs", 37, 3], ["nativeInstallCheckInputs", 48, 3], ["buildInputs", 52, 3], ["doInstallCheck", 58, 3], ["strictDeps", 59, 3], ["postInstall", 61, 3], ["pythonImportsCheck", 69, 3], ["passthru", 71, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libbytesize",
       version: "2.12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "storaged-project",
           repo: "libbytesize",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -59,11 +56,11 @@ ${nix.sel(python3Packages, "python", "pythonOnBuildForHost", "interpreter")} -m 
 `),
       pythonImportsCheck: nix.thunk(() => ["bytesize"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/storaged-project/libbytesize",
         description: "Tiny library providing a C 'class' for working with arbitrary big sizes in bytes",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),

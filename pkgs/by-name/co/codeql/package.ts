@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 25, 5], ["hash", 26, 5]], [["description", 62, 5], ["homepage", 63, 5], ["maintainers", 64, 5], ["platforms", 68, 5], ["license", 69, 5]], [["pname", 17, 3], ["version", 18, 3], ["dontConfigure", 20, 3], ["dontBuild", 21, 3], ["dontStrip", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 29, 3], ["installPhase", 42, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, zlib: false, libxtst: false, libxrender: false, libxi: false, libxext: false, libx11: false, freetype: false, jdk17: false, curl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 62, 5], ["homepage", 63, 5], ["maintainers", 64, 5], ["platforms", 68, 5], ["license", 69, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["dontConfigure", 20, 3], ["dontBuild", 21, 3], ["dontStrip", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 29, 3], ["installPhase", 42, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const dontBuild = true;
       const dontStrip = true;
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/github/codeql-cli-binaries/releases/download/v${version}/codeql.zip`),
           hash: "sha256-JUqJ9nsCYa8UIeuj+cPw2vAep0lJry6QcaSn20cokDU=",
         }))));
@@ -62,7 +60,7 @@ ln -s ${jdk17} $out/codeql/tools/linux64/java
 ln -s $out/codeql/codeql $out/bin/
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Semantic code analysis engine",
         homepage: "https://codeql.github.com",
         maintainers: nix.thunk(() => (() => {
@@ -76,7 +74,7 @@ ln -s $out/codeql/codeql $out/bin/
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         dontConfigure,

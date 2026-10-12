@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["CLI", 36, 5]], [["description", 48, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["mainProgram", 53, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["pythonRelaxDeps", 25, 3], ["build-system", 27, 3], ["dependencies", 29, 3], ["optional-dependencies", 35, 3], ["doCheck", 43, 3], ["pythonImportsCheck", 45, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, aiohttp: false, buildPythonPackage: false, click: false, fetchFromGitHub: false, "prompt-toolkit": false, pycryptodome: false, pydantic: false, hatchling: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["CLI", 36, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 48, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["mainProgram", 53, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["pythonRelaxDeps", 25, 3], ["build-system", 27, 3], ["dependencies", 29, 3], ["optional-dependencies", 35, 3], ["doCheck", 43, 3], ["pythonImportsCheck", 45, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pydantic = nix.arg($, "pydantic");
   const hatchling = nix.arg($, "hatchling");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pykoplenti",
       version: "1.5.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "stegm",
           repo: "pykoplenti",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,11 +31,11 @@ export default nix.lambda((args) => (() => {
       pythonRelaxDeps: nix.thunk(() => ["pydantic"]),
       "build-system": nix.thunk(() => [hatchling]),
       dependencies: nix.thunk(() => [aiohttp, pycryptodome, pydantic]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, CLI: nix.thunk(() => [click, prompt_toolkit]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], CLI: nix.thunk(() => [click, prompt_toolkit]) })),
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["pykoplenti"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python REST client API for Kostal Plenticore Inverters",
         homepage: "https://github.com/stegm/pykoplenti/",
         changelog: nix.thunk(() => nix.str`https://github.com/stegm/pykoplenti/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

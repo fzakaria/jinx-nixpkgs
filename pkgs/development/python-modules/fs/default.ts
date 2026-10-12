@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 24, 13], ["version", 24, 19], ["hash", 25, 5]], [["LC_ALL", 58, 7]], [["description", 92, 5], ["homepage", 93, 5], ["changelog", 94, 5], ["license", 95, 5], ["maintainers", 96, 5], ["platforms", 97, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["patches", 28, 3], ["postPatch", 33, 3], ["build-system", 39, 3], ["dependencies", 41, 3], ["nativeCheckInputs", 48, 3], ["env", 58, 3], ["preCheck", 60, 3], ["disabledTestPaths", 64, 3], ["disabledTests", 75, 3], ["pythonImportsCheck", 87, 3], ["__darwinAllowLocalNetworking", 89, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, appdirs: false, buildPythonPackage: false, fetchPypi: false, glibcLocales: false, isPyPy: false, mock: false, psutil: false, pyftpdlib: false, pytestCheckHook: false, pytz: false, setuptools: false, six: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 24, 13], ["version", 24, 19], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["LC_ALL", 58, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 92, 5], ["homepage", 93, 5], ["changelog", 94, 5], ["license", 95, 5], ["maintainers", 96, 5], ["platforms", 97, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["patches", 28, 3], ["postPatch", 33, 3], ["build-system", 39, 3], ["dependencies", 41, 3], ["nativeCheckInputs", 48, 3], ["env", 58, 3], ["preCheck", 60, 3], ["disabledTestPaths", 64, 3], ["disabledTests", 75, 3], ["pythonImportsCheck", 87, 3], ["__darwinAllowLocalNetworking", 89, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.4.16";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-rpfH1RIT9LcLapWCklMCiQkN46fhWEHhCPvhRPBp0xM=",
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [setuptools, six, appdirs, pytz]);
       const nativeCheckInputs = nix.thunk(() => nix.concat([pyftpdlib, mock, psutil, pytestCheckHook], nix.app(nix.sel(lib, "optionals"), isPyPy, nix.thunk(() => [glibcLocales]))));
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, LC_ALL: "en_US.utf-8" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], LC_ALL: "en_US.utf-8" }));
       const preCheck = "HOME=$(mktemp -d)\n";
       const disabledTestPaths = nix.thunk(() => [
         "tests/test_move.py",
@@ -55,7 +52,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["fs"]);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Filesystem abstraction",
         homepage: "https://github.com/PyFilesystem/pyfilesystem2",
         changelog: nix.thunk(() => nix.str`https://github.com/PyFilesystem/pyfilesystem2/blob/v${version}/CHANGELOG.md`),
@@ -64,7 +61,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

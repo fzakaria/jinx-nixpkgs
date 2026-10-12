@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 7], ["repo", 29, 7], ["rev", 30, 7], ["sha256", 31, 7]], [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["platforms", 44, 5], ["mainProgram", 45, 5]], [["pname", 12, 3], ["version", 13, 3], ["nativeBuildInputs", 15, 3], ["buildInputs", 19, 3], ["src", 26, 3], ["preConfigure", 35, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, libsForQt5: false, libxrandr: false, libdrm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 7], ["repo", 29, 7], ["rev", 30, 7], ["sha256", 31, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["platforms", 44, 5], ["mainProgram", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["nativeBuildInputs", 15, 3], ["buildInputs", 19, 3], ["src", 26, 3], ["preConfigure", 35, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
         libdrm,
       ]);
       const src = nix.thunk(() => nix.add(nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "marazmista",
           repo: "radeon-profile",
           rev: version,
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
         }))), "/radeon-profile"));
       const preConfigure = "substituteInPlace radeon-profile.pro \\\n  --replace \"/usr/\" \"$out/\"\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Application to read current clocks of AMD Radeon cards",
         homepage: "https://github.com/marazmista/radeon-profile",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "radeon-profile",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         nativeBuildInputs,

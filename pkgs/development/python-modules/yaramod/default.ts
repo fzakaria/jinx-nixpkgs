@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["ENV_YARAMOD_BUILD_WITH_UNIT_TESTS", 56, 7]], [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["maintainers", 72, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["postPatch", 34, 3], ["dontUseCmakeConfigure", 45, 3], ["buildInputs", 47, 3], ["nativeBuildInputs", 49, 3], ["build-system", 54, 3], ["env", 56, 3], ["nativeCheckInputs", 58, 3], ["enabledTestPaths", 63, 3], ["pythonImportsCheck", 65, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, cmake: false, fetchFromGitHub: false, pytestCheckHook: false, libxcrypt: false, gtest: false, pybind11: false, nlohmann_json: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["ENV_YARAMOD_BUILD_WITH_UNIT_TESTS", 56, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["maintainers", 72, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["postPatch", 34, 3], ["dontUseCmakeConfigure", 45, 3], ["buildInputs", 47, 3], ["nativeBuildInputs", 49, 3], ["build-system", 54, 3], ["env", 56, 3], ["nativeCheckInputs", 58, 3], ["enabledTestPaths", 63, 3], ["pythonImportsCheck", 65, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,19 +18,19 @@ export default nix.lambda((args) => (() => {
   const nlohmann_json = nix.arg($, "nlohmann_json");
   const setuptools = nix.arg($, "setuptools");
   const pog = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "metthal",
       repo: "pog",
       rev: "b09bbf9cea573ee62aab7eccda896e37961d16cd",
       hash: "sha256-El4WA92t2O/L4wUqH6Xj8w+ANtb6liRwafDhqn8jxjQ=",
     }))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "yaramod",
       version: "4.8.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "avast",
           repo: "yaramod",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,12 +49,12 @@ substituteInPlace deps/pog/deps/fmt/fmt/CMakeLists.txt \\
       buildInputs: nix.thunk(() => [libxcrypt]),
       nativeBuildInputs: nix.thunk(() => [cmake, pog]),
       "build-system": nix.thunk(() => [setuptools]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, ENV_YARAMOD_BUILD_WITH_UNIT_TESTS: true })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], ENV_YARAMOD_BUILD_WITH_UNIT_TESTS: true })),
       nativeCheckInputs: nix.thunk(() => [gtest, pytestCheckHook]),
       enabledTestPaths: nix.thunk(() => ["tests/"]),
       pythonImportsCheck: nix.thunk(() => ["yaramod"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Parsing of YARA rules into AST and building new rulesets in C++",
         homepage: "https://github.com/avast/yaramod",
         changelog: nix.thunk(() => nix.str`https://github.com/avast/yaramod/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 17, 5], ["hash", 18, 5]], [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["maintainers", 33, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["propagatedBuildInputs", 21, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchurl: false, backoff: false, "domain-local-await": false, mtime: false, "multicore-magic": false, yojson: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["maintainers", 33, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["propagatedBuildInputs", 21, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,17 +16,17 @@ export default nix.lambda((args) => (() => {
   const multicore_magic = nix.arg($, "multicore-magic");
   const yojson = nix.arg($, "yojson");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "multicore-bench",
       version: "0.1.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/ocaml-multicore/multicore-bench/releases/download/${nix.sel(finalAttrs, "version")}/multicore-bench-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-vrp9yiuTwhijhYjeDKPFRGyh/5LeydKWJSyMLZRRXIM=",
         })))),
       propagatedBuildInputs: nix.thunk(() => [backoff, domain_local_await, mtime, multicore_magic, yojson]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Framework for writing multicore benchmark executables to run on current-bench",
         homepage: "https://github.com/ocaml-multicore/multicore-bench",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

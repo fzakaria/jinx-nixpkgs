@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 26, 5], ["hash", 27, 5]], [["NIX_LDFLAGS", 47, 5]], [["package", 57, 5], ["command", 58, 5], ["version", 59, 5]], [["version", 56, 18]], [["tests", 56, 12]], [["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["platforms", 70, 5], ["maintainers", 71, 5], ["teams", 72, 5], ["mainProgram", 73, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 32, 3], ["env", 46, 3], ["enableParallelBuilding", 54, 3], ["passthru", 56, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, freexl: false, geos: false, expat: false, librttopo: false, libspatialite: false, libxml2: false, libz: false, minizip: false, proj: false, readosm: false, sqlite: false, testers: false, "spatialite-tools": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 57, 5], ["command", 58, 5], ["version", 59, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 56, 18]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 56, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["platforms", 70, 5], ["maintainers", 71, 5], ["teams", 72, 5], ["mainProgram", 73, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 32, 3], ["env", 46, 3], ["enableParallelBuilding", 54, 3], ["passthru", 56, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pname = "spatialite-tools";
       const version = "5.1.0a";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.gaia-gis.it/gaia-sins/spatialite-tools-sources/spatialite-tools-${version}.tar.gz`),
           hash: "sha256-EZ40dY6AiM27Q+2BtKbq6ojHZLC32hkAGlUUslRVAc4=",
         }))));
@@ -53,7 +47,7 @@ export default nix.lambda((args) => (() => {
         sqlite,
       ]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-lm",
             "-lxml2",
@@ -62,11 +56,11 @@ export default nix.lambda((args) => (() => {
       }));
       const enableParallelBuilding = true;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: spatialite_tools,
               command: "! spatialite_tool --version",
               version: nix.thunk(() => nix.str`${nix.sel(libspatialite, "version")}`),
@@ -74,7 +68,7 @@ export default nix.lambda((args) => (() => {
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Complete sqlite3-compatible CLI front-end for libspatialite",
         homepage: "https://www.gaia-gis.it/fossil/spatialite-tools",
         license: nix.thunk(() => (() => {
@@ -94,7 +88,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "spatialite_tool",
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         src,

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 28, 5], ["sha256", 29, 5]], [["name", 49, 7], ["hash", 50, 7], ["url", 51, 7]], [["PKG_CONFIG_GOBJECT_INTROSPECTION_1_0_GIRDIR", 60, 5], ["PKG_CONFIG_GOBJECT_INTROSPECTION_1_0_TYPELIBDIR", 61, 5]], [["attrPath", 66, 7], ["packageName", 67, 7], ["versionPolicy", 68, 7], ["freeze", 69, 7]], [["updateScript", 65, 5]], [["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["platforms", 78, 5]], [["pname", 18, 3], ["version", 19, 3], ["outputs", 21, 3], ["src", 27, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 39, 3], ["patches", 47, 3], ["configureFlags", 55, 3], ["env", 59, 3], ["passthru", 64, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, "pkg-config": false, gettext: false, "gtk-doc": false, "gobject-introspection": false, python3: false, gtk3: false, cairo: false, glib: false, gnome: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 28, 5], ["sha256", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 49, 7], ["hash", 50, 7], ["url", 51, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["PKG_CONFIG_GOBJECT_INTROSPECTION_1_0_GIRDIR", 60, 5], ["PKG_CONFIG_GOBJECT_INTROSPECTION_1_0_TYPELIBDIR", 61, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["attrPath", 66, 7], ["packageName", 67, 7], ["versionPolicy", 68, 7], ["freeze", 69, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 65, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["platforms", 78, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["outputs", 21, 3], ["src", 27, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 39, 3], ["patches", 47, 3], ["configureFlags", 55, 3], ["env", 59, 3], ["passthru", 64, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const gnome = nix.arg($, "gnome");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "goocanvas",
       version: "2.0.4",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/goocanvas/2.0/goocanvas-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "141fm7mbqib0011zmkv3g8vxcjwa7hypmq71ahdyhnj2sjvy4a67",
         })))),
@@ -40,7 +34,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gtk3, cairo, glib]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "goocanvas-2.0.4-Fix-building-with-GCC-14.patch",
             hash: "sha256-9uqqC1uKZF9TDz5dfDTKSRCmjEiuvqkLnZ9w6U+q2TI=",
             url: "https://src.fedoraproject.org/rpms/goocanvas2/raw/e799612a277262a0c6bd03db10a6ee9ca7871b9c/f/goocanvas-2.0.4-Fix-building-with-GCC-14.patch",
@@ -48,14 +42,14 @@ export default nix.lambda((args) => (() => {
       ]),
       configureFlags: nix.thunk(() => ["--disable-python"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         PKG_CONFIG_GOBJECT_INTROSPECTION_1_0_GIRDIR: "$(dev)/share/gir-1.0",
         PKG_CONFIG_GOBJECT_INTROSPECTION_1_0_TYPELIBDIR: "$(out)/lib/girepository-1.0",
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             attrPath: nix.thunk(() => nix.str`goocanvas_${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
             packageName: "goocanvas",
             versionPolicy: "odd-unstable",
@@ -63,7 +57,7 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Canvas widget for GTK based on the the Cairo 2D library",
         homepage: "https://gitlab.gnome.org/Archive/goocanvas",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2")),

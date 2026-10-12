@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["platforms", 79, 5]], [["version", 12, 3], ["pname", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 21, 3], ["patchPhase", 27, 3], ["installPhase", 38, 3], ["preFixup", 64, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, python3: false, "alsa-utils": false, timidity: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["platforms", 79, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 12, 3], ["pname", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 21, 3], ["patchPhase", 27, 3], ["installPhase", 38, 3], ["preFixup", 64, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const alsa_utils = nix.arg($, "alsa-utils");
   const timidity = nix.arg($, "timidity");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "25.05.0",
       pname: "mma",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.mellowood.ca/mma/mma-bin-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-J72uTwAlWa/dRPf7/lO1epbmjTQar+3/U//+IJ9u4PM=",
         })))),
@@ -39,7 +37,7 @@ find . -type f | xargs sed -i 's@/usr/bin/python3@${nix.sel(python3, "interprete
       installPhase: "mkdir -p $out/{bin,share/mma,share/man/man1,share/man/man8}\nmkdir -p $out/etc\n\ncp mma.py $out/bin/mma\ncp mma-gb $out/bin/mma-gb\ncp mma-libdoc $out/bin/mma-libdoc\ncp mma-renum $out/bin/mma-renum\ncp mma-splitrec $out/bin/mma-splitrec\ncp util/mma-mnx.py $out/bin/mma-mnx\ncp util/mma-rm2std.py $out/bin/mma-rm2std\ncp util/mmatabs.py $out/bin/mmatabs\ncp util/mup2mma.py $out/bin/mup2mma\ncp util/pg2mma.py $out/bin/pg2mma\ncp util/synthsplit.py $out/bin/mma-synthsplit\ncp -r {docs,egs,includes,lib,MMA,text,plugins} $out/share/mma\n\ncp util/README.* $out/share/mma/docs\nmv $out/share/mma/docs/man/mma-libdoc.8 $out/share/man/man8\nmv $out/share/mma/docs/man/mma-renum.1 $out/share/man/man1\nmv $out/share/mma/docs/man/mma.1 $out/share/man/man1\nmv $out/share/mma/docs/man/mma-gb.1 $out/share/man/man1\nrm -rf $out/share/mma/docs/man\nfind $out -type f | xargs sed -i \"s@/usr/share/mma@$out/share/mma@g\"\n",
       preFixup: "PYTHONPATH=$out/share/mma/:$PYTHONPATH\nfor f in $out/bin/*; do\n      wrapProgram $f \\\n       --prefix PYTHONPATH : $PYTHONPATH\ndone\ncd $out/share/mma/\n$out/bin/mma -G\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Creates MIDI tracks for a soloist to perform over from a user supplied file containing chords",
         homepage: "https://www.mellowood.ca/mma/index.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

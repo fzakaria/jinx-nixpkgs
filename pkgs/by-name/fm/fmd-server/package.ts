@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 7], ["repo", 23, 7], ["tag", 24, 7], ["hash", 25, 7]], [["pname", 29, 20], ["src", 29, 26], ["pnpm", 30, 7], ["sourceRoot", 31, 7], ["fetcherVersion", 32, 7], ["hash", 33, 7]], [["version", 49, 28], ["src", 49, 36], ["pnpmDeps", 49, 40], ["pname", 50, 7], ["pnpmRoot", 52, 7], ["distRoot", 53, 7], ["nativeBuildInputs", 55, 7], ["buildPhase", 61, 7], ["installPhase", 71, 7]], [["updateScript", 46, 14], ["ui", 48, 14]], [["description", 82, 7], ["homepage", 83, 7], ["downloadPage", 84, 7], ["license", 85, 7], ["maintainers", 86, 7], ["teams", 91, 7], ["mainProgram", 92, 7]], [["pname", 19, 5], ["version", 20, 5], ["src", 21, 5], ["pnpmDeps", 28, 5], ["vendorHash", 36, 5], ["preBuild", 38, 5], ["nativeInstallCheckInputs", 42, 5], ["versionCheckProgramArg", 43, 5], ["doInstallCheck", 45, 5], ["passthru", 46, 5], ["meta", 81, 5]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitLab: false, fetchPnpmDeps: false, "nix-update-script": false, nodejs: false, pnpm_11: false, pnpmConfigHook: false, stdenv: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 7], ["repo", 23, 7], ["tag", 24, 7], ["hash", 25, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 29, 20], ["src", 29, 26], ["pnpm", 30, 7], ["sourceRoot", 31, 7], ["fetcherVersion", 32, 7], ["hash", 33, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 49, 28], ["src", 49, 36], ["pnpmDeps", 49, 40], ["pname", 50, 7], ["pnpmRoot", 52, 7], ["distRoot", 53, 7], ["nativeBuildInputs", 55, 7], ["buildPhase", 61, 7], ["installPhase", 71, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 46, 14], ["ui", 48, 14]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 82, 7], ["homepage", 83, 7], ["downloadPage", 84, 7], ["license", 85, 7], ["maintainers", 86, 7], ["teams", 91, 7], ["mainProgram", 92, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 19, 5], ["version", 20, 5], ["src", 21, 5], ["pnpmDeps", 28, 5], ["vendorHash", 36, 5], ["preBuild", 38, 5], ["nativeInstallCheckInputs", 42, 5], ["versionCheckProgramArg", 43, 5], ["doInstallCheck", 45, 5], ["passthru", 46, 5], ["meta", 81, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,18 +21,18 @@ export default nix.lambda((args) => (() => {
       const from = nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "passthru"));
       const ui = nix.thunk(() => nix.attr(from, "ui"));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname: "fmd-server",
         version: "0.17.0",
         src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: "fmd-foss",
             repo: "fmd-server",
             tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
             hash: "sha256-drZQj5tp0cHvrc+T1ESBHNNt0VoHhS9O93LIwjw2eCc=",
           })))),
         pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             pname: nix.thunk(() => nix.attr(ui, "pname")),
             src: nix.thunk(() => nix.attr(ui, "src")),
             pnpm: pnpm_11,
@@ -52,10 +47,10 @@ export default nix.lambda((args) => (() => {
         versionCheckProgramArg: "version",
         doInstallCheck: true,
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
           ui: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               src: nix.thunk(() => nix.attr(finalAttrs, "src")),
               pnpmDeps: nix.thunk(() => nix.attr(finalAttrs, "pnpmDeps")),
@@ -74,7 +69,7 @@ runHook postInstall
             })))),
         })),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           description: "Server to communicate with the FindMyDevice app and save the latest (encrypted) location",
           homepage: "https://fmd-foss.org/",
           downloadPage: "https://gitlab.com/fmd-foss/fmd-server",

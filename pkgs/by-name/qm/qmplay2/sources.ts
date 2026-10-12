@@ -2,27 +2,21 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/sources.nix", [[["owner", 11, 11], ["repo", 12, 11], ["tag", 13, 11], ["hash", 14, 11]], [["pname", 7, 9], ["version", 8, 9], ["src", 10, 9]], [["owner", 27, 11], ["repo", 28, 11], ["tag", 29, 11], ["hash", 30, 11]], [["pname", 23, 9], ["version", 24, 9], ["src", 26, 9]], [["owner", 41, 7], ["repo", 42, 7], ["rev", 43, 7], ["hash", 44, 7]], [["pname", 37, 5], ["version", 38, 5], ["src", 40, 5]], [["qmplay2", 4, 3], ["vulkan-headers-qmplay2", 20, 3], ["qmvk", 36, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/sources.nix", [["owner", 11, 11], ["repo", 12, 11], ["tag", 13, 11], ["hash", 14, 11]]);
-const pos$2 = nix.positions(here + "/sources.nix", [["pname", 7, 9], ["version", 8, 9], ["src", 10, 9]]);
-const pos$3 = nix.positions(here + "/sources.nix", [["owner", 27, 11], ["repo", 28, 11], ["tag", 29, 11], ["hash", 30, 11]]);
-const pos$4 = nix.positions(here + "/sources.nix", [["pname", 23, 9], ["version", 24, 9], ["src", 26, 9]]);
-const pos$5 = nix.positions(here + "/sources.nix", [["owner", 41, 7], ["repo", 42, 7], ["rev", 43, 7], ["hash", 44, 7]]);
-const pos$6 = nix.positions(here + "/sources.nix", [["pname", 37, 5], ["version", 38, 5], ["src", 40, 5]]);
-const pos$7 = nix.positions(here + "/sources.nix", [["qmplay2", 4, 3], ["vulkan-headers-qmplay2", 20, 3], ["qmvk", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     qmplay2: nix.thunk(() => (() => {
       const self = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname: "qmplay2",
         version: "26.06.27",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: "zaps166",
             repo: "QMPlay2",
             tag: nix.thunk(() => nix.sel(self, "version")),
@@ -33,11 +27,11 @@ export default nix.lambda((args) => (() => {
     })()),
     "vulkan-headers-qmplay2": nix.thunk(() => (() => {
       const self = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname: "vulkan-headers",
         version: "1.4.350",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             owner: "KhronosGroup",
             repo: "Vulkan-Headers",
             tag: nix.thunk(() => nix.str`v${nix.sel(self, "version")}`),
@@ -47,11 +41,11 @@ export default nix.lambda((args) => (() => {
       return nix.force(self);
     })()),
     qmvk: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "qmvk",
       version: "0-unstable-2026-06-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           owner: "zaps166",
           repo: "QmVk",
           rev: "26ef419a3b91bc11856c714b3b932c62db098bf9",

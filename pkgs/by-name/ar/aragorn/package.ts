@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 9, 5], ["hash", 10, 5]], [["url", 19, 5], ["hash", 20, 5]], [["description", 47, 5], ["mainProgram", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5]], [["version", 15, 3], ["pname", 16, 3], ["src", 18, 3], ["dontUnpack", 23, 3], ["nativeBuildInputs", 25, 3], ["buildPhase", 29, 3], ["installPhase", 37, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 9, 5], ["hash", 10, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 19, 5], ["hash", 20, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 47, 5], ["mainProgram", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 15, 3], ["pname", 16, 3], ["src", 18, 3], ["dontUnpack", 23, 3], ["nativeBuildInputs", 25, 3], ["buildPhase", 29, 3], ["installPhase", 37, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,16 +12,16 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const installShellFiles = nix.arg($, "installShellFiles");
   const man = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://web.archive.org/web/20230608093053if_/http://www.ansikte.se/ARAGORN/Downloads/aragorn.1",
       hash: "sha256-bjD22dpkQZcGR0TwMxdpaed4VZZO2NUOoAw4o66iyS4=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "1.2.41",
       pname: "aragorn",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`http://www.ansikte.se/ARAGORN/Downloads/aragorn${nix.sel(finalAttrs, "version")}.c`),
           hash: "sha256-kqMcxcCwrRbU17AZkZibd18H0oFd8TX+bj6riPXpf0o=",
         })))),
@@ -39,7 +36,7 @@ installManPage ${man}
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Detects tRNA, mtRNA, and tmRNA genes in nucleotide sequences",
         mainProgram: "aragorn",
         homepage: "https://www.trna.se/ARAGORN/",

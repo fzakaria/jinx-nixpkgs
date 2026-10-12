@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["sha256", 13, 5]], [["description", 28, 5], ["longDescription", 29, 5], ["version", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5], ["platforms", 36, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 11, 3], ["buildInputs", 16, 3], ["patchPhase", 18, 3], ["preInstall", 25, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "ladspa-header": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 28, 5], ["longDescription", 29, 5], ["version", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5], ["platforms", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 11, 3], ["buildInputs", 16, 3], ["patchPhase", 18, 3], ["preInstall", 25, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const ladspa_header = nix.arg($, "ladspa-header");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "amb-plugins",
       version: "0.8.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://kokkinizita.linuxaudio.org/linuxaudio/downloads/AMB-plugins-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "0x4blm4visjqj0ndqr0cg776v3b7lvplpc8cgi9n51llhavn0jpl",
         })))),
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       patchPhase: "sed -i 's@/usr/bin/install@install@g' Makefile\nsed -i 's@/bin/rm@rm@g' Makefile\nsed -i 's@/usr/lib/ladspa@$(out)/lib/ladspa@g' Makefile\nsed -i 's@g++@$(CXX)@g' Makefile\n",
       preInstall: "mkdir -p $out/lib/ladspa",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Set of ambisonics ladspa plugins",
         longDescription: "Mono and stereo to B-format panning, horizontal rotator, square, hexagon and cube decoders.\n",
         version: nix.thunk(() => nix.sel(finalAttrs, "version")),

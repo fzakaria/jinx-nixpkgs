@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["entrypoint", 29, 12]], [["changelog", 32, 5], ["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["npmDepsHash", 18, 3], ["installPhase", 20, 3], ["passthru", 29, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["entrypoint", 29, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 32, 5], ["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["npmDepsHash", 18, 3], ["installPhase", 20, 3], ["passthru", 29, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +14,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mini-media-player";
       const version = "1.16.12";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kalkih",
           repo: "mini-media-player",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -25,9 +22,9 @@ export default nix.lambda((args) => (() => {
         }))));
       const npmDepsHash = "sha256-gGOvBSHzBSl7eUpjuoddzZATL4GBluvbfxc8vjiZZgo=";
       const installPhase = "runHook preInstall\n\nmkdir $out\ncp -v ./dist/mini-media-player-bundle.js $out/\n\nrunHook postInstall\n";
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, entrypoint: "mini-media-player-bundle.js" }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[1], entrypoint: "mini-media-player-bundle.js" }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/kalkih/mini-media-player/releases/tag/v${version}`),
         description: "Minimalistic media card for Home Assistant Lovelace UI",
         homepage: "https://github.com/kalkih/mini-media-player",
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

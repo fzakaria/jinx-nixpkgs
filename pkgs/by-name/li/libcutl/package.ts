@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["broken", 29, 5], ["description", 30, 5], ["longDescription", 31, 5], ["homepage", 36, 5], ["changelog", 37, 5], ["platforms", 38, 5], ["maintainers", 39, 5], ["license", 40, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 21, 3], ["enableParallelBuilding", 23, 3], ["doCheck", 25, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { build2: false, fetchgit: false, gccStdenv: false, lib: false, xercesc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["broken", 29, 5], ["description", 30, 5], ["longDescription", 31, 5], ["homepage", 36, 5], ["changelog", 37, 5], ["platforms", 38, 5], ["maintainers", 39, 5], ["license", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 21, 3], ["enableParallelBuilding", 23, 3], ["doCheck", 25, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const xercesc = nix.arg($, "xercesc");
   return nix.app(nix.sel(gccStdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libcutl",
       version: "1.11.0",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.codesynthesis.com/libcutl/libcutl.git",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-LY2ZyxduI6xftVjVqjNkhYPFTL5bvHC289Qcei1Kiw4=",
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         broken: nix.thunk(() => nix.sel(gccStdenv, "hostPlatform", "isDarwin")),
         description: "C++ utility library from Code Synthesis",
         longDescription: "libcutl is a C++ utility library.\nIt contains a collection of generic and independent components such as\nmeta-programming tests, smart pointers, containers, compiler building blocks, etc.\n",

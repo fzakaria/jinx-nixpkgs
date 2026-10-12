@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 68, 5], ["repo", 69, 5], ["tag", 70, 5], ["hash", 71, 5]], [["url", 75, 5], ["hash", 76, 5]], [["LDFLAGS", 191, 7]], [["nativeBuildInputs", 255, 11]], [["nativeBuildInputs", 266, 11]], [["core", 252, 5], ["all-packages", 263, 5]], [["tests", 251, 12]], [["description", 276, 5], ["mainProgram", 277, 5], ["longDescription", 278, 5], ["homepage", 293, 5], ["changelog", 294, 5], ["license", 295, 5], ["maintainers", 296, 5], ["platforms", 297, 5]], [["pname", 64, 3], ["version", 65, 3], ["src", 67, 3], ["docs", 74, 3], ["buildInputs", 79, 3], ["nativeBuildInputs", 119, 3], ["__structuredAttrs", 145, 3], ["strictDeps", 147, 3], ["sourceRoot", 149, 3], ["postPatch", 151, 3], ["preConfigure", 159, 3], ["configureScript", 163, 3], ["configureFlags", 165, 3], ["configurePlatforms", 175, 3], ["enableParallelBuilding", 180, 3], ["preBuild", 182, 3], ["buildFlags", 187, 3], ["env", 191, 3], ["postInstall", 197, 3], ["checkFlags", 236, 3], ["doCheck", 241, 3], ["installCheckPhase", 243, 3], ["doInstallCheck", 249, 3], ["passthru", 251, 3], ["meta", 275, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, fetchurl: false, lib: false, makeWrapper: false, runCommand: false, stdenv: false, _4ti2: false, autoreconfHook: false, bison: false, blas: false, boehmgc: false, boost: false, cddlib: false, cohomcalg: false, csdp: false, eigen: false, "fflas-ffpack": false, flex: false, flint: false, frobby: false, gdbm: false, getconf: false, gfortran: false, gfan: false, givaro: false, glpk: false, gtest: false, icu: false, jansson: false, libffi: false, libxml2: false, libz: false, lrs: false, mathic: false, mathicgb: false, memtailor: false, mpfi: false, mpfr: false, msolve: false, mpsolve: false, nauty: false, normaliz: false, ntl: false, onetbb: false, openssl: false, R: false, rWrapper: false, "pkg-config": false, python3: false, readline: false, singular: false, texinfo: false, runtimeShell: false, topcom: false, which: false, xz: false, llvmPackages: false, downloadDocs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 68, 5], ["repo", 69, 5], ["tag", 70, 5], ["hash", 71, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 75, 5], ["hash", 76, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["LDFLAGS", 191, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 255, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 266, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["core", 252, 5], ["all-packages", 263, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["tests", 251, 12]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 276, 5], ["mainProgram", 277, 5], ["longDescription", 278, 5], ["homepage", 293, 5], ["changelog", 294, 5], ["license", 295, 5], ["maintainers", 296, 5], ["platforms", 297, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 64, 3], ["version", 65, 3], ["src", 67, 3], ["docs", 74, 3], ["buildInputs", 79, 3], ["nativeBuildInputs", 119, 3], ["__structuredAttrs", 145, 3], ["strictDeps", 147, 3], ["sourceRoot", 149, 3], ["postPatch", 151, 3], ["preConfigure", 159, 3], ["configureScript", 163, 3], ["configureFlags", 165, 3], ["configurePlatforms", 175, 3], ["enableParallelBuilding", 180, 3], ["preBuild", 182, 3], ["buildFlags", 187, 3], ["env", 191, 3], ["postInstall", 197, 3], ["checkFlags", 236, 3], ["doCheck", 241, 3], ["installCheckPhase", 243, 3], ["doInstallCheck", 249, 3], ["passthru", 251, 3], ["meta", 275, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -74,18 +66,18 @@ export default nix.lambda((args) => (() => {
   const llvmPackages = nix.arg($, "llvmPackages");
   const downloadDocs = nix.argOr($, "downloadDocs", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "macaulay2",
       version: "1.26.06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Macaulay2",
           repo: "M2",
           tag: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-kYxqbMKW+7r6nI4i3o7vvJVf0TGRVLaDviZTFx3PTBI=",
         })))),
       docs: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://macaulay2.com/Downloads/OtherSourceCode/Macaulay2-docs-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-0+ilvDh87Gmwzx0bLhT6nnadcPwgU3uB6pKhP9VqW0Q=",
         })))),
@@ -170,7 +162,7 @@ make -C libraries all-in-Macaulay2-docs
 `))),
       buildFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), downloadDocs, nix.thunk(() => ["MakeDocumentation=false"]))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["-lblas"]))))),
       })),
       postInstall: nix.thunk(() => nix.str`rm "$out/bin/M2"
@@ -197,21 +189,21 @@ makeWrapper "$out/bin/M2-binary" "$out/bin/M2" \\
       installCheckPhase: "runHook preInstallCheck\n$out/bin/M2 --check 1\nrunHook postInstallCheck\n",
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           core: nix.thunk(() => nix.app(runCommand, "macaulay2-core-tests", nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
             })), "M2 -q --check 2 && touch $out\n")),
           "all-packages": nix.thunk(() => nix.app(runCommand, "macaulay2-all-package-tests", nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
             })), "M2 -q --check 3 && touch $out\n")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "System for computing in commutative algebra, algebraic geometry and related fields",
         mainProgram: "M2",
         longDescription: "Macaulay2 is a software system devoted to supporting research in\nalgebraic geometry and commutative algebra, whose creation has been\nfunded by the National Science Foundation since 1992.\n\nMacaulay2 includes core algorithms for computing Gröbner bases and graded\nor multi-graded free resolutions of modules over quotient rings of graded\nor multi-graded polynomial rings with a monomial ordering. The core\nalgorithms are accessible through a versatile high level interpreted user\nlanguage with a powerful debugger supporting the creation of new classes\nof mathematical objects and the installation of methods for computing\nspecifically with them. Macaulay2 can compute Betti numbers, Ext,\ncohomology of coherent sheaves on projective varieties, primary\ndecomposition of ideals, integral closure of rings, and more.\n",

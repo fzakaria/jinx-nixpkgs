@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["click", 39, 5]], [["description", 49, 5], ["homepage", 50, 5], ["changelog", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["postPatch", 24, 3], ["pythonRelaxDeps", 29, 3], ["build-system", 31, 3], ["dependencies", 33, 3], ["optional-dependencies", 38, 3], ["nativeCheckInputs", 44, 3], ["pythonImportsCheck", 46, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, click: false, fetchFromGitHub: false, loguru: false, pytestCheckHook: false, rich: false, "uv-build": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["click", 39, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 49, 5], ["homepage", 50, 5], ["changelog", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["postPatch", 24, 3], ["pythonRelaxDeps", 29, 3], ["build-system", 31, 3], ["dependencies", 33, 3], ["optional-dependencies", 38, 3], ["nativeCheckInputs", 44, 3], ["pythonImportsCheck", 46, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const rich = nix.arg($, "rich");
   const uv_build = nix.arg($, "uv-build");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "logurich",
       version: "0.9.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "PakitoSec",
           repo: "logurich",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,11 +31,11 @@ export default nix.lambda((args) => (() => {
       pythonRelaxDeps: nix.thunk(() => ["rich"]),
       "build-system": nix.thunk(() => [uv_build]),
       dependencies: nix.thunk(() => [loguru, rich]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, click: nix.thunk(() => [click]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], click: nix.thunk(() => [click]) })),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["logurich"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Logger that combine loguru and rich",
         homepage: "https://github.com/PakitoSec/logurich",
         changelog: nix.thunk(() => nix.str`https://github.com/PakitoSec/logurich/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

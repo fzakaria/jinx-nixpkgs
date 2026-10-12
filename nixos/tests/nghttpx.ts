@@ -2,54 +2,30 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nghttpx.nix", [[["allowedTCPPorts", 9, 27]], [["firewall", 9, 18]], [["preStart", 11, 9]], [["nginx", 10, 24]], [["services", 10, 15]], [["root", 20, 25]], [["/", 20, 21]], [["locations", 20, 11]], [["server", 19, 22]], [["enable", 18, 9], ["virtualHosts", 19, 9]], [["nginx", 17, 16]], [["networking", 9, 7], ["systemd", 10, 7], ["services", 17, 7]], [["allowedTCPPorts", 26, 27]], [["firewall", 26, 18]], [["host", 32, 15], ["port", 33, 15]], [["tls", 37, 15]], [["server", 31, 13], ["params", 36, 13]], [["host", 44, 15], ["port", 45, 15]], [["proto", 48, 20]], [["server", 43, 13], ["patterns", 47, 13], ["params", 48, 13]], [["enable", 28, 9], ["frontends", 29, 9], ["backends", 41, 9]], [["nghttpx", 27, 16]], [["networking", 26, 7], ["services", 27, 7]], [["webserver", 8, 5], ["proxy", 25, 5], ["client", 54, 5]], [["name", 6, 3], ["nodes", 7, 3], ["testScript", 57, 3]]]);
 const formals$1 = { args: {  }, ellipsis: true };
-const pos$1 = nix.positions(here + "/nghttpx.nix", [["allowedTCPPorts", 9, 27]]);
-const pos$2 = nix.positions(here + "/nghttpx.nix", [["firewall", 9, 18]]);
-const pos$3 = nix.positions(here + "/nghttpx.nix", [["preStart", 11, 9]]);
-const pos$4 = nix.positions(here + "/nghttpx.nix", [["nginx", 10, 24]]);
-const pos$5 = nix.positions(here + "/nghttpx.nix", [["services", 10, 15]]);
-const pos$6 = nix.positions(here + "/nghttpx.nix", [["root", 20, 25]]);
-const pos$7 = nix.positions(here + "/nghttpx.nix", [["/", 20, 21]]);
-const pos$8 = nix.positions(here + "/nghttpx.nix", [["locations", 20, 11]]);
-const pos$9 = nix.positions(here + "/nghttpx.nix", [["server", 19, 22]]);
-const pos$10 = nix.positions(here + "/nghttpx.nix", [["enable", 18, 9], ["virtualHosts", 19, 9]]);
-const pos$11 = nix.positions(here + "/nghttpx.nix", [["nginx", 17, 16]]);
-const pos$12 = nix.positions(here + "/nghttpx.nix", [["networking", 9, 7], ["systemd", 10, 7], ["services", 17, 7]]);
-const pos$13 = nix.positions(here + "/nghttpx.nix", [["allowedTCPPorts", 26, 27]]);
-const pos$14 = nix.positions(here + "/nghttpx.nix", [["firewall", 26, 18]]);
-const pos$15 = nix.positions(here + "/nghttpx.nix", [["host", 32, 15], ["port", 33, 15]]);
-const pos$16 = nix.positions(here + "/nghttpx.nix", [["tls", 37, 15]]);
-const pos$17 = nix.positions(here + "/nghttpx.nix", [["server", 31, 13], ["params", 36, 13]]);
-const pos$18 = nix.positions(here + "/nghttpx.nix", [["host", 44, 15], ["port", 45, 15]]);
-const pos$19 = nix.positions(here + "/nghttpx.nix", [["proto", 48, 20]]);
-const pos$20 = nix.positions(here + "/nghttpx.nix", [["server", 43, 13], ["patterns", 47, 13], ["params", 48, 13]]);
-const pos$21 = nix.positions(here + "/nghttpx.nix", [["enable", 28, 9], ["frontends", 29, 9], ["backends", 41, 9]]);
-const pos$22 = nix.positions(here + "/nghttpx.nix", [["nghttpx", 27, 16]]);
-const pos$23 = nix.positions(here + "/nghttpx.nix", [["networking", 26, 7], ["services", 27, 7]]);
-const pos$24 = nix.positions(here + "/nghttpx.nix", [["webserver", 8, 5], ["proxy", 25, 5], ["client", 54, 5]]);
-const pos$25 = nix.positions(here + "/nghttpx.nix", [["name", 6, 3], ["nodes", 7, 3], ["testScript", 57, 3]]);
 
 export default nix.thunk(() => (() => {
   const nginxRoot = "/run/nginx";
   return nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     return {
-      [nix.POS]: pos$25,
+      [nix.POS]: $pos[24],
       name: "nghttpx",
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$24,
+        [nix.POS]: $pos[23],
         webserver: nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$2,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$1, allowedTCPPorts: nix.thunk(() => [80n]) })),
+            [nix.POS]: $pos[1],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[0], allowedTCPPorts: nix.thunk(() => [80n]) })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               nginx: nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 preStart: nix.thunk(() => nix.str`mkdir -p ${nginxRoot}
 echo "Hello world!" > ${nginxRoot}/hello-world.txt
 `),
@@ -57,17 +33,17 @@ echo "Hello world!" > ${nginxRoot}/hello-world.txt
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             nginx: nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               enable: true,
               virtualHosts: nix.thunk(() => ({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 server: nix.thunk(() => ({
-                  [nix.POS]: pos$8,
+                  [nix.POS]: $pos[7],
                   locations: nix.thunk(() => ({
-                    [nix.POS]: pos$7,
-                    "/": nix.thunk(() => ({ [nix.POS]: pos$6, root: nginxRoot })),
+                    [nix.POS]: $pos[6],
+                    "/": nix.thunk(() => ({ [nix.POS]: $pos[5], root: nginxRoot })),
                   })),
                 })),
               })),
@@ -75,29 +51,29 @@ echo "Hello world!" > ${nginxRoot}/hello-world.txt
           })),
         })),
         proxy: nix.thunk(() => ({
-          [nix.POS]: pos$23,
+          [nix.POS]: $pos[22],
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$14,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$13, allowedTCPPorts: nix.thunk(() => [80n]) })),
+            [nix.POS]: $pos[13],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[12], allowedTCPPorts: nix.thunk(() => [80n]) })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$22,
+            [nix.POS]: $pos[21],
             nghttpx: nix.thunk(() => ({
-              [nix.POS]: pos$21,
+              [nix.POS]: $pos[20],
               enable: true,
               frontends: nix.thunk(() => [
                 nix.thunk(() => ({
-                  [nix.POS]: pos$17,
-                  server: nix.thunk(() => ({ [nix.POS]: pos$15, host: "*", port: 80n })),
-                  params: nix.thunk(() => ({ [nix.POS]: pos$16, tls: "no-tls" })),
+                  [nix.POS]: $pos[16],
+                  server: nix.thunk(() => ({ [nix.POS]: $pos[14], host: "*", port: 80n })),
+                  params: nix.thunk(() => ({ [nix.POS]: $pos[15], tls: "no-tls" })),
                 })),
               ]),
               backends: nix.thunk(() => [
                 nix.thunk(() => ({
-                  [nix.POS]: pos$20,
-                  server: nix.thunk(() => ({ [nix.POS]: pos$18, host: "webserver", port: 80n })),
+                  [nix.POS]: $pos[19],
+                  server: nix.thunk(() => ({ [nix.POS]: $pos[17], host: "webserver", port: 80n })),
                   patterns: nix.thunk(() => ["/"]),
-                  params: nix.thunk(() => ({ [nix.POS]: pos$19, proto: "http/1.1" })),
+                  params: nix.thunk(() => ({ [nix.POS]: $pos[18], proto: "http/1.1" })),
                 })),
               ]),
             })),

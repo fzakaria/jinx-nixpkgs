@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/idris2-lsp.nix", [[["owner", 27, 7], ["repo", 28, 7], ["rev", 29, 7], ["hash", 30, 7]], [["ipkgName", 24, 5], ["version", 25, 5], ["src", 26, 5], ["idrisLibraries", 32, 5]], [["owner", 39, 7], ["repo", 40, 7], ["rev", 41, 7], ["hash", 42, 7]], [["description", 56, 7], ["mainProgram", 57, 7], ["homepage", 58, 7], ["license", 59, 7], ["maintainers", 60, 7]], [["ipkgName", 36, 5], ["version", 37, 5], ["src", 38, 5], ["idrisLibraries", 44, 5], ["nativeBuildInputs", 49, 5], ["postInstall", 50, 5], ["meta", 55, 5]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, idris2Packages: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/idris2-lsp.nix", [["owner", 27, 7], ["repo", 28, 7], ["rev", 29, 7], ["hash", 30, 7]]);
-const pos$2 = nix.positions(here + "/idris2-lsp.nix", [["ipkgName", 24, 5], ["version", 25, 5], ["src", 26, 5], ["idrisLibraries", 32, 5]]);
-const pos$3 = nix.positions(here + "/idris2-lsp.nix", [["owner", 39, 7], ["repo", 40, 7], ["rev", 41, 7], ["hash", 42, 7]]);
-const pos$4 = nix.positions(here + "/idris2-lsp.nix", [["description", 56, 7], ["mainProgram", 57, 7], ["homepage", 58, 7], ["license", 59, 7], ["maintainers", 60, 7]]);
-const pos$5 = nix.positions(here + "/idris2-lsp.nix", [["ipkgName", 36, 5], ["version", 37, 5], ["src", 38, 5], ["idrisLibraries", 44, 5], ["nativeBuildInputs", 49, 5], ["postInstall", 50, 5], ["meta", 55, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +21,11 @@ export default nix.lambda((args) => (() => {
   })());
   const idris2Api = nix.thunk(() => nix.attr(idris2Packages, "idris2Api"));
   const lspLib = nix.thunk(() => nix.app(nix.sel(idris2Packages, "buildIdris"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       ipkgName: "lsp-lib",
       version: "2025-08-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "idris-community",
           repo: "LSP-lib",
           rev: "ca77e80a392b8cfeee3aaeb150069957699cdb82",
@@ -38,11 +34,11 @@ export default nix.lambda((args) => (() => {
       idrisLibraries: [],
     }))));
   const lspPkg = nix.thunk(() => nix.app(nix.sel(idris2Packages, "buildIdris"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       ipkgName: "idris2-lsp",
       version: "2025-09-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "idris-community",
           repo: "idris2-lsp",
           rev: "81344545c134c8e7105ecf1fdd7a1caae6647035",
@@ -54,7 +50,7 @@ export default nix.lambda((args) => (() => {
   --suffix IDRIS2_PACKAGE_PATH ':' "${globalLibrariesPath}"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Language Server for Idris2",
         mainProgram: "idris2-lsp",
         homepage: "https://github.com/idris-community/idris2-lsp",

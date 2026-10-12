@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 29, 5], ["license", 30, 5]], [["releaseName", 10, 3], ["outputs", 12, 3], ["xcodeHash", 17, 3], ["postPatch", 19, 3], ["postInstall", 24, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, clang: false, mkAppleDerivation: false, buildPackages: false, shell_cmds: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 29, 5], ["license", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["releaseName", 10, 3], ["outputs", 12, 3], ["xcodeHash", 17, 3], ["postPatch", 19, 3], ["postInstall", 24, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const shell_cmds = nix.arg($, "shell_cmds");
   return nix.app(mkAppleDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       releaseName: "developer_cmds",
       outputs: nix.thunk(() => ["out", "man"]),
       xcodeHash: "sha256-25SDn9+SzEZJPQQJaDxsxWKeUetNHhzliLfzD9BtyyI=",
@@ -24,7 +23,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`HOST_PATH='${nix.app(nix.sel(lib, "getBin"), shell_cmds)}/bin' patchShebangs --host "$out/bin"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Developer commands for Darwin",
         license: nix.thunk(() => [
           nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

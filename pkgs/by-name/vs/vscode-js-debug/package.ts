@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["extraArgs", 57, 5]], [["timeout", 67, 14]], [["nativeBuildInputs", 66, 9], ["meta", 67, 9]], [["test", 63, 18]], [["updateScript", 56, 12], ["tests", 63, 12]], [["description", 82, 5], ["longDescription", 83, 5], ["homepage", 90, 5], ["changelog", 91, 5], ["mainProgram", 92, 5], ["license", 93, 5], ["maintainers", 94, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["npmDepsHash", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 38, 3], ["postPatch", 40, 3], ["makeCacheWritable", 48, 3], ["npmInstallFlags", 50, 3], ["preBuild", 52, 3], ["passthru", 56, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildNpmPackage: false, fetchFromGitHub: false, buildPackages: false, libsecret: false, xcbuild: false, "pkg-config": false, "node-gyp": false, runCommand: false, "vscode-js-debug": false, "nix-update-script": false, clang_20: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 57, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["timeout", 67, 14]]);
-const pos$4 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 66, 9], ["meta", 67, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["test", 63, 18]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 56, 12], ["tests", 63, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 82, 5], ["longDescription", 83, 5], ["homepage", 90, 5], ["changelog", 91, 5], ["mainProgram", 92, 5], ["license", 93, 5], ["maintainers", 94, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["npmDepsHash", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 38, 3], ["postPatch", 40, 3], ["makeCacheWritable", 48, 3], ["npmInstallFlags", 50, 3], ["preBuild", 52, 3], ["passthru", 56, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "vscode-js-debug";
       const version = "1.140.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "microsoft",
           repo: "vscode-js-debug",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -50,22 +43,22 @@ export default nix.lambda((args) => (() => {
       const npmInstallFlags = nix.thunk(() => ["--include=dev"]);
       const preBuild = "export PATH=\"node_modules/.bin:$PATH\"\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex", "v((?!\\d{4}\\.\\d\\.\\d{3}).*)"]),
           })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           test: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${pname}-test`), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               nativeBuildInputs: nix.thunk(() => [vscode_js_debug]),
-              meta: nix.thunk(() => ({ [nix.POS]: pos$3, timeout: 60n })),
+              meta: nix.thunk(() => ({ [nix.POS]: $pos[2], timeout: 60n })),
             })), "output=$(js-debug --help 2>&1)\nif grep -Fw -- \"Usage: dapDebugServer.js [port|socket path=8123] [host=localhost]\" - <<< \"$output\"; then\n  touch $out\nelse\n  echo \"Expected help output was not found!\" >&2\n  echo \"The output was:\" >&2\n  echo \"$output\" >&2\n  exit 1\nfi\n")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "DAP-compatible JavaScript debugger",
         longDescription: "This is a [DAP](https://microsoft.github.io/debug-adapter-protocol/)-based\nJavaScript debugger. It debugs Node.js, Chrome, Edge, WebView2, VS Code\nextensions, and more. It has been the default JavaScript debugger in\nVisual Studio Code since 1.46, and is gradually rolling out in Visual\nStudio proper.\n",
         homepage: "https://github.com/microsoft/vscode-js-debug",
@@ -78,7 +71,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname,
         version,
         src,

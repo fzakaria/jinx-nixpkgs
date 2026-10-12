@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 18, 5], ["hash", 19, 5]], [["nativeBuildInputs", 33, 9]], [["basic-usage", 30, 18]], [["tests", 30, 12]], [["description", 51, 5], ["homepage", 52, 5], ["changelog", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["strictDeps", 22, 3], ["buildInputs", 24, 3], ["postInstall", 26, 3], ["passthru", 30, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, gawk: false, lib: false, runCommand: false, stdenvNoCC: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 33, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["basic-usage", 30, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 30, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 51, 5], ["homepage", 52, 5], ["changelog", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["strictDeps", 22, 3], ["buildInputs", 24, 3], ["postInstall", 26, 3], ["passthru", 30, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "goto",
       version: "2.1.0-unstable-2020-11-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "iridakos",
           repo: "goto",
           rev: "b7fda54e0817b9cb47e22a78bd00b4571011cf58",
@@ -33,11 +28,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gawk]),
       postInstall: "install -Dm644 goto.sh -t $out/share/\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "basic-usage": nix.thunk(() => nix.app(runCommand, "goto-basic-usage", nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               nativeBuildInputs: nix.thunk(() => [writableTmpDirAsHomeHook]),
             })), nix.thunk(() => nix.str`# Mock \`complete\` since the builder \`pkgs.bash\` is not interactive.
 complete() { return; }
@@ -55,7 +50,7 @@ touch $out
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Alias and navigate to directories with tab completion",
         homepage: "https://github.com/iridakos/goto",
         changelog: nix.thunk(() => nix.str`https://github.com/iridakos/goto/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

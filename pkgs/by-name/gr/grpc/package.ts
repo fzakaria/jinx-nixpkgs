@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5], ["fetchSubmodules", 42, 5]], [["name", 48, 7], ["url", 49, 7], ["hash", 50, 7]], [["NIX_CFLAGS_COMPILE", 115, 7]], [["grpcio-status", 130, 28], ["grpcio-tools", 130, 42], ["jaxlib", 130, 55], ["arrow-cpp", 131, 13]], [["tests", 129, 12]], [["description", 135, 5], ["license", 136, 5], ["maintainers", 137, 5], ["homepage", 138, 5], ["platforms", 139, 5], ["changelog", 140, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 37, 3], ["patches", 45, 3], ["nativeBuildInputs", 54, 3], ["propagatedBuildInputs", 59, 3], ["buildInputs", 65, 3], ["cmakeFlags", 71, 3], ["preConfigure", 102, 3], ["preBuild", 111, 3], ["env", 115, 3], ["enableParallelBuilding", 127, 3], ["passthru", 129, 3], ["meta", 134, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, buildPackages: false, cmake: false, zlib: false, "c-ares": false, "pkg-config": false, re2: false, openssl: false, protobuf: false, grpc: false, "abseil-cpp": false, libnsl: false, python3: false, "arrow-cpp": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5], ["fetchSubmodules", 42, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 48, 7], ["url", 49, 7], ["hash", 50, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 115, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["grpcio-status", 130, 28], ["grpcio-tools", 130, 42], ["jaxlib", 130, 55], ["arrow-cpp", 131, 13]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 129, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 135, 5], ["license", 136, 5], ["maintainers", 137, 5], ["homepage", 138, 5], ["platforms", 139, 5], ["changelog", 140, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 37, 3], ["patches", 45, 3], ["nativeBuildInputs", 54, 3], ["propagatedBuildInputs", 59, 3], ["buildInputs", 65, 3], ["cmakeFlags", 71, 3], ["preConfigure", 102, 3], ["preBuild", 111, 3], ["env", 115, 3], ["enableParallelBuilding", 127, 3], ["passthru", 129, 3], ["meta", 134, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const arrow_cpp = nix.arg($, "arrow-cpp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "grpc",
       version: "1.83.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "grpc",
           repo: "grpc",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "grpc-link-libatomic.patch",
             url: "https://github.com/lopsided98/grpc/commit/a9b917666234f5665c347123d699055d8c2537b2.patch",
             hash: "sha256-Lm0GQsz/UjBbXXEE14lT0dcRzVmCKycrlrdBJj+KLu8=",
@@ -71,16 +65,16 @@ export default nix.lambda((args) => (() => {
       preConfigure: "rm -vf BUILD\n",
       preBuild: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))), "export LD_LIBRARY_PATH=$(pwd)${LD_LIBRARY_PATH:+:}$LD_LIBRARY_PATH\n")),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(["-Wno-error"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["-Wno-elaborated-enum-base", "-Wno-deprecated-declarations"])))))),
       })),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(python3, "pkgs"));
           return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "grpcio-status": nix.thunk(() => nix.attr(from, "grpcio-status")),
           "grpcio-tools": nix.thunk(() => nix.attr(from, "grpcio-tools")),
           jaxlib: nix.thunk(() => nix.attr(from, "jaxlib")),
@@ -89,7 +83,7 @@ export default nix.lambda((args) => (() => {
         })()),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "C based gRPC (C++, Python, Ruby, Objective-C, PHP, C#)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: [],

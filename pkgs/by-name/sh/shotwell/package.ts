@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 45, 5], ["sha256", 46, 5]], [["extraLoaders", 94, 9]], [["packageName", 104, 7], ["versionPolicy", 105, 7]], [["updateScript", 103, 5]], [["description", 110, 5], ["mainProgram", 111, 5], ["homepage", 112, 5], ["license", 113, 5], ["maintainers", 114, 5], ["platforms", 115, 5]], [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 61, 3], ["postInstall", 89, 3], ["passthru", 102, 3], ["meta", 109, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, meson: false, ninja: false, "adwaita-icon-theme": false, gtk3: false, libexif: false, libgphoto2: false, libwebp: false, libsoup_3: false, libxml2: false, vala: false, sqlite: false, "pkg-config": false, gnome: false, gst_all_1: false, libgudev: false, libraw: false, glib: false, "glib-networking": false, "json-glib": false, gcr_3: false, libgee: false, gexiv2_0_16: false, gettext: false, "desktop-file-utils": false, "gdk-pixbuf": false, librsvg: false, wrapGAppsHook3: false, "gobject-introspection": false, itstool: false, libsecret: false, "libportal-gtk3": false, "gsettings-desktop-schemas": false, libheif: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 45, 5], ["sha256", 46, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraLoaders", 94, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["packageName", 104, 7], ["versionPolicy", 105, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 103, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 110, 5], ["mainProgram", 111, 5], ["homepage", 112, 5], ["license", 113, 5], ["maintainers", 114, 5], ["platforms", 115, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 61, 3], ["postInstall", 89, 3], ["passthru", 102, 3], ["meta", 109, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -49,11 +44,11 @@ export default nix.lambda((args) => (() => {
   const gsettings_desktop_schemas = nix.arg($, "gsettings-desktop-schemas");
   const libheif = nix.arg($, "libheif");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "shotwell",
       version: "0.32.17",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/shotwell/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/shotwell-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-ClZoTpiBfDED9Upkj+lABCfHaiWnsRFFf8HYYMMWdnI=",
         })))),
@@ -98,16 +93,16 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`# Pull in HEIF support.
 # In postInstall to run before gappsWrapperArgsHook.
 export GDK_PIXBUF_MODULE_FILE="${nix.app(nix.sel(gnome, "_gdkPixbufCacheBuilder_DO_NOT_USE"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           extraLoaders: nix.thunk(() => [nix.thunk(() => nix.sel(libheif, "lib")), librsvg]),
         })))}"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$3, packageName: "shotwell", versionPolicy: "odd-unstable" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[2], packageName: "shotwell", versionPolicy: "odd-unstable" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Popular photo organizer for the GNOME desktop",
         mainProgram: "shotwell",
         homepage: "https://gitlab.gnome.org/GNOME/shotwell",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["optional", 34, 5]], [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["maintainers", 82, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["build-system", 31, 3], ["optional-dependencies", 33, 3], ["nativeCheckInputs", 44, 3], ["pythonImportsCheck", 52, 3], ["disabledTests", 54, 3], ["disabledTestPaths", 69, 3], ["__darwinAllowLocalNetworking", 75, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, aiodns: false, aiohttp: false, aiosqlite: false, boto3: false, buildPythonPackage: false, fetchFromGitHub: false, moto: false, "pytest-asyncio": false, pytestCheckHook: false, setuptools: false, sqlalchemy: false, "websocket-client": false, websockets: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["optional", 34, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["maintainers", 82, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["build-system", 31, 3], ["optional-dependencies", 33, 3], ["nativeCheckInputs", 44, 3], ["pythonImportsCheck", 52, 3], ["disabledTests", 54, 3], ["disabledTestPaths", 69, 3], ["__darwinAllowLocalNetworking", 75, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const websocket_client = nix.arg($, "websocket-client");
   const websockets = nix.arg($, "websockets");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "slack-sdk",
       version: "3.45.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "slackapi",
           repo: "python-slack-sdk",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         optional: nix.thunk(() => [aiodns, aiohttp, boto3, sqlalchemy, websocket_client, websockets]),
       })),
       nativeCheckInputs: nix.thunk(() => nix.concat([aiosqlite, moto, pytest_asyncio, pytestCheckHook], nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))))),
@@ -59,7 +56,7 @@ export default nix.lambda((args) => (() => {
       ]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Slack Developer Kit for Python",
         homepage: "https://slack.dev/python-slack-sdk/",
         changelog: nix.thunk(() => nix.str`https://github.com/slackapi/python-slack-sdk/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

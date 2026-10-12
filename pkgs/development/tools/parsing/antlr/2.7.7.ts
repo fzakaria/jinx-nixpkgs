@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/2.7.7.nix", [[["url", 12, 5], ["sha256", 13, 5]], [["CXXFLAGS", 19, 5]], [["description", 23, 5], ["longDescription", 24, 5], ["homepage", 31, 5], ["license", 32, 5], ["platforms", 33, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 11, 3], ["patches", 15, 3], ["buildInputs", 16, 3], ["env", 18, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, jdk: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/2.7.7.nix", [["url", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/2.7.7.nix", [["CXXFLAGS", 19, 5]]);
-const pos$3 = nix.positions(here + "/2.7.7.nix", [["description", 23, 5], ["longDescription", 24, 5], ["homepage", 31, 5], ["license", 32, 5], ["platforms", 33, 5]]);
-const pos$4 = nix.positions(here + "/2.7.7.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 11, 3], ["patches", 15, 3], ["buildInputs", 16, 3], ["env", 18, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,25 +15,25 @@ export default nix.lambda((args) => (() => {
       const pname = "antlr";
       const version = "2.7.7";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.antlr2.org/download/antlr-${version}.tar.gz`),
           sha256: "1ffvcwdw73id0dk6pj2mlxjvbg0662qacx4ylayqcxgg381fnfl5",
         }))));
       const patches = nix.thunk(() => [nix.path(here, "./2.7.7-fixes.patch")]);
       const buildInputs = nix.thunk(() => [jdk]);
       const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           CXXFLAGS: "-D_LIBCPP_ENABLE_CXX17_REMOVED_UNARY_BINARY_FUNCTION",
         }))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Powerful parser generator",
         longDescription: "ANTLR (ANother Tool for Language Recognition) is a powerful parser\ngenerator for reading, processing, executing, or translating structured\ntext or binary files. It's widely used to build languages, tools, and\nframeworks. From a grammar, ANTLR generates a parser that can build and\nwalk parse trees.\n",
         homepage: "https://www.antlr.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
-      return { [nix.POS]: pos$4, pname, version, src, patches, buildInputs, env, meta };
+      return { [nix.POS]: $pos[3], pname, version, src, patches, buildInputs, env, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=2.7.7.ts.map

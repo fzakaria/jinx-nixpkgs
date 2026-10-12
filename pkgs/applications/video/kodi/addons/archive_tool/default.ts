@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]], [["pythonPath", 24, 5]], [["homepage", 28, 5], ["description", 29, 5], ["license", 30, 5], ["teams", 31, 5]], [["pname", 8, 3], ["namespace", 9, 3], ["version", 10, 3], ["src", 12, 3], ["propagatedBuildInputs", 19, 3], ["passthru", 23, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, buildKodiAddon: false, fetchFromGitHub: false, "vfs-libarchive": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pythonPath", 24, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 28, 5], ["description", 29, 5], ["license", 30, 5], ["teams", 31, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["namespace", 9, 3], ["version", 10, 3], ["src", 12, 3], ["propagatedBuildInputs", 19, 3], ["passthru", 23, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,23 +16,23 @@ export default nix.lambda((args) => (() => {
       const namespace = "script.module.archive_tool";
       const version = "2.0.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "zach-morris",
           repo: "script.module.archive_tool",
           rev: version,
           sha256: "0hbkyk59xxfjv6vzfjplahmqxi5564qjlwyq6k8ijy6jjcwnd3p7",
         }))));
       const propagatedBuildInputs = nix.thunk(() => [vfs_libarchive]);
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, pythonPath: "lib" }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[1], pythonPath: "lib" }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/zach-morris/script.module.archive_tool",
         description: "Set of common python functions to work with the Kodi archive virtual file system (vfs) binary addons",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "kodi"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         namespace,
         version,

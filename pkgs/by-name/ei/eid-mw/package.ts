@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["shell", 80, 28]], [["isExecutable", 77, 9], ["src", 78, 9], ["replacements", 79, 9]], [["description", 99, 5], ["homepage", 100, 5], ["license", 101, 5], ["longDescription", 102, 5], ["platforms", 124, 5], ["maintainers", 125, 5]], [["pname", 24, 3], ["version", 26, 3], ["src", 28, 3], ["postPatch", 35, 3], ["strictDeps", 41, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 53, 3], ["preConfigure", 63, 3], ["configureFlags", 72, 3], ["postInstall", 74, 3], ["enableParallelBuilding", 94, 3], ["doCheck", 96, 3], ["meta", 98, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "autoconf-archive": false, autoreconfHook: false, makeBinaryWrapper: false, "pkg-config": false, replaceVarsWith: false, curl: false, gtk3: false, libassuan: false, libbsd: false, libproxy: false, libxml2: false, nssTools: false, openssl: false, "p11-kit": false, pcsclite: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["shell", 80, 28]]);
-const pos$3 = nix.positions(here + "/package.nix", [["isExecutable", 77, 9], ["src", 78, 9], ["replacements", 79, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 99, 5], ["homepage", 100, 5], ["license", 101, 5], ["longDescription", 102, 5], ["platforms", 124, 5], ["maintainers", 125, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 26, 3], ["src", 28, 3], ["postPatch", 35, 3], ["strictDeps", 41, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 53, 3], ["preConfigure", 63, 3], ["configureFlags", 72, 3], ["postInstall", 74, 3], ["enableParallelBuilding", 94, 3], ["doCheck", 96, 3], ["meta", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const pcsclite = nix.arg($, "pcsclite");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "eid-mw",
       version: "5.1.31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Fedict",
           repo: "eid-mw",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -65,10 +61,10 @@ export SSL_PREFIX=$(realpath openssl)
       configureFlags: nix.thunk(() => ["--disable-pinentry"]),
       postInstall: nix.thunk(() => (() => {
         const eid_nssdb_in = nix.thunk(() => nix.app(replaceVarsWith, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             isExecutable: true,
             src: nix.path(here, "./eid-nssdb.in"),
-            replacements: nix.thunk(() => ({ [nix.POS]: pos$2, shell: nix.thunk(() => nix.attr(stdenv, "shell")) })),
+            replacements: nix.thunk(() => ({ [nix.POS]: $pos[1], shell: nix.thunk(() => nix.attr(stdenv, "shell")) })),
           }))));
         return nix.str`install -D ${eid_nssdb_in} $out/bin/eid-nssdb
 substituteInPlace $out/bin/eid-nssdb \\
@@ -82,7 +78,7 @@ wrapProgram $out/bin/eid-viewer \\
       enableParallelBuilding: true,
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Belgian electronic identity card (eID) middleware",
         homepage: "https://eid.belgium.be/en",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),

@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/brscan4_etc_files.nix", [[["description", 69, 5], ["homepage", 70, 5], ["platforms", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]], [["pname", 42, 3], ["version", 43, 3], ["src", 44, 3], ["nativeBuildInputs", 46, 3], ["dontConfigure", 48, 3], ["buildPhase", 50, 3], ["dontInstall", 64, 3], ["dontStrip", 65, 3], ["dontPatchELF", 66, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, brscan4: false, netDevices: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/brscan4_etc_files.nix", [["description", 69, 5], ["homepage", 70, 5], ["platforms", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]]);
-const pos$2 = nix.positions(here + "/brscan4_etc_files.nix", [["pname", 42, 3], ["version", 43, 3], ["src", 44, 3], ["nativeBuildInputs", 46, 3], ["dontConfigure", 48, 3], ["buildPhase", 50, 3], ["dontInstall", 64, 3], ["dontStrip", 65, 3], ["dontPatchELF", 66, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +17,7 @@ model="${nix.sel(nd, "model")}" \\
 ${(nix.asBool((nix.asBool(nix.app(nix.sel(lib, "hasAttr"), "nodename", nd)) && nix.asBool(!nix.eq(nix.sel(nd, "nodename"), null)))) ? nix.str`nodename="${nix.sel(nd, "nodename")}"` : nix.str`ip="${nix.sel(nd, "ip")}"`)}`;
   const addAllNetDev = (xs) => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.builtins.map(addNetDev, xs)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "brscan4-etc-files",
       version: "0.4.3-3",
       src: nix.thunk(() => nix.str`${brscan4}/opt/brother/scanner/brscan4`),
@@ -40,7 +39,7 @@ ${nix.app(addAllNetDev, netDevices)}
       dontStrip: true,
       dontPatchELF: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Brother brscan4 sane backend driver etc files",
         homepage: "http://www.brother.com",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

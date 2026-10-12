@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/json-patch-schemastore.nix", [[["name", 14, 9], ["url", 17, 9], ["hash", 18, 9]], [["https://json.schemastore.org/json-patch.json", 13, 7]], [["JSON Patch", 12, 5]], [["maintainers", 29, 5], ["license", 30, 5], ["changelog", 31, 5]], [["name", 8, 3], ["displayName", 9, 3], ["version", 10, 3], ["groups", 11, 3], ["extraDescription", 22, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { fetchurl: false, lib: false, newCatalog: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/json-patch-schemastore.nix", [["name", 14, 9], ["url", 17, 9], ["hash", 18, 9]]);
-const pos$2 = nix.positions(here + "/json-patch-schemastore.nix", [["https://json.schemastore.org/json-patch.json", 13, 7]]);
-const pos$3 = nix.positions(here + "/json-patch-schemastore.nix", [["JSON Patch", 12, 5]]);
-const pos$4 = nix.positions(here + "/json-patch-schemastore.nix", [["maintainers", 29, 5], ["license", 30, 5], ["changelog", 31, 5]]);
-const pos$5 = nix.positions(here + "/json-patch-schemastore.nix", [["name", 8, 3], ["displayName", 9, 3], ["version", 10, 3], ["groups", 11, 3], ["extraDescription", 22, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,16 +11,16 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const newCatalog = nix.arg($, "newCatalog");
   return nix.app(newCatalog, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       name: "json-patch-schemastore",
       displayName: "JSON Patch as maintained by the https://www.schemastore.org community",
       version: "2024-11-26",
       groups: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         "JSON Patch": nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "https://json.schemastore.org/json-patch.json": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               name: "json-patch-schema",
               url: "https://github.com/schemastore/schemastore/raw/138439cd4f9d7bf57d6747b674ce5bbcffbfafdc/src/schemas/json/json-patch.json",
               hash: "sha256-vrqlgvlU61aEO6jd1SLLEqJDZG1k+eTBozcyPmhUp2U=",
@@ -33,7 +29,7 @@ export default nix.lambda((args) => (() => {
       })),
       extraDescription: "A JSON Patch is a sequence of editing and checking operations to perform against another JSON document.\nIt is specified in IETF RFC 6902: https://datatracker.ietf.org/doc/html/rfc6902/\n\nThe schema is maintained by the community at https://www.schemastore.org, which is a collection of JSON Schemas for various purposes.\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "roberth"))];

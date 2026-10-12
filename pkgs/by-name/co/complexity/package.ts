@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["description", 22, 5], ["longDescription", 24, 5], ["license", 30, 5], ["homepage", 32, 5], ["platforms", 34, 5], ["maintainers", 35, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 17, 3], ["doCheck", 19, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { fetchurl: false, lib: false, stdenv: false, autogen: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 22, 5], ["longDescription", 24, 5], ["license", 30, 5], ["homepage", 32, 5], ["platforms", 34, 5], ["maintainers", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 17, 3], ["doCheck", 19, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,18 +12,18 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const autogen = nix.arg($, "autogen");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "complexity",
       version: "1.10",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnu/complexity/complexity-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1vfns9xm7w0wrz12a3w15slrqnrfh6qxk15nv7qkj3irll3ff522",
         })))),
       buildInputs: nix.thunk(() => [autogen]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "C code complexity measurement tool",
         longDescription: "GNU Complexity is a tool designed for analyzing the complexity of C\nprogram functions.  It is very similar to the McCabe scoring, but\naddresses several issues not considered in that scoring scheme.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

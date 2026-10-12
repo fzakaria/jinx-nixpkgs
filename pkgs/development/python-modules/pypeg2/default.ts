@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 14, 13], ["version", 14, 19], ["sha256", 15, 5]], [["description", 27, 5], ["homepage", 28, 5], ["license", 29, 5]], [["version", 9, 3], ["format", 10, 3], ["pname", 11, 3], ["src", 13, 3], ["checkPhase", 18, 3], ["doCheck", 24, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, isPy3k: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 14, 13], ["version", 14, 19], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 27, 5], ["homepage", 28, 5], ["license", 29, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 9, 3], ["format", 10, 3], ["pname", 11, 3], ["src", 13, 3], ["checkPhase", 18, 3], ["doCheck", 24, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const pname = "pypeg2";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           sha256: "0v8ziaam2r637v94ra4dbjw6jzxz99gs5x4i585kgag1v204yb9b",
@@ -26,12 +24,12 @@ export default nix.lambda((args) => (() => {
       const checkPhase = "# The tests assume that test_xmlast does not run before test_pyPEG2.\npython -m unittest pypeg2.test.test_pyPEG2 pypeg2.test.test_xmlast\n";
       const doCheck = nix.thunk(() => !nix.asBool(isPy3k));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "PEG parser interpreter in Python",
         homepage: "http://fdik.org/pyPEG",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
       }));
-      return { [nix.POS]: pos$3, version, format, pname, src, checkPhase, doCheck, meta };
+      return { [nix.POS]: $pos[2], version, format, pname, src, checkPhase, doCheck, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

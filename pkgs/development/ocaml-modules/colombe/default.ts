@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 21, 5], ["hash", 22, 5]], [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5]], [["pname", 18, 11], ["version", 18, 17], ["minimalOCamlVersion", 19, 3], ["src", 20, 3], ["propagatedBuildInputs", 24, 3], ["doCheck", 30, 3], ["checkInputs", 31, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { alcotest: false, angstrom: false, buildDunePackage: false, crowbar: false, emile: false, fetchurl: false, fmt: false, ipaddr: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 18, 11], ["version", 18, 17], ["minimalOCamlVersion", 19, 3], ["src", 20, 3], ["propagatedBuildInputs", 24, 3], ["doCheck", 30, 3], ["checkInputs", 31, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pname = "colombe";
   const version = "0.12.1";
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: version,
       minimalOCamlVersion: "4.03",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/mirage/colombe/releases/download/v${version}/colombe-${version}.tbz`),
           hash: "sha256-6LHsxHUe5zGuNvgcIpJjg17gmx4QrKiO4UDIZcTB2CM=",
         })))),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest, crowbar]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "SMTP protocol according to RFC5321 without extensions",
         homepage: "https://github.com/mirage/colombe",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

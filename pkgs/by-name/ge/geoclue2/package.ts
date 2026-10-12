@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 41, 5], ["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]], [["geoclue2", 113, 28]], [["tests", 112, 5], ["updateScript", 115, 5]], [["broken", 119, 5], ["description", 120, 5], ["homepage", 121, 5], ["changelog", 122, 5], ["maintainers", 123, 5], ["platforms", 127, 5], ["license", 128, 5]], [["pname", 31, 3], ["version", 32, 3], ["outputs", 34, 3], ["src", 40, 3], ["patches", 48, 3], ["separateDebugInfo", 53, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 73, 3], ["propagatedBuildInputs", 87, 3], ["mesonFlags", 92, 3], ["postPatch", 106, 3], ["passthru", 111, 3], ["meta", 118, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, intltool: false, meson: false, mesonEmulatorHook: false, ninja: false, "pkg-config": false, "gtk-doc": false, "docbook-xsl-nons": false, docbook_xml_dtd_412: false, glib: false, "json-glib": false, libsoup_3: false, libnotify: false, "gdk-pixbuf": false, modemmanager: false, avahi: false, "glib-networking": false, python3: false, wrapGAppsHook3: false, "gobject-introspection": false, vala: false, withDemoAgent: true, "nix-update-script": false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 41, 5], ["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["geoclue2", 113, 28]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 112, 5], ["updateScript", 115, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["broken", 119, 5], ["description", 120, 5], ["homepage", 121, 5], ["changelog", 122, 5], ["maintainers", 123, 5], ["platforms", 127, 5], ["license", 128, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["outputs", 34, 3], ["src", 40, 3], ["patches", 48, 3], ["separateDebugInfo", 53, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 73, 3], ["propagatedBuildInputs", 87, 3], ["mesonFlags", 92, 3], ["postPatch", 106, 3], ["passthru", 111, 3], ["meta", 118, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,12 +34,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "geoclue",
       version: "2.8.2",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.freedesktop.org",
           owner: "geoclue",
           repo: "geoclue",
@@ -84,15 +80,15 @@ export default nix.lambda((args) => (() => {
         ])))),
       postPatch: "chmod +x demo/install-file.py\npatchShebangs demo/install-file.py\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           geoclue2: nix.thunk(() => nix.attr(nixosTests, "geoclue2")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         broken: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(withDemoAgent))),
         description: "Geolocation framework and some data providers",
         homepage: "https://gitlab.freedesktop.org/geoclue/geoclue/wikis/home",

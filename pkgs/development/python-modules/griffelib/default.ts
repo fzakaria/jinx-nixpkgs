@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["pypi", 43, 25]], [["changelog", 67, 5], ["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5]], [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["sourceRoot", 35, 3], ["build-system", 37, 3], ["optional-dependencies", 43, 3], ["pythonImportsCheck", 49, 3], ["nativeCheckInputs", 53, 3], ["disabledTestPaths", 60, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, "pdm-backend": false, "uv-dynamic-versioning": false, pip: false, platformdirs: false, wheel: false, griffe: false, jsonschema: false, mkdocstrings: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pypi", 43, 25]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 67, 5], ["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["sourceRoot", 35, 3], ["build-system", 37, 3], ["optional-dependencies", 43, 3], ["pythonImportsCheck", 49, 3], ["nativeCheckInputs", 53, 3], ["disabledTestPaths", 60, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const mkdocstrings = nix.arg($, "mkdocstrings");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "griffelib",
       version: "2.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mkdocstrings",
           repo: "griffe",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,12 +34,12 @@ export default nix.lambda((args) => (() => {
         })))),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/packages/griffelib`),
       "build-system": nix.thunk(() => [hatchling, pdm_backend, uv_dynamic_versioning]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, pypi: nix.thunk(() => [pip, platformdirs, wheel]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], pypi: nix.thunk(() => [pip, platformdirs, wheel]) })),
       pythonImportsCheck: nix.thunk(() => ["griffe"]),
       nativeCheckInputs: nix.thunk(() => [griffe, jsonschema, mkdocstrings, pytestCheckHook]),
       disabledTestPaths: nix.thunk(() => ["tests/test_api.py", "tests/test_git.py"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/mkdocstrings/griffe/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Signatures for entire Python programs. Extract the structure, the frame, the skeleton of your project, to generate API documentation or find breaking changes in your API",
         homepage: "https://github.com/mkdocstrings/griffe",

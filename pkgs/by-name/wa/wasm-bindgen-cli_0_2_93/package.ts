@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 9, 5], ["version", 10, 5], ["hash", 11, 5]], [["src", 15, 13], ["pname", 16, 19], ["version", 16, 25], ["hash", 17, 5]], [["src", 8, 3], ["cargoDeps", 14, 3]]]);
 const formals$1 = { args: { buildWasmBindgenCli: false, fetchCrate: false, rustPlatform: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 9, 5], ["version", 10, 5], ["hash", 11, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 15, 13], ["pname", 16, 19], ["version", 16, 25], ["hash", 17, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 8, 3], ["cargoDeps", 14, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,19 +12,19 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(buildWasmBindgenCli, nix.thunk(() => (() => {
       const src = nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "wasm-bindgen-cli",
           version: "0.2.93",
           hash: "sha256-DDdu5mM3gneraM85pAepBXWn3TMofarVR4NbjMdz3r0=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: src,
           pname: nix.thunk(() => nix.attr(src, "pname")),
           version: nix.thunk(() => nix.attr(src, "version")),
           hash: "sha256-s8srI+lu+DgQ+5BbaEXC4Ja/BL+K22LIl5Gd1PwNZZk=",
         }))));
-      return { [nix.POS]: pos$3, src, cargoDeps };
+      return { [nix.POS]: $pos[2], src, cargoDeps };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

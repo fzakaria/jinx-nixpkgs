@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["DisableAppUpdate", 26, 5]], [["policies", 29, 78]], [["url", 37, 53], ["sha256", 37, 57]], [["binaryName", 113, 13], ["applicationName", 114, 5], ["libName", 115, 5], ["withFFmpeg", 116, 5], ["withGSSAPI", 117, 5], ["gtk3", 118, 5], ["updateScript", 119, 5]], [["changelog", 123, 5], ["description", 124, 5], ["homepage", 125, 5], ["license", 127, 5], ["platforms", 131, 5], ["hydraPlatforms", 132, 5], ["maintainers", 133, 5], ["mainProgram", 136, 5], ["sourceProvenance", 137, 5]], [["pname", 33, 3], ["version", 34, 11], ["src", 36, 3], ["sourceRoot", 40, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 53, 3], ["runtimeDependencies", 61, 3], ["appendRunpaths", 69, 3], ["patchelfFlags", 74, 3], ["dontFixup", 77, 3], ["installPhase", 79, 3], ["passthru", 112, 3], ["meta", 122, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, wrapGAppsHook3: false, autoPatchelfHook: false, "alsa-lib": false, curl: false, "dbus-glib": false, gtk3: false, libxtst: false, libva: false, pciutils: false, pipewire: false, "adwaita-icon-theme": false, patchelfUnstable: false, undmg: false, writeText: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["DisableAppUpdate", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["policies", 29, 78]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 37, 53], ["sha256", 37, 57]]);
-const pos$4 = nix.positions(here + "/package.nix", [["binaryName", 113, 13], ["applicationName", 114, 5], ["libName", 115, 5], ["withFFmpeg", 116, 5], ["withGSSAPI", 117, 5], ["gtk3", 118, 5], ["updateScript", 119, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["changelog", 123, 5], ["description", 124, 5], ["homepage", 125, 5], ["license", 127, 5], ["platforms", 131, 5], ["hydraPlatforms", 132, 5], ["maintainers", 133, 5], ["mainProgram", 136, 5], ["sourceProvenance", 137, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 11], ["src", 36, 3], ["sourceRoot", 40, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 53, 3], ["runtimeDependencies", 61, 3], ["appendRunpaths", 69, 3], ["patchelfFlags", 74, 3], ["dontFixup", 77, 3], ["installPhase", 79, 3], ["passthru", 112, 3], ["meta", 122, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,16 +28,16 @@ export default nix.lambda((args) => (() => {
   const version = nix.thunk(() => nix.attr(from, "version"));
   const sources = nix.thunk(() => nix.attr(from, "sources"));
   const binaryName = "floorp";
-  const policies = nix.thunk(() => ({ [nix.POS]: pos$1, DisableAppUpdate: true }));
-  const policiesJson = nix.thunk(() => nix.app(writeText, "floorp-policies.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: pos$2, policies: policies }))))));
+  const policies = nix.thunk(() => ({ [nix.POS]: $pos[0], DisableAppUpdate: true }));
+  const policiesJson = nix.thunk(() => nix.app(writeText, "floorp-policies.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: $pos[1], policies: policies }))))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "floorp-bin-unwrapped",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (() => {
           const from_1 = nix.thunk(() => nix.sel(sources, nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
           return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.attr(from_1, "url")),
           sha256: nix.thunk(() => nix.attr(from_1, "sha256")),
         };
@@ -66,7 +61,7 @@ mkdir -p "$out/lib/floorp-bin-${nix.sel(finalAttrs, "version")}/distribution";
 ln -s ${policiesJson} "$out/lib/floorp-bin-${nix.sel(finalAttrs, "version")}/distribution/policies.json";
 `)), "runHook postInstall\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         binaryName: binaryName,
         applicationName: "Floorp",
         libName: nix.thunk(() => nix.str`floorp-bin-${nix.sel(finalAttrs, "version")}`),
@@ -76,7 +71,7 @@ ln -s ${policiesJson} "$out/lib/floorp-bin-${nix.sel(finalAttrs, "version")}/dis
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://blog.floorp.app/en/release/${nix.sel(finalAttrs, "version")}/`),
         description: "Fork of Firefox that seeks balance between versatility, privacy and web openness",
         homepage: "https://floorp.app/",

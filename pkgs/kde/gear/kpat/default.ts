@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["mainProgram", 24, 8]], [["pname", 11, 3], ["extraNativeBuildInputs", 13, 3], ["extraBuildInputs", 17, 3], ["qtWrapperArgs", 23, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { mkKdeDerivation: false, qtsvg: false, _7zz: false, "shared-mime-info": false, "black-hole-solver": false, "freecell-solver": false, libkdegames: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["mainProgram", 24, 8]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["extraNativeBuildInputs", 13, 3], ["extraBuildInputs", 17, 3], ["qtWrapperArgs", 23, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const freecell_solver = nix.arg($, "freecell-solver");
   const libkdegames = nix.arg($, "libkdegames");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "kpat",
       extraNativeBuildInputs: nix.thunk(() => [_7zz, shared_mime_info]),
       extraBuildInputs: nix.thunk(() => [qtsvg, black_hole_solver, freecell_solver]),
       qtWrapperArgs: nix.thunk(() => [nix.thunk(() => nix.str`--prefix XDG_DATA_DIRS : ${libkdegames}/share`)]),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "kpat" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], mainProgram: "kpat" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

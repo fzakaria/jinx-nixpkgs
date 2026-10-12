@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]], [["src", 71, 61], ["version", 71, 65]], [["ui", 71, 12]], [["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["mainProgram", 78, 5], ["platforms", 79, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["vendorHash", 31, 3], ["modRoot", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 40, 3], ["postInstall", 48, 3], ["passthru", 71, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, callPackage: false, makeWrapper: false, "pkg-config": false, dlib: false, libjpeg: false, libheif: false, blas: false, lapack: false, exiftool: false, darktable: false, ffmpeg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 71, 61], ["version", 71, 65]]);
-const pos$3 = nix.positions(here + "/package.nix", [["ui", 71, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["mainProgram", 78, 5], ["platforms", 79, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["vendorHash", 31, 3], ["modRoot", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 40, 3], ["postInstall", 48, 3], ["passthru", 71, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const darktable = nix.arg($, "darktable");
   const ffmpeg = nix.arg($, "ffmpeg");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "photoview",
       version: "2.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "photoview",
           repo: "photoview",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,15 +52,15 @@ wrapProgram $out/bin/photoview \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [exiftool, darktable, ffmpeg]))}
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         ui: nix.thunk(() => nix.app(callPackage, nix.path(here, "./ui.nix"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Photo gallery for self-hosted personal servers",
         homepage: "https://photoview.github.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

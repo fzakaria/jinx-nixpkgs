@@ -2,8 +2,7 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/transitive-broken-packages.nix", [["allowBroken", 17, 37]]);
-const pos$2 = nix.positions(here + "/transitive-broken-packages.nix", [["config", 17, 30]]);
+const $pos = nix.positions(here + "/transitive-broken-packages.nix", [[["allowBroken", 17, 37]], [["config", 17, 30]]]);
 
 export default nix.thunk(() => (() => {
   const nixpkgs = nix.thunk(() => nix.builtins.import(nix.path(here, "../../..")));
@@ -13,8 +12,8 @@ export default nix.thunk(() => (() => {
   const isVersioned = (attr) => !nix.eq(nix.builtins.match("[A-Za-z0-9-]+(_[0-9]+)+", attr), null);
   const getEvaluating = (x) => nix.app(nix.sel(lib, "mapAttrsToList"), (_) => (v) => nix.sel(v, "pname"), nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (n) => (v) => (nix.asBool((nix.asBool((nix.asBool(!nix.asBool(nix.app(isVersioned, n))) && nix.asBool(nix.sel(nix.builtins.tryEval(nix.thunk(() => nix.selOr(v, () => null, "outPath"))), "success")))) && nix.asBool(nix.app(nix.sel(lib, "isDerivation"), v)))) && nix.asBool(!nix.asBool(nix.sel(v, "meta", "broken")))), x)));
   const brokenDeps = nix.thunk(() => nix.app(nix.sel(lib, "subtractLists"), nix.thunk(() => nix.app(getEvaluating, nix.thunk(() => nix.sel(pkgs, "haskellPackages")))), nix.thunk(() => nix.app(getEvaluating, nix.thunk(() => nix.sel(nix.app(nixpkgs, nix.thunk(() => ({
-          [nix.POS]: pos$2,
-          config: nix.thunk(() => ({ [nix.POS]: pos$1, allowBroken: true })),
+          [nix.POS]: $pos[1],
+          config: nix.thunk(() => ({ [nix.POS]: $pos[0], allowBroken: true })),
         }))), "haskellPackages"))))));
   return nix.str`${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (x) => nix.str` - ${x}`, brokenDeps)}
 `;

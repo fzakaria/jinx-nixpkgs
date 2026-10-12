@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]], [["description", 119, 5], ["homepage", 120, 5], ["changelog", 121, 5], ["maintainers", 122, 5], ["license", 123, 5]], [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["__structuredAttrs", 36, 3], ["src", 38, 3], ["build-system", 45, 3], ["nativeBuildInputs", 49, 3], ["dependencies", 53, 3], ["pythonRelaxDeps", 75, 3], ["pythonRemoveDeps", 83, 3], ["postPatch", 87, 3], ["pythonImportsCheck", 91, 3], ["nativeCheckInputs", 93, 3], ["disabledTestPaths", 101, 3], ["disabledTests", 107, 3], ["meta", 118, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, anyio: false, asyncer: false, cachetools: false, cloudpickle: false, "datamodel-code-generator": false, diskcache: false, gepa: false, "json-repair": false, litellm: false, mcp: false, numpy: false, openai: false, orjson: false, pillow: false, pydantic: false, pyprojectVersionPatchHook: false, pytestCheckHook: false, "pytest-asyncio": false, regex: false, requests: false, tenacity: false, tqdm: false, typeguard: false, xxhash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 119, 5], ["homepage", 120, 5], ["changelog", 121, 5], ["maintainers", 122, 5], ["license", 123, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["__structuredAttrs", 36, 3], ["src", 38, 3], ["build-system", 45, 3], ["nativeBuildInputs", 49, 3], ["dependencies", 53, 3], ["pythonRelaxDeps", 75, 3], ["pythonRemoveDeps", 83, 3], ["postPatch", 87, 3], ["pythonImportsCheck", 91, 3], ["nativeCheckInputs", 93, 3], ["disabledTestPaths", 101, 3], ["disabledTests", 107, 3], ["meta", 118, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,13 +36,13 @@ export default nix.lambda((args) => (() => {
   const typeguard = nix.arg($, "typeguard");
   const xxhash = nix.arg($, "xxhash");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dspy",
       version: "3.2.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "stanfordnlp",
           repo: "dspy",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -90,7 +88,7 @@ export default nix.lambda((args) => (() => {
         "test_text_lms_can_be_queried",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Programming — not prompting — language models",
         homepage: "https://github.com/stanfordnlp/dspy",
         changelog: nix.thunk(() => nix.str`https://github.com/stanfordnlp/dspy/releases/tag/${nix.sel(finalAttrs, "version")}`),

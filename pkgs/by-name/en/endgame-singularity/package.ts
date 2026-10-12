@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["url", 22, 5], ["sha256", 23, 5]], [["homepage", 59, 5], ["description", 60, 5], ["longDescription", 61, 5], ["license", 66, 5], ["mainProgram", 73, 5], ["maintainers", 74, 5]], [["pyproject", 28, 3], ["pname", 29, 11], ["version", 29, 17], ["srcs", 31, 3], ["sourceRoot", 32, 3], ["postPatch", 34, 3], ["nativeBuildInputs", 39, 3], ["build-system", 41, 3], ["dependencies", 45, 3], ["postInstall", 52, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, fetchFromGitHub: false, unzip: false, python3: false, enableDefaultMusicPack: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 22, 5], ["sha256", 23, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 59, 5], ["description", 60, 5], ["longDescription", 61, 5], ["license", 66, 5], ["mainProgram", 73, 5], ["maintainers", 74, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pyproject", 28, 3], ["pname", 29, 11], ["version", 29, 17], ["srcs", 31, 3], ["sourceRoot", 32, 3], ["postPatch", 34, 3], ["nativeBuildInputs", 39, 3], ["build-system", 41, 3], ["dependencies", 45, 3], ["postInstall", 52, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,19 +16,19 @@ export default nix.lambda((args) => (() => {
   const pname = "endgame-singularity";
   const version = "1.1";
   const main_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "singularity",
       repo: "singularity",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-wYXuhlGp7gisgN2iRXKTpe0Om2AA8u0eBwKHHIYuqbk=",
     }))));
   const music_src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: "http://www.emhsoft.com/singularity/endgame-singularity-music-007.zip",
       sha256: "0vf2qaf66jh56728pq1zbnw50yckjz6pf6c6qw6dl7vk60kkqnpb",
     }))));
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pyproject: true,
       pname: pname,
       version: version,
@@ -53,7 +50,7 @@ export default nix.lambda((args) => (() => {
       })()),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), enableDefaultMusicPack, "cp -R \"../endgame-singularity-music-007\" \\\n      \"$(echo $out/lib/python*/site-packages/singularity)/music\"\n      # ↑ we cannot glob on [...]/music, it doesn't exist yet\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "http://www.emhsoft.com/singularity/",
         description: "Simulation game about strong AI",
         longDescription: "A simulation of a true AI. Go from computer to computer, pursued by the\nentire world. Keep hidden, and you might have a chance\n",

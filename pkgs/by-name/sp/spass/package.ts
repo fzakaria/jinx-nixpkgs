@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["sha256", 24, 5]], [["description", 43, 5], ["maintainers", 44, 5], ["platforms", 47, 5], ["license", 48, 5], ["downloadPage", 49, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["sourceRoot", 27, 3], ["nativeBuildInputs", 29, 3], ["buildPhase", 34, 3], ["installPhase", 37, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, gccStdenv: false, fetchurl: false, bison: false, flex: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["sha256", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 43, 5], ["maintainers", 44, 5], ["platforms", 47, 5], ["license", 48, 5], ["downloadPage", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["sourceRoot", 27, 3], ["nativeBuildInputs", 29, 3], ["buildPhase", 34, 3], ["installPhase", 37, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const minorVersion = "9";
   const extraTools = nix.thunk(() => nix.add("FLOTTER prolog2dfg dfg2otter dfg2dimacs dfg2tptp", " dfg2ascii dfg2dfg tptp2dfg dimacs2dfg pgen rescmp"));
   return nix.app(nix.sel(gccStdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "spass",
       version: nix.thunk(() => nix.str`${baseVersion}.${minorVersion}`),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.spass-prover.org/download/sources/spass${baseVersion}${minorVersion}.tgz`),
           sha256: "11cyn3kcff4r79rsw2s0xm6rdb8bi0kpkazv2b48jhcms7xw75qp",
         })))),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
 install -m0755 SPASS ${extraTools} $out/bin/
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Automated theorem prover for first-order logic",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

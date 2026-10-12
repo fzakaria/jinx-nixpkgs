@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["domain", 54, 5], ["group", 55, 5], ["owner", 56, 5], ["repo", 57, 5], ["tag", 58, 5], ["hash", 59, 5]], [["changelog", 134, 5], ["description", 135, 5], ["homepage", 136, 5], ["license", 137, 5], ["maintainers", 138, 5]], [["pname", 49, 3], ["version", 50, 3], ["pyproject", 51, 3], ["src", 53, 3], ["postPatch", 62, 3], ["build-system", 69, 3], ["dependencies", 74, 3], ["pythonImportsCheck", 91, 3], ["doCheck", 94, 3], ["enabledTestPaths", 96, 3], ["nativeCheckInputs", 98, 3], ["disabledTestPaths", 119, 3], ["disabledTests", 124, 3], ["meta", 133, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitLab: false, pythonAtLeast: false, "util-linux": false, setuptools: false, "setuptools-scm": false, "backports-entry-points-selectable": false, "cassandra-driver": false, click: false, deprecated: false, flask: false, iso8601: false, msgpack: false, "mypy-extensions": false, psycopg: false, redis: false, "swh-core": false, "swh-model": false, "swh-shard": false, tenacity: false, aiohttp: false, "azure-core": false, "azure-storage-blob": false, fixtures: false, libcloud: false, postgresql: false, postgresqlTestHook: false, "pytest-mock": false, "pytest-postgresql": false, pytestCheckHook: false, "requests-mock": false, "requests-toolbelt": false, "systemd-python": false, "types-python-dateutil": false, "types-pyyaml": false, "types-requests": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["domain", 54, 5], ["group", 55, 5], ["owner", 56, 5], ["repo", 57, 5], ["tag", 58, 5], ["hash", 59, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 134, 5], ["description", 135, 5], ["homepage", 136, 5], ["license", 137, 5], ["maintainers", 138, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 49, 3], ["version", 50, 3], ["pyproject", 51, 3], ["src", 53, 3], ["postPatch", 62, 3], ["build-system", 69, 3], ["dependencies", 74, 3], ["pythonImportsCheck", 91, 3], ["doCheck", 94, 3], ["enabledTestPaths", 96, 3], ["nativeCheckInputs", 98, 3], ["disabledTestPaths", 119, 3], ["disabledTests", 124, 3], ["meta", 133, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -48,12 +46,12 @@ export default nix.lambda((args) => (() => {
   const types_pyyaml = nix.arg($, "types-pyyaml");
   const types_requests = nix.arg($, "types-requests");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "swh-objstorage",
       version: "5.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.softwareheritage.org",
           group: "swh",
           owner: "devel",
@@ -108,7 +106,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.14")), nix.thunk(() => ["swh/objstorage/tests/test_objstorage_api.py"]))),
       disabledTests: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.14")), nix.thunk(() => ["test_winery_add_and_pack"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => ["test_winery_leaky_bucket_tick"])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://gitlab.softwareheritage.org/swh/devel/swh-objstorage/-/tags/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Content-addressable object storage for the Software Heritage project",
         homepage: "https://gitlab.softwareheritage.org/swh/devel/swh-objstorage",

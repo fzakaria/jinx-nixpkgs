@@ -2,20 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 15, 9], ["sha256", 16, 9], ["nativeBuildInputs", 17, 9], ["buildInputs", 18, 9]], [["version", 23, 9], ["sha256", 24, 9]], [["version", 27, 9], ["sha256", 28, 9]], [["version", 31, 9], ["rev", 32, 9], ["sha256", 33, 9]], [["version", 36, 9], ["sha256", 37, 9]], [["version", 40, 9], ["sha256", 41, 9]], [["version", 44, 9], ["sha256", 45, 9]], [["4.02", 22, 7], ["4.03", 26, 7], ["4.04", 30, 7], ["4.05", 35, 7], ["4.06", 39, 7], ["4.07", 43, 7]], [["owner", 53, 5], ["repo", 54, 5], ["rev", 55, 5], ["sha256", 56, 21]], [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["broken", 64, 5]], [["pname", 69, 13], ["src", 69, 19], ["meta", 69, 23], ["version", 70, 21], ["buildInputs", 70, 29], ["nativeBuildInputs", 70, 41]], [["platforms", 90, 28]], [["name", 74, 5], ["src", 76, 13], ["nativeBuildInputs", 78, 5], ["strictDeps", 83, 5], ["createFindlibDestdir", 85, 5], ["dontStrip", 87, 5], ["meta", 89, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, buildDunePackage: false, ocaml: false, findlib: false, cppo: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 15, 9], ["sha256", 16, 9], ["nativeBuildInputs", 17, 9], ["buildInputs", 18, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 23, 9], ["sha256", 24, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 27, 9], ["sha256", 28, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["version", 31, 9], ["rev", 32, 9], ["sha256", 33, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["version", 36, 9], ["sha256", 37, 9]]);
-const pos$6 = nix.positions(here + "/default.nix", [["version", 40, 9], ["sha256", 41, 9]]);
-const pos$7 = nix.positions(here + "/default.nix", [["version", 44, 9], ["sha256", 45, 9]]);
-const pos$8 = nix.positions(here + "/default.nix", [["4.02", 22, 7], ["4.03", 26, 7], ["4.04", 30, 7], ["4.05", 35, 7], ["4.06", 39, 7], ["4.07", 43, 7]]);
-const pos$9 = nix.positions(here + "/default.nix", [["owner", 53, 5], ["repo", 54, 5], ["rev", 55, 5], ["sha256", 56, 21]]);
-const pos$10 = nix.positions(here + "/default.nix", [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["broken", 64, 5]]);
-const pos$11 = nix.positions(here + "/default.nix", [["pname", 69, 13], ["src", 69, 19], ["meta", 69, 23], ["version", 70, 21], ["buildInputs", 70, 29], ["nativeBuildInputs", 70, 41]]);
-const pos$12 = nix.positions(here + "/default.nix", [["platforms", 90, 28]]);
-const pos$13 = nix.positions(here + "/default.nix", [["name", 74, 5], ["src", 76, 13], ["nativeBuildInputs", 78, 5], ["strictDeps", 83, 5], ["createFindlibDestdir", 85, 5], ["dontStrip", 87, 5], ["meta", 89, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,49 +16,49 @@ export default nix.lambda((args) => (() => {
   const cppo = nix.arg($, "cppo");
   const param = nix.thunk(() => (() => {
     const v6_6 = nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       version: "6.6",
       sha256: "sha256-QhuaQ9346a3neoRM4GrOVzjR8fg9ysMZR1VzNgyIQtc=",
       nativeBuildInputs: nix.thunk(() => [cppo]),
       buildInputs: nix.thunk(() => [cppo]),
     }));
     return nix.selOr({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       "4.02": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         version: "5.0+4.02.0",
         sha256: "16drjk0qafjls8blng69qiv35a84wlafpk16grrg2i3x19p8dlj8",
       })),
       "4.03": nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         version: "5.0+4.03.0",
         sha256: "061v1fl5z7z3ywi4ppryrlcywnvnqbsw83ppq72qmkc7ma4603jg",
       })),
       "4.04": nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         version: "unstable-20161114",
         rev: "49c08e2e4ea8fef88692cd1dcc1b38a9133f17ac",
         sha256: "0ywzfkf5brj33nwh49k9if8x8v433ral25f3nbklfc9vqr06zrfl",
       })),
       "4.05": nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         version: "5.0+4.05.0",
         sha256: "1jvvhk6wnkvm7b9zph309ihsc0hyxfpahmxxrq19vx8c674jsdm4",
       })),
       "4.06": nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         version: "5.1+4.06.0",
         sha256: "1ww4cspdpgjjsgiv71s0im5yjkr3544x96wsq1vpdacq7dr7zwiw",
       })),
       "4.07": nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         version: "5.1+4.06.0",
         sha256: "1ww4cspdpgjjsgiv71s0im5yjkr3544x96wsq1vpdacq7dr7zwiw",
       })),
     }, () => nix.force(v6_6), nix.key(nix.sel(ocaml, "meta", "branch")));
   })());
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       owner: "alainfrisch",
       repo: pname,
       rev: nix.thunk(() => nix.selOr(param, () => nix.sel(param, "version"), "rev")),
@@ -78,7 +66,7 @@ export default nix.lambda((args) => (() => {
     }))));
   const pname = "ppx_tools";
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     description: "Tools for authors of ppx rewriters",
     homepage: "https://www.lexifi.com/ppx_tools",
     license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -89,7 +77,7 @@ export default nix.lambda((args) => (() => {
     broken: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "5.2")),
   }));
   return (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(param, "version")), "6.0")) ? nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       pname: pname,
       src: src,
       meta: meta,
@@ -97,7 +85,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.attr(param, "buildInputs")),
       nativeBuildInputs: nix.thunk(() => nix.attr(param, "nativeBuildInputs")),
     }))) : nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       name: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-${pname}-${nix.sel(param, "version")}`),
       src: src,
       nativeBuildInputs: nix.thunk(() => [ocaml, findlib]),
@@ -106,7 +94,7 @@ export default nix.lambda((args) => (() => {
       dontStrip: true,
       meta: nix.thunk(() => nix.update(meta, (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
-        return { [nix.POS]: pos$12, platforms: nix.thunk(() => nix.attr(from, "platforms")) };
+        return { [nix.POS]: $pos[11], platforms: nix.thunk(() => nix.attr(from, "platforms")) };
       })())),
     }))));
 })(), formals$1);

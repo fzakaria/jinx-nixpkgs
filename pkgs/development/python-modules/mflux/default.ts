@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 44, 5], ["repo", 45, 5], ["tag", 46, 5], ["hash", 47, 5]], [["description", 154, 5], ["homepage", 155, 5], ["changelog", 156, 5], ["license", 157, 5], ["maintainers", 158, 5]], [["pname", 39, 3], ["version", 40, 3], ["pyproject", 41, 3], ["src", 43, 3], ["postPatch", 50, 3], ["build-system", 55, 3], ["pythonRelaxDeps", 59, 3], ["dependencies", 65, 3], ["pythonImportsCheck", 89, 3], ["nativeCheckInputs", 91, 3], ["disabledTests", 96, 3], ["meta", 153, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, "uv-build": false, filelock: false, fonttools: false, "huggingface-hub": false, matplotlib: false, mlx: false, numpy: false, "opencv-python": false, piexif: false, pillow: false, platformdirs: false, regex: false, requests: false, safetensors: false, sentencepiece: false, tokenizers: false, toml: false, torch: false, tqdm: false, transformers: false, twine: false, urllib3: false, pytestCheckHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 44, 5], ["repo", 45, 5], ["tag", 46, 5], ["hash", 47, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 154, 5], ["homepage", 155, 5], ["changelog", 156, 5], ["license", 157, 5], ["maintainers", 158, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 39, 3], ["version", 40, 3], ["pyproject", 41, 3], ["src", 43, 3], ["postPatch", 50, 3], ["build-system", 55, 3], ["pythonRelaxDeps", 59, 3], ["dependencies", 65, 3], ["pythonImportsCheck", 89, 3], ["nativeCheckInputs", 91, 3], ["disabledTests", 96, 3], ["meta", 153, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,12 +36,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mflux",
       version: "0.15.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "filipstrand",
           repo: "mflux",
           tag: nix.thunk(() => nix.str`v.${nix.sel(finalAttrs, "version")}`),
@@ -127,7 +125,7 @@ export default nix.lambda((args) => (() => {
         "test_real_vae_tiling_compatibility",
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_depth_pro_generation"])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "MLX native implementations of state-of-the-art generative image models",
         homepage: "https://github.com/filipstrand/mflux",
         changelog: nix.thunk(() => nix.str`https://github.com/filipstrand/mflux/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

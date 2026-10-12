@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["isFuse3", 44, 68]], [["librclone", 99, 15]], [["tests", 98, 5], ["updateScript", 101, 5]], [["description", 105, 5], ["homepage", 106, 5], ["changelog", 107, 5], ["license", 108, 5], ["mainProgram", 109, 5], ["maintainers", 110, 5]], [["pname", 18, 3], ["version", 19, 3], ["outputs", 21, 3], ["src", 26, 3], ["vendorHash", 33, 3], ["subPackages", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 42, 3], ["tags", 47, 3], ["ldflags", 51, 3], ["postConfigure", 57, 3], ["postInstall", 62, 3], ["nativeInstallCheckInputs", 90, 3], ["doInstallCheck", 93, 3], ["versionCheckProgram", 94, 3], ["versionCheckProgramArg", 95, 3], ["passthru", 97, 3], ["meta", 104, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, buildPackages: false, installShellFiles: false, versionCheckHook: false, makeWrapper: false, enableCmount: true, fuse3: false, "macfuse-stubs": false, librclone: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["isFuse3", 44, 68]]);
-const pos$3 = nix.positions(here + "/package.nix", [["librclone", 99, 15]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 98, 5], ["updateScript", 101, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 105, 5], ["homepage", 106, 5], ["changelog", 107, 5], ["license", 108, 5], ["mainProgram", 109, 5], ["maintainers", 110, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["outputs", 21, 3], ["src", 26, 3], ["vendorHash", 33, 3], ["subPackages", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 42, 3], ["tags", 47, 3], ["ldflags", 51, 3], ["postConfigure", 57, 3], ["postInstall", 62, 3], ["nativeInstallCheckInputs", 90, 3], ["doInstallCheck", 93, 3], ["versionCheckProgram", 94, 3], ["versionCheckProgramArg", 95, 3], ["passthru", 97, 3], ["meta", 104, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const librclone = nix.arg($, "librclone");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "rclone",
       version: "1.75.1",
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rclone",
           repo: "rclone",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +35,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-3HkOymYmr3JFG/Cs8GKHImRioQaHbiI3MEJR1ZPhbu8=",
       subPackages: nix.thunk(() => ["."]),
       nativeBuildInputs: nix.thunk(() => [installShellFiles, makeWrapper]),
-      buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), enableCmount, nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(nix.sel(macfuse_stubs, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, isFuse3: false }))) : nix.force(fuse3))))),
+      buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), enableCmount, nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(nix.sel(macfuse_stubs, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], isFuse3: false }))) : nix.force(fuse3))))),
       tags: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => ["fuse3"])), nix.app(nix.sel(lib, "optionals"), enableCmount, nix.thunk(() => ["cmount"])))),
       ldflags: nix.thunk(() => [
         "-s",
@@ -68,12 +63,12 @@ ln -s $out/bin/rclone $out/bin/mount.rclone
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/${nix.sel(finalAttrs, "meta", "mainProgram")}`),
       versionCheckProgramArg: "version",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, librclone: librclone })),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], librclone: librclone })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Command line program to sync files and directories to and from major cloud storage",
         homepage: "https://rclone.org",
         changelog: nix.thunk(() => nix.str`https://github.com/rclone/rclone/blob/v${nix.sel(finalAttrs, "version")}/docs/content/changelog.md`),

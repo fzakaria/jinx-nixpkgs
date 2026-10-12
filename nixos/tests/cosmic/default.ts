@@ -2,30 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 23, 5], ["desktopName", 24, 5], ["exec", 25, 5]], [["name", 28, 5], ["package", 29, 5]], [["maintainers", 36, 8]], [["enable", 45, 15]], [["enable", 47, 37]], [["enable", 55, 7], ["user", 56, 7]], [["cosmic-greeter", 47, 22], ["autoLogin", 54, 29]], [["enable", 50, 18]], [["enable", 49, 9], ["xwayland", 50, 9]], [["cosmic", 48, 22]], [["flatpak", 45, 7], ["displayManager", 47, 7], ["desktopManager", 48, 7]], [["extraGroups", 60, 13]], [["password", 64, 12], ["hashedPasswordFile", 65, 12]], [["alice", 60, 7], ["root", 64, 7]], [["users", 59, 11]], [["enable", 68, 21]], [["uinput", 68, 14]], [["systemPackages", 70, 17]], [["memorySize", 94, 20]], [["imports", 39, 5], ["services", 41, 5], ["users", 59, 5], ["hardware", 68, 5], ["environment", 70, 5], ["virtualisation", 94, 5]], [["machine", 38, 9]], [["name", 34, 3], ["meta", 36, 3], ["nodes", 38, 3], ["testScript", 97, 3]]]);
 const formals$1 = { args: { config: false, lib: false, testName: false, enableAutologin: false, enableXWayland: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 23, 5], ["desktopName", 24, 5], ["exec", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 28, 5], ["package", 29, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["maintainers", 36, 8]]);
-const pos$4 = nix.positions(here + "/default.nix", [["enable", 45, 15]]);
-const pos$5 = nix.positions(here + "/default.nix", [["enable", 47, 37]]);
-const pos$6 = nix.positions(here + "/default.nix", [["enable", 55, 7], ["user", 56, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["cosmic-greeter", 47, 22], ["autoLogin", 54, 29]]);
-const pos$8 = nix.positions(here + "/default.nix", [["enable", 50, 18]]);
-const pos$9 = nix.positions(here + "/default.nix", [["enable", 49, 9], ["xwayland", 50, 9]]);
-const pos$10 = nix.positions(here + "/default.nix", [["cosmic", 48, 22]]);
-const pos$11 = nix.positions(here + "/default.nix", [["flatpak", 45, 7], ["displayManager", 47, 7], ["desktopManager", 48, 7]]);
-const pos$12 = nix.positions(here + "/default.nix", [["extraGroups", 60, 13]]);
-const pos$13 = nix.positions(here + "/default.nix", [["password", 64, 12], ["hashedPasswordFile", 65, 12]]);
-const pos$14 = nix.positions(here + "/default.nix", [["alice", 60, 7], ["root", 64, 7]]);
-const pos$15 = nix.positions(here + "/default.nix", [["users", 59, 11]]);
-const pos$16 = nix.positions(here + "/default.nix", [["enable", 68, 21]]);
-const pos$17 = nix.positions(here + "/default.nix", [["uinput", 68, 14]]);
-const pos$18 = nix.positions(here + "/default.nix", [["systemPackages", 70, 17]]);
-const pos$19 = nix.positions(here + "/default.nix", [["memorySize", 94, 20]]);
-const pos$20 = nix.positions(here + "/default.nix", [["imports", 39, 5], ["services", 41, 5], ["users", 59, 5], ["hardware", 68, 5], ["environment", 70, 5], ["virtualisation", 94, 5]]);
-const pos$21 = nix.positions(here + "/default.nix", [["machine", 38, 9]]);
 const formals$2 = { args: { nodes: false }, ellipsis: true };
-const pos$22 = nix.positions(here + "/default.nix", [["name", 34, 3], ["meta", 36, 3], ["nodes", 38, 3], ["testScript", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,59 +22,63 @@ export default nix.lambda((args) => (() => {
     --root-user-password ${nix.sel(user, "password")}
 `)));
   const cosmicTestDesktop = nix.thunk(() => nix.app(nix.sel(config, "node", "pkgs", "makeDesktopItem"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "cosmicTest",
       desktopName: nix.thunk(() => nix.str`COSMIC NixOS VM test (${testName})`),
       exec: "cosmicTest",
     }))));
-  const cosmicTestAutostartItem = nix.thunk(() => nix.app(nix.sel(config, "node", "pkgs", "makeAutostartItem"), nix.thunk(() => ({ [nix.POS]: pos$2, name: "cosmicTest", package: cosmicTestDesktop }))));
+  const cosmicTestAutostartItem = nix.thunk(() => nix.app(nix.sel(config, "node", "pkgs", "makeAutostartItem"), nix.thunk(() => ({ [nix.POS]: $pos[1], name: "cosmicTest", package: cosmicTestDesktop }))));
   return {
-    [nix.POS]: pos$22,
+    [nix.POS]: $pos[21],
     name: testName,
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       maintainers: nix.thunk(() => nix.sel(lib, "teams", "cosmic", "members")),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$21,
+      [nix.POS]: $pos[20],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$20,
+        [nix.POS]: $pos[19],
         imports: nix.thunk(() => [nix.path(here, "../common/user-account.nix")]),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$11,
-          flatpak: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
+          [nix.POS]: $pos[10],
+          flatpak: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: true })),
           displayManager: nix.thunk(() => ({
-            [nix.POS]: pos$7,
-            "cosmic-greeter": nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
-            autoLogin: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), enableAutologin, nix.thunk(() => ({ [nix.POS]: pos$6, enable: true, user: nix.thunk(() => nix.sel(user, "name")) })))),
+            [nix.POS]: $pos[6],
+            "cosmic-greeter": nix.thunk(() => ({ [nix.POS]: $pos[4], enable: true })),
+            autoLogin: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), enableAutologin, nix.thunk(() => ({
+                [nix.POS]: $pos[5],
+                enable: true,
+                user: nix.thunk(() => nix.sel(user, "name")),
+              })))),
           })),
           desktopManager: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             cosmic: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               enable: true,
-              xwayland: nix.thunk(() => ({ [nix.POS]: pos$8, enable: enableXWayland })),
+              xwayland: nix.thunk(() => ({ [nix.POS]: $pos[7], enable: enableXWayland })),
             })),
           })),
         })),
         users: nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           users: nix.thunk(() => ({
-            [nix.POS]: pos$14,
-            alice: nix.thunk(() => ({ [nix.POS]: pos$12, extraGroups: nix.thunk(() => ["uinput"]) })),
+            [nix.POS]: $pos[13],
+            alice: nix.thunk(() => ({ [nix.POS]: $pos[11], extraGroups: nix.thunk(() => ["uinput"]) })),
             root: nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               password: nix.thunk(() => nix.sel(user, "password")),
               hashedPasswordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), null)),
             })),
           })),
         })),
         hardware: nix.thunk(() => ({
-          [nix.POS]: pos$17,
-          uinput: nix.thunk(() => ({ [nix.POS]: pos$16, enable: true })),
+          [nix.POS]: $pos[16],
+          uinput: nix.thunk(() => ({ [nix.POS]: $pos[15], enable: true })),
         })),
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           systemPackages: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(config, "node", "pkgs")), null);
             return [
@@ -107,7 +90,7 @@ export default nix.lambda((args) => (() => {
             ];
           })()),
         })),
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$19, memorySize: 4096n })),
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[18], memorySize: 4096n })),
       })),
     })),
     testScript: nix.lambda((args_1) => (() => {

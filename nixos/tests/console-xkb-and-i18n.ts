@@ -2,42 +2,34 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/console-xkb-and-i18n.nix", [[["maintainers", 4, 8]], [["defaultLocale", 14, 12]], [["useXkbConfig", 15, 15]], [["layout", 17, 9], ["variant", 18, 9]], [["xkb", 16, 24]], [["xserver", 16, 16]], [["i18n", 14, 7], ["console", 15, 7], ["services", 16, 7]], [["x", 13, 5]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 22, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/console-xkb-and-i18n.nix", [["maintainers", 4, 8]]);
-const pos$2 = nix.positions(here + "/console-xkb-and-i18n.nix", [["defaultLocale", 14, 12]]);
-const pos$3 = nix.positions(here + "/console-xkb-and-i18n.nix", [["useXkbConfig", 15, 15]]);
-const pos$4 = nix.positions(here + "/console-xkb-and-i18n.nix", [["layout", 17, 9], ["variant", 18, 9]]);
-const pos$5 = nix.positions(here + "/console-xkb-and-i18n.nix", [["xkb", 16, 24]]);
-const pos$6 = nix.positions(here + "/console-xkb-and-i18n.nix", [["xserver", 16, 16]]);
-const pos$7 = nix.positions(here + "/console-xkb-and-i18n.nix", [["i18n", 14, 7], ["console", 15, 7], ["services", 16, 7]]);
-const pos$8 = nix.positions(here + "/console-xkb-and-i18n.nix", [["x", 13, 5]]);
 const formals$2 = { args: { nodes: false }, ellipsis: true };
-const pos$9 = nix.positions(here + "/console-xkb-and-i18n.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     name: "console-xkb-and-i18n",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "doronbehar"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       x: nix.thunk(() => ({
-        [nix.POS]: pos$7,
-        i18n: nix.thunk(() => ({ [nix.POS]: pos$2, defaultLocale: "eo" })),
-        console: nix.thunk(() => ({ [nix.POS]: pos$3, useXkbConfig: true })),
+        [nix.POS]: $pos[6],
+        i18n: nix.thunk(() => ({ [nix.POS]: $pos[1], defaultLocale: "eo" })),
+        console: nix.thunk(() => ({ [nix.POS]: $pos[2], useXkbConfig: true })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           xserver: nix.thunk(() => ({
-            [nix.POS]: pos$5,
-            xkb: nix.thunk(() => ({ [nix.POS]: pos$4, layout: "us", variant: "colemak" })),
+            [nix.POS]: $pos[4],
+            xkb: nix.thunk(() => ({ [nix.POS]: $pos[3], layout: "us", variant: "colemak" })),
           })),
         })),
       })),

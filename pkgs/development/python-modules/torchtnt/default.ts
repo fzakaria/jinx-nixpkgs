@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 29, 13], ["version", 29, 19], ["hash", 30, 5]], [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 28, 3], ["postPatch", 34, 3], ["build-system", 40, 3], ["dependencies", 44, 3], ["pythonImportsCheck", 58, 3], ["doCheck", 63, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, fsspec: false, numpy: false, packaging: false, psutil: false, "pyre-extensions": false, tabulate: false, tensorboard: false, torch: false, tqdm: false, "typing-extensions": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 29, 13], ["version", 29, 19], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 28, 3], ["postPatch", 34, 3], ["build-system", 40, 3], ["dependencies", 44, 3], ["pythonImportsCheck", 58, 3], ["doCheck", 63, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-Js9OcYllr8KT52FYtHKDciBVvPeelNDmfnC12/YcDJs=",
@@ -51,7 +49,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["torchtnt"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Lightweight library for PyTorch training tools and utilities",
         homepage: "https://github.com/pytorch/tnt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -61,7 +59,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

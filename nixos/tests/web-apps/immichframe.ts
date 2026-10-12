@@ -2,39 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/immichframe.nix", [[["maintainers", 14, 8]], [["memorySize", 39, 9], ["cores", 40, 9]], [["enable", 42, 25]], [["graphics", 42, 16]], [["XAUTHORITY", 43, 29]], [["variables", 43, 19], ["systemPackages", 46, 19]], [["user", 44, 40]], [["auto", 44, 35]], [["displayManager", 44, 20]], [["packages", 53, 13]], [["enable", 60, 26]], [["enabled", 62, 27]], [["database", 62, 18]], [["enabled", 63, 27]], [["enabled", 64, 15]], [["enabled", 65, 28]], [["import", 66, 26]], [["faces", 66, 20]], [["enabled", 67, 27]], [["enabled", 68, 30]], [["smtp", 68, 25]], [["backup", 62, 11], ["machineLearning", 63, 11], ["map", 64, 11], ["reverseGeocoding", 65, 11], ["metadata", 66, 11], ["newVersionCheck", 67, 11], ["notifications", 68, 11]], [["enable", 56, 9], ["port", 57, 9], ["openFirewall", 58, 9], ["machine-learning", 60, 9], ["settings", 61, 9]], [["Interval", 76, 19]], [["ImmichServerUrl", 79, 15], ["ApiKeyFile", 80, 15]], [["General", 76, 11], ["Accounts", 77, 11]], [["enable", 73, 9], ["port", 74, 9], ["settings", 75, 9]], [["immich", 55, 16], ["immichframe", 72, 16]], [["imports", 29, 7], ["virtualisation", 38, 7], ["hardware", 42, 7], ["environment", 43, 7], ["test-support", 44, 7], ["fonts", 53, 7], ["services", 55, 7]], [["machine", 21, 9]], [["name", 12, 3], ["meta", 14, 3], ["enableOCR", 19, 3], ["nodes", 21, 3], ["testScript", 87, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/immichframe.nix", [["maintainers", 14, 8]]);
 const formals$2 = { args: { config: false, pkgs: false, lib: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/immichframe.nix", [["memorySize", 39, 9], ["cores", 40, 9]]);
-const pos$3 = nix.positions(here + "/immichframe.nix", [["enable", 42, 25]]);
-const pos$4 = nix.positions(here + "/immichframe.nix", [["graphics", 42, 16]]);
-const pos$5 = nix.positions(here + "/immichframe.nix", [["XAUTHORITY", 43, 29]]);
-const pos$6 = nix.positions(here + "/immichframe.nix", [["variables", 43, 19], ["systemPackages", 46, 19]]);
-const pos$7 = nix.positions(here + "/immichframe.nix", [["user", 44, 40]]);
-const pos$8 = nix.positions(here + "/immichframe.nix", [["auto", 44, 35]]);
-const pos$9 = nix.positions(here + "/immichframe.nix", [["displayManager", 44, 20]]);
-const pos$10 = nix.positions(here + "/immichframe.nix", [["packages", 53, 13]]);
-const pos$11 = nix.positions(here + "/immichframe.nix", [["enable", 60, 26]]);
-const pos$12 = nix.positions(here + "/immichframe.nix", [["enabled", 62, 27]]);
-const pos$13 = nix.positions(here + "/immichframe.nix", [["database", 62, 18]]);
-const pos$14 = nix.positions(here + "/immichframe.nix", [["enabled", 63, 27]]);
-const pos$15 = nix.positions(here + "/immichframe.nix", [["enabled", 64, 15]]);
-const pos$16 = nix.positions(here + "/immichframe.nix", [["enabled", 65, 28]]);
-const pos$17 = nix.positions(here + "/immichframe.nix", [["import", 66, 26]]);
-const pos$18 = nix.positions(here + "/immichframe.nix", [["faces", 66, 20]]);
-const pos$19 = nix.positions(here + "/immichframe.nix", [["enabled", 67, 27]]);
-const pos$20 = nix.positions(here + "/immichframe.nix", [["enabled", 68, 30]]);
-const pos$21 = nix.positions(here + "/immichframe.nix", [["smtp", 68, 25]]);
-const pos$22 = nix.positions(here + "/immichframe.nix", [["backup", 62, 11], ["machineLearning", 63, 11], ["map", 64, 11], ["reverseGeocoding", 65, 11], ["metadata", 66, 11], ["newVersionCheck", 67, 11], ["notifications", 68, 11]]);
-const pos$23 = nix.positions(here + "/immichframe.nix", [["enable", 56, 9], ["port", 57, 9], ["openFirewall", 58, 9], ["machine-learning", 60, 9], ["settings", 61, 9]]);
-const pos$24 = nix.positions(here + "/immichframe.nix", [["Interval", 76, 19]]);
-const pos$25 = nix.positions(here + "/immichframe.nix", [["ImmichServerUrl", 79, 15], ["ApiKeyFile", 80, 15]]);
-const pos$26 = nix.positions(here + "/immichframe.nix", [["General", 76, 11], ["Accounts", 77, 11]]);
-const pos$27 = nix.positions(here + "/immichframe.nix", [["enable", 73, 9], ["port", 74, 9], ["settings", 75, 9]]);
-const pos$28 = nix.positions(here + "/immichframe.nix", [["immich", 55, 16], ["immichframe", 72, 16]]);
-const pos$29 = nix.positions(here + "/immichframe.nix", [["imports", 29, 7], ["virtualisation", 38, 7], ["hardware", 42, 7], ["environment", 43, 7], ["test-support", 44, 7], ["fonts", 53, 7], ["services", 55, 7]]);
-const pos$30 = nix.positions(here + "/immichframe.nix", [["machine", 21, 9]]);
-const pos$31 = nix.positions(here + "/immichframe.nix", [["name", 12, 3], ["meta", 14, 3], ["enableOCR", 19, 3], ["nodes", 21, 3], ["testScript", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,10 +13,10 @@ export default nix.lambda((args) => (() => {
   const customInterval = 5n;
   const user = "alice";
   return {
-    [nix.POS]: pos$31,
+    [nix.POS]: $pos[30],
     name: "immichframe",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -57,27 +27,27 @@ export default nix.lambda((args) => (() => {
     })),
     enableOCR: true,
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$30,
+      [nix.POS]: $pos[29],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs = nix.arg($_1, "pkgs");
         const lib_1 = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$29,
+          [nix.POS]: $pos[28],
           imports: nix.thunk(() => [
             nix.path(here, "../common/user-account.nix"),
             nix.path(here, "../common/x11.nix"),
           ]),
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, memorySize: 4096n, cores: 2n })),
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[1], memorySize: 4096n, cores: 2n })),
           hardware: nix.thunk(() => ({
-            [nix.POS]: pos$4,
-            graphics: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
+            [nix.POS]: $pos[3],
+            graphics: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             variables: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               XAUTHORITY: nix.thunk(() => nix.str`/home/${user}/.Xauthority`),
             })),
             systemPackages: nix.thunk(() => (() => {
@@ -91,51 +61,54 @@ export default nix.lambda((args) => (() => {
             })()),
           })),
           "test-support": nix.thunk(() => ({
-            [nix.POS]: pos$9,
-            displayManager: nix.thunk(() => ({ [nix.POS]: pos$8, auto: nix.thunk(() => ({ [nix.POS]: pos$7, user: user })) })),
+            [nix.POS]: $pos[8],
+            displayManager: nix.thunk(() => ({
+              [nix.POS]: $pos[7],
+              auto: nix.thunk(() => ({ [nix.POS]: $pos[6], user: user })),
+            })),
           })),
           fonts: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "liberation_ttf"))]),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$28,
+            [nix.POS]: $pos[27],
             immich: nix.thunk(() => ({
-              [nix.POS]: pos$23,
+              [nix.POS]: $pos[22],
               enable: true,
               port: 2283n,
               openFirewall: true,
-              "machine-learning": nix.thunk(() => ({ [nix.POS]: pos$11, enable: false })),
+              "machine-learning": nix.thunk(() => ({ [nix.POS]: $pos[10], enable: false })),
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$22,
+                [nix.POS]: $pos[21],
                 backup: nix.thunk(() => ({
-                  [nix.POS]: pos$13,
-                  database: nix.thunk(() => ({ [nix.POS]: pos$12, enabled: false })),
+                  [nix.POS]: $pos[12],
+                  database: nix.thunk(() => ({ [nix.POS]: $pos[11], enabled: false })),
                 })),
-                machineLearning: nix.thunk(() => ({ [nix.POS]: pos$14, enabled: false })),
-                map: nix.thunk(() => ({ [nix.POS]: pos$15, enabled: false })),
-                reverseGeocoding: nix.thunk(() => ({ [nix.POS]: pos$16, enabled: false })),
+                machineLearning: nix.thunk(() => ({ [nix.POS]: $pos[13], enabled: false })),
+                map: nix.thunk(() => ({ [nix.POS]: $pos[14], enabled: false })),
+                reverseGeocoding: nix.thunk(() => ({ [nix.POS]: $pos[15], enabled: false })),
                 metadata: nix.thunk(() => ({
-                  [nix.POS]: pos$18,
-                  faces: nix.thunk(() => ({ [nix.POS]: pos$17, import: false })),
+                  [nix.POS]: $pos[17],
+                  faces: nix.thunk(() => ({ [nix.POS]: $pos[16], import: false })),
                 })),
-                newVersionCheck: nix.thunk(() => ({ [nix.POS]: pos$19, enabled: false })),
+                newVersionCheck: nix.thunk(() => ({ [nix.POS]: $pos[18], enabled: false })),
                 notifications: nix.thunk(() => ({
-                  [nix.POS]: pos$21,
-                  smtp: nix.thunk(() => ({ [nix.POS]: pos$20, enabled: false })),
+                  [nix.POS]: $pos[20],
+                  smtp: nix.thunk(() => ({ [nix.POS]: $pos[19], enabled: false })),
                 })),
               })),
             })),
             immichframe: nix.thunk(() => ({
-              [nix.POS]: pos$27,
+              [nix.POS]: $pos[26],
               enable: true,
               port: 8002n,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$26,
-                General: nix.thunk(() => ({ [nix.POS]: pos$24, Interval: customInterval })),
+                [nix.POS]: $pos[25],
+                General: nix.thunk(() => ({ [nix.POS]: $pos[23], Interval: customInterval })),
                 Accounts: nix.thunk(() => [
                   nix.thunk(() => ({
-                    [nix.POS]: pos$25,
+                    [nix.POS]: $pos[24],
                     ImmichServerUrl: nix.thunk(() => nix.str`http://localhost:${nix.builtins.toString(nix.thunk(() => nix.sel(config, "services", "immich", "port")))}`),
                     ApiKeyFile: apiKeyFile,
                   })),

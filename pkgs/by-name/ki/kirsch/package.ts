@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["description", 33, 5], ["homepage", 34, 5], ["changelog", 35, 5], ["license", 36, 5], ["platforms", 37, 5], ["maintainers", 38, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 17, 3], ["installPhase", 19, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false, mkfontscale: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 33, 5], ["homepage", 34, 5], ["changelog", 35, 5], ["license", 36, 5], ["platforms", 37, 5], ["maintainers", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 17, 3], ["installPhase", 19, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,18 +12,18 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const mkfontscale = nix.arg($, "mkfontscale");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "kirsch",
       version: "0.7.3",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/molarmanful/kirsch/releases/download/v${nix.sel(finalAttrs, "version")}/kirsch-release_v${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-j7LMtOQqOl4aTDf/ytVci2M2plFliLkswRsQhY1EWC4=",
         })))),
       nativeBuildInputs: nix.thunk(() => [mkfontscale]),
       installPhase: "runHook preInstall\n\nmisc=\"$out/share/fonts/misc\"\ninstall -D -m 644 *.{bdf,otb,pcf} -t \"$misc\"\ninstall -D -m 644 *.ttf -t \"$out/share/fonts/truetype\"\n\n# create fonts.dir so NixOS xorg module adds to fp\nmkfontdir \"$misc\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Versatile bitmap font with an organic flair",
         homepage: "https://github.com/molarmanful/kirsch",
         changelog: nix.thunk(() => nix.str`https://github.com/molarmanful/kirsch/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]], [["libcst", 66, 5], ["tracing", 67, 5]], [["description", 140, 5], ["homepage", 141, 5], ["changelog", 142, 5], ["license", 143, 5], ["maintainers", 144, 5]], [["pname", 36, 3], ["version", 37, 3], ["pyproject", 38, 3], ["src", 40, 3], ["build-system", 47, 3], ["pythonRelaxDeps", 49, 3], ["dependencies", 53, 3], ["optional-dependencies", 65, 3], ["nativeCheckInputs", 77, 3], ["preCheck", 90, 3], ["disabledTests", 95, 3], ["disabledTestPaths", 111, 3], ["pythonImportsCheck", 130, 3], ["__darwinAllowLocalNetworking", 137, 3], ["meta", 139, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, deprecated: false, "google-api-core": false, "google-cloud-core": false, "google-cloud-testutils": false, "grpc-google-iam-v1": false, "grpc-interceptor": false, "opentelemetry-resourcedetector-gcp": false, "proto-plus": false, protobuf: false, sqlparse: false, libcst: false, "opentelemetry-api": false, "opentelemetry-sdk": false, "opentelemetry-semantic-conventions": false, "google-cloud-monitoring": false, mmh3: false, mock: false, "pytest-asyncio": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["libcst", 66, 5], ["tracing", 67, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 140, 5], ["homepage", 141, 5], ["changelog", 142, 5], ["license", 143, 5], ["maintainers", 144, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 36, 3], ["version", 37, 3], ["pyproject", 38, 3], ["src", 40, 3], ["build-system", 47, 3], ["pythonRelaxDeps", 49, 3], ["dependencies", 53, 3], ["optional-dependencies", 65, 3], ["nativeCheckInputs", 77, 3], ["preCheck", 90, 3], ["disabledTests", 95, 3], ["disabledTestPaths", 111, 3], ["pythonImportsCheck", 130, 3], ["__darwinAllowLocalNetworking", 137, 3], ["meta", 139, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,12 +31,12 @@ export default nix.lambda((args) => (() => {
   const pytest_asyncio = nix.arg($, "pytest-asyncio");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "google-cloud-spanner",
       version: "3.63.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "googleapis",
           repo: "python-spanner",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,7 +56,7 @@ export default nix.lambda((args) => (() => {
         sqlparse,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         libcst: nix.thunk(() => [libcst]),
         tracing: nix.thunk(() => [
           opentelemetry_api,
@@ -116,7 +113,7 @@ export default nix.lambda((args) => (() => {
       ]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Cloud Spanner API client library",
         homepage: "https://github.com/googleapis/python-spanner",
         changelog: nix.thunk(() => nix.str`https://github.com/googleapis/python-spanner/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

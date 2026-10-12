@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 18, 5]], [["url", 22, 5], ["hash", 23, 5]], [["pname", 27, 5], ["version", 28, 13], ["src", 29, 5]], [["updateScript", 32, 12]], [["changelog", 35, 5], ["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["sourceProvenance", 39, 5], ["mainProgram", 40, 5], ["maintainers", 41, 5], ["platforms", 42, 5]], [["pname", 48, 5], ["version", 49, 13], ["src", 50, 5], ["extraInstallCommands", 52, 5], ["extraPkgs", 57, 5], ["passthru", 59, 13], ["meta", 59, 22]], [["pname", 63, 5], ["version", 64, 13], ["strictDeps", 66, 5], ["__structuredAttrs", 67, 5], ["src", 69, 5], ["nativeBuildInputs", 71, 5], ["dontUnpack", 75, 5], ["installPhase", 77, 5], ["passthru", 90, 13], ["meta", 90, 22]]]);
 const formals$1 = { args: { lib: false, appimageTools: false, fetchurl: false, config: false, cudaPackages: false, cudaSupport: true, stdenvNoCC: false, fetchzip: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 22, 5], ["hash", 23, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 27, 5], ["version", 28, 13], ["src", 29, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 32, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["changelog", 35, 5], ["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["sourceProvenance", 39, 5], ["mainProgram", 40, 5], ["maintainers", 41, 5], ["platforms", 42, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 48, 5], ["version", 49, 13], ["src", 50, 5], ["extraInstallCommands", 52, 5], ["extraPkgs", 57, 5], ["passthru", 59, 13], ["meta", 59, 22]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 63, 5], ["version", 64, 13], ["strictDeps", 66, 5], ["__structuredAttrs", 67, 5], ["src", 69, 5], ["nativeBuildInputs", 71, 5], ["dontUnpack", 75, 5], ["installPhase", 77, 5], ["passthru", 90, 13], ["meta", 90, 22]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,19 +18,19 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const version = "0.8.4";
   const darwin_src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://github.com/janhq/jan/releases/download/v${version}/jan-mac-universal-${version}.zip`),
       hash: "sha256-hK9cu9c2kJRCJ3iy0CucRP0whgDgF5K29JgR4AIKXVg=",
     }))));
   const linux_src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: nix.thunk(() => nix.str`https://github.com/janhq/jan/releases/download/v${version}/Jan_${version}_amd64.AppImage`),
       hash: "sha256-NNTIq02kisIjINS2TCh0Rb2UyRMSlJLR2+uzZmWxSVo=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$3, pname: "Jan", version: version, src: linux_src }))));
-  const passthru = nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") }));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[2], pname: "Jan", version: version, src: linux_src }))));
+  const passthru = nix.thunk(() => ({ [nix.POS]: $pos[3], updateScript: nix.path(here, "./update.sh") }));
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     changelog: nix.thunk(() => nix.str`https://github.com/janhq/jan/releases/tag/v${version}`),
     description: "Open source alternative to ChatGPT that runs 100% offline on your computer",
     homepage: "https://github.com/janhq/jan",
@@ -56,7 +50,7 @@ export default nix.lambda((args) => (() => {
     })())),
   }));
   const linux = nix.thunk(() => nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "Jan",
       version: version,
       src: linux_src,
@@ -68,7 +62,7 @@ cp -r ${appimageContents}/usr/share/icons $out/share
       meta: meta,
     }))));
   const darwin = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "Jan",
       version: version,
       strictDeps: true,

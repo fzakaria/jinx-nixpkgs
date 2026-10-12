@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["firefox_decrypt", 49, 28]], [["tests", 48, 5], ["updateScript", 51, 5]], [["homepage", 55, 5], ["description", 56, 5], ["mainProgram", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["build-system", 23, 3], ["makeWrapperArgs", 29, 3], ["checkPhase", 36, 3], ["passthru", 47, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, nss_latest: false, nixosTests: false, "nix-update-script": false, stdenv: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["firefox_decrypt", 49, 28]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 48, 5], ["updateScript", 51, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 55, 5], ["description", 56, 5], ["mainProgram", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["build-system", 23, 3], ["makeWrapperArgs", 29, 3], ["checkPhase", 36, 3], ["passthru", 47, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "firefox_decrypt",
       version: "1.1.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "unode",
           repo: "firefox_decrypt",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -52,15 +48,15 @@ patchShebangs tests
 runHook postCheck
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           firefox_decrypt: nix.thunk(() => nix.attr(nixosTests, "firefox_decrypt")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/unode/firefox_decrypt",
         description: "Tool to extract passwords from profiles of Mozilla Firefox and derivatives",
         mainProgram: "firefox-decrypt",

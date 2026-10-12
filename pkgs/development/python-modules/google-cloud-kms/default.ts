@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["rev-prefix", 61, 5]], [["updateScript", 60, 12], ["skipBulkUpdate", 65, 12]], [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["maintainers", 72, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["sourceRoot", 28, 3], ["build-system", 30, 3], ["dependencies", 32, 3], ["pythonRelaxDeps", 40, 3], ["nativeCheckInputs", 42, 3], ["disabledTests", 48, 3], ["pythonImportsCheck", 55, 3], ["passthru", 60, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, gitUpdater: false, "google-api-core": false, "grpc-google-iam-v1": false, mock: false, "proto-plus": false, protobuf: false, "pytest-asyncio": false, pytestCheckHook: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["rev-prefix", 61, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 60, 12], ["skipBulkUpdate", 65, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["maintainers", 72, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["sourceRoot", 28, 3], ["build-system", 30, 3], ["dependencies", 32, 3], ["pythonRelaxDeps", 40, 3], ["nativeCheckInputs", 42, 3], ["disabledTests", 48, 3], ["pythonImportsCheck", 55, 3], ["passthru", 60, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.14.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "googleapis",
           repo: "google-cloud-python",
           tag: nix.thunk(() => nix.str`google-cloud-kms-v${version}`),
@@ -42,12 +38,12 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_list_global_key_rings", "test_list_ekm_connections"]);
       const pythonImportsCheck = nix.thunk(() => ["google.cloud.kms", "google.cloud.kms_v1"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "google-cloud-kms-v" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "google-cloud-kms-v" })))),
         skipBulkUpdate: true,
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Cloud Key Management Service (KMS) API API client library",
         homepage: "https://github.com/googleapis/google-cloud-python/tree/main/packages/google-cloud-kms",
         changelog: nix.thunk(() => nix.str`https://github.com/googleapis/google-cloud-python/blob/${nix.sel(src, "tag")}/packages/google-cloud-kms/CHANGELOG.md`),
@@ -55,7 +51,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "sarahec"))]),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

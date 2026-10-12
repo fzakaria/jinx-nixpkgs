@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 70, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["build-system", 31, 3], ["dependencies", 33, 3], ["nativeCheckInputs", 46, 3], ["pythonImportsCheck", 48, 3], ["disabledTests", 50, 3], ["disabledTestPaths", 57, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, base58: false, buildPythonPackage: false, fetchFromGitHub: false, idna: false, netaddr: false, "py-cid": false, "py-multicodec": false, trio: false, pytestCheckHook: false, setuptools: false, psutil: false, varint: false, dnspython: false, "trio-typing": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 70, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["build-system", 31, 3], ["dependencies", 33, 3], ["nativeCheckInputs", 46, 3], ["pythonImportsCheck", 48, 3], ["disabledTests", 50, 3], ["disabledTestPaths", 57, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.11";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "multiformats",
           repo: "py-multiaddr",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -53,7 +51,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_resolve_cancellation_with_error", "test_ipv4_wildcard"]);
       const disabledTestPaths = nix.thunk(() => ["tests/test_resolvers.py"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Composable and future-proof network addresses",
         homepage: "https://github.com/multiformats/py-multiaddr",
         changelog: nix.thunk(() => nix.str`https://github.com/multiformats/py-multiaddr/releases/tag/${nix.sel(src, "tag")}`),
@@ -70,7 +68,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

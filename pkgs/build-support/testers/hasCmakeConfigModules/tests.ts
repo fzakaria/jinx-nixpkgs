@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["package", 15, 5], ["moduleNames", 16, 5], ["versionCheck", 20, 5]], [["package", 25, 7], ["moduleNames", 26, 7], ["version", 30, 7], ["versionCheck", 31, 7]], [["package", 36, 5], ["moduleNames", 37, 5], ["version", 41, 5], ["versionCheck", 42, 5]], [["useMpi", 46, 32]], [["package", 46, 5], ["moduleNames", 47, 5], ["buildInputs", 50, 5]], [["useMpi", 55, 34]], [["package", 55, 7], ["moduleNames", 56, 7]], [["package", 63, 5], ["moduleNames", 64, 5]], [["package", 69, 7], ["moduleNames", 70, 7]], [["boost-versions-match", 14, 3], ["boost-versions-mismatch", 23, 3], ["boost-no-versionCheck", 35, 3], ["boost-has-boost_mpi", 45, 3], ["boost_mpi-does-not-have-mpi", 53, 3], ["eigen-has-Eigen", 62, 3], ["eigen-does-not-have-eigen", 67, 3]]]);
 const formals$1 = { args: { lib: false, testers: false, boost: false, mpi: false, eigen: false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tests.nix", [["package", 15, 5], ["moduleNames", 16, 5], ["versionCheck", 20, 5]]);
-const pos$2 = nix.positions(here + "/tests.nix", [["package", 25, 7], ["moduleNames", 26, 7], ["version", 30, 7], ["versionCheck", 31, 7]]);
-const pos$3 = nix.positions(here + "/tests.nix", [["package", 36, 5], ["moduleNames", 37, 5], ["version", 41, 5], ["versionCheck", 42, 5]]);
-const pos$4 = nix.positions(here + "/tests.nix", [["useMpi", 46, 32]]);
-const pos$5 = nix.positions(here + "/tests.nix", [["package", 46, 5], ["moduleNames", 47, 5], ["buildInputs", 50, 5]]);
-const pos$6 = nix.positions(here + "/tests.nix", [["useMpi", 55, 34]]);
-const pos$7 = nix.positions(here + "/tests.nix", [["package", 55, 7], ["moduleNames", 56, 7]]);
-const pos$8 = nix.positions(here + "/tests.nix", [["package", 63, 5], ["moduleNames", 64, 5]]);
-const pos$9 = nix.positions(here + "/tests.nix", [["package", 69, 7], ["moduleNames", 70, 7]]);
-const pos$10 = nix.positions(here + "/tests.nix", [["boost-versions-match", 14, 3], ["boost-versions-mismatch", 23, 3], ["boost-no-versionCheck", 35, 3], ["boost-has-boost_mpi", 45, 3], ["boost_mpi-does-not-have-mpi", 53, 3], ["eigen-has-Eigen", 62, 3], ["eigen-does-not-have-eigen", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,40 +14,40 @@ export default nix.lambda((args) => (() => {
   const eigen = nix.arg($, "eigen");
   const runCommand = nix.arg($, "runCommand");
   return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       "boost-versions-match": nix.thunk(() => nix.app(nix.sel(testers, "hasCmakeConfigModules"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           package: boost,
           moduleNames: nix.thunk(() => ["Boost", "boost_math"]),
           versionCheck: true,
         })))),
       "boost-versions-mismatch": nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure"), nix.thunk(() => nix.app(nix.sel(testers, "hasCmakeConfigModules"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             package: boost,
             moduleNames: nix.thunk(() => ["Boost", "boost_math"]),
             version: "1.2.3",
             versionCheck: true,
           })))))),
       "boost-no-versionCheck": nix.thunk(() => nix.app(nix.sel(testers, "hasCmakeConfigModules"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           package: boost,
           moduleNames: nix.thunk(() => ["Boost", "boost_math"]),
           version: "1.2.3",
           versionCheck: false,
         })))),
       "boost-has-boost_mpi": nix.thunk(() => nix.app(nix.sel(testers, "hasCmakeConfigModules"), nix.thunk(() => ({
-          [nix.POS]: pos$5,
-          package: nix.thunk(() => nix.app(nix.sel(boost, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, useMpi: true })))),
+          [nix.POS]: $pos[4],
+          package: nix.thunk(() => nix.app(nix.sel(boost, "override"), nix.thunk(() => ({ [nix.POS]: $pos[3], useMpi: true })))),
           moduleNames: nix.thunk(() => ["boost_mpi"]),
           buildInputs: nix.thunk(() => [mpi]),
         })))),
       "boost_mpi-does-not-have-mpi": nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure"), nix.thunk(() => nix.app(nix.sel(testers, "hasCmakeConfigModules"), nix.thunk(() => ({
-            [nix.POS]: pos$7,
-            package: nix.thunk(() => nix.app(nix.sel(boost, "override"), nix.thunk(() => ({ [nix.POS]: pos$6, useMpi: true })))),
+            [nix.POS]: $pos[6],
+            package: nix.thunk(() => nix.app(nix.sel(boost, "override"), nix.thunk(() => ({ [nix.POS]: $pos[5], useMpi: true })))),
             moduleNames: nix.thunk(() => ["boost_mpi"]),
           })))))),
-      "eigen-has-Eigen": nix.thunk(() => nix.app(nix.sel(testers, "hasCmakeConfigModules"), nix.thunk(() => ({ [nix.POS]: pos$8, package: eigen, moduleNames: nix.thunk(() => ["Eigen3"]) })))),
-      "eigen-does-not-have-eigen": nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure"), nix.thunk(() => nix.app(nix.sel(testers, "hasCmakeConfigModules"), nix.thunk(() => ({ [nix.POS]: pos$9, package: eigen, moduleNames: nix.thunk(() => ["eigen3"]) })))))),
+      "eigen-has-Eigen": nix.thunk(() => nix.app(nix.sel(testers, "hasCmakeConfigModules"), nix.thunk(() => ({ [nix.POS]: $pos[7], package: eigen, moduleNames: nix.thunk(() => ["Eigen3"]) })))),
+      "eigen-does-not-have-eigen": nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure"), nix.thunk(() => nix.app(nix.sel(testers, "hasCmakeConfigModules"), nix.thunk(() => ({ [nix.POS]: $pos[8], package: eigen, moduleNames: nix.thunk(() => ["eigen3"]) })))))),
     })));
 })(), formals$1);
 //# sourceMappingURL=tests.ts.map

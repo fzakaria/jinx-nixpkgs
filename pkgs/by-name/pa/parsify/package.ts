@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["hash", 13, 5]], [["pname", 18, 50], ["version", 18, 56], ["src", 18, 64]], [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["maintainers", 33, 5], ["platforms", 34, 5], ["mainProgram", 35, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["extraInstallCommands", 16, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, appimageTools: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 18, 50], ["version", 18, 56], ["src", 18, 64]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["maintainers", 33, 5], ["platforms", 34, 5], ["mainProgram", 35, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["extraInstallCommands", 16, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +14,12 @@ export default nix.lambda((args) => (() => {
       const pname = "parsify";
       const version = "2.0.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/parsify-dev/desktop/releases/download/v${version}/Parsify-${version}-linux-x86_64.AppImage`),
           hash: "sha256-ltWqRW+cBvuUJzhya62WsBY5zqIua9xhilxfd9gr24A=",
         }))));
       const extraInstallCommands = nix.thunk(() => (() => {
-        const contents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
+        const contents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[1], pname: pname, version: version, src: src }))));
         return nix.str`install -m 444 -D ${contents}/@parsifydesktop.desktop -t $out/share/applications
 
 substituteInPlace $out/share/applications/@parsifydesktop.desktop \\
@@ -32,7 +29,7 @@ cp -r ${contents}/usr/share/* $out/share
 `;
       })());
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Next generation notepad-based calculator, built with extendibility and privacy in mind",
         homepage: "https://parsify.app/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -43,7 +40,7 @@ cp -r ${contents}/usr/share/* $out/share
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         mainProgram: "parsify",
       }));
-      return { [nix.POS]: pos$4, pname, version, src, extraInstallCommands, meta };
+      return { [nix.POS]: $pos[3], pname, version, src, extraInstallCommands, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

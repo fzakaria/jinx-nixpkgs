@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5]], [["changelog", 25, 5], ["description", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["mainProgram", 29, 5], ["maintainers", 30, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["preBuild", 18, 3], ["npmDepsHash", 22, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 25, 5], ["description", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["mainProgram", 29, 5], ["maintainers", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["preBuild", 18, 3], ["npmDepsHash", 22, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +14,7 @@ export default nix.lambda((args) => (() => {
       const pname = "dockerfile-language-server";
       const version = "0.15.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rcjsuen",
           repo: "dockerfile-language-server",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const preBuild = "npm run prepublishOnly\n";
       const npmDepsHash = "sha256-cJ11l2NF/sCzPw/eQNFon5oKRM+KPoy4lxLz0yivHTo=";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/rcjsuen/dockerfile-language-server/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
         description: "Language server for Dockerfiles powered by Node.js, TypeScript, and VSCode technologies",
         homepage: "https://github.com/rcjsuen/dockerfile-language-server",
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
           ];
         })()),
       }));
-      return { [nix.POS]: pos$3, pname, version, src, preBuild, npmDepsHash, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, preBuild, npmDepsHash, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

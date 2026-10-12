@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["sha256", 23, 5]], [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["platforms", 63, 5], ["maintainers", 64, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["pythonPath", 13, 3], ["nativeBuildInputs", 14, 3], ["src", 19, 3], ["postPatch", 26, 3], ["installPhase", 31, 3], ["checkPhase", 51, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3Packages: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["platforms", 63, 5], ["maintainers", 64, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["pythonPath", 13, 3], ["nativeBuildInputs", 14, 3], ["src", 19, 3], ["postPatch", 26, 3], ["installPhase", 31, 3], ["checkPhase", 51, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,14 +12,14 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tautulli",
       version: "2.18.2",
       pyproject: false,
       pythonPath: nix.thunk(() => [nix.thunk(() => nix.sel(python3Packages, "setuptools"))]),
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(python3Packages, "wrapPython")), makeWrapper]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Tautulli",
           repo: "Tautulli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,7 +46,7 @@ runHook postInstall
 `),
       checkPhase: "runHook preCheck\n\n$out/bin/tautulli --help\n\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python based monitoring and tracking tool for Plex Media Server",
         homepage: "https://tautulli.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

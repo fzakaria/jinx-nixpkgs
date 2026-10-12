@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["GUILE_AUTO_COMPILE", 28, 7]], [["description", 51, 5], ["longDescription", 52, 5], ["homepage", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["platforms", 64, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["strictDeps", 17, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 24, 3], ["env", 28, 3], ["buildPhase", 30, 3], ["dontInstall", 48, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchzip: false, mitscheme: false, guile: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["GUILE_AUTO_COMPILE", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 51, 5], ["longDescription", 52, 5], ["homepage", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["platforms", 64, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["strictDeps", 17, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 24, 3], ["env", 28, 3], ["buildPhase", 30, 3], ["dontInstall", 48, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,22 +13,22 @@ export default nix.lambda((args) => (() => {
   const guile = nix.arg($, "guile");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "guile-irregex",
       version: "0.9.12",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://synthcode.com/scheme/irregex/irregex-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-Iwt6mdgp5d0q2hweU2+9dPLs8j4Jd4GOdZvfvTe8Uvw=",
         })))),
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => [guile, mitscheme]),
       buildInputs: nix.thunk(() => [guile]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, GUILE_AUTO_COMPILE: "0" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], GUILE_AUTO_COMPILE: "0" })),
       buildPhase: "runHook preBuild\n\nsite_dir=\"$out/share/guile/site/3.0\"\nlib_dir=\"$out/lib/guile/3.0/site-ccache\"\n\nmkdir -p $site_dir/rx/source\nmkdir -p $lib_dir/rx/source\n\ncp $src/irregex-guile.scm $site_dir/rx/irregex.scm\ncp $src/irregex.scm $site_dir/rx/source/irregex.scm\ncp $src/irregex-utils.scm $site_dir/rx/source/irregex-utils.scm\nguild compile --r7rs $site_dir/rx/irregex.scm -o $lib_dir/rx/irregex.go\nguild compile --r7rs $site_dir/rx/source/irregex.scm -o $lib_dir/rx/source/irregex.go\n\nrunHook postBuild\n",
       dontInstall: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "IrRegular Expressions",
         longDescription: "A fully portable and efficient R[4567]RS implementation of regular expressions, supporting\nboth POSIX syntax with various (irregular) PCRE extensions, as well as SCSH's SRE syntax, with\nvarious aliases for commonly used patterns. DFA matching is used when possible, otherwise a\nclosure-compiled NFA approach is used. The library makes no assumptions about the encoding of\nstrings or range of characters and can thus be used in Unicode-aware Scheme implementations.\nMatching may be performed over standard Scheme strings, or over arbitrarily chunked streams of\nstrings.\n",
         homepage: "https://synthcode.com/scheme/irregex",

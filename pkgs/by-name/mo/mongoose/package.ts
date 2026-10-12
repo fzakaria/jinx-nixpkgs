@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["description", 68, 5], ["mainProgram", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["platforms", 73, 5]], [["pname", 14, 3], ["version", 15, 3], ["outputs", 17, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 34, 3], ["dontUseCmakeConfigure", 41, 3], ["cmakeFlags", 43, 3], ["buildPhase", 47, 3], ["installPhase", 57, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, blas: false, llvmPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 68, 5], ["mainProgram", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["platforms", 73, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["outputs", 17, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 34, 3], ["dontUseCmakeConfigure", 41, 3], ["cmakeFlags", 43, 3], ["buildPhase", 47, 3], ["installPhase", 57, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const llvmPackages = nix.arg($, "llvmPackages");
   const suitesparseVersion = "7.12.1";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mongoose",
       version: "3.3.6",
       outputs: nix.thunk(() => ["bin", "out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "DrTimothyAldenDavis",
           repo: "SuiteSparse",
           tag: nix.thunk(() => nix.str`v${suitesparseVersion}`),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\nfor f in SuiteSparse_config Mongoose; do\n  (cd $f && cmakeConfigurePhase && make -j$NIX_BUILD_CORES)\ndone\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nfor f in SuiteSparse_config Mongoose; do\n  (cd $f/build && make install -j$NIX_BUILD_CORES)\ndone\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Graph Coarsening and Partitioning Library",
         mainProgram: "suitesparse_mongoose",
         homepage: "https://github.com/DrTimothyAldenDavis/SuiteSparse/tree/dev/Mongoose",

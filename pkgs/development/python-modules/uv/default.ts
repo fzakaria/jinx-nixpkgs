@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 10, 5], ["version", 11, 5], ["src", 12, 5], ["meta", 13, 5], ["pyproject", 15, 3], ["build-system", 17, 3], ["postPatch", 19, 3], ["postInstall", 41, 3], ["pythonImportsCheck", 45, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, hatchling: false, lib: false, uv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 10, 5], ["version", 11, 5], ["src", 12, 5], ["meta", 13, 5], ["pyproject", 15, 3], ["build-system", 17, 3], ["postPatch", 19, 3], ["postInstall", 41, 3], ["pythonImportsCheck", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const uv = nix.arg($, "uv");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: nix.thunk(() => nix.attr(uv, "pname")),
       version: nix.thunk(() => nix.attr(uv, "version")),
       src: nix.thunk(() => nix.attr(uv, "src")),

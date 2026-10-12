@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 31, 9], ["hash", 32, 9]], [["url", 36, 9], ["hash", 37, 9]], [["description", 65, 5], ["longDescription", 66, 5], ["homepage", 77, 5], ["license", 80, 5], ["sourceProvenance", 81, 5], ["platforms", 82, 5], ["maintainers", 86, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 42, 3], ["dontBuild", 47, 3], ["installPhase", 48, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libxmu: false, libxt: false, libx11: false, libxext: false, libxxf86vm: false, libjack2: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 31, 9], ["hash", 32, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 36, 9], ["hash", 37, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 65, 5], ["longDescription", 66, 5], ["homepage", 77, 5], ["license", 80, 5], ["sourceProvenance", 81, 5], ["platforms", 82, 5], ["maintainers", 86, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 42, 3], ["dontBuild", 47, 3], ["installPhase", 48, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +22,11 @@ export default nix.lambda((args) => (() => {
       const pname = "baudline";
       const version = "1.08";
       const src = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://web.archive.org/web/20230130224632/https://www.baudline.com/baudline_${version}_linux_x86_64.tar.gz`),
           hash: "sha256-RG8QPSXHo2qfOEn6eWWTh0ilg44tI1KyjXFm+SYnKKM=",
         }))) : (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "i686-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://web.archive.org/web/20230130224632/https://www.baudline.com/baudline_${version}_linux_i686.tar.gz`),
           hash: "sha256-2A13FyUl4NNWzRConw6gGjBaHxCXYlwtgxbz0ARgI28=",
         }))) : nix.builtins.throw(nix.thunk(() => nix.str`baudline isn't supported (yet?) on ${nix.sel(stdenv, "hostPlatform", "system")}`)))));
@@ -50,7 +47,7 @@ for prog in "$out"/bin/*; do
 done
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Scientific signal analysis application",
         longDescription: "Baudline is a time-frequency browser designed for scientific\nvisualization of the spectral domain.  Signal analysis is performed by\nFourier, correlation, and raster transforms that create colorful\nspectrograms with vibrant detail.  Conduct test and measurement\nexperiments with the built in function generator, or play back audio\nfiles with a multitude of effects and filters.  The baudline signal\nanalyzer combines fast digital signal processing, versatile high speed\ndisplays, and continuous capture tools for hunting down and studying\nelusive signal characteristics.\n",
         homepage: "http://www.baudline.com/",
@@ -63,7 +60,7 @@ done
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "bjornfor"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

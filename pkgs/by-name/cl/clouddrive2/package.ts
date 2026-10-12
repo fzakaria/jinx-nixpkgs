@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["x86_64-linux", 20, 9], ["aarch64-linux", 21, 9], ["aarch64-darwin", 22, 9]], [["url", 17, 5], ["hash", 18, 5]], [["updateScript", 44, 12]], [["homepage", 47, 5], ["changelog", 48, 5], ["description", 49, 5], ["longDescription", 50, 5], ["mainProgram", 55, 5], ["license", 56, 5], ["platforms", 57, 5], ["sourceProvenance", 62, 5], ["maintainers", 63, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 27, 3], ["installPhase", 29, 3], ["nativeInstallCheckPhaseInputs", 41, 3], ["doInstallCheck", 42, 3], ["passthru", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["x86_64-linux", 20, 9], ["aarch64-linux", 21, 9], ["aarch64-darwin", 22, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 44, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 47, 5], ["changelog", 48, 5], ["description", 49, 5], ["longDescription", 50, 5], ["mainProgram", 55, 5], ["license", 56, 5], ["platforms", 57, 5], ["sourceProvenance", 62, 5], ["maintainers", 63, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 27, 3], ["installPhase", 29, 3], ["nativeInstallCheckPhaseInputs", 41, 3], ["doInstallCheck", 42, 3], ["passthru", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,14 +15,14 @@ export default nix.lambda((args) => (() => {
   const os = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "macos" : "linux"));
   const arch = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) ? "aarch64" : "x86_64"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "clouddrive2",
       version: "1.1.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://github.com/cloud-fs/cloud-fs.github.io/releases/download/v${nix.sel(finalAttrs, "version")}/clouddrive-2-${os}-${arch}-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: nix.thunk(() => nix.selOr({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             "x86_64-linux": "sha256-3puaJvPjMMaZdEWrGZc56R/6HeNA0k4KOt2cd5bFTu8=",
             "aarch64-linux": "sha256-SdLQKTBjqrt3e1IbP7fDH1szm4YRZ9ADHb7K/gyQpD8=",
             "aarch64-darwin": "sha256-nn7GCanBqkyGsXI40pjagQHxR/JQcVcjUTwg8T5muac=",
@@ -36,9 +32,9 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\nmkdir -p $out/opt/clouddrive2\ncp -r wwwroot \"$out/opt/clouddrive2/wwwroot\"\ncp -r clouddrive \"$out/opt/clouddrive2/clouddrive\"\nmakeWrapper $out/opt/clouddrive2/clouddrive $out/bin/clouddrive\n\nrunHook postInstall\n",
       nativeInstallCheckPhaseInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://www.clouddrive2.com",
         changelog: nix.thunk(() => nix.str`https://github.com/cloud-fs/cloud-fs.github.io/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Multi-cloud drives management tool supporting mounting cloud drives locally",

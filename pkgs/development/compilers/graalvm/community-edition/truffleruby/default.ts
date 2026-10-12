@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 43, 5], ["homepage", 44, 5], ["mainProgram", 45, 5], ["maintainers", 46, 5], ["license", 48, 5]], [["src", 11, 3], ["version", 12, 3], ["product", 14, 3], ["extraBuildInputs", 16, 3], ["preFixup", 21, 3], ["doInstallCheck", 27, 3], ["installCheckPhase", 28, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, graalvmPackages: false, libyaml: false, openssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 43, 5], ["homepage", 44, 5], ["mainProgram", 45, 5], ["maintainers", 46, 5], ["license", 48, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["src", 11, 3], ["version", 12, 3], ["product", 14, 3], ["extraBuildInputs", 16, 3], ["preFixup", 21, 3], ["doInstallCheck", 27, 3], ["installCheckPhase", 28, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const libyaml = nix.arg($, "libyaml");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(graalvmPackages, "buildGraalvmProduct"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./hashes.nix")), "hashes", nix.key(nix.sel(stdenv, "system")))))),
       version: nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./hashes.nix")), "version")),
       product: "truffleruby",
@@ -30,7 +29,7 @@ $out/bin/ruby -e 'puts(1 + 1)'
 ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "echo '1 + 1' | $out/bin/irb\n")}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "High-performance implementation of Ruby built on GraalVM",
         homepage: "https://truffleruby.dev/",
         mainProgram: "ruby",

@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/flutter-tools.nix", [[["build_date", 23, 7], ["build_time_ms", 24, 7], ["git_revision", 25, 7], ["git_revision_date", 26, 7], ["content_hash", 27, 7]], [["name", 21, 5], ["text", 22, 5]], [["flutter_tools.snapshot", 31, 19]], [["dart", 33, 41]], [["packageRoot", 90, 48]], [["passthru", 90, 39]], [["dart", 88, 5]], [["pname", 34, 3], ["version", 35, 11], ["dartEntryPoints", 35, 19], ["dartOutputType", 36, 3], ["src", 38, 3], ["sourceRoot", 39, 3], ["patches", 41, 11], ["prePatch", 43, 3], ["postPatch", 47, 3], ["nativeBuildInputs", 65, 3], ["preConfigure", 69, 3], ["dartCompileFlags", 76, 3], ["postInstall", 80, 3], ["sdkSourceBuilders", 86, 3], ["pubspecLock", 105, 11]]]);
 const formals$1 = { args: { lib: false, stdenv: false, systemPlatform: false, buildDartApplication: false, runCommand: false, writeTextFile: false, git: false, which: false, dart: false, version: false, flutterSrc: false, patches: true, pubspecLock: false, engineVersion: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/flutter-tools.nix", [["build_date", 23, 7], ["build_time_ms", 24, 7], ["git_revision", 25, 7], ["git_revision_date", 26, 7], ["content_hash", 27, 7]]);
-const pos$2 = nix.positions(here + "/flutter-tools.nix", [["name", 21, 5], ["text", 22, 5]]);
-const pos$3 = nix.positions(here + "/flutter-tools.nix", [["flutter_tools.snapshot", 31, 19]]);
-const pos$4 = nix.positions(here + "/flutter-tools.nix", [["dart", 33, 41]]);
-const pos$5 = nix.positions(here + "/flutter-tools.nix", [["packageRoot", 90, 48]]);
-const pos$6 = nix.positions(here + "/flutter-tools.nix", [["passthru", 90, 39]]);
-const pos$7 = nix.positions(here + "/flutter-tools.nix", [["dart", 88, 5]]);
-const pos$8 = nix.positions(here + "/flutter-tools.nix", [["pname", 34, 3], ["version", 35, 11], ["dartEntryPoints", 35, 19], ["dartOutputType", 36, 3], ["src", 38, 3], ["sourceRoot", 39, 3], ["patches", 41, 11], ["prePatch", 43, 3], ["postPatch", 47, 3], ["nativeBuildInputs", 65, 3], ["preConfigure", 69, 3], ["dartCompileFlags", 76, 3], ["postInstall", 80, 3], ["sdkSourceBuilders", 86, 3], ["pubspecLock", 105, 11]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,10 +22,10 @@ export default nix.lambda((args) => (() => {
   const pubspecLock = nix.arg($, "pubspecLock");
   const engineVersion = nix.arg($, "engineVersion");
   const engine_stamp = nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "engine_stamp",
       text: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           build_date: "2025-06-27T12:30:00.000Z",
           build_time_ms: 1751027400000n,
           git_revision: engineVersion,
@@ -40,9 +33,9 @@ export default nix.lambda((args) => (() => {
           content_hash: "1111111111111111111111111111111111111111",
         })))),
     }))));
-  const dartEntryPoints = nix.thunk(() => ({ [nix.POS]: pos$3, "flutter_tools.snapshot": "bin/flutter_tools.dart" }));
-  return nix.app(nix.sel(buildDartApplication, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, dart: dart })), nix.thunk(() => ({
-      [nix.POS]: pos$8,
+  const dartEntryPoints = nix.thunk(() => ({ [nix.POS]: $pos[2], "flutter_tools.snapshot": "bin/flutter_tools.dart" }));
+  return nix.app(nix.sel(buildDartApplication, "override"), nix.thunk(() => ({ [nix.POS]: $pos[3], dart: dart })), nix.thunk(() => ({
+      [nix.POS]: $pos[7],
       pname: "flutter-tools",
       version: version,
       dartEntryPoints: dartEntryPoints,
@@ -69,10 +62,10 @@ rm ${nix.builtins.concatStringsSep(" ", nix.thunk(() => nix.builtins.attrNames(d
 popd
 `),
       sdkSourceBuilders: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         dart: (name) => nix.app(runCommand, nix.thunk(() => nix.str`dart-sdk-${name}`), nix.thunk(() => ({
-            [nix.POS]: pos$6,
-            passthru: nix.thunk(() => ({ [nix.POS]: pos$5, packageRoot: "." })),
+            [nix.POS]: $pos[5],
+            passthru: nix.thunk(() => ({ [nix.POS]: $pos[4], packageRoot: "." })),
           })), nix.thunk(() => nix.str`for path in '${dart}/pkg/${name}'; do
   if [ -d "$path" ]; then
     ln -s "$path" "$out"

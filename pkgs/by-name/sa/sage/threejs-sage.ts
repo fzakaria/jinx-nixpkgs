@@ -2,20 +2,19 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/threejs-sage.nix", [[["owner", 8, 5], ["repo", 9, 5], ["rev", 10, 5], ["sha256", 11, 5]], [["pname", 4, 3], ["version", 5, 3], ["src", 7, 3], ["installPhase", 14, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/threejs-sage.nix", [["owner", 8, 5], ["repo", 9, 5], ["rev", 10, 5], ["sha256", 11, 5]]);
-const pos$2 = nix.positions(here + "/threejs-sage.nix", [["pname", 4, 3], ["version", 5, 3], ["src", 7, 3], ["installPhase", 14, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "threejs-sage",
       version: "r122",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sagemath",
           repo: "threejs-sage",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),

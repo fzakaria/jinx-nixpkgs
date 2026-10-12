@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 26, 5], ["sha256", 27, 5]], [["broken", 53, 5], ["branch", 54, 5], ["description", 55, 5], ["longDescription", 56, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 25]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["buildInputs", 30, 3], ["doCheck", 46, 3], ["enableParallelBuilding", 48, 3], ["hardeningDisable", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libpng: false, libjpeg: false, libtiff: false, zlib: false, bzip2: false, libxcursor: false, libxrandr: false, libGLU: false, libGL: false, libxext: false, libxft: false, libxfixes: false, mesa: false, xinput: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 26, 5], ["sha256", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["broken", 53, 5], ["branch", 54, 5], ["description", 55, 5], ["longDescription", 56, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 25]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["buildInputs", 30, 3], ["doCheck", 46, 3], ["enableParallelBuilding", 48, 3], ["hardeningDisable", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const mesa = nix.arg($, "mesa");
   const xinput = nix.arg($, "xinput");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "fox",
       version: "1.6.57",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`ftp://ftp.fox-toolkit.org/pub/fox-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "08w98m6wjadraw1pi13igzagly4b2nfa57kdqdnkjfhgkvg1bvv5",
         })))),
@@ -56,7 +54,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(mesa, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         branch: "1.6",
         description: "C++ based class library for building Graphical User Interfaces",

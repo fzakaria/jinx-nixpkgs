@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["homepage", 56, 5], ["description", 57, 5], ["mainProgram", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]], [["pname", 10, 3], ["version", 11, 3], ["minimalOCamlVersion", 13, 3], ["src", 15, 3], ["postPatch", 22, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 31, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, ocamlPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 56, 5], ["description", 57, 5], ["mainProgram", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["minimalOCamlVersion", 13, 3], ["src", 15, 3], ["postPatch", 22, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 31, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const ocamlPackages = nix.arg($, "ocamlPackages");
   const w = nix.withScope(ocamlPackages, null);
   return nix.app(nix.lookup(w, "buildDunePackage"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "jackline",
       version: "0.1.0-unstable-2024-10-21",
       minimalOCamlVersion: "4.13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hannesm",
           repo: "jackline",
           rev: "cf6b26e37e37b0b48be9fd2e74fc563375f757f0",
@@ -54,7 +52,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.lookup(w, "ppx_sexp_conv")),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/hannesm/jackline",
         description: "Minimalistic secure XMPP client in OCaml",
         mainProgram: "jackline",

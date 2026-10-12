@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["src", 44, 26], ["hash", 45, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 82, 7], ["NPM_CONFIG_IGNORE_SCRIPTS", 84, 7]], [["aarch64-darwin", 106, 11], ["aarch64-linux", 107, 11], ["x86_64-linux", 108, 11]], [["updateScript", 140, 12]], [["description", 143, 5], ["homepage", 144, 5], ["changelog", 145, 5], ["license", 146, 5], ["maintainers", 147, 5], ["mainProgram", 148, 5], ["platforms", 149, 5]], [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["npmDeps", 43, 3], ["cargoHash", 48, 3], ["cargoRoot", 50, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 67, 3], ["env", 82, 3], ["postPatch", 86, 3], ["preBuild", 102, 3], ["tauriBuildFlags", 120, 3], ["doCheck", 127, 3], ["preInstall", 129, 3], ["postInstall", 131, 3], ["passthru", 140, 3], ["meta", 142, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, "cargo-tauri": false, npmHooks: false, fetchFromGitHub: false, fetchNpmDeps: false, "pkg-config": false, python3: false, nodejs: false, webkitgtk_4_1: false, glib: false, gtk3: false, openssl: false, pango: false, cairo: false, pixman: false, librsvg: false, "gdk-pixbuf": false, "adwaita-icon-theme": false, protobuf: false, perl: false, makeWrapper: false, "nix-update-script": false, stdenv: false, lld: false, "wasm-pack": false, "wasm-bindgen-cli_0_2_100": false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 44, 26], ["hash", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 82, 7], ["NPM_CONFIG_IGNORE_SCRIPTS", 84, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["aarch64-darwin", 106, 11], ["aarch64-linux", 107, 11], ["x86_64-linux", 108, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 140, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 143, 5], ["homepage", 144, 5], ["changelog", 145, 5], ["license", 146, 5], ["maintainers", 147, 5], ["mainProgram", 148, 5], ["platforms", 149, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["npmDeps", 43, 3], ["cargoHash", 48, 3], ["cargoRoot", 50, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 67, 3], ["env", 82, 3], ["postPatch", 86, 3], ["preBuild", 102, 3], ["tauriBuildFlags", 120, 3], ["doCheck", 127, 3], ["preInstall", 129, 3], ["postInstall", 131, 3], ["passthru", 140, 3], ["meta", 142, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,18 +36,18 @@ export default nix.lambda((args) => (() => {
   const wasm_bindgen_cli_0_2_100 = nix.arg($, "wasm-bindgen-cli_0_2_100");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "yaak",
       version: "2025.6.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mountain-loop",
           repo: "yaak",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-3sEq7VpzaIMbkvHQTQLf3NRbAJjtpOJpirdcA7y2FIE=",
         })))),
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-zz9wlJ3yQ3oTyCFrAV7vD1xENLW+vmf2Pzly4yYas/g=",
         })))),
@@ -85,7 +79,7 @@ export default nix.lambda((args) => (() => {
         adwaita_icon_theme,
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [webkitgtk_4_1])))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         ELECTRON_SKIP_BINARY_DOWNLOAD: "1",
         NPM_CONFIG_IGNORE_SCRIPTS: "true",
       })),
@@ -105,7 +99,7 @@ substituteInPlace package.json \\
 `),
       preBuild: nix.thunk(() => (() => {
         const archPlatforms = nix.thunk(() => nix.sel({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "aarch64-darwin": "aarch64-apple-darwin",
           "aarch64-linux": "aarch64-unknown-linux-gnu",
           "x86_64-linux": "x86_64-unknown-linux-gnu",
@@ -122,11 +116,11 @@ ln -s ${protobuf}/include src-tauri/vendored/protoc/include
       preInstall: "pushd src-tauri",
       postInstall: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir $out/bin\nmakeWrapper $out/Applications/Yaak.app/Contents/MacOS/yaak-app $out/bin/yaak-app\n"), "popd\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Desktop API client for organizing and executing REST, GraphQL, and gRPC requests",
         homepage: "https://yaak.app/",
         changelog: nix.thunk(() => nix.str`https://github.com/mountain-loop/yaak/releases/tag/v${nix.sel(finalAttrs, "version")}`),

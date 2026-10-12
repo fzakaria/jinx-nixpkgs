@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["name", 30, 5]], [["package", 55, 5], ["version", 56, 5]], [["version", 54, 18]], [["tests", 54, 12]], [["homepage", 60, 5], ["description", 61, 5], ["changelog", 62, 5], ["license", 63, 5], ["platforms", 64, 5], ["maintainers", 65, 5], ["mainProgram", 68, 5], ["broken", 70, 5]], [["pname", 12, 3], ["upstreamVersion", 13, 3], ["version", 14, 3], ["rev", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["deps", 29, 3], ["dontSetZigDefaultFlags", 33, 3], ["zigBuildFlags", 35, 3], ["postInstall", 42, 3], ["zigCheckFlags", 50, 3], ["doCheck", 51, 3], ["doInstallCheck", 52, 3], ["passthru", 54, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, installShellFiles: false, testers: false, zig_0_15: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 55, 5], ["version", 56, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 54, 18]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 54, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 60, 5], ["description", 61, 5], ["changelog", 62, 5], ["license", 63, 5], ["platforms", 64, 5], ["maintainers", 65, 5], ["mainProgram", 68, 5], ["broken", 70, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["upstreamVersion", 13, 3], ["version", 14, 3], ["rev", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["deps", 29, 3], ["dontSetZigDefaultFlags", 33, 3], ["zigBuildFlags", 35, 3], ["postInstall", 42, 3], ["zigCheckFlags", 50, 3], ["doCheck", 51, 3], ["doInstallCheck", 52, 3], ["passthru", 54, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const zig_0_15 = nix.arg($, "zig_0_15");
   const callPackage = nix.arg($, "callPackage");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "zf",
       upstreamVersion: "0.10.3",
       version: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "upstreamVersion")}-unstable-2025-10-14`),
       rev: "3c52637b7e937c5ae61fd679717da3e276765b23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "natecraddock",
           repo: "zf",
           rev: nix.thunk(() => nix.sel(finalAttrs, "rev")),
@@ -35,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [installShellFiles, zig_0_15]),
       deps: nix.thunk(() => nix.app(callPackage, nix.path(here, "./deps.nix"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-cache-${nix.sel(finalAttrs, "version")}`),
         })))),
       dontSetZigDefaultFlags: true,
@@ -50,18 +44,18 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               version: nix.thunk(() => nix.sel(finalAttrs, "upstreamVersion")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://github.com/natecraddock/zf",
         description: "Commandline fuzzy finder that prioritizes matches on filenames",
         changelog: nix.thunk(() => nix.str`https://github.com/natecraddock/zf/releases/tag/${nix.sel(finalAttrs, "version")}`),

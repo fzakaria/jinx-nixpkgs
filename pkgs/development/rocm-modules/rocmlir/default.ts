@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 55, 5], ["repo", 56, 5], ["tag", 57, 5], ["hash", 58, 5]], [["finalAttrs", 150, 13], ["page", 151, 5]], [["updateScript", 149, 12]], [["description", 155, 5], ["homepage", 156, 5], ["license", 157, 5], ["teams", 158, 5], ["platforms", 159, 5]], [["pname", 44, 3], ["version", 45, 3], ["outputs", 47, 3], ["src", 54, 3], ["nativeBuildInputs", 61, 3], ["buildInputs", 69, 3], ["propagatedBuildInputs", 77, 3], ["cmakeFlags", 83, 3], ["postPatch", 108, 3], ["dontBuild", 120, 3], ["doCheck", 121, 3], ["checkTarget", 124, 3], ["postInstall", 132, 3], ["passthru", 149, 3], ["meta", 154, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rocmUpdateScript: false, cmake: false, "rocm-cmake": false, clr: false, libxml2: false, libedit: false, "rocm-comgr": false, "rocm-device-libs": false, "rocm-runtime": false, zstd: false, zlib: false, ncurses: false, python3Packages: false, buildRockCompiler: true, buildTests: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 55, 5], ["repo", 56, 5], ["tag", 57, 5], ["hash", 58, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["finalAttrs", 150, 13], ["page", 151, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 149, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 155, 5], ["homepage", 156, 5], ["license", 157, 5], ["teams", 158, 5], ["platforms", 159, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 44, 3], ["version", 45, 3], ["outputs", 47, 3], ["src", 54, 3], ["nativeBuildInputs", 61, 3], ["buildInputs", 69, 3], ["propagatedBuildInputs", 77, 3], ["cmakeFlags", 83, 3], ["postPatch", 108, 3], ["dontBuild", 120, 3], ["doCheck", 121, 3], ["checkTarget", 124, 3], ["postInstall", 132, 3], ["passthru", 149, 3], ["meta", 154, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const suffix = nix.thunk(() => (nix.asBool(buildRockCompiler) ? "-rock" : ""));
   const llvmNativeTarget = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")) ? "X86" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) ? "AArch64" : nix.builtins.throw("Unsupported ROCm LLVM platform"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: nix.thunk(() => nix.str`rocmlir${suffix}`),
       version: "7.2.3",
       outputs: nix.thunk(() => nix.concat(["out"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(buildRockCompiler)), nix.thunk(() => ["external"])))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ROCm",
           repo: "rocMLIR",
           tag: nix.thunk(() => nix.str`rocm-${nix.sel(finalAttrs, "version")}`),
@@ -83,11 +79,11 @@ patchelf --set-rpath $out/lib:$external/lib:${libPath} $out/{bin/*,lib/*.so*}
 `));
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: pos$2, finalAttrs: finalAttrs, page: "tags" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: $pos[1], finalAttrs: finalAttrs, page: "tags" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "MLIR-based convolution and GEMM kernel generator",
         homepage: "https://github.com/ROCm/rocMLIR",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

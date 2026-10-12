@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 7], ["hash", 13, 7]], [["url", 16, 7], ["hash", 17, 7]], [["url", 20, 7], ["hash", 21, 7]], [["url", 24, 7], ["hash", 25, 7]], [["i686-linux", 11, 5], ["x86_64-linux", 15, 5], ["aarch64-linux", 19, 5], ["aarch64-darwin", 23, 5]], [["package", 59, 43]], [["version", 59, 11]], [["platforms", 56, 5], ["sources", 57, 13], ["updateScript", 58, 5], ["tests", 59, 5]], [["description", 66, 5], ["homepage", 67, 5], ["downloadPage", 68, 5], ["changelog", 69, 5], ["sourceProvenance", 70, 5], ["license", 71, 5], ["platforms", 72, 5], ["maintainers", 73, 5], ["mainProgram", 77, 5]], [["pname", 30, 3], ["version", 31, 11], ["src", 33, 3], ["sourceRoot", 35, 3], ["unpackPhase", 37, 3], ["buildPhase", 43, 3], ["installPhase", 49, 3], ["passthru", 55, 3], ["dontStrip", 63, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 7], ["hash", 13, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 16, 7], ["hash", 17, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 20, 7], ["hash", 21, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 24, 7], ["hash", 25, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["i686-linux", 11, 5], ["x86_64-linux", 15, 5], ["aarch64-linux", 19, 5], ["aarch64-darwin", 23, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["package", 59, 43]]);
-const pos$7 = nix.positions(here + "/package.nix", [["version", 59, 11]]);
-const pos$8 = nix.positions(here + "/package.nix", [["platforms", 56, 5], ["sources", 57, 13], ["updateScript", 58, 5], ["tests", 59, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 66, 5], ["homepage", 67, 5], ["downloadPage", 68, 5], ["changelog", 69, 5], ["sourceProvenance", 70, 5], ["license", 71, 5], ["platforms", 72, 5], ["maintainers", 73, 5], ["mainProgram", 77, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 11], ["src", 33, 3], ["sourceRoot", 35, 3], ["unpackPhase", 37, 3], ["buildPhase", 43, 3], ["installPhase", 49, 3], ["passthru", 55, 3], ["dontStrip", 63, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,30 +13,30 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const version = "3.39.10";
   const sources = nix.thunk(() => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     "i686-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: "https://bin.ngrok.com/a/3fcY7AHuPyf/ngrok-v3-3.39.10-linux-386",
         hash: "sha256-D7YyL4y/mQM32Ibb705phAAPd3+ePdzobpdaijNGmOw=",
       })))),
     "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: "https://bin.ngrok.com/a/jhBAuesrzKn/ngrok-v3-3.39.10-linux-amd64",
         hash: "sha256-tHXDG0Ce00Jgkb3ni2D64n7e5HDCMgyzBldDwVm5sns=",
       })))),
     "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         url: "https://bin.ngrok.com/a/55PuHLixvyF/ngrok-v3-3.39.10-linux-arm64",
         hash: "sha256-otHU2Nrrza4FQVO+26lvD6vHhZ8En20WbvJSbvZiCr4=",
       })))),
     "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         url: "https://bin.ngrok.com/a/aQGG8qqiJvo/ngrok-v3-3.39.10-darwin-arm64",
         hash: "sha256-0zWkegTd5yaJei51MYfp9I+/QGFsSL4yZpVMe5F1oJ4=",
       })))),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "ngrok",
       version: version,
       src: nix.thunk(() => nix.sel(sources, nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
@@ -54,21 +45,21 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\nchmod a+x ngrok\nrunHook postBuild\n",
       installPhase: "runHook preInstall\ninstall -D ngrok $out/bin/ngrok\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         platforms: nix.thunk(() => nix.builtins.attrNames(sources)),
         sources: sources,
         updateScript: nix.path(here, "./update.sh"),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       dontStrip: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Allows you to expose a web server running on your local machine to the internet",
         homepage: "https://ngrok.com/",
         downloadPage: "https://ngrok.com/download",

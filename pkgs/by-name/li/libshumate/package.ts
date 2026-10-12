@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 36, 5], ["hash", 37, 5]], [["packageName", 96, 7]], [["updateScript", 95, 5]], [["description", 101, 5], ["mainProgram", 102, 5], ["homepage", 103, 5], ["license", 104, 5], ["teams", 105, 5], ["platforms", 106, 5]], [["pname", 25, 3], ["version", 26, 3], ["outputs", 28, 3], ["outputBin", 33, 3], ["src", 35, 3], ["depsBuildBuild", 40, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 55, 3], ["nativeCheckInputs", 66, 3], ["mesonFlags", 70, 3], ["doCheck", 74, 3], ["checkPhase", 76, 3], ["postFixup", 87, 3], ["strictDeps", 92, 3], ["passthru", 94, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "gi-docgen": false, meson: false, ninja: false, "pkg-config": false, vala: false, "gobject-introspection": false, gperf: false, glib: false, cairo: false, sqlite: false, libsoup_3: false, gtk4: false, "libsysprof-capture": false, "json-glib": false, protobufc: false, "xvfb-run": false, gnome: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 96, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 95, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 101, 5], ["mainProgram", 102, 5], ["homepage", 103, 5], ["license", 104, 5], ["teams", 105, 5], ["platforms", 106, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["outputs", 28, 3], ["outputBin", 33, 3], ["src", 35, 3], ["depsBuildBuild", 40, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 55, 3], ["nativeCheckInputs", 66, 3], ["mesonFlags", 70, 3], ["doCheck", 74, 3], ["checkPhase", 76, 3], ["postFixup", 87, 3], ["strictDeps", 92, 3], ["passthru", 94, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,13 +28,13 @@ export default nix.lambda((args) => (() => {
   const xvfb_run = nix.arg($, "xvfb-run");
   const gnome = nix.arg($, "gnome");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "libshumate",
       version: "1.6.3",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       outputBin: "devdoc",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/libshumate/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/libshumate-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-/RXJE5bc2C/OMCFkhUGqiR5xpr3e/8A9OFl1gKfajKE=",
         })))),
@@ -61,11 +57,11 @@ export default nix.lambda((args) => (() => {
       postFixup: "# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput share/doc/libshumate-1.0 \"$devdoc\"\n",
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "libshumate" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "libshumate" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "GTK toolkit providing widgets for embedded maps",
         mainProgram: "shumate-demo",
         homepage: "https://gitlab.gnome.org/GNOME/libshumate",

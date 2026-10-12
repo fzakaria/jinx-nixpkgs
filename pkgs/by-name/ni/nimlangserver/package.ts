@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 7], ["repo", 17, 7], ["rev", 18, 7], ["hash", 19, 7]], [["description", 25, 7], ["homepage", 26, 7], ["license", 27, 7], ["mainProgram", 28, 7], ["maintainers", 29, 7]], [["pname", 8, 5], ["version", 9, 5], ["lockFile", 13, 5], ["src", 15, 5], ["doCheck", 22, 5], ["meta", 24, 5]]]);
 const formals$1 = { args: { lib: false, buildNimPackage: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 7], ["repo", 17, 7], ["rev", 18, 7], ["hash", 19, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 25, 7], ["homepage", 26, 7], ["license", 27, 7], ["mainProgram", 28, 7], ["maintainers", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 5], ["version", 9, 5], ["lockFile", 13, 5], ["src", 15, 5], ["doCheck", 22, 5], ["meta", 24, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.14.0";
       const lockFile = nix.path(here, "./lock.json");
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nim-lang",
           repo: "langserver",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const doCheck = false;
       const meta = nix.thunk(() => nix.update(nix.sel(final, "src", "meta"), {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Nim language server implementation (based on nimsuggest)",
         homepage: "https://github.com/nim-lang/langserver",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "daylinmorgan"))];
         })()),
       }));
-      return { [nix.POS]: pos$3, pname, version, lockFile, src, doCheck, meta };
+      return { [nix.POS]: $pos[2], pname, version, lockFile, src, doCheck, meta };
     })());
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

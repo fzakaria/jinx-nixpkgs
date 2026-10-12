@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 23, 5], ["src", 24, 22], ["version", 24, 26], ["nativeBuildInputs", 26, 5], ["buildInputs", 27, 5], ["postPatch", 29, 5], ["makeFlags", 35, 5], ["postFixup", 42, 5]], [["daemons", 86, 13]], [["description", 123, 5], ["mainProgram", 124, 5], ["longDescription", 125, 5], ["homepage", 132, 5], ["maintainers", 133, 5], ["platforms", 134, 5]], [["pname", 74, 3], ["version", 75, 20], ["outputs", 78, 3], ["buildInputs", 84, 3], ["passthru", 85, 3], ["buildCommand", 89, 3], ["meta", 122, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, python3: false, kernel: false, makeWrapper: false, writeText: false, gawk: false, iproute2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 23, 5], ["src", 24, 22], ["version", 24, 26], ["nativeBuildInputs", 26, 5], ["buildInputs", 27, 5], ["postPatch", 29, 5], ["makeFlags", 35, 5], ["postFixup", 42, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["daemons", 86, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 123, 5], ["mainProgram", 124, 5], ["longDescription", 125, 5], ["homepage", 132, 5], ["maintainers", 133, 5], ["platforms", 134, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 74, 3], ["version", 75, 20], ["outputs", 78, 3], ["buildInputs", 84, 3], ["passthru", 85, 3], ["buildCommand", 89, 3], ["meta", 122, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const libexec = "libexec/hypervkvpd";
   const fcopy_name = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(kernel, "version")), "6.10")) ? "fcopy" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) ? null : "fcopy_uio")));
   const daemons = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "hyperv-daemons-bin",
       src: nix.thunk(() => nix.attr(kernel, "src")),
       version: nix.thunk(() => nix.attr(kernel, "version")),
@@ -56,12 +53,12 @@ Slice=hyperv.slice
 WantedBy=hyperv-daemons.target
 `));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "hyperv-daemons",
       version: nix.thunk(() => nix.attr(kernel, "version")),
       outputs: nix.thunk(() => ["bin", "lib", "out"]),
       buildInputs: nix.thunk(() => [daemons]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, daemons: daemons })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], daemons: daemons })),
       buildCommand: nix.thunk(() => nix.str`system=$lib/lib/systemd/system
 
 ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(fcopy_name, null)), nix.thunk(() => nix.str`install -Dm444 ${nix.app(service, fcopy_name, "file copy (FCOPY)", "/sys/bus/vmbus/devices/eb765408-105f-49b6-b4aa-c123b64d17d4/uio")} $system/hv-fcopy.service
@@ -88,7 +85,7 @@ for d in $out/bin $bin/bin ; do
 done
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Integration Services for running NixOS under HyperV",
         mainProgram: "lsvmbus",
         longDescription: "This packages contains the daemons that are used by the Hyper-V hypervisor\non the host.\n\nMicrosoft calls their guest agents \"Integration Services\" which is why\nwe use that name here.\n",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 10, 5], ["sha256", 11, 5]], [["url", 15, 7], ["includes", 16, 7], ["hash", 20, 7]], [["url", 23, 7], ["hash", 24, 7]], [["version", 8, 3], ["src", 9, 3], ["patches", 13, 3]]]);
 const formals$1 = { args: { fetchurl: false, fetchpatch: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 10, 5], ["sha256", 11, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 15, 7], ["includes", 16, 7], ["hash", 20, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 23, 7], ["hash", 24, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["version", 8, 3], ["src", 9, 3], ["patches", 13, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,24 +13,24 @@ export default nix.lambda((args) => (() => {
   return nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({})), nix.thunk(() => (() => {
       const version = "0.0.6";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://src.fedoraproject.org/lookaside/pkgs/spandsp/spandsp-${version}.tar.gz/897d839516a6d4edb20397d4757a7ca3/spandsp-${version}.tar.gz`),
           sha256: "0rclrkyspzk575v8fslzjpgp4y2s4x7xk3r55ycvpi4agv33l1fc",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/freeswitch/spandsp/commit/f7b96b08db148763039cf3459d0e00da9636eb92.patch",
             includes: nix.thunk(() => ["spandsp-sim/g1050.c", "spandsp-sim/test_utils.c"]),
             hash: "sha256-2MmVgyMUK0Zn+mL7IX57Y7brYpgmt4GVlis5/NstuNM=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/freeswitch/spandsp/commit/f47bcdc301fbddad44e918939eed1b361882f740.patch",
             hash: "sha256-O+lIC3V92GVFoiHsUQOXkoTN2hJ7v5+LQP7RrAhvwlY=",
           })))),
       ]);
-      return { [nix.POS]: pos$4, version, src, patches };
+      return { [nix.POS]: $pos[3], version, src, patches };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

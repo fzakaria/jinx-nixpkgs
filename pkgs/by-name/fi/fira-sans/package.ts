@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 20, 5], ["stripRoot", 21, 5]], [["homepage", 31, 5], ["description", 32, 5], ["longDescription", 33, 5], ["maintainers", 42, 5], ["license", 43, 5], ["platforms", 44, 5]], [["pname", 9, 3], ["version", 10, 3], ["outputs", 11, 3], ["src", 16, 3], ["preInstall", 24, 3], ["nativeBuildInputs", 28, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false, installFonts: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 20, 5], ["stripRoot", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 31, 5], ["description", 32, 5], ["longDescription", 33, 5], ["maintainers", 42, 5], ["license", 43, 5], ["platforms", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["outputs", 11, 3], ["src", 16, 3], ["preInstall", 24, 3], ["nativeBuildInputs", 28, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "fira-sans",
       version: "4.301",
       outputs: nix.thunk(() => ["out", "webfont"]),
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://carrois.com/downloads/Fira/Download_Folder_FiraSans_${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(finalAttrs, "version")))}.zip`),
           hash: "sha256-WBt3oqPK7ACqMhilYkyFx9Ek2ugwdCDFZN+8HLRnGRs",
           stripRoot: false,
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       preInstall: "rm -r \"__MACOSX\"\n",
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://carrois.com/fira/",
         description: "Sans-serif font for Firefox OS",
         longDescription: "Fira Sans is a sans-serif font designed by Erik Spiekermann,\nRalph du Carrois, Anja Meiners and Botio Nikoltchev of Carrois\nType Design for Mozilla Firefox OS.  It is closely related to\nSpiekermann's FF Meta typeface.  Available in Two, Four, Eight,\nHair, Thin, Ultra Light, Extra Light, Light, Book, Regular,\nMedium, Semi Bold, Bold, Extra Bold, Heavy weights with\ncorresponding italic versions.\n",

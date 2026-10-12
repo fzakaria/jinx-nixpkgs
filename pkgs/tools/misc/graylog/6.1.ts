@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/6.1.nix", [[["version", 6, 3], ["hash", 7, 3], ["maintainers", 8, 3], ["license", 9, 3]]]);
 const formals$1 = { args: { callPackage: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/6.1.nix", [["version", 6, 3], ["hash", 7, 3], ["maintainers", 8, 3], ["license", 9, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const buildGraylog = nix.thunk(() => nix.app(callPackage, nix.path(here, "./graylog.nix"), nix.thunk(() => ({}))));
   return nix.app(buildGraylog, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       version: "6.1.8",
       hash: "sha256-omyV4BSY9SWDFyLcQCr0+LcjRecw9C1HtvsnCJrZX1U=",
       maintainers: nix.thunk(() => (() => {

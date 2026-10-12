@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["x86_64-linux", 20, 9], ["aarch64-linux", 21, 9], ["aarch64-darwin", 22, 9]], [["x86_64-linux", 28, 9], ["aarch64-linux", 29, 9], ["aarch64-darwin", 30, 9]], [["url", 26, 7], ["hash", 27, 7]], [["updateScript", 49, 12]], [["description", 52, 5], ["homepage", 53, 5], ["sourceProvenance", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["platforms", 66, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 14, 3], ["nativeBuildInputs", 34, 3], ["dontStrip", 36, 3], ["installPhase", 38, 3], ["passthru", 49, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoPatchelfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["x86_64-linux", 20, 9], ["aarch64-linux", 21, 9], ["aarch64-darwin", 22, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["x86_64-linux", 28, 9], ["aarch64-linux", 29, 9], ["aarch64-darwin", 30, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 26, 7], ["hash", 27, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 49, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 52, 5], ["homepage", 53, 5], ["sourceProvenance", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["platforms", 66, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 14, 3], ["nativeBuildInputs", 34, 3], ["dontStrip", 36, 3], ["installPhase", 38, 3], ["passthru", 49, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,22 +12,22 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "confluent-cli",
       version: "4.78.0",
       src: nix.thunk(() => (() => {
         const selectSystem = (attrs) => nix.selOr(attrs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system")));
         const system = nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             "x86_64-linux": "linux_amd64",
             "aarch64-linux": "linux_arm64",
             "aarch64-darwin": "darwin_arm64",
           }))));
         return nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: nix.thunk(() => nix.str`https://s3-us-west-2.amazonaws.com/confluent.cloud/confluent-cli/archives/${nix.sel(finalAttrs, "version")}/confluent_${nix.sel(finalAttrs, "version")}_${system}.tar.gz`),
             hash: nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 "x86_64-linux": "sha256-qucQOGtmjkJV9+kTUOcA69J8AnMYxzdNaML5NnHEkiA=",
                 "aarch64-linux": "sha256-mFJeF4IGPpkpvA+nKBGmVrFuavsqOm1QZEKzY2Q9PbM=",
                 "aarch64-darwin": "sha256-uezaNQ+ZRTbcYxQmwGWMR9yjD3vdvFAYRR4b4mnYH6g=",
@@ -42,9 +37,9 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [autoPatchelfHook]))),
       dontStrip: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       installPhase: "runHook preInstall\n\nmkdir -p $out/{bin,share/doc/confluent-cli}\ncp confluent $out/bin/\ncp LICENSE $out/share/doc/confluent-cli/\ncp -r legal $out/share/doc/confluent-cli/\n\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Confluent CLI",
         homepage: "https://docs.confluent.io/confluent-cli/current/overview.html",
         sourceProvenance: nix.thunk(() => (() => {

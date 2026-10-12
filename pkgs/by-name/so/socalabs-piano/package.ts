@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["hash", 46, 5], ["fetchSubmodules", 47, 5], ["preFetch", 48, 5]], [["NIX_LDFLAGS", 104, 7], ["FONTCONFIG_FILE", 114, 7]], [["updateScript", 141, 12]], [["type", 144, 5], ["name", 145, 5], ["desktopName", 146, 5], ["comment", 147, 5], ["exec", 148, 5], ["categories", 149, 5]], [["description", 156, 5], ["homepage", 157, 5], ["platforms", 158, 5], ["license", 161, 5], ["maintainers", 165, 5]], [["mainProgram", 171, 5]], [["pname", 36, 3], ["version", 37, 3], ["strictDeps", 39, 3], ["__structuredAttrs", 40, 3], ["src", 42, 3], ["postPatch", 55, 3], ["nativeBuildInputs", 70, 3], ["buildInputs", 78, 3], ["cmakeFlags", 92, 3], ["env", 104, 3], ["preBuild", 116, 3], ["installPhase", 118, 3], ["passthru", 141, 3], ["desktopItems", 143, 3], ["meta", 155, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, "nix-update-script": false, cmake: false, ninja: false, "pkg-config": false, writableTmpDirAsHomeHook: false, copyDesktopItems: false, makeDesktopItem: false, libx11: false, libxcursor: false, libxext: false, libxi: false, libxinerama: false, libxrandr: false, expat: false, freetype: false, fontconfig: false, curl: false, "alsa-lib": false, buildStandalone: true, buildVST3: true, buildLV2: true, buildCLAP: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["hash", 46, 5], ["fetchSubmodules", 47, 5], ["preFetch", 48, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 104, 7], ["FONTCONFIG_FILE", 114, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 141, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["type", 144, 5], ["name", 145, 5], ["desktopName", 146, 5], ["comment", 147, 5], ["exec", 148, 5], ["categories", 149, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 156, 5], ["homepage", 157, 5], ["platforms", 158, 5], ["license", 161, 5], ["maintainers", 165, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["mainProgram", 171, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 36, 3], ["version", 37, 3], ["strictDeps", 39, 3], ["__structuredAttrs", 40, 3], ["src", 42, 3], ["postPatch", 55, 3], ["nativeBuildInputs", 70, 3], ["buildInputs", 78, 3], ["cmakeFlags", 92, 3], ["env", 104, 3], ["preBuild", 116, 3], ["installPhase", 118, 3], ["passthru", 141, 3], ["desktopItems", 143, 3], ["meta", 155, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,13 +38,13 @@ export default nix.lambda((args) => (() => {
     nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), buildLV2, "LV2")),
   ]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "socalabs-piano",
       version: "1.0.14",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "FigBug",
           repo: "piano",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -81,7 +75,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CMAKE_EXE_LINKER_FLAGS", nix.thunk(() => nix.str`-L${nix.app(nix.sel(lib, "getLib"), curl)}/lib`))),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-lX11", "-lXcursor", "-lXext", "-lXi", "-lXinerama", "-lXrandr"]))),
         FONTCONFIG_FILE: nix.thunk(() => nix.str`${nix.sel(fontconfig, "out")}/etc/fonts/fonts.conf`),
       })),
@@ -98,11 +92,11 @@ popd
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "optional"), buildStandalone, nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             type: "Application",
             name: "socalabs-piano",
             desktopName: "Socalabs Piano",
@@ -111,7 +105,7 @@ runHook postInstall
             categories: nix.thunk(() => ["Audio", "AudioVideo"]),
           })))))),
       meta: nix.thunk(() => nix.update({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Digital waveguide piano physical model as a VST3, LV2 and CLAP plugin",
         homepage: "https://socalabs.com/synths/piano/",
         platforms: nix.thunk(() => ["x86_64-linux"]),
@@ -129,7 +123,7 @@ runHook postInstall
             nix.thunk(() => nix.lookup(w_1, "magnetophon")),
           ];
         })()),
-      }, nix.app(nix.sel(lib, "optionalAttrs"), buildStandalone, nix.thunk(() => ({ [nix.POS]: pos$6, mainProgram: "Piano" }))))),
+      }, nix.app(nix.sel(lib, "optionalAttrs"), buildStandalone, nix.thunk(() => ({ [nix.POS]: $pos[5], mainProgram: "Piano" }))))),
     }));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

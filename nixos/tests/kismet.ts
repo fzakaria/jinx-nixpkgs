@@ -2,73 +2,13 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/kismet.nix", [[["address", 22, 15], ["prefixLength", 23, 15]], [["addresses", 20, 43]], [["ipv4", 20, 38]], [["eth1", 20, 33]], [["interfaces", 20, 22]], [["tcp", 29, 21], ["spy", 30, 21]], [["enable", 28, 15], ["ports", 29, 15], ["openFirewall", 31, 15]], [["server", 27, 13]], [["vwifi", 26, 20]], [["networking", 20, 11], ["services", 26, 11]], [["address", 41, 15], ["prefixLength", 42, 15]], [["addresses", 39, 43]], [["ipv4", 39, 38]], [["eth1", 39, 33]], [["interfaces", 39, 22]], [["password", 53, 38]], [["mode", 52, 19], ["saePasswords", 53, 19], ["enableRecommendedPairwiseCiphers", 54, 19]], [["ssid", 50, 25], ["authentication", 51, 17]], [["channel", 48, 15], ["networks", 49, 15]], [["enable", 46, 13], ["radios", 47, 13]], [["enable", 61, 15], ["macPrefix", 62, 15]], [["enable", 65, 15], ["serverAddress", 66, 23]], [["module", 60, 13], ["client", 64, 13]], [["hostapd", 45, 20], ["vwifi", 59, 20]], [["networking", 39, 11], ["services", 45, 11]], [["address", 76, 15], ["prefixLength", 77, 15]], [["addresses", 74, 43]], [["ipv4", 74, 38]], [["eth1", 74, 33]], [["psk", 86, 25], ["authProtocols", 87, 17]], [["enable", 82, 13], ["interfaces", 83, 13], ["networks", 84, 13]], [["interfaces", 74, 22], ["wireless", 80, 22]], [["enable", 93, 15], ["macPrefix", 94, 15]], [["enable", 97, 15], ["serverAddress", 98, 23]], [["module", 92, 13], ["client", 96, 13]], [["vwifi", 91, 20]], [["systemPackages", 101, 23]], [["networking", 74, 11], ["services", 91, 11], ["environment", 101, 11]], [["address", 109, 15], ["prefixLength", 110, 15]], [["addresses", 107, 43]], [["ipv4", 107, 38]], [["eth1", 107, 33]], [["interfaces", 107, 22]], [["enable", 118, 19]], [["host", 142, 17], ["port", 143, 17]], [["gpsd", 141, 19]], [["ssid", 147, 19], ["validmacs", 148, 19]], [["ssid", 154, 19], ["validmacs", 155, 19]], [["ssid", 163, 19], ["validmacs", 164, 19]], [["Foo1", 145, 23], ["Foo2", 161, 23]], [["name", 173, 17]], [["log_types'", 122, 15], ["wepkey", 125, 15], ["alert", 129, 15], ["gps", 141, 15], ["apspoof", 145, 15], ["source", 172, 15]], [["enable", 115, 13], ["serverName", 116, 13], ["serverDescription", 117, 13], ["httpd", 118, 13], ["settings", 120, 13], ["extraConfig", 176, 13]], [["enable", 183, 15], ["macPrefix", 184, 15]], [["enable", 187, 15], ["spy", 188, 15], ["serverAddress", 189, 23]], [["module", 182, 13], ["client", 186, 13]], [["kismet", 114, 20], ["vwifi", 181, 20]], [["systemPackages", 193, 23]], [["networking", 107, 11], ["services", 114, 11], ["environment", 193, 11]], [["airgap", 17, 7], ["ap", 36, 7], ["station", 71, 7], ["monitor", 104, 7]], [["name", 9, 3], ["nodes", 11, 3], ["testScript", 201, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
 const formals$2 = { args: { config: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/kismet.nix", [["address", 22, 15], ["prefixLength", 23, 15]]);
-const pos$2 = nix.positions(here + "/kismet.nix", [["addresses", 20, 43]]);
-const pos$3 = nix.positions(here + "/kismet.nix", [["ipv4", 20, 38]]);
-const pos$4 = nix.positions(here + "/kismet.nix", [["eth1", 20, 33]]);
-const pos$5 = nix.positions(here + "/kismet.nix", [["interfaces", 20, 22]]);
-const pos$6 = nix.positions(here + "/kismet.nix", [["tcp", 29, 21], ["spy", 30, 21]]);
-const pos$7 = nix.positions(here + "/kismet.nix", [["enable", 28, 15], ["ports", 29, 15], ["openFirewall", 31, 15]]);
-const pos$8 = nix.positions(here + "/kismet.nix", [["server", 27, 13]]);
-const pos$9 = nix.positions(here + "/kismet.nix", [["vwifi", 26, 20]]);
-const pos$10 = nix.positions(here + "/kismet.nix", [["networking", 20, 11], ["services", 26, 11]]);
 const formals$3 = { args: { config: false }, ellipsis: true };
-const pos$11 = nix.positions(here + "/kismet.nix", [["address", 41, 15], ["prefixLength", 42, 15]]);
-const pos$12 = nix.positions(here + "/kismet.nix", [["addresses", 39, 43]]);
-const pos$13 = nix.positions(here + "/kismet.nix", [["ipv4", 39, 38]]);
-const pos$14 = nix.positions(here + "/kismet.nix", [["eth1", 39, 33]]);
-const pos$15 = nix.positions(here + "/kismet.nix", [["interfaces", 39, 22]]);
-const pos$16 = nix.positions(here + "/kismet.nix", [["password", 53, 38]]);
-const pos$17 = nix.positions(here + "/kismet.nix", [["mode", 52, 19], ["saePasswords", 53, 19], ["enableRecommendedPairwiseCiphers", 54, 19]]);
-const pos$18 = nix.positions(here + "/kismet.nix", [["ssid", 50, 25], ["authentication", 51, 17]]);
-const pos$19 = nix.positions(here + "/kismet.nix", [["channel", 48, 15], ["networks", 49, 15]]);
-const pos$20 = nix.positions(here + "/kismet.nix", [["enable", 46, 13], ["radios", 47, 13]]);
-const pos$21 = nix.positions(here + "/kismet.nix", [["enable", 61, 15], ["macPrefix", 62, 15]]);
-const pos$22 = nix.positions(here + "/kismet.nix", [["enable", 65, 15], ["serverAddress", 66, 23]]);
-const pos$23 = nix.positions(here + "/kismet.nix", [["module", 60, 13], ["client", 64, 13]]);
-const pos$24 = nix.positions(here + "/kismet.nix", [["hostapd", 45, 20], ["vwifi", 59, 20]]);
-const pos$25 = nix.positions(here + "/kismet.nix", [["networking", 39, 11], ["services", 45, 11]]);
 const formals$4 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$26 = nix.positions(here + "/kismet.nix", [["address", 76, 15], ["prefixLength", 77, 15]]);
-const pos$27 = nix.positions(here + "/kismet.nix", [["addresses", 74, 43]]);
-const pos$28 = nix.positions(here + "/kismet.nix", [["ipv4", 74, 38]]);
-const pos$29 = nix.positions(here + "/kismet.nix", [["eth1", 74, 33]]);
-const pos$30 = nix.positions(here + "/kismet.nix", [["psk", 86, 25], ["authProtocols", 87, 17]]);
-const pos$31 = nix.positions(here + "/kismet.nix", [["enable", 82, 13], ["interfaces", 83, 13], ["networks", 84, 13]]);
-const pos$32 = nix.positions(here + "/kismet.nix", [["interfaces", 74, 22], ["wireless", 80, 22]]);
-const pos$33 = nix.positions(here + "/kismet.nix", [["enable", 93, 15], ["macPrefix", 94, 15]]);
-const pos$34 = nix.positions(here + "/kismet.nix", [["enable", 97, 15], ["serverAddress", 98, 23]]);
-const pos$35 = nix.positions(here + "/kismet.nix", [["module", 92, 13], ["client", 96, 13]]);
-const pos$36 = nix.positions(here + "/kismet.nix", [["vwifi", 91, 20]]);
-const pos$37 = nix.positions(here + "/kismet.nix", [["systemPackages", 101, 23]]);
-const pos$38 = nix.positions(here + "/kismet.nix", [["networking", 74, 11], ["services", 91, 11], ["environment", 101, 11]]);
 const formals$5 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$39 = nix.positions(here + "/kismet.nix", [["address", 109, 15], ["prefixLength", 110, 15]]);
-const pos$40 = nix.positions(here + "/kismet.nix", [["addresses", 107, 43]]);
-const pos$41 = nix.positions(here + "/kismet.nix", [["ipv4", 107, 38]]);
-const pos$42 = nix.positions(here + "/kismet.nix", [["eth1", 107, 33]]);
-const pos$43 = nix.positions(here + "/kismet.nix", [["interfaces", 107, 22]]);
-const pos$44 = nix.positions(here + "/kismet.nix", [["enable", 118, 19]]);
-const pos$45 = nix.positions(here + "/kismet.nix", [["host", 142, 17], ["port", 143, 17]]);
-const pos$46 = nix.positions(here + "/kismet.nix", [["gpsd", 141, 19]]);
-const pos$47 = nix.positions(here + "/kismet.nix", [["ssid", 147, 19], ["validmacs", 148, 19]]);
-const pos$48 = nix.positions(here + "/kismet.nix", [["ssid", 154, 19], ["validmacs", 155, 19]]);
-const pos$49 = nix.positions(here + "/kismet.nix", [["ssid", 163, 19], ["validmacs", 164, 19]]);
-const pos$50 = nix.positions(here + "/kismet.nix", [["Foo1", 145, 23], ["Foo2", 161, 23]]);
-const pos$51 = nix.positions(here + "/kismet.nix", [["name", 173, 17]]);
-const pos$52 = nix.positions(here + "/kismet.nix", [["log_types'", 122, 15], ["wepkey", 125, 15], ["alert", 129, 15], ["gps", 141, 15], ["apspoof", 145, 15], ["source", 172, 15]]);
-const pos$53 = nix.positions(here + "/kismet.nix", [["enable", 115, 13], ["serverName", 116, 13], ["serverDescription", 117, 13], ["httpd", 118, 13], ["settings", 120, 13], ["extraConfig", 176, 13]]);
-const pos$54 = nix.positions(here + "/kismet.nix", [["enable", 183, 15], ["macPrefix", 184, 15]]);
-const pos$55 = nix.positions(here + "/kismet.nix", [["enable", 187, 15], ["spy", 188, 15], ["serverAddress", 189, 23]]);
-const pos$56 = nix.positions(here + "/kismet.nix", [["module", 182, 13], ["client", 186, 13]]);
-const pos$57 = nix.positions(here + "/kismet.nix", [["kismet", 114, 20], ["vwifi", 181, 20]]);
-const pos$58 = nix.positions(here + "/kismet.nix", [["systemPackages", 193, 23]]);
-const pos$59 = nix.positions(here + "/kismet.nix", [["networking", 107, 11], ["services", 114, 11], ["environment", 193, 11]]);
-const pos$60 = nix.positions(here + "/kismet.nix", [["airgap", 17, 7], ["ap", 36, 7], ["station", 71, 7], ["monitor", 104, 7]]);
 const formals$6 = { args: { nodes: false }, ellipsis: true };
-const pos$61 = nix.positions(here + "/kismet.nix", [["name", 9, 3], ["nodes", 11, 3], ["testScript", 201, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -78,41 +18,41 @@ export default nix.lambda((args) => (() => {
   const psk = "stayoffmywifi";
   const wlanInterface = "wlan0";
   return {
-    [nix.POS]: pos$61,
+    [nix.POS]: $pos[60],
     name: "kismet",
     nodes: nix.thunk(() => (() => {
       const hostAddress = (id) => nix.str`192.168.1.${nix.builtins.toString(nix.thunk(() => nix.add(id, 1n)))}`;
       const serverAddress = nix.thunk(() => nix.app(hostAddress, 1n));
       return {
-        [nix.POS]: pos$60,
+        [nix.POS]: $pos[59],
         airgap: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const config = nix.arg($_1, "config");
           return {
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               interfaces: nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 eth1: nix.thunk(() => ({
-                  [nix.POS]: pos$3,
+                  [nix.POS]: $pos[2],
                   ipv4: nix.thunk(() => ({
-                    [nix.POS]: pos$2,
+                    [nix.POS]: $pos[1],
                     addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => [
-                        nix.thunk(() => ({ [nix.POS]: pos$1, address: serverAddress, prefixLength: 24n })),
+                        nix.thunk(() => ({ [nix.POS]: $pos[0], address: serverAddress, prefixLength: 24n })),
                       ]))),
                   })),
                 })),
               })),
             })),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               vwifi: nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 server: nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   enable: true,
-                  ports: nix.thunk(() => ({ [nix.POS]: pos$6, tcp: 8212n, spy: 8213n })),
+                  ports: nix.thunk(() => ({ [nix.POS]: $pos[5], tcp: 8212n, spy: 8213n })),
                   openFirewall: true,
                 })),
               })),
@@ -123,18 +63,18 @@ export default nix.lambda((args) => (() => {
           const $_1 = nix.formals(args_1, formals$3);
           const config = nix.arg($_1, "config");
           return {
-            [nix.POS]: pos$25,
+            [nix.POS]: $pos[24],
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               interfaces: nix.thunk(() => ({
-                [nix.POS]: pos$14,
+                [nix.POS]: $pos[13],
                 eth1: nix.thunk(() => ({
-                  [nix.POS]: pos$13,
+                  [nix.POS]: $pos[12],
                   ipv4: nix.thunk(() => ({
-                    [nix.POS]: pos$12,
+                    [nix.POS]: $pos[11],
                     addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => [
                         nix.thunk(() => ({
-                          [nix.POS]: pos$11,
+                          [nix.POS]: $pos[10],
                           address: nix.thunk(() => nix.app(hostAddress, 2n)),
                           prefixLength: 24n,
                         })),
@@ -144,22 +84,22 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$24,
+              [nix.POS]: $pos[23],
               hostapd: nix.thunk(() => ({
-                [nix.POS]: pos$20,
+                [nix.POS]: $pos[19],
                 enable: true,
                 radios: nix.thunk(() => nix.attrsDyn({}, [
                   [wlanInterface, nix.thunk(() => ({
-                    [nix.POS]: pos$19,
+                    [nix.POS]: $pos[18],
                     channel: 1n,
                     networks: nix.thunk(() => nix.attrsDyn({}, [
                       [wlanInterface, nix.thunk(() => ({
-                        [nix.POS]: pos$18,
+                        [nix.POS]: $pos[17],
                         ssid: ssid,
                         authentication: nix.thunk(() => ({
-                          [nix.POS]: pos$17,
+                          [nix.POS]: $pos[16],
                           mode: "wpa3-sae",
-                          saePasswords: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$16, password: psk }))]),
+                          saePasswords: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[15], password: psk }))]),
                           enableRecommendedPairwiseCiphers: true,
                         })),
                       }))],
@@ -168,9 +108,9 @@ export default nix.lambda((args) => (() => {
                 ])),
               })),
               vwifi: nix.thunk(() => ({
-                [nix.POS]: pos$23,
-                module: nix.thunk(() => ({ [nix.POS]: pos$21, enable: true, macPrefix: "74:F8:F6:00:01" })),
-                client: nix.thunk(() => ({ [nix.POS]: pos$22, enable: true, serverAddress: serverAddress })),
+                [nix.POS]: $pos[22],
+                module: nix.thunk(() => ({ [nix.POS]: $pos[20], enable: true, macPrefix: "74:F8:F6:00:01" })),
+                client: nix.thunk(() => ({ [nix.POS]: $pos[21], enable: true, serverAddress: serverAddress })),
               })),
             })),
           };
@@ -180,18 +120,18 @@ export default nix.lambda((args) => (() => {
           const config = nix.arg($_1, "config");
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            [nix.POS]: pos$38,
+            [nix.POS]: $pos[37],
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$32,
+              [nix.POS]: $pos[31],
               interfaces: nix.thunk(() => ({
-                [nix.POS]: pos$29,
+                [nix.POS]: $pos[28],
                 eth1: nix.thunk(() => ({
-                  [nix.POS]: pos$28,
+                  [nix.POS]: $pos[27],
                   ipv4: nix.thunk(() => ({
-                    [nix.POS]: pos$27,
+                    [nix.POS]: $pos[26],
                     addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => [
                         nix.thunk(() => ({
-                          [nix.POS]: pos$26,
+                          [nix.POS]: $pos[25],
                           address: nix.thunk(() => nix.app(hostAddress, 3n)),
                           prefixLength: 24n,
                         })),
@@ -200,24 +140,24 @@ export default nix.lambda((args) => (() => {
                 })),
               })),
               wireless: nix.thunk(() => ({
-                [nix.POS]: pos$31,
+                [nix.POS]: $pos[30],
                 enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 0n, true)),
                 interfaces: nix.thunk(() => [wlanInterface]),
                 networks: nix.thunk(() => nix.attrsDyn({}, [
-                  [ssid, nix.thunk(() => ({ [nix.POS]: pos$30, psk: psk, authProtocols: nix.thunk(() => ["SAE"]) }))],
+                  [ssid, nix.thunk(() => ({ [nix.POS]: $pos[29], psk: psk, authProtocols: nix.thunk(() => ["SAE"]) }))],
                 ])),
               })),
             })),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$36,
+              [nix.POS]: $pos[35],
               vwifi: nix.thunk(() => ({
-                [nix.POS]: pos$35,
-                module: nix.thunk(() => ({ [nix.POS]: pos$33, enable: true, macPrefix: "74:F8:F6:00:02" })),
-                client: nix.thunk(() => ({ [nix.POS]: pos$34, enable: true, serverAddress: serverAddress })),
+                [nix.POS]: $pos[34],
+                module: nix.thunk(() => ({ [nix.POS]: $pos[32], enable: true, macPrefix: "74:F8:F6:00:02" })),
+                client: nix.thunk(() => ({ [nix.POS]: $pos[33], enable: true, serverAddress: serverAddress })),
               })),
             })),
             environment: nix.thunk(() => ({
-              [nix.POS]: pos$37,
+              [nix.POS]: $pos[36],
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "nettools"))]),
             })),
           };
@@ -227,18 +167,18 @@ export default nix.lambda((args) => (() => {
           const config = nix.arg($_1, "config");
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            [nix.POS]: pos$59,
+            [nix.POS]: $pos[58],
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$43,
+              [nix.POS]: $pos[42],
               interfaces: nix.thunk(() => ({
-                [nix.POS]: pos$42,
+                [nix.POS]: $pos[41],
                 eth1: nix.thunk(() => ({
-                  [nix.POS]: pos$41,
+                  [nix.POS]: $pos[40],
                   ipv4: nix.thunk(() => ({
-                    [nix.POS]: pos$40,
+                    [nix.POS]: $pos[39],
                     addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => [
                         nix.thunk(() => ({
-                          [nix.POS]: pos$39,
+                          [nix.POS]: $pos[38],
                           address: nix.thunk(() => nix.app(hostAddress, 4n)),
                           prefixLength: 24n,
                         })),
@@ -248,15 +188,15 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$57,
+              [nix.POS]: $pos[56],
               kismet: nix.thunk(() => ({
-                [nix.POS]: pos$53,
+                [nix.POS]: $pos[52],
                 enable: true,
                 serverName: "NixOS Kismet Smoke Test",
                 serverDescription: "Server testing virtual wifi devices running on Hydra",
-                httpd: nix.thunk(() => ({ [nix.POS]: pos$44, enable: true })),
+                httpd: nix.thunk(() => ({ [nix.POS]: $pos[43], enable: true })),
                 settings: nix.thunk(() => ({
-                  [nix.POS]: pos$52,
+                  [nix.POS]: $pos[51],
                   "log_types'": "wiglecsv",
                   wepkey: nix.thunk(() => ["00:DE:AD:C0:DE:00", "FEEDFACE42"]),
                   alert: nix.thunk(() => [
@@ -264,45 +204,45 @@ export default nix.lambda((args) => (() => {
                     nix.thunk(() => ["ADVCRYPTCHANGE", "5/min", "1/sec"]),
                   ]),
                   gps: nix.thunk(() => ({
-                    [nix.POS]: pos$46,
-                    gpsd: nix.thunk(() => ({ [nix.POS]: pos$45, host: "localhost", port: 2947n })),
+                    [nix.POS]: $pos[45],
+                    gpsd: nix.thunk(() => ({ [nix.POS]: $pos[44], host: "localhost", port: 2947n })),
                   })),
                   apspoof: nix.thunk(() => ({
-                    [nix.POS]: pos$50,
+                    [nix.POS]: $pos[49],
                     Foo1: nix.thunk(() => [
                       nix.thunk(() => ({
-                        [nix.POS]: pos$47,
+                        [nix.POS]: $pos[46],
                         ssid: "Bar1",
                         validmacs: nix.thunk(() => ["00:11:22:33:44:55", "aa:bb:cc:dd:ee:ff"]),
                       })),
                       nix.thunk(() => ({
-                        [nix.POS]: pos$48,
+                        [nix.POS]: $pos[47],
                         ssid: "Bar2",
                         validmacs: nix.thunk(() => ["01:12:23:34:45:56", "ab:bc:cd:de:ef:f0"]),
                       })),
                     ]),
                     Foo2: nix.thunk(() => [
                       nix.thunk(() => ({
-                        [nix.POS]: pos$49,
+                        [nix.POS]: $pos[48],
                         ssid: "Bar2",
                         validmacs: nix.thunk(() => ["00:11:22:33:44:55", "aa:bb:cc:dd:ee:ff"]),
                       })),
                     ]),
                   })),
                   source: nix.thunk(() => nix.attrsDyn({}, [
-                    [wlanInterface, nix.thunk(() => ({ [nix.POS]: pos$51, name: "Virtual Wifi" }))],
+                    [wlanInterface, nix.thunk(() => ({ [nix.POS]: $pos[50], name: "Virtual Wifi" }))],
                   ])),
                 })),
                 extraConfig: "# this comment should be ignored\n",
               })),
               vwifi: nix.thunk(() => ({
-                [nix.POS]: pos$56,
-                module: nix.thunk(() => ({ [nix.POS]: pos$54, enable: true, macPrefix: "74:F8:F6:00:03" })),
-                client: nix.thunk(() => ({ [nix.POS]: pos$55, enable: true, spy: true, serverAddress: serverAddress })),
+                [nix.POS]: $pos[55],
+                module: nix.thunk(() => ({ [nix.POS]: $pos[53], enable: true, macPrefix: "74:F8:F6:00:03" })),
+                client: nix.thunk(() => ({ [nix.POS]: $pos[54], enable: true, spy: true, serverAddress: serverAddress })),
               })),
             })),
             environment: nix.thunk(() => ({
-              [nix.POS]: pos$58,
+              [nix.POS]: $pos[57],
               systemPackages: nix.thunk(() => [
                 nix.thunk(() => nix.sel(config, "services", "kismet", "package")),
                 nix.thunk(() => nix.sel(config, "services", "vwifi", "package")),

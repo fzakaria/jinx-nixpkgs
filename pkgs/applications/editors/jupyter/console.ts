@@ -2,14 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/console.nix", [[["definitions", 16, 63]], [["extraLibs", 14, 7], ["makeWrapperArgs", 15, 7]], [["mainProgram", 26, 11]], [["meta", 25, 9]], [["definitions", 42, 7], ["kernel", 43, 7]], [["mkConsole", 36, 11], ["withSingleKernel", 39, 3]]]);
 const formals$1 = { args: { python3: false, "jupyter-kernel": false, lib: false }, ellipsis: false };
 const formals$2 = { args: { definitions: true, kernel: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/console.nix", [["definitions", 16, 63]]);
-const pos$2 = nix.positions(here + "/console.nix", [["extraLibs", 14, 7], ["makeWrapperArgs", 15, 7]]);
-const pos$3 = nix.positions(here + "/console.nix", [["mainProgram", 26, 11]]);
-const pos$4 = nix.positions(here + "/console.nix", [["meta", 25, 9]]);
-const pos$5 = nix.positions(here + "/console.nix", [["definitions", 42, 7], ["kernel", 43, 7]]);
-const pos$6 = nix.positions(here + "/console.nix", [["mkConsole", 36, 11], ["withSingleKernel", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,21 +16,21 @@ export default nix.lambda((args) => (() => {
     const definitions = nix.argOr($_1, "definitions", () => nix.sel(jupyter_kernel, "default"));
     const kernel = nix.argOr($_1, "kernel", () => null);
     return nix.app(nix.sel(nix.app(nix.sel(python3, "buildEnv", "override"), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         extraLibs: nix.thunk(() => [nix.thunk(() => nix.sel(python3, "pkgs", "jupyter-console"))]),
         makeWrapperArgs: nix.thunk(() => nix.concat([
-          nix.thunk(() => nix.str`--set JUPYTER_PATH ${nix.app(nix.sel(jupyter_kernel, "create"), nix.thunk(() => ({ [nix.POS]: pos$1, definitions: definitions })))}`),
+          nix.thunk(() => nix.str`--set JUPYTER_PATH ${nix.app(nix.sel(jupyter_kernel, "create"), nix.thunk(() => ({ [nix.POS]: $pos[0], definitions: definitions })))}`),
         ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(kernel, null)), nix.thunk(() => ["--add-flags --kernel", nix.thunk(() => nix.str`--add-flags ${kernel}`)])))),
       }))), "overrideAttrs"), (oldAttrs) => ({
-        [nix.POS]: pos$4,
-        meta: nix.thunk(() => nix.update(nix.sel(oldAttrs, "meta"), { [nix.POS]: pos$3, mainProgram: "jupyter-console" })),
+        [nix.POS]: $pos[3],
+        meta: nix.thunk(() => nix.update(nix.sel(oldAttrs, "meta"), { [nix.POS]: $pos[2], mainProgram: "jupyter-console" })),
       }));
   })(), formals$2);
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     mkConsole: mkConsole,
     withSingleKernel: (definition) => nix.app(mkConsole, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         definitions: nix.thunk(() => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.sel(definition, "language")), definition)),
           ]))),

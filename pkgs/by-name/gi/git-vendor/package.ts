@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 13]], [["PREFIX", 33, 5], ["BINPREFIX", 34, 5], ["MANPREFIX", 35, 5]], [["docFiles", 46, 9], ["noiseFiles", 50, 9]], [["description", 66, 5], ["longDescription", 67, 5], ["homepage", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["platforms", 78, 5], ["mainProgram", 79, 5]], [["pname", 15, 3], ["version", 16, 11], ["src", 18, 3], ["outputs", 25, 3], ["env", 32, 3], ["buildInputs", 38, 3], ["postInstall", 43, 3], ["postFixup", 61, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, writeShellScriptBin: false, skawarePackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 13]]);
-const pos$2 = nix.positions(here + "/package.nix", [["PREFIX", 33, 5], ["BINPREFIX", 34, 5], ["MANPREFIX", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["docFiles", 46, 9], ["noiseFiles", 50, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 66, 5], ["longDescription", 67, 5], ["homepage", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["platforms", 78, 5], ["mainProgram", 79, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 11], ["src", 18, 3], ["outputs", 25, 3], ["env", 32, 3], ["buildInputs", 38, 3], ["postInstall", 43, 3], ["postFixup", 61, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const version = "1.3.0";
   const sha256 = "sha256-CFv9gZQHeEiZctJFyB6PJ1dVNkrQ7PlVtgZuteQQTJ0=";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "git-vendor",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "brettlangdon",
           repo: "git-vendor",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -31,14 +27,14 @@ export default nix.lambda((args) => (() => {
         })))),
       outputs: nix.thunk(() => ["bin", "man", "doc", "out"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         PREFIX: nix.thunk(() => nix.builtins.placeholder("out")),
         BINPREFIX: nix.thunk(() => nix.str`${nix.builtins.placeholder("bin")}/bin`),
         MANPREFIX: nix.thunk(() => nix.str`${nix.builtins.placeholder("man")}/share/man/man1`),
       })),
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.app(writeShellScriptBin, "git", ""))]),
       postInstall: nix.thunk(() => nix.str`${nix.app(nix.sel(skawarePackages, "cleanPackaging", "commonFileActions"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           docFiles: nix.thunk(() => ["LICENSE", "README.md"]),
           noiseFiles: nix.thunk(() => ["bin/git-vendor", "Makefile", "etc/bash_completion.sh", "man", "install.sh"]),
         })))} $doc/share/doc/git-vendor
@@ -46,7 +42,7 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.str`${nix.sel(skawarePackages, "cleanPackaging", "checkForRemainingFiles")}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Git command for managing vendored dependencies",
         longDescription: "git-vendor is a wrapper around git-subtree commands for checking out and updating vendored dependencies.\n\nBy default git-vendor conforms to the pattern used for vendoring golang dependencies:\n  * Dependencies are stored under vendor/ directory in the repo.\n  * Dependencies are stored under the fully qualified project path.\n      e.g. https://github.com/brettlangdon/forge will be stored under vendor/github.com/brettlangdon/forge.\n",
         homepage: "https://github.com/brettlangdon/git-vendor",

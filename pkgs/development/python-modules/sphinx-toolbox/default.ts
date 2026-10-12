@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 30, 26], ["pname", 31, 5], ["hash", 32, 5]], [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5]], [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["postPatch", 35, 3], ["build-system", 42, 3], ["dependencies", 44, 3], ["postFixup", 63, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, fetchPypi: false, lib: false, whey: false, sphinx: false, apeye: false, autodocsumm: false, beautifulsoup4: false, cachecontrol: false, dict2css: false, filelock: false, html5lib: false, roman: false, "ruamel-yaml": false, "sphinx-autodoc-typehints": false, "sphinx-jinja2-compat": false, "sphinx-prompt": false, "sphinx-tabs": false, tabulate: false, python: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 30, 26], ["pname", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["postPatch", 35, 3], ["build-system", 42, 3], ["dependencies", 44, 3], ["postFixup", 63, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const tabulate = nix.arg($, "tabulate");
   const python = nix.arg($, "python");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "sphinx-toolbox",
       version: "4.1.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "sphinx_toolbox",
           hash: "sha256-wwpPhsTCnpetsOuTN9NfUJPLlqRPScr/z31bxYqIt4E=",
@@ -62,7 +60,7 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.str`echo '__version__: str = "${nix.sel(finalAttrs, "version")}"' > $out/${nix.sel(python, "sitePackages")}/sphinx_toolbox/__init__.py
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Box of handy tools for Sphinx",
         homepage: "https://github.com/sphinx-toolbox/sphinx-toolbox",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

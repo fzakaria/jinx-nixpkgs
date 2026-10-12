@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 61, 5], ["repo", 62, 5], ["rev", 63, 5], ["hash", 64, 5]], [["nativeBuildInputs", 174, 13]], [["extraArgs", 190, 7]], [["tests", 169, 5], ["updateScript", 189, 5]], [["broken", 198, 5], ["maintainers", 199, 5], ["teams", 203, 5], ["license", 204, 5], ["changelog", 205, 5], ["description", 206, 5], ["homepage", 207, 5]], [["pname", 55, 3], ["version", 56, 3], ["pyproject", 57, 3], ["__structuredAttrs", 58, 3], ["src", 60, 3], ["patches", 67, 3], ["postPatch", 73, 3], ["dontUseCmakeConfigure", 93, 3], ["build-system", 95, 3], ["nativeBuildInputs", 101, 3], ["buildInputs", 105, 3], ["dependencies", 118, 3], ["nativeCheckInputs", 136, 3], ["postInstall", 141, 3], ["disabledTests", 151, 3], ["pythonImportsCheck", 165, 3], ["passthru", 167, 3], ["meta", 197, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, pythonAtLeast: false, ninja: false, "scikit-build-core": false, setuptools: false, cmake: false, bashNonInteractive: false, "ceres-solver": false, eigen: false, gflags: false, glog: false, gtest: false, lapack: false, metis: false, pybind11: false, suitesparse: false, cloudpickle: false, exifread: false, flask: false, fpdf2: false, joblib: false, matplotlib: false, networkx: false, numpy: false, "opencv-python": false, pillow: false, pyproj: false, "python-dateutil": false, pyyaml: false, scipy: false, xmltodict: false, pytestCheckHook: false, runCommand: false, srcOnly: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 61, 5], ["repo", 62, 5], ["rev", 63, 5], ["hash", 64, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 174, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["extraArgs", 190, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 169, 5], ["updateScript", 189, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["broken", 198, 5], ["maintainers", 199, 5], ["teams", 203, 5], ["license", 204, 5], ["changelog", 205, 5], ["description", 206, 5], ["homepage", 207, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 55, 3], ["version", 56, 3], ["pyproject", 57, 3], ["__structuredAttrs", 58, 3], ["src", 60, 3], ["patches", 67, 3], ["postPatch", 73, 3], ["dontUseCmakeConfigure", 93, 3], ["build-system", 95, 3], ["nativeBuildInputs", 101, 3], ["buildInputs", 105, 3], ["dependencies", 118, 3], ["nativeCheckInputs", 136, 3], ["postInstall", 141, 3], ["disabledTests", 151, 3], ["pythonImportsCheck", 165, 3], ["passthru", 167, 3], ["meta", 197, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -51,13 +46,13 @@ export default nix.lambda((args) => (() => {
   const srcOnly = nix.arg($, "srcOnly");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "opensfm",
       version: "0.5.1-unstable-2026-08-17",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mapillary",
           repo: "OpenSfM",
           rev: "36034bb0939fced472b6173d93a4d9bddb570fc0",
@@ -106,9 +101,9 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => nix.concat(["test_match_candidates_from_metadata_bow"], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.14")), nix.thunk(() => ["test_run_all", "test_shot_view_ref_count"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_reconstruction_incremental", "test_reconstruction_triangulation"]))))),
       pythonImportsCheck: nix.thunk(() => ["opensfm"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => nix.app(nix.sel(lib, "genAttrs'"), nix.thunk(() => ["berlin", "lund"]), (name) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`integration-test-${name}`), nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`opensfm-integration-test-${name}`), nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
               })), nix.thunk(() => nix.str`set -euo pipefail
 opensfm --help
@@ -120,12 +115,12 @@ if [[ -s data/camera_models.json && -s data/undistorted/reconstruction.json ]]; 
 fi
 `)))))),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraArgs: nix.thunk(() => ["--version=branch", "--version-regex=v(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         maintainers: nix.thunk(() => [
           nix.thunk(() => nix.sel(lib, "maintainers", "pbsds")),

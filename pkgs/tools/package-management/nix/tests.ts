@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["version", 18, 17]], [["lib", 57, 13], ["pkgs", 57, 17], ["nix", 58, 13]], [["srcVersion", 15, 3], ["nixpkgs-lib", 56, 3]], [["misc", 67, 3], ["upgrade", 68, 3], ["simpleUefiSystemdBoot", 69, 3]], [["nixi686", 72, 3]]]);
 const formals$1 = { args: { runCommand: false, version: false, src: false, nix: false, lib: false, stdenv: false, pkgs: false, pkgsi686Linux: false, pkgsStatic: false, nixosTests: false, self_attribute_name: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tests.nix", [["version", 18, 17]]);
-const pos$2 = nix.positions(here + "/tests.nix", [["lib", 57, 13], ["pkgs", 57, 17], ["nix", 58, 13]]);
-const pos$3 = nix.positions(here + "/tests.nix", [["srcVersion", 15, 3], ["nixpkgs-lib", 56, 3]]);
-const pos$4 = nix.positions(here + "/tests.nix", [["misc", 67, 3], ["upgrade", 68, 3], ["simpleUefiSystemdBoot", 69, 3]]);
-const pos$5 = nix.positions(here + "/tests.nix", [["nixi686", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,8 +19,8 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const self_attribute_name = nix.arg($, "self_attribute_name");
   return nix.update({
-    [nix.POS]: pos$3,
-    srcVersion: nix.thunk(() => nix.app(runCommand, "nix-src-version", nix.thunk(() => ({ [nix.POS]: pos$1, version: version })), nix.thunk(() => nix.str`# This file is an implementation detail, but it's a good sanity check
+    [nix.POS]: $pos[2],
+    srcVersion: nix.thunk(() => nix.app(runCommand, "nix-src-version", nix.thunk(() => ({ [nix.POS]: $pos[0], version: version })), nix.thunk(() => nix.str`# This file is an implementation detail, but it's a good sanity check
 # If upstream changes that, we'll have to adapt.
 srcVersion=$(cat ${src}/.version)
 echo "Version in nix nix expression: $version"
@@ -32,14 +28,14 @@ echo "Version in nix.src: $srcVersion"
 ${(nix.asBool(nix.eq(self_attribute_name, "git")) ? "majorMinor() {\n  echo \"$1\" | sed -n -e 's/\\([0-9]*\\.[0-9]*\\).*/\\1/p'\n}\nif (set -x; [ \"$(majorMinor \"$version\")\" != \"$(majorMinor \"$srcVersion\")\" ]); then\n  echo \"Version mismatch!\"\n  exit 1\nfi\n" : "stripSuffix() {\n  echo \"$1\" | sed 's/+.*//'\n}\nif [ \"$(stripSuffix \"$version\")\" != \"$(stripSuffix \"$srcVersion\")\" ]; then\n  echo \"Version mismatch!\"\n  exit 1\nfi\n")}
 touch $out
 `))),
-    "nixpkgs-lib": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../../lib/tests/test-with-nix.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, lib: lib, pkgs: pkgs, nix: nix$ })))),
+    "nixpkgs-lib": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../../lib/tests/test-with-nix.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], lib: lib, pkgs: pkgs, nix: nix$ })))),
   }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       misc: nix.thunk(() => nix.sel(nixosTests, "nix-misc", "default")),
       upgrade: nix.thunk(() => nix.sel(nixosTests, "nix-upgrade")),
       simpleUefiSystemdBoot: nix.thunk(() => nix.sel(nixosTests, "installer", "simpleUefiSystemdBoot")),
     }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       nixi686: nix.thunk(() => nix.sel(pkgsi686Linux, "nixVersions", nix.key(nix.force(self_attribute_name)))),
     })))));
 })(), formals$1);

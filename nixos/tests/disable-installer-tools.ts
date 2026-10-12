@@ -2,31 +2,27 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/disable-installer-tools.nix", [[["disableInstallerTools", 13, 14]], [["defaultPackages", 14, 19]], [["system", 13, 7], ["environment", 14, 7]], [["machine", 10, 9]], [["name", 8, 3], ["nodes", 10, 3], ["testScript", 17, 3]]]);
 const formals$1 = { args: { pkgs: false, latestKernel: true }, ellipsis: true };
 const formals$2 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/disable-installer-tools.nix", [["disableInstallerTools", 13, 14]]);
-const pos$2 = nix.positions(here + "/disable-installer-tools.nix", [["defaultPackages", 14, 19]]);
-const pos$3 = nix.positions(here + "/disable-installer-tools.nix", [["system", 13, 7], ["environment", 14, 7]]);
-const pos$4 = nix.positions(here + "/disable-installer-tools.nix", [["machine", 10, 9]]);
-const pos$5 = nix.positions(here + "/disable-installer-tools.nix", [["name", 8, 3], ["nodes", 10, 3], ["testScript", 17, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const latestKernel = nix.argOr($, "latestKernel", () => false);
   return {
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     name: "disable-installer-tools",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         const lib = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$3,
-          system: nix.thunk(() => ({ [nix.POS]: pos$1, disableInstallerTools: true })),
-          environment: nix.thunk(() => ({ [nix.POS]: pos$2, defaultPackages: [] })),
+          [nix.POS]: $pos[2],
+          system: nix.thunk(() => ({ [nix.POS]: $pos[0], disableInstallerTools: true })),
+          environment: nix.thunk(() => ({ [nix.POS]: $pos[1], defaultPackages: [] })),
         };
       })(), formals$2),
     })),

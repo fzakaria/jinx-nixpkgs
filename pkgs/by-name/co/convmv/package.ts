@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["hash", 22, 5]], [["description", 65, 5], ["downloadPage", 66, 5], ["license", 67, 5], ["maintainers", 71, 5], ["mainProgram", 72, 5], ["platforms", 73, 5]], [["pname", 11, 3], ["version", 12, 3], ["outputs", 14, 3], ["src", 20, 3], ["strictDeps", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 32, 3], ["makeFlags", 39, 3], ["checkTarget", 44, 3], ["doCheck", 48, 3], ["prePatch", 50, 3], ["dontPatchShebangs", 58, 3], ["postFixup", 60, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, makeWrapper: false, perl: false, perlPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 65, 5], ["downloadPage", 66, 5], ["license", 67, 5], ["maintainers", 71, 5], ["mainProgram", 72, 5], ["platforms", 73, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["outputs", 14, 3], ["src", 20, 3], ["strictDeps", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 32, 3], ["makeFlags", 39, 3], ["checkTarget", 44, 3], ["doCheck", 48, 3], ["prePatch", 50, 3], ["dontPatchShebangs", 58, 3], ["postFixup", 60, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const perlPackages = nix.arg($, "perlPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "convmv",
       version: "2.06",
       outputs: nix.thunk(() => ["bin", "man", "out"]),
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.j3e.de/linux/convmv/convmv-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-36UPh+eZBT/J2rkvOcHeqkVKSl4yO9GJp/BxWGDrgGU=",
         })))),
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
       dontPatchShebangs: true,
       postFixup: "wrapProgram \"$bin/bin/convmv\" --prefix PERL5LIB : \"$PERL5LIB\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Converts filenames from one encoding to another",
         downloadPage: "https://www.j3e.de/linux/convmv/",
         license: nix.thunk(() => (() => {

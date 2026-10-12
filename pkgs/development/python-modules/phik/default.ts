@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["description", 66, 5], ["longDescription", 67, 5], ["homepage", 71, 5], ["changelog", 72, 5], ["license", 73, 5], ["maintainers", 74, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["build-system", 31, 3], ["dependencies", 40, 3], ["nativeCheckInputs", 48, 3], ["dontUseCmakeConfigure", 51, 3], ["pythonImportsCheck", 53, 3], ["preCheck", 55, 3], ["disabledTests", 60, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, cmake: false, fetchFromGitHub: false, joblib: false, matplotlib: false, ninja: false, numpy: false, pandas: false, pathspec: false, "pyproject-metadata": false, pybind11: false, pytestCheckHook: false, "scikit-build-core": false, scipy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 66, 5], ["longDescription", 67, 5], ["homepage", 71, 5], ["changelog", 72, 5], ["license", 73, 5], ["maintainers", 74, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["build-system", 31, 3], ["dependencies", 40, 3], ["nativeCheckInputs", 48, 3], ["dontUseCmakeConfigure", 51, 3], ["pythonImportsCheck", 53, 3], ["preCheck", 55, 3], ["disabledTests", 60, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.12.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "KaveIO",
           repo: "PhiK",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "# import from $out\nrm -r phik\n";
       const disabledTests = nix.thunk(() => ["test_phik_calculation"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Phi_K correlation analyzer library",
         longDescription: "Phi_K is a new and practical correlation coefficient based on several refinements to\nPearson’s hypothesis test of independence of two variables.\n",
         homepage: "https://phik.readthedocs.io/",
@@ -55,7 +53,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

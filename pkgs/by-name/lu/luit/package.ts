@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["updateScript", 25, 12]], [["description", 37, 5], ["homepage", 38, 5], ["license", 40, 5], ["mainProgram", 48, 5], ["maintainers", 49, 5], ["platforms", 50, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["hardeningDisable", 17, 3], ["strictDeps", 21, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 23, 3], ["passthru", 25, 3], ["__structuredAttrs", 34, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, writeScript: false, "pkg-config": false, fetchurl: false, libiconv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 25, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 37, 5], ["homepage", 38, 5], ["license", 40, 5], ["mainProgram", 48, 5], ["maintainers", 49, 5], ["platforms", 50, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["hardeningDisable", 17, 3], ["strictDeps", 21, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 23, 3], ["passthru", 25, 3], ["__structuredAttrs", 34, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const libiconv = nix.arg($, "libiconv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "luit",
       version: "20250912",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://invisible-mirror.net/archives/luit/luit-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-RpWAYOZvNby4pRuiLaHBPXJtKKhsHPUgURvPeRS+854=",
         })))),
@@ -30,12 +27,12 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libiconv]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(writeScript, "update-luit", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p common-updater-scripts\n\nversion=\"$(list-directory-versions --pname luit | sort | tail -n1)\"\n\nupdate-source-version luit \"$version\"\n")),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Filter between an arbitrary application and a UTF-8 terminal emulator converting the output and input between the locale's encoding and UTF-8",
         homepage: "https://invisible-island.net/luit/",
         license: nix.thunk(() => (() => {

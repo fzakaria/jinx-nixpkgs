@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["updateScript", 94, 12]], [["description", 97, 5], ["homepage", 98, 5], ["license", 99, 5], ["maintainers", 100, 5], ["platforms", 101, 5], ["mainProgram", 102, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["build-system", 32, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 42, 3], ["runtimeDeps", 48, 3], ["dependencies", 58, 3], ["makeFlags", 69, 3], ["dontWrapGApps", 71, 3], ["makeWrapperArgs", 73, 3], ["postInstall", 78, 3], ["doCheck", 88, 3], ["postFixup", 90, 3], ["passthru", 94, 3], ["meta", 96, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, gtk3: false, bash: false, networkmanager: false, bluez: false, brightnessctl: false, "power-profiles-daemon": false, gammastep: false, pulseaudio: false, "desktop-file-utils": false, wrapGAppsHook3: false, "gobject-introspection": false, upower: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 94, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 97, 5], ["homepage", 98, 5], ["license", 99, 5], ["maintainers", 100, 5], ["platforms", 101, 5], ["mainProgram", 102, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["build-system", 32, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 42, 3], ["runtimeDeps", 48, 3], ["dependencies", 58, 3], ["makeFlags", 69, 3], ["dontWrapGApps", 71, 3], ["makeWrapperArgs", 73, 3], ["postInstall", 78, 3], ["doCheck", 88, 3], ["postFixup", 90, 3], ["passthru", 94, 3], ["meta", 96, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const upower = nix.arg($, "upower");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "better-control",
       version: "6.12.1",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "better-ecosystem",
           repo: "better-control",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -76,11 +73,11 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       postFixup: "wrapPythonProgramsIn \"$out/share/better-control\" \"$out ${pythonPath[*]}\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Simple control panel for linux based on GTK",
         homepage: "https://github.com/better-ecosystem/better-control",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

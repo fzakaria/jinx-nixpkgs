@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["apis", 10, 43]], [["url", 17, 5], ["hash", 18, 5]], [["license", 28, 5], ["maintainers", 33, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["extraNativeBuildInputs", 21, 3], ["extraBuildInputs", 22, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, mkKdeDerivation: false, fetchurl: false, "pkg-config": false, "aws-sdk-cpp": false, kcmutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["apis", 10, 43]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["license", 28, 5], ["maintainers", 33, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["extraNativeBuildInputs", 21, 3], ["extraBuildInputs", 22, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,19 +13,19 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const aws_sdk_cpp = nix.arg($, "aws-sdk-cpp");
   const kcmutils = nix.arg($, "kcmutils");
-  const aws_sdk_cpp_s3 = nix.thunk(() => nix.app(nix.sel(aws_sdk_cpp, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, apis: nix.thunk(() => ["s3"]) }))));
+  const aws_sdk_cpp_s3 = nix.thunk(() => nix.app(nix.sel(aws_sdk_cpp, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], apis: nix.thunk(() => ["s3"]) }))));
   return nix.app(mkKdeDerivation, nix.thunk(() => (() => {
       const pname = "kio-s3";
       const version = "1.0.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`mirror://kde/stable/kio-s3/kio-s3-${version}.tar.xz`),
           hash: "sha256-zixxrZm1U6iaCyZeGBe1lP9ojDqd2qOaekkEa6dyEao=",
         }))));
       const extraNativeBuildInputs = nix.thunk(() => [pkg_config]);
       const extraBuildInputs = nix.thunk(() => [aws_sdk_cpp_s3, kcmutils]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
           return [
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

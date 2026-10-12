@@ -2,27 +2,18 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/librechat.nix", [[["maintainers", 6, 8]], [["ALLOW_REGISTRATION", 26, 11]], [["CREDS_KEY", 30, 11], ["CREDS_IV", 31, 11], ["JWT_SECRET", 32, 11], ["JWT_REFRESH_SECRET", 33, 11]], [["enable", 36, 21]], [["enable", 24, 9], ["env", 25, 9], ["credentials", 28, 9], ["enableLocalDB", 35, 9], ["meilisearch", 36, 9]], [["masterKeyFile", 39, 28]], [["librechat", 23, 16], ["meilisearch", 39, 16]], [["services", 23, 7]], [["machine", 12, 9]], [["name", 4, 3], ["meta", 6, 3], ["nodes", 12, 3], ["testScript", 42, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/librechat.nix", [["maintainers", 6, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/librechat.nix", [["ALLOW_REGISTRATION", 26, 11]]);
-const pos$3 = nix.positions(here + "/librechat.nix", [["CREDS_KEY", 30, 11], ["CREDS_IV", 31, 11], ["JWT_SECRET", 32, 11], ["JWT_REFRESH_SECRET", 33, 11]]);
-const pos$4 = nix.positions(here + "/librechat.nix", [["enable", 36, 21]]);
-const pos$5 = nix.positions(here + "/librechat.nix", [["enable", 24, 9], ["env", 25, 9], ["credentials", 28, 9], ["enableLocalDB", 35, 9], ["meilisearch", 36, 9]]);
-const pos$6 = nix.positions(here + "/librechat.nix", [["masterKeyFile", 39, 28]]);
-const pos$7 = nix.positions(here + "/librechat.nix", [["librechat", 23, 16], ["meilisearch", 39, 16]]);
-const pos$8 = nix.positions(here + "/librechat.nix", [["services", 23, 7]]);
-const pos$9 = nix.positions(here + "/librechat.nix", [["machine", 12, 9]]);
-const pos$10 = nix.positions(here + "/librechat.nix", [["name", 4, 3], ["meta", 6, 3], ["nodes", 12, 3], ["testScript", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     name: "librechat",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -33,7 +24,7 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
@@ -43,24 +34,24 @@ export default nix.lambda((args) => (() => {
         const jwtRefreshSecret = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "librechat-jwt-refresh-secret", "f2c1685561f2f570b3e7955df267b5c602ee099f14dc5caa0dacc320580ea180"));
         const meilisearchMasterKeyFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "meilisearch-master-key", "xHkP3Bzcf98fw7FiSCR82g5ULLGrXc4frK1qkEfN8St/3kJZ"));
         return {
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             librechat: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               enable: true,
-              env: nix.thunk(() => ({ [nix.POS]: pos$2, ALLOW_REGISTRATION: true })),
+              env: nix.thunk(() => ({ [nix.POS]: $pos[1], ALLOW_REGISTRATION: true })),
               credentials: nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 CREDS_KEY: credsKeyFile,
                 CREDS_IV: credsIvFile,
                 JWT_SECRET: jwtSecret,
                 JWT_REFRESH_SECRET: jwtRefreshSecret,
               })),
               enableLocalDB: true,
-              meilisearch: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
+              meilisearch: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: true })),
             })),
-            meilisearch: nix.thunk(() => ({ [nix.POS]: pos$6, masterKeyFile: meilisearchMasterKeyFile })),
+            meilisearch: nix.thunk(() => ({ [nix.POS]: $pos[5], masterKeyFile: meilisearchMasterKeyFile })),
           })),
         };
       })(), formals$2),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["sha256", 24, 5]], [["NIX_CFLAGS_COMPILE", 27, 7]], [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["platforms", 73, 5], ["maintainers", 74, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["env", 27, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 45, 3], ["preConfigure", 50, 3], ["makeFlags", 54, 3], ["enableParallelBuilding", 62, 3], ["postFixup", 64, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, automake: false, autoconf: false, "pkg-config": false, gettext: false, libtool: false, pandoc: false, which: false, attr: false, libiconv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["sha256", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["platforms", 73, 5], ["maintainers", 74, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["env", 27, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 45, 3], ["preConfigure", 50, 3], ["makeFlags", 54, 3], ["enableParallelBuilding", 62, 3], ["postFixup", 64, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,18 +20,18 @@ export default nix.lambda((args) => (() => {
   const attr = nix.arg($, "attr");
   const libiconv = nix.arg($, "libiconv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "mergerfs",
       version: "2.42.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "trapexit",
           repo: "mergerfs",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           sha256: "sha256-FTkJpZkrU9ALMnmeqh1w9r46x4Waq30lA8yAHg3Y54s=",
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=unused-result", "-Wno-error=maybe-uninitialized", "-O"]))),
       })),
       nativeBuildInputs: nix.thunk(() => [automake, autoconf, pkg_config, gettext, libtool, pandoc, which]),
@@ -52,7 +49,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       postFixup: "ln -srf $out/bin/mergerfs $out/bin/mount.fuse.mergerfs\nln -srf $out/bin/mergerfs $out/bin/mount.mergerfs\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "FUSE based union filesystem",
         homepage: "https://github.com/trapexit/mergerfs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

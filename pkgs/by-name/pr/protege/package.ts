@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["name", 64, 7], ["desktopName", 65, 7], ["genericName", 66, 7], ["icon", 67, 7], ["comment", 68, 7], ["categories", 69, 7], ["exec", 70, 7]], [["homepage", 75, 5], ["downloadPage", 76, 5], ["description", 77, 5], ["longDescription", 78, 5], ["maintainers", 83, 5], ["license", 84, 5], ["platforms", 88, 5], ["mainProgram", 89, 5], ["sourceProvenance", 90, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["mvnJdk", 23, 3], ["mvnHash", 24, 3], ["patches", 26, 3], ["nativeBuildInputs", 33, 3], ["installPhase", 40, 3], ["desktopItems", 62, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, copyDesktopItems: false, iconConvTools: false, makeDesktopItem: false, makeWrapper: false, jdk11: false, maven: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 64, 7], ["desktopName", 65, 7], ["genericName", 66, 7], ["icon", 67, 7], ["comment", 68, 7], ["categories", 69, 7], ["exec", 70, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 75, 5], ["downloadPage", 76, 5], ["description", 77, 5], ["longDescription", 78, 5], ["maintainers", 83, 5], ["license", 84, 5], ["platforms", 88, 5], ["mainProgram", 89, 5], ["sourceProvenance", 90, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["mvnJdk", 23, 3], ["mvnHash", 24, 3], ["patches", 26, 3], ["nativeBuildInputs", 33, 3], ["installPhase", 40, 3], ["desktopItems", 62, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "protege";
       const version = "5.6.8";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "protegeproject",
           repo: "protege",
           rev: version,
@@ -57,7 +54,7 @@ runHook postInstall
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: pname,
             desktopName: "Protege Desktop",
             genericName: "Ontology Editor",
@@ -68,7 +65,7 @@ runHook postInstall
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://protege.stanford.edu/",
         downloadPage: "https://protege.stanford.edu/software.php#desktop-protege",
         description: "Free and open-source OWL 2 ontology editor",
@@ -89,7 +86,7 @@ runHook postInstall
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

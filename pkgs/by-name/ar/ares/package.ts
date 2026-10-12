@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 35, 5], ["hash", 36, 5], ["stripRoot", 37, 5]], [["sdkVersion", 74, 7]], [["homepage", 119, 5], ["description", 120, 5], ["license", 121, 5], ["maintainers", 122, 5], ["mainProgram", 123, 5], ["platforms", 124, 5]], [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 49, 3], ["patches", 72, 3], ["cmakeFlags", 78, 3], ["postInstall", 84, 3], ["postFixup", 99, 3], ["meta", 118, 3]]]);
 const formals$1 = { args: { lib: false, "alsa-lib": false, "apple-sdk": false, cmake: false, fetchzip: false, gtk3: false, gtksourceview3: false, libGL: false, libGLU: false, libx11: false, libxv: false, libao: false, libpulseaudio: false, "libretro-shaders-slang": false, librashader: false, ninja: false, moltenvk: false, openal: false, "pkg-config": false, replaceVars: false, sdl3: false, stdenv: false, udev: false, "vulkan-loader": false, wrapGAppsHook3: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 35, 5], ["hash", 36, 5], ["stripRoot", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["sdkVersion", 74, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 119, 5], ["description", 120, 5], ["license", 121, 5], ["maintainers", 122, 5], ["mainProgram", 123, 5], ["platforms", 124, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 49, 3], ["patches", 72, 3], ["cmakeFlags", 78, 3], ["postInstall", 84, 3], ["postFixup", 99, 3], ["meta", 118, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ares",
       version: "148",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/ares-emulator/ares/releases/download/v${nix.sel(finalAttrs, "version")}/ares-source.tar.gz`),
           hash: "sha256-LXLt4hYjpnLrzu+0dLfXr4lEF7drZwSRjgaCAaD79+g=",
           stripRoot: false,
@@ -60,7 +57,10 @@ export default nix.lambda((args) => (() => {
           udev,
         ]))))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./darwin-build-fixes.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, sdkVersion: nix.thunk(() => nix.sel(apple_sdk, "version")) })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./darwin-build-fixes.patch"), nix.thunk(() => ({
+            [nix.POS]: $pos[1],
+            sdkVersion: nix.thunk(() => nix.sel(apple_sdk, "version")),
+          })))),
       ]),
       cmakeFlags: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "ARES_BUILD_LOCAL", false)),
@@ -83,7 +83,7 @@ done
   --add-rpath ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [librashader, vulkan_loader]))}
 `)),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://ares-emu.net",
         description: "Open-source multi-system emulator with a focus on accuracy and preservation",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

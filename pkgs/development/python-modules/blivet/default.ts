@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["python3", 34, 47]], [["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]], [["description", 99, 5], ["homepage", 100, 5], ["license", 101, 5], ["maintainers", 105, 5], ["platforms", 106, 5]], [["pname", 37, 3], ["version", 38, 3], ["format", 39, 3], ["src", 41, 3], ["postPatch", 48, 3], ["propagatedBuildInputs", 61, 3], ["pythonImportsCheck", 89, 3], ["doCheck", 96, 3], ["meta", 98, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false, python: false, buildPythonPackage: false, fetchFromGitHub: false, pygobject3: false, libblockdev: false, bytesize: false, dasbus: false, pyudev: false, "dbus-python": false, "util-linux": false, kmod: false, libndctl: false, "nvme-cli": false, dosfstools: false, e2fsprogs: false, hfsprogs: false, xfsprogs: false, "f2fs-tools": false, ntfs3g: false, "btrfs-progs": false, mdadm: false, lvm2: false, "gfs2-utils": false, cryptsetup: false, "multipath-tools": false, dracut: false, stratisd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["python3", 34, 47]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 99, 5], ["homepage", 100, 5], ["license", 101, 5], ["maintainers", 105, 5], ["platforms", 106, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 37, 3], ["version", 38, 3], ["format", 39, 3], ["src", 41, 3], ["postPatch", 48, 3], ["propagatedBuildInputs", 61, 3], ["pythonImportsCheck", 89, 3], ["doCheck", 96, 3], ["meta", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,13 +36,13 @@ export default nix.lambda((args) => (() => {
   const multipath_tools = nix.arg($, "multipath-tools");
   const dracut = nix.arg($, "dracut");
   const stratisd = nix.arg($, "stratisd");
-  const libblockdevPython = nix.thunk(() => nix.sel(nix.app(nix.sel(libblockdev, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, python3: python }))), "python"));
+  const libblockdevPython = nix.thunk(() => nix.sel(nix.app(nix.sel(libblockdev, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], python3: python }))), "python"));
   return nix.app(buildPythonPackage, nix.thunk(() => (() => {
       const pname = "blivet";
       const version = "3.13.2";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "storaged-project",
           repo: "blivet",
           tag: nix.thunk(() => nix.str`blivet-${version}`),
@@ -92,7 +89,7 @@ done
       const pythonImportsCheck = nix.thunk(() => ["blivet", "blivet.devicelibs.lvm"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python module for system storage configuration",
         homepage: "https://github.com/storaged-project/blivet",
         license: nix.thunk(() => [
@@ -106,7 +103,7 @@ done
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         format,

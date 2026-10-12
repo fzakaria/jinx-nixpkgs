@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["updateScript", 79, 12]], [["description", 82, 5], ["longDescription", 83, 5], ["homepage", 87, 5], ["license", 88, 5], ["maintainers", 89, 5], ["sourceProvenance", 93, 5], ["platforms", 94, 5], ["mainProgram", 95, 5]], [["pname", 26, 3], ["src", 28, 3], ["version", 30, 21], ["dontConfigure", 32, 3], ["dontBuild", 34, 3], ["nativeBuildInputs", 36, 3], ["installPhase", 43, 3], ["passthru", 79, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, dpkg: false, makeWrapper: false, electron: false, libsecret: false, asar: false, python3: false, glib: false, "desktop-file-utils": false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["updateScript", 79, 12]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 82, 5], ["longDescription", 83, 5], ["homepage", 87, 5], ["license", 88, 5], ["maintainers", 89, 5], ["sourceProvenance", 93, 5], ["platforms", 94, 5], ["mainProgram", 95, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["src", 28, 3], ["version", 30, 21], ["dontConfigure", 32, 3], ["dontBuild", 34, 3], ["nativeBuildInputs", 36, 3], ["installPhase", 43, 3], ["passthru", 79, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const srcjson = nix.thunk(() => nix.builtins.fromJSON(nix.thunk(() => nix.builtins.readFile(nix.path(here, "./src.json")))));
   const throwSystem = nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "standardnotes",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.selOr(srcjson, () => nix.force(throwSystem), "deb", nix.key(nix.sel(stdenv, "hostPlatform", "system")))))),
       version: nix.thunk(() => nix.attr(srcjson, "version")),
@@ -64,11 +62,11 @@ runHook postInstall
 `;
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         updateScript: nix.thunk(() => nix.app(callPackage, nix.path(here, "./update.nix"), nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Simple and private notes app",
         longDescription: "Standard Notes is a private notes app that features unmatched simplicity,\nend-to-end encryption, powerful extensions, and open-source applications.\n",
         homepage: "https://standardnotes.com",

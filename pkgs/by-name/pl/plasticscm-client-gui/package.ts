@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 12, 3], ["version", 13, 45], ["meta", 13, 53], ["runScript", 15, 3], ["targetPkgs", 17, 3], ["multiPkgs", 30, 3], ["nativeBuildInputs", 61, 3], ["extraBuildCommands", 66, 3], ["extraInstallCommands", 72, 3]]]);
 const formals$1 = { args: { buildFHSEnv: false, extraLibs: true, extraPkgs: true, imagemagick: false, makeWrapper: false, "plasticscm-client-core-unwrapped": false, "plasticscm-client-gui-unwrapped": false, "plasticscm-theme": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 45], ["meta", 13, 53], ["runScript", 15, 3], ["targetPkgs", 17, 3], ["multiPkgs", 30, 3], ["nativeBuildInputs", 61, 3], ["extraBuildCommands", 66, 3], ["extraInstallCommands", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const plasticscm_client_gui_unwrapped = nix.arg($, "plasticscm-client-gui-unwrapped");
   const plasticscm_theme = nix.arg($, "plasticscm-theme");
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "plasticscm-client-gui",
       version: nix.thunk(() => nix.attr(plasticscm_client_gui_unwrapped, "version")),
       meta: nix.thunk(() => nix.attr(plasticscm_client_gui_unwrapped, "meta")),

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["sha256", 36, 5]], [["NIX_LDFLAGS", 74, 9]], [["NIX_CFLAGS_COMPILE", 77, 7]], [["intel-compute-runtime", 84, 7], ["intel-media-driver", 85, 7], ["intel-vaapi-driver", 86, 7], ["mpv", 87, 7], ["vlc", 88, 7], ["pkg-config", 90, 5]], [["tests", 80, 12]], [["description", 94, 5], ["longDescription", 95, 5], ["homepage", 101, 5], ["changelog", 102, 5], ["license", 103, 5], ["maintainers", 104, 5], ["pkgConfigModules", 105, 5], ["platforms", 114, 5], ["badPlatforms", 115, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["outputs", 39, 3], ["depsBuildBuild", 44, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 53, 3], ["mesonFlags", 66, 3], ["env", 71, 3], ["passthru", 80, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, meson: false, "pkg-config": false, ninja: false, "wayland-scanner": false, libdrm: false, minimal: true, libx11: false, libxcb: false, libxext: false, libxfixes: false, wayland: false, libffi: false, libGL: false, mesa: false, "intel-compute-runtime": false, "intel-media-driver": false, mpv: false, "intel-vaapi-driver": false, vlc: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["sha256", 36, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["NIX_LDFLAGS", 74, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 77, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["intel-compute-runtime", 84, 7], ["intel-media-driver", 85, 7], ["intel-vaapi-driver", 86, 7], ["mpv", 87, 7], ["vlc", 88, 7], ["pkg-config", 90, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["tests", 80, 12]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 94, 5], ["longDescription", 95, 5], ["homepage", 101, 5], ["changelog", 102, 5], ["license", 103, 5], ["maintainers", 104, 5], ["pkgConfigModules", 105, 5], ["platforms", 114, 5], ["badPlatforms", 115, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["outputs", 39, 3], ["depsBuildBuild", 44, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 53, 3], ["mesonFlags", 66, 3], ["env", 71, 3], ["passthru", 80, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const vlc = nix.arg($, "vlc");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: nix.thunk(() => nix.add("libva", nix.app(nix.sel(lib, "optionalString"), minimal, "-minimal"))),
       version: "2.24.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "intel",
           repo: "libva",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -54,11 +48,11 @@ export default nix.lambda((args) => (() => {
       mesonFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [
           nix.thunk(() => nix.str`-Ddriverdir=${nix.sel(mesa, "driverLink")}/lib/dri:/usr/lib/dri:/usr/lib32/dri:/usr/lib/x86_64-linux-gnu/dri:/usr/lib/i386-linux-gnu/dri`),
         ]))),
-      env: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "bintools", "isLLVM")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(stdenv, "cc", "bintools", "version")), "17")))), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_LDFLAGS: "--undefined-version" }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.selOr(stdenv, () => false, "targetPlatform", "useLLVM")), nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-DHAVE_SECURE_GETENV" }))))),
+      env: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "bintools", "isLLVM")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(stdenv, "cc", "bintools", "version")), "17")))), nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_LDFLAGS: "--undefined-version" }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.selOr(stdenv, () => false, "targetPlatform", "useLLVM")), nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_CFLAGS_COMPILE: "-DHAVE_SECURE_GETENV" }))))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "intel-compute-runtime": intel_compute_runtime,
           "intel-media-driver": intel_media_driver,
           "intel-vaapi-driver": intel_vaapi_driver,
@@ -68,7 +62,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Implementation for VA-API (Video Acceleration API)",
         longDescription: "VA-API is an open-source library and API specification, which provides\naccess to graphics hardware acceleration capabilities for video\nprocessing. It consists of a main library (this package) and\ndriver-specific acceleration backends for each supported hardware vendor.\n",
         homepage: "https://01.org/linuxmedia/vaapi",

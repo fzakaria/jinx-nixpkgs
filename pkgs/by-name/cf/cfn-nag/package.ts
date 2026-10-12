@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["updateScript", 14, 12]], [["description", 17, 5], ["homepage", 18, 5], ["mainProgram", 19, 5], ["license", 20, 5], ["maintainers", 21, 5], ["platforms", 24, 5]], [["pname", 9, 3], ["ruby", 11, 11], ["gemdir", 12, 3], ["passthru", 14, 3], ["meta", 16, 3]]]);
 const formals$1 = { args: { lib: false, bundlerEnv: false, bundlerUpdateScript: false, ruby: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["updateScript", 14, 12]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 17, 5], ["homepage", 18, 5], ["mainProgram", 19, 5], ["license", 20, 5], ["maintainers", 21, 5], ["platforms", 24, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["ruby", 11, 11], ["gemdir", 12, 3], ["passthru", 14, 3], ["meta", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,16 +12,16 @@ export default nix.lambda((args) => (() => {
   const bundlerUpdateScript = nix.arg($, "bundlerUpdateScript");
   const ruby = nix.arg($, "ruby");
   return nix.app(bundlerEnv, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "cfn-nag",
       ruby: ruby,
       gemdir: nix.path(here, "./."),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "cfn-nag")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Linting tool for CloudFormation templates",
         homepage: "https://github.com/stelligent/cfn_nag",
         mainProgram: "cfn_nag",

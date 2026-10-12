@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ndpi_4_14.nix", [[["owner", 17, 31], ["repo", 17, 37], ["tag", 18, 7], ["hash", 19, 7]], [["version", 14, 5], ["src", 16, 5], ["configureScript", 22, 5], ["nativeBuildInputs", 24, 5]]]);
 const formals$1 = { args: { ndpi: false, fetchFromGitHub: false, lib: false, stdenv: false, autoreconfHook: false, autoconf: false, automake: false, fixDarwinDylibNames: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/ndpi_4_14.nix", [["owner", 17, 31], ["repo", 17, 37], ["tag", 18, 7], ["hash", 19, 7]]);
-const pos$2 = nix.positions(here + "/ndpi_4_14.nix", [["version", 14, 5], ["src", 16, 5], ["configureScript", 22, 5], ["nativeBuildInputs", 24, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const automake = nix.arg($, "automake");
   const fixDarwinDylibNames = nix.arg($, "fixDarwinDylibNames");
   return nix.app(nix.sel(ndpi, "overrideAttrs"), (finalAttrs) => (prevAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: "4.14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(prevAttrs, "src"));
           return {
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: nix.thunk(() => nix.attr(from, "owner")),
           repo: nix.thunk(() => nix.attr(from, "repo")),
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),

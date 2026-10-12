@@ -2,14 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 7], ["repo", 23, 7], ["tag", 24, 7], ["hash", 25, 7]], [["pname", 29, 28], ["version", 29, 34], ["src", 29, 42], ["pnpm", 30, 15], ["fetcherVersion", 31, 7], ["hash", 32, 7]], [["name", 17, 5], ["pname", 18, 5], ["version", 19, 5], ["src", 21, 5], ["pnpmDeps", 28, 5], ["nativeBuildInputs", 35, 5], ["buildPhase", 41, 5], ["installPhase", 49, 5]], [["attrPath", 71, 7]], [["vsix", 69, 5], ["updateScript", 70, 5]], [["description", 76, 5], ["downloadPage", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["sourceProvenance", 80, 5], ["maintainers", 81, 5]], [["pname", 59, 3], ["version", 60, 28], ["vscodeExtPublisher", 62, 3], ["vscodeExtName", 63, 3], ["vscodeExtUniqueId", 64, 3], ["src", 66, 3], ["passthru", 68, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, pnpm_10: false, fetchPnpmDeps: false, pnpmConfigHook: false, nodejs: false, "vscode-utils": false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 7], ["repo", 23, 7], ["tag", 24, 7], ["hash", 25, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 29, 28], ["version", 29, 34], ["src", 29, 42], ["pnpm", 30, 15], ["fetcherVersion", 31, 7], ["hash", 32, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 17, 5], ["pname", 18, 5], ["version", 19, 5], ["src", 21, 5], ["pnpmDeps", 28, 5], ["nativeBuildInputs", 35, 5], ["buildPhase", 41, 5], ["installPhase", 49, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["attrPath", 71, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["vsix", 69, 5], ["updateScript", 70, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 76, 5], ["downloadPage", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["sourceProvenance", 80, 5], ["maintainers", 81, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 59, 3], ["version", 60, 28], ["vscodeExtPublisher", 62, 3], ["vscodeExtName", 63, 3], ["vscodeExtUniqueId", 64, 3], ["src", 66, 3], ["passthru", 68, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,19 +18,19 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const pnpm = pnpm_10;
   const vsix = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: nix.thunk(() => nix.str`roo-code-${nix.sel(finalAttrs, "version")}.vsix`),
       pname: "roo-code-vsix",
       version: "3.54.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "RooCodeInc",
           repo: "Roo-Code",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-pVJcFAI/xxNflzf+wj0fOASP8Fx9oybu9V6dGrDx7do=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -51,7 +45,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(vscode_utils, "buildVscodeExtension"), (finalAttrs) => (() => {
       const from = nix.thunk(() => nix.sel(finalAttrs, "src"));
       return {
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "roo-code",
       version: nix.thunk(() => nix.attr(from, "version")),
       vscodeExtPublisher: "RooVeterinaryInc",
@@ -59,15 +53,15 @@ export default nix.lambda((args) => (() => {
       vscodeExtUniqueId: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "vscodeExtPublisher")}.${nix.sel(finalAttrs, "vscodeExtName")}`),
       src: vsix,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         vsix: nix.thunk(() => nix.sel(finalAttrs, "src")),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             attrPath: "vscode-extensions.rooveterinaryinc.roo-cline.vsix",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "AI-powered autonomous coding agent that lives in your editor",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=RooVeterinaryInc.roo-cline",
         homepage: "https://github.com/RooCodeInc/Roo-Code",

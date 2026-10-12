@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["sha256", 25, 5]], [["description", 63, 5], ["mainProgram", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5]], [["version", 18, 3], ["pname", 19, 3], ["src", 21, 3], ["postPatch", 28, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 49, 3], ["configureFlags", 60, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, "pkg-config": false, librsvg: false, libxml2: false, SDL: false, SDL_image: false, SDL_mixer: false, SDL_net: false, SDL_ttf: false, t4kcommon: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["sha256", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 63, 5], ["mainProgram", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 18, 3], ["pname", 19, 3], ["src", 21, 3], ["postPatch", 28, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 49, 3], ["configureFlags", 60, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const SDL_ttf = nix.arg($, "SDL_ttf");
   const t4kcommon = nix.arg($, "t4kcommon");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "1.8.3",
       pname: "tuxtype",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tux4kids",
           repo: "tuxtype",
           rev: nix.thunk(() => nix.str`upstream/${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [librsvg, libxml2, SDL, SDL_image, SDL_mixer, SDL_net, SDL_ttf, t4kcommon]),
       configureFlags: nix.thunk(() => ["--without-sdlpango"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Educational Typing Tutor Game Starring Tux, the Linux Penguin",
         mainProgram: "tuxtype",
         homepage: "https://github.com/tux4kids/tuxtype",

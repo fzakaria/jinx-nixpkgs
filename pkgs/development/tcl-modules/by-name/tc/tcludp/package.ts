@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["broken", 39, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["postPatch", 19, 3], ["doInstallCheck", 30, 3], ["installCheckTarget", 32, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, mkTclDerivation: false, fetchfossil: false, tcl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["broken", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["postPatch", 19, 3], ["doInstallCheck", 30, 3], ["installCheckTarget", 32, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchfossil = nix.arg($, "fetchfossil");
   const tcl = nix.arg($, "tcl");
   return nix.app(mkTclDerivation, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tcludp",
       version: "1.0.11",
       src: nix.thunk(() => nix.app(fetchfossil, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://core.tcl-lang.org/tcludp",
           rev: nix.thunk(() => nix.add("ver_", nix.app(nix.sel(lib, "replaceString"), ".", "_", nix.thunk(() => nix.sel(finalAttrs, "version"))))),
           hash: "sha256-PckGwUqL2r5KJEet8sS4U504G63flX84EkQEkQdMifY=",
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installCheckTarget: "test",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "UDP socket support for Tcl",
         homepage: "https://core.tcl-lang.org/tcludp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["withWebKit", 18, 42]], [["enableJavaFX", 17, 9], ["openjfx21", 18, 9]], [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]], [["name", 69, 7], ["exec", 70, 7], ["icon", 71, 7], ["desktopName", 72, 7], ["comment", 73, 7], ["terminal", 74, 7], ["categories", 75, 7]], [["changelog", 93, 5], ["description", 94, 5], ["homepage", 95, 5], ["license", 96, 5], ["mainProgram", 97, 5], ["maintainers", 98, 5], ["platforms", 99, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 34, 3], ["mvnJdk", 41, 3], ["mvnHash", 42, 3], ["mvnParameters", 44, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 54, 3], ["installPhase", 56, 3], ["desktopItems", 67, 3], ["dontWrapGApps", 83, 3], ["postFixup", 85, 3], ["meta", 92, 3]]]);
 const formals$1 = { args: { lib: false, jdk21: false, openjfx21: false, maven: false, fetchFromGitHub: false, makeDesktopItem: false, copyDesktopItems: false, wrapGAppsHook3: false, gtk3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["withWebKit", 18, 42]]);
-const pos$2 = nix.positions(here + "/package.nix", [["enableJavaFX", 17, 9], ["openjfx21", 18, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 69, 7], ["exec", 70, 7], ["icon", 71, 7], ["desktopName", 72, 7], ["comment", 73, 7], ["terminal", 74, 7], ["categories", 75, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["changelog", 93, 5], ["description", 94, 5], ["homepage", 95, 5], ["license", 96, 5], ["mainProgram", 97, 5], ["maintainers", 98, 5], ["platforms", 99, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 34, 3], ["mvnJdk", 41, 3], ["mvnHash", 42, 3], ["mvnParameters", 44, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 54, 3], ["installPhase", 56, 3], ["desktopItems", 67, 3], ["dontWrapGApps", 83, 3], ["postFixup", 85, 3], ["meta", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,15 +17,15 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const gtk3 = nix.arg($, "gtk3");
   const jdkWithJFX = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(jdk21, "pname"), "openjdk")) ? nix.app(nix.sel(jdk21, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       enableJavaFX: true,
-      openjfx21: nix.thunk(() => nix.app(nix.sel(openjfx21, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withWebKit: true })))),
+      openjfx21: nix.thunk(() => nix.app(nix.sel(openjfx21, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], withWebKit: true })))),
     }))) : nix.builtins.throw("bad jdk variant")));
   return nix.app(nix.sel(maven, "buildMavenPackage"), nix.thunk(() => (() => {
       const pname = "sportstracker";
       const version = "8.0.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "ssaring",
           repo: "sportstracker",
           rev: nix.thunk(() => nix.str`SportsTracker-${version}`),
@@ -51,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const installPhase = "runHook preInstall\n\ninstall -Dm644 sportstracker/target/sportstracker-*.jar $out/share/sportstracker/sportstracker.jar\ninstall -Dm644 sportstracker/target/lib/*.jar -t $out/share/sportstracker/lib\ninstall -Dm644 sportstracker/docs/* -t $out/share/doc/sportstracker\ninstall -Dm644 st-packager/icons/linux/SportsTracker.png -t $out/share/icons/hicolor/128x128/apps\n\nrunHook postInstall\n";
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "sportstracker",
             exec: "SportsTracker",
             icon: "SportsTracker",
@@ -68,7 +63,7 @@ export default nix.lambda((args) => (() => {
     "\${gappsWrapperArgs[@]}"
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: "https://www.saring.de/sportstracker/CHANGES.txt",
         description: "Desktop application for people who want to record and analyze their sporting activities",
         homepage: "https://www.saring.de/sportstracker",
@@ -81,7 +76,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(jdkWithJFX, "meta", "platforms")),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

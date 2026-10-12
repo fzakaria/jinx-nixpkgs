@@ -2,87 +2,70 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["stateVersion", 14, 18]], [["StateDirectory", 17, 17]], [["StateDirectory", 18, 17]], [["serviceConfig", 16, 13]], [["systemd-test-nixos", 15, 28]], [["services", 15, 19]], [["system", 14, 11], ["systemd", 15, 11]], [["expr", 24, 9], ["expected", 27, 9]], [["stateVersion", 35, 18]], [["StateDirectory", 38, 17]], [["StateDirectory", 39, 17]], [["serviceConfig", 37, 13]], [["systemd-test-nixos", 36, 28]], [["services", 36, 19]], [["system", 35, 11], ["systemd", 36, 11]], [["expr", 45, 9], ["expected", 46, 9]], [["test-unitOption-merging-non-lists-conflict", 11, 5], ["test-unitOption-merging-list-non-list-append", 32, 5]], [["failures", 55, 11], ["description", 56, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["stateVersion", 14, 18]]);
-const pos$2 = nix.positions(here + "/default.nix", [["StateDirectory", 17, 17]]);
-const pos$3 = nix.positions(here + "/default.nix", [["StateDirectory", 18, 17]]);
-const pos$4 = nix.positions(here + "/default.nix", [["serviceConfig", 16, 13]]);
-const pos$5 = nix.positions(here + "/default.nix", [["systemd-test-nixos", 15, 28]]);
-const pos$6 = nix.positions(here + "/default.nix", [["services", 15, 19]]);
-const pos$7 = nix.positions(here + "/default.nix", [["system", 14, 11], ["systemd", 15, 11]]);
-const pos$8 = nix.positions(here + "/default.nix", [["expr", 24, 9], ["expected", 27, 9]]);
-const pos$9 = nix.positions(here + "/default.nix", [["stateVersion", 35, 18]]);
-const pos$10 = nix.positions(here + "/default.nix", [["StateDirectory", 38, 17]]);
-const pos$11 = nix.positions(here + "/default.nix", [["StateDirectory", 39, 17]]);
-const pos$12 = nix.positions(here + "/default.nix", [["serviceConfig", 37, 13]]);
-const pos$13 = nix.positions(here + "/default.nix", [["systemd-test-nixos", 36, 28]]);
-const pos$14 = nix.positions(here + "/default.nix", [["services", 36, 19]]);
-const pos$15 = nix.positions(here + "/default.nix", [["system", 35, 11], ["systemd", 36, 11]]);
-const pos$16 = nix.positions(here + "/default.nix", [["expr", 45, 9], ["expected", 46, 9]]);
-const pos$17 = nix.positions(here + "/default.nix", [["test-unitOption-merging-non-lists-conflict", 11, 5], ["test-unitOption-merging-list-non-list-append", 32, 5]]);
-const pos$18 = nix.positions(here + "/default.nix", [["failures", 55, 11], ["description", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   const failures = nix.thunk(() => nix.app(nix.sel(lib, "runTests"), nix.thunk(() => ({
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       "test-unitOption-merging-non-lists-conflict": nix.thunk(() => (() => {
         const nixos = nix.thunk(() => nix.app(nix.sel(pkgs, "nixos"), nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             system: nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               stateVersion: nix.thunk(() => nix.sel(lib, "trivial", "release")),
             })),
             systemd: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 "systemd-test-nixos": nix.thunk(() => ({
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   serviceConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
-                      nix.thunk(() => ({ [nix.POS]: pos$2, StateDirectory: "foo" })),
-                      nix.thunk(() => ({ [nix.POS]: pos$3, StateDirectory: "bar" })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[1], StateDirectory: "foo" })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[2], StateDirectory: "bar" })),
                     ]))),
                 })),
               })),
             })),
           }))));
         return {
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           expr: nix.thunk(() => nix.sel(nix.builtins.tryEval(nix.thunk(() => nix.sel(nixos, "config", "systemd", "services", "systemd-test-nixos", "serviceConfig", "StateDirectory"))), "success")),
           expected: false,
         };
       })()),
       "test-unitOption-merging-list-non-list-append": nix.thunk(() => (() => {
         const nixos = nix.thunk(() => nix.app(nix.sel(pkgs, "nixos"), nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             system: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               stateVersion: nix.thunk(() => nix.sel(lib, "trivial", "release")),
             })),
             systemd: nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$13,
+                [nix.POS]: $pos[12],
                 "systemd-test-nixos": nix.thunk(() => ({
-                  [nix.POS]: pos$12,
+                  [nix.POS]: $pos[11],
                   serviceConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
-                      nix.thunk(() => ({ [nix.POS]: pos$10, StateDirectory: "foo" })),
-                      nix.thunk(() => ({ [nix.POS]: pos$11, StateDirectory: nix.thunk(() => ["bar"]) })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[9], StateDirectory: "foo" })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[10], StateDirectory: nix.thunk(() => ["bar"]) })),
                     ]))),
                 })),
               })),
             })),
           }))));
         return {
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           expr: nix.thunk(() => nix.sel(nixos, "config", "systemd", "services", "systemd-test-nixos", "serviceConfig", "StateDirectory")),
           expected: nix.thunk(() => ["foo", "bar"]),
         };
       })()),
     }))));
-  return nix.app(nix.sel(lib, "debug", "throwTestFailures"), nix.thunk(() => ({ [nix.POS]: pos$18, failures: failures, description: "systemd unit tests" })));
+  return nix.app(nix.sel(lib, "debug", "throwTestFailures"), nix.thunk(() => ({ [nix.POS]: $pos[17], failures: failures, description: "systemd unit tests" })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

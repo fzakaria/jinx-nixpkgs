@@ -2,8 +2,7 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/darwin-aliases.nix", [["apple_sdk", 59, 13], ["apple_sdk_11_0", 59, 23], ["apple_sdk_12_3", 59, 38]]);
-const pos$2 = nix.positions(here + "/darwin-aliases.nix", [["apple_sdk_10_12", 102, 3], ["binutilsDualAs", 106, 3], ["binutilsDualAs-unwrapped", 107, 3], ["builder", 108, 3], ["bsdmake", 109, 3], ["Csu", 113, 3], ["cctools", 114, 3], ["cctools-apple", 115, 3], ["cctools-llvm", 116, 3], ["cctools-port", 117, 3], ["discrete-scroll", 121, 3], ["ditto", 122, 3], ["insert_dylib", 126, 3], ["ios-deploy", 127, 3], ["iproute2mac", 128, 3], ["libauto", 132, 3], ["libresolvHeaders", 133, 3], ["libtapi", 134, 3], ["libutilHeaders", 135, 3], ["moltenvk", 139, 3], ["opencflite", 143, 3], ["openwith", 144, 3], ["postLinkSignHook", 147, 3], ["print-reexports", 148, 3], ["rewrite-tbd", 152, 3], ["stdenvNoCF", 156, 3], ["stubs", 157, 3], ["sudo", 158, 3], ["swift-corelibs-foundation", 159, 3]]);
+const $pos = nix.positions(here + "/darwin-aliases.nix", [[["apple_sdk", 59, 13], ["apple_sdk_11_0", 59, 23], ["apple_sdk_12_3", 59, 38]], [["apple_sdk_10_12", 102, 3], ["binutilsDualAs", 106, 3], ["binutilsDualAs-unwrapped", 107, 3], ["builder", 108, 3], ["bsdmake", 109, 3], ["Csu", 113, 3], ["cctools", 114, 3], ["cctools-apple", 115, 3], ["cctools-llvm", 116, 3], ["cctools-port", 117, 3], ["discrete-scroll", 121, 3], ["ditto", 122, 3], ["insert_dylib", 126, 3], ["ios-deploy", 127, 3], ["iproute2mac", 128, 3], ["libauto", 132, 3], ["libresolvHeaders", 133, 3], ["libtapi", 134, 3], ["libutilHeaders", 135, 3], ["moltenvk", 139, 3], ["opencflite", 143, 3], ["openwith", 144, 3], ["postLinkSignHook", 147, 3], ["print-reexports", 148, 3], ["rewrite-tbd", 152, 3], ["stdenvNoCF", 156, 3], ["stubs", 157, 3], ["sudo", 158, 3], ["swift-corelibs-foundation", 159, 3]]]);
 
 export default (lib) => (self) => (super$) => (pkgs) => (() => {
   const removeRecurseForDerivations = (alias) => (nix.asBool(nix.selOr(alias, () => false, "recurseForDerivations")) ? nix.app(nix.sel(lib, "removeAttrs"), alias, nix.thunk(() => ["recurseForDerivations"])) : nix.force(alias));
@@ -15,7 +14,7 @@ export default (lib) => (self) => (super$) => (pkgs) => (() => {
   const apple_sdk_12_3 = nix.thunk(() => nix.app(mkThrow, "apple_sdk_12_3"));
   const apple_sdk = apple_sdk_11_0;
   const stubs = nix.thunk(() => nix.update({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     apple_sdk: apple_sdk,
     apple_sdk_11_0: apple_sdk_11_0,
     apple_sdk_12_3: apple_sdk_12_3,
@@ -55,7 +54,7 @@ export default (lib) => (self) => (super$) => (pkgs) => (() => {
       "xnu",
     ]), mkThrow)));
   return nix.update(stubs, nix.app(mapAliases, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       apple_sdk_10_12: nix.thunk(() => nix.builtins.throw("darwin.apple_sdk_10_12 was removed as Nixpkgs no longer supports macOS 10.12; see the 25.05 release notes")),
       binutilsDualAs: nix.thunk(() => nix.builtins.throw("binutilsDualAs has been removed because it was only useful on `x86_64-darwin` and also only useful for the GNAT bootstrap and also not even used for that any more and actually what on earth were you using this thing for anyway?")),
       "binutilsDualAs-unwrapped": nix.thunk(() => nix.builtins.throw("binutilsDualAs has been removed because it was only useful on `x86_64-darwin` and also only useful for the GNAT bootstrap and also not even used for that any more and actually what on earth were you using this thing for anyway?")),

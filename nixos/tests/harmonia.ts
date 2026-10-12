@@ -2,69 +2,55 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/harmonia.nix", [[["priority", 13, 18]], [["enable", 9, 9], ["signKeyPaths", 10, 9], ["settings", 13, 9]], [["cache", 8, 25]], [["harmonia", 8, 16]], [["allowedTCPPorts", 16, 27]], [["firewall", 16, 18]], [["extraDependencies", 17, 14]], [["allowed-users", 20, 20]], [["settings", 20, 11], ["enable", 21, 11]], [["services", 8, 7], ["networking", 16, 7], ["system", 17, 7], ["nix", 20, 7]], [["substituters", 26, 9], ["trusted-public-keys", 27, 9]], [["settings", 25, 11], ["enable", 31, 11]], [["nix", 25, 7]], [["harmonia", 7, 5], ["client01", 24, 5]], [["name", 4, 3], ["nodes", 6, 3], ["testScript", 35, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/harmonia.nix", [["priority", 13, 18]]);
-const pos$2 = nix.positions(here + "/harmonia.nix", [["enable", 9, 9], ["signKeyPaths", 10, 9], ["settings", 13, 9]]);
-const pos$3 = nix.positions(here + "/harmonia.nix", [["cache", 8, 25]]);
-const pos$4 = nix.positions(here + "/harmonia.nix", [["harmonia", 8, 16]]);
-const pos$5 = nix.positions(here + "/harmonia.nix", [["allowedTCPPorts", 16, 27]]);
-const pos$6 = nix.positions(here + "/harmonia.nix", [["firewall", 16, 18]]);
-const pos$7 = nix.positions(here + "/harmonia.nix", [["extraDependencies", 17, 14]]);
-const pos$8 = nix.positions(here + "/harmonia.nix", [["allowed-users", 20, 20]]);
-const pos$9 = nix.positions(here + "/harmonia.nix", [["settings", 20, 11], ["enable", 21, 11]]);
-const pos$10 = nix.positions(here + "/harmonia.nix", [["services", 8, 7], ["networking", 16, 7], ["system", 17, 7], ["nix", 20, 7]]);
-const pos$11 = nix.positions(here + "/harmonia.nix", [["substituters", 26, 9], ["trusted-public-keys", 27, 9]]);
-const pos$12 = nix.positions(here + "/harmonia.nix", [["settings", 25, 11], ["enable", 31, 11]]);
-const pos$13 = nix.positions(here + "/harmonia.nix", [["nix", 25, 7]]);
-const pos$14 = nix.positions(here + "/harmonia.nix", [["harmonia", 7, 5], ["client01", 24, 5]]);
 const formals$2 = { args: { nodes: false }, ellipsis: true };
-const pos$15 = nix.positions(here + "/harmonia.nix", [["name", 4, 3], ["nodes", 6, 3], ["testScript", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$15,
+    [nix.POS]: $pos[14],
     name: "harmonia",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       harmonia: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           harmonia: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             cache: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               enable: true,
               signKeyPaths: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "cache-key", "cache.example.com-1:9FhO0w+7HjZrhvmzT1VlAZw4OSAlFGTgC24Seg3tmPl4gZBdwZClzTTHr9cVzJpwsRSYLTu7hEAQe3ljy92CWg==")),
               ]),
-              settings: nix.thunk(() => ({ [nix.POS]: pos$1, priority: 35n })),
+              settings: nix.thunk(() => ({ [nix.POS]: $pos[0], priority: 35n })),
             })),
           })),
         })),
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$6,
-          firewall: nix.thunk(() => ({ [nix.POS]: pos$5, allowedTCPPorts: nix.thunk(() => [5000n]) })),
+          [nix.POS]: $pos[5],
+          firewall: nix.thunk(() => ({ [nix.POS]: $pos[4], allowedTCPPorts: nix.thunk(() => [5000n]) })),
         })),
         system: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           extraDependencies: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "emptyFile"))]),
         })),
         nix: nix.thunk(() => ({
-          [nix.POS]: pos$9,
-          settings: nix.thunk(() => ({ [nix.POS]: pos$8, "allowed-users": [] })),
+          [nix.POS]: $pos[8],
+          settings: nix.thunk(() => ({ [nix.POS]: $pos[7], "allowed-users": [] })),
           enable: true,
         })),
       })),
       client01: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         nix: nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           settings: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             substituters: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => ["http://harmonia:5000"]))),
             "trusted-public-keys": nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => ["cache.example.com-1:eIGQXcGQpc00x6/XFcyacLEUmC07u4RAEHt5Y8vdglo="]))),
           })),

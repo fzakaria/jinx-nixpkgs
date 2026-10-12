@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 56, 5], ["repo", 57, 5], ["tag", 58, 5], ["hash", 59, 5]], [["amdsmi", 85, 5], ["carbonboard", 88, 5], ["viz-legacy", 93, 5]], [["description", 146, 5], ["homepage", 147, 5], ["changelog", 148, 5], ["license", 149, 5], ["maintainers", 150, 5]], [["pname", 50, 3], ["version", 51, 3], ["pyproject", 52, 3], ["__structuredAttrs", 53, 3], ["src", 55, 3], ["build-system", 62, 3], ["dependencies", 66, 3], ["optional-dependencies", 84, 3], ["pythonImportsCheck", 100, 3], ["nativeBuildInputs", 102, 3], ["enabledTestPaths", 120, 3], ["disabledTestPaths", 124, 3], ["disabledTests", 140, 3], ["meta", 145, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, arrow: false, authlib: false, click: false, "nvidia-ml-py": false, pandas: false, "prometheus-client": false, psutil: false, "py-cpuinfo": false, pycountry: false, pydantic: false, questionary: false, rapidfuzz: false, requests: false, rich: false, typer: false, amdsmi: false, dash: false, "dash-bootstrap-components": false, fire: false, bcrypt: false, "dependency-injector": false, "email-validator": false, fastapi: false, "fastapi-pagination": false, httpx: false, jwt: false, logfire: false, psycopg2: false, "pydantic-settings": false, pytestCheckHook: false, "requests-mock": false, responses: false, sqlalchemy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 56, 5], ["repo", 57, 5], ["tag", 58, 5], ["hash", 59, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["amdsmi", 85, 5], ["carbonboard", 88, 5], ["viz-legacy", 93, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 146, 5], ["homepage", 147, 5], ["changelog", 148, 5], ["license", 149, 5], ["maintainers", 150, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 50, 3], ["version", 51, 3], ["pyproject", 52, 3], ["__structuredAttrs", 53, 3], ["src", 55, 3], ["build-system", 62, 3], ["dependencies", 66, 3], ["optional-dependencies", 84, 3], ["pythonImportsCheck", 100, 3], ["nativeBuildInputs", 102, 3], ["enabledTestPaths", 120, 3], ["disabledTestPaths", 124, 3], ["disabledTests", 140, 3], ["meta", 145, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -48,13 +45,13 @@ export default nix.lambda((args) => (() => {
   const responses = nix.arg($, "responses");
   const sqlalchemy = nix.arg($, "sqlalchemy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "codecarbon",
       version: "3.2.8",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mlco2",
           repo: "codecarbon",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -79,7 +76,7 @@ export default nix.lambda((args) => (() => {
         typer,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         amdsmi: nix.thunk(() => [amdsmi]),
         carbonboard: nix.thunk(() => [dash, dash_bootstrap_components, fire]),
         "viz-legacy": nix.thunk(() => [dash, dash_bootstrap_components, fire]),
@@ -112,7 +109,7 @@ export default nix.lambda((args) => (() => {
       ]),
       disabledTests: nix.thunk(() => ["test_check_user_from_jwt"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Track emissions from Compute and recommend ways to reduce their impact on the environment",
         homepage: "https://github.com/mlco2/codecarbon",
         changelog: nix.thunk(() => nix.str`https://github.com/mlco2/codecarbon/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

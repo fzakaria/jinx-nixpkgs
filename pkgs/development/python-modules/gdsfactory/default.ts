@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 55, 5], ["repo", 56, 5], ["tag", 57, 5], ["hash", 58, 5]], [["description", 122, 5], ["homepage", 123, 5], ["changelog", 124, 5], ["license", 125, 5], ["maintainers", 126, 5]], [["pname", 50, 3], ["version", 51, 3], ["pyproject", 52, 3], ["src", 54, 3], ["build-system", 61, 3], ["nativeBuildInputs", 65, 3], ["dependencies", 69, 3], ["nativeCheckInputs", 103, 3], ["pythonRelaxDeps", 110, 3], ["doCheck", 117, 3], ["pythonImportsCheck", 119, 3], ["meta", 121, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "flit-core": false, pythonRelaxDepsHook: false, jinja2: false, loguru: false, matplotlib: false, natsort: false, numpy: false, orjson: false, pandas: false, pydantic: false, "pydantic-settings": false, "pydantic-extra-types": false, pyyaml: false, qrcode: false, rectpack: false, rich: false, scipy: false, shapely: false, toolz: false, "types-pyyaml": false, typer: false, kfactory: false, watchdog: false, "freetype-py": false, "mapbox-earcut": false, networkx: false, "scikit-image": false, trimesh: false, ipykernel: false, attrs: false, graphviz: false, pyglet: false, "typing-extensions": false, jsondiff: false, jsonschema: false, "pytest-regressions": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 55, 5], ["repo", 56, 5], ["tag", 57, 5], ["hash", 58, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 122, 5], ["homepage", 123, 5], ["changelog", 124, 5], ["license", 125, 5], ["maintainers", 126, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 50, 3], ["version", 51, 3], ["pyproject", 52, 3], ["src", 54, 3], ["build-system", 61, 3], ["nativeBuildInputs", 65, 3], ["dependencies", 69, 3], ["nativeCheckInputs", 103, 3], ["pythonRelaxDeps", 110, 3], ["doCheck", 117, 3], ["pythonImportsCheck", 119, 3], ["meta", 121, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -50,12 +48,12 @@ export default nix.lambda((args) => (() => {
   const pytest_regressions = nix.arg($, "pytest-regressions");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gdsfactory",
       version: "9.45.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gdsfactory",
           repo: "gdsfactory",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -101,7 +99,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["gdsfactory"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python library to generate GDS layouts",
         homepage: "https://github.com/gdsfactory/gdsfactory",
         changelog: nix.thunk(() => nix.str`https://github.com/gdsfactory/gdsfactory/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

@@ -2,15 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["arch", 13, 11], ["hash", 14, 11]], [["arch", 17, 11], ["hash", 18, 11]], [["x86_64-linux", 12, 9], ["aarch64-darwin", 16, 9]], [["publisher", 23, 7], ["name", 24, 7], ["version", 25, 7]], [["extraArgs", 30, 5]], [["updateScript", 29, 12]], [["license", 37, 5], ["platforms", 38, 5]], [["mktplcRef", 9, 3], ["passthru", 29, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, "vscode-utils": false, "vscode-extension-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["arch", 13, 11], ["hash", 14, 11]]);
-const pos$2 = nix.positions(here + "/default.nix", [["arch", 17, 11], ["hash", 18, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["x86_64-linux", 12, 9], ["aarch64-darwin", 16, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["publisher", 23, 7], ["name", 24, 7], ["version", 25, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["extraArgs", 30, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["updateScript", 29, 12]]);
-const pos$7 = nix.positions(here + "/default.nix", [["license", 37, 5], ["platforms", 38, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["mktplcRef", 9, 3], ["passthru", 29, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,27 +12,32 @@ export default nix.lambda((args) => (() => {
   const vscode_utils = nix.arg($, "vscode-utils");
   const vscode_extension_update_script = nix.arg($, "vscode-extension-update-script");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       mktplcRef: nix.thunk(() => (() => {
         const sources = nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "x86_64-linux": nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             arch: "linux-x64",
             hash: "sha256-cP/oFn19CZ/G3kjdHNZGqXvoDE1qUtg6xrg/2MO14Lo=",
           })),
           "aarch64-darwin": nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             arch: "darwin-arm64",
             hash: "sha256-XYdwVoDqK+88ZYUm6APyamFNx6XlYjy0R4CIhSMuRmU=",
           })),
         }));
-        return nix.update({ [nix.POS]: pos$4, publisher: "redhat", name: "vscode-xml", version: "0.29.3" }, nix.selOr(sources, () => ({}), nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system"))));
+        return nix.update({
+          [nix.POS]: $pos[3],
+          publisher: "redhat",
+          name: "vscode-xml",
+          version: "0.29.3",
+        }, nix.selOr(sources, () => ({}), nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system"))));
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(vscode_extension_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             extraArgs: nix.thunk(() => [
               "--override-filename",
               "pkgs/applications/editors/vscode/extensions/redhat.vscode-xml/default.nix",
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         license: nix.thunk(() => nix.sel(lib, "licenses", "epl20")),
         platforms: nix.thunk(() => ["x86_64-linux", "aarch64-darwin"]),
       })),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 44, 5], ["repo", 45, 5], ["tag", 46, 5], ["hash", 47, 5]], [["name", 53, 5], ["url", 54, 5], ["hash", 57, 5]], [["cimg", 108, 15], ["gmic-qt", 108, 20]], [["tests", 106, 5], ["updateScript", 111, 5]], [["homepage", 141, 5], ["description", 142, 5], ["mainProgram", 143, 5], ["license", 144, 5], ["maintainers", 145, 5], ["platforms", 146, 5]], [["pname", 33, 3], ["version", 34, 3], ["outputs", 36, 3], ["src", 43, 3], ["gmic_stdlib", 52, 3], ["nativeBuildInputs", 60, 3], ["buildInputs", 66, 3], ["cmakeFlags", 83, 3], ["postPatch", 92, 3], ["passthru", 105, 3], ["meta", 140, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchurl: false, buildPackages: false, cimg: false, cmake: false, "common-updater-scripts": false, coreutils: false, curl: false, fftw: false, "gmic-qt": false, gnugrep: false, gnused: false, graphicsmagick: false, jq: false, libx11: false, libxext: false, libjpeg: false, libpng: false, libtiff: false, llvmPackages: false, ninja: false, opencv: false, openexr: false, "pkg-config": false, writeShellScript: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 44, 5], ["repo", 45, 5], ["tag", 46, 5], ["hash", 47, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 53, 5], ["url", 54, 5], ["hash", 57, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["cimg", 108, 15], ["gmic-qt", 108, 20]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 106, 5], ["updateScript", 111, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 141, 5], ["description", 142, 5], ["mainProgram", 143, 5], ["license", 144, 5], ["maintainers", 145, 5], ["platforms", 146, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["outputs", 36, 3], ["src", 43, 3], ["gmic_stdlib", 52, 3], ["nativeBuildInputs", 60, 3], ["buildInputs", 66, 3], ["cmakeFlags", 83, 3], ["postPatch", 92, 3], ["passthru", 105, 3], ["meta", 140, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,19 +36,19 @@ export default nix.lambda((args) => (() => {
   const writeShellScript = nix.arg($, "writeShellScript");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "gmic",
       version: "3.7.6",
       outputs: nix.thunk(() => ["out", "lib", "dev", "man"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "GreycLab",
           repo: "gmic",
           tag: nix.thunk(() => nix.str`v.${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-hewDoraw6DCmj1EryZrODFDqzbKI2RhgRuXAop+pg7c=",
         })))),
       gmic_stdlib: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: "gmic_stdlib_community.h",
           url: nix.thunk(() => nix.str`https://gmic.eu/gmic_stdlib_community${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(finalAttrs, "version")))}.h`),
           hash: "sha256-ek8w9uCp4ey5zT8Y1+yM9gXtzigNINOQ0XW6kT6Zj5Q=",
@@ -86,8 +81,8 @@ export default nix.lambda((args) => (() => {
   '${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(buildPackages, "gmic")))}'
 `)))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, cimg: cimg, "gmic-qt": gmic_qt })),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], cimg: cimg, "gmic-qt": gmic_qt })),
         updateScript: nix.thunk(() => nix.app(writeShellScript, "gmic-update-script", nix.thunk(() => nix.str`set -o errexit
 PATH=${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [common_updater_scripts, coreutils, curl, gnugrep, gnused, jq]))}
 
@@ -107,7 +102,7 @@ done
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://gmic.eu/",
         description: "Open and full-featured framework for image processing",
         mainProgram: "gmic",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["fetchSubmodules", 21, 5], ["hash", 22, 5]], [["tagPrefix", 58, 5]], [["updateScript", 57, 12]], [["mainProgram", 62, 5], ["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["platforms", 66, 5], ["maintainers", 67, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 32, 3], ["cmakeFlags", 39, 3], ["postInstall", 48, 3], ["passthru", 57, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, unstableGitUpdater: false, cmake: false, "pkg-config": false, qt6Packages: false, rtaudio: false, rtmidi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["fetchSubmodules", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["tagPrefix", 58, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 57, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["mainProgram", 62, 5], ["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["platforms", 66, 5], ["maintainers", 67, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 32, 3], ["cmakeFlags", 39, 3], ["postInstall", 48, 3], ["passthru", 57, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const rtaudio = nix.arg($, "rtaudio");
   const rtmidi = nix.arg($, "rtmidi");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "opl3bankeditor",
       version: "1.5.1-unstable-2026-09-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Wohlstand",
           repo: "opl3bankeditor",
           rev: "64e4a013e3f8d612cfbc08595e09e0f3329bab16",
@@ -60,11 +56,11 @@ install_name_tool -change {,${nix.sel(qt6Packages, "qwt")}/lib/}libqwt.6.dylib "
 ln -s "$out/Applications/OPL3 Bank Editor.app/Contents/MacOS/OPL3 Bank Editor" $out/bin/opl3_bank_editor
 `))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, tagPrefix: "v" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], tagPrefix: "v" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         mainProgram: "opl3_bank_editor",
         description: "Small cross-platform editor of the OPL3 FM banks of different formats",
         homepage: "https://github.com/Wohlstand/opl3bankeditor",

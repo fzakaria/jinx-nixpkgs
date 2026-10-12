@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libcudla.nix", [[["message", 29, 7], ["assertion", 30, 7]], [["redistName", 8, 3], ["pname", 9, 3], ["outputs", 11, 3], ["autoPatchelfIgnoreMissingDeps", 19, 3], ["platformAssertions", 27, 3]]]);
 const formals$1 = { args: { backendStdenv: false, buildRedist: false, cudaOlder: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libcudla.nix", [["message", 29, 7], ["assertion", 30, 7]]);
-const pos$2 = nix.positions(here + "/libcudla.nix", [["redistName", 8, 3], ["pname", 9, 3], ["outputs", 11, 3], ["autoPatchelfIgnoreMissingDeps", 19, 3], ["platformAssertions", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,14 +12,14 @@ export default nix.lambda((args) => (() => {
   const cudaOlder = nix.arg($, "cudaOlder");
   const lib = nix.arg($, "lib");
   return nix.app(buildRedist, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       redistName: "cuda",
       pname: "libcudla",
       outputs: nix.thunk(() => ["out", "dev", "include", "lib", "stubs"]),
       autoPatchelfIgnoreMissingDeps: nix.thunk(() => nix.concat(["libnvcudla.so"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(cudaOlder, "12")), nix.thunk(() => ["libcuda.so.1", "libnvdla_runtime.so"])))),
       platformAssertions: nix.thunk(() => [
         nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           message: "Only Xavier (7.2) and Orin (8.7) Jetson devices are supported",
           assertion: nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "subtractLists"), nix.thunk(() => ["7.2", "8.7"]), nix.thunk(() => nix.sel(backendStdenv, "cudaCapabilities"))), [])),
         })),

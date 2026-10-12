@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["name", 50, 5], ["paths", 51, 5]], [["simple-vmess-proxy-test", 65, 11]], [["updateScript", 64, 5], ["tests", 65, 5]], [["homepage", 69, 5], ["description", 70, 5], ["mainProgram", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["vendorHash", 30, 3], ["ldflags", 32, 3], ["subPackages", 37, 3], ["nativeBuildInputs", 39, 3], ["installPhase", 41, 3], ["assetsDrv", 49, 3], ["postFixup", 54, 3], ["passthru", 63, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, symlinkJoin: false, buildGoModule: false, makeWrapper: false, nixosTests: false, "nix-update-script": false, "v2ray-geoip": false, "v2ray-domain-list-community": false, assets: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 50, 5], ["paths", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["simple-vmess-proxy-test", 65, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 64, 5], ["tests", 65, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 69, 5], ["description", 70, 5], ["mainProgram", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["vendorHash", 30, 3], ["ldflags", 32, 3], ["subPackages", 37, 3], ["nativeBuildInputs", 39, 3], ["installPhase", 41, 3], ["assetsDrv", 49, 3], ["postFixup", 54, 3], ["passthru", 63, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const v2ray_domain_list_community = nix.arg($, "v2ray-domain-list-community");
   const assets = nix.argOr($, "assets", () => [v2ray_geoip, v2ray_domain_list_community]);
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "v2ray-core",
       version: "5.49.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "v2fly",
           repo: "v2ray-core",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,18 +33,18 @@ export default nix.lambda((args) => (() => {
       subPackages: nix.thunk(() => ["main"]),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       installPhase: "runHook preInstall\ninstall -Dm555 \"$GOPATH\"/bin/main $out/bin/v2ray\ninstall -Dm444 release/config/systemd/system/v2ray{,@}.service -t $out/lib/systemd/system\ninstall -Dm444 release/config/*.json -t $out/etc/v2ray\nrunHook postInstall\n",
-      assetsDrv: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({ [nix.POS]: pos$2, name: "v2ray-assets", paths: assets })))),
+      assetsDrv: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({ [nix.POS]: $pos[1], name: "v2ray-assets", paths: assets })))),
       postFixup: "wrapProgram $out/bin/v2ray \\\n  --suffix XDG_DATA_DIRS : $assetsDrv/share\nsubstituteInPlace $out/lib/systemd/system/*.service \\\n  --replace User=nobody DynamicUser=yes \\\n  --replace /usr/local/bin/ $out/bin/ \\\n  --replace /usr/local/etc/ /etc/\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "simple-vmess-proxy-test": nix.thunk(() => nix.sel(nixosTests, "v2ray")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://www.v2fly.org/en_US/",
         description: "Platform for building proxies to bypass network restrictions",
         mainProgram: "v2ray",

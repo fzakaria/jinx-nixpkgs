@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["NIX_CFLAGS_COMPILE", 56, 7]], [["description", 82, 5], ["homepage", 83, 5], ["license", 84, 5], ["mainProgram", 85, 5], ["maintainers", 86, 5], ["platforms", 87, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["patches", 32, 3], ["strictDeps", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 42, 3], ["env", 56, 3], ["preConfigure", 62, 3], ["installPhase", 66, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, makeWrapper: false, "pkg-config": false, bash: false, SDL2: false, SDL2_image: false, SDL2_ttf: false, SDL2_mixer: false, libmpeg2: false, libvorbis: false, libzip: false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 56, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 82, 5], ["homepage", 83, 5], ["license", 84, 5], ["mainProgram", 85, 5], ["maintainers", 86, 5], ["platforms", 87, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["patches", 32, 3], ["strictDeps", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 42, 3], ["env", 56, 3], ["preConfigure", 62, 3], ["installPhase", 66, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const libzip = nix.arg($, "libzip");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "hypseus-singe",
       version: "2.12.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "DirtBagXon",
           repo: "hypseus-singe",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, makeWrapper, pkg_config]),
       buildInputs: nix.thunk(() => nix.concat([bash, SDL2, SDL2_image, SDL2_ttf, SDL2_mixer, libmpeg2, libvorbis, libzip], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libx11])))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getDev"), SDL2_image)}/include/SDL2`),
             nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getDev"), SDL2_ttf)}/include/SDL2`),
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "cd src\n",
       installPhase: "runHook preInstall\n\ninstall -Dm755 hypseus $out/bin/hypseus.bin\ncd ../..\ninstall -Dm755 scripts/run.sh $out/bin/hypseus\ninstall -Dm755 scripts/singe.sh $out/bin/singe\n\nsubstituteInPlace $out/bin/{hypseus,singe} \\\n    --replace-fail \"/bin/cat\" \"cat\" \\\n    --replace-fail hypseus.bin $out/bin/hypseus.bin\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Laserdisc game emulator, the SDL2 version of Daphne and Singe",
         homepage: "https://github.com/DirtBagXon/hypseus-singe",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/librt.nix", [[["MK_TESTS", 37, 7]], [["path", 12, 3], ["extraPaths", 13, 3], ["outputs", 18, 3], ["noLibc", 23, 3], ["buildInputs", 25, 3], ["preBuild", 33, 3], ["env", 37, 3]]]);
 const formals$1 = { args: { mkDerivation: false, include: false, libcMinimal: false, libsys: false, libgcc: false, libthr: false, csu: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/librt.nix", [["MK_TESTS", 37, 7]]);
-const pos$2 = nix.positions(here + "/librt.nix", [["path", 12, 3], ["extraPaths", 13, 3], ["outputs", 18, 3], ["noLibc", 23, 3], ["buildInputs", 25, 3], ["preBuild", 33, 3], ["env", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const libthr = nix.arg($, "libthr");
   const csu = nix.arg($, "csu");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       path: "lib/librt",
       extraPaths: nix.thunk(() => ["lib/libc/include", "lib/libc/Versions.def"]),
       outputs: nix.thunk(() => ["out", "debug"]),
@@ -24,7 +23,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [include, libcMinimal, libgcc, libthr, libsys]),
       preBuild: nix.thunk(() => nix.str`export NIX_CFLAGS_COMPILE="$NIX_CFLAGS_COMPILE -B${csu}/lib"
 `),
-      env: nix.thunk(() => ({ [nix.POS]: pos$1, MK_TESTS: "no" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[0], MK_TESTS: "no" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=librt.ts.map

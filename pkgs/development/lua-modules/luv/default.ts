@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["fetchSubmodules", 23, 5], ["hash", 24, 5]], [["WITH_SHARED_LIBUV", 56, 5]], [["variables", 55, 18]], [["nativeBuildInputs", 75, 13]], [["test", 72, 7], ["libluv", 86, 26]], [["tests", 71, 5], ["updateScript", 89, 5]], [["homepage", 93, 5], ["description", 94, 5], ["longDescription", 95, 5], ["license", 99, 5], ["maintainers", 100, 5], ["platforms", 101, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["prePatch", 28, 3], ["patches", 32, 3], ["buildInputs", 43, 3], ["nativeBuildInputs", 44, 3], ["rockspecFilename", 46, 3], ["postConfigure", 48, 3], ["luarocksConfig", 55, 3], ["__darwinAllowLocalNetworking", 59, 3], ["doInstallCheck", 61, 3], ["installCheckPhase", 62, 3], ["disabled", 68, 3], ["passthru", 70, 3], ["meta", 92, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, buildLuarocksPackage: false, cmake: false, fetchFromGitHub: false, libuv: false, lua: false, luaOlder: false, "nix-update-script": false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["fetchSubmodules", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["WITH_SHARED_LIBUV", 56, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["variables", 55, 18]]);
-const pos$4 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 75, 13]]);
-const pos$5 = nix.positions(here + "/default.nix", [["test", 72, 7], ["libluv", 86, 26]]);
-const pos$6 = nix.positions(here + "/default.nix", [["tests", 71, 5], ["updateScript", 89, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["homepage", 93, 5], ["description", 94, 5], ["longDescription", 95, 5], ["license", 99, 5], ["maintainers", 100, 5], ["platforms", 101, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["prePatch", 28, 3], ["patches", 32, 3], ["buildInputs", 43, 3], ["nativeBuildInputs", 44, 3], ["rockspecFilename", 46, 3], ["postConfigure", 48, 3], ["luarocksConfig", 55, 3], ["__darwinAllowLocalNetworking", 59, 3], ["doInstallCheck", 61, 3], ["installCheckPhase", 62, 3], ["disabled", 68, 3], ["passthru", 70, 3], ["meta", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "luv";
       const version = "1.52.1-0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "luvit",
           repo: "luv",
           rev: version,
@@ -42,21 +35,21 @@ export default nix.lambda((args) => (() => {
       const rockspecFilename = "luv-scm-0.rockspec";
       const postConfigure = "mv \"$rockspecFilename\" \"$generatedRockspecFilename\"\nrockspecFilename=\"$generatedRockspecFilename\"\nsubstituteInPlace \"$rockspecFilename\" \\\n  --replace-fail 'version = \"scm-0\"' \"version = \\\"$version\\\"\"\n";
       const luarocksConfig = nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        variables: nix.thunk(() => ({ [nix.POS]: pos$2, WITH_SHARED_LIBUV: "ON" })),
+        [nix.POS]: $pos[2],
+        variables: nix.thunk(() => ({ [nix.POS]: $pos[1], WITH_SHARED_LIBUV: "ON" })),
       }));
       const __darwinAllowLocalNetworking = true;
       const doInstallCheck = true;
       const installCheckPhase = "runHook preInstallCheck\nluarocks test\nrunHook postInstallCheck\n";
       const disabled = nix.thunk(() => nix.app(luaOlder, "5.1"));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(lua, "pkgs"));
           return {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           test: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`luv-${version}-test`), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               nativeBuildInputs: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(lua, "withPackages"), (ps) => [nix.thunk(() => nix.sel(ps, "luv"))])),
               ]),
@@ -67,7 +60,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         homepage: "https://github.com/luvit/luv",
         description: "Bare libuv bindings for lua",
         longDescription: "This library makes libuv available to lua scripts. It was made for the luvit\nproject but should usable from nearly any lua project.\n",
@@ -79,7 +72,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lua, "meta", "platforms")),
       }));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname,
         version,
         src,

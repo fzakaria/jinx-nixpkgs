@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["mainProgram", 70, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["vendorHash", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 37, 3], ["ldflags", 44, 3], ["enableParallelBuilding", 49, 3], ["postPatch", 51, 3], ["preBuild", 55, 3], ["postInstall", 59, 3], ["desktopItems", 63, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, copyDesktopItems: false, fetchFromGitHub: false, "pkg-config": false, wrapGAppsHook4: false, "gobject-introspection": false, gtk4: false, gtksourceview5: false, libadwaita: false, libxml2: false, "vte-gtk4": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["mainProgram", 70, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["vendorHash", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 37, 3], ["ldflags", 44, 3], ["enableParallelBuilding", 49, 3], ["postPatch", 51, 3], ["preBuild", 55, 3], ["postInstall", 59, 3], ["desktopItems", 63, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libxml2 = nix.arg($, "libxml2");
   const vte_gtk4 = nix.arg($, "vte-gtk4");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "seabird",
       version: "0.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "getseabird",
           repo: "seabird",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "install -Dm644 internal/icon/seabird.svg $out/share/icons/hicolor/scalable/dev.skynomads.Seabird.svg\n",
       desktopItems: nix.thunk(() => ["dev.skynomads.Seabird.desktop"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Native Kubernetes desktop client",
         homepage: "https://getseabird.github.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

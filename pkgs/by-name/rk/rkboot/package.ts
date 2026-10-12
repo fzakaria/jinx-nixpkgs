@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 5]], [["pname", 9, 3], ["src", 10, 19], ["version", 10, 23], ["postPatch", 12, 3], ["buildPhase", 16, 3], ["installPhase", 26, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, rkbin: false, qemu: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["src", 10, 19], ["version", 10, 23], ["postPatch", 12, 3], ["buildPhase", 16, 3], ["installPhase", 26, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const rkbin = nix.arg($, "rkbin");
   const qemu = nix.arg($, "qemu");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "rkboot",
       src: nix.thunk(() => nix.attr(rkbin, "src")),
       version: nix.thunk(() => nix.attr(rkbin, "version")),
@@ -28,7 +27,7 @@ done
 `),
       installPhase: "mkdir -p $out\nif [ -z \"$(ls -A rkboot)\" ]; then\n  echo \"Error: The 'rkboot' directory is empty.\"\n  exit 1\nelse\n  mv rkboot $out/bin\nfi\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Rockchip proprietary SPL bootloader blobs",
         homepage: "https://github.com/rockchip-linux/rkbin",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),

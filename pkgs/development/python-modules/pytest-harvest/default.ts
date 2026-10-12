@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["postPatch", 31, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 43, 3], ["propagatedBuildInputs", 45, 3], ["nativeCheckInputs", 51, 3], ["pythonImportsCheck", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "setuptools-scm": false, pytest: false, decopatch: false, makefun: false, six: false, pytestCheckHook: false, numpy: false, pandas: false, tabulate: false, "pytest-cases": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["postPatch", 31, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 43, 3], ["propagatedBuildInputs", 45, 3], ["nativeCheckInputs", 51, 3], ["pythonImportsCheck", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.10.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "smarie",
           repo: "python-pytest-harvest",
           tag: version,
@@ -45,7 +43,7 @@ substituteInPlace pytest_harvest/tests/test_lazy_and_harvest.py \\
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, numpy, pandas, tabulate, pytest_cases]);
       const pythonImportsCheck = nix.thunk(() => ["pytest_harvest"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Store data created during your `pytest` tests execution, and retrieve it at the end of the session, e.g. for applicative benchmarking purposes",
         homepage: "https://github.com/smarie/python-pytest-harvest",
         changelog: nix.thunk(() => nix.str`https://github.com/smarie/python-pytest-harvest/releases/tag/${version}`),
@@ -53,7 +51,7 @@ substituteInPlace pytest_harvest/tests/test_lazy_and_harvest.py \\
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

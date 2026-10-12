@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/build-time-python.nix", [[["makeWrapperArgs", 25, 5]]]);
 const formals$1 = { args: { lib: false, glib: false, pango: false, python3: false, harfbuzz: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/build-time-python.nix", [["makeWrapperArgs", 25, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.sel(p, "pygobject3")),
       nix.thunk(() => nix.sel(p, "setuptools")),
     ]), "override"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       makeWrapperArgs: nix.thunk(() => [nix.thunk(() => nix.str`--set GI_TYPELIB_PATH ${giTypelibPath}`)]),
     })));
 })(), formals$1);

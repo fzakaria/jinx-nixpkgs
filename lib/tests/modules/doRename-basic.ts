@@ -2,23 +2,17 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/doRename-basic.nix", [[["from", 5, 7], ["to", 9, 7], ["warn", 14, 7], ["use", 15, 7], ["visible", 16, 7]], [["e", 20, 9]], [["d", 20, 7]], [["c", 20, 5]], [["b", 23, 7]], [["a", 23, 5]], [["imports", 3, 3], ["options", 19, 3], ["config", 22, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/doRename-basic.nix", [["from", 5, 7], ["to", 9, 7], ["warn", 14, 7], ["use", 15, 7], ["visible", 16, 7]]);
-const pos$2 = nix.positions(here + "/doRename-basic.nix", [["e", 20, 9]]);
-const pos$3 = nix.positions(here + "/doRename-basic.nix", [["d", 20, 7]]);
-const pos$4 = nix.positions(here + "/doRename-basic.nix", [["c", 20, 5]]);
-const pos$5 = nix.positions(here + "/doRename-basic.nix", [["b", 23, 7]]);
-const pos$6 = nix.positions(here + "/doRename-basic.nix", [["a", 23, 5]]);
-const pos$7 = nix.positions(here + "/doRename-basic.nix", [["imports", 3, 3], ["options", 19, 3], ["config", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "doRename"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           from: nix.thunk(() => ["a", "b"]),
           to: nix.thunk(() => ["c", "d", "e"]),
           warn: true,
@@ -27,16 +21,16 @@ export default nix.lambda((args) => (() => {
         })))),
     ]),
     options: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       c: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         d: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           e: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({})))),
         })),
       })),
     })),
-    config: nix.thunk(() => ({ [nix.POS]: pos$6, a: nix.thunk(() => ({ [nix.POS]: pos$5, b: 1234n })) })),
+    config: nix.thunk(() => ({ [nix.POS]: $pos[5], a: nix.thunk(() => ({ [nix.POS]: $pos[4], b: 1234n })) })),
   };
 })(), formals$1);
 //# sourceMappingURL=doRename-basic.ts.map

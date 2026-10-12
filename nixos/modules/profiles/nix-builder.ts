@@ -2,51 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nix-builder.nix", [[["enable", 38, 26]], [["swraid", 38, 19]], [["boot", 38, 14]], [["default", 40, 9], ["internal", 41, 9]], [["default", 44, 9], ["internal", 45, 9]], [["isContainer", 39, 20], ["isNspawnContainer", 43, 20]], [["boot", 39, 15]], [["disabledModules", 33, 7], ["config", 38, 7], ["options", 39, 7]], [["default", 52, 7], ["type", 53, 7], ["example", 54, 7], ["description", 55, 7]], [["default", 58, 7], ["type", 59, 7], ["example", 60, 7], ["description", 61, 7]], [["default", 64, 7], ["type", 65, 7], ["example", 66, 7], ["description", 67, 7]], [["default", 73, 7], ["type", 74, 7], ["example", 75, 7], ["description", 76, 7]], [["default", 82, 7], ["type", 83, 7], ["example", 84, 7], ["description", 85, 7]], [["default", 91, 7], ["type", 92, 7], ["example", 93, 7], ["description", 94, 7]], [["diskSize", 51, 5], ["memorySize", 57, 5], ["min-free", 63, 5], ["max-free", 72, 5], ["workingDirectory", 81, 5], ["hostPort", 90, 5]], [["darwin-builder", 50, 26]], [["virtualisation", 50, 11]], [["enable", 102, 19]], [["mode", 106, 9], ["source", 108, 9]], [["mode", 112, 9], ["source", 114, 9]], [["ssh/ssh_host_ed25519_key", 105, 7], ["ssh/ssh_host_ed25519_key.pub", 111, 7]], [["etc", 104, 17]], [["enable", 119, 17]], [["min-free", 136, 7], ["max-free", 138, 7], ["trusted-users", 140, 7]], [["channel", 119, 9], ["settings", 135, 9]], [["allowSubstitutes", 133, 30]], [["mainProgram", 225, 11], ["description", 226, 11], ["platforms", 227, 11], ["maintainers", 228, 11]], [["nixosConfig", 232, 11], ["nixosOptions", 233, 11], ["add-keys", 235, 19], ["run-builder", 235, 28]], [["name", 211, 9], ["executable", 212, 9], ["destination", 213, 9], ["text", 214, 9], ["checkPhase", 221, 9], ["meta", 224, 9], ["passthru", 230, 9]], [["macos-builder-installer", 153, 18]], [["revision", 241, 13], ["versionSuffix", 244, 13]], [["disableInstallerTools", 123, 12], ["systemBuilderArgs", 133, 12], ["build", 153, 12], ["nixos", 241, 7], ["stateVersion", 247, 7]], [["autologinUser", 144, 13]], [["enable", 147, 9], ["authorizedKeysFiles", 149, 9]], [["getty", 144, 7], ["openssh", 146, 7]], [["isNormalUser", 251, 7]], [["users", 250, 11]], [["enable", 254, 21], ["extraConfig", 256, 21]], [["polkit", 254, 14]], [["source", 272, 9], ["target", 273, 9]], [["keys", 271, 25]], [["diskSize", 267, 7], ["memorySize", 269, 7], ["sharedDirectories", 271, 7], ["writableStore", 278, 7], ["writableStoreUseTmpfs", 282, 7], ["useHostCerts", 286, 7]], [["documentation", 102, 5], ["environment", 104, 5], ["nix", 119, 5], ["system", 123, 5], ["services", 143, 5], ["users", 250, 5], ["security", 254, 5], ["virtualisation", 266, 5]], [["imports", 30, 3], ["options", 50, 3], ["config", 100, 3]]]);
 const formals$1 = { args: { config: false, lib: false, options: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/nix-builder.nix", [["enable", 38, 26]]);
-const pos$2 = nix.positions(here + "/nix-builder.nix", [["swraid", 38, 19]]);
-const pos$3 = nix.positions(here + "/nix-builder.nix", [["boot", 38, 14]]);
-const pos$4 = nix.positions(here + "/nix-builder.nix", [["default", 40, 9], ["internal", 41, 9]]);
-const pos$5 = nix.positions(here + "/nix-builder.nix", [["default", 44, 9], ["internal", 45, 9]]);
-const pos$6 = nix.positions(here + "/nix-builder.nix", [["isContainer", 39, 20], ["isNspawnContainer", 43, 20]]);
-const pos$7 = nix.positions(here + "/nix-builder.nix", [["boot", 39, 15]]);
-const pos$8 = nix.positions(here + "/nix-builder.nix", [["disabledModules", 33, 7], ["config", 38, 7], ["options", 39, 7]]);
-const pos$9 = nix.positions(here + "/nix-builder.nix", [["default", 52, 7], ["type", 53, 7], ["example", 54, 7], ["description", 55, 7]]);
-const pos$10 = nix.positions(here + "/nix-builder.nix", [["default", 58, 7], ["type", 59, 7], ["example", 60, 7], ["description", 61, 7]]);
-const pos$11 = nix.positions(here + "/nix-builder.nix", [["default", 64, 7], ["type", 65, 7], ["example", 66, 7], ["description", 67, 7]]);
-const pos$12 = nix.positions(here + "/nix-builder.nix", [["default", 73, 7], ["type", 74, 7], ["example", 75, 7], ["description", 76, 7]]);
-const pos$13 = nix.positions(here + "/nix-builder.nix", [["default", 82, 7], ["type", 83, 7], ["example", 84, 7], ["description", 85, 7]]);
-const pos$14 = nix.positions(here + "/nix-builder.nix", [["default", 91, 7], ["type", 92, 7], ["example", 93, 7], ["description", 94, 7]]);
-const pos$15 = nix.positions(here + "/nix-builder.nix", [["diskSize", 51, 5], ["memorySize", 57, 5], ["min-free", 63, 5], ["max-free", 72, 5], ["workingDirectory", 81, 5], ["hostPort", 90, 5]]);
-const pos$16 = nix.positions(here + "/nix-builder.nix", [["darwin-builder", 50, 26]]);
-const pos$17 = nix.positions(here + "/nix-builder.nix", [["virtualisation", 50, 11]]);
-const pos$18 = nix.positions(here + "/nix-builder.nix", [["enable", 102, 19]]);
-const pos$19 = nix.positions(here + "/nix-builder.nix", [["mode", 106, 9], ["source", 108, 9]]);
-const pos$20 = nix.positions(here + "/nix-builder.nix", [["mode", 112, 9], ["source", 114, 9]]);
-const pos$21 = nix.positions(here + "/nix-builder.nix", [["ssh/ssh_host_ed25519_key", 105, 7], ["ssh/ssh_host_ed25519_key.pub", 111, 7]]);
-const pos$22 = nix.positions(here + "/nix-builder.nix", [["etc", 104, 17]]);
-const pos$23 = nix.positions(here + "/nix-builder.nix", [["enable", 119, 17]]);
-const pos$24 = nix.positions(here + "/nix-builder.nix", [["min-free", 136, 7], ["max-free", 138, 7], ["trusted-users", 140, 7]]);
-const pos$25 = nix.positions(here + "/nix-builder.nix", [["channel", 119, 9], ["settings", 135, 9]]);
-const pos$26 = nix.positions(here + "/nix-builder.nix", [["allowSubstitutes", 133, 30]]);
-const pos$27 = nix.positions(here + "/nix-builder.nix", [["mainProgram", 225, 11], ["description", 226, 11], ["platforms", 227, 11], ["maintainers", 228, 11]]);
-const pos$28 = nix.positions(here + "/nix-builder.nix", [["nixosConfig", 232, 11], ["nixosOptions", 233, 11], ["add-keys", 235, 19], ["run-builder", 235, 28]]);
-const pos$29 = nix.positions(here + "/nix-builder.nix", [["name", 211, 9], ["executable", 212, 9], ["destination", 213, 9], ["text", 214, 9], ["checkPhase", 221, 9], ["meta", 224, 9], ["passthru", 230, 9]]);
-const pos$30 = nix.positions(here + "/nix-builder.nix", [["macos-builder-installer", 153, 18]]);
-const pos$31 = nix.positions(here + "/nix-builder.nix", [["revision", 241, 13], ["versionSuffix", 244, 13]]);
-const pos$32 = nix.positions(here + "/nix-builder.nix", [["disableInstallerTools", 123, 12], ["systemBuilderArgs", 133, 12], ["build", 153, 12], ["nixos", 241, 7], ["stateVersion", 247, 7]]);
-const pos$33 = nix.positions(here + "/nix-builder.nix", [["autologinUser", 144, 13]]);
-const pos$34 = nix.positions(here + "/nix-builder.nix", [["enable", 147, 9], ["authorizedKeysFiles", 149, 9]]);
-const pos$35 = nix.positions(here + "/nix-builder.nix", [["getty", 144, 7], ["openssh", 146, 7]]);
-const pos$36 = nix.positions(here + "/nix-builder.nix", [["isNormalUser", 251, 7]]);
-const pos$37 = nix.positions(here + "/nix-builder.nix", [["users", 250, 11]]);
-const pos$38 = nix.positions(here + "/nix-builder.nix", [["enable", 254, 21], ["extraConfig", 256, 21]]);
-const pos$39 = nix.positions(here + "/nix-builder.nix", [["polkit", 254, 14]]);
-const pos$40 = nix.positions(here + "/nix-builder.nix", [["source", 272, 9], ["target", 273, 9]]);
-const pos$41 = nix.positions(here + "/nix-builder.nix", [["keys", 271, 25]]);
-const pos$42 = nix.positions(here + "/nix-builder.nix", [["diskSize", 267, 7], ["memorySize", 269, 7], ["sharedDirectories", 271, 7], ["writableStore", 278, 7], ["writableStoreUseTmpfs", 282, 7], ["useHostCerts", 286, 7]]);
-const pos$43 = nix.positions(here + "/nix-builder.nix", [["documentation", 102, 5], ["environment", 104, 5], ["nix", 119, 5], ["system", 123, 5], ["services", 143, 5], ["users", 250, 5], ["security", 254, 5], ["virtualisation", 266, 5]]);
-const pos$44 = nix.positions(here + "/nix-builder.nix", [["imports", 30, 3], ["options", 50, 3], ["config", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -58,76 +15,76 @@ export default nix.lambda((args) => (() => {
   const keyType = "ed25519";
   const cfg = nix.thunk(() => nix.sel(config, "virtualisation", "darwin-builder"));
   return {
-    [nix.POS]: pos$44,
+    [nix.POS]: $pos[43],
     imports: nix.thunk(() => [
       nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         disabledModules: nix.thunk(() => [
           nix.path(here, "../virtualisation/nixos-containers.nix"),
           nix.path(here, "../services/x11/desktop-managers/xterm.nix"),
         ]),
         config: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$2,
-            swraid: nix.thunk(() => ({ [nix.POS]: pos$1, enable: false })),
+            [nix.POS]: $pos[1],
+            swraid: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: false })),
           })),
         })),
         options: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$6,
-            isContainer: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$4, default: false, internal: true })))),
-            isNspawnContainer: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$5, default: false, internal: true })))),
+            [nix.POS]: $pos[5],
+            isContainer: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: $pos[3], default: false, internal: true })))),
+            isNspawnContainer: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: $pos[4], default: false, internal: true })))),
           })),
         })),
       })),
     ]),
     options: nix.thunk(() => ({
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       virtualisation: nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         "darwin-builder": nix.thunk(() => (() => {
           const w = nix.withScope(lib, null);
           return {
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             diskSize: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 default: nix.thunk(() => nix.mul(20n, 1024n)),
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
                 example: 30720n,
                 description: "The maximum disk space allocated to the runner in MiB (1024×1024 bytes).",
               })))),
             memorySize: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 default: nix.thunk(() => nix.mul(3n, 1024n)),
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
                 example: 8192n,
                 description: "The runner's memory in MiB (1024×1024 bytes).",
               })))),
             "min-free": nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 default: nix.thunk(() => nix.mul(nix.mul(1024n, 1024n), 1024n)),
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
                 example: 1073741824n,
                 description: "The threshold (in bytes) of free disk space left at which to\nstart garbage collection on the runner\n",
               })))),
             "max-free": nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                [nix.POS]: pos$12,
+                [nix.POS]: $pos[11],
                 default: nix.thunk(() => nix.mul(nix.mul(nix.mul(3n, 1024n), 1024n), 1024n)),
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
                 example: 3221225472n,
                 description: "The threshold (in bytes) of free disk space left at which to\nstop garbage collection on the runner\n",
               })))),
             workingDirectory: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                [nix.POS]: pos$13,
+                [nix.POS]: $pos[12],
                 default: ".",
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 example: "/var/lib/darwin-builder",
                 description: "The working directory to use to run the script. When running\nas part of a flake will need to be set to a non read-only filesystem.\n",
               })))),
             hostPort: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                [nix.POS]: pos$14,
+                [nix.POS]: $pos[13],
                 default: 31022n,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
                 example: 22n,
@@ -138,40 +95,40 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      [nix.POS]: pos$43,
-      documentation: nix.thunk(() => ({ [nix.POS]: pos$18, enable: false })),
+      [nix.POS]: $pos[42],
+      documentation: nix.thunk(() => ({ [nix.POS]: $pos[17], enable: false })),
       environment: nix.thunk(() => ({
-        [nix.POS]: pos$22,
+        [nix.POS]: $pos[21],
         etc: nix.thunk(() => ({
-          [nix.POS]: pos$21,
+          [nix.POS]: $pos[20],
           "ssh/ssh_host_ed25519_key": nix.thunk(() => ({
-            [nix.POS]: pos$19,
+            [nix.POS]: $pos[18],
             mode: "0600",
             source: nix.path(here, "./keys/ssh_host_ed25519_key"),
           })),
           "ssh/ssh_host_ed25519_key.pub": nix.thunk(() => ({
-            [nix.POS]: pos$20,
+            [nix.POS]: $pos[19],
             mode: "0644",
             source: nix.path(here, "./keys/ssh_host_ed25519_key.pub"),
           })),
         })),
       })),
       nix: nix.thunk(() => ({
-        [nix.POS]: pos$25,
-        channel: nix.thunk(() => ({ [nix.POS]: pos$23, enable: false })),
+        [nix.POS]: $pos[24],
+        channel: nix.thunk(() => ({ [nix.POS]: $pos[22], enable: false })),
         settings: nix.thunk(() => ({
-          [nix.POS]: pos$24,
+          [nix.POS]: $pos[23],
           "min-free": nix.thunk(() => nix.sel(cfg, "min-free")),
           "max-free": nix.thunk(() => nix.sel(cfg, "max-free")),
           "trusted-users": nix.thunk(() => [user]),
         })),
       })),
       system: nix.thunk(() => ({
-        [nix.POS]: pos$32,
+        [nix.POS]: $pos[31],
         disableInstallerTools: true,
-        systemBuilderArgs: nix.thunk(() => ({ [nix.POS]: pos$26, allowSubstitutes: true })),
+        systemBuilderArgs: nix.thunk(() => ({ [nix.POS]: $pos[25], allowSubstitutes: true })),
         build: nix.thunk(() => ({
-          [nix.POS]: pos$30,
+          [nix.POS]: $pos[29],
           "macos-builder-installer": nix.thunk(() => (() => {
             const privateKey = nix.thunk(() => nix.str`/etc/nix/${user}_${keyType}`);
             const publicKey = nix.thunk(() => nix.str`${privateKey}.pub`);
@@ -202,7 +159,7 @@ KEYS="\${KEYS:-./keys}"
 KEYS="$(${nix.sel(hostPkgs, "nix")}/bin/nix-store --add "$KEYS")" ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(config, "system", "build", "vm")))}
 `)));
             return nix.app(nix.sel(hostPkgs, "writeTextFile"), nix.thunk(() => ({
-                [nix.POS]: pos$29,
+                [nix.POS]: $pos[28],
                 name: "create-builder",
                 executable: true,
                 destination: "/bin/create-builder",
@@ -215,7 +172,7 @@ ${nix.app(nix.sel(lib, "getExe"), run_builder)}
                 checkPhase: nix.thunk(() => nix.str`${nix.sel(hostPkgs, "stdenv", "shellDryRun")} "$target"
 `),
                 meta: nix.thunk(() => ({
-                  [nix.POS]: pos$27,
+                  [nix.POS]: $pos[26],
                   mainProgram: "create-builder",
                   description: "Create a Linux builder VM for macOS",
                   platforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),
@@ -225,7 +182,7 @@ ${nix.app(nix.sel(lib, "getExe"), run_builder)}
                   })()),
                 })),
                 passthru: nix.thunk(() => ({
-                  [nix.POS]: pos$28,
+                  [nix.POS]: $pos[27],
                   nixosConfig: config,
                   nixosOptions: options,
                   "add-keys": add_keys,
@@ -234,28 +191,28 @@ ${nix.app(nix.sel(lib, "getExe"), run_builder)}
               })));
           })()),
         })),
-        nixos: nix.thunk(() => ({ [nix.POS]: pos$31, revision: null, versionSuffix: "" })),
+        nixos: nix.thunk(() => ({ [nix.POS]: $pos[30], revision: null, versionSuffix: "" })),
         stateVersion: "24.05",
       })),
       services: nix.thunk(() => ({
-        [nix.POS]: pos$35,
-        getty: nix.thunk(() => ({ [nix.POS]: pos$33, autologinUser: user })),
+        [nix.POS]: $pos[34],
+        getty: nix.thunk(() => ({ [nix.POS]: $pos[32], autologinUser: user })),
         openssh: nix.thunk(() => ({
-          [nix.POS]: pos$34,
+          [nix.POS]: $pos[33],
           enable: true,
           authorizedKeysFiles: nix.thunk(() => [nix.thunk(() => nix.str`${keysDirectory}/%u_${keyType}.pub`)]),
         })),
       })),
       users: nix.thunk(() => ({
-        [nix.POS]: pos$37,
+        [nix.POS]: $pos[36],
         users: nix.thunk(() => nix.attrsDyn({}, [
-          [nix.str`${user}`, nix.thunk(() => ({ [nix.POS]: pos$36, isNormalUser: true }))],
+          [nix.str`${user}`, nix.thunk(() => ({ [nix.POS]: $pos[35], isNormalUser: true }))],
         ])),
       })),
       security: nix.thunk(() => ({
-        [nix.POS]: pos$39,
+        [nix.POS]: $pos[38],
         polkit: nix.thunk(() => ({
-          [nix.POS]: pos$38,
+          [nix.POS]: $pos[37],
           enable: true,
           extraConfig: nix.thunk(() => nix.str`polkit.addRule(function(action, subject) {
   if (action.id === "org.freedesktop.login1.power-off" && subject.user === "${user}") {
@@ -268,12 +225,12 @@ ${nix.app(nix.sel(lib, "getExe"), run_builder)}
         })),
       })),
       virtualisation: nix.thunk(() => ({
-        [nix.POS]: pos$42,
+        [nix.POS]: $pos[41],
         diskSize: nix.thunk(() => nix.sel(cfg, "diskSize")),
         memorySize: nix.thunk(() => nix.sel(cfg, "memorySize")),
         sharedDirectories: nix.thunk(() => ({
-          [nix.POS]: pos$41,
-          keys: nix.thunk(() => ({ [nix.POS]: pos$40, source: "\"$KEYS\"", target: keysDirectory })),
+          [nix.POS]: $pos[40],
+          keys: nix.thunk(() => ({ [nix.POS]: $pos[39], source: "\"$KEYS\"", target: keysDirectory })),
         })),
         writableStore: true,
         writableStoreUseTmpfs: false,

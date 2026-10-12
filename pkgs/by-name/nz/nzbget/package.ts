@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]], [["owner", 40, 5], ["repo", 41, 5], ["rev", 42, 5], ["hash", 43, 5]], [["nzbget", 86, 43]], [["tests", 86, 12]], [["homepage", 89, 5], ["changelog", 90, 5], ["license", 91, 5], ["description", 92, 5], ["maintainers", 93, 5], ["platforms", 97, 5], ["mainProgram", 98, 5]], [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["patches", 46, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 56, 3], ["postPatch", 69, 3], ["postInstall", 80, 3], ["enableParallelBuilding", 84, 3], ["passthru", 86, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, boost: false, "pkg-config": false, gnutls: false, libgcrypt: false, libpar2: false, libcap: false, libsigcxx_2_0: false, libxml2: false, ncurses: false, openssl: false, zlib: false, "deterministic-uname": false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 40, 5], ["repo", 41, 5], ["rev", 42, 5], ["hash", 43, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["nzbget", 86, 43]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 86, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 89, 5], ["changelog", 90, 5], ["license", 91, 5], ["description", 92, 5], ["maintainers", 93, 5], ["platforms", 97, 5], ["mainProgram", 98, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["patches", 46, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 56, 3], ["postPatch", 69, 3], ["postInstall", 80, 3], ["enableParallelBuilding", 84, 3], ["passthru", 86, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,25 +25,25 @@ export default nix.lambda((args) => (() => {
   const deterministic_uname = nix.arg($, "deterministic-uname");
   const nixosTests = nix.arg($, "nixosTests");
   const par2TurboSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "nzbgetcom",
       repo: "par2cmdline-turbo",
       rev: "v1.4.0-20260323",
       hash: "sha256-oeQY7GJkaEmxEqJALpjAPFpfq+YsNWv4VajotE25xCI=",
     }))));
   const rapidyencSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       owner: "nzbgetcom",
       repo: "rapidyenc",
       rev: "v1.1.1-20260217",
       hash: "sha256-1K0LrB1AhacYS/54eCn+vQFAwP6IUVUrPCqFopojXDE=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "nzbget",
       version: "26.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "nzbgetcom",
           repo: "nzbget",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -81,11 +75,11 @@ substituteInPlace daemon/util/Util.cpp \\
       postInstall: "install -Dm444 nzbget.conf $out/share/nzbget/nzbget.conf\n",
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$4, nzbget: nix.thunk(() => nix.attr(nixosTests, "nzbget")) })),
+        [nix.POS]: $pos[4],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[3], nzbget: nix.thunk(() => nix.attr(nixosTests, "nzbget")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://nzbget.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/nzbgetcom/nzbget/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

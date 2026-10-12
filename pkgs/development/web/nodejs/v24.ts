@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/v24.nix", [[["openssl", 14, 15], ["python", 15, 7]], [["stdenv", 19, 7]], [["url", 36, 7], ["hash", 37, 7]], [["url", 46, 9], ["hash", 47, 9]], [["url", 61, 9], ["hash", 62, 9], ["revert", 63, 9]], [["version", 32, 3], ["sha256", 33, 3], ["patches", 34, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPackages: false, callPackage: false, fetchpatch2: false, openssl: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/v24.nix", [["openssl", 14, 15], ["python", 15, 7]]);
-const pos$2 = nix.positions(here + "/v24.nix", [["stdenv", 19, 7]]);
-const pos$3 = nix.positions(here + "/v24.nix", [["url", 36, 7], ["hash", 37, 7]]);
-const pos$4 = nix.positions(here + "/v24.nix", [["url", 46, 9], ["hash", 47, 9]]);
-const pos$5 = nix.positions(here + "/v24.nix", [["url", 61, 9], ["hash", 62, 9], ["revert", 63, 9]]);
-const pos$6 = nix.positions(here + "/v24.nix", [["version", 32, 3], ["sha256", 33, 3], ["patches", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,22 +14,22 @@ export default nix.lambda((args) => (() => {
   const fetchpatch2 = nix.arg($, "fetchpatch2");
   const openssl = nix.arg($, "openssl");
   const python3 = nix.arg($, "python3");
-  const buildNodejs = nix.thunk(() => nix.app(callPackage, nix.path(here, "./nodejs.nix"), nix.thunk(() => nix.update({ [nix.POS]: pos$1, openssl: openssl, python: python3 }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+  const buildNodejs = nix.thunk(() => nix.app(callPackage, nix.path(here, "./nodejs.nix"), nix.thunk(() => nix.update({ [nix.POS]: $pos[0], openssl: openssl, python: python3 }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
+        [nix.POS]: $pos[1],
         stdenv: nix.thunk(() => nix.sel(buildPackages, "llvmPackages_20", "libcxxStdenv")),
       })))))));
   const gypPatches = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "buildPlatform", "isDarwin")) ? [nix.path(here, "./gyp-patches-set-fallback-value-for-CLT-darwin.patch")] : []));
   return nix.app(buildNodejs, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       version: "24.21.0",
       sha256: "a6f54defb6fd7c84f41dba13d61e78e9b4e0961712cf61f29715c05f5ced94fc",
       patches: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.app(nix.sel(stdenv, "hostPlatform", "emulatorAvailable"), buildPackages))), nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://raw.githubusercontent.com/buildroot/buildroot/2f0c31bffdb59fb224387e35134a6d5e09a81d57/package/nodejs/nodejs-src/0003-include-obj-name-in-shared-intermediate.patch",
             hash: "sha256-3g4aS+NmmUYNOYRNc6UMJKYoaTlpP5Knt9UHegx+o0Y=",
           }))))), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isFreeBSD")))), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               url: "https://raw.githubusercontent.com/rubyjs/libv8-node/62476a398d4c9c1a670240a3b070d69544be3761/patch/v8-no-assert-trivially-copyable.patch",
               hash: "sha256-hSTLljmVzYmc3WAVeRq9EPYluXGXFeWVXkykufGQPVw=",
             })))),
@@ -46,7 +41,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./use-nix-codesign.patch"),
       ], nix.concat(gypPatches, nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "buildPlatform", "isDarwin"))), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               url: "https://github.com/nodejs/node/commit/869d0cbca3b0b5e594b3254869a34d549664e089.patch?full_index=1",
               hash: "sha256-BBBShQwU20TSY8GtPehQ9i3AH4ZKUGIr8O0bRsgrpNo=",
               revert: true,

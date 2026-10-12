@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["sha256", 20, 5]], [["url", 24, 5], ["hash", 25, 5]], [["pname", 29, 5], ["version", 30, 13], ["nativeBuildInputs", 32, 5], ["buildCommand", 37, 5]], [["name", 68, 5], ["exec", 69, 5], ["comment", 70, 5], ["desktopName", 71, 5], ["categories", 72, 5], ["icon", 76, 5]], [["description", 88, 5], ["homepage", 89, 5], ["changelog", 90, 5], ["license", 91, 5], ["maintainers", 92, 5], ["platforms", 93, 5]], [["pname", 80, 11], ["version", 80, 17], ["paths", 82, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeDesktopItem: false, imagemagick: false, p7zip: false, wine: false, writeShellScriptBin: false, symlinkJoin: false, use64: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 24, 5], ["hash", 25, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 29, 5], ["version", 30, 13], ["nativeBuildInputs", 32, 5], ["buildCommand", 37, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 68, 5], ["exec", 69, 5], ["comment", 70, 5], ["desktopName", 71, 5], ["categories", 72, 5], ["icon", 76, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 88, 5], ["homepage", 89, 5], ["changelog", 90, 5], ["license", 91, 5], ["maintainers", 92, 5], ["platforms", 93, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 80, 11], ["version", 80, 17], ["paths", 82, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,17 +20,17 @@ export default nix.lambda((args) => (() => {
   const pname = "exact-audio-copy";
   const version = "1.8.0";
   const eac_exe = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`http://www.exactaudiocopy.de/eac-${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}.exe`),
       sha256: "205530cfbfdff82343858f38b0e709e586051fb8900ecd513d7992a3c1ef031b",
     }))));
   const cygwin = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: "https://mirrors.kernel.org/sourceware/cygwin/x86_64/release/cygwin/cygwin-3.6.6-1-x86_64.tar.xz",
       hash: "sha256-xcgYjfVB9dF0twGC1ww7r4NCPHT/+aEk1CMmS7ndJuA=",
     }))));
   const patched_eac = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "patched_eac",
       version: version,
       nativeBuildInputs: nix.thunk(() => [imagemagick, p7zip]),
@@ -66,7 +61,7 @@ fi
 exec ${wine}/bin/wine ${patched_eac}/EAC.exe "$@"
 `)));
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       name: pname,
       exec: pname,
       comment: "Audio Grabber for CDs",
@@ -75,12 +70,12 @@ exec ${wine}/bin/wine ${patched_eac}/EAC.exe "$@"
       icon: nix.thunk(() => nix.str`${patched_eac}/eac.ico.128.png`),
     }))));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: pname,
       version: version,
       paths: nix.thunk(() => [wrapper, desktopItem]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Precise CD audio grabber for creating perfect quality rips using CD and DVD drives",
         homepage: "https://www.exactaudiocopy.de/",
         changelog: "https://www.exactaudiocopy.de/en/index.php/resources/whats-new/whats-new/",

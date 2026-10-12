@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 54, 5], ["npm_config_build_from_source", 55, 5]], [["NODE_EXTRA_CA_CERTS", 60, 5]], [["name", 118, 7], ["exec", 119, 7], ["icon", 120, 7], ["desktopName", 121, 7], ["genericName", 122, 7], ["comment", 123, 7], ["categories", 124, 7], ["startupWMClass", 129, 7]], [["name", 136, 9], ["runtimeInputs", 138, 9], ["text", 146, 9]], [["extraArgs", 153, 9]], [["PNAME", 165, 11], ["PKG_FILE", 166, 11]], [["name", 158, 9], ["runtimeInputs", 159, 9], ["runtimeEnv", 164, 9], ["text", 168, 9]], [["updateScript", 134, 5]], [["description", 178, 5], ["homepage", 179, 5], ["license", 180, 5], ["maintainers", 186, 5], ["mainProgram", 189, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["npmDepsHash", 36, 3], ["postPatch", 38, 3], ["env", 53, 3], ["nativeBuildInputs", 63, 3], ["makeCacheWritable", 68, 3], ["dontNpmBuild", 70, 3], ["buildPhase", 72, 3], ["installPhase", 93, 3], ["desktopItems", 116, 3], ["passthru", 133, 3], ["meta", 177, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildNpmPackage: false, fetchFromGitHub: false, makeWrapper: false, electron_42: false, cacert: false, makeDesktopItem: false, copyDesktopItems: false, commandLineArgs: true, "nix-update-script": false, "_experimental-update-script-combinators": false, writeShellApplication: false, nix: false, curl: false, "common-updater-scripts": false, jq: false, gnugrep: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 54, 5], ["npm_config_build_from_source", 55, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NODE_EXTRA_CA_CERTS", 60, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 118, 7], ["exec", 119, 7], ["icon", 120, 7], ["desktopName", 121, 7], ["genericName", 122, 7], ["comment", 123, 7], ["categories", 124, 7], ["startupWMClass", 129, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 136, 9], ["runtimeInputs", 138, 9], ["text", 146, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["extraArgs", 153, 9]]);
-const pos$7 = nix.positions(here + "/package.nix", [["PNAME", 165, 11], ["PKG_FILE", 166, 11]]);
-const pos$8 = nix.positions(here + "/package.nix", [["name", 158, 9], ["runtimeInputs", 159, 9], ["runtimeEnv", 164, 9], ["text", 168, 9]]);
-const pos$9 = nix.positions(here + "/package.nix", [["updateScript", 134, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["description", 178, 5], ["homepage", 179, 5], ["license", 180, 5], ["maintainers", 186, 5], ["mainProgram", 189, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["npmDepsHash", 36, 3], ["postPatch", 38, 3], ["env", 53, 3], ["nativeBuildInputs", 63, 3], ["makeCacheWritable", 68, 3], ["dontNpmBuild", 70, 3], ["buildPhase", 72, 3], ["installPhase", 93, 3], ["desktopItems", 116, 3], ["passthru", 133, 3], ["meta", 177, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const gnugrep = nix.arg($, "gnugrep");
   const electron = electron_42;
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       pname: "shogihome",
       version: "1.29.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sunfish-shogi",
           repo: "shogihome",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,11 +40,11 @@ export default nix.lambda((args) => (() => {
       npmDepsHash: "sha256-1LQIhHCTx8ZY2r/kwkd+qPM1FNo4dxx2jDDTtBscemY=",
       postPatch: nix.thunk(() => nix.add("substituteInPlace package.json \\\n  --replace-fail 'npm run install:esbuild && ' \"\" \\\n  --replace-fail 'npm run install:electron && ' \"\"\n\nsubstituteInPlace .electron-builder.config.mjs \\\n  --replace-fail 'AppImage' 'dir' \\\n  --replace-fail 'await signMacApp' '// await signMacApp'\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "substituteInPlace src/background/proc/env.ts \\\n  --replace-fail 'process.resourcesPath' \"'$out/share/lib/shogihome/resources'\"\n"))),
       env: nix.thunk(() => nix.update({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         ELECTRON_SKIP_BINARY_DOWNLOAD: "1",
         npm_config_build_from_source: "true",
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           NODE_EXTRA_CA_CERTS: nix.thunk(() => nix.str`${cacert}/etc/ssl/certs/ca-bundle.crt`),
         }))))),
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [makeWrapper, copyDesktopItems]))),
@@ -92,7 +82,7 @@ makeWrapper '${nix.app(nix.sel(lib, "getExe"), electron)}' "$out/bin/shogihome" 
 `))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p \"$out/Applications\"\nmv dist/mac*/ShogiHome.app \"$out/Applications\"\n")), "runHook postInstall\n")),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "shogihome",
             exec: "shogihome %U",
             icon: "shogihome",
@@ -104,23 +94,23 @@ makeWrapper '${nix.app(nix.sel(lib, "getExe"), electron)}' "$out/bin/shogihome" 
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-version-updater`),
                   runtimeInputs: nix.thunk(() => [curl, jq, common_updater_scripts]),
                   text: nix.thunk(() => nix.str`version="$(curl -s 'https://sunfish-shogi.github.io/shogihome/release.json' | jq -r '.latest.version')"
 update-source-version '${nix.sel(finalAttrs, "pname")}' "$version"
 `),
                 })))))),
-            nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$6, extraArgs: nix.thunk(() => ["--version=skip"]) })))),
+            nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[5], extraArgs: nix.thunk(() => ["--version=skip"]) })))),
             nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-                  [nix.POS]: pos$8,
+                  [nix.POS]: $pos[7],
                   name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-electron-updater`),
                   runtimeInputs: nix.thunk(() => [nix$, jq, gnugrep]),
                   runtimeEnv: nix.thunk(() => ({
-                    [nix.POS]: pos$7,
+                    [nix.POS]: $pos[6],
                     PNAME: nix.thunk(() => nix.sel(finalAttrs, "pname")),
                     PKG_FILE: nix.thunk(() => nix.builtins.toString(nix.path(here, "./package.nix"))),
                   })),
@@ -129,7 +119,7 @@ update-source-version '${nix.sel(finalAttrs, "pname")}' "$version"
           ]))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         description: "Shogi frontend supporting USI engines",
         homepage: "https://sunfish-shogi.github.io/shogihome/",
         license: nix.thunk(() => (() => {

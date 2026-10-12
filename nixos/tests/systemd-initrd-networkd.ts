@@ -2,39 +2,12 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/systemd-initrd-networkd.nix", [[["timeout", 9, 29], ["anyInterface", 10, 29]], [["wait-online", 9, 17]], [["requiredBy", 11, 32]], [["network-online", 11, 17]], [["requiredBy", 12, 47]], [["systemd-networkd-wait-online", 12, 18]], [["enable", 8, 9], ["network", 9, 9], ["targets", 11, 9], ["services", 12, 9], ["initrdBin", 13, 9]], [["enable", 20, 27]], [["systemd", 7, 19], ["network", 20, 19]], [["initrd", 7, 12]], [["initrdBackdoor", 19, 15]], [["boot", 7, 7], ["testing", 19, 7]], [["maintainers", 29, 14]], [["flushBeforeStage2", 36, 33]], [["network", 36, 25]], [["initrd", 36, 18]], [["DefaultDependencies", 46, 26]], [["Type", 47, 29]], [["requiredBy", 38, 15], ["before", 39, 15], ["conflicts", 44, 15], ["wants", 45, 15], ["unitConfig", 46, 15], ["serviceConfig", 47, 15], ["path", 48, 15], ["script", 53, 23]], [["check-flush", 37, 30]], [["services", 37, 21]], [["imports", 34, 13], ["boot", 36, 13], ["systemd", 37, 13]], [["machine", 31, 15]], [["name", 28, 9], ["meta", 29, 9], ["nodes", 31, 9], ["testScript", 57, 9]], [["maintainers", 75, 12]], [["machine", 77, 13]], [["name", 74, 7], ["meta", 75, 7], ["nodes", 77, 7], ["testScript", 79, 7]], [["basic", 71, 3], ["doFlush", 96, 3], ["dontFlush", 103, 3]]]);
 const formals$1 = { args: { runTest: false }, ellipsis: false };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/systemd-initrd-networkd.nix", [["timeout", 9, 29], ["anyInterface", 10, 29]]);
-const pos$2 = nix.positions(here + "/systemd-initrd-networkd.nix", [["wait-online", 9, 17]]);
-const pos$3 = nix.positions(here + "/systemd-initrd-networkd.nix", [["requiredBy", 11, 32]]);
-const pos$4 = nix.positions(here + "/systemd-initrd-networkd.nix", [["network-online", 11, 17]]);
-const pos$5 = nix.positions(here + "/systemd-initrd-networkd.nix", [["requiredBy", 12, 47]]);
-const pos$6 = nix.positions(here + "/systemd-initrd-networkd.nix", [["systemd-networkd-wait-online", 12, 18]]);
-const pos$7 = nix.positions(here + "/systemd-initrd-networkd.nix", [["enable", 8, 9], ["network", 9, 9], ["targets", 11, 9], ["services", 12, 9], ["initrdBin", 13, 9]]);
-const pos$8 = nix.positions(here + "/systemd-initrd-networkd.nix", [["enable", 20, 27]]);
-const pos$9 = nix.positions(here + "/systemd-initrd-networkd.nix", [["systemd", 7, 19], ["network", 20, 19]]);
-const pos$10 = nix.positions(here + "/systemd-initrd-networkd.nix", [["initrd", 7, 12]]);
-const pos$11 = nix.positions(here + "/systemd-initrd-networkd.nix", [["initrdBackdoor", 19, 15]]);
-const pos$12 = nix.positions(here + "/systemd-initrd-networkd.nix", [["boot", 7, 7], ["testing", 19, 7]]);
 const formals$3 = { args: { lib: false }, ellipsis: true };
-const pos$13 = nix.positions(here + "/systemd-initrd-networkd.nix", [["maintainers", 29, 14]]);
 const formals$4 = { args: { pkgs: false }, ellipsis: true };
-const pos$14 = nix.positions(here + "/systemd-initrd-networkd.nix", [["flushBeforeStage2", 36, 33]]);
-const pos$15 = nix.positions(here + "/systemd-initrd-networkd.nix", [["network", 36, 25]]);
-const pos$16 = nix.positions(here + "/systemd-initrd-networkd.nix", [["initrd", 36, 18]]);
-const pos$17 = nix.positions(here + "/systemd-initrd-networkd.nix", [["DefaultDependencies", 46, 26]]);
-const pos$18 = nix.positions(here + "/systemd-initrd-networkd.nix", [["Type", 47, 29]]);
-const pos$19 = nix.positions(here + "/systemd-initrd-networkd.nix", [["requiredBy", 38, 15], ["before", 39, 15], ["conflicts", 44, 15], ["wants", 45, 15], ["unitConfig", 46, 15], ["serviceConfig", 47, 15], ["path", 48, 15], ["script", 53, 23]]);
-const pos$20 = nix.positions(here + "/systemd-initrd-networkd.nix", [["check-flush", 37, 30]]);
-const pos$21 = nix.positions(here + "/systemd-initrd-networkd.nix", [["services", 37, 21]]);
-const pos$22 = nix.positions(here + "/systemd-initrd-networkd.nix", [["imports", 34, 13], ["boot", 36, 13], ["systemd", 37, 13]]);
-const pos$23 = nix.positions(here + "/systemd-initrd-networkd.nix", [["machine", 31, 15]]);
-const pos$24 = nix.positions(here + "/systemd-initrd-networkd.nix", [["name", 28, 9], ["meta", 29, 9], ["nodes", 31, 9], ["testScript", 57, 9]]);
 const formals$5 = { args: { lib: false }, ellipsis: true };
-const pos$25 = nix.positions(here + "/systemd-initrd-networkd.nix", [["maintainers", 75, 12]]);
-const pos$26 = nix.positions(here + "/systemd-initrd-networkd.nix", [["machine", 77, 13]]);
-const pos$27 = nix.positions(here + "/systemd-initrd-networkd.nix", [["name", 74, 7], ["meta", 75, 7], ["nodes", 77, 7], ["testScript", 79, 7]]);
-const pos$28 = nix.positions(here + "/systemd-initrd-networkd.nix", [["basic", 71, 3], ["doFlush", 96, 3], ["dontFlush", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,25 +16,25 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const pkgs = nix.arg($_1, "pkgs");
     return {
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       boot: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         initrd: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             enable: true,
             network: nix.thunk(() => ({
-              [nix.POS]: pos$2,
-              "wait-online": nix.thunk(() => ({ [nix.POS]: pos$1, timeout: 10n, anyInterface: true })),
+              [nix.POS]: $pos[1],
+              "wait-online": nix.thunk(() => ({ [nix.POS]: $pos[0], timeout: 10n, anyInterface: true })),
             })),
             targets: nix.thunk(() => ({
-              [nix.POS]: pos$4,
-              "network-online": nix.thunk(() => ({ [nix.POS]: pos$3, requiredBy: nix.thunk(() => ["initrd.target"]) })),
+              [nix.POS]: $pos[3],
+              "network-online": nix.thunk(() => ({ [nix.POS]: $pos[2], requiredBy: nix.thunk(() => ["initrd.target"]) })),
             })),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$6,
-              "systemd-networkd-wait-online": nix.thunk(() => ({ [nix.POS]: pos$5, requiredBy: nix.thunk(() => ["network-online.target"]) })),
+              [nix.POS]: $pos[5],
+              "systemd-networkd-wait-online": nix.thunk(() => ({ [nix.POS]: $pos[4], requiredBy: nix.thunk(() => ["network-online.target"]) })),
             })),
             initrdBin: nix.thunk(() => [
               nix.thunk(() => nix.sel(pkgs, "iproute2")),
@@ -69,52 +42,52 @@ export default nix.lambda((args) => (() => {
               nix.thunk(() => nix.sel(pkgs, "gnugrep")),
             ]),
           })),
-          network: nix.thunk(() => ({ [nix.POS]: pos$8, enable: true })),
+          network: nix.thunk(() => ({ [nix.POS]: $pos[7], enable: true })),
         })),
       })),
-      testing: nix.thunk(() => ({ [nix.POS]: pos$11, initrdBackdoor: true })),
+      testing: nix.thunk(() => ({ [nix.POS]: $pos[10], initrdBackdoor: true })),
     };
   })(), formals$2);
   const mkFlushTest = (flush) => (script) => nix.app(runTest, nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$3);
       const lib = nix.arg($_1, "lib");
       return {
-        [nix.POS]: pos$24,
+        [nix.POS]: $pos[23],
         name: nix.thunk(() => nix.str`systemd-initrd-network-${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(flush)), "no-")}flush`),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           maintainers: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w, "elvishjerricco"))];
           })()),
         })),
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$23,
+          [nix.POS]: $pos[22],
           machine: nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$4);
             const pkgs = nix.arg($_2, "pkgs");
             return {
-              [nix.POS]: pos$22,
+              [nix.POS]: $pos[21],
               imports: nix.thunk(() => [common]),
               boot: nix.thunk(() => ({
-                [nix.POS]: pos$16,
+                [nix.POS]: $pos[15],
                 initrd: nix.thunk(() => ({
-                  [nix.POS]: pos$15,
-                  network: nix.thunk(() => ({ [nix.POS]: pos$14, flushBeforeStage2: flush })),
+                  [nix.POS]: $pos[14],
+                  network: nix.thunk(() => ({ [nix.POS]: $pos[13], flushBeforeStage2: flush })),
                 })),
               })),
               systemd: nix.thunk(() => ({
-                [nix.POS]: pos$21,
+                [nix.POS]: $pos[20],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$20,
+                  [nix.POS]: $pos[19],
                   "check-flush": nix.thunk(() => ({
-                    [nix.POS]: pos$19,
+                    [nix.POS]: $pos[18],
                     requiredBy: nix.thunk(() => ["multi-user.target"]),
                     before: nix.thunk(() => ["network-pre.target", "multi-user.target", "shutdown.target"]),
                     conflicts: nix.thunk(() => ["shutdown.target"]),
                     wants: nix.thunk(() => ["network-pre.target"]),
-                    unitConfig: nix.thunk(() => ({ [nix.POS]: pos$17, DefaultDependencies: false })),
-                    serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$18, Type: "oneshot" })),
+                    unitConfig: nix.thunk(() => ({ [nix.POS]: $pos[16], DefaultDependencies: false })),
+                    serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[17], Type: "oneshot" })),
                     path: nix.thunk(() => [
                       nix.thunk(() => nix.sel(pkgs, "iproute2")),
                       nix.thunk(() => nix.sel(pkgs, "iputils")),
@@ -131,21 +104,21 @@ export default nix.lambda((args) => (() => {
       };
     })(), formals$3));
   return {
-    [nix.POS]: pos$28,
+    [nix.POS]: $pos[27],
     basic: nix.thunk(() => nix.app(runTest, nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$5);
         const lib = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$27,
+          [nix.POS]: $pos[26],
           name: "systemd-initrd-network",
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$25,
+            [nix.POS]: $pos[24],
             maintainers: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
               return [nix.thunk(() => nix.lookup(w, "elvishjerricco"))];
             })()),
           })),
-          nodes: nix.thunk(() => ({ [nix.POS]: pos$26, machine: common })),
+          nodes: nix.thunk(() => ({ [nix.POS]: $pos[25], machine: common })),
           testScript: "machine.wait_for_unit(\"network-online.target\")\nmachine.succeed(\n    \"ip addr | grep 10.0.2.15\",\n    \"ping -c1 10.0.2.2\",\n)\nmachine.switch_root()\n\n# Make sure the systemd-network user was set correctly in initrd\nmachine.wait_for_unit(\"multi-user.target\")\nmachine.succeed(\"[ $(stat -c '%U,%G' /run/systemd/netif/links) = systemd-network,systemd-network ]\")\nmachine.succeed(\"ip addr show >&2\")\nmachine.succeed(\"ip route show >&2\")\n",
         };
       })(), formals$5))),

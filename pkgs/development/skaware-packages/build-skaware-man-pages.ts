@@ -2,12 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/build-skaware-man-pages.nix", [[["owner", 31, 17], ["rev", 31, 23], ["sha256", 31, 27], ["repo", 32, 9]], [["description", 42, 17], ["license", 42, 29], ["maintainers", 42, 37], ["homepage", 43, 28], ["platforms", 44, 9]], [["src", 36, 15], ["makeFlags", 37, 7], ["dontBuild", 40, 7], ["meta", 41, 7]], [["constructDrv", 7, 3], ["excludeDrvArgNames", 8, 3], ["extendDrvArgs", 16, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromSourcehut: false }, ellipsis: false };
 const formals$2 = { args: { sha256: false, description: false, maintainers: false, license: true, owner: true, rev: true, meta: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/build-skaware-man-pages.nix", [["owner", 31, 17], ["rev", 31, 23], ["sha256", 31, 27], ["repo", 32, 9]]);
-const pos$2 = nix.positions(here + "/build-skaware-man-pages.nix", [["description", 42, 17], ["license", 42, 29], ["maintainers", 42, 37], ["homepage", 43, 28], ["platforms", 44, 9]]);
-const pos$3 = nix.positions(here + "/build-skaware-man-pages.nix", [["src", 36, 15], ["makeFlags", 37, 7], ["dontBuild", 40, 7], ["meta", 41, 7]]);
-const pos$4 = nix.positions(here + "/build-skaware-man-pages.nix", [["constructDrv", 7, 3], ["excludeDrvArgNames", 8, 3], ["extendDrvArgs", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromSourcehut = nix.arg($, "fetchFromSourcehut");
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       constructDrv: nix.thunk(() => nix.sel(stdenv, "mkDerivation")),
       excludeDrvArgNames: nix.thunk(() => ["sha256", "description", "maintainers", "license", "owner", "rev"]),
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
@@ -29,21 +26,21 @@ export default nix.lambda((args) => (() => {
         const meta = nix.argOr($_1, "meta", () => ({}));
         const manDir = nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/man`);
         const src = nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: owner,
             rev: rev,
             sha256: sha256,
             repo: nix.thunk(() => nix.sel(finalAttrs, "pname")),
           }))));
         return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           src: src,
           makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`MAN_DIR=${manDir}`)]),
           dontBuild: true,
           meta: nix.thunk(() => nix.update((() => {
             const from = nix.thunk(() => nix.sel(src, "meta"));
             return {
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             description: description,
             license: license,
             maintainers: maintainers,

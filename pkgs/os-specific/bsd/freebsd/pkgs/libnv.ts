@@ -2,21 +2,20 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libnv.nix", [[["platforms", 14, 8]], [["path", 7, 3], ["extraPaths", 8, 3], ["MK_TESTS", 12, 3], ["meta", 14, 3]]]);
 const formals$1 = { args: { lib: false, mkDerivation: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libnv.nix", [["platforms", 14, 8]]);
-const pos$2 = nix.positions(here + "/libnv.nix", [["path", 7, 3], ["extraPaths", 8, 3], ["MK_TESTS", 12, 3], ["meta", 14, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const mkDerivation = nix.arg($, "mkDerivation");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       path: "lib/libnv",
       extraPaths: nix.thunk(() => ["sys/contrib/libnv", "sys/sys"]),
       MK_TESTS: "no",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       })),
     })));

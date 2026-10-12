@@ -2,23 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5], ["fetchSubmodules", 29, 5]], [["NIX_CFLAGS_COMPILE", 49, 7]], [["owner", 82, 9], ["repo", 83, 9], ["rev", 84, 9], ["hash", 85, 9]], [["owner", 89, 9], ["repo", 90, 9], ["rev", 91, 9], ["hash", 92, 9]], [["owner", 96, 9], ["repo", 97, 9], ["rev", 98, 9], ["hash", 99, 9]], [["owner", 103, 9], ["repo", 104, 9], ["tag", 105, 9], ["hash", 106, 9]], [["owner", 110, 9], ["repo", 111, 9], ["rev", 112, 9], ["hash", 113, 9]], [["owner", 117, 9], ["repo", 118, 9], ["rev", 119, 9], ["hash", 120, 9]], [["owner", 124, 9], ["repo", 125, 9], ["rev", 126, 9], ["hash", 127, 9], ["fetchSubmodules", 128, 9]], [["owner", 132, 9], ["repo", 133, 9], ["rev", 134, 9], ["hash", 135, 9]], [["owner", 139, 9], ["repo", 140, 9], ["rev", 141, 9], ["hash", 142, 9]], [["owner", 146, 9], ["repo", 147, 9], ["rev", 148, 9], ["hash", 149, 9]], [["fsst", 81, 7], ["re2", 88, 7], ["googletest", 95, 7], ["nlohmann-json", 102, 7], ["antlr", 109, 7], ["range-v3", 116, 7], ["spatialjoin", 123, 7], ["ctre", 131, 7], ["abseil", 138, 7], ["s2", 145, 7]], [["deps", 80, 5], ["tests", 153, 5], ["updateScript", 155, 5]], [["description", 161, 5], ["homepage", 162, 5], ["mainProgram", 163, 5], ["platforms", 164, 5], ["license", 165, 5], ["maintainers", 166, 5], ["teams", 167, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["strictDeps", 32, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 39, 3], ["env", 49, 3], ["cmakeFlags", 55, 3], ["passthru", 79, 3], ["__structuredAttrs", 158, 3], ["meta", 160, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, cmake: false, boost: false, bzip2: false, icu: false, openssl: false, zlib: false, zstd: false, jemalloc: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5], ["fetchSubmodules", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 49, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 82, 9], ["repo", 83, 9], ["rev", 84, 9], ["hash", 85, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 89, 9], ["repo", 90, 9], ["rev", 91, 9], ["hash", 92, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 96, 9], ["repo", 97, 9], ["rev", 98, 9], ["hash", 99, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["owner", 103, 9], ["repo", 104, 9], ["tag", 105, 9], ["hash", 106, 9]]);
-const pos$7 = nix.positions(here + "/package.nix", [["owner", 110, 9], ["repo", 111, 9], ["rev", 112, 9], ["hash", 113, 9]]);
-const pos$8 = nix.positions(here + "/package.nix", [["owner", 117, 9], ["repo", 118, 9], ["rev", 119, 9], ["hash", 120, 9]]);
-const pos$9 = nix.positions(here + "/package.nix", [["owner", 124, 9], ["repo", 125, 9], ["rev", 126, 9], ["hash", 127, 9], ["fetchSubmodules", 128, 9]]);
-const pos$10 = nix.positions(here + "/package.nix", [["owner", 132, 9], ["repo", 133, 9], ["rev", 134, 9], ["hash", 135, 9]]);
-const pos$11 = nix.positions(here + "/package.nix", [["owner", 139, 9], ["repo", 140, 9], ["rev", 141, 9], ["hash", 142, 9]]);
-const pos$12 = nix.positions(here + "/package.nix", [["owner", 146, 9], ["repo", 147, 9], ["rev", 148, 9], ["hash", 149, 9]]);
-const pos$13 = nix.positions(here + "/package.nix", [["fsst", 81, 7], ["re2", 88, 7], ["googletest", 95, 7], ["nlohmann-json", 102, 7], ["antlr", 109, 7], ["range-v3", 116, 7], ["spatialjoin", 123, 7], ["ctre", 131, 7], ["abseil", 138, 7], ["s2", 145, 7]]);
-const pos$14 = nix.positions(here + "/package.nix", [["deps", 80, 5], ["tests", 153, 5], ["updateScript", 155, 5]]);
-const pos$15 = nix.positions(here + "/package.nix", [["description", 161, 5], ["homepage", 162, 5], ["mainProgram", 163, 5], ["platforms", 164, 5], ["license", 165, 5], ["maintainers", 166, 5], ["teams", 167, 5]]);
-const pos$16 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["strictDeps", 32, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 39, 3], ["env", 49, 3], ["cmakeFlags", 55, 3], ["passthru", 79, 3], ["__structuredAttrs", 158, 3], ["meta", 160, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const jemalloc = nix.arg($, "jemalloc");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       pname: "qlever",
       version: "0.5.48",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ad-freiburg",
           repo: "qlever",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       buildInputs: nix.thunk(() => [boost, bzip2, icu, jemalloc, openssl, zlib, zstd]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-fno-semantic-interposition"]))),
       })),
       cmakeFlags: nix.thunk(() => nix.concat([
@@ -77,53 +62,53 @@ export default nix.lambda((args) => (() => {
         ];
       })())),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         deps: nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           fsst: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               owner: "cwida",
               repo: "fsst",
               rev: "b228af6356196095eaf9f8f5654b0635f969661e",
               hash: "sha256-XuE/nalt2HEYaII9NytUs0rCLGHOUFEclO+0h7pu4V0=",
             })))),
           re2: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               owner: "google",
               repo: "re2",
               rev: "bc0faab533e2b27b85b8ad312abf061e33ed6b5d",
               hash: "sha256-cKXe8r5MUag/z+seem4Zg/gmqIQjaCY7DBxiKlrnXPs=",
             })))),
           googletest: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               owner: "google",
               repo: "googletest",
               rev: "7917641ff965959afae189afb5f052524395525c",
               hash: "sha256-Pfkx/hgtqryPz3wI0jpZwlRRco0s2FLcvUX1EgTGFIw=",
             })))),
           "nlohmann-json": nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               owner: "nlohmann",
               repo: "json",
               tag: "v3.12.0",
               hash: "sha256-cECvDOLxgX7Q9R3IE86Hj9JJUxraDQvhoyPDF03B2CY=",
             })))),
           antlr: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               owner: "antlr",
               repo: "antlr4",
               rev: "cc82115a4e7f53d71d9d905caa2c2dfa4da58899",
               hash: "sha256-DxxRL+FQFA+x0RudIXtLhewseU50aScHKSCDX7DE9bY=",
             })))),
           "range-v3": nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               owner: "joka921",
               repo: "range-v3",
               rev: "42340ef354f7b4e4660268b788e37008d9cc85aa",
               hash: "sha256-/17XLLLuEkcqeklVtqlgtu19tNTT3bLRHrU1aOPLhTw=",
             })))),
           spatialjoin: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               owner: "ad-freiburg",
               repo: "spatialjoin",
               rev: "c358e479ebb5f40df99522e69a0b52d73416020b",
@@ -131,21 +116,21 @@ export default nix.lambda((args) => (() => {
               fetchSubmodules: true,
             })))),
           ctre: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               owner: "hanickadot",
               repo: "compile-time-regular-expressions",
               rev: "e34c26ba149b9fd9c34aa0f678e39739641a0d1e",
               hash: "sha256-/44oZi6j8+a1D6ZGZpoy82GHjPtqzOvuS7d3SPbH7fs=",
             })))),
           abseil: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               owner: "abseil",
               repo: "abseil-cpp",
               rev: "93ac3a4f9ee7792af399cebd873ee99ce15aed08",
               hash: "sha256-a18+Yj9fvDigza4b2g38L96hge5feMwU6fgPmL/KVQU=",
             })))),
           s2: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               owner: "google",
               repo: "s2geometry",
               rev: "5b5eccd54a08ae03b4467e79ffbb076d0b5f221e",
@@ -157,7 +142,7 @@ export default nix.lambda((args) => (() => {
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         description: "Graph database implementing the RDF and SPARQL standards",
         homepage: "https://github.com/ad-freiburg/qlever",
         mainProgram: "qlever",

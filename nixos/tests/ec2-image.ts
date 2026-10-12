@@ -2,31 +2,11 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ec2-image.nix", [[["pkgs", 16, 58]], [["format", 27, 23]], [["enable", 32, 49]], [["serial-getty@ttyS0", 32, 28]], [["services", 32, 19]], [["kernelParams", 37, 16]], [["address", 43, 17], ["prefixLength", 44, 17]], [["addresses", 41, 18]], [["ipv4", 41, 13]], [["eth0", 40, 33]], [["interfaces", 40, 22]], [["systemPackages", 50, 23]], [["pkgs", 56, 19]], [["amazonImage", 27, 11], ["systemd", 32, 11], ["boot", 37, 11], ["networking", 40, 11], ["environment", 50, 11], ["nixpkgs", 56, 11]], [["system", 21, 7], ["modules", 22, 7]], [["maintainers", 67, 5], ["timeout", 71, 5]], [["extraConfig", 79, 22]], [["ssh", 79, 18]], [["programs", 79, 9]], [["machine", 74, 5], ["client", 75, 5]], [["name", 65, 3], ["meta", 66, 3], ["nodes", 73, 3], ["testScript", 91, 3]]]);
 const formals$1 = { args: { config: false, lib: false, hostPkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/ec2-image.nix", [["pkgs", 16, 58]]);
-const pos$2 = nix.positions(here + "/ec2-image.nix", [["format", 27, 23]]);
-const pos$3 = nix.positions(here + "/ec2-image.nix", [["enable", 32, 49]]);
-const pos$4 = nix.positions(here + "/ec2-image.nix", [["serial-getty@ttyS0", 32, 28]]);
-const pos$5 = nix.positions(here + "/ec2-image.nix", [["services", 32, 19]]);
-const pos$6 = nix.positions(here + "/ec2-image.nix", [["kernelParams", 37, 16]]);
-const pos$7 = nix.positions(here + "/ec2-image.nix", [["address", 43, 17], ["prefixLength", 44, 17]]);
-const pos$8 = nix.positions(here + "/ec2-image.nix", [["addresses", 41, 18]]);
-const pos$9 = nix.positions(here + "/ec2-image.nix", [["ipv4", 41, 13]]);
-const pos$10 = nix.positions(here + "/ec2-image.nix", [["eth0", 40, 33]]);
-const pos$11 = nix.positions(here + "/ec2-image.nix", [["interfaces", 40, 22]]);
-const pos$12 = nix.positions(here + "/ec2-image.nix", [["systemPackages", 50, 23]]);
-const pos$13 = nix.positions(here + "/ec2-image.nix", [["pkgs", 56, 19]]);
-const pos$14 = nix.positions(here + "/ec2-image.nix", [["amazonImage", 27, 11], ["systemd", 32, 11], ["boot", 37, 11], ["networking", 40, 11], ["environment", 50, 11], ["nixpkgs", 56, 11]]);
-const pos$15 = nix.positions(here + "/ec2-image.nix", [["system", 21, 7], ["modules", 22, 7]]);
-const pos$16 = nix.positions(here + "/ec2-image.nix", [["maintainers", 67, 5], ["timeout", 71, 5]]);
 const formals$2 = { args: {  }, ellipsis: true };
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$17 = nix.positions(here + "/ec2-image.nix", [["extraConfig", 79, 22]]);
-const pos$18 = nix.positions(here + "/ec2-image.nix", [["ssh", 79, 18]]);
-const pos$19 = nix.positions(here + "/ec2-image.nix", [["programs", 79, 9]]);
-const pos$20 = nix.positions(here + "/ec2-image.nix", [["machine", 74, 5], ["client", 75, 5]]);
 const formals$4 = { args: { nodes: false }, ellipsis: true };
-const pos$21 = nix.positions(here + "/ec2-image.nix", [["name", 65, 3], ["meta", 66, 3], ["nodes", 73, 3], ["testScript", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,39 +16,39 @@ export default nix.lambda((args) => (() => {
   const mkAfter = nix.thunk(() => nix.attr(lib, "mkAfter"));
   const mkForce = nix.thunk(() => nix.attr(lib, "mkForce"));
   const pkgs = nix.thunk(() => nix.sel(config, "node", "pkgs"));
-  const imdsServer = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common/imds-server.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, pkgs: pkgs }))));
+  const imdsServer = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common/imds-server.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], pkgs: pkgs }))));
   const imageCfg = nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "../lib/eval-config.nix")), nix.thunk(() => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       system: null,
       modules: nix.thunk(() => [
         nix.path(here, "../maintainers/scripts/ec2/amazon-image.nix"),
         nix.path(here, "../modules/testing/test-instrumentation.nix"),
         nix.path(here, "../modules/profiles/qemu-guest.nix"),
         nix.thunk(() => ({
-          [nix.POS]: pos$14,
-          amazonImage: nix.thunk(() => ({ [nix.POS]: pos$2, format: "qcow2" })),
+          [nix.POS]: $pos[13],
+          amazonImage: nix.thunk(() => ({ [nix.POS]: $pos[1], format: "qcow2" })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$4,
-              "serial-getty@ttyS0": nix.thunk(() => ({ [nix.POS]: pos$3, enable: nix.thunk(() => nix.app(mkForce, false)) })),
+              [nix.POS]: $pos[3],
+              "serial-getty@ttyS0": nix.thunk(() => ({ [nix.POS]: $pos[2], enable: nix.thunk(() => nix.app(mkForce, false)) })),
             })),
           })),
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             kernelParams: nix.thunk(() => nix.app(mkAfter, nix.thunk(() => ["console=ttyS0"]))),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               eth0: nix.thunk(() => ({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 ipv4: nix.thunk(() => ({
-                  [nix.POS]: pos$8,
+                  [nix.POS]: $pos[7],
                   addresses: nix.thunk(() => [
                     nix.thunk(() => ({
-                      [nix.POS]: pos$7,
+                      [nix.POS]: $pos[6],
                       address: nix.thunk(() => nix.sel(config, "nodes", "machine", "networking", "primaryIPAddress")),
                       prefixLength: 24n,
                     })),
@@ -78,23 +58,23 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.sel(pkgs, "socat")),
               imdsServer,
               nix.thunk(() => nix.sel(pkgs, "iptables")),
             ]),
           })),
-          nixpkgs: nix.thunk(() => ({ [nix.POS]: pos$13, pkgs: pkgs })),
+          nixpkgs: nix.thunk(() => ({ [nix.POS]: $pos[12], pkgs: pkgs })),
         })),
       ]),
     }))), "config"));
   const image = nix.thunk(() => nix.str`${nix.sel(imageCfg, "system", "build", "amazonImage")}/${nix.sel(imageCfg, "image", "fileName")}`);
   return {
-    [nix.POS]: pos$21,
+    [nix.POS]: $pos[20],
     name: "ec2-image",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -105,7 +85,7 @@ export default nix.lambda((args) => (() => {
       timeout: 600n,
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$20,
+      [nix.POS]: $pos[19],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {};
@@ -113,11 +93,11 @@ export default nix.lambda((args) => (() => {
       client: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return {
-          [nix.POS]: pos$19,
+          [nix.POS]: $pos[18],
           programs: nix.thunk(() => ({
-            [nix.POS]: pos$18,
+            [nix.POS]: $pos[17],
             ssh: nix.thunk(() => ({
-              [nix.POS]: pos$17,
+              [nix.POS]: $pos[16],
               extraConfig: "Host *\n  PasswordAuthentication no\n  ChallengeResponseAuthentication no\n  HostbasedAuthentication no\n  BatchMode yes\n  PubkeyAuthentication yes\n  StrictHostKeyChecking yes\n",
             })),
           })),

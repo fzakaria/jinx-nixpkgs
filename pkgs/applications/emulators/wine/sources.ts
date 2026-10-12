@@ -2,33 +2,11 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/sources.nix", [[["url", 12, 63], ["hash", 12, 67]], [["owner", 23, 9], ["repo", 24, 9], ["rev", 25, 9], ["hash", 26, 9]], [["domain", 41, 9], ["owner", 42, 9], ["repo", 43, 9], ["rev", 44, 9], ["hash", 45, 9]], [["name", 74, 7], ["url", 75, 7], ["hash", 76, 7]], [["name", 79, 7], ["url", 80, 7], ["hash", 81, 7]], [["name", 89, 7], ["url", 90, 7], ["hash", 91, 7]], [["name", 97, 7], ["url", 98, 7], ["hash", 99, 7]], [["version", 114, 7], ["url", 115, 7], ["hash", 116, 7]], [["version", 119, 7], ["url", 120, 7], ["hash", 121, 7]], [["version", 126, 7], ["url", 127, 7], ["hash", 128, 7]], [["version", 108, 5], ["url", 109, 5], ["hash", 110, 5], ["gecko32", 113, 5], ["gecko64", 118, 5], ["mono", 125, 5], ["patches", 131, 5], ["updateScript", 137, 5]], [["version", 165, 15], ["hash", 166, 7], ["domain", 167, 7], ["owner", 168, 7], ["repo", 169, 7], ["rev", 170, 7], ["disabledPatchsets", 172, 7]], [["version", 177, 7], ["url", 178, 7], ["hash", 179, 7]], [["version", 182, 7], ["url", 183, 7], ["hash", 184, 7]], [["version", 189, 7], ["url", 190, 7], ["hash", 191, 7]], [["version", 154, 5], ["url", 155, 5], ["hash", 156, 5], ["patches", 158, 5], ["staging", 164, 5], ["gecko32", 176, 5], ["gecko64", 181, 5], ["mono", 188, 5], ["updateScript", 194, 5]], [["version", 230, 15], ["hash", 231, 7], ["domain", 232, 7], ["owner", 233, 7], ["repo", 234, 7], ["rev", 235, 7], ["disabledPatchsets", 237, 7]], [["version", 242, 7], ["url", 243, 7], ["hash", 244, 7]], [["version", 247, 7], ["url", 248, 7], ["hash", 249, 7]], [["version", 254, 7], ["url", 255, 7], ["hash", 256, 7]], [["version", 217, 5], ["url", 218, 5], ["hash", 219, 5], ["patches", 221, 5], ["staging", 229, 5], ["gecko32", 241, 5], ["gecko64", 246, 5], ["mono", 253, 5]], [["version", 264, 5], ["hash", 265, 5], ["owner", 266, 5], ["repo", 267, 5], ["rev", 268, 5], ["updateScript", 270, 5]], [["stable", 107, 3], ["unstable", 152, 3], ["yabridge", 215, 3], ["wayland", 260, 3], ["winetricks", 262, 3]]]);
 const formals$1 = { args: { pkgs: true }, ellipsis: false };
 const formals$2 = { args: { url: false, hash: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/sources.nix", [["url", 12, 63], ["hash", 12, 67]]);
 const formals$3 = { args: { owner: false, repo: false, rev: false, hash: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/sources.nix", [["owner", 23, 9], ["repo", 24, 9], ["rev", 25, 9], ["hash", 26, 9]]);
 const formals$4 = { args: { domain: false, owner: false, repo: false, rev: false, hash: false }, ellipsis: true };
-const pos$3 = nix.positions(here + "/sources.nix", [["domain", 41, 9], ["owner", 42, 9], ["repo", 43, 9], ["rev", 44, 9], ["hash", 45, 9]]);
-const pos$4 = nix.positions(here + "/sources.nix", [["name", 74, 7], ["url", 75, 7], ["hash", 76, 7]]);
-const pos$5 = nix.positions(here + "/sources.nix", [["name", 79, 7], ["url", 80, 7], ["hash", 81, 7]]);
-const pos$6 = nix.positions(here + "/sources.nix", [["name", 89, 7], ["url", 90, 7], ["hash", 91, 7]]);
-const pos$7 = nix.positions(here + "/sources.nix", [["name", 97, 7], ["url", 98, 7], ["hash", 99, 7]]);
-const pos$8 = nix.positions(here + "/sources.nix", [["version", 114, 7], ["url", 115, 7], ["hash", 116, 7]]);
-const pos$9 = nix.positions(here + "/sources.nix", [["version", 119, 7], ["url", 120, 7], ["hash", 121, 7]]);
-const pos$10 = nix.positions(here + "/sources.nix", [["version", 126, 7], ["url", 127, 7], ["hash", 128, 7]]);
-const pos$11 = nix.positions(here + "/sources.nix", [["version", 108, 5], ["url", 109, 5], ["hash", 110, 5], ["gecko32", 113, 5], ["gecko64", 118, 5], ["mono", 125, 5], ["patches", 131, 5], ["updateScript", 137, 5]]);
-const pos$12 = nix.positions(here + "/sources.nix", [["version", 165, 15], ["hash", 166, 7], ["domain", 167, 7], ["owner", 168, 7], ["repo", 169, 7], ["rev", 170, 7], ["disabledPatchsets", 172, 7]]);
-const pos$13 = nix.positions(here + "/sources.nix", [["version", 177, 7], ["url", 178, 7], ["hash", 179, 7]]);
-const pos$14 = nix.positions(here + "/sources.nix", [["version", 182, 7], ["url", 183, 7], ["hash", 184, 7]]);
-const pos$15 = nix.positions(here + "/sources.nix", [["version", 189, 7], ["url", 190, 7], ["hash", 191, 7]]);
-const pos$16 = nix.positions(here + "/sources.nix", [["version", 154, 5], ["url", 155, 5], ["hash", 156, 5], ["patches", 158, 5], ["staging", 164, 5], ["gecko32", 176, 5], ["gecko64", 181, 5], ["mono", 188, 5], ["updateScript", 194, 5]]);
-const pos$17 = nix.positions(here + "/sources.nix", [["version", 230, 15], ["hash", 231, 7], ["domain", 232, 7], ["owner", 233, 7], ["repo", 234, 7], ["rev", 235, 7], ["disabledPatchsets", 237, 7]]);
-const pos$18 = nix.positions(here + "/sources.nix", [["version", 242, 7], ["url", 243, 7], ["hash", 244, 7]]);
-const pos$19 = nix.positions(here + "/sources.nix", [["version", 247, 7], ["url", 248, 7], ["hash", 249, 7]]);
-const pos$20 = nix.positions(here + "/sources.nix", [["version", 254, 7], ["url", 255, 7], ["hash", 256, 7]]);
-const pos$21 = nix.positions(here + "/sources.nix", [["version", 217, 5], ["url", 218, 5], ["hash", 219, 5], ["patches", 221, 5], ["staging", 229, 5], ["gecko32", 241, 5], ["gecko64", 246, 5], ["mono", 253, 5]]);
-const pos$22 = nix.positions(here + "/sources.nix", [["version", 264, 5], ["hash", 265, 5], ["owner", 266, 5], ["repo", 267, 5], ["rev", 268, 5], ["updateScript", 270, 5]]);
-const pos$23 = nix.positions(here + "/sources.nix", [["stable", 107, 3], ["unstable", 152, 3], ["yabridge", 215, 3], ["wayland", 260, 3], ["winetricks", 262, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,7 +16,7 @@ export default nix.lambda((args) => (() => {
     const args_2 = args_1;
     const url = nix.arg($_1, "url");
     const hash = nix.arg($_1, "hash");
-    return nix.update(nix.app(nix.sel(pkgs, "fetchurl"), nix.thunk(() => ({ [nix.POS]: pos$1, url: url, hash: hash }))), args_2);
+    return nix.update(nix.app(nix.sel(pkgs, "fetchurl"), nix.thunk(() => ({ [nix.POS]: $pos[0], url: url, hash: hash }))), args_2);
   })(), formals$2);
   const fetchFromGitHub = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$3);
@@ -47,7 +25,7 @@ export default nix.lambda((args) => (() => {
     const repo = nix.arg($_1, "repo");
     const rev = nix.arg($_1, "rev");
     const hash = nix.arg($_1, "hash");
-    return nix.update(nix.app(nix.sel(pkgs, "fetchFromGitHub"), nix.thunk(() => ({ [nix.POS]: pos$2, owner: owner, repo: repo, rev: rev, hash: hash }))), args_2);
+    return nix.update(nix.app(nix.sel(pkgs, "fetchFromGitHub"), nix.thunk(() => ({ [nix.POS]: $pos[1], owner: owner, repo: repo, rev: rev, hash: hash }))), args_2);
   })(), formals$3);
   const fetchFromGitLab = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$4);
@@ -58,7 +36,7 @@ export default nix.lambda((args) => (() => {
     const rev = nix.arg($_1, "rev");
     const hash = nix.arg($_1, "hash");
     return nix.update(nix.app(nix.sel(pkgs, "fetchFromGitLab"), nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         domain: domain,
         owner: owner,
         repo: repo,
@@ -84,13 +62,13 @@ source ${nix.path(here, "./update-lib.sh")}
 `);
   const patches_binutils_2_44_fix_wine_older_than_10_2 = nix.thunk(() => [
     nix.thunk(() => nix.app(nix.sel(pkgs, "fetchpatch"), nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         name: "ntdll-use-signed-type",
         url: "https://gitlab.winehq.org/wine/wine/-/commit/fd59962827a715d321f91c9bdb43f3e61f9ebbc.patch",
         hash: "sha256-PvFom9NJ32XZO1gYor9Cuk8+eaRFvmG572OAtNx1tks=",
       })))),
     nix.thunk(() => nix.app(nix.sel(pkgs, "fetchpatch"), nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         name: "winebuild-avoid using-idata-section",
         url: "https://gitlab.winehq.org/wine/wine/-/commit/c9519f68ea04915a60704534ab3afec5ec1b8fd7.patch",
         hash: "sha256-vA58SfAgCXoCT+NB4SRHi85AnI4kj9S2deHGp4L36vI=",
@@ -98,7 +76,7 @@ source ${nix.path(here, "./update-lib.sh")}
   ]);
   const patches_add_truncf_to_the_import_library = nix.thunk(() => [
     nix.thunk(() => nix.app(nix.sel(pkgs, "fetchpatch"), nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         name: "add-truncf-to-the-import-library.patch",
         url: "https://gitlab.winehq.org/wine/wine/-/commit/ed66bd5c97ecc17c42a4942dafac7d406c1e5120.patch",
         hash: "sha256-mn0fRZ840MYk1WZsBLcachUzyNmBUSlvf50t9jFGXp0=",
@@ -106,7 +84,7 @@ source ${nix.path(here, "./update-lib.sh")}
   ]);
   const patches_add_dll_accept_device_paths_wine_older_than_11_1 = nix.thunk(() => [
     nix.thunk(() => nix.app(nix.sel(pkgs, "fetchpatch"), nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         name: "add-dll-accept-device-paths",
         url: "https://gitlab.winehq.org/wine/wine/-/commit/401910ae25a11032f2da7baa1666d71e8bca2496.patch",
         hash: "sha256-2726u9/vhhx39Tq7vOw24hslmeyZZEbxRRqe7JMFvCU",
@@ -122,19 +100,19 @@ source ${nix.path(here, "./update-lib.sh")}
             const version_1 = "2.47.4";
             const url_1 = nix.thunk(() => nix.str`https://dl.winehq.org/wine/wine-gecko/${version_1}/wine-gecko-${version_1}-x86.msi`);
             const hash_1 = "sha256-Js7MR3BrCRkI9/gUvdsHTGG+uAYzGOnvxaf3iYV3k9Y=";
-            return { [nix.POS]: pos$8, version: version_1, url: url_1, hash: hash_1 };
+            return { [nix.POS]: $pos[7], version: version_1, url: url_1, hash: hash_1 };
           })())));
         const gecko64 = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (() => {
             const version_1 = "2.47.4";
             const url_1 = nix.thunk(() => nix.str`https://dl.winehq.org/wine/wine-gecko/${version_1}/wine-gecko-${version_1}-x86_64.msi`);
             const hash_1 = "sha256-5ZC32YijLWqkzx2Ko6o9M3Zv3Uz0yJwtzCCV7LKNBm8=";
-            return { [nix.POS]: pos$9, version: version_1, url: url_1, hash: hash_1 };
+            return { [nix.POS]: $pos[8], version: version_1, url: url_1, hash: hash_1 };
           })())));
         const mono = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (() => {
             const version_1 = "10.0.0";
             const url_1 = nix.thunk(() => nix.str`https://dl.winehq.org/wine/wine-mono/${version_1}/wine-mono-${version_1}-x86.msi`);
             const hash_1 = "sha256-26ynPl0J96OnwVetBCia+cpHw87XAS1GVEpgcEaQK4c=";
-            return { [nix.POS]: pos$10, version: version_1, url: url_1, hash: hash_1 };
+            return { [nix.POS]: $pos[9], version: version_1, url: url_1, hash: hash_1 };
           })())));
         const patches = nix.thunk(() => nix.concat([nix.path(here, "./cert-path.patch")], patches_add_dll_accept_device_paths_wine_older_than_11_1));
         const updateScript = nix.thunk(() => nix.app(writeShellScript, "update-wine-stable", nix.thunk(() => nix.str`${updateScriptPreamble}
@@ -150,7 +128,7 @@ fi
 do_update
 `)));
         return {
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           version,
           url,
           hash,
@@ -167,7 +145,7 @@ do_update
         const hash = "sha256-xigvbU2uzxHzq5+aK2xZj2e+fijDY7osroo8RLYR56Q=";
         const patches = nix.thunk(() => [nix.path(here, "./cert-path.patch")]);
         const staging = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             version: version,
             hash: "sha256-KZCkra0y3XFNrbD2lZ+YUCLyq1POC30Sd4sGCJZuwgQ=",
             domain: "gitlab.winehq.org",
@@ -180,19 +158,19 @@ do_update
             const version_1 = "2.47.4";
             const url_1 = nix.thunk(() => nix.str`https://dl.winehq.org/wine/wine-gecko/${version_1}/wine-gecko-${version_1}-x86.msi`);
             const hash_1 = "sha256-Js7MR3BrCRkI9/gUvdsHTGG+uAYzGOnvxaf3iYV3k9Y=";
-            return { [nix.POS]: pos$13, version: version_1, url: url_1, hash: hash_1 };
+            return { [nix.POS]: $pos[12], version: version_1, url: url_1, hash: hash_1 };
           })())));
         const gecko64 = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (() => {
             const version_1 = "2.47.4";
             const url_1 = nix.thunk(() => nix.str`https://dl.winehq.org/wine/wine-gecko/${version_1}/wine-gecko-${version_1}-x86_64.msi`);
             const hash_1 = "sha256-5ZC32YijLWqkzx2Ko6o9M3Zv3Uz0yJwtzCCV7LKNBm8=";
-            return { [nix.POS]: pos$14, version: version_1, url: url_1, hash: hash_1 };
+            return { [nix.POS]: $pos[13], version: version_1, url: url_1, hash: hash_1 };
           })())));
         const mono = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (() => {
             const version_1 = "11.3.0";
             const url_1 = nix.thunk(() => nix.str`https://dl.winehq.org/wine/wine-mono/${version_1}/wine-mono-${version_1}-x86.msi`);
             const hash_1 = "sha256-3y38FmXCURiC58q9Vur9DAo9lOWn6G+Wknf2wYnUGNM=";
-            return { [nix.POS]: pos$15, version: version_1, url: url_1, hash: hash_1 };
+            return { [nix.POS]: $pos[14], version: version_1, url: url_1, hash: hash_1 };
           })())));
         const updateScript = nix.thunk(() => nix.app(writeShellScript, "update-wine-unstable", nix.thunk(() => nix.str`${updateScriptPreamble}
 major=\${UPDATE_NIX_OLD_VERSION%%.*}
@@ -213,7 +191,7 @@ autobump unstable.mono "$latest_mono"
 do_update
 `)));
         return {
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           version,
           url,
           hash,
@@ -231,7 +209,7 @@ do_update
         const hash = "sha256-REK0f/2bLqRXEA427V/U5vTYKdnbeaJeYFF1qYjKL/8=";
         const patches = nix.thunk(() => nix.concat([nix.path(here, "./cert-path.patch")], nix.concat(patches_binutils_2_44_fix_wine_older_than_10_2, patches_add_truncf_to_the_import_library)));
         const staging = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             version: version,
             hash: "sha256-FDNszRUvM1ewE9Ij4EkuihaX0Hf0eTb5r7KQHMdCX3U=",
             domain: "gitlab.winehq.org",
@@ -244,22 +222,22 @@ do_update
             const version_1 = "2.47.4";
             const url_1 = nix.thunk(() => nix.str`https://dl.winehq.org/wine/wine-gecko/${version_1}/wine-gecko-${version_1}-x86.msi`);
             const hash_1 = "sha256-Js7MR3BrCRkI9/gUvdsHTGG+uAYzGOnvxaf3iYV3k9Y=";
-            return { [nix.POS]: pos$18, version: version_1, url: url_1, hash: hash_1 };
+            return { [nix.POS]: $pos[17], version: version_1, url: url_1, hash: hash_1 };
           })())));
         const gecko64 = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (() => {
             const version_1 = "2.47.4";
             const url_1 = nix.thunk(() => nix.str`https://dl.winehq.org/wine/wine-gecko/${version_1}/wine-gecko-${version_1}-x86_64.msi`);
             const hash_1 = "sha256-5ZC32YijLWqkzx2Ko6o9M3Zv3Uz0yJwtzCCV7LKNBm8=";
-            return { [nix.POS]: pos$19, version: version_1, url: url_1, hash: hash_1 };
+            return { [nix.POS]: $pos[18], version: version_1, url: url_1, hash: hash_1 };
           })())));
         const mono = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (() => {
             const version_1 = "9.3.0";
             const url_1 = nix.thunk(() => nix.str`https://dl.winehq.org/wine/wine-mono/${version_1}/wine-mono-${version_1}-x86.msi`);
             const hash_1 = "sha256-bKLArtCW/57CD69et2xrfX3oLZqIdax92fB5O/nD/TA=";
-            return { [nix.POS]: pos$20, version: version_1, url: url_1, hash: hash_1 };
+            return { [nix.POS]: $pos[19], version: version_1, url: url_1, hash: hash_1 };
           })())));
         return {
-          [nix.POS]: pos$21,
+          [nix.POS]: $pos[20],
           version,
           url,
           hash,
@@ -286,9 +264,9 @@ autobump winetricks "$latest_winetricks" 'nix-prefetch-url --unpack'
 
 do_update
 `)));
-        return { [nix.POS]: pos$22, version, hash, owner, repo, rev, updateScript };
+        return { [nix.POS]: $pos[21], version, hash, owner, repo, rev, updateScript };
       })())));
-    return { [nix.POS]: pos$23, stable, unstable, yabridge, wayland, winetricks };
+    return { [nix.POS]: $pos[22], stable, unstable, yabridge, wayland, winetricks };
   })();
 })(), formals$1);
 //# sourceMappingURL=sources.ts.map

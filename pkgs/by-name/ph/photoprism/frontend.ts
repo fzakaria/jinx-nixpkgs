@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/frontend.nix", [[["updateScript", 26, 12]], [["homepage", 29, 5], ["description", 30, 5], ["license", 31, 5], ["maintainers", 32, 5]], [["src", 10, 11], ["version", 10, 15], ["pname", 11, 3], ["npmDepsHash", 13, 3], ["npmWorkspace", 15, 3], ["installPhase", 17, 3], ["passthru", 26, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, src: false, version: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/frontend.nix", [["updateScript", 26, 12]]);
-const pos$2 = nix.positions(here + "/frontend.nix", [["homepage", 29, 5], ["description", 30, 5], ["license", 31, 5], ["maintainers", 32, 5]]);
-const pos$3 = nix.positions(here + "/frontend.nix", [["src", 10, 11], ["version", 10, 15], ["pname", 11, 3], ["npmDepsHash", 13, 3], ["npmWorkspace", 15, 3], ["installPhase", 17, 3], ["passthru", 26, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const version = nix.arg($, "version");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       src: src,
       version: version,
       pname: "photoprism-frontend",
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
       npmWorkspace: "frontend",
       installPhase: "runHook preInstall\n\nmkdir $out\ncp -r assets $out/\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://photoprism.app",
         description: "Photoprism's frontend",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

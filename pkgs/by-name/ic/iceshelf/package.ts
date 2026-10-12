@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]], [["updateScript", 39, 5]], [["description", 43, 5], ["license", 44, 5], ["homepage", 45, 5], ["maintainers", 46, 5], ["mainProgram", 47, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["propagatedBuildInputs", 22, 3], ["dependencies", 27, 3], ["installPhase", 31, 3], ["passthru", 38, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, git: false, awscli: false, python3Packages: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 43, 5], ["license", 44, 5], ["homepage", 45, 5], ["maintainers", 46, 5], ["mainProgram", 47, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["propagatedBuildInputs", 22, 3], ["dependencies", 27, 3], ["installPhase", 31, 3], ["passthru", 38, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "iceshelf",
       version: "0-unstable-2025-06-29",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mrworf",
           repo: "iceshelf",
           rev: "5380c49e3f7f3df04b61a494b2d94db2f2c65e25",
@@ -39,11 +36,11 @@ cp -v iceshelf.sample.conf $out/share/doc/iceshelf/
 cp -rv modules $out/${nix.sel(python3Packages, "python", "sitePackages")}
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Simple tool to allow storage of signed, encrypted, incremental backups using Amazon's Glacier storage",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2")),
         homepage: "https://github.com/mrworf/iceshelf",

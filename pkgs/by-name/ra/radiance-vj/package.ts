@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]], [["description", 85, 5], ["homepage", 86, 5], ["license", 87, 5], ["maintainers", 88, 5], ["mainProgram", 89, 5], ["platforms", 90, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["cargoHash", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 41, 3], ["propagatedUserEnvPkgs", 58, 3], ["preFixup", 62, 3], ["doCheck", 82, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, libxkbcommon: false, "mpv-unwrapped": false, "vulkan-loader": false, stdenv: false, "alsa-lib": false, wayland: false, libx11: false, libxcursor: false, libxi: false, libxrandr: false, libxinerama: false, libxpresent: false, libxfixes: false, libxext: false, libxcb: false, "yt-dlp": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 85, 5], ["homepage", 86, 5], ["license", 87, 5], ["maintainers", 88, 5], ["mainProgram", 89, 5], ["platforms", 90, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["cargoHash", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 41, 3], ["propagatedUserEnvPkgs", 58, 3], ["preFixup", 62, 3], ["doCheck", 82, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const pname = "radiance";
       const version = "0.7.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "zbanks",
           repo: "radiance",
           rev: version,
@@ -75,7 +73,7 @@ export default nix.lambda((args) => (() => {
 `);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Video art software for VJs",
         homepage: "https://github.com/zbanks/radiance",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -87,7 +85,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

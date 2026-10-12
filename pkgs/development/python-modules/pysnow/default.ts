@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["name", 50, 7], ["url", 51, 7], ["hash", 52, 7]], [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["pythonRelaxDeps", 29, 3], ["nativeBuildInputs", 31, 3], ["propagatedBuildInputs", 33, 3], ["nativeCheckInputs", 42, 3], ["patches", 47, 3], ["postPatch", 56, 3], ["pythonImportsCheck", 67, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, brotli: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, httpretty: false, ijson: false, "poetry-core": false, "python-magic": false, pytz: false, six: false, pytestCheckHook: false, "requests-oauthlib": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 50, 7], ["url", 51, 7], ["hash", 52, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["pythonRelaxDeps", 29, 3], ["nativeBuildInputs", 31, 3], ["propagatedBuildInputs", 33, 3], ["nativeCheckInputs", 42, 3], ["patches", 47, 3], ["postPatch", 56, 3], ["pythonImportsCheck", 67, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.16";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rbw",
           repo: "pysnow",
           rev: version,
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [httpretty, pytestCheckHook]);
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "switch-to-poetry-core.patch",
             url: "https://github.com/rbw/pysnow/commit/f214a203432b329df5317f3a25b2c0d9b55a9029.patch",
             hash: "sha256-ViRR+9WStlaQwyrLGk/tMOUAcEMY+kB61ZEKGMQJ30o=",
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const postPatch = "substituteInPlace pyproject.toml \\\n  --replace 'ijson = \"^2.5.1\"' 'ijson = \"*\"' \\\n  --replace 'pytz = \"^2019.3\"' 'pytz = \"*\"' \\\n  --replace 'oauthlib = \"^3.1.0\"' 'oauthlib = \"*\"'\n\n# https://github.com/rbw/pysnow/pull/201 doesn't apply via fetchpatch, so we recreate it\nsubstituteInPlace tests/test_client.py tests/test_oauth_client.py tests/test_params_builder.py tests/test_resource.py \\\n  --replace-fail \"self.assertEquals\" \"self.assertEqual\"\n";
       const pythonImportsCheck = nix.thunk(() => ["pysnow"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "ServiceNow HTTP client library written in Python",
         homepage: "https://github.com/rbw/pysnow",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -59,7 +56,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

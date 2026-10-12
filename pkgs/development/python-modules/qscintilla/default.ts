@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 97, 5], ["license", 98, 5], ["homepage", 99, 5]], [["pname", 35, 3], ["version", 36, 3], ["src", 37, 3], ["pyproject", 38, 3], ["disabled", 40, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 50, 3], ["propagatedBuildInputs", 52, 3], ["dontWrapQtApps", 57, 3], ["postPatch", 59, 3], ["dontConfigure", 79, 3], ["build", 81, 3], ["postInstall", 86, 3], ["doCheck", 92, 3], ["pythonImportsCheck", 94, 3], ["meta", 96, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, isPy3k: false, python: false, "pyqt-builder": false, pyqt5: false, pyqt6: false, setuptools: false, sip: false, libsForQt5: false, qt6Packages: false, useQt6: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 97, 5], ["license", 98, 5], ["homepage", 99, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 35, 3], ["version", 36, 3], ["src", 37, 3], ["pyproject", 38, 3], ["disabled", 40, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 50, 3], ["propagatedBuildInputs", 52, 3], ["dontWrapQtApps", 57, 3], ["postPatch", 59, 3], ["dontConfigure", 79, 3], ["build", 81, 3], ["postInstall", 86, 3], ["doCheck", 92, 3], ["pythonImportsCheck", 94, 3], ["meta", 96, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +27,7 @@ export default nix.lambda((args) => (() => {
   const qtVersion = nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(qtbase, "version"))));
   const pyQtPackage = nix.thunk(() => (nix.asBool(useQt6) ? nix.force(pyqt6) : nix.force(pyqt5)));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: nix.thunk(() => (nix.asBool(nix.eq(qtVersion, "5")) ? "qscintilla" : nix.str`pyqt${qtVersion}-qscintilla`)),
       version: nix.thunk(() => nix.sel(qscintilla, "version")),
       src: nix.thunk(() => nix.sel(qscintilla, "src")),
@@ -55,7 +54,7 @@ export PYTHONPATH="$out/${nix.sel(python, "sitePackages")}:$PYTHONPATH"
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => [nix.thunk(() => nix.str`PyQt${qtVersion}.Qsci`)]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Python binding to QScintilla, Qt based text editing control",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
         homepage: "https://www.riverbankcomputing.com/software/qscintilla/",

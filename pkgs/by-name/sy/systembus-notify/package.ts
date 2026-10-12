@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["Description", 14, 7]], [["Type", 18, 7], ["ExecStart", 19, 7], ["PrivateTmp", 20, 7], ["InaccessiblePaths", 22, 7], ["ReadOnlyPaths", 23, 7], ["ProtectSystem", 24, 7], ["Restart", 25, 7], ["Slice", 26, 7]], [["Unit", 13, 5], ["Service", 17, 5]], [["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["sha256", 39, 5]], [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 5], ["mainProgram", 66, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["buildInputs", 42, 3], ["installPhase", 44, 3], ["doCheck", 58, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, formats: false, systemd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["Description", 14, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["Type", 18, 7], ["ExecStart", 19, 7], ["PrivateTmp", 20, 7], ["InaccessiblePaths", 22, 7], ["ReadOnlyPaths", 23, 7], ["ProtectSystem", 24, 7], ["Restart", 25, 7], ["Slice", 26, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["Unit", 13, 5], ["Service", 17, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["sha256", 39, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 5], ["mainProgram", 66, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["buildInputs", 42, 3], ["installPhase", 44, 3], ["doCheck", 58, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,10 +14,10 @@ export default nix.lambda((args) => (() => {
   const systemd = nix.arg($, "systemd");
   const ini = nix.thunk(() => nix.app(nix.sel(formats, "ini"), nix.thunk(() => ({}))));
   const unit = nix.thunk(() => nix.app(nix.sel(ini, "generate"), "systembus-notify.service", nix.thunk(() => ({
-      [nix.POS]: pos$3,
-      Unit: nix.thunk(() => ({ [nix.POS]: pos$1, Description: "system bus notification daemon" })),
+      [nix.POS]: $pos[2],
+      Unit: nix.thunk(() => ({ [nix.POS]: $pos[0], Description: "system bus notification daemon" })),
       Service: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         Type: "exec",
         ExecStart: "@out@/bin/systembus-notify",
         PrivateTmp: true,
@@ -34,11 +29,11 @@ export default nix.lambda((args) => (() => {
       })),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "systembus-notify",
       version: "1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "rfjakob",
           repo: "systembus-notify",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -58,7 +53,7 @@ runHook postInstall
 `),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "System bus notification daemon",
         homepage: "https://github.com/rfjakob/systembus-notify",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

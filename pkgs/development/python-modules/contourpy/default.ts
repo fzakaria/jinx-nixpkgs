@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 38, 7], ["repo", 39, 7], ["tag", 40, 7], ["hash", 41, 7]], [["bokeh", 66, 7]], [["doCheck", 85, 9]], [["check", 84, 7]], [["optional-depdendencies", 65, 14], ["tests", 83, 14]], [["changelog", 97, 7], ["description", 98, 7], ["homepage", 99, 7], ["license", 100, 7], ["maintainers", 101, 7]], [["pname", 33, 5], ["version", 34, 5], ["pyproject", 35, 5], ["src", 37, 5], ["postPatch", 45, 5], ["nativeBuildInputs", 50, 5], ["buildInputs", 57, 5], ["build-system", 61, 5], ["dependencies", 63, 5], ["passthru", 65, 5], ["doCheck", 73, 5], ["nativeCheckInputs", 75, 5], ["pythonImportsCheck", 89, 5], ["preFixup", 92, 5], ["meta", 96, 5]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, python: false, meson: false, "meson-python": false, ninja: false, nukeReferences: false, pybind11: false, "pkg-config": false, numpy: false, bokeh: false, chromedriver: false, selenium: false, matplotlib: false, pillow: false, "pytest-xdist": false, pytestCheckHook: false, wurlitzer: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 38, 7], ["repo", 39, 7], ["tag", 40, 7], ["hash", 41, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["bokeh", 66, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["doCheck", 85, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["check", 84, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["optional-depdendencies", 65, 14], ["tests", 83, 14]]);
-const pos$6 = nix.positions(here + "/default.nix", [["changelog", 97, 7], ["description", 98, 7], ["homepage", 99, 7], ["license", 100, 7], ["maintainers", 101, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 33, 5], ["version", 34, 5], ["pyproject", 35, 5], ["src", 37, 5], ["postPatch", 45, 5], ["nativeBuildInputs", 50, 5], ["buildInputs", 57, 5], ["build-system", 61, 5], ["dependencies", 63, 5], ["passthru", 65, 5], ["doCheck", 73, 5], ["nativeCheckInputs", 75, 5], ["pythonImportsCheck", 89, 5], ["preFixup", 92, 5], ["meta", 96, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "contourpy",
           repo: "contourpy",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -51,11 +45,11 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [meson_python]);
       const dependencies = nix.thunk(() => [numpy]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        "optional-depdendencies": nix.thunk(() => ({ [nix.POS]: pos$2, bokeh: nix.thunk(() => [bokeh, chromedriver, selenium]) })),
+        [nix.POS]: $pos[4],
+        "optional-depdendencies": nix.thunk(() => ({ [nix.POS]: $pos[1], bokeh: nix.thunk(() => [bokeh, chromedriver, selenium]) })),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          check: nix.thunk(() => nix.app(nix.sel(contourpy, "overridePythonAttrs"), (_) => ({ [nix.POS]: pos$3, doCheck: true }))),
+          [nix.POS]: $pos[3],
+          check: nix.thunk(() => nix.app(nix.sel(contourpy, "overridePythonAttrs"), (_) => ({ [nix.POS]: $pos[2], doCheck: true }))),
         })),
       }));
       const doCheck = false;
@@ -64,7 +58,7 @@ export default nix.lambda((args) => (() => {
       const preFixup = nix.thunk(() => nix.str`nuke-refs $out/${nix.sel(python, "sitePackages")}/contourpy/util/{_build_config.py,__pycache__/_build_config.*}
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         changelog: nix.thunk(() => nix.str`https://github.com/contourpy/contourpy/releases/tag/${nix.sel(src, "tag")}`),
         description: "Python library for calculating contours in 2D quadrilateral grids",
         homepage: "https://github.com/contourpy/contourpy",
@@ -72,7 +66,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         pyproject,

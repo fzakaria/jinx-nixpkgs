@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["lspce-module", 27, 13]], [["pname", 14, 3], ["version", 15, 26], ["src", 15, 34], ["meta", 15, 38], ["packageRequires", 17, 3], ["files", 24, 3], ["passthru", 26, 3]]]);
 const formals$1 = { args: { lib: false, callPackage: false, f: false, "markdown-mode": false, melpaBuild: false, yasnippet: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["lspce-module", 27, 13]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 26], ["src", 15, 34], ["meta", 15, 38], ["packageRequires", 17, 3], ["files", 24, 3], ["passthru", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,14 +15,14 @@ export default nix.lambda((args) => (() => {
   const yasnippet = nix.arg($, "yasnippet");
   const lspce_module = nix.thunk(() => nix.app(callPackage, nix.path(here, "./module.nix"), nix.thunk(() => ({}))));
   return nix.app(melpaBuild, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "lspce",
       version: nix.thunk(() => nix.attr(lspce_module, "version")),
       src: nix.thunk(() => nix.attr(lspce_module, "src")),
       meta: nix.thunk(() => nix.attr(lspce_module, "meta")),
       packageRequires: nix.thunk(() => [f, markdown_mode, yasnippet]),
       files: nix.thunk(() => nix.str`(:defaults "${nix.app(nix.sel(lib, "getLib"), lspce_module)}/lib/lspce-module.*")`),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, "lspce-module": lspce_module })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[0], "lspce-module": lspce_module })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

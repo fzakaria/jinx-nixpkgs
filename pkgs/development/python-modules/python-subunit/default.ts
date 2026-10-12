@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 21, 3], ["version", 23, 5], ["src", 24, 5], ["meta", 25, 5], ["pyproject", 27, 3], ["postPatch", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 39, 3], ["propagatedBuildInputs", 44, 3], ["nativeCheckInputs", 49, 3], ["enabledTestPaths", 57, 3], ["disabledTestPaths", 59, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, check: false, cppunit: false, "pkg-config": false, subunit: false, fixtures: false, hypothesis: false, iso8601: false, pytestCheckHook: false, pyyaml: false, setuptools: false, testscenarios: false, testtools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 23, 5], ["src", 24, 5], ["meta", 25, 5], ["pyproject", 27, 3], ["postPatch", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 39, 3], ["propagatedBuildInputs", 44, 3], ["nativeCheckInputs", 49, 3], ["enabledTestPaths", 57, 3], ["disabledTestPaths", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const testscenarios = nix.arg($, "testscenarios");
   const testtools = nix.arg($, "testtools");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "python-subunit",
       version: nix.thunk(() => nix.attr(subunit, "version")),
       src: nix.thunk(() => nix.attr(subunit, "src")),

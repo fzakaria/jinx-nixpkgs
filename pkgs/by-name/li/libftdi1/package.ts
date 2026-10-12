@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 29, 5], ["rev", 30, 5], ["hash", 31, 5]], [["name", 38, 7], ["url", 39, 7], ["hash", 40, 7]], [["description", 96, 5], ["homepage", 97, 5], ["license", 98, 5], ["platforms", 102, 5], ["maintainers", 103, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["patches", 34, 3], ["strictDeps", 44, 3], ["doInstallCheck", 46, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 58, 3], ["cmakeFlags", 60, 3], ["propagatedBuildInputs", 72, 3], ["postPatch", 74, 3], ["postInstall", 82, 3], ["preFixup", 90, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, fetchpatch: false, cmake: false, "pkg-config": false, libusb1: false, libconfuse: false, cppSupport: true, boost: false, pythonSupport: true, python3: false, swig: false, docSupport: true, doxygen: false, graphviz: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 29, 5], ["rev", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 38, 7], ["url", 39, 7], ["hash", 40, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 96, 5], ["homepage", 97, 5], ["license", 98, 5], ["platforms", 102, 5], ["maintainers", 103, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["patches", 34, 3], ["strictDeps", 44, 3], ["doInstallCheck", 46, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 58, 3], ["cmakeFlags", 60, 3], ["propagatedBuildInputs", 72, 3], ["postPatch", 74, 3], ["postInstall", 82, 3], ["preFixup", 90, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,18 +27,18 @@ export default nix.lambda((args) => (() => {
   const optionalString = nix.thunk(() => nix.attr(lib, "optionalString"));
   const onOff = (a) => (nix.asBool(a) ? "ON" : "OFF");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libftdi",
       version: "1.5-unstable-2023-12-21",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "git://developer.intra2net.com/libftdi",
           rev: "de9f01ece34d2fe6e842e0250a38f4b16eda2429",
           hash: "sha256-U37M5P7itTF1262oW+txbKxcw2lhYHAwy1ML51SDVMs=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "swig-4.3.0-fix.patch",
             url: "https://src.fedoraproject.org/rpms/libftdi/raw/9051ea9ea767eced58b69d855a5d700a5d4602cc/f/libftdi-1.5-swig-4.3.patch",
             hash: "sha256-X5tqiPewnyAyvLzR6s0VbNpZKLd0idtPGU4ro36CZHI=",
@@ -66,7 +63,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.add("install -Dm644 ../packages/99-libftdi.rules \"$out/etc/udev/rules.d/60-libftdi.rules\"\n", nix.app(optionalString, docSupport, "cp -r doc/man \"$out/share/\"\ncp -r doc/html \"$out/share/doc/libftdi1/\"\n"))),
       preFixup: "substituteInPlace $out/lib/pkgconfig/libftdi1.pc --replace-fail \"libdir=$out/$out/lib\" \"libdir=$out/lib\"\nsubstituteInPlace $out/lib/pkgconfig/libftdipp1.pc --replace-fail \"libdir=$out/$out/lib\" \"libdir=$out/lib\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Library to talk to FTDI chips using libusb",
         homepage: "https://www.intra2net.com/en/developer/libftdi/",
         license: nix.thunk(() => (() => {

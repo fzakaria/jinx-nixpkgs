@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 20, 5], ["homepage", 21, 5], ["changelog", 22, 5], ["license", 23, 5], ["teams", 24, 5]], [["pname", 11, 3], ["version", 13, 3], ["hash", 14, 3], ["buildInputs", 16, 3], ["configureFlags", 17, 3], ["meta", 19, 3]]]);
 const formals$1 = { args: { buildPecl: false, lib: false, mpdecimal: false, php: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 20, 5], ["homepage", 21, 5], ["changelog", 22, 5], ["license", 23, 5], ["teams", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 13, 3], ["hash", 14, 3], ["buildInputs", 16, 3], ["configureFlags", 17, 3], ["meta", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const php = nix.arg($, "php");
   const version = "1.5.0";
   return nix.app(buildPecl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "decimal",
       version: version,
       hash: "sha256-it8w8hOLYwtCZoDYhaP5k5TD/pQLtj37K2lSESF80ok=",
       buildInputs: nix.thunk(() => [mpdecimal]),
       configureFlags: nix.thunk(() => [nix.thunk(() => nix.str`--with-libmpdec-path=${mpdecimal}`)]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Arbitrary-precision decimal arithmetic for PHP",
         homepage: "https://php-decimal.github.io",
         changelog: nix.thunk(() => nix.str`https://pecl.php.net/package-changelog.php?package=decimal&release=${version}`),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["x86_64-linux", 7, 5], ["aarch64-linux", 8, 5], ["aarch64-darwin", 9, 5]], [["description", 12, 5], ["license", 13, 5], ["sourceProvenance", 14, 5], ["maintainers", 15, 5], ["platforms", 16, 5]], [["pname", 4, 3], ["version", 5, 3], ["zipHash", 6, 3], ["meta", 11, 3]]]);
 const formals$1 = { args: { grafanaPlugin: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["x86_64-linux", 7, 5], ["aarch64-linux", 8, 5], ["aarch64-darwin", 9, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 12, 5], ["license", 13, 5], ["sourceProvenance", 14, 5], ["maintainers", 15, 5], ["platforms", 16, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 4, 3], ["version", 5, 3], ["zipHash", 6, 3], ["meta", 11, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,13 +13,13 @@ export default nix.lambda((args) => (() => {
       const pname = "grafana-clickhouse-datasource";
       const version = "4.16.0";
       const zipHash = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         "x86_64-linux": "sha256-fmYrMoLMFSA/bG7db7IhEKcgYAd3ukRTZOtT6h0bCbw=",
         "aarch64-linux": "sha256-TTo85HkQrq6bbifAfG30BPVP72nqOYP9yaJ7INpBN1U=",
         "aarch64-darwin": "sha256-NC5yVkrnD1J1LiDbSnKwNZsUOCShgfSZy8FuDnXpZWs=",
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Connects Grafana to ClickHouse",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         sourceProvenance: nix.thunk(() => (() => {
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), zipHash)),
       }));
-      return { [nix.POS]: pos$3, pname, version, zipHash, meta };
+      return { [nix.POS]: $pos[2], pname, version, zipHash, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

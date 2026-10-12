@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["vkbasalt", 39, 7]], [["updateScript", 79, 12]], [["description", 82, 5], ["homepage", 83, 5], ["changelog", 84, 5], ["license", 85, 5], ["platforms", 86, 5], ["maintainers", 87, 5], ["mainProgram", 91, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["patches", 37, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 53, 3], ["__structuredAttrs", 60, 3], ["strictDeps", 61, 3], ["dontWrapGApps", 62, 3], ["postFixup", 64, 3], ["passthru", 79, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, meson: false, ninja: false, vala: false, "pkg-config": false, makeBinaryWrapper: false, replaceVars: false, gtk4: false, libadwaita: false, glib: false, libgee: false, pciutils: false, wrapGAppsHook4: false, mangohud: false, "mesa-demos": false, "vulkan-tools": false, vkbasalt: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["vkbasalt", 39, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 79, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 82, 5], ["homepage", 83, 5], ["changelog", 84, 5], ["license", 85, 5], ["platforms", 86, 5], ["maintainers", 87, 5], ["mainProgram", 91, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["patches", 37, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 53, 3], ["__structuredAttrs", 60, 3], ["strictDeps", 61, 3], ["dontWrapGApps", 62, 3], ["postFixup", 64, 3], ["passthru", 79, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const vkbasalt = nix.arg($, "vkbasalt");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "mangojuice",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "radiolamp",
           repo: "mangojuice",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -44,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-vkbasalt-path.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             vkbasalt: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "getLib"), vkbasalt), "/lib/vkbasalt/libvkbasalt.so")),
           })))),
       ]),
@@ -61,11 +57,11 @@ export default nix.lambda((args) => (() => {
 `;
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Convenient alternative to GOverlay for setting up MangoHud",
         homepage: "https://github.com/radiolamp/mangojuice",
         changelog: nix.thunk(() => nix.str`https://github.com/radiolamp/mangojuice/releases/tag/${nix.sel(finalAttrs, "version")}`),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 25, 5], ["hash", 26, 5]], [["pkg-config", 56, 18]], [["tests", 56, 12]], [["homepage", 59, 5], ["description", 60, 5], ["license", 61, 5], ["pkgConfigModules", 62, 5], ["platforms", 63, 5], ["changelog", 64, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["outputs", 29, 3], ["nativeBuildInputs", 35, 3], ["propagatedBuildInputs", 40, 3], ["buildInputs", 41, 3], ["cmakeFlags", 49, 3], ["preCheck", 51, 3], ["passthru", 56, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cmake: false, fetchurl: false, perl: false, zlib: false, groff: false, withBzip2: true, bzip2: false, withLZMA: true, xz: false, withOpenssl: true, openssl: false, withZstd: true, zstd: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pkg-config", 56, 18]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 56, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 59, 5], ["description", 60, 5], ["license", 61, 5], ["pkgConfigModules", 62, 5], ["platforms", 63, 5], ["changelog", 64, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["outputs", 29, 3], ["nativeBuildInputs", 35, 3], ["propagatedBuildInputs", 40, 3], ["buildInputs", 41, 3], ["cmakeFlags", 49, 3], ["preCheck", 51, 3], ["passthru", 56, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const zstd = nix.arg($, "zstd");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "libzip",
       version: "1.11.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://libzip.org/download/libzip-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-guny8kIfnXwkZrvDFzzQlZWojqN9sNVZqdCi3GDcci4=",
         })))),
@@ -43,14 +39,14 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => ["-DBUILD_REGRESS=0"]),
       preCheck: "# regress/runtest is a generated file\npatchShebangs regress\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://libzip.org/",
         description: "C library for reading, creating and modifying zip archives",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["python", 59, 79]], [["owner", 67, 7], ["repo", 68, 7], ["tag", 69, 7], ["hash", 70, 7], ["fetchSubmodules", 71, 7]], [["extraArgs", 150, 9]], [["tests", 148, 7], ["updateScript", 149, 7]], [["cpeParts", 210, 19]], [["homepage", 183, 7], ["description", 184, 7], ["longDescription", 185, 7], ["license", 201, 7], ["maintainers", 202, 7], ["platforms", 207, 7], ["mainProgram", 208, 7], ["identifiers", 210, 7]], [["pname", 63, 5], ["version", 64, 5], ["src", 66, 5], ["nativeBuildInputs", 74, 5], ["buildInputs", 83, 5], ["patches", 108, 5], ["postPatch", 110, 5], ["cmakeFlags", 115, 5], ["qtWrapperArgs", 125, 5], ["postFixup", 140, 5], ["passthru", 147, 5], ["nativeInstallCheckInputs", 157, 5], ["doInstallCheck", 158, 5], ["versionCheckProgram", 160, 5], ["versionCheckProgramArg", 177, 5], ["requiredSystemFeatures", 180, 5], ["meta", 182, 5]]]);
 const formals$1 = { args: { lib: false, callPackage: false, cmake: false, coin3d: false, doxygen: false, eigen: false, fetchFromGitHub: false, fmt: false, graphviz: false, gts: false, hdf5: false, libGLU: false, libredwg: false, libspnav: false, libxmu: false, medfile: false, mpi: false, ninja: false, ode: false, "opencascade-occt": false, "microsoft-gsl": false, "pkg-config": false, python3Packages: false, stdenv: false, swig: false, xercesc: false, "yaml-cpp": false, zlib: false, qt6: false, "nix-update-script": false, gmsh: false, which: false, gtk3: false, "gsettings-desktop-schemas": false, versionCheckHook: false, writeShellScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["python", 59, 79]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 67, 7], ["repo", 68, 7], ["tag", 69, 7], ["hash", 70, 7], ["fetchSubmodules", 71, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 150, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 148, 7], ["updateScript", 149, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["cpeParts", 210, 19]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 183, 7], ["description", 184, 7], ["longDescription", 185, 7], ["license", 201, 7], ["maintainers", 202, 7], ["platforms", 207, 7], ["mainProgram", 208, 7], ["identifiers", 210, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 63, 5], ["version", 64, 5], ["src", 66, 5], ["nativeBuildInputs", 74, 5], ["buildInputs", 83, 5], ["patches", 108, 5], ["postPatch", 110, 5], ["cmakeFlags", 115, 5], ["qtWrapperArgs", 125, 5], ["postFixup", 140, 5], ["passthru", 147, 5], ["nativeInstallCheckInputs", 157, 5], ["doInstallCheck", 158, 5], ["versionCheckProgram", 160, 5], ["versionCheckProgramArg", 177, 5], ["requiredSystemFeatures", 180, 5], ["meta", 182, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -71,15 +65,15 @@ export default nix.lambda((args) => (() => {
     ];
   })());
   const freecad_utils = nix.thunk(() => nix.app(callPackage, nix.path(here, "./freecad-utils.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       python: nix.thunk(() => nix.attr(python3Packages, "python")),
     }))));
   return nix.app(nix.sel(freecad_utils, "makeCustomizable"), nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname: "freecad",
         version: "1.1.4",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             owner: "FreeCAD",
             repo: "FreeCAD",
             tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -141,10 +135,10 @@ export default nix.lambda((args) => (() => {
         })()),
         postFixup: "mv $out/share/doc $out\nln -s $out/doc $out/share/doc\nln -s $out/bin/FreeCAD $out/bin/freecad\nln -s $out/bin/FreeCADCmd $out/bin/freecadcmd\n",
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           tests: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests"), nix.thunk(() => ({})))),
           updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               extraArgs: nix.thunk(() => ["--version-regex", "([0-9.]+)"]),
             })))),
         })),
@@ -154,7 +148,7 @@ export default nix.lambda((args) => (() => {
         versionCheckProgramArg: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/freecadcmd`),
         requiredSystemFeatures: nix.thunk(() => ["big-parallel"]),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           homepage: "https://www.freecad.org",
           description: "General purpose Open Source 3D CAD/MCAD/CAx/CAE/PLM modeler",
           longDescription: "FreeCAD is an open-source parametric 3D modeler made primarily to design\nreal-life objects of any size. Parametric modeling allows you to easily\nmodify your design by going back into your model history and changing its\nparameters.\n\nFreeCAD allows you to sketch geometry constrained 2D shapes and use them\nas a base to build other objects. It contains many components to adjust\ndimensions or extract design details from 3D models to create high quality\nproduction ready drawings.\n\nFreeCAD is designed to fit a wide range of uses including product design,\nmechanical engineering and architecture. Whether you are a hobbyist, a\nprogrammer, an experienced CAD user, a student or a teacher, you will feel\nright at home with FreeCAD.\n",
@@ -170,7 +164,7 @@ export default nix.lambda((args) => (() => {
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
           mainProgram: "freecad",
           identifiers: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "freecad", nix.thunk(() => nix.sel(finalAttrs, "version")))),
           })),
         })),

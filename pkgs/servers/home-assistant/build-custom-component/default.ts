@@ -2,13 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["lib", 12, 13], ["makeSetupHook", 12, 17], ["python3Packages", 12, 31]], [["isHomeAssistantComponent", 64, 9]], [["platforms", 69, 39]], [["pname", 32, 7], ["version", 33, 15], ["pyproject", 34, 7], ["installPhase", 36, 7], ["nativeBuildInputs", 55, 7], ["passthru", 63, 7], ["meta", 68, 7]], [["constructDrv", 17, 3], ["excludeDrvArgNames", 18, 3], ["extendDrvArgs", 23, 3]]]);
 const formals$1 = { args: { lib: false, "home-assistant": false, makeSetupHook: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["lib", 12, 13], ["makeSetupHook", 12, 17], ["python3Packages", 12, 31]]);
 const formals$2 = { args: { owner: false, domain: false, version: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/default.nix", [["isHomeAssistantComponent", 64, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["platforms", 69, 39]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 32, 7], ["version", 33, 15], ["pyproject", 34, 7], ["installPhase", 36, 7], ["nativeBuildInputs", 55, 7], ["passthru", 63, 7], ["meta", 68, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["constructDrv", 17, 3], ["excludeDrvArgNames", 18, 3], ["extendDrvArgs", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const makeSetupHook = nix.arg($, "makeSetupHook");
   const python3Packages = nix.thunk(() => nix.attr(home_assistant, "python3Packages"));
   const manifestRequirementsCheckHook = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./manifest-requirements-check-hook.nix")), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       lib: lib,
       makeSetupHook: makeSetupHook,
       python3Packages: python3Packages,
     }))));
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       constructDrv: nix.thunk(() => nix.sel(python3Packages, "buildPythonPackage")),
       excludeDrvArgNames: nix.thunk(() => ["meta", "nativeBuildInputs", "passthru"]),
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
@@ -33,7 +29,7 @@ export default nix.lambda((args) => (() => {
         const domain = nix.arg($_1, "domain");
         const version = nix.arg($_1, "version");
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           pname: nix.thunk(() => nix.str`${owner}/${domain}`),
           version: version,
           pyproject: false,
@@ -58,10 +54,10 @@ runHook postInstall
             const w = nix.withScope(nix.thunk(() => nix.sel(home_assistant, "python3Packages")), null);
             return nix.concat([manifestRequirementsCheckHook, nix.thunk(() => nix.lookup(w, "packaging"))], nix.selOr(args_2, () => [], "nativeBuildInputs"));
           })()),
-          passthru: nix.thunk(() => nix.update({ [nix.POS]: pos$2, isHomeAssistantComponent: true }, nix.selOr(args_2, () => ({}), "passthru"))),
+          passthru: nix.thunk(() => nix.update({ [nix.POS]: $pos[1], isHomeAssistantComponent: true }, nix.selOr(args_2, () => ({}), "passthru"))),
           meta: nix.thunk(() => nix.update((() => {
             const from = nix.thunk(() => nix.sel(home_assistant, "meta"));
-            return { [nix.POS]: pos$3, platforms: nix.thunk(() => nix.attr(from, "platforms")) };
+            return { [nix.POS]: $pos[2], platforms: nix.thunk(() => nix.attr(from, "platforms")) };
           })(), nix.selOr(args_2, () => ({}), "meta"))),
         };
       })(), formals$2),

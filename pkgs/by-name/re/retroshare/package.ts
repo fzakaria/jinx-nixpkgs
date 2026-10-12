@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5], ["fetchSubmodules", 30, 5]], [["url", 40, 7], ["hash", 41, 7], ["stripLen", 42, 7], ["extraPrefix", 43, 7]], [["description", 117, 5], ["homepage", 118, 5], ["license", 119, 5], ["platforms", 120, 5], ["maintainers", 121, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["patches", 33, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 53, 3], ["qmakeFlags", 69, 3], ["postPatch", 80, 3], ["postInstall", 107, 3], ["meta", 116, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch2: false, cmake: false, "pkg-config": false, miniupnpc: false, bzip2: false, speex: false, libmicrohttpd: false, libxml2: false, libxslt: false, sqlcipher: false, rapidjson: false, libxscrnsaver: false, libsForQt5: false, "libgnome-keyring": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5], ["fetchSubmodules", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 40, 7], ["hash", 41, 7], ["stripLen", 42, 7], ["extraPrefix", 43, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 117, 5], ["homepage", 118, 5], ["license", 119, 5], ["platforms", 120, 5], ["maintainers", 121, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["patches", 33, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 53, 3], ["qmakeFlags", 69, 3], ["postPatch", 80, 3], ["postInstall", 107, 3], ["meta", 116, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pname = "retroshare";
       const version = "0.6.7.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "RetroShare",
           repo: "RetroShare",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => [
         nix.path(here, "./no-submodules.patch"),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/RetroShare/libretroshare/commit/f1b89c4f87d77714571b4135c301bf0429096a20.patch?full_index=1",
             hash: "sha256-UiZMsUFaOZTLj/dx1rLr5bTR1CQ6nt2+IygQdvwJqwc=",
             stripLen: 1n,
@@ -79,7 +76,7 @@ export default nix.lambda((args) => (() => {
       const postPatch = "# Build libsam3 as C, not C++. No, I have no idea why it tries to\n# do that, either.\nsubstituteInPlace libretroshare/src/libretroshare.pro \\\n  --replace-fail \\\n    \"LIBSAM3_MAKE_PARAMS =\" \\\n    \"LIBSAM3_MAKE_PARAMS = CC=$CC AR=$AR\"\n\n# openpgpsdk uses 'bool' as a variable name, which became a C23 keyword.\n# Rename it to avoid compile errors with GCC 14+ which defaults to c23.\nsubstituteInPlace openpgpsdk/src/openpgpsdk/packet-print.c \\\n  --replace-fail \\\n    \"static void print_boolean(const char *name, unsigned char bool)\" \\\n    \"static void print_boolean(const char *name, unsigned char bool_val)\" \\\n  --replace-fail \"    if(bool)\" \"    if(bool_val)\"\n# The C source inconsistently uses 'limited_read (bool,' (with a space) on line 1600\nsubstituteInPlace openpgpsdk/src/openpgpsdk/packet-parse.c \\\n  --replace-fail \"unsigned char bool[1]=\" 'unsigned char bool_val[1]=' \\\n  --replace-fail \"limited_read(bool,\" \"limited_read(bool_val,\" \\\n  --replace-fail \"limited_read (bool,\" \"limited_read (bool_val,\" \\\n  --replace-fail \"!!bool[0]\" \"!!bool_val[0]\"\n\n# Update cmake version for supportlibs to fix build with newer cmake\nsubstituteInPlace supportlibs/udp-discovery-cpp/CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 2.8)\" \"cmake_minimum_required(VERSION 3.10)\"\n";
       const postInstall = "# BT DHT bootstrap\ncp libbitdht/src/bitdht/bdboot.txt $out/share/retroshare\n\nsubstituteInPlace $out/share/applications/retroshare.desktop \\\n  --replace-fail \"/usr/bin/retroshare\" \"retroshare\" \\\n  --replace-fail \"/usr/share/pixmaps/retroshare.xpm\" \"retroshare\"\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Decentralized peer to peer chat application",
         homepage: "https://retroshare.cc/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -90,7 +87,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

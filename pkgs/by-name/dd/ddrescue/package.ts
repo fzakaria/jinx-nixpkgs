@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["description", 29, 5], ["longDescription", 30, 5], ["homepage", 52, 5], ["license", 53, 5], ["platforms", 54, 5], ["maintainers", 55, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 17, 3], ["doCheck", 19, 3], ["configureFlags", 20, 3], ["outputs", 22, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, lzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 29, 5], ["longDescription", 30, 5], ["homepage", 52, 5], ["license", 53, 5], ["platforms", 54, 5], ["maintainers", 55, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 17, 3], ["doCheck", 19, 3], ["configureFlags", 20, 3], ["outputs", 22, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const lzip = nix.arg($, "lzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ddrescue",
       version: "1.30",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnu/ddrescue/ddrescue-${nix.sel(finalAttrs, "version")}.tar.lz`),
           hash: "sha256-ImRiLTCdbIehz8GRSCkriFmmiOm8AtRwL1zU8oh0VUI=",
         })))),
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => [nix.thunk(() => nix.str`CXX=${nix.sel(stdenv, "cc", "targetPrefix")}c++`)]),
       outputs: nix.thunk(() => ["out", "man", "info"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "GNU ddrescue, a data recovery tool",
         longDescription: "GNU ddrescue is a data recovery tool.  It copies data from one file\nor block device (hard disc, cdrom, etc) to another, trying hard to\nrescue data in case of read errors.\n\nThe basic operation of ddrescue is fully automatic.  That is, you\ndon't have to wait for an error, stop the program, read the log, run\nit in reverse mode, etc.\n\nIf you use the logfile feature of ddrescue, the data is rescued very\nefficiently (only the needed blocks are read).  Also you can\ninterrupt the rescue at any time and resume it later at the same\npoint.\n\nAutomatic merging of backups: If you have two or more damaged copies\nof a file, cdrom, etc, and run ddrescue on all of them, one at a\ntime, with the same output file, you will probably obtain a complete\nand error-free file.  This is so because the probability of having\ndamaged areas at the same places on different input files is very\nlow.  Using the logfile, only the needed blocks are read from the\nsecond and successive copies.\n",
         homepage: "https://www.gnu.org/software/ddrescue/ddrescue.html",

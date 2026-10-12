@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 25, 5], ["version", 26, 13], ["hash", 27, 5]], [["tests", 57, 5]], [["tests", 56, 12]], [["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["teams", 66, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["pythonRemoveDeps", 31, 3], ["build-system", 33, 3], ["nativeBuildInputs", 38, 3], ["dependencies", 44, 3], ["doCheck", 54, 3], ["passthru", 56, 3], ["pythonImportsCheck", 60, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, cliff: false, fetchPypi: false, keystoneauth1: false, openstackdocstheme: false, "osc-lib": false, "oslo-serialization": false, "oslo-utils": false, pbr: false, requests: false, setuptools: false, sphinx: false, "sphinxcontrib-apidoc": false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 25, 5], ["version", 26, 13], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["tests", 57, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 56, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["teams", 66, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["pythonRemoveDeps", 31, 3], ["build-system", 33, 3], ["nativeBuildInputs", 38, 3], ["dependencies", 44, 3], ["doCheck", 54, 3], ["passthru", 56, 3], ["pythonImportsCheck", 60, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.15.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "python_octaviaclient",
           version: version,
           hash: "sha256-sJkCRjQ4b6JDtFVP1ex5lssC3zN8bcQTpKP/hHWuqjs=",
@@ -42,22 +38,22 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [cliff, keystoneauth1, osc_lib, oslo_serialization, oslo_utils, requests]);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           tests: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({})))),
         })),
       }));
       const pythonImportsCheck = nix.thunk(() => ["octaviaclient"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "OpenStack Octavia Command-line Client",
         homepage: "https://github.com/openstack/python-octaviaclient",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "openstack"))]),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

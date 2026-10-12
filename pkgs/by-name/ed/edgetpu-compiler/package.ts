@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["description", 53, 5], ["mainProgram", 54, 5], ["homepage", 55, 5], ["sourceProvenance", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["platforms", 59, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["buildInputs", 23, 3], ["unpackPhase", 27, 3], ["dontConfigure", 40, 3], ["dontBuild", 41, 3], ["installPhase", 43, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { autoPatchelfHook: false, dpkg: false, fetchurl: false, lib: false, libcxx: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 53, 5], ["mainProgram", 54, 5], ["homepage", 55, 5], ["sourceProvenance", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["platforms", 59, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["buildInputs", 23, 3], ["unpackPhase", 27, 3], ["dontConfigure", 40, 3], ["dontBuild", 41, 3], ["installPhase", 43, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const libcxx = nix.arg($, "libcxx");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "edgetpu-compiler",
       version: "15.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (() => {
           const url = nix.thunk(() => nix.str`https://packages.cloud.google.com/apt/pool/edgetpu-compiler_${nix.sel(finalAttrs, "version")}_amd64_${sha256}.deb`);
           const sha256 = "ce03822053c2bddbb8640eaa988396ae66f9bc6b9d6d671914acd1727c2b445a";
-          return { [nix.POS]: pos$1, url, sha256 };
+          return { [nix.POS]: $pos[0], url, sha256 };
         })()))),
       nativeBuildInputs: nix.thunk(() => [autoPatchelfHook, dpkg]),
       buildInputs: nix.thunk(() => [libcxx]),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out\ncp -r ./{bin,share} $out\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Command line tool that compiles a TensorFlow Lite model into an Edge TPU compatible file",
         mainProgram: "edgetpu_compiler",
         homepage: "https://coral.ai/docs/edgetpu/compiler",

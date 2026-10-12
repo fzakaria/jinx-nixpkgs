@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["description", 53, 5], ["homepage", 54, 5], ["downloadPage", 55, 5], ["changelog", 56, 5], ["maintainers", 57, 5], ["license", 58, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["__structuredAttrs", 24, 3], ["src", 26, 3], ["pythonRelaxDeps", 33, 3], ["build-system", 39, 3], ["dependencies", 41, 3], ["pythonImportsCheck", 48, 3], ["nativeCheckInputs", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, pyyaml: false, tabulate: false, pyluwen: false, "tt-tools-common": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 53, 5], ["homepage", 54, 5], ["downloadPage", 55, 5], ["changelog", 56, 5], ["maintainers", 57, 5], ["license", 58, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["__structuredAttrs", 24, 3], ["src", 26, 3], ["pythonRelaxDeps", 33, 3], ["build-system", 39, 3], ["dependencies", 41, 3], ["pythonImportsCheck", 48, 3], ["nativeCheckInputs", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const tt_tools_common = nix.arg($, "tt-tools-common");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tt-flash",
       version: "4.1.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tenstorrent",
           repo: "tt-flash",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["tt_flash"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tenstorrent Firmware Update Utility",
         homepage: "https://tenstorrent.com",
         downloadPage: "https://github.com/tenstorrent/tt-flash",

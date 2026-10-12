@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["description", 76, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["downloadPage", 79, 5], ["license", 80, 5], ["maintainers", 81, 5]], [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["postPatch", 38, 3], ["build-system", 53, 3], ["dependencies", 55, 3], ["nativeCheckInputs", 65, 3], ["checkPhase", 71, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildPythonPackage: false, python: false, pythonAtLeast: false, setuptools: false, btrees: false, persistent: false, transaction: false, "zc-lockfile": false, zconfig: false, zodbpickle: false, "zope-interface": false, manuel: false, "zope-testing": false, "zope-testrunner": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 76, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["downloadPage", 79, 5], ["license", 80, 5], ["maintainers", 81, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["postPatch", 38, 3], ["build-system", 53, 3], ["dependencies", 55, 3], ["nativeCheckInputs", 65, 3], ["checkPhase", 71, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const zope_testing = nix.arg($, "zope-testing");
   const zope_testrunner = nix.arg($, "zope-testrunner");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "zodb",
       version: "6.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "zopefoundation",
           repo: "zodb",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -52,7 +50,7 @@ export default nix.lambda((args) => (() => {
       checkPhase: nix.thunk(() => nix.str`${nix.sel(python, "interpreter")} -m zope.testrunner --test-path=src []
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Zope Object Database: object database and persistence",
         homepage: "https://zodb-docs.readthedocs.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/zopefoundation/ZODB/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES.rst`),

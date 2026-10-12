@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["rev", 13, 5], ["sha256", 14, 5]], [["url", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["description", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5], ["mainProgram", 53, 5]], [["pname", 25, 3], ["version", 26, 11], ["srcs", 28, 3], ["sourceRoot", 32, 3], ["postUnpack", 35, 3], ["buildInputs", 40, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, qt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["rev", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5], ["mainProgram", 53, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 11], ["srcs", 28, 3], ["sourceRoot", 32, 3], ["postUnpack", 35, 3], ["buildInputs", 40, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,19 +13,19 @@ export default nix.lambda((args) => (() => {
   const qt5 = nix.arg($, "qt5");
   const version = "3.1.0";
   const main_src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://www.opencode.net/dfn2/ocs-url.git",
       rev: nix.thunk(() => nix.str`release-${version}`),
       sha256: "RvbkcSj8iUAHAEOyETwfH+3XnCCY/p8XM8LgVrZxrws=",
     }))));
   const qtil_src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: "https://github.com/akiraohgaki/qtil",
       rev: "v0.4.0",
       sha256: "XRSp0F7ggfkof1RNAnQU3+O9DcXDy81VR7NakITOXrw=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ocs-url",
       version: version,
       srcs: nix.thunk(() => [main_src, qtil_src]),
@@ -44,7 +41,7 @@ cp -r ${nix.sel(qtil_src, "name")}/* $sourceRoot/lib/qtil/
         nix.thunk(() => nix.sel(qt5, "wrapQtAppsHook")),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Open Collaboration System for use with DE store websites",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
         maintainers: nix.thunk(() => (() => {
