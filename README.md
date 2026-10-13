@@ -4,7 +4,7 @@ nixpkgs, transpiled to TypeScript by [jinx](https://github.com/fzakaria/jinx).
 
 ## Status
 
-nixpkgs [6510408](https://github.com/NixOS/nixpkgs/commit/6510408d147d8c5e6d76043e899e9251756f6a75), compiled by jinx [d91ac2b](https://github.com/fzakaria/jinx/commit/d91ac2b3f853ba9b17e96e20e4e2885389cb3a75)
+nixpkgs [6510408](https://github.com/NixOS/nixpkgs/commit/6510408d147d8c5e6d76043e899e9251756f6a75), compiled by jinx [97a9d57](https://github.com/fzakaria/jinx/commit/97a9d57cc2a37f79e108439bf8011b46fb82747e)
 on 2026-10-13.
 
 Parity with Nix: every attribute of nixpkgs' `ci/eval/outpaths.nix` for
@@ -29,7 +29,7 @@ One row per published revision, newest first.
 
 | date | nixpkgs | jinx | attributes | identical | both fail | differ | one side |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| 2026-10-13 | [6510408](https://github.com/NixOS/nixpkgs/commit/6510408d147d8c5e6d76043e899e9251756f6a75) | [d91ac2b](https://github.com/fzakaria/jinx/commit/d91ac2b3f853ba9b17e96e20e4e2885389cb3a75) | 231,777 | 229,063 | 2,714 | 0 | 0 |
+| 2026-10-13 | [6510408](https://github.com/NixOS/nixpkgs/commit/6510408d147d8c5e6d76043e899e9251756f6a75) | [97a9d57](https://github.com/fzakaria/jinx/commit/97a9d57cc2a37f79e108439bf8011b46fb82747e) | 231,777 | 229,063 | 2,714 | 0 | 0 |
 
 ## Layout
 
@@ -39,9 +39,11 @@ Nix. `.jinx/config.json` names the revision; `.jinx/runtime/` is the jinx
 runtime the modules import, so the tree stands alone. `.jinx/tree-index.json`
 and `.jinx/src-index.json` list every path of the tree and of the nixpkgs
 source, `.jinx/hot.json` the files evaluating `hello` reads,
-`.jinx/names.json` the top-level attribute names, and `.jinx/files/`
+`.jinx/names.json` the top-level attribute names, `.jinx/files/`
 what each attribute reads beyond that, for a reader that fetches files
-one at a time (jinx.dev's nixpkgs page).
+one at a time (jinx.dev's nixpkgs page), `.jinx/positions/` where each
+attribute is defined, and `.jinx/stats.json` what the lists say about
+nixpkgs as a whole (the site's statistics page).
 
 The Nix source tree is not in this repository. Put a checkout of the
 revision in `.jinx/config.json` at `./nixpkgs` (a symlink is fine); the

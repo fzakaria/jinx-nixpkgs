@@ -1,0 +1,3067 @@
+{
+ "rev": "6510408d147d8c5e6d76043e899e9251756f6a75",
+ "attributes": {
+  "total": 28388,
+  "withList": 23447,
+  "positioned": 25289
+ },
+ "files": {
+  "modules": 44988,
+  "nix": 44988,
+  "nixRead": 31631,
+  "nixUnread": 13357,
+  "srcRead": 6866,
+  "otherRead": 6547,
+  "unreadByDir": [
+   {
+    "dir": "pkgs/development",
+    "total": 13190,
+    "unread": 6613
+   },
+   {
+    "dir": "pkgs/by-name",
+    "total": 23525,
+    "unread": 2282
+   },
+   {
+    "dir": "nixos/tests",
+    "total": 1625,
+    "unread": 1625
+   },
+   {
+    "dir": "pkgs/applications",
+    "total": 965,
+    "unread": 653
+   },
+   {
+    "dir": "pkgs/os-specific",
+    "total": 697,
+    "unread": 541
+   },
+   {
+    "dir": "pkgs/servers",
+    "total": 520,
+    "unread": 415
+   },
+   {
+    "dir": "pkgs/kde",
+    "total": 439,
+    "unread": 308
+   },
+   {
+    "dir": "pkgs/desktops",
+    "total": 202,
+    "unread": 167
+   },
+   {
+    "dir": "pkgs/build-support",
+    "total": 279,
+    "unread": 161
+   },
+   {
+    "dir": "nixos/modules",
+    "total": 2494,
+    "unread": 146
+   },
+   {
+    "dir": "pkgs/test",
+    "total": 103,
+    "unread": 103
+   },
+   {
+    "dir": "pkgs/tools",
+    "total": 234,
+    "unread": 77
+   },
+   {
+    "dir": "pkgs/shells",
+    "total": 48,
+    "unread": 45
+   },
+   {
+    "dir": "pkgs/stdenv",
+    "total": 51,
+    "unread": 39
+   },
+   {
+    "dir": "pkgs/misc",
+    "total": 38,
+    "unread": 32
+   },
+   {
+    "dir": "pkgs/top-level",
+    "total": 68,
+    "unread": 27
+   },
+   {
+    "dir": "pkgs/games",
+    "total": 43,
+    "unread": 26
+   },
+   {
+    "dir": "nixos/lib",
+    "total": 43,
+    "unread": 18
+   },
+   {
+    "dir": "maintainers/scripts",
+    "total": 19,
+    "unread": 17
+   },
+   {
+    "dir": "pkgs/data",
+    "total": 39,
+    "unread": 16
+   },
+   {
+    "dir": "nixos/maintainers",
+    "total": 13,
+    "unread": 13
+   },
+   {
+    "dir": "ci/eval",
+    "total": 9,
+    "unread": 9
+   },
+   {
+    "dir": "ci",
+    "total": 5,
+    "unread": 5
+   },
+   {
+    "dir": "pkgs/common-updater",
+    "total": 7,
+    "unread": 5
+   },
+   {
+    "dir": "nixos",
+    "total": 4,
+    "unread": 3
+   },
+   {
+    "dir": "(top level)",
+    "total": 3,
+    "unread": 2
+   },
+   {
+    "dir": "doc",
+    "total": 2,
+    "unread": 2
+   },
+   {
+    "dir": "pkgs/pkgs-lib",
+    "total": 32,
+    "unread": 2
+   },
+   {
+    "dir": "ci/codeowners-validator",
+    "total": 1,
+    "unread": 1
+   },
+   {
+    "dir": "ci/github-script",
+    "total": 1,
+    "unread": 1
+   },
+   {
+    "dir": "doc/tests",
+    "total": 1,
+    "unread": 1
+   },
+   {
+    "dir": "modules/generic",
+    "total": 2,
+    "unread": 1
+   },
+   {
+    "dir": "nixos/doc",
+    "total": 3,
+    "unread": 1
+   },
+   {
+    "dir": "doc/doc-support",
+    "total": 5,
+    "unread": 0
+   },
+   {
+    "dir": "lib",
+    "total": 30,
+    "unread": 0
+   },
+   {
+    "dir": "lib/deprecated",
+    "total": 1,
+    "unread": 0
+   },
+   {
+    "dir": "lib/fileset",
+    "total": 3,
+    "unread": 0
+   },
+   {
+    "dir": "lib/licenses",
+    "total": 4,
+    "unread": 0
+   },
+   {
+    "dir": "lib/modules",
+    "total": 2,
+    "unread": 0
+   },
+   {
+    "dir": "lib/network",
+    "total": 2,
+    "unread": 0
+   },
+   {
+    "dir": "lib/path",
+    "total": 4,
+    "unread": 0
+   },
+   {
+    "dir": "lib/services",
+    "total": 5,
+    "unread": 0
+   },
+   {
+    "dir": "lib/systems",
+    "total": 9,
+    "unread": 0
+   },
+   {
+    "dir": "lib/tests",
+    "total": 215,
+    "unread": 0
+   },
+   {
+    "dir": "maintainers",
+    "total": 3,
+    "unread": 0
+   }
+  ]
+ },
+ "base": {
+  "hotTree": 227,
+  "hotSrc": 151,
+  "common": 546,
+  "commonShare": 0.3
+ },
+ "perAttribute": {
+  "quantiles": [
+   0,
+   0.1,
+   0.5,
+   0.9,
+   0.99,
+   1
+  ],
+  "values": [
+   0,
+   1,
+   8,
+   671,
+   1064,
+   3445
+  ],
+  "top": [
+   {
+    "name": "nixos",
+    "files": 3445,
+    "modules": 2882,
+    "sources": 563
+   },
+   {
+    "name": "nixos-install-tools",
+    "files": 2769,
+    "modules": 2596,
+    "sources": 173
+   },
+   {
+    "name": "apptainer-overriden-nixos",
+    "files": 2401,
+    "modules": 2353,
+    "sources": 48
+   },
+   {
+    "name": "singularity-overriden-nixos",
+    "files": 2401,
+    "modules": 2354,
+    "sources": 47
+   },
+   {
+    "name": "convertx",
+    "files": 2138,
+    "modules": 1640,
+    "sources": 498
+   },
+   {
+    "name": "paperless-ngx",
+    "files": 2023,
+    "modules": 1613,
+    "sources": 410
+   },
+   {
+    "name": "alpaca",
+    "files": 1951,
+    "modules": 1549,
+    "sources": 402
+   },
+   {
+    "name": "aider-chat-full",
+    "files": 1891,
+    "modules": 1509,
+    "sources": 382
+   },
+   {
+    "name": "aider-chat-with-help",
+    "files": 1770,
+    "modules": 1414,
+    "sources": 356
+   },
+   {
+    "name": "markitdown-mcp",
+    "files": 1704,
+    "modules": 1348,
+    "sources": 356
+   },
+   {
+    "name": "markitdown",
+    "files": 1693,
+    "modules": 1337,
+    "sources": 356
+   },
+   {
+    "name": "newelle",
+    "files": 1690,
+    "modules": 1347,
+    "sources": 343
+   },
+   {
+    "name": "owocr",
+    "files": 1671,
+    "modules": 1332,
+    "sources": 339
+   },
+   {
+    "name": "frigate",
+    "files": 1646,
+    "modules": 1305,
+    "sources": 341
+   },
+   {
+    "name": "prowler",
+    "files": 1623,
+    "modules": 1309,
+    "sources": 314
+   },
+   {
+    "name": "libretranslate",
+    "files": 1615,
+    "modules": 1292,
+    "sources": 323
+   },
+   {
+    "name": "mobsf",
+    "files": 1592,
+    "modules": 1225,
+    "sources": 367
+   },
+   {
+    "name": "unstructured-api",
+    "files": 1588,
+    "modules": 1269,
+    "sources": 319
+   },
+   {
+    "name": "contact",
+    "files": 1585,
+    "modules": 1254,
+    "sources": 331
+   },
+   {
+    "name": "meshtastic",
+    "files": 1585,
+    "modules": 1254,
+    "sources": 331
+   },
+   {
+    "name": "whisperx",
+    "files": 1569,
+    "modules": 1244,
+    "sources": 325
+   },
+   {
+    "name": "unbook",
+    "files": 1567,
+    "modules": 1205,
+    "sources": 362
+   },
+   {
+    "name": "calibre",
+    "files": 1566,
+    "modules": 1204,
+    "sources": 362
+   },
+   {
+    "name": "crewai",
+    "files": 1558,
+    "modules": 1259,
+    "sources": 299
+   },
+   {
+    "name": "vectorcode",
+    "files": 1554,
+    "modules": 1236,
+    "sources": 318
+   }
+  ]
+ },
+ "perFile": {
+  "buckets": [
+   1,
+   2,
+   10,
+   100,
+   1000
+  ],
+  "counts": [
+   22644,
+   9756,
+   2846,
+   1245,
+   828
+  ],
+  "top": [
+   {
+    "name": "t/pkgs/by-name/gt/gts/package.ts",
+    "count": 7012
+   },
+   {
+    "name": "t/pkgs/by-name/gr/graphviz/package.ts",
+    "count": 7011
+   },
+   {
+    "name": "t/pkgs/by-name/fr/fribidi/package.ts",
+    "count": 6925
+   },
+   {
+    "name": "t/pkgs/development/libraries/fontconfig/make-fonts-conf.ts",
+    "count": 6918
+   },
+   {
+    "name": "t/pkgs/by-name/li/libusb1/package.ts",
+    "count": 6888
+   },
+   {
+    "name": "t/pkgs/by-name/li/libxfixes/package.ts",
+    "count": 6867
+   },
+   {
+    "name": "t/pkgs/by-name/hw/hwdata/package.ts",
+    "count": 6852
+   },
+   {
+    "name": "t/pkgs/by-name/li/libdatrie/package.ts",
+    "count": 6840
+   },
+   {
+    "name": "t/pkgs/by-name/fr/freefont_ttf/package.ts",
+    "count": 6839
+   },
+   {
+    "name": "t/pkgs/by-name/li/libthai/package.ts",
+    "count": 6839
+   },
+   {
+    "name": "t/pkgs/by-name/pa/pango/package.ts",
+    "count": 6838
+   },
+   {
+    "name": "t/pkgs/by-name/ad/addDriverRunpath/package.ts",
+    "count": 6743
+   },
+   {
+    "name": "t/pkgs/by-name/li/libxrandr/package.ts",
+    "count": 6722
+   },
+   {
+    "name": "s/pkgs/by-name/ad/addDriverRunpath/setup-hook.sh",
+    "count": 6709
+   },
+   {
+    "name": "t/pkgs/by-name/li/libglvnd/package.ts",
+    "count": 6694
+   },
+   {
+    "name": "t/pkgs/by-name/va/valgrind/package.ts",
+    "count": 6647
+   },
+   {
+    "name": "s/pkgs/development/compilers/vala/disable-graphviz-0.56.8.patch",
+    "count": 6620
+   },
+   {
+    "name": "s/pkgs/development/compilers/vala/setup-hook.sh",
+    "count": 6620
+   },
+   {
+    "name": "t/pkgs/development/compilers/vala/default.ts",
+    "count": 6620
+   },
+   {
+    "name": "t/pkgs/by-name/md/mdbook/package.ts",
+    "count": 6535
+   },
+   {
+    "name": "s/pkgs/build-support/setup-hooks/validate-pkg-config.sh",
+    "count": 6531
+   },
+   {
+    "name": "t/pkgs/development/libraries/mesa/common.ts",
+    "count": 6509
+   },
+   {
+    "name": "t/pkgs/by-name/li/libpciaccess/package.ts",
+    "count": 6503
+   },
+   {
+    "name": "t/pkgs/by-name/li/libdrm/package.ts",
+    "count": 6501
+   },
+   {
+    "name": "t/pkgs/development/libraries/mesa/default.ts",
+    "count": 6488
+   },
+   {
+    "name": "t/pkgs/development/libraries/wayland/default.ts",
+    "count": 6448
+   },
+   {
+    "name": "t/pkgs/development/libraries/wayland/scanner.ts",
+    "count": 6448
+   },
+   {
+    "name": "t/pkgs/by-name/ut/util-macros/package.ts",
+    "count": 6392
+   },
+   {
+    "name": "t/pkgs/by-name/ba/bash-completion/package.ts",
+    "count": 6386
+   },
+   {
+    "name": "t/pkgs/by-name/li/libfontenc/package.ts",
+    "count": 6374
+   },
+   {
+    "name": "s/pkgs/by-name/li/libdaemon/fix-includes.patch",
+    "count": 6336
+   },
+   {
+    "name": "t/pkgs/by-name/li/libdaemon/package.ts",
+    "count": 6336
+   },
+   {
+    "name": "t/pkgs/by-name/av/avahi/package.ts",
+    "count": 6332
+   },
+   {
+    "name": "t/pkgs/by-name/li/libxcb-util/package.ts",
+    "count": 6331
+   },
+   {
+    "name": "t/pkgs/by-name/li/libxcb-image/package.ts",
+    "count": 6312
+   },
+   {
+    "name": "t/pkgs/by-name/fo/font-util/package.ts",
+    "count": 6308
+   },
+   {
+    "name": "t/pkgs/by-name/li/libxcb-keysyms/package.ts",
+    "count": 6302
+   },
+   {
+    "name": "t/pkgs/by-name/li/libxcb-wm/package.ts",
+    "count": 6301
+   },
+   {
+    "name": "t/pkgs/by-name/li/libxkbfile/package.ts",
+    "count": 6300
+   },
+   {
+    "name": "t/pkgs/by-name/li/libxcb-render-util/package.ts",
+    "count": 6299
+   },
+   {
+    "name": "t/pkgs/by-name/xk/xkeyboard-config/package.ts",
+    "count": 6296
+   },
+   {
+    "name": "t/pkgs/by-name/li/libxfont_1/package.ts",
+    "count": 6292
+   },
+   {
+    "name": "t/pkgs/by-name/li/libxshmfence/package.ts",
+    "count": 6292
+   },
+   {
+    "name": "t/pkgs/development/libraries/mesa/headers.ts",
+    "count": 6291
+   },
+   {
+    "name": "t/pkgs/by-name/li/libxfont_2/package.ts",
+    "count": 6290
+   },
+   {
+    "name": "t/pkgs/by-name/xk/xkbcomp/package.ts",
+    "count": 6289
+   },
+   {
+    "name": "t/pkgs/by-name/li/libxcvt/package.ts",
+    "count": 6288
+   },
+   {
+    "name": "t/pkgs/by-name/dr/dri-pkgconfig-stub/package.ts",
+    "count": 6287
+   },
+   {
+    "name": "t/pkgs/by-name/xo/xorg-server/package.ts",
+    "count": 6286
+   },
+   {
+    "name": "t/pkgs/by-name/dc/dconf/package.ts",
+    "count": 6269
+   }
+  ],
+  "common": [
+   {
+    "name": "s/pkgs/build-support/buildenv/builder.pl",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/build-support/fetchgit/builder.sh",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/build-support/fetchgit/nix-prefetch-git",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/build-support/remove-references-to/remove-references-to",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/build-support/rust/fetch-cargo-vendor-util.py",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/build-support/rust/fetchcargo-default-config.toml",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/build-support/rust/hooks/cargo-build-hook.sh",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/build-support/rust/hooks/cargo-check-hook.sh",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/build-support/rust/hooks/cargo-install-hook.sh",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/build-support/rust/hooks/cargo-setup-hook.sh",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/build-support/rust/hooks/maturin-build-hook.sh",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/build-support/rust/replace-workspace-values.py",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/build-support/rust/rustc-wrapper/rustc-wrapper.sh",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/build-support/setup-hooks/copy-pkgconfig-items.sh",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/build-support/setup-hooks/find-xml-catalogs.sh",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/build-support/setup-hooks/flatten-include-hack/flatten-include-hack-hook.sh",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/build-support/setup-hooks/make-wrapper.sh",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/build-support/setup-hooks/setup-debug-info-dirs.sh",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/build-support/setup-hooks/writable-tmpdir-as-home.sh",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/ad/addBinToPathHook/add-bin-to-path.sh",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/au/auto-patchelf/source/auto-patchelf.py",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/au/autoconf-archive/0001-ax_check_gl.m4-properly-quote-m4_fatal.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/au/autoconf-archive/0002-ax_check_glx.m4-properly-quote-m4_fatal.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/au/autoconf-archive/0003-ax_switch_flags.m4-properly-quote-m4_fatal.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/au/autoPatchelfHook/auto-patchelf.sh",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/ca/cacert/setup-hook.sh",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/ch/checkPhaseThreadLimitHook/hook.sh",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/cm/cmake/add-nixpkgs-libc-paths.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/cm/cmake/check-pc-files-hook.sh",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/cm/cmake/nixpkgs-cmake-prefix-path.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/cm/cmake/remove-impure-search-paths.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/cm/cmake/setup-hook.sh",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/db/dbus/implement-getgrouplist.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/db/dbus/meson-install-dirs.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/de/deterministic-uname/deterministic-uname.sh",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/de/deterministic-uname/setup-hook.sh",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/dn/dns-root-data/root.ds",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/dn/dns-root-data/root.key",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/el/elfutils/debug-info-from-env.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/fo/fontforge/set-python-sys-path.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/fr/freetype/enable-subpixel-rendering.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/fr/freetype/enable-table-validation.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/gd/gdk-pixbuf/installed-tests-path.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/gd/gdk-pixbuf/setup-hook.sh",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/gi/giflib/0001-Suppress-undefined-symbol-error-on-Darwin.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/gi/git/docbook2texi.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/gi/git/git-send-email-honor-PATH.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/gi/git/git-sh-i18n.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/gl/glib/elementary-terminal-support.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/gl/glib/gdb_script.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/gl/glib/glib-appinfo-watch.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/gl/glib/schema-override-variable.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/gl/glib/setup-hook.sh",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/gl/glib/split-dev-programs.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/gn/gn/setup-hook.sh",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/gn/gnutls/dummy.crt",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/gn/gnutls/nix-ssl-cert-file.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/gr/groff/0001-Revert-man-Fix-Savannah-65190.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/gr/groff/site.tmac",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/ha/harfbuzz/disable-check-symbols-test.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/in/installShellFiles/setup-hook.sh",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/je/jemalloc/o3-to-o2.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/je/jemalloc/skip-extent-test-with-prof-active.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/li/libaom/outputs.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/li/libedit/01-cygwin.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/li/libffiReal/freebsd-tsan-pthread.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/li/libpfm/fix-windows.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/li/libtiff/rename-version.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/li/libxslt/77-Use-a-dedicated-node-type-to-maintain-the-list-of-cached-rv-ts.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/li/libyuv/dither-honour-byte-order.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/li/libyuv/yuv.pc",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/ma/man-db/systemwide-man-db-conf.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/me/meson/000-nixpkgs-cmake-prefix-path.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/me/meson/001-fix-rpath.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/me/meson/002-clear-old-rpath.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/me/meson/003-more-env-vars.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/me/meson/004-gir-fallback-path.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/me/meson/005-boost-Do-not-add-system-paths-on-nix.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/me/meson/007-freebsd-pkgconfig-path.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/me/meson/setup-hook.sh",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/ni/ninja/0001-spawn-sh-instead-of-bin-sh.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/ni/ninja/setup-hook.sh",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/tz/tzdata/tzdata-setup-hook.sh",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/ud/udevCheckHook/hook.sh",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/un/unzip/06-initialize-the-symlink-flag.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/un/unzip/28-cve-2022-0529-and-cve-2022-0530.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/un/unzip/CVE-2014-8139.diff",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/un/unzip/CVE-2014-8140.diff",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/un/unzip/CVE-2014-8141.diff",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/un/unzip/CVE-2014-9636.diff",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/un/unzip/CVE-2014-9913.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/un/unzip/CVE-2015-7696.diff",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/un/unzip/CVE-2015-7697.diff",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/un/unzip/CVE-2016-9844.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/un/unzip/CVE-2018-18384.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/un/unzip/CVE-2021-4217.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/un/unzip/dont-hardcode-cc.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/un/unzip/implicit-declarations-fix.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/un/unzip/setup-hook.sh",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/ut/util-linux/CVE-2026-78408.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/ut/util-linux/libmount-build-fix.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/ut/util-linux/rtcwake-search-PATH-for-shutdown.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/w3/w3m/https.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/w3/w3m/RAND_egd.libressl.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/wo/woff2/gcc15.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/xo/xorgproto/meson.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/by-name/ya/yasm/gcc-15.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/data/sgml+xml/stylesheets/xslt/docbook-xsl/catalog-legacy-uris.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/compilers/go/go_no_vendor_checks-1.26.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/compilers/go/go-env-go_ldso.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/compilers/go/iana-etc-1.25.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/compilers/go/mailcap-1.17.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/compilers/go/remove-tools-1.11.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/compilers/go/tzdata-1.19.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/compilers/llvm/18/llvm/lit-shell-script-runner-set-dyld-library-path.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/compilers/llvm/18/llvm/llvm-lit-cfg-add-libs-to-dylib-path.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/compilers/llvm/18/llvm/polly-lit-cfg-add-libs-to-dylib-path.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/compilers/llvm/19/clang/gnu-install-dirs.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/compilers/llvm/20/llvm/backport-minimal-arm64e_x1-support.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/compilers/llvm/20/llvm/gnu-install-dirs-polly.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/compilers/llvm/21/llvm/backport-darwin-triple-parsing.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/compilers/llvm/21/llvm/gnu-install-dirs.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/compilers/llvm/21/llvm/sdag-freeze-condition-in-select-of-load-fold.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/compilers/rust/setup-hook.sh",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/interpreters/python/catch_conflicts/catch_conflicts.py",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/interpreters/python/cpython/mimetypes.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/interpreters/python/hooks/pypa-build-hook.sh",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/interpreters/python/hooks/pypa-install-hook.sh",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/interpreters/python/hooks/pytest-check-hook.sh",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/interpreters/python/hooks/python-catch-conflicts-hook.sh",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/interpreters/python/hooks/python-imports-check-hook.sh",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/interpreters/python/hooks/python-metadata-check-hook.sh",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/interpreters/python/hooks/python-namespaces-hook.sh",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/interpreters/python/hooks/python-output-dist-hook.sh",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/interpreters/python/hooks/python-relax-deps-hook.sh",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/interpreters/python/hooks/python-remove-bin-bytecode-hook.sh",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/interpreters/python/hooks/python-remove-tests-dir-hook.sh",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/interpreters/python/hooks/python-runtime-deps-check-hook.py",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/interpreters/python/hooks/python-runtime-deps-check-hook.sh",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/interpreters/python/hooks/setuptools-build-hook.sh",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/interpreters/python/hooks/unittest-check-hook.sh",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/interpreters/python/run_setup.py",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/interpreters/python/sitecustomize.py",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/interpreters/python/wrap.sh",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/interpreters/tcl/8.6-windows-disable-tzdata.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/interpreters/tcl/tcl-package-hook.sh",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/interpreters/tcl/tcl-requires-check-hook.sh",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/interpreters/tcl/tcl-requires-check-hook.tcl",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/libraries/boost/cmake-paths-188.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/libraries/db/clang-4.8.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/libraries/db/CVE-2017-10140-4.8-cwd-db_config.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/libraries/db/darwin-mutexes-4.8.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/libraries/fontconfig/make-fonts-conf.xsl",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/libraries/gobject-introspection/absolute_gir_path.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/libraries/gobject-introspection/absolute_shlib_path.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/libraries/gobject-introspection/setup-hook.sh",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/libraries/readline/link-against-ncurses.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/libraries/readline/no-arch_only-8.2.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/perl-modules/generic/builder.sh",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/perl-modules/xml-parser-0001-HACK-Assumes-Expat-paths-are-good.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/python-modules/attrs/remove-hatch-plugins.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/python-modules/certifi/env.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/python-modules/cython/setup-hook.sh",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/python-modules/installer/cross.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/python-modules/ninja/stub/ninja/__init__.py",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/python-modules/ninja/stub/pyproject.toml",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/python-modules/pytest-cov-stub/src/pyproject.toml",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/python-modules/pytest-cov-stub/src/pytest_cov/__init__.py",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/python-modules/pytest-cov-stub/src/pytest_cov/plugin.py",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/python-modules/pytest-xdist/setup-hook.sh",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/python-modules/setuptools-scm/setup-hook.sh",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/python-modules/setuptools/reproducible-wheel.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/tcl-modules/by-name/ex/expect_5/0004-enable-cross-compilation.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/tcl-modules/by-name/ex/expect_5/fix-build-time-run-tcl.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/tcl-modules/by-name/ex/expect_5/fix-darwin-bsd-clang16.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/development/tcl-modules/by-name/ex/expect_5/freebsd-unversioned.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/os-specific/linux/kmod/module-dir.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/os-specific/linux/net-tools/config.h",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/os-specific/linux/systemd/0001-Don-t-try-to-unmount-nix-or-nix-store.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/os-specific/linux/systemd/0002-Change-usr-share-zoneinfo-to-etc-zoneinfo.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/os-specific/linux/systemd/0003-add-rootprefix-to-lookup-dir-paths.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/os-specific/linux/systemd/0004-path-util.h-add-placeholder-for-DEFAULT_PATH_NORMAL.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/os-specific/linux/systemd/0005-core-don-t-taint-on-unmerged-usr.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/os-specific/linux/systemd/0006-timesyncd-disable-NSCD-when-DNSSEC-validation-is-dis.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/tools/compression/zstd/man-fix.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/tools/compression/zstd/playtests-darwin.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/tools/text/patchutils/drop-comments.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/tools/text/patchutils/getenv-signature.patch",
+    "count": null
+   },
+   {
+    "name": "s/pkgs/tools/text/patchutils/Make-grepdiff1-test-case-pcre-aware.patch",
+    "count": null
+   },
+   {
+    "name": "t/lib/derivations.ts",
+    "count": null
+   },
+   {
+    "name": "t/lib/sources.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/build-support/buildenv/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/build-support/fetchgit/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/build-support/fetchgithub/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/build-support/fetchgitlab/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/build-support/fetchpatch/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/build-support/fetchpypi/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/build-support/fetchsourcehut/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/build-support/fetchzip/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/build-support/make-pkgconfigitem/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/build-support/remove-references-to/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/build-support/rust/build-rust-package/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/build-support/rust/fetch-cargo-vendor.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/build-support/rust/hooks/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/build-support/rust/lib/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/build-support/rust/rustc-wrapper/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/build-support/setup-hooks/flatten-include-hack/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/build-support/testers/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/build-support/writers/data.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/build-support/writers/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/build-support/writers/scripts.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/ad/addBinToPathHook/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/as/asciidoc/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/au/audit/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/au/auto-patchelf/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/au/autoconf-archive/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/au/autoPatchelfHook/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/bl/bluez-headers/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/bo/boehmgc/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/bo/boost-build/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/br/brotli/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/c-/c-ares/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/ca/cacert/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/ca/cairo/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/ca/cargo-auditable/builder.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/ca/cargo-auditable/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/ca/catch2_3/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/ch/checkPhaseThreadLimitHook/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/cm/cmake/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/cp/cpio/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/cu/cunit/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/cu/curl/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/da/dash/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/da/dav1d/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/db/dbus/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/de/dejagnu/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/de/deterministic-uname/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/dn/dns-root-data/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/do/docbook5/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/do/doxygen/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/el/elfutils/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/ex/expat/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/fo/fontforge/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/fr/freetype/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/gd/gd/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/gd/gdbm/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/gd/gdk-pixbuf/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/ge/getopt/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/gi/gi-docgen/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/gi/giflib/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/gi/git/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/gi/gitMinimal/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/gl/glib/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/gn/gn/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/gn/gnulib/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/gn/gnutls/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/gp/gperf/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/gr/groff/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/gt/gtest/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/gt/gtk-doc/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/ha/harfbuzz/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/he/help2man/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/ia/iana-etc/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/in/installShellFiles/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/in/intltool/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/je/jemalloc/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/js/json_c/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/le/lerc/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/li/libaom/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/li/libapparmor/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/li/libarchive/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/li/libavif/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/li/libcap_ng/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/li/libdeflate/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/li/libedit/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/li/libev/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/li/libevent/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/li/libffiReal/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/li/libice/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/li/libjpeg_turbo/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/li/libpfm/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/li/libpipeline/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/li/libpng/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/li/libpsl/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/li/libpthread-stubs/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/li/libselinux/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/li/libsepol/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/li/libsm/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/li/libsodium/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/li/libstemmer/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/li/libsystemtap/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/li/libtasn1/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/li/libtiff/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/li/libuv/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/li/libvmaf/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/li/libvmaf/xxd.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/li/libwebp/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/li/libx11/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/li/libxau/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/li/libxcb/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/li/libxdmcp/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/li/libxext/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/li/libxft/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/li/libxpm/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/li/libxrender/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/li/libxslt/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/li/libxt/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/li/libyaml/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/li/libyuv/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/li/linux-pam/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/ln/lndir/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/lz/lzo/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/ma/mailcap/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/ma/man-db/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/ma/maturin/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/me/meson/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/mp/mpdecimal/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/na/nasm/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/nc/ncompress/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/ng/nghttp3/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/ni/ninja/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/p1/p11-kit/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/pi/pixman/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/pu/publicsuffix-list/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/re/re2c/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/rh/rhash/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/ru/rust-jemalloc-sys/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/sp/spdlog/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/sw/swig/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/sy/sysprof/capture.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/sy/sysprof/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/sy/systemtap-sdt/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/sy/systemtap-unwrapped/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/tz/tzdata/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/ud/udevCheckHook/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/un/unbound/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/un/unzip/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/ut/util-linux/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/w3/w3m/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/wo/woff2/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/xc/xcb-proto/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/xm/xmlto/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/xo/xorgproto/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/xt/xtrans/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/xx/xxhash/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/ya/yasm/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/ze/zeromq/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/zl/zlib-ng/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/by-name/zo/zopfli/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/data/fonts/dejavu-fonts/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/data/sgml+xml/schemas/xml-dtd/docbook/4.2.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/data/sgml+xml/schemas/xml-dtd/docbook/4.3.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/data/sgml+xml/schemas/xml-dtd/docbook/4.4.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/data/sgml+xml/schemas/xml-dtd/docbook/4.5.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/data/sgml+xml/schemas/xml-dtd/docbook/generic.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/data/sgml+xml/stylesheets/xslt/docbook-xsl/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/compilers/go/1.26.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/compilers/go/binary.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/compilers/go/bootstrap124.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/compilers/llvm/common/clang/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/compilers/llvm/common/common-let.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/compilers/llvm/common/compiler-rt/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/compilers/llvm/common/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/compilers/llvm/common/llvm/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/compilers/llvm/common/patches.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/compilers/llvm/common/tblgen.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/compilers/llvm/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/compilers/rust/1_98.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/compilers/rust/binary.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/compilers/rust/bootstrap.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/compilers/rust/cargo-auditable-cargo-wrapper.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/compilers/rust/cargo.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/compilers/rust/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/compilers/rust/make-rust-platform.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/compilers/rust/rustc.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/interpreters/python/hooks/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/interpreters/python/mk-python-derivation.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/interpreters/python/python-packages-base.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/interpreters/python/with-packages.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/interpreters/python/wrap-python.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/interpreters/python/wrapper.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/interpreters/tcl/8.6.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/interpreters/tcl/generic.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/interpreters/tcl/mk-tcl-derivation.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/libraries/boost/1.91.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/libraries/boost/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/libraries/boost/generic.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/libraries/db/db-4.8.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/libraries/db/generic.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/libraries/fmt/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/libraries/fontconfig/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/libraries/gobject-introspection/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/libraries/gobject-introspection/wrapper.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/libraries/icu/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/libraries/icu/make-icu.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/libraries/libidn2/no-bootstrap-reference.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/libraries/libmicrohttpd/1.0.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/libraries/libmicrohttpd/generic.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/libraries/libxml2/common.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/libraries/libxml2/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/libraries/ncurses/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/libraries/nettle/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/libraries/nettle/generic.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/libraries/ngtcp2/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/libraries/readline/8.3.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/libraries/readline/readline-8.3-patches.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/libraries/silgraphite/graphite2.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/libraries/sqlite/archive-version.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/libraries/sqlite/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/perl-modules/generic/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/alabaster/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/appdirs/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/ast-serialize/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/attrs/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/babel/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/bootstrap/build/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/bootstrap/flit-core/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/bootstrap/installer/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/bootstrap/packaging/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/brotli/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/build/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/buildcatrust/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/calver/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/certifi/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/cffi/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/chameleon/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/charset-normalizer/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/click/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/cython/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/defusedxml/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/distlib/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/docutils/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/editables/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/execnet/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/filelock/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/flake8/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/flaky/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/flit-core/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/flit/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/fonttools/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/freezegun/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/gevent/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/greenlet/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/hatch-vcs/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/hatchling/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/idna/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/imagesize/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/importlib-metadata/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/iniconfig/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/installer/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/jinja2/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/librt/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/lingua/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/lxml/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/mako/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/markdown/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/markupsafe/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/mccabe/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/mock/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/mypy/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/mypy/extensions.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/ninja/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/packaging/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/pathspec/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/pexpect/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/pkgconfig/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/platformdirs/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/pluggy/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/poetry-core/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/polib/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/psutil/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/ptyprocess/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/pycodestyle/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/pycparser/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/pyelftools/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/pyflakes/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/pygments/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/pyparsing/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/pyproject-hooks/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/pysocks/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/pystemmer/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/pytest-asyncio/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/pytest-cov-stub/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/pytest-instafail/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/pytest-mock/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/pytest-timeout/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/pytest-xdist/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/pytest/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/python-dateutil/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/python-discovery/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/pytz/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/pyyaml/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/requests/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/roman-numerals/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/setuptools-scm/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/setuptools/80.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/setuptools/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/six/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/skia-pathops/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/smartypants/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/snowballstemmer/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/sphinx/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/sphinxcontrib-applehelp/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/sphinxcontrib-devhelp/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/sphinxcontrib-htmlhelp/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/sphinxcontrib-jsmath/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/sphinxcontrib-qthelp/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/sphinxcontrib-serializinghtml/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/sphinxcontrib-websupport/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/time-machine/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/tokenize-rt/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/toml/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/tomli-w/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/tomli/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/trove-classifiers/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/types-psutil/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/types-setuptools/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/typing-extensions/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/typogrify/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/uharfbuzz/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/urllib3/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/vcs-versioning/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/virtualenv/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/wheel/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/zipp/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/zope-event/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/zope-interface/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/python-modules/zopfli/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/tcl-modules/by-name/ex/expect_5/package.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/tools/misc/binutils/libbfd.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/tools/parsing/flex/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/development/tools/profiling/systemtap/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/os-specific/linux/kmod/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/os-specific/linux/net-tools/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/os-specific/linux/systemd/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/os-specific/windows/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/tools/compression/zstd/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/tools/package-management/nix-prefetch-scripts/default.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/tools/text/patchutils/0.3.3.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/tools/text/patchutils/0.4.2.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/tools/text/patchutils/generic.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/top-level/linux-kernels.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/top-level/perl-packages.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/top-level/python-aliases.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/top-level/python-packages.ts",
+    "count": null
+   },
+   {
+    "name": "t/pkgs/top-level/tcl-packages.ts",
+    "count": null
+   }
+  ]
+ },
+ "kinds": [
+  {
+   "name": ".patch",
+   "count": 4156
+  },
+  {
+   "name": ".json",
+   "count": 532
+  },
+  {
+   "name": ".md",
+   "count": 459
+  },
+  {
+   "name": ".sh",
+   "count": 400
+  },
+  {
+   "name": ".nix",
+   "count": 319
+  },
+  {
+   "name": ".lock",
+   "count": 208
+  },
+  {
+   "name": "(none)",
+   "count": 182
+  },
+  {
+   "name": ".diff",
+   "count": 125
+  },
+  {
+   "name": ".py",
+   "count": 124
+  },
+  {
+   "name": ".toml",
+   "count": 27
+  },
+  {
+   "name": ".rs",
+   "count": 26
+  },
+  {
+   "name": ".cmake",
+   "count": 19
+  },
+  {
+   "name": ".conf",
+   "count": 16
+  },
+  {
+   "name": ".in",
+   "count": 15
+  },
+  {
+   "name": ".c",
+   "count": 13
+  }
+ ],
+ "positions": {
+  "byDir": [
+   {
+    "name": "pkgs/by-name",
+    "count": 22735
+   },
+   {
+    "name": "pkgs/development",
+    "count": 1438
+   },
+   {
+    "name": "pkgs/applications",
+    "count": 360
+   },
+   {
+    "name": "pkgs/tools",
+    "count": 149
+   },
+   {
+    "name": "pkgs/servers",
+    "count": 129
+   },
+   {
+    "name": "pkgs/build-support",
+    "count": 119
+   },
+   {
+    "name": "pkgs/misc",
+    "count": 117
+   },
+   {
+    "name": "pkgs/os-specific",
+    "count": 61
+   },
+   {
+    "name": "pkgs/data",
+    "count": 53
+   },
+   {
+    "name": "pkgs/top-level",
+    "count": 53
+   },
+   {
+    "name": "pkgs/games",
+    "count": 33
+   },
+   {
+    "name": "pkgs/stdenv",
+    "count": 26
+   },
+   {
+    "name": "pkgs/shells",
+    "count": 7
+   },
+   {
+    "name": "pkgs/desktops",
+    "count": 3
+   },
+   {
+    "name": "maintainers/scripts",
+    "count": 2
+   },
+   {
+    "name": "doc/doc-support",
+    "count": 1
+   },
+   {
+    "name": "nixos/lib",
+    "count": 1
+   },
+   {
+    "name": "pkgs/common-updater",
+    "count": 1
+   },
+   {
+    "name": "pkgs/kde",
+    "count": 1
+   }
+  ],
+  "topFiles": [
+   {
+    "name": "pkgs/development/haskell-modules/hackage-packages.nix",
+    "count": 81
+   },
+   {
+    "name": "pkgs/misc/uboot/default.nix",
+    "count": 68
+   },
+   {
+    "name": "pkgs/build-support/cc-wrapper/default.nix",
+    "count": 43
+   },
+   {
+    "name": "pkgs/development/compilers/temurin-bin/jdk-linux-base.nix",
+    "count": 29
+   },
+   {
+    "name": "pkgs/development/compilers/openjdk/generic.nix",
+    "count": 28
+   },
+   {
+    "name": "pkgs/top-level/all-packages.nix",
+    "count": 27
+   },
+   {
+    "name": "pkgs/stdenv/linux/default.nix",
+    "count": 26
+   },
+   {
+    "name": "pkgs/applications/office/libreoffice/default.nix",
+    "count": 21
+   },
+   {
+    "name": "pkgs/development/compilers/dotnet/wrapper.nix",
+    "count": 21
+   },
+   {
+    "name": "pkgs/build-support/wasm-bindgen-cli/default.nix",
+    "count": 20
+   },
+   {
+    "name": "pkgs/applications/science/logic/coq/default.nix",
+    "count": 19
+   },
+   {
+    "name": "pkgs/development/libraries/ffmpeg/generic.nix",
+    "count": 19
+   },
+   {
+    "name": "pkgs/top-level/unixtools.nix",
+    "count": 16
+   },
+   {
+    "name": "pkgs/build-support/trivial-builders/default.nix",
+    "count": 15
+   },
+   {
+    "name": "pkgs/development/libraries/icu/make-icu.nix",
+    "count": 15
+   },
+   {
+    "name": "pkgs/development/ocaml-modules/ocamlformat/ocamlformat.nix",
+    "count": 15
+   },
+   {
+    "name": "pkgs/development/libraries/boost/generic.nix",
+    "count": 14
+   },
+   {
+    "name": "pkgs/development/tools/godot/common.nix",
+    "count": 14
+   },
+   {
+    "name": "pkgs/tools/misc/coreboot-utils/default.nix",
+    "count": 13
+   },
+   {
+    "name": "pkgs/by-name/fa/faust2/package.nix",
+    "count": 12
+   },
+   {
+    "name": "pkgs/development/libraries/protobuf/generic.nix",
+    "count": 12
+   },
+   {
+    "name": "pkgs/development/interpreters/lua-5/interpreter.nix",
+    "count": 11
+   },
+   {
+    "name": "pkgs/tools/typesetting/tex/texlive/build-tex-env.nix",
+    "count": 11
+   },
+   {
+    "name": "pkgs/applications/editors/emacs/sources.nix",
+    "count": 10
+   },
+   {
+    "name": "pkgs/development/interpreters/python/cpython/default.nix",
+    "count": 10
+   }
+  ]
+ }
+}
