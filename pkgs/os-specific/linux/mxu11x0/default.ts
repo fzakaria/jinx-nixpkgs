@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   const kernel = nix.arg($, "kernel");
-  const srcs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./srcs.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], fetchurl: fetchurl }))));
+  const srcs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./srcs.nix")) as nix.Imported<typeof import("./srcs.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], fetchurl: fetchurl }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname = "mxu11x0";
       const src = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(kernel, "version")), "5.0")) ? nix.sel(srcs, "mxu11x0_5", "src") : nix.sel(srcs, "mxu11x0_4", "src")));

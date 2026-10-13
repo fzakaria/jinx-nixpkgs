@@ -113,7 +113,7 @@ touch $out
   const testInputDerivation = (attrs) => nix.update(nix.sel(nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(attrs, { [nix.POS]: $pos[10], buildInputs: nix.thunk(() => [testInputDerivationDep]) }))), "inputDerivation"), { [nix.POS]: $pos[11], meta: nix.thunk(() => ({})) });
   return {
     [nix.POS]: $pos[65],
-    hooks: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./hooks.nix")), nix.thunk(() => ({
+    hooks: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./hooks.nix")) as nix.Imported<typeof import("./hooks.ts")>, nix.thunk(() => ({
           [nix.POS]: $pos[12],
           stdenv: bootStdenv,
           pkgs: earlyPkgs,
@@ -342,7 +342,7 @@ touch $out
       })())), { [nix.POS]: $pos[50], meta: nix.thunk(() => ({})) })),
     structuredAttrsByDefault: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
         [nix.POS]: $pos[64],
-        hooks: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./hooks.nix")), nix.thunk(() => ({
+        hooks: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./hooks.nix")) as nix.Imported<typeof import("./hooks.ts")>, nix.thunk(() => ({
               [nix.POS]: $pos[51],
               stdenv: bootStdenvStructuredAttrsByDefault,
               pkgs: earlyPkgs,

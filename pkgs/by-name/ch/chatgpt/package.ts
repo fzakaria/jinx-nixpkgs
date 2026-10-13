@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchurl = nix.arg($, "fetchurl");
   const unzip = nix.arg($, "unzip");
-  const source = nix.thunk(() => nix.builtins.import(nix.path(here, "./source.nix")));
+  const source = nix.thunk(() => nix.builtins.import(nix.path(here, "./source.nix")) as nix.Imported<typeof import("./source.ts")>);
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
       [nix.POS]: $pos[2],
       pname: "chatgpt",

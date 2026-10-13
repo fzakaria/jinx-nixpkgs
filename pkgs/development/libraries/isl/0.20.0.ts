@@ -4,7 +4,7 @@ import * as nix from "../../../../.jinx/runtime/index.ts";
 const here = nix.here(import.meta.url);
 const $pos = nix.positions(here + "/0.20.0.nix", [[["version", 2, 3], ["urls", 3, 3], ["sha256", 7, 3], ["configureFlags", 8, 3]]]);
 
-export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")), nix.thunk(() => (() => {
+export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")) as nix.Imported<typeof import("./generic.ts")>, nix.thunk(() => (() => {
     const version = "0.20";
     const urls = nix.thunk(() => [
       nix.thunk(() => nix.str`mirror://sourceforge/libisl/isl-${version}.tar.xz`),

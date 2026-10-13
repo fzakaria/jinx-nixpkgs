@@ -86,7 +86,7 @@ export default nix.lambda((args) => (() => {
     const config = nix.arg($_1, "config");
     const lib_1 = nix.arg($_1, "lib");
     const pkgs = nix.arg($_1, "pkgs");
-    const diskImage = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/make-disk-image.nix")), nix.thunk(() => ({
+    const diskImage = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/make-disk-image.nix")) as nix.Imported<typeof import("../lib/make-disk-image.ts")>, nix.thunk(() => ({
         [nix.POS]: $pos[12],
         config: config,
         lib: lib_1,

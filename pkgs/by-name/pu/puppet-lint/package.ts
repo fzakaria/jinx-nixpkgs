@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
               [nix.POS]: $pos[0],
               package: puppet_lint,
-              version: nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./gemset.nix")), "puppet-lint", "version")),
+              version: nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./gemset.nix")) as nix.Imported<typeof import("./gemset.ts")>, "puppet-lint", "version")),
             })))),
         })),
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "puppet-lint")),

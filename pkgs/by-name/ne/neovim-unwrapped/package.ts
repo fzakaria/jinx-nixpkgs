@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const wasmtime_36 = nix.arg($, "wasmtime_36");
   const fetchurl = nix.arg($, "fetchurl");
   const buildPackages = nix.arg($, "buildPackages");
-  const treesitter_parsers = nix.argOr($, "treesitter-parsers", () => nix.app(nix.builtins.import(nix.path(here, "./treesitter-parsers.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], fetchurl: fetchurl }))));
+  const treesitter_parsers = nix.argOr($, "treesitter-parsers", () => nix.app(nix.builtins.import(nix.path(here, "./treesitter-parsers.nix")) as nix.Imported<typeof import("./treesitter-parsers.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], fetchurl: fetchurl }))));
   const fixDarwinDylibNames = nix.arg($, "fixDarwinDylibNames");
   const glibcLocales = nix.argOr($, "glibcLocales", () => null);
   const procps = nix.argOr($, "procps", () => null);

@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
               }))),
           }))));
         const super$ = imported;
-        const commonOverrides = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./nongnu-common-overrides.nix")), pkgs, lib));
+        const commonOverrides = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./nongnu-common-overrides.nix")) as nix.Imported<typeof import("./nongnu-common-overrides.ts")>, pkgs, lib));
         const overrides = (self_1) => (super$_1) => ({});
         const super$_1 = nix.thunk(() => nix.update(super$, nix.app(commonOverrides, self, super$)));
         return nix.update(super$_1, nix.app(overrides, self, super$_1));

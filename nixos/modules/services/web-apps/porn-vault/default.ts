@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "services", "porn-vault"));
   const configFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
-  const defaultConfig = nix.thunk(() => nix.builtins.import(nix.path(here, "./default-config.nix")));
+  const defaultConfig = nix.thunk(() => nix.builtins.import(nix.path(here, "./default-config.nix")) as nix.Imported<typeof import("./default-config.ts")>);
   const mkIf = nix.thunk(() => nix.attr(lib, "mkIf"));
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   const getExe = nix.thunk(() => nix.attr(lib, "getExe"));

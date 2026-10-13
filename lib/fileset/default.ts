@@ -10,7 +10,7 @@ const formals$3 = { args: { recurseSubmodules: true }, ellipsis: false };
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./internal.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib }))));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./internal.nix")) as nix.Imported<typeof import("./internal.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib }))));
   const _coerce = nix.thunk(() => nix.attr(from, "_coerce"));
   const _coerceResult = nix.thunk(() => nix.attr(from, "_coerceResult"));
   const _singleton = nix.thunk(() => nix.attr(from, "_singleton"));

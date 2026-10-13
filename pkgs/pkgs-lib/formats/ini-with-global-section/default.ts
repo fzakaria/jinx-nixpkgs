@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
-  const common = nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "../ini/default.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], pkgs: pkgs, lib: lib }))), "common"));
+  const common = nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "../ini/default.nix")) as nix.Imported<typeof import("../ini/default.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], pkgs: pkgs, lib: lib }))), "common"));
   const ignoredArgs = nix.thunk(() => nix.attr(common, "ignoredArgs"));
   const iniAtom = nix.thunk(() => nix.attr(common, "iniAtom"));
   const iniSection = nix.thunk(() => nix.attr(common, "iniSection"));

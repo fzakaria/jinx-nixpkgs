@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const test = nix.arg($, "test");
   const should = nix.arg($, "should");
   const testConfigs = nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib, gemConfig: defaultGemConfig }));
-  const functions = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./functions.nix")), testConfigs));
+  const functions = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./functions.nix")) as nix.Imported<typeof import("./functions.ts")>, testConfigs));
   return nix.builtins.concatLists(nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(test, "run"), "All set, no gemdir", nix.thunk(() => nix.app(nix.sel(functions, "bundlerFiles"), nix.thunk(() => ({
             [nix.POS]: $pos[1],

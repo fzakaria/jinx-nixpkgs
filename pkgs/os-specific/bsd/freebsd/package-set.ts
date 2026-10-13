@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       })))),
     compatIsNeeded: nix.thunk(() => !nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isFreeBSD"))),
     compatIfNeeded: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(self, "compatIsNeeded")), nix.thunk(() => nix.sel(self, "compat")))),
-    "freebsd-lib": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./lib")), nix.thunk(() => ({
+    "freebsd-lib": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./lib")) as nix.Imported<typeof import("./lib/default.ts")>, nix.thunk(() => ({
         [nix.POS]: $pos[2],
         version: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ".", nix.thunk(() => nix.builtins.map(nix.builtins.toString, nix.thunk(() => nix.app(nix.sel(lib, "filter"), (x) => !nix.eq(x, null), nix.thunk(() => [
                 nix.thunk(() => nix.sel(self, "versionData", "major")),

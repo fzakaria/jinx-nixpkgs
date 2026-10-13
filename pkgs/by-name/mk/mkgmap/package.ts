@@ -18,8 +18,8 @@ export default nix.lambda((args) => (() => {
   const stripJavaArchivesHook = nix.arg($, "stripJavaArchivesHook");
   const doCheck = nix.argOr($, "doCheck", () => true);
   const withExamples = nix.argOr($, "withExamples", () => false);
-  const deps = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./deps.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], fetchurl: fetchurl }))));
-  const testInputs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./testinputs.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], fetchurl: fetchurl }))));
+  const deps = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./deps.nix")) as nix.Imported<typeof import("./deps.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], fetchurl: fetchurl }))));
+  const testInputs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./testinputs.nix")) as nix.Imported<typeof import("./testinputs.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[1], fetchurl: fetchurl }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
       [nix.POS]: $pos[5],
       pname: "mkgmap",

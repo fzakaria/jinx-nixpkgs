@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       npmRebuildFlags: nix.thunk(() => ["--ignore-scripts"]),
       postConfigure: nix.thunk(() => nix.add(nix.app(nix.sel(elmPackages, "fetchElmDeps"), nix.thunk(() => ({
           [nix.POS]: $pos[1],
-          elmPackages: nix.thunk(() => nix.builtins.import(nix.path(here, "./elm-srcs.nix"))),
+          elmPackages: nix.thunk(() => nix.builtins.import(nix.path(here, "./elm-srcs.nix")) as nix.Imported<typeof import("./elm-srcs.ts")>),
           elmVersion: nix.thunk(() => nix.sel(elmPackages, "elm", "version")),
           registryDat: nix.path(here, "./registry.dat"),
         }))), nix.str`ln -sf ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(elmPackages, "elm")))} node_modules/.bin/elm

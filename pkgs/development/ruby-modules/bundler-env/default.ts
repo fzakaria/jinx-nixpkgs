@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
     const meta = nix.argOr($_1, "meta", () => ({}));
     const ignoreCollisions = nix.argOr($_1, "ignoreCollisions", () => false);
     const passthru = nix.argOr($_1, "passthru", () => ({}));
-    const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../bundled-common/functions.nix")), nix.thunk(() => ({
+    const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../bundled-common/functions.nix")) as nix.Imported<typeof import("../bundled-common/functions.ts")>, nix.thunk(() => ({
         [nix.POS]: $pos[0],
         lib: lib,
         ruby: ruby_1,

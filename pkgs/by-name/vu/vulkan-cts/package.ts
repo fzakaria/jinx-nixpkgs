@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       url: "https://raw.githubusercontent.com/baldurk/renderdoc/v1.1/renderdoc/api/app/renderdoc_app.h",
       hash: "sha256-57XwqlsbDq3GOhxiTAyn9a8TOqhX1qQnGw7z0L22ho4=",
     }))));
-  const sources = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./sources.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], fetchurl: fetchurl, fetchFromGitHub: fetchFromGitHub }))));
+  const sources = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./sources.nix")) as nix.Imported<typeof import("./sources.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[1], fetchurl: fetchurl, fetchFromGitHub: fetchFromGitHub }))));
   const shaderc_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
       [nix.POS]: $pos[2],
       owner: "google",

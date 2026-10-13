@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const lib = nix.arg($, "lib");
   const macosVariant = nix.argOr($, "macosVariant", () => "14");
-  const wheelSources = nix.thunk(() => nix.builtins.import(nix.path(here, "./wheel-sources.nix")));
+  const wheelSources = nix.thunk(() => nix.builtins.import(nix.path(here, "./wheel-sources.nix")) as nix.Imported<typeof import("./wheel-sources.ts")>);
   const srcs = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => (source) => nix.app(fetchPypi, nix.thunk(() => ({
         [nix.POS]: $pos[0],
         pname: "mlx_metal",

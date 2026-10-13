@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
           rev: nix.thunk(() => nix.str`gpsbabel_${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
           sha256: "sha256-0w8LsO+HwqZF8SQmwd8bCKma9PCM0hAzXhzWR4DgAHs=",
         })))),
-      patches: nix.thunk(() => nix.builtins.map(fetchurl, nix.thunk(() => nix.builtins.import(nix.path(here, "./debian-patches.nix"))))),
+      patches: nix.thunk(() => nix.builtins.map(fetchurl, nix.thunk(() => nix.builtins.import(nix.path(here, "./debian-patches.nix")) as nix.Imported<typeof import("./debian-patches.ts")>))),
       postPatch: nix.thunk(() => nix.add("patchShebangs testo\n", nix.app(nix.sel(lib, "optionalString"), withDoc, "substituteInPlace gbversion.h.qmake.in \\\n  --replace /usr/share/doc $doc/share/doc\n\nsubstituteInPlace testo.d/serialization.test \\\n  --replace /usr/share/doc $doc/share/doc\n\nsubstituteInPlace xmldoc/gpsbabel_man.xml \\\n  --replace /usr/share/doc $doc/share/doc\n"))),
       outputs: nix.thunk(() => nix.concat(["out"], nix.app(nix.sel(lib, "optional"), withDoc, "doc"))),
       nativeBuildInputs: nix.thunk(() => nix.concat([pkg_config, nix.thunk(() => nix.sel(libsForQt5, "qmake"))], nix.concat(nix.app(nix.sel(lib, "optionals"), withGUI, nix.thunk(() => [

@@ -138,7 +138,7 @@ export default nix.lambda((args) => (() => {
           installPhase: "mkdir -p $out/share/airflow/simple-ui\ncp -r dist $out/share/airflow/simple-ui/\n",
         })));
       const requiredProviders = nix.thunk(() => ["common_compat", "common_io", "common_sql", "smtp", "standard"]);
-      const providers = nix.thunk(() => nix.builtins.import(nix.path(here, "./providers.nix")));
+      const providers = nix.thunk(() => nix.builtins.import(nix.path(here, "./providers.nix")) as nix.Imported<typeof import("./providers.ts")>);
       const buildProvider = (provider) => nix.app(buildPythonPackage, nix.thunk(() => ({
           [nix.POS]: $pos[4],
           pname: nix.thunk(() => nix.str`apache-airflow-providers-${provider}`),

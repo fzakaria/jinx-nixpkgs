@@ -8,7 +8,7 @@ const formals$2 = { args: { config: false }, ellipsis: true };
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({}))));
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")) as nix.Imported<typeof import("../../default.ts")>, nix.thunk(() => ({}))));
   const lib = nix.argOr($, "lib", () => nix.sel(pkgs, "lib"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const teamModule = nix.lambda((args_1) => (() => {

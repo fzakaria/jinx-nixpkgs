@@ -5,7 +5,7 @@ const here = nix.here(import.meta.url);
 const $pos = nix.positions(here + "/shell.nix", [[["alexandria", 14, 11], ["str", 15, 11], ["dexador", 16, 11], ["cl-ppcre", 17, 11], ["sqlite", 18, 11], ["arrow-macros", 19, 11], ["jzon", 20, 11]], [["packages", 8, 3]]]);
 
 export default nix.thunk(() => (() => {
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../ci")), nix.thunk(() => ({}))));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../ci")) as nix.Imported<typeof import("../../../ci/default.ts")>, nix.thunk(() => ({}))));
   const pkgs = nix.thunk(() => nix.attr(from, "pkgs"));
   const fmt = nix.thunk(() => nix.attr(from, "fmt"));
   const mkShellNoCC = nix.thunk(() => nix.attr(pkgs, "mkShellNoCC"));

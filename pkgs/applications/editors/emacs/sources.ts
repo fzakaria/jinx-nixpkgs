@@ -85,7 +85,7 @@ export default nix.lambda((args) => (() => {
   })(), formals$2);
   return {
     [nix.POS]: $pos[17],
-    emacs31: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-emacs.nix")), nix.thunk(() => nix.app(mkArgs, nix.thunk(() => ({
+    emacs31: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-emacs.nix")) as nix.Imported<typeof import("./make-emacs.ts")>, nix.thunk(() => nix.app(mkArgs, nix.thunk(() => ({
           [nix.POS]: $pos[10],
           pname: "emacs",
           version: "31.1",
@@ -101,7 +101,7 @@ export default nix.lambda((args) => (() => {
               })))),
           ],
         })))))),
-    "emacs30-macport": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-emacs.nix")), nix.thunk(() => nix.app(mkArgs, nix.thunk(() => ({
+    "emacs30-macport": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-emacs.nix")) as nix.Imported<typeof import("./make-emacs.ts")>, nix.thunk(() => nix.app(mkArgs, nix.thunk(() => ({
           [nix.POS]: $pos[16],
           pname: "emacs-mac",
           version: "30.2.50",

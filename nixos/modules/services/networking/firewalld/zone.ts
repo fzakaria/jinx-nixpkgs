@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "firewalld"));
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "xml"), nix.thunk(() => ({}))));
-  const lib$ = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./lib.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib }))));
+  const lib$ = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./lib.nix")) as nix.Imported<typeof import("./lib.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib }))));
   const filterNullAttrs = nix.thunk(() => nix.attr(lib$, "filterNullAttrs"));
   const mkPortOption = nix.thunk(() => nix.attr(lib$, "mkPortOption"));
   const mkXmlAttr = nix.thunk(() => nix.attr(lib$, "mkXmlAttr"));

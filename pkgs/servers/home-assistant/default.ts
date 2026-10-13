@@ -219,7 +219,7 @@ export default nix.lambda((args) => (() => {
     }),
   ]);
   const python3Packages = nix.thunk(() => nix.app(nix.sel(python314Packages, "overrideScope"), (final) => (prev) => nix.app(nix.sel(lib, "composeManyExtensions"), nix.thunk(() => nix.concat(defaultOverrides, [packageOverrides])), final, prev)));
-  const componentPackages = nix.thunk(() => nix.builtins.import(nix.path(here, "./component-packages.nix")));
+  const componentPackages = nix.thunk(() => nix.builtins.import(nix.path(here, "./component-packages.nix")) as nix.Imported<typeof import("./component-packages.ts")>);
   const availableComponents = nix.thunk(() => nix.builtins.attrNames(nix.thunk(() => nix.sel(componentPackages, "components"))));
   const supportedComponentsWithTests = nix.thunk(() => nix.attr(componentPackages, "supportedComponentsWithTests"));
   const getPackages = (component) => nix.sel(componentPackages, "components", nix.key(nix.force(component)));

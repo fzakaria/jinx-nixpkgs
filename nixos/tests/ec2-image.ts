@@ -16,8 +16,8 @@ export default nix.lambda((args) => (() => {
   const mkAfter = nix.thunk(() => nix.attr(lib, "mkAfter"));
   const mkForce = nix.thunk(() => nix.attr(lib, "mkForce"));
   const pkgs = nix.thunk(() => nix.sel(config, "node", "pkgs"));
-  const imdsServer = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common/imds-server.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], pkgs: pkgs }))));
-  const imageCfg = nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "../lib/eval-config.nix")), nix.thunk(() => ({
+  const imdsServer = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common/imds-server.nix")) as nix.Imported<typeof import("./common/imds-server.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], pkgs: pkgs }))));
+  const imageCfg = nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "../lib/eval-config.nix")) as nix.Imported<typeof import("../lib/eval-config.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[14],
       system: null,
       modules: nix.thunk(() => [

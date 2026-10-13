@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   const seed_nid = "z6MkhwX7wBkHQvcLazu2KDFK6UifGkLcoxNm2iA38fPH9LwU";
-  const seed_ssh_keys = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./ssh-keys.nix")), pkgs));
+  const seed_ssh_keys = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./ssh-keys.nix")) as nix.Imported<typeof import("./ssh-keys.ts")>, pkgs));
   const radicleConfig = (alias) => nix.app(nix.sel(pkgs, "writeText"), "config.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
         [nix.POS]: $pos[1],
         preferredSeeds: nix.thunk(() => [nix.thunk(() => nix.str`${seed_nid}@seed:8776`)]),

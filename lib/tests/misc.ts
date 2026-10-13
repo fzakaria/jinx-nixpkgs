@@ -30,7 +30,7 @@ const formals$24 = { args: {  }, ellipsis: false };
 const formals$25 = { args: {  }, ellipsis: false };
 
 export default nix.thunk(() => (() => {
-  const lib = nix.thunk(() => nix.builtins.import(nix.path(here, "../default.nix")));
+  const lib = nix.thunk(() => nix.builtins.import(nix.path(here, "../default.nix")) as nix.Imported<typeof import("../default.ts")>);
   const allUnique = nix.thunk(() => nix.attr(lib, "allUnique"));
   const and = nix.thunk(() => nix.attr(lib, "and"));
   const attrNames = nix.thunk(() => nix.attr(lib, "attrNames"));

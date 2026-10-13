@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
-  const releases = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../release.nix")), nix.thunk(() => ({
+  const releases = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../release.nix")) as nix.Imported<typeof import("../release.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[22],
       configuration: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);

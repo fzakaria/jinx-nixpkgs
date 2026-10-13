@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
     const mutableExtensionsFile = nix.arg($_1, "mutableExtensionsFile");
     const mutableExtensionsFilePath = nix.thunk(() => nix.builtins.toString(mutableExtensionsFile));
     const mutableExtensions = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.builtins.pathExists(mutableExtensionsFile)), nix.thunk(() => nix.builtins.import(mutableExtensionsFilePath))));
-    const vscodeWithConfiguration = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./vscodeWithConfiguration.nix")), nix.thunk(() => ({
+    const vscodeWithConfiguration = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./vscodeWithConfiguration.nix")) as nix.Imported<typeof import("./vscodeWithConfiguration.ts")>, nix.thunk(() => ({
         [nix.POS]: $pos[0],
         lib: lib,
         writeShellScriptBin: writeShellScriptBin,
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         vscodeExtsFolderName: vscodeExtsFolderName,
         "user-data-dir": user_data_dir,
       }))));
-    const updateSettings = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./updateSettings.nix")), nix.thunk(() => ({
+    const updateSettings = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./updateSettings.nix")) as nix.Imported<typeof import("./updateSettings.ts")>, nix.thunk(() => ({
         [nix.POS]: $pos[2],
         lib: lib,
         writeShellScriptBin: writeShellScriptBin,
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
         userSettingsFolder: userSettingsFolder,
         symlinkFromUserSetting: nix.thunk(() => !nix.eq(user_data_dir, "")),
       }))));
-    const vscodeExts2nix = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./vscodeExts2nix.nix")), nix.thunk(() => ({
+    const vscodeExts2nix = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./vscodeExts2nix.nix")) as nix.Imported<typeof import("./vscodeExts2nix.ts")>, nix.thunk(() => ({
         [nix.POS]: $pos[7],
         lib: lib,
         writeShellScriptBin: writeShellScriptBin,

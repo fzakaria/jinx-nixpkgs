@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
       [nix.POS]: $pos[2],
       allowPkgsInPermittedInsecurePackages: nix.thunk(() => (() => {
-        const pkgs$ = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({
+        const pkgs$ = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../..")) as nix.Imported<typeof import("../../default.ts")>, nix.thunk(() => ({
             [nix.POS]: $pos[1],
             system: nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "system")),
             config: nix.thunk(() => nix.update(config, {

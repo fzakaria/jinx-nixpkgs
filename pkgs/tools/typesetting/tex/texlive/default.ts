@@ -94,11 +94,11 @@ export default nix.lambda((args) => (() => {
   const libxpm = nix.arg($, "libxpm");
   const libxmu = nix.arg($, "libxmu");
   const libxext = nix.arg($, "libxext");
-  const bin = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./bin.nix")), nix.thunk(() => nix.update(args_1, { [nix.POS]: $pos[0], tlpdb: overriddenTlpdb }))));
-  const tlpdb = nix.thunk(() => nix.builtins.import(nix.path(here, "./tlpdb.nix")));
+  const bin = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./bin.nix")) as nix.Imported<typeof import("./bin.ts")>, nix.thunk(() => nix.update(args_1, { [nix.POS]: $pos[0], tlpdb: overriddenTlpdb }))));
+  const tlpdb = nix.thunk(() => nix.builtins.import(nix.path(here, "./tlpdb.nix")) as nix.Imported<typeof import("./tlpdb.ts")>);
   const tlpdbVersion = nix.thunk(() => nix.sel(tlpdb, "00texlive.config"));
   const overriddenTlpdb = nix.thunk(() => (() => {
-    const overrides = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./tlpdb-overrides.nix")), nix.thunk(() => ({
+    const overrides = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./tlpdb-overrides.nix")) as nix.Imported<typeof import("./tlpdb-overrides.ts")>, nix.thunk(() => ({
         [nix.POS]: $pos[1],
         pkgs: nix.thunk(() => nix.attr(texlive, "pkgs")),
         stdenv: stdenv,
@@ -156,8 +156,8 @@ export default nix.lambda((args) => (() => {
       tl2nix: nix.path(here, "./tl2nix.sed"),
       nativeBuildInputs: nix.thunk(() => [nixfmt]),
     })), "xzcat \"$tlpdbxz\" | sed -rn -f \"$tl2nix\" | uniq | nixfmt > \"$out\"\n"));
-  const fixedHashes = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), useFixedHashes, nix.thunk(() => nix.builtins.import(nix.path(here, "./fixed-hashes.nix")))));
-  const buildTeXLivePackage = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./build-texlive-package.nix")), nix.thunk(() => ({
+  const fixedHashes = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), useFixedHashes, nix.thunk(() => nix.builtins.import(nix.path(here, "./fixed-hashes.nix")) as nix.Imported<typeof import("./fixed-hashes.ts")>)));
+  const buildTeXLivePackage = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./build-texlive-package.nix")) as nix.Imported<typeof import("./build-texlive-package.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[5],
       lib: lib,
       fetchurl: fetchurl,
@@ -187,7 +187,7 @@ export default nix.lambda((args) => (() => {
             deps: nix.thunk(() => nix.builtins.map((n) => nix.selOr(texlive, () => nix.sel(bin, nix.key(nix.force(n))), "pkgs", nix.key(nix.force(n))), nix.thunk(() => nix.selOr(args_3, () => [], "deps")))),
           })))))));
     })(), formals$2), overriddenTlpdb));
-  const buildTeXEnv = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./build-tex-env.nix")), nix.thunk(() => ({
+  const buildTeXEnv = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./build-tex-env.nix")) as nix.Imported<typeof import("./build-tex-env.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[8],
       pkgs: nix.thunk(() => nix.attr(texlive, "pkgs")),
       tlpdbVersion: tlpdbVersion,
@@ -252,7 +252,7 @@ export default nix.lambda((args) => (() => {
     return nix.app(nix.sel(lib, "mapAttrsToList"), toTLPkgSet, nix.thunk(() => nix.app(nix.sel(lib, "groupBy"), (p) => nix.sel(p, "pname"), pkgs)));
   })(), formals$3);
   const allPkgLists = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (n) => (drv) => ({ [nix.POS]: $pos[21], pkgs: nix.thunk(() => nix.app(toTLPkgList, drv)) }), tl));
-  const combine = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./combine-wrapper.nix")), nix.thunk(() => ({
+  const combine = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./combine-wrapper.nix")) as nix.Imported<typeof import("./combine-wrapper.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[22],
       pkgs: nix.thunk(() => nix.attr(texlive, "pkgs")),
       buildTeXEnv: buildTeXEnv,

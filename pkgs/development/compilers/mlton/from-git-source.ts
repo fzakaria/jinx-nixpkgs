@@ -39,7 +39,7 @@ makeFlagsArray=(
   WITH_GMP_LIB_DIR="${gmp}/lib"
   )
 `),
-      meta: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./meta.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], lib: lib })))),
+      meta: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./meta.nix")) as nix.Imported<typeof import("./meta.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[1], lib: lib })))),
     })));
 })(), formals$1);
 //# sourceMappingURL=from-git-source.ts.map

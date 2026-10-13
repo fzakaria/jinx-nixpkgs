@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
     const nixpkgsConfig = nix.arg($_1, "nixpkgsConfig");
     const pkg = nix.arg($_1, "pkg");
     const expected = nix.argOr($_1, "expected", () => true);
-    const testPkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../..")), nix.thunk(() => ({
+    const testPkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../..")) as nix.Imported<typeof import("../../../default.ts")>, nix.thunk(() => ({
         [nix.POS]: $pos[2],
         system: nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "system")),
         config: nixpkgsConfig,

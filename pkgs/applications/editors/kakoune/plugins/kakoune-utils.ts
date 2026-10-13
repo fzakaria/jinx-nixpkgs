@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return (() => {
-    const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./build-kakoune-plugin.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib, stdenv: stdenv }))));
+    const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./build-kakoune-plugin.nix")) as nix.Imported<typeof import("./build-kakoune-plugin.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib, stdenv: stdenv }))));
     return {
     [nix.POS]: $pos[1],
     buildKakounePlugin: nix.thunk(() => nix.attr(from, "buildKakounePlugin")),

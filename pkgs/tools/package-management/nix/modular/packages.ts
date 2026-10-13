@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
     })), nix.thunk(() => ({
       [nix.POS]: $pos[2],
       otherSplices: otherSplices,
-      f: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./packaging/components.nix")), nix.thunk(() => ({
+      f: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./packaging/components.nix")) as nix.Imported<typeof import("./packaging/components.ts")>, nix.thunk(() => ({
           [nix.POS]: $pos[1],
           lib: lib,
           teams: teams,

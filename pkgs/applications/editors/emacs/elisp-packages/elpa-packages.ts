@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const buildPackages = nix.arg($, "buildPackages");
   return (self) => (() => {
-    const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./lib-override-helper.nix")), pkgs, lib));
+    const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./lib-override-helper.nix")) as nix.Imported<typeof import("./lib-override-helper.ts")>, pkgs, lib));
     const ignoreCompilationError = nix.thunk(() => nix.attr(from, "ignoreCompilationError"));
     const markBroken = nix.thunk(() => nix.attr(from, "markBroken"));
     const fetchurl = nix.thunk(() => nix.app(nix.sel(buildPackages, "callPackage"), nix.path(here, "./fetchelpa.nix"), nix.thunk(() => ({}))));
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
             callPackage: (pkgs_1) => (args_2) => nix.app(nix.sel(self, "callPackage"), pkgs_1, nix.thunk(() => nix.update(args_2, { [nix.POS]: $pos[0], fetchurl: fetchurl }))),
           }))));
         const super$ = imported;
-        const commonOverrides = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./elpa-common-overrides.nix")), pkgs, lib, buildPackages));
+        const commonOverrides = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./elpa-common-overrides.nix")) as nix.Imported<typeof import("./elpa-common-overrides.ts")>, pkgs, lib, buildPackages));
         const overrides = (self_1) => (super$_1) => ({
           [nix.POS]: $pos[2],
           "org-transclusion": nix.thunk(() => (nix.asBool(nix.eq(nix.sel(super$_1, "org-transclusion", "version"), "1.2.0")) ? nix.app(markBroken, nix.thunk(() => nix.sel(super$_1, "org-transclusion"))) : nix.sel(super$_1, "org-transclusion"))),

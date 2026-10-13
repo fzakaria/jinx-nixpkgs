@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const buildPackages = nix.arg($, "buildPackages");
   return (self) => (() => {
-    const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./lib-override-helper.nix")), pkgs, lib));
+    const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./lib-override-helper.nix")) as nix.Imported<typeof import("./lib-override-helper.ts")>, pkgs, lib));
     const addPackageRequires = nix.thunk(() => nix.attr(from, "addPackageRequires"));
     const generateNongnu = nix.thunk(() => nix.app(nix.sel(lib, "makeOverridable"), nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
               }))),
           }))));
         const super$ = imported;
-        const commonOverrides = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./nongnu-common-overrides.nix")), pkgs, lib));
+        const commonOverrides = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./nongnu-common-overrides.nix")) as nix.Imported<typeof import("./nongnu-common-overrides.ts")>, pkgs, lib));
         const overrides = (self_1) => (super$_1) => ({
           [nix.POS]: $pos[2],
           "haskell-tng-mode": nix.thunk(() => nix.app(addPackageRequires, nix.thunk(() => nix.sel(super$_1, "haskell-tng-mode")), nix.thunk(() => [

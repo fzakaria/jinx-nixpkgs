@@ -6,6 +6,6 @@ const $pos = nix.positions(here + "/default.nix", [[["example-config", 2, 3]]]);
 
 export default nix.thunk(() => ({
   [nix.POS]: $pos[0],
-  "example-config": nix.thunk(() => nix.builtins.import(nix.path(here, "./example-config.nix"))),
+  "example-config": nix.thunk(() => nix.builtins.import(nix.path(here, "./example-config.nix")) as nix.Imported<typeof import("./example-config.ts")>),
 }));
 //# sourceMappingURL=default.ts.map

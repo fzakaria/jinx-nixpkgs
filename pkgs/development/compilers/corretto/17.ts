@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const rsync = nix.arg($, "rsync");
   const runCommand = nix.arg($, "runCommand");
   const testers = nix.arg($, "testers");
-  const corretto = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mk-corretto.nix")), nix.thunk(() => (() => {
+  const corretto = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mk-corretto.nix")) as nix.Imported<typeof import("./mk-corretto.ts")>, nix.thunk(() => (() => {
       const lib_1 = lib;
       const stdenv_1 = stdenv;
       const rsync_1 = rsync;

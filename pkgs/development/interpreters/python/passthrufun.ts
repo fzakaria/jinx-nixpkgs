@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
             const stdenv_1 = nix.arg($_2, "stdenv");
             const python = nix.arg($_2, "python");
             const overrides = nix.arg($_2, "overrides");
-            const pythonPackagesFun = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./python-packages-base.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], stdenv: stdenv_1, pkgs: pkgs, lib: lib, python: self }))));
+            const pythonPackagesFun = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./python-packages-base.nix")) as nix.Imported<typeof import("./python-packages-base.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], stdenv: stdenv_1, pkgs: pkgs, lib: lib, python: self }))));
             const otherSplices = nix.thunk(() => ({
               [nix.POS]: $pos[1],
               selfBuildBuild: nix.thunk(() => nix.sel(pythonOnBuildForBuild, "pkgs")),
@@ -56,13 +56,13 @@ export default nix.lambda((args) => (() => {
               selfHostHost: nix.thunk(() => nix.sel(pythonOnHostForHost, "pkgs")),
               selfTargetTarget: nix.thunk(() => nix.selOr(pythonOnTargetForTarget, () => ({}), "pkgs")),
             }));
-            const hooks = nix.thunk(() => nix.builtins.import(nix.path(here, "./hooks/default.nix")));
+            const hooks = nix.thunk(() => nix.builtins.import(nix.path(here, "./hooks/default.nix")) as nix.Imported<typeof import("./hooks/default.ts")>);
             const keep = (self_1) => nix.app(hooks, self_1, nix.thunk(() => ({})));
             const optionalExtensions = (cond) => (as) => nix.app(nix.sel(lib, "optionals"), cond, as);
-            const pythonExtension = nix.thunk(() => nix.builtins.import(nix.path(here, "../../../top-level/python-packages.nix")));
-            const python2Extension = nix.thunk(() => nix.builtins.import(nix.path(here, "../../misc/resholve/python2-packages.nix")));
+            const pythonExtension = nix.thunk(() => nix.builtins.import(nix.path(here, "../../../top-level/python-packages.nix")) as nix.Imported<typeof import("../../../top-level/python-packages.ts")>);
+            const python2Extension = nix.thunk(() => nix.builtins.import(nix.path(here, "../../misc/resholve/python2-packages.nix")) as nix.Imported<typeof import("../../misc/resholve/python2-packages.ts")>);
             const extensions = nix.thunk(() => nix.app(nix.sel(lib, "composeManyExtensions"), nix.thunk(() => nix.concat([hooks, pythonExtension], nix.concat(nix.app(optionalExtensions, nix.thunk(() => !nix.asBool(nix.sel(self, "isPy3k"))), nix.thunk(() => [python2Extension])), nix.concat(pythonPackagesExtensions, [overrides]))))));
-            const aliases = (self_1) => (super$) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../top-level/python-aliases.nix")), lib, self_1, super$)));
+            const aliases = (self_1) => (super$) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../top-level/python-aliases.nix")) as nix.Imported<typeof import("../../../top-level/python-aliases.ts")>, lib, self_1, super$)));
             return nix.app(makeScopeWithSplicing$, nix.thunk(() => ({
                 [nix.POS]: $pos[2],
                 otherSplices: otherSplices,
@@ -84,7 +84,7 @@ export default nix.lambda((args) => (() => {
           python: self,
           requiredPythonModules: nix.thunk(() => nix.attr(pythonPackages, "requiredPythonModules")),
         }))));
-      const withPackages = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./with-packages.nix")), nix.thunk(() => ({ [nix.POS]: $pos[5], buildEnv: buildEnv, pythonPackages: pythonPackages }))));
+      const withPackages = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./with-packages.nix")) as nix.Imported<typeof import("./with-packages.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[5], buildEnv: buildEnv, pythonPackages: pythonPackages }))));
       const pkgs = pythonPackages;
       const interpreter = nix.thunk(() => nix.str`${self}/bin/${executable_1}`);
       const executable_1 = executable;

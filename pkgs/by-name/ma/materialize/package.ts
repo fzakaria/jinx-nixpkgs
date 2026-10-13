@@ -92,7 +92,7 @@ cp "${package$}/${src}" "${dst}"
 `;
         })(), formals$3))));
   })(), formals$2);
-  const npmPackages = nix.thunk(() => nix.builtins.import(nix.path(here, "./npm_deps.nix")));
+  const npmPackages = nix.thunk(() => nix.builtins.import(nix.path(here, "./npm_deps.nix")) as nix.Imported<typeof import("./npm_deps.ts")>);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => (() => {
       const pname = "materialize";
       const version = "0.87.2";

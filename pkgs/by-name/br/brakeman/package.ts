@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const ruby = nix.arg($, "ruby");
   const bundlerApp = nix.arg($, "bundlerApp");
   const bundlerUpdateScript = nix.arg($, "bundlerUpdateScript");
-  const gems = nix.thunk(() => nix.builtins.import(nix.path(here, "./gemset.nix")));
+  const gems = nix.thunk(() => nix.builtins.import(nix.path(here, "./gemset.nix")) as nix.Imported<typeof import("./gemset.ts")>);
   const version = nix.thunk(() => nix.sel(gems, "brakeman", "version"));
   return nix.app(bundlerApp, nix.thunk(() => ({
       [nix.POS]: $pos[2],

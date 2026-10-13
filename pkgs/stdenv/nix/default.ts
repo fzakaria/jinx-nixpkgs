@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const overlays = nix.arg($, "overlays");
   const bootStages = nix.arg($, "bootStages");
-  const genericStdenv = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../generic")), nix.thunk(() => ({ [nix.POS]: $pos[0], defaultConfig: config }))));
+  const genericStdenv = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../generic")) as nix.Imported<typeof import("../generic/default.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], defaultConfig: config }))));
   return nix.concat(bootStages, [
     (prevStage) => ({
       [nix.POS]: $pos[5],
@@ -24,8 +24,8 @@ export default nix.lambda((args) => (() => {
           const hostPlatform = nix.thunk(() => nix.attr(from, "hostPlatform"));
           const targetPlatform = nix.thunk(() => nix.attr(from, "targetPlatform"));
           const preHook = "export NIX_ENFORCE_PURITY=\"${NIX_ENFORCE_PURITY-1}\"\nexport NIX_ENFORCE_NO_NATIVE=\"${NIX_ENFORCE_NO_NATIVE-1}\"\nexport NIX_IGNORE_LD_THROUGH_GCC=1\n";
-          const initialPath = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../generic/common-path.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], pkgs: prevStage }))));
-          const cc = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../build-support/cc-wrapper")), nix.thunk(() => ({
+          const initialPath = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../generic/common-path.nix")) as nix.Imported<typeof import("../generic/common-path.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[1], pkgs: prevStage }))));
+          const cc = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../build-support/cc-wrapper")) as nix.Imported<typeof import("../../build-support/cc-wrapper/default.ts")>, nix.thunk(() => ({
               [nix.POS]: $pos[2],
               lib: lib,
               nativeTools: false,

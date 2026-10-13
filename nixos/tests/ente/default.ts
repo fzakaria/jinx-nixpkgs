@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const garageAccessKey = "GKaaaaaaaaaaaaaaaaaaaaaaaa";
   const garageSecretKey = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
-  const certs = nix.thunk(() => nix.builtins.import(nix.path(here, "./snakeoil-certs.nix")));
+  const certs = nix.thunk(() => nix.builtins.import(nix.path(here, "./snakeoil-certs.nix")) as nix.Imported<typeof import("./snakeoil-certs.ts")>);
   const domain = nix.thunk(() => nix.sel(certs, "domain"));
   return {
     [nix.POS]: $pos[36],

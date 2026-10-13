@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform"));
   const isDarwin = nix.thunk(() => nix.attr(from, "isDarwin"));
   const system = nix.thunk(() => nix.attr(from, "system"));
-  const sources = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./sources.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], fetchurl: fetchurl, fetchzip: fetchzip }))));
+  const sources = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./sources.nix")) as nix.Imported<typeof import("./sources.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], fetchurl: fetchurl, fetchzip: fetchzip }))));
   const tupleStdenv = nix.thunk(() => (nix.asBool(isDarwin) ? nix.force(stdenvNoCC) : nix.force(stdenv)));
   return nix.app(nix.sel(tupleStdenv, "mkDerivation"), nix.thunk(() => (() => {
       const from_1 = nix.thunk(() => nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${system}`)), nix.key(nix.force(system))));

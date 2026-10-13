@@ -8,7 +8,7 @@ const formals$2 = { args: { context: false, value: false }, ellipsis: false };
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
-  const lib = nix.argOr($, "lib", () => nix.builtins.import(nix.path(here, "../.")));
+  const lib = nix.argOr($, "lib", () => nix.builtins.import(nix.path(here, "../.")) as nix.Imported<typeof import("../default.ts")>);
   const isAttrs = nix.thunk(() => nix.attr(nix.builtins, "isAttrs"));
   const isPath = nix.thunk(() => nix.attr(nix.builtins, "isPath"));
   const isString = nix.thunk(() => nix.attr(nix.builtins, "isString"));

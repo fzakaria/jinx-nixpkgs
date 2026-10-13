@@ -9,10 +9,10 @@ const formals$3 = { args: {  }, ellipsis: false };
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../..")), nix.thunk(() => ({ [nix.POS]: $pos[0], config: nix.thunk(() => ({})), overlays: [] }))));
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../..")) as nix.Imported<typeof import("../../../default.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], config: nix.thunk(() => ({})), overlays: [] }))));
   const lib = nix.argOr($, "lib", () => nix.sel(pkgs, "lib"));
-  const fun = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./maintainers.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], lib: lib }))));
-  const utils = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./utils.nix")), nix.thunk(() => ({ [nix.POS]: $pos[2], lib: lib }))));
+  const fun = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./maintainers.nix")) as nix.Imported<typeof import("./maintainers.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[1], lib: lib }))));
+  const utils = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./utils.nix")) as nix.Imported<typeof import("./utils.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[2], lib: lib }))));
   const mockPkgs = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const packages = nix.argOr($_1, "packages", () => []);

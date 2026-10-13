@@ -13,7 +13,7 @@ export default nix.thunk(() => (() => {
   const mapAttrs = nix.thunk(() => nix.attr(nix.builtins, "mapAttrs"));
   const match = nix.thunk(() => nix.attr(nix.builtins, "match"));
   const matchMirror = nix.thunk(() => nix.app(match, "mirror://([a-z]+)/(.*)"));
-  const mirrors = nix.thunk(() => nix.app(mapAttrs, (_) => nix.force(head), nix.thunk(() => nix.builtins.import(nix.path(here, "./mirrors.nix")))));
+  const mirrors = nix.thunk(() => nix.app(mapAttrs, (_) => nix.force(head), nix.thunk(() => nix.builtins.import(nix.path(here, "./mirrors.nix")) as nix.Imported<typeof import("./mirrors.ts")>)));
   return nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     const rewriteURL = nix.arg($, "rewriteURL");

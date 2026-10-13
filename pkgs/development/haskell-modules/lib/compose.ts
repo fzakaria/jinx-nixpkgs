@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return (() => {
-    const makePackageSet = nix.thunk(() => nix.builtins.import(nix.path(here, "../make-package-set.nix")));
+    const makePackageSet = nix.thunk(() => nix.builtins.import(nix.path(here, "../make-package-set.nix")) as nix.Imported<typeof import("../make-package-set.ts")>);
     const overrideCabal = (f) => (drv) => nix.update(nix.app(nix.sel(drv, "override"), (args_1) => nix.update(args_1, {
         [nix.POS]: $pos[0],
         mkDerivation: (drv_1) => nix.app(nix.sel(nix.app(nix.sel(args_1, "mkDerivation"), drv_1), "override"), f),

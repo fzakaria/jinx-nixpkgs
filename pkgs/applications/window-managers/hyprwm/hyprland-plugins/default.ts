@@ -41,15 +41,15 @@ export default nix.lambda((args) => (() => {
   const plugins = nix.thunk(() => nix.app(nix.sel(lib, "mergeAttrsList"), nix.thunk(() => [
       nix.thunk(() => ({
         [nix.POS]: $pos[3],
-        hy3: nix.thunk(() => nix.builtins.import(nix.path(here, "./hy3.nix"))),
+        hy3: nix.thunk(() => nix.builtins.import(nix.path(here, "./hy3.nix")) as nix.Imported<typeof import("./hy3.ts")>),
       })),
       nix.thunk(() => ({
         [nix.POS]: $pos[4],
-        "hypr-darkwindow": nix.thunk(() => nix.builtins.import(nix.path(here, "./hypr-darkwindow.nix"))),
+        "hypr-darkwindow": nix.thunk(() => nix.builtins.import(nix.path(here, "./hypr-darkwindow.nix")) as nix.Imported<typeof import("./hypr-darkwindow.ts")>),
       })),
       nix.thunk(() => ({
         [nix.POS]: $pos[5],
-        "hypr-dynamic-cursors": nix.thunk(() => nix.builtins.import(nix.path(here, "./hypr-dynamic-cursors.nix"))),
+        "hypr-dynamic-cursors": nix.thunk(() => nix.builtins.import(nix.path(here, "./hypr-dynamic-cursors.nix")) as nix.Imported<typeof import("./hypr-dynamic-cursors.ts")>),
       })),
       nix.thunk(() => ({
         [nix.POS]: $pos[6],
@@ -57,24 +57,24 @@ export default nix.lambda((args) => (() => {
       })),
       nix.thunk(() => ({
         [nix.POS]: $pos[7],
-        hyprgrass: nix.thunk(() => nix.builtins.import(nix.path(here, "./hyprgrass.nix"))),
+        hyprgrass: nix.thunk(() => nix.builtins.import(nix.path(here, "./hyprgrass.nix")) as nix.Imported<typeof import("./hyprgrass.ts")>),
       })),
       nix.thunk(() => ({
         [nix.POS]: $pos[8],
-        hyprspace: nix.thunk(() => nix.builtins.import(nix.path(here, "./hyprspace.nix"))),
+        hyprspace: nix.thunk(() => nix.builtins.import(nix.path(here, "./hyprspace.nix")) as nix.Imported<typeof import("./hyprspace.ts")>),
       })),
       nix.thunk(() => ({
         [nix.POS]: $pos[9],
-        hyprsplit: nix.thunk(() => nix.builtins.import(nix.path(here, "./hyprsplit.nix"))),
+        hyprsplit: nix.thunk(() => nix.builtins.import(nix.path(here, "./hyprsplit.nix")) as nix.Imported<typeof import("./hyprsplit.ts")>),
       })),
       nix.thunk(() => ({
         [nix.POS]: $pos[10],
-        hyprtasking: nix.thunk(() => nix.builtins.import(nix.path(here, "./hyprtasking.nix"))),
+        hyprtasking: nix.thunk(() => nix.builtins.import(nix.path(here, "./hyprtasking.nix")) as nix.Imported<typeof import("./hyprtasking.ts")>),
       })),
-      nix.thunk(() => nix.builtins.import(nix.path(here, "./hyprland-plugins.nix"))),
+      nix.thunk(() => nix.builtins.import(nix.path(here, "./hyprland-plugins.nix")) as nix.Imported<typeof import("./hyprland-plugins.ts")>),
       nix.thunk(() => ({
         [nix.POS]: $pos[11],
-        imgborders: nix.thunk(() => nix.builtins.import(nix.path(here, "./imgborders.nix"))),
+        imgborders: nix.thunk(() => nix.builtins.import(nix.path(here, "./imgborders.nix")) as nix.Imported<typeof import("./imgborders.ts")>),
       })),
       nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
           [nix.POS]: $pos[12],

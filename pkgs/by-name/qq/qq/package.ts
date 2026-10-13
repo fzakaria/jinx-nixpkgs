@@ -59,7 +59,7 @@ signedUrl=$(
 curl -fL --retry 3 -o "$out" "$signedUrl"
 `));
   })(), formals$2);
-  const sources = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./sources.nix")), nix.thunk(() => ({}))));
+  const sources = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./sources.nix")) as nix.Imported<typeof import("./sources.ts")>, nix.thunk(() => ({}))));
   const source = nix.thunk(() => nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const pname = "qq";
   const version = nix.thunk(() => nix.sel(source, "version"));

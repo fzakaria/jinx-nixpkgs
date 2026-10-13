@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   return {
     [nix.POS]: $pos[1],
-    formats: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./formats.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib, pkgs: pkgs })))),
+    formats: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./formats.nix")) as nix.Imported<typeof import("./formats.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib, pkgs: pkgs })))),
   };
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

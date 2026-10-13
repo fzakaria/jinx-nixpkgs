@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const gemdir = src;
       const gemfile = nix.thunk(() => nix.app(writeText, "Gemfile", ""));
       const lockfile = nix.thunk(() => nix.app(writeText, "Gemfile.lock", ""));
-      const gemset = nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.builtins.import(nix.path(here, "./gemset.nix"))), nix.thunk(() => nix.update({
+      const gemset = nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.builtins.import(nix.path(here, "./gemset.nix")) as nix.Imported<typeof import("./gemset.ts")>), nix.thunk(() => nix.update({
           [nix.POS]: $pos[3],
           vagrant: nix.thunk(() => ({
             [nix.POS]: $pos[2],
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
             version: version_1,
             dontCheckForBrokenSymlinks: true,
           })),
-        }, nix.app(nix.sel(lib, "optionalAttrs"), withLibvirt, nix.thunk(() => nix.builtins.import(nix.path(here, "./gemset_libvirt.nix"))))))));
+        }, nix.app(nix.sel(lib, "optionalAttrs"), withLibvirt, nix.thunk(() => nix.builtins.import(nix.path(here, "./gemset_libvirt.nix")) as nix.Imported<typeof import("./gemset_libvirt.ts")>))))));
       const postBuild = "for gem in \"$out\"/lib/ruby/gems/*/gems/*; do\n  cp -a \"$gem/\" \"$gem.new\"\n  rm \"$gem\"\n  # needed on macOS, otherwise the mv yields permission denied\n  chmod +w \"$gem.new\"\n  mv \"$gem.new\" \"$gem\"\ndone\n";
       return {
         [nix.POS]: $pos[4],

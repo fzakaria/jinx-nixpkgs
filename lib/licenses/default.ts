@@ -8,9 +8,9 @@ const formals$1 = { args: { lib: false }, ellipsis: false };
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
-  const licenses = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./licenses.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib }))));
-  const operators = nix.thunk(() => nix.builtins.import(nix.path(here, "./operators.nix")));
-  const helpers = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./helpers.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], lib: lib }))));
+  const licenses = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./licenses.nix")) as nix.Imported<typeof import("./licenses.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib }))));
+  const operators = nix.thunk(() => nix.builtins.import(nix.path(here, "./operators.nix")) as nix.Imported<typeof import("./operators.ts")>);
+  const helpers = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./helpers.nix")) as nix.Imported<typeof import("./helpers.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[1], lib: lib }))));
   return nix.update(licenses, nix.update(operators, helpers));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

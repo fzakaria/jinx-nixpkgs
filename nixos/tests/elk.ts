@@ -10,10 +10,10 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const config = nix.argOr($, "config", () => ({}));
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: $pos[0], system: system, config: config }))));
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")) as nix.Imported<typeof import("../../default.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], system: system, config: config }))));
   const lib = nix.thunk(() => nix.attr(pkgs, "lib"));
   const esUrl = "http://localhost:9200";
-  const mkElkTest = (name) => (elk) => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")), nix.thunk(() => ({
+  const mkElkTest = (name) => (elk) => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")) as nix.Imported<typeof import("./make-test-python.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[26],
       name: name,
       meta: nix.thunk(() => (() => {

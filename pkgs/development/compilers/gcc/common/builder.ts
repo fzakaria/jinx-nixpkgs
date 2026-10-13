@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const enableMultilib = nix.arg($, "enableMultilib");
   const targetConfig = nix.arg($, "targetConfig");
   const hostIsTarget = nix.arg($, "hostIsTarget");
-  const forceLibgccToBuildCrtStuff = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./libgcc-buildstuff.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib, stdenv: stdenv }))));
+  const forceLibgccToBuildCrtStuff = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./libgcc-buildstuff.nix")) as nix.Imported<typeof import("./libgcc-buildstuff.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib, stdenv: stdenv }))));
   const isCross = nix.thunk(() => !nix.asBool(hostIsTarget));
   nix.assert_(!nix.asBool((nix.asBool(enableMultilib) && nix.asBool(isCross))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/compilers/gcc/common/builder.nix:15:1");
   return (originalAttrs) => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => nix.update(originalAttrs, {

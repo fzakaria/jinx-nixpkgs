@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
 \`security.krb5.settings.${name}' for structured configuration.
 `));
   const cfg = nix.thunk(() => nix.sel(config, "security", "krb5"));
-  const format = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./krb5-conf-format.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], pkgs: pkgs, lib: lib })), nix.thunk(() => ({}))));
+  const format = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./krb5-conf-format.nix")) as nix.Imported<typeof import("./krb5-conf-format.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], pkgs: pkgs, lib: lib })), nix.thunk(() => ({}))));
   return {
     [nix.POS]: $pos[20],
     imports: nix.thunk(() => [

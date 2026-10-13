@@ -141,7 +141,7 @@ else 1521
             [nix.POS]: $pos[14],
             virtualHost: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
                 [nix.POS]: $pos[13],
-                type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => nix.builtins.import(nix.path(here, "../web-servers/apache-httpd/vhost-options.nix"))))),
+                type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => nix.builtins.import(nix.path(here, "../web-servers/apache-httpd/vhost-options.nix")) as nix.Imported<typeof import("../web-servers/apache-httpd/vhost-options.ts")>))),
                 example: nix.thunk(() => nix.app(literalExpression, "{\n  hostName = \"zabbix.example.org\";\n  adminAddr = \"webmaster@example.org\";\n  forceSSL = true;\n  enableACME = true;\n}\n")),
                 default: nix.thunk(() => ({})),
                 description: "Apache configuration can be done by adapting `services.httpd.virtualHosts.<name>`.\nSee [](#opt-services.httpd.virtualHosts) for further information.\n",
@@ -157,7 +157,7 @@ else 1521
             [nix.POS]: $pos[17],
             virtualHost: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
                 [nix.POS]: $pos[16],
-                type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => nix.builtins.import(nix.path(here, "../web-servers/nginx/vhost-options.nix"))))),
+                type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => nix.builtins.import(nix.path(here, "../web-servers/nginx/vhost-options.nix")) as nix.Imported<typeof import("../web-servers/nginx/vhost-options.ts")>))),
                 example: nix.thunk(() => nix.app(literalExpression, "{\n  forceSSL = true;\n  sslCertificateKey = \"/etc/ssl/zabbix.key\";\n  sslCertificate = \"/etc/ssl/zabbix.crt\";\n}\n")),
                 default: nix.thunk(() => ({})),
                 description: "Nginx configuration can be done by adapting `services.nginx.virtualHosts.<name>`.\nSee [](#opt-services.nginx.virtualHosts) for further information.\n",

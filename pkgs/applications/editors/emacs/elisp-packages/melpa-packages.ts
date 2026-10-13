@@ -13,7 +13,7 @@ export default nix.thunk(() => (() => {
     const lib = nix.arg($, "lib");
     const pkgs = nix.arg($, "pkgs");
     return (variant) => (self) => (() => {
-      const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./lib-override-helper.nix")), pkgs, lib));
+      const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./lib-override-helper.nix")) as nix.Imported<typeof import("./lib-override-helper.ts")>, pkgs, lib));
       const addPackageRequires = nix.thunk(() => nix.attr(from, "addPackageRequires"));
       const addPackageRequiresIfOlder = nix.thunk(() => nix.attr(from, "addPackageRequiresIfOlder"));
       const buildWithGit = nix.thunk(() => nix.attr(from, "buildWithGit"));
@@ -28,7 +28,7 @@ export default nix.thunk(() => (() => {
       const generateMelpa = nix.thunk(() => nix.app(nix.sel(lib, "makeOverridable"), nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const archiveJson = nix.argOr($_1, "archiveJson", () => nix.force(defaultArchive));
-          const from_1 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./libgenerated.nix")), lib, self));
+          const from_1 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./libgenerated.nix")) as nix.Imported<typeof import("./libgenerated.ts")>, lib, self));
           const melpaDerivation = nix.thunk(() => nix.attr(from_1, "melpaDerivation"));
           const super$ = nix.thunk(() => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.builtins.filter((s) => !nix.eq(s, null), nix.thunk(() => nix.builtins.map(nix.thunk(() => nix.app(melpaDerivation, variant)), nix.thunk(() => (nix.asBool(nix.builtins.isList(archiveJson)) ? nix.force(archiveJson) : nix.app(nix.sel(lib, "importJSON"), archiveJson)))))))));
           const overrides = nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(variant, "stable")), nix.thunk(() => ({

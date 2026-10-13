@@ -14,7 +14,7 @@ export default nix.thunk(() => (() => {
     })), "openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -nodes -days 365 \\\n  -subj '/C=GB/CN=example.com' -addext \"subjectAltName = DNS:example.com,DNS:uploads.example.com,DNS:conference.example.com\"\nmkdir -p $out\ncp key.pem cert.pem $out\n");
   const createUsers = (pkgs) => nix.app(nix.sel(pkgs, "writeShellScriptBin"), "create-prosody-users", "set -e\nprosodyctl register cthon98 example.com nothunter2\nprosodyctl register azurediamond example.com hunter2\n");
   const delUsers = (pkgs) => nix.app(nix.sel(pkgs, "writeShellScriptBin"), "delete-prosody-users", "set -e\nprosodyctl deluser cthon98@example.com\nprosodyctl deluser azurediamond@example.com\n");
-  return nix.app(nix.builtins.import(nix.path(here, "../make-test-python.nix")), nix.thunk(() => ({
+  return nix.app(nix.builtins.import(nix.path(here, "../make-test-python.nix")) as nix.Imported<typeof import("../make-test-python.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[30],
       name: "prosody-mysql",
       nodes: nix.thunk(() => ({

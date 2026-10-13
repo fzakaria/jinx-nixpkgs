@@ -5,7 +5,7 @@ const here = nix.here(import.meta.url);
 const $pos = nix.positions(here + "/generate-shell.nix", [[["packages", 16, 7]], [["name", 4, 3], ["buildCommand", 6, 3], ["buildInputs", 8, 3], ["nativeBuildInputs", 14, 3]]]);
 
 export default nix.thunk(() => (() => {
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../..")), nix.thunk(() => ({})))), null);
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../..")) as nix.Imported<typeof import("../../../default.ts")>, nix.thunk(() => ({})))), null);
   return nix.app(nix.sel(nix.lookup(w, "stdenv"), "mkDerivation"), nix.thunk(() => ({
       [nix.POS]: $pos[1],
       name: "generate-r-packages-shell",

@@ -7,7 +7,7 @@ const formals$1 = { args: { nixpkgs: true }, ellipsis: false };
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
-  const nixpkgs = nix.argOr($, "nixpkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({}))));
+  const nixpkgs = nix.argOr($, "nixpkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")) as nix.Imported<typeof import("../../default.ts")>, nix.thunk(() => ({}))));
   const w = nix.withScope(nixpkgs, null);
   const pyEnv = nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "python3"), "withPackages"), (ps) => (() => {
       const w_1 = nix.withScope(ps, w);

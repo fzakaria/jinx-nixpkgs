@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const symlinkJoin = nix.arg($, "symlinkJoin");
   const extensions = nix.argOr($, "extensions", () => []);
   const nrfutil = nix.arg($, "nrfutil");
-  const sources = nix.thunk(() => nix.builtins.import(nix.path(here, "./source.nix")));
+  const sources = nix.thunk(() => nix.builtins.import(nix.path(here, "./source.nix")) as nix.Imported<typeof import("./source.ts")>);
   const platformSources = nix.thunk(() => nix.selOr(sources, () => nix.sel(sources, "x86_64-linux"), nix.key(nix.sel(stdenvNoCC, "system"))));
   const sharedMeta = nix.thunk(() => ({
     [nix.POS]: $pos[0],

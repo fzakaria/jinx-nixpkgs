@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["pyray"]),
       passthru: nix.thunk(() => ({
         [nix.POS]: $pos[2],
-        tests: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./passthru-tests.nix")), nix.thunk(() => ({
+        tests: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./passthru-tests.nix")) as nix.Imported<typeof import("./passthru-tests.ts")>, nix.thunk(() => ({
             [nix.POS]: $pos[1],
             writers: writers,
             raylib: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),

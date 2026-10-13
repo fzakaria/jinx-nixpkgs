@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(dmenuSupport) || nix.asBool((nix.asBool(x11Support) || nix.asBool(waylandSupport)))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/pa/pass/package.nix:41:1");
   nix.assert_((!nix.asBool((nix.asBool(dmenuSupport) && nix.asBool(x11Support))) || nix.asBool((nix.asBool(!nix.eq(dmenu, null)) && nix.asBool(!nix.eq(xdotool, null))))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/pa/pass/package.nix:42:1");
   nix.assert_((!nix.asBool((nix.asBool(dmenuSupport) && nix.asBool(waylandSupport))) || nix.asBool((nix.asBool(!nix.eq(dmenu_wayland, null)) && nix.asBool(!nix.eq(ydotool, null))))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/pa/pass/package.nix:43:1");
-  const passExtensions = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./extensions")), nix.thunk(() => ({ [nix.POS]: $pos[0], pkgs: pkgs }))));
+  const passExtensions = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./extensions")) as nix.Imported<typeof import("./extensions/default.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], pkgs: pkgs }))));
   const env = nix.thunk(() => nix.app(nix.sel(lib, "makeOverridable"), nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const pass_1 = nix.arg($_1, "pass");

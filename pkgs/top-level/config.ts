@@ -248,7 +248,7 @@ export default nix.lambda((args) => (() => {
         default: false,
         description: "Set to `\"force\"` to allow evaluating for the `x86_64-darwin`\nplatform despite its deprecation in Nixpkgs 26.11.\n\nThis is not expected to function, and Hydra will not build\nbinaries for the platform. It is provided only as an escape\nhatch for custom setups, and comes with no support.\n\nSee the [release notes](#x86_64-darwin-26.11) for more\ninformation.\n",
       })))),
-    problems: nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "../stdenv/generic/problems.nix")), nix.thunk(() => ({ [nix.POS]: $pos[46], lib: lib }))), "configOptions")),
+    problems: nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "../stdenv/generic/problems.nix")) as nix.Imported<typeof import("../stdenv/generic/problems.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[46], lib: lib }))), "configOptions")),
   }));
   return {
     [nix.POS]: $pos[55],

@@ -9,7 +9,7 @@ const formals$2 = { args: { gh: false, importNpmLock: false, mkShell: false, nod
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
-  const pkgs = nix.argOr($, "pkgs", () => nix.sel(nix.app(nix.builtins.import(nix.path(here, "../.")), nix.thunk(() => ({ [nix.POS]: $pos[0], system: system }))), "pkgs"));
+  const pkgs = nix.argOr($, "pkgs", () => nix.sel(nix.app(nix.builtins.import(nix.path(here, "../.")) as nix.Imported<typeof import("../default.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], system: system }))), "pkgs"));
   return nix.app(nix.sel(pkgs, "callPackage"), nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const gh = nix.arg($_1, "gh");

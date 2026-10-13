@@ -5,7 +5,7 @@ const here = nix.here(import.meta.url);
 const $pos = nix.positions(here + "/transitive-broken-packages.nix", [[["allowBroken", 17, 37]], [["config", 17, 30]]]);
 
 export default nix.thunk(() => (() => {
-  const nixpkgs = nix.thunk(() => nix.builtins.import(nix.path(here, "../../..")));
+  const nixpkgs = nix.thunk(() => nix.builtins.import(nix.path(here, "../../..")) as nix.Imported<typeof import("../../../default.ts")>);
   const from = nix.thunk(() => nix.app(nixpkgs, nix.thunk(() => ({}))));
   const pkgs = nix.thunk(() => nix.attr(from, "pkgs"));
   const lib = nix.thunk(() => nix.attr(from, "lib"));

@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const vmTools = nix.thunk(() => nix.attr(pkgs, "vmTools"));
   const xz = nix.thunk(() => nix.attr(pkgs, "xz"));
   return (() => {
-    const sourceTarball = (args_1) => nix.app(nix.builtins.import(nix.path(here, "./source-tarball.nix")), nix.thunk(() => nix.update({
+    const sourceTarball = (args_1) => nix.app(nix.builtins.import(nix.path(here, "./source-tarball.nix")) as nix.Imported<typeof import("./source-tarball.ts")>, nix.thunk(() => nix.update({
         [nix.POS]: $pos[0],
         lib: lib,
         stdenv: stdenv,
@@ -35,9 +35,9 @@ export default nix.lambda((args) => (() => {
         libtool: libtool,
       }, args_1)));
     const makeSourceTarball = sourceTarball;
-    const binaryTarball = (args_1) => nix.app(nix.builtins.import(nix.path(here, "./binary-tarball.nix")), nix.thunk(() => nix.update({ [nix.POS]: $pos[1], lib: lib, stdenv: stdenv }, args_1)));
-    const mvnBuild = (args_1) => nix.app(nix.builtins.import(nix.path(here, "./maven-build.nix")), nix.thunk(() => nix.update({ [nix.POS]: $pos[2], lib: lib, stdenv: stdenv }, args_1)));
-    const nixBuild = (args_1) => nix.app(nix.builtins.import(nix.path(here, "./nix-build.nix")), nix.thunk(() => nix.update({ [nix.POS]: $pos[3], lib: lib, stdenv: stdenv }, args_1)));
+    const binaryTarball = (args_1) => nix.app(nix.builtins.import(nix.path(here, "./binary-tarball.nix")) as nix.Imported<typeof import("./binary-tarball.ts")>, nix.thunk(() => nix.update({ [nix.POS]: $pos[1], lib: lib, stdenv: stdenv }, args_1)));
+    const mvnBuild = (args_1) => nix.app(nix.builtins.import(nix.path(here, "./maven-build.nix")) as nix.Imported<typeof import("./maven-build.ts")>, nix.thunk(() => nix.update({ [nix.POS]: $pos[2], lib: lib, stdenv: stdenv }, args_1)));
+    const nixBuild = (args_1) => nix.app(nix.builtins.import(nix.path(here, "./nix-build.nix")) as nix.Imported<typeof import("./nix-build.ts")>, nix.thunk(() => nix.update({ [nix.POS]: $pos[3], lib: lib, stdenv: stdenv }, args_1)));
     const coverageAnalysis = (args_1) => nix.app(nixBuild, nix.thunk(() => nix.update({
         [nix.POS]: $pos[4],
         lcov: lcov,
@@ -47,8 +47,8 @@ export default nix.lambda((args) => (() => {
       }, args_1)));
     const clangAnalysis = (args_1) => nix.app(nixBuild, nix.thunk(() => nix.update({ [nix.POS]: $pos[5], "clang-analyzer": clang_analyzer, doClangAnalysis: true }, args_1)));
     const coverityAnalysis = (args_1) => nix.app(nixBuild, nix.thunk(() => nix.update({ [nix.POS]: $pos[6], "cov-build": cov_build, xz: xz, doCoverityAnalysis: true }, args_1)));
-    const rpmBuild = (args_1) => nix.app(nix.builtins.import(nix.path(here, "./rpm-build.nix")), nix.thunk(() => nix.update({ [nix.POS]: $pos[7], lib: lib, vmTools: vmTools }, args_1)));
-    const debBuild = (args_1) => nix.app(nix.builtins.import(nix.path(here, "./debian-build.nix")), nix.thunk(() => nix.update({
+    const rpmBuild = (args_1) => nix.app(nix.builtins.import(nix.path(here, "./rpm-build.nix")) as nix.Imported<typeof import("./rpm-build.ts")>, nix.thunk(() => nix.update({ [nix.POS]: $pos[7], lib: lib, vmTools: vmTools }, args_1)));
+    const debBuild = (args_1) => nix.app(nix.builtins.import(nix.path(here, "./debian-build.nix")) as nix.Imported<typeof import("./debian-build.ts")>, nix.thunk(() => nix.update({
         [nix.POS]: $pos[8],
         lib: lib,
         stdenv: stdenv,

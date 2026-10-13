@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const config = nix.argOr($, "config", () => ({}));
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: $pos[0], system: system, config: config }))));
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")) as nix.Imported<typeof import("../../default.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], system: system, config: config }))));
   const channelMap = nix.argOr($, "channelMap", () => ({
     [nix.POS]: $pos[1],
     stable: nix.thunk(() => nix.sel(pkgs, "chromium")),
@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
     "chrome-beta": nix.thunk(() => nix.sel(pkgs, "google-chrome-beta")),
     "chrome-dev": nix.thunk(() => nix.sel(pkgs, "google-chrome-dev")),
   }));
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: $pos[2], system: system, pkgs: pkgs })))), null);
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")) as nix.Imported<typeof import("../lib/testing-python.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[2], system: system, pkgs: pkgs })))), null);
   const w_1 = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib")), w);
   const user = "alice";
   const startupHTML = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "chromium-startup.html", nix.thunk(() => nix.str`<!DOCTYPE html>

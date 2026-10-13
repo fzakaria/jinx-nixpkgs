@@ -135,7 +135,7 @@ export default nix.lambda((args) => (() => {
         };
       })(), formals$4),
     })),
-    testScript: nix.thunk(() => nix.str`${nix.sel(nix.builtins.import(nix.path(here, "./acme/utils.nix")), "pythonUtils")}
+    testScript: nix.thunk(() => nix.str`${nix.sel(nix.builtins.import(nix.path(here, "./acme/utils.nix")) as nix.Imported<typeof import("./acme/utils.ts")>, "pythonUtils")}
 
 with subtest("start ACME and DNS server"):
   acme.start()

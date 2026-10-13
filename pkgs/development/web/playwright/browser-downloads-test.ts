@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const playwright_core = nix.arg($, "playwright-core");
   const browserNames = nix.thunk(() => ["chromium", "chromium-headless-shell", "firefox", "webkit", "ffmpeg"]);
   const browsersJSON = nix.thunk(() => nix.sel(nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./browsers.json")), "browsers"));
-  const browserDownloads = nix.thunk(() => nix.app(nix.sel(lib, "genAttrs"), browserNames, (name) => nix.app(nix.builtins.import(nix.path(here, "./browser-downloads.nix")), nix.thunk(() => (() => {
+  const browserDownloads = nix.thunk(() => nix.app(nix.sel(lib, "genAttrs"), browserNames, (name) => nix.app(nix.builtins.import(nix.path(here, "./browser-downloads.nix")) as nix.Imported<typeof import("./browser-downloads.ts")>, nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(browsersJSON, nix.key(nix.force(name))));
         return {
         [nix.POS]: $pos[0],

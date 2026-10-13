@@ -11,9 +11,9 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   return nix.app(nix.sel(lib, "mapAttrs"), (name) => (scheduler) => nix.app(callPackage, scheduler, nix.thunk(() => ({}))), nix.thunk(() => ({
       [nix.POS]: $pos[0],
-      cscheds: nix.thunk(() => nix.builtins.import(nix.path(here, "./scx_cscheds.nix"))),
-      rustscheds: nix.thunk(() => nix.builtins.import(nix.path(here, "./scx_rustscheds.nix"))),
-      full: nix.thunk(() => nix.builtins.import(nix.path(here, "./scx_full.nix"))),
+      cscheds: nix.thunk(() => nix.builtins.import(nix.path(here, "./scx_cscheds.nix")) as nix.Imported<typeof import("./scx_cscheds.ts")>),
+      rustscheds: nix.thunk(() => nix.builtins.import(nix.path(here, "./scx_rustscheds.nix")) as nix.Imported<typeof import("./scx_rustscheds.ts")>),
+      full: nix.thunk(() => nix.builtins.import(nix.path(here, "./scx_full.nix")) as nix.Imported<typeof import("./scx_full.ts")>),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

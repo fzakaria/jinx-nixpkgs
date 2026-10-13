@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
   const toShellVars = nix.thunk(() => nix.attr(lib, "toShellVars"));
   const warn = nix.thunk(() => nix.attr(lib, "warn"));
   const nixpkgsVersion = nix.thunk(() => nix.sel(lib, "trivial", "release"));
-  const mirrors = nix.thunk(() => nix.update(nix.builtins.import(nix.path(here, "./mirrors.nix")), { [nix.POS]: $pos[0], hashedMirrors: hashedMirrors }));
+  const mirrors = nix.thunk(() => nix.update(nix.builtins.import(nix.path(here, "./mirrors.nix")) as nix.Imported<typeof import("./mirrors.ts")>, { [nix.POS]: $pos[0], hashedMirrors: hashedMirrors }));
   const mirrorsListFile = nix.thunk(() => (() => {
     const mirrorsPrefixed = nix.thunk(() => nix.app(mapAttrs$, (n) => (v) => nix.app(nameValuePair, nix.thunk(() => nix.add("_mirror_", n)), v), mirrors));
     return nix.app(toFile, "mirrors-list", nix.thunk(() => nix.app(toShellVars, mirrorsPrefixed)));

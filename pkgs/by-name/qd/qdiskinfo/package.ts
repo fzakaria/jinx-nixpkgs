@@ -58,9 +58,9 @@ cp $SRCPATH/${nix.sel(themeBundle$, "paths", "status")}/SDdiskStatusUnknown-300.
   --suffix PATH : ${smartmontools}/bin
 `),
       passthru: nix.thunk(() => (() => {
-        const themeSources = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./sources.nix")), nix.thunk(() => ({ [nix.POS]: $pos[3], fetchzip: fetchzip }))));
+        const themeSources = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./sources.nix")) as nix.Imported<typeof import("./sources.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[3], fetchzip: fetchzip }))));
         return (() => {
-          const themeBundles = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./themes.nix")), nix.thunk(() => ({ [nix.POS]: $pos[4], themeSources: themeSources }))));
+          const themeBundles = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./themes.nix")) as nix.Imported<typeof import("./themes.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[4], themeSources: themeSources }))));
           const tests = nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "mapAttrs")), themeBundles, (themeName) => (themeBundle_1) => nix.app(nix.sel(nix.app(nix.sel(qdiskinfo, "override"), nix.thunk(() => ({ [nix.POS]: $pos[5], themeBundle: themeBundle_1 }))), "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[6], pname: nix.thunk(() => nix.str`qdiskinfo-${themeName}`) })))));
           const updateScript = nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({}))));
           return { [nix.POS]: $pos[7], themeBundles, tests, updateScript };

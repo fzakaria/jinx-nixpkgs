@@ -11,7 +11,7 @@ const formals$5 = { args: { lib: false }, ellipsis: true };
 const formals$6 = { args: { config: false, pkgs: false }, ellipsis: true };
 
 export default nix.thunk(() => (() => {
-  const makeTest = nix.thunk(() => nix.builtins.import(nix.path(here, "./make-test-python.nix")));
+  const makeTest = nix.thunk(() => nix.builtins.import(nix.path(here, "./make-test-python.nix")) as nix.Imported<typeof import("./make-test-python.ts")>);
   const feedLabel = "Image";
   const feedQrContent = "Test";
   const feedImageFile = "feed.png";

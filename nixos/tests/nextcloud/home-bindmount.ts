@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const testBase = nix.arg($, "testBase");
   const system = nix.arg($, "system");
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], system: system, pkgs: pkgs })))), null);
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/testing-python.nix")) as nix.Imported<typeof import("../../lib/testing-python.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], system: system, pkgs: pkgs })))), null);
   return nix.app(nix.lookup(w, "runTest"), nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const lib = nix.arg($_1, "lib");

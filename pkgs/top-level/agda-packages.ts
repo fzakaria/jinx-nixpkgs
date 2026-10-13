@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       [nix.POS]: $pos[2],
       mkLibraryFile: mkLibraryFile,
       mkDerivation: mkDerivation,
-      lib: nix.thunk(() => nix.app(nix.sel(lib, "extend"), (final) => (prev) => nix.app(nix.builtins.import(nix.path(here, "../build-support/agda/lib.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], lib: prev }))))),
+      lib: nix.thunk(() => nix.app(nix.sel(lib, "extend"), (final) => (prev) => nix.app(nix.builtins.import(nix.path(here, "../build-support/agda/lib.nix")) as nix.Imported<typeof import("../build-support/agda/lib.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[1], lib: prev }))))),
       agda: nix.thunk(() => nix.app(withPackages, [])),
       "standard-library": nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/libraries/agda/standard-library"), nix.thunk(() => ({})))),
       "iowa-stdlib": nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/libraries/agda/iowa-stdlib"), nix.thunk(() => ({})))),

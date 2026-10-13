@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "ENABLE_TRACY", false)),
       ]),
       preConfigure: nix.thunk(() => nix.str`mkdir -p build/_deps
-${nix.app(nix.sel(lib, "concatMapAttrsStringSep"), "\n", (name) => (src) => nix.str`cp -r --no-preserve=ownership,mode ${src} build/_deps/${name}-src`, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./deps.nix")), nix.thunk(() => ({
+${nix.app(nix.sel(lib, "concatMapAttrsStringSep"), "\n", (name) => (src) => nix.str`cp -r --no-preserve=ownership,mode ${src} build/_deps/${name}-src`, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./deps.nix")) as nix.Imported<typeof import("./deps.ts")>, nix.thunk(() => ({
             [nix.POS]: $pos[2],
             fetchFromGitHub: fetchFromGitHub,
             applyPatches: applyPatches,

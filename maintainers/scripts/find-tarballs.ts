@@ -9,7 +9,7 @@ const formals$2 = { args: { key: false, value: false }, ellipsis: false };
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const expr = nix.arg($, "expr");
-  const lib = nix.argOr($, "lib", () => nix.builtins.import(nix.path(here, "../../lib")));
+  const lib = nix.argOr($, "lib", () => nix.builtins.import(nix.path(here, "../../lib")) as nix.Imported<typeof import("../../lib/default.ts")>);
   const addErrorContext = nix.thunk(() => nix.attr(lib, "addErrorContext"));
   const attrNames = nix.thunk(() => nix.attr(lib, "attrNames"));
   const concatLists = nix.thunk(() => nix.attr(lib, "concatLists"));

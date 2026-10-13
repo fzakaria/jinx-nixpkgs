@@ -7,7 +7,7 @@ const formals$1 = { args: { lib: true }, ellipsis: false };
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
-  const lib = nix.argOr($, "lib", () => nix.builtins.import(nix.path(here, "../.")));
+  const lib = nix.argOr($, "lib", () => nix.builtins.import(nix.path(here, "../.")) as nix.Imported<typeof import("../default.ts")>);
   const map = nix.thunk(() => nix.attr(nix.builtins, "map"));
   const match = nix.thunk(() => nix.attr(nix.builtins, "match"));
   const genList = nix.thunk(() => nix.attr(nix.builtins, "genList"));

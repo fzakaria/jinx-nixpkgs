@@ -638,8 +638,8 @@ to deploy Helm charts. This option only makes sense on server nodes (\`role = se
         mkRancherModule: mkRancherModule,
       }));
       return [
-        nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./k3s.nix")), args_1)),
-        nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./rke2.nix")), args_1)),
+        nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./k3s.nix")) as nix.Imported<typeof import("./k3s.ts")>, args_1)),
+        nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./rke2.nix")) as nix.Imported<typeof import("./rke2.ts")>, args_1)),
       ];
     })()),
     meta: nix.thunk(() => ({

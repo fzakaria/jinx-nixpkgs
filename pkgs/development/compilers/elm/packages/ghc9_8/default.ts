@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
               enableParallelBuilding: false,
               preConfigure: nix.thunk(() => nix.app(fetchElmDeps, nix.thunk(() => ({
                   [nix.POS]: $pos[0],
-                  elmPackages: nix.thunk(() => nix.builtins.import(nix.path(here, "../elm-srcs.nix"))),
+                  elmPackages: nix.thunk(() => nix.builtins.import(nix.path(here, "../elm-srcs.nix")) as nix.Imported<typeof import("../elm-srcs.ts")>),
                   elmVersion: nix.thunk(() => nix.sel(drv, "version")),
                   registryDat: nix.path(here, "../../registry.dat"),
                 })))),

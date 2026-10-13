@@ -165,14 +165,14 @@ ${nix.app(concatStringsSep, "\n", nix.thunk(() => nix.app(mapAttrsToList, (k) =>
             })))),
           h2o: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
               [nix.POS]: $pos[20],
-              type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../web-servers/h2o/vhost-options.nix")), nix.thunk(() => ({ [nix.POS]: $pos[19], config: config, lib: lib })))))))),
+              type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../web-servers/h2o/vhost-options.nix")) as nix.Imported<typeof import("../web-servers/h2o/vhost-options.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[19], config: config, lib: lib })))))))),
               default: null,
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  acme.enable = true;\n  tls.policy = \"force\";\n  compress = \"ON\";\n}\n")),
               description: "With this option, you can customize an H2O virtual host which already\nhas sensible defaults for Dolibarr. Set to `{ }` if you do not need any\ncustomization to the virtual host. If enabled, then by default, the\n{option}`serverName` is `${domain}`, If this is set to `null` (the\ndefault), no H2O `hosts` will be configured.\n",
             })))),
           nginx: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
               [nix.POS]: $pos[26],
-              type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../web-servers/nginx/vhost-options.nix")), nix.thunk(() => ({ [nix.POS]: $pos[21], config: config, lib: lib })))), nix.thunk(() => ({
+              type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../web-servers/nginx/vhost-options.nix")) as nix.Imported<typeof import("../web-servers/nginx/vhost-options.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[21], config: config, lib: lib })))), nix.thunk(() => ({
                       [nix.POS]: $pos[25],
                       options: nix.thunk(() => ({
                         [nix.POS]: $pos[24],

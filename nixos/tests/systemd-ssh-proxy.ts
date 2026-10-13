@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   const config = nix.arg($, "config");
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./ssh-keys.nix")), pkgs));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./ssh-keys.nix")) as nix.Imported<typeof import("./ssh-keys.ts")>, pkgs));
   const snakeOilEd25519PrivateKey = nix.thunk(() => nix.attr(from, "snakeOilEd25519PrivateKey"));
   const snakeOilEd25519PublicKey = nix.thunk(() => nix.attr(from, "snakeOilEd25519PublicKey"));
   return {

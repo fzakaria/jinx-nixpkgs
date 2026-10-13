@@ -9,7 +9,7 @@ const formals$3 = { args: { nodes: false }, ellipsis: true };
 const formals$4 = { args: { config: false, pkgs: false }, ellipsis: true };
 const formals$5 = { args: { pkgs: false }, ellipsis: true };
 
-export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../make-test-python.nix")), nix.lambda((args) => (() => {
+export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../make-test-python.nix")) as nix.Imported<typeof import("../../make-test-python.ts")>, nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     const pkgs = nix.arg($, "pkgs");
     const cert = (pkgs_1) => nix.app(nix.sel(pkgs_1, "runCommand"), "selfSignedCerts", nix.thunk(() => ({
@@ -272,7 +272,7 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../..
           };
         })(), formals$5),
       })),
-      testScript: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./script.nix")), nix.thunk(() => ({
+      testScript: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./script.nix")) as nix.Imported<typeof import("./script.ts")>, nix.thunk(() => ({
           [nix.POS]: $pos[62],
           pkgs: pkgs,
           extraInit: "nginx.wait_for_unit(\"nginx.service\")\nnginx.wait_for_open_port(443)\ndatabases.wait_for_unit(\"redis-mastodon.service\")\ndatabases.wait_for_unit(\"postgresql.target\")\ndatabases.wait_for_open_port(31637)\ndatabases.wait_for_open_port(5432)\n",

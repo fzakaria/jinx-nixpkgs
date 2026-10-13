@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
         build: nix.thunk(() => ({
           [nix.POS]: $pos[9],
           image: nix.thunk(() => nix.sel(config, "system", "build", "vmwareImage")),
-          vmwareImage: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/make-disk-image.nix")), nix.thunk(() => ({
+          vmwareImage: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/make-disk-image.nix")) as nix.Imported<typeof import("../../lib/make-disk-image.ts")>, nix.thunk(() => ({
               [nix.POS]: $pos[8],
               name: nix.thunk(() => nix.sel(cfg, "vmDerivationName")),
               baseName: nix.thunk(() => nix.sel(config, "image", "baseName")),

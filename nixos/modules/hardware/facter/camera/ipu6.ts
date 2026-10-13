@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(config, "hardware", "facter"));
   const report = nix.thunk(() => nix.attr(from, "report"));
   const detected = nix.thunk(() => nix.attr(from, "detected"));
-  const facterLib = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib.nix")), lib));
+  const facterLib = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib.nix")) as nix.Imported<typeof import("../lib.ts")>, lib));
   const isCpuGeneration = (_family) => (models) => (nix.asBool(nix.app(nix.sel(facterLib, "hasIntelCpu"), report)) && nix.asBool(nix.app(nix.sel(lib, "any"), (actual) => (nix.asBool(nix.eq(nix.selOr(actual, () => 0n, "family"), 6n)) && nix.asBool(nix.builtins.elem(nix.thunk(() => nix.selOr(actual, () => 0n, "model")), models))), nix.thunk(() => nix.sel(report, "hardware", "cpu")))));
   const isTigerLake = nix.thunk(() => nix.app(isCpuGeneration, 6n, nix.thunk(() => [140n, 141n])));
   const isAdlerLake = nix.thunk(() => nix.app(isCpuGeneration, 6n, nix.thunk(() => [151n, 154n])));

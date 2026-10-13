@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.lookup(w_1, "pytest-snapshot")),
         ], [gitMinimal, ripgrep, versionCheckHook, writableTmpDirAsHomeHook]);
       })()),
-      disabledTests: nix.thunk(() => nix.builtins.import(nix.path(here, "./failing_tests.nix"))),
+      disabledTests: nix.thunk(() => nix.builtins.import(nix.path(here, "./failing_tests.nix")) as nix.Imported<typeof import("./failing_tests.ts")>),
       disabledTestPaths: nix.thunk(() => ["tests/test_chroma.py"]),
       preCheck: "git init\n",
       __darwinAllowLocalNetworking: true,

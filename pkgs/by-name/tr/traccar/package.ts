@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       ]),
     }))));
   const protobuf = protobuf_35;
-  const protobufJavaVer = nix.thunk(() => nix.builtins.import(nix.path(here, "./protobuf-java-version.nix")));
+  const protobufJavaVer = nix.thunk(() => nix.builtins.import(nix.path(here, "./protobuf-java-version.nix")) as nix.Imported<typeof import("./protobuf-java-version.ts")>);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
       [nix.POS]: $pos[7],
       pname: "traccar",

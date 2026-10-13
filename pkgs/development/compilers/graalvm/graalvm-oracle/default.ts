@@ -17,10 +17,10 @@ export default nix.lambda((args) => (() => {
       [nix.POS]: $pos[1],
       useMusl: useMusl,
       version: version,
-      src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./hashes.nix")), nix.key(nix.force(version)), nix.key(nix.sel(stdenv, "system")))))),
+      src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./hashes.nix")) as nix.Imported<typeof import("./hashes.ts")>, nix.key(nix.force(version)), nix.key(nix.sel(stdenv, "system")))))),
       meta: nix.thunk(() => ({
         [nix.POS]: $pos[0],
-        platforms: nix.thunk(() => nix.builtins.attrNames(nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./hashes.nix")), nix.key(nix.force(version)))))),
+        platforms: nix.thunk(() => nix.builtins.attrNames(nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./hashes.nix")) as nix.Imported<typeof import("./hashes.ts")>, nix.key(nix.force(version)))))),
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
       })),
       pname: "graalvm-oracle",

@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "hadoop"));
-  const hadoopConf = nix.thunk(() => nix.str`${nix.app(nix.builtins.import(nix.path(here, "./conf.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], cfg: cfg, pkgs: pkgs, lib: lib })))}/`);
+  const hadoopConf = nix.thunk(() => nix.str`${nix.app(nix.builtins.import(nix.path(here, "./conf.nix")) as nix.Imported<typeof import("./conf.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], cfg: cfg, pkgs: pkgs, lib: lib })))}/`);
   const mkIfNotNull = (x) => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(x, null)), x);
   const hbaseRoleOption = (name) => (extraOpts) => nix.update({
     [nix.POS]: $pos[5],

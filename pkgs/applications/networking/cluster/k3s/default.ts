@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const args_1 = args;
   const lib = nix.arg($, "lib");
   const callPackage = nix.arg($, "callPackage");
-  const k3s_builder = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./builder.nix")), lib));
+  const k3s_builder = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./builder.nix")) as nix.Imported<typeof import("./builder.ts")>, lib));
   const forVersions = (versions) => nix.app(callPackage, nix.thunk(() => nix.app(k3s_builder, nix.thunk(() => nix.builtins.import(versions)))), extraArgs);
   const extraArgs = nix.thunk(() => nix.builtins.removeAttrs(args_1, nix.thunk(() => ["callPackage"])));
   return {

@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   return {
     [nix.POS]: $pos[21],
     imports: nix.thunk(() => [
-      nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], talerComponent: talerComponent, servicesDB: servicesDB })))),
+      nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")) as nix.Imported<typeof import("./common.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], talerComponent: talerComponent, servicesDB: servicesDB })))),
     ]),
     options: nix.thunk(() => ({
       [nix.POS]: $pos[15],

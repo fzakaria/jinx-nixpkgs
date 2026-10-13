@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(pkgs, "runCommand"), nix.thunk(() => nix.str`nixpkgs-lib-tests-nix-${nix.sel(nix$, "version")}`), nix.thunk(() => ({
       [nix.POS]: $pos[1],
       buildInputs: nix.thunk(() => [
-        nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../path/tests")), nix.thunk(() => ({ [nix.POS]: $pos[0], pkgs: pkgs })))),
+        nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../path/tests")) as nix.Imported<typeof import("../path/tests/default.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], pkgs: pkgs })))),
       ]),
       nativeBuildInputs: nix.thunk(() => nix.concat([nix$, nix.thunk(() => nix.sel(pkgs, "gitMinimal"))], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "isLinux")), nix.thunk(() => nix.sel(pkgs, "inotify-tools"))))),
       strictDeps: true,

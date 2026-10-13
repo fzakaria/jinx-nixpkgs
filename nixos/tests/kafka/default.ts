@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   return {
     [nix.POS]: $pos[1],
-    base: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./base.nix")), nix.thunk(() => ({
+    base: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./base.nix")) as nix.Imported<typeof import("./base.ts")>, nix.thunk(() => ({
         [nix.POS]: $pos[0],
         pkgs: pkgs,
         runTest: runTest,

@@ -13,16 +13,16 @@ export default nix.thunk(() => ({
   outputs: nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     const self = nix.arg($, "self");
-    const libVersionInfoOverlay = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./lib/flake-version-info.nix")), self));
-    const lib = nix.thunk(() => nix.app(nix.sel(nix.builtins.import(nix.path(here, "./lib")), "extend"), libVersionInfoOverlay));
+    const libVersionInfoOverlay = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./lib/flake-version-info.nix")) as nix.Imported<typeof import("./lib/flake-version-info.ts")>, self));
+    const lib = nix.thunk(() => nix.app(nix.sel(nix.builtins.import(nix.path(here, "./lib")) as nix.Imported<typeof import("./lib/default.ts")>, "extend"), libVersionInfoOverlay));
     const forAllSystems = nix.thunk(() => nix.app(nix.sel(lib, "genAttrs"), nix.thunk(() => nix.sel(lib, "systems", "flakeExposed"))));
-    const jobs = nix.thunk(() => nix.app(forAllSystems, (system) => nix.app(nix.builtins.import(nix.path(here, "./pkgs/top-level/release.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], nixpkgs: self, system: system })))));
+    const jobs = nix.thunk(() => nix.app(forAllSystems, (system) => nix.app(nix.builtins.import(nix.path(here, "./pkgs/top-level/release.nix")) as nix.Imported<typeof import("./pkgs/top-level/release.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], nixpkgs: self, system: system })))));
     return {
       [nix.POS]: $pos[28],
       lib: nix.thunk(() => nix.app(nix.sel(lib, "extend"), (final) => (prev) => ({
           [nix.POS]: $pos[7],
-          nixos: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./nixos/lib")), nix.thunk(() => ({ [nix.POS]: $pos[1], lib: final })))),
-          nixosSystem: (args_1) => nix.app(nix.builtins.import(nix.path(here, "./nixos/lib/eval-config.nix")), nix.thunk(() => nix.update({
+          nixos: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./nixos/lib")) as nix.Imported<typeof import("./nixos/lib/default.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[1], lib: final })))),
+          nixosSystem: (args_1) => nix.app(nix.builtins.import(nix.path(here, "./nixos/lib/eval-config.nix")) as nix.Imported<typeof import("./nixos/lib/eval-config.ts")>, nix.thunk(() => nix.update({
               [nix.POS]: $pos[6],
               lib: final,
               system: null,
@@ -89,19 +89,19 @@ export default nix.thunk(() => ({
       htmlDocs: nix.thunk(() => ({
         [nix.POS]: $pos[21],
         nixpkgsManual: nix.thunk(() => nix.builtins.mapAttrs((_) => (jobSet) => nix.sel(jobSet, "manual"), jobs)),
-        nixosManual: nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./nixos/release-small.nix")), nix.thunk(() => ({ [nix.POS]: $pos[20], nixpkgs: self }))), "nixos", "manual")),
+        nixosManual: nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./nixos/release-small.nix")) as nix.Imported<typeof import("./nixos/release-small.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[20], nixpkgs: self }))), "nixos", "manual")),
       })),
       devShells: nix.thunk(() => nix.app(forAllSystems, (system) => nix.update({}, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool((nix.asBool((nix.asBool((nix.asBool(!nix.eq(system, "armv6l-linux")) && nix.asBool(!nix.eq(system, "armv7l-linux")))) && nix.asBool(!nix.eq(system, "powerpc64le-linux")))) && nix.asBool(!nix.eq(system, "riscv64-linux")))) && nix.asBool(!nix.eq(system, "x86_64-freebsd")))), nix.thunk(() => ({
             [nix.POS]: $pos[23],
-            default: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./shell.nix")), nix.thunk(() => ({ [nix.POS]: $pos[22], system: system })))),
+            default: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./shell.nix")) as nix.Imported<typeof import("./shell.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[22], system: system })))),
           })))))),
-      formatter: nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (system) => (_) => (nix.asBool((nix.asBool((nix.asBool((nix.asBool(!nix.eq(system, "armv6l-linux")) && nix.asBool(!nix.eq(system, "armv7l-linux")))) && nix.asBool(!nix.eq(system, "powerpc64le-linux")))) && nix.asBool(!nix.eq(system, "riscv64-linux")))) && nix.asBool(!nix.eq(system, "x86_64-freebsd"))), nix.thunk(() => nix.app(forAllSystems, (system) => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./shell.nix")), nix.thunk(() => ({ [nix.POS]: $pos[24], system: system }))), "formatter"))))),
+      formatter: nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (system) => (_) => (nix.asBool((nix.asBool((nix.asBool((nix.asBool(!nix.eq(system, "armv6l-linux")) && nix.asBool(!nix.eq(system, "armv7l-linux")))) && nix.asBool(!nix.eq(system, "powerpc64le-linux")))) && nix.asBool(!nix.eq(system, "riscv64-linux")))) && nix.asBool(!nix.eq(system, "x86_64-freebsd"))), nix.thunk(() => nix.app(forAllSystems, (system) => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./shell.nix")) as nix.Imported<typeof import("./shell.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[24], system: system }))), "formatter"))))),
       legacyPackages: nix.thunk(() => (() => {
         const forAllSystems$ = nix.thunk(() => nix.app(nix.sel(lib, "genAttrs"), nix.thunk(() => nix.concat(nix.sel(lib, "systems", "flakeExposed"), ["x86_64-darwin"]))));
-        return nix.app(forAllSystems$, (system) => nix.app(nix.builtins.import(nix.path(here, "./.")), nix.thunk(() => ({
+        return nix.app(forAllSystems$, (system) => nix.app(nix.builtins.import(nix.path(here, "./.")) as nix.Imported<typeof import("./default.ts")>, nix.thunk(() => ({
               [nix.POS]: $pos[26],
               system: system,
-              overlays: nix.thunk(() => nix.concat(nix.builtins.import(nix.path(here, "./pkgs/top-level/impure-overlays.nix")), [
+              overlays: nix.thunk(() => nix.concat(nix.builtins.import(nix.path(here, "./pkgs/top-level/impure-overlays.nix")) as nix.Imported<typeof import("./pkgs/top-level/impure-overlays.ts")>, [
                 (final) => (prev) => ({
                   [nix.POS]: $pos[25],
                   lib: nix.thunk(() => nix.app(nix.sel(prev, "lib", "extend"), libVersionInfoOverlay)),

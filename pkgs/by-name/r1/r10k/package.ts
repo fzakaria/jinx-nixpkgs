@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
               [nix.POS]: $pos[0],
               command: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), r10k)} version`),
               package: r10k,
-              version: nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./gemset.nix")), "r10k", "version")),
+              version: nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./gemset.nix")) as nix.Imported<typeof import("./gemset.ts")>, "r10k", "version")),
             })))),
         })),
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, pname)),

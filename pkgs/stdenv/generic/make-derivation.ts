@@ -128,11 +128,11 @@ export default (lib) => (() => {
     const enableParallelBuildingByDefault = nix.thunk(() => nix.attr(config, "enableParallelBuildingByDefault"));
     const contentAddressedByDefault = nix.thunk(() => nix.attr(config, "contentAddressedByDefault"));
     const userHook = nix.thunk(() => nix.selOr(config, () => null, "stdenv", "userHook"));
-    const checkMeta = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./check-meta.nix")), nix.thunk(() => ({ [nix.POS]: $pos[2], lib: lib, config: config }))));
+    const checkMeta = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./check-meta.nix")) as nix.Imported<typeof import("./check-meta.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[2], lib: lib, config: config }))));
     return (stdenv) => (() => {
-      const from_2 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../build-support/lib/cmake.nix")), nix.thunk(() => ({ [nix.POS]: $pos[3], lib: lib, stdenv: stdenv }))));
+      const from_2 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../build-support/lib/cmake.nix")) as nix.Imported<typeof import("../../build-support/lib/cmake.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[3], lib: lib, stdenv: stdenv }))));
       const makeCMakeFlags = nix.thunk(() => nix.attr(from_2, "makeCMakeFlags"));
-      const from_3 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../build-support/lib/meson.nix")), nix.thunk(() => ({ [nix.POS]: $pos[4], lib: lib, stdenv: stdenv }))));
+      const from_3 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../build-support/lib/meson.nix")) as nix.Imported<typeof import("../../build-support/lib/meson.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[4], lib: lib, stdenv: stdenv }))));
       const makeMesonFlags = nix.thunk(() => nix.attr(from_3, "makeMesonFlags"));
       const commonMeta = nix.thunk(() => nix.app(nix.sel(checkMeta, "commonMeta"), hostPlatform));
       const assertValidity = nix.thunk(() => nix.app(nix.sel(checkMeta, "assertValidity"), hostPlatform));

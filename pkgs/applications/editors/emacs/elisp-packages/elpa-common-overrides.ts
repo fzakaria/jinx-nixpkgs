@@ -6,7 +6,7 @@ const $pos = nix.positions(here + "/elpa-common-overrides.nix", [[["maintainers"
 
 export default (pkgs) => (lib) => (buildPackages) => (self) => (super$) => (() => {
   const libExt = nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "extensions", "sharedLibrary"));
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./lib-override-helper.nix")), pkgs, lib));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./lib-override-helper.nix")) as nix.Imported<typeof import("./lib-override-helper.ts")>, pkgs, lib));
   const addPackageRequires = nix.thunk(() => nix.attr(from, "addPackageRequires"));
   const addPackageRequiresIfOlder = nix.thunk(() => nix.attr(from, "addPackageRequiresIfOlder"));
   const ignoreCompilationError = nix.thunk(() => nix.attr(from, "ignoreCompilationError"));

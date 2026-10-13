@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
     cudaOlder: nix.thunk(() => nix.app(versionOlder, cudaMajorMinorVersion)),
     cudaAtLeast: nix.thunk(() => nix.app(versionAtLeast, cudaMajorMinorVersion)),
     manifests: manifests,
-    backendStdenv: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./backendStdenv")), nix.thunk(() => ({
+    backendStdenv: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./backendStdenv")) as nix.Imported<typeof import("./backendStdenv/default.ts")>, nix.thunk(() => ({
         [nix.POS]: $pos[1],
         _cuda: _cuda,
         config: config,
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
         stdenv: nix.thunk(() => nix.attr(pkgs, "stdenv")),
         stdenvAdapters: nix.thunk(() => nix.attr(pkgs, "stdenvAdapters")),
       })))),
-    buildRedist: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./buildRedist")), nix.thunk(() => ({
+    buildRedist: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./buildRedist")) as nix.Imported<typeof import("./buildRedist/default.ts")>, nix.thunk(() => ({
         [nix.POS]: $pos[2],
         _cuda: _cuda,
         lib: lib,
@@ -108,7 +108,7 @@ export default nix.lambda((args) => (() => {
       directory: nix.path(here, "./packages"),
     }))));
   const composedExtensions = nix.thunk(() => nix.app(composeManyExtensions, nix.thunk(() => nix.concat(nix.app(optionals, nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => [
-        nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./aliases.nix")), nix.thunk(() => ({ [nix.POS]: $pos[7], lib: lib })))),
+        nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./aliases.nix")) as nix.Imported<typeof import("./aliases.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[7], lib: lib })))),
       ])), nix.sel(_cuda, "extensions")))));
   const cudaPackages = nix.thunk(() => nix.app(nix.sel(lib, "makeScopeWithSplicing'"), nix.thunk(() => ({
       [nix.POS]: $pos[8],

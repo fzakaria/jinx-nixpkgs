@@ -7,9 +7,9 @@ const formals$1 = { args: { pkgs: false }, ellipsis: true };
 const formals$2 = { args: { config: false }, ellipsis: true };
 
 export default nix.thunk(() => (() => {
-  const certs = nix.thunk(() => nix.builtins.import(nix.path(here, "./common/acme/server/snakeoil-certs.nix")));
+  const certs = nix.thunk(() => nix.builtins.import(nix.path(here, "./common/acme/server/snakeoil-certs.nix")) as nix.Imported<typeof import("./common/acme/server/snakeoil-certs.ts")>);
   const frontendUrl = nix.thunk(() => nix.str`https://${nix.sel(certs, "domain")}`);
-  const keycloakTest = (databaseType) => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")), nix.lambda((args) => (() => {
+  const keycloakTest = (databaseType) => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")) as nix.Imported<typeof import("./make-test-python.ts")>, nix.lambda((args) => (() => {
       const $ = nix.formals(args, formals$1);
       const pkgs = nix.arg($, "pkgs");
       const initialAdminPassword = "h4Iho\"JFn't2>iQIR9";

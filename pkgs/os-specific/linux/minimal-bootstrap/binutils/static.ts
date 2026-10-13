@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const findutils = nix.arg($, "findutils");
   const gnutar = nix.arg($, "gnutar");
   const xz = nix.arg($, "xz");
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib }))));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")) as nix.Imported<typeof import("./common.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib }))));
   const meta = nix.thunk(() => nix.attr(from, "meta"));
   const pname = "binutils-static";
   const version = "2.46";

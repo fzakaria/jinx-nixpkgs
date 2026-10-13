@@ -189,7 +189,7 @@ export default nix.lambda((args) => (() => {
             "hadoop-conf": nix.thunk(() => ({
               [nix.POS]: $pos[26],
               source: nix.thunk(() => (() => {
-                const hadoopConf = nix.thunk(() => nix.str`${nix.app(nix.builtins.import(nix.path(here, "./conf.nix")), nix.thunk(() => ({ [nix.POS]: $pos[25], cfg: cfg, pkgs: pkgs, lib: lib })))}/`);
+                const hadoopConf = nix.thunk(() => nix.str`${nix.app(nix.builtins.import(nix.path(here, "./conf.nix")) as nix.Imported<typeof import("./conf.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[25], cfg: cfg, pkgs: pkgs, lib: lib })))}/`);
                 return nix.str`${hadoopConf}`;
               })()),
             })),

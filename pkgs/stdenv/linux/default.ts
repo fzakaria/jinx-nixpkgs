@@ -18,22 +18,22 @@ export default nix.lambda((args) => (() => {
       [nix.POS]: $pos[2],
       glibc: nix.thunk(() => ({
         [nix.POS]: $pos[0],
-        "armv5tel-linux": nix.thunk(() => nix.builtins.import(nix.path(here, "./bootstrap-files/armv5tel-unknown-linux-gnueabi.nix"))),
-        "armv6l-linux": nix.thunk(() => nix.builtins.import(nix.path(here, "./bootstrap-files/armv6l-unknown-linux-gnueabihf.nix"))),
-        "armv7l-linux": nix.thunk(() => nix.builtins.import(nix.path(here, "./bootstrap-files/armv7l-unknown-linux-gnueabihf.nix"))),
-        "aarch64-linux": nix.thunk(() => nix.builtins.import(nix.path(here, "./bootstrap-files/aarch64-unknown-linux-gnu.nix"))),
-        "mipsel-linux": nix.thunk(() => nix.builtins.import(nix.path(here, "./bootstrap-files/mipsel-unknown-linux-gnu.nix"))),
+        "armv5tel-linux": nix.thunk(() => nix.builtins.import(nix.path(here, "./bootstrap-files/armv5tel-unknown-linux-gnueabi.nix")) as nix.Imported<typeof import("./bootstrap-files/armv5tel-unknown-linux-gnueabi.ts")>),
+        "armv6l-linux": nix.thunk(() => nix.builtins.import(nix.path(here, "./bootstrap-files/armv6l-unknown-linux-gnueabihf.nix")) as nix.Imported<typeof import("./bootstrap-files/armv6l-unknown-linux-gnueabihf.ts")>),
+        "armv7l-linux": nix.thunk(() => nix.builtins.import(nix.path(here, "./bootstrap-files/armv7l-unknown-linux-gnueabihf.nix")) as nix.Imported<typeof import("./bootstrap-files/armv7l-unknown-linux-gnueabihf.ts")>),
+        "aarch64-linux": nix.thunk(() => nix.builtins.import(nix.path(here, "./bootstrap-files/aarch64-unknown-linux-gnu.nix")) as nix.Imported<typeof import("./bootstrap-files/aarch64-unknown-linux-gnu.ts")>),
+        "mipsel-linux": nix.thunk(() => nix.builtins.import(nix.path(here, "./bootstrap-files/mipsel-unknown-linux-gnu.nix")) as nix.Imported<typeof import("./bootstrap-files/mipsel-unknown-linux-gnu.ts")>),
         "mips64el-linux": nix.thunk(() => nix.builtins.import(nix.thunk(() => (nix.asBool(nix.sel(localSystem, "isMips64n32")) ? nix.path(here, "./bootstrap-files/mips64el-unknown-linux-gnuabin32.nix") : nix.path(here, "./bootstrap-files/mips64el-unknown-linux-gnuabi64.nix"))))),
         "powerpc64-linux": nix.thunk(() => nix.builtins.import(nix.thunk(() => (nix.asBool(nix.sel(localSystem, "isAbiElfv2")) ? nix.path(here, "./bootstrap-files/powerpc64-unknown-linux-gnuabielfv2.nix") : nix.path(here, "./bootstrap-files/powerpc64-unknown-linux-gnuabielfv1.nix"))))),
-        "powerpc64le-linux": nix.thunk(() => nix.builtins.import(nix.path(here, "./bootstrap-files/powerpc64le-unknown-linux-gnu.nix"))),
-        "riscv64-linux": nix.thunk(() => nix.builtins.import(nix.path(here, "./bootstrap-files/riscv64-unknown-linux-gnu.nix"))),
-        "s390x-linux": nix.thunk(() => nix.builtins.import(nix.path(here, "./bootstrap-files/s390x-unknown-linux-gnu.nix"))),
-        "loongarch64-linux": nix.thunk(() => nix.builtins.import(nix.path(here, "./bootstrap-files/loongarch64-unknown-linux-gnu.nix"))),
+        "powerpc64le-linux": nix.thunk(() => nix.builtins.import(nix.path(here, "./bootstrap-files/powerpc64le-unknown-linux-gnu.nix")) as nix.Imported<typeof import("./bootstrap-files/powerpc64le-unknown-linux-gnu.ts")>),
+        "riscv64-linux": nix.thunk(() => nix.builtins.import(nix.path(here, "./bootstrap-files/riscv64-unknown-linux-gnu.nix")) as nix.Imported<typeof import("./bootstrap-files/riscv64-unknown-linux-gnu.ts")>),
+        "s390x-linux": nix.thunk(() => nix.builtins.import(nix.path(here, "./bootstrap-files/s390x-unknown-linux-gnu.nix")) as nix.Imported<typeof import("./bootstrap-files/s390x-unknown-linux-gnu.ts")>),
+        "loongarch64-linux": nix.thunk(() => nix.builtins.import(nix.path(here, "./bootstrap-files/loongarch64-unknown-linux-gnu.nix")) as nix.Imported<typeof import("./bootstrap-files/loongarch64-unknown-linux-gnu.ts")>),
       })),
       musl: nix.thunk(() => ({
         [nix.POS]: $pos[1],
-        "aarch64-linux": nix.thunk(() => nix.builtins.import(nix.path(here, "./bootstrap-files/aarch64-unknown-linux-musl.nix"))),
-        "armv6l-linux": nix.thunk(() => nix.builtins.import(nix.path(here, "./bootstrap-files/armv6l-unknown-linux-musleabihf.nix"))),
+        "aarch64-linux": nix.thunk(() => nix.builtins.import(nix.path(here, "./bootstrap-files/aarch64-unknown-linux-musl.nix")) as nix.Imported<typeof import("./bootstrap-files/aarch64-unknown-linux-musl.ts")>),
+        "armv6l-linux": nix.thunk(() => nix.builtins.import(nix.path(here, "./bootstrap-files/armv6l-unknown-linux-musleabihf.nix")) as nix.Imported<typeof import("./bootstrap-files/armv6l-unknown-linux-musleabihf.ts")>),
       })),
     }));
     const getCompatibleTools = nix.thunk(() => nix.app(nix.sel(lib, "foldl"), (v) => (system) => (nix.asBool(!nix.eq(v, null)) ? nix.force(v) : (nix.asBool(nix.app(nix.sel(localSystem, "canExecute"), nix.thunk(() => nix.app(nix.sel(lib, "systems", "elaborate"), nix.thunk(() => ({ [nix.POS]: $pos[3], system: system })))))) ? nix.sel(archLookupTable, nix.key(nix.force(system))) : null)), null, nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), archLookupTable))));
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
     const files = nix.thunk(() => nix.selOr(archLookupTable, () => (nix.asBool(!nix.eq(getCompatibleTools, null)) ? nix.force(getCompatibleTools) : nix.builtins.throw("unsupported platform for the pure Linux stdenv")), nix.key(nix.sel(localSystem, "system"))));
     return nix.app(nix.selOr(config, () => nix.sel(lib, "id"), "replaceBootstrapFiles"), files);
   })());
-  const genericStdenv = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../generic")), nix.thunk(() => ({ [nix.POS]: $pos[4], defaultConfig: config }))));
+  const genericStdenv = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../generic")) as nix.Imported<typeof import("../generic/default.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[4], defaultConfig: config }))));
   const system = nix.thunk(() => nix.attr(localSystem, "system"));
   const isFromNixpkgs = (pkg) => !nix.asBool(nix.app(isFromBootstrapFiles, pkg));
   const isFromBootstrapFiles = (pkg) => nix.selOr(pkg, () => nix.selOr(pkg, () => false, "passthru", "isFromMinBootstrap"), "passthru", "isFromBootstrapFiles");
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
     disableGdbPlugin: true,
   }));
   const commonPreHook = "export NIX_ENFORCE_PURITY=\"${NIX_ENFORCE_PURITY-1}\"\nexport NIX_ENFORCE_NO_NATIVE=\"${NIX_ENFORCE_NO_NATIVE-1}\"\n";
-  const stage0 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./stage0.nix")), nix.thunk(() => ({
+  const stage0 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./stage0.nix")) as nix.Imported<typeof import("./stage0.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[6],
       lib: lib,
       config: config,
@@ -80,12 +80,12 @@ dontPatchShebangs=1
 ${commonPreHook}
 `),
         shell: nix.thunk(() => nix.str`${nix.sel(stage0, "bash")}/bin/bash`),
-        fetchurlBoot: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../build-support/fetchurl/boot.nix")), nix.thunk(() => ({
+        fetchurlBoot: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../build-support/fetchurl/boot.nix")) as nix.Imported<typeof import("../../build-support/fetchurl/boot.ts")>, nix.thunk(() => ({
             [nix.POS]: $pos[7],
             system: system,
             rewriteURL: nix.thunk(() => nix.attr(config, "rewriteURL")),
           })))),
-        cc: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(prevStage, "gcc-unwrapped"), null)) ? null : nix.app(nix.sel(nix.app(nix.sel(lib, "makeOverridable"), nix.thunk(() => nix.builtins.import(nix.path(here, "../../build-support/cc-wrapper"))), nix.thunk(() => ({
+        cc: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(prevStage, "gcc-unwrapped"), null)) ? null : nix.app(nix.sel(nix.app(nix.sel(lib, "makeOverridable"), nix.thunk(() => nix.builtins.import(nix.path(here, "../../build-support/cc-wrapper")) as nix.Imported<typeof import("../../build-support/cc-wrapper/default.ts")>), nix.thunk(() => ({
             [nix.POS]: $pos[8],
             name: nix.thunk(() => nix.str`${name}-gcc-wrapper`),
             nativeTools: false,
@@ -359,7 +359,7 @@ patchelf --set-interpreter '${nix.sel(self, "libc")}'/lib/ld*.so.? \\
                 [nix.POS]: $pos[43],
                 "expand-response-params": nix.thunk(() => nix.attr(prevStage, "expand-response-params")),
               })))),
-            gcc: nix.thunk(() => nix.app(nix.sel(lib, "makeOverridable"), nix.thunk(() => nix.builtins.import(nix.path(here, "../../build-support/cc-wrapper"))), nix.thunk(() => ({
+            gcc: nix.thunk(() => nix.app(nix.sel(lib, "makeOverridable"), nix.thunk(() => nix.builtins.import(nix.path(here, "../../build-support/cc-wrapper")) as nix.Imported<typeof import("../../build-support/cc-wrapper/default.ts")>), nix.thunk(() => ({
                 [nix.POS]: $pos[44],
                 nativeTools: false,
                 nativeLibc: false,
@@ -402,7 +402,7 @@ patchelf --set-interpreter '${nix.sel(self, "libc")}'/lib/ld*.so.? \\
             const hostPlatform = localSystem;
             const targetPlatform = localSystem;
             const preHook = commonPreHook;
-            const initialPath = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../generic/common-path.nix")), nix.thunk(() => ({ [nix.POS]: $pos[47], pkgs: prevStage }))));
+            const initialPath = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../generic/common-path.nix")) as nix.Imported<typeof import("../generic/common-path.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[47], pkgs: prevStage }))));
             const extraNativeBuildInputs = nix.thunk(() => [
               nix.thunk(() => nix.sel(prevStage, "patchelf")),
               nix.thunk(() => nix.sel(prevStage, "updateAutotoolsGnuConfigScriptsHook")),
@@ -520,7 +520,7 @@ patchelf --set-interpreter '${nix.sel(self, "libc")}'/lib/ld*.so.? \\
               zlib: nix.thunk(() => nix.attr(prevStage, "zlib")),
               libunistring: nix.thunk(() => nix.attr(prevStage, "libunistring")),
               pcre2: nix.thunk(() => nix.attr(from_1, "pcre2")),
-              libidn2: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../development/libraries/libidn2/no-bootstrap-reference.nix")), nix.thunk(() => ({
+              libidn2: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../development/libraries/libidn2/no-bootstrap-reference.nix")) as nix.Imported<typeof import("../../development/libraries/libidn2/no-bootstrap-reference.ts")>, nix.thunk(() => ({
                   [nix.POS]: $pos[51],
                   lib: lib,
                   libidn2: nix.thunk(() => nix.attr(prevStage, "libidn2")),

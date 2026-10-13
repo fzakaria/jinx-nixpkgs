@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       })());
       return {
         [nix.POS]: $pos[5],
-        sources: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./sources.nix")), nix.thunk(() => ({
+        sources: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./sources.nix")) as nix.Imported<typeof import("./sources.ts")>, nix.thunk(() => ({
             [nix.POS]: $pos[1],
             lib: lib,
             fetchFromGitHub: nix.thunk(() => nix.attr(pkgs, "fetchFromGitHub")),

@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.builtins.findFile(nix.builtins.nixPath, "nixpkgs")), nix.thunk(() => ({}))));
   const minica = nix.argOr($, "minica", () => nix.sel(pkgs, "minica"));
   const runCommandCC = nix.argOr($, "runCommandCC", () => nix.sel(pkgs, "runCommandCC"));
-  const conf = nix.thunk(() => nix.builtins.import(nix.path(here, "./snakeoil-certs.nix")));
+  const conf = nix.thunk(() => nix.builtins.import(nix.path(here, "./snakeoil-certs.nix")) as nix.Imported<typeof import("./snakeoil-certs.ts")>);
   const domain = nix.thunk(() => nix.sel(conf, "domain"));
   const domainSanitized = nix.thunk(() => nix.app(nix.sel(pkgs, "lib", "replaceStrings"), nix.thunk(() => ["*"]), nix.thunk(() => ["_"]), domain));
   return nix.app(runCommandCC, "generate-tests-certs", nix.thunk(() => ({

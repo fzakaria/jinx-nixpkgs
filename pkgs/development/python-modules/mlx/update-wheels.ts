@@ -9,7 +9,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const nix_update_script = nix.arg($, "nix-update-script");
-  const wheelSources = nix.thunk(() => nix.builtins.import(nix.path(here, "./wheel-sources.nix")));
+  const wheelSources = nix.thunk(() => nix.builtins.import(nix.path(here, "./wheel-sources.nix")) as nix.Imported<typeof import("./wheel-sources.ts")>);
   const subpackages = nix.thunk(() => nix.concat(nix.builtins.map((name) => nix.str`srcs.mlx."${name}"`, nix.thunk(() => nix.builtins.attrNames(nix.thunk(() => nix.sel(wheelSources, "mlx"))))), nix.concat(nix.builtins.map((name) => nix.str`srcs.mlx-metal."${name}"`, nix.thunk(() => nix.builtins.attrNames(nix.thunk(() => nix.sel(wheelSources, "mlx-metal"))))), ["srcs.testSource"])));
   return nix.app(nix_update_script, nix.thunk(() => ({
       [nix.POS]: $pos[0],

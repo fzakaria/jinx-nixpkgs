@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
   const versions = nix.thunk(() => nix.attr(lib, "versions"));
   const buildIsHost = nix.thunk(() => nix.attr(_systemInfo, "buildIsHost"));
   const hostIsTarget = nix.thunk(() => nix.attr(_systemInfo, "hostIsTarget"));
-  const gccVersions = nix.thunk(() => nix.builtins.import(nix.path(here, "./versions.nix")));
+  const gccVersions = nix.thunk(() => nix.builtins.import(nix.path(here, "./versions.nix")) as nix.Imported<typeof import("./versions.ts")>);
   const version = nix.thunk(() => nix.app(nix.sel(gccVersions, "fromMajorMinor"), majorMinorVersion));
   const majorVersion = nix.thunk(() => nix.app(nix.sel(versions, "major"), version));
   const is13 = nix.thunk(() => nix.eq(majorVersion, "13"));

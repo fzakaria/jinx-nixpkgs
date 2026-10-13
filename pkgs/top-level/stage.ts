@@ -7,7 +7,7 @@ const formals$1 = { args: { lib: false, nixpkgsFun: false, adjacentPackages: fal
 const formals$2 = { args: { attrPath: false, reason: false }, ellipsis: false };
 
 export default nix.thunk(() => (() => {
-  const autoCalledPackages = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./by-name-overlay.nix")), nix.path(here, "../by-name")));
+  const autoCalledPackages = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./by-name-overlay.nix")) as nix.Imported<typeof import("./by-name-overlay.ts")>, nix.path(here, "../by-name")));
   return nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     const args_1 = args;
@@ -28,10 +28,10 @@ export default nix.thunk(() => (() => {
     const config = nix.arg($, "config");
     const overlays = nix.arg($, "overlays");
     const stdenvAdapters = (self) => (super$) => (() => {
-      const res = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../stdenv/adapters.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], lib: lib, config: config, pkgs: self }))));
+      const res = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../stdenv/adapters.nix")) as nix.Imported<typeof import("../stdenv/adapters.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[1], lib: lib, config: config, pkgs: self }))));
       return nix.update(res, { [nix.POS]: $pos[2], stdenvAdapters: res });
     })();
-    const trivialBuilders = (self) => (super$) => nix.app(nix.builtins.import(nix.path(here, "../build-support/trivial-builders")), nix.thunk(() => (() => {
+    const trivialBuilders = (self) => (super$) => nix.app(nix.builtins.import(nix.path(here, "../build-support/trivial-builders")) as nix.Imported<typeof import("../build-support/trivial-builders/default.ts")>, nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(self, "pkgsBuildHost"));
         return {
         [nix.POS]: $pos[3],
@@ -62,9 +62,9 @@ export default nix.thunk(() => (() => {
         stdenvNoCC: stdenvNoCC,
       };
     })();
-    const splice = (self) => (super$) => nix.app(nix.builtins.import(nix.path(here, "./splice.nix")), lib, self, nix.thunk(() => !nix.eq(adjacentPackages, null)));
+    const splice = (self) => (super$) => nix.app(nix.builtins.import(nix.path(here, "./splice.nix")) as nix.Imported<typeof import("./splice.ts")>, lib, self, nix.thunk(() => !nix.eq(adjacentPackages, null)));
     const allPackages = (self) => (super$) => (() => {
-      const res = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./all-packages.nix")), nix.thunk(() => ({
+      const res = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./all-packages.nix")) as nix.Imported<typeof import("./all-packages.ts")>, nix.thunk(() => ({
           [nix.POS]: $pos[7],
           lib: lib,
           noSysDirs: noSysDirs,
@@ -75,8 +75,8 @@ export default nix.thunk(() => (() => {
       nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => nix.eq(conflictingAttrs, {})), nix.thunk(() => nix.str`The following attributes were defined both in \`pkgs/top-level/all-packages.nix\` and elsewhere, most likely in \`pkgs/by-name/\`: ${nix.app(nix.sel(lib, "concatStringsSep"), ", ", nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), conflictingAttrs)))}`)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/top-level/stage.nix:160:5");
       return nix.force(res);
     })();
-    const aliases = (self) => (super$) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./aliases.nix")), lib, self, super$)));
-    const variants = (self) => (super$) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowVariants")), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./variants.nix")), nix.thunk(() => ({
+    const aliases = (self) => (super$) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./aliases.nix")) as nix.Imported<typeof import("./aliases.ts")>, lib, self, super$)));
+    const variants = (self) => (super$) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowVariants")), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./variants.nix")) as nix.Imported<typeof import("./variants.ts")>, nix.thunk(() => ({
           [nix.POS]: $pos[8],
           lib: lib,
           nixpkgsFun: nixpkgsFun,

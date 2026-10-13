@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       [nix.POS]: $pos[3],
       "nix-fallback-paths": nix.thunk(() => nix.app(runCommand, "test-nix-fallback-paths-version-equals-nix-stable", nix.thunk(() => ({
           [nix.POS]: $pos[2],
-          paths: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => nix.builtins.import(nix.path(here, "../../../../nixos/modules/installer/tools/nix-fallback-paths.nix"))))))),
+          paths: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => nix.builtins.import(nix.path(here, "../../../../nixos/modules/installer/tools/nix-fallback-paths.nix")) as nix.Imported<typeof import("../../../../nixos/modules/installer/tools/nix-fallback-paths.ts")>))))),
         })), nix.thunk(() => nix.str`# NOTE: name may contain cross compilation details between the pname
 #       and version this is permitted thanks to ([^-]*-)*
 if [[ "" != $(grep -vE 'nix-([^-]*-)*${nix.app(nix.sel(lib, "strings", "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["\\."]), nix.thunk(() => nix.sel(pkg, "version")))}$' <<< "$paths") ]]; then
@@ -51,7 +51,7 @@ fi
 `))),
     })), pkg);
   const addTests = (selfAttributeName) => (pkg) => (() => {
-    const tests = nix.thunk(() => nix.update(nix.selOr(pkg, () => ({}), "tests"), nix.app(nix.builtins.import(nix.path(here, "./tests.nix")), nix.thunk(() => ({
+    const tests = nix.thunk(() => nix.update(nix.selOr(pkg, () => ({}), "tests"), nix.app(nix.builtins.import(nix.path(here, "./tests.nix")) as nix.Imported<typeof import("./tests.ts")>, nix.thunk(() => ({
         [nix.POS]: $pos[4],
         runCommand: runCommand,
         lib: lib,

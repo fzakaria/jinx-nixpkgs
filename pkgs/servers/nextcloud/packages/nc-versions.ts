@@ -7,7 +7,7 @@ const formals$1 = { args: { pkgs: true, lib: true }, ellipsis: false };
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../../..")), nix.thunk(() => ({}))));
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../../..")) as nix.Imported<typeof import("../../../../default.ts")>, nix.thunk(() => ({}))));
   const lib = nix.argOr($, "lib", () => nix.sel(pkgs, "lib"));
   const n = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (_) => (v) => nix.sel(v, "version"), nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (k) => (v) => (nix.asBool(!nix.eq(nix.builtins.match("nextcloud[0-9]+", k), null)) && nix.asBool(nix.sel(nix.builtins.tryEval(nix.thunk(() => nix.sel(v, "version"))), "success"))), pkgs))));
   return {

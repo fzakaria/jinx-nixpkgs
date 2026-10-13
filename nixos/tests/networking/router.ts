@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
     const config = nix.arg($_1, "config");
     const pkgs = nix.arg($_1, "pkgs");
     const lib = nix.thunk(() => nix.attr(pkgs, "lib"));
-    const qemu_common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/qemu-common.nix")), nix.thunk(() => ({
+    const qemu_common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/qemu-common.nix")) as nix.Imported<typeof import("../../lib/qemu-common.ts")>, nix.thunk(() => ({
         [nix.POS]: $pos[0],
         lib: nix.thunk(() => nix.attr(pkgs, "lib")),
         stdenv: nix.thunk(() => nix.attr(pkgs, "stdenv")),

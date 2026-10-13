@@ -9,7 +9,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
-  const certs = nix.thunk(() => nix.builtins.import(nix.path(here, "redlib/snakeoil-certs.nix")));
+  const certs = nix.thunk(() => nix.builtins.import(nix.path(here, "redlib/snakeoil-certs.nix")) as nix.Imported<typeof import("./redlib/snakeoil-certs.ts")>);
   const redditDomain = nix.thunk(() => nix.sel(certs, "domain"));
   return {
     [nix.POS]: $pos[14],

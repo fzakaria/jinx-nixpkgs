@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const localSystem = nix.arg($, "localSystem");
   const config = nix.arg($, "config");
   const overlays = nix.arg($, "overlays");
-  const genericStdenv = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../generic")), nix.thunk(() => ({ [nix.POS]: $pos[0], defaultConfig: config }))));
+  const genericStdenv = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../generic")) as nix.Imported<typeof import("../generic/default.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], defaultConfig: config }))));
   const system = nix.thunk(() => nix.attr(localSystem, "system"));
   const shell = nix.thunk(() => (nix.asBool((nix.asBool(nix.eq(system, "i686-freebsd")) || nix.asBool(nix.eq(system, "x86_64-freebsd")))) ? "/usr/local/bin/bash" : "/bin/bash"));
   const path = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(system, "i686-solaris")), nix.thunk(() => ["/usr/gnu"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(system, "i686-netbsd")), nix.thunk(() => ["/usr/pkg"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(system, "x86_64-solaris")), nix.thunk(() => ["/opt/local/gnu"])), ["/", "/usr", "/usr/local"]))));
@@ -89,7 +89,7 @@ export lt_cv_deplibs_check_method=pass_all
             "i686-solaris": "/usr/gnu",
             "x86_64-solaris": "/opt/local/gcc47",
           }, () => "/usr", nix.key(nix.force(system))));
-          return nix.app(nix.builtins.import(nix.path(here, "../../build-support/cc-wrapper")), nix.thunk(() => ({
+          return nix.app(nix.builtins.import(nix.path(here, "../../build-support/cc-wrapper")) as nix.Imported<typeof import("../../build-support/cc-wrapper/default.ts")>, nix.thunk(() => ({
               [nix.POS]: $pos[5],
               name: "cc-native",
               nativeTools: true,
@@ -98,7 +98,7 @@ export lt_cv_deplibs_check_method=pass_all
               lib: lib,
               nativePrefix: nativePrefix,
               runtimeShell: shell,
-              bintools: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../build-support/bintools-wrapper")), nix.thunk(() => ({
+              bintools: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../build-support/bintools-wrapper")) as nix.Imported<typeof import("../../build-support/bintools-wrapper/default.ts")>, nix.thunk(() => ({
                   [nix.POS]: $pos[4],
                   name: "bintools",
                   lib: lib,
@@ -112,7 +112,7 @@ export lt_cv_deplibs_check_method=pass_all
               stdenvNoCC: stdenvNoCC,
             })));
         })());
-        const fetchurl = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../build-support/fetchurl")), nix.thunk(() => ({
+        const fetchurl = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../build-support/fetchurl")) as nix.Imported<typeof import("../../build-support/fetchurl/default.ts")>, nix.thunk(() => ({
             [nix.POS]: $pos[6],
             lib: lib,
             stdenvNoCC: stdenvNoCC,

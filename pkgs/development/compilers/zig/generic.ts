@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
 `),
       doInstallCheck: true,
       installCheckPhase: "runHook preInstallCheck\n\n$out/bin/zig test --cache-dir \"$TMPDIR/zig-test-cache\" -I $src/test $src/test/behavior.zig\n\nrunHook postInstallCheck\n",
-      passthru: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./passthru.nix")), nix.thunk(() => ({
+      passthru: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./passthru.nix")) as nix.Imported<typeof import("./passthru.ts")>, nix.thunk(() => ({
           [nix.POS]: $pos[1],
           stdenv: stdenv,
           callPackage: callPackage,

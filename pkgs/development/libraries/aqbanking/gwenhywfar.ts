@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
     "/run/current-system/sw/lib/gwenhywfar/plugins",
     ".nix-profile/lib/gwenhywfar/plugins",
   ]);
-  const from = nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./sources.nix")), "gwenhywfar"));
+  const from = nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./sources.nix")) as nix.Imported<typeof import("./sources.ts")>, "gwenhywfar"));
   const hash = nix.thunk(() => nix.attr(from, "hash"));
   const releaseId = nix.thunk(() => nix.attr(from, "releaseId"));
   const version = nix.thunk(() => nix.attr(from, "version"));

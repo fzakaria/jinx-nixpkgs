@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const version = nix.argOr($, "version", () => null);
   const versionInfo = nix.argOr($, "versionInfo", () => null);
   const source = nix.argOr($, "source", () => null);
-  const versions = nix.thunk(() => nix.builtins.import(nix.path(here, "./versions.nix")));
+  const versions = nix.thunk(() => nix.builtins.import(nix.path(here, "./versions.nix")) as nix.Imported<typeof import("./versions.ts")>);
   const matching_versions = nix.thunk(() => nix.app(nix.sel(lib, "sort"), (v1) => (v2) => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(v2, "version")), nix.thunk(() => nix.sel(v1, "version"))), nix.thunk(() => nix.app(nix.sel(lib, "filter"), (v) => (nix.asBool((nix.asBool(nix.eq(nix.sel(v, "lang"), lang)) && nix.asBool((nix.asBool(nix.eq(version, null)) || nix.asBool(nix.app(isMatching, nix.thunk(() => nix.sel(v, "version")), version)))))) && nix.asBool(nix.app(matchesDoc, v))), versions))));
   const found_version = nix.thunk(() => (nix.asBool(nix.eq(matching_versions, [])) ? nix.builtins.throw(nix.thunk(() => nix.add(nix.add("No registered Mathematica version found to match", nix.str` version=${nix.builtins.toString(version)} and language=${lang},`), nix.str` ${(nix.asBool(webdoc) ? "using web documentation" : "and with local documentation")}`))) : nix.app(nix.sel(lib, "head"), matching_versions)));
   const isMatching = (v1) => (v2) => (() => {

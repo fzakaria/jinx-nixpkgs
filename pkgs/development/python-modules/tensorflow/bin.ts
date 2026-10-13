@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const python = nix.arg($, "python");
   const addDriverRunpath = nix.arg($, "addDriverRunpath");
-  const packages = nix.thunk(() => nix.builtins.import(nix.path(here, "./binary-hashes.nix")));
+  const packages = nix.thunk(() => nix.builtins.import(nix.path(here, "./binary-hashes.nix")) as nix.Imported<typeof import("./binary-hashes.ts")>);
   const cudatoolkit = nix.thunk(() => nix.attr(cudaPackages, "cudatoolkit"));
   const cudnn = nix.thunk(() => nix.attr(cudaPackages, "cudnn"));
   const isCudaJetson = nix.thunk(() => (nix.asBool(cudaSupport) && nix.asBool(nix.sel(cudaPackages, "flags", "isJetsonBuild"))));

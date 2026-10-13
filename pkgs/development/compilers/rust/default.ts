@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
     const pkgsTargetTarget = nix.arg($_1, "pkgsTargetTarget");
     const makeRustPlatform = nix.arg($_1, "makeRustPlatform");
     const wrapRustcWith = nix.arg($_1, "wrapRustcWith");
-    const lib$ = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../build-support/rust/lib")), nix.thunk(() => ({
+    const lib$ = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../build-support/rust/lib")) as nix.Imported<typeof import("../../../build-support/rust/lib/default.ts")>, nix.thunk(() => ({
         [nix.POS]: $pos[0],
         lib: lib,
         stdenv: stdenv,

@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libnl = nix.arg($, "libnl");
   const iptables = nix.arg($, "iptables");
-  const sourceAttrs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./source.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], fetchFromGitHub: fetchFromGitHub }))));
+  const sourceAttrs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./source.nix")) as nix.Imported<typeof import("./source.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], fetchFromGitHub: fetchFromGitHub }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
       [nix.POS]: $pos[4],
       pname: "jool-cli",

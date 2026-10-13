@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const mlx_metal = nix.arg($, "mlx-metal");
   const python = nix.arg($, "python");
   const stdenv = nix.arg($, "stdenv");
-  const wheelSources = nix.thunk(() => nix.builtins.import(nix.path(here, "./wheel-sources.nix")));
+  const wheelSources = nix.thunk(() => nix.builtins.import(nix.path(here, "./wheel-sources.nix")) as nix.Imported<typeof import("./wheel-sources.ts")>);
   const version = nix.thunk(() => nix.attr(wheelSources, "version"));
   const pythonVersion = nix.thunk(() => nix.attr(python, "pythonVersion"));
   const sourceKey = nix.thunk(() => nix.str`${pythonVersion}-${nix.sel(stdenv, "hostPlatform", "system")}`);

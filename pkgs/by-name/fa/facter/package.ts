@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
               [nix.POS]: $pos[0],
               command: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), facter)} --version`),
               package: facter,
-              version: nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./gemset.nix")), "facter", "version")),
+              version: nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./gemset.nix")) as nix.Imported<typeof import("./gemset.ts")>, "facter", "version")),
             })))),
         })),
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "facter")),

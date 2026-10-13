@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
-  const mailerCerts = nix.thunk(() => nix.builtins.import(nix.path(here, "../common/acme/server/snakeoil-certs.nix")));
+  const mailerCerts = nix.thunk(() => nix.builtins.import(nix.path(here, "../common/acme/server/snakeoil-certs.nix")) as nix.Imported<typeof import("../common/acme/server/snakeoil-certs.ts")>);
   const ca_key = nix.thunk(() => nix.sel(mailerCerts, "ca", "key"));
   const ca_pem = nix.thunk(() => nix.sel(mailerCerts, "ca", "cert"));
   const mkBundle = (domain) => nix.app(nix.sel(pkgs, "runCommand"), nix.thunk(() => nix.str`bundle-${domain}`), nix.thunk(() => ({

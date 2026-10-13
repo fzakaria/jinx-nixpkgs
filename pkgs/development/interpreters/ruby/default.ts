@@ -44,14 +44,14 @@ export default nix.lambda((args) => (() => {
   const op = nix.thunk(() => nix.sel(lib, "optional"));
   const ops = nix.thunk(() => nix.sel(lib, "optionals"));
   const opString = nix.thunk(() => nix.sel(lib, "optionalString"));
-  const rubygems = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./rubygems")), nix.thunk(() => ({
+  const rubygems = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./rubygems")) as nix.Imported<typeof import("./rubygems/default.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[0],
       stdenv: stdenv,
       lib: lib,
       fetchurl: fetchurl,
       gitUpdater: gitUpdater,
     }))));
-  const rubyVersion = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./ruby-version.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], lib: lib }))));
+  const rubyVersion = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./ruby-version.nix")) as nix.Imported<typeof import("./ruby-version.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[1], lib: lib }))));
   const generic = nix.lambda((args_2) => (() => {
     const $_1 = nix.formals(args_2, formals$2);
     const version = nix.arg($_1, "version");
@@ -245,7 +245,7 @@ fi
               const rubyEngine = "ruby";
               const libPath = nix.thunk(() => nix.str`lib/${rubyEngine}/${nix.sel(ver, "libDir")}`);
               const gemPath = nix.thunk(() => nix.str`lib/${rubyEngine}/gems/${nix.sel(ver, "libDir")}`);
-              const devEnv = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./dev.nix")), nix.thunk(() => ({
+              const devEnv = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./dev.nix")) as nix.Imported<typeof import("./dev.ts")>, nix.thunk(() => ({
                   [nix.POS]: $pos[8],
                   buildEnv: buildEnv_1,
                   bundler: bundler_1,
@@ -253,7 +253,7 @@ fi
                   ruby: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
                 }))));
               const rubygems_1 = rubygems;
-              const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../ruby-modules/with-packages")), nix.thunk(() => ({
+              const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../ruby-modules/with-packages")) as nix.Imported<typeof import("../../ruby-modules/with-packages/default.ts")>, nix.thunk(() => ({
                   [nix.POS]: $pos[9],
                   lib: lib_1,
                   stdenv: stdenv_1,

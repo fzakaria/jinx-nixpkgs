@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const callPackage = nix.arg($, "callPackage");
   const pyVerNoDot = nix.thunk(() => nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(python, "pythonVersion"))));
-  const srcs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./binary-hashes.nix")), version));
+  const srcs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./binary-hashes.nix")) as nix.Imported<typeof import("./binary-hashes.ts")>, version));
   const unsupported = nix.thunk(() => nix.builtins.throw("Unsupported system"));
   const version = "2.13.0";
   const cuda_bindings$ = nix.thunk(() => nix.app(nix.sel(cuda_bindings, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], cudaPackages: cudaPackages }))));

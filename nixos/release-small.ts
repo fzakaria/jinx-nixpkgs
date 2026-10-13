@@ -9,22 +9,22 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const nixpkgs = nix.argOr($, "nixpkgs", () => ({
     [nix.POS]: $pos[0],
-    outPath: nix.thunk(() => nix.app(nix.sel(nix.builtins.import(nix.path(here, "../lib")), "cleanSource"), nix.path(here, "./.."))),
+    outPath: nix.thunk(() => nix.app(nix.sel(nix.builtins.import(nix.path(here, "../lib")) as nix.Imported<typeof import("../lib/default.ts")>, "cleanSource"), nix.path(here, "./.."))),
     revCount: 56789n,
     shortRev: "gfedcba",
   }));
   const stableBranch = nix.argOr($, "stableBranch", () => false);
   const supportedSystems = nix.argOr($, "supportedSystems", () => ["aarch64-linux", "x86_64-linux"]);
   const nixpkgsSrc = nixpkgs;
-  const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./..")), nix.thunk(() => ({ [nix.POS]: $pos[1], system: "x86_64-linux" }))));
+  const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./..")) as nix.Imported<typeof import("../default.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[1], system: "x86_64-linux" }))));
   const lib = nix.thunk(() => nix.sel(pkgs, "lib"));
-  const nixos$ = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./release.nix")), nix.thunk(() => ({
+  const nixos$ = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./release.nix")) as nix.Imported<typeof import("./release.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[2],
       stableBranch: stableBranch,
       supportedSystems: supportedSystems,
       nixpkgs: nixpkgsSrc,
     }))));
-  const nixpkgs$ = nix.thunk(() => nix.builtins.removeAttrs(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../pkgs/top-level/release.nix")), nix.thunk(() => ({ [nix.POS]: $pos[3], supportedSystems: supportedSystems, nixpkgs: nixpkgsSrc })))), nix.thunk(() => ["unstable"])));
+  const nixpkgs$ = nix.thunk(() => nix.builtins.removeAttrs(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../pkgs/top-level/release.nix")) as nix.Imported<typeof import("../pkgs/top-level/release.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[3], supportedSystems: supportedSystems, nixpkgs: nixpkgsSrc })))), nix.thunk(() => ["unstable"])));
   return (() => {
     const nixos = nix.thunk(() => ({
       [nix.POS]: $pos[8],

@@ -148,7 +148,7 @@ makeBinaryWrapper $out/bin/deno $out/bin/dx --add-flags "x"
       passthru: nix.thunk(() => ({
         [nix.POS]: $pos[5],
         updateScript: nix.path(here, "./update.sh"),
-        tests: nix.thunk(() => nix.update(nix.app(nix.builtins.import(nix.path(here, "./tests")), nix.thunk(() => ({ [nix.POS]: $pos[2], deno: deno, runCommand: runCommand, lib: lib }))), {
+        tests: nix.thunk(() => nix.update(nix.app(nix.builtins.import(nix.path(here, "./tests")) as nix.Imported<typeof import("./tests/default.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[2], deno: deno, runCommand: runCommand, lib: lib }))), {
           [nix.POS]: $pos[4],
           "build-with-unit-tests": nix.thunk(() => nix.app(nix.sel(deno, "overrideAttrs"), (fa) => ({
               [nix.POS]: $pos[3],

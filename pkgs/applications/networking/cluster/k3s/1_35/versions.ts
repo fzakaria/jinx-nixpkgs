@@ -10,7 +10,7 @@ export default nix.thunk(() => ({
   k3sCommit: "e952d68a5a5f8953c4549cf8fb557f3eae417107",
   k3sRepoSha256: "07kpi9kl8pw4fyba474dap5hiskxays8qa8mf4qz6ai4wqapzg5c",
   k3sVendorHash: "sha256-2u9D2HLhiryOi8bwu5Tbv162WEoRbFfgePW7AeefuG8=",
-  chartVersions: nix.thunk(() => nix.builtins.import(nix.path(here, "./chart-versions.nix"))),
+  chartVersions: nix.thunk(() => nix.builtins.import(nix.path(here, "./chart-versions.nix")) as nix.Imported<typeof import("./chart-versions.ts")>),
   imagesVersions: nix.thunk(() => nix.builtins.fromJSON(nix.thunk(() => nix.builtins.readFile(nix.path(here, "./images-versions.json"))))),
   k3sRootVersion: "0.15.2",
   k3sRootSha256: "0yxq2jqqb7flm4rs9dl7fqxba3mmwkmjbc8rx7pgai4qa1lzyigy",

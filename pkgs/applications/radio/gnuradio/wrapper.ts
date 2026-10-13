@@ -131,7 +131,7 @@ export default nix.lambda((args) => (() => {
         ":",
         nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "makeSearchPath"), nix.thunk(() => nix.sel(unwrapped, "qt", "qtbase", "qtQmlPrefix")), qtPackages)}`),
       ])), extraMakeWrapperArgs))))))));
-  const packages = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../top-level/gnuradio-packages.nix")), nix.thunk(() => ({
+  const packages = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../top-level/gnuradio-packages.nix")) as nix.Imported<typeof import("../../../top-level/gnuradio-packages.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[0],
       lib: lib,
       stdenv: stdenv,

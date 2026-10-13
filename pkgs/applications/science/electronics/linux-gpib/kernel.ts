@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const kernel = nix.arg($, "kernel");
   const pahole = nix.arg($, "pahole");
-  return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], fetchurl: fetchurl, lib: lib, pname: "linux-gpib-kernel" }))), {
+  return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(nix.app(nix.builtins.import(nix.path(here, "./common.nix")) as nix.Imported<typeof import("./common.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], fetchurl: fetchurl, lib: lib, pname: "linux-gpib-kernel" }))), {
       [nix.POS]: $pos[1],
       postPatch: "sed -i 's@/sbin/depmod -A@@g' Makefile\n",
       buildInputs: nix.thunk(() => nix.concat([pahole], nix.sel(kernel, "moduleBuildDependencies"))),

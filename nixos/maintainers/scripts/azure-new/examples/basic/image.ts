@@ -6,7 +6,7 @@ const $pos = nix.positions(here + "/image.nix", [[["imports", 9, 11]], [["system
 const formals$1 = { args: { config: false }, ellipsis: true };
 
 export default nix.thunk(() => (() => {
-  const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../../../../default.nix")), nix.thunk(() => ({}))));
+  const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../../../../default.nix")) as nix.Imported<typeof import("../../../../../../default.ts")>, nix.thunk(() => ({}))));
   const machine = nix.thunk(() => nix.app(nix.builtins.import(nix.thunk(() => nix.add(nix.sel(pkgs, "path"), "/nixos/lib/eval-config.nix"))), nix.thunk(() => ({
       [nix.POS]: $pos[1],
       system: "x86_64-linux",

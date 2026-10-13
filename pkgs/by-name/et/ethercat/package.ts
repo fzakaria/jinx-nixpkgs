@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--enable-userlib=yes", "--enable-kernel=no"]),
       passthru: nix.thunk(() => ({
         [nix.POS]: $pos[1],
-        kernelModule: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./kernel-module.nix")), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
+        kernelModule: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./kernel-module.nix")) as nix.Imported<typeof import("./kernel-module.ts")>, nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({

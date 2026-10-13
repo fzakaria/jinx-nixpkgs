@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.lookup(w, "redhawk")),
     ];
   })());
-  const deps = nix.thunk(() => nix.builtins.import(nix.path(here, "./deps.nix")));
+  const deps = nix.thunk(() => nix.builtins.import(nix.path(here, "./deps.nix")) as nix.Imported<typeof import("./deps.ts")>);
   const edopro_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
       [nix.POS]: $pos[1],
       owner: "edo9300",

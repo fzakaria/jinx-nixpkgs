@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
             cc: nix.thunk(() => nix.sel(pkgSet, "pkgsBuildHost", "llvmPackages", "clangUseLLVM")),
           })))),
       }))))));
-  return nix.app(nix.builtins.import(nix.path(here, "./default.nix")), nix.thunk(() => ({
+  return nix.app(nix.builtins.import(nix.path(here, "./default.nix")) as nix.Imported<typeof import("./default.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[4],
       rustcVersion: "1.98.1",
       rustcSha256: "sha256-3J+LkXsyRE1sesQ8wbQJAT06mmMzOLtgwUza4dFe5lo=",

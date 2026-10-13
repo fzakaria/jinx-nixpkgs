@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const ffmpeg_full = ffmpeg_8_full;
   const nodejs = nodejs_24;
-  const wrapper = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./wrapper.nix")), nix.thunk(() => ({
+  const wrapper = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./wrapper.nix")) as nix.Imported<typeof import("./wrapper.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[0],
       stdenv: stdenv,
       "ffmpeg-full": ffmpeg_full,

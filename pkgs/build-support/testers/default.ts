@@ -131,7 +131,7 @@ fi
           })), script);
       })(), formals$4))),
     runNixOSTest: nix.thunk(() => (() => {
-      const nixos = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../nixos/lib")), nix.thunk(() => ({ [nix.POS]: $pos[11], lib: lib }))));
+      const nixos = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../nixos/lib")) as nix.Imported<typeof import("../../../nixos/lib/default.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[11], lib: lib }))));
       return (testModule) => nix.app(nix.sel(nixos, "runTest"), nix.thunk(() => ({
           [nix.POS]: $pos[13],
           _file: "pkgs.runNixOSTest implementation",
@@ -143,7 +143,7 @@ fi
         })));
     })()),
     nixosTest: nix.thunk(() => (() => {
-      const nixosTesting = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../nixos/lib/testing-python.nix")), nix.thunk(() => (() => {
+      const nixosTesting = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../nixos/lib/testing-python.nix")) as nix.Imported<typeof import("../../../nixos/lib/testing-python.ts")>, nix.thunk(() => (() => {
           const from_1 = nix.thunk(() => nix.sel(stdenv, "hostPlatform"));
           return {
           [nix.POS]: $pos[17],

@@ -175,7 +175,7 @@ export default nix.lambda((args) => (() => {
       };
     })());
     const problemsType = nix.thunk(() => (() => {
-      const types = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../lib/meta-types.nix")), nix.thunk(() => ({ [nix.POS]: $pos[25], lib: lib }))));
+      const types = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../lib/meta-types.nix")) as nix.Imported<typeof import("../../../lib/meta-types.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[25], lib: lib }))));
       const str = nix.thunk(() => nix.attr(types, "str"));
       const listOf = nix.thunk(() => nix.attr(types, "listOf"));
       const attrsOf = nix.thunk(() => nix.attr(types, "attrsOf"));

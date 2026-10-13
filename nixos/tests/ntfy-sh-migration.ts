@@ -5,7 +5,7 @@ const here = nix.here(import.meta.url);
 const $pos = nix.positions(here + "/ntfy-sh-migration.nix", [[["text", 20, 51]], [["ntfy-sh-dynamic-user.conf", 20, 23]], [["etc", 20, 19]], [["base-url", 28, 33]], [["enable", 27, 24], ["settings", 28, 24]], [["ntfy-sh", 27, 16]], [["DynamicUser", 31, 9], ["ExecStartPre", 32, 9], ["Group", 37, 9], ["User", 38, 9]], [["serviceConfig", 30, 32]], [["ntfy-sh", 30, 24]], [["services", 30, 15]], [["isSystemUser", 42, 9], ["group", 43, 9]], [["old-ntfy-sh", 41, 19]], [["old-ntfy-sh", 46, 20]], [["users", 41, 13], ["groups", 46, 13]], [["environment", 20, 7], ["services", 27, 7], ["systemd", 30, 7], ["users", 41, 7]], [["machine", 13, 9]], [["name", 11, 3], ["nodes", 13, 3], ["testScript", 49, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
 
-export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")), nix.thunk(() => ({
+export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")) as nix.Imported<typeof import("./make-test-python.ts")>, nix.thunk(() => ({
     [nix.POS]: $pos[16],
     name: "ntfy-sh",
     nodes: nix.thunk(() => ({

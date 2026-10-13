@@ -1970,7 +1970,7 @@ wait_until_succeeds("curl -sSf localhost:9753/metrics | grep 'restic_check_succe
       const $_1 = nix.formals(args_1, formals$71);
       const pkgs = nix.arg($_1, "pkgs");
       const lib_1 = nix.arg($_1, "lib");
-      const snakeoil = nix.thunk(() => nix.builtins.import(nix.path(here, "./wireguard/snakeoil-keys.nix")));
+      const snakeoil = nix.thunk(() => nix.builtins.import(nix.path(here, "./wireguard/snakeoil-keys.nix")) as nix.Imported<typeof import("./wireguard/snakeoil-keys.ts")>);
       const publicKeyWithoutNewlines = nix.thunk(() => nix.app(nix.sel(lib_1, "replaceStrings"), nix.thunk(() => ["\n"]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(snakeoil, "peer1", "publicKey"))));
       return {
         [nix.POS]: $pos[429],

@@ -1,1 +1,1 @@
-{"version":3,"file":"package.ts","sources":["../../../../../../../../../../nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/do/dovecot_pigeonhole/package.nix"],"names":[],"mappings":";;;;;;;+BAAA,4BAAO,mDAAc;;aACT;SAER;;;;aAIA;;UACK;aACG,gBAAY;sBAEnB,qCAAW;;eACJ;gBACC"}
+{"version":3,"file":"package.ts","sources":["../../../../../../../../../../nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/do/dovecot_pigeonhole/package.nix"],"names":[],"mappings":";;;;;;;+BAAA,4BAAO,kGAAc;;aACT;SAER;;;;aAIA;;UACK;aACG,gBAAY;sBAEnB,qCAAW;;eACJ;gBACC"}

@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const haskellPackages = nix.arg($, "haskellPackages");
   const writeText = nix.arg($, "writeText");
   const gawk = nix.arg($, "gawk");
-  const generic_fetcher = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic-fetcher.nix")), pkgargs));
+  const generic_fetcher = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic-fetcher.nix")) as nix.Imported<typeof import("./generic-fetcher.ts")>, pkgargs));
   return nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const args_2 = args_1;

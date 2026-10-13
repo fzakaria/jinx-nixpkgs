@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
       [nix.POS]: $pos[3],
       pname: "terraspace",
-      version: nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./gemset.nix")), "terraspace", "version")),
+      version: nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./gemset.nix")) as nix.Imported<typeof import("./gemset.ts")>, "terraspace", "version")),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       dontUnpack: true,
       installPhase: nix.thunk(() => nix.str`mkdir -p $out/bin

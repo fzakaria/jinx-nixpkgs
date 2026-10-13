@@ -9,7 +9,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const nixpkgs = nix.argOr($, "nixpkgs", () => ({
     [nix.POS]: $pos[0],
-    outPath: nix.thunk(() => nix.app(nix.sel(nix.builtins.import(nix.path(here, "../../lib")), "cleanSource"), nix.path(here, "../.."))),
+    outPath: nix.thunk(() => nix.app(nix.sel(nix.builtins.import(nix.path(here, "../../lib")) as nix.Imported<typeof import("../../lib/default.ts")>, "cleanSource"), nix.path(here, "../.."))),
     revCount: 1234n,
     shortRev: "abcdef",
     revision: "0000000000000000000000000000000000000000",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
     __allowFileset: false,
   }));
   const attrNamesOnly = nix.argOr($, "attrNamesOnly", () => false);
-  const release_lib = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./release-lib.nix")), nix.thunk(() => ({
+  const release_lib = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./release-lib.nix")) as nix.Imported<typeof import("./release-lib.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[3],
       supportedSystems: supportedSystems,
       scrubJobs: scrubJobs,
@@ -70,20 +70,20 @@ export default nix.lambda((args) => (() => {
   const supportDarwin = nix.thunk(() => nix.app(elem, "aarch64-darwin", supportedSystems));
   const nonPackageJobs = nix.thunk(() => ({
     [nix.POS]: $pos[23],
-    tarball: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-tarball.nix")), nix.thunk(() => ({
+    tarball: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-tarball.nix")) as nix.Imported<typeof import("./make-tarball.ts")>, nix.thunk(() => ({
         [nix.POS]: $pos[4],
         pkgs: pkgs,
         nixpkgs: nixpkgs,
         officialRelease: officialRelease,
       })))),
-    "release-checks": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./nixpkgs-basic-release-checks.nix")), nix.thunk(() => ({
+    "release-checks": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./nixpkgs-basic-release-checks.nix")) as nix.Imported<typeof import("./nixpkgs-basic-release-checks.ts")>, nix.thunk(() => ({
         [nix.POS]: $pos[5],
         pkgs: pkgs,
         nixpkgs: nixpkgs,
         supportedSystems: supportedSystems,
       })))),
     manual: nix.thunk(() => nix.app(nix.sel(pkgs, "nixpkgs-manual", "override"), nix.thunk(() => ({ [nix.POS]: $pos[6], nixpkgs: nixpkgs })))),
-    metrics: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./metrics.nix")), nix.thunk(() => ({ [nix.POS]: $pos[7], pkgs: pkgs, nixpkgs: nixpkgs })))),
+    metrics: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./metrics.nix")) as nix.Imported<typeof import("./metrics.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[7], pkgs: pkgs, nixpkgs: nixpkgs })))),
     "darwin-tested": nix.thunk(() => (nix.asBool(supportDarwin) ? nix.app(nix.sel(pkgs, "releaseTools", "aggregate"), nix.thunk(() => ({
         [nix.POS]: $pos[9],
         name: nix.thunk(() => nix.str`nixpkgs-darwin-${nix.sel(jobs, "tarball", "version")}`),
@@ -169,9 +169,9 @@ export default nix.lambda((args) => (() => {
           ]))))),
       })))),
     stdenvBootstrapTools: nix.thunk(() => nix.app(genAttrs, bootstrapConfigs, (config) => (nix.asBool(nix.app(hasInfix, "-linux-", config)) ? (() => {
-        const bootstrap = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../stdenv/linux/make-bootstrap-tools.nix")), nix.thunk(() => ({
+        const bootstrap = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../stdenv/linux/make-bootstrap-tools.nix")) as nix.Imported<typeof import("../stdenv/linux/make-bootstrap-tools.ts")>, nix.thunk(() => ({
             [nix.POS]: $pos[14],
-            pkgs: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({
+            pkgs: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../..")) as nix.Imported<typeof import("../../default.ts")>, nix.thunk(() => ({
                 [nix.POS]: $pos[13],
                 localSystem: nix.thunk(() => ({ [nix.POS]: $pos[12], config: config })),
               })))),
@@ -182,7 +182,7 @@ export default nix.lambda((args) => (() => {
           test: nix.thunk(() => nix.attr(bootstrap, "test")),
         };
       })() : (nix.asBool(nix.app(hasSuffix, "-darwin", config)) ? (() => {
-        const bootstrap = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../stdenv/darwin/make-bootstrap-tools.nix")), nix.thunk(() => ({
+        const bootstrap = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../stdenv/darwin/make-bootstrap-tools.nix")) as nix.Imported<typeof import("../stdenv/darwin/make-bootstrap-tools.ts")>, nix.thunk(() => ({
             [nix.POS]: $pos[17],
             localSystem: nix.thunk(() => ({ [nix.POS]: $pos[16], config: config })),
           }))));
@@ -192,9 +192,9 @@ export default nix.lambda((args) => (() => {
           test: nix.thunk(() => nix.attr(bootstrap, "test")),
         };
       })() : (nix.asBool(nix.app(hasSuffix, "-freebsd", config)) ? (() => {
-        const bootstrap = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../stdenv/freebsd/make-bootstrap-tools.nix")), nix.thunk(() => ({
+        const bootstrap = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../stdenv/freebsd/make-bootstrap-tools.nix")) as nix.Imported<typeof import("../stdenv/freebsd/make-bootstrap-tools.ts")>, nix.thunk(() => ({
             [nix.POS]: $pos[21],
-            pkgs: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({
+            pkgs: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../..")) as nix.Imported<typeof import("../../default.ts")>, nix.thunk(() => ({
                 [nix.POS]: $pos[20],
                 localSystem: nix.thunk(() => ({ [nix.POS]: $pos[19], config: config })),
               })))),

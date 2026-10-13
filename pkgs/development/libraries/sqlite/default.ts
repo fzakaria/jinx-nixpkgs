@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const interactive = nix.argOr($, "interactive", () => false);
   const gitUpdater = nix.arg($, "gitUpdater");
   const buildPackages = nix.arg($, "buildPackages");
-  const archiveVersion = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./archive-version.nix")), lib));
+  const archiveVersion = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./archive-version.nix")) as nix.Imported<typeof import("./archive-version.ts")>, lib));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
       [nix.POS]: $pos[13],
       pname: nix.thunk(() => nix.str`sqlite${nix.app(nix.sel(lib, "optionalString"), interactive, "-interactive")}`),

@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const officialRelease = nix.arg($, "officialRelease");
   const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.thunk(() => nix.sel(nixpkgs, "outPath"))), nix.thunk(() => ({}))));
   const nix$ = nix.argOr($, "nix", () => nix.sel(pkgs, "nix"));
-  const lib_tests = nix.argOr($, "lib-tests", () => nix.app(nix.builtins.import(nix.path(here, "../../lib/tests/release.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], pkgs: pkgs }))));
+  const lib_tests = nix.argOr($, "lib-tests", () => nix.app(nix.builtins.import(nix.path(here, "../../lib/tests/release.nix")) as nix.Imported<typeof import("../../lib/tests/release.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], pkgs: pkgs }))));
   return nix.app(nix.sel(pkgs, "releaseTools", "sourceTarball"), nix.thunk(() => ({
       [nix.POS]: $pos[1],
       name: "nixpkgs-tarball",

@@ -24,17 +24,17 @@ export default nix.lambda((args) => (() => {
   const toJSON = nix.thunk(() => nix.attr(from, "toJSON"));
   const from_1 = nix.thunk(() => nix.sel(lib, "trivial"));
   const oldestSupportedReleaseIsAtLeast = nix.thunk(() => nix.attr(from_1, "oldestSupportedReleaseIsAtLeast"));
-  const doubles = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./doubles.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib }))));
-  const parse = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./parse.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], lib: lib }))));
-  const inspect = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./inspect.nix")), nix.thunk(() => ({ [nix.POS]: $pos[2], lib: lib }))));
-  const platforms = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./platforms.nix")), nix.thunk(() => ({ [nix.POS]: $pos[3], lib: lib }))));
-  const examples = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./examples.nix")), nix.thunk(() => ({ [nix.POS]: $pos[4], lib: lib }))));
-  const architectures = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./architectures.nix")), nix.thunk(() => ({ [nix.POS]: $pos[5], lib: lib }))));
-  const rustc_target_env = nix.thunk(() => nix.builtins.import(nix.path(here, "./rustc-target-env.nix")));
+  const doubles = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./doubles.nix")) as nix.Imported<typeof import("./doubles.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib }))));
+  const parse = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./parse.nix")) as nix.Imported<typeof import("./parse.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[1], lib: lib }))));
+  const inspect = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./inspect.nix")) as nix.Imported<typeof import("./inspect.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[2], lib: lib }))));
+  const platforms = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./platforms.nix")) as nix.Imported<typeof import("./platforms.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[3], lib: lib }))));
+  const examples = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./examples.nix")) as nix.Imported<typeof import("./examples.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[4], lib: lib }))));
+  const architectures = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./architectures.nix")) as nix.Imported<typeof import("./architectures.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[5], lib: lib }))));
+  const rustc_target_env = nix.thunk(() => nix.builtins.import(nix.path(here, "./rustc-target-env.nix")) as nix.Imported<typeof import("./rustc-target-env.ts")>);
   const equals = (a) => (b) => nix.eq(nix.sel(a, "_withoutFunctions"), nix.sel(b, "_withoutFunctions"));
   const functionNames = nix.thunk(() => ["canExecute", "emulator", "emulatorAvailable", "staticEmulatorAvailable"]);
   const ignoredNames = nix.thunk(() => nix.concat(functionNames, ["_withoutFunctions"]));
-  const flakeExposed = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./flake-systems.nix")), nix.thunk(() => ({}))));
+  const flakeExposed = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./flake-systems.nix")) as nix.Imported<typeof import("./flake-systems.ts")>, nix.thunk(() => ({}))));
   const systemToAttrs = (systemOrArgs) => (nix.asBool(nix.app(isAttrs, systemOrArgs)) ? nix.force(systemOrArgs) : { [nix.POS]: $pos[6], system: systemOrArgs });
   const elaborate = (systemOrArgs) => (() => {
     const allArgs = nix.thunk(() => nix.app(systemToAttrs, systemOrArgs));

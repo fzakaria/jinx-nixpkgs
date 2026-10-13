@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
     "http01-builtin": nix.thunk(() => nix.app(runTest, nix.path(here, "./http01-builtin.nix"))),
     dns01: nix.thunk(() => nix.app(runTest, nix.path(here, "./dns01.nix"))),
     caddy: nix.thunk(() => nix.app(runTest, nix.path(here, "./caddy.nix"))),
-    nginx: nix.thunk(() => nix.app(runTest, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./webserver.nix")), nix.thunk(() => ({
+    nginx: nix.thunk(() => nix.app(runTest, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./webserver.nix")) as nix.Imported<typeof import("./webserver.ts")>, nix.thunk(() => ({
           [nix.POS]: $pos[14],
           domain: domain,
           serverName: "nginx",
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
               })),
             })))),
         })))))),
-    "nginx-without-reload": nix.thunk(() => nix.app(runTest, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./webserver.nix")), nix.thunk(() => ({
+    "nginx-without-reload": nix.thunk(() => nix.app(runTest, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./webserver.nix")) as nix.Imported<typeof import("./webserver.ts")>, nix.thunk(() => ({
           [nix.POS]: $pos[18],
           domain: domain,
           serverName: "nginx",
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
               })),
             })))),
         })))))),
-    httpd: nix.thunk(() => nix.app(runTest, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./webserver.nix")), nix.thunk(() => ({
+    httpd: nix.thunk(() => nix.app(runTest, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./webserver.nix")) as nix.Imported<typeof import("./webserver.ts")>, nix.thunk(() => ({
           [nix.POS]: $pos[34],
           domain: domain,
           serverName: "httpd",

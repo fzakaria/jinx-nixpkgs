@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
   const wasmSupport = nix.argOr($, "wasmSupport", () => false);
   const webUISupport = nix.argOr($, "webUISupport", () => false);
   const buildGrammar = nix.thunk(() => nix.app(callPackage, nix.path(here, "./grammars/build-grammar.nix"), nix.thunk(() => ({}))));
-  const grammars = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./grammars")), nix.thunk(() => ({
+  const grammars = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./grammars")) as nix.Imported<typeof import("./grammars/default.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[0],
       lib: lib,
       "nix-update-script": nix_update_script,
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
     }))));
   const builtGrammars = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => nix.app(nix.sel(lib, "makeOverridable"), buildGrammar), grammars));
   const hasTreeSitterPrefix = nix.thunk(() => nix.app(nix.sel(lib, "hasPrefix"), "tree-sitter-"));
-  const grammarAliases = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./grammars/aliases.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], lib: lib }))));
+  const grammarAliases = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./grammars/aliases.nix")) as nix.Imported<typeof import("./grammars/aliases.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[1], lib: lib }))));
   const grammarDerivationsFrom = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (name) => (value) => (nix.asBool(nix.app(hasTreeSitterPrefix, name)) && nix.asBool(nix.app(nix.sel(lib, "isDerivation"), value)))));
   const removeTreesitterPrefix = nix.thunk(() => nix.app(nix.sel(lib, "strings", "removePrefix"), "tree-sitter-"));
   const removeGrammarSuffix = nix.thunk(() => nix.app(nix.sel(lib, "strings", "removeSuffix"), "-grammar"));

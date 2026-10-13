@@ -5,7 +5,7 @@ const here = nix.here(import.meta.url);
 const $pos = nix.positions(here + "/default.nix", [[["config", 3, 5], ["overlays", 4, 5]], [["root", 19, 5], ["fileset", 20, 5]], [["name", 17, 3], ["src", 18, 3], ["nativeBuildInputs", 27, 3], ["patchPhase", 32, 3], ["buildPhase", 36, 3], ["installPhase", 43, 3]]]);
 
 export default nix.thunk(() => (() => {
-  const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../..")), nix.thunk(() => ({ [nix.POS]: $pos[0], config: nix.thunk(() => ({})), overlays: [] }))));
+  const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../..")) as nix.Imported<typeof import("../../../../default.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], config: nix.thunk(() => ({})), overlays: [] }))));
   const lib = nix.thunk(() => nix.attr(pkgs, "lib"));
   const stdenvNoCC = nix.thunk(() => nix.attr(pkgs, "stdenvNoCC"));
   const gitMinimal = nix.thunk(() => nix.attr(pkgs, "gitMinimal"));

@@ -157,7 +157,7 @@ makeWrapper ${julia}/bin/julia $out/bin/julia \\
   "${closureYaml}" \\
   "${juliaWrapped}/bin/julia" \\
   "${(nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(julia, "version")), "1.7")) ? nix.path(here, "./extract_artifacts.jl") : nix.path(here, "./extract_artifacts_16.jl"))}" \\
-  '${nix.app(nix.sel(lib, "generators", "toJSON"), nix.thunk(() => ({})), nix.thunk(() => nix.builtins.import(nix.path(here, "./extra-libs.nix"))))}' \\
+  '${nix.app(nix.sel(lib, "generators", "toJSON"), nix.thunk(() => ({})), nix.thunk(() => nix.builtins.import(nix.path(here, "./extra-libs.nix")) as nix.Imported<typeof import("./extra-libs.ts")>))}' \\
   '${nix.app(nix.sel(lib, "generators", "toJSON"), nix.thunk(() => ({})), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")))}' \\
   "$out"
 `)));

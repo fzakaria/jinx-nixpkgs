@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const package$ = nix.arg($, "package");
   const plugin = nix.argOr($, "plugin", () => null);
   const pluginOpts = nix.argOr($, "pluginOpts", () => "");
-  return nix.app(nix.builtins.import(nix.path(here, "../make-test-python.nix")), nix.lambda((args_1) => (() => {
+  return nix.app(nix.builtins.import(nix.path(here, "../make-test-python.nix")) as nix.Imported<typeof import("../make-test-python.ts")>, nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const pkgs = nix.arg($_1, "pkgs");
       const lib = nix.arg($_1, "lib");

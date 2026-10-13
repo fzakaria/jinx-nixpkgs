@@ -9,8 +9,8 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const url = nix.arg($, "url");
   const version = nix.arg($, "version");
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../../../../default.nix")), nix.thunk(() => ({}))));
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./update-utils.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: nix.thunk(() => nix.attr(pkgs, "lib")) }))));
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../../../../default.nix")) as nix.Imported<typeof import("../../../../../default.ts")>, nix.thunk(() => ({}))));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./update-utils.nix")) as nix.Imported<typeof import("./update-utils.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], lib: nix.thunk(() => nix.attr(pkgs, "lib")) }))));
   const getLatestStableVersion = nix.thunk(() => nix.attr(from, "getLatestStableVersion"));
   const getSha256 = nix.thunk(() => nix.attr(from, "getSha256"));
   return nix.app(nix.sel(pkgs, "mkShell"), nix.thunk(() => (() => {

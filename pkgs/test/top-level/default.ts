@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
-  const nixpkgsFun = nix.thunk(() => nix.builtins.import(nix.path(here, "../../top-level")));
+  const nixpkgsFun = nix.thunk(() => nix.builtins.import(nix.path(here, "../../top-level")) as nix.Imported<typeof import("../../top-level/default.ts")>);
   return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
       [nix.POS]: $pos[27],
       platformEquality: nix.thunk(() => (() => {

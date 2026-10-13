@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const pkg_config = nix.arg($, "pkg-config");
   const libnl = nix.arg($, "libnl");
-  const cfg = nix.thunk(() => nix.builtins.import(nix.path(here, "./version.nix")));
+  const cfg = nix.thunk(() => nix.builtins.import(nix.path(here, "./version.nix")) as nix.Imported<typeof import("./version.ts")>);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname = "batctl";
       const version = nix.thunk(() => nix.attr(cfg, "version"));

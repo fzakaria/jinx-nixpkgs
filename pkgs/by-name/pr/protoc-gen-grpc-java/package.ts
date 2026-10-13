@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
     const arch = nix.thunk(() => (nix.asBool(nix.sel(platform, "isx86_32")) ? "x86_32" : (nix.asBool(nix.sel(platform, "isx86_64")) ? "x86_64" : (nix.asBool(nix.sel(platform, "isAarch64")) ? "aarch_64" : (nix.asBool((nix.asBool(nix.sel(platform, "isPower64")) && nix.asBool(nix.sel(platform, "isLittleEndian")))) ? "ppcle_64" : (nix.asBool(nix.sel(platform, "isS390x")) ? "s390_64" : nix.builtins.throw(nix.thunk(() => nix.str`Unsupported CPU "${nix.sel(platform, "parsed", "cpu", "name")}"`))))))));
     return nix.str`${os}-${arch}`;
   })());
-  const data = nix.thunk(() => nix.builtins.import(nix.path(here, "./data.nix")));
+  const data = nix.thunk(() => nix.builtins.import(nix.path(here, "./data.nix")) as nix.Imported<typeof import("./data.ts")>);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
       [nix.POS]: $pos[3],
       pname: "protoc-gen-grpc-java",

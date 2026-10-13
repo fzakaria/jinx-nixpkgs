@@ -78,7 +78,7 @@ ln -s ${nix.sel(finalAttrs, "passthru", "moduleLibs")} $out/Modules/module_libs
 ln -s ${nix.sel(finalAttrs, "passthru", "moduleManifests")} $out/Modules/manifests
 `),
       passthru: nix.thunk(() => (() => {
-        const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./modules.nix")), nix.thunk(() => ({
+        const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./modules.nix")) as nix.Imported<typeof import("./modules.ts")>, nix.thunk(() => ({
             [nix.POS]: $pos[2],
             lib: lib,
             fetchFromGitHub: fetchFromGitHub,

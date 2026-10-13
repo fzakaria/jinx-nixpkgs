@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
     const gitRelease = nix.argOr($_1, "gitRelease", () => null);
     const monorepoSrc = nix.argOr($_1, "monorepoSrc", () => null);
     const version = nix.argOr($_1, "version", () => null);
-    const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common/common-let.nix")), nix.thunk(() => ({
+    const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common/common-let.nix")) as nix.Imported<typeof import("./common/common-let.ts")>, nix.thunk(() => ({
         [nix.POS]: $pos[15],
         lib: lib,
         gitRelease: gitRelease,

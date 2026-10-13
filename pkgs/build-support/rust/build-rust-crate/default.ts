@@ -55,10 +55,10 @@ export default nix.lambda((args) => (() => {
     return nix.builtins.map((e) => nix.sel(e, "flag"), sorted);
   })();
   const needUnstableCLI = (dependencies) => nix.app(nix.sel(lib, "any"), (dep) => nix.selOr(dep, () => false, "stdlib"), dependencies);
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./log.nix")), nix.thunk(() => ({ [nix.POS]: $pos[5], lib: lib }))));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./log.nix")) as nix.Imported<typeof import("./log.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[5], lib: lib }))));
   const noisily = nix.thunk(() => nix.attr(from, "noisily"));
   const echo_colored = nix.thunk(() => nix.attr(from, "echo_colored"));
-  const configureCrate = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./configure-crate.nix")), nix.thunk(() => ({
+  const configureCrate = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./configure-crate.nix")) as nix.Imported<typeof import("./configure-crate.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[6],
       lib: lib,
       stdenv: stdenv,
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
       mkRustcDepArgs: mkRustcDepArgs,
       mkRustcFeatureArgs: mkRustcFeatureArgs,
     }))));
-  const installCrate = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./install-crate.nix")), nix.thunk(() => ({ [nix.POS]: $pos[7], stdenv: stdenv }))));
+  const installCrate = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./install-crate.nix")) as nix.Imported<typeof import("./install-crate.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[7], stdenv: stdenv }))));
   return (crate_) => nix.app(nix.sel(lib, "makeOverridable"), nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const rust = nix.argOr($_1, "rust", () => nix.force(rustc));
@@ -149,7 +149,7 @@ export default nix.lambda((args) => (() => {
       })());
       const crateBin = nix.thunk(() => nix.app(nix.sel(lib, "filter"), (bin) => !nix.asBool((nix.asBool(nix.has(bin, "name")) && nix.asBool(nix.eq(nix.sel(bin, "name"), ",")))), nix.thunk(() => nix.selOr(crate, () => [], "crateBin"))));
       const hasCrateBin = nix.thunk(() => nix.has(crate, "crateBin"));
-      const buildCrate = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./build-crate.nix")), nix.thunk(() => ({
+      const buildCrate = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./build-crate.nix")) as nix.Imported<typeof import("./build-crate.ts")>, nix.thunk(() => ({
           [nix.POS]: $pos[8],
           lib: lib,
           stdenv: stdenv,

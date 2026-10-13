@@ -113,15 +113,15 @@ cmake -B update/build -S update $cmakeFlags
       })));
   })(), formals$2);
   return (() => {
-    const tracy_0_11 = nix.thunk(() => nix.app(mkTracyPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./tracy-0.11.nix")), nix.thunk(() => ({ [nix.POS]: $pos[5], lib: lib, stdenv: stdenv, capstone: capstone }))))));
-    const tracy_0_12 = nix.thunk(() => nix.app(mkTracyPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./tracy-0.12.nix")), nix.thunk(() => ({
+    const tracy_0_11 = nix.thunk(() => nix.app(mkTracyPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./tracy-0.11.nix")) as nix.Imported<typeof import("./tracy-0.11.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[5], lib: lib, stdenv: stdenv, capstone: capstone }))))));
+    const tracy_0_12 = nix.thunk(() => nix.app(mkTracyPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./tracy-0.12.nix")) as nix.Imported<typeof import("./tracy-0.12.ts")>, nix.thunk(() => ({
           [nix.POS]: $pos[6],
           fetchFromGitHub: fetchFromGitHub,
           fetchFromGitLab: fetchFromGitLab,
           zstd: zstd,
           "nativefiledialog-extended": nativefiledialog_extended,
         }))))));
-    const tracy_0_13 = nix.thunk(() => nix.app(mkTracyPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./tracy-0.13.nix")), nix.thunk(() => ({
+    const tracy_0_13 = nix.thunk(() => nix.app(mkTracyPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./tracy-0.13.nix")) as nix.Imported<typeof import("./tracy-0.13.ts")>, nix.thunk(() => ({
           [nix.POS]: $pos[7],
           fetchFromGitHub: fetchFromGitHub,
           md4c: md4c,

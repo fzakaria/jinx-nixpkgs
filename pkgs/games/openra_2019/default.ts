@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   const common = nix.thunk(() => (() => {
-    const f = nix.thunk(() => nix.builtins.import(nix.path(here, "./common.nix")));
+    const f = nix.thunk(() => nix.builtins.import(nix.path(here, "./common.nix")) as nix.Imported<typeof import("./common.ts")>);
     const fArgs = nix.thunk(() => nix.app(nix.sel(lib, "functionArgs"), f));
     return nix.app(f, nix.thunk(() => nix.update(nix.builtins.intersectAttrs(fArgs, pkgs), { [nix.POS]: $pos[0], lua: nix.thunk(() => nix.sel(pkgs, "lua5_1")) })));
   })());
@@ -62,8 +62,8 @@ export default nix.lambda((args) => (() => {
           return (nix.asBool(nix.eq(name, null)) ? builder : nix.app(builder, name));
         })(), formals$4), engine);
       })(), formals$3);
-      const engines = nix.thunk(() => nix.app(buildOpenRASet, nix.thunk(() => nix.builtins.import(nix.path(here, "./engines.nix"))), nix.thunk(() => ({ [nix.POS]: $pos[7], buildOpenRAEngine: buildOpenRAEngine }))));
-      const mods = nix.thunk(() => nix.app(buildOpenRASet, nix.thunk(() => nix.builtins.import(nix.path(here, "./mods.nix"))), nix.thunk(() => ({ [nix.POS]: $pos[8], buildOpenRAMod: buildOpenRAMod }))));
+      const engines = nix.thunk(() => nix.app(buildOpenRASet, nix.thunk(() => nix.builtins.import(nix.path(here, "./engines.nix")) as nix.Imported<typeof import("./engines.ts")>), nix.thunk(() => ({ [nix.POS]: $pos[7], buildOpenRAEngine: buildOpenRAEngine }))));
+      const mods = nix.thunk(() => nix.app(buildOpenRASet, nix.thunk(() => nix.builtins.import(nix.path(here, "./mods.nix")) as nix.Imported<typeof import("./mods.ts")>), nix.thunk(() => ({ [nix.POS]: $pos[8], buildOpenRAMod: buildOpenRAMod }))));
       return { [nix.POS]: $pos[9], buildOpenRAEngine, buildOpenRAMod, engines, mods };
     })()));
 })(), formals$1);

@@ -22,9 +22,9 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const config = nix.argOr($, "config", () => ({}));
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: $pos[0], system: system, config: config }))));
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")) as nix.Imported<typeof import("../../default.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], system: system, config: config }))));
   const networkd = nix.arg($, "networkd");
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], system: system, pkgs: pkgs })))), null);
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/testing-python.nix")) as nix.Imported<typeof import("../../lib/testing-python.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[1], system: system, pkgs: pkgs })))), null);
   const lib = nix.thunk(() => nix.sel(pkgs, "lib"));
   const router = nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./router.nix"), nix.thunk(() => ({ [nix.POS]: $pos[2], networkd: networkd }))));
   const clientConfig = (extraConfig) => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => ({

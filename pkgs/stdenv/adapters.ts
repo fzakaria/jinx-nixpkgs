@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const config = nix.arg($, "config");
   const defaultMkDerivationFromStdenv = nix.thunk(() => (() => {
-    const makeDerivationFile = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic/make-derivation.nix")), lib, config));
+    const makeDerivationFile = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic/make-derivation.nix")) as nix.Imported<typeof import("./generic/make-derivation.ts")>, lib, config));
     return (stdenv) => nix.sel(nix.app(makeDerivationFile, stdenv), "mkDerivation");
   })());
   const withOldMkDerivation = (stdenvSuperArgs) => (k) => (stdenvSelf) => (() => {

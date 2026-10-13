@@ -6,7 +6,7 @@ const $pos = nix.positions(here + "/qemu-vm-restrictnetwork.nix", [[["restrictNe
 const formals$1 = { args: { config: false, pkgs: false }, ellipsis: true };
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
 
-export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")), nix.thunk(() => ({
+export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")) as nix.Imported<typeof import("./make-test-python.ts")>, nix.thunk(() => ({
     [nix.POS]: $pos[5],
     name: "qemu-vm-restrictnetwork",
     nodes: nix.thunk(() => ({

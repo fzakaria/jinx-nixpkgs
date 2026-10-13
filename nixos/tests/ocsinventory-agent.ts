@@ -6,7 +6,7 @@ const $pos = nix.positions(here + "/ocsinventory-agent.nix", [[["debug", 12, 13]
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
 
-export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")), nix.lambda((args) => (() => {
+export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")) as nix.Imported<typeof import("./make-test-python.ts")>, nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     const pkgs = nix.arg($, "pkgs");
     return {

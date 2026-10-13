@@ -7,7 +7,7 @@ const formals$1 = { args: { pkgs: true }, ellipsis: false };
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../..")), nix.thunk(() => ({}))));
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../..")) as nix.Imported<typeof import("../../../default.ts")>, nix.thunk(() => ({}))));
   const lib = nix.thunk(() => nix.attr(pkgs, "lib"));
   const stdenv = nix.thunk(() => nix.attr(pkgs, "stdenv"));
   const config = nix.thunk(() => nix.attr(pkgs, "config"));
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         patchelf: patchelf,
       }))));
     const bootstrapFiles = nix.thunk(() => nix.attr(build, "bootstrapFiles"));
-    const bootstrapTools = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./bootstrap-tools")), nix.thunk(() => (() => {
+    const bootstrapTools = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./bootstrap-tools")) as nix.Imported<typeof import("./bootstrap-tools/default.ts")>, nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(stdenv, "buildPlatform"));
         const from_1 = nix.thunk(() => nix.sel(stdenv, "hostPlatform"));
         return {

@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const kaem = nix.arg($, "kaem");
   const tinycc = nix.arg($, "tinycc");
   const gnupatch = nix.arg($, "gnupatch");
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib }))));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")) as nix.Imported<typeof import("./common.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib }))));
   const meta = nix.thunk(() => nix.attr(from, "meta"));
   const pname = "gnumake";
   const version = "4.4.1";

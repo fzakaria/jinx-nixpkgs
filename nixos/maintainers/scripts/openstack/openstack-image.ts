@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       build: nix.thunk(() => ({
         [nix.POS]: $pos[5],
         image: nix.thunk(() => nix.sel(config, "system", "build", "openstackImage")),
-        openstackImage: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../lib/make-disk-image.nix")), nix.thunk(() => (() => {
+        openstackImage: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../lib/make-disk-image.nix")) as nix.Imported<typeof import("../../../lib/make-disk-image.ts")>, nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(config, "image"));
             return {
             [nix.POS]: $pos[4],
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
             format: format,
             baseName: nix.thunk(() => nix.attr(from, "baseName")),
             additionalSpace: "1024M",
-            pkgs: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../..")), nix.thunk(() => (() => {
+            pkgs: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../..")) as nix.Imported<typeof import("../../../../default.ts")>, nix.thunk(() => (() => {
                 const from_1 = nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform"));
                 return { [nix.POS]: $pos[3], system: nix.thunk(() => nix.attr(from_1, "system")) };
               })()))),

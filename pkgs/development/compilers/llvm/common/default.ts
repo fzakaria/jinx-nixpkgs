@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => nix.app(nix.sel(lib, "xor"), nix.thunk(() => !nix.eq(gitRelease, null)), nix.thunk(() => !nix.eq(officialRelease, null)))), nix.thunk(() => nix.add("must specify `gitRelease` or `officialRelease`", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(gitRelease, null)), " — not both")))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/compilers/llvm/common/default.nix:35:1");
   const monorepoSrc$ = monorepoSrc;
   const metadata = nix.thunk(() => (() => {
-    const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common-let.nix")), nix.thunk(() => ({
+    const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common-let.nix")) as nix.Imported<typeof import("./common-let.ts")>, nix.thunk(() => ({
         [nix.POS]: $pos[0],
         lib: nix.thunk(() => nix.attr(args_1, "lib")),
         gitRelease: nix.thunk(() => nix.attr(args_1, "gitRelease")),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
     const releaseInfo = nix.thunk(() => nix.attr(from, "releaseInfo"));
     const release_version = nix.thunk(() => nix.attr(releaseInfo, "release_version"));
     const version_1 = nix.thunk(() => nix.attr(releaseInfo, "version"));
-    const from_1 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common-let.nix")), nix.thunk(() => ({
+    const from_1 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common-let.nix")) as nix.Imported<typeof import("./common-let.ts")>, nix.thunk(() => ({
         [nix.POS]: $pos[1],
         lib: lib,
         fetchFromGitHub: fetchFromGitHub,
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         [nix.POS]: $pos[3],
         name: nix.thunk(() => nix.builtins.baseNameOf(p)),
         path: nix.thunk(() => (() => {
-          const patches = nix.thunk(() => nix.app(nix.sel(args_1, "patchesFn"), nix.thunk(() => nix.builtins.import(nix.path(here, "./patches.nix")))));
+          const patches = nix.thunk(() => nix.app(nix.sel(args_1, "patchesFn"), nix.thunk(() => nix.builtins.import(nix.path(here, "./patches.nix")) as nix.Imported<typeof import("./patches.ts")>)));
           const constraints = nix.thunk(() => nix.selOr(patches, () => null, nix.key(nix.str`${p}`)));
           const matchConstraint = nix.lambda((args_2) => (() => {
             const $_1 = nix.formals(args_2, formals$2);

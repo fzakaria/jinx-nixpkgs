@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const reckon = nix.arg($, "reckon");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname = "reckon";
-      const version = nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./gemset.nix")), "reckon", "version"));
+      const version = nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./gemset.nix")) as nix.Imported<typeof import("./gemset.ts")>, "reckon", "version"));
       const dontUnpack = true;
       const nativeBuildInputs = nix.thunk(() => [makeWrapper]);
       const installPhase = nix.thunk(() => (() => {

@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const stripJavaArchivesHook = nix.arg($, "stripJavaArchivesHook");
   const doCheck = nix.argOr($, "doCheck", () => true);
   const deps = nix.thunk(() => nix.attr(mkgmap, "deps"));
-  const testInputs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./testinputs.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], fetchurl: fetchurl }))));
+  const testInputs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./testinputs.nix")) as nix.Imported<typeof import("./testinputs.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], fetchurl: fetchurl }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
       [nix.POS]: $pos[4],
       pname: "splitter",

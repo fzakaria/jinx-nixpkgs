@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const hostPlatform = nix.arg($, "hostPlatform");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const fetchpatch = nix.arg($, "fetchpatch");
-  const expected = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./bootstrap-sources.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], hostPlatform: hostPlatform }))));
+  const expected = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./bootstrap-sources.nix")) as nix.Imported<typeof import("./bootstrap-sources.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], hostPlatform: hostPlatform }))));
   return nix.app(fetchFromGitHub, nix.thunk(() => ({
       [nix.POS]: $pos[2],
       name: nix.thunk(() => nix.attr(expected, "name")),

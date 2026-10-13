@@ -22,7 +22,7 @@ const formals$15 = { args: {  }, ellipsis: true };
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./ssh-keys.nix")), pkgs));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./ssh-keys.nix")) as nix.Imported<typeof import("./ssh-keys.ts")>, pkgs));
   const snakeOilPrivateKey = nix.thunk(() => nix.attr(from, "snakeOilPrivateKey"));
   const snakeOilPublicKey = nix.thunk(() => nix.attr(from, "snakeOilPublicKey"));
   const snakeOilEd25519PrivateKey = nix.thunk(() => nix.attr(from, "snakeOilEd25519PrivateKey"));

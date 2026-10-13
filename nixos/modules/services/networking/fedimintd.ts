@@ -214,7 +214,7 @@ export default nix.lambda((args) => (() => {
             })))),
           config: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
               [nix.POS]: $pos[35],
-              type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => nix.app(recursiveUpdate, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../web-servers/nginx/vhost-options.nix")), nix.thunk(() => ({ [nix.POS]: $pos[34], config: config_1, lib: lib_1 })))), nix.thunk(() => ({})))))),
+              type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => nix.app(recursiveUpdate, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../web-servers/nginx/vhost-options.nix")) as nix.Imported<typeof import("../web-servers/nginx/vhost-options.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[34], config: config_1, lib: lib_1 })))), nix.thunk(() => ({})))))),
               default: nix.thunk(() => ({})),
               description: "Overrides to the nginx vhost section for api",
             })))),

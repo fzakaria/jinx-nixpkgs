@@ -128,7 +128,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "
                       })))),
                     options: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
                         [nix.POS]: $pos[10],
-                        type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => nix.builtins.import(nix.path(here, "./pantalaimon-options.nix"))))),
+                        type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => nix.builtins.import(nix.path(here, "./pantalaimon-options.nix")) as nix.Imported<typeof import("./pantalaimon-options.ts")>))),
                         default: nix.thunk(() => ({})),
                         description: "passthrough additional options to the `pantalaimon` service.\n",
                       })))),

@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const changedFiles = nix.arg($_1, "changedFiles");
     const affectedAttrPaths = nix.arg($_1, "affectedAttrPaths");
-    const pkgs = nix.argOr($_1, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../..")), nix.thunk(() => ({
+    const pkgs = nix.argOr($_1, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../..")) as nix.Imported<typeof import("../../../default.ts")>, nix.thunk(() => ({
         [nix.POS]: $pos[1],
         system: "x86_64-linux",
         config: nix.thunk(() => ({ [nix.POS]: $pos[0], allowAliases: false })),

@@ -9,7 +9,7 @@ const formals$3 = { args: { version: false, mods: true, src: false }, ellipsis: 
 
 export default (pkgs) => (() => {
   const common = nix.thunk(() => (() => {
-    const f = nix.thunk(() => nix.builtins.import(nix.path(here, "./common.nix")));
+    const f = nix.thunk(() => nix.builtins.import(nix.path(here, "./common.nix")) as nix.Imported<typeof import("./common.ts")>);
     return nix.app(f, nix.thunk(() => nix.update(nix.builtins.intersectAttrs(nix.thunk(() => nix.builtins.functionArgs(f)), pkgs), { [nix.POS]: $pos[0], lua: nix.thunk(() => nix.sel(pkgs, "lua5_1")) })));
   })());
   const buildOpenRASet = (f) => (args) => nix.builtins.mapAttrs((name) => (value) => (nix.asBool(nix.builtins.isFunction(value)) ? nix.app(value, name) : nix.force(value)), nix.thunk(() => nix.app(f, nix.thunk(() => nix.update({
@@ -58,8 +58,8 @@ export default (pkgs) => (() => {
         return (nix.asBool(nix.eq(name, null)) ? builder : nix.app(builder, name));
       })(), formals$3), engine);
     })(), formals$2);
-    const engines = nix.thunk(() => nix.app(buildOpenRASet, nix.thunk(() => nix.builtins.import(nix.path(here, "./engines.nix"))), nix.thunk(() => ({ [nix.POS]: $pos[7], buildOpenRAEngine: buildOpenRAEngine }))));
-    const mods = nix.thunk(() => nix.app(buildOpenRASet, nix.thunk(() => nix.builtins.import(nix.path(here, "./mods.nix"))), nix.thunk(() => ({ [nix.POS]: $pos[8], buildOpenRAMod: buildOpenRAMod }))));
+    const engines = nix.thunk(() => nix.app(buildOpenRASet, nix.thunk(() => nix.builtins.import(nix.path(here, "./engines.nix")) as nix.Imported<typeof import("./engines.ts")>), nix.thunk(() => ({ [nix.POS]: $pos[7], buildOpenRAEngine: buildOpenRAEngine }))));
+    const mods = nix.thunk(() => nix.app(buildOpenRASet, nix.thunk(() => nix.builtins.import(nix.path(here, "./mods.nix")) as nix.Imported<typeof import("./mods.ts")>), nix.thunk(() => ({ [nix.POS]: $pos[8], buildOpenRAMod: buildOpenRAMod }))));
     return { [nix.POS]: $pos[9], buildOpenRAEngine, buildOpenRAMod, engines, mods };
   })();
 })();

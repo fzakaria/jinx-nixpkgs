@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const libxxf86vm = nix.arg($, "libxxf86vm");
   const zlib = nix.arg($, "zlib");
-  const common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], fetchzip: fetchzip }))));
+  const common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")) as nix.Imported<typeof import("./common.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], fetchzip: fetchzip }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
       [nix.POS]: $pos[2],
       pname: nix.thunk(() => nix.sel(common, "pname")),

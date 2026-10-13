@@ -5,11 +5,11 @@ const here = nix.here(import.meta.url);
 const $pos = nix.positions(here + "/test.nix", [[["name", 19, 7], ["buildInputs", 20, 7], ["buildCommand", 21, 7]], [["name", 51, 9], ["buildInputs", 52, 9], ["buildCommand", 53, 9]], [["name", 61, 3], ["buildInputs", 62, 3], ["buildCommand", 65, 3]]]);
 
 export default nix.thunk(() => (() => {
-  const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../..")), nix.thunk(() => ({}))));
+  const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../..")) as nix.Imported<typeof import("../../../../default.ts")>, nix.thunk(() => ({}))));
   const lib = nix.thunk(() => nix.sel(pkgs, "lib"));
   const stdenv = nix.thunk(() => nix.sel(pkgs, "stdenv"));
   const rubyVersions = [];
-  const gemTests = nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mapAttrs"), (name) => (gem) => [name], nix.thunk(() => nix.sel(pkgs, "ruby", "gems"))), nix.builtins.import(nix.path(here, "./require_exceptions.nix"))));
+  const gemTests = nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mapAttrs"), (name) => (gem) => [name], nix.thunk(() => nix.sel(pkgs, "ruby", "gems"))), nix.builtins.import(nix.path(here, "./require_exceptions.nix")) as nix.Imported<typeof import("./require_exceptions.ts")>));
   const testWrapper = (ruby) => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
       [nix.POS]: $pos[0],
       name: nix.thunk(() => nix.str`test-wrappedRuby-${nix.sel(ruby, "name")}`),

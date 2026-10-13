@@ -258,7 +258,7 @@ done
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         platforms: nix.thunk(() => nix.builtins.attrNames(nix.thunk(() => nix.sel(ghcBinDists, nix.key(nix.force(distSetName)))))),
         maintainers: nix.thunk(() => nix.sel(lib, "teams", "haskell", "members")),
-        broken: nix.thunk(() => !nix.asBool(nix.app(nix.builtins.import(nix.path(here, "./common-have-ncg.nix")), nix.thunk(() => ({ [nix.POS]: $pos[29], lib: lib, stdenv: stdenv, version: version }))))),
+        broken: nix.thunk(() => !nix.asBool(nix.app(nix.builtins.import(nix.path(here, "./common-have-ncg.nix")) as nix.Imported<typeof import("./common-have-ncg.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[29], lib: lib, stdenv: stdenv, version: version }))))),
         sourceProvenance: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);
           return [nix.thunk(() => nix.lookup(w, "binaryNativeCode"))];

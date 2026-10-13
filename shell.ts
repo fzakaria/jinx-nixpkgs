@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const nixpkgs = nix.argOr($, "nixpkgs", () => (nix.asBool((nix.asBool(nix.eq(system, "x86_64-darwin")) && nix.asBool(nix.eq(nix.builtins.readFile(nix.path(here, "./.version")), "26.05")))) ? (() => {
     const pinned = nix.thunk(() => nix.sel(nix.builtins.fromJSON(nix.thunk(() => nix.builtins.readFile(nix.path(here, "./ci/pinned.json")))), "pins"));
-    const warn = nix.thunk(() => nix.selOr(nix.builtins, () => nix.sel(nix.builtins.import(nix.path(here, "./lib")), "warn"), "warn"));
+    const warn = nix.thunk(() => nix.selOr(nix.builtins, () => nix.sel(nix.builtins.import(nix.path(here, "./lib")) as nix.Imported<typeof import("./lib/default.ts")>, "warn"), "warn"));
     const from = nix.thunk(() => nix.sel(pinned, "nixpkgs-26.05-darwin"));
     const url = nix.thunk(() => nix.attr(from, "url"));
     const hash = nix.thunk(() => nix.attr(from, "hash"));
@@ -23,10 +23,10 @@ export default nix.lambda((args) => (() => {
         ])))));
     return nix.app(withWarning, nix.builtins.fetchTarball, nix.thunk(() => ({ [nix.POS]: $pos[0], url: url, sha256: hash })));
   })() : null));
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./ci")), nix.thunk(() => ({ [nix.POS]: $pos[1], nixpkgs: nixpkgs, system: system }))));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./ci")) as nix.Imported<typeof import("./ci/default.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[1], nixpkgs: nixpkgs, system: system }))));
   const pkgs = nix.thunk(() => nix.attr(from, "pkgs"));
   const fmt = nix.thunk(() => nix.attr(from, "fmt"));
-  const curPkgs = nix.thunk(() => nix.builtins.removeAttrs(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./.")), nix.thunk(() => ({ [nix.POS]: $pos[2], system: system })))), nix.thunk(() => ["_type"])));
+  const curPkgs = nix.thunk(() => nix.builtins.removeAttrs(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./.")) as nix.Imported<typeof import("./default.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[2], system: system })))), nix.thunk(() => ["_type"])));
   return nix.update(curPkgs, nix.update(nix.app(nix.sel(pkgs, "mkShellNoCC"), nix.thunk(() => ({
       [nix.POS]: $pos[3],
       packages: nix.thunk(() => [

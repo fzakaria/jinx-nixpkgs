@@ -1,0 +1,1 @@
+{"hw-probe":"pkgs/tools/system/hw-probe/default.nix:148","hwatch":"pkgs/by-name/hw/hwatch/package.nix:37","hwdata":"pkgs/by-name/hw/hwdata/package.nix:26","hwi":"pkgs/development/python-modules/hwi/default.nix:46","hwinfo":"pkgs/by-name/hw/hwinfo/package.nix:134","hwloc":"pkgs/by-name/hw/hwloc/package.nix:83"}

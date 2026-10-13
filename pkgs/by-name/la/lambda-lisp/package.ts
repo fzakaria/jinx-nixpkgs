@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const runtimeShell = nix.arg($, "runtimeShell");
   const stdenv = gccStdenv;
-  const s = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./sources.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], fetchurl: fetchurl, fetchFromGitHub: fetchFromGitHub }))));
+  const s = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./sources.nix")) as nix.Imported<typeof import("./sources.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], fetchurl: fetchurl, fetchFromGitHub: fetchFromGitHub }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
       [nix.POS]: $pos[2],
       pname: "lambda-lisp-blc",

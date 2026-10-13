@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const sqlite = nix.arg($, "sqlite");
   const tcl = nix.arg($, "tcl");
-  const archiveVersion = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./archive-version.nix")), lib));
+  const archiveVersion = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./archive-version.nix")) as nix.Imported<typeof import("./archive-version.ts")>, lib));
   const mkTool = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const pname = nix.arg($_1, "pname");

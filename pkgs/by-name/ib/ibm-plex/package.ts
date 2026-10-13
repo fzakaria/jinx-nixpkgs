@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const installFonts = nix.arg($, "installFonts");
   const families = nix.argOr($, "families", () => []);
-  const allFonts = nix.thunk(() => nix.builtins.import(nix.path(here, "./fonts.nix")));
+  const allFonts = nix.thunk(() => nix.builtins.import(nix.path(here, "./fonts.nix")) as nix.Imported<typeof import("./fonts.ts")>);
   const availableFamilyNames = nix.thunk(() => nix.builtins.attrNames(allFonts));
   const selectedFamilies = nix.thunk(() => (nix.asBool(nix.eq(families, [])) ? nix.force(availableFamilyNames) : nix.force(families)));
   const unknownFamilies = nix.thunk(() => nix.app(nix.sel(lib, "subtractLists"), availableFamilyNames, families));

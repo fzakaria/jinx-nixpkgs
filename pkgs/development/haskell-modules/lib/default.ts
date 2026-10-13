@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return (() => {
-    const compose = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./compose.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], pkgs: pkgs, lib: lib }))));
+    const compose = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./compose.nix")) as nix.Imported<typeof import("./compose.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], pkgs: pkgs, lib: lib }))));
     const makePackageSet = nix.thunk(() => nix.sel(compose, "makePackageSet"));
     const overrideCabal = (drv) => (f) => nix.app(nix.sel(compose, "overrideCabal"), f, drv);
     const packageSourceOverrides = nix.thunk(() => nix.sel(compose, "packageSourceOverrides"));

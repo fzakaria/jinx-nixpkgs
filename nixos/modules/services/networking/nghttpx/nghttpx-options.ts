@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "nghttpx")),
           frontends: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
               [nix.POS]: $pos[3],
-              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => nix.builtins.import(nix.path(here, "./frontend-submodule.nix"))))))),
+              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => nix.builtins.import(nix.path(here, "./frontend-submodule.nix")) as nix.Imported<typeof import("./frontend-submodule.ts")>))))),
               description: "A list of frontend listener specifications.\n",
               example: nix.thunk(() => [
                 nix.thunk(() => ({
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
             })))),
           backends: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
               [nix.POS]: $pos[7],
-              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => nix.builtins.import(nix.path(here, "./backend-submodule.nix"))))))),
+              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => nix.builtins.import(nix.path(here, "./backend-submodule.nix")) as nix.Imported<typeof import("./backend-submodule.ts")>))))),
               description: "A list of backend specifications.\n",
               example: nix.thunk(() => [
                 nix.thunk(() => ({
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
             })))),
           tls: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
               [nix.POS]: $pos[9],
-              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => nix.builtins.import(nix.path(here, "./tls-submodule.nix"))))))),
+              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => nix.builtins.import(nix.path(here, "./tls-submodule.nix")) as nix.Imported<typeof import("./tls-submodule.ts")>))))),
               default: null,
               description: "TLS certificate and key paths. Note that this does not enable\nTLS for a frontend listener, to do so, a frontend\nspecification must set `params.tls` to true.\n",
               example: nix.thunk(() => ({

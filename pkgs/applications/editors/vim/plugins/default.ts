@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
   const corePlugins = nix.thunk(() => nix.app(callPackage, nix.path(here, "./corePlugins.nix"), nix.thunk(() => ({}))));
   const overrides = nix.thunk(() => nix.app(callPackage, nix.path(here, "./overrides.nix"), nix.thunk(() => ({ [nix.POS]: $pos[4], llvmPackages: llvmPackages }))));
   const aliases = (final) => (prev) => (() => {
-    const defined = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./aliases.nix")), lib, final, prev));
+    const defined = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./aliases.nix")) as nix.Imported<typeof import("./aliases.ts")>, lib, final, prev));
     const shadowed = nix.thunk(() => nix.builtins.attrNames(nix.thunk(() => nix.builtins.intersectAttrs(prev, defined))));
     nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => nix.eq(shadowed, [])), nix.thunk(() => nix.str`vimPlugins aliases shadow plugins: ${nix.builtins.toString(shadowed)}`)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/applications/editors/vim/plugins/default.nix:64:5");
     return nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), defined);

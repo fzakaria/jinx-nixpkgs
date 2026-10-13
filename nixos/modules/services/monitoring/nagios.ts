@@ -150,7 +150,7 @@ Alias ${urlPath} ${nix.sel(pkgs, "nagios")}/share
             })))),
           virtualHost: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
               [nix.POS]: $pos[12],
-              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => nix.builtins.import(nix.path(here, "../web-servers/apache-httpd/vhost-options.nix"))))),
+              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => nix.builtins.import(nix.path(here, "../web-servers/apache-httpd/vhost-options.nix")) as nix.Imported<typeof import("../web-servers/apache-httpd/vhost-options.ts")>))),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{ hostName = \"example.org\";\n  adminAddr = \"webmaster@example.org\";\n  enableSSL = true;\n  sslServerCert = \"/var/lib/acme/example.org/full.pem\";\n  sslServerKey = \"/var/lib/acme/example.org/key.pem\";\n}\n")),
               description: "Apache configuration can be done by adapting {option}`services.httpd.virtualHosts`.\nSee [](#opt-services.httpd.virtualHosts) for further information.\n",
             })))),

@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const variant = nix.argOr($, "variant", () => "");
   const name = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "hasPrefix"), "SGr-", variant)) ? nix.force(variant) : nix.add("Iosevka", variant)));
-  const variantHashes = nix.thunk(() => nix.builtins.import(nix.path(here, "./variants.nix")));
+  const variantHashes = nix.thunk(() => nix.builtins.import(nix.path(here, "./variants.nix")) as nix.Imported<typeof import("./variants.ts")>);
   const validVariants = nix.thunk(() => nix.builtins.map(nix.thunk(() => nix.app(nix.sel(lib, "removePrefix"), "Iosevka")), nix.thunk(() => nix.builtins.attrNames(nix.thunk(() => nix.builtins.removeAttrs(variantHashes, nix.thunk(() => ["Iosevka"])))))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
       [nix.POS]: $pos[3],

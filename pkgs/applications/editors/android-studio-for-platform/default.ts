@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const makeFontsConf = nix.arg($, "makeFontsConf");
   const buildFHSEnv = nix.arg($, "buildFHSEnv");
   const tiling_wm = nix.argOr($, "tiling_wm", () => false);
-  const mkStudio = (opts) => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), opts)), nix.thunk(() => ({
+  const mkStudio = (opts) => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")) as nix.Imported<typeof import("./common.ts")>, opts)), nix.thunk(() => ({
       [nix.POS]: $pos[1],
       fontsConf: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: $pos[0], fontDirectories: [] })))),
       buildFHSEnv: buildFHSEnv,

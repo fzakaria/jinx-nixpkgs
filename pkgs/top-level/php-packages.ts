@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       const callPackage = nix.thunk(() => nix.attr(self, "callPackage"));
       const mkExtension = nix.thunk(() => nix.attr(self, "mkExtension"));
       const php = nix.thunk(() => nix.attr(self, "php"));
-      const builders = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../build-support/php/builders")), nix.thunk(() => ({
+      const builders = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../build-support/php/builders")) as nix.Imported<typeof import("../build-support/php/builders/default.ts")>, nix.thunk(() => ({
           [nix.POS]: $pos[0],
           callPackages: callPackages,
           callPackage: callPackage,

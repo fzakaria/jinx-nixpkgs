@@ -9,7 +9,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const callPackage = nix.arg($, "callPackage");
   const util_linux = nix.arg($, "util-linux");
-  const mkFuse = (args_1) => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), args_1)), nix.thunk(() => ({ [nix.POS]: $pos[0], "util-linux": util_linux })));
+  const mkFuse = (args_1) => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")) as nix.Imported<typeof import("./common.ts")>, args_1)), nix.thunk(() => ({ [nix.POS]: $pos[0], "util-linux": util_linux })));
   return {
     [nix.POS]: $pos[3],
     fuse_2: nix.thunk(() => nix.app(mkFuse, nix.thunk(() => ({

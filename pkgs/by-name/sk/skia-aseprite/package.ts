@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const python3 = nix.arg($, "python3");
   const zlib = nix.arg($, "zlib");
-  const depSrcs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./deps.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], fetchgit: fetchgit }))));
+  const depSrcs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./deps.nix")) as nix.Imported<typeof import("./deps.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], fetchgit: fetchgit }))));
   return nix.app(nix.sel(clangStdenv, "mkDerivation"), (finalAttrs) => ({
       [nix.POS]: $pos[4],
       pname: "skia-aseprite",

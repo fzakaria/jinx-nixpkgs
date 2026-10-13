@@ -14,7 +14,7 @@ export default nix.thunk(() => (() => {
     const $ = nix.formals(args, formals$1);
     const systemWide = nix.argOr($, "systemWide", () => false);
     const fullVersion = nix.argOr($, "fullVersion", () => false);
-    return nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")), nix.lambda((args_1) => (() => {
+    return nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")) as nix.Imported<typeof import("./make-test-python.ts")>, nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         const lib = nix.arg($_1, "lib");

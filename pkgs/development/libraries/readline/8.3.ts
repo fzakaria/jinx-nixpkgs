@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
             url: nix.thunk(() => nix.str`mirror://gnu/readline/readline-${nix.sel(finalAttrs, "meta", "branch")}-patches/readline83-${nr}`),
             sha256: sha256,
           })));
-        return nix.app(nix.builtins.import(nix.path(here, "./readline-8.3-patches.nix")), patch);
+        return nix.app(nix.builtins.import(nix.path(here, "./readline-8.3-patches.nix")) as nix.Imported<typeof import("./readline-8.3-patches.ts")>, patch);
       })()),
       patches: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(nix.sel(curses_library, "pname"), "ncurses")), nix.thunk(() => [nix.path(here, "./link-against-ncurses.patch")])), nix.concat([nix.path(here, "./no-arch_only-8.2.patch")], nix.concat(nix.sel(finalAttrs, "upstreamPatches"), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isWindows")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({

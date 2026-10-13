@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const notify2 = nix.arg($, "notify2");
   const glib = nix.arg($, "glib");
   const libnotify = nix.arg($, "libnotify");
-  const common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib, fetchFromGitHub: fetchFromGitHub }))));
+  const common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")) as nix.Imported<typeof import("./common.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib, fetchFromGitHub: fetchFromGitHub }))));
   return nix.app(buildPythonPackage, nix.thunk(() => nix.update(common, {
       [nix.POS]: $pos[2],
       pname: "openrazer-daemon",

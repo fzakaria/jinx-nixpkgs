@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const emacs = nix.arg($, "emacs");
   const texinfo = nix.arg($, "texinfo");
-  const genericBuild = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib, stdenv: stdenv, emacs: emacs, texinfo: texinfo }))));
+  const genericBuild = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")) as nix.Imported<typeof import("./generic.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib, stdenv: stdenv, emacs: emacs, texinfo: texinfo }))));
   const packageBuild = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
       [nix.POS]: $pos[2],
       pname: "package-build",

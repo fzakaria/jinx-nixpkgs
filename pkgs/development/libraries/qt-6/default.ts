@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const python3 = nix.arg($, "python3");
   const config = nix.arg($, "config");
-  const srcs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./srcs.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], fetchurl: fetchurl, mirror: "mirror://qt" }))));
+  const srcs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./srcs.nix")) as nix.Imported<typeof import("./srcs.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], fetchurl: fetchurl, mirror: "mirror://qt" }))));
   const addPackages = (self) => (() => {
     const callPackage = nix.thunk(() => nix.app(nix.sel(self, "newScope"), nix.thunk(() => ({
         [nix.POS]: $pos[1],

@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const name = nix.thunk(() => nix.str`flatito-${version}`);
       const version = "0.1.1";
       const gemdir = nix.path(here, "./.");
-      const gemset = nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.builtins.import(nix.path(here, "./gemset.nix"))), nix.thunk(() => ({
+      const gemset = nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.builtins.import(nix.path(here, "./gemset.nix")) as nix.Imported<typeof import("./gemset.ts")>), nix.thunk(() => ({
           [nix.POS]: $pos[2],
           flatito: nix.thunk(() => ({
             [nix.POS]: $pos[1],

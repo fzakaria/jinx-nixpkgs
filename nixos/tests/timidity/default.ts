@@ -6,7 +6,7 @@ const $pos = nix.positions(here + "/default.nix", [[["basic", 2, 3], ["with-vorb
 
 export default (inputs) => ({
   [nix.POS]: $pos[0],
-  basic: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./basic.nix")), inputs)),
-  "with-vorbis": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./with-vorbis.nix")), inputs)),
+  basic: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./basic.nix")) as nix.Imported<typeof import("./basic.ts")>, inputs)),
+  "with-vorbis": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./with-vorbis.nix")) as nix.Imported<typeof import("./with-vorbis.ts")>, inputs)),
 });
 //# sourceMappingURL=default.ts.map

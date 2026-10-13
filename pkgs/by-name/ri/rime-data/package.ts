@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [librime]),
       buildFlags: nix.thunk(() => ["all"]),
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
-      preBuild: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./fetchSchema.nix")), fetchFromGitHub)),
+      preBuild: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./fetchSchema.nix")) as nix.Imported<typeof import("./fetchSchema.ts")>, fetchFromGitHub)),
       postPatch: "# Disable git operations.\nsed -i /fetch_or_update_package$/d scripts/install-packages.sh\n",
       meta: nix.thunk(() => ({
         [nix.POS]: $pos[1],

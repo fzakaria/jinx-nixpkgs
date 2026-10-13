@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const mkDerivation = nix.arg($, "mkDerivation");
   const lib = nix.arg($, "lib");
   const symlinkJoin = nix.arg($, "symlinkJoin");
-  const compyte = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./compyte.nix")), nix.thunk(() => ({
+  const compyte = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./compyte.nix")) as nix.Imported<typeof import("./compyte.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[0],
       mkDerivation: mkDerivation,
       fetchFromGitHub: fetchFromGitHub,

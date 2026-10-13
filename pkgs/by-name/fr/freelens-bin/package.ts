@@ -78,7 +78,7 @@ done
     platforms: nix.thunk(() => nix.builtins.attrNames(sources)),
     mainProgram: "freelens",
   }));
-  return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(nix.builtins.import(nix.path(here, "./darwin.nix")), nix.thunk(() => ({
+  return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(nix.builtins.import(nix.path(here, "./darwin.nix")) as nix.Imported<typeof import("./darwin.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[8],
       stdenvNoCC: stdenvNoCC,
       pname: pname,
@@ -88,7 +88,7 @@ done
       meta: meta,
       _7zz: _7zz,
       autoSignDarwinBinariesHook: nix.thunk(() => nix.sel(darwin, "autoSignDarwinBinariesHook")),
-    }))) : nix.app(nix.builtins.import(nix.path(here, "./linux.nix")), nix.thunk(() => ({
+    }))) : nix.app(nix.builtins.import(nix.path(here, "./linux.nix")) as nix.Imported<typeof import("./linux.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[9],
       pname: pname,
       version: version,

@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const asar = nix.arg($, "asar");
   const makeWrapper = nix.arg($, "makeWrapper");
-  const sources = nix.thunk(() => nix.builtins.import(nix.path(here, "./sources.nix")));
+  const sources = nix.thunk(() => nix.builtins.import(nix.path(here, "./sources.nix")) as nix.Imported<typeof import("./sources.ts")>);
   const pname = "todoist-electron";
   const version = nix.thunk(() => nix.sel(sources, "version"));
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))))));

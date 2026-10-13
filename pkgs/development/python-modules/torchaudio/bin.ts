@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       src: nix.thunk(() => (() => {
         const pyVerNoDot = nix.thunk(() => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(python, "pythonVersion"))));
         const unsupported = nix.thunk(() => nix.builtins.throw("Unsupported system"));
-        const srcs = nix.thunk(() => nix.selOr(nix.app(nix.builtins.import(nix.path(here, "./binary-hashes.nix")), nix.thunk(() => nix.sel(finalAttrs, "version"))), () => nix.force(unsupported), nix.key(nix.str`${nix.sel(stdenv, "system")}-${pyVerNoDot}`)));
+        const srcs = nix.thunk(() => nix.selOr(nix.app(nix.builtins.import(nix.path(here, "./binary-hashes.nix")) as nix.Imported<typeof import("./binary-hashes.ts")>, nix.thunk(() => nix.sel(finalAttrs, "version"))), () => nix.force(unsupported), nix.key(nix.str`${nix.sel(stdenv, "system")}-${pyVerNoDot}`)));
         return nix.app(fetchurl, srcs);
       })()),
       disabled: nix.thunk(() => nix.app(pythonAtLeast, "3.15")),

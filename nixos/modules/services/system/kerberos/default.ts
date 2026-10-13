@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "kerberos_server"));
   const from_1 = nix.thunk(() => nix.sel(config, "security", "krb5"));
   const package$ = nix.thunk(() => nix.attr(from_1, "package"));
-  const format = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../security/krb5/krb5-conf-format.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], pkgs: pkgs, lib: lib })), nix.thunk(() => ({ [nix.POS]: $pos[1], enableKdcACLEntries: true }))));
+  const format = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../security/krb5/krb5-conf-format.nix")) as nix.Imported<typeof import("../../../security/krb5/krb5-conf-format.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], pkgs: pkgs, lib: lib })), nix.thunk(() => ({ [nix.POS]: $pos[1], enableKdcACLEntries: true }))));
   return {
     [nix.POS]: $pos[17],
     imports: nix.thunk(() => [

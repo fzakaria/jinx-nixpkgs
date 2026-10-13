@@ -9,13 +9,13 @@ const formals$3 = { args: { pkgs: false }, ellipsis: true };
 const formals$4 = { args: { nodes: false, pkgs: false }, ellipsis: true };
 
 export default nix.thunk(() => (() => {
-  const certs = nix.thunk(() => nix.builtins.import(nix.path(here, "./common/acme/server/snakeoil-certs.nix")));
+  const certs = nix.thunk(() => nix.builtins.import(nix.path(here, "./common/acme/server/snakeoil-certs.nix")) as nix.Imported<typeof import("./common/acme/server/snakeoil-certs.ts")>);
   const makeVaultwardenTest = (name) => nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     const backend = nix.argOr($, "backend", () => nix.force(name));
     const withClient = nix.argOr($, "withClient", () => true);
     const testScript = nix.argOr($, "testScript", () => null);
-    return nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")), nix.lambda((args_1) => (() => {
+    return nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")) as nix.Imported<typeof import("./make-test-python.ts")>, nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const lib = nix.arg($_1, "lib");
         const pkgs = nix.arg($_1, "pkgs");

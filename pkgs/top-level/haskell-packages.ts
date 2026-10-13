@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const config = nix.arg($, "config");
   const nativeBignumExcludes = nix.thunk(() => ["native-bignum", "ghc902Binary", "ghc966DebianBinary", "ghc984Binary"]);
-  const haskellLibUncomposable = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../development/haskell-modules/lib")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: nix.thunk(() => nix.attr(pkgs, "lib")), pkgs: pkgs }))));
+  const haskellLibUncomposable = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../development/haskell-modules/lib")) as nix.Imported<typeof import("../development/haskell-modules/lib/default.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], lib: nix.thunk(() => nix.attr(pkgs, "lib")), pkgs: pkgs }))));
   const callPackage = nix.thunk(() => nix.app(newScope, nix.thunk(() => ({
       [nix.POS]: $pos[1],
       haskellLib: nix.thunk(() => nix.sel(haskellLibUncomposable, "compose")),

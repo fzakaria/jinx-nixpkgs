@@ -5,7 +5,7 @@ const here = nix.here(import.meta.url);
 const $pos = nix.positions(here + "/nongnu-common-overrides.nix", [[["buildInputs", 26, 5], ["nativeBuildInputs", 27, 5], ["postInstall", 30, 5]], [["haskell-tng-mode", 13, 3], ["jabber", 25, 3]]]);
 
 export default (pkgs) => (lib) => (self) => (super$) => (() => {
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./lib-override-helper.nix")), pkgs, lib));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./lib-override-helper.nix")) as nix.Imported<typeof import("./lib-override-helper.ts")>, pkgs, lib));
   const addPackageRequires = nix.thunk(() => nix.attr(from, "addPackageRequires"));
   return {
     [nix.POS]: $pos[1],

@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         tests: nix.thunk(() => ({
           [nix.POS]: $pos[3],
           integration: nix.thunk(() => nix.sel(nixosTests, "tracee")),
-          "integration-test-cli": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./integration-tests.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], lib: lib, tracee: tracee, makeWrapper: makeWrapper })))),
+          "integration-test-cli": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./integration-tests.nix")) as nix.Imported<typeof import("./integration-tests.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[1], lib: lib, tracee: tracee, makeWrapper: makeWrapper })))),
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
               [nix.POS]: $pos[2],
               package: tracee,

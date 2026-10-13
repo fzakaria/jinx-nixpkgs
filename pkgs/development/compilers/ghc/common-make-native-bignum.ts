@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
     const libiconv = nix.argOr($_1, "libiconv", () => null);
     const ncurses = nix.arg($_1, "ncurses");
     const libffi = nix.argOr($_1, "libffi", () => null);
-    const useLLVM = nix.argOr($_1, "useLLVM", () => !nix.asBool(nix.app(nix.builtins.import(nix.path(here, "./common-have-ncg.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib, stdenv: stdenv, version: version })))));
+    const useLLVM = nix.argOr($_1, "useLLVM", () => !nix.asBool(nix.app(nix.builtins.import(nix.path(here, "./common-have-ncg.nix")) as nix.Imported<typeof import("./common-have-ncg.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib, stdenv: stdenv, version: version })))));
     const buildTargetLlvmPackages = nix.arg($_1, "buildTargetLlvmPackages");
     const llvmPackages = nix.arg($_1, "llvmPackages");
     const enableNativeBignum = nix.argOr($_1, "enableNativeBignum", () => !nix.asBool((nix.asBool(nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), gmp)) && nix.asBool(nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "targetPlatform")), gmp)))));
@@ -178,7 +178,7 @@ CrossCompilePrefix = ${targetPrefix}
               url: "https://gitlab.haskell.org/ghc/ghc/-/commit/39bb6e583d64738db51441a556d499aa93a4fc4a.patch",
               sha256: "0w5fx413z924bi2irsy1l4xapxxhrq158b5gn6jzrbsmhvmpirs0",
             })))),
-        ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "targetPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "targetPlatform", "isAarch64")))), nix.thunk(() => [nix.path(here, "./Cabal-at-least-3.6-paths-fix-cycle-aarch64-darwin.patch")])), nix.app(nix.builtins.import(nix.path(here, "./common-llvm-patches.nix")), nix.thunk(() => ({ [nix.POS]: $pos[11], lib: lib, version: version_1, fetchpatch: fetchpatch }))))))))));
+        ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "targetPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "targetPlatform", "isAarch64")))), nix.thunk(() => [nix.path(here, "./Cabal-at-least-3.6-paths-fix-cycle-aarch64-darwin.patch")])), nix.app(nix.builtins.import(nix.path(here, "./common-llvm-patches.nix")) as nix.Imported<typeof import("./common-llvm-patches.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[11], lib: lib, version: version_1, fetchpatch: fetchpatch }))))))))));
         const postPatch = "patchShebangs .";
         const postAutoreconf = "pushd libraries/unix\nautoconf\npopd\n";
         const preConfigure = nix.thunk(() => nix.add(nix.add(nix.add(nix.add(nix.add(nix.add(nix.add(nix.add(nix.add(nix.add(nix.str`for env in $(env | grep '^TARGET_' | sed -E 's|\\+?=.*||'); do

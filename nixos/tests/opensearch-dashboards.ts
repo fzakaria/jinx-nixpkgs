@@ -5,7 +5,7 @@ const here = nix.here(import.meta.url);
 const $pos = nix.positions(here + "/opensearch-dashboards.nix", [[["maintainers", 5, 10]], [["memorySize", 8, 22]], [["enable", 11, 9]], [["disableSecurity", 18, 11]], [["host", 21, 18], ["port", 22, 18]], [["hosts", 23, 22]], [["server", 21, 11], ["opensearch", 23, 11]], [["enable", 16, 9], ["package", 17, 9], ["settings", 20, 9]], [["opensearch", 10, 16], ["opensearch-dashboards", 15, 16]], [["virtualisation", 8, 7], ["services", 10, 7]], [["machine", 7, 11]], [["name", 4, 5], ["meta", 5, 5], ["nodes", 7, 5], ["testScript", 28, 5]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
 
-export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")), nix.lambda((args) => (() => {
+export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")) as nix.Imported<typeof import("./make-test-python.ts")>, nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     const pkgs = nix.arg($, "pkgs");
     const lib = nix.arg($, "lib");

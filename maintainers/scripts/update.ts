@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const commit = nix.argOr($, "commit", () => false);
   const skip_prompt = nix.argOr($, "skip-prompt", () => false);
   const order = nix.argOr($, "order", () => null);
-  const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./../../default.nix")), nix.thunk(() => nix.update((nix.asBool(nix.eq(include_overlays, false)) ? { [nix.POS]: $pos[0], overlays: [] } : (nix.asBool(nix.eq(include_overlays, true)) ? {} : { [nix.POS]: $pos[1], overlays: include_overlays })), {
+  const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./../../default.nix")) as nix.Imported<typeof import("../../default.ts")>, nix.thunk(() => nix.update((nix.asBool(nix.eq(include_overlays, false)) ? { [nix.POS]: $pos[0], overlays: [] } : (nix.asBool(nix.eq(include_overlays, true)) ? {} : { [nix.POS]: $pos[1], overlays: include_overlays })), {
       [nix.POS]: $pos[3],
       config: nix.thunk(() => ({ [nix.POS]: $pos[2], allowAliases: false })),
     }))));

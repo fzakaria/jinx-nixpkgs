@@ -4,7 +4,7 @@ import * as nix from "../../../../.jinx/runtime/index.ts";
 const here = nix.here(import.meta.url);
 const $pos = nix.positions(here + "/9.4.8.nix", [[["version", 4, 3], ["sha256", 5, 3]]]);
 
-export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common-make-native-bignum.nix")), nix.thunk(() => ({
+export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common-make-native-bignum.nix")) as nix.Imported<typeof import("./common-make-native-bignum.ts")>, nix.thunk(() => ({
     [nix.POS]: $pos[0],
     version: "9.4.8",
     sha256: "0bf407eb67fe3e3c24b0f4c8dea8cb63e07f63ca0f76cf2058565143507ab85e",

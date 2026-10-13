@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
   const replaceVarsWith = nix.arg($, "replaceVarsWith");
   nix.assert_(nix.eq(nix.sel(stdenv, "targetPlatform"), nix.sel(stdenv, "hostPlatform")), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/compilers/ghc/9.6.6-debian-binary.nix:20:1");
   const version = "9.6.6";
-  const useLLVM = nix.thunk(() => !nix.asBool(nix.app(nix.builtins.import(nix.path(here, "./common-have-ncg.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib, stdenv: stdenv, version: version })))));
+  const useLLVM = nix.thunk(() => !nix.asBool(nix.app(nix.builtins.import(nix.path(here, "./common-have-ncg.nix")) as nix.Imported<typeof import("./common-have-ncg.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib, stdenv: stdenv, version: version })))));
   const ghcDebs = nix.thunk(() => ({
     [nix.POS]: $pos[19],
     "loongarch64-linux": nix.thunk(() => ({

@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const numpy = nix.arg($, "numpy");
   const openrazer_daemon = nix.arg($, "openrazer-daemon");
   const setuptools = nix.arg($, "setuptools");
-  const common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib, fetchFromGitHub: fetchFromGitHub }))));
+  const common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")) as nix.Imported<typeof import("./common.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib, fetchFromGitHub: fetchFromGitHub }))));
   return nix.app(buildPythonPackage, nix.thunk(() => nix.update(common, {
       [nix.POS]: $pos[2],
       pname: "openrazer",

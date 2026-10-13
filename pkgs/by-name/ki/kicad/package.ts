@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
   const withI18n = nix.argOr($, "withI18n", () => true);
   const srcs = nix.argOr($, "srcs", () => ({}));
   const baseName = nix.thunk(() => (nix.asBool(testing) ? "kicad-testing" : (nix.asBool(stable) ? "kicad" : "kicad-unstable")));
-  const versionsImport = nix.thunk(() => nix.builtins.import(nix.path(here, "./versions.nix")));
+  const versionsImport = nix.thunk(() => nix.builtins.import(nix.path(here, "./versions.nix")) as nix.Imported<typeof import("./versions.ts")>);
   const kicadSrcFetch = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
       [nix.POS]: $pos[0],
       group: "kicad",

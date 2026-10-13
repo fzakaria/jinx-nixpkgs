@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const self = beam;
   const pkgs = __splicedPackages;
   const callErlang = (drv) => (args_1) => (() => {
-    const genericBuilder = (versionArgs) => nix.app(nix.builtins.import(nix.path(here, "../development/interpreters/erlang/generic-builder.nix")), nix.thunk(() => nix.update(versionArgs, args_1)));
+    const genericBuilder = (versionArgs) => nix.app(nix.builtins.import(nix.path(here, "../development/interpreters/erlang/generic-builder.nix")) as nix.Imported<typeof import("../development/interpreters/erlang/generic-builder.ts")>, nix.thunk(() => nix.update(versionArgs, args_1)));
     return nix.app(nix.sel(pkgs, "callPackage"), nix.thunk(() => nix.app(nix.builtins.import(drv), genericBuilder)), nix.thunk(() => ({})));
   })();
   const packagesFor = (name) => (erlang) => nix.app(callPackage, nix.path(here, "../development/beam-modules"), nix.thunk(() => ({

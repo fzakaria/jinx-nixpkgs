@@ -9,7 +9,7 @@ const formals$2 = { args: { pkgs: false }, ellipsis: true };
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
-  const certs = nix.thunk(() => nix.builtins.import(nix.path(here, "./common/acme/server/snakeoil-certs.nix")));
+  const certs = nix.thunk(() => nix.builtins.import(nix.path(here, "./common/acme/server/snakeoil-certs.nix")) as nix.Imported<typeof import("./common/acme/server/snakeoil-certs.ts")>);
   const mobilizonDomain = nix.thunk(() => nix.sel(certs, "domain"));
   const port = 41395n;
   return {

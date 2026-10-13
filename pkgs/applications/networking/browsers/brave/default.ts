@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
   const mkBrave = (release) => (() => {
     const pkg = nix.thunk(() => nix.builtins.import(release));
     const fd = nix.thunk(() => nix.sel(flavorData, nix.key(nix.selOr(pkg, () => "browser", "flavor"))));
-    return nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-brave.nix")), nix.thunk(() => nix.update(pkg, fd)))), nix.thunk(() => ({})));
+    return nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-brave.nix")) as nix.Imported<typeof import("./make-brave.ts")>, nix.thunk(() => nix.update(pkg, fd)))), nix.thunk(() => ({})));
   })();
   return {
     [nix.POS]: $pos[3],

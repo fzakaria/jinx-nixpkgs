@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([cmake], nix.app(nix.sel(lib, "optionals"), withQt, nix.thunk(() => [nix.thunk(() => nix.sel(libsForQt5, "wrapQtAppsHook"))])))),
       buildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), withQt, nix.thunk(() => [nix.thunk(() => nix.sel(libsForQt5, "qtbase"))])), nix.app(nix.sel(lib, "optionals"), withCurses, ncurses))),
       cmakeFlags: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), withQt, nix.thunk(() => ["-DQT=ON"])), nix.app(nix.sel(lib, "optionals"), withCurses, nix.thunk(() => ["-DCURSES=ON", "-DQT=OFF"])))),
-      preConfigure: nix.thunk(() => nix.add("mkdir -p $PWD/build/_deps\n\n", nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (params) => nix.str`ln -s ${nix.app(fetchurl, params)} $PWD/build/_deps/${name}`, nix.thunk(() => nix.builtins.import(nix.path(here, "./deps.nix")))))))),
+      preConfigure: nix.thunk(() => nix.add("mkdir -p $PWD/build/_deps\n\n", nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (params) => nix.str`ln -s ${nix.app(fetchurl, params)} $PWD/build/_deps/${name}`, nix.thunk(() => nix.builtins.import(nix.path(here, "./deps.nix")) as nix.Imported<typeof import("./deps.ts")>)))))),
       meta: nix.thunk(() => ({
         [nix.POS]: $pos[1],
         description: "Extensible text editor based on Scintilla with Lua scripting",

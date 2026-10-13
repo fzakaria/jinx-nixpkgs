@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./lib.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], config: config, lib: lib, pkgs: pkgs })))), null);
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./lib.nix")) as nix.Imported<typeof import("./lib.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], config: config, lib: lib, pkgs: pkgs })))), null);
   const getBin = nix.thunk(() => nix.attr(lib, "getBin"));
   const literalExpression = nix.thunk(() => nix.attr(lib, "literalExpression"));
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));

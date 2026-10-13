@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const isl_0_20 = nix.arg($, "isl_0_20");
   const noSysDirs = nix.arg($, "noSysDirs");
   const wrapCC = nix.arg($, "wrapCC");
-  const versions = nix.thunk(() => nix.builtins.import(nix.path(here, "./versions.nix")));
+  const versions = nix.thunk(() => nix.builtins.import(nix.path(here, "./versions.nix")) as nix.Imported<typeof import("./versions.ts")>);
   const buildIsHost = nix.thunk(() => nix.app(nix.sel(lib, "systems", "equals"), nix.thunk(() => nix.sel(stdenv, "buildPlatform")), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))));
   const buildIsTarget = nix.thunk(() => nix.app(nix.sel(lib, "systems", "equals"), nix.thunk(() => nix.sel(stdenv, "buildPlatform")), nix.thunk(() => nix.sel(stdenv, "targetPlatform"))));
   const hostIsTarget = nix.thunk(() => nix.app(nix.sel(lib, "systems", "equals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), nix.thunk(() => nix.sel(stdenv, "targetPlatform"))));

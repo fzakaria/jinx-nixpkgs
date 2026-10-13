@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const python3Packages = nix.arg($, "python3Packages");
   const libdrm = nix.arg($, "libdrm");
-  const common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib, fetchFromGitLab: fetchFromGitLab }))));
+  const common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")) as nix.Imported<typeof import("./common.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib, fetchFromGitLab: fetchFromGitLab }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname = "mesa-libgbm";
       const version = "26.1.3";

@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const texinfo = nix.arg($, "texinfo");
   const unzip = nix.arg($, "unzip");
   const which = nix.arg($, "which");
-  const s = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./sources.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], fetchurl: fetchurl, fetchFromGitHub: fetchFromGitHub }))));
+  const s = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./sources.nix")) as nix.Imported<typeof import("./sources.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], fetchurl: fetchurl, fetchFromGitHub: fetchFromGitHub }))));
   nix.assert_(nix.app(nix.sel(lib, "elem"), targetArchitecture, nix.thunk(() => ["i586", "i686"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/compilers/djgpp/default.nix:22:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname = "djgpp";

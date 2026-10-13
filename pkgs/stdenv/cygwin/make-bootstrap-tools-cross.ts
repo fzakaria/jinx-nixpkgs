@@ -9,8 +9,8 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const lib = nix.thunk(() => nix.attr(releaseLib, "lib"));
-  const releaseLib = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../top-level/release-lib.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], supportedSystems: [] }))));
-  const make = (crossSystem) => nix.app(nix.builtins.import(nix.path(here, "./make-bootstrap-tools.nix")), nix.thunk(() => ({
+  const releaseLib = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../top-level/release-lib.nix")) as nix.Imported<typeof import("../../top-level/release-lib.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], supportedSystems: [] }))));
+  const make = (crossSystem) => nix.app(nix.builtins.import(nix.path(here, "./make-bootstrap-tools.nix")) as nix.Imported<typeof import("./make-bootstrap-tools.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[1],
       pkgs: nix.thunk(() => nix.app(nix.sel(releaseLib, "pkgsForCross"), crossSystem, system)),
     })));

@@ -273,7 +273,7 @@ wrapProgram $out/bin/initdb --prefix PATH ":" ${nix.sel(glibc, "bin")}/bin
             [nix.POS]: $pos[15],
             callPackage: nix.thunk(() => nix.app(newScope, nix.thunk(() => nix.update(scope, nix.sel(finalAttrs, "finalPackage", "pkgs"))))),
           }));
-          return nix.app(nix.builtins.import(nix.path(here, "./ext.nix")), newSelf, newSuper);
+          return nix.app(nix.builtins.import(nix.path(here, "./ext.nix")) as nix.Imported<typeof import("./ext.ts")>, newSelf, newSuper);
         })()),
         withPackages: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./wrapper.nix"), nix.thunk(() => ({
             [nix.POS]: $pos[16],

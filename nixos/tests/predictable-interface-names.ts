@@ -11,8 +11,8 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const config = nix.argOr($, "config", () => ({}));
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: $pos[0], system: system, config: config }))));
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], system: system, pkgs: pkgs }))));
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")) as nix.Imported<typeof import("../../default.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], system: system, config: config }))));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")) as nix.Imported<typeof import("../lib/testing-python.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[1], system: system, pkgs: pkgs }))));
   const makeTest = nix.thunk(() => nix.attr(from, "makeTest"));
   const testCombinations = nix.thunk(() => nix.app(nix.sel(pkgs, "lib", "cartesianProduct"), nix.thunk(() => ({
       [nix.POS]: $pos[2],

@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
           writableStore: true,
           writableStoreUseTmpfs: false,
           emptyDiskImages: nix.thunk(() => [1024n]),
-          fileSystems: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../modules/virtualisation/vz-vm-file-systems.nix")), nix.thunk(() => ({
+          fileSystems: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../modules/virtualisation/vz-vm-file-systems.nix")) as nix.Imported<typeof import("../modules/virtualisation/vz-vm-file-systems.ts")>, nix.thunk(() => ({
               [nix.POS]: $pos[2],
               lib: lib,
               diskImage: "./nixos.qcow2",

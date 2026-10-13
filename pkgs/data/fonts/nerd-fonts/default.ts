@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
     return (nix.asBool(!nix.eq(nix.builtins.match("^[[:digit:]].*", lowerName), null)) ? nix.add("_", lowerName) : nix.force(lowerName));
   })();
   const convertVersion = (version) => (nix.asBool(!nix.eq(nix.builtins.match("^[[:digit:]].*", version), null)) ? nix.add("+", version) : "");
-  const convertLicense = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./convert-license.nix")), lib));
+  const convertLicense = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./convert-license.nix")) as nix.Imported<typeof import("./convert-license.ts")>, lib));
   const makeNerdFont = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const caskName = nix.arg($_1, "caskName");

@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
     makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`${chezSystem}.bootquick`)]),
     installPhase: "runHook preInstall\nmkdir -p $out\npushd boot\nmv $(ls -1 | grep -v \"^pb$\") -t $out\npopd\nrunHook postInstall\n",
   }));
-  const boot = nix.thunk(() => nix.app(nix.sel(buildPackages, "callPackage"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./shared.nix")), forBoot)), nix.thunk(() => ({}))));
+  const boot = nix.thunk(() => nix.app(nix.sel(buildPackages, "callPackage"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./shared.nix")) as nix.Imported<typeof import("./shared.ts")>, forBoot)), nix.thunk(() => ({}))));
   const forFinal = nix.thunk(() => ({
     [nix.POS]: $pos[1],
     pname: "chez-scheme-racket",
@@ -36,7 +36,7 @@ runHook postConfigure
     postBuild: "popd\n",
     setupHook: nix.path(here, "./setup-hook.sh"),
   }));
-  const final = nix.thunk(() => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./shared.nix")), forFinal)), nix.thunk(() => ({}))));
+  const final = nix.thunk(() => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./shared.nix")) as nix.Imported<typeof import("./shared.ts")>, forFinal)), nix.thunk(() => ({}))));
   return nix.force(final);
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

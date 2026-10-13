@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const papertrail = nix.arg($, "papertrail");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname = "papertrail";
-      const version = nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./gemset.nix")), "papertrail", "version"));
+      const version = nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./gemset.nix")) as nix.Imported<typeof import("./gemset.ts")>, "papertrail", "version"));
       const gems = nix.thunk(() => nix.app(bundlerEnv, nix.thunk(() => ({
           [nix.POS]: $pos[0],
           name: "papertrail",

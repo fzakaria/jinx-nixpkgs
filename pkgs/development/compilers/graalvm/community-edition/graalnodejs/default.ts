@@ -12,8 +12,8 @@ export default nix.lambda((args) => (() => {
   const graalvmPackages = nix.arg($, "graalvmPackages");
   return nix.app(nix.sel(graalvmPackages, "buildGraalvmProduct"), nix.thunk(() => ({
       [nix.POS]: $pos[0],
-      src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./hashes.nix")), "hashes", nix.key(nix.sel(stdenv, "system")))))),
-      version: nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./hashes.nix")), "version")),
+      src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./hashes.nix")) as nix.Imported<typeof import("./hashes.ts")>, "hashes", nix.key(nix.sel(stdenv, "system")))))),
+      version: nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./hashes.nix")) as nix.Imported<typeof import("./hashes.ts")>, "version")),
       product: "graalnodejs",
       doInstallCheck: true,
       installCheckPhase: "echo \"Testing NodeJS\"\n$out/bin/npx --help\n",

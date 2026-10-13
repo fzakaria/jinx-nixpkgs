@@ -4,7 +4,7 @@ import * as nix from "../../../.jinx/runtime/index.ts";
 const here = nix.here(import.meta.url);
 const $pos = nix.positions(here + "/4_3.nix", [[["kafkaVersion", 2, 3], ["scalaVersion", 3, 3], ["hash", 4, 3]]]);
 
-export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")), nix.thunk(() => ({
+export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")) as nix.Imported<typeof import("./generic.ts")>, nix.thunk(() => ({
     [nix.POS]: $pos[0],
     kafkaVersion: "4.3.1",
     scalaVersion: "2.13",

@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
   const tlpdb = nix.arg($, "tlpdb");
   const luajit = nix.arg($, "luajit");
   const withSystemLibs = nix.thunk(() => nix.app(nix.builtins.map, (libname) => nix.str`--with-system-${libname}`));
-  const year = nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(nix.sel(nix.builtins.import(nix.path(here, "./tlpdb.nix")), "00texlive.config"), "year"))));
+  const year = nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(nix.sel(nix.builtins.import(nix.path(here, "./tlpdb.nix")) as nix.Imported<typeof import("./tlpdb.ts")>, "00texlive.config"), "year"))));
   const version = year;
   const assertFixedHash = (name) => (src) => (nix.asBool((nix.asBool(!nix.asBool(useFixedHashes)) || nix.asBool(nix.has(src, "outputHash")))) ? nix.force(src) : nix.builtins.throw(nix.thunk(() => nix.str`The TeX Live package '${nix.sel(src, "pname")}' must have a fixed hash before building '${name}'.`)));
   const corePackages = nix.thunk(() => [

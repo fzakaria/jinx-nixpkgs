@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const postgresql = nix.arg($, "postgresql");
   return (f) => (() => {
     const installedExtensions = nix.thunk(() => nix.app(f, nix.thunk(() => nix.sel(postgresql, "pkgs"))));
-    const recurse = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./wrapper.nix")), nix.thunk(() => ({
+    const recurse = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./wrapper.nix")) as nix.Imported<typeof import("./wrapper.ts")>, nix.thunk(() => ({
         [nix.POS]: $pos[0],
         buildEnv: buildEnv,
         callPackage: callPackage,

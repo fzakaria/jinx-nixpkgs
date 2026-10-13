@@ -8,7 +8,7 @@ const formals$1 = { args: { lib: false }, ellipsis: false };
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
-  return nix.app(nix.sel(lib, "recursiveUpdate"), lib, nix.thunk(() => nix.update(nix.app(nix.builtins.import(nix.path(here, "./extra-lib-common.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib }))), {
+  return nix.app(nix.sel(lib, "recursiveUpdate"), lib, nix.thunk(() => nix.update(nix.app(nix.builtins.import(nix.path(here, "./extra-lib-common.nix")) as nix.Imported<typeof import("./extra-lib-common.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib }))), {
       [nix.POS]: $pos[2],
       overrideRocqDerivation: (f) => (drv) => nix.app(nix.sel(drv, "override"), (args_1) => ({
           [nix.POS]: $pos[1],

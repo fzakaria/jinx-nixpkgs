@@ -154,15 +154,15 @@ EOF
     })();
     const systemdUtils = nix.thunk(() => ({
       [nix.POS]: $pos[11],
-      lib: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./systemd-lib.nix")), nix.thunk(() => ({ [nix.POS]: $pos[6], lib: lib, config: config, pkgs: pkgs, utils: utils })))),
-      unitOptions: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./systemd-unit-options.nix")), nix.thunk(() => ({ [nix.POS]: $pos[7], lib: lib, systemdUtils: systemdUtils })))),
-      types: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./systemd-types.nix")), nix.thunk(() => ({ [nix.POS]: $pos[8], lib: lib, systemdUtils: systemdUtils, pkgs: pkgs })))),
+      lib: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./systemd-lib.nix")) as nix.Imported<typeof import("./systemd-lib.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[6], lib: lib, config: config, pkgs: pkgs, utils: utils })))),
+      unitOptions: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./systemd-unit-options.nix")) as nix.Imported<typeof import("./systemd-unit-options.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[7], lib: lib, systemdUtils: systemdUtils })))),
+      types: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./systemd-types.nix")) as nix.Imported<typeof import("./systemd-types.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[8], lib: lib, systemdUtils: systemdUtils, pkgs: pkgs })))),
       network: nix.thunk(() => ({
         [nix.POS]: $pos[10],
-        units: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./systemd-network-units.nix")), nix.thunk(() => ({ [nix.POS]: $pos[9], lib: lib, systemdUtils: systemdUtils })))),
+        units: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./systemd-network-units.nix")) as nix.Imported<typeof import("./systemd-network-units.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[9], lib: lib, systemdUtils: systemdUtils })))),
       })),
     }));
-    const binfmtMagics = nix.thunk(() => nix.builtins.import(nix.path(here, "./binfmt-magics.nix")));
+    const binfmtMagics = nix.thunk(() => nix.builtins.import(nix.path(here, "./binfmt-magics.nix")) as nix.Imported<typeof import("./binfmt-magics.ts")>);
     const pam = nix.thunk(() => ({
       [nix.POS]: $pos[13],
       autoOrderRules: nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "pipe")), nix.thunk(() => [

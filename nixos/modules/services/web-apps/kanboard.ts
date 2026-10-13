@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
             })))),
           nginx: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
               [nix.POS]: $pos[7],
-              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../web-servers/nginx/vhost-options.nix")), nix.thunk(() => ({ [nix.POS]: $pos[6], config: config, lib: lib })))))))),
+              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../web-servers/nginx/vhost-options.nix")) as nix.Imported<typeof import("../web-servers/nginx/vhost-options.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[6], config: config, lib: lib })))))))),
               default: nix.thunk(() => ({})),
               description: "With this option, you can customize an NGINX virtual host which already\nhas sensible defaults for Kanboard. Set to `{ }` if you do not need any\ncustomization for the virtual host. If enabled, then by default, the\n{option}`serverName` is `${domain}`. If this is set to null (the\ndefault), no NGINX virtual host will be configured.\n",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  enableACME = true;\n  forceSSL = true;\n}\n")),

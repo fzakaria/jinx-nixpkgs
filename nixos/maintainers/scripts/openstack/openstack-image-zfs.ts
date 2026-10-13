@@ -82,14 +82,14 @@ export default nix.lambda((args) => (() => {
         build: nix.thunk(() => ({
           [nix.POS]: $pos[20],
           image: nix.thunk(() => nix.sel(config, "system", "build", "openstackImage")),
-          openstackImage: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../lib/make-single-disk-zfs-image.nix")), nix.thunk(() => ({
+          openstackImage: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../lib/make-single-disk-zfs-image.nix")) as nix.Imported<typeof import("../../../lib/make-single-disk-zfs-image.ts")>, nix.thunk(() => ({
               [nix.POS]: $pos[19],
               lib: lib,
               config: config,
               contents: nix.thunk(() => nix.attr(cfg, "contents")),
               format: nix.thunk(() => nix.attr(cfg, "format")),
               name: nix.thunk(() => nix.sel(config, "image", "baseName")),
-              pkgs: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../..")), nix.thunk(() => ({ [nix.POS]: $pos[17], system: nix.thunk(() => nix.attr(pkgs, "system")) })))),
+              pkgs: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../..")) as nix.Imported<typeof import("../../../../default.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[17], system: nix.thunk(() => nix.attr(pkgs, "system")) })))),
               configFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "configuration.nix", "{ modulesPath, ... }: {\n  imports = [ \"${modulesPath}/virtualisation/openstack-config.nix\" ];\n  openstack.zfs.enable = true;\n}\n")),
               includeChannel: copyChannel,
               bootSize: 1000n,

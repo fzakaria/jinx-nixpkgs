@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       pname: "cddl",
       gemfile: nix.path(here, "./Gemfile"),
       lockfile: nix.path(here, "./Gemfile.lock"),
-      gemset: nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.builtins.import(nix.path(here, "./gemset.nix"))), nix.thunk(() => ({
+      gemset: nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.builtins.import(nix.path(here, "./gemset.nix")) as nix.Imported<typeof import("./gemset.ts")>), nix.thunk(() => ({
           [nix.POS]: $pos[1],
           cddl: nix.thunk(() => ({
             [nix.POS]: $pos[0],

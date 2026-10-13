@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [ziafont]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, nbval, latex2mathml, writableTmpDirAsHomeHook]);
       const preCheck = nix.thunk(() => (() => {
-        const checkFonts = nix.thunk(() => nix.app(nix.sel(lib, "map"), fetchurl, nix.thunk(() => nix.builtins.import(nix.path(here, "./checkfonts.nix")))));
+        const checkFonts = nix.thunk(() => nix.app(nix.sel(lib, "map"), fetchurl, nix.thunk(() => nix.builtins.import(nix.path(here, "./checkfonts.nix")) as nix.Imported<typeof import("./checkfonts.ts")>)));
         const copyFontCmd = (font) => nix.str`cp ${font} test/${nix.app(nix.sel(lib, "last"), nix.thunk(() => nix.app(nix.sel(lib, "splitString"), "/", nix.thunk(() => nix.sel(font, "url")))))}
 `;
         return nix.app(nix.sel(lib, "concatMapStrings"), copyFontCmd, checkFonts);

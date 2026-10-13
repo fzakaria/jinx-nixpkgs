@@ -5,8 +5,8 @@ const here = nix.here(import.meta.url);
 const $pos = nix.positions(here + "/shell.nix", [[["config", 3, 5], ["overlays", 4, 5]], [["buildArgs", 10, 5], ["open", 11, 5]], [["packages", 16, 3]]]);
 
 export default nix.thunk(() => (() => {
-  const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../..")), nix.thunk(() => ({ [nix.POS]: $pos[0], config: nix.thunk(() => ({})), overlays: [] }))));
-  const common = nix.thunk(() => nix.builtins.import(nix.path(here, "./common.nix")));
+  const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../..")) as nix.Imported<typeof import("../../../default.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], config: nix.thunk(() => ({})), overlays: [] }))));
+  const common = nix.thunk(() => nix.builtins.import(nix.path(here, "./common.nix")) as nix.Imported<typeof import("./common.ts")>);
   const outputPath = nix.thunk(() => nix.attr(common, "outputPath"));
   const indexPath = nix.thunk(() => nix.attr(common, "indexPath"));
   const devmode = nix.thunk(() => nix.app(nix.sel(pkgs, "devmode", "override"), nix.thunk(() => ({

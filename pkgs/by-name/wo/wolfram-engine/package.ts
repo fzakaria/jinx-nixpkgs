@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
   const libGL = nix.arg($, "libGL");
   const libGLU = nix.arg($, "libGLU");
   const libsForQt5 = nix.arg($, "libsForQt5");
-  const l10n = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./l10ns.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib, requireFile: requireFile, lang: lang }))));
+  const l10n = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./l10ns.nix")) as nix.Imported<typeof import("./l10ns.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib, requireFile: requireFile, lang: lang }))));
   const dirName = "WolframEngine";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname = "wolfram-engine";

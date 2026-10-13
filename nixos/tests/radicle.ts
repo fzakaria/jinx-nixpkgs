@@ -14,8 +14,8 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   const seed_nid = "z6MkhwX7wBkHQvcLazu2KDFK6UifGkLcoxNm2iA38fPH9LwU";
-  const seed_ssh_keys = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./ssh-keys.nix")), pkgs));
-  const seed_tls_certs = nix.thunk(() => nix.builtins.import(nix.path(here, "common/acme/server/snakeoil-certs.nix")));
+  const seed_ssh_keys = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./ssh-keys.nix")) as nix.Imported<typeof import("./ssh-keys.ts")>, pkgs));
+  const seed_tls_certs = nix.thunk(() => nix.builtins.import(nix.path(here, "common/acme/server/snakeoil-certs.nix")) as nix.Imported<typeof import("./common/acme/server/snakeoil-certs.ts")>);
   const commonHostConfig = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const nodes = nix.arg($_1, "nodes");

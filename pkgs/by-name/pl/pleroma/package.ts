@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
           sha256: "sha256-5BFzV2alNDjO/bS08+V4idzFaXQLr+4pNlLLXayBqIE=",
         }))));
       const patches = nix.thunk(() => [nix.path(here, "./Revert-Config-Restrict-permissions-of-OTP-config.patch")]);
-      const mixNixDeps = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mix.nix")), nix.thunk(() => ({
+      const mixNixDeps = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mix.nix")) as nix.Imported<typeof import("./mix.ts")>, nix.thunk(() => ({
           [nix.POS]: $pos[29],
           beamPackages: beamPackages,
           lib: lib,

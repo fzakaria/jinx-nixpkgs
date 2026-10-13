@@ -10,8 +10,8 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const config = nix.argOr($, "config", () => ({}));
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: $pos[0], system: system, config: config }))));
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], system: system, pkgs: pkgs })))), null);
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")) as nix.Imported<typeof import("../../default.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], system: system, config: config }))));
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")) as nix.Imported<typeof import("../lib/testing-python.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[1], system: system, pkgs: pkgs })))), null);
   const expectArgv0 = (xpkgs) => nix.app(nix.sel(xpkgs, "runCommandCC"), "expect-argv0", nix.thunk(() => ({
       [nix.POS]: $pos[2],
       src: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "expect-argv0.c", "#include <stdio.h>\n#include <string.h>\n\nint main(int argc, char **argv) {\n  fprintf(stderr, \"Our argv[0] is %s\\n\", argv[0]);\n\n  if (strcmp(argv[0], argv[1])) {\n    fprintf(stderr, \"ERROR: argv[0] is %s, should be %s\\n\", argv[0], argv[1]);\n    return 1;\n  }\n\n  return 0;\n}\n")),

@@ -8,7 +8,7 @@ const formals$2 = { args: { nodes: false, pkgs: false, config: false }, ellipsis
 const formals$3 = { args: { nodes: false, pkgs: false, config: false }, ellipsis: true };
 const formals$4 = { args: { nodes: false }, ellipsis: true };
 
-export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")), nix.lambda((args) => (() => {
+export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")) as nix.Imported<typeof import("./make-test-python.ts")>, nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     const pkgs = nix.arg($, "pkgs");
     const send_toot = nix.thunk(() => nix.app(nix.sel(pkgs, "writeScriptBin"), "send-toot", nix.thunk(() => nix.str`set -eux

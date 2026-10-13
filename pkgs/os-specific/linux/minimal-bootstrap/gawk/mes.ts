@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const gnupatch = nix.arg($, "gnupatch");
   const gnused = nix.arg($, "gnused");
   const gnugrep = nix.arg($, "gnugrep");
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib }))));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")) as nix.Imported<typeof import("./common.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib }))));
   const meta = nix.thunk(() => nix.attr(from, "meta"));
   const pname = "gawk-mes";
   const version = "3.0.6";

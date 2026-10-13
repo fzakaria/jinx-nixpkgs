@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const pkgs = nix.arg($_1, "pkgs");
     const lib_1 = nix.arg($_1, "lib");
-    return nix.app(nix.builtins.import(nix.path(here, "../applications/editors/emacs/elisp-packages/elpa-devel-packages.nix")), nix.thunk(() => ({
+    return nix.app(nix.builtins.import(nix.path(here, "../applications/editors/emacs/elisp-packages/elpa-devel-packages.nix")) as nix.Imported<typeof import("../applications/editors/emacs/elisp-packages/elpa-devel-packages.ts")>, nix.thunk(() => ({
         [nix.POS]: $pos[0],
         pkgs: nix.thunk(() => nix.attr(pkgs, "pkgs")),
         buildPackages: nix.thunk(() => nix.attr(pkgs, "buildPackages")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$3);
     const pkgs = nix.arg($_1, "pkgs");
     const lib_1 = nix.arg($_1, "lib");
-    return nix.app(nix.builtins.import(nix.path(here, "../applications/editors/emacs/elisp-packages/elpa-packages.nix")), nix.thunk(() => ({
+    return nix.app(nix.builtins.import(nix.path(here, "../applications/editors/emacs/elisp-packages/elpa-packages.nix")) as nix.Imported<typeof import("../applications/editors/emacs/elisp-packages/elpa-packages.ts")>, nix.thunk(() => ({
         [nix.POS]: $pos[1],
         pkgs: nix.thunk(() => nix.attr(pkgs, "pkgs")),
         buildPackages: nix.thunk(() => nix.attr(pkgs, "buildPackages")),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$4);
     const pkgs = nix.arg($_1, "pkgs");
     const lib_1 = nix.arg($_1, "lib");
-    return nix.app(nix.builtins.import(nix.path(here, "../applications/editors/emacs/elisp-packages/nongnu-devel-packages.nix")), nix.thunk(() => ({
+    return nix.app(nix.builtins.import(nix.path(here, "../applications/editors/emacs/elisp-packages/nongnu-devel-packages.nix")) as nix.Imported<typeof import("../applications/editors/emacs/elisp-packages/nongnu-devel-packages.ts")>, nix.thunk(() => ({
         [nix.POS]: $pos[2],
         pkgs: nix.thunk(() => nix.attr(pkgs, "pkgs")),
         buildPackages: nix.thunk(() => nix.attr(pkgs, "buildPackages")),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$5);
     const pkgs = nix.arg($_1, "pkgs");
     const lib_1 = nix.arg($_1, "lib");
-    return nix.app(nix.builtins.import(nix.path(here, "../applications/editors/emacs/elisp-packages/nongnu-packages.nix")), nix.thunk(() => ({
+    return nix.app(nix.builtins.import(nix.path(here, "../applications/editors/emacs/elisp-packages/nongnu-packages.nix")) as nix.Imported<typeof import("../applications/editors/emacs/elisp-packages/nongnu-packages.ts")>, nix.thunk(() => ({
         [nix.POS]: $pos[3],
         pkgs: nix.thunk(() => nix.attr(pkgs, "pkgs")),
         buildPackages: nix.thunk(() => nix.attr(pkgs, "buildPackages")),
@@ -66,13 +66,13 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$6);
     const pkgs = nix.arg($_1, "pkgs");
     const lib_1 = nix.arg($_1, "lib");
-    return nix.app(nix.builtins.import(nix.path(here, "../applications/editors/emacs/elisp-packages/melpa-packages.nix")), nix.thunk(() => ({ [nix.POS]: $pos[4], lib: lib_1, pkgs: pkgs })));
+    return nix.app(nix.builtins.import(nix.path(here, "../applications/editors/emacs/elisp-packages/melpa-packages.nix")) as nix.Imported<typeof import("../applications/editors/emacs/elisp-packages/melpa-packages.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[4], lib: lib_1, pkgs: pkgs })));
   })(), formals$6);
   const mkManualPackages = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$7);
     const pkgs = nix.arg($_1, "pkgs");
     const lib_1 = nix.arg($_1, "lib");
-    return nix.app(nix.builtins.import(nix.path(here, "../applications/editors/emacs/elisp-packages/manual-packages.nix")), nix.thunk(() => ({ [nix.POS]: $pos[5], lib: lib_1, pkgs: pkgs })));
+    return nix.app(nix.builtins.import(nix.path(here, "../applications/editors/emacs/elisp-packages/manual-packages.nix")) as nix.Imported<typeof import("../applications/editors/emacs/elisp-packages/manual-packages.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[5], lib: lib_1, pkgs: pkgs })));
   })(), formals$7);
   const emacsWithPackages = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$8);

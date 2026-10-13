@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
     [nix.POS]: $pos[2],
     overlays: nix.thunk(() => nix.concat(nix.selOr(args_1, () => [], "overlays"), [overlay])),
   }));
-  const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./../../default.nix")), nixpkgsArgs));
+  const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./../../default.nix")) as nix.Imported<typeof import("../../default.ts")>, nixpkgsArgs));
   const maintainer_ = nix.thunk(() => nix.sel(pkgs, "lib", "maintainers", nix.key(nix.force(maintainer))));
   const packagesWith = (cond) => (return$) => (set) => nix.app(nix.sel(pkgs, "lib", "flatten"), nix.thunk(() => nix.app(nix.sel(pkgs, "lib", "mapAttrsToList"), (name) => (pkg) => (() => {
         const result = nix.thunk(() => nix.builtins.tryEval(nix.thunk(() => (nix.asBool((nix.asBool(nix.app(nix.sel(pkgs, "lib", "isDerivation"), pkg)) && nix.asBool(nix.app(cond, name, pkg)))) ? nix.builtins.seq(nix.thunk(() => nix.sel(pkg, "outPath")), nix.thunk(() => [nix.thunk(() => nix.app(return$, name, pkg))])) : (nix.asBool((nix.asBool(nix.selOr(pkg, () => false, "recurseForDerivations")) || nix.asBool(nix.selOr(pkg, () => false, "recurseForRelease")))) ? nix.app(packagesWith, cond, return$, pkg) : [])))));

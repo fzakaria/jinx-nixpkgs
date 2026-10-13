@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
     config: nix.thunk(() => ({ [nix.POS]: $pos[0], allowAliases: false, allowUnfree: false, inHydra: true })),
     __allowFileset: false,
   }));
-  const release_lib = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./release-lib.nix")), nix.thunk(() => ({
+  const release_lib = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./release-lib.nix")) as nix.Imported<typeof import("./release-lib.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[2],
       supportedSystems: supportedSystems,
       nixpkgsArgs: nixpkgsArgs,
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
     })()));
   const jobs = nix.thunk(() => nix.update({
     [nix.POS]: $pos[6],
-    "pkgs-lib-tests": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../pkgs-lib/tests")), nix.thunk(() => ({ [nix.POS]: $pos[3], pkgs: pkgs })))),
+    "pkgs-lib-tests": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../pkgs-lib/tests")) as nix.Imported<typeof import("../pkgs-lib/tests/default.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[3], pkgs: pkgs })))),
     tested: nix.thunk(() => nix.app(nix.sel(pkgs, "releaseTools", "aggregate"), nix.thunk(() => ({
         [nix.POS]: $pos[5],
         name: "python-tested",

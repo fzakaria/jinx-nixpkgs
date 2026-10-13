@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       eager: nix.thunk(() => nix.concat(nix.sel(p, "wrong"), nix.app(optionals, nix.thunk(() => nix.sel(cfg, "nixos", "includeAllModules")), nix.thunk(() => nix.concat(extraModules, modules))))),
     };
   })());
-  const manual = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../doc/manual")), nix.thunk(() => (() => {
+  const manual = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../doc/manual")) as nix.Imported<typeof import("../../doc/manual/default.ts")>, nix.thunk(() => (() => {
       const pkgs_1 = pkgs;
       const config_1 = config;
       const version = nix.thunk(() => nix.sel(config_1, "system", "nixos", "release"));

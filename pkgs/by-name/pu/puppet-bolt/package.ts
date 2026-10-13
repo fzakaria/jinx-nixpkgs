@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
               [nix.POS]: $pos[2],
               package: puppet_bolt,
-              version: nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./gemset.nix")), "bolt", "version")),
+              version: nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./gemset.nix")) as nix.Imported<typeof import("./gemset.ts")>, "bolt", "version")),
             })))),
         })),
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "puppet-bolt")),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       })),
     }))), "overrideAttrs"), (old) => ({
       [nix.POS]: $pos[7],
-      name: nix.thunk(() => nix.str`puppet-bolt-${nix.sel(nix.builtins.import(nix.path(here, "./gemset.nix")), "bolt", "version")}`),
+      name: nix.thunk(() => nix.str`puppet-bolt-${nix.sel(nix.builtins.import(nix.path(here, "./gemset.nix")) as nix.Imported<typeof import("./gemset.ts")>, "bolt", "version")}`),
     }));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

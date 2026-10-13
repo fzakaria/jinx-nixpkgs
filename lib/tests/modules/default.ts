@@ -7,7 +7,7 @@ const formals$1 = { args: { lib: true, modules: true }, ellipsis: false };
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
-  const lib = nix.argOr($, "lib", () => nix.builtins.import(nix.path(here, "../..")));
+  const lib = nix.argOr($, "lib", () => nix.builtins.import(nix.path(here, "../..")) as nix.Imported<typeof import("../../default.ts")>);
   const modules = nix.argOr($, "modules", () => []);
   return (() => {
     const from = nix.thunk(() => nix.app(nix.sel(lib, "evalModules"), nix.thunk(() => ({

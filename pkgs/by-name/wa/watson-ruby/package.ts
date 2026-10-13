@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const bundlerUpdateScript = nix.arg($, "bundlerUpdateScript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname = "watson-ruby";
-      const version = nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./gemset.nix")), "watson-ruby", "version"));
+      const version = nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./gemset.nix")) as nix.Imported<typeof import("./gemset.ts")>, "watson-ruby", "version"));
       const dontUnpack = true;
       const installPhase = nix.thunk(() => (() => {
         const env = nix.thunk(() => nix.app(bundlerEnv, nix.thunk(() => ({

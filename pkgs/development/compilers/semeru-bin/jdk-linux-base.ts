@@ -4,7 +4,7 @@ import * as nix from "../../../../.jinx/runtime/index.ts";
 const here = nix.here(import.meta.url);
 const $pos = nix.positions(here + "/jdk-linux-base.nix", [[["name-prefix", 4, 5], ["brand-name", 5, 5]]]);
 
-export default (args) => nix.app(nix.builtins.import(nix.path(here, "../temurin-bin/jdk-linux-base.nix")), nix.thunk(() => nix.update({
+export default (args) => nix.app(nix.builtins.import(nix.path(here, "../temurin-bin/jdk-linux-base.nix")) as nix.Imported<typeof import("../temurin-bin/jdk-linux-base.ts")>, nix.thunk(() => nix.update({
     [nix.POS]: $pos[0],
     "name-prefix": "semeru",
     "brand-name": "IBM Semeru Runtime",

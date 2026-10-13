@@ -9,7 +9,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const config = nix.arg($, "config");
-  const facterLib = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./lib.nix")), lib));
+  const facterLib = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./lib.nix")) as nix.Imported<typeof import("./lib.ts")>, lib));
   const from = nix.thunk(() => nix.sel(config, "hardware", "facter"));
   const report = nix.thunk(() => nix.attr(from, "report"));
   const isBaremetal = nix.thunk(() => nix.sel(config, "hardware", "facter", "detected", "virtualisation", "none", "enable"));

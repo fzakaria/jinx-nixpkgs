@@ -5,7 +5,7 @@ const here = nix.here(import.meta.url);
 const $pos = nix.positions(here + "/stash.nix", [[["maintainers", 10, 10]], [["owner", 26, 15], ["repo", 27, 15], ["rev", 28, 15], ["hash", 29, 15]], [["src", 33, 53]], [["src", 37, 53]], [["owner", 47, 15], ["repo", 48, 15], ["rev", 49, 15], ["hash", 50, 15]], [["src", 54, 46]], [["path", 63, 23]], [["host", 61, 19], ["port", 61, 24], ["stash", 63, 11]], [["dataDir", 14, 17], ["enable", 15, 9], ["username", 17, 9], ["passwordFile", 18, 9], ["jwtSecretKeyFile", 20, 9], ["sessionStoreKeyFile", 21, 9], ["plugins", 23, 9], ["mutableScrapers", 43, 9], ["scrapers", 44, 9], ["settings", 60, 9]], [["stash", 13, 16]], [["services", 13, 7]], [["machine", 12, 11]], [["name", 9, 5], ["meta", 10, 5], ["nodes", 12, 5], ["testScript", 68, 5]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
 
-export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")), nix.thunk(() => (() => {
+export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")) as nix.Imported<typeof import("./make-test-python.ts")>, nix.thunk(() => (() => {
     const host = "127.0.0.1";
     const port = 1234n;
     const dataDir = "/stash";

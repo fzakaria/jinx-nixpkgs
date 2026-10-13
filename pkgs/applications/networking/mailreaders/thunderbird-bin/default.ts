@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
     platforms: nix.thunk(() => nix.builtins.attrNames(mozillaPlatforms)),
     hydraPlatforms: [],
   }));
-  const updateScript = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./../../browsers/firefox-bin/update.nix")), nix.thunk(() => ({
+  const updateScript = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./../../browsers/firefox-bin/update.nix")) as nix.Imported<typeof import("../../browsers/firefox-bin/update.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[3],
       pname: pname,
       writeScript: writeScript,
@@ -89,7 +89,7 @@ export default nix.lambda((args) => (() => {
     binaryName: "thunderbird",
     withGSSAPI: true,
   }));
-  return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(nix.builtins.import(nix.path(here, "./darwin.nix")), nix.thunk(() => ({
+  return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(nix.builtins.import(nix.path(here, "./darwin.nix")) as nix.Imported<typeof import("./darwin.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[5],
       pname: pname,
       version: version,
@@ -99,7 +99,7 @@ export default nix.lambda((args) => (() => {
       meta: meta,
       stdenv: stdenv,
       undmg: undmg,
-    }))) : nix.app(nix.builtins.import(nix.path(here, "./linux.nix")), nix.thunk(() => ({
+    }))) : nix.app(nix.builtins.import(nix.path(here, "./linux.nix")) as nix.Imported<typeof import("./linux.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[6],
       pname: pname,
       version: version,

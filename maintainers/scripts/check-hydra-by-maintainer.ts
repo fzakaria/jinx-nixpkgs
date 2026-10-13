@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const maintainer = nix.arg($, "maintainer");
   const short = nix.argOr($, "short", () => false);
   const extra = nix.argOr($, "extra", () => "");
-  const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./../../default.nix")), nix.thunk(() => ({
+  const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./../../default.nix")) as nix.Imported<typeof import("../../default.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[1],
       config: nix.thunk(() => ({ [nix.POS]: $pos[0], allowAliases: false })),
     }))));

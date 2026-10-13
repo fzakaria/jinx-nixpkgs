@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const length = nix.thunk(() => nix.attr(nix.builtins, "length"));
-  const asciiTable = nix.thunk(() => nix.builtins.import(nix.path(here, "./ascii-table.nix")));
+  const asciiTable = nix.thunk(() => nix.builtins.import(nix.path(here, "./ascii-table.nix")) as nix.Imported<typeof import("./ascii-table.ts")>);
   return (() => {
     const compareVersions = nix.thunk(() => nix.attr(nix.builtins, "compareVersions"));
     const concatMap = nix.thunk(() => nix.attr(nix.builtins, "concatMap"));

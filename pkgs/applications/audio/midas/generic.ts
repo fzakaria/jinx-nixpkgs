@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const runtimeShell = nix.arg($, "runtimeShell");
   const bubblewrap = nix.arg($, "bubblewrap");
   const debian = nix.thunk(() => (() => {
-    const debs = nix.thunk(() => nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./deps.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], fetchurl: fetchurl }))))));
+    const debs = nix.thunk(() => nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./deps.nix")) as nix.Imported<typeof import("./deps.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], fetchurl: fetchurl }))))));
     return nix.app(runCommand, "x32edit-debian", nix.thunk(() => ({ [nix.POS]: $pos[1], nativeBuildInputs: nix.thunk(() => [dpkg]) })), nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (deb) => nix.str`dpkg-deb -x ${deb} $out
 `, debs)));
   })());

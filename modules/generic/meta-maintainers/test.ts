@@ -7,7 +7,7 @@ const $pos = nix.positions(here + "/test.nix", [[["github", 11, 5], ["githubId",
 export default nix.thunk(() => (() => {
   const ghost = nix.thunk(() => ({ [nix.POS]: $pos[0], github: "ghost", githubId: 0n, name: "ghost" }));
   return nix.sel((() => {
-    const lib = nix.thunk(() => nix.app(nix.sel(nix.builtins.import(nix.path(here, "../../../lib")), "extend"), (final) => (prev) => ({
+    const lib = nix.thunk(() => nix.app(nix.sel(nix.builtins.import(nix.path(here, "../../../lib")) as nix.Imported<typeof import("../../../lib/default.ts")>, "extend"), (final) => (prev) => ({
         [nix.POS]: $pos[2],
         maintainers: nix.thunk(() => nix.update(nix.sel(prev, "maintainers"), { [nix.POS]: $pos[1], ghost: ghost })),
       })));

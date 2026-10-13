@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const chickenPackages_4 = nix.arg($, "chickenPackages_4");
   const z3 = nix.arg($, "z3");
-  const eggs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./eggs.nix")), nix.thunk(() => ({
+  const eggs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./eggs.nix")) as nix.Imported<typeof import("./eggs.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[0],
       eggDerivation: nix.thunk(() => nix.attr(chickenPackages_4, "eggDerivation")),
       fetchegg: nix.thunk(() => nix.attr(chickenPackages_4, "fetchegg")),

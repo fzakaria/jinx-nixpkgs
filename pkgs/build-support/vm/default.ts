@@ -65,7 +65,7 @@ to the \`kernel\` derivation output (e.g. "bzImage" or "Image").
     "virtiofs",
     "crc32c",
   ]);
-  const qemu_common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../nixos/lib/qemu-common.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib, stdenv: stdenv }))));
+  const qemu_common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../nixos/lib/qemu-common.nix")) as nix.Imported<typeof import("../../../nixos/lib/qemu-common.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib, stdenv: stdenv }))));
   const qemu = nix.thunk(() => nix.sel(buildPackages, "qemu_kvm"));
   const modulesClosure = nix.thunk(() => nix.app(makeModulesClosure, nix.thunk(() => ({
       [nix.POS]: $pos[1],

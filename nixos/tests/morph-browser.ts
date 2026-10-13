@@ -8,7 +8,7 @@ const formals$2 = { args: { pkgs: false, lib: false }, ellipsis: true };
 const formals$3 = { args: { config: false, pkgs: false }, ellipsis: true };
 
 export default nix.thunk(() => (() => {
-  const makeTest = nix.thunk(() => nix.builtins.import(nix.path(here, "./make-test-python.nix")));
+  const makeTest = nix.thunk(() => nix.builtins.import(nix.path(here, "./make-test-python.nix")) as nix.Imported<typeof import("./make-test-python.ts")>);
   const generic = nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     const withQt6 = nix.arg($, "withQt6");

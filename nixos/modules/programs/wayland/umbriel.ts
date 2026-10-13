@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
               })),
             })),
           })),
-          nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./wayland-session.nix")), nix.thunk(() => ({
+          nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./wayland-session.nix")) as nix.Imported<typeof import("./wayland-session.ts")>, nix.thunk(() => ({
               [nix.POS]: $pos[13],
               lib: lib,
               pkgs: pkgs,

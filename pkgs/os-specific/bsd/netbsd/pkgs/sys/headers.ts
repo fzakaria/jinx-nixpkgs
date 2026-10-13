@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const genassym = nix.arg($, "genassym");
   const defaultMakeFlags = nix.arg($, "defaultMakeFlags");
-  const base = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./base.nix")), nix.thunk(() => ({
+  const base = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./base.nix")) as nix.Imported<typeof import("./base.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[0],
       lib: lib,
       mkDerivation: mkDerivation,

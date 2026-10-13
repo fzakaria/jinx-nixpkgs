@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
       overlays: [],
       system: system,
     }))));
-  const nixVersions = nix.argOr($, "nixVersions", () => nix.app(nix.builtins.import(nix.path(here, "../../tests/nix-for-tests.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], pkgs: pkgs }))));
+  const nixVersions = nix.argOr($, "nixVersions", () => nix.app(nix.builtins.import(nix.path(here, "../../tests/nix-for-tests.nix")) as nix.Imported<typeof import("../../tests/nix-for-tests.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[1], pkgs: pkgs }))));
   const libpath = nix.argOr($, "libpath", () => nix.path(here, "../.."));
   const seed = nix.argOr($, "seed", () => null);
   return nix.app(nix.sel(pkgs, "runCommand"), "lib-path-tests", nix.thunk(() => ({

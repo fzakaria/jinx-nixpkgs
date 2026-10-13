@@ -7,7 +7,7 @@ const formals$1 = { args: { pkgs: false, lib: false, utils: false }, ellipsis: t
 const formals$2 = { args: { description: false, testScript: false, config: true, serviceName: true, rawUnit: true }, ellipsis: false };
 const formals$3 = { args: { user: false, privateTmp: false }, ellipsis: false };
 
-export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../make-test-python.nix")), nix.thunk(() => ({
+export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../make-test-python.nix")) as nix.Imported<typeof import("../make-test-python.ts")>, nix.thunk(() => ({
     [nix.POS]: $pos[64],
     name: "systemd-confinement",
     nodes: nix.thunk(() => ({

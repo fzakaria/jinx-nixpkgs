@@ -10,14 +10,14 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const supportedSystems = nix.arg($, "supportedSystems");
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
-  const packageSet = nix.argOr($, "packageSet", () => nix.builtins.import(nix.path(here, "../..")));
+  const packageSet = nix.argOr($, "packageSet", () => nix.builtins.import(nix.path(here, "../..")) as nix.Imported<typeof import("../../default.ts")>);
   const scrubJobs = nix.argOr($, "scrubJobs", () => true);
   const nixpkgsArgs = nix.argOr($, "nixpkgsArgs", () => ({
     [nix.POS]: $pos[1],
     config: nix.thunk(() => ({ [nix.POS]: $pos[0], allowAliases: false, allowUnfree: false, inHydra: true })),
     __allowFileset: false,
   }));
-  const lib = nix.thunk(() => nix.builtins.import(nix.path(here, "../../lib")));
+  const lib = nix.thunk(() => nix.builtins.import(nix.path(here, "../../lib")) as nix.Imported<typeof import("../../lib/default.ts")>);
   const addMetaAttrs = nix.thunk(() => nix.attr(lib, "addMetaAttrs"));
   const any = nix.thunk(() => nix.attr(lib, "any"));
   const filter = nix.thunk(() => nix.attr(lib, "filter"));

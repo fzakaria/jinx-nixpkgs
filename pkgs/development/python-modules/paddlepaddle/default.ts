@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
   const safetensors = nix.arg($, "safetensors");
   const typing_extensions = nix.arg($, "typing-extensions");
   const pname = nix.thunk(() => nix.add("paddlepaddle", nix.app(nix.sel(lib, "optionalString"), cudaSupport, "-gpu")));
-  const sources = nix.thunk(() => nix.builtins.import(nix.path(here, "./sources.nix")));
+  const sources = nix.thunk(() => nix.builtins.import(nix.path(here, "./sources.nix")) as nix.Imported<typeof import("./sources.ts")>);
   const version = nix.thunk(() => nix.sel(sources, "version"));
   const format = "wheel";
   const pyShortVersion = nix.thunk(() => nix.str`cp${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(python, "pythonVersion")))}`);

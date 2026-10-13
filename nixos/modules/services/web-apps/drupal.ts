@@ -316,7 +316,7 @@ chown -R ${user}:${nix.sel(webserver, "group")} ${nix.sel(cfg_1, "stateDir")}
         })),
         virtualHost: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
             [nix.POS]: $pos[26],
-            type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => nix.builtins.import(nix.path(here, "../web-servers/apache-httpd/vhost-options.nix"))))),
+            type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => nix.builtins.import(nix.path(here, "../web-servers/apache-httpd/vhost-options.nix")) as nix.Imported<typeof import("../web-servers/apache-httpd/vhost-options.ts")>))),
             example: nix.thunk(() => nix.app(literalExpression, "{\n  adminAddr = \"webmaster@example.org\";\n  forceSSL = true;\n  enableACME = true;\n}\n")),
             description: "Apache configuration can be done by adapting {option}`services.httpd.virtualHosts`.\n",
           })))),

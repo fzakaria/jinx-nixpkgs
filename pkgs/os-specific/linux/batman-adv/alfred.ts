@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const gpsd = nix.arg($, "gpsd");
   const libcap = nix.arg($, "libcap");
   const libnl = nix.arg($, "libnl");
-  const cfg = nix.thunk(() => nix.builtins.import(nix.path(here, "./version.nix")));
+  const cfg = nix.thunk(() => nix.builtins.import(nix.path(here, "./version.nix")) as nix.Imported<typeof import("./version.ts")>);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname = "alfred";
       const version = nix.thunk(() => nix.attr(cfg, "version"));

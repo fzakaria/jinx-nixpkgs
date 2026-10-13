@@ -46,7 +46,7 @@ export default nix.thunk(() => (() => {
         stringsWithDeps: nix.thunk(() => nix.app(callLibs, nix.path(here, "./strings-with-deps.nix"))),
         customisation: nix.thunk(() => nix.app(callLibs, nix.path(here, "./customisation.nix"))),
         derivations: nix.thunk(() => nix.app(callLibs, nix.path(here, "./derivations.nix"))),
-        maintainers: nix.thunk(() => nix.builtins.import(nix.path(here, "../maintainers/maintainer-list.nix"))),
+        maintainers: nix.thunk(() => nix.builtins.import(nix.path(here, "../maintainers/maintainer-list.nix")) as nix.Imported<typeof import("../maintainers/maintainer-list.ts")>),
         teams: nix.thunk(() => nix.app(callLibs, nix.path(here, "../maintainers/computed-team-list.nix"))),
         meta: nix.thunk(() => nix.app(callLibs, nix.path(here, "./meta.nix"))),
         versions: nix.thunk(() => nix.app(callLibs, nix.path(here, "./versions.nix"))),

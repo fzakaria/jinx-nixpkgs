@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const gnuradio = nix.arg($, "gnuradio");
   const packageOverrides = nix.arg($, "packageOverrides");
   return nix.app(nix.sel(lib, "makeScope"), newScope, (self) => (() => {
-      const mkDerivationWith = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../development/gnuradio-modules/mkDerivation.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib, unwrapped: gnuradio }))));
+      const mkDerivationWith = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../development/gnuradio-modules/mkDerivation.nix")) as nix.Imported<typeof import("../development/gnuradio-modules/mkDerivation.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib, unwrapped: gnuradio }))));
       const mkDerivation = nix.thunk(() => nix.app(mkDerivationWith, nix.thunk(() => nix.sel(stdenv, "mkDerivation"))));
       const callPackage = nix.thunk(() => nix.app(nix.sel(self, "newScope"), nix.thunk(() => nix.update({
           [nix.POS]: $pos[1],

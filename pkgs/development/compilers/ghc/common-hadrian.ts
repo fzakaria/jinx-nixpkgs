@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
     const libiconv = nix.argOr($_1, "libiconv", () => null);
     const ncurses = nix.arg($_1, "ncurses");
     const libffi = nix.argOr($_1, "libffi", () => null);
-    const useLLVM = nix.argOr($_1, "useLLVM", () => !nix.asBool(nix.app(nix.builtins.import(nix.path(here, "./common-have-ncg.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib, stdenv: stdenv, version: version })))));
+    const useLLVM = nix.argOr($_1, "useLLVM", () => !nix.asBool(nix.app(nix.builtins.import(nix.path(here, "./common-have-ncg.nix")) as nix.Imported<typeof import("./common-have-ncg.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib, stdenv: stdenv, version: version })))));
     const buildTargetLlvmPackages = nix.arg($_1, "buildTargetLlvmPackages");
     const llvmPackages = nix.arg($_1, "llvmPackages");
     const enableNativeBignum = nix.argOr($_1, "enableNativeBignum", () => (nix.asBool((nix.asBool(nix.sel(stdenv, "targetPlatform", "isGhcjs")) || nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), gmp))))) || nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "targetPlatform")), gmp)))));
@@ -178,11 +178,11 @@ verboseCommand = do
                 })))),
             ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "targetPlatform", "isLoongArch64")), nix.thunk(() => [
               nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version, "9.10")) ? nix.path(here, "./ghc-9.6-hadrian-Enable-GHCi-on-all-platforms.patch") : (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version, "9.12")) ? nix.path(here, "./ghc-9.10-hadrian-Enable-GHCi-on-all-platforms.patch") : (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version, "9.14")) ? nix.path(here, "./ghc-9.12-hadrian-Enable-GHCi-on-all-platforms.patch") : null)))),
-            ])), nix.app(nix.builtins.import(nix.path(here, "./common-llvm-patches.nix")), nix.thunk(() => ({ [nix.POS]: $pos[14], lib: lib, version: version, fetchpatch: fetchpatch }))))))))))))))))));
+            ])), nix.app(nix.builtins.import(nix.path(here, "./common-llvm-patches.nix")) as nix.Imported<typeof import("./common-llvm-patches.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[14], lib: lib, version: version, fetchpatch: fetchpatch }))))))))))))))))));
         })()),
         stdenv: stdenvNoCC,
       }))));
-    const hadrian = nix.argOr($_1, "hadrian", () => nix.app(nix.builtins.import(nix.path(here, "../../tools/haskell/hadrian/make-hadrian.nix")), nix.thunk(() => ({ [nix.POS]: $pos[16], bootPkgs: bootPkgs, lib: lib })), nix.thunk(() => ({
+    const hadrian = nix.argOr($_1, "hadrian", () => nix.app(nix.builtins.import(nix.path(here, "../../tools/haskell/hadrian/make-hadrian.nix")) as nix.Imported<typeof import("../../tools/haskell/hadrian/make-hadrian.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[16], bootPkgs: bootPkgs, lib: lib })), nix.thunk(() => ({
         [nix.POS]: $pos[17],
         ghcSrc: ghcSrc,
         ghcVersion: version,

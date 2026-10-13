@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
       const maintainers = nix.thunk(() => nix.attr(lib_1, "maintainers"));
       const teams = nix.thunk(() => nix.attr(lib_1, "teams"));
       const platforms = nix.thunk(() => nix.attr(lib_1, "platforms"));
-      const commonMakeFlags = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common-flags.nix")), nix.thunk(() => ({
+      const commonMakeFlags = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common-flags.nix")) as nix.Imported<typeof import("./common-flags.ts")>, nix.thunk(() => ({
           [nix.POS]: $pos[1],
           lib: lib_1,
           stdenv: stdenv_1,

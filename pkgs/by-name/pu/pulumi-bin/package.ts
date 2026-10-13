@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   const makeWrapper = nix.arg($, "makeWrapper");
   const installShellFiles = nix.arg($, "installShellFiles");
-  const data = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./data.nix")), nix.thunk(() => ({}))));
+  const data = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./data.nix")) as nix.Imported<typeof import("./data.ts")>, nix.thunk(() => ({}))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
       [nix.POS]: $pos[1],
       pname: "pulumi",

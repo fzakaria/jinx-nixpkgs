@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const libxtst = nix.arg($, "libxtst");
   const libxxf86vm = nix.arg($, "libxxf86vm");
-  const sources = nix.thunk(() => nix.builtins.import(nix.path(here, "./sources.nix")));
+  const sources = nix.thunk(() => nix.builtins.import(nix.path(here, "./sources.nix")) as nix.Imported<typeof import("./sources.ts")>);
   const version = nix.thunk(() => nix.sel(sources, "version"));
   const jdk = nix.thunk(() => nix.app(nix.sel(zulu21, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], enableJavaFX: true }))));
   const bisqJvmArgs = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => [

@@ -52,13 +52,13 @@ export default nix.lambda((args) => (() => {
           const openjdk11_bootstrap = nix.thunk(() => nix.sel(temurin_bin, "jdk-11"));
           const openjdk17_bootstrap = nix.thunk(() => nix.sel(temurin_bin, "jdk-17"));
           const temurin_bin = nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => (() => {
-              const temurinLinux = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../development/compilers/temurin-bin/jdk-linux.nix")), nix.thunk(() => ({
+              const temurinLinux = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../development/compilers/temurin-bin/jdk-linux.nix")) as nix.Imported<typeof import("../development/compilers/temurin-bin/jdk-linux.ts")>, nix.thunk(() => ({
                   [nix.POS]: $pos[7],
                   lib: nix.thunk(() => nix.attr(pkgs, "lib")),
                   callPackage: nix.thunk(() => nix.attr(pkgs, "callPackage")),
                   stdenv: nix.thunk(() => nix.attr(pkgs, "stdenv")),
                 }))));
-              const temurinDarwin = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../development/compilers/temurin-bin/jdk-darwin.nix")), nix.thunk(() => ({
+              const temurinDarwin = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../development/compilers/temurin-bin/jdk-darwin.nix")) as nix.Imported<typeof import("../development/compilers/temurin-bin/jdk-darwin.ts")>, nix.thunk(() => ({
                   [nix.POS]: $pos[8],
                   lib: nix.thunk(() => nix.attr(pkgs, "lib")),
                   callPackage: nix.thunk(() => nix.attr(pkgs, "callPackage")),
@@ -66,12 +66,12 @@ export default nix.lambda((args) => (() => {
               return nix.app(nix.sel(lib, "mapAttrs"), (name) => (drv) => nix.app(mkLinuxDarwin, drv, nix.thunk(() => nix.sel(temurinDarwin, nix.key(nix.force(name))))), temurinLinux);
             })())));
           const semeru_bin = nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => (() => {
-              const semeruLinux = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../development/compilers/semeru-bin/jdk-linux.nix")), nix.thunk(() => ({
+              const semeruLinux = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../development/compilers/semeru-bin/jdk-linux.nix")) as nix.Imported<typeof import("../development/compilers/semeru-bin/jdk-linux.ts")>, nix.thunk(() => ({
                   [nix.POS]: $pos[9],
                   lib: nix.thunk(() => nix.attr(pkgs, "lib")),
                   callPackage: nix.thunk(() => nix.attr(pkgs, "callPackage")),
                 }))));
-              const semeruDarwin = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../development/compilers/semeru-bin/jdk-darwin.nix")), nix.thunk(() => ({
+              const semeruDarwin = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../development/compilers/semeru-bin/jdk-darwin.nix")) as nix.Imported<typeof import("../development/compilers/semeru-bin/jdk-darwin.ts")>, nix.thunk(() => ({
                   [nix.POS]: $pos[10],
                   lib: nix.thunk(() => nix.attr(pkgs, "lib")),
                   callPackage: nix.thunk(() => nix.attr(pkgs, "callPackage")),

@@ -3,5 +3,5 @@ import * as nix from "../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
 
-export default nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./default.nix")), nix.thunk(() => ({}))), "shell"));
+export default nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./default.nix")) as nix.Imported<typeof import("./default.ts")>, nix.thunk(() => ({}))), "shell"));
 //# sourceMappingURL=shell.ts.map

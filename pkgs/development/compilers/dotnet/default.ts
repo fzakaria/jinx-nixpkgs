@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
         const callPackage = nix.thunk(() => nix.sel(self, "callPackage"));
         const fetchNupkg = nix.thunk(() => nix.app(callPackage, nix.path(here, "../../../build-support/dotnet/fetch-nupkg"), nix.thunk(() => ({}))));
         const buildDotnetSdk = nix.thunk(() => (() => {
-          const buildDotnet = (attrs) => nix.app(callWithUtils, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./binary/build-dotnet.nix")), attrs)), nix.thunk(() => ({})));
+          const buildDotnet = (attrs) => nix.app(callWithUtils, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./binary/build-dotnet.nix")) as nix.Imported<typeof import("./binary/build-dotnet.ts")>, attrs)), nix.thunk(() => ({})));
           return (version) => nix.app(nix.builtins.import(version), nix.thunk(() => ({
               [nix.POS]: $pos[3],
               fetchNupkg: fetchNupkg,
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
           buildDotnetSdk: buildDotnetSdk,
           "generate-dotnet-sdk": nix.thunk(() => nix.app(writeScriptBin, "generate-dotnet-sdk", nix.thunk(() => nix.builtins.replaceStrings(nix.thunk(() => [" -I nixpkgs=./."]), nix.thunk(() => [""]), nix.thunk(() => nix.builtins.readFile(nix.path(here, "./binary/update.sh"))))))),
           systemToDotnetRid: (system) => nix.selOr(runtimeIdentifierMap, () => nix.builtins.throw(nix.thunk(() => nix.str`unsupported platform ${system}`)), nix.key(nix.force(system))),
-          combinePackages: (attrs) => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./combine-packages.nix")), attrs)), nix.thunk(() => ({}))),
+          combinePackages: (attrs) => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./combine-packages.nix")) as nix.Imported<typeof import("./combine-packages.ts")>, attrs)), nix.thunk(() => ({}))),
           patchNupkgs: nix.thunk(() => nix.app(nix.sel(buildPackages, "callPackage"), nix.path(here, "./patch-nupkgs.nix"), nix.thunk(() => ({})))),
           nugetPackageHook: nix.thunk(() => nix.app(callPackage, nix.path(here, "./nuget-package-hook.nix"), nix.thunk(() => ({})))),
           autoPatchcilHook: nix.thunk(() => nix.app(callPackage, nix.path(here, "../../../build-support/dotnet/auto-patchcil-hook"), nix.thunk(() => ({})))),

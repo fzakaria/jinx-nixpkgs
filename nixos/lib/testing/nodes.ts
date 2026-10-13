@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
     const message = nix.thunk(() => nix.str`NixOS Test: don't know which VM guest system to pair with VM host system: ${nix.sel(hostPlatform, "system")}. Perhaps you intended to run the tests on a Linux host, or one of the following systems that may run NixOS tests: ${supportedHosts}`);
     return nix.selOr(hostToGuest, () => nix.builtins.throw(message), nix.key(nix.sel(hostPlatform, "system")));
   })()));
-  const baseOS = (extraBaseModules) => nix.app(nix.builtins.import(nix.path(here, "../eval-config.nix")), nix.thunk(() => (() => {
+  const baseOS = (extraBaseModules) => nix.app(nix.builtins.import(nix.path(here, "../eval-config.nix")) as nix.Imported<typeof import("../eval-config.ts")>, nix.thunk(() => (() => {
       const from_1 = nix.thunk(() => nix.sel(config, "node"));
       return {
       [nix.POS]: $pos[7],
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       system: null,
       specialArgs: nix.thunk(() => nix.attr(from_1, "specialArgs")),
       modules: nix.thunk(() => [nix.thunk(() => nix.sel(config, "defaults"))]),
-      baseModules: nix.thunk(() => nix.concat(nix.builtins.import(nix.path(here, "../../modules/module-list.nix")), nix.concat([
+      baseModules: nix.thunk(() => nix.concat(nix.builtins.import(nix.path(here, "../../modules/module-list.nix")) as nix.Imported<typeof import("../../modules/module-list.ts")>, nix.concat([
         nix.path(here, "./nixos-test-base.nix"),
         nix.thunk(() => ({
           [nix.POS]: $pos[3],

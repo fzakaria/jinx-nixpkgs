@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const src = nix.thunk(() => nix.attr(common, "src"));
       const patches = nix.thunk(() => nix.attr(common, "patches"));
       const nativeBuildInputs = nix.thunk(() => [git]);
-      const mixNixDeps = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mix.nix")), nix.thunk(() => ({
+      const mixNixDeps = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mix.nix")) as nix.Imported<typeof import("./mix.ts")>, nix.thunk(() => ({
           [nix.POS]: $pos[14],
           beamPackages: beamPackages,
           lib: lib,

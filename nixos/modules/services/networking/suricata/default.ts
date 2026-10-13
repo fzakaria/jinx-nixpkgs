@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
             })))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
               [nix.POS]: $pos[4],
-              type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./settings.nix")), nix.thunk(() => ({ [nix.POS]: $pos[3], config: config, lib: lib, yaml: yaml })))))),
+              type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./settings.nix")) as nix.Imported<typeof import("./settings.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[3], config: config, lib: lib, yaml: yaml })))))),
               example: nix.thunk(() => nix.app(literalExpression, "vars.address-groups.HOME_NET = \"192.168.178.0/24\";\noutputs = [\n  {\n    fast = {\n      enabled = true;\n      filename = \"fast.log\";\n      append = \"yes\";\n    };\n  }\n  {\n    eve-log = {\n      enabled = true;\n      filetype = \"regular\";\n      filename = \"eve.json\";\n      community-id = true;\n      types = [\n        {\n          alert.tagged-packets = \"yes\";\n        }\n      ];\n    };\n  }\n];\naf-packet = [\n  {\n    interface = \"eth0\";\n    cluster-id = \"99\";\n    cluster-type = \"cluster_flow\";\n    defrag = \"yes\";\n  }\n  {\n    interface = \"default\";\n  }\n];\naf-xdp = [\n  {\n    interface = \"eth1\";\n  }\n];\ndpdk.interfaces = [\n  {\n    interface = \"eth2\";\n  }\n];\npcap = [\n  {\n    interface = \"eth3\";\n  }\n];\napp-layer.protocols = {\n  telnet.enabled = \"yes\";\n  dnp3.enabled = \"yes\";\n  modbus.enabled = \"yes\";\n};\n")),
               description: "Suricata settings",
             })))),

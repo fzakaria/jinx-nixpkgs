@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
   const nurl = nix.arg($, "nurl");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
-  const get_nix_license = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./get_nix_license.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib, writeText: writeText }))));
+  const get_nix_license = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./get_nix_license.nix")) as nix.Imported<typeof import("./get_nix_license.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib, writeText: writeText }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
       [nix.POS]: $pos[5],
       pname: "nix-init",

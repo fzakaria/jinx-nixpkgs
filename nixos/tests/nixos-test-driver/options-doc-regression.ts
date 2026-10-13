@@ -9,7 +9,7 @@ const formals$2 = { args: { lib: false }, ellipsis: true };
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
-  const evalConfig = nix.thunk(() => nix.builtins.import(nix.path(here, "../../lib/eval-config.nix")));
+  const evalConfig = nix.thunk(() => nix.builtins.import(nix.path(here, "../../lib/eval-config.nix")) as nix.Imported<typeof import("../../lib/eval-config.ts")>);
   const nixos = nix.thunk(() => nix.app(evalConfig, nix.thunk(() => ({
       [nix.POS]: $pos[9],
       system: null,

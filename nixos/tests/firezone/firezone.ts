@@ -13,7 +13,7 @@ const formals$6 = { args: {  }, ellipsis: true };
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
-  const certs = nix.thunk(() => nix.builtins.import(nix.path(here, "../common/acme/server/snakeoil-certs.nix")));
+  const certs = nix.thunk(() => nix.builtins.import(nix.path(here, "../common/acme/server/snakeoil-certs.nix")) as nix.Imported<typeof import("../common/acme/server/snakeoil-certs.ts")>);
   const domain = nix.thunk(() => nix.sel(certs, "domain"));
   return {
     [nix.POS]: $pos[69],

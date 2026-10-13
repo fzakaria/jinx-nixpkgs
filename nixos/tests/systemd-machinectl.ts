@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
-  const evalConfig = (module) => nix.sel(nix.app(nix.builtins.import(nix.path(here, "../lib/eval-config.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], system: null, modules: nix.thunk(() => [module]) }))), "config", "system", "build", "toplevel");
+  const evalConfig = (module) => nix.sel(nix.app(nix.builtins.import(nix.path(here, "../lib/eval-config.nix")) as nix.Imported<typeof import("../lib/eval-config.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], system: null, modules: nix.thunk(() => [module]) }))), "config", "system", "build", "toplevel");
   const common = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const config = nix.arg($_1, "config");

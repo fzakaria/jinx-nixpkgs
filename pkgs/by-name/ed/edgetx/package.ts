@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const yaml_cpp = nix.arg($, "yaml-cpp");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   const applyPatches = nix.arg($, "applyPatches");
-  const targetsToBuild = nix.argOr($, "targetsToBuild", () => nix.builtins.import(nix.path(here, "./targets.nix")));
+  const targetsToBuild = nix.argOr($, "targetsToBuild", () => nix.builtins.import(nix.path(here, "./targets.nix")) as nix.Imported<typeof import("./targets.ts")>);
   const maxlibqt = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
       [nix.POS]: $pos[0],
       owner: "edgetx",

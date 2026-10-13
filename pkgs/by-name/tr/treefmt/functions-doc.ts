@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const revision = nix.thunk(() => nix.app(nix.sel(lib, "trivial", "revisionWithDefault"), "master"));
   const removeRoot = (file) => nix.app(nix.sel(lib, "removePrefix"), "/", nix.thunk(() => nix.app(nix.sel(lib, "removePrefix"), root, file)));
   const attrs = nix.thunk(() => (() => {
-    const fn = nix.thunk(() => nix.builtins.import(nix.path(here, "./lib.nix")));
+    const fn = nix.thunk(() => nix.builtins.import(nix.path(here, "./lib.nix")) as nix.Imported<typeof import("./lib.ts")>);
     const args_1 = nix.thunk(() => nix.builtins.mapAttrs((_) => (__1) => null, nix.thunk(() => nix.builtins.functionArgs(fn))));
     return nix.app(fn, args_1);
   })());

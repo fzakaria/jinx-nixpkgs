@@ -4,7 +4,7 @@ import * as nix from "../../.jinx/runtime/index.ts";
 const here = nix.here(import.meta.url);
 const $pos = nix.positions(here + "/all-tarballs.nix", [[["scrubJobs", 13, 3], ["supportedSystems", 15, 3], ["bootstrapConfigs", 16, 3]]]);
 
-export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../pkgs/top-level/release.nix")), nix.thunk(() => ({
+export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../pkgs/top-level/release.nix")) as nix.Imported<typeof import("../../pkgs/top-level/release.ts")>, nix.thunk(() => ({
     [nix.POS]: $pos[0],
     scrubJobs: false,
     supportedSystems: nix.thunk(() => ["x86_64-linux"]),

@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const literalExpression = nix.thunk(() => nix.attr(lib, "literalExpression"));
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib }))));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")) as nix.Imported<typeof import("./common.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib }))));
   const tlsRecommendationsOption = nix.thunk(() => nix.attr(from, "tlsRecommendationsOption"));
   return {
     [nix.POS]: $pos[29],

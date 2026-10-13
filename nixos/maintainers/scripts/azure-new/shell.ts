@@ -7,7 +7,7 @@ const formals$1 = { args: { pkgs: true }, ellipsis: false };
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../../../default.nix")), nix.thunk(() => ({}))));
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../../../default.nix")) as nix.Imported<typeof import("../../../../default.ts")>, nix.thunk(() => ({}))));
   return nix.app(nix.sel(pkgs, "stdenv", "mkDerivation"), nix.thunk(() => ({
       [nix.POS]: $pos[0],
       name: "nixcfg-azure-devenv",

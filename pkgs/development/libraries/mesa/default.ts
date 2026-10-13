@@ -126,7 +126,7 @@ export default nix.lambda((args) => (() => {
 ${packageCacheCommand}
 `)));
   const needNativeCLC = nix.thunk(() => !nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))));
-  const common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], lib: lib, fetchFromGitLab: fetchFromGitLab }))));
+  const common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")) as nix.Imported<typeof import("./common.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[1], lib: lib, fetchFromGitLab: fetchFromGitLab }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
       [nix.POS]: $pos[9],
       pname: nix.thunk(() => nix.attr(common, "pname")),

@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   const util_linux = nix.arg($, "util-linux");
-  const common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../development/python-modules/openrazer/common.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib, fetchFromGitHub: fetchFromGitHub }))));
+  const common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../development/python-modules/openrazer/common.nix")) as nix.Imported<typeof import("../../../development/python-modules/openrazer/common.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib, fetchFromGitHub: fetchFromGitHub }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(common, {
       [nix.POS]: $pos[2],
       pname: "openrazer",

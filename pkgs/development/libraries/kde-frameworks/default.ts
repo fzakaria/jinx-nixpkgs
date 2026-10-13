@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.lookup(w_1, "fdl12Plus")),
     ];
   })());
-  const srcs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./srcs.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], fetchurl: fetchurl, mirror: "mirror://kde" }))));
+  const srcs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./srcs.nix")) as nix.Imported<typeof import("./srcs.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], fetchurl: fetchurl, mirror: "mirror://kde" }))));
   const mkDerivation = nix.thunk(() => nix.app(nix.sel(libsForQt5, "callPackage"), nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const stdenv = nix.arg($_1, "stdenv");

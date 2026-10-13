@@ -10,10 +10,10 @@ const formals$4 = { args: {  }, ellipsis: true };
 const formals$5 = { args: {  }, ellipsis: true };
 const formals$6 = { args: {  }, ellipsis: true };
 
-export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../make-test-python.nix")), nix.lambda((args) => (() => {
+export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../make-test-python.nix")) as nix.Imported<typeof import("../make-test-python.ts")>, nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     const lib = nix.arg($, "lib");
-    const snakeoil_keys = nix.thunk(() => nix.builtins.import(nix.path(here, "./snakeoil-keys.nix")));
+    const snakeoil_keys = nix.thunk(() => nix.builtins.import(nix.path(here, "./snakeoil-keys.nix")) as nix.Imported<typeof import("./snakeoil-keys.ts")>);
     const hosts = nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), snakeoil_keys));
     const subnetOf = (name) => (config) => (() => {
       const subnets = nix.thunk(() => nix.sel(config, "services", "tinc", "networks", "myNetwork", "hostSettings", nix.key(nix.force(name)), "subnets"));

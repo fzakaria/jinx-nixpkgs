@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const mkVersion = (version) => (value) => ({
     [nix.POS]: $pos[1],
     name: nix.thunk(() => nix.str`vanilla-${nix.app(escapeVersion, version)}`),
-    value: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./derivation.nix")), nix.thunk(() => ({
+    value: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./derivation.nix")) as nix.Imported<typeof import("./derivation.ts")>, nix.thunk(() => ({
         [nix.POS]: $pos[0],
         lib: lib,
         stdenv: stdenv,

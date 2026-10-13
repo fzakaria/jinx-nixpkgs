@@ -15,17 +15,17 @@ export default nix.lambda((args) => (() => {
     html: nix.thunk(() => ({
       [nix.POS]: $pos[1],
       recurseForDerivations: true,
-      python314: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./3.14-html.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], stdenv: stdenv, fetchurl: fetchurl, lib: lib })))),
+      python314: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./3.14-html.nix")) as nix.Imported<typeof import("./3.14-html.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], stdenv: stdenv, fetchurl: fetchurl, lib: lib })))),
     })),
     text: nix.thunk(() => ({
       [nix.POS]: $pos[3],
       recurseForDerivations: true,
-      python314: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./3.14-text.nix")), nix.thunk(() => ({ [nix.POS]: $pos[2], stdenv: stdenv, fetchurl: fetchurl, lib: lib })))),
+      python314: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./3.14-text.nix")) as nix.Imported<typeof import("./3.14-text.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[2], stdenv: stdenv, fetchurl: fetchurl, lib: lib })))),
     })),
     texinfo: nix.thunk(() => ({
       [nix.POS]: $pos[5],
       recurseForDerivations: true,
-      python314: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./3.14-texinfo.nix")), nix.thunk(() => ({ [nix.POS]: $pos[4], stdenv: stdenv, fetchurl: fetchurl, lib: lib })))),
+      python314: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./3.14-texinfo.nix")) as nix.Imported<typeof import("./3.14-texinfo.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[4], stdenv: stdenv, fetchurl: fetchurl, lib: lib })))),
     })),
   }));
   return nix.force(pythonDocs);

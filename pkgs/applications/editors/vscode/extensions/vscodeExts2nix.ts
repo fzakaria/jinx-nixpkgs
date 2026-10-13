@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
     const vscode = nix.argOr($_1, "vscode", () => nix.force(vscodeDefault));
     const extensionsToIgnore = nix.argOr($_1, "extensionsToIgnore", () => []);
     const extensions = nix.argOr($_1, "extensions", () => []);
-    const mktplcExtRefToFetchArgs = nix.thunk(() => nix.builtins.import(nix.path(here, "./mktplcExtRefToFetchArgs.nix")));
+    const mktplcExtRefToFetchArgs = nix.thunk(() => nix.builtins.import(nix.path(here, "./mktplcExtRefToFetchArgs.nix")) as nix.Imported<typeof import("./mktplcExtRefToFetchArgs.ts")>);
     return nix.app(writeShellScriptBin, "vscodeExts2nix", nix.thunk(() => nix.str`echo '['
 
 for line in $(${vscode}/bin/code --list-extensions --show-versions \\

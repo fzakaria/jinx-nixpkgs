@@ -13,9 +13,9 @@ export default nix.lambda((args) => (() => {
   const localSystem = nix.arg($, "localSystem");
   const config = nix.arg($, "config");
   const overlays = nix.arg($, "overlays");
-  const bootstrapFiles = nix.argOr($, "bootstrapFiles", () => nix.app(nix.selOr(config, () => nix.sel(lib, "id"), "replaceBootstrapFiles"), nix.thunk(() => (nix.asBool(nix.sel(localSystem, "isAarch64")) ? nix.builtins.import(nix.path(here, "./bootstrap-files/aarch64-apple-darwin.nix")) : nix.builtins.throw("Unsupported platform for the Darwin stdenv")))));
+  const bootstrapFiles = nix.argOr($, "bootstrapFiles", () => nix.app(nix.selOr(config, () => nix.sel(lib, "id"), "replaceBootstrapFiles"), nix.thunk(() => (nix.asBool(nix.sel(localSystem, "isAarch64")) ? nix.builtins.import(nix.path(here, "./bootstrap-files/aarch64-apple-darwin.nix")) as nix.Imported<typeof import("./bootstrap-files/aarch64-apple-darwin.ts")> : nix.builtins.throw("Unsupported platform for the Darwin stdenv")))));
   const system = nix.thunk(() => nix.attr(localSystem, "system"));
-  const genericStdenv = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../generic")), nix.thunk(() => ({ [nix.POS]: $pos[0], defaultConfig: config }))));
+  const genericStdenv = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../generic")) as nix.Imported<typeof import("../generic/default.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], defaultConfig: config }))));
   const llvmVersion = "21";
   const sdkMajorVersion = nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(localSystem, "darwinSdkVersion"))));
   const commonImpureHostDeps = nix.thunk(() => ["/bin/sh", "/usr/lib/libSystem.B.dylib", "/usr/lib/system/libunc.dylib"]);
@@ -78,7 +78,7 @@ ${extraPreHook}
           nix.thunk(() => nix.sel(prevStage, "file")),
           bootstrapTools,
         ]),
-        fetchurlBoot: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../build-support/fetchurl")), nix.thunk(() => ({
+        fetchurlBoot: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../build-support/fetchurl")) as nix.Imported<typeof import("../../build-support/fetchurl/default.ts")>, nix.thunk(() => ({
             [nix.POS]: $pos[5],
             lib: lib,
             stdenvNoCC: nix.thunk(() => nix.selOr(prevStage, () => nix.force(thisStdenv), "ccWrapperStdenv")),
@@ -751,7 +751,7 @@ ln -s ${bootstrapTools}/include/c++      $out/include
 stripDebugFlags="-S" # llvm-strip does not support "-p" for Mach-O
 export PATH_LOCALE=${nix.sel(prevStage, "darwin", "locale")}/share/locale
 `),
-            initialPath: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../generic/common-path.nix")), nix.thunk(() => ({ [nix.POS]: $pos[94], pkgs: prevStage })))),
+            initialPath: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../generic/common-path.nix")) as nix.Imported<typeof import("../generic/common-path.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[94], pkgs: prevStage })))),
             extraNativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(localSystem, "isAarch64")), nix.thunk(() => [nix.thunk(() => nix.sel(prevStage, "updateAutotoolsGnuConfigScriptsHook"))]))),
             extraBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(prevStage, "apple-sdk"))]),
             cc: cc,

@@ -6,7 +6,7 @@ const $pos = nix.positions(here + "/make-initrd-ng.nix", [[["out", 71, 27]], [["
 const formals$1 = { args: { stdenvNoCC: false, cpio: false, lib: false, pkgsBuildHost: false, makeInitrdNGTool: false, binutils: false, name: true, compressor: true, _compressorFunction: true, _compressorExecutable: true, _compressorName: true, _compressorMeta: true, compressorArgs: true, _compressorArgsReal: true, extension: true, contents: false, prepend: true, makeUInitrd: true, uInitrdArch: true, uInitrdCompression: true }, ellipsis: false };
 
 export default nix.thunk(() => (() => {
-  const compressors = nix.thunk(() => nix.builtins.import(nix.path(here, "./initrd-compressor-meta.nix")));
+  const compressors = nix.thunk(() => nix.builtins.import(nix.path(here, "./initrd-compressor-meta.nix")) as nix.Imported<typeof import("./initrd-compressor-meta.ts")>);
   const compressorName = (fullCommand) => nix.builtins.elemAt(nix.thunk(() => nix.builtins.match("([^ ]*/)?([^ ]+).*", fullCommand)), 1n);
   return nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);

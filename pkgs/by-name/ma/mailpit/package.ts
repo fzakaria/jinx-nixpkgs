@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const mailpit = nix.arg($, "mailpit");
   const nixosTests = nix.arg($, "nixosTests");
   const testers = nix.arg($, "testers");
-  const source = nix.thunk(() => nix.builtins.import(nix.path(here, "./source.nix")));
+  const source = nix.thunk(() => nix.builtins.import(nix.path(here, "./source.nix")) as nix.Imported<typeof import("./source.ts")>);
   const version = nix.thunk(() => nix.attr(source, "version"));
   const vendorHash = nix.thunk(() => nix.attr(source, "vendorHash"));
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({

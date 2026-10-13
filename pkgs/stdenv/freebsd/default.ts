@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const bootstrapFiles = nix.argOr($, "bootstrapFiles", () => (() => {
     const table = nix.thunk(() => ({
       [nix.POS]: $pos[0],
-      "x86_64-freebsd": nix.thunk(() => nix.builtins.import(nix.path(here, "./bootstrap-files/x86_64-unknown-freebsd.nix"))),
+      "x86_64-freebsd": nix.thunk(() => nix.builtins.import(nix.path(here, "./bootstrap-files/x86_64-unknown-freebsd.nix")) as nix.Imported<typeof import("./bootstrap-files/x86_64-unknown-freebsd.ts")>),
     }));
     const files = nix.thunk(() => nix.selOr(table, () => nix.builtins.throw(nix.thunk(() => nix.str`unsupported platform ${nix.sel(localSystem, "system")} for the pure FreeBSD stdenv`)), nix.key(nix.sel(localSystem, "system"))));
     return nix.force(files);
   })());
-  const genericStdenv = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../generic")), nix.thunk(() => ({ [nix.POS]: $pos[1], defaultConfig: config }))));
+  const genericStdenv = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../generic")) as nix.Imported<typeof import("../generic/default.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[1], defaultConfig: config }))));
   const system = nix.thunk(() => nix.attr(localSystem, "system"));
   const mkExtraBuildCommands0 = (cc) => nix.str`rsrc="$out/resource-root"
 mkdir "$rsrc"
@@ -326,7 +326,7 @@ ln -s "${nix.sel(compiler_rt, "out")}/share" "$rsrc/share"
           targetPlatform: localSystem,
           cc: null,
         }))));
-      const fetchurlBoot = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../build-support/fetchurl")), nix.thunk(() => ({
+      const fetchurlBoot = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../build-support/fetchurl")) as nix.Imported<typeof import("../../build-support/fetchurl/default.ts")>, nix.thunk(() => ({
           [nix.POS]: $pos[32],
           lib: lib,
           stdenvNoCC: stdenvNoCC,
@@ -344,7 +344,7 @@ ln -s "${nix.sel(compiler_rt, "out")}/share" "$rsrc/share"
           hostPlatform: localSystem,
           targetPlatform: localSystem,
           extraNativeBuildInputs: nix.thunk(() => [nix.path(here, "./unpack-source.sh"), nix.path(here, "./always-patchelf.sh")]),
-          cc: nix.thunk(() => nix.app(nix.sel(lib, "makeOverridable"), nix.thunk(() => nix.builtins.import(nix.path(here, "../../build-support/cc-wrapper"))), nix.thunk(() => (() => {
+          cc: nix.thunk(() => nix.app(nix.sel(lib, "makeOverridable"), nix.thunk(() => nix.builtins.import(nix.path(here, "../../build-support/cc-wrapper")) as nix.Imported<typeof import("../../build-support/cc-wrapper/default.ts")>), nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(prevStage, "freebsd"));
               return {
               [nix.POS]: $pos[35],
@@ -370,7 +370,7 @@ ln -s "${nix.sel(compiler_rt, "out")}/share" "$rsrc/share"
                   ]))),
               })),
               extraBuildCommands: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), hascxx, nix.thunk(() => nix.app(mkExtraBuildCommands, nix.thunk(() => nix.sel(prevStage, "llvmPackages", "clang-unwrapped")), nix.thunk(() => nix.sel(prevStage, "llvmPackages", "compiler-rt")))))),
-              bintools: nix.thunk(() => nix.app(nix.sel(lib, "makeOverridable"), nix.thunk(() => nix.builtins.import(nix.path(here, "../../build-support/bintools-wrapper"))), nix.thunk(() => (() => {
+              bintools: nix.thunk(() => nix.app(nix.sel(lib, "makeOverridable"), nix.thunk(() => nix.builtins.import(nix.path(here, "../../build-support/bintools-wrapper")) as nix.Imported<typeof import("../../build-support/bintools-wrapper/default.ts")>), nix.thunk(() => (() => {
                   const from_1 = nix.thunk(() => nix.sel(prevStage, "freebsd"));
                   return {
                   [nix.POS]: $pos[34],
@@ -427,7 +427,7 @@ export PATH_I18NMODULE=${nix.sel(prevStage, "freebsd", "libiconvModules")}/lib/i
             bzip2: nix.thunk(() => nix.attr(bootstrapTools, "bzip2")),
             xz: nix.thunk(() => nix.attr(bootstrapTools, "xz")),
             "binutils-unwrapped": nix.thunk(() => nix.builtins.removeAttrs(nix.thunk(() => nix.sel(bootstrapTools, "binutils-unwrapped")), nix.thunk(() => ["src"]))),
-            fetchurl: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../build-support/fetchurl")), nix.thunk(() => ({
+            fetchurl: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../build-support/fetchurl")) as nix.Imported<typeof import("../../build-support/fetchurl/default.ts")>, nix.thunk(() => ({
                 [nix.POS]: $pos[38],
                 lib: lib,
                 stdenvNoCC: nix.thunk(() => nix.attr(self, "stdenvNoCC")),

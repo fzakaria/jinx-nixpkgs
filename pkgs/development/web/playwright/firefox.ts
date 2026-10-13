@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const revision = nix.arg($, "revision");
   const system = nix.arg($, "system");
   const throwSystem = nix.arg($, "throwSystem");
-  const download = nix.thunk(() => nix.selOr(nix.app(nix.builtins.import(nix.path(here, "./browser-downloads.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], name: "firefox", revision: revision }))), () => nix.force(throwSystem), nix.key(nix.force(system))));
+  const download = nix.thunk(() => nix.selOr(nix.app(nix.builtins.import(nix.path(here, "./browser-downloads.nix")) as nix.Imported<typeof import("./browser-downloads.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], name: "firefox", revision: revision }))), () => nix.force(throwSystem), nix.key(nix.force(system))));
   const firefox_linux = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(firefox_bin, "unwrapped"));
       return {

@@ -118,7 +118,7 @@ sudo launchctl load -w /Library/LaunchDaemons/$daemonName
       [nix.POS]: $pos[0],
       fontDirectories: nix.thunk(() => nix.concat(fontDirs, ["/Library/Fonts", "~/Library/Fonts"])),
     }))));
-  const fonts = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./system-fonts.nix")), nix.thunk(() => ({
+  const fonts = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./system-fonts.nix")) as nix.Imported<typeof import("./system-fonts.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[1],
       stdenv: stdenv,
       "font-alias": font_alias,

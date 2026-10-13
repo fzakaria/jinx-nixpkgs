@@ -319,7 +319,7 @@ You should configure \`APP_SECRET\` here.
               })))),
             virtualHost: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
                 [nix.POS]: $pos[55],
-                type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../web-servers/nginx/vhost-options.nix")), nix.thunk(() => ({ [nix.POS]: $pos[54], config: config, lib: lib })))))),
+                type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../web-servers/nginx/vhost-options.nix")) as nix.Imported<typeof import("../web-servers/nginx/vhost-options.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[54], config: config, lib: lib })))))),
                 example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  enableACME = true;\n  forceSSL = true;\n}\n")),
                 description: "Nginx virtual settings to allow direct customization of its settings.\n",
               })))),

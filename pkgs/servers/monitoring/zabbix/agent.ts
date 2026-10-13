@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const libiconv = nix.arg($, "libiconv");
   const openssl = nix.arg($, "openssl");
   const pcre2 = nix.arg($, "pcre2");
-  return nix.app(nix.builtins.import(nix.path(here, "./versions.nix")), nix.lambda((args_1) => (() => {
+  return nix.app(nix.builtins.import(nix.path(here, "./versions.nix")) as nix.Imported<typeof import("./versions.ts")>, nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const version = nix.arg($_1, "version");
       const hash = nix.arg($_1, "hash");

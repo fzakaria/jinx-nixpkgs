@@ -165,7 +165,7 @@ runHook postInstallCheck
         vocabTree: vocabTree,
         tests: nix.thunk(() => ({
           [nix.POS]: $pos[3],
-          "hello-world": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./test/hello-world")), nix.thunk(() => ({
+          "hello-world": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./test/hello-world")) as nix.Imported<typeof import("./test/hello-world/default.ts")>, nix.thunk(() => ({
               [nix.POS]: $pos[2],
               lib: lib,
               runCommandLocal: runCommandLocal,

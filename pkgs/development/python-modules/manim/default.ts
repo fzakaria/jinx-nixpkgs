@@ -231,7 +231,7 @@ export default nix.lambda((args) => (() => {
         typst,
         versionCheckHook,
       ]),
-      disabledTests: nix.thunk(() => nix.builtins.import(nix.path(here, "./failing_tests.nix"))),
+      disabledTests: nix.thunk(() => nix.builtins.import(nix.path(here, "./failing_tests.nix")) as nix.Imported<typeof import("./failing_tests.ts")>),
       pythonImportsCheck: nix.thunk(() => ["manim"]),
       meta: nix.thunk(() => ({
         [nix.POS]: $pos[2],

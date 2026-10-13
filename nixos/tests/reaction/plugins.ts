@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
             enable: true,
             stopForFirewall: false,
             runAsRoot: false,
-            settings: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./settings.nix")), args_1)),
+            settings: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./settings.nix")) as nix.Imported<typeof import("./settings.ts")>, args_1)),
           })),
           openssh: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
         })),

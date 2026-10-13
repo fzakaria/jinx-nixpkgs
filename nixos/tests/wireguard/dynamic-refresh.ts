@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const kernelPackages = nix.argOr($, "kernelPackages", () => null);
   const useNetworkd = nix.argOr($, "useNetworkd", () => false);
-  const wg_snakeoil_keys = nix.thunk(() => nix.builtins.import(nix.path(here, "./snakeoil-keys.nix")));
+  const wg_snakeoil_keys = nix.thunk(() => nix.builtins.import(nix.path(here, "./snakeoil-keys.nix")) as nix.Imported<typeof import("./snakeoil-keys.ts")>);
   return {
     [nix.POS]: $pos[23],
     name: "wireguard-dynamic-refresh",

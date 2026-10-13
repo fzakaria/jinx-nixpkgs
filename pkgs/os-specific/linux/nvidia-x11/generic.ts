@@ -189,14 +189,14 @@ export default nix.lambda((args) => (() => {
                   patches: nix.thunk(() => nix.concat(nix.builtins.map(nix.thunk(() => nix.app(rewritePatch, nix.thunk(() => ({ [nix.POS]: $pos[6], from: "kernel", to: "kernel-open" })))), patches), patchesOpen)),
                   broken: brokenOpen,
                 }))), openSha256)),
-            settings: nix.thunk(() => (nix.asBool(useSettings) ? nix.app((nix.asBool(settings32Bit) ? nix.sel(pkgsi686Linux, "callPackage") : nix.force(callPackage)), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./settings.nix")), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")), settingsSha256)), nix.thunk(() => ({
+            settings: nix.thunk(() => (nix.asBool(useSettings) ? nix.app((nix.asBool(settings32Bit) ? nix.sel(pkgsi686Linux, "callPackage") : nix.force(callPackage)), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./settings.nix")) as nix.Imported<typeof import("./settings.ts")>, nix.thunk(() => nix.sel(finalAttrs, "finalPackage")), settingsSha256)), nix.thunk(() => ({
                 [nix.POS]: $pos[8],
                 withGtk2: preferGtk2,
                 withGtk3: nix.thunk(() => !nix.asBool(preferGtk2)),
                 fetchFromGitHub: fetchFromGithubOrNvidia,
               }))) : {})),
-            persistenced: nix.thunk(() => (nix.asBool(usePersistenced) ? nix.app(nix.sel(lib, "mapNullable"), (hash) => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./persistenced.nix")), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")), hash)), nix.thunk(() => ({ [nix.POS]: $pos[9], fetchFromGitHub: fetchFromGithubOrNvidia }))), persistencedSha256) : {})),
-            fabricmanager: nix.thunk(() => (nix.asBool(useFabricmanager) ? nix.app(nix.sel(lib, "mapNullable"), (hash) => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./fabricmanager.nix")), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")), hash)), nix.thunk(() => ({}))), fabricmanagerSha256) : {})),
+            persistenced: nix.thunk(() => (nix.asBool(usePersistenced) ? nix.app(nix.sel(lib, "mapNullable"), (hash) => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./persistenced.nix")) as nix.Imported<typeof import("./persistenced.ts")>, nix.thunk(() => nix.sel(finalAttrs, "finalPackage")), hash)), nix.thunk(() => ({ [nix.POS]: $pos[9], fetchFromGitHub: fetchFromGithubOrNvidia }))), persistencedSha256) : {})),
+            fabricmanager: nix.thunk(() => (nix.asBool(useFabricmanager) ? nix.app(nix.sel(lib, "mapNullable"), (hash) => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./fabricmanager.nix")) as nix.Imported<typeof import("./fabricmanager.ts")>, nix.thunk(() => nix.sel(finalAttrs, "finalPackage")), hash)), nix.thunk(() => ({}))), fabricmanagerSha256) : {})),
             settingsVersion: nix.thunk(() => (nix.asBool(!nix.eq(settingsVersion, null)) ? nix.force(settingsVersion) : nix.sel(finalAttrs, "version"))),
             persistencedVersion: nix.thunk(() => (nix.asBool(!nix.eq(persistencedVersion, null)) ? nix.force(persistencedVersion) : nix.sel(finalAttrs, "version"))),
             fabricmanagerVersion: nix.thunk(() => (nix.asBool(!nix.eq(fabricmanagerVersion, null)) ? nix.force(fabricmanagerVersion) : nix.sel(finalAttrs, "version"))),

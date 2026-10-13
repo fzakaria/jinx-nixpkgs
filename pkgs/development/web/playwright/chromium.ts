@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
   const libxcomposite = nix.arg($, "libxcomposite");
   const libx11 = nix.arg($, "libx11");
   const libxcb = nix.arg($, "libxcb");
-  const download = nix.thunk(() => nix.selOr(nix.app(nix.builtins.import(nix.path(here, "./browser-downloads.nix")), nix.thunk(() => ({
+  const download = nix.thunk(() => nix.selOr(nix.app(nix.builtins.import(nix.path(here, "./browser-downloads.nix")) as nix.Imported<typeof import("./browser-downloads.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[0],
       name: "chromium",
       revision: revision,

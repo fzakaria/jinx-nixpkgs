@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   const fetchzip = nix.arg($, "fetchzip");
-  const lib_1 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../extra-lib.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: nix.thunk(() => nix.attr(args_1, "lib")) }))));
+  const lib_1 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../extra-lib.nix")) as nix.Imported<typeof import("../extra-lib.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], lib: nix.thunk(() => nix.attr(args_1, "lib")) }))));
   const attrNames = nix.thunk(() => nix.attr(lib_1, "attrNames"));
   const fakeHash = nix.thunk(() => nix.attr(lib_1, "fakeHash"));
   const filter = nix.thunk(() => nix.attr(lib_1, "filter"));

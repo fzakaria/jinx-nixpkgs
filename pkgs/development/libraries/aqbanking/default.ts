@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const gettext = nix.arg($, "gettext");
   const xmlsec = nix.arg($, "xmlsec");
   const zlib = nix.arg($, "zlib");
-  const from = nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./sources.nix")), "aqbanking"));
+  const from = nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./sources.nix")) as nix.Imported<typeof import("./sources.ts")>, "aqbanking"));
   const hash = nix.thunk(() => nix.attr(from, "hash"));
   const releaseId = nix.thunk(() => nix.attr(from, "releaseId"));
   const version = nix.thunk(() => nix.attr(from, "version"));

@@ -8,7 +8,7 @@ const formals$2 = { args: { modules: false }, ellipsis: false };
 const formals$3 = { args: { modules: false }, ellipsis: false };
 
 export default nix.thunk(() => (() => {
-  const autoCalledPackages = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./by-name-overlay.nix")), nix.path(here, "../os-specific/darwin/by-name")));
+  const autoCalledPackages = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./by-name-overlay.nix")) as nix.Imported<typeof import("./by-name-overlay.ts")>, nix.path(here, "../os-specific/darwin/by-name")));
   return nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     const lib = nix.arg($, "lib");
@@ -25,7 +25,7 @@ export default nix.thunk(() => (() => {
     const targetPackages = nix.arg($, "targetPackages");
     const wrapBintoolsWith = nix.arg($, "wrapBintoolsWith");
     const config = nix.arg($, "config");
-    const aliases = (final) => (prev) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../top-level/darwin-aliases.nix")), lib, final, prev, pkgs)));
+    const aliases = (final) => (prev) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../top-level/darwin-aliases.nix")) as nix.Imported<typeof import("./darwin-aliases.ts")>, lib, final, prev, pkgs)));
     const autoCalledPackagesWithAliases = nix.thunk(() => nix.app(nix.sel(lib, "composeManyExtensions"), nix.thunk(() => [autoCalledPackages, aliases])));
     const mkBootstrapStdenv = (stdenv_1) => nix.app(nix.sel(stdenv_1, "override"), (old) => ({
         [nix.POS]: $pos[1],
@@ -133,7 +133,7 @@ export default nix.thunk(() => (() => {
                   const $_1 = nix.formals(args_1, formals$2);
                   const modules = nix.arg($_1, "modules");
                   const toGuest = nix.thunk(() => nix.app(nix.builtins.replaceStrings, nix.thunk(() => ["darwin"]), nix.thunk(() => ["linux"])));
-                  const nixos = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../nixos")), nix.thunk(() => ({
+                  const nixos = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../nixos")) as nix.Imported<typeof import("../../nixos/default.ts")>, nix.thunk(() => ({
                       [nix.POS]: $pos[9],
                       configuration: nix.thunk(() => ({
                         [nix.POS]: $pos[8],
@@ -163,7 +163,7 @@ export default nix.thunk(() => (() => {
               "linux-builder-vz": nix.thunk(() => nix.app(nix.sel(lib, "makeOverridable"), nix.lambda((args_1) => (() => {
                   const $_1 = nix.formals(args_1, formals$3);
                   const modules = nix.arg($_1, "modules");
-                  const nixos = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../nixos")), nix.thunk(() => ({
+                  const nixos = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../nixos")) as nix.Imported<typeof import("../../nixos/default.ts")>, nix.thunk(() => ({
                       [nix.POS]: $pos[18],
                       configuration: nix.thunk(() => ({
                         [nix.POS]: $pos[17],

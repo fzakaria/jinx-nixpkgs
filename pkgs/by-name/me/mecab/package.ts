@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const libiconv = nix.arg($, "libiconv");
   const callPackage = nix.arg($, "callPackage");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
-  const mecab_base = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./base.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], fetchFromGitHub: fetchFromGitHub, libiconv: libiconv }))));
+  const mecab_base = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./base.nix")) as nix.Imported<typeof import("./base.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], fetchFromGitHub: fetchFromGitHub, libiconv: libiconv }))));
   const mecab_ipadic = nix.thunk(() => nix.app(callPackage, nix.path(here, "./ipadic.nix"), nix.thunk(() => ({}))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => nix.update(nix.app(mecab_base, finalAttrs), {
       [nix.POS]: $pos[2],

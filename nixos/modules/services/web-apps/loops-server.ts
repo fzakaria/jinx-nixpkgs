@@ -138,7 +138,7 @@ $sudo ${phpPackage}/bin/php artisan "$@"
             })))),
           nginx: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
               [nix.POS]: $pos[9],
-              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../web-servers/nginx/vhost-options.nix")), nix.thunk(() => ({ [nix.POS]: $pos[8], config: config, lib: lib })))))))),
+              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../web-servers/nginx/vhost-options.nix")) as nix.Imported<typeof import("../web-servers/nginx/vhost-options.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[8], config: config, lib: lib })))))))),
               default: null,
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  serverAliases = [\n    \"pics.${config.networking.domain}\"\n  ];\n  enableACME = true;\n  forceSSL = true;\n}\n")),
               description: "With this option, you can customize an nginx virtual host which already has sensible defaults for Loops.\nSet to {} if you do not need any customization to the virtual host.\nIf enabled, then by default, the {option}`serverName` is\n`${domain}`,\nIf this is set to null (the default), no nginx virtualHost will be configured.\n",

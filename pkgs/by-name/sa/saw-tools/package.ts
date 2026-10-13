@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const readline = nix.arg($, "readline");
   const testers = nix.arg($, "testers");
-  const sources = nix.thunk(() => nix.builtins.import(nix.path(here, "./sources.nix")));
+  const sources = nix.thunk(() => nix.builtins.import(nix.path(here, "./sources.nix")) as nix.Imported<typeof import("./sources.ts")>);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
       [nix.POS]: $pos[4],
       pname: "saw-tools",

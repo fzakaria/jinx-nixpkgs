@@ -9,7 +9,7 @@ const formals$3 = { args: { pname: false, revision: false, extraRevision: true }
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../../../..")), nix.thunk(() => ({}))));
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../../../..")) as nix.Imported<typeof import("../../../../../default.ts")>, nix.thunk(() => ({}))));
   const runCommand = nix.thunk(() => nix.attr(pkgs, "runCommand"));
   const writeText = nix.thunk(() => nix.attr(pkgs, "writeText"));
   const texlive = nix.thunk(() => nix.attr(pkgs, "texlive"));

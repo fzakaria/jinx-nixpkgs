@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const undmg = nix.arg($, "undmg");
   const makeWrapper = nix.arg($, "makeWrapper");
-  const sources = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./sources.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], fetchurl: fetchurl }))));
+  const sources = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./sources.nix")) as nix.Imported<typeof import("./sources.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], fetchurl: fetchurl }))));
   const source = nix.thunk(() => nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const pname = "snipaste";
   const version = nix.thunk(() => nix.attr(source, "version"));

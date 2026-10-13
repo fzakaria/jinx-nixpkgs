@@ -340,7 +340,7 @@ openssl req -new -newkey rsa:2048 -nodes \\
       const nodes = nix.arg($_1, "nodes");
       const certName = nix.thunk(() => nix.sel(nodes, "builtin", "networking", "fqdn"));
       const caDomain = nix.thunk(() => nix.sel(nodes, "acme", "test-support", "acme", "caDomain"));
-      return nix.str`${nix.sel(nix.builtins.import(nix.path(here, "./utils.nix")), "pythonUtils")}
+      return nix.str`${nix.sel(nix.builtins.import(nix.path(here, "./utils.nix")) as nix.Imported<typeof import("./utils.ts")>, "pythonUtils")}
 
 domain = "${domain}"
 ip = "${ip}"

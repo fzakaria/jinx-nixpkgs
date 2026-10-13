@@ -9,7 +9,7 @@ const formals$2 = { args: { pkgs: false, lib: false }, ellipsis: true };
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
-  const from = nix.thunk(() => nix.builtins.import(nix.path(here, "./common.nix")));
+  const from = nix.thunk(() => nix.builtins.import(nix.path(here, "./common.nix")) as nix.Imported<typeof import("./common.ts")>);
   const baseConfig = nix.thunk(() => nix.attr(from, "baseConfig"));
   return {
     [nix.POS]: $pos[3],

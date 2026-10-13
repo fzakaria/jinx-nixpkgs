@@ -11,8 +11,8 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const kernelPackages = nix.argOr($, "kernelPackages", () => null);
   const nftables = nix.argOr($, "nftables", () => false);
-  const wg_snakeoil_keys = nix.thunk(() => nix.builtins.import(nix.path(here, "./snakeoil-keys.nix")));
-  const peer = nix.thunk(() => nix.builtins.import(nix.path(here, "./make-peer.nix")));
+  const wg_snakeoil_keys = nix.thunk(() => nix.builtins.import(nix.path(here, "./snakeoil-keys.nix")) as nix.Imported<typeof import("./snakeoil-keys.ts")>);
+  const peer = nix.thunk(() => nix.builtins.import(nix.path(here, "./make-peer.nix")) as nix.Imported<typeof import("./make-peer.ts")>);
   const commonConfig = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const pkgs = nix.arg($_1, "pkgs");

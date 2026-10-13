@@ -91,7 +91,7 @@ install -Dm644 assets/wezterm-nautilus.py -t $out/share/nautilus-python/extensio
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "rcodesign sign $out/Applications/WezTerm.app")),
       passthru: nix.thunk(() => ({
         [nix.POS]: $pos[4],
-        headless: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./headless.nix")), nix.thunk(() => ({
+        headless: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./headless.nix")) as nix.Imported<typeof import("./headless.ts")>, nix.thunk(() => ({
             [nix.POS]: $pos[1],
             openssl: openssl,
             "pkg-config": pkg_config,

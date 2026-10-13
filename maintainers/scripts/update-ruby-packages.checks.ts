@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const new$ = nix.arg($, "new");
   const specifiedGems = nix.arg($, "specifiedGems");
   const withData = nix.argOr($, "withData", () => false);
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({}))));
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")) as nix.Imported<typeof import("../../default.ts")>, nix.thunk(() => ({}))));
   const old$ = old;
   const new$_1 = new$;
   const specifiedGems$ = specifiedGems;

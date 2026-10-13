@@ -243,7 +243,7 @@ with subtest("preshared-keys"):
     interactive: nix.thunk(() => ({
       [nix.POS]: $pos[61],
       nodes: nix.thunk(() => (() => {
-        const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./ssh-keys.nix")), pkgs));
+        const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./ssh-keys.nix")) as nix.Imported<typeof import("./ssh-keys.ts")>, pkgs));
         const snakeOilPublicKey = nix.thunk(() => nix.attr(from, "snakeOilPublicKey"));
         const snakeOilPrivateKey = nix.thunk(() => nix.attr(from, "snakeOilPrivateKey"));
         const sshAndKeyGeneration = nix.thunk(() => ({

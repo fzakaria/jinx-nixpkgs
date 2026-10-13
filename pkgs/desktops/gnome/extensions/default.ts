@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const buildShellExtension = nix.thunk(() => nix.app(callPackage, nix.path(here, "./buildGnomeExtension.nix"), nix.thunk(() => ({}))));
   const extensionsIndex = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./extensions.json")));
-  const extensionRenames = nix.thunk(() => nix.builtins.import(nix.path(here, "./extensionRenames.nix")));
+  const extensionRenames = nix.thunk(() => nix.builtins.import(nix.path(here, "./extensionRenames.nix")) as nix.Imported<typeof import("./extensionRenames.ts")>);
   const produceExtensionsList = (shell_version) => nix.app(nix.sel(lib, "trivial", "pipe"), extensionsIndex, nix.thunk(() => [
       nix.thunk(() => nix.app(nix.builtins.filter, (extension) => nix.builtins.hasAttr(shell_version, nix.thunk(() => nix.sel(extension, "shell_version_map"))))),
       nix.thunk(() => nix.app(nix.builtins.map, (extension) => (() => {
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
     const gnome50Extensions = nix.thunk(() => nix.app(mapUuidNames, nix.thunk(() => nix.app(produceExtensionsList, "50"))));
     const gnomeExtensions = nix.thunk(() => nix.app(nix.sel(lib, "trivial", "pipe"), nix.thunk(() => nix.update(gnome48Extensions, nix.update(gnome49Extensions, gnome50Extensions))), nix.thunk(() => [
         nix.thunk(() => nix.app(callPackage, nix.path(here, "./extensionOverrides.nix"), nix.thunk(() => ({})))),
-        (extensions) => nix.update(extensions, nix.app(nix.builtins.import(nix.path(here, "./manuallyPackaged.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], callPackage: callPackage })))),
+        (extensions) => nix.update(extensions, nix.app(nix.builtins.import(nix.path(here, "./manuallyPackaged.nix")) as nix.Imported<typeof import("./manuallyPackaged.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[1], callPackage: callPackage })))),
         nix.thunk(() => nix.sel(lib, "attrValues")),
         mapReadableNames,
         (extensions) => nix.update(extensions, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({

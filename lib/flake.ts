@@ -11,10 +11,10 @@ export default nix.thunk(() => ({
   outputs: nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     const self = nix.arg($, "self");
-    const lib0 = nix.thunk(() => nix.builtins.import(nix.path(here, "./.")));
+    const lib0 = nix.thunk(() => nix.builtins.import(nix.path(here, "./.")) as nix.Imported<typeof import("./default.ts")>);
     return {
       [nix.POS]: $pos[0],
-      lib: nix.thunk(() => nix.app(nix.sel(lib0, "extend"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./flake-version-info.nix")), self)))),
+      lib: nix.thunk(() => nix.app(nix.sel(lib0, "extend"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./flake-version-info.nix")) as nix.Imported<typeof import("./flake-version-info.ts")>, self)))),
     };
   })(), formals$1),
 }));

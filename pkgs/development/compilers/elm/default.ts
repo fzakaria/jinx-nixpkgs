@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const nodejs = nix.arg($, "nodejs");
   const config = nix.arg($, "config");
   const fetchElmDeps = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./lib/fetchElmDeps.nix"), nix.thunk(() => ({}))));
-  const hs98Pkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./packages/ghc9_8")), nix.thunk(() => ({
+  const hs98Pkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./packages/ghc9_8")) as nix.Imported<typeof import("./packages/ghc9_8/default.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[0],
       pkgs: pkgs,
       lib: lib,

@@ -121,7 +121,7 @@ export default nix.lambda((args) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const cores = nix.argOr($_1, "cores", () => []);
           const settings = nix.argOr($_1, "settings", () => ({}));
-          return nix.app(nix.builtins.import(nix.path(here, "./wrapper.nix")), nix.thunk(() => ({
+          return nix.app(nix.builtins.import(nix.path(here, "./wrapper.nix")) as nix.Imported<typeof import("./wrapper.ts")>, nix.thunk(() => ({
               [nix.POS]: $pos[3],
               lib: lib,
               libretro: libretro,

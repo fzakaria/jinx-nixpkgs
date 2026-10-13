@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
       [nix.POS]: $pos[6],
       server: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
           [nix.POS]: $pos[2],
-          type: nix.thunk(() => nix.app(nix.sel(lib, "types", "either"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => nix.builtins.import(nix.path(here, "./server-options.nix"))))), nix.thunk(() => nix.sel(lib, "types", "path")))),
+          type: nix.thunk(() => nix.app(nix.sel(lib, "types", "either"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => nix.builtins.import(nix.path(here, "./server-options.nix")) as nix.Imported<typeof import("./server-options.ts")>))), nix.thunk(() => nix.sel(lib, "types", "path")))),
           example: nix.thunk(() => ({ [nix.POS]: $pos[0], host: "127.0.0.1", port: 8888n })),
           default: nix.thunk(() => ({ [nix.POS]: $pos[1], host: "127.0.0.1", port: 80n })),
           description: "Backend server location specified as either a host:port pair\nor a unix domain docket.\n",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       params: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
           [nix.POS]: $pos[5],
-          type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => nix.builtins.import(nix.path(here, "./backend-params-submodule.nix"))))))),
+          type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => nix.builtins.import(nix.path(here, "./backend-params-submodule.nix")) as nix.Imported<typeof import("./backend-params-submodule.ts")>))))),
           example: nix.thunk(() => ({ [nix.POS]: $pos[4], proto: "h2", tls: true })),
           default: null,
           description: "Parameters to configure a backend.\n",

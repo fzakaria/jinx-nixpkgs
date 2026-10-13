@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const args_1 = args;
   const pkgs = nix.arg($, "pkgs");
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/testing-python.nix")), args_1));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/testing-python.nix")) as nix.Imported<typeof import("../../lib/testing-python.ts")>, args_1));
   const makeTest = nix.thunk(() => nix.attr(from, "makeTest"));
   const lib = nix.thunk(() => nix.attr(pkgs, "lib"));
   const dmarcTestReport = nix.thunk(() => nix.builtins.fetchurl(nix.thunk(() => ({
@@ -139,7 +139,7 @@ parsedmarc.wait_until_succeeds(
         })(), formals$3),
       })))),
     externalMail: nix.thunk(() => (() => {
-      const certs = nix.thunk(() => nix.builtins.import(nix.path(here, "../common/acme/server/snakeoil-certs.nix")));
+      const certs = nix.thunk(() => nix.builtins.import(nix.path(here, "../common/acme/server/snakeoil-certs.nix")) as nix.Imported<typeof import("../common/acme/server/snakeoil-certs.ts")>);
       const mailDomain = nix.thunk(() => nix.sel(certs, "domain"));
       const parsedmarcDomain = "parsedmarc.fake.domain";
       return nix.app(makeTest, nix.thunk(() => ({

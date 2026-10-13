@@ -168,7 +168,7 @@ export default nix.lambda((args) => (() => {
             [nix.POS]: $pos[17],
             virtualHost: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
                 [nix.POS]: $pos[16],
-                type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => nix.builtins.import(nix.path(here, "../web-servers/apache-httpd/vhost-options.nix"))))),
+                type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => nix.builtins.import(nix.path(here, "../web-servers/apache-httpd/vhost-options.nix")) as nix.Imported<typeof import("../web-servers/apache-httpd/vhost-options.ts")>))),
                 example: nix.thunk(() => nix.app(literalExpression, "{\n  hostName = \"survey.example.org\";\n  adminAddr = \"webmaster@example.org\";\n  forceSSL = true;\n  enableACME = true;\n}\n")),
                 description: "Apache configuration can be done by adapting `services.httpd.virtualHosts.<name>`.\nSee [](#opt-services.httpd.virtualHosts) for further information.\n",
               })))),
@@ -177,7 +177,7 @@ export default nix.lambda((args) => (() => {
             [nix.POS]: $pos[20],
             virtualHost: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
                 [nix.POS]: $pos[19],
-                type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => nix.app(recursiveUpdate, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../web-servers/nginx/vhost-options.nix")), nix.thunk(() => ({ [nix.POS]: $pos[18], config: config, lib: lib })))), nix.thunk(() => ({})))))),
+                type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => nix.app(recursiveUpdate, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../web-servers/nginx/vhost-options.nix")) as nix.Imported<typeof import("../web-servers/nginx/vhost-options.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[18], config: config, lib: lib })))), nix.thunk(() => ({})))))),
                 example: nix.thunk(() => nix.app(literalExpression, "{\n  serverName = \"survey.example.org\";\n  forceSSL = true;\n  enableACME = true;\n}\n")),
                 description: "Nginx configuration can be done by adapting `services.nginx.virtualHosts.<name>`.\nSee [](#opt-services.nginx.virtualHosts) for further information.\n",
               })))),

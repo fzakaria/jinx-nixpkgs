@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const callPackage = nix.arg($, "callPackage");
   const sources = nix.thunk(() => nix.sel(nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./sources.json")), "hotspot", "mac"));
-  const common = (opts) => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./jdk-darwin-base.nix")), opts)), nix.thunk(() => ({})));
+  const common = (opts) => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./jdk-darwin-base.nix")) as nix.Imported<typeof import("./jdk-darwin-base.ts")>, opts)), nix.thunk(() => ({})));
   const withModernDrvAttrs = (drv) => nix.app(nix.sel(drv, "overrideAttrs"), (_) => ({ [nix.POS]: $pos[0], __structuredAttrs: true, strictDeps: true }));
   return {
     [nix.POS]: $pos[15],

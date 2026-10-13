@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const cpio = nix.arg($, "cpio");
   const xar = nix.arg($, "xar");
   const libiconv = nix.arg($, "libiconv");
-  const startFPC = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./binary.nix")), nix.thunk(() => ({
+  const startFPC = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./binary.nix")) as nix.Imported<typeof import("./binary.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[0],
       stdenv: stdenv,
       fetchurl: fetchurl,

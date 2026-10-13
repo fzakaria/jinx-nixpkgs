@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   const hostPkgs = nix.arg($, "hostPkgs");
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./../ssh-keys.nix")), hostPkgs));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./../ssh-keys.nix")) as nix.Imported<typeof import("../ssh-keys.ts")>, hostPkgs));
   const snakeOilPrivateKey = nix.thunk(() => nix.attr(from, "snakeOilPrivateKey"));
   const snakeOilPublicKey = nix.thunk(() => nix.attr(from, "snakeOilPublicKey"));
   const ssh_config = nix.thunk(() => nix.builtins.toFile("ssh.conf", "UserKnownHostsFile=/dev/null\nStrictHostKeyChecking=no\nIdentityFile=~/.ssh/id_snakeoil\n"));

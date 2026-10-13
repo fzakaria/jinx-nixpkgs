@@ -9,7 +9,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const callPackage = nix.arg($, "callPackage");
   const fetchpatch = nix.arg($, "fetchpatch");
-  const mkVtk = (initArgs) => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")), initArgs)), nix.thunk(() => ({})));
+  const mkVtk = (initArgs) => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")) as nix.Imported<typeof import("./generic.ts")>, initArgs)), nix.thunk(() => ({})));
   return {
     [nix.POS]: $pos[4],
     vtk_9_5: nix.thunk(() => nix.app(mkVtk, nix.thunk(() => ({

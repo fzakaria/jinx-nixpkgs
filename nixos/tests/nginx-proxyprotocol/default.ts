@@ -7,7 +7,7 @@ const formals$1 = { args: { pkgs: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false, lib: false }, ellipsis: true };
 
 export default nix.thunk(() => (() => {
-  const certs = nix.thunk(() => nix.builtins.import(nix.path(here, "./snakeoil-certs.nix")));
+  const certs = nix.thunk(() => nix.builtins.import(nix.path(here, "./snakeoil-certs.nix")) as nix.Imported<typeof import("./snakeoil-certs.ts")>);
   return nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     const pkgs = nix.arg($, "pkgs");

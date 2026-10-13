@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
         })))),
       beamDeps: [],
     }))));
-  const allBeamDeps = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./rebar-deps.nix")), nix.thunk(() => ({
+  const allBeamDeps = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./rebar-deps.nix")) as nix.Imported<typeof import("./rebar-deps.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[19],
       fetchHex: fetchHex,
       fetchgit: fetchgit,

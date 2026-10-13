@@ -9,8 +9,8 @@ const formals$2 = { args: { config: false, pkgs: false, lib: false }, ellipsis: 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../..")), nix.thunk(() => ({ [nix.POS]: $pos[0], system: system }))));
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./base.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], system: system })))), null);
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../..")) as nix.Imported<typeof import("../../../default.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], system: system }))));
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./base.nix")) as nix.Imported<typeof import("./base.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[1], system: system })))), null);
   const domain = "my.zyx";
   const redisPod = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "redis-pod.json", nix.thunk(() => nix.app(nix.sel(nix.builtins, "toJSON"), nix.thunk(() => ({
         [nix.POS]: $pos[7],

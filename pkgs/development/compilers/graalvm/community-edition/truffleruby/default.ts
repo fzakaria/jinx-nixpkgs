@@ -15,8 +15,8 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(graalvmPackages, "buildGraalvmProduct"), nix.thunk(() => ({
       [nix.POS]: $pos[1],
-      src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./hashes.nix")), "hashes", nix.key(nix.sel(stdenv, "system")))))),
-      version: nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./hashes.nix")), "version")),
+      src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./hashes.nix")) as nix.Imported<typeof import("./hashes.ts")>, "hashes", nix.key(nix.sel(stdenv, "system")))))),
+      version: nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./hashes.nix")) as nix.Imported<typeof import("./hashes.ts")>, "version")),
       product: "truffleruby",
       extraBuildInputs: nix.thunk(() => [libyaml, openssl]),
       preFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "patchelf $out/lib/mri/openssl.so \\\n  --replace-needed libssl.so.10 libssl.so \\\n  --replace-needed libcrypto.so.10 libcrypto.so\n")),

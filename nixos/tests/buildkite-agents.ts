@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
               [nix.POS]: $pos[3],
               one: nix.thunk(() => ({
                 [nix.POS]: $pos[1],
-                privateSshKeyPath: nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./ssh-keys.nix")), pkgs_1), "snakeOilPrivateKey")),
+                privateSshKeyPath: nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./ssh-keys.nix")) as nix.Imported<typeof import("./ssh-keys.ts")>, pkgs_1), "snakeOilPrivateKey")),
                 tokenPath: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "my-token", "5678")),
               })),
               two: nix.thunk(() => ({

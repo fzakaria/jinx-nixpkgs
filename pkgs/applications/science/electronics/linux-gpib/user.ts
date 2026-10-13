@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const flex = nix.arg($, "flex");
   const automake = nix.arg($, "automake");
   const udevCheckHook = nix.arg($, "udevCheckHook");
-  return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], fetchurl: fetchurl, lib: lib, pname: "linux-gpib-user" }))), {
+  return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(nix.app(nix.builtins.import(nix.path(here, "./common.nix")) as nix.Imported<typeof import("./common.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], fetchurl: fetchurl, lib: lib, pname: "linux-gpib-user" }))), {
       [nix.POS]: $pos[1],
       nativeBuildInputs: nix.thunk(() => [autoconf, libtool, bison, flex, automake, udevCheckHook]),
       configureFlags: nix.thunk(() => ["--sysconfdir=$(out)/etc", "--prefix=$(out)"]),

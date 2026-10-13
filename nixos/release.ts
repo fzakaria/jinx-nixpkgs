@@ -26,7 +26,7 @@ const formals$20 = { args: {  }, ellipsis: true };
 const formals$21 = { args: { pkgs: false }, ellipsis: true };
 
 export default nix.thunk(() => (() => {
-  const w = nix.withScope(nix.thunk(() => nix.builtins.import(nix.path(here, "../lib"))), null);
+  const w = nix.withScope(nix.thunk(() => nix.builtins.import(nix.path(here, "../lib")) as nix.Imported<typeof import("../lib/default.ts")>), null);
   return nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     const nixpkgs = nix.argOr($, "nixpkgs", () => ({

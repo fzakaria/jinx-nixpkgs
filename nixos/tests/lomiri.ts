@@ -25,7 +25,7 @@ const formals$19 = { args: { config: false }, ellipsis: true };
 const formals$20 = { args: { nodes: false }, ellipsis: true };
 
 export default nix.thunk(() => (() => {
-  const makeTest = nix.thunk(() => nix.builtins.import(nix.path(here, "./make-test-python.nix")));
+  const makeTest = nix.thunk(() => nix.builtins.import(nix.path(here, "./make-test-python.nix")) as nix.Imported<typeof import("./make-test-python.ts")>);
   const user = "alice";
   const description = "Alice Foobar";
   const password = "foobar";

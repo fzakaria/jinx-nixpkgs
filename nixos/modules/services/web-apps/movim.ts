@@ -415,14 +415,14 @@ echo " done."
           })),
           h2o: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
               [nix.POS]: $pos[63],
-              type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../web-servers/h2o/vhost-options.nix")), nix.thunk(() => ({ [nix.POS]: $pos[62], config: config, lib: lib })))))))),
+              type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../web-servers/h2o/vhost-options.nix")) as nix.Imported<typeof import("../web-servers/h2o/vhost-options.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[62], config: config, lib: lib })))))))),
               default: null,
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  serverAliases = [\n    \"pics.${config.movim.domain}\"\n  ];\n  acme.enable = true;\n  tls.policy = \"force\";\n}\n")),
               description: "With this option, you can customize an H2O virtual host which already\nhas sensible defaults for Movim. Set to `{ }` if you do not need any\ncustomization to the virtual host. If enabled, then by default, the\n{option}`serverName` is `${domain}`, If this is set to `null` (the\ndefault), no H2O `hosts` will be configured.\n",
             })))),
           nginx: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
               [nix.POS]: $pos[65],
-              type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../web-servers/nginx/vhost-options.nix")), nix.thunk(() => ({ [nix.POS]: $pos[64], config: config, lib: lib })))))))),
+              type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../web-servers/nginx/vhost-options.nix")) as nix.Imported<typeof import("../web-servers/nginx/vhost-options.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[64], config: config, lib: lib })))))))),
               default: null,
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  serverAliases = [\n    \"pics.${config.movim.domain}\"\n  ];\n  enableACME = true;\n  forceHttps = true;\n}\n")),
               description: "With this option, you can customize an Nginx virtual host which\nalready has sensible defaults for Movim. Set to `{ }` if you do not\nneed any customization to the virtual host. If enabled, then by\ndefault, the {option}`serverName` is `${domain}`, If this is set to\n`null` (the default), no Nginx `virtualHost` will be configured.\n",

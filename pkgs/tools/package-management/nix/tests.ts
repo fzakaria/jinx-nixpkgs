@@ -28,7 +28,7 @@ echo "Version in nix.src: $srcVersion"
 ${(nix.asBool(nix.eq(self_attribute_name, "git")) ? "majorMinor() {\n  echo \"$1\" | sed -n -e 's/\\([0-9]*\\.[0-9]*\\).*/\\1/p'\n}\nif (set -x; [ \"$(majorMinor \"$version\")\" != \"$(majorMinor \"$srcVersion\")\" ]); then\n  echo \"Version mismatch!\"\n  exit 1\nfi\n" : "stripSuffix() {\n  echo \"$1\" | sed 's/+.*//'\n}\nif [ \"$(stripSuffix \"$version\")\" != \"$(stripSuffix \"$srcVersion\")\" ]; then\n  echo \"Version mismatch!\"\n  exit 1\nfi\n")}
 touch $out
 `))),
-    "nixpkgs-lib": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../../lib/tests/test-with-nix.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], lib: lib, pkgs: pkgs, nix: nix$ })))),
+    "nixpkgs-lib": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../../lib/tests/test-with-nix.nix")) as nix.Imported<typeof import("../../../../lib/tests/test-with-nix.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[1], lib: lib, pkgs: pkgs, nix: nix$ })))),
   }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
       [nix.POS]: $pos[3],
       misc: nix.thunk(() => nix.sel(nixosTests, "nix-misc", "default")),

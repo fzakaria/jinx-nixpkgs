@@ -13,10 +13,10 @@ const formals$7 = { args: { usedBy: false }, ellipsis: true };
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
-  const configuration = nix.argOr($, "configuration", () => nix.app(nix.builtins.import(nix.path(here, "../lib/from-env.nix")), "NIXOS_CONFIG", nix.builtins.findFile(nix.builtins.nixPath, "nixos-config")));
+  const configuration = nix.argOr($, "configuration", () => nix.app(nix.builtins.import(nix.path(here, "../lib/from-env.nix")) as nix.Imported<typeof import("../lib/from-env.ts")>, "NIXOS_CONFIG", nix.builtins.findFile(nix.builtins.nixPath, "nixos-config")));
   const testOption = nix.argOr($, "testOption", () => null);
   const testOptions = nix.argOr($, "testOptions", () => []);
-  const w = nix.withScope(nix.thunk(() => nix.builtins.import(nix.path(here, "../../lib"))), null);
+  const w = nix.withScope(nix.thunk(() => nix.builtins.import(nix.path(here, "../../lib")) as nix.Imported<typeof import("../../lib/default.ts")>), null);
   const evalFun = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const specialArgs = nix.argOr($_1, "specialArgs", () => ({}));

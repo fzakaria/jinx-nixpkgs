@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const patchelf = nix.arg($, "patchelf");
   const unzip = nix.arg($, "unzip");
-  const common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib }))));
+  const common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")) as nix.Imported<typeof import("./common.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
       [nix.POS]: $pos[3],
       pname: "semgrep-core",

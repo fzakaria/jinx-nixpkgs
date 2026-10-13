@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const package$ = nix.arg($, "package");
   const pkgs = nix.arg($, "pkgs");
-  const certs = nix.thunk(() => nix.builtins.import(nix.path(here, "./common/acme/server/snakeoil-certs.nix")));
+  const certs = nix.thunk(() => nix.builtins.import(nix.path(here, "./common/acme/server/snakeoil-certs.nix")) as nix.Imported<typeof import("./common/acme/server/snakeoil-certs.ts")>);
   const clientDomain = "client.fake.domain";
   const discourseDomain = nix.thunk(() => nix.sel(certs, "domain"));
   const adminPassword = "eYAX85qmMJ5GZIHLaXGDAoszD7HSZp5d";

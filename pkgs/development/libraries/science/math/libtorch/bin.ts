@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const libz = nix.arg($, "libz");
   const version = "2.9.0";
   const device = nix.thunk(() => (nix.asBool(cudaSupport) ? "cuda" : "cpu"));
-  const srcs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./binary-hashes.nix")), version));
+  const srcs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./binary-hashes.nix")) as nix.Imported<typeof import("./binary-hashes.ts")>, version));
   const unavailable = nix.thunk(() => nix.builtins.throw("libtorch is not available for this platform"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
       [nix.POS]: $pos[4],

@@ -41,6 +41,6 @@ export default nix.lambda((args) => (() => {
           notify_push: nix.thunk(() => nix.sel(nextcloud_notify_push, "app")),
         })), generatedJson));
   })();
-  return nix.app(nix.sel(nix.app(nix.sel(lib, "makeExtensible"), (_) => nix.app(nix.sel(lib, "makeScope"), newScope, packages)), "extend"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./thirdparty.nix")), nix.thunk(() => ({ [nix.POS]: $pos[5], ncVersion: ncVersion })))));
+  return nix.app(nix.sel(nix.app(nix.sel(lib, "makeExtensible"), (_) => nix.app(nix.sel(lib, "makeScope"), newScope, packages)), "extend"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./thirdparty.nix")) as nix.Imported<typeof import("./thirdparty.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[5], ncVersion: ncVersion })))));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

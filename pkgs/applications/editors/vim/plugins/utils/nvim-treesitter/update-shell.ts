@@ -7,7 +7,7 @@ const formals$1 = { args: { pkgs: true }, ellipsis: false };
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../../../../../..")), nix.thunk(() => ({}))));
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../../../../../..")) as nix.Imported<typeof import("../../../../../../../default.ts")>, nix.thunk(() => ({}))));
   const w = nix.withScope(pkgs, null);
   const luaWithPackages = nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "luajit"), "withPackages"), (ps) => (() => {
       const w_1 = nix.withScope(ps, w);

@@ -10,8 +10,8 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const args_1 = args;
   const defaultConfig = nix.argOr($, "defaultConfig", () => null);
-  const lib = nix.thunk(() => nix.builtins.import(nix.path(here, "../../../lib")));
-  const makeDerivationFile = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-derivation.nix")), lib));
+  const lib = nix.thunk(() => nix.builtins.import(nix.path(here, "../../../lib")) as nix.Imported<typeof import("../../../lib/default.ts")>);
+  const makeDerivationFile = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-derivation.nix")) as nix.Imported<typeof import("./make-derivation.ts")>, lib));
   const makeDerivationFileWithConfig = nix.thunk(() => (() => {
     nix.assert_(nix.has(args_1, "defaultConfig"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/stdenv/generic/default.nix:15:5");
     return nix.app(makeDerivationFile, nix.thunk(() => nix.sel(args_1, "defaultConfig")));
@@ -148,8 +148,8 @@ export default nix.lambda((args) => (() => {
         shellDryRun: nix.thunk(() => nix.str`${nix.sel(stdenv, "shell")} -n -O extglob`),
         tests: nix.thunk(() => ({
           [nix.POS]: $pos[8],
-          inputDerivationRequiredSystemFeatures: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../tests/inputDerivationRequiredSystemFeatures.nix")), nix.thunk(() => ({ [nix.POS]: $pos[6], lib: lib, stdenv: stdenv })))),
-          succeedOnFailure: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../tests/succeedOnFailure.nix")), nix.thunk(() => ({ [nix.POS]: $pos[7], stdenv: stdenv })))),
+          inputDerivationRequiredSystemFeatures: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../tests/inputDerivationRequiredSystemFeatures.nix")) as nix.Imported<typeof import("../tests/inputDerivationRequiredSystemFeatures.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[6], lib: lib, stdenv: stdenv })))),
+          succeedOnFailure: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../tests/succeedOnFailure.nix")) as nix.Imported<typeof import("../tests/succeedOnFailure.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[7], stdenv: stdenv })))),
         })),
         passthru: nix.thunk(() => ({
           [nix.POS]: $pos[9],

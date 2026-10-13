@@ -15,10 +15,10 @@ export default nix.lambda((args) => (() => {
   const __allowFileset = nix.argOr($, "__allowFileset", () => true);
   const overlays = nix.argOr($, "overlays", () => []);
   const crossOverlays = nix.argOr($, "crossOverlays", () => []);
-  const stdenvStages = nix.argOr($, "stdenvStages", () => nix.builtins.import(nix.path(here, "../stdenv")));
+  const stdenvStages = nix.argOr($, "stdenvStages", () => nix.builtins.import(nix.path(here, "../stdenv")) as nix.Imported<typeof import("../stdenv/default.ts")>);
   const config0 = config;
   const crossSystem0 = crossSystem;
-  const pristineLib = nix.thunk(() => nix.builtins.import(nix.path(here, "../../lib")));
+  const pristineLib = nix.thunk(() => nix.builtins.import(nix.path(here, "../../lib")) as nix.Imported<typeof import("../../lib/default.ts")>);
   const lib = nix.thunk(() => (nix.asBool(__allowFileset) ? nix.force(pristineLib) : nix.app(nix.sel(pristineLib, "extend"), (_) => (__1) => ({
       [nix.POS]: $pos[0],
       fileset: nix.thunk(() => nix.builtins.abort("\nThe use of `lib.fileset` is currently forbidden in Nixpkgs due to the\nupstream Nix bug <https://github.com/NixOS/nix/issues/11503>. This\ncauses difficult‐to‐debug errors when combined with chroot stores,\nsuch as in the NixOS installer.\n\nFor packages that require source to be vendored inside Nixpkgs,\nplease use a subdirectory of the package instead.\n")),
@@ -50,9 +50,9 @@ export default nix.lambda((args) => (() => {
     return (nix.asBool(!nix.eq(failedAssertionsString, "")) ? nix.builtins.throw(nix.thunk(() => nix.str`Failed assertions:
 ${failedAssertionsString}`)) : nix.app(nix.sel(lib, "showWarnings"), nix.thunk(() => nix.sel(configEval, "config", "warnings")), nix.thunk(() => nix.sel(configEval, "config"))));
   })());
-  const nixpkgsFun = (newArgs) => nix.app(nix.builtins.import(nix.path(here, "./.")), nix.thunk(() => nix.update(args_1, newArgs)));
-  const allPackages = (newArgs) => nix.app(nix.builtins.import(nix.path(here, "./stage.nix")), nix.thunk(() => nix.update({ [nix.POS]: $pos[4], lib: lib, nixpkgsFun: nixpkgsFun }, newArgs)));
-  const boot = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../stdenv/booter.nix")), nix.thunk(() => ({ [nix.POS]: $pos[5], lib: lib, allPackages: allPackages }))));
+  const nixpkgsFun = (newArgs) => nix.app(nix.builtins.import(nix.path(here, "./.")) as nix.Imported<typeof import("./default.ts")>, nix.thunk(() => nix.update(args_1, newArgs)));
+  const allPackages = (newArgs) => nix.app(nix.builtins.import(nix.path(here, "./stage.nix")) as nix.Imported<typeof import("./stage.ts")>, nix.thunk(() => nix.update({ [nix.POS]: $pos[4], lib: lib, nixpkgsFun: nixpkgsFun }, newArgs)));
+  const boot = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../stdenv/booter.nix")) as nix.Imported<typeof import("../stdenv/booter.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[5], lib: lib, allPackages: allPackages }))));
   const stages = nix.thunk(() => nix.app(stdenvStages, nix.thunk(() => ({
       [nix.POS]: $pos[6],
       lib: lib,

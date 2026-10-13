@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
-  const gpgKeyring = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common/gpg-keyring.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], pkgs: pkgs }))));
+  const gpgKeyring = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common/gpg-keyring.nix")) as nix.Imported<typeof import("./common/gpg-keyring.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], pkgs: pkgs }))));
   return {
     [nix.POS]: $pos[21],
     name: "systemd-sysupdate",

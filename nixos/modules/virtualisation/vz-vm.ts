@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "virtualisation"));
   const vzCfg = nix.thunk(() => nix.sel(cfg, "vz"));
   const hostPkgs = nix.thunk(() => nix.sel(cfg, "host", "pkgs"));
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/store-registration-info.nix")), nix.thunk(() => ({
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/store-registration-info.nix")) as nix.Imported<typeof import("../../lib/store-registration-info.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[0],
       hostPkgs: hostPkgs,
       rootPaths: nix.thunk(() => nix.sel(cfg, "additionalPaths")),
@@ -246,7 +246,7 @@ if [ ! -f "$storeImage" ]; then
   # shellcheck disable=SC2064
   trap "rm -f '$storeImageTmp'" EXIT
 
-  ${nix.app(nix.builtins.import(nix.path(here, "../../lib/erofs-store-image.nix")), nix.thunk(() => ({
+  ${nix.app(nix.builtins.import(nix.path(here, "../../lib/erofs-store-image.nix")) as nix.Imported<typeof import("../../lib/erofs-store-image.ts")>, nix.thunk(() => ({
                       [nix.POS]: $pos[35],
                       hostPkgs: hostPkgs,
                       storePaths: nix.thunk(() => nix.str`${storeClosureInfo}/store-paths`),
@@ -291,7 +291,7 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(vzCfg, "package")
 `))),
             })),
           })),
-          fileSystems: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./vz-vm-file-systems.nix")), nix.thunk(() => ({
+          fileSystems: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./vz-vm-file-systems.nix")) as nix.Imported<typeof import("./vz-vm-file-systems.ts")>, nix.thunk(() => ({
               [nix.POS]: $pos[38],
               lib: lib,
               sharedDirectories: nix.thunk(() => nix.attr(cfg, "sharedDirectories")),

@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const writers = nix.arg($, "writers");
   const info = nix.thunk(() => nix.builtins.fromJSON(nix.thunk(() => nix.builtins.readFile(nix.path(here, "./info.json")))));
   const opensslSrc = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.sel(info, "openssl"))));
-  const toolchain = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./toolchain-bin.nix")), nix.thunk(() => ({
+  const toolchain = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./toolchain-bin.nix")) as nix.Imported<typeof import("./toolchain-bin.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[0],
       stdenv: stdenv,
       lib: lib,

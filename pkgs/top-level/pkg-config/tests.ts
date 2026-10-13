@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const config = nix.arg($, "config");
   const stdenv = nix.arg($, "stdenv");
-  const allPkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../default.nix")), nix.thunk(() => ({
+  const allPkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../default.nix")) as nix.Imported<typeof import("../default.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[1],
       system: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "system")),
       localSystem: nix.thunk(() => nix.sel(stdenv, "buildPlatform", "system")),

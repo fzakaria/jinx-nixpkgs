@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const xar = nix.arg($, "xar");
   const cpio = nix.arg($, "cpio");
   const unzip = nix.arg($, "unzip");
-  const source = nix.thunk(() => nix.builtins.import(nix.path(here, "./source.nix")));
+  const source = nix.thunk(() => nix.builtins.import(nix.path(here, "./source.nix")) as nix.Imported<typeof import("./source.ts")>);
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
       [nix.POS]: $pos[2],
       pname: "chatgpt-classic",

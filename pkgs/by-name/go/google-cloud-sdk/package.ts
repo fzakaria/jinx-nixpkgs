@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.lookup(w, "grpcio")),
       ], nix.concat(nix.app(nix.sel(lib, "optional"), with_gce, nix.thunk(() => nix.lookup(w, "google-compute-engine"))), nix.app(nix.sel(lib, "optional"), with_numpy, nix.thunk(() => nix.lookup(w, "numpy")))));
     })()));
-  const data = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./data.nix")), nix.thunk(() => ({}))));
+  const data = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./data.nix")) as nix.Imported<typeof import("./data.ts")>, nix.thunk(() => ({}))));
   const sources = (system) => nix.selOr(data, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${system}`)), "googleCloudSdkPkgs", nix.key(nix.force(system)));
   const components = nix.thunk(() => nix.app(callPackage, nix.path(here, "./components.nix"), nix.thunk(() => ({ [nix.POS]: $pos[0], snapshotPath: nix.path(here, "./components.json") }))));
   const withExtraComponents = nix.thunk(() => nix.app(callPackage, nix.path(here, "./withExtraComponents.nix"), nix.thunk(() => ({ [nix.POS]: $pos[1], components: components }))));

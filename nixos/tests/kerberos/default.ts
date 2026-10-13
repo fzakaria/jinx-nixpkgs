@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
     [nix.POS]: $pos[1],
     mit: nix.thunk(() => nix.app(runTest, nix.path(here, "./mit.nix"))),
     heimdal: nix.thunk(() => nix.app(runTest, nix.path(here, "./heimdal.nix"))),
-    ldap: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./ldap")), nix.thunk(() => ({ [nix.POS]: $pos[0], pkgs: pkgs, runTest: runTest })))),
+    ldap: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./ldap")) as nix.Imported<typeof import("./ldap/default.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], pkgs: pkgs, runTest: runTest })))),
   };
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

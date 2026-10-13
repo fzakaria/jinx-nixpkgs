@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       buildInputs: nix.thunk(() => [libpng]),
-      patches: nix.thunk(() => nix.concat(nix.builtins.map(fetchurl, nix.thunk(() => nix.builtins.import(nix.path(here, "./debian-patches.nix")))), [nix.path(here, "./c++17-register-usage-fix.patch")])),
+      patches: nix.thunk(() => nix.concat(nix.builtins.map(fetchurl, nix.thunk(() => nix.builtins.import(nix.path(here, "./debian-patches.nix")) as nix.Imported<typeof import("./debian-patches.ts")>)), [nix.path(here, "./c++17-register-usage-fix.patch")])),
       preBuild: "# Fix parallel building.\nmake -C libplot xmi.h\n",
       configureFlags: nix.thunk(() => ["--enable-libplotter"]),
       hardeningDisable: nix.thunk(() => ["format"]),

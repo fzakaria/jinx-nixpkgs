@@ -6,7 +6,7 @@ const formals$1 = { args: { pkgs: true }, ellipsis: false };
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../..")), nix.thunk(() => ({}))));
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../..")) as nix.Imported<typeof import("../../../default.ts")>, nix.thunk(() => ({}))));
   return nix.app(nix.sel(pkgs, "python3Packages", "callPackage"), nix.path(here, "./default.nix"), nix.thunk(() => ({})));
 })(), formals$1);
 //# sourceMappingURL=shell.ts.map

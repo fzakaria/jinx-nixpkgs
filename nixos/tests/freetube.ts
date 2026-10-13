@@ -62,7 +62,7 @@ export default nix.thunk(() => (() => {
       };
     })(), formals$2),
   }));
-  const mkTest = (name) => (machine) => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")), nix.lambda((args) => (() => {
+  const mkTest = (name) => (machine) => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")) as nix.Imported<typeof import("./make-test-python.ts")>, nix.lambda((args) => (() => {
       const $ = nix.formals(args, formals$3);
       const pkgs = nix.arg($, "pkgs");
       return {

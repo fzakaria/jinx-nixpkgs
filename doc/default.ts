@@ -7,7 +7,7 @@ const formals$1 = { args: { pkgs: true, nixpkgs: true }, ellipsis: false };
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
-  const pkgs = nix.argOr($, "pkgs", () => nix.sel(nix.app(nix.builtins.import(nix.path(here, "../ci")), nix.thunk(() => ({}))), "docPkgs"));
+  const pkgs = nix.argOr($, "pkgs", () => nix.sel(nix.app(nix.builtins.import(nix.path(here, "../ci")) as nix.Imported<typeof import("../ci/default.ts")>, nix.thunk(() => ({}))), "docPkgs"));
   const nixpkgs = nix.argOr($, "nixpkgs", () => ({}));
   return nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./doc-support/package.nix"), nix.thunk(() => ({ [nix.POS]: $pos[0], nixpkgs: nixpkgs })));
 })(), formals$1);

@@ -6,7 +6,7 @@ const $pos = nix.positions(here + "/test-evaluation.nix", [[["allowBroken", 10, 
 
 export default nix.thunk(() => (() => {
   const config = nix.thunk(() => ({ [nix.POS]: $pos[0], allowBroken: true, allowUnfree: true }));
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../..")), nix.thunk(() => ({ [nix.POS]: $pos[1], config: config }))));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../..")) as nix.Imported<typeof import("../../../default.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[1], config: config }))));
   const pkgs = nix.thunk(() => nix.attr(from, "pkgs"));
   const rWrapper = nix.thunk(() => nix.app(nix.sel(pkgs, "rWrapper", "override"), nix.thunk(() => ({
       [nix.POS]: $pos[2],

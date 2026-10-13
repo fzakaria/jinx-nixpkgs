@@ -12,9 +12,9 @@ const formals$5 = { args: { nodes: false }, ellipsis: true };
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: $pos[0], system: system }))));
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")) as nix.Imported<typeof import("../../default.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], system: system }))));
   const lib = nix.argOr($, "lib", () => nix.sel(pkgs, "lib"));
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], system: system, pkgs: pkgs }))));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")) as nix.Imported<typeof import("../lib/testing-python.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[1], system: system, pkgs: pkgs }))));
   const makeTest = nix.thunk(() => nix.attr(from, "makeTest"));
   const nodeIP = (n) => nix.sel(n, "networking", "primaryIPAddress");
   const dnsZone = (nodes) => nix.app(nix.sel(pkgs, "writeText"), "agnos.test.zone", nix.thunk(() => nix.str`$TTL    604800

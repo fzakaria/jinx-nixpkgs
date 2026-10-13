@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
-  const gpgKeyring = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common/gpg-keyring.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], pkgs: pkgs }))));
+  const gpgKeyring = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common/gpg-keyring.nix")) as nix.Imported<typeof import("./common/gpg-keyring.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], pkgs: pkgs }))));
   const nspawnImages = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "localhost", nix.thunk(() => ({
       [nix.POS]: $pos[1],
       buildInputs: nix.thunk(() => [

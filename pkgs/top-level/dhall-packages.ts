@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       buildDhallDirectoryPackage: buildDhallDirectoryPackage,
       buildDhallUrl: buildDhallUrl,
       generateDhallDirectoryPackage: generateDhallDirectoryPackage,
-      lib: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../development/dhall-modules/lib.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib })))),
+      lib: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../development/dhall-modules/lib.nix")) as nix.Imported<typeof import("../development/dhall-modules/lib.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib })))),
       "dhall-cloudformation": nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/dhall-modules/dhall-cloudformation.nix"), nix.thunk(() => ({})))),
       "dhall-grafana": nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/dhall-modules/dhall-grafana.nix"), nix.thunk(() => ({})))),
       "dhall-kubernetes": nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/dhall-modules/dhall-kubernetes.nix"), nix.thunk(() => ({})))),

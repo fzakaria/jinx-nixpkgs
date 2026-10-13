@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
     const extraConfigPaths = nix.argOr($_1, "extraConfigPaths", () => []);
     const passthru = nix.argOr($_1, "passthru", () => ({}));
     nix.assert_((!nix.asBool(nix.eq(name, null)) || nix.asBool(!nix.eq(pname, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/ruby-modules/bundled-common/default.nix:38:1");
-    const functions = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./functions.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib, gemConfig: gemConfig }))));
+    const functions = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./functions.nix")) as nix.Imported<typeof import("./functions.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib, gemConfig: gemConfig }))));
     const applyGemConfigs = nix.thunk(() => nix.attr(functions, "applyGemConfigs"));
     const bundlerFiles = nix.thunk(() => nix.attr(functions, "bundlerFiles"));
     const composeGemAttrs = nix.thunk(() => nix.attr(functions, "composeGemAttrs"));

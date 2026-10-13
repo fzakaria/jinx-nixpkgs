@@ -10,6 +10,6 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   const callPackage = nix.arg($, "callPackage");
-  return (self) => nix.app(nix.builtins.import(nix.path(here, "./hackage-packages.nix")), args_1, self);
+  return (self) => nix.app(nix.builtins.import(nix.path(here, "./hackage-packages.nix")) as nix.Imported<typeof import("./hackage-packages.ts")>, args_1, self);
 })(), formals$1);
 //# sourceMappingURL=initial-packages.ts.map

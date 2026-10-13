@@ -120,7 +120,7 @@ export default nix.lambda((args) => (() => {
   const distSetName = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isMusl")) ? "musl" : "defaultLibc"));
   const binDistUsed = nix.thunk(() => nix.selOr(ghcBinDists, () => nix.builtins.throw(nix.thunk(() => nix.str`cannot bootstrap GHC on this platform ('${nix.sel(stdenv, "hostPlatform", "system")}' with libc '${distSetName}')`)), nix.key(nix.force(distSetName)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const gmpUsed = nix.thunk(() => nix.sel(nix.builtins.head(nix.thunk(() => nix.builtins.filter((drv) => nix.app(nix.sel(lib, "hasPrefix"), "gmp", nix.thunk(() => nix.selOr(drv, () => "", "nixPackage", "name"))), nix.thunk(() => nix.sel(binDistUsed, "archSpecificLibraries"))))), "nixPackage"));
-  const useLLVM = nix.thunk(() => !nix.asBool(nix.app(nix.builtins.import(nix.path(here, "./common-have-ncg.nix")), nix.thunk(() => ({ [nix.POS]: $pos[26], lib: lib, stdenv: stdenv, version: version })))));
+  const useLLVM = nix.thunk(() => !nix.asBool(nix.app(nix.builtins.import(nix.path(here, "./common-have-ncg.nix")) as nix.Imported<typeof import("./common-have-ncg.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[26], lib: lib, stdenv: stdenv, version: version })))));
   const libPath = nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => nix.builtins.map(nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const nixPackage = nix.arg($_1, "nixPackage");

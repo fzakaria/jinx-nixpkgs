@@ -19,8 +19,8 @@ export default nix.lambda((args) => (() => {
   const mkIf = nix.thunk(() => nix.attr(lib, "mkIf"));
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
-  const mkCertOwnershipAssertion = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../security/acme/mk-cert-ownership-assertion.nix")), lib));
-  const from_1 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib }))));
+  const mkCertOwnershipAssertion = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../security/acme/mk-cert-ownership-assertion.nix")) as nix.Imported<typeof import("../../../security/acme/mk-cert-ownership-assertion.ts")>, lib));
+  const from_1 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")) as nix.Imported<typeof import("./common.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib }))));
   const tlsRecommendationsOption = nix.thunk(() => nix.attr(from_1, "tlsRecommendationsOption"));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   const getNames = (name) => (vhostSettings) => (() => {
@@ -218,7 +218,7 @@ export default nix.lambda((args) => (() => {
             })))),
           hosts: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
               [nix.POS]: $pos[37],
-              type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./vhost-options.nix")), nix.thunk(() => ({ [nix.POS]: $pos[36], config: config, lib: lib })))))))),
+              type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./vhost-options.nix")) as nix.Imported<typeof import("./vhost-options.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[36], config: config, lib: lib })))))))),
               default: nix.thunk(() => ({})),
               description: "The `hosts` config to be merged with the settings.\n\nNote that unlike YAML used for H2O, Nix will not support duplicate\nkeys to, for instance, have multiple listens in a host block; use the\nvirtual host options in like `http` & `tls` or use `$HOST:$PORT`\nkeys if manually specifying config.\n",
               example: nix.thunk(() => nix.app(literalExpression, "{\n  \"hydra.example.com\" = {\n    tls = {\n      policy = \"force\";\n      identity = [\n        {\n          key-file = \"/path/to/key\";\n          certificate-file = \"/path/to/cert\";\n        };\n      ];\n      extraSettings = {\n        minimum-version = \"TLSv1.3\";\n      };\n    };\n    settings = {\n      paths.\"/\" = {\n        \"file:dir\" = \"/var/www/default\";\n      };\n    };\n  };\n}\n")),

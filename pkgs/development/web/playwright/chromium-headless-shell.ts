@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
   const libxkbcommon = nix.arg($, "libxkbcommon");
   const nspr = nix.arg($, "nspr");
   const nss = nix.arg($, "nss");
-  const download = nix.thunk(() => nix.selOr(nix.app(nix.builtins.import(nix.path(here, "./browser-downloads.nix")), nix.thunk(() => ({
+  const download = nix.thunk(() => nix.selOr(nix.app(nix.builtins.import(nix.path(here, "./browser-downloads.nix")) as nix.Imported<typeof import("./browser-downloads.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[0],
       name: "chromium-headless-shell",
       revision: revision,

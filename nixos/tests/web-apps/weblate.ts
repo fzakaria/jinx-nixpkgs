@@ -10,7 +10,7 @@ const formals$3 = { args: { pkgs: false, nodes: false }, ellipsis: true };
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
-  const certs = nix.thunk(() => nix.builtins.import(nix.path(here, "../common/acme/server/snakeoil-certs.nix")));
+  const certs = nix.thunk(() => nix.builtins.import(nix.path(here, "../common/acme/server/snakeoil-certs.nix")) as nix.Imported<typeof import("../common/acme/server/snakeoil-certs.ts")>);
   const serverDomain = nix.thunk(() => nix.sel(certs, "domain"));
   const admin = nix.thunk(() => ({ [nix.POS]: $pos[0], username: "admin", password: "snakeoilpass" }));
   const apiToken = "OVJh65sXaAfQMZ4NTcIGbFZIyBZbEZqWTi7azdDf";

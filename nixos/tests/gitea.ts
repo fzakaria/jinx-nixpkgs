@@ -98,7 +98,7 @@ export default nix.lambda((args) => (() => {
         })(), formals$4),
       })),
       testScript: nix.thunk(() => (() => {
-        const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./ssh-keys.nix")), nix.thunk(() => nix.sel(config, "node", "pkgs"))));
+        const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./ssh-keys.nix")) as nix.Imported<typeof import("./ssh-keys.ts")>, nix.thunk(() => nix.sel(config, "node", "pkgs"))));
         const snakeOilPrivateKey = nix.thunk(() => nix.attr(from, "snakeOilPrivateKey"));
         const snakeOilPublicKey = nix.thunk(() => nix.attr(from, "snakeOilPublicKey"));
         return nix.str`GIT_SSH_COMMAND = "ssh -i $HOME/.ssh/privk -o StrictHostKeyChecking=no"

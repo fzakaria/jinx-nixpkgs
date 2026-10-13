@@ -128,7 +128,7 @@ deployer_do("cd ~/unicorn; nixops ssh server 'hello | figlet'")
         })(), formals$5),
       })));
   })(), formals$2);
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ssh-keys.nix")), pkgs));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ssh-keys.nix")) as nix.Imported<typeof import("../ssh-keys.ts")>, pkgs));
   const snakeOilPrivateKey = nix.thunk(() => nix.attr(from, "snakeOilPrivateKey"));
   const snakeOilPublicKey = nix.thunk(() => nix.attr(from, "snakeOilPublicKey"));
   return nix.force(tests);

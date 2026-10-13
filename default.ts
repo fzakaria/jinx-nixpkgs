@@ -9,7 +9,7 @@ export default nix.thunk(() => (() => {
       const $ = nix.formals(args, formals$1);
       const description = nix.arg($, "description");
       return nix.force(description);
-    })(), formals$1), nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./lib/minfeatures.nix")), "missing"))));
+    })(), formals$1), nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./lib/minfeatures.nix")) as nix.Imported<typeof import("./lib/minfeatures.ts")>, "missing"))));
   return (nix.asBool(!nix.eq(missingFeatures, [])) ? nix.builtins.abort(nix.thunk(() => nix.str`
 This version of Nixpkgs requires an implementation of Nix with the following features:
 - ${nix.builtins.concatStringsSep("\n- ", missingFeatures)}
@@ -31,6 +31,6 @@ https://nixos.org/nixos/manual or locally at
 ${nix.builtins.toString(nix.path(here, "./nixos/doc/manual/release-notes"))}.
 
 If you need further help, see https://nixos.org/nixos/support.html
-`)) : nix.builtins.import(nix.path(here, "./pkgs/top-level/impure.nix")));
+`)) : nix.builtins.import(nix.path(here, "./pkgs/top-level/impure.nix")) as nix.Imported<typeof import("./pkgs/top-level/impure.ts")>);
 })());
 //# sourceMappingURL=default.ts.map

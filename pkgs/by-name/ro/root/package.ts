@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
       version: "6.40.04",
       passthru: nix.thunk(() => ({
         [nix.POS]: $pos[1],
-        tests: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./tests")), nix.thunk(() => ({ [nix.POS]: $pos[0], callPackage: callPackage })))),
+        tests: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./tests")) as nix.Imported<typeof import("./tests/default.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], callPackage: callPackage })))),
       })),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
           [nix.POS]: $pos[2],

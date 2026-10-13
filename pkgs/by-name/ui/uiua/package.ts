@@ -29,8 +29,8 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const versionInfo = nix.thunk(() => nix.sel({
     [nix.POS]: $pos[0],
-    stable: nix.thunk(() => nix.builtins.import(nix.path(here, "./stable.nix"))),
-    unstable: nix.thunk(() => nix.builtins.import(nix.path(here, "./unstable.nix"))),
+    stable: nix.thunk(() => nix.builtins.import(nix.path(here, "./stable.nix")) as nix.Imported<typeof import("./stable.ts")>),
+    unstable: nix.thunk(() => nix.builtins.import(nix.path(here, "./unstable.nix")) as nix.Imported<typeof import("./unstable.ts")>),
   }, nix.key(nix.force(uiua_versionType))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
       [nix.POS]: $pos[6],

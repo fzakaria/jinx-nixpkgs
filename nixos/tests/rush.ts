@@ -10,7 +10,7 @@ const formals$3 = { args: { config: false }, ellipsis: true };
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./ssh-keys.nix")), pkgs));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./ssh-keys.nix")) as nix.Imported<typeof import("./ssh-keys.ts")>, pkgs));
   const snakeOilEd25519PrivateKey = nix.thunk(() => nix.attr(from, "snakeOilEd25519PrivateKey"));
   const snakeOilEd25519PublicKey = nix.thunk(() => nix.attr(from, "snakeOilEd25519PublicKey"));
   const username = "nix-remote-builder";

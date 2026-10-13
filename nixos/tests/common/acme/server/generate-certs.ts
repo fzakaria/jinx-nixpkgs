@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.builtins.findFile(nix.builtins.nixPath, "nixpkgs")), nix.thunk(() => ({}))));
   const minica = nix.argOr($, "minica", () => nix.sel(pkgs, "minica"));
   const mkDerivation = nix.argOr($, "mkDerivation", () => nix.sel(pkgs, "stdenv", "mkDerivation"));
-  const domain = nix.argOr($, "domain", () => nix.sel(nix.builtins.import(nix.path(here, "./snakeoil-certs.nix")), "domain"));
+  const domain = nix.argOr($, "domain", () => nix.sel(nix.builtins.import(nix.path(here, "./snakeoil-certs.nix")) as nix.Imported<typeof import("./snakeoil-certs.ts")>, "domain"));
   return nix.app(mkDerivation, nix.thunk(() => ({
       [nix.POS]: $pos[1],
       name: "test-certs",

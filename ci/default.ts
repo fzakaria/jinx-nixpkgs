@@ -49,9 +49,9 @@ export default nix.thunk(() => (() => {
           [nix.POS]: $pos[5],
           nix: nix.thunk(() => nix.app(nix.sel(pkgs_1, "lib", "getAttrFromPath"), nix.thunk(() => nix.app(nix.sel(pkgs_1, "lib", "splitString"), ".", nixPath)), pkgs_1)),
         }))));
-      const lib_tests = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/tests/release.nix")), nix.thunk(() => ({ [nix.POS]: $pos[6], pkgs: pkgs_1 }))));
-      const manual_nixos = nix.thunk(() => nix.selOr(nix.app(nix.builtins.import(nix.path(here, "../nixos/release.nix")), nix.thunk(() => ({}))), () => null, "manual", nix.key(nix.force(system))));
-      const manual_nixpkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../doc")), nix.thunk(() => ({ [nix.POS]: $pos[7], pkgs: docPkgs_1 }))));
+      const lib_tests = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/tests/release.nix")) as nix.Imported<typeof import("../lib/tests/release.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[6], pkgs: pkgs_1 }))));
+      const manual_nixos = nix.thunk(() => nix.selOr(nix.app(nix.builtins.import(nix.path(here, "../nixos/release.nix")) as nix.Imported<typeof import("../nixos/release.ts")>, nix.thunk(() => ({}))), () => null, "manual", nix.key(nix.force(system))));
+      const manual_nixpkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../doc")) as nix.Imported<typeof import("../doc/default.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[7], pkgs: docPkgs_1 }))));
       const nixpkgs_vet = nix.thunk(() => nix.app(nix.sel(pkgs_1, "callPackage"), nix.path(here, "./nixpkgs-vet.nix"), nix.thunk(() => ({
           [nix.POS]: $pos[8],
           nix: nix.thunk(() => nix.sel(pkgs_1, "nixVersions", "latest")),
@@ -72,8 +72,8 @@ export default nix.thunk(() => (() => {
               nix: nix.thunk(() => nix.sel(pkgs_1, "lixPackageSets", "latest", "lix")),
             })))),
         }))));
-      const shell = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../shell.nix")), nix.thunk(() => ({ [nix.POS]: $pos[14], nixpkgs: nixpkgs, system: system }))));
-      const tarball = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../pkgs/top-level/make-tarball.nix")), nix.thunk(() => ({
+      const shell = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../shell.nix")) as nix.Imported<typeof import("../shell.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[14], nixpkgs: nixpkgs, system: system }))));
+      const tarball = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../pkgs/top-level/make-tarball.nix")) as nix.Imported<typeof import("../pkgs/top-level/make-tarball.ts")>, nix.thunk(() => ({
           [nix.POS]: $pos[16],
           nixpkgs: nix.thunk(() => ({
             [nix.POS]: $pos[15],

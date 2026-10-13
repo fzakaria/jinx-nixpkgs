@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "a virtualhost to serve bentopdf through nginx")),
             virtualHost: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
                 [nix.POS]: $pos[3],
-                type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../web-servers/nginx/vhost-options.nix")), nix.thunk(() => ({ [nix.POS]: $pos[2], config: config, lib: lib })))))),
+                type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../web-servers/nginx/vhost-options.nix")) as nix.Imported<typeof import("../web-servers/nginx/vhost-options.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[2], config: config, lib: lib })))))),
                 default: nix.thunk(() => ({})),
                 example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  serverAliases = [ \"bentopdf.${config.networking.domain}\" ];\n}\n")),
                 description: "Extra configuration for the nginx virtual host of bentopdf.",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "a virtualhost to serve bentopdf through caddy")),
             virtualHost: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
                 [nix.POS]: $pos[6],
-                type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../web-servers/caddy/vhost-options.nix")), nix.thunk(() => ({
+                type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../web-servers/caddy/vhost-options.nix")) as nix.Imported<typeof import("../web-servers/caddy/vhost-options.ts")>, nix.thunk(() => ({
                       [nix.POS]: $pos[5],
                       cfg: nix.thunk(() => nix.sel(config, "services", "caddy")),
                     })))))),

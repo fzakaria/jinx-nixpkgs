@@ -16,7 +16,7 @@ const formals$10 = { args: { options: false }, ellipsis: true };
 const formals$11 = { args: { options: false }, ellipsis: true };
 const formals$12 = { args: { options: false }, ellipsis: true };
 
-export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../make-test-python.nix")), nix.lambda((args) => (() => {
+export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../make-test-python.nix")) as nix.Imported<typeof import("../make-test-python.ts")>, nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     const package$ = nix.arg($, "package");
     return {

@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const unzip = nix.arg($, "unzip");
   const findXMLCatalogs = nix.arg($, "findXMLCatalogs");
-  return nix.app(nix.builtins.import(nix.path(here, "./generic.nix")), nix.thunk(() => ({
+  return nix.app(nix.builtins.import(nix.path(here, "./generic.nix")) as nix.Imported<typeof import("./generic.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[0],
       lib: lib,
       stdenv: stdenv,

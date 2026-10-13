@@ -174,7 +174,7 @@ export default nix.lambda((args) => (() => {
         cuda_profiler_api,
         tensorrt,
       ]),
-      passthru: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./passthru.nix")), nix.thunk(() => ({
+      passthru: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./passthru.nix")) as nix.Imported<typeof import("./passthru.ts")>, nix.thunk(() => ({
           [nix.POS]: $pos[24],
           backendStdenv: backendStdenv,
           fetchzip: fetchzip,

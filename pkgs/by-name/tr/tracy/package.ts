@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
   const nlohmann_json = nix.arg($, "nlohmann_json");
   const nativefiledialog_extended = nix.arg($, "nativefiledialog-extended");
   const html_tidy = nix.arg($, "html-tidy");
-  return nix.sel(nix.app(nix.builtins.import(nix.path(here, "./package-versions.nix")), nix.thunk(() => ({
+  return nix.sel(nix.app(nix.builtins.import(nix.path(here, "./package-versions.nix")) as nix.Imported<typeof import("./package-versions.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[0],
       lib: lib,
       stdenv: stdenv,

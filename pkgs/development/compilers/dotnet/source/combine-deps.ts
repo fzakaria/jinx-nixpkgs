@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const list = nix.arg($, "list");
   const baseRid = nix.arg($, "baseRid");
   const otherRids = nix.arg($, "otherRids");
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../../../..")), nix.thunk(() => ({}))));
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../../../..")) as nix.Imported<typeof import("../../../../../default.ts")>, nix.thunk(() => ({}))));
   const writeText = nix.thunk(() => nix.attr(pkgs, "writeText"));
   const from = nix.thunk(() => nix.sel(pkgs, "lib"));
   const concatMap = nix.thunk(() => nix.attr(from, "concatMap"));

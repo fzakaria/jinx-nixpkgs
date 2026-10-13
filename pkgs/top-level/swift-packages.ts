@@ -7,7 +7,7 @@ const formals$1 = { args: { lib: false, bootstrapStage: false, buildSwiftPackage
 const formals$2 = { args: { lib: false, config: false, clangStdenv: false, generateSplicesForMkScope: false, llvmPackages: false, "makeScopeWithSplicing'": false, stdenvNoCC: false, swiftPackages: false, otherSplices: true }, ellipsis: false };
 
 export default nix.thunk(() => (() => {
-  const autoCalledPackages = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./by-name-overlay.nix")), nix.path(here, "../development/compilers/swift/by-name")));
+  const autoCalledPackages = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./by-name-overlay.nix")) as nix.Imported<typeof import("./by-name-overlay.ts")>, nix.path(here, "../development/compilers/swift/by-name")));
   const swift_sources_6_2 = nix.thunk(() => nix.builtins.fromJSON(nix.thunk(() => nix.builtins.readFile(nix.path(here, "../development/compilers/swift/sources-6.2.json")))));
   const mkBootstrapSwiftPackages = nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);

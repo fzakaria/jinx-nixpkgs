@@ -10,16 +10,16 @@ export default nix.lambda((args) => (() => {
   const evalConfigArgs = args;
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const pkgs = nix.argOr($, "pkgs", () => null);
-  const baseModules = nix.argOr($, "baseModules", () => nix.builtins.import(nix.path(here, "../modules/module-list.nix")));
+  const baseModules = nix.argOr($, "baseModules", () => nix.builtins.import(nix.path(here, "../modules/module-list.nix")) as nix.Imported<typeof import("../modules/module-list.ts")>);
   const specialArgs = nix.argOr($, "specialArgs", () => ({}));
   const modules = nix.arg($, "modules");
   const modulesLocation = nix.argOr($, "modulesLocation", () => nix.selOr(nix.builtins.unsafeGetAttrPos("modules", evalConfigArgs), () => null, "file"));
   const prefix = nix.argOr($, "prefix", () => []);
-  const lib = nix.argOr($, "lib", () => nix.builtins.import(nix.path(here, "../../lib")));
+  const lib = nix.argOr($, "lib", () => nix.builtins.import(nix.path(here, "../../lib")) as nix.Imported<typeof import("../../lib/default.ts")>);
   const extraModules = nix.argOr($, "extraModules", () => []);
   const optional = nix.thunk(() => nix.attr(lib, "optional"));
   const warn = nix.thunk(() => nix.attr(lib, "warn"));
-  const evalModulesMinimal = nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./default.nix")), nix.thunk(() => ({
+  const evalModulesMinimal = nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./default.nix")) as nix.Imported<typeof import("./default.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[1],
       lib: lib,
       featureFlags: nix.thunk(() => ({ [nix.POS]: $pos[0], minimalModules: nix.thunk(() => ({})) })),

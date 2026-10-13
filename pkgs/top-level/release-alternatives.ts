@@ -7,8 +7,8 @@ const formals$1 = { args: { pkgsFun: true, lib: true, supportedSystems: true, al
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
-  const pkgsFun = nix.argOr($, "pkgsFun", () => nix.builtins.import(nix.path(here, "../..")));
-  const lib = nix.argOr($, "lib", () => nix.builtins.import(nix.path(here, "../../lib")));
+  const pkgsFun = nix.argOr($, "pkgsFun", () => nix.builtins.import(nix.path(here, "../..")) as nix.Imported<typeof import("../../default.ts")>);
+  const lib = nix.argOr($, "lib", () => nix.builtins.import(nix.path(here, "../../lib")) as nix.Imported<typeof import("../../lib/default.ts")>);
   const supportedSystems = nix.argOr($, "supportedSystems", () => ["x86_64-linux"]);
   const allowUnfree = nix.argOr($, "allowUnfree", () => false);
   const blasUsers = nix.thunk(() => nix.concat([

@@ -125,7 +125,7 @@ EXEC_SEQUENCE_INTERVAL=1
       const $_1 = nix.formals(args_1, formals$5);
       const nodes = nix.arg($_1, "nodes");
       const orderRenewScript = nix.thunk(() => nix.sel(nodes, "client", "systemd", "services", nix.key(nix.str`acme-order-renew-${domain}`), "script"));
-      return nix.str`${nix.sel(nix.builtins.import(nix.path(here, "./utils.nix")), "pythonUtils")}
+      return nix.str`${nix.sel(nix.builtins.import(nix.path(here, "./utils.nix")) as nix.Imported<typeof import("./utils.ts")>, "pythonUtils")}
 
 import shlex
 

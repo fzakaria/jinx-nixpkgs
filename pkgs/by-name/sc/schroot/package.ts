@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
           url: nix.thunk(() => nix.str`https://codeberg.org/shelter/reschroot/archive/release/reschroot-${upstream_version}.tar.gz`),
           hash: "sha256-wF1qG7AhDUAeZSLu4sRl4LQ8bJj3EB1nH56e+Is6zPU=",
         })))),
-      patches: nix.thunk(() => nix.concat(nix.builtins.map(fetchurl, nix.thunk(() => nix.builtins.import(nix.path(here, "./debian-patches.nix")))), [
+      patches: nix.thunk(() => nix.concat(nix.builtins.map(fetchurl, nix.thunk(() => nix.builtins.import(nix.path(here, "./debian-patches.nix")) as nix.Imported<typeof import("./debian-patches.ts")>)), [
         nix.path(here, "./no-setuid.patch"),
         nix.path(here, "./no-pam-service.patch"),
         nix.path(here, "./no-default-config.patch"),

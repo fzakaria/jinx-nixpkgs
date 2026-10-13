@@ -10,12 +10,12 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const args_1 = args;
   const system = nix.arg($, "system");
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: $pos[0], system: system, config: config }))));
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")) as nix.Imported<typeof import("../../default.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], system: system, config: config }))));
   const minimal = nix.argOr($, "minimal", () => false);
   const config = nix.argOr($, "config", () => ({}));
   const specialArgs = nix.argOr($, "specialArgs", () => nix.builtins.throw("legacy - do not use, see error below"));
   const extraConfigurations = nix.argOr($, "extraConfigurations", () => []);
-  const nixos_lib = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./default.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], lib: nix.thunk(() => nix.attr(pkgs, "lib")) }))));
+  const nixos_lib = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./default.nix")) as nix.Imported<typeof import("./default.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[1], lib: nix.thunk(() => nix.attr(pkgs, "lib")) }))));
   return nix.app(nix.sel(pkgs, "lib", "throwIf"), nix.thunk(() => nix.has(args_1, "specialArgs")), "testing-python.nix: `specialArgs` is not supported anymore. If you're looking\nfor the public interface to the NixOS test framework, use `runTest`, and\n`node.specialArgs`.\nSee https://nixos.org/manual/nixos/unstable/index.html#sec-calling-nixos-tests\nand https://nixos.org/manual/nixos/unstable/index.html#test-opt-node.specialArgs\n", nix.thunk(() => (() => {
       const pkgs_1 = pkgs;
       const evalTest = (module) => nix.app(nix.sel(nixos_lib, "evalTest"), nix.thunk(() => ({ [nix.POS]: $pos[2], imports: nix.thunk(() => [extraTestModule, module]) })));

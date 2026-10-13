@@ -109,7 +109,7 @@ substituteInPlace src/commands/mount.rs \\
       outputs: nix.thunk(() => ["out", "dkms"]),
       passthru: nix.thunk(() => ({
         [nix.POS]: $pos[4],
-        kernelModule: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./kernel-module.nix")), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
+        kernelModule: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./kernel-module.nix")) as nix.Imported<typeof import("./kernel-module.ts")>, nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "installer"));
           return {

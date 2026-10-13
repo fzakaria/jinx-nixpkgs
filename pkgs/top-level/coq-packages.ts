@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const coq2html = nix.arg($, "coq2html");
   const dune = nix.arg($, "dune");
-  const lib_1 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../build-support/coq/extra-lib.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: nix.thunk(() => nix.attr(args_1, "lib")) }))));
+  const lib_1 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../build-support/coq/extra-lib.nix")) as nix.Imported<typeof import("../build-support/coq/extra-lib.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], lib: nix.thunk(() => nix.attr(args_1, "lib")) }))));
   const mkCoqPackages$ = (self) => (coq) => (() => {
     const callPackage_1 = nix.thunk(() => nix.sel(self, "callPackage"));
     const rocqPackages_1 = nix.thunk(() => nix.update(self, { [nix.POS]: $pos[1], recurseForDerivations: false }));
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       [nix.POS]: $pos[22],
       rocqPackages: rocqPackages_1,
       lib: lib_1,
-      metaFetch: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../build-support/rocq/meta-fetch/default.nix")), nix.thunk(() => ({
+      metaFetch: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../build-support/rocq/meta-fetch/default.nix")) as nix.Imported<typeof import("../build-support/rocq/meta-fetch/default.ts")>, nix.thunk(() => ({
           [nix.POS]: $pos[2],
           lib: lib_1,
           stdenv: stdenv,

@@ -143,7 +143,7 @@ wrapProgram "$out/bin/mojo" \\
 `),
       passthru: nix.thunk(() => ({
         [nix.POS]: $pos[2],
-        tests: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./tests.nix")), nix.thunk(() => ({
+        tests: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./tests.nix")) as nix.Imported<typeof import("./tests.ts")>, nix.thunk(() => ({
             [nix.POS]: $pos[1],
             finalPackage: nix.thunk(() => nix.attr(finalAttrs, "finalPackage")),
             shell: nix.thunk(() => nix.attr(stdenv, "shell")),

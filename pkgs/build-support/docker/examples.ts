@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const buildImageWithNixDb = nix.arg($, "buildImageWithNixDb");
   const pkgsCross = nix.arg($, "pkgsCross");
   const streamNixShellImage = nix.arg($, "streamNixShellImage");
-  const nixosLib = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../nixos/lib")), nix.thunk(() => ({
+  const nixosLib = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../nixos/lib")) as nix.Imported<typeof import("../../../nixos/lib/default.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[1],
       featureFlags: nix.thunk(() => ({ [nix.POS]: $pos[0], minimalModules: nix.thunk(() => ({})) })),
     }))));

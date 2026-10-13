@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         })),
       };
     })(), formals$2)));
-  const providersMeta = nix.thunk(() => nix.builtins.import(nix.path(here, "./providers.nix")));
+  const providersMeta = nix.thunk(() => nix.builtins.import(nix.path(here, "./providers.nix")) as nix.Imported<typeof import("./providers.ts")>);
   const providerPackages = nix.thunk(() => nix.sel(providersMeta, "providers"));
   const providerNames = nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), providerPackages));
   const providerDependencies = nix.thunk(() => nix.app(nix.sel(lib, "concatMap"), (provider) => nix.app(nix.sel(providerPackages, nix.key(nix.force(provider))), pythonPackages), providers));

@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
         [nix.POS]: $pos[2],
-        pdf_sets: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./pdf_sets.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], lib: lib, stdenv: stdenv, fetchurl: fetchurl })))),
+        pdf_sets: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./pdf_sets.nix")) as nix.Imported<typeof import("./pdf_sets.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[1], lib: lib, stdenv: stdenv, fetchurl: fetchurl })))),
       })),
       postInstall: "patchShebangs --build $out/bin/lhapdf-config\nwrapProgram $out/bin/lhapdf --prefix PYTHONPATH : \"$(toPythonPath \"$out\")\"\n",
       meta: nix.thunk(() => ({

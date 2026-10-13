@@ -7,7 +7,7 @@ const formals$1 = { args: { lib: false, newScope: false }, ellipsis: false };
 const formals$2 = { args: { uefiSigningKey: false, uefiCertificate: false }, ellipsis: false };
 
 export default nix.thunk(() => (() => {
-  const autoCalledPackages = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../top-level/by-name-overlay.nix")), nix.path(here, "./by-name")));
+  const autoCalledPackages = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../top-level/by-name-overlay.nix")) as nix.Imported<typeof import("../../top-level/by-name-overlay.ts")>, nix.path(here, "./by-name")));
   return nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     const lib = nix.arg($, "lib");

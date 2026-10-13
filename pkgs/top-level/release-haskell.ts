@@ -8,7 +8,7 @@ const formals$1 = { args: { supportedSystems: true }, ellipsis: false };
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const supportedSystems = nix.argOr($, "supportedSystems", () => nix.builtins.fromJSON(nix.thunk(() => nix.builtins.readFile(nix.path(here, "./release-supported-systems.json")))));
-  const releaseLib = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./release-lib.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], supportedSystems: supportedSystems }))));
+  const releaseLib = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./release-lib.nix")) as nix.Imported<typeof import("./release-lib.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], supportedSystems: supportedSystems }))));
   const lib = nix.thunk(() => nix.attr(releaseLib, "lib"));
   const mapTestOn = nix.thunk(() => nix.attr(releaseLib, "mapTestOn"));
   const packagePlatforms = nix.thunk(() => nix.attr(releaseLib, "packagePlatforms"));

@@ -7,7 +7,7 @@ const formals$1 = { args: { lib: true, path: true, preEvalFile: false, chunkSize
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
-  const lib = nix.argOr($, "lib", () => nix.builtins.import(nix.path(here, "../../lib")));
+  const lib = nix.argOr($, "lib", () => nix.builtins.import(nix.path(here, "../../lib")) as nix.Imported<typeof import("../../lib/default.ts")>);
   const path = nix.argOr($, "path", () => nix.path(here, "../.."));
   const preEvalFile = nix.arg($, "preEvalFile");
   const chunkSize = nix.arg($, "chunkSize");
@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const extraNixpkgsConfigJson = nix.arg($, "extraNixpkgsConfigJson");
   const preEvalResult = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), preEvalFile));
   const myAttrpaths = nix.thunk(() => nix.app(nix.sel(lib, "sublist"), nix.thunk(() => nix.mul(chunkSize, myChunk)), chunkSize, nix.thunk(() => nix.sel(preEvalResult, "paths"))));
-  const unfiltered = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./outpaths.nix")), nix.thunk(() => ({
+  const unfiltered = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./outpaths.nix")) as nix.Imported<typeof import("./outpaths.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[0],
       path: path,
       includeBroken: includeBroken,

@@ -177,7 +177,7 @@ export default nix.lambda((args) => (() => {
             sanitizers: nix.thunk(() => nix.app(optionals, nix.thunk(() => !nix.asBool((nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isAarch64"))))), nix.thunk(() => ["undefined", "address"]))),
           })))),
       })))),
-    "lib-tests": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/tests/release.nix")), nix.thunk(() => ({ [nix.POS]: $pos[13], pkgs: pkgs })))),
+    "lib-tests": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/tests/release.nix")) as nix.Imported<typeof import("../../lib/tests/release.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[13], pkgs: pkgs })))),
     "pkgs-lib": nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(callPackage, nix.path(here, "../pkgs-lib/tests"), nix.thunk(() => ({})))))),
     buildFHSEnv: nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(callPackages, nix.path(here, "./buildFHSEnv"), nix.thunk(() => ({})))))),
     "auto-patchelf-structured-log": nix.thunk(() => nix.app(callPackage, nix.path(here, "./auto-patchelf-structured-log"), nix.thunk(() => ({})))),

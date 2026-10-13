@@ -8,7 +8,7 @@ const formals$1 = { args: { callPackage: false }, ellipsis: false };
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const callPackage = nix.arg($, "callPackage");
-  const common = (opts) => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), opts)));
+  const common = (opts) => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")) as nix.Imported<typeof import("./common.ts")>, opts)));
   return {
     [nix.POS]: $pos[2],
     "sublime3-dev": nix.thunk(() => nix.app(common, nix.thunk(() => ({

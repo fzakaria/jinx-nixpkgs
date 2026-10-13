@@ -9,7 +9,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const nixpkgs = nix.argOr($, "nixpkgs", () => ({
     [nix.POS]: $pos[0],
-    outPath: nix.thunk(() => nix.app(nix.sel(nix.builtins.import(nix.path(here, "../../lib")), "cleanSource"), nix.path(here, "../.."))),
+    outPath: nix.thunk(() => nix.app(nix.sel(nix.builtins.import(nix.path(here, "../../lib")) as nix.Imported<typeof import("../../lib/default.ts")>, "cleanSource"), nix.path(here, "../.."))),
     revCount: 1234n,
     shortRev: "abcdef",
     revision: "0000000000000000000000000000000000000000",
@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
     config: nix.thunk(() => ({ [nix.POS]: $pos[1], allowUnfree: false, inHydra: true })),
     __allowFileset: false,
   }));
-  const release_lib = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./release-lib.nix")), nix.thunk(() => ({
+  const release_lib = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./release-lib.nix")) as nix.Imported<typeof import("./release-lib.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[3],
       supportedSystems: supportedSystems,
       nixpkgsArgs: nixpkgsArgs,

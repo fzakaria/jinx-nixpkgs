@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(config, "boot", "kernelPackages"));
   const kernel = nix.thunk(() => nix.attr(from, "kernel"));
   const kernelHasRPFilter = nix.thunk(() => (nix.asBool(nix.app(nix.selOr(kernel, () => (x) => false, "config", "isEnabled"), "IP_NF_MATCH_RPFILTER")) || nix.asBool(nix.selOr(kernel, () => false, "features", "netfilterRPFilter"))));
-  const helpers = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./helpers.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], config: config, lib: lib }))));
+  const helpers = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./helpers.nix")) as nix.Imported<typeof import("./helpers.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], config: config, lib: lib }))));
   const writeShScript = (name) => (text) => (() => {
     const dir = nix.thunk(() => nix.app(nix.sel(pkgs, "writeScriptBin"), name, nix.thunk(() => nix.str`#! ${nix.sel(pkgs, "runtimeShell")} -e
 ${text}

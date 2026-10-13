@@ -23,7 +23,7 @@ substituteInPlace elm.json --replace-fail "0.19.1" "${nix.sel(elmPackages, "elm"
 `),
       postConfigure: nix.thunk(() => nix.app(nix.sel(elmPackages, "fetchElmDeps"), nix.thunk(() => ({
           [nix.POS]: $pos[0],
-          elmPackages: nix.thunk(() => nix.builtins.import(nix.path(here, "./elm-srcs.nix"))),
+          elmPackages: nix.thunk(() => nix.builtins.import(nix.path(here, "./elm-srcs.nix")) as nix.Imported<typeof import("./elm-srcs.ts")>),
           elmVersion: nix.thunk(() => nix.sel(elmPackages, "elm", "version")),
           registryDat: nix.path(here, "./registry.dat"),
         })))),

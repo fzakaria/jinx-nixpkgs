@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const libiconv = nix.arg($, "libiconv");
-  const mecab_base = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./base.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], fetchFromGitHub: fetchFromGitHub, libiconv: libiconv }))));
+  const mecab_base = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./base.nix")) as nix.Imported<typeof import("./base.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], fetchFromGitHub: fetchFromGitHub, libiconv: libiconv }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => nix.update(nix.app(mecab_base, finalAttrs), { [nix.POS]: $pos[1], pname: "mecab-nodic" }));
 })(), formals$1);
 //# sourceMappingURL=nodic.ts.map

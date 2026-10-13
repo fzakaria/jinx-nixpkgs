@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
       })(), formals$2),
     })),
     testScript: nix.thunk(() => (() => {
-      const nixosInstallISO = nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "../release.nix")), nix.thunk(() => ({}))), "iso_minimal", nix.key(nix.sel(pkgs, "stdenv", "hostPlatform", "system"))));
+      const nixosInstallISO = nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "../release.nix")) as nix.Imported<typeof import("../release.ts")>, nix.thunk(() => ({}))), "iso_minimal", nix.key(nix.sel(pkgs, "stdenv", "hostPlatform", "system"))));
       const virshShutdownCmd = nix.thunk(() => (nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isx86_64")) ? "shutdown" : "destroy"));
       return nix.str`start_all()
 

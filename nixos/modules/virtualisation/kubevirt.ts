@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         build: nix.thunk(() => ({
           [nix.POS]: $pos[14],
           image: nix.thunk(() => nix.sel(config, "system", "build", "kubevirtImage")),
-          kubevirtImage: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/make-disk-image.nix")), nix.thunk(() => (() => {
+          kubevirtImage: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/make-disk-image.nix")) as nix.Imported<typeof import("../../lib/make-disk-image.ts")>, nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(config, "image"));
               return {
               [nix.POS]: $pos[13],

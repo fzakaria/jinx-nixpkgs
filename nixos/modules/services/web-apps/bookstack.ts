@@ -199,7 +199,7 @@ ${artisan} config:cache
             })))),
           nginx: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
               [nix.POS]: $pos[19],
-              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../web-servers/nginx/vhost-options.nix")), nix.thunk(() => ({ [nix.POS]: $pos[18], config: config, lib: lib })))), nix.thunk(() => ({})))))))),
+              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../web-servers/nginx/vhost-options.nix")) as nix.Imported<typeof import("../web-servers/nginx/vhost-options.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[18], config: config, lib: lib })))), nix.thunk(() => ({})))))))),
               default: null,
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  serverAliases = [\n    \"bookstack.${config.networking.domain}\"\n  ];\n  # To enable encryption and let let's encrypt take care of certificate\n  forceSSL = true;\n  enableACME = true;\n}\n")),
               description: "With this option, you can customize the nginx virtualHost settings.\n",

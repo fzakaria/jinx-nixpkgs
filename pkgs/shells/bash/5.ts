@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const withDocs = nix.argOr($, "withDocs", () => null);
   const forFHSEnv = nix.argOr($, "forFHSEnv", () => false);
   const pkgsStatic = nix.arg($, "pkgsStatic");
-  const upstreamPatches = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./bash-5.3-patches.nix")), (nr) => (sha256) => nix.app(fetchurl, nix.thunk(() => ({
+  const upstreamPatches = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./bash-5.3-patches.nix")) as nix.Imported<typeof import("./bash-5.3-patches.ts")>, (nr) => (sha256) => nix.app(fetchurl, nix.thunk(() => ({
         [nix.POS]: $pos[0],
         url: nix.thunk(() => nix.str`mirror://gnu/bash/bash-5.3-patches/bash53-${nr}`),
         sha256: sha256,

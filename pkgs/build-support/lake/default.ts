@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const writeText = nix.arg($, "writeText");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
-  const fetchLakeDeps = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./fetch-lake-deps.nix")), nix.thunk(() => ({
+  const fetchLakeDeps = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./fetch-lake-deps.nix")) as nix.Imported<typeof import("./fetch-lake-deps.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[0],
       lib: lib,
       stdenvNoCC: stdenvNoCC,

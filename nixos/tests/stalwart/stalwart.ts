@@ -7,7 +7,7 @@ const formals$1 = { args: { lib: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
 
 export default nix.thunk(() => (() => {
-  const certs = nix.thunk(() => nix.builtins.import(nix.path(here, "../common/acme/server/snakeoil-certs.nix")));
+  const certs = nix.thunk(() => nix.builtins.import(nix.path(here, "../common/acme/server/snakeoil-certs.nix")) as nix.Imported<typeof import("../common/acme/server/snakeoil-certs.ts")>);
   const domain = nix.thunk(() => nix.sel(certs, "domain"));
   return nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);

@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       fetchFromGitHub: fetchFromGitHub,
     }))));
   const buildGoModule = buildGo127Module;
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./sources.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], fetchFromGitHub: fetchFromGitHub }))));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./sources.nix")) as nix.Imported<typeof import("./sources.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[1], fetchFromGitHub: fetchFromGitHub }))));
   const pname = nix.thunk(() => nix.attr(from, "pname"));
   const version = nix.thunk(() => nix.attr(from, "version"));
   const src = nix.thunk(() => nix.attr(from, "src"));

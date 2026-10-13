@@ -184,7 +184,7 @@ export FAKE_TOUCH=1
                   version: nix.thunk(() => nix.str`v${nix.app(nix.sel(lib, "head"), nix.thunk(() => nix.app(nix.sel(lib, "strings", "splitString"), "-rc.", version)))}`),
                 })))),
             })),
-            updateScript: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./update.nix")), nix.thunk(() => ({
+            updateScript: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./update.nix")) as nix.Imported<typeof import("./update.ts")>, nix.thunk(() => ({
                 [nix.POS]: $pos[19],
                 writeScript: writeScript,
                 "common-updater-scripts": common_updater_scripts,

@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
           [nix.POS]: $pos[2],
-          "build-hello-world": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./test-build-and-run.nix")), nix.thunk(() => ({
+          "build-hello-world": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./test-build-and-run.nix")) as nix.Imported<typeof import("./test-build-and-run.ts")>, nix.thunk(() => ({
               [nix.POS]: $pos[1],
               clangStdenv: clangStdenv,
               objfw: objfw,

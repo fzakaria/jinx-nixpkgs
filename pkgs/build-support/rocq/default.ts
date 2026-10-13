@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const fetchurl = nix.arg($, "fetchurl");
   const dune = nix.arg($, "dune");
-  const lib_1 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./extra-lib.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: nix.thunk(() => nix.attr(args0, "lib")) }))));
+  const lib_1 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./extra-lib.nix")) as nix.Imported<typeof import("./extra-lib.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], lib: nix.thunk(() => nix.attr(args0, "lib")) }))));
   const concatStringsSep = nix.thunk(() => nix.attr(lib_1, "concatStringsSep"));
   const flip = nix.thunk(() => nix.attr(lib_1, "flip"));
   const foldl = nix.thunk(() => nix.attr(lib_1, "foldl"));
@@ -103,7 +103,7 @@ export default nix.lambda((args) => (() => {
         "useCoq",
         "useCoqifVersion",
       ], dropAttrs)), keepAttrs));
-    const fetch = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../rocq/meta-fetch/default.nix")), nix.thunk(() => ({
+    const fetch = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../rocq/meta-fetch/default.nix")) as nix.Imported<typeof import("./meta-fetch/default.ts")>, nix.thunk(() => ({
         [nix.POS]: $pos[1],
         lib: lib_1,
         stdenv: stdenv,

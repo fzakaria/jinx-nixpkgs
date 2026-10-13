@@ -30,7 +30,7 @@ grep -i ' version=\\|echo..#define ___STAMP_VERSION' include/makefile.in # XXX D
     }));
     const unstable_params = nix.thunk(() => nix.update(stable_params, { [nix.POS]: $pos[1], stable: false, extraOptions: [] }));
     const export_gambopt = (params) => nix.str`export GAMBOPT=${nix.sel(params, "buildRuntimeOptions")} ;`;
-    const gambit_bootstrap = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./bootstrap.nix")), pkgs));
+    const gambit_bootstrap = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./bootstrap.nix")) as nix.Imported<typeof import("./bootstrap.ts")>, pkgs));
     const meta = nix.thunk(() => ({
       [nix.POS]: $pos[2],
       description: "Optimizing Scheme to C compiler",

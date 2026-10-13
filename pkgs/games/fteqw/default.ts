@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
   const libGL = nix.arg($, "libGL");
   return {
     [nix.POS]: $pos[3],
-    fteqw: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")), nix.thunk(() => nix.update((() => {
+    fteqw: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")) as nix.Imported<typeof import("./generic.ts")>, nix.thunk(() => nix.update((() => {
         const pname = "fteqw";
         const buildFlags = nix.thunk(() => ["m-rel"]);
         const nativeBuildInputs = nix.thunk(() => [vulkan_headers]);
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
           description,
         };
       })(), attrs)))),
-    "fteqw-dedicated": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")), nix.thunk(() => nix.update((() => {
+    "fteqw-dedicated": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")) as nix.Imported<typeof import("./generic.ts")>, nix.thunk(() => nix.update((() => {
         const pname = "fteqw-dedicated";
         const releaseFile = "fteqw-sv";
         const buildFlags = nix.thunk(() => ["sv-rel"]);
@@ -92,7 +92,7 @@ export default nix.lambda((args) => (() => {
           description,
         };
       })(), attrs)))),
-    fteqcc: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")), nix.thunk(() => nix.update({
+    fteqcc: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")) as nix.Imported<typeof import("./generic.ts")>, nix.thunk(() => nix.update({
         [nix.POS]: $pos[2],
         pname: "fteqcc",
         buildFlags: nix.thunk(() => ["qcc-rel"]),

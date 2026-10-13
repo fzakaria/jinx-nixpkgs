@@ -22,17 +22,17 @@ export default nix.lambda((args) => (() => {
     overlays: overlays,
     config: nix.thunk(() => (nix.asBool((nix.asBool(useCrossStdenv) || nix.asBool(useCustomStdenv))) ? nix.builtins.removeAttrs(config, nix.thunk(() => ["replaceStdenv"])) : nix.force(config))),
   }));
-  const stagesNative = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./native")), bootArgs));
-  const stagesNix = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./nix")), nix.thunk(() => nix.update(bootArgs, { [nix.POS]: $pos[1], bootStages: stagesNative }))));
-  const stagesFreeBSD = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./freebsd")), bootArgs));
-  const stagesLinux = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./linux")), bootArgs));
-  const stagesDarwin = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./darwin")), bootArgs));
+  const stagesNative = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./native")) as nix.Imported<typeof import("./native/default.ts")>, bootArgs));
+  const stagesNix = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./nix")) as nix.Imported<typeof import("./nix/default.ts")>, nix.thunk(() => nix.update(bootArgs, { [nix.POS]: $pos[1], bootStages: stagesNative }))));
+  const stagesFreeBSD = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./freebsd")) as nix.Imported<typeof import("./freebsd/default.ts")>, bootArgs));
+  const stagesLinux = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./linux")) as nix.Imported<typeof import("./linux/default.ts")>, bootArgs));
+  const stagesDarwin = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./darwin")) as nix.Imported<typeof import("./darwin/default.ts")>, bootArgs));
   const bootStages = nix.thunk(() => (nix.asBool(nix.sel(localSystem, "isLinux")) ? nix.force(stagesLinux) : (nix.asBool(nix.sel(localSystem, "isDarwin")) ? nix.force(stagesDarwin) : nix.selOr({
     [nix.POS]: $pos[2],
     "x86_64-solaris": stagesNix,
     "x86_64-freebsd": stagesFreeBSD,
   }, () => nix.force(stagesNative), nix.key(nix.sel(localSystem, "system"))))));
-  const stagesCross = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./cross")), nix.thunk(() => ({
+  const stagesCross = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./cross")) as nix.Imported<typeof import("./cross/default.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[3],
       lib: lib,
       localSystem: localSystem,

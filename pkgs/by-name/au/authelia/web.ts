@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const pnpm_12 = nix.arg($, "pnpm_12");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const pnpm = pnpm_12;
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./sources.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], fetchFromGitHub: fetchFromGitHub }))));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./sources.nix")) as nix.Imported<typeof import("./sources.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], fetchFromGitHub: fetchFromGitHub }))));
   const pname = nix.thunk(() => nix.attr(from, "pname"));
   const version = nix.thunk(() => nix.attr(from, "version"));
   const src = nix.thunk(() => nix.attr(from, "src"));

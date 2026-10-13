@@ -10,12 +10,12 @@ export default nix.lambda((args) => (() => {
   const args_1 = args;
   const lib = nix.arg($, "lib");
   const callPackage = nix.arg($, "callPackage");
-  const common = (opts) => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./builder.nix")), lib, opts)));
+  const common = (opts) => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./builder.nix")) as nix.Imported<typeof import("./builder.ts")>, lib, opts)));
   const extraArgs = nix.thunk(() => nix.builtins.removeAttrs(args_1, nix.thunk(() => ["callPackage"])));
   return (() => {
-    const rke2_1_34 = nix.thunk(() => nix.app(common, nix.thunk(() => nix.builtins.import(nix.path(here, "./1_34/versions.nix"))), extraArgs));
-    const rke2_1_35 = nix.thunk(() => nix.app(common, nix.thunk(() => nix.builtins.import(nix.path(here, "./1_35/versions.nix"))), extraArgs));
-    const rke2_1_36 = nix.thunk(() => nix.app(common, nix.thunk(() => nix.builtins.import(nix.path(here, "./1_36/versions.nix"))), extraArgs));
+    const rke2_1_34 = nix.thunk(() => nix.app(common, nix.thunk(() => nix.builtins.import(nix.path(here, "./1_34/versions.nix")) as nix.Imported<typeof import("./1_34/versions.ts")>), extraArgs));
+    const rke2_1_35 = nix.thunk(() => nix.app(common, nix.thunk(() => nix.builtins.import(nix.path(here, "./1_35/versions.nix")) as nix.Imported<typeof import("./1_35/versions.ts")>), extraArgs));
+    const rke2_1_36 = nix.thunk(() => nix.app(common, nix.thunk(() => nix.builtins.import(nix.path(here, "./1_36/versions.nix")) as nix.Imported<typeof import("./1_36/versions.ts")>), extraArgs));
     const rke2_stable = rke2_1_35;
     const rke2_latest = rke2_1_36;
     return {

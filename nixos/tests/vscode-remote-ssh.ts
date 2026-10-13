@@ -7,11 +7,11 @@ const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
 const formals$2 = { args: {  }, ellipsis: true };
 const formals$3 = { args: {  }, ellipsis: true };
 
-export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")), nix.lambda((args) => (() => {
+export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")) as nix.Imported<typeof import("./make-test-python.ts")>, nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     const lib = nix.arg($, "lib");
     const pkgs = nix.arg($, "pkgs");
-    const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./ssh-keys.nix")), pkgs));
+    const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./ssh-keys.nix")) as nix.Imported<typeof import("./ssh-keys.ts")>, pkgs));
     const snakeOilPrivateKey = nix.thunk(() => nix.attr(from, "snakeOilPrivateKey"));
     const snakeOilPublicKey = nix.thunk(() => nix.attr(from, "snakeOilPublicKey"));
     const from_1 = nix.thunk(() => nix.sel(pkgs, "vscode", "passthru"));

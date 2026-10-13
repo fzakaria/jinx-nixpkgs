@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
             url: nix.thunk(() => nix.str`mirror://gnu/readline/readline-${nix.sel(finalAttrs, "meta", "branch")}-patches/readline70-${nr}`),
             sha256: sha256,
           })));
-        return nix.app(nix.builtins.import(nix.path(here, "./readline-7.0-patches.nix")), patch);
+        return nix.app(nix.builtins.import(nix.path(here, "./readline-7.0-patches.nix")) as nix.Imported<typeof import("./readline-7.0-patches.ts")>, patch);
       })()),
       patches: nix.thunk(() => nix.concat([
         nix.path(here, "./link-against-ncurses.patch"),

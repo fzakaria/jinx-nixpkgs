@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const ruby_3_4 = nix.arg($, "ruby_3_4");
   const stdenv = nix.arg($, "stdenv");
   const tailwindcss_3 = nix.arg($, "tailwindcss_3");
-  const gemset = nix.argOr($, "gemset", () => nix.builtins.import(nix.path(here, "./gemset.nix")));
+  const gemset = nix.argOr($, "gemset", () => nix.builtins.import(nix.path(here, "./gemset.nix")) as nix.Imported<typeof import("./gemset.ts")>);
   const sources = nix.argOr($, "sources", () => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./sources.json")));
   const unpatchedSource = nix.argOr($, "unpatchedSource", () => nix.app(fetchFromGitHub, nix.thunk(() => ({
       [nix.POS]: $pos[0],

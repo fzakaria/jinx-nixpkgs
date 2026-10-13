@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const gnused = nix.arg($, "gnused");
   const nix$ = nix.arg($, "nix");
   const rebar3_nix = nix.arg($, "rebar3-nix");
-  const deps = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./rebar-deps.nix")), nix.thunk(() => ({
+  const deps = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./rebar-deps.nix")) as nix.Imported<typeof import("./rebar-deps.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[0],
       fetchFromGitHub: fetchFromGitHub,
       fetchgit: fetchgit,

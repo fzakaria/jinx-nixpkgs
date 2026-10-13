@@ -5,7 +5,7 @@ const here = nix.here(import.meta.url);
 const $pos = nix.positions(here + "/sssd-legacy-config.nix", [[["maintainers", 7, 7]], [["enable", 10, 7], ["config", 11, 7]], [["sssd", 9, 28]], [["services", 9, 19]], [["machine", 9, 11]], [["name", 5, 5], ["meta", 6, 5], ["nodes", 9, 5], ["testScript", 30, 5]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
 
-export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")), nix.lambda((args) => (() => {
+export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")) as nix.Imported<typeof import("./make-test-python.ts")>, nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     const pkgs = nix.arg($, "pkgs");
     return {

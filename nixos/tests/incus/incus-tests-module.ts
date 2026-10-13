@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
                           })))),
                       })),
                       config: nix.thunk(() => (() => {
-                        const releases = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../release.nix")), nix.thunk(() => ({
+                        const releases = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../release.nix")) as nix.Imported<typeof import("../../release.ts")>, nix.thunk(() => ({
                             [nix.POS]: $pos[14],
                             configuration: nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.sel(config_1, "nixosConfig")), nix.thunk(() => ({
                                 [nix.POS]: $pos[13],

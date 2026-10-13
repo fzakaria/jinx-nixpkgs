@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const mkPackageOption = nix.thunk(() => nix.attr(lib, "mkPackageOption"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "hercules-ci-agent"));
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./settings.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], pkgs: pkgs, lib: lib }))));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./settings.nix")) as nix.Imported<typeof import("./settings.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], pkgs: pkgs, lib: lib }))));
   const format = nix.thunk(() => nix.attr(from, "format"));
   const settingsModule = nix.thunk(() => nix.attr(from, "settingsModule"));
   return {

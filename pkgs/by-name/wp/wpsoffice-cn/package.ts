@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
   const dbus = nix.arg($, "dbus");
   const pango = nix.arg($, "pango");
   const pname = "wpsoffice-cn";
-  const sources = nix.thunk(() => nix.builtins.import(nix.path(here, "./sources.nix")));
+  const sources = nix.thunk(() => nix.builtins.import(nix.path(here, "./sources.nix")) as nix.Imported<typeof import("./sources.ts")>);
   const version = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.sel(sources, "darwin-version") : nix.sel(sources, "linux-version")));
   const fetch = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.force(fetchurl) : nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$2);

@@ -9,9 +9,9 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return (() => {
-    const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./cuda.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib }))));
-    const from_1 = nix.thunk(() => nix.builtins.import(nix.path(here, "./nvcc.nix")));
-    const from_2 = nix.thunk(() => nix.builtins.import(nix.path(here, "./redist.nix")));
+    const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./cuda.nix")) as nix.Imported<typeof import("./cuda.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib }))));
+    const from_1 = nix.thunk(() => nix.builtins.import(nix.path(here, "./nvcc.nix")) as nix.Imported<typeof import("./nvcc.ts")>);
+    const from_2 = nix.thunk(() => nix.builtins.import(nix.path(here, "./redist.nix")) as nix.Imported<typeof import("./redist.ts")>);
     return {
     [nix.POS]: $pos[1],
     cudaCapabilityToInfo: nix.thunk(() => nix.attr(from, "cudaCapabilityToInfo")),

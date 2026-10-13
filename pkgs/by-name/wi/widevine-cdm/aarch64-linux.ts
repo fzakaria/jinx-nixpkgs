@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [squashfs_tools, python3]),
       unpackPhase: "unsquashfs -q $src 'WidevineCdm/*'\npython3 $widevineInstaller/widevine_fixup.py squashfs-root/WidevineCdm/_platform_specific/cros_arm64/libwidevinecdm.so libwidevinecdm.so\ncp squashfs-root/WidevineCdm/manifest.json .\ncp squashfs-root/WidevineCdm/LICENSE LICENSE.txt\n",
       postInstall: "install -vD manifest.json \"$out/share/google/chrome/WidevineCdm/manifest.json\"\ninstall -vD LICENSE.txt \"$out/share/google/chrome/WidevineCdm/License.txt\"\ninstall -vD libwidevinecdm.so \"$out/share/google/chrome/WidevineCdm/_platform_specific/linux_arm64/libwidevinecdm.so\"\nmkdir -p \"$out/share/google/chrome/WidevineCdm/_platform_specific/linux_x64\"\ntouch \"$out/share/google/chrome/WidevineCdm/_platform_specific/linux_x64/libwidevinecdm.so\"\n",
-      meta: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./meta.nix")), lib)),
+      meta: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./meta.nix")) as nix.Imported<typeof import("./meta.ts")>, lib)),
     }));
 })(), formals$1);
 //# sourceMappingURL=aarch64-linux.ts.map

@@ -7,7 +7,7 @@ const formals$1 = { args: { pkgs: true, licenseAccepted: true }, ellipsis: false
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../../../..")), nix.thunk(() => ({
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../../../..")) as nix.Imported<typeof import("../../../../../default.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[1],
       config: nix.thunk(() => ({ [nix.POS]: $pos[0], allowUnfree: true })),
     }))));

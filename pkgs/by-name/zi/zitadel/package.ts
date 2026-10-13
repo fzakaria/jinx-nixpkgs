@@ -114,7 +114,7 @@ cp -r ${nix.sel(passthru, "console")}/* internal/api/ui/console/static
       const installPhase = "mkdir -p $out/bin\ninstall -Dm755 $GOPATH/bin/zitadel $out/bin/\n";
       const passthru = nix.thunk(() => ({
         [nix.POS]: $pos[5],
-        console: nix.thunk(() => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./console.nix")), nix.thunk(() => ({
+        console: nix.thunk(() => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./console.nix")) as nix.Imported<typeof import("./console.ts")>, nix.thunk(() => ({
               [nix.POS]: $pos[4],
               generateProtobufCode: generateProtobufCode,
               version: version_1,

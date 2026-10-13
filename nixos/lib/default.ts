@@ -8,15 +8,15 @@ const formals$1 = { args: { lib: true, featureFlags: true }, ellipsis: true };
 export default nix.thunk(() => (() => {
   const minimalModulesWarning = nix.thunk(() => nix.app(warn, "lib.nixos.evalModules is experimental and subject to change. See nixos/lib/default.nix", null));
   const warn = nix.thunk(() => nix.attr(nonExtendedLib, "warn"));
-  const nonExtendedLib = nix.thunk(() => nix.builtins.import(nix.path(here, "../../lib")));
+  const nonExtendedLib = nix.thunk(() => nix.builtins.import(nix.path(here, "../../lib")) as nix.Imported<typeof import("../../lib/default.ts")>);
   return nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     const lib = nix.argOr($, "lib", () => nix.force(nonExtendedLib));
     const featureFlags = nix.argOr($, "featureFlags", () => ({}));
     const seqIf = (cond) => (nix.asBool(cond) ? nix.builtins.seq : (a) => (b) => nix.force(b));
     const seqAttrsIf = (cond) => (a) => nix.app(nix.sel(lib, "mapAttrs"), (_) => (v) => nix.app(seqIf, cond, a, v));
-    const eval_config_minimal = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./eval-config-minimal.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib }))));
-    const testing_lib = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./testing/default.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], lib: lib }))));
+    const eval_config_minimal = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./eval-config-minimal.nix")) as nix.Imported<typeof import("./eval-config-minimal.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib }))));
+    const testing_lib = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./testing/default.nix")) as nix.Imported<typeof import("./testing/default.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[1], lib: lib }))));
     return (() => {
       const from = nix.thunk(() => nix.app(seqAttrsIf, nix.thunk(() => !nix.asBool(nix.has(featureFlags, "minimalModules"))), minimalModulesWarning, eval_config_minimal));
       return {

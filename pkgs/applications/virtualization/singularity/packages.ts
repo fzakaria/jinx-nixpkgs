@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nixos = nix.arg($, "nixos");
   const conmon = nix.arg($, "conmon");
-  const apptainer = nix.thunk(() => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")), nix.thunk(() => (() => {
+  const apptainer = nix.thunk(() => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")) as nix.Imported<typeof import("./generic.ts")>, nix.thunk(() => (() => {
         const pname = "apptainer";
         const version = "1.5.4";
         const projectName = "apptainer";
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         "internal/pkg/util/env/env.go": nix.thunk(() => ["/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"]),
       })),
     }))));
-  const singularity = nix.thunk(() => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")), nix.thunk(() => (() => {
+  const singularity = nix.thunk(() => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")) as nix.Imported<typeof import("./generic.ts")>, nix.thunk(() => (() => {
         const pname = "singularity-ce";
         const version = "4.4.1";
         const projectName = "singularity";

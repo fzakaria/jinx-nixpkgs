@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
           url: nix.thunk(() => nix.str`mirror://gnome/sources/libcryptui/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/libcryptui-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "0rh8wa5k2iwbwppyvij2jdxmnlfjbna7kbh2a5n7zw4nnjkx3ski",
         })))),
-      patches: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "map"), fetchurl, nix.thunk(() => nix.builtins.import(nix.path(here, "./debian-patches.nix")))), [
+      patches: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "map"), fetchurl, nix.thunk(() => nix.builtins.import(nix.path(here, "./debian-patches.nix")) as nix.Imported<typeof import("./debian-patches.ts")>)), [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
             [nix.POS]: $pos[1],
             url: "https://gitlab.archlinux.org/archlinux/packaging/packages/libcryptui/-/raw/1-3.12.2+r71+ged4f890e-2/gpgme-2.0.patch",

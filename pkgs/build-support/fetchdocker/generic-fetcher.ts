@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const writeText = nix.arg($, "writeText");
   const gawk = nix.arg($, "gawk");
   const awk = nix.thunk(() => nix.str`${gawk}/bin/awk`);
-  const dockerCredentialsFile = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./credentials.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib }))));
+  const dockerCredentialsFile = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./credentials.nix")) as nix.Imported<typeof import("./credentials.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib }))));
   return nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const fetcher = nix.arg($_1, "fetcher");

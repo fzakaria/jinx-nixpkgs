@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       overrides: overrides,
     }))));
   const overrides = nix.thunk(() => nix.app(callPackage, nix.path(here, "./overrides.nix"), nix.thunk(() => ({ [nix.POS]: $pos[1], buildKakounePluginFrom2Nix: buildKakounePluginFrom2Nix }))));
-  const aliases = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./aliases.nix")), lib, plugins))));
+  const aliases = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./aliases.nix")) as nix.Imported<typeof import("./aliases.ts")>, lib, plugins))));
   return nix.update(plugins, aliases);
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

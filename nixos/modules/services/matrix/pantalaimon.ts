@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
           instances: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
               [nix.POS]: $pos[5],
               default: nix.thunk(() => ({})),
-              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => nix.builtins.import(nix.path(here, "./pantalaimon-options.nix"))))))),
+              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => nix.builtins.import(nix.path(here, "./pantalaimon-options.nix")) as nix.Imported<typeof import("./pantalaimon-options.ts")>))))),
               description: "Declarative instance config.\n\nNote: to use pantalaimon interactively, e.g. for a Matrix client which does not\nsupport End-to-end encryption (like `fractal`), refer to the home-manager module.\n",
             })))),
         })),

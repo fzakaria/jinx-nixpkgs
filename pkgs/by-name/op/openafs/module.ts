@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const libtool_2 = nix.arg($, "libtool_2");
   const libkrb5 = nix.arg($, "libkrb5");
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./srcs.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], fetchurl: fetchurl }))));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./srcs.nix")) as nix.Imported<typeof import("./srcs.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], fetchurl: fetchurl }))));
   const src = nix.thunk(() => nix.attr(from, "src"));
   const version = nix.thunk(() => nix.attr(from, "version"));
   const modDestDir = nix.thunk(() => nix.str`$out/lib/modules/${nix.sel(kernel, "modDirVersion")}/extra/openafs`);

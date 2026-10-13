@@ -47,12 +47,12 @@ export default nix.lambda((args) => (() => {
   const containsLicenses = nix.thunk(() => nix.attr(from_3, "containsLicenses"));
   const isFree = nix.thunk(() => nix.attr(from_3, "isFree"));
   const getEnv = nix.thunk(() => nix.attr(nix.builtins, "getEnv"));
-  const from_4 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./problems.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib }))));
+  const from_4 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./problems.nix")) as nix.Imported<typeof import("./problems.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib }))));
   const problemsType = nix.thunk(() => nix.attr(from_4, "problemsType"));
   const genCheckProblems = nix.thunk(() => nix.attr(from_4, "genCheckProblems"));
   const completeMetaProblems = nix.thunk(() => nix.attr(from_4, "completeMetaProblems"));
   const checkProblems = nix.thunk(() => nix.app(genCheckProblems, config));
-  const from_5 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./remediations.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], lib: lib }))));
+  const from_5 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./remediations.nix")) as nix.Imported<typeof import("./remediations.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[1], lib: lib }))));
   const remediateOutputsToInstall = nix.thunk(() => nix.attr(from_5, "remediateOutputsToInstall"));
   const remediate_allowlist = nix.thunk(() => nix.attr(from_5, "remediate_allowlist"));
   const remediate_predicate = nix.thunk(() => nix.attr(from_5, "remediate_predicate"));
@@ -110,7 +110,7 @@ export default nix.lambda((args) => (() => {
   const showSourceType = showLicenseOrSourceType;
   const pos_str = (meta) => nix.selOr(meta, () => "«unknown-file»", "position");
   const metaType = nix.thunk(() => (() => {
-    const types = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../lib/meta-types.nix")), nix.thunk(() => ({ [nix.POS]: $pos[2], lib: lib }))));
+    const types = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../lib/meta-types.nix")) as nix.Imported<typeof import("../../../lib/meta-types.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[2], lib: lib }))));
     const str = nix.thunk(() => nix.attr(types, "str"));
     const either = nix.thunk(() => nix.attr(types, "either"));
     const int = nix.thunk(() => nix.attr(types, "int"));

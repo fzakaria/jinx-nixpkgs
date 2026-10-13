@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const emacs = nix.arg($, "emacs");
   const texinfo = nix.arg($, "texinfo");
-  const genericBuild = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib, stdenv: stdenv, emacs: emacs, texinfo: texinfo }))));
+  const genericBuild = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")) as nix.Imported<typeof import("./generic.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib, stdenv: stdenv, emacs: emacs, texinfo: texinfo }))));
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
       [nix.POS]: $pos[3],
       constructDrv: genericBuild,

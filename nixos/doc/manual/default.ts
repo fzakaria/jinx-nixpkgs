@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
   const concatMapStringsSep = nix.thunk(() => nix.attr(from, "concatMapStringsSep"));
   const sortOn = nix.thunk(() => nix.attr(from, "sortOn"));
   const sourceFilesBySuffices = nix.thunk(() => nix.attr(from, "sourceFilesBySuffices"));
-  const common = nix.thunk(() => nix.builtins.import(nix.path(here, "./common.nix")));
+  const common = nix.thunk(() => nix.builtins.import(nix.path(here, "./common.nix")) as nix.Imported<typeof import("./common.ts")>);
   const manpageUrls = nix.thunk(() => nix.add(nix.sel(pkgs, "path"), "/doc/manpage-urls.json"));
   const prefixesToStrip = nix.thunk(() => nix.builtins.map((p) => nix.str`${nix.builtins.toString(p)}/`, nix.thunk(() => nix.concat([prefix], extraSources))));
   const stripAnyPrefixes = nix.thunk(() => nix.app(flip, nix.thunk(() => nix.app(foldr, removePrefix)), prefixesToStrip));
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         declarations: nix.thunk(() => nix.builtins.map(stripAnyPrefixes, nix.thunk(() => nix.sel(opt, "declarations")))),
       }),
     }))));
-  const nixos_lib = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib")), nix.thunk(() => ({}))));
+  const nixos_lib = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib")) as nix.Imported<typeof import("../../lib/default.ts")>, nix.thunk(() => ({}))));
   const testOptionsDoc = nix.thunk(() => (() => {
     const eval$ = nix.thunk(() => nix.app(nix.sel(nixos_lib, "evalTest"), nix.thunk(() => ({
         [nix.POS]: $pos[7],

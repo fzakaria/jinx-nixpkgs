@@ -8,7 +8,7 @@ const formals$1 = { args: { lib: false }, ellipsis: false };
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./internal.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib }))));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./internal.nix")) as nix.Imported<typeof import("./internal.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib }))));
   const _ipv6 = nix.thunk(() => nix.attr(from, "_ipv6"));
   const from_1 = nix.thunk(() => nix.sel(lib, "strings"));
   const match = nix.thunk(() => nix.attr(from_1, "match"));

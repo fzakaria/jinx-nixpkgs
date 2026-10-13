@@ -243,7 +243,7 @@ ${nix.app(nix.sel(lib, "getExe'"), buildPackage, "rad")} config >/dev/null || {
               })))),
             nginx: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
                 [nix.POS]: $pos[26],
-                type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../web-servers/nginx/vhost-options.nix")), nix.thunk(() => ({ [nix.POS]: $pos[22], config: config, lib: lib })))), nix.thunk(() => ({
+                type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../web-servers/nginx/vhost-options.nix")) as nix.Imported<typeof import("../web-servers/nginx/vhost-options.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[22], config: config, lib: lib })))), nix.thunk(() => ({
                         [nix.POS]: $pos[25],
                         options: nix.thunk(() => ({
                           [nix.POS]: $pos[24],

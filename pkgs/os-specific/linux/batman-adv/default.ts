@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const kernel = nix.arg($, "kernel");
   const kernelModuleMakeFlags = nix.arg($, "kernelModuleMakeFlags");
   const nixosTests = nix.arg($, "nixosTests");
-  const cfg = nix.thunk(() => nix.builtins.import(nix.path(here, "./version.nix")));
+  const cfg = nix.thunk(() => nix.builtins.import(nix.path(here, "./version.nix")) as nix.Imported<typeof import("./version.ts")>);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname = "batman-adv";
       const version = nix.thunk(() => nix.str`${nix.sel(cfg, "version")}-${nix.sel(kernel, "version")}`);

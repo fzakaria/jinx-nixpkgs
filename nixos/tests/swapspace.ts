@@ -5,7 +5,7 @@ const here = nix.here(import.meta.url);
 const $pos = nix.positions(here + "/swapspace.nix", [[["maintainers", 8, 7]], [["memorySize", 15, 22]], [["swappath", 22, 11], ["cooldown", 23, 11]], [["enable", 18, 9], ["extraArgs", 19, 9], ["settings", 20, 9]], [["swapspace", 17, 16]], [["size", 29, 11], ["device", 30, 11]], [["vm.swappiness", 33, 26]], [["sysctl", 33, 19]], [["kernel", 33, 12]], [["virtualisation", 15, 7], ["services", 17, 7], ["swapDevices", 27, 7], ["boot", 33, 7]], [["machine", 14, 11]], [["name", 5, 5], ["meta", 7, 5], ["nodes", 14, 5], ["testScript", 36, 5]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
 
-export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")), nix.lambda((args) => (() => {
+export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")) as nix.Imported<typeof import("./make-test-python.ts")>, nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     const lib = nix.arg($, "lib");
     return {

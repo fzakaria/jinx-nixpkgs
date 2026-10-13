@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const decryptSslTraffic = nix.argOr($, "decryptSslTraffic", () => false);
   const debug = nix.argOr($, "debug", () => false);
   const config = nix.arg($, "config");
-  const srcs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./srcs.nix")), nix.thunk(() => ({
+  const srcs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./srcs.nix")) as nix.Imported<typeof import("./srcs.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[0],
       lib: lib,
       fetchgit: fetchgit,

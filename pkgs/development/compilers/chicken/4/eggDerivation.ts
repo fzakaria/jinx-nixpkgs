@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
     const chickenInstallFlags = nix.argOr($_1, "chickenInstallFlags", () => []);
     const cscOptions = nix.argOr($_1, "cscOptions", () => []);
     const libPath = nix.thunk(() => nix.str`${chicken}/var/lib/chicken/${nix.builtins.toString(nix.thunk(() => nix.sel(chicken, "binaryVersion")))}/`);
-    const overrides = nix.thunk(() => nix.builtins.import(nix.path(here, "./overrides.nix")));
+    const overrides = nix.thunk(() => nix.builtins.import(nix.path(here, "./overrides.nix")) as nix.Imported<typeof import("./overrides.ts")>);
     const baseName = nix.thunk(() => nix.app(nix.sel(lib, "getName"), name));
     const override = nix.thunk(() => (nix.asBool(nix.builtins.hasAttr(baseName, overrides)) ? nix.builtins.getAttr(baseName, overrides) : {}));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({

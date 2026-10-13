@@ -5,7 +5,7 @@ const here = nix.here(import.meta.url);
 const $pos = nix.positions(here + "/test.nix", [[["options", 23, 27]], [["qemu", 23, 22]], [["enable", 27, 26]], [["allow_anonymous", 37, 22]], [["acl", 35, 13], ["omitPasswordAuth", 36, 13], ["settings", 37, 13]], [["enable", 32, 9], ["listeners", 33, 9]], [["usbrelayd", 27, 16], ["mosquitto", 31, 16]], [["after", 29, 9]], [["usbrelayd", 28, 24]], [["services", 28, 15]], [["systemPackages", 41, 19]], [["enable", 45, 27]], [["nixos", 45, 21]], [["virtualisation", 23, 7], ["services", 27, 7], ["systemd", 28, 7], ["environment", 41, 7], ["documentation", 45, 7]], [["machine", 22, 11]], [["name", 20, 5], ["nodes", 22, 5], ["testScript", 48, 5]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
 
-export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../../nixos/tests/make-test-python.nix")), nix.lambda((args) => (() => {
+export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../../nixos/tests/make-test-python.nix")) as nix.Imported<typeof import("../../../../nixos/tests/make-test-python.ts")>, nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     const pkgs = nix.arg($, "pkgs");
     return {

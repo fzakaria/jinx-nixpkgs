@@ -206,7 +206,7 @@ export default nix.lambda((args) => (() => {
       testScript: nix.lambda((args_2) => (() => {
         const $_2 = nix.formals(args_2, formals$5);
         const nodes = nix.arg($_2, "nodes");
-        return nix.add(nix.str`${nix.sel(nix.builtins.import(nix.path(here, "./utils.nix")), "pythonUtils")}
+        return nix.add(nix.str`${nix.sel(nix.builtins.import(nix.path(here, "./utils.nix")) as nix.Imported<typeof import("./utils.ts")>, "pythonUtils")}
 
 domain = "${domain}"
 ca_domain = "${nix.sel(nodes, "acme", "test-support", "acme", "caDomain")}"

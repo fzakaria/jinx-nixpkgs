@@ -8,7 +8,7 @@ const formals$1 = { args: { lib: false }, ellipsis: false };
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
-  const platforms = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./platforms.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib }))));
+  const platforms = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./platforms.nix")) as nix.Imported<typeof import("./platforms.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib }))));
   const riscv = (bits) => ({
     [nix.POS]: $pos[1],
     config: nix.thunk(() => nix.str`riscv${bits}-unknown-linux-gnu`),

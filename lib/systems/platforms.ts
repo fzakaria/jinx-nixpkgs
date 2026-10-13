@@ -104,7 +104,7 @@ export default nix.lambda((args) => (() => {
     const select = (platform) => (nix.asBool(nix.sel(platform, "isAarch32")) ? (() => {
       const version = nix.thunk(() => nix.selOr(platform, () => null, "parsed", "cpu", "version"));
       return (nix.asBool(nix.eq(version, null)) ? {} : (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version, "6")) ? nix.force(armv5tel_multiplatform) : (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version, "7")) ? nix.force(raspberrypi) : nix.force(armv7l_hf_multiplatform))));
-    })() : (nix.asBool(nix.sel(platform, "isAarch64")) ? (nix.asBool(nix.sel(platform, "isDarwin")) ? nix.force(apple_m1) : nix.force(aarch64_multiplatform)) : (nix.asBool(nix.sel(platform, "isLoongArch64")) ? nix.force(loongarch64_multiplatform) : (nix.asBool(nix.eq(nix.sel(platform, "parsed", "cpu"), nix.sel(lib, "systems", "parse", "cpuTypes", "mipsel"))) ? nix.sel(nix.app(nix.builtins.import(nix.path(here, "./examples.nix")), nix.thunk(() => ({ [nix.POS]: $pos[36], lib: lib }))), "mipsel-linux-gnu") : {}))));
+    })() : (nix.asBool(nix.sel(platform, "isAarch64")) ? (nix.asBool(nix.sel(platform, "isDarwin")) ? nix.force(apple_m1) : nix.force(aarch64_multiplatform)) : (nix.asBool(nix.sel(platform, "isLoongArch64")) ? nix.force(loongarch64_multiplatform) : (nix.asBool(nix.eq(nix.sel(platform, "parsed", "cpu"), nix.sel(lib, "systems", "parse", "cpuTypes", "mipsel"))) ? nix.sel(nix.app(nix.builtins.import(nix.path(here, "./examples.nix")) as nix.Imported<typeof import("./examples.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[36], lib: lib }))), "mipsel-linux-gnu") : {}))));
     return {
       [nix.POS]: $pos[37],
       "armv5tel-multiplatform": armv5tel_multiplatform,

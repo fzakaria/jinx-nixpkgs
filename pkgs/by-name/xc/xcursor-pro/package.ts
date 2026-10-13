@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchurl = nix.arg($, "fetchurl");
   const variants = nix.argOr($, "variants", () => []);
-  const sources = nix.thunk(() => nix.builtins.import(nix.path(here, "./sources.nix")));
+  const sources = nix.thunk(() => nix.builtins.import(nix.path(here, "./sources.nix")) as nix.Imported<typeof import("./sources.ts")>);
   const knownVariants = nix.thunk(() => nix.builtins.attrNames(sources));
   const selectedVariants = nix.thunk(() => (nix.asBool(nix.eq(variants, [])) ? nix.force(knownVariants) : (() => {
     const unknownVariants = nix.thunk(() => nix.app(nix.sel(lib, "subtractLists"), knownVariants, variants));

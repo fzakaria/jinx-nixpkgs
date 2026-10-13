@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const testFiles = nix.arg($, "testFiles");
   const ruby = nix.arg($, "ruby");
   const testTools = nix.thunk(() => (() => {
-    const test = nix.thunk(() => nix.builtins.import(nix.path(here, "./testing.nix")));
-    const stubs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./stubs.nix")), defs));
-    const should = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./assertions.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], test: test, lib: lib }))));
+    const test = nix.thunk(() => nix.builtins.import(nix.path(here, "./testing.nix")) as nix.Imported<typeof import("./testing.ts")>);
+    const stubs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./stubs.nix")) as nix.Imported<typeof import("./stubs.ts")>, defs));
+    const should = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./assertions.nix")) as nix.Imported<typeof import("./assertions.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], test: test, lib: lib }))));
     return { [nix.POS]: $pos[1], test, stubs, should };
   })());
-  const tap = nix.thunk(() => nix.builtins.import(nix.path(here, "./tap-support.nix")));
+  const tap = nix.thunk(() => nix.builtins.import(nix.path(here, "./tap-support.nix")) as nix.Imported<typeof import("./tap-support.ts")>);
   const results = nix.thunk(() => nix.builtins.concatLists(nix.thunk(() => nix.builtins.map((file) => nix.app(callPackage, file, testTools), testFiles))));
   return nix.app(writeText, "test-results.tap", nix.thunk(() => nix.app(nix.sel(tap, "output"), results)));
 })(), formals$1);

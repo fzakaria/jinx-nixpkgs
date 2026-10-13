@@ -145,7 +145,7 @@ export default nix.lambda((args) => (() => {
         const qrupdate_1 = qrupdate$;
         const arpack_1 = arpack$;
         const suitesparse_1 = suitesparse$;
-        const octavePackages = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../top-level/octave-packages.nix")), nix.thunk(() => ({
+        const octavePackages = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../top-level/octave-packages.nix")) as nix.Imported<typeof import("../../../top-level/octave-packages.ts")>, nix.thunk(() => ({
             [nix.POS]: $pos[10],
             pkgs: allPkgs,
             config: config,
@@ -175,7 +175,7 @@ export default nix.lambda((args) => (() => {
             wrapOctave: wrapOctave,
             computeRequiredOctavePackages: nix.thunk(() => nix.attr(octavePackages, "computeRequiredOctavePackages")),
           }))));
-        const withPackages = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./with-packages.nix")), nix.thunk(() => ({ [nix.POS]: $pos[13], buildEnv: buildEnv, octavePackages: octavePackages }))));
+        const withPackages = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./with-packages.nix")) as nix.Imported<typeof import("./with-packages.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[13], buildEnv: buildEnv, octavePackages: octavePackages }))));
         const pkgs_1 = octavePackages;
         const interpreter = nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}/bin/octave`);
         const tests = nix.thunk(() => ({

@@ -210,7 +210,7 @@ chmod u-w ./config.yaml
       testScript: nix.lambda((args_2) => (() => {
         const $_2 = nix.formals(args_2, formals$6);
         const nodes = nix.arg($_2, "nodes");
-        const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./ssh-keys.nix")), pkgs));
+        const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./ssh-keys.nix")) as nix.Imported<typeof import("./ssh-keys.ts")>, pkgs));
         const snakeOilPrivateKey = nix.thunk(() => nix.attr(from, "snakeOilPrivateKey"));
         const snakeOilPublicKey = nix.thunk(() => nix.attr(from, "snakeOilPublicKey"));
         const serverSystem = nix.thunk(() => nix.sel(nodes, "server", "system", "build", "toplevel"));

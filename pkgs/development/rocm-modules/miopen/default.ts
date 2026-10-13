@@ -99,7 +99,7 @@ export default nix.lambda((args) => (() => {
         })))} > $out
 `));
   })(), formals$2);
-  const kdbs = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), fetchKdb, nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (name) => (_) => nix.app(nix.sel(lib, "elem"), name, supportedTargets), nix.thunk(() => nix.builtins.import(nix.path(here, "./kdbs.nix")))))));
+  const kdbs = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), fetchKdb, nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (name) => (_) => nix.app(nix.sel(lib, "elem"), name, supportedTargets), nix.thunk(() => nix.builtins.import(nix.path(here, "./kdbs.nix")) as nix.Imported<typeof import("./kdbs.ts")>)))));
   const linkKDBsTo = (targetPath) => nix.app(nix.sel(lib, "concatStringsSep"), "", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (kdb) => nix.str`ln -sf ${kdb} ${targetPath}/${name}.kdb
 `, kdbs)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({

@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const remoteSystem = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(pkgs, "stdenv", "hostPlatform", "system"), "aarch64-linux")) ? "x86_64-linux" : "aarch64-linux"));
-  const remoteCrossPkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({
+  const remoteCrossPkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../..")) as nix.Imported<typeof import("../../default.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[0],
       localSystem: remoteSystem,
       crossSystem: nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "system")),

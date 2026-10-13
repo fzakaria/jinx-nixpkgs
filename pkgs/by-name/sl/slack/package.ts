@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const from = nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform"));
   const system = nix.thunk(() => nix.attr(from, "system"));
-  const sources = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./sources.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], fetchurl: fetchurl }))));
+  const sources = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./sources.nix")) as nix.Imported<typeof import("./sources.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], fetchurl: fetchurl }))));
   const pname = "slack";
   const passthru = nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update.sh") }));
   const meta = nix.thunk(() => ({

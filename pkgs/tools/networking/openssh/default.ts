@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const fetchpatch = nix.arg($, "fetchpatch");
   const autoreconfHook = nix.arg($, "autoreconfHook");
-  const common = (opts) => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), opts)), nix.thunk(() => ({})));
+  const common = (opts) => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")) as nix.Imported<typeof import("./common.ts")>, opts)), nix.thunk(() => ({})));
   const urlFor = (version) => nix.str`mirror://openbsd/OpenSSH/portable/openssh-${version}.tar.gz`;
   return {
     [nix.POS]: $pos[13],

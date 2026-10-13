@@ -66,12 +66,12 @@ export default nix.lambda((args) => (() => {
       [nix.POS]: $pos[9],
       localSystem: nix.thunk(() => nix.sel(cfg, "hostPlatform")),
     }));
-    return nix.app(nix.builtins.import(nix.path(here, "../../..")), nix.thunk(() => nix.update({
+    return nix.app(nix.builtins.import(nix.path(here, "../../..")) as nix.Imported<typeof import("../../../default.ts")>, nix.thunk(() => nix.update({
         [nix.POS]: $pos[10],
         config: nix.thunk(() => nix.attr(cfg, "config")),
         overlays: nix.thunk(() => nix.attr(cfg, "overlays")),
       }, systemArgs)));
-  })() : nix.app(nix.builtins.import(nix.path(here, "../../..")), nix.thunk(() => ({
+  })() : nix.app(nix.builtins.import(nix.path(here, "../../..")) as nix.Imported<typeof import("../../../default.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[11],
       config: nix.thunk(() => nix.attr(cfg, "config")),
       overlays: nix.thunk(() => nix.attr(cfg, "overlays")),

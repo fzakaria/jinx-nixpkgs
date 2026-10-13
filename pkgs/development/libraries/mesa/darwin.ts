@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
   const galliumDrivers = nix.argOr($, "galliumDrivers", () => ["llvmpipe", "softpipe"]);
   const vulkanDrivers = nix.argOr($, "vulkanDrivers", () => ["kosmickrisp"]);
   const vulkanLayers = nix.argOr($, "vulkanLayers", () => ["anti-lag", "intel-nullhw", "overlay", "screenshot", "vram-report-limit"]);
-  const common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib, fetchFromGitLab: fetchFromGitLab }))));
+  const common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")) as nix.Imported<typeof import("./common.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib, fetchFromGitLab: fetchFromGitLab }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
       [nix.POS]: $pos[2],
       pname: nix.thunk(() => nix.attr(common, "pname")),

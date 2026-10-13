@@ -89,7 +89,7 @@ ln -s ${policiesJson} "$out/lib/firefox-bin-${version}/distribution/policies.jso
         withFFmpeg: true,
         withGSSAPI: true,
         gtk3: gtk3,
-        updateScript: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./update.nix")), nix.thunk(() => ({
+        updateScript: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./update.nix")) as nix.Imported<typeof import("./update.ts")>, nix.thunk(() => ({
             [nix.POS]: $pos[4],
             pname: pname,
             writeScript: writeScript,

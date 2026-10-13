@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const ruby = nix.arg($, "ruby");
   const gemConfig = nix.arg($, "gemConfig");
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
-  const functions = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../bundled-common/functions.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib, gemConfig: gemConfig }))));
+  const functions = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../bundled-common/functions.nix")) as nix.Imported<typeof import("../bundled-common/functions.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib, gemConfig: gemConfig }))));
   const buildGems = (gemset) => (() => {
     const realGemset = nix.thunk(() => (nix.asBool(nix.builtins.isAttrs(gemset)) ? nix.force(gemset) : nix.builtins.import(gemset)));
     const builtGems = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => (initialAttrs) => (() => {
@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       })(), realGemset));
     return nix.force(builtGems);
   })();
-  const gems = nix.thunk(() => nix.app(buildGems, nix.thunk(() => nix.builtins.import(nix.path(here, "../../../top-level/ruby-packages.nix")))));
+  const gems = nix.thunk(() => nix.app(buildGems, nix.thunk(() => nix.builtins.import(nix.path(here, "../../../top-level/ruby-packages.nix")) as nix.Imported<typeof import("../../../top-level/ruby-packages.ts")>)));
   const withPackages = (selector) => (() => {
     const selected = nix.thunk(() => nix.app(selector, gems));
     const gemEnv = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({

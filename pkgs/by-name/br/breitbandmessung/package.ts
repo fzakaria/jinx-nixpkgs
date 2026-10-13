@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(stdenv, "hostPlatform"));
   const system = nix.thunk(() => nix.attr(from, "system"));
   const electron = electron_43;
-  const sources = nix.thunk(() => nix.builtins.import(nix.path(here, "./sources.nix")));
+  const sources = nix.thunk(() => nix.builtins.import(nix.path(here, "./sources.nix")) as nix.Imported<typeof import("./sources.ts")>);
   const systemArgs = nix.thunk(() => nix.selOr({
     [nix.POS]: $pos[2],
     "x86_64-linux": nix.thunk(() => ({

@@ -5,7 +5,7 @@ const here = nix.here(import.meta.url);
 const $pos = nix.positions(here + "/0.5.nix", [[["version", 2, 3], ["url", 3, 3], ["hash", 9, 3]]]);
 const formals$1 = { args: { version: false, dovecotMajorMinor: false }, ellipsis: false };
 
-export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")), nix.thunk(() => ({
+export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")) as nix.Imported<typeof import("./generic.ts")>, nix.thunk(() => ({
     [nix.POS]: $pos[0],
     version: "0.5.21.1",
     url: nix.lambda((args) => (() => {

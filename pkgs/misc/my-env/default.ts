@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         phases: nix.thunk(() => ["buildPhase", "fixupPhase"]),
         setupNew: nix.path(here, "../../stdenv/generic/setup.sh"),
         buildPhase: nix.thunk(() => (() => {
-          const initialPath = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../stdenv/generic/common-path.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], pkgs: pkgs }))));
+          const initialPath = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../stdenv/generic/common-path.nix")) as nix.Imported<typeof import("../../stdenv/generic/common-path.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], pkgs: pkgs }))));
           return nix.str`set -x
 mkdir -p "$out/dev-envs" "$out/nix-support" "$out/bin"
 s="$out/nix-support/setup-new-modified"

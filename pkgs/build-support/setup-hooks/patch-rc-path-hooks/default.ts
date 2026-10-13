@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const makeSetupHook = nix.arg($, "makeSetupHook");
   const gnused = nix.arg($, "gnused");
-  const tests = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./test")), nix.thunk(() => ({ [nix.POS]: $pos[0], callPackage: callPackage }))));
+  const tests = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./test")) as nix.Imported<typeof import("./test/default.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], callPackage: callPackage }))));
   return {
     [nix.POS]: $pos[19],
     patchRcPathBash: nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({

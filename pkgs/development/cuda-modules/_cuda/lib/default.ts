@@ -10,12 +10,12 @@ export default nix.lambda((args) => (() => {
   const _cuda = nix.arg($, "_cuda");
   const lib = nix.arg($, "lib");
   return (() => {
-    const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./assertions.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], _cuda: _cuda, lib: lib }))));
-    const from_1 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./cuda.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], _cuda: _cuda, lib: lib }))));
-    const from_2 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./meta.nix")), nix.thunk(() => ({ [nix.POS]: $pos[2], _cuda: _cuda, lib: lib }))));
-    const from_3 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./redist.nix")), nix.thunk(() => ({ [nix.POS]: $pos[3], _cuda: _cuda, lib: lib }))));
-    const from_4 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./strings.nix")), nix.thunk(() => ({ [nix.POS]: $pos[4], _cuda: _cuda, lib: lib }))));
-    const from_5 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./versions.nix")), nix.thunk(() => ({ [nix.POS]: $pos[5], _cuda: _cuda, lib: lib }))));
+    const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./assertions.nix")) as nix.Imported<typeof import("./assertions.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], _cuda: _cuda, lib: lib }))));
+    const from_1 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./cuda.nix")) as nix.Imported<typeof import("./cuda.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[1], _cuda: _cuda, lib: lib }))));
+    const from_2 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./meta.nix")) as nix.Imported<typeof import("./meta.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[2], _cuda: _cuda, lib: lib }))));
+    const from_3 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./redist.nix")) as nix.Imported<typeof import("./redist.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[3], _cuda: _cuda, lib: lib }))));
+    const from_4 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./strings.nix")) as nix.Imported<typeof import("./strings.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[4], _cuda: _cuda, lib: lib }))));
+    const from_5 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./versions.nix")) as nix.Imported<typeof import("./versions.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[5], _cuda: _cuda, lib: lib }))));
     return {
     [nix.POS]: $pos[6],
     _evaluateAssertions: nix.thunk(() => nix.attr(from, "_evaluateAssertions")),

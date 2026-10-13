@@ -22,10 +22,10 @@ export default nix.thunk(() => (() => {
       const configFile3 = nix.thunk(() => nix.add(homeDir, "/.nixpkgs/config.nix"));
       return (nix.asBool((nix.asBool(!nix.eq(configFile, "")) && nix.asBool(nix.builtins.pathExists(configFile)))) ? nix.builtins.import(configFile) : (nix.asBool((nix.asBool(!nix.eq(homeDir, "")) && nix.asBool(nix.builtins.pathExists(configFile2)))) ? nix.builtins.import(configFile2) : (nix.asBool((nix.asBool(!nix.eq(homeDir, "")) && nix.asBool(nix.builtins.pathExists(configFile3)))) ? nix.builtins.import(configFile3) : {})));
     })());
-    const overlays = nix.argOr($, "overlays", () => nix.builtins.import(nix.path(here, "./impure-overlays.nix")));
+    const overlays = nix.argOr($, "overlays", () => nix.builtins.import(nix.path(here, "./impure-overlays.nix")) as nix.Imported<typeof import("./impure-overlays.ts")>);
     nix.assert_((!nix.asBool(nix.has(args_1, "localSystem")) || nix.asBool(!nix.asBool(nix.has(args_1, "system")))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/top-level/impure.nix:52:1");
     nix.assert_((!nix.asBool(nix.has(args_1, "system")) || nix.asBool(!nix.asBool(nix.has(args_1, "localSystem")))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/top-level/impure.nix:53:1");
-    return nix.app(nix.builtins.import(nix.path(here, "./.")), nix.thunk(() => nix.update(nix.builtins.removeAttrs(args_1, nix.thunk(() => ["system"])), {
+    return nix.app(nix.builtins.import(nix.path(here, "./.")) as nix.Imported<typeof import("./default.ts")>, nix.thunk(() => nix.update(nix.builtins.removeAttrs(args_1, nix.thunk(() => ["system"])), {
         [nix.POS]: $pos[1],
         config: config,
         overlays: overlays,

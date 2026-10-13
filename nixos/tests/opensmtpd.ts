@@ -7,7 +7,7 @@ const formals$1 = { args: { pkgs: false }, ellipsis: true };
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
 
-export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")), nix.thunk(() => ({
+export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")) as nix.Imported<typeof import("./make-test-python.ts")>, nix.thunk(() => ({
     [nix.POS]: $pos[32],
     name: "opensmtpd",
     nodes: nix.thunk(() => ({

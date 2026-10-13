@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
   const optional = nix.thunk(() => nix.attr(lib, "optional"));
   const optionalString = nix.thunk(() => nix.attr(lib, "optionalString"));
   const fake_mysql_config = nix.thunk(() => nix.app(nix.sel(buildPackages, "writeShellScript"), "mysql_config", "if [[ \"$1\" == \"--version\" ]]; then\n  $PKG_CONFIG mysqlclient --modversion\nelse\n  $PKG_CONFIG mysqlclient $@\nfi\n"));
-  return nix.app(nix.builtins.import(nix.path(here, "./versions.nix")), nix.lambda((args_1) => (() => {
+  return nix.app(nix.builtins.import(nix.path(here, "./versions.nix")) as nix.Imported<typeof import("./versions.ts")>, nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const version = nix.arg($_1, "version");
       const hash = nix.arg($_1, "hash");

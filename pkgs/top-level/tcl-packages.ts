@@ -6,7 +6,7 @@ const $pos = nix.positions(here + "/tcl-packages.nix", [[["withCritcl", 19, 39]]
 const formals$1 = { args: { lib: false, newScope: false, tcl: false, tk: false, pkgs: false }, ellipsis: false };
 
 export default nix.thunk(() => (() => {
-  const autoCalledPackages = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./by-name-overlay.nix")), nix.path(here, "../development/tcl-modules/by-name")));
+  const autoCalledPackages = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./by-name-overlay.nix")) as nix.Imported<typeof import("./by-name-overlay.ts")>, nix.path(here, "../development/tcl-modules/by-name")));
   return nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     const lib = nix.arg($, "lib");

@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       ])))));
     return nix.app(nix.sel(lib, "traceIf"), trace, nix.thunk(() => nix.str`** ${nix.app(nix.sel(lib, "showAttrPath"), path_1)}`), result);
   })();
-  const outpaths = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./outpaths.nix")), nix.thunk(() => ({
+  const outpaths = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./outpaths.nix")) as nix.Imported<typeof import("./outpaths.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[1],
       path: path,
       extraNixpkgsConfig: nix.thunk(() => nix.builtins.fromJSON(extraNixpkgsConfigJson)),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
     ])), nix.app(listAttrs, [], outpaths)));
   const paths = nix.thunk(() => nix.builtins.map((attrs) => nix.sel(attrs, "path"), list));
   const names = nix.thunk(() => nix.builtins.map(nix.thunk(() => nix.sel(lib, "showAttrPath")), paths));
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../pkgs/stdenv/generic/problems.nix")), nix.thunk(() => ({ [nix.POS]: $pos[3], lib: lib }))));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../pkgs/stdenv/generic/problems.nix")) as nix.Imported<typeof import("../../pkgs/stdenv/generic/problems.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[3], lib: lib }))));
   const disallowNixpkgsInternalUseKinds = nix.thunk(() => nix.attr(from, "disallowNixpkgsInternalUseKinds"));
   const attrPathsDisallowedForInternalUse = nix.thunk(() => nix.app(nix.sel(lib, "pipe"), list, nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "map"), (attrs) => nix.update(attrs, {

@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const kernel = nix.arg($, "kernel");
   const kernelModuleMakeFlags = nix.arg($, "kernelModuleMakeFlags");
   const nixosTests = nix.arg($, "nixosTests");
-  const sourceAttrs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./source.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], fetchFromGitHub: fetchFromGitHub }))));
+  const sourceAttrs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./source.nix")) as nix.Imported<typeof import("./source.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], fetchFromGitHub: fetchFromGitHub }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
       [nix.POS]: $pos[5],
       name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}-${nix.sel(kernel, "version")}`),

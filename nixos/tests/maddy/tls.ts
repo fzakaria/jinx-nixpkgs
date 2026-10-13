@@ -7,10 +7,10 @@ const formals$1 = { args: { pkgs: false }, ellipsis: true };
 const formals$2 = { args: { options: false }, ellipsis: true };
 const formals$3 = { args: { nodes: false }, ellipsis: true };
 
-export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../make-test-python.nix")), nix.lambda((args) => (() => {
+export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../make-test-python.nix")) as nix.Imported<typeof import("../make-test-python.ts")>, nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     const pkgs = nix.arg($, "pkgs");
-    const certs = nix.thunk(() => nix.builtins.import(nix.path(here, "../common/acme/server/snakeoil-certs.nix")));
+    const certs = nix.thunk(() => nix.builtins.import(nix.path(here, "../common/acme/server/snakeoil-certs.nix")) as nix.Imported<typeof import("../common/acme/server/snakeoil-certs.ts")>);
     const domain = nix.thunk(() => nix.sel(certs, "domain"));
     return {
       [nix.POS]: $pos[15],

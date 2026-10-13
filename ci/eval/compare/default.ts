@@ -58,7 +58,7 @@ runHook postInstall
     const baseBranch = nix.arg($_1, "baseBranch");
     const ownersFile = nix.argOr($_1, "ownersFile", () => nix.path(here, "../../OWNERS"));
     const combined = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "isDerivation"), combinedDir)) ? nix.force(combinedDir) : nix.app(nix.sel(lib, "toDerivation"), combinedDir)));
-    const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./utils.nix")), nix.thunk(() => ({ [nix.POS]: $pos[2], lib: lib }))));
+    const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./utils.nix")) as nix.Imported<typeof import("./utils.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[2], lib: lib }))));
     const groupByKernel = nix.thunk(() => nix.attr(from, "groupByKernel"));
     const convertToPackagePlatformAttrs = nix.thunk(() => nix.attr(from, "convertToPackagePlatformAttrs"));
     const groupAttrdiffByKernel = nix.thunk(() => nix.attr(from, "groupAttrdiffByKernel"));

@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
   const csdp = nix.argOr($, "csdp", () => null);
   const version = nix.arg($, "version");
   const coq_version = nix.argOr($, "coq-version", () => null);
-  const lib_1 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../../build-support/coq/extra-lib.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: nix.thunk(() => nix.attr(args_1, "lib")) }))));
+  const lib_1 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../../build-support/coq/extra-lib.nix")) as nix.Imported<typeof import("../../../../build-support/coq/extra-lib.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], lib: nix.thunk(() => nix.attr(args_1, "lib")) }))));
   const release = nix.thunk(() => ({
     [nix.POS]: $pos[42],
     "8.7.0": nix.thunk(() => ({
@@ -202,7 +202,7 @@ export default nix.lambda((args) => (() => {
     })),
   }));
   const releaseRev = (v) => nix.str`V${v}`;
-  const fetched = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../../build-support/rocq/meta-fetch/default.nix")), nix.thunk(() => ({
+  const fetched = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../../build-support/rocq/meta-fetch/default.nix")) as nix.Imported<typeof import("../../../../build-support/rocq/meta-fetch/default.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[43],
       lib: lib_1,
       stdenv: stdenv,

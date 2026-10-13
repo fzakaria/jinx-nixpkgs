@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const pkgsi686Linux = nix.arg($, "pkgsi686Linux");
   const kernel = nix.arg($, "kernel");
   const generic = (args_1) => (() => {
-    const imported = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")), args_1));
+    const imported = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")) as nix.Imported<typeof import("./generic.ts")>, args_1));
     return nix.app(callPackage, imported, nix.thunk(() => ({
         [nix.POS]: $pos[1],
         lib32: nix.thunk(() => nix.sel(nix.app(nix.sel(pkgsi686Linux, "callPackage"), imported, nix.thunk(() => ({ [nix.POS]: $pos[0], libsOnly: true }))), "out")),

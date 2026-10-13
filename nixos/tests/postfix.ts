@@ -6,9 +6,9 @@ const $pos = nix.positions(here + "/postfix.nix", [[["name", 26, 17], ["destinat
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
 
 export default nix.thunk(() => (() => {
-  const certs = nix.thunk(() => nix.builtins.import(nix.path(here, "./common/acme/server/snakeoil-certs.nix")));
+  const certs = nix.thunk(() => nix.builtins.import(nix.path(here, "./common/acme/server/snakeoil-certs.nix")) as nix.Imported<typeof import("./common/acme/server/snakeoil-certs.ts")>);
   const domain = nix.thunk(() => nix.sel(certs, "domain"));
-  return nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")), nix.thunk(() => ({
+  return nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")) as nix.Imported<typeof import("./make-test-python.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[16],
       name: "postfix",
       nodes: nix.thunk(() => ({

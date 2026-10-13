@@ -8,7 +8,7 @@ const formals$1 = { args: {  }, ellipsis: true };
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const args_1 = args;
-  return nix.app(nix.builtins.import(nix.path(here, "./update.nix")), nix.thunk(() => nix.update({
+  return nix.app(nix.builtins.import(nix.path(here, "./update.nix")) as nix.Imported<typeof import("./update.ts")>, nix.thunk(() => nix.update({
       [nix.POS]: $pos[0],
       predicate: (_) => (__1) => true,
       "get-script": (pkg) => nix.selOr(pkg, () => null, "fetch-deps"),

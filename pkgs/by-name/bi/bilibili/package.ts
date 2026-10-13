@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const libva = nix.arg($, "libva");
   const makeWrapper = nix.arg($, "makeWrapper");
   const commandLineArgs = nix.argOr($, "commandLineArgs", () => "");
-  const sources = nix.thunk(() => nix.builtins.import(nix.path(here, "./sources.nix")));
+  const sources = nix.thunk(() => nix.builtins.import(nix.path(here, "./sources.nix")) as nix.Imported<typeof import("./sources.ts")>);
   const version = nix.thunk(() => nix.sel(sources, "version"));
   const srcs = nix.thunk(() => ({
     [nix.POS]: $pos[2],

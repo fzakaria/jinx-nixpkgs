@@ -5,7 +5,7 @@ const here = nix.here(import.meta.url);
 const $pos = nix.positions(here + "/rss2email.nix", [[["root", 11, 36]], [["127.0.0.1", 11, 24]], [["enable", 10, 11], ["virtualHosts", 11, 11]], [["from", 17, 18]], [["url", 20, 15]], [["nixos", 19, 13]], [["enable", 14, 11], ["to", 15, 11], ["interval", 16, 11], ["config", 17, 11], ["feeds", 18, 11]], [["enable", 25, 11], ["extraServerArgs", 26, 11], ["serverConfiguration", 27, 11]], [["imap", 42, 23]], [["dovecot_config_version", 38, 13], ["dovecot_storage_version", 39, 13], ["mail_driver", 40, 13], ["mail_path", 41, 13], ["protocols", 42, 13]], [["enable", 35, 11], ["enablePAM", 36, 11], ["settings", 37, 11]], [["nginx", 9, 18], ["rss2email", 13, 18], ["opensmtpd", 24, 18], ["dovecot2", 34, 18]], [["systemPackages", 45, 21]], [["imports", 8, 9], ["services", 9, 9], ["environment", 45, 9]], [["server", 5, 5]], [["name", 2, 3], ["nodes", 4, 3], ["testScript", 69, 3]]]);
 const formals$1 = { args: { config: false, pkgs: false }, ellipsis: true };
 
-export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")), nix.thunk(() => ({
+export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")) as nix.Imported<typeof import("./make-test-python.ts")>, nix.thunk(() => ({
     [nix.POS]: $pos[15],
     name: "rss2email",
     nodes: nix.thunk(() => ({

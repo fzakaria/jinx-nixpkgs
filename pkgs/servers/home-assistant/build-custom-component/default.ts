@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const home_assistant = nix.arg($, "home-assistant");
   const makeSetupHook = nix.arg($, "makeSetupHook");
   const python3Packages = nix.thunk(() => nix.attr(home_assistant, "python3Packages"));
-  const manifestRequirementsCheckHook = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./manifest-requirements-check-hook.nix")), nix.thunk(() => ({
+  const manifestRequirementsCheckHook = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./manifest-requirements-check-hook.nix")) as nix.Imported<typeof import("./manifest-requirements-check-hook.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[0],
       lib: lib,
       makeSetupHook: makeSetupHook,

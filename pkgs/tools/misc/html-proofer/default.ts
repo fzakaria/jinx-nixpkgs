@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const bundlerUpdateScript = nix.arg($, "bundlerUpdateScript");
   return nix.app(bundlerEnv, nix.thunk(() => (() => {
       const pname = "html-proofer";
-      const version = nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./gemset.nix")), "html-proofer", "version"));
+      const version = nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./gemset.nix")) as nix.Imported<typeof import("./gemset.ts")>, "html-proofer", "version"));
       const ruby_1 = ruby;
       const gemdir = nix.path(here, "./.");
       const passthru = nix.thunk(() => ({

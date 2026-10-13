@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
   const haskellPackages = nix.argOr($, "haskellPackages", () => null);
   const useRemixPacks = nix.argOr($, "useRemixPacks", () => false);
   nix.assert_((!nix.asBool(use3DOVideos) || nix.asBool((nix.asBool((nix.asBool(!nix.eq(requireFile, null)) && nix.asBool(!nix.eq(writeText, null)))) && nix.asBool(!nix.eq(haskellPackages, null))))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/uq/uqm/package.nix:23:1");
-  const videos = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./3dovideo.nix")), nix.thunk(() => ({
+  const videos = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./3dovideo.nix")) as nix.Imported<typeof import("./3dovideo.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[0],
       stdenv: stdenv,
       lib: lib,

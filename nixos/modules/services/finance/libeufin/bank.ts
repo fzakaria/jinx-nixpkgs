@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   return {
     [nix.POS]: $pos[21],
     imports: nix.thunk(() => [
-      nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), "bank")),
+      nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")) as nix.Imported<typeof import("./common.ts")>, "bank")),
     ]),
     options: nix.thunk(() => ({
       [nix.POS]: $pos[13],

@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const mkIf = nix.thunk(() => nix.attr(lib, "mkIf"));
   const mkDefault = nix.thunk(() => nix.attr(lib, "mkDefault"));
   const cfg = nix.thunk(() => nix.sel(config, "openstack"));
-  const metadataFetcher = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./openstack-metadata-fetcher.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], targetRoot: "/", wgetExtraOptions: "--retry-connrefused" }))));
+  const metadataFetcher = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./openstack-metadata-fetcher.nix")) as nix.Imported<typeof import("./openstack-metadata-fetcher.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], targetRoot: "/", wgetExtraOptions: "--retry-connrefused" }))));
   return {
     [nix.POS]: $pos[20],
     imports: nix.thunk(() => [

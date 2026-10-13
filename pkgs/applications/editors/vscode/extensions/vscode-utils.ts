@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
         };
       })(), formals$2),
     }))));
-  const fetchVsixFromVscodeMarketplace = (mktplcExtRef) => nix.app(fetchurl, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mktplcExtRefToFetchArgs.nix")), mktplcExtRef)));
+  const fetchVsixFromVscodeMarketplace = (mktplcExtRef) => nix.app(fetchurl, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mktplcExtRefToFetchArgs.nix")) as nix.Imported<typeof import("./mktplcExtRefToFetchArgs.ts")>, mktplcExtRef)));
   const buildVscodeMarketplaceExtension = nix.thunk(() => nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
       [nix.POS]: $pos[8],
       constructDrv: buildVscodeExtension,
@@ -106,20 +106,20 @@ export default nix.lambda((args) => (() => {
     })));
   const extensionFromVscodeMarketplace = mktplcExtRefToExtDrv;
   const extensionsFromVscodeMarketplace = (mktplcExtRefList) => nix.builtins.map(extensionFromVscodeMarketplace, mktplcExtRefList);
-  const vscodeWithConfiguration = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./vscodeWithConfiguration.nix")), nix.thunk(() => ({
+  const vscodeWithConfiguration = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./vscodeWithConfiguration.nix")) as nix.Imported<typeof import("./vscodeWithConfiguration.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[10],
       lib: lib,
       extensionsFromVscodeMarketplace: extensionsFromVscodeMarketplace,
       writeShellScriptBin: writeShellScriptBin,
       vscodeDefault: vscode,
     }))));
-  const vscodeExts2nix = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./vscodeExts2nix.nix")), nix.thunk(() => ({
+  const vscodeExts2nix = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./vscodeExts2nix.nix")) as nix.Imported<typeof import("./vscodeExts2nix.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[11],
       lib: lib,
       writeShellScriptBin: writeShellScriptBin,
       vscodeDefault: vscode,
     }))));
-  const vscodeEnv = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./vscodeEnv.nix")), nix.thunk(() => ({
+  const vscodeEnv = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./vscodeEnv.nix")) as nix.Imported<typeof import("./vscodeEnv.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[12],
       lib: lib,
       buildEnv: buildEnv,

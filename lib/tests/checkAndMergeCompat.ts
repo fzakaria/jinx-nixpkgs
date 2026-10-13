@@ -8,7 +8,7 @@ const formals$2 = { args: { getType: true, outerTypeName: false, innerTypeName: 
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({}))));
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")) as nix.Imported<typeof import("../../default.ts")>, nix.thunk(() => ({}))));
   const currLibPath = nix.argOr($, "currLibPath", () => nix.path(here, "../."));
   const prevLibPath = nix.argOr($, "prevLibPath", () => nix.str`${nix.app(nix.sel(pkgs, "fetchFromGitHub"), nix.thunk(() => ({
       [nix.POS]: $pos[0],

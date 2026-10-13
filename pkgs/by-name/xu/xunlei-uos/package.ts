@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const libxtst = nix.arg($, "libxtst");
   const libxdamage = nix.arg($, "libxdamage");
   const libxscrnsaver = nix.arg($, "libxscrnsaver");
-  const sources = nix.thunk(() => nix.builtins.import(nix.path(here, "./sources.nix")));
+  const sources = nix.thunk(() => nix.builtins.import(nix.path(here, "./sources.nix")) as nix.Imported<typeof import("./sources.ts")>);
   const xunlei_unwrapped = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname = "xunlei-uos";
       const version = nix.thunk(() => nix.sel(sources, "version"));

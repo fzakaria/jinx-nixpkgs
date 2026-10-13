@@ -4,7 +4,7 @@ import * as nix from "../../../.jinx/runtime/index.ts";
 const here = nix.here(import.meta.url);
 
 export default nix.thunk(() => (() => {
-  const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../..")), nix.thunk(() => ({}))));
+  const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../..")) as nix.Imported<typeof import("../../../default.ts")>, nix.thunk(() => ({}))));
   const lockFileBody = nix.thunk(() => nix.app(nix.sel(pkgs, "lib", "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.sel(pkgs, "lib", "mapAttrsToList"), (name) => (props) => nix.str`    ${name} (${nix.sel(props, "version")})`, nix.thunk(() => nix.app(nix.sel(pkgs, "lib", "filterAttrs"), (name) => (_props) => !nix.eq(name, "recurseForDerivations"), nix.thunk(() => nix.sel(pkgs, "rubyPackages"))))))));
   return nix.app(nix.sel(pkgs, "runCommand"), "bundle-audit", nix.thunk(() => ({})), nix.thunk(() => nix.str`mkdir "$out"
 echo 'GEM' > "$out/Gemfile.lock"

@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const writeText = nix.arg($, "writeText");
   const bdf2psf = nix.arg($, "bdf2psf");
-  const codepoints = nix.argOr($, "codepoints", () => nix.builtins.import(nix.path(here, "./default-codepoints.nix")));
+  const codepoints = nix.argOr($, "codepoints", () => nix.builtins.import(nix.path(here, "./default-codepoints.nix")) as nix.Imported<typeof import("./default-codepoints.ts")>);
   const installFonts = nix.arg($, "installFonts");
   const codepoints_set = nix.thunk(() => nix.app(writeText, "codepoints.set", nix.thunk(() => nix.builtins.concatStringsSep("\n", codepoints))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => (() => {

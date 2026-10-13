@@ -80,7 +80,7 @@ with subtest("AppArmor securityfs is mounted"):
 # 4. Using \`diff\` against the expected output.
 with subtest("apparmorRulesFromClosure"):
     machine.succeed(
-        "${nix.app(getExe$, nix.thunk(() => nix.sel(pkgs, "diffutils")), "diff")} -u ${nix.app(nix.sel(pkgs, "writeText"), "expected.rules", nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./makeExpectedPolicies.nix")), nix.thunk(() => ({ [nix.POS]: $pos[10], pkgs: pkgs })))))} ${nix.app(nix.sel(pkgs, "runCommand"), "actual.rules", nix.thunk(() => ({ [nix.POS]: $pos[11], preferLocalBuild: true })), nix.thunk(() => nix.str`${nix.app(getExe, nix.thunk(() => nix.sel(pkgs, "gnused")))} -e 's:^${nix.builtins.storeDir}/[^,/-]*-\\([^/, ]*\\):\\1 \\0:' ${nix.app(nix.sel(pkgs, "apparmorRulesFromClosure"), nix.thunk(() => ({
+        "${nix.app(getExe$, nix.thunk(() => nix.sel(pkgs, "diffutils")), "diff")} -u ${nix.app(nix.sel(pkgs, "writeText"), "expected.rules", nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./makeExpectedPolicies.nix")) as nix.Imported<typeof import("./makeExpectedPolicies.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[10], pkgs: pkgs })))))} ${nix.app(nix.sel(pkgs, "runCommand"), "actual.rules", nix.thunk(() => ({ [nix.POS]: $pos[11], preferLocalBuild: true })), nix.thunk(() => nix.str`${nix.app(getExe, nix.thunk(() => nix.sel(pkgs, "gnused")))} -e 's:^${nix.builtins.storeDir}/[^,/-]*-\\([^/, ]*\\):\\1 \\0:' ${nix.app(nix.sel(pkgs, "apparmorRulesFromClosure"), nix.thunk(() => ({
             [nix.POS]: $pos[12],
             name: "ping",
             additionalRules: nix.thunk(() => ["$path/foo/** x"]),

@@ -213,7 +213,7 @@ done
             })),
           })), nix.path(here, "../hooks/neovim-require-check-hook.sh"));
       })(), formals$7), nix.thunk(() => ({}))));
-    const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./build-vim-plugin.nix")), nix.thunk(() => ({
+    const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./build-vim-plugin.nix")) as nix.Imported<typeof import("./build-vim-plugin.ts")>, nix.thunk(() => ({
         [nix.POS]: $pos[19],
         lib: lib_1,
         stdenv: stdenv,

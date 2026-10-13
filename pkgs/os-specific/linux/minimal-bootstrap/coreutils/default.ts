@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const tinycc = nix.arg($, "tinycc");
   const gnumake = nix.arg($, "gnumake");
   const gnupatch = nix.arg($, "gnupatch");
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib }))));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")) as nix.Imported<typeof import("./common.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib }))));
   const meta = nix.thunk(() => nix.attr(from, "meta"));
   const pname = "bootstrap-coreutils";
   const version = "5.0";

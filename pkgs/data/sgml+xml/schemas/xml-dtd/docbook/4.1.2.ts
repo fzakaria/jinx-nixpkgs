@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       url: "https://www.oasis-open.org/docbook/xml/4.2/catalog.xml",
       hash: "sha256-J0g0JhEzZpuYlm0qU+lKmLc1oUbD5FKQHuUAKrC5kKI=",
     }))));
-  return nix.app(nix.builtins.import(nix.path(here, "./generic.nix")), nix.thunk(() => ({
+  return nix.app(nix.builtins.import(nix.path(here, "./generic.nix")) as nix.Imported<typeof import("./generic.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[1],
       lib: lib,
       stdenv: stdenv,

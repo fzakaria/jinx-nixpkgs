@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
             virtualHost: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
                 [nix.POS]: $pos[6],
                 description: "Extra configuration for the nginx virtualhost for Feishin.",
-                type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../web-servers/nginx/vhost-options.nix")), nix.thunk(() => ({ [nix.POS]: $pos[5], config: config, lib: lib })))))),
+                type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../web-servers/nginx/vhost-options.nix")) as nix.Imported<typeof import("../web-servers/nginx/vhost-options.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[5], config: config, lib: lib })))))),
                 default: nix.thunk(() => ({})),
                 example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  serverAliases = [ \"feishin.${config.networking.domain}\" ];\n}\n")),
               })))),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
             virtualHost: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
                 [nix.POS]: $pos[9],
                 description: "Extra configuration for the Caddy virtualhost for Feishin.",
-                type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../web-servers/caddy/vhost-options.nix")), nix.thunk(() => ({
+                type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../web-servers/caddy/vhost-options.nix")) as nix.Imported<typeof import("../web-servers/caddy/vhost-options.ts")>, nix.thunk(() => ({
                       [nix.POS]: $pos[8],
                       cfg: nix.thunk(() => nix.sel(config, "services", "caddy")),
                     })))))),

@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const withTsm = nix.argOr($, "withTsm", () => false);
   const tsm_client = nix.arg($, "tsm-client");
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./srcs.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], fetchurl: fetchurl })))), null);
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./srcs.nix")) as nix.Imported<typeof import("./srcs.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], fetchurl: fetchurl })))), null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
       [nix.POS]: $pos[3],
       pname: "openafs",

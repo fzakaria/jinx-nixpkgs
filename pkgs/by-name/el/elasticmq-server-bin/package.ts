@@ -41,7 +41,7 @@ makeWrapper ${jre}/bin/java $out/bin/elasticmq-server \\
         [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
           [nix.POS]: $pos[2],
-          elasticmqTest: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./elasticmq-test.nix")), nix.thunk(() => ({
+          elasticmqTest: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./elasticmq-test.nix")) as nix.Imported<typeof import("./elasticmq-test.ts")>, nix.thunk(() => ({
               [nix.POS]: $pos[1],
               runCommand: runCommand,
               python3Packages: python3Packages,

@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const version = nix.arg($, "version");
   const stdenv = nix.arg($, "stdenv");
   const llvmPackages = nix.arg($, "llvmPackages");
-  const cross = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../..")), nix.thunk(() => ({
+  const cross = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../..")) as nix.Imported<typeof import("../../../../default.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[2],
       localSystem: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "system")),
       crossSystem: nix.thunk(() => nix.update(nix.sel(lib, "systems", "examples", "riscv32-embedded"), {

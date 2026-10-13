@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const makeScopeWithSplicing$ = nix.arg($, "makeScopeWithSplicing'");
   const pythonPackagesExtensions = nix.arg($, "pythonPackagesExtensions");
   const stdenv = nix.arg($, "stdenv");
-  const passthruFun = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./passthrufun.nix")), args_1));
+  const passthruFun = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./passthrufun.nix")) as nix.Imported<typeof import("./passthrufun.ts")>, args_1));
   const sources = nix.thunk(() => ({
     [nix.POS]: $pos[2],
     python314: nix.thunk(() => ({

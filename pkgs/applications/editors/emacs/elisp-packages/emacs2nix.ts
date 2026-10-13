@@ -5,7 +5,7 @@ const here = nix.here(import.meta.url);
 const $pos = nix.positions(here + "/emacs2nix.nix", [[["owner", 5, 5], ["repo", 6, 5], ["rev", 7, 5], ["hash", 8, 5], ["fetchSubmodules", 9, 5]], [["packages", 14, 3], ["EMACS2NIX", 19, 3], ["shellHook", 21, 3]]]);
 
 export default nix.thunk(() => (() => {
-  const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../../..")), nix.thunk(() => ({}))));
+  const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../../..")) as nix.Imported<typeof import("../../../../../default.ts")>, nix.thunk(() => ({}))));
   const src = nix.thunk(() => nix.app(nix.sel(pkgs, "fetchFromGitHub"), nix.thunk(() => ({
       [nix.POS]: $pos[0],
       owner: "nix-community",

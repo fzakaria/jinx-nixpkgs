@@ -9,7 +9,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.builtins.findFile(nix.builtins.nixPath, "nixpkgs")), nix.thunk(() => ({}))));
   const nixt = nix.arg($, "nixt");
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./update-utils.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: nix.thunk(() => nix.attr(pkgs, "lib")) }))));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./update-utils.nix")) as nix.Imported<typeof import("./update-utils.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], lib: nix.thunk(() => nix.attr(pkgs, "lib")) }))));
   const extractLatestVersionFromHtml = nix.thunk(() => nix.attr(from, "extractLatestVersionFromHtml"));
   const extractSha256FromHtml = nix.thunk(() => nix.attr(from, "extractSha256FromHtml"));
   const getLatestStableVersion = nix.thunk(() => nix.attr(from, "getLatestStableVersion"));

@@ -11,8 +11,8 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const kernelPackages = nix.argOr($, "kernelPackages", () => null);
-  const wg_snakeoil_keys = nix.thunk(() => nix.builtins.import(nix.path(here, "./snakeoil-keys.nix")));
-  const peer = nix.thunk(() => nix.builtins.import(nix.path(here, "./make-peer.nix")));
+  const wg_snakeoil_keys = nix.thunk(() => nix.builtins.import(nix.path(here, "./snakeoil-keys.nix")) as nix.Imported<typeof import("./snakeoil-keys.ts")>);
+  const peer = nix.thunk(() => nix.builtins.import(nix.path(here, "./make-peer.nix")) as nix.Imported<typeof import("./make-peer.ts")>);
   return {
     [nix.POS]: $pos[19],
     name: "wireguard",

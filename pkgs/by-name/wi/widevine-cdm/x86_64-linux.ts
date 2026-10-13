@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       unpackPhase: "unpackDir=\"src\"\ncp \"$src\" \"$unpackDir\".crx # go-crx3 doesn't like .crx3 extensions\ncrx3 unpack \"$unpackDir\".crx\n\ncd \"$unpackDir\"\n",
       installPhase: "runHook preInstall\n\ninstall -vD manifest.json $out/share/google/chrome/WidevineCdm/manifest.json\ninstall -vD LICENSE $out/share/google/chrome/WidevineCdm/LICENSE.txt\ninstall -vD _platform_specific/linux_x64/libwidevinecdm.so $out/share/google/chrome/WidevineCdm/_platform_specific/linux_x64/libwidevinecdm.so\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update-x86_64.py") })),
-      meta: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./meta.nix")), lib)),
+      meta: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./meta.nix")) as nix.Imported<typeof import("./meta.ts")>, lib)),
     }));
 })(), formals$1);
 //# sourceMappingURL=x86_64-linux.ts.map

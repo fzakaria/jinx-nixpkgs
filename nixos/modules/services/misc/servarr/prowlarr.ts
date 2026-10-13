@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "services", "prowlarr"));
-  const servarr = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./settings-options.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib, pkgs: pkgs }))));
+  const servarr = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./settings-options.nix")) as nix.Imported<typeof import("./settings-options.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib, pkgs: pkgs }))));
   const isCustomDataDir = nix.thunk(() => !nix.eq(nix.sel(cfg, "dataDir"), "/var/lib/prowlarr"));
   return {
     [nix.POS]: $pos[20],

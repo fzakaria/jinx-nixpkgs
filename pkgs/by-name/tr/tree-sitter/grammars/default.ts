@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const fetchFromCodeberg = nix.arg($, "fetchFromCodeberg");
   const nix_update_script = nix.arg($, "nix-update-script");
   const stdenv = nix.arg($, "stdenv");
-  const grammar_sources = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./grammar-sources.nix")), nix.thunk(() => ({
+  const grammar_sources = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./grammar-sources.nix")) as nix.Imported<typeof import("./grammar-sources.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[0],
       lib: lib,
       fetchpatch: fetchpatch,

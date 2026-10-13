@@ -5,7 +5,7 @@ const here = nix.here(import.meta.url);
 const $pos = nix.positions(here + "/test.nix", [[["modules", 5, 5]], [["key", 17, 7], ["file", 18, 7], ["imports", 19, 7], ["disabled", 20, 7]], [["key", 23, 7], ["file", 24, 7], ["imports", 25, 7], ["disabled", 26, 7]], [["key", 37, 15], ["file", 38, 15], ["imports", 39, 15], ["disabled", 40, 15]], [["key", 33, 11], ["file", 34, 11], ["imports", 35, 11], ["disabled", 43, 11]], [["key", 29, 7], ["file", 30, 7], ["imports", 31, 7], ["disabled", 46, 7]], [["key", 53, 11], ["file", 54, 11], ["imports", 55, 11], ["disabled", 56, 11]], [["key", 49, 7], ["file", 50, 7], ["imports", 51, 7], ["disabled", 59, 7]]]);
 
 export default nix.thunk(() => (() => {
-  const lib = nix.thunk(() => nix.builtins.import(nix.path(here, "../../..")));
+  const lib = nix.thunk(() => nix.builtins.import(nix.path(here, "../../..")) as nix.Imported<typeof import("../../../default.ts")>);
   const evaluation = nix.thunk(() => nix.app(nix.sel(lib, "evalModules"), nix.thunk(() => ({
       [nix.POS]: $pos[0],
       modules: nix.thunk(() => [

@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
     bootstrapFiles: bootstrapFiles,
     extraAttrs: maybeContentAddressed,
   }));
-  const result = nix.thunk(() => (nix.asBool(nix.eq(libc, "glibc")) ? nix.app(nix.builtins.import(nix.path(here, "./glibc.nix")), args_1) : (nix.asBool(nix.eq(libc, "musl")) ? nix.app(nix.builtins.import(nix.path(here, "./musl.nix")), args_1) : nix.builtins.throw("unsupported libc"))));
+  const result = nix.thunk(() => (nix.asBool(nix.eq(libc, "glibc")) ? nix.app(nix.builtins.import(nix.path(here, "./glibc.nix")) as nix.Imported<typeof import("./glibc.ts")>, args_1) : (nix.asBool(nix.eq(libc, "musl")) ? nix.app(nix.builtins.import(nix.path(here, "./musl.nix")) as nix.Imported<typeof import("./musl.ts")>, args_1) : nix.builtins.throw("unsupported libc"))));
   return nix.update(result, maybeDenoteProvenance);
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

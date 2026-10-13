@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   })();
   return (nix.asBool(minbootSupported) ? (() => {
     const callPackage = nix.thunk(() => nix.app(nix.sel(lib, "callPackageWith"), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib, config: config }))));
-    const minimal_bootstrap = nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../os-specific/linux/minimal-bootstrap")), nix.thunk(() => ({
+    const minimal_bootstrap = nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../os-specific/linux/minimal-bootstrap")) as nix.Imported<typeof import("../../os-specific/linux/minimal-bootstrap/default.ts")>, nix.thunk(() => ({
           [nix.POS]: $pos[2],
           buildPlatform: localSystem,
           hostPlatform: localSystem,
           lib: lib,
           config: config,
-          fetchurl: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../build-support/fetchurl/boot.nix")), nix.thunk(() => ({
+          fetchurl: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../build-support/fetchurl/boot.nix")) as nix.Imported<typeof import("../../build-support/fetchurl/boot.ts")>, nix.thunk(() => ({
               [nix.POS]: $pos[1],
               system: localSystem,
               rewriteURL: nix.thunk(() => nix.attr(config, "rewriteURL")),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
           [nix.POS]: $pos[6],
           ccWrapperStdenv: nix.thunk(() => nix.sel(self, "stdenv")),
           "gcc-unwrapped": compilerPackage,
-          binutils: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../build-support/bintools-wrapper")), nix.thunk(() => ({
+          binutils: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../build-support/bintools-wrapper")) as nix.Imported<typeof import("../../build-support/bintools-wrapper/default.ts")>, nix.thunk(() => ({
               [nix.POS]: $pos[3],
               name: "bootstrap-stage0-binutils-wrapper",
               nativeTools: false,
@@ -107,7 +107,7 @@ ln -s ${libcPackage}/include $out/include
       disallowedInFinalStdenv: nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "catAttrs"), "out", nix.thunk(() => nix.builtins.filter((drv) => nix.app(nix.sel(lib, "attrsets", "isDerivation"), drv), nix.thunk(() => nix.builtins.attrValues(minimal_bootstrap)))))),
     };
   })() : (() => {
-    const bootstrapTools = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./bootstrap-tools")), nix.thunk(() => ({
+    const bootstrapTools = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./bootstrap-tools")) as nix.Imported<typeof import("./bootstrap-tools/default.ts")>, nix.thunk(() => ({
         [nix.POS]: $pos[9],
         libc: nix.thunk(() => nix.attr(localSystem, "libc")),
         system: nix.thunk(() => nix.attr(localSystem, "system")),
@@ -128,7 +128,7 @@ ln -s ${libcPackage}/include $out/include
           [nix.POS]: $pos[13],
           ccWrapperStdenv: nix.thunk(() => nix.sel(self, "stdenv")),
           "gcc-unwrapped": bootstrapTools,
-          binutils: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../build-support/bintools-wrapper")), nix.thunk(() => ({
+          binutils: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../build-support/bintools-wrapper")) as nix.Imported<typeof import("../../build-support/bintools-wrapper/default.ts")>, nix.thunk(() => ({
               [nix.POS]: $pos[10],
               name: "bootstrap-stage0-binutils-wrapper",
               nativeTools: false,

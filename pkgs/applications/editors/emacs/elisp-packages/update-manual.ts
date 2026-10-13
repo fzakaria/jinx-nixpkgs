@@ -5,7 +5,7 @@ const here = nix.here(import.meta.url);
 const $pos = nix.positions(here + "/update-manual.nix", [[["allowBroken", 3, 12]], [["config", 3, 5]]]);
 
 export default nix.thunk(() => (() => {
-  const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../../../.")), nix.thunk(() => ({
+  const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../../../.")) as nix.Imported<typeof import("../../../../../default.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[1],
       config: nix.thunk(() => ({ [nix.POS]: $pos[0], allowBroken: true })),
     }))));

@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const pillow = nix.arg($, "pillow");
   const torch_bin = nix.arg($, "torch-bin");
   const pyVerNoDot = nix.thunk(() => nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(python, "pythonVersion"))));
-  const srcs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./binary-hashes.nix")), version));
+  const srcs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./binary-hashes.nix")) as nix.Imported<typeof import("./binary-hashes.ts")>, version));
   const unsupported = nix.thunk(() => nix.builtins.throw("Unsupported system"));
   const version = "0.28.0";
   return nix.app(buildPythonPackage, nix.thunk(() => ({

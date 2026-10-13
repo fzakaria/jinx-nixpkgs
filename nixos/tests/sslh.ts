@@ -6,7 +6,7 @@ const $pos = nix.positions(here + "/sslh.nix", [[["allowedTCPPorts", 8, 29]], [[
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
 const formals$2 = { args: {  }, ellipsis: true };
 
-export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")), nix.thunk(() => ({
+export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")) as nix.Imported<typeof import("./make-test-python.ts")>, nix.thunk(() => ({
     [nix.POS]: $pos[32],
     name: "sslh",
     nodes: nix.thunk(() => ({

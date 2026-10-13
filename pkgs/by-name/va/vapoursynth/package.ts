@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       passthru: nix.thunk(() => (() => {
         const python3_1 = python3;
-        const withPlugins = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./plugin-interface.nix")), nix.thunk(() => ({
+        const withPlugins = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./plugin-interface.nix")) as nix.Imported<typeof import("./plugin-interface.ts")>, nix.thunk(() => ({
             [nix.POS]: $pos[1],
             lib: lib,
             python3: python3_1,

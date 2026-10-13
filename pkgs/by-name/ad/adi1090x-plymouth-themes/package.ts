@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const selected_themes = nix.argOr($, "selected_themes", () => []);
   const version = "1.0";
-  const themeShas = nix.thunk(() => nix.builtins.import(nix.path(here, "./shas.nix")));
+  const themeShas = nix.thunk(() => nix.builtins.import(nix.path(here, "./shas.nix")) as nix.Imported<typeof import("./shas.ts")>);
   const knownThemes = nix.thunk(() => nix.builtins.attrNames(themeShas));
   const selectedThemes = nix.thunk(() => (nix.asBool(nix.eq(selected_themes, [])) ? nix.force(knownThemes) : (() => {
     const unknown = nix.thunk(() => nix.app(nix.sel(lib, "subtractLists"), knownThemes, selected_themes));

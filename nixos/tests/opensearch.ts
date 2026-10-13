@@ -6,7 +6,7 @@ const $pos = nix.positions(here + "/opensearch.nix", [[["maintainers", 8, 14]], 
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
 
 export default nix.thunk(() => (() => {
-  const opensearchTest = (extraSettings) => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")), nix.lambda((args) => (() => {
+  const opensearchTest = (extraSettings) => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")) as nix.Imported<typeof import("./make-test-python.ts")>, nix.lambda((args) => (() => {
       const $ = nix.formals(args, formals$1);
       const pkgs = nix.arg($, "pkgs");
       const lib = nix.arg($, "lib");

@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   return {
     [nix.POS]: $pos[2],
-    mariadbPackages: nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (n) => (_) => nix.app(nix.sel(lib, "hasPrefix"), "mariadb", n), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../pkgs/servers/sql/mariadb")), pkgs)))),
+    mariadbPackages: nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (n) => (_) => nix.app(nix.sel(lib, "hasPrefix"), "mariadb", n), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../pkgs/servers/sql/mariadb")) as nix.Imported<typeof import("../../../pkgs/servers/sql/mariadb/default.ts")>, pkgs)))),
     mysqlPackages: nix.thunk(() => ({ [nix.POS]: $pos[0], mysql84: nix.thunk(() => nix.attr(pkgs, "mysql84")) })),
     perconaPackages: nix.thunk(() => ({
       [nix.POS]: $pos[1],

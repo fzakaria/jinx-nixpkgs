@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
           makeWrapper: makeBinaryWrapper,
           requiredLuaModules: nix.thunk(() => nix.attr(luaPackages, "requiredLuaModules")),
         }))));
-      const withPackages = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./with-packages.nix")), nix.thunk(() => ({ [nix.POS]: $pos[6], buildEnv: buildEnv, luaPackages: luaPackages }))));
+      const withPackages = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./with-packages.nix")) as nix.Imported<typeof import("./with-packages.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[6], buildEnv: buildEnv, luaPackages: luaPackages }))));
       const pkgs = luaPackages;
       const interpreter = nix.thunk(() => nix.str`${self}/bin/${executable_1}`);
       const executable_1 = executable;
@@ -148,7 +148,7 @@ export default nix.lambda((args) => (() => {
         passthruFun: passthruFun,
         patches: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.path(here, "./5.1.darwin.patch")), [nix.path(here, "./CVE-2014-5461.patch")])),
       }))));
-    const luajit_2_0 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../luajit/2.0.nix")), nix.thunk(() => ({
+    const luajit_2_0 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../luajit/2.0.nix")) as nix.Imported<typeof import("../luajit/2.0.ts")>, nix.thunk(() => ({
         [nix.POS]: $pos[19],
         self: luajit_2_0,
         callPackage: callPackage,
@@ -156,14 +156,14 @@ export default nix.lambda((args) => (() => {
         lib: lib,
         passthruFun: passthruFun,
       }))));
-    const luajit_2_1 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../luajit/2.1.nix")), nix.thunk(() => ({
+    const luajit_2_1 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../luajit/2.1.nix")) as nix.Imported<typeof import("../luajit/2.1.ts")>, nix.thunk(() => ({
         [nix.POS]: $pos[20],
         self: luajit_2_1,
         callPackage: callPackage,
         fetchFromGitHub: fetchFromGitHub,
         passthruFun: passthruFun,
       }))));
-    const luajit_openresty = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../luajit/openresty.nix")), nix.thunk(() => ({
+    const luajit_openresty = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../luajit/openresty.nix")) as nix.Imported<typeof import("../luajit/openresty.ts")>, nix.thunk(() => ({
         [nix.POS]: $pos[21],
         self: luajit_openresty,
         callPackage: callPackage,

@@ -6,7 +6,7 @@ const $pos = nix.positions(here + "/schleuder.nix", [[["mydomain", 15, 11], ["de
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
 
 export default nix.thunk(() => (() => {
-  const certs = nix.thunk(() => nix.builtins.import(nix.path(here, "./common/acme/server/snakeoil-certs.nix")));
+  const certs = nix.thunk(() => nix.builtins.import(nix.path(here, "./common/acme/server/snakeoil-certs.nix")) as nix.Imported<typeof import("./common/acme/server/snakeoil-certs.ts")>);
   const domain = nix.thunk(() => nix.sel(certs, "domain"));
   return {
     [nix.POS]: $pos[18],

@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
             memorySize: 2048n,
             writableStore: true,
             additionalPaths: nix.thunk(() => (() => {
-              const emptyContainer = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/eval-config.nix")), nix.thunk(() => ({
+              const emptyContainer = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/eval-config.nix")) as nix.Imported<typeof import("../lib/eval-config.ts")>, nix.thunk(() => ({
                   [nix.POS]: $pos[12],
                   modules: nix.thunk(() => nix.app(nix.sel(lib_1, "singleton"), nix.thunk(() => ({
                       [nix.POS]: $pos[11],

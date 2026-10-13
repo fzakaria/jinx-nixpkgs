@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
         const pkgs_1 = nix.arg($_1, "pkgs");
         const lib_1 = nix.arg($_1, "lib");
         const config = nix.arg($_1, "config");
-        const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./ssh-keys.nix")), pkgs_1));
+        const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./ssh-keys.nix")) as nix.Imported<typeof import("./ssh-keys.ts")>, pkgs_1));
         const snakeOilPrivateKey = nix.thunk(() => nix.attr(from, "snakeOilPrivateKey"));
         const snakeOilRaucCert = nix.thunk(() => nix.app(nix.sel(pkgs_1, "runCommand"), "rauc.crt", nix.thunk(() => ({ [nix.POS]: $pos[0], snakeOilPrivateKey: snakeOilPrivateKey })), nix.thunk(() => nix.str`${nix.app(nix.sel(lib_1, "getExe"), nix.thunk(() => nix.sel(pkgs_1, "openssl")))} req -x509 -key $snakeOilPrivateKey -out $out -days 3650 \\
   -addext subjectKeyIdentifier=hash \\

@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
       [nix.POS]: $pos[1],
       meta: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "meta"), { [nix.POS]: $pos[0], knownVulnerabilities: [] })),
     }));
-  const passthruFun = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../interpreters/python/passthrufun.nix")), nix.thunk(() => ({
+  const passthruFun = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../interpreters/python/passthrufun.nix")) as nix.Imported<typeof import("../../interpreters/python/passthrufun.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[2],
       lib: lib,
       stdenv: nix.thunk(() => nix.attr(pkgsBuildHost, "stdenv")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       [nix.POS]: $pos[7],
       self: python27,
       pkgsBuildHost: nix.thunk(() => nix.update(pkgsBuildHost, { [nix.POS]: $pos[5], python27: python27 })),
-      packageOverrides: nix.thunk(() => nix.app(nix.sel(lib, "composeExtensions"), nix.thunk(() => nix.builtins.import(nix.path(here, "./python2-packages.nix"))), (_self) => (super$) => ({
+      packageOverrides: nix.thunk(() => nix.app(nix.sel(lib, "composeExtensions"), nix.thunk(() => nix.builtins.import(nix.path(here, "./python2-packages.nix")) as nix.Imported<typeof import("./python2-packages.ts")>), (_self) => (super$) => ({
           [nix.POS]: $pos[6],
           pip: nix.thunk(() => nix.app(removeKnownVulnerabilities, nix.thunk(() => nix.sel(super$, "pip")))),
           setuptools: nix.thunk(() => nix.app(removeKnownVulnerabilities, nix.thunk(() => nix.sel(super$, "setuptools")))),

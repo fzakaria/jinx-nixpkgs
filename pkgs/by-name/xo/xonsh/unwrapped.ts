@@ -113,7 +113,7 @@ patchShebangs .
         shellPath: "/bin/xonsh",
         wrapper: nix.thunk(() => nix.builtins.throw("The top-level xonsh package is now wrapped. Use it directly.")),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-        xontribs: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./xontribs")), nix.thunk(() => ({ [nix.POS]: $pos[1], callPackage: callPackage })))),
+        xontribs: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./xontribs")) as nix.Imported<typeof import("./xontribs/default.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[1], callPackage: callPackage })))),
       }));
       const meta = nix.thunk(() => ({
         [nix.POS]: $pos[3],

@@ -10,11 +10,11 @@ export default nix.lambda((args) => (() => {
   const mkShell = nix.arg($, "mkShell");
   const callPackage = nix.arg($, "callPackage");
   const python3Packages = nix.arg($, "python3Packages");
-  const helpers = nix.thunk(() => nix.app(callPackage, nix.thunk(() => nix.builtins.import(nix.path(here, "./helpers.nix"))), nix.thunk(() => ({}))));
+  const helpers = nix.thunk(() => nix.app(callPackage, nix.thunk(() => nix.builtins.import(nix.path(here, "./helpers.nix")) as nix.Imported<typeof import("./helpers.ts")>), nix.thunk(() => ({}))));
   return nix.app(mkShell, nix.thunk(() => ({
       [nix.POS]: $pos[0],
       inputsFrom: nix.thunk(() => [
-        nix.thunk(() => nix.app(callPackage, nix.thunk(() => nix.builtins.import(nix.path(here, "./package.nix"))), nix.thunk(() => ({})))),
+        nix.thunk(() => nix.app(callPackage, nix.thunk(() => nix.builtins.import(nix.path(here, "./package.nix")) as nix.Imported<typeof import("./package.ts")>), nix.thunk(() => ({})))),
       ]),
       buildInputs: nix.thunk(() => [
         nix.thunk(() => nix.sel(helpers, "format")),

@@ -12,7 +12,7 @@ const formals$5 = { args: { cpu: false, vendor: false, kernel: false, abi: false
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../meta-types.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib }))));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../meta-types.nix")) as nix.Imported<typeof import("../meta-types.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib }))));
   const enum$ = nix.thunk(() => nix.attr(from, "enum"));
   const all = nix.thunk(() => nix.attr(lib, "all"));
   const any = nix.thunk(() => nix.attr(lib, "any"));

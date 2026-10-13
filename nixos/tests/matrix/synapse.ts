@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
   -domains ${domain}
 install -Dm444 -t $out ${domain}/{key,cert}.pem
 `));
-  const mailerCerts = nix.thunk(() => nix.builtins.import(nix.path(here, "../common/acme/server/snakeoil-certs.nix")));
+  const mailerCerts = nix.thunk(() => nix.builtins.import(nix.path(here, "../common/acme/server/snakeoil-certs.nix")) as nix.Imported<typeof import("../common/acme/server/snakeoil-certs.ts")>);
   const mailerDomain = nix.thunk(() => nix.sel(mailerCerts, "domain"));
   const registrationSharedSecret = "unsecure123";
   const anonHash = "hunter2hunter2hunter2";

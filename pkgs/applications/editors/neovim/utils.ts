@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
   })();
   const makeVimPackageInfo = (plugins) => (() => {
     const neovimConfig = (structuredConfigure) => (() => {
-      const module = nix.thunk(() => nix.builtins.import(nix.path(here, "./plugin-submodule.nix")));
+      const module = nix.thunk(() => nix.builtins.import(nix.path(here, "./plugin-submodule.nix")) as nix.Imported<typeof import("./plugin-submodule.ts")>);
       const cfg = nix.thunk(() => nix.app(nix.sel(lib, "evalModules"), nix.thunk(() => ({ [nix.POS]: $pos[3], modules: nix.thunk(() => [module, structuredConfigure]) }))));
       return nix.sel(cfg, "config");
     })();

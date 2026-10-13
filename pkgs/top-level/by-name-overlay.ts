@@ -5,7 +5,7 @@ const here = nix.here(import.meta.url);
 const $pos = nix.positions(here + "/by-name-overlay.nix", [[["_internalCallByNamePackageFile", 56, 3]]]);
 
 export default (baseDirectory) => (() => {
-  const lib = nix.thunk(() => nix.builtins.import(nix.path(here, "../../lib")));
+  const lib = nix.thunk(() => nix.builtins.import(nix.path(here, "../../lib")) as nix.Imported<typeof import("../../lib/default.ts")>);
   const readDir = nix.thunk(() => nix.attr(nix.builtins, "readDir"));
   const from = nix.thunk(() => nix.sel(lib, "attrsets"));
   const mapAttrs = nix.thunk(() => nix.attr(from, "mapAttrs"));

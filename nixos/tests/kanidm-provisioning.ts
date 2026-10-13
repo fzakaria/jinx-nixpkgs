@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const kanidmPackage = nix.arg($, "kanidmPackage");
   const pkgs = nix.arg($, "pkgs");
-  const certs = nix.thunk(() => nix.builtins.import(nix.path(here, "./common/acme/server/snakeoil-certs.nix")));
+  const certs = nix.thunk(() => nix.builtins.import(nix.path(here, "./common/acme/server/snakeoil-certs.nix")) as nix.Imported<typeof import("./common/acme/server/snakeoil-certs.ts")>);
   const serverDomain = nix.thunk(() => nix.sel(certs, "domain"));
   const certsPath = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "snakeoil-certs", nix.thunk(() => ({})), nix.thunk(() => nix.str`mkdir $out
 cp ${nix.sel(certs, nix.key(nix.str`${serverDomain}`), "cert")} $out/snakeoil.crt

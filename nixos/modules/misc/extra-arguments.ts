@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       [nix.POS]: $pos[2],
       args: nix.thunk(() => ({
         [nix.POS]: $pos[1],
-        utils: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/utils.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib, config: config, pkgs: pkgs })))),
+        utils: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/utils.nix")) as nix.Imported<typeof import("../../lib/utils.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib, config: config, pkgs: pkgs })))),
       })),
     })),
   };

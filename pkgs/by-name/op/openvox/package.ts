@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
         tests: nix.thunk(() => ({
           [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => (() => {
-              const from = nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./gemset.nix")), "openvox"));
+              const from = nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./gemset.nix")) as nix.Imported<typeof import("./gemset.ts")>, "openvox"));
               return {
               [nix.POS]: $pos[1],
               package: openvox,

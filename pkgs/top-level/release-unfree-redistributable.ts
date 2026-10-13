@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
     __allowFileset: false,
   }));
   const full = nix.argOr($, "full", () => false);
-  const release_lib = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./release-lib.nix")), nix.thunk(() => ({
+  const release_lib = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./release-lib.nix")) as nix.Imported<typeof import("./release-lib.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[2],
       supportedSystems: supportedSystems,
       nixpkgsArgs: nixpkgsArgs,

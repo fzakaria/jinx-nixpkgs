@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         [nix.POS]: $pos[4],
         build: nix.thunk(() => ({
           [nix.POS]: $pos[3],
-          qemuImage: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/make-disk-image.nix")), nix.thunk(() => ({
+          qemuImage: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/make-disk-image.nix")) as nix.Imported<typeof import("../../lib/make-disk-image.ts")>, nix.thunk(() => ({
               [nix.POS]: $pos[1],
               pkgs: pkgs,
               lib: lib,

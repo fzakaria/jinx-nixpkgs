@@ -5,11 +5,11 @@ const here = nix.here(import.meta.url);
 const $pos = nix.positions(here + "/eval-release.nix", [[["name", 20, 29], ["drvPath", 20, 34]], [["failed", 22, 13]], [["recurseForDerivations", 27, 11]]]);
 
 export default nix.thunk(() => (() => {
-  const from = nix.thunk(() => nix.builtins.import(nix.path(here, "../../lib")));
+  const from = nix.thunk(() => nix.builtins.import(nix.path(here, "../../lib")) as nix.Imported<typeof import("../../lib/default.ts")>);
   const isDerivation = nix.thunk(() => nix.attr(from, "isDerivation"));
   const mapAttrs = nix.thunk(() => nix.attr(from, "mapAttrs"));
   const trace = nix.thunk(() => (nix.asBool(nix.eq(nix.builtins.getEnv("VERBOSE"), "1")) ? nix.builtins.trace : (x) => (y) => nix.force(y)));
-  const rel = nix.thunk(() => nix.builtins.removeAttrs(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../pkgs/top-level/release.nix")), nix.thunk(() => ({})))), nix.thunk(() => ["tarball", "unstable"])));
+  const rel = nix.thunk(() => nix.builtins.removeAttrs(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../pkgs/top-level/release.nix")) as nix.Imported<typeof import("../../pkgs/top-level/release.ts")>, nix.thunk(() => ({})))), nix.thunk(() => ["tarball", "unstable"])));
   const recurse = (path) => (attrs) => (nix.asBool(nix.sel(nix.builtins.tryEval(attrs), "success")) ? (nix.asBool(nix.app(isDerivation, attrs)) ? (nix.asBool(nix.sel(nix.builtins.tryEval(nix.thunk(() => nix.sel(attrs, "drvPath"))), "success")) ? {
     [nix.POS]: $pos[0],
     name: nix.thunk(() => nix.attr(attrs, "name")),

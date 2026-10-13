@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         build: nix.thunk(() => ({
           [nix.POS]: $pos[3],
           image: nix.thunk(() => nix.sel(config, "system", "build", "OCIImage")),
-          OCIImage: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/make-disk-image.nix")), nix.thunk(() => (() => {
+          OCIImage: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/make-disk-image.nix")) as nix.Imported<typeof import("../../lib/make-disk-image.ts")>, nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(config, "virtualisation"));
               return {
               [nix.POS]: $pos[2],

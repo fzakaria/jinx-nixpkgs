@@ -4,7 +4,7 @@ import * as nix from "../../../../.jinx/runtime/index.ts";
 const here = nix.here(import.meta.url);
 const $pos = nix.positions(here + "/9.10.3.nix", [[["version", 2, 3], ["sha256", 3, 3]]]);
 
-export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common-hadrian.nix")), nix.thunk(() => ({
+export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common-hadrian.nix")) as nix.Imported<typeof import("./common-hadrian.ts")>, nix.thunk(() => ({
     [nix.POS]: $pos[0],
     version: "9.10.3",
     sha256: "d266864b9e0b7b741abe8c9d6a790d7c01c21cf43a1419839119255878ebc59a",

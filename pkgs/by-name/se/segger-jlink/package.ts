@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const headless = nix.argOr($, "headless", () => false);
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
-  const source = nix.thunk(() => nix.builtins.import(nix.path(here, "./source.nix")));
+  const source = nix.thunk(() => nix.builtins.import(nix.path(here, "./source.nix")) as nix.Imported<typeof import("./source.ts")>);
   const supported = nix.thunk(() => nix.builtins.removeAttrs(source, nix.thunk(() => ["version"])));
   const platform = nix.thunk(() => nix.selOr(supported, () => nix.builtins.throw(nix.thunk(() => nix.str`unsupported platform ${nix.sel(stdenv, "system")}`)), nix.key(nix.sel(stdenv, "system"))));
   const version = nix.thunk(() => nix.attr(source, "version"));

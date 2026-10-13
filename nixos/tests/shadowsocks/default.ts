@@ -9,27 +9,27 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const config = nix.argOr($, "config", () => ({}));
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../..")), nix.thunk(() => ({ [nix.POS]: $pos[0], system: system, config: config }))));
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../..")) as nix.Imported<typeof import("../../../default.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], system: system, config: config }))));
   return {
     [nix.POS]: $pos[5],
-    "basic-libev": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({
+    "basic-libev": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")) as nix.Imported<typeof import("./common.ts")>, nix.thunk(() => ({
         [nix.POS]: $pos[1],
         name: "basic-libev",
         package: nix.thunk(() => nix.sel(pkgs, "shadowsocks-libev")),
       })))),
-    "basic-rust": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({
+    "basic-rust": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")) as nix.Imported<typeof import("./common.ts")>, nix.thunk(() => ({
         [nix.POS]: $pos[2],
         name: "basic-rust",
         package: nix.thunk(() => nix.sel(pkgs, "shadowsocks-rust")),
       })))),
-    "v2ray-plugin-libev": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({
+    "v2ray-plugin-libev": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")) as nix.Imported<typeof import("./common.ts")>, nix.thunk(() => ({
         [nix.POS]: $pos[3],
         name: "v2ray-plugin-libev",
         package: nix.thunk(() => nix.sel(pkgs, "shadowsocks-libev")),
         plugin: nix.thunk(() => nix.str`${nix.sel(pkgs, "shadowsocks-v2ray-plugin")}/bin/v2ray-plugin`),
         pluginOpts: "host=nixos.org",
       })))),
-    "v2ray-plugin-rust": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({
+    "v2ray-plugin-rust": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")) as nix.Imported<typeof import("./common.ts")>, nix.thunk(() => ({
         [nix.POS]: $pos[4],
         name: "v2ray-plugin-rust",
         package: nix.thunk(() => nix.sel(pkgs, "shadowsocks-rust")),

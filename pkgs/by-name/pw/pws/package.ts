@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname = "pws";
-      const version = nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./gemset.nix")), "pws", "version"));
+      const version = nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./gemset.nix")) as nix.Imported<typeof import("./gemset.ts")>, "pws", "version"));
       const nativeBuildInputs = nix.thunk(() => [makeWrapper]);
       const dontUnpack = true;
       const installPhase = nix.thunk(() => (() => {

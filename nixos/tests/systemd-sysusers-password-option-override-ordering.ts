@@ -8,7 +8,7 @@ const formals$1 = { args: { lib: false, pkgs: true }, ellipsis: true };
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
-  const pkgs = nix.argOr($, "pkgs", () => nix.builtins.import(nix.path(here, "../..")));
+  const pkgs = nix.argOr($, "pkgs", () => nix.builtins.import(nix.path(here, "../..")) as nix.Imported<typeof import("../../default.ts")>);
   const password = "test";
   const hashedPassword = "$y$j9T$wLgKY231.8j.ciV2MfEXe1$P0k5j3bCwHgnwW0Ive3w4knrgpiA4TzhCYLAnHvDZ51";
   const hashedPassword1 = "$y$j9T$s8TyQJtNImvobhGM5Nlez0$3E8/O8EVGuA4sr1OQmrzi8GrRcy/AEhj454JjAn72A2";

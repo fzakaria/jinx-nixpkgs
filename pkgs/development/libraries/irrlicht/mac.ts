@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const cmake = nix.arg($, "cmake");
-  const common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], fetchzip: fetchzip }))));
+  const common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")) as nix.Imported<typeof import("./common.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], fetchzip: fetchzip }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
       [nix.POS]: $pos[3],
       pname: "irrlicht-mac",

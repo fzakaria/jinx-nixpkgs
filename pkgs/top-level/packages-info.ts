@@ -8,9 +8,9 @@ const formals$1 = { args: { trace: true }, ellipsis: false };
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const trace = nix.argOr($, "trace", () => false);
-  const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({
+  const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../..")) as nix.Imported<typeof import("../../default.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[0],
-      config: nix.thunk(() => nix.builtins.import(nix.path(here, "./packages-config.nix"))),
+      config: nix.thunk(() => nix.builtins.import(nix.path(here, "./packages-config.nix")) as nix.Imported<typeof import("./packages-config.ts")>),
     }))));
   const lib = nix.thunk(() => nix.attr(pkgs, "lib"));
   const generateInfo = (path) => (value) => (() => {

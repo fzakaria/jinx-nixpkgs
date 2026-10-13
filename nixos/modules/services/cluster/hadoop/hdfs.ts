@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "hadoop"));
-  const hadoopConf = nix.thunk(() => nix.str`${nix.app(nix.builtins.import(nix.path(here, "./conf.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], cfg: cfg, pkgs: pkgs, lib: lib })))}/`);
+  const hadoopConf = nix.thunk(() => nix.str`${nix.app(nix.builtins.import(nix.path(here, "./conf.nix")) as nix.Imported<typeof import("./conf.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], cfg: cfg, pkgs: pkgs, lib: lib })))}/`);
   const hadoopServiceOption = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const serviceName = nix.arg($_1, "serviceName");

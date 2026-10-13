@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
     }));
   return {
     [nix.POS]: $pos[23],
-    "julia_110-bin": nix.thunk(() => nix.app(wrapJulia, nix.thunk(() => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic-bin.nix")), nix.thunk(() => ({
+    "julia_110-bin": nix.thunk(() => nix.app(wrapJulia, nix.thunk(() => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic-bin.nix")) as nix.Imported<typeof import("./generic-bin.ts")>, nix.thunk(() => ({
             [nix.POS]: $pos[4],
             version: "1.10.12",
             sha256: nix.thunk(() => ({
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
               "aarch64-darwin": "0gvqmdnqgs2gv72zsnnppfhbsj7qynvimll9hm4nvm905bp2mcak",
             })),
           })))), nix.thunk(() => ({})))))),
-    "julia_111-bin": nix.thunk(() => nix.app(wrapJulia, nix.thunk(() => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic-bin.nix")), nix.thunk(() => ({
+    "julia_111-bin": nix.thunk(() => nix.app(wrapJulia, nix.thunk(() => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic-bin.nix")) as nix.Imported<typeof import("./generic-bin.ts")>, nix.thunk(() => ({
             [nix.POS]: $pos[6],
             version: "1.11.9",
             sha256: nix.thunk(() => ({
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
               "aarch64-darwin": "1mrvycjlxs225sspdvvq4qbay1riyyjzqjs1d0xgqdkh6c6kv47d",
             })),
           })))), nix.thunk(() => ({})))))),
-    "julia_112-bin": nix.thunk(() => nix.app(wrapJulia, nix.thunk(() => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic-bin.nix")), nix.thunk(() => ({
+    "julia_112-bin": nix.thunk(() => nix.app(wrapJulia, nix.thunk(() => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic-bin.nix")) as nix.Imported<typeof import("./generic-bin.ts")>, nix.thunk(() => ({
             [nix.POS]: $pos[8],
             version: "1.12.7",
             sha256: nix.thunk(() => ({
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
               "aarch64-darwin": "06b9r4a6zddqr1cg9cv206zmjbdaiz1rb5nr2f69qssvnbgwx3xg",
             })),
           })))), nix.thunk(() => ({})))))),
-    "julia_113-bin": nix.thunk(() => nix.app(wrapJulia, nix.thunk(() => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic-bin.nix")), nix.thunk(() => ({
+    "julia_113-bin": nix.thunk(() => nix.app(wrapJulia, nix.thunk(() => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic-bin.nix")) as nix.Imported<typeof import("./generic-bin.ts")>, nix.thunk(() => ({
             [nix.POS]: $pos[10],
             version: "1.13.1",
             sha256: nix.thunk(() => ({
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
               "aarch64-darwin": "0zqgkb294y2ih643z4fbil229hf6nvak98fbq9vbghkp8yfjbq53",
             })),
           })))), nix.thunk(() => ({})))))),
-    julia_110: nix.thunk(() => nix.app(wrapJulia, nix.thunk(() => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")), nix.thunk(() => ({
+    julia_110: nix.thunk(() => nix.app(wrapJulia, nix.thunk(() => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")) as nix.Imported<typeof import("./generic.ts")>, nix.thunk(() => ({
             [nix.POS]: $pos[13],
             version: "1.10.12",
             hash: "sha256-KIFenIPyMWflO9SnnAhea5VHrigIrLI0FatcVYqFzuw=",
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
                 })))),
             ]),
           })))), nix.thunk(() => ({ [nix.POS]: $pos[14], stdenv: gcc14Stdenv, gfortran: gfortran14 })))))),
-    julia_111: nix.thunk(() => nix.app(wrapJulia, nix.thunk(() => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")), nix.thunk(() => ({
+    julia_111: nix.thunk(() => nix.app(wrapJulia, nix.thunk(() => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")) as nix.Imported<typeof import("./generic.ts")>, nix.thunk(() => ({
             [nix.POS]: $pos[16],
             version: "1.11.9",
             hash: "sha256-SX5jIfJfxQQfP2P5sCGtglFn+GZlOIyHgnQ3qrr8GSI=",
@@ -93,7 +93,7 @@ export default nix.lambda((args) => (() => {
                 })))),
             ]),
           })))), nix.thunk(() => ({ [nix.POS]: $pos[17], stdenv: gcc14Stdenv, gfortran: gfortran14 })))))),
-    julia_112: nix.thunk(() => nix.app(wrapJulia, nix.thunk(() => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")), nix.thunk(() => ({
+    julia_112: nix.thunk(() => nix.app(wrapJulia, nix.thunk(() => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")) as nix.Imported<typeof import("./generic.ts")>, nix.thunk(() => ({
             [nix.POS]: $pos[19],
             version: "1.12.7",
             hash: "sha256-XH2Ft3HeMYXuyp+8LmFz2Lz2109oQYYiqenEOtdSr1E=",
@@ -108,7 +108,7 @@ export default nix.lambda((args) => (() => {
                 nix.path(here, "./patches/1.12/0002-lbt-blas-detection.patch"),
               ])))),
           })))), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isGNU")) ? { [nix.POS]: $pos[20], stdenv: gcc14Stdenv, gfortran: gfortran14 } : {})))))),
-    julia_113: nix.thunk(() => nix.app(wrapJulia, nix.thunk(() => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")), nix.thunk(() => ({
+    julia_113: nix.thunk(() => nix.app(wrapJulia, nix.thunk(() => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")) as nix.Imported<typeof import("./generic.ts")>, nix.thunk(() => ({
             [nix.POS]: $pos[21],
             version: "1.13.1",
             hash: "sha256-HCAGvO16H4tsklmO9lt7JPx0rqrcU1NaReTGGXABBXw=",

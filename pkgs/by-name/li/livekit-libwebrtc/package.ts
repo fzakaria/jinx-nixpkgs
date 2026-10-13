@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       url: "https://raw.githubusercontent.com/livekit/rust-sdks/refs/tags/webrtc-dac8015-6/webrtc-sys/libwebrtc/boringssl_prefix_symbols.txt",
       hash: "sha256-dAweArv8zjsFPENEKi9mNBQkt4y+hh3rCqG6QZjRC20=",
     }))));
-  const gnSystemLibraries = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mkSystemLibraries.nix")), nix.thunk(() => ({
+  const gnSystemLibraries = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mkSystemLibraries.nix")) as nix.Imported<typeof import("./mkSystemLibraries.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[2],
       brotli: brotli,
       fontconfig: fontconfig,

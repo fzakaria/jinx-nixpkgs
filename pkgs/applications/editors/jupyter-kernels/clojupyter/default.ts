@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const writeShellScript = nix.arg($, "writeShellScript");
   const runCommand = nix.arg($, "runCommand");
   const imagemagick = nix.arg($, "imagemagick");
-  const cljdeps = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./deps.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], pkgs: pkgs }))));
+  const cljdeps = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./deps.nix")) as nix.Imported<typeof import("./deps.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], pkgs: pkgs }))));
   const classp = nix.thunk(() => nix.app(nix.sel(cljdeps, "makeClasspaths"), nix.thunk(() => ({}))));
   const shellScript = nix.thunk(() => nix.app(writeShellScript, "clojupyter", nix.thunk(() => nix.str`${jre}/bin/java -cp ${classp} clojupyter.kernel.core "$@"
 `)));

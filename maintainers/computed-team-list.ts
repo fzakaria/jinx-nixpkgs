@@ -9,7 +9,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const githubTeams = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./github-teams.json")));
-  const teams = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./team-list.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib }))));
+  const teams = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./team-list.nix")) as nix.Imported<typeof import("./team-list.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib }))));
   const maintainersById = nix.thunk(() => nix.app(nix.sel(lib, "pipe"), nix.thunk(() => nix.sel(lib, "maintainers")), nix.thunk(() => [
       nix.thunk(() => nix.sel(lib, "attrValues")),
       nix.thunk(() => nix.app(nix.sel(lib, "groupBy"), (attrs) => nix.builtins.toString(nix.thunk(() => nix.sel(attrs, "githubId"))))),

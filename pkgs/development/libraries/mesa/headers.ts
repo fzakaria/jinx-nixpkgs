@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
-  const common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib, fetchFromGitLab: fetchFromGitLab }))));
+  const common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")) as nix.Imported<typeof import("./common.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib, fetchFromGitLab: fetchFromGitLab }))));
   const headers = nix.thunk(() => [
     "include/GL/internal/dri_interface.h",
     "include/EGL/eglext_angle.h",

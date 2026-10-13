@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.5.0";
       const ruby_1 = ruby;
       const gemdir = nix.path(here, "./.");
-      const gemset = nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.builtins.import(nix.path(here, "./gemset.nix"))), nix.thunk(() => ({
+      const gemset = nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.builtins.import(nix.path(here, "./gemset.nix")) as nix.Imported<typeof import("./gemset.ts")>), nix.thunk(() => ({
           [nix.POS]: $pos[3],
           anystyle: nix.thunk(() => ({
             [nix.POS]: $pos[2],

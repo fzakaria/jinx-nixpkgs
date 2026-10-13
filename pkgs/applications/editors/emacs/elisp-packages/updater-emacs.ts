@@ -5,7 +5,7 @@ const here = nix.here(import.meta.url);
 const $pos = nix.positions(here + "/updater-emacs.nix", [[["owner", 13, 11], ["repo", 14, 11], ["rev", 15, 11], ["hash", 16, 11]], [["pname", 9, 9], ["version", 10, 9], ["src", 12, 9], ["packageRequires", 19, 9]], [["owner", 27, 11], ["repo", 28, 11], ["rev", 29, 11], ["hash", 30, 11]], [["pname", 23, 9], ["version", 24, 9], ["src", 26, 9], ["packageRequires", 33, 9]], [["packages", 45, 3]]]);
 
 export default nix.thunk(() => (() => {
-  const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../../..")), nix.thunk(() => ({}))));
+  const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../../..")) as nix.Imported<typeof import("../../../../../default.ts")>, nix.thunk(() => ({}))));
   const emacsEnv = nix.thunk(() => nix.app(nix.sel(pkgs, "emacs", "pkgs", "withPackages"), (epkgs) => (() => {
       const promise = nix.thunk(() => nix.app(nix.sel(epkgs, "melpaBuild"), nix.thunk(() => ({
           [nix.POS]: $pos[1],

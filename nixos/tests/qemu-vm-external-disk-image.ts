@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         switch: nix.thunk(() => ({ [nix.POS]: $pos[5], enable: true })),
         build: nix.thunk(() => ({
           [nix.POS]: $pos[7],
-          diskImage: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/make-disk-image.nix")), nix.thunk(() => ({
+          diskImage: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/make-disk-image.nix")) as nix.Imported<typeof import("../lib/make-disk-image.ts")>, nix.thunk(() => ({
               [nix.POS]: $pos[6],
               config: config,
               lib: lib_1,

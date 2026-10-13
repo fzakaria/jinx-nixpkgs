@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
             url: nix.thunk(() => nix.attr(plugin, "url")),
             hash: nix.thunk(() => nix.attr(plugin, "hash")),
           })))),
-      }), nix.thunk(() => nix.builtins.import(nix.path(here, "./plugins.nix")))))));
+      }), nix.thunk(() => nix.builtins.import(nix.path(here, "./plugins.nix")) as nix.Imported<typeof import("./plugins.ts")>)))));
   return nix.app(buildGoModule, (finalAttrs) => ({
       [nix.POS]: $pos[8],
       pname: "perses",

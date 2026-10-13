@@ -4,7 +4,7 @@ import * as nix from "../../../.jinx/runtime/index.ts";
 const here = nix.here(import.meta.url);
 
 export default nix.thunk(() => (() => {
-  const lib = nix.thunk(() => nix.builtins.import(nix.path(here, "../../../lib")));
+  const lib = nix.thunk(() => nix.builtins.import(nix.path(here, "../../../lib")) as nix.Imported<typeof import("../../../lib/default.ts")>);
   return nix.app(nix.sel(lib, "warnIf"), nix.thunk(() => nix.app(nix.sel(lib, "isInOldestRelease"), 2411n)), "nixos/modules/profiles/macos-builder.nix has moved to nixos/modules/profiles/nix-builder-vm.nix; please update your NixOS imports.", nix.path(here, "./nix-builder-vm.nix"));
 })());
 //# sourceMappingURL=macos-builder.ts.map

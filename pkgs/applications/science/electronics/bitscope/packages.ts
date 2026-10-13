@@ -9,7 +9,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const callPackage = nix.arg($, "callPackage");
   const fetchurl = nix.arg($, "fetchurl");
-  const mkBitscope = nix.thunk(() => nix.app(callPackage, nix.thunk(() => nix.builtins.import(nix.path(here, "./common.nix"))), nix.thunk(() => ({}))));
+  const mkBitscope = nix.thunk(() => nix.app(callPackage, nix.thunk(() => nix.builtins.import(nix.path(here, "./common.nix")) as nix.Imported<typeof import("./common.ts")>), nix.thunk(() => ({}))));
   return {
     [nix.POS]: $pos[24],
     chart: nix.thunk(() => (() => {

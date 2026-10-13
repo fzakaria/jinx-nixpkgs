@@ -8,7 +8,7 @@ const formals$1 = { args: { lib: false }, ellipsis: false };
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
-  const p = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../stdenv/generic/problems.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib }))));
+  const p = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../stdenv/generic/problems.nix")) as nix.Imported<typeof import("../../stdenv/generic/problems.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib }))));
   const genConstraintsTest = (problems) => (expected) => ({
     [nix.POS]: $pos[2],
     expr: nix.thunk(() => nix.sel(nix.app(nix.sel(p, "genHandlerSwitch"), nix.thunk(() => ({ [nix.POS]: $pos[1], problems: problems }))), "definedConstraints")),

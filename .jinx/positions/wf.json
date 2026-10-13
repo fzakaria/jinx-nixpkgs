@@ -1,0 +1,1 @@
+{"wf-config":"pkgs/applications/window-managers/wayfire/wf-config.nix:60","wf-recorder":"pkgs/by-name/wf/wf-recorder/package.nix:48","wf-touch":"pkgs/by-name/wf/wf-touch/package.nix:53","wfa2-lib":"pkgs/by-name/wf/wfa2-lib/package.nix:32","wfuzz":"pkgs/development/python-modules/wfuzz/default.nix:85","wfview":"pkgs/by-name/wf/wfview/package.nix:73"}

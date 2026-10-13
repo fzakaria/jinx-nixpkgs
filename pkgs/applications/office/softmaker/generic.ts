@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
   const suiteName = nix.arg($, "suiteName");
   const src = nix.arg($, "src");
   const archive = nix.arg($, "archive");
-  const desktopItems = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./desktop_items.nix")), nix.thunk(() => ({
+  const desktopItems = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./desktop_items.nix")) as nix.Imported<typeof import("./desktop_items.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[0],
       makeDesktopItem: makeDesktopItem,
       pname: pname,

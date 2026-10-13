@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const plugins = nix.argOr($, "plugins", () => (p) => []);
   const version = "2.2.0";
-  const allPlugins = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => (value) => nix.update(value, { [nix.POS]: $pos[0], name: name }), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./plugins.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], pkgs: pkgs, python3: python3 }))))));
+  const allPlugins = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => (value) => nix.update(value, { [nix.POS]: $pos[0], name: name }), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./plugins.nix")) as nix.Imported<typeof import("./plugins.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[1], pkgs: pkgs, python3: python3 }))))));
   const selectedPlugins = nix.thunk(() => nix.app(plugins, allPlugins));
   return nix.app(nix.sel(python3, "pkgs", "buildPythonPackage"), nix.thunk(() => ({
       [nix.POS]: $pos[5],

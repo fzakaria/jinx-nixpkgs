@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
-  const wg_keys = nix.thunk(() => nix.builtins.import(nix.path(here, "./wireguard/snakeoil-keys.nix")));
+  const wg_keys = nix.thunk(() => nix.builtins.import(nix.path(here, "./wireguard/snakeoil-keys.nix")) as nix.Imported<typeof import("./wireguard/snakeoil-keys.ts")>);
   const target_host = "acme.test";
   const server_host = "sing-box.test";
   const hosts = nix.thunk(() => nix.attrsDyn({}, [[nix.str`${target_host}`, "1.1.1.1"], [nix.str`${server_host}`, "1.1.1.2"]]));

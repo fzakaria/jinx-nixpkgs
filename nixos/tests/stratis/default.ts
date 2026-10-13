@@ -8,11 +8,11 @@ const formals$1 = { args: { system: true, pkgs: true }, ellipsis: false };
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../..")), nix.thunk(() => ({ [nix.POS]: $pos[0], system: system }))));
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../..")) as nix.Imported<typeof import("../../../default.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], system: system }))));
   return {
     [nix.POS]: $pos[3],
-    simple: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./simple.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], system: system, pkgs: pkgs })))),
-    encryption: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./encryption.nix")), nix.thunk(() => ({ [nix.POS]: $pos[2], system: system, pkgs: pkgs })))),
+    simple: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./simple.nix")) as nix.Imported<typeof import("./simple.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[1], system: system, pkgs: pkgs })))),
+    encryption: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./encryption.nix")) as nix.Imported<typeof import("./encryption.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[2], system: system, pkgs: pkgs })))),
   };
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

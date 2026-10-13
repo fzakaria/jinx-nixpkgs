@@ -76,7 +76,7 @@ networking.hostId = "${nix.sel(config, "networking", "hostId")}";
 `))}
 }
 `)));
-            const zfsBuilder = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../lib/make-multi-disk-zfs-image.nix")), nix.thunk(() => ({
+            const zfsBuilder = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../lib/make-multi-disk-zfs-image.nix")) as nix.Imported<typeof import("../../../lib/make-multi-disk-zfs-image.ts")>, nix.thunk(() => ({
                 [nix.POS]: $pos[9],
                 lib: lib,
                 config: config,
@@ -120,7 +120,7 @@ ${nix.sel(pkgs, "jq")}/bin/jq -n \\
    ' > $out/nix-support/image-info.json
 `),
               }))));
-            const extBuilder = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../lib/make-disk-image.nix")), nix.thunk(() => (() => {
+            const extBuilder = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../lib/make-disk-image.nix")) as nix.Imported<typeof import("../../../lib/make-disk-image.ts")>, nix.thunk(() => (() => {
                 const from_1 = nix.thunk(() => nix.sel(config, "image"));
                 const from_2 = nix.thunk(() => nix.sel(config, "virtualisation"));
                 return {

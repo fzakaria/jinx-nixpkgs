@@ -146,7 +146,7 @@ ln -s ${wechat}/opt/* $out/opt/
     krb5,
   ]);
   const wechat = nix.thunk(() => (() => {
-    const sources = nix.thunk(() => nix.builtins.import(nix.path(here, "./sources.nix")));
+    const sources = nix.thunk(() => nix.builtins.import(nix.path(here, "./sources.nix")) as nix.Imported<typeof import("./sources.ts")>);
     const pname = "wechat-uos";
     const version = nix.thunk(() => nix.sel(sources, "version"));
     const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.update({

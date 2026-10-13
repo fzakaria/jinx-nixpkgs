@@ -18,15 +18,15 @@ export default nix.lambda((args) => (() => {
   const wayland = nix.arg($, "wayland");
   const zxing_cpp = nix.arg($, "zxing-cpp");
   const allPackages = (self) => (() => {
-    const frameworks = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./frameworks")), nix.thunk(() => ({
+    const frameworks = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./frameworks")) as nix.Imported<typeof import("./frameworks/default.ts")>, nix.thunk(() => ({
         [nix.POS]: $pos[0],
         callPackage: nix.thunk(() => nix.attr(self, "callPackage")),
       }))));
-    const gear = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./gear")), nix.thunk(() => ({
+    const gear = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./gear")) as nix.Imported<typeof import("./gear/default.ts")>, nix.thunk(() => ({
         [nix.POS]: $pos[1],
         callPackage: nix.thunk(() => nix.attr(self, "callPackage")),
       }))));
-    const plasma = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./plasma")), nix.thunk(() => ({
+    const plasma = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./plasma")) as nix.Imported<typeof import("./plasma/default.ts")>, nix.thunk(() => ({
         [nix.POS]: $pos[2],
         callPackage: nix.thunk(() => nix.attr(self, "callPackage")),
       }))));
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       frameworks: frameworks,
       gear: gear,
       plasma: plasma,
-      mkKdeDerivation: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./lib/mk-kde-derivation.nix")), self)), nix.thunk(() => ({})))),
+      mkKdeDerivation: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./lib/mk-kde-derivation.nix")) as nix.Imported<typeof import("./lib/mk-kde-derivation.ts")>, self)), nix.thunk(() => ({})))),
       cmark: cmark,
       taglib: taglib,
       wayland: wayland,

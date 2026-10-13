@@ -61,6 +61,6 @@ export default nix.lambda((args) => (() => {
         hash: "sha256-TyViMU+ZLUHNK5CRi8CN3tThFNUJQnuWTeCxT2JTYG0=",
         cargoHash: "sha256-43B3zl/mJXuBD/w8x+lek7Wtg/lZ/bZWuJdv5v9ImSE=",
       })))),
-  }, nix.app(nix.sel(lib, "mapAttrs"), (_) => generic, nix.thunk(() => nix.builtins.import(nix.path(here, "./pinned.nix")))));
+  }, nix.app(nix.sel(lib, "mapAttrs"), (_) => generic, nix.thunk(() => nix.builtins.import(nix.path(here, "./pinned.nix")) as nix.Imported<typeof import("./pinned.ts")>)));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

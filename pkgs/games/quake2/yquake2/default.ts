@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const openalSupport = nix.argOr($, "openalSupport", () => true);
   const openal = nix.arg($, "openal");
-  const games = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./games.nix")), nix.thunk(() => ({
+  const games = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./games.nix")) as nix.Imported<typeof import("./games.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[0],
       stdenv: stdenv,
       lib: lib,
       fetchFromGitHub: fetchFromGitHub,
     }))));
-  const wrapper = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./wrapper.nix")), nix.thunk(() => ({
+  const wrapper = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./wrapper.nix")) as nix.Imported<typeof import("./wrapper.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[1],
       stdenv: stdenv,
       lib: lib,

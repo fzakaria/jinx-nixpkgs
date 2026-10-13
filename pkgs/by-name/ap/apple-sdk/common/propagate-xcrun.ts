@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const sdkVersion = nix.arg($, "sdkVersion");
-  const plists = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./plists.nix")), nix.thunk(() => ({
+  const plists = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./plists.nix")) as nix.Imported<typeof import("./plists.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[0],
       lib: lib,
       stdenvNoCC: stdenvNoCC,

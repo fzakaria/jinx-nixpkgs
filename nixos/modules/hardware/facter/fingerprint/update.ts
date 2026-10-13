@@ -7,7 +7,7 @@ const formals$1 = { args: { pkgs: true }, ellipsis: false };
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../../../..")), nix.thunk(() => ({}))));
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../../../..")) as nix.Imported<typeof import("../../../../../default.ts")>, nix.thunk(() => ({}))));
   const fprint_supported_devices = nix.thunk(() => nix.app(nix.sel(pkgs, "libfprint", "overrideAttrs"), (old) => ({
       [nix.POS]: $pos[0],
       nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "nativeBuildInputs"), [nix.thunk(() => nix.sel(pkgs, "jq")), nix.thunk(() => nix.sel(pkgs, "gawk"))])),

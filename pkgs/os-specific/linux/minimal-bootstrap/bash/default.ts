@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const derivationWithMeta = nix.arg($, "derivationWithMeta");
   const bash = nix.arg($, "bash");
   const coreutils = nix.arg($, "coreutils");
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib }))));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")) as nix.Imported<typeof import("./common.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib }))));
   const meta = nix.thunk(() => nix.attr(from, "meta"));
   const pname = "bash";
   const version = "5.3";

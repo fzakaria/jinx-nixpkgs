@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const buildPackages = nix.arg($, "buildPackages");
   const updateAutotoolsGnuConfigScriptsHook = nix.arg($, "updateAutotoolsGnuConfigScriptsHook");
-  const make_icu = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-icu.nix")), nix.thunk(() => ({
+  const make_icu = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-icu.nix")) as nix.Imported<typeof import("./make-icu.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[0],
       stdenv: stdenv,
       lib: lib,

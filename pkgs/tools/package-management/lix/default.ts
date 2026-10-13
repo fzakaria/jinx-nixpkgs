@@ -119,7 +119,7 @@ export default nix.lambda((args) => (() => {
       lix_2_95: nix.thunk(() => nix.app(nix.sel(self, "makeLixScope"), nix.thunk(() => ({
           [nix.POS]: $pos[26],
           attrName: "lix_2_95",
-          "lix-args": nix.thunk(() => nix.update(nix.app(nix.builtins.import(nix.path(here, "./2.95.nix")), nix.thunk(() => ({
+          "lix-args": nix.thunk(() => nix.update(nix.app(nix.builtins.import(nix.path(here, "./2.95.nix")) as nix.Imported<typeof import("./2.95.ts")>, nix.thunk(() => ({
               [nix.POS]: $pos[24],
               fetchFromGitea: fetchFromGitea,
               rustPlatform: rustPlatform,
@@ -129,7 +129,7 @@ export default nix.lambda((args) => (() => {
       git: nix.thunk(() => nix.app(nix.sel(self, "makeLixScope"), nix.thunk(() => ({
           [nix.POS]: $pos[28],
           attrName: "git",
-          "lix-args": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./git.nix")), nix.thunk(() => ({
+          "lix-args": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./git.nix")) as nix.Imported<typeof import("./git.ts")>, nix.thunk(() => ({
               [nix.POS]: $pos[27],
               fetchFromGitea: fetchFromGitea,
               rustPlatform: rustPlatform,

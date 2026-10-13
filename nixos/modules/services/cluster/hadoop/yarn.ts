@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "hadoop"));
-  const hadoopConf = nix.thunk(() => nix.str`${nix.app(nix.builtins.import(nix.path(here, "./conf.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], cfg: cfg, pkgs: pkgs, lib: lib })))}/`);
+  const hadoopConf = nix.thunk(() => nix.str`${nix.app(nix.builtins.import(nix.path(here, "./conf.nix")) as nix.Imported<typeof import("./conf.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], cfg: cfg, pkgs: pkgs, lib: lib })))}/`);
   const restartIfChanged = nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
       [nix.POS]: $pos[1],
       type: nix.thunk(() => nix.sel(lib, "types", "bool")),

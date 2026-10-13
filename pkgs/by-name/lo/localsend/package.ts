@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       ];
     })()),
   }));
-  return (nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")) ? nix.app(nix.builtins.import(nix.path(here, "./darwin.nix")), nix.thunk(() => ({
+  return (nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")) ? nix.app(nix.builtins.import(nix.path(here, "./darwin.nix")) as nix.Imported<typeof import("./darwin.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[1],
       pname: pname,
       version: version,
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       stdenvNoCC: stdenvNoCC,
       makeBinaryWrapper: makeBinaryWrapper,
       undmg: undmg,
-    }))) : nix.app(nix.builtins.import(nix.path(here, "./linux.nix")), nix.thunk(() => ({
+    }))) : nix.app(nix.builtins.import(nix.path(here, "./linux.nix")) as nix.Imported<typeof import("./linux.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[2],
       pname: pname,
       version: version,

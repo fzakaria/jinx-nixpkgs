@@ -11,7 +11,7 @@ const formals$5 = { args: { outputHashAlgo: false }, ellipsis: false };
 const formals$6 = { args: { outputHash: false }, ellipsis: false };
 
 export default nix.thunk(() => (() => {
-  const lib = nix.thunk(() => nix.builtins.import(nix.path(here, "./..")));
+  const lib = nix.thunk(() => nix.builtins.import(nix.path(here, "./..")) as nix.Imported<typeof import("../default.ts")>);
   const fakeHash = nix.thunk(() => nix.attr(lib, "fakeHash"));
   const fakeSha256 = nix.thunk(() => nix.attr(lib, "fakeSha256"));
   const fakeSha512 = nix.thunk(() => nix.attr(lib, "fakeSha512"));

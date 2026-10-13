@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
     const buildAndroidComposition = nix.thunk(() => nix.app(nix.sel(buildPackages, "buildPackages", "androidenv", "composeAndroidPackages"), nix.thunk(() => ({ [nix.POS]: $pos[0], includeNDK: true, ndkVersion: ndkVersion }))));
     const androidComposition = nix.thunk(() => nix.app(nix.sel(androidenv, "composeAndroidPackages"), nix.thunk(() => ({ [nix.POS]: $pos[1], includeNDK: true, ndkVersion: ndkVersion }))));
     const majorVersion = nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), ndkVersion));
-    return nix.app(nix.builtins.import(nix.path(here, "./androidndk-pkgs.nix")), nix.thunk(() => ({
+    return nix.app(nix.builtins.import(nix.path(here, "./androidndk-pkgs.nix")) as nix.Imported<typeof import("./androidndk-pkgs.ts")>, nix.thunk(() => ({
         [nix.POS]: $pos[2],
         config: config,
         lib: lib,

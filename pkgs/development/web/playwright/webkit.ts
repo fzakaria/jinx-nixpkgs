@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
   const revision = nix.arg($, "revision");
   const system = nix.arg($, "system");
   const throwSystem = nix.arg($, "throwSystem");
-  const download = nix.thunk(() => nix.selOr(nix.app(nix.builtins.import(nix.path(here, "./browser-downloads.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], name: "webkit", revision: revision }))), () => nix.force(throwSystem), nix.key(nix.force(system))));
+  const download = nix.thunk(() => nix.selOr(nix.app(nix.builtins.import(nix.path(here, "./browser-downloads.nix")) as nix.Imported<typeof import("./browser-downloads.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], name: "webkit", revision: revision }))), () => nix.force(throwSystem), nix.key(nix.force(system))));
   const libvpx$ = nix.thunk(() => nix.app(nix.sel(libvpx, "overrideAttrs"), (finalAttrs) => (previousAttrs) => ({
       [nix.POS]: $pos[2],
       version: "1.12.0",

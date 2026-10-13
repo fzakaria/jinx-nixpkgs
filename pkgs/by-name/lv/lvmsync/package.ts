@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname = "lvmsync";
-      const version = nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./gemset.nix")), nix.key(pname), "version"));
+      const version = nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./gemset.nix")) as nix.Imported<typeof import("./gemset.ts")>, nix.key(pname), "version"));
       const nativeBuildInputs = nix.thunk(() => [makeWrapper]);
       const dontUnpack = true;
       const installPhase = nix.thunk(() => (() => {

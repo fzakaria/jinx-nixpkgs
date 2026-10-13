@@ -58,7 +58,7 @@ for e in mllex mlnlffigen mlprof mlyacc; do
     $out/bin/$e
 done
 `))));
-      const meta = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./meta.nix")), nix.thunk(() => ({ [nix.POS]: $pos[3], lib: lib }))));
+      const meta = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./meta.nix")) as nix.Imported<typeof import("./meta.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[3], lib: lib }))));
       return {
         [nix.POS]: $pos[4],
         pname,

@@ -7,10 +7,10 @@ const formals$1 = { args: { configuration: true, system: true, specialArgs: true
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
-  const configuration = nix.argOr($, "configuration", () => nix.app(nix.builtins.import(nix.path(here, "./lib/from-env.nix")), "NIXOS_CONFIG", nix.builtins.findFile(nix.builtins.nixPath, "nixos-config")));
+  const configuration = nix.argOr($, "configuration", () => nix.app(nix.builtins.import(nix.path(here, "./lib/from-env.nix")) as nix.Imported<typeof import("./lib/from-env.ts")>, "NIXOS_CONFIG", nix.builtins.findFile(nix.builtins.nixPath, "nixos-config")));
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const specialArgs = nix.argOr($, "specialArgs", () => ({}));
-  const eval$ = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./lib/eval-config.nix")), nix.thunk(() => ({
+  const eval$ = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./lib/eval-config.nix")) as nix.Imported<typeof import("./lib/eval-config.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[0],
       system: system,
       specialArgs: specialArgs,

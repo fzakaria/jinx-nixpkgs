@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
         const libsForQt5 = self;
         const callPackage = nix.thunk(() => nix.sel(self, "callPackage"));
         const kdeFrameworks = nix.thunk(() => (() => {
-          const mkFrameworks = nix.thunk(() => nix.builtins.import(nix.path(here, "../development/libraries/kde-frameworks")));
+          const mkFrameworks = nix.thunk(() => nix.builtins.import(nix.path(here, "../development/libraries/kde-frameworks")) as nix.Imported<typeof import("../development/libraries/kde-frameworks/default.ts")>);
           const attrs = nix.thunk(() => ({
             [nix.POS]: $pos[0],
             config: config,

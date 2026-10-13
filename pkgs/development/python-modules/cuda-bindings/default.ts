@@ -42,12 +42,12 @@ export default nix.lambda((args) => (() => {
     const args_1 = nix.thunk(() => ({ [nix.POS]: $pos[1], replaceVars: replaceVars, cudaLibPaths: cudaLibPaths }));
     return nix.selOr({
       [nix.POS]: $pos[2],
-      "12.9": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./12_9.nix")), args_1)),
-      "13.0": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./13_0.nix")), args_1)),
-      "13.1": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./13_1.nix")), args_1)),
-      "13.2": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./13_2.nix")), args_1)),
-      "13.3": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./13_3.nix")), args_1)),
-      "13.4": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./13_4.nix")), args_1)),
+      "12.9": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./12_9.nix")) as nix.Imported<typeof import("./12_9.ts")>, args_1)),
+      "13.0": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./13_0.nix")) as nix.Imported<typeof import("./13_0.ts")>, args_1)),
+      "13.1": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./13_1.nix")) as nix.Imported<typeof import("./13_1.ts")>, args_1)),
+      "13.2": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./13_2.nix")) as nix.Imported<typeof import("./13_2.ts")>, args_1)),
+      "13.3": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./13_3.nix")) as nix.Imported<typeof import("./13_3.ts")>, args_1)),
+      "13.4": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./13_4.nix")) as nix.Imported<typeof import("./13_4.ts")>, args_1)),
     }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported cuda-bindings version: ${cudaVersion}`)), nix.key(nix.force(cudaVersion)));
   })());
   const cudaOlder = nix.thunk(() => nix.attr(cudaPackages, "cudaOlder"));

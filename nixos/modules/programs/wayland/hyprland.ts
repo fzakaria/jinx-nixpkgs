@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "hyprland"));
-  const wayland_lib = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./lib.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib }))));
+  const wayland_lib = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./lib.nix")) as nix.Imported<typeof import("./lib.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib }))));
   return {
     [nix.POS]: $pos[34],
     options: nix.thunk(() => ({
@@ -120,7 +120,7 @@ export default nix.lambda((args) => (() => {
                 uwsm: nix.thunk(() => ({ [nix.POS]: $pos[29], enable: true })),
               })),
             })))),
-          nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./wayland-session.nix")), nix.thunk(() => ({
+          nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./wayland-session.nix")) as nix.Imported<typeof import("./wayland-session.ts")>, nix.thunk(() => ({
               [nix.POS]: $pos[32],
               lib: lib,
               pkgs: pkgs,

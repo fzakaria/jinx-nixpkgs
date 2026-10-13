@@ -37,7 +37,7 @@ cp "${(nix.asBool((nix.asBool(nix.builtins.isPath(base_config)) || nix.asBool(ni
         installPhase: "runHook preInstall\n\nmkdir -p $out/lib/maubot-plugins\ninstall -m 444 $pluginName $out/lib/maubot-plugins\n\nrunHook postInstall\n",
       })));
   })(), formals$2);
-  const generated = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generated.nix")), nix.thunk(() => ({
+  const generated = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generated.nix")) as nix.Imported<typeof import("./generated.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[1],
       lib: lib,
       fetchgit: fetchgit,

@@ -99,7 +99,7 @@ done
       postInstall: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), buildBenchmarks, "mkdir -p $benchmark/bin\ncp -a $out/bin/* $benchmark/bin\nrm $benchmark/bin/rocsparse-test\n"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(buildTests) || nix.asBool(buildBenchmarks))), "mkdir -p $test/bin\nmv $out/bin/* $test/bin\nrm $test/bin/rocsparse-bench || true\nmv /build/source/matrices $test\nrmdir $out/bin\n"))),
       passthru: nix.thunk(() => ({
         [nix.POS]: $pos[3],
-        matrices: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./deps.nix")), nix.thunk(() => ({
+        matrices: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./deps.nix")) as nix.Imported<typeof import("./deps.ts")>, nix.thunk(() => ({
             [nix.POS]: $pos[1],
             fetchzip: fetchzip,
             mirror1: "https://sparse.tamu.edu/MM",

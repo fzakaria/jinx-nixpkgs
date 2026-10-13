@@ -6,8 +6,8 @@ const $pos = nix.positions(here + "/release-cuda.nix", [[["allowUnfreePredicate"
 const formals$1 = { args: { supportedSystems: true, variant: true, nixpkgsArgs: true }, ellipsis: true };
 
 export default nix.thunk(() => (() => {
-  const lib = nix.thunk(() => nix.builtins.import(nix.path(here, "../../lib")));
-  const cudaLib = nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "../development/cuda-modules/_cuda")), "lib"));
+  const lib = nix.thunk(() => nix.builtins.import(nix.path(here, "../../lib")) as nix.Imported<typeof import("../../lib/default.ts")>);
+  const cudaLib = nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "../development/cuda-modules/_cuda")) as nix.Imported<typeof import("../development/cuda-modules/_cuda/default.ts")>, "lib"));
   return nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     const args_1 = args;
@@ -25,7 +25,7 @@ export default nix.thunk(() => (() => {
       __allowFileset: false,
     }));
     nix.assert_(nix.builtins.elem(variant, nix.thunk(() => ["cuda", "rocm", null])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/top-level/release-cuda.nix:43:1");
-    const mkReleaseLib = nix.thunk(() => nix.builtins.import(nix.path(here, "./release-lib.nix")));
+    const mkReleaseLib = nix.thunk(() => nix.builtins.import(nix.path(here, "./release-lib.nix")) as nix.Imported<typeof import("./release-lib.ts")>);
     const release_lib = nix.thunk(() => nix.app(mkReleaseLib, nix.thunk(() => nix.update({
         [nix.POS]: $pos[2],
         supportedSystems: supportedSystems,

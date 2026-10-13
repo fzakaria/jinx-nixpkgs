@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchurl = nix.arg($, "fetchurl");
   const writeShellScript = nix.arg($, "writeShellScript");
-  const versionMetadata = nix.thunk(() => nix.builtins.import(nix.path(here, "./sysdig-cli-scanner.versions.nix")));
+  const versionMetadata = nix.thunk(() => nix.builtins.import(nix.path(here, "./sysdig-cli-scanner.versions.nix")) as nix.Imported<typeof import("./sysdig-cli-scanner.versions.ts")>);
   const fetchForSystem = nix.thunk(() => nix.selOr(versionMetadata, () => nix.builtins.throw(nix.thunk(() => nix.str`unsupported system ${nix.sel(stdenv, "system")}`)), nix.key(nix.sel(stdenv, "system"))));
   const wrapper = nix.thunk(() => nix.app(writeShellScript, "sysdig-cli-scanner-wrapper", "for arg in \"$@\"; do\n  # We must not pass --dbpath to the cli in case it has been called with --iac\n  # IaC Scanning does not make use of the vulnerability database\n  if [ \"$arg\" = \"--iac\" ]; then\n    exec @out@/libexec/sysdig-cli-scanner-unwrapped \"$@\"\n  fi\ndone\n\n# --dbpath argument is needed for vulnerability scanning mode, otherwise it tries to download\n# the vulnerability database in the same path as the binary, which is read-only in the case of the\n# nix store\nexec @out@/libexec/sysdig-cli-scanner-unwrapped \\\n  --dbpath=\"$HOME/.cache/sysdig-cli-scanner/\" \"$@\"\n"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({

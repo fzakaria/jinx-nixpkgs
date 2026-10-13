@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   const nodes = nix.argOr($, "nodes", () => ({}));
-  const testCerts = nix.thunk(() => nix.builtins.import(nix.path(here, "./snakeoil-certs.nix")));
+  const testCerts = nix.thunk(() => nix.builtins.import(nix.path(here, "./snakeoil-certs.nix")) as nix.Imported<typeof import("./snakeoil-certs.ts")>);
   const domain = nix.thunk(() => nix.sel(testCerts, "domain"));
   const pebbleConf = nix.thunk(() => ({
     [nix.POS]: $pos[1],

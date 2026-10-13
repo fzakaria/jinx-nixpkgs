@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
           url: nix.thunk(() => nix.str`https://deb.debian.org/debian/pool/main/n/nvi/nvi_${nix.sel(finalAttrs, "version")}.orig.tar.gz`),
           hash: "sha256-i8NIiJFZo0zyaPgHILJvRZ29cjtWFhB9NnOdAH5Ml40=",
         })))),
-      patches: nix.thunk(() => nix.concat(nix.builtins.map(fetchurl, nix.thunk(() => nix.builtins.import(nix.path(here, "./debian-patches.nix")))), nix.builtins.map(fetchpatch, nix.thunk(() => nix.builtins.import(nix.path(here, "./macports-patches.nix")))))),
+      patches: nix.thunk(() => nix.concat(nix.builtins.map(fetchurl, nix.thunk(() => nix.builtins.import(nix.path(here, "./debian-patches.nix")) as nix.Imported<typeof import("./debian-patches.ts")>)), nix.builtins.map(fetchpatch, nix.thunk(() => nix.builtins.import(nix.path(here, "./macports-patches.nix")) as nix.Imported<typeof import("./macports-patches.ts")>)))),
       buildInputs: nix.thunk(() => nix.concat([ncurses, db], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv])))),
       preConfigure: "cd build.unix\n",
       configureScript: "../dist/configure",

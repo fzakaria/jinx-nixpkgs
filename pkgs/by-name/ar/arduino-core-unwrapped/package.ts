@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
   const cairo = nix.arg($, "cairo");
   const udev = nix.arg($, "udev");
   nix.assert_((!nix.asBool(withTeensyduino) || nix.asBool(withGui)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ar/arduino-core-unwrapped/package.nix:41:1");
-  const externalDownloads = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./downloads.nix")), nix.thunk(() => (() => {
+  const externalDownloads = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./downloads.nix")) as nix.Imported<typeof import("./downloads.ts")>, nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(stdenv, "hostPlatform"));
       return {
       [nix.POS]: $pos[0],

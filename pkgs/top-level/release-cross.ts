@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
     config: nix.thunk(() => ({ [nix.POS]: $pos[0], allowAliases: false, allowUnfree: false, inHydra: true })),
     __allowFileset: false,
   }));
-  const release_lib = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./release-lib.nix")), nix.thunk(() => ({
+  const release_lib = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./release-lib.nix")) as nix.Imported<typeof import("./release-lib.ts")>, nix.thunk(() => ({
       [nix.POS]: $pos[2],
       supportedSystems: supportedSystems,
       scrubJobs: scrubJobs,
@@ -216,9 +216,9 @@ export default nix.lambda((args) => (() => {
     "x86_64-netbsd": nix.thunk(() => nix.app(mapTestOnCross, nix.thunk(() => nix.sel(systems, "examples", "x86_64-netbsd")), common)),
     "x86_64-openbsd": nix.thunk(() => nix.app(mapTestOnCross, nix.thunk(() => nix.sel(systems, "examples", "x86_64-openbsd")), common)),
     bootstrapTools: nix.thunk(() => (() => {
-      const linuxTools = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../stdenv/linux/make-bootstrap-tools-cross.nix")), nix.thunk(() => ({ [nix.POS]: $pos[36], system: "x86_64-linux" }))));
-      const freebsdTools = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../stdenv/freebsd/make-bootstrap-tools-cross.nix")), nix.thunk(() => ({ [nix.POS]: $pos[37], system: "x86_64-linux" }))));
-      const cygwinTools = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../stdenv/cygwin/make-bootstrap-tools-cross.nix")), nix.thunk(() => ({ [nix.POS]: $pos[38], system: "x86_64-linux" }))));
+      const linuxTools = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../stdenv/linux/make-bootstrap-tools-cross.nix")) as nix.Imported<typeof import("../stdenv/linux/make-bootstrap-tools-cross.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[36], system: "x86_64-linux" }))));
+      const freebsdTools = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../stdenv/freebsd/make-bootstrap-tools-cross.nix")) as nix.Imported<typeof import("../stdenv/freebsd/make-bootstrap-tools-cross.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[37], system: "x86_64-linux" }))));
+      const cygwinTools = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../stdenv/cygwin/make-bootstrap-tools-cross.nix")) as nix.Imported<typeof import("../stdenv/cygwin/make-bootstrap-tools-cross.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[38], system: "x86_64-linux" }))));
       const linuxMeta = nix.thunk(() => ({ [nix.POS]: $pos[39], maintainers: [] }));
       const freebsdMeta = nix.thunk(() => ({
         [nix.POS]: $pos[40],

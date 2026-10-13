@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
           netfilterRPFilter: true,
           ia32Emulation: true,
         }, features)), kernelPatches));
-      const commonStructuredConfig = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common-config.nix")), nix.thunk(() => ({
+      const commonStructuredConfig = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common-config.nix")) as nix.Imported<typeof import("./common-config.ts")>, nix.thunk(() => ({
           [nix.POS]: $pos[1],
           lib: lib,
           stdenv: stdenv_1,
@@ -106,7 +106,7 @@ export default nix.lambda((args) => (() => {
             [nix.POS]: $pos[3],
             RUST_LIB_SRC: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withRust, nix.thunk(() => nix.sel(rustPlatform, "rustLibSrc")))),
           })),
-          makeFlags: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common-flags.nix")), nix.thunk(() => ({
+          makeFlags: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common-flags.nix")) as nix.Imported<typeof import("./common-flags.ts")>, nix.thunk(() => ({
               [nix.POS]: $pos[4],
               lib: lib,
               stdenv: stdenv_1,
@@ -140,7 +140,7 @@ DEBUG=1 ARCH=$kernelArch CROSS_COMPILE=${nix.sel(stdenv_1, "cc", "targetPrefix")
           installPhase: "mv $buildRoot/.config $out",
           enableParallelBuilding: true,
           passthru: nix.thunk(() => (() => {
-            const module = nix.thunk(() => nix.builtins.import(nix.path(here, "../../../../nixos/modules/system/boot/kernel_config.nix")));
+            const module = nix.thunk(() => nix.builtins.import(nix.path(here, "../../../../nixos/modules/system/boot/kernel_config.nix")) as nix.Imported<typeof import("../../../../nixos/modules/system/boot/kernel_config.ts")>);
             const moduleStructuredConfig = nix.thunk(() => nix.sel(nix.app(nix.sel(lib, "evalModules"), nix.thunk(() => ({
                 [nix.POS]: $pos[7],
                 modules: nix.thunk(() => nix.concat([module], nix.concat(nix.app(nix.sel(lib, "optionals"), enableCommonConfig, nix.thunk(() => [
@@ -224,7 +224,7 @@ DEBUG=1 ARCH=$kernelArch CROSS_COMPILE=${nix.sel(stdenv_1, "cc", "targetPrefix")
                       })),
                     };
                   })(), formals$5)), "config", "boot", "kernelPackages", "kernel", "outPath")), emptyFile));
-              const versionDoesNotDependOnPatchesEtc = nix.thunk(() => nix.builtins.seq(nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./generic.nix")), args$, nix.thunk(() => nix.update(args_2, (() => {
+              const versionDoesNotDependOnPatchesEtc = nix.thunk(() => nix.builtins.seq(nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./generic.nix")) as nix.Imported<typeof import("./generic.ts")>, args$, nix.thunk(() => nix.update(args_2, (() => {
                     const explain = (attrName) => nix.str`The ${attrName} attribute must be able to access the kernel.version attribute without an infinite recursion.
 That means that the kernel attrset (attrNames) and the kernel.version attribute must not depend on the ${attrName} argument.
 The fact that this exception is raised shows that such a dependency does exist.

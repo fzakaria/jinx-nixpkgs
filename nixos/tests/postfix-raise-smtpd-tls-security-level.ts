@@ -5,7 +5,7 @@ const here = nix.here(import.meta.url);
 const $pos = nix.positions(here + "/postfix-raise-smtpd-tls-security-level.nix", [[["smtpd_tls_security_level", 12, 11]], [["enable", 9, 9], ["enableSubmissions", 10, 9], ["submissionsOptions", 11, 9]], [["postfix", 8, 16]], [["systemPackages", 16, 19]], [["imports", 7, 7], ["services", 8, 7], ["environment", 16, 7]], [["machine", 4, 9]], [["name", 2, 3], ["nodes", 4, 3], ["testScript", 41, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
 
-export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")), nix.thunk(() => ({
+export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")) as nix.Imported<typeof import("./make-test-python.ts")>, nix.thunk(() => ({
     [nix.POS]: $pos[6],
     name: "postfix",
     nodes: nix.thunk(() => ({

@@ -7,7 +7,7 @@ const formals$1 = { args: { lib: true, nixpkgs: true, stableBranch: true, suppor
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
-  const lib = nix.argOr($, "lib", () => nix.builtins.import(nix.path(here, "../lib")));
+  const lib = nix.argOr($, "lib", () => nix.builtins.import(nix.path(here, "../lib")) as nix.Imported<typeof import("../lib/default.ts")>);
   const nixpkgs = nix.argOr($, "nixpkgs", () => ({
     [nix.POS]: $pos[0],
     outPath: nix.thunk(() => nix.app(nix.sel(lib, "cleanSource"), nix.path(here, "./.."))),
@@ -18,19 +18,19 @@ export default nix.lambda((args) => (() => {
   const supportedSystems = nix.argOr($, "supportedSystems", () => ["aarch64-linux", "x86_64-linux"]);
   const limitedSupportedSystems = nix.argOr($, "limitedSupportedSystems", () => []);
   const nixpkgsSrc = nixpkgs;
-  const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./..")), nix.thunk(() => ({}))));
+  const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./..")) as nix.Imported<typeof import("../default.ts")>, nix.thunk(() => ({}))));
   const removeMaintainers = (set) => (nix.asBool(nix.builtins.isAttrs(set)) ? (nix.asBool(nix.eq(nix.selOr(set, () => "", "type"), "derivation")) ? nix.update(set, {
     [nix.POS]: $pos[1],
     meta: nix.thunk(() => nix.builtins.removeAttrs(nix.thunk(() => nix.selOr(set, () => ({}), "meta")), nix.thunk(() => ["maintainers"]))),
   }) : nix.app(nix.sel(lib, "mapAttrs"), (n) => (v) => nix.app(removeMaintainers, v), set)) : nix.force(set));
   return (() => {
-    const nixos = nix.thunk(() => nix.app(removeMaintainers, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./release.nix")), nix.thunk(() => ({
+    const nixos = nix.thunk(() => nix.app(removeMaintainers, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./release.nix")) as nix.Imported<typeof import("./release.ts")>, nix.thunk(() => ({
           [nix.POS]: $pos[2],
           stableBranch: stableBranch,
           supportedSystems: nix.thunk(() => nix.concat(supportedSystems, limitedSupportedSystems)),
           nixpkgs: nixpkgsSrc,
         }))))));
-    const nixpkgs_1 = nix.thunk(() => nix.app(removeMaintainers, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../pkgs/top-level/release.nix")), nix.thunk(() => ({ [nix.POS]: $pos[3], supportedSystems: supportedSystems, nixpkgs: nixpkgsSrc }))))));
+    const nixpkgs_1 = nix.thunk(() => nix.app(removeMaintainers, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../pkgs/top-level/release.nix")) as nix.Imported<typeof import("../pkgs/top-level/release.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[3], supportedSystems: supportedSystems, nixpkgs: nixpkgsSrc }))))));
     const tested = nix.thunk(() => (() => {
       const onFullSupported = (x) => nix.builtins.map((system) => nix.str`${x}.${system}`, supportedSystems);
       const onAllSupported = (x) => nix.builtins.map((system) => nix.str`${x}.${system}`, nix.thunk(() => nix.concat(supportedSystems, limitedSupportedSystems)));

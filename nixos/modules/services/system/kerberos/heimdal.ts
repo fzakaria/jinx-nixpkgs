@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
     realms: nix.thunk(() => nix.app(mapAttrs, (_) => (v) => nix.builtins.removeAttrs(v, nix.thunk(() => ["acl"])), nix.thunk(() => nix.selOr(cfg, () => ({}), "settings", "realms")))),
     kdc: nix.thunk(() => nix.update(nix.selOr(cfg, () => ({}), "settings", "kdc"), { [nix.POS]: $pos[1], database: aclConfigs })),
   }));
-  const format = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../security/krb5/krb5-conf-format.nix")), nix.thunk(() => ({ [nix.POS]: $pos[3], pkgs: pkgs, lib: lib })), nix.thunk(() => ({ [nix.POS]: $pos[4], enableKdcACLEntries: true }))));
+  const format = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../security/krb5/krb5-conf-format.nix")) as nix.Imported<typeof import("../../../security/krb5/krb5-conf-format.ts")>, nix.thunk(() => ({ [nix.POS]: $pos[3], pkgs: pkgs, lib: lib })), nix.thunk(() => ({ [nix.POS]: $pos[4], enableKdcACLEntries: true }))));
   const kdcConfFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "kdc.conf", finalConfig));
   return {
     [nix.POS]: $pos[21],
